@@ -1,0 +1,78 @@
+{
+  "test_name": "Temporal Reasoning",
+  "n_sources": 5,
+  "sources": [
+    {
+      "name": "EB-001",
+      "type": "Eclipsing Binary",
+      "true_period": 3.45,
+      "true_amplitude": 0.3,
+      "detected_period": 6.860889021479713,
+      "period_power": 0.016007108599435323,
+      "false_alarm_prob": 1.0,
+      "period_accuracy": 0.9886634844868734,
+      "n_outliers": 57,
+      "forecast_generated": false,
+      "classification": "Transient / Outburst"
+    },
+    {
+      "name": "CEPH-001",
+      "type": "Cepheid",
+      "true_period": 12.5,
+      "true_amplitude": 0.25,
+      "detected_period": 23.8685190489831,
+      "period_power": 0.15000446808931728,
+      "false_alarm_prob": 1.0,
+      "period_accuracy": 0.909481523918648,
+      "n_outliers": 212,
+      "forecast_generated": false,
+      "classification": "Transient / Outburst"
+    },
+    {
+      "name": "CV-001",
+      "type": "Dwarf Nova",
+      "true_period": 0.08,
+      "true_amplitude": 1.5,
+      "detected_period": 0.04058138650026634,
+      "period_power": 0.8494369575564097,
+      "false_alarm_prob": 1.0,
+      "period_accuracy": 0.49273266874667077,
+      "n_outliers": 174,
+      "forecast_generated": false,
+      "classification": "Transient / Outburst"
+    },
+    {
+      "name": "HJ-001",
+      "type": "Hot Jupiter Transit",
+      "true_period": 2.2,
+      "true_amplitude": 0.01,
+      "detected_period": 4.306960352422908,
+      "period_power": 0.012236213968259985,
+      "false_alarm_prob": 1.0,
+      "period_accuracy": 0.9577092511013215,
+      "n_outliers": 0,
+      "forecast_generated": false,
+      "classification": "Non-variable / Low amplitude"
+    },
+    {
+      "name": "SN-001",
+      "type": "Type Ia Supernova",
+      "true_period": null,
+      "true_amplitude": 15,
+      "detected_period": 0.01937984496124031,
+      "period_power": 0.4401178690162441,
+      "false_alarm_prob": 1.0,
+      "n_outliers": 24,
+      "forecast_generated": false,
+      "classification": "Transient / Outburst"
+    }
+  ],
+  "capabilities": [
+    "Period detection using Lomb-Scargle periodogram",
+    "Phase folding and template matching",
+    "Transient detection with sigma-clipping",
+    "Light curve forecasting using Fourier models",
+    "Classification based on period and morphology",
+    "Multi-scale temporal analysis (hours to months)"
+  ]
+}

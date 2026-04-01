@@ -1,0 +1,106 @@
+{
+  "test_name": "Counterfactual Analysis",
+  "n_stars_analyzed": 500,
+  "scenarios": [
+    {
+      "scenario": "Double Distance",
+      "n_original_detected": 500,
+      "n_counterfactual_detected": 449,
+      "fraction_lost": 0.102,
+      "bias_amplification_mag": -0.43038430722218557,
+      "physical_law": "Inverse square law + distance modulus"
+    },
+    {
+      "scenario": "Deeper Magnitude Limit (20 -> 22 mag)",
+      "original_limit": 20.0,
+      "counterfactual_limit": 22.0,
+      "n_original_detected": 500,
+      "n_counterfactual_detected": 500,
+      "distance_reach_original_pc": 499.7760745311508,
+      "distance_reach_counterfactual_pc": 499.7760745311508,
+      "volume_ratio": 1.0,
+      "median_luminosity_ratio": 1.0,
+      "physical_law": "Volume-limited sampling"
+    },
+    {
+      "scenario": "Infrared vs Optical Observation",
+      "ir_brightening_mag": 2.5,
+      "extinction_ratio": 0.1,
+      "n_optical_detected": 500,
+      "n_ir_detected": 500,
+      "very_red_stars_optical": 255,
+      "very_red_stars_ir": 255,
+      "red_star_advantage": 1.0,
+      "physical_law": "Stellar SEDs and extinction law"
+    },
+    {
+      "scenario": "Improved Astrometric Precision (2\u00d7 better)",
+      "original_parallax_error_mas": 0.1,
+      "counterfactual_parallax_error_mas": 0.05,
+      "n_significant_original": 500,
+      "n_significant_counterfactual": 500,
+      "median_distance_precision_original": 0.033356076328201874,
+      "median_distance_precision_counterfactual": 0.016678038164100937,
+      "distance_for_10pc_precision_original": 1.0,
+      "distance_for_10pc_precision_counterfactual": 0.5,
+      "physical_law": "Error propagation"
+    },
+    {
+      "scenario": "No Interstellar Extinction",
+      "extinction_model": "1.0 mag/kpc",
+      "median_extinction_detected_mag": 0.3335607632820187,
+      "n_original_detected": 500,
+      "n_counterfactual_detected": 500,
+      "max_distance_original_pc": 499.7760745311508,
+      "max_distance_counterfactual_pc": 499.7760745311508,
+      "distance_gain_factor": 1.0,
+      "physical_law": "Interstellar extinction"
+    }
+  ],
+  "capabilities": [
+    "Physically-motivated transformations (not arbitrary changes)",
+    "Multiple physical effects considered simultaneously",
+    "Detection limit consequences quantified",
+    "Bias amplification/attenuation assessed",
+    "Instrumental specification awareness",
+    "Interstellar medium effects included",
+    "Statistical sampling effects tracked"
+  ],
+  "comparison": {
+    "LLMs": {
+      "strengths": [
+        "Can describe counterfactual concepts qualitatively"
+      ],
+      "weaknesses": [
+        "Cannot quantify physical effects",
+        "Cannot apply transformations to actual data",
+        "Cannot track multiple interacting effects",
+        "No awareness of detection limits"
+      ]
+    },
+    "Traditional ML": {
+      "strengths": [
+        "Can simulate within training distribution"
+      ],
+      "weaknesses": [
+        "Cannot extrapolate beyond training data",
+        "No physical understanding",
+        "Cannot explain why changes occur",
+        "Limited to observed parameter space"
+      ]
+    },
+    "ASTRA": {
+      "strengths": [
+        "Physically-grounded transformations",
+        "Quantitative predictions",
+        "Multiple simultaneous effects",
+        "Detection limit awareness",
+        "Bias mechanism understanding"
+      ],
+      "weaknesses": [
+        "Requires accurate physical models",
+        "Computationally intensive for Monte Carlo"
+      ]
+    }
+  }
+}

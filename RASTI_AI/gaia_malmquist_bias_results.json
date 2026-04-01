@@ -1,0 +1,18 @@
+{
+  "dataset": "REAL Gaia DR2",
+  "n_stars": 10000,
+  "distance_range_pc": [
+    50.4817672004217,
+    499.99863275937906
+  ],
+  "distance_ratio": 9.904539014537557,
+  "correlation": 0.02513654645765416,
+  "p_value": 0.011945928888623903,
+  "slope_luminosity": 0.46038562931248794,
+  "slope_absmag": -5.246085949977952,
+  "bias_magnitude_mag": -13.115214874944881,
+  "bias_detected": true,
+  "correlation_volume_limited": 0.03755643329447229,
+  "improvement": -0.012419886836818127,
+  "quality_cut": 20
+}

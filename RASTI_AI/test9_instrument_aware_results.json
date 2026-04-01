@@ -1,0 +1,123 @@
+{
+  "test_name": "Instrument-Aware Analysis",
+  "n_instruments": 6,
+  "n_targets": 5,
+  "instruments": {
+    "HST_ACS_WFC": {
+      "name": "Hubble Space Telescope ACS/WFC",
+      "type": "Space-based UV/Optical",
+      "wavelength_range_angstrom": [
+        2000,
+        11000
+      ],
+      "psf_fwhm_arcsec": 0.1,
+      "mirror_diameter_m": 2.4
+    },
+    "JWST_NIRCam": {
+      "name": "James Webb Space Telescope NIRCam",
+      "type": "Space-based Near-Infrared",
+      "wavelength_range_angstrom": [
+        6000,
+        50000
+      ],
+      "psf_fwhm_arcsec": 0.07,
+      "mirror_diameter_m": 6.5
+    },
+    "VLT_HAWKI": {
+      "name": "VLT HAWK-I",
+      "type": "Ground-based Near-Infrared",
+      "wavelength_range_angstrom": [
+        10000,
+        25000
+      ],
+      "psf_fwhm_arcsec": 0.35,
+      "mirror_diameter_m": 8.2
+    },
+    "ALMA_Band6": {
+      "name": "ALMA Band 6",
+      "type": "Millimeter Interferometer",
+      "wavelength_range_angstrom": [
+        1300,
+        1800
+      ],
+      "psf_fwhm_arcsec": 0.04,
+      "mirror_diameter_m": 12.0
+    },
+    "Chandra_ACIS": {
+      "name": "Chandra X-ray Observatory ACIS",
+      "type": "Space-based X-ray",
+      "wavelength_range_angstrom": [
+        1,
+        100
+      ],
+      "psf_fwhm_arcsec": 0.5,
+      "mirror_diameter_m": 1.2
+    },
+    "Gaia": {
+      "name": "Gaia Observatory",
+      "type": "Space-based Astrometry",
+      "wavelength_range_angstrom": [
+        3500,
+        10000
+      ],
+      "psf_fwhm_arcsec": 0.2,
+      "mirror_diameter_m": 1.45
+    }
+  },
+  "compatibility": {
+    "protostar": {
+      "target": "Class 0 Protostar",
+      "compatible_instruments": [
+        "JWST_NIRCam"
+      ],
+      "n_compatible": 1
+    },
+    "galaxy": {
+      "target": "L* Spiral Galaxy",
+      "compatible_instruments": [
+        "HST_ACS_WFC",
+        "Gaia"
+      ],
+      "n_compatible": 2
+    },
+    "exoplanet_host": {
+      "target": "Exoplanet Host Star",
+      "compatible_instruments": [
+        "JWST_NIRCam"
+      ],
+      "n_compatible": 1
+    },
+    "agn": {
+      "target": "Seyfert AGN",
+      "compatible_instruments": [
+        "JWST_NIRCam"
+      ],
+      "n_compatible": 1
+    },
+    "disk": {
+      "target": "Protoplanetary Disk",
+      "compatible_instruments": [
+        "JWST_NIRCam"
+      ],
+      "n_compatible": 1
+    }
+  },
+  "wavelength_coverage": {
+    "min_angstrom": 1.0,
+    "max_angstrom": 50000.0
+  },
+  "multi_instrument_example": {
+    "target": "protostar",
+    "combined_snr": 12.329961317396522,
+    "improvement_factor": 1.0
+  },
+  "capabilities": [
+    "Instrument specification knowledge",
+    "Wavelength compatibility checking",
+    "SNR estimation for different instruments",
+    "Resolution requirement assessment",
+    "Multi-instrument data combination",
+    "Instrument selection recommendations",
+    "Saturation and background consideration"
+  ]
+}

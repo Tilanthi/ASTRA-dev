@@ -1,0 +1,13 @@
+{
+  "dataset": "Published filament catalogs (Arzoumanian+2011, Hacar+2013, Andre+2014)",
+  "n_filaments": 24,
+  "universal_width_detected": true,
+  "mean_width_pc": 0.098,
+  "width_std_pc": 0.019,
+  "virial_scaling_detected": true,
+  "virial_slope_measured": 0.0812,
+  "virial_slope_theoretical": 0.0927,
+  "virial_slope_ratio": 0.88,
+  "virial_correlation": 0.9883,
+  "virial_p_value": 1.8e-19
+}

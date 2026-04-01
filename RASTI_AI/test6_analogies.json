@@ -1,0 +1,52 @@
+[
+  {
+    "id": "ANA_001",
+    "source": "Black Hole Binaries",
+    "target": "Protostellar Disks",
+    "similarity": "Viscous accretion with MRI",
+    "insight": "MRI drives turbulence in both systems",
+    "prediction": "Turbulence scales with Reynolds number",
+    "constraint": "Different opacity regimes",
+    "confidence": "HIGH"
+  },
+  {
+    "id": "ANA_002",
+    "source": "Spiral Galaxies",
+    "target": "Protostellar Disks",
+    "similarity": "Non-Keplerian rotation from distributed mass",
+    "insight": "Central mass affects dynamics",
+    "prediction": "Rotation deviates near massive planets",
+    "constraint": "Planets are point masses not distributed",
+    "confidence": "MEDIUM"
+  },
+  {
+    "id": "ANA_003",
+    "source": "Black Hole Jets",
+    "target": "Protostellar Jets",
+    "similarity": "Collimated outflows from accretion",
+    "insight": "Jets carry angular momentum enabling accretion",
+    "prediction": "Jet velocity scales with escape velocity",
+    "constraint": "Protostellar jets slower and denser",
+    "confidence": "HIGH"
+  },
+  {
+    "id": "ANA_004",
+    "source": "Galactic Disks",
+    "target": "Protoplanetary Disks",
+    "similarity": "Gravitational instability",
+    "insight": "Toomre Q parameter determines fragmentation",
+    "prediction": "Planet formation where Q < 1",
+    "constraint": "Additional physics (magnetic, thermal)",
+    "confidence": "HIGH"
+  },
+  {
+    "id": "ANA_005",
+    "source": "Multi-scale Systems",
+    "target": "Unified Framework",
+    "similarity": "Power-law L-M relations",
+    "insight": "Different physics produce similar scaling",
+    "prediction": "Deviations indicate regime transitions",
+    "constraint": "Different limiting processes",
+    "confidence": "MEDIUM"
+  }
+]

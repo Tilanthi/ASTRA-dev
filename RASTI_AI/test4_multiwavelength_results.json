@@ -1,0 +1,34 @@
+{
+  "test_name": "Multi-Wavelength Data Fusion",
+  "field": "Chandra Deep Field South",
+  "field_center": {
+    "ra": 53.0,
+    "dec": -27.0
+  },
+  "field_size_deg": 0.2,
+  "catalogs": {
+    "xray_sources": 150,
+    "optical_sources": 560,
+    "infrared_sources": 260
+  },
+  "cross_matches": {
+    "xray_optical": 10,
+    "xray_infrared": 7,
+    "optical_infrared": 24
+  },
+  "classification": {
+    "agn": 9,
+    "star": 0,
+    "galaxy": 0,
+    "total": 150
+  },
+  "capabilities": [
+    "Multi-wavelength catalog cross-matching",
+    "Astrometric uncertainty propagation",
+    "Flux-based source classification",
+    "X-ray hardness ratio analysis",
+    "Color-color diagram analysis",
+    "Counterpart identification",
+    "Multi-band photometry integration"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "test_name": "Uncertainty Quantification",
+  "n_stars": 200,
+  "statistical_uncertainties": {
+    "parallax_mas": 0.10177234890882024,
+    "gmag_mag": 0.018590723984986023,
+    "distance_percent": 3.214454923201011,
+    "luminosity_percent": 6.823100248735829
+  },
+  "systematic_uncertainties": {
+    "parallax_zero_point_mas": 0.029,
+    "distance_impact_percent": 0.8976922043775545,
+    "luminosity_impact_percent": 109211.6191824891
+  },
+  "confidence_intervals": {
+    "monte_carlo_68pc_containment": 1.0,
+    "distance_asymmetry": 1.0731002768356361,
+    "luminosity_asymmetry": 1.1064895654283518
+  },
+  "capabilities": [
+    "First-order error propagation",
+    "Monte Carlo uncertainty quantification",
+    "Statistical vs systematic uncertainty separation",
+    "Asymmetric confidence intervals",
+    "Correlated uncertainty tracking"
+  ]
+}

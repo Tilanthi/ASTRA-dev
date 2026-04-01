@@ -1,0 +1,46 @@
+{
+  "test_name": "Physical Model Discovery",
+  "n_filaments": 24,
+  "models": {
+    "power_law": {
+      "parameters": [
+        0.06864377268297006
+      ],
+      "r_squared": 0.951334583331346,
+      "rmse": 0.031102281092315488,
+      "aic": -164.5827575424121,
+      "bic": -163.40470371206416,
+      "n_params": 1,
+      "physical_meaning": "Virial theorem",
+      "name": "Power Law: \u03c3 \u221d (M/L)^0.5"
+    },
+    "linear": null,
+    "quadratic": null,
+    "exponential": null,
+    "logarithmic": null,
+    "inverse": null
+  },
+  "dimensional_analysis": {
+    "mean_pi": 1.0124422859381441,
+    "std_pi": 0.08726716454525035,
+    "cv_pi": 0.08619470537462517,
+    "expected_pi": 1.4142135623730951,
+    "agreement": 0.7159048059468712
+  },
+  "automatic_discovery": {
+    "transform": "sqrt",
+    "slope": 0.08121081216119372,
+    "intercept": -0.0791845553939563,
+    "r_squared": 0.9767768470555958,
+    "inferred_law": "y = 0.0812*sqrt(x) + -0.0792"
+  },
+  "discovery_interpretation": "Power law with exponent 0.5 (virial theorem)",
+  "capabilities": [
+    "Testing multiple functional forms",
+    "Dimensional analysis",
+    "Buckingham Pi theorem application",
+    "Automatic model discovery",
+    "Physical law validation",
+    "Model ranking by multiple criteria"
+  ]
+}

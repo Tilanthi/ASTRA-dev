@@ -1,0 +1,128 @@
+{
+  "discoveries": {
+    "cygnus_filament_stability_2026": {
+      "discovery_id": "cygnus_filament_stability_2026",
+      "claim": "Analyzed Herschel filamentcatalogue.fits data for Cygnus region, characterizing filament size distribution and stability properties",
+      "provenance_level": "verified_analysis",
+      "data_files": [
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/docs/filamentcatalogue.fits"
+      ],
+      "analysis_code": [
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/docs/filament_analysis_pipeline.md"
+      ],
+      "result_files": [
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/docs/cygnus_filament_analysis.md"
+      ],
+      "figure_files": [],
+      "timestamp": "2026-03-22T17:07:38.041818",
+      "files_exist": true,
+      "code_runs": false,
+      "results_reproducible": false,
+      "description": "Real analysis of Herschel data from March 18, 2026",
+      "notes": [
+        "Actual FITS data file exists",
+        "Analysis documented in markdown files"
+      ]
+    },
+    "taurus_bayes47_hallucination": {
+      "discovery_id": "taurus_bayes47_hallucination",
+      "claim": "Taurus molecular cloud analysis with Bayes factor 47",
+      "provenance_level": "hallucinated",
+      "data_files": [],
+      "analysis_code": [],
+      "result_files": [],
+      "figure_files": [
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/figures_v41/fig_causal_chain.png",
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/figures_v41/fig_sfe_correlation.png",
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/figures_v41/fig_core_pattern.png"
+      ],
+      "timestamp": "2026-03-22T17:07:38.042560",
+      "files_exist": true,
+      "code_runs": false,
+      "results_reproducible": false,
+      "description": "Illustrative figures created for paper, not real analysis",
+      "notes": [
+        "Figures created March 21, 2026 for illustration",
+        "No actual Taurus analysis code found",
+        "Presented as real in Section 3.5 but is hypothetical",
+        "INTEGRITY VIOLATION: presenting example as discovery"
+      ]
+    },
+    "ic5146_width_distribution_2026": {
+      "discovery_id": "ic5146_width_distribution_2026",
+      "claim": "Analyzed IC5146 filament width distribution: median width 0.128 pc, 47.8% within 0.05-0.15 pc range",
+      "provenance_level": "verified_analysis",
+      "data_files": [
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/HGBS_ic5146_skeleton_map.fits",
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/HGBS_ic5146_column_density_map.fits"
+      ],
+      "analysis_code": [
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/ic5146_autonomous_discovery.py"
+      ],
+      "result_files": [
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/ic5146_filament_catalog_astra.json"
+      ],
+      "figure_files": [],
+      "timestamp": "2026-03-22T19:31:11.343333",
+      "files_exist": true,
+      "code_runs": false,
+      "results_reproducible": false,
+      "description": "Autonomous ASTRA analysis of IC5146 filament widths",
+      "notes": [
+        "Genuinely performed by ASTRA on Herschel data",
+        "Not from literature"
+      ]
+    },
+    "ic5146_stability_analysis_2026": {
+      "discovery_id": "ic5146_stability_analysis_2026",
+      "claim": "Analyzed IC5146 filament stability: 37.3% supercritical, 25 of 67 filaments exceed critical mass per unit length",
+      "provenance_level": "verified_analysis",
+      "data_files": [
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/HGBS_ic5146_skeleton_map.fits",
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/HGBS_ic5146_dust_temperature_map.fits"
+      ],
+      "analysis_code": [
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/ic5146_autonomous_discovery.py"
+      ],
+      "result_files": [
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/ic5146_filament_catalog_astra.json"
+      ],
+      "figure_files": [],
+      "timestamp": "2026-03-22T19:31:11.343790",
+      "files_exist": true,
+      "code_runs": false,
+      "results_reproducible": false,
+      "description": "Autonomous ASTRA analysis of filament stability using Mline criterion",
+      "notes": [
+        "Genuinely performed by ASTRA",
+        "Used Ostriker (1964) critical mass criterion"
+      ]
+    },
+    "ic5146_density_temp_correlation_2026": {
+      "discovery_id": "ic5146_density_temp_correlation_2026",
+      "claim": "Discovered density-temperature correlation in IC5146 filaments: r = -0.357. Found 8 hot+dense outlier filaments",
+      "provenance_level": "verified_analysis",
+      "data_files": [
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/HGBS_ic5146_column_density_map.fits",
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/HGBS_ic5146_dust_temperature_map.fits"
+      ],
+      "analysis_code": [
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/ic5146_autonomous_discovery.py"
+      ],
+      "result_files": [
+        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/ic5146_filament_catalog_astra.json"
+      ],
+      "figure_files": [],
+      "timestamp": "2026-03-22T19:31:11.346231",
+      "files_exist": true,
+      "code_runs": false,
+      "results_reproducible": false,
+      "description": "Autonomous ASTRA discovery of density-temperature relationship",
+      "notes": [
+        "Genuinely performed by ASTRA",
+        "Identified potential star-forming filaments"
+      ]
+    }
+  },
+  "last_updated": "2026-03-22T19:31:11.346273"
+}

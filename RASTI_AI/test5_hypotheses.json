@@ -1,0 +1,47 @@
+[
+  {
+    "id": "HYP_001",
+    "title": "Mass-Dependent Quenching Threshold",
+    "observation": "SFR suppressed by 0.0x at M > 3e10 M_sun",
+    "prediction": "Sharp threshold at M_crit",
+    "test": "AGN fraction increases above threshold",
+    "observational": "X-ray or emission lines",
+    "confidence": "HIGH"
+  },
+  {
+    "id": "HYP_002",
+    "title": "Environmental Quenching in Clusters",
+    "observation": "Cluster sSFR is 0.0x lower",
+    "prediction": "Environment drives quenching",
+    "test": "Low-mass cluster galaxies quenched",
+    "observational": "Cluster catalog",
+    "confidence": "HIGH"
+  },
+  {
+    "id": "HYP_003",
+    "title": "Morphology Transformation in Dense Regions",
+    "observation": "Early-type fraction: 30% -> 51%",
+    "prediction": "Environment drives transformation",
+    "test": "Transitional types in group outskirts",
+    "observational": "HST morphology",
+    "confidence": "HIGH"
+  },
+  {
+    "id": "HYP_004",
+    "title": "AGN Fraction Increases with Mass",
+    "observation": "AGN fraction rises from 7% to 18%",
+    "prediction": "SMBH-galaxy co-evolution",
+    "test": "AGN correlates with bulge mass",
+    "observational": "X-ray + bulge/disk decomposition",
+    "confidence": "MEDIUM"
+  },
+  {
+    "id": "HYP_005",
+    "title": "Rapid Quenching at Critical Mass",
+    "observation": "213 galaxies in transition at M ~ 1e11 M_sun",
+    "prediction": "Quenching timescale < 500 Myr",
+    "test": "K+A galaxies cluster at this mass",
+    "observational": "Spectroscopic indices",
+    "confidence": "MEDIUM"
+  }
+]

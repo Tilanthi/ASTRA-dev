@@ -1,0 +1,35 @@
+{
+  "test_name": "Ensemble Prediction",
+  "n_filaments": 24,
+  "n_models": 3,
+  "cv_rmse": {
+    "power_law": 0.03235810758720396,
+    "linear": 0.034603770467104174,
+    "polynomial": 0.03915682030805632,
+    "simple_ensemble": 0.027997570678184296,
+    "weighted_ensemble": 0.0267286579154424,
+    "bma_ensemble": 0.029835385616768857
+  },
+  "bma_weights": {
+    "power_law": 0.03781758376608682,
+    "linear": 0.0006003111465527741,
+    "polynomial": 0.9615821050873605
+  },
+  "improvement": {
+    "simple_vs_best": 1.1557469738764656,
+    "bma_vs_best": 1.0845546963206407
+  },
+  "bootstrap_uncertainty": {
+    "mean_std": 0.018251994758036377,
+    "at_mean_ml": 0.005884787719574682
+  },
+  "capabilities": [
+    "Multiple model training",
+    "Cross-validation",
+    "Simple averaging ensemble",
+    "Weighted averaging ensemble",
+    "Bayesian Model Averaging",
+    "Bootstrap uncertainty quantification",
+    "Model comparison"
+  ]
+}

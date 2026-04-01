@@ -1,0 +1,82 @@
+{
+  "test_name": "Bayesian Model Selection",
+  "n_filaments": 24,
+  "models": {
+    "power_law": {
+      "log_evidence": -35.18338636634083,
+      "map_parameters": [
+        0.06530381803303516
+      ],
+      "negative_log_posterior": 29.63095910314671,
+      "n_parameters": 1,
+      "name": "Power Law: \u03c3_v = a\u00b7(M/L)^0.5",
+      "expected": true,
+      "bic": 67.89738158723472,
+      "r_squared": 0.9308508097634536,
+      "reduced_chi_squared": 0.936830825593749
+    },
+    "linear": {
+      "log_evidence": -45.586386423497714,
+      "map_parameters": [
+        0.0068531777310559296,
+        0.13897717485259228
+      ],
+      "negative_log_posterior": 32.652497489749344,
+      "n_parameters": 2,
+      "name": "Linear: \u03c3_v = a\u00b7(M/L) + b",
+      "expected": false,
+      "bic": 71.66110264019458,
+      "r_squared": 0.9110951325387049,
+      "reduced_chi_squared": 1.0093307326511618
+    },
+    "logarithmic": {
+      "log_evidence": -35.36331370754209,
+      "map_parameters": [
+        0.22606328948049556,
+        -0.3905097675489291
+      ],
+      "negative_log_posterior": 26.660826319734603,
+      "n_parameters": 2,
+      "name": "Logarithmic: \u03c3_v = a\u00b7ln(M/L) + b",
+      "expected": false,
+      "bic": 59.6777603001651,
+      "r_squared": 0.942142332197644,
+      "reduced_chi_squared": 0.4386953831259484
+    },
+    "broken_power": {
+      "log_evidence": -46.90635849246206,
+      "map_parameters": [
+        0.061307708057262156,
+        0.08238529890468084,
+        49.749594381918584
+      ],
+      "negative_log_posterior": 27.77143141140502,
+      "n_parameters": 3,
+      "name": "Broken Power Law",
+      "expected": false,
+      "bic": 67.83941563315467,
+      "r_squared": 0.9592437644315421,
+      "reduced_chi_squared": 0.7098102274143278
+    }
+  },
+  "bayes_factors": {
+    "linear": 3.034132063449293e-05,
+    "logarithmic": 0.8353309033463281,
+    "broken_power": 8.105464240586963e-06
+  },
+  "best_model_by_evidence": "power_law",
+  "best_model_by_bic": "logarithmic",
+  "theoretical_validation": {
+    "expected_slope": 0.093,
+    "measured_slope": 0.06530381803303516,
+    "agreement_percent": 70.21915917530663
+  },
+  "capabilities": [
+    "Bayesian evidence computation",
+    "Model comparison with Bayes factors",
+    "Occam's razor (complexity penalty)",
+    "Posterior predictive checks",
+    "Physical theory validation",
+    "Parameter uncertainty quantification"
+  ]
+}

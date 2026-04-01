@@ -1,0 +1,131 @@
+{
+  "test_name": "Causal Inference",
+  "n_stars_analyzed": 1000,
+  "variables_analyzed": [
+    "distance_pc",
+    "phot_g_mean_mag",
+    "absolute_mag",
+    "luminosity_lsun"
+  ],
+  "causal_tests": [
+    {
+      "relationship": "distance_pc -> phot_g_mean_mag",
+      "expected": true,
+      "edge_detected": false,
+      "direction_correct": null,
+      "physical_meaning": "Distance modulus: m - M = 5*log10(d/10)",
+      "type": "physical law"
+    },
+    {
+      "relationship": "absolute_mag -> phot_g_mean_mag",
+      "expected": true,
+      "edge_detected": false,
+      "direction_correct": null,
+      "physical_meaning": "Intrinsic luminosity affects apparent brightness",
+      "type": "physical law"
+    },
+    {
+      "relationship": "absolute_mag -> luminosity_lsun",
+      "expected": true,
+      "edge_detected": true,
+      "direction_correct": false,
+      "physical_meaning": "Definition: L = 10^(-0.4*(M - M_sun))",
+      "type": "definition"
+    },
+    {
+      "relationship": "distance_pc -> absolute_mag",
+      "expected": false,
+      "edge_detected": false,
+      "direction_correct": null,
+      "physical_meaning": "Selection bias (Malmquist bias)",
+      "type": "observational artifact"
+    }
+  ],
+  "adjacency_matrix": [
+    [
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      true
+    ],
+    [
+      false,
+      false,
+      false,
+      true
+    ],
+    [
+      false,
+      true,
+      true,
+      false
+    ]
+  ],
+  "separating_sets": {
+    "distance_pc": {
+      "phot_g_mean_mag": [],
+      "absolute_mag": [
+        "absolute_mag"
+      ],
+      "luminosity_lsun": []
+    },
+    "phot_g_mean_mag": {
+      "absolute_mag": [
+        "absolute_mag"
+      ]
+    },
+    "absolute_mag": {},
+    "luminosity_lsun": {}
+  },
+  "directed_edges": [
+    [
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false
+    ]
+  ],
+  "intervention_example": {
+    "intervention": "Set absolute_mag = 10",
+    "original_median_g": 16.530732,
+    "intervened_median_g": 17.60135077333503,
+    "delta_mag": 1.0706187733350312
+  },
+  "confounder_analysis": {
+    "full_correlation": 0.02741643091060718,
+    "detected_correlation": 0.02741643091060718,
+    "confounder_detected": false
+  },
+  "capabilities": [
+    "PC algorithm for causal structure learning",
+    "Conditional independence testing",
+    "V-structure orientation (collider detection)",
+    "Do-calculus for intervention analysis",
+    "Confounder identification",
+    "Physical interpretation of causal graphs"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "test": "Meta-Cognitive Resolution Analysis",
+  "instrument": "HST_ACS_WFC",
+  "pixel_scale_arcsec": 0.05,
+  "resolution_limit_arcsec": 0.1,
+  "nyquist_frequency": 10.0,
+  "assessments": [
+    {
+      "question": "Can I detect a 0.05 arcsec binary star system in this image?",
+      "scale_arcsec": 0.05,
+      "status": "INSUFFICIENT",
+      "mismatch_ratio": 2.0
+    },
+    {
+      "question": "Can I measure the morphology of a 2 arcsec diameter galaxy?",
+      "scale_arcsec": 2.0,
+      "status": "SUFFICIENT",
+      "mismatch_ratio": null
+    },
+    {
+      "question": "Can I detect structure at 0.02 arcsec scale?",
+      "scale_arcsec": 0.02,
+      "status": "INSUFFICIENT",
+      "mismatch_ratio": 5.0
+    },
+    {
+      "question": "Can I resolve the width of a 0.5 arcsec filament?",
+      "scale_arcsec": 0.5,
+      "status": "SUFFICIENT",
+      "mismatch_ratio": null
+    }
+  ]
+}
