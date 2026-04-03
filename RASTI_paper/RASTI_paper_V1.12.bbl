@@ -1,0 +1,154 @@
+\begin{thebibliography}{}
+\makeatletter
+\relax
+\def\mn@urlcharsother{\let\do\@makeother \do\$\do\&\do\#\do\^\do\_\do\%\do\~}
+\def\mn@doi{\begingroup\mn@urlcharsother \@ifnextchar [ {\mn@doi@}
+  {\mn@doi@[]}}
+\def\mn@doi@[#1]#2{\def\@tempa{#1}\ifx\@tempa\@empty \href
+  {http://dx.doi.org/#2} {doi:#2}\else \href {http://dx.doi.org/#2} {#1}\fi
+  \endgroup}
+\def\mn@eprint#1#2{\mn@eprint@#1:#2::\@nil}
+\def\mn@eprint@arXiv#1{\href {http://arxiv.org/abs/#1} {{\tt arXiv:#1}}}
+\def\mn@eprint@dblp#1{\href {http://dblp.uni-trier.de/rec/bibtex/#1.xml}
+  {dblp:#1}}
+\def\mn@eprint@#1:#2:#3:#4\@nil{\def\@tempa {#1}\def\@tempb {#2}\def\@tempc
+  {#3}\ifx \@tempc \@empty \let \@tempc \@tempb \let \@tempb \@tempa \fi \ifx
+  \@tempb \@empty \def\@tempb {arXiv}\fi \@ifundefined
+  {mn@eprint@\@tempb}{\@tempb:\@tempc}{\expandafter \expandafter \csname
+  mn@eprint@\@tempb\endcsname \expandafter{\@tempc}}}
+
+\bibitem[\protect\citeauthoryear{{Abazajian} et~al.,}{{Abazajian}
+  et~al.}{2009}]{abazajian2009}
+{Abazajian} K.~N.,  et~al., 2009, \mn@doi [\apjs]
+  {10.1088/0067-0049/182/2/543}, 182, 543
+
+\bibitem[\protect\citeauthoryear{{Alexander} et~al.,}{{Alexander}
+  et~al.}{2003}]{alexander2003}
+{Alexander} D.~M.,  et~al., 2003, \mn@doi [\aj] {10.1086/376857}, 126, 539
+
+\bibitem[\protect\citeauthoryear{{Andre}, {Men'shchikov}, {Bontemps},
+  {Hennemann}, {Motte}  \& {Schneider}}{{Andre} et~al.}{2010}]{andre2010}
+{Andre} P.,  {Men'shchikov} A.,  {Bontemps} S.,  {Hennemann} M.,  {Motte} F.,
+  {Schneider} N.,  2010, \mn@doi [\aap] {10.1051/0004-6361/201014662}, 518,
+  L102
+
+\bibitem[\protect\citeauthoryear{{Arzoumanian} et~al.,}{{Arzoumanian}
+  et~al.}{2011}]{arzoumanian2011}
+{Arzoumanian} D.,  et~al., 2011, \mn@doi [\aap] {10.1051/0004-6361/201016199},
+  529, L6
+
+\bibitem[\protect\citeauthoryear{{Arzoumanian}, {Andr{\'e}}, {Men'shchikov},
+  {K{\"o}nyves}, {Schneider}  \& {Motte}}{{Arzoumanian}
+  et~al.}{2019}]{arzoumanian2019}
+{Arzoumanian} D.,  {Andr{\'e}} P.,  {Men'shchikov} A.,  {K{\"o}nyves} V.,
+  {Schneider} N.,   {Motte} F.,  2019, \mn@doi [\aap]
+  {10.1051/0004-6361/201834489}, 621, A114
+
+\bibitem[\protect\citeauthoryear{{Bauer}, {Alexander}, {Brandt},
+  {Hornschemeier}, {Garmire}  \& {Schneider}}{{Bauer} et~al.}{2004}]{bauer2004}
+{Bauer} F.~E.,  {Alexander} D.~M.,  {Brandt} W.~N.,  {Hornschemeier} A.~E.,
+  {Garmire} G.~P.,   {Schneider} D.~P.,  2004, \mn@doi [\aj] {10.1086/425028},
+  128, 2048
+
+\bibitem[\protect\citeauthoryear{{Brinchmann}, {Charlot}, {White}, {Tremonti},
+  {Kauffmann}, {Heckman}  \& {Kennicutt}}{{Brinchmann}
+  et~al.}{2004}]{brinchmann2004}
+{Brinchmann} J.,  {Charlot} S.,  {White} S.~D.~M.,  {Tremonti} C.,  {Kauffmann}
+  G.,  {Heckman} T.,   {Kennicutt} R.,  2004, \mn@doi [\mnras]
+  {10.1111/j.1365-2966.2004.07861.x}, 351, 1151
+
+\bibitem[\protect\citeauthoryear{{Dey}}{{Dey}}{2025}]{dey2025}
+{Dey} R.,  2025, STAN-X: Stigmergy-based Machine Intelligence Framework, \url
+  {https://github.com/web3guru888/STAN_X}
+
+\bibitem[\protect\citeauthoryear{{Dressler}}{{Dressler}}{1980}]{dressler1980}
+{Dressler} A.,  1980, \mn@doi [\apj] {10.1086/157753}, 236, 351
+
+\bibitem[\protect\citeauthoryear{{Elbaz} et~al.,}{{Elbaz}
+  et~al.}{2007}]{elbaz2007}
+{Elbaz} D.,  et~al., 2007, \mn@doi [\aap] {10.1051/0004-6361:20077400}, 468, 33
+
+\bibitem[\protect\citeauthoryear{{Gaia Collaboration}, {Brown}, {Vallenari},
+  {Prusti}, {de Bruijne}, {Babusiaux}  \& {Bailer-Jones}}{{Gaia Collaboration}
+  et~al.}{2018}]{gaia2018}
+{Gaia Collaboration} {Brown} A.~G.~A.,  {Vallenari} A.,  {Prusti} T.,  {de
+  Bruijne} J.~H.~J.,  {Babusiaux} C.,   {Bailer-Jones} C.~A.~L.,  2018, \mn@doi
+  [\aap] {10.1051/0004-6361/201833051}, 616, A1
+
+\bibitem[\protect\citeauthoryear{{Giacconi}, {Zirm}, {Wang}, {Rosati}, {Gilli},
+  {Nonino}  \& {Czoske}}{{Giacconi} et~al.}{2001}]{giacconi2001}
+{Giacconi} R.,  {Zirm} A.,  {Wang} J.,  {Rosati} P.,  {Gilli} R.,  {Nonino} M.,
+    {Czoske} O.,  2001, \mn@doi [\apj] {10.1086/320183}, 551, 624
+
+\bibitem[\protect\citeauthoryear{{Hornschemeier}, {Brandt}, {Alexander},
+  {Bauer}, {Feigelson}  \& {Garmire}}{{Hornschemeier}
+  et~al.}{2001}]{hornschemeier2001}
+{Hornschemeier} A.~E.,  {Brandt} W.~N.,  {Alexander} D.~M.,  {Bauer} F.~E.,
+  {Feigelson} E.~D.,   {Garmire} G.~P.,  2001, \apj, 554, 742
+
+\bibitem[\protect\citeauthoryear{{Kass} \& {Raftery}}{{Kass} \&
+  {Raftery}}{1995}]{kass1995}
+{Kass} R.~E.,  {Raftery} A.~E.,  1995, Journal of the American Statistical
+  Association, 90, 773
+
+\bibitem[\protect\citeauthoryear{{Kauffmann}, {Heckman}, {White}, {Charlot},
+  {Tremonti}, {Brinchmann}, {Brinkmann}  \& {Charlot}}{{Kauffmann}
+  et~al.}{2003}]{kauffmann2003}
+{Kauffmann} G.,  {Heckman} T.~M.,  {White} S.~D.~M.,  {Charlot} S.,  {Tremonti}
+  C.,  {Brinchmann} J.,  {Brinkmann} J.,   {Charlot} S.,  2003, \mn@doi
+  [\mnras] {10.1046/j.1365-2966.2003.06636.x}, 341, 33
+
+\bibitem[\protect\citeauthoryear{{Lotz}, {Jonsson}, {Cox}  \& {Primack}}{{Lotz}
+  et~al.}{2011}]{lotz2011}
+{Lotz} J.~M.,  {Jonsson} P.,  {Cox} T.~J.,   {Primack} J.~R.,  2011, \mn@doi
+  [\apj] {10.1088/0004-637X/742/1/103}, 742, 103
+
+\bibitem[\protect\citeauthoryear{{Mannucci}, {Cresci}, {Poggianti}, {Gavazzi}
+  \& {Cucciati}}{{Mannucci} et~al.}{2010}]{mannucci2010}
+{Mannucci} F.,  {Cresci} G.,  {Poggianti} B.~M.,  {Gavazzi} G.,   {Cucciati}
+  O.,  2010, \mn@doi [\mnras] {10.1111/j.1365-2966.2010.17248.x}, 408, 2115
+
+\bibitem[\protect\citeauthoryear{{Meng} \& {Wong}}{{Meng} \&
+  {Wong}}{1996}]{meng1996}
+{Meng} X.,  {Wong} W.,  1996, Statistica Sinica, 6, 831
+
+\bibitem[\protect\citeauthoryear{{Mo} \& {White}}{{Mo} \&
+  {White}}{1996}]{mo1996}
+{Mo} H.~J.,  {White} S.~D.~M.,  1996, \mnras, 282, 347
+
+\bibitem[\protect\citeauthoryear{{Panopoulou}, {Psarouli}, {Taqi}  \&
+  {Andrews}}{{Panopoulou} et~al.}{2022}]{panopoulou2022}
+{Panopoulou} G.~V.,  {Psarouli} I.,  {Taqi} N.,   {Andrews} J.~J.,  2022,
+  \mn@doi [\aap] {10.1051/0004-6361/202141453}, 657, L13
+
+\bibitem[\protect\citeauthoryear{{Peng}, {Lilly}, {Kova\v{c}}, {Bosz},
+  {Carollo}, {McGee}, {Alonso}  \& {Tassis}}{{Peng} et~al.}{2010}]{peng2010}
+{Peng} Y.-j.,  {Lilly} S.~J.,  {Kova\v{c}} K.,  {Bosz} E.,  {Carollo} C.~M.,
+  {McGee} S.~L.,  {Alonso} M.~S.,   {Tassis} K.,  2010, \mn@doi [\apj]
+  {10.1088/0004-637X/721/1/193}, 721, 193
+
+\bibitem[\protect\citeauthoryear{{Renzini} \& {Peng}}{{Renzini} \&
+  {Peng}}{2015}]{renzini2015}
+{Renzini} A.,  {Peng} Y.,  2015, \mn@doi [\apjl] {10.1088/2041-8205/801/2/L29},
+  801, L29
+
+\bibitem[\protect\citeauthoryear{{Spirtes}, {Glymour}  \& {Scheines}}{{Spirtes}
+  et~al.}{2000}]{spirtes2000}
+{Spirtes} P.,  {Glymour} C.,   {Scheines} R.,  2000, Causation, Prediction, and
+  Search.
+MIT Press, Cambridge, MA
+
+\bibitem[\protect\citeauthoryear{{Sutherland} \& {Saunders}}{{Sutherland} \&
+  {Saunders}}{1992}]{sutherland1992}
+{Sutherland} W.,  {Saunders} W.,  1992, \mnras, 259, 413
+
+\bibitem[\protect\citeauthoryear{{Tremonti} et~al.,}{{Tremonti}
+  et~al.}{2004}]{tremonti2004}
+{Tremonti} C.~A.,  et~al., 2004, \mn@doi [\apj] {10.1086/422268}, 613, 898
+
+\bibitem[\protect\citeauthoryear{{White}}{{White}}{2026}]{astra_github}
+{White} G.~J.,  2026, {ASTRA}: Autonomous System for Scientific Discovery in
+  Astrophysics, \url {https://github.com/Tilanthi/ASTRA}
+
+\makeatother
+\end{thebibliography}

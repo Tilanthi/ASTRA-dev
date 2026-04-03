@@ -1,0 +1,107 @@
+ASTRA
+Peer Review: "ASTRA: A Physics-Aware AI System for Scientific Discovery in Astrophysics"
+Journal: RASTI (RAS Techniques and Instruments) Review conducted as: Senior Astronomer with strong computational background Recommendation: Major Revision Required
+
+EXECUTIVE SUMMARY
+This manuscript presents a substantially restructured version of the ASTRA system, pivoting away from the previous architecture-heavy framing toward a demonstration-focused approach using five astrophysical test cases on real observational data. This strategic restructuring is sound — the paper is now considerably more readable and the claims are more focused. However, the paper as currently written has serious deficiencies that prevent publication in its present form. The central problem is that the five test cases, while superficially convincing, lack the methodological rigour expected of a RASTI paper. The results are asserted rather than demonstrated, the statistical claims are poorly supported, and the comparisons with LLMs and traditional ML are systematically unfair in ways that overstate ASTRA's novelty. The paper requires major revision before it can be recommended for acceptance.
+
+SECTION 1: MAJOR CONCERNS
+1.1 The GitHub Repository Cannot Substitute for Methods in the Paper
+The paper repeatedly defers critical methodological detail to a GitHub repository: "The complete system architecture, extended validation tests (15 comprehensive test cases), and detailed documentation are available in our public GitHub repository." This appears in the abstract, the introduction, and the conclusion. RASTI requires that published results be reproducible from the paper itself in conjunction with cited materials. A GitHub repository is not a citable, peer-reviewed, version-controlled scientific record — it can be modified after publication, deleted, or made private. At the time of review, the repository cannot be independently assessed for completeness or correctness by referees.
+More specifically, the paper omits: the precise data reduction pipeline for each test case, the prior specifications used in the Bayesian evidence computation, the threshold parameters used in the PC algorithm, the cross-matching radius and methodology for the CDFS analysis, and the anomaly detection algorithm used for hypothesis generation. These are not optional supplementary details — they are necessary for a referee to assess whether the results are valid. The paper must either include these details or submit a frozen, DOI-registered repository snapshot (e.g., via Zenodo) that is version-locked at submission time.
+
+1.2 The Comparison Framework with LLMs and Traditional ML Is Systematically Misleading
+Each test case concludes with a three-way comparison table attributing specific inabilities to LLMs and traditional ML. These comparisons are presented as established facts, but several are inaccurate or tendentious, and a referee with AI/ML expertise will flag them immediately.
+Specific problems follow. The claim that "LLMs cannot process raw numerical data" is factually incorrect as of the current state of the field. GPT-4 with Code Interpreter, Claude with code execution, and Gemini Advanced all process numerical astronomical data directly, execute Python, compute statistics, and generate quantitative results. The claim that "traditional ML cannot compute Bayesian evidence" is also incorrect — nested sampling codes (MultiNest, dynesty), emcee, and similar tools are standard Python libraries that compute marginal likelihoods and Bayes factors routinely and have been used in astronomy for over a decade. The claim that "LLMs can only use AIC/BIC concepts without proper computation" is similarly outdated; agentic LLMs call these same nested sampling libraries.
+The appropriate comparison for ASTRA is not against a straw-man version of these tools, but against actually running an equivalent analysis with a competent Python script or agentic LLM. The paper never demonstrates that these alternatives would fail. In the absence of such a demonstration, the uniqueness claims in Section 8.2 are not established.
+The authors should either (a) remove the capability comparison tables entirely and replace them with a nuanced discussion of where ASTRA adds value over standard pipelines, or (b) conduct and report honest ablation experiments comparing ASTRA against a properly implemented baseline.
+
+1.3 Test Case 1 (Scaling Relations): The Virial Theorem Result Needs Scrutiny
+The headline result of Test Case 1 is that ASTRA achieves "88% agreement with virial theorem" for the filament virial scaling relation. This figure requires careful examination.
+The measured slope is 0.0812 ± 0.0043, compared to the theoretical prediction of 0.0927. The paper defines the agreement ratio as 0.0812/0.0927 = 0.876 ≈ 88%. However, the paper does not report whether the measured and theoretical values are consistent within the stated uncertainty. The discrepancy is (0.0927 − 0.0812)/0.0043 = 2.7σ. This is a statistically significant tension, not an agreement. Framing a 2.7σ discrepancy as "88% agreement" without reporting the significance of the disagreement is misleading.
+Furthermore, the paper does not specify: whether the filament data were drawn from a published catalogue (which catalogue exactly, and with what quality cuts); whether the mass, length, and velocity dispersion measurements are independent or whether there are correlated uncertainties; what distance assumptions were made; or what the systematic uncertainty budget looks like. A virial analysis of Herschel filaments depends critically on distance assumptions and line-width-size calibrations that are not discussed.
+The universal width result (0.098 ± 0.019 pc) is presented as consistent with "theoretical predictions of turbulent dissipation scales." The authors cite Arzoumanian et al. (2011) but do not note that the ~0.1 pc universal filament width has been extensively debated in the literature. Panopoulou et al. (2022, A&A, 657, L13) and others have argued that the apparent universality is partly an observational artefact. This context is needed for a fair assessment of the result.
+
+1.4 Test Case 2 (Multi-Wavelength Fusion): Insufficient Methodological Detail
+The CDFS analysis reports cross-matching 60 sources across X-ray, optical, and infrared wavelengths. This raises several questions the paper does not answer. What cross-matching radius was used? The CDFS has source densities that make radius choice non-trivial, and Bayesian positional cross-matching requires explicit prior specification. The paper states "Bayesian likelihood ratios" are used but provides no detail. What are the prior probabilities of association? What are the assumed positional error models?
+The classification of 41 AGN and 19 stars using X-ray/optical flux ratios is a standard approach (Hornschemeier et al. 2001; Bauer et al. 2004) but the specific flux ratio thresholds are not given. The hardness ratio cut (panel D of Figure 2) is shown but not quantified in the text. The Figure 2 caption mentions "Galaxies: 0" in the classification panel, which is surprising for a deep field containing hundreds of galaxies; this requires explanation. Is this a selection effect from the limited cross-matched sample, or does ASTRA genuinely classify no sources as galaxies?
+The statement that ASTRA "successfully matched 60 sources across all three wavelengths" requires context. The CDFS (Giacconi et al. 2001) in its 1 Msec observation detected ~370 X-ray sources. A cross-matched sample of 60 represents ~16% of the X-ray catalogue. What happened to the other 84%? Were these optical non-detections, or did the cross-matching pipeline reject them? This matters for assessing selection effects in the classification.
+
+1.5 Test Case 3 (Hypothesis Generation): The Hypotheses Are Not Novel
+Section 5 states that ASTRA "generated 5 novel, testable hypotheses" from the SDSS galaxy sample. Examining the five hypotheses in detail reveals that each is a well-established result in observational galaxy evolution, not a novel discovery.
+The metallicity-luminosity correlation evolution is documented by Tremonti et al. (2004, ApJ, 613, 898) and the redshift evolution of the mass-metallicity relation has been studied for twenty years. Environment-driven star formation quenching is the subject of hundreds of papers going back to Dressler (1980). AGN feedback in low-mass galaxies is an active but well-populated field. The merger rate versus redshift relation has been measured by numerous studies. Dark matter halo scaling laws underpin the entire halo model framework.
+The paper claims ASTRA generates these as "novel" hypotheses from the data, but does not demonstrate that ASTRA identified these patterns independently rather than retrieving them from its knowledge representation system. For hypothesis generation to be genuinely demonstrable as a capability, the paper needs to show that ASTRA identified patterns that are (a) statistically significant in the presented dataset, (b) not simply retrieved from encoded prior knowledge, and (c) at least partially unexpected or novel in some astrophysical context. None of these criteria are addressed.
+Additionally, the 600-galaxy "SDSS-like" dataset is described as "SDSS-like" rather than actual SDSS data. Are these simulated data? Synthetic catalogues? The word "like" in this context is a significant qualification that requires clarification.
+
+1.6 Test Case 4 (Causal Inference): The Result Is Trivially Correct
+The causal inference test on 1,000 Gaia DR2 stars demonstrates that ASTRA correctly identifies: (1) absolute magnitude → luminosity as a definition; (2) distance → apparent magnitude as a physical law; and (3) correctly excludes distance → absolute magnitude as a selection bias (Malmquist bias).
+These are textbook relationships. The distance-apparent magnitude relation follows directly from the distance modulus. The absolute magnitude-luminosity relationship is a definition. Malmquist bias is a well-known selection effect taught in any observational astronomy course. Demonstrating that ASTRA correctly recovers these relationships from 1,000 Gaia stars with clean, well-characterised data is not a compelling demonstration of causal inference capability.
+A genuine test of causal inference capability would involve a case where the causal structure is non-obvious, where confounders are plausible and must be distinguished, or where the result adds scientific value beyond what a domain expert already knows. The authors should consider replacing this test case with a more challenging application — for example, disentangling magnetic field, turbulence, and thermal support contributions to core stability (which the previous version of the paper attempted, with appropriate caveats), or identifying causal drivers of the star formation main sequence.
+
+1.7 Test Case 5 (Bayesian Model Selection): Statistical Inconsistency
+Table 1 shows the Bayesian model comparison results. The paper claims the power law is favored by a 33,000× Bayes factor over the linear model. However, Table 1 also shows that the logarithmic model has nearly identical log evidence to the power law (−35.36 vs. −35.18, a difference of only 0.18 log units), corresponding to a Bayes factor of only 1.2 in favour of the power law. Yet the paper's abstract highlights the 33,000× figure and does not mention that a logarithmic model is essentially indistinguishable from the power law by Bayesian evidence.
+This selective reporting is misleading. The honest conclusion from Table 1 is that the power law and logarithmic model are statistically equivalent by Bayesian model comparison, both are strongly preferred over the linear and broken power law models, and the physical interpretation must come from theory rather than statistical model selection alone. The fact that the power law has a theoretical motivation (virial theorem) is the actual argument for preferring it, not the Bayes factor.
+Additionally, the paper reports "virial theorem validated to 70% accuracy" in this section but "88% agreement" in Section 3 for what appears to be the same comparison. These figures need to be reconciled and the difference in the quoted agreement percentage explained.
+The prior specification for the Bayesian evidence computation is never stated. Bayesian evidence is not prior-independent, and for model comparison the choice of parameter priors can substantially affect Bayes factors. Without prior specification, these results cannot be reproduced or assessed.
+
+2.1 Reference List Is Inadequate
+The reference list contains only five entries for a paper spanning five astrophysical topics. This is wholly insufficient. Test Case 1 should cite the extensive Herschel filament literature (Arzoumanian et al. 2019; André et al. 2014; Panopoulou et al. 2022 at minimum). Test Case 2 should cite the standard CDFS analysis papers (Alexander et al. 2003; Bauer et al. 2004). Test Case 4 should cite the Gaia data release paper (Gaia Collaboration, Brown et al. 2018) not just the generic dataset name. The causal inference framework deserves full citations for Pearl (2009) and the PC algorithm. The Bayesian model selection section cites Kass & Raftery (1995) but not the specific implementation libraries used.
+The self-citation "Tilanthi 2024" in the introduction, and then "White & Dey 2026" in Section 2.5 for the same GitHub repository, are inconsistent. The repository author name and paper author names do not match, which may create questions about authorship and contribution attribution that the editor will need to address.
+
+2.2 The SDSS Dataset Description
+As noted above, the galaxy sample is described as "600 SDSS-like galaxies." This phrasing is ambiguous and potentially problematic. If these are synthetic data generated to resemble SDSS observations, this should be clearly stated and the generation methodology described. If they are actual SDSS data, the qualifier "like" should be removed and the specific data release, query, and selection criteria should be cited. A paper in RASTI cannot present results on a dataset that is not fully specified.
+
+2.3 Sample Sizes Are Small
+N=24 filaments for a Bayesian model comparison is a very small sample for the strong statistical claims made. The correlation r=0.988 with N=24 is impressive but raises the question of whether the sample is representative or cherry-picked. N=60 sources for the CDFS cross-matching analysis is similarly modest. The paper should discuss whether these sample sizes are representative of what ASTRA would encounter in production use, and whether results generalise beyond these small demonstration samples.
+
+2.4 Figure Quality and Information Density
+The figures contain embedded text panels (capability comparison summaries, results tables within figure panels) that are too small to read at normal print resolution. RASTI requires figures to be legible at final typeset size. The information in these embedded panels should either be moved to the main text or presented as proper tables. Figure captions are minimal and do not provide sufficient standalone description of what is shown.
+
+2.5 The Abstract Makes Quantitative Claims That Need Qualification
+The abstract states "88% agreement with virial theorem" and "33,000× Bayes factor preference for physically correct model" as headline results. As discussed above, the 88% agreement is a 2.7σ discrepancy, and the 33,000× figure selectively ignores that the logarithmic model achieves a Bayes factor of only 1.2. Abstract-level statistical claims must accurately represent the results.
+
+3.1 Inconsistent Terminology
+The paper alternates between "ASTRA" as an acronym for "Autonomous System for Scientific Discovery in Astrophysics" (abstract, introduction) and simply "a physics-aware AI system" (title). The title and the body text should use consistent terminology. The previous version used "ASTRA V8.40" — is V1.02 (the filename) a different system or the same system reframed?
+
+3.2 The Introduction's Characterisation of LLM Limitations
+Section 1 lists as a fundamental LLM limitation that they "cannot process raw numerical data, perform statistical analysis, generate testable quantitative predictions, or discover causal structures from data." This framing will be immediately contested by referees and is demonstrably incorrect for current frontier models with code execution. Even setting aside tool-use capabilities, the characterisation of LLM limitations should be nuanced to reflect the actual state of the field as of the submission date
+
+3.3 Section Numbering Inconsistency
+Test Case 1 is Section 3, Test Case 2 is Section 4, Test Case 3 is Section 5, Test Case 4 is Section 6, and Test Case 5 is Section 7. But the Discussion is also Section 8 and the Conclusion Section 9. The section numbering is internally consistent but the figure references embedded in figure panels refer to "Test 2," "Test 4," "Test 11," and "Test 12," which do not correspond to any paper section. This suggests figures were copied from the GitHub extended test suite without updating the labels for the paper context.
+
+3.4 Missing Error Analysis for Cross-Matching
+The multi-wavelength cross-matching in Section 4 propagates astrometric uncertainties through "Bayesian likelihood ratios" but does not report the resulting positional uncertainties, match probabilities, or contamination rate estimates. For a paper claiming physics-aware uncertainty propagation as a key capability, the uncertainty quantification should be explicitly reported.
+
+SECTION 4: ASSESSMENT OF THE RESTRUCTURING STRATEGY
+The decision to move the detailed computer science architecture to GitHub and focus the paper on astrophysical demonstrations is strategically sound. However, the execution reveals that the paper is currently caught between two publication formats without fully committing to either.
+
+This is intended as an astrophysical methods paper, the test cases need to be scientifically substantial — using larger samples, presenting results that genuinely advance knowledge in each application domain, and engaging with the relevant literature in depth. In this format, each test case would normally warrant its own section with full methodology, results, and comparison with published values.
+
+Currently the paper is too thin to satisfy either format: the test cases are too brief and insufficiently validated for a methods paper, and the system description is too absent for a systems paper. The authors need to decide which format they are targeting and expand accordingly.
+
+SECTION 6: SUMMARY OF REQUIRED REVISIONS
+Critical (must address before re-review):
+	0.	Provide either full methods in the paper or a DOI-registered frozen repository snapshot. GitHub alone is not citable.
+	0.	Revise or remove the LLM/ML capability comparison tables. The claims are factually inaccurate in several places and will not survive referee scrutiny.
+	0.	Clarify the "SDSS-like" galaxy dataset — synthetic or real, and if real, provide full data description.
+	0.	Report the 2.7σ discrepancy in the virial slope comparison honestly rather than as "88% agreement."
+	0.	Reconcile the "88%" and "70%" agreement figures between Sections 3 and 7.
+	0.	State prior specifications for the Bayesian evidence computation.
+	0.	Explain why Figure 2 shows zero galaxies classified in the CDFS sample.
+	0.	Fix figure label inconsistencies (Test 11, Test 12 in figure panels).
+
+Important (should address):
+	0.	Expand the reference list substantially for all five test domains.
+	0.	Resolve the Tilanthi/White & Dey authorship inconsistency in citations.
+	0.	Replace or substantially revise Test Case 3 to demonstrate genuinely novel hypothesis generation, or reframe it as pattern retrieval rather than discovery.
+	0.	Replace or substantially revise Test Case 4 with a more scientifically challenging causal inference problem.
+	0.	Report the near-equivalence of power law and logarithmic models honestly in the abstract and discussion.
+	0.	Move embedded figure panel text to main text or proper tables.
+	0.	Provide cross-matching methodology detail for Section 4 including radius, prior, and contamination estimates.
+Minor:
+	0.	Standardise ASTRA terminology between title and body.
+	0.	Correct section/figure numbering consistency.
+	0.	Discuss the universal filament width debate in the context of Panopoulou et al. (2022) and related work.
+
+FINAL RECOMMENDATION
+Major Revision. The paper's restructuring strategy is sound and the five test case approach has real promise. However, the results as currently presented are insufficiently supported, the comparison framework is misleading, and critical methodological details are absent. Addressing the critical items above would substantially strengthen the paper. The authors should consider whether two of the five test cases (Sections 5 and 6) need replacement with more scientifically demanding examples that genuinely demonstrate capabilities beyond what is already well-established in the literature and in existing tools. A revised manuscript addressing these concerns would be considered for a second review.

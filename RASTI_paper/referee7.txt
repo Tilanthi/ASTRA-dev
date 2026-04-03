@@ -1,0 +1,58 @@
+This introduces a substantially redesigned Test Case 6, replacing the synthetic supernova analysis with a galaxy scaling relations and outlier detection exercise on a 3,000-galaxy dataset based on published SDSS relations. The new test case is considerably better structured than its predecessors and demonstrates a genuine combined validation-plus-discovery workflow. The figures are clear and physically interpretable. However, a significant LaTeX compilation problem has appeared throughout this version that requires urgent attention, and several scientific issues require clarification before the paper is ready for acceptance.
+
+Critical Issue: Widespread LaTeX Citation Failures
+This is the most urgent problem in V1_11. Throughout the manuscript, numerous citations have reverted to bare "?" markers, indicating broken BibTeX keys or a compilation error. Affected locations include:
+	•	Abstract: GitHub repository citation "?"
+	•	Section 2.2 (PC algorithm citation "?", Kass & Raftery citation "?")
+	•	Section 2.5 (GitHub URL citation "?")
+	•	Section 3.1 (Andre et al., Arzoumanian et al., Panopoulou et al. all show as "?")
+	•	Section 3.2 (Arzoumanian et al. 2011 shows as "?", Panopoulou double citation now reads "Panopoulou et al. (2022)?")
+	•	Section 4.1 (Giacconi et al., Alexander et al., Sutherland & Saunders all "?")
+	•	Section 4.2 (Bauer et al. "?")
+	•	Sections 5, 6, 7 (multiple "?" throughout)
+	•	Section 8.5 (fundamental metallicity relation "?")
+	•	Section 10 and Data Availability (GitHub citations "?")
+The bibliography itself appears intact — all previously present references are still listed correctly at the end. This suggests a compilation-level problem rather than missing references: likely the .bib file became disconnected from the .tex source, or the aux file is stale. The authors must recompile cleanly and verify all citations resolve before resubmission. This affects readability throughout and will not be accepted by the journal production team in its current state.
+
+Scientific Assessment of the New Test Case 6
+The new Test Case 6 is a meaningful improvement over previous iterations. Replacing the SN Ia exercise with a galaxy scaling relations analysis avoids the closed-loop validation criticism and introduces a genuine outlier detection component. The combination of validation (recovering known relations) and discovery (identifying outliers) in a single analysis run is well-motivated and representative of how ASTRA would be used in practice. The figures are the best in the paper.
+
+Moderate Scientific Issues
+1. The recovered main sequence slope (0.59) deviates significantly from the literature value cited
+Section 8.3.1 reports a recovered slope of 0.59 for the star-forming main sequence and notes this is "consistent with the expected slope of ~0.8 from Elbaz et al. (2007), accounting for sample selection and redshift range." A difference of 0.59 vs 0.80 is 26% — this is not a minor discrepancy to be explained away in parentheses. Either the synthetic data generation procedure introduces a systematic bias in slope (which should be explained), or the comparison to Elbaz et al. (2007) is inappropriate for this sample (in which case a more appropriate reference should be used). The paper should either demonstrate that the 0.59 slope is consistent with SDSS measurements at the specific redshift range and mass range sampled, or acknowledge this as a known limitation of the dataset generation procedure. Abdurrouf et al. (2022) or Renzini & Peng (2015) may be more appropriate references for the slope value expected from this sample.
+
+2. The outlier counts are internally inconsistent
+Section 8.4.1 reports: 74 starburst galaxies, 76 transitioning galaxies, and 45 post-starburst galaxies. The total is 195 objects. But the section states that isolation forest analysis identified 150 outliers (5.0% of the sample). These numbers cannot simultaneously be correct — 74 + 76 + 45 = 195 ≠ 150. Section 8.4.2 then reports 39 extreme starbursts, 46 rapidly quenching galaxies, and 2 post-starburst candidates — a different tally again. The paper must reconcile these numbers. It appears the outlier categories overlap, or the triage sub-sample differs from the full outlier catalogue, but this is not explained.
+
+3. The "fundamental metallicity relation" detection requires stronger evidence
+Section 8.5 states that ASTRA "detected this second-order effect without being explicitly programmed to look for it," referring to the secondary SFR dependence of metallicity (the fundamental metallicity relation, FMR). This is the most scientifically interesting claim in Test Case 6, but it receives only one sentence of support and a figure caption. Since the data were generated using Tremonti et al. (2004) for the mass-metallicity relation and Brinchmann et al. (2004) for SFR, the FMR signal is presumably present because the data generation encoded it. The paper needs to clarify: (a) was the FMR explicitly included in the data generation, or does it emerge from the combination of the two input relations? (b) what is the statistical significance of the detected secondary trend? (c) what is the partial correlation coefficient of metallicity with SFR at fixed mass? The reference Mannucci et al. (2010) is now in the bibliography — it should be cited here and the detection should be quantified.
+
+4. Section 9.1 still describes Test Case 6 as involving supernovae
+This is a direct carry-over error from V1_10 that was not corrected. The Discussion section (Section 9.1, "Discovery Test (Case 6)") reads: "We generated realistic supernova light curves with embedded astrophysical relations (Phillips relation, stretch-luminosity correlation, host mass effects). ASTRA successfully recovered these embedded relations..." This entire paragraph describes the old supernova test case and bears no relation to the galaxy analysis now presented in Section 8. The Discussion must be updated to describe the actual Test Case 6. Similarly, Section 9.3 still refers to "temporal causal discovery, counterfactual analysis" and "V5.0 Discovery Enhancement System" which were components of the supernova analysis and are absent from the galaxy test case.
+
+5. The data transparency statement in Section 8.6 needs strengthening
+Section 8.6 states the data is "generated using empirical relations from the literature" and lists three references, but does not describe the generation procedure in enough detail for reproducibility. Specifically: what scatter was applied to each relation? What were the mass and SFR distributions? How were the ~5% outliers injected — were they drawn from a separate population with different parameters, or generated by adding large residuals? How were post-starburst galaxies defined (the paper notes they have "very low SFR but blue colors" — what specific thresholds were used)? The generation script should be included in the GitHub repository, and a reference to it should appear here.
+
+6. Figure 2 classification panel inconsistency persists (third consecutive version)
+The figure caption and text state 41 AGN, 19 stars, 0 galaxies (total 60). The classification results inset panel within Figure 2 still shows "AGN: 36 (68%), Stars: 24 (40%), Galaxies: 8" totalling 68. This has been flagged in every review since V1_08. It must be corrected.
+
+7. Duplicate Panopoulou citation in Section 3.2 persists (third consecutive version)
+The text now reads "Panopoulou et al. (2022)?" — the "?" appears to be a second citation marker that never resolved, which means this citation has been duplicated in the source from the beginning and the "?" is a newly broken instance of it. This must be fixed.
+
+8. Notebook section cross-references in Section 2.5 remain misaligned
+The scaling relations notebook is listed as "(Section 2)" but scaling relations are in Section 3. This has been noted in two previous reviews.
+
+9. The Conclusion section has LaTeX equation rendering artefacts
+The conclusion (Section 10) renders the recovered main sequence as "log SFR = 0.59 times log Mass − 5.92" and the mass-metallicity relation as "12+log(O/H) = 0.30 times log Mass + 6.03" with the word "times" appearing literally in the text. These are clearly LaTeX \times or multiplication symbol rendering failures and should be expressed as properly typeset equations or inline expressions.
+
+10. Kauffmann et al. (2003) missing from bibliography
+Section 8.2 and Section 8.6 cite Kauffmann et al. (2003, MNRAS, 341, 54) as a source for the data generation procedure, but this reference does not appear in the bibliography. It must be added. Note: the correct reference is Kauffmann et al. (2003, MNRAS, 341, 33) for the stellar mass paper, not page 54.
+
+11. The isolation forest parameterisation is not specified
+Section 8.4.1 states that ASTRA applied "isolation forests on five-dimensional parameter space" but does not specify the contamination parameter, number of estimators, or random seed. Since the outlier detection result (150 objects, 5.0%) is a key quantitative finding, the algorithm parameterisation should be stated. A contamination parameter of 0.05 would mechanically produce exactly 5.0% outliers by construction — if this is the case, it should be stated explicitly, as it means the outlier fraction is an input parameter rather than a discovered property.
+
+12. The "E+A" post-starburst classification criterion is not defined
+Section 8.4.2 identifies "2 galaxies with the signature 'E+A' spectrum (low SFR, blue colors)." The E+A (or K+A) classification traditionally requires Hα absorption and strong Balmer absorption in spectra, which is not available from photometric data alone. If these are identified from photometric proxies (colors, sSFR), the specific criteria used should be stated.
+
+13. The star-forming main sequence correlation coefficient r = 0.49 is surprisingly low
+For a well-defined main sequence with 2,850 star-forming galaxies this is modest. The paper should comment on whether the scatter in the synthetic data was intentionally set to produce this level of correlation, and whether it is representative of observed SDSS scatter at the relevant redshifts.

@@ -385,3 +385,78 @@ except ImportError:
     InsightCategory = None
     ConstraintViolation = None
     Severity = None
+
+# =============================================================================
+# V7.0 Autonomous Research Scientist (NEW)
+# =============================================================================
+# Transformative enhancement: Full autonomous research cycle capability
+try:
+    from .v7_autonomous_research import (
+        # Main autonomous scientist system
+        V7AutonomousScientist,
+        create_v7_scientist,
+        ResearchCycle,
+        ResearchQuestion,
+        Hypothesis,
+        Experiment,
+        ResearchResult,
+        Publication,
+        # Engines
+        QuestionGenerator,
+        QuestionType,
+        QuestionImportance,
+        HypothesisFormulator,
+        HypothesisType as V7HypothesisType,
+        HypothesisStatus,
+        ExperimentDesigner,
+        ExperimentType,
+        DesignParameters,
+        ExperimentExecutor,
+        ExecutionResult as V7ExecutionResult,
+        DataSource,
+        PredictionEngine,
+        PredictionType,
+        PredictionConfidence,
+        AnalysisEngine,
+        AnalysisType,
+        CausalInferenceResult,
+        TheoryRevisionEngine,
+        RevisionType,
+        TheoryStatus,
+        PublicationEngine,
+        PaperStructure,
+        FigureType,
+    )
+except ImportError:
+    V7AutonomousScientist = None
+    create_v7_scientist = None
+    ResearchCycle = None
+    ResearchQuestion = None
+    Hypothesis = None
+    Experiment = None
+    ResearchResult = None
+    Publication = None
+    QuestionGenerator = None
+    QuestionType = None
+    QuestionImportance = None
+    HypothesisFormulator = None
+    V7HypothesisType = None
+    HypothesisStatus = None
+    ExperimentDesigner = None
+    ExperimentType = None
+    DesignParameters = None
+    ExperimentExecutor = None
+    V7ExecutionResult = None
+    DataSource = None
+    PredictionEngine = None
+    PredictionType = None
+    PredictionConfidence = None
+    AnalysisEngine = None
+    AnalysisType = None
+    CausalInferenceResult = None
+    TheoryRevisionEngine = None
+    RevisionType = None
+    TheoryStatus = None
+    PublicationEngine = None
+    PaperStructure = None
+    FigureType = None

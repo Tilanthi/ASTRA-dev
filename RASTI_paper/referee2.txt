@@ -1,0 +1,58 @@
+EXECUTIVE SUMMARY
+This manuscript presents a well-structured, scientifically honest, and technically competent description of ASTRA as an integrated astrophysical analysis framework. The paper has clearly benefited from careful attention to presentation and scope. Claims are consistently calibrated to what is actually demonstrated, limitations are acknowledged at point of first reporting, and the distinction between capability validation and novel scientific discovery is maintained throughout. The paper makes a defensible and useful contribution to the RASTI readership. The remaining issues are minor and do not require re-review in most cases, though a small number of points require author attention before final acceptance.
+
+SECTION 1: ISSUES REQUIRING ATTENTION BEFORE ACCEPTANCE
+1.1 GitHub Repository Citation Lacks Version Control
+The repository is cited as White & Dey (2026) and appears in the reference list as a bare URL without a version identifier, release date, commit hash, or DOI. This is the single most important outstanding issue. RASTI requires that published results be traceable to a fixed system state. GitHub repositories can be modified after publication, and without a version-locked snapshot the results in this paper cannot be definitively reproduced at a future date.
+The remedy is straightforward: the authors should create a versioned release on GitHub and archive it via Zenodo, which automatically generates a citable DOI. The reference should then read, for example: White G. J., Dey R., 2026, ASTRA v1.04, Zenodo, doi:10.5281/zenodo.XXXXXXX. This is a one-time action that takes approximately thirty minutes and is now standard practice for astronomy software papers. The manuscript text may remain otherwise unchanged.
+
+1.2 Brinchmann et al. (2004) Reference Is Incomplete
+Section 5.1 correctly identifies the MPA-JHU value-added catalogue as the source of SFR and metallicity measurements, citing "Brinchmann et al. 2004, ApJ, submitted." This citation is in an intermediate state: the paper was published as Brinchmann et al. (2004, MNRAS, 351, 1151). The authors should update this to the published reference. Similarly, Abazajian et al. (2009) for SDSS DR7 is cited in the text of Section 5.1 but does not appear in the reference list. The full citation is Abazajian K. N. et al., 2009, ApJS, 182, 543. Both of these must be corrected before publication.
+
+1.3 Embedded Figure Panel Text Remains Outdated in Figures 1 and 4
+Figures 1 and 4 contain embedded text panels within the figure itself — visible at normal reading resolution — that appear to be carried over from an earlier version of the paper. Figure 1's embedded panel still includes a "CAPABILITY COMPARISON" section attributing to LLMs the inability to "fit numerical data" and to "detect universal width," formulations inconsistent with the corrected framing in Section 2.6. Figure 4's embedded panel retains a label reading "Test 11: Causal Inference with Real Gaia DR2 Data," which does not match the current section numbering of the paper (Test Case 4, Section 6).
+These are artefacts from the broader 15-test-case evaluation suite. They need to be removed or replaced with neutral descriptive text consistent with the current paper. Figures should be regenerated cleanly for the final version.
+
+Redraw the above Figures according to the following points and delete the old versions
+
+1.4 Missing References: Sutherland & Saunders (1992), Lotz et al. (2011), Mo & White (1996), Meng & Wong (1996), Hornschemeier et al. (2001), Gaia Collaboration (2018)
+Several references cited in the text do not appear in the reference list.
+Sutherland & Saunders (1992) is cited in Section 4.1 for the Bayesian cross-matching methodology but is absent from the references. The full citation is Sutherland W., Saunders W., 1992, MNRAS, 259, 413.
+Lotz et al. (2011) is cited in Section 5.2 for merger rate evolution but is absent. The full citation is Lotz J. M. et al., 2011, ApJ, 742, 103.
+Mo & White (1996) is cited in Section 5.2 for the halo model framework but is absent. The full citation is Mo H. J., White S. D. M., 1996, MNRAS, 282, 347.
+Meng & Wong (1996) is cited in Section 7.1 for bridge sampling but is absent. The full citation is Meng X.-L., Wong W. H., 1996, Statistica Sinica, 6, 831.
+Hornschemeier et al. (2001) is cited in Section 4.1 for X-ray source classification but is absent. The full citation is Hornschemeier A. E. et al., 2001, ApJ, 554, 742.
+The Gaia DR2 data paper should be cited for the dataset used in Test Case 4. The appropriate citation is Gaia Collaboration, Brown A. G. A. et al., 2018, A&A, 616, A1.
+These are straightforward additions and their absence should be corrected in the final manuscript.
+
+2.1 The 60-Source CDFS Sample: Selection Bias Acknowledgement
+The paper explains clearly why 84% of X-ray sources are absent from the matched sample and why no galaxies are classified. This is well-handled. One small additional point would strengthen the interpretation: the 60 sources with secure tri-band detections are likely biased toward the brightest, most compact, and lowest-redshift sources in the CDFS. This means the AGN fraction of 68% in the matched sample is not representative of the full CDFS AGN population, which includes many optically faint high-redshift AGN. A single sentence acknowledging this in Section 4.3 would complete the selection effect discussion.
+
+2.2 Section 8.1 Partially Repeats Section 1.1
+Section 8.1 opens with a summary of the five test cases that substantially repeats the conclusion section (Section 9). The Discussion section would be more valuable if it used this space to reflect on what the collective results reveal about ASTRA's strengths and limitations as an integrated tool, rather than listing the test cases again. In particular, a brief discussion of where the integration advantage was most concretely demonstrated — the Bayesian model selection test, where physical motivation and statistical evidence jointly selected the power-law model, is a good example — would strengthen the paper's central argument. This is a suggestion rather than a requirement.
+
+2.3 Figure 2 Embedded Text
+Figure 2 retains an embedded capability comparison panel in the lower right quadrant that still contains the formulation "Cannot access astronomical catalogs" under LLMs, which is inconsistent with the corrected framing in Section 2.6. This panel should be removed or updated consistent with the rest of the paper.
+
+2.4 Table 1 Formatting
+Table 1 (capability demonstration matrix) is well-conceived and adds genuine clarity. However, the table currently appears on page 4 in a floating [h] placement that causes it to appear before the text that introduces it in Section 2.3. The table should be placed after the paragraph that references it, or the placement specifier adjusted. Additionally, the "–" notation for capabilities not demonstrated should be defined in the table caption, as a reader encountering the table in isolation might interpret it as a missing value indicator rather than "not applicable."
+
+2.5 Abstract: "Novel Testable Hypotheses" Claim
+The abstract currently states in Section 1.1 that ASTRA can "generate novel testable hypotheses" as one of the demonstrated capabilities. However, Test Case 3 explicitly and commendably acknowledges that the five identified galaxy patterns are all well-established literature results and are demonstrations of pattern recognition rather than novel discovery. The abstract should be brought into alignment: either replace "generate novel testable hypotheses" with "identify established astrophysical relationships through pattern recognition" to reflect what is actually demonstrated, or add a brief qualifier such as "identify patterns including established astrophysical relationships." This is a small but important consistency issue between the scope statement and the test case results.
+
+2.6 The Virial Parameter Definition and the 88% vs 72% Reconciliation
+Section 3.3 now defines the dimensionless virial parameter Π = σ/√(GM/L) and provides the reconciliation between the 88% slope ratio and the 72% dimensional analysis agreement. This is clear and correct. One small additional clarification would help: the text states the two measures "use different normalizations" but does not quite explain why this leads to different numerical values. The slope ratio compares exponents (0.0812 vs 0.0927, a ratio of the logarithmic derivatives), while the Π comparison compares absolute values of the dimensionless parameter (1.012 vs 1.414). These are genuinely different quantities and the numerical discrepancy is expected; a single sentence making this explicit — for example noting that the slope comparison is insensitive to normalisation constants while the Π comparison includes them — would complete the reconciliation for a reader who finds the discrepancy puzzling.
+
+SECTION 4: SUMMARY OF REQUIRED ACTIONS
+Must complete before acceptance:
+	0.	Register a versioned Zenodo (or equivalent) DOI-archived release of the ASTRA codebase and update the White & Dey (2026) citation to include this DOI and version number.
+	0.	Update Brinchmann et al. (2004) citation to the published MNRAS reference (351, 1151) and add Abazajian et al. (2009, ApJS, 182, 543) to the reference list.
+	0.	Add the six missing references: Sutherland & Saunders (1992), Lotz et al. (2011), Mo & White (1996), Meng & Wong (1996), Hornschemeier et al. (2001), and Gaia Collaboration Brown et al. (2018).
+	0.	Regenerate Figures 1 and 4 to remove stale embedded text panels with outdated test numbers and LLM capability comparisons.
+	0.	Remove or update the embedded comparison panel in Figure 2 for consistency with Section 2.6.
+
+Recommended before final submission:
+	1.	Align the abstract's capability list with what is actually demonstrated, replacing "generate novel testable hypotheses" with wording consistent with Test Case 3's honest framing.
+	2.	Add one sentence in Section 4.3 noting that the 68% AGN fraction in the matched sample is not representative of the full CDFS population.
+	3.	Adjust Table 1 placement and add a caption note defining the "–" notation.
+	•		4.	Add one clarifying sentence to the Π reconciliation in Section 3.3 explaining why slope ratios and dimensionless parameter ratios differ numerically.

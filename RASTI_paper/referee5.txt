@@ -1,0 +1,25 @@
+T1. [htbp] float specifier visible as literal text — PERSISTS, YOU MUST FIX THIS ⚠️
+The [htbp] string continues to render as literal text immediately above Figures 1 through 5 (visible on pages 4, 5, 7, 8, 9, and 10 of this PDF). This is the single most visually prominent error in the manuscript and will attract immediate editorial attention. The fix is straightforward: in the LaTeX source, the figure environment opening \begin{figure}[htbp] must be correctly formed. The most likely cause is that a bare [htbp] on a line of its own has been inserted as plain text rather than as a LaTeX float specifier argument. Search the .tex source for lines containing only [htbp] and verify they are attached to the correct \begin{figure} command with no intervening line break.
+
+T2. Residual duplicate citation rendering — YOU MUST FIX THESE ⚠️
+Comparing with V1_07, the duplicate citation problem is unchanged. The following five instances persist:
+	•	Page 4, Section 3.2: (Arzoumanian et al. 2011)Arzoumanian et al. (2011)
+	•	Page 5, Section 4.1: Sutherland & Saunders (1992)Sutherland & Saunders (1992)
+	•	Page 6, Section 4.2: Bauer et al. (2004)Bauer et al. (2004)
+	•	Page 7, Section 5.2: (Lotz et al. 2011)Lotz et al. (2011)
+	•	Page 9, Section 7.1: (Meng & Wong 1996)Meng & Wong (1996)
+These five are the identical set flagged in the V1_07 review. No progress has been made on this item. A systematic search of the .tex source for the pattern )\citet or )\cite or }}\cite will locate all instances. Each requires replacing the doubled command with a single correctly formed citation.
+
+N1. Section 1.1 autonomous code claim — YOU MUST FIX THIS ⚠️
+The sentence added in V1_07 and flagged as a concern remains unchanged: "However, it does operate in a semi-autonomous way in that if given a natural language question, it can then act autonomously within its framework to complete the task, if necessary developing its own code, tests and conclusions."
+As noted in the V1_07 review, this claim is not demonstrated by any of the six test cases. All six test cases run pre-written Jupyter notebooks on structured datasets. None shows ASTRA receiving a natural language question and autonomously generating new code in response. The claim is therefore unsubstantiated within this paper and is inconsistent with the otherwise exemplary scope management practised throughout the manuscript.
+This creates a specific vulnerability: a referee who reads Section 1.1 carefully will ask for a demonstration or will flag it as overclaiming — precisely the category of concern that consumed the most effort to resolve in earlier review rounds. Fix this by replacing the sentence with something scoped to what is actually demonstrated, such as: "The architecture is designed to accept natural language scientific queries and autonomously select appropriate analysis modules, though direct natural language query operation is not demonstrated in the present test cases."
+
+Also fix these three issues: O1. Section 9.1 "genuine discovery" phrasing
+As noted in V1_07, Section 9.1 retains the phrase "Test Case 6 demonstrates a different capability—genuine discovery beyond knowledge retrieval." Given the careful controlled-conditions framing elsewhere, "discovery-mode operation beyond knowledge retrieval, demonstrated under controlled conditions" would be more consistent. This remains an optional improvement; it is not severe enough to require revision.
+
+O2. Section 2.5 notebook cross-references
+Section 2.5 states "The five test cases in this paper can be reproduced using the following Jupyter notebooks." This should read "The first five test cases" for consistency with the six-test-case structure of the paper. This was flagged as T3 in the V1_07 review and has not been corrected. It is minor but trivially fixable.
+
+O3. Introduction section listing inconsistency
+The Introduction (Section 1) lists test case (vi) as "Genuine Discovery Test (Section 7): Knowledge-isolated pattern discovery and causal inference on an open astrophysical problem." The section is now numbered Section 8 in the body of the paper, not Section 7. This cross-reference is therefore incorrect. Section 7 in the body is "Bayesian Model Selection." This should read "Section 8."

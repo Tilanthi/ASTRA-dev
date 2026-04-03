@@ -1,0 +1,49 @@
+Overview and Assessment of Changes
+This revision represents a significant restructuring compared to earlier versions. The most consequential change is that Test Case 6 now uses real observational data (3,000 supernovae from the Open Supernova Catalog) rather than simulated data, and the framing throughout has been adjusted accordingly. The paper also introduces the V5.0 Discovery Enhancement System as a named architectural component. These are substantive improvements. The paper is now considerably more honest in its self-assessment of Tests 1–5, explicitly acknowledging that several are demonstrations of established results rather than novel discoveries. However, a number of issues remain that require attention before acceptance.
+
+1. Figure 6 contradicts the claimed Phillips relation recovery
+This is the most serious technical problem in the paper. Figure 6 (Panel A) shows a scatter plot of decline rate Δm₁₅(B) versus peak absolute magnitude, with a horizontal red fit line labelled "slope = 0.00". The Phillips relation is defined by a negative slope — faster-declining SNe Ia are fainter. The text correctly states r = −0.87 with p < 10⁻⁵⁰, which is consistent with a strong negative correlation, but the plotted fit line is flat. This is either a figure generation error or a mislabelling, but in either case the figure directly contradicts the central quantitative claim of Test Case 6. A reviewer or reader examining the figure before reading the text will conclude that ASTRA found no Phillips relation at all. This must be corrected before acceptance — it will be caught immediately in production peer review.
+2. Missing reference in Section 8.3
+The paper cites the Open Supernova Catalog as the data source with a reference marker "?" — the citation is missing from the bibliography. Similarly, the stretch-luminosity correlation and host mass dependence citations in Section 8.4.3 also appear as "?". These must be resolved. The Open Supernova Catalog reference is Guillochon et al. (2017, ApJ, 835, 64).
+
+3. The V5.0 components lack methodological detail
+The eight V10x capabilities (V101–V108) are described only narratively. For a methods paper this is insufficient. In particular:
+	•	V101 Temporal Causal Discovery: What algorithm is used for time-lagged causal discovery? The PC algorithm applies to i.i.d. data; light curves are time series. If a variant such as PCMCI (Runge et al. 2019) or Granger causality is used, it should be named and cited.
+	•	V102 Scalable Counterfactual Engine: "Double machine learning and causal forests" are named but not described. What is the treatment variable? What confounders are controlled for? The ATE values (−9.21 ± 1.2 mag/dex, +8.4 ± 1.5 mag/dex) are striking — these are large effect sizes that require explanation and sanity-checking against the literature (e.g., Kasen & Woosley 2007 on Ni mass–luminosity).
+	•	V103 Multi-Modal Evidence Fusion: How are the four evidence streams (numerical, literature, visual, code) combined to produce aggregate confidence = 0.9997? This precision implies a specific aggregation model that is not described.
+	•	V107 Discovery Triage: The scoring formula combining "impact", "novelty", and "confidence" is not given. These are the scores that drive the paper's primary discovery claim (super-Chandrasekhar candidates). Reviewers need to understand how these scores are computed.
+
+Note for the above, you are to remove mention of Vxxx components, for example V107 Discovery Triage. From the reader (and peer review referee) these are part of ASTRA, and the paper should not go into the detail where Vxxx numbers need to be listed
+
+4. The super-Chandrasekhar identification lacks validation
+Section 8.5 reports that "V107 identified 23 SNe Ia (1.1% of the sample) with peak luminosities > 1 mag above the Phillips relation" as super-Chandrasekhar candidates. This is a specific observational claim. Are these known super-Chandrasekhar events in the literature (e.g., SN 2003fg, SN 2006gz, SN 2009dc)? If so, the paper should verify that ASTRA recovers them. If they are new candidates, a table or at least a sample listing with redshifts and identifiers should be provided. The claim that these objects "suggest progenitor masses > 1.4 M⊙ or different explosion mechanisms" requires either a citation to the relevant physical models or acknowledgement that this interpretation is speculative.
+
+5. The ATE values in Section 8.4.2 require dimensional scrutiny
+The counterfactual results report ATE = −9.21 ± 1.2 mag/dex for decline rate and ATE = +8.4 ± 1.5 mag/dex for nickel mass. These values appear dimensionally inconsistent with the Phillips relation as conventionally parameterised: the Phillips relation has a slope of roughly −2.5 to −3 mag per unit Δm₁₅(B) (e.g., Phillips et al. 1999). An ATE of −9 mag/dex for decline rate would imply an implausibly steep causal effect. The authors should verify these numbers and clarify the units — if Δm₁₅ is measured in mag and log Ni mass in dex, the ATE units should be mag/mag and mag/dex respectively, and the magnitude of the effects should be physically plausible.
+
+6. Section numbering inconsistency
+The paper refers to Test Case 1 as "Section 2", Test Case 2 as "Section 3", Test Case 3 as "Section 4", etc. in the introduction and abstract, but the section numbers as printed are 3, 4, 5, 6, 7, and 8. Section 2 is the architecture description. The introduction (Section 1) lists the test cases with section numbers (ii)–(vi) that are shifted by one relative to the actual section numbers. This should be corrected for consistency.
+
+7. The Abstract does not mention Tests 1–5 collectively
+The abstract describes Test Case 6 in some detail but only briefly mentions "five test cases" validating "known astrophysical results." Given that Tests 1–5 occupy the majority of the paper, a sentence naming the key validation results (virial scaling, Bayesian model selection, causal inference) would strengthen the abstract.
+
+8. Figure 2 inconsistency between caption and classification panel
+The figure caption and Section 4.2 state 41 AGN (68%) and 19 stars (32%), but the classification results panel within Figure 2 shows "AGN: 36 (68%), Stars: 24 (40%), Galaxies: 8". These numbers are inconsistent with the text. The panel total (36 + 24 + 8 = 68) also does not equal 60. This appears to be a residual figure from a prior version that was not updated when the text was revised.
+
+9. The "slope = 0.00" issue may reflect a deeper data problem
+If the fit in Figure 6 Panel A genuinely has slope ≈ 0, this would imply the Phillips relation was not recovered from the data, contradicting all the statistical claims (r = −0.87, p < 10⁻⁵⁰). It is important to verify whether the correlation statistics are correctly computed from the actual data, or whether they are being retrieved from ASTRA's encoded literature knowledge rather than computed de novo from the 3,000-SN sample. The paper's credibility in discovery-mode operation rests entirely on this test case.
+
+10. Duplicate citation in Section 3.2
+"Panopoulou et al. (2022)Panopoulou et al. (2022)" appears twice consecutively. This is a LaTeX compilation artefact that should be corrected.
+
+11. Table 1 caption uses "–" for absent capabilities
+The convention is clear, but the table footnote explaining that "–" means "not applicable or not demonstrated" should also note that capabilities not in this table (temporal reasoning, etc.) are documented in the GitHub repository, as mentioned in Section 2.3. This cross-reference would help readers.
+
+12. Section 7.3 text inconsistency
+Section 7.3 states the 88% vs 72% discrepancy "reflects different normalization choices," but Section 3.3 provides a more detailed and physically correct explanation involving logarithmic derivatives versus absolute dimensionless parameter comparisons. The Section 7.3 language is slightly misleading — "normalization choices" undersells the fact that these are genuinely different quantities measuring different things. The more precise language from Section 3.3 should be adopted in Section 7.3 as well.
+
+13. Author contributions statement
+The acknowledgement that "Large language model assistance (Anthropic Claude) was used in manuscript preparation" is appropriate and appreciated. The statement that "This paper was not written by AI" is correct in spirit but may benefit from slight rewording to "The scientific content, analysis, and conclusions were designed, executed, and verified by the authors" to be consistent with emerging journal policies on AI use disclosure.
+
+14. GitHub repository link consistency
+The paper links to https://github.com/Tilanthi/ASTRA throughout but the README and inline reference cite this as "White & Dey (2026)". Reviewers will attempt to access this repository; the authors should ensure it is public and that the Jupyter notebooks listed in Section 2.5 (including those for Test Case 6) are present and executable before final submission. Note - the GitHub repo has been updated

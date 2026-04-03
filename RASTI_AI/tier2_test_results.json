@@ -1,0 +1,269 @@
+{
+  "test_case": "tier2_blind_recovery",
+  "timestamp": "2026-04-01T22:10:54.076824",
+  "blind_discoveries": [
+    {
+      "pattern_id": "corr_log_mass_linewidth",
+      "pattern_description": "log_mass correlates with linewidth",
+      "statistical_significance": 6.743533625975742e-130,
+      "effect_size": 0.832638055797146,
+      "variables": [
+        "log_mass",
+        "linewidth"
+      ],
+      "relationship_type": "correlation",
+      "found_in_blind_mode": true,
+      "found_in_knowledge_mode": false,
+      "enhanced_by_knowledge": false,
+      "confidence": 1.0
+    },
+    {
+      "pattern_id": "corr_age_gyr_velocity_dispersion",
+      "pattern_description": "age_gyr correlates with velocity_dispersion",
+      "statistical_significance": 9.20745433182044e-115,
+      "effect_size": 0.8045230423902721,
+      "variables": [
+        "age_gyr",
+        "velocity_dispersion"
+      ],
+      "relationship_type": "correlation",
+      "found_in_blind_mode": true,
+      "found_in_knowledge_mode": false,
+      "enhanced_by_knowledge": false,
+      "confidence": 1.0
+    },
+    {
+      "pattern_id": "corr_local_density_metallicity",
+      "pattern_description": "local_density correlates with metallicity",
+      "statistical_significance": 4.811633466507988e-82,
+      "effect_size": 0.7230712307553242,
+      "variables": [
+        "local_density",
+        "metallicity"
+      ],
+      "relationship_type": "correlation",
+      "found_in_blind_mode": true,
+      "found_in_knowledge_mode": false,
+      "enhanced_by_knowledge": false,
+      "confidence": 1.0
+    },
+    {
+      "pattern_id": "corr_metallicity_temperature",
+      "pattern_description": "metallicity correlates with temperature",
+      "statistical_significance": 0.005984553169272421,
+      "effect_size": 0.12276430657220247,
+      "variables": [
+        "metallicity",
+        "temperature"
+      ],
+      "relationship_type": "correlation",
+      "found_in_blind_mode": true,
+      "found_in_knowledge_mode": false,
+      "enhanced_by_knowledge": false,
+      "confidence": 0.9940154468307276
+    }
+  ],
+  "knowledge_discoveries": [
+    {
+      "pattern_id": "corr_log_mass_linewidth",
+      "pattern_description": "log_mass correlates with linewidth",
+      "statistical_significance": 6.743533625975742e-130,
+      "effect_size": 0.832638055797146,
+      "variables": [
+        "log_mass",
+        "linewidth"
+      ],
+      "relationship_type": "correlation",
+      "found_in_blind_mode": false,
+      "found_in_knowledge_mode": true,
+      "enhanced_by_knowledge": false,
+      "confidence": 1.0
+    },
+    {
+      "pattern_id": "corr_age_gyr_velocity_dispersion",
+      "pattern_description": "age_gyr correlates with velocity_dispersion",
+      "statistical_significance": 9.20745433182044e-115,
+      "effect_size": 0.8045230423902721,
+      "variables": [
+        "age_gyr",
+        "velocity_dispersion"
+      ],
+      "relationship_type": "correlation",
+      "found_in_blind_mode": false,
+      "found_in_knowledge_mode": true,
+      "enhanced_by_knowledge": false,
+      "confidence": 1.0
+    },
+    {
+      "pattern_id": "corr_local_density_metallicity",
+      "pattern_description": "local_density correlates with metallicity",
+      "statistical_significance": 4.811633466507988e-82,
+      "effect_size": 0.7230712307553242,
+      "variables": [
+        "local_density",
+        "metallicity"
+      ],
+      "relationship_type": "correlation",
+      "found_in_blind_mode": false,
+      "found_in_knowledge_mode": true,
+      "enhanced_by_knowledge": false,
+      "confidence": 1.0
+    },
+    {
+      "pattern_id": "corr_metallicity_temperature",
+      "pattern_description": "metallicity correlates with temperature",
+      "statistical_significance": 0.005984553169272421,
+      "effect_size": 0.12276430657220247,
+      "variables": [
+        "metallicity",
+        "temperature"
+      ],
+      "relationship_type": "correlation",
+      "found_in_blind_mode": false,
+      "found_in_knowledge_mode": true,
+      "enhanced_by_knowledge": false,
+      "confidence": 0.9940154468307276
+    }
+  ],
+  "novelty_scores": [
+    {
+      "pattern_id": "corr_log_mass_linewidth",
+      "knowledge_unexpectedness": 0.8,
+      "statistical_strength": 0.832638055797146,
+      "literature_novelty": 0.7,
+      "interpretability": 0.6,
+      "overall_novelty": 0.7499996671621545
+    },
+    {
+      "pattern_id": "corr_age_gyr_velocity_dispersion",
+      "knowledge_unexpectedness": 0.8,
+      "statistical_strength": 0.8045230423902721,
+      "literature_novelty": 0.7,
+      "interpretability": 0.6,
+      "overall_novelty": 0.7423107327895428
+    },
+    {
+      "pattern_id": "corr_local_density_metallicity",
+      "knowledge_unexpectedness": 0.8,
+      "statistical_strength": 0.7230712307553242,
+      "literature_novelty": 0.7,
+      "interpretability": 0.6,
+      "overall_novelty": 0.7189166111063092
+    },
+    {
+      "pattern_id": "corr_metallicity_temperature",
+      "knowledge_unexpectedness": 0.8,
+      "statistical_strength": 0.12276430657220247,
+      "literature_novelty": 0.7,
+      "interpretability": 0.6,
+      "overall_novelty": 0.42232406412389656
+    }
+  ],
+  "hypothesis_competition": [
+    {
+      "pattern_id": "corr_log_mass_linewidth",
+      "hypotheses": [
+        {
+          "hypothesis_id": "H_causal",
+          "description": "Causal relationship: log_mass affects linewidth",
+          "mechanism": "Direct physical causation",
+          "plausibility": 0.7,
+          "testable_predictions": [],
+          "evidence_fit": 0.832638055797146,
+          "predictive_power": 1.0,
+          "overall_score": 0.8014233195290011
+        },
+        {
+          "hypothesis_id": "H_confounded",
+          "description": "Confounded: both log_mass and linewidth caused by third variable",
+          "mechanism": "Common cause / latent confounder",
+          "plausibility": 0.6,
+          "testable_predictions": [],
+          "evidence_fit": 0.5828466390580022,
+          "predictive_power": 1.0,
+          "overall_score": 0.6839963236703008
+        },
+        {
+          "hypothesis_id": "H_selection",
+          "description": "Selection effect: observation biased by sample selection",
+          "mechanism": "Observational bias",
+          "plausibility": 0.5,
+          "testable_predictions": [],
+          "evidence_fit": 0.5828466390580022,
+          "predictive_power": 1.0,
+          "overall_score": 0.6539963236703008
+        }
+      ]
+    },
+    {
+      "pattern_id": "corr_age_gyr_velocity_dispersion",
+      "hypotheses": [
+        {
+          "hypothesis_id": "H_causal",
+          "description": "Causal relationship: age_gyr affects velocity_dispersion",
+          "mechanism": "Direct physical causation",
+          "plausibility": 0.7,
+          "testable_predictions": [],
+          "evidence_fit": 0.8045230423902721,
+          "predictive_power": 1.0,
+          "overall_score": 0.7915830648365952
+        },
+        {
+          "hypothesis_id": "H_confounded",
+          "description": "Confounded: both age_gyr and velocity_dispersion caused by third variable",
+          "mechanism": "Common cause / latent confounder",
+          "plausibility": 0.6,
+          "testable_predictions": [],
+          "evidence_fit": 0.5631661296731904,
+          "predictive_power": 1.0,
+          "overall_score": 0.6771081453856167
+        },
+        {
+          "hypothesis_id": "H_selection",
+          "description": "Selection effect: observation biased by sample selection",
+          "mechanism": "Observational bias",
+          "plausibility": 0.5,
+          "testable_predictions": [],
+          "evidence_fit": 0.5631661296731904,
+          "predictive_power": 1.0,
+          "overall_score": 0.6471081453856167
+        }
+      ]
+    },
+    {
+      "pattern_id": "corr_local_density_metallicity",
+      "hypotheses": [
+        {
+          "hypothesis_id": "H_causal",
+          "description": "Causal relationship: local_density affects metallicity",
+          "mechanism": "Direct physical causation",
+          "plausibility": 0.7,
+          "testable_predictions": [],
+          "evidence_fit": 0.7230712307553242,
+          "predictive_power": 1.0,
+          "overall_score": 0.7630749307643635
+        },
+        {
+          "hypothesis_id": "H_confounded",
+          "description": "Confounded: both local_density and metallicity caused by third variable",
+          "mechanism": "Common cause / latent confounder",
+          "plausibility": 0.6,
+          "testable_predictions": [],
+          "evidence_fit": 0.5061498615287269,
+          "predictive_power": 1.0,
+          "overall_score": 0.6571524515350544
+        },
+        {
+          "hypothesis_id": "H_selection",
+          "description": "Selection effect: observation biased by sample selection",
+          "mechanism": "Observational bias",
+          "plausibility": 0.5,
+          "testable_predictions": [],
+          "evidence_fit": 0.5061498615287269,
+          "predictive_power": 1.0,
+          "overall_score": 0.6271524515350544
+        }
+      ]
+    }
+  ]
+}

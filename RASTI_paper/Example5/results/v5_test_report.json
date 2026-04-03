@@ -1,0 +1,76 @@
+{
+  "timestamp": "2026-04-03T11:43:36.076074",
+  "example": "Cosmology - Large Scale Structure and Hubble Constant",
+  "dataset": {
+    "n_galaxies": 8000,
+    "n_h0_measurements": 500,
+    "redshift_range": [
+      0.0100231531631786,
+      1.9994381698394
+    ],
+    "h0_probes": [
+      "SN",
+      "CMB",
+      "Lensing",
+      "BAO"
+    ]
+  },
+  "results": {
+    "V101": {
+      "capability": "Temporal Causal Discovery",
+      "status": "SUCCESS",
+      "edges_discovered": 4
+    },
+    "V102": {
+      "capability": "Scalable Counterfactual Engine",
+      "status": "SUCCESS",
+      "ate": -507.70801264346557,
+      "interventions_tested": 3
+    },
+    "V103": {
+      "capability": "Multi-Modal Evidence Integration",
+      "status": "SUCCESS",
+      "confidence": 0.9996666666666667,
+      "triangulation": "strong",
+      "supporting": 2,
+      "contradicting": 0
+    },
+    "V104": {
+      "capability": "Adversarial Hypothesis Framework",
+      "status": "SUCCESS",
+      "challenges_generated": 0,
+      "hypothesis_refined": true
+    },
+    "V105": {
+      "capability": "Meta-Discovery Transfer Learning",
+      "status": "SUCCESS",
+      "pattern_added": "hubble_law",
+      "domain": "cosmology",
+      "strategy": "scaling_relations"
+    },
+    "V106": {
+      "capability": "Explainable Causal Reasoning",
+      "status": "SUCCESS",
+      "initialized": true
+    },
+    "V107": {
+      "capability": "Discovery Triage and Prioritization",
+      "status": "SUCCESS",
+      "candidates_ranked": 3,
+      "top_priority": "H0 tension resolution"
+    },
+    "V108": {
+      "capability": "Real-Time Streaming Discovery",
+      "status": "SUCCESS",
+      "batches_processed": 10,
+      "alerts_detected": 0,
+      "streaming_functional": true
+    }
+  },
+  "summary": {
+    "total": 8,
+    "successful": 8,
+    "failed": 0,
+    "success_rate": "100.0%"
+  }
+}

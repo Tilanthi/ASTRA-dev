@@ -1,0 +1,229 @@
+Peer Review: ASTRA V1_05 — Dual Astronomer/AI-ML Reviewer Assessment
+Overall Verdict: Minor Revision
+The manuscript has improved substantially. The AGI overclaiming has been eliminated, the scope and limitations section is honest and well-placed, and Test Case 6 is a genuinely valuable addition that addresses the prior concern about ASTRA only recovering known results. Several issues remain that should be addressed before acceptance.
+
+MAJOR REMAINING CONCERNS
+M1. Test Case 6 uses synthetic data — this must be more prominently flagged
+The abstract states ASTRA demonstrates "genuine discovery beyond knowledge retrieval" and the sixth test "discovers the correct causal drivers." While the paper does eventually acknowledge the synthetic data clearly in Section 8.3, the abstract and Section 8 headings ("Genuine Discovery Test") frame this as a stronger result than it is. Discovering planted causal structure in data you yourself generated is a validation of the FCI implementation, not a demonstration of scientific discovery capability. A reviewer who reads only the abstract will be misled.
+Required action: The abstract must explicitly state that Test Case 6 uses synthetic data with known ground truth. The phrase "genuine discovery beyond knowledge retrieval" should be qualified — something like "discovery-mode capability, demonstrated on synthetic data with embedded causal structure." The section title "Genuine Discovery Test" could remain but needs the synthetic nature flagged in the first sentence of Section 8, not buried in Section 8.3.
+
+M2. The hypothesis competition scores (Section 8.4.3) are unexplained
+ASTRA assigns hypothesis scores of 0.698 (causal), 0.612 (confounded), 0.582 (selection) to competing explanations for the column density–SFR correlation. These scores are never defined. How are they computed? What do they mean quantitatively? The text says the ranking "reflects that all hypotheses are plausible... with causal interpretation receiving the highest score due to simplicity" — but simplicity is one criterion among four listed in the Phase 3 methodology (evidence fit, physical plausibility, predictive power, simplicity). No formula or weighting is given.
+This is particularly problematic because the ground truth is that column density is not causally responsible — yet ASTRA ranks the causal hypothesis highest (0.698). This is presented as acceptable because "all hypotheses are plausible given correlational data alone," but it needs to be acknowledged explicitly that ASTRA's hypothesis ranking here is wrong relative to ground truth, and why this is expected from observational data alone.
+
+Required action: Define the hypothesis scoring formula. Explicitly state that H1 (causal) receiving the highest score is the expected result from correlational data and is consistent with the FCI finding of causal uncertainty — not an error. This distinction between "highest-scored hypothesis" and "correct hypothesis" needs to be made clear to the reader.
+
+M3. Novelty scores (Section 8.4.4) lack definition
+Novelty scores of 0.752, 0.679, 0.657, 0.635 are reported with no mathematical definition. The text says they "quantify the information gain from discovery, combining statistical strength, unexpectedness, and literature novelty into a single metric (0–1 scale)." But in knowledge isolation mode, how is "literature novelty" computed if domain knowledge is disabled? This is internally inconsistent.
+
+Required action: Either provide the formula, or acknowledge that novelty assessment in Phase 4 re-enables literature comparison (which would mean knowledge isolation applies only to Phase 1, and this should be stated explicitly in Section 8.2).
+
+MODERATE CONCERNS
+
+m1. The virial parameter correlation is weak and this is underplayed
+In Section 8.4.1, the virial parameter–SFR correlation is r = 0.225, p = 3.78 × 10⁻⁷. This is a weak correlation (r² ≈ 0.05, explaining ~5% of variance), yet the text presents all five correlations on equal footing. For a system claiming discovery capability, flagging the relative strength of discovered correlations is important — weak correlations in synthetic data may not survive in real data with additional noise sources.
+Required action: Add a sentence noting that the virial parameter correlation is substantially weaker than the others and discuss the implication for P3's observational testability.
+
+m2. Figure 4 cross-reference appears incorrect
+Section 6.2 opens with "Figure 4 shows the discovered causal structure" — but Figure 4 in the submitted PDF shows the Causal Inference (Gaia) figure. This appears correct in isolation, but Section 7 (Bayesian Model Selection) references Figure 5 which shows the model comparison, and Section 8.7 references Figure 6. The numbering appears consistent throughout, but the [t] placement tags visible in the PDF suggest figures may not be rendering in their intended positions relative to their reference text. The editors should verify that figure placement in the final typeset version matches the in-text references.
+
+m3. Table 2 and Section 7.2 reconciliation
+The text in Section 7.3 states "the 88% vs 72% reflects different normalization choices" but this reconciliation is incomplete. Section 3.3 promises "Section 6.3 provides a detailed reconciliation" — but the paper's Section 6 is the Causal Inference test case, and Section 7.3 (Bayesian Model Selection) is where the reconciliation actually appears. This is a cross-reference error from a previous version's section numbering that was not updated. The promise of a "detailed reconciliation" in Section 3.3 points to the wrong section number.
+Required action: Change "Section 6.3" in Section 3.3 to "Section 7.3".
+
+MINOR CONCERNS
+p1. Abstract length and structure
+The abstract is long (approximately 350 words). RASTI typically expects abstracts under 250 words. Consider condensing, particularly the paragraph beginning "The sixth test case demonstrates a different aspect" which could be reduced to two sentences.
+
+p2. "PURE DISCOVERY" formatting
+In Section 8.4.1, the phrase PURE DISCOVERY appears to be formatted as code (monospace). This is presumably a system output label from ASTRA itself. If so, it should be properly introduced as such — e.g., "ASTRA classified all five patterns as PURE DISCOVERY (system classification label indicating patterns found without knowledge guidance)." As currently written, it reads as an unexplained formatting artefact.
+
+p3. GitHub repository URL
+The repository URL https://github.com/Tilanthi/ASTRA is given in Section 2.5 and the references. Prior to submission, confirm the repository is public and the URL is stable. RASTI requires that data and code supporting published results be accessible at time of publication.
+
+p4. The phrase "knowledge isolation mode" should be defined at first use
+The term appears first in the abstract but is not defined until Section 8.2. Add a brief parenthetical at first use: "(a mode in which ASTRA's encoded domain knowledge is disabled during pattern discovery, described in Section 8.2)."
+
+p5. Reference formatting inconsistency
+Several references appear in both author-year and hyperlinked forms within the same sentence, e.g., "Spirtes et al. 2000)Spirtes et al. (2000)". This is a LaTeX compilation artefact that must be corrected before submission. It appears in multiple places throughout the manuscript and suggests the natbib citation commands are being doubled.
+
+And from the second referee
+
+🧠 2. The Big Question: Did You Solve the Discovery Problem?
+
+Short answer:
+
+✅ YES — partially and credibly
+
+❌ NOT YET — fully convincing to a sceptical referee
+
+⸻
+
+Why it now works (important)
+
+Test Case 6 is exactly the right move.
+
+You have implemented:
+	•	knowledge isolation mode ✔
+	•	synthetic ground truth ✔
+	•	causal inference (FCI) ✔
+	•	hypothesis competition ✔
+	•	prediction generation ✔
+
+This is textbook-correct experimental design for AI discovery claims.
+
+⸻
+
+However (critical nuance)
+
+A strong referee will say:
+
+“This demonstrates recovery of hidden structure, not fully open-ended discovery.”
+
+That distinction matters.
+
+Think of how to modify the text to address the above
+
+🔬 3. Detailed Assessment of Test Case 6 - Where a sceptical referee will still push back
+
+⚠️ Issue 1: You engineered the problem
+
+This is the single biggest remaining weakness.
+
+A referee will say:
+
+“The system successfully recovers a structure that the authors themselves embedded.”
+
+Even though this is standard in ML validation, in astronomy discovery claims, the bar is higher.
+
+⚠️ Issue 2: Causal inference is still weakly resolved
+
+You correctly report:
+
+“edges marked as uncertain”  
+
+This is honest—but also exposes the limitation:
+
+👉 The system does not truly identify causal direction
+
+It identifies:
+	•	candidate drivers
+	•	but not definitive causality
+
+⚠️ Issue 3: Hypothesis ranking is not yet decisive
+
+Example:
+
+H1 (causal) score 0.698
+H2 (confounded) score 0.612  
+
+👉 These are too close
+
+A referee may say:
+
+“The system does not strongly discriminate between explanations.”
+
+⚠️ Issue 4: “Novelty score” is underdefined
+
+This will trigger reviewer questions:
+	•	How is it calibrated?
+	•	Against what baseline?
+	•	Is it reproducible?
+
+Right now it feels:
+👉 slightly heuristic / internal
+
+ 4. Architectural Evaluation (Now Much Stronger)
+
+However, Missing piece: Intervention / counterfactual validation
+
+You mention:
+
+“do-calculus… intervention prediction”  
+
+But you do NOT demonstrate it in Test 6.
+
+👉 This is a major missed opportunity.
+
+
+Think about whether the test needs revising and re-running to address this
+
+6. What Would Make This Definitively Convincing
+
+You are now very close.
+
+To push this over the line, you need ONE additional strengthening step:
+
+⸻
+
+🔥 Option A (best): Add intervention test inside synthetic experiment
+
+You already have the ground truth.
+
+So choose and implement one or more of the following in the paper (rerunning the test if needed):
+
+Add:
+	•	simulate intervention:
+	•	vary Jeans mass
+	•	hold others fixed
+
+Show:
+	•	predicted causal effect matches ground truth
+
+👉 This would be game-changing
+
+🔥 Option C: Strengthen hypothesis discrimination
+
+Make the system:
+	•	reject incorrect hypotheses
+	•	not just rank them
+⸻
+
+🔥 Option B: Partial real-data discovery test
+
+Even weaker version works:
+	•	apply ASTRA to real cloud data
+	•	recover:
+	•	non-trivial known debate
+	•	WITHOUT encoding
+
+7. Specific Writing Improvements Needed
+
+These are minor but important:
+
+⸻
+
+7.1 Tone down one key claim
+
+You write:
+
+“demonstrates genuine discovery capability”  
+
+A careful referee will push back.
+
+Suggested tweak:
+
+👉 “demonstrates discovery-mode operation under controlled conditions”
+
+⸻
+
+7.2 Clarify novelty metric
+
+Add 2–3 lines:
+	•	formal definition
+	•	reproducibility
+	•	limitations
+
+7.3 Explicitly acknowledge “designed ground truth”
+
+Say explicitly:
+
+👉 “This is a controlled benchmark, not an open discovery”
+
+This increases credibility, not decreases it.
+
+For the final push
+
+✅ Design the intervention experiment (drop-in Section 8.8)
+✅ Rewrite Section 8–9 to make it referee-proof
+

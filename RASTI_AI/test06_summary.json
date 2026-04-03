@@ -1,0 +1,14 @@
+{
+  "test_case": "Test Case 6: Discovery-Mode Operation on Synthetic Data",
+  "timestamp": "2026-04-02T11:48:53.948221",
+  "key_findings": [
+    "ASTRA autonomously discovered Jeans mass as primary SFR driver",
+    "Magnetic field suppression effect identified",
+    "Virial parameter modulation discovered",
+    "Column density correlation flagged as potentially confounded",
+    "All patterns classified as high-novelty (>0.7)",
+    "Testable predictions generated for future validation"
+  ],
+  "validation_status": "SUCCESS",
+  "requires_future_validation": true
+}

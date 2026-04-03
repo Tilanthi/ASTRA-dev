@@ -436,7 +436,10 @@ class SymbolicTheoreticEngine:
                     constraint.name,
                     self._variables_to_dict(variables)
                 )
-                print(f"  {constraint.name}: {result['equation']}")
+                if 'equation' in result:
+                    print(f"  {constraint.name}: {result['equation']}")
+                else:
+                    print(f"  {constraint.name}: {result.get('description', 'Applied')}")
                 self.applied_constraints.append(result)
 
         # Step 3: Generate theoretical predictions
