@@ -717,17 +717,106 @@ result = system.coherent_analysis(
 
 ASTRA includes 75 specialized domain modules.
 
-### 10.1 Available Domains
+### 10.1 Available Domains (75 Total)
 
-- **Interstellar Medium**: Molecular clouds, filaments, shocks
-- **Star Formation**: Core collapse, protostars, IMF
-- **Exoplanets**: Detection, characterization, atmospheres
-- **High-Energy Astrophysics**: X-ray binaries, AGN, GRBs
-- **Cosmology**: Large-scale structure, dark matter, dark energy
-- **Solar System**: Planets, asteroids, comets
-- **Time Domain**: Transients, variables, eruptions
-- **Galactic Archaeology**: Stellar populations, chemical evolution
-- **Submillimeter Astronomy**: Dust emission, star-forming regions
+ASTRA includes **75 specialized domain modules** organized into the following categories:
+
+#### Stellar Astrophysics (8 domains)
+- **stellar_structure**: Stellar structure and evolution models
+- **stellar_atmospheres**: Stellar atmosphere modeling and spectroscopy
+- **stellar_populations**: Stellar population synthesis and evolution
+- **nuclear_astrophysics**: Nuclear processes in stars and nucleosynthesis
+- **compact_binaries**: Binary star systems and compact objects
+- **xray_binaries**: X-ray binary systems and accretion physics
+- **supernovae**: Supernova explosions and remnants
+- **exoplanet_atmospheres**: Exoplanet atmospheric characterization
+
+#### Interstellar Medium & Star Formation (8 domains)
+- **ism**: Interstellar medium physics and chemistry
+- **molecular_cloud_dynamics**: Dynamics of molecular clouds
+- **molecular_cloud_evolution**: Evolution and lifecycle of molecular clouds
+- **molecular_cloud_collapse**: Gravitational collapse and core formation
+- **star_formation**: Star formation processes and feedback
+- **hii_regions**: HII region physics and evolution
+- **dust_formation**: Dust formation and evolution in ISM
+- **dust_grain_physics**: Dust grain properties and processes
+
+#### Exoplanets & Solar System (4 domains)
+- **exoplanets**: Exoplanet detection and characterization
+- **planetary_formation**: Planet formation and disk evolution
+- **solar_system**: Solar system dynamics and objects
+- **orbital_dynamics**: Orbital mechanics and dynamics
+
+#### High-Energy Astrophysics (5 domains)
+- **high_energy**: High-energy processes and particles
+- **agn**: Active galactic nuclei and quasars
+- **gamma_ray**: Gamma-ray astronomy and sources
+- **astroparticle**: Astrophysical particle physics
+- **gravitational_waves**: Gravitational wave sources and detection
+
+#### Galaxy Evolution & Structure (8 domains)
+- **galaxy_evolution**: Galaxy formation and evolution
+- **galaxy_clusters**: Galaxy cluster physics and dynamics
+- **dwarf_galaxies**: Dwarf galaxy properties and evolution
+- **galactic_structure**: Milky Way structure and dynamics
+- **galactic_archaeology**: Stellar archaeology and chemical evolution
+- **extragalactic**: Extragalactic astronomy and sources
+- **intergalactic_medium**: Intergalactic medium physics
+- **large_scale_structure**: Large-scale structure of universe
+
+#### Compact Objects & Extreme Physics (7 domains)
+- **black_holes**: Black hole physics and phenomena
+- **accretion_disk_theory**: Accretion disk models and physics
+- **tidal_disruption**: Tidal disruption events
+- **kilonovae**: Kilonovae and r-process nucleosynthesis
+- **general_relativity**: General relativistic effects
+- **gravitational_lensing**: Gravitational lensing phenomena
+- **frbs**: Fast radio bursts and transients
+
+#### Observational Techniques & Wavelengths (12 domains)
+- **radio_galactic**: Radio astronomy of Galactic sources
+- **radio_extragalactic**: Radio astronomy of extragalactic sources
+- **millimetre_astronomy**: Millimetre-wavelength astronomy
+- **submillimeter_astronomy**: Submillimeter observations
+- **infrared_astronomy**: Infrared observations and analysis
+- **farinfrared_astronomy**: Far-infrared and Herschel data
+- **interferometry**: Radio interferometry and synthesis imaging
+- **polarimetry**: Polarimetric observations and analysis
+- **astrometry**: Astrometric measurements and catalogues
+- **time_domain**: Time-domain astronomy and transients
+- **cmb**: Cosmic microwave background analysis
+- **xray_binaries**: X-ray binary systems (also in stellar)
+
+#### Theoretical & Computational Physics (10 domains)
+- **theoretical_astrophysics**: Theoretical astrophysics methods
+- **computational_astrophysics**: Computational methods and simulations
+- **numerical_methods**: Numerical algorithms and techniques
+- **mhd**: Magnetohydrodynamics and plasma physics
+- **plasma_physics**: Plasma physics and processes
+- **fluid_dynamics**: Fluid dynamics and hydrodynamics
+- **statistical_mechanics**: Statistical mechanics applications
+- **quantum_applications**: Quantum effects in astrophysics
+- **solid_state_astro**: Solid-state physics in astronomy
+- **dynamical_systems**: Dynamical systems theory
+
+#### Radiation & Atomic Physics (6 domains)
+- **radiative_processes**: Radiative processes and transfer
+- **radiative_transfer_theory**: Radiative transfer modeling
+- **photoionization**: Photoionization and PDR models
+- **atomic_physics**: Atomic processes and data
+- **molecular_spectroscopy**: Molecular spectroscopy and line lists
+- **astrochemical_surveys**: Astrochemistry and molecular surveys
+
+#### Solar & Heliospheric Physics (2 domains)
+- **solar_physics**: Solar physics and phenomena
+- **heliospheric_physics**: Heliospheric physics and solar wind
+
+#### Specialized & Cross-Disciplinary (5 domains)
+- **cosmology**: Cosmology and early universe
+- **prebiotic_chemistry**: Prebiotic chemistry and origins of life
+- **signal_processing**: Signal processing techniques
+- **inverse_problems**: Inverse problems and deconvolution
+- **hpc**: High-performance computing and parallelization
 
 ### 10.2 Using Domain Modules
 
