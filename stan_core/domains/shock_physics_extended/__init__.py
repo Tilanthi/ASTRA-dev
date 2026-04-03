@@ -1,0 +1,111 @@
+"""
+Shock Physics Extended Domain Module for STAN-XI-ASTRO
+
+Jump conditions, radiative shocks, collisionless shocks, particle acceleration
+
+Date: 2026-03-20
+Version: 1.0.0
+"""
+
+from typing import Dict, List, Any, Optional
+from dataclasses import dataclass
+import logging
+
+logger = logging.getLogger(__name__)
+
+# Import domain base
+from .. import BaseDomainModule, DomainConfig
+
+
+@dataclass
+class ShockPhysicsExtendedDomainState:
+    """Current state of Shock Physics Extended analysis"""
+    analysis_phase: str = "initial"
+    parameters: Dict[str, Any] = None
+
+    def __post_init__(self):
+        if self.parameters is None:
+            self.parameters = {}
+
+
+class ShockPhysicsExtendedDomain(BaseDomainModule):
+    """
+    Domain specializing in Shock Physics Extended
+
+    Capabilities:
+    - rankine_hugoniot
+    - radiative_shocks
+    - collisionless_shocks
+    - diffusive_shock_acceleration
+    """
+
+    def get_default_config(self) -> DomainConfig:
+        """Return default configuration for Shock Physics Extended domain"""
+        return DomainConfig(
+            domain_name="shock_physics_extended",
+            version="1.0.0",
+            dependencies=[],
+            description="Jump conditions, radiative shocks, collisionless shocks, particle acceleration"
+        )
+
+    def get_config(self) -> DomainConfig:
+        return DomainConfig(
+            domain_name="shock_physics_extended",
+            version="1.0.0",
+            dependencies=[],
+            keywords=['shock', 'jump conditions', 'radiative shock', 'collisionless shock', 'particle_acceleration'],
+            capabilities=['rankine_hugoniot', 'radiative_shocks', 'collisionless_shocks', 'diffusive_shock_acceleration']
+        )
+
+    def initialize(self, global_config: Dict[str, Any]) -> None:
+        """Initialize Shock Physics Extended domain"""
+        logger.info(f"Initializing {self.get_config().domain_name} domain")
+        self.state = ShockPhysicsExtendedDomainState()
+
+    def process_query(self, query: str, context: Optional[Dict] = None) -> Dict[str, Any]:
+        """
+        Process a Shock Physics Extended query.
+
+        Args:
+            query: The input query
+            context: Optional context information
+
+        Returns:
+            DomainQueryResult with answer and metadata
+        """
+        from .. import DomainQueryResult
+
+        # Simple implementation for now
+        result = DomainQueryResult(
+            domain_name=self.get_config().domain_name,
+            answer=f"{self.get_config().description}: Analysis of '{query}'",
+            confidence=0.7,
+            reasoning_trace=[],
+            capabilities_used=[],
+            metadata={}
+        )
+
+        return result
+
+
+    def get_capabilities(self) -> List[str]:
+        """Return list of domain capabilities"""
+        config = self.get_config()
+        return config.capabilities if config.capabilities else [
+            "Shock Physics Extended analysis",
+            "query_processing",
+            "modeling",
+            "computation"
+        ]
+# Factory function
+def create_shock_physics_extended_domain():
+    """Create a Shock Physics Extended domain instance"""
+    return ShockPhysicsExtendedDomain()
+
+
+# Domain registration
+try:
+    from .. import register_domain
+    register_domain(ShockPhysicsExtendedDomain)
+except ImportError:
+    pass

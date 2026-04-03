@@ -1,0 +1,402 @@
+{
+  "ontology_name": "V37 Causal Reasoning Ontology",
+  "version": "1.0",
+  "date": "2025-11-27",
+  "description": "MORK ontology definitions for V36/V37 symbolic causal reasoning",
+
+  "concept_hierarchy": {
+    "ROOT": {
+      "name": "CausalConcept",
+      "description": "Root of all causal concepts",
+      "children": ["TEMPORAL_DYNAMIC", "NONLINEAR_TRANSFORM", "REGIME_DYNAMIC", "FUNCTIONAL_ROLE", "CONSTRAINT", "DOMAIN"]
+    },
+
+    "TEMPORAL_DYNAMIC": {
+      "name": "TemporalDynamic",
+      "description": "Concepts with temporal evolution",
+      "children": ["AUTOREGRESSIVE", "DELAYED_RESPONSE"]
+    },
+
+    "AUTOREGRESSIVE": {
+      "name": "Autoregressive",
+      "description": "Autoregressive dynamics",
+      "children": ["STABLE_AR", "RESPONSIVE_AR", "UNSTABLE_AR"]
+    },
+
+    "STABLE_AR": {
+      "name": "StableAutoregressive",
+      "description": "Very persistent AR dynamics",
+      "properties": {
+        "ar_coefficient_min": 0.95,
+        "ar_coefficient_max": 1.0,
+        "v36_template": "STABLE_AUTOREGRESSIVE",
+        "persistence": "VERY_HIGH"
+      }
+    },
+
+    "RESPONSIVE_AR": {
+      "name": "ResponsiveAutoregressive",
+      "description": "Moderately persistent AR dynamics",
+      "properties": {
+        "ar_coefficient_min": 0.7,
+        "ar_coefficient_max": 0.95,
+        "v36_template": "RESPONSIVE_AUTOREGRESSIVE",
+        "persistence": "MODERATE"
+      }
+    },
+
+    "UNSTABLE_AR": {
+      "name": "UnstableAutoregressive",
+      "description": "Low persistence AR dynamics",
+      "properties": {
+        "ar_coefficient_min": 0.0,
+        "ar_coefficient_max": 0.7,
+        "v36_template": "UNSTABLE_AUTOREGRESSIVE",
+        "persistence": "LOW"
+      }
+    },
+
+    "DELAYED_RESPONSE": {
+      "name": "DelayedResponse",
+      "description": "Delayed causal effects",
+      "properties": {
+        "min_delay": 5,
+        "v36_template": "DELAYED_RESPONSE"
+      }
+    },
+
+    "NONLINEAR_TRANSFORM": {
+      "name": "NonlinearTransform",
+      "description": "Nonlinear observation functions",
+      "children": ["EXPONENTIAL", "MULTIPLICATIVE", "LOGARITHMIC", "POLYNOMIAL", "BLENDED"]
+    },
+
+    "EXPONENTIAL": {
+      "name": "Exponential",
+      "description": "Exponential transformation",
+      "properties": {
+        "v36_template": "NONLINEAR_EXPONENTIAL",
+        "function_family": "exp"
+      }
+    },
+
+    "MULTIPLICATIVE": {
+      "name": "Multiplicative",
+      "description": "Multiplicative interaction",
+      "properties": {
+        "v36_template": "NONLINEAR_MULTIPLICATIVE",
+        "function_family": "product"
+      }
+    },
+
+    "LOGARITHMIC": {
+      "name": "Logarithmic",
+      "description": "Logarithmic transformation",
+      "properties": {
+        "function_family": "log"
+      }
+    },
+
+    "POLYNOMIAL": {
+      "name": "Polynomial",
+      "description": "Polynomial transformation",
+      "properties": {
+        "function_family": "polynomial"
+      }
+    },
+
+    "BLENDED": {
+      "name": "BlendedObservation",
+      "description": "Blended observation functions (L7)",
+      "properties": {
+        "v36_law": "L7",
+        "description": "Blended functions like polynomial + exponential"
+      }
+    },
+
+    "REGIME_DYNAMIC": {
+      "name": "RegimeDynamic",
+      "description": "Regime-dependent behavior",
+      "children": ["REGIME_DEPENDENT"]
+    },
+
+    "REGIME_DEPENDENT": {
+      "name": "RegimeDependent",
+      "description": "Piecewise regime-dependent dynamics",
+      "properties": {
+        "v36_template": "REGIME_DEPENDENT",
+        "structure": "PIECEWISE"
+      }
+    },
+
+    "FUNCTIONAL_ROLE": {
+      "name": "FunctionalRole",
+      "description": "Functional roles of latent variables",
+      "children": ["SLOW_DRIVER", "FAST_RESPONDER", "MID_MEDIATOR", "NESTED_MEDIATOR", "REGIME_DETECTOR", "TRANSMISSION_DRIVER", "BEHAVIOUR_MODERATOR", "MACRO_SENTIMENT", "POLICY_PRESSURE"]
+    },
+
+    "SLOW_DRIVER": {
+      "name": "SlowDriver",
+      "description": "Slow-timescale driver variable",
+      "properties": {
+        "timescale_category": "slow",
+        "causal_position": "driver",
+        "ar_coefficient_typical": 0.995
+      }
+    },
+
+    "FAST_RESPONDER": {
+      "name": "FastResponder",
+      "description": "Fast-responding outcome variable",
+      "properties": {
+        "timescale_category": "fast",
+        "causal_position": "outcome",
+        "ar_coefficient_typical": 0.7
+      }
+    },
+
+    "MID_MEDIATOR": {
+      "name": "MidMediator",
+      "description": "Mid-timescale mediator variable",
+      "properties": {
+        "timescale_category": "mid",
+        "causal_position": "mediator",
+        "ar_coefficient_typical": 0.93
+      }
+    },
+
+    "NESTED_MEDIATOR": {
+      "name": "NestedMediator",
+      "description": "Nested mediation structure",
+      "properties": {
+        "timescale_category": "mid",
+        "causal_position": "mediator"
+      }
+    },
+
+    "REGIME_DETECTOR": {
+      "name": "RegimeDetector",
+      "description": "Variable sensitive to regime changes",
+      "properties": {
+        "regime_sensitivity_min": 0.5
+      }
+    },
+
+    "TRANSMISSION_DRIVER": {
+      "name": "TransmissionDriver",
+      "description": "D1 epidemiology transmission driver",
+      "properties": {
+        "timescale_category": "slow",
+        "domain_scope": ["D1"]
+      }
+    },
+
+    "BEHAVIOUR_MODERATOR": {
+      "name": "BehaviourModerator",
+      "description": "D1 behaviour moderation",
+      "properties": {
+        "timescale_category": "mid",
+        "domain_scope": ["D1"]
+      }
+    },
+
+    "MACRO_SENTIMENT": {
+      "name": "MacroSentiment",
+      "description": "D2 macroeconomic sentiment",
+      "properties": {
+        "timescale_category": "slow",
+        "domain_scope": ["D2"]
+      }
+    },
+
+    "POLICY_PRESSURE": {
+      "name": "PolicyPressure",
+      "description": "D2 policy pressure variable",
+      "properties": {
+        "timescale_category": "mid",
+        "domain_scope": ["D2"]
+      }
+    },
+
+    "CONSTRAINT": {
+      "name": "Constraint",
+      "description": "Prohibitive constraints and exclusions",
+      "children": ["N1", "N2", "N3"]
+    },
+
+    "N1": {
+      "name": "NoInstantaneousFeedback",
+      "description": "No X_t -> Y_t -> X_t without delay",
+      "properties": {
+        "severity": "FATAL",
+        "statement": "No instantaneous feedback loops"
+      }
+    },
+
+    "N2": {
+      "name": "NoRegimeTimescaleJumps",
+      "description": "AR coefficients cannot jump discontinuously across regimes",
+      "properties": {
+        "severity": "MODERATE",
+        "statement": "No regime-dependent timescale jumps"
+      }
+    },
+
+    "N3": {
+      "name": "NoUnboundedGrowthStationary",
+      "description": "Cannot have exp(lambda*t) with lambda>0 in stationary domain",
+      "properties": {
+        "severity": "STRONG",
+        "statement": "No unbounded growth in stationary domains"
+      }
+    },
+
+    "DOMAIN": {
+      "name": "Domain",
+      "description": "Scientific domains",
+      "children": ["CLD", "D1", "D2"]
+    },
+
+    "CLD": {
+      "name": "CausalLabDomain",
+      "description": "Abstract causal lab domain",
+      "properties": {
+        "domain_id": "CLD",
+        "is_abstract": true
+      }
+    },
+
+    "D1": {
+      "name": "Epidemiology",
+      "description": "Epidemiological domain",
+      "properties": {
+        "domain_id": "D1",
+        "typical_roles": ["transmission_driver", "behaviour_moderator"]
+      }
+    },
+
+    "D2": {
+      "name": "Economics",
+      "description": "Economic domain",
+      "properties": {
+        "domain_id": "D2",
+        "typical_roles": ["macro_sentiment", "policy_pressure"]
+      }
+    }
+  },
+
+  "semantic_relations": [
+    {
+      "source": "STABLE_AR",
+      "relation": "incompatible",
+      "target": "UNSTABLE_AR",
+      "strength": 1.0
+    },
+    {
+      "source": "EXPONENTIAL",
+      "relation": "incompatible",
+      "target": "LOGARITHMIC",
+      "strength": 0.5,
+      "note": "Weak incompatibility - can coexist in blended forms"
+    },
+    {
+      "source": "SLOW_DRIVER",
+      "relation": "causes",
+      "target": "FAST_RESPONDER",
+      "strength": 0.9
+    },
+    {
+      "source": "SLOW_DRIVER",
+      "relation": "causes",
+      "target": "MID_MEDIATOR",
+      "strength": 0.8
+    },
+    {
+      "source": "MID_MEDIATOR",
+      "relation": "causes",
+      "target": "FAST_RESPONDER",
+      "strength": 0.85
+    },
+    {
+      "source": "SLOW_DRIVER",
+      "relation": "analogous",
+      "target": "MACRO_SENTIMENT",
+      "strength": 0.95,
+      "domains": ["CLD", "D2"]
+    },
+    {
+      "source": "SLOW_DRIVER",
+      "relation": "analogous",
+      "target": "TRANSMISSION_DRIVER",
+      "strength": 0.9,
+      "domains": ["CLD", "D1"]
+    },
+    {
+      "source": "FAST_RESPONDER",
+      "relation": "analogous",
+      "target": "POLICY_PRESSURE",
+      "strength": 0.8,
+      "domains": ["CLD", "D2"]
+    },
+    {
+      "source": "MID_MEDIATOR",
+      "relation": "analogous",
+      "target": "BEHAVIOUR_MODERATOR",
+      "strength": 0.85,
+      "domains": ["CLD", "D1"]
+    }
+  ],
+
+  "v36_mappings": {
+    "symbolic_templates": {
+      "STABLE_AUTOREGRESSIVE": "STABLE_AR",
+      "RESPONSIVE_AUTOREGRESSIVE": "RESPONSIVE_AR",
+      "UNSTABLE_AUTOREGRESSIVE": "UNSTABLE_AR",
+      "DELAYED_RESPONSE": "DELAYED_RESPONSE",
+      "NONLINEAR_EXPONENTIAL": "EXPONENTIAL",
+      "NONLINEAR_MULTIPLICATIVE": "MULTIPLICATIVE",
+      "REGIME_DEPENDENT": "REGIME_DEPENDENT"
+    },
+    "functional_roles": {
+      "slow_driver": "SLOW_DRIVER",
+      "fast_responder": "FAST_RESPONDER",
+      "mid_mediator": "MID_MEDIATOR",
+      "nested_mediator": "NESTED_MEDIATOR",
+      "regime_detector": "REGIME_DETECTOR",
+      "transmission_driver": "TRANSMISSION_DRIVER",
+      "behaviour_moderator": "BEHAVIOUR_MODERATOR",
+      "macro_sentiment": "MACRO_SENTIMENT",
+      "policy_pressure": "POLICY_PRESSURE"
+    }
+  },
+
+  "cross_domain_analogies": {
+    "documented": [
+      {
+        "source_domain": "CLD",
+        "source_role": "L_slow",
+        "target_domain": "D2",
+        "target_role": "M_macro",
+        "similarity": 0.99,
+        "evidence": ["Same timescale (slow)", "Both are drivers"]
+      },
+      {
+        "source_domain": "CLD",
+        "source_role": "K_fast",
+        "target_domain": "D2",
+        "target_role": "P_policy",
+        "similarity": 0.85,
+        "evidence": ["Fast timescale", "Outcome position"]
+      },
+      {
+        "source_domain": "D1",
+        "source_role": "beta",
+        "target_domain": "D2",
+        "target_role": "P",
+        "similarity": 0.8,
+        "evidence": ["Mid-regime sensitive"]
+      }
+    ],
+    "total_count": 10
+  }
+}

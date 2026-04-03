@@ -1,0 +1,10 @@
+{
+  "total_cycles": 17,
+  "session_cycles": 7,
+  "last_cycle": "2026-04-03T07:53:08.962734+00:00",
+  "interval_minutes": 15,
+  "status": "active",
+  "mode": "exploration",
+  "created": "2026-04-03T04:46:14.117576+00:00",
+  "notes": "v2: 30-min intervals, adaptive modes, scored hypotheses, automated KB updates"
+}

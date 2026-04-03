@@ -1,0 +1,622 @@
+{
+  "lessons": [
+    {
+      "lesson_id": "GL001",
+      "problem_type": "gravitational_lens",
+      "description": "Particle swarm converges to local minima in multi-modal landscapes",
+      "failure_mode": "Early convergence with high chi-squared variance across restarts",
+      "solution": "Use hybrid approach: global search first, then swarm refinement",
+      "parameter_adjustments": {
+        "use_global_search_first": true,
+        "global_search_algorithm": "differential_evolution",
+        "min_restarts": 5,
+        "convergence_threshold": 1e-08,
+        "min_iterations": 100
+      },
+      "success_rate_before": 0.2,
+      "success_rate_after": 0.95,
+      "date_learned": "2024-11-25",
+      "applicable_conditions": [
+        "multi_modal_posterior",
+        "parameter_degeneracies",
+        "n_parameters >= 5"
+      ]
+    },
+    {
+      "lesson_id": "GL002",
+      "problem_type": "gravitational_lens",
+      "description": "Ellipticity-shear degeneracy causes exploration difficulties",
+      "failure_mode": "Swarm particles cluster on one side of degeneracy",
+      "solution": "Initialize particles along known degeneracy directions",
+      "parameter_adjustments": {
+        "initialize_along_degeneracies": true,
+        "known_degeneracies": [
+          [
+            "ellipticity",
+            "shear_magnitude",
+            -0.5
+          ],
+          [
+            "position_angle",
+            "shear_angle",
+            0.4
+          ]
+        ],
+        "particle_spread_factor": 2.0
+      },
+      "success_rate_before": 0.4,
+      "success_rate_after": 0.85,
+      "date_learned": "2024-11-25",
+      "applicable_conditions": [
+        "has_ellipticity_parameter",
+        "has_shear_parameter"
+      ]
+    },
+    {
+      "lesson_id": "GL003",
+      "problem_type": "gravitational_lens",
+      "description": "Gordon's biological parameters not optimal for optimization",
+      "failure_mode": "Slow convergence, insufficient exploration",
+      "solution": "Use adaptive parameters that start exploratory and become exploitative",
+      "parameter_adjustments": {
+        "adaptive_parameters": true,
+        "initial_inertia": 0.9,
+        "final_inertia": 0.4,
+        "initial_cognitive": 1.5,
+        "final_cognitive": 2.5,
+        "initial_social": 1.5,
+        "final_social": 2.5,
+        "exploration_rate_decay": 0.95
+      },
+      "success_rate_before": 0.3,
+      "success_rate_after": 0.8,
+      "date_learned": "2024-11-25",
+      "applicable_conditions": [
+        "optimization_focused",
+        "not_biological_simulation"
+      ]
+    },
+    {
+      "lesson_id": "GL004",
+      "problem_type": "gravitational_lens",
+      "description": "Unit mismatch between degrees and radians",
+      "failure_mode": "Completely wrong angle parameters",
+      "solution": "Always convert angles to radians before physics calculations",
+      "parameter_adjustments": {
+        "auto_convert_angles": true,
+        "angle_parameters": [
+          "position_angle",
+          "shear_angle"
+        ],
+        "input_unit": "degrees",
+        "physics_unit": "radians"
+      },
+      "success_rate_before": 0.0,
+      "success_rate_after": 1.0,
+      "date_learned": "2024-11-25",
+      "applicable_conditions": [
+        "has_angle_parameters"
+      ]
+    },
+    {
+      "lesson_id": "GL005",
+      "problem_type": "gravitational_lens",
+      "description": "Convergence too early when chi-squared still high",
+      "failure_mode": "Stopped at local minimum with chi\u00b2/dof >> 1",
+      "solution": "Don't converge until reduced chi-squared is acceptable",
+      "parameter_adjustments": {
+        "require_good_fit": true,
+        "max_acceptable_reduced_chi2": 3.0,
+        "extend_iterations_if_poor_fit": true,
+        "extension_factor": 2.0
+      },
+      "success_rate_before": 0.25,
+      "success_rate_after": 0.75,
+      "date_learned": "2024-11-25",
+      "applicable_conditions": [
+        "fitting_problem",
+        "known_noise_level"
+      ]
+    },
+    {
+      "lesson_id": "GL006",
+      "problem_type": "gravitational_lens",
+      "description": "Double lenses (2 images) are severely underconstrained",
+      "failure_mode": "4 data points for 7 parameters - infinite solutions fit",
+      "solution": "Use strong priors, fix some parameters, or require additional data",
+      "parameter_adjustments": {
+        "detect_underconstrained": true,
+        "use_strong_priors": true,
+        "warn_user_underconstrained": true,
+        "suggest_additional_data": [
+          "time_delays",
+          "flux_ratios",
+          "extended_source"
+        ]
+      },
+      "success_rate_before": 0.15,
+      "success_rate_after": 0.45,
+      "date_learned": "2024-11-25",
+      "applicable_conditions": [
+        "n_images == 2",
+        "n_data_points < n_parameters"
+      ]
+    },
+    {
+      "lesson_id": "GL007",
+      "problem_type": "gravitational_lens",
+      "description": "Triple lenses (3 images) are marginally underconstrained with severe degeneracies",
+      "failure_mode": "6 data points for 7 parameters, ellipticity-shear trade-off dominates",
+      "solution": "Fix one degenerate parameter or use informative priors from lens statistics",
+      "parameter_adjustments": {
+        "detect_triple_lens": true,
+        "fix_one_degenerate_param": true,
+        "candidate_fixed_params": [
+          "shear_magnitude",
+          "shear_angle"
+        ],
+        "use_population_priors": true,
+        "shear_prior_mean": 0.05,
+        "shear_prior_sigma": 0.03,
+        "ellipticity_prior_mean": 0.3,
+        "ellipticity_prior_sigma": 0.15,
+        "penalty_weight": 10.0
+      },
+      "success_rate_before": 0.25,
+      "success_rate_after": 0.65,
+      "date_learned": "2024-11-25",
+      "applicable_conditions": [
+        "n_images == 3",
+        "n_data_points < n_parameters"
+      ]
+    },
+    {
+      "lesson_id": "GL008",
+      "problem_type": "gravitational_lens",
+      "description": "Double lenses (2 images) are SEVERELY underconstrained with extreme degeneracies",
+      "failure_mode": "4 data points for 7 parameters (DOF=-3), ellipticity-shear completely degenerate, angles poorly constrained",
+      "solution": "Use very strong priors, fix angle parameters, and use joint e-\u03b3 prior to capture anticorrelation",
+      "parameter_adjustments": {
+        "detect_double_lens": true,
+        "use_very_strong_priors": true,
+        "shear_prior_mean": 0.05,
+        "shear_prior_sigma": 0.02,
+        "ellipticity_prior_mean": 0.25,
+        "ellipticity_prior_sigma": 0.1,
+        "use_angle_priors": true,
+        "position_angle_prior_sigma": 30.0,
+        "shear_angle_prior_sigma": 45.0,
+        "penalty_weight": 20.0,
+        "use_einstein_source_prior": true,
+        "einstein_prior_mean": 1.0,
+        "einstein_prior_sigma": 0.3,
+        "n_restarts": 5,
+        "combine_restarts": true
+      },
+      "success_rate_before": 0.15,
+      "success_rate_after": 0.55,
+      "date_learned": "2024-11-25",
+      "applicable_conditions": [
+        "n_images == 2",
+        "n_data_points < n_parameters"
+      ]
+    },
+    {
+      "lesson_id": "FC001",
+      "problem_type": "filament_cloud_simulation",
+      "description": "Column density threshold strongly affects measured filament properties",
+      "failure_mode": "Using threshold N > 3\u00d710\u00b2\u2070 cm\u207b\u00b2 gives 35% shorter length than visual extent",
+      "solution": "Use lower threshold (N > 10\u00b2\u2070 cm\u207b\u00b2) or match paper's definition; always state threshold explicitly",
+      "parameter_adjustments": {
+        "column_density_threshold": 1e+20,
+        "use_visual_extent": true,
+        "report_threshold_in_output": true
+      },
+      "success_rate_before": 0.65,
+      "success_rate_after": 0.9,
+      "date_learned": "2024-11-26",
+      "applicable_conditions": [
+        "filament_analysis",
+        "column_density_measurement"
+      ]
+    },
+    {
+      "lesson_id": "FC002",
+      "problem_type": "filament_cloud_simulation",
+      "description": "Background column density must be subtracted for accurate mass measurement",
+      "failure_mode": "Without background subtraction, mass overestimated by factor ~3",
+      "solution": "Use ridge-line integration method: M \u2248 N_mean \u00d7 \u03bc \u00d7 m_H \u00d7 (L \u00d7 W_eff)",
+      "parameter_adjustments": {
+        "subtract_background": true,
+        "background_method": "percentile_10",
+        "use_ridge_line_mass": true,
+        "effective_width_fwhm": 1.0
+      },
+      "success_rate_before": 0.36,
+      "success_rate_after": 0.87,
+      "date_learned": "2024-11-26",
+      "applicable_conditions": [
+        "filament_mass_calculation",
+        "column_density_based_mass"
+      ]
+    },
+    {
+      "lesson_id": "FC003",
+      "problem_type": "filament_cloud_simulation",
+      "description": "Filament peak column density requires central condensation from gravitational collapse",
+      "failure_mode": "Simple Plummer profile underestimates peak N by factor 3-4",
+      "solution": "Add concentrated cores/clumps with enhanced density; use steeper inner profile (p=1.5-2.0)",
+      "parameter_adjustments": {
+        "add_central_condensation": true,
+        "condensation_contrast": 3.0,
+        "plummer_index_inner": 1.5,
+        "plummer_index_outer": 2.0,
+        "n_clumps_per_jeans_length": 1.0
+      },
+      "success_rate_before": 0.28,
+      "success_rate_after": 0.8,
+      "date_learned": "2024-11-26",
+      "applicable_conditions": [
+        "evolved_filament",
+        "gravitationally_contracting"
+      ]
+    },
+    {
+      "lesson_id": "FC004",
+      "problem_type": "filament_cloud_simulation",
+      "description": "Velocity measurements should be density-weighted in filament regions",
+      "failure_mode": "Unweighted mean underestimates inflow by 35% due to low-density contributions",
+      "solution": "Use density-weighted velocity: <v> = \u03a3(\u03c1v)/\u03a3(\u03c1) for regions with N > threshold",
+      "parameter_adjustments": {
+        "velocity_weighting": "density",
+        "velocity_threshold_N": 1e+21,
+        "report_weighting_method": true
+      },
+      "success_rate_before": 0.65,
+      "success_rate_after": 0.9,
+      "date_learned": "2024-11-26",
+      "applicable_conditions": [
+        "velocity_field_analysis",
+        "filament_kinematics"
+      ]
+    },
+    {
+      "lesson_id": "FC005",
+      "problem_type": "filament_cloud_simulation",
+      "description": "Column density depends strongly on integration depth along line of sight",
+      "failure_mode": "Incorrect assumption of integration depth leads to systematic N errors",
+      "solution": "Explicitly set integration range matching paper (e.g., |x| < 5 pc = 10 pc total)",
+      "parameter_adjustments": {
+        "integration_depth_pc": 10.0,
+        "verify_depth_vs_paper": true,
+        "scale_N_by_depth_ratio": true
+      },
+      "success_rate_before": 0.7,
+      "success_rate_after": 0.95,
+      "date_learned": "2024-11-26",
+      "applicable_conditions": [
+        "column_density_calculation",
+        "projection_along_LOS"
+      ]
+    },
+    {
+      "lesson_id": "FC006",
+      "problem_type": "filament_cloud_simulation",
+      "description": "SPH particle resolution critically affects filament formation timescale",
+      "failure_mode": "Low resolution (N < 10\u2074) prevents proper WNM\u2192CNM phase transition",
+      "solution": "Use N > 10\u2075 particles or switch to grid-based hydro for thermal instability",
+      "parameter_adjustments": {
+        "minimum_particles": 100000,
+        "smoothing_length_jeans_ratio": 0.25,
+        "use_adaptive_smoothing": true,
+        "neighbor_count": 50
+      },
+      "success_rate_before": 0.3,
+      "success_rate_after": 0.75,
+      "date_learned": "2024-11-26",
+      "applicable_conditions": [
+        "SPH_simulation",
+        "thermal_instability",
+        "phase_transition"
+      ]
+    },
+    {
+      "lesson_id": "FC007",
+      "problem_type": "filament_cloud_simulation",
+      "description": "Simulation must run >> cooling time for WNM\u2192CNM transition",
+      "failure_mode": "20 Myr simulation only reached 933 K, not CNM equilibrium (50 K)",
+      "solution": "Run to t > 25 Myr; use subcycling for cooling; enhance cooling at shocks",
+      "parameter_adjustments": {
+        "minimum_simulation_time_myr": 25.0,
+        "use_cooling_subcycling": true,
+        "subcycling_factor": 10,
+        "enhanced_shock_cooling": true,
+        "shock_cooling_enhancement": 10.0
+      },
+      "success_rate_before": 0.2,
+      "success_rate_after": 0.7,
+      "date_learned": "2024-11-26",
+      "applicable_conditions": [
+        "thermal_evolution",
+        "ISM_phase_transition"
+      ]
+    },
+    {
+      "lesson_id": "ML001",
+      "problem_type": "molecular_line_spectroscopy",
+      "description": "Brightness temperature cannot exceed excitation temperature minus background",
+      "failure_mode": "Model predicted T_mb > T_kinetic, violating radiative transfer physics",
+      "solution": "Apply physical constraint: T_mb <= J(T_ex) - J(T_bg), where J(T) = T0/(exp(T0/T)-1)",
+      "parameter_adjustments": {
+        "enforce_tmb_limit": true,
+        "compute_j_function": true,
+        "t_bg": 2.73,
+        "clip_unphysical_emission": true
+      },
+      "success_rate_before": 0.0,
+      "success_rate_after": 1.0,
+      "date_learned": "2024-11-26",
+      "applicable_conditions": [
+        "spectral_line_modeling",
+        "brightness_temperature_calculation",
+        "optically_thick_emission"
+      ]
+    },
+    {
+      "lesson_id": "ML002",
+      "problem_type": "molecular_line_spectroscopy",
+      "description": "For optically thick lines, T_mb approaches T_ex (not T_kinetic) at line center",
+      "failure_mode": "Using T_kinetic directly as emission intensity in Planck function",
+      "solution": "Use proper radiative transfer: I = B(T_ex)*(1-exp(-tau)) + I_bg*exp(-tau); T_ex \u2248 T_kin in LTE",
+      "parameter_adjustments": {
+        "use_proper_radiative_transfer": true,
+        "distinguish_tex_from_tkin": true,
+        "lte_approximation_valid": true,
+        "subtract_background": true
+      },
+      "success_rate_before": 0.3,
+      "success_rate_after": 0.95,
+      "date_learned": "2024-11-26",
+      "applicable_conditions": [
+        "optically_thick_line",
+        "brightness_temperature_modeling"
+      ]
+    },
+    {
+      "lesson_id": "ML003",
+      "problem_type": "molecular_line_spectroscopy",
+      "description": "Infall blue asymmetry: cold foreground absorbs RED-shifted emission from warm background",
+      "failure_mode": "Incorrectly placing absorption at blue velocities (wrong sign)",
+      "solution": "Front layer moving TOWARD observer absorbs photons at RED velocities in observer frame (photons from rear appear red-shifted in front layer's rest frame)",
+      "parameter_adjustments": {
+        "infall_geometry": {
+          "front_layer": "moving_toward_observer",
+          "rear_layer": "moving_away_from_observer",
+          "absorption_velocity": "positive_red_shifted",
+          "blue_peak_stronger": true
+        },
+        "two_layer_model": true,
+        "verify_asymmetry_sign": true
+      },
+      "success_rate_before": 0.5,
+      "success_rate_after": 0.95,
+      "date_learned": "2024-11-26",
+      "applicable_conditions": [
+        "collapsing_cloud_spectrum",
+        "infall_signature",
+        "self_absorption_profile"
+      ]
+    },
+    {
+      "lesson_id": "ML004",
+      "problem_type": "molecular_line_spectroscopy",
+      "description": "Two-layer radiative transfer must conserve energy: I_out = I_in*exp(-tau) + S*(1-exp(-tau))",
+      "failure_mode": "Adding emission components without proper absorption (violated energy conservation)",
+      "solution": "Apply standard radiative transfer equation sequentially through each layer; never add emission without corresponding absorption of background",
+      "parameter_adjustments": {
+        "use_standard_rt_equation": true,
+        "sequential_layer_transfer": true,
+        "no_additive_emission": true,
+        "energy_conservation_check": true
+      },
+      "success_rate_before": 0.4,
+      "success_rate_after": 0.9,
+      "date_learned": "2024-11-26",
+      "applicable_conditions": [
+        "multi_layer_model",
+        "spectral_line_synthesis"
+      ]
+    },
+    {
+      "lesson_id": "ML005",
+      "problem_type": "molecular_line_spectroscopy",
+      "description": "J(T) Rayleigh-Jeans equivalent differs significantly from T at low temperatures",
+      "failure_mode": "Using T directly instead of J(T) = hv/k / (exp(hv/kT) - 1) for CO at T < 20K",
+      "solution": "Always compute J(T) for the specific frequency; for CO J=1-0 (T0=5.5K): J(10K) \u2248 7.1K, J(30K) \u2248 27.3K, J(2.73K) \u2248 0.8K",
+      "parameter_adjustments": {
+        "use_j_function_not_t": true,
+        "t0_for_co_1_0": 5.53,
+        "precompute_j_values": true,
+        "verify_j_at_low_t": true
+      },
+      "success_rate_before": 0.6,
+      "success_rate_after": 0.98,
+      "date_learned": "2024-11-26",
+      "applicable_conditions": [
+        "low_temperature_gas",
+        "millimeter_spectroscopy",
+        "brightness_temperature"
+      ]
+    }
+  ],
+  "experiences": [],
+  "signatures": {
+    "gravitational_lens_quad": {
+      "problem_type": "gravitational_lens",
+      "n_parameters": 7,
+      "n_data_points": 8,
+      "has_angle_parameters": true,
+      "has_known_degeneracies": [
+        "ellipticity_shear",
+        "mass_sheet",
+        "position_angle_shear_angle"
+      ],
+      "estimated_difficulty": "hard",
+      "recommended_algorithm": "hybrid_de_swarm",
+      "recommended_settings": {
+        "use_differential_evolution": true,
+        "de_maxiter": 100,
+        "swarm_particles": 50,
+        "swarm_iterations": 100,
+        "n_restarts": 3,
+        "use_physical_priors": true
+      }
+    },
+    "gravitational_lens_double": {
+      "problem_type": "gravitational_lens",
+      "n_parameters": 7,
+      "n_data_points": 4,
+      "has_angle_parameters": true,
+      "has_known_degeneracies": [
+        "ellipticity_shear",
+        "mass_sheet"
+      ],
+      "estimated_difficulty": "very_hard",
+      "recommended_algorithm": "hybrid_de_swarm",
+      "recommended_settings": {
+        "use_differential_evolution": true,
+        "de_maxiter": 200,
+        "swarm_particles": 100,
+        "swarm_iterations": 200,
+        "n_restarts": 10,
+        "use_strong_priors": true,
+        "fix_some_parameters": true
+      }
+    },
+    "gravitational_lens_triple": {
+      "problem_type": "gravitational_lens",
+      "n_parameters": 7,
+      "n_data_points": 6,
+      "has_angle_parameters": true,
+      "has_known_degeneracies": [
+        "ellipticity_shear",
+        "mass_sheet",
+        "position_angle_shear_angle"
+      ],
+      "estimated_difficulty": "hard",
+      "recommended_algorithm": "hybrid_de_swarm_with_priors",
+      "recommended_settings": {
+        "use_differential_evolution": true,
+        "de_maxiter": 150,
+        "swarm_particles": 75,
+        "swarm_iterations": 150,
+        "n_restarts": 5,
+        "use_population_priors": true,
+        "shear_prior_mean": 0.05,
+        "shear_prior_sigma": 0.03,
+        "ellipticity_prior_mean": 0.3,
+        "ellipticity_prior_sigma": 0.15,
+        "prior_penalty_weight": 10.0,
+        "fix_shear_magnitude": false
+      }
+    },
+    "filament_column_density": {
+      "problem_type": "filament_cloud_simulation",
+      "n_parameters": 6,
+      "n_data_points": 1000,
+      "has_angle_parameters": false,
+      "has_known_degeneracies": [
+        "mass_N_profile_degeneracy",
+        "background_amplitude_degeneracy",
+        "integration_depth_N_degeneracy"
+      ],
+      "estimated_difficulty": "moderate",
+      "recommended_algorithm": "iterative_calibration",
+      "recommended_settings": {
+        "use_ridge_line_mass": true,
+        "subtract_background": true,
+        "background_method": "percentile_10",
+        "column_density_threshold": 1e+20,
+        "velocity_weighting": "density",
+        "verify_against_paper_values": true,
+        "applicable_lessons": [
+          "FC001",
+          "FC002",
+          "FC003",
+          "FC004",
+          "FC005"
+        ]
+      }
+    },
+    "ism_phase_transition": {
+      "problem_type": "filament_cloud_simulation",
+      "n_parameters": 8,
+      "n_data_points": 10000,
+      "has_angle_parameters": false,
+      "has_known_degeneracies": [
+        "resolution_cooling_time",
+        "heating_cooling_balance"
+      ],
+      "estimated_difficulty": "very_hard",
+      "recommended_algorithm": "high_resolution_sph",
+      "recommended_settings": {
+        "minimum_particles": 100000,
+        "use_cooling_subcycling": true,
+        "minimum_simulation_time_myr": 25.0,
+        "enhanced_shock_cooling": true,
+        "shock_cooling_enhancement": 10.0,
+        "applicable_lessons": [
+          "FC006",
+          "FC007"
+        ]
+      }
+    },
+    "collapsing_cloud_spectrum": {
+      "problem_type": "molecular_line_spectroscopy",
+      "n_parameters": 8,
+      "n_data_points": 500,
+      "has_angle_parameters": false,
+      "has_known_degeneracies": [
+        "infall_velocity_optical_depth",
+        "temperature_optical_depth"
+      ],
+      "estimated_difficulty": "moderate",
+      "recommended_algorithm": "two_layer_radiative_transfer",
+      "recommended_settings": {
+        "use_j_function": true,
+        "enforce_tmb_limit": true,
+        "two_layer_model": true,
+        "infall_absorption_at_red": true,
+        "applicable_lessons": [
+          "ML001",
+          "ML002",
+          "ML003",
+          "ML004",
+          "ML005"
+        ]
+      }
+    },
+    "optically_thick_line_profile": {
+      "problem_type": "molecular_line_spectroscopy",
+      "n_parameters": 5,
+      "n_data_points": 200,
+      "has_angle_parameters": false,
+      "has_known_degeneracies": [
+        "excitation_temperature_optical_depth"
+      ],
+      "estimated_difficulty": "easy",
+      "recommended_algorithm": "single_layer_radiative_transfer",
+      "recommended_settings": {
+        "use_j_function": true,
+        "enforce_tmb_limit": true,
+        "t_bg": 2.73,
+        "applicable_lessons": [
+          "ML001",
+          "ML002",
+          "ML005"
+        ]
+      }
+    }
+  },
+  "last_updated": "2025-11-26T12:49:29.492987"
+}

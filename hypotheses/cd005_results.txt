@@ -1,0 +1,8 @@
+CD-005 Analysis Results
+-----------------------
+Data points analyzed: 14238
+Countries included: 165
+R2 Cross-validation scores: [-0.01373491  0.00313091  0.0065527   0.00102345  0.0014625 ]
+Average R2: -0.000
+No optimal temperature found; relationship may not be peaked.
+Plot saved to: /shared/ASTRA/data/climate/plots/cd005_gdp_growth_vs_temp_anomaly.png

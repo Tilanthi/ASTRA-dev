@@ -1,0 +1,1319 @@
+RASTI 000, 000–000 (2026)
+
+Preprint 2 April 2026
+
+Compiled using rasti LATEX style file v3.0
+
+ASTRA: An Integrated Analysis Framework for
+Physics-Aware Astrophysical Discovery
+Glenn J. White1⋆ Robin Dey2
+1 Department of Physics and Astronomy, The Open University, Milton Keynes MK7 6AA, UK
+2 VBRL Holdings Inc
+
+2 April 2026
+
+ABSTRACT
+
+We present ASTRA (Autonomous System for Scientific Discovery in Astrophysics), an integrated framework combining numerical data analysis, causal reasoning, and physical validation. ASTRA integrates: dimensional analysis;
+structural causal models; Bayesian evidence computation; and multi-wavelength data fusion within a unified framework.
+We demonstrate capabilities through six test cases. The first five use real observational data to validate ASTRA’s
+ability to recover known astrophysical results: Herschel filament scaling relations; Chandra Deep Field South multiwavelength cross-matching; galaxy property analysis; Gaia stellar causal inference; and Bayesian model comparison.
+The sixth test case demonstrates discovery-mode operation under controlled conditions. Using synthetic data
+with embedded causal structure (ground truth known to the authors but not to ASTRA), we apply “knowledge
+isolation mode” (domain knowledge disabled during pattern discovery) to the star formation threshold problem.
+ASTRA correctly identifies the causal drivers (gravitational instability, magnetic suppression, turbulent support),
+distinguishes column density as a proxy rather than direct cause, and generates testable predictions validated through
+intervention analysis. This demonstrates discovery-mode capability while acknowledging that definitive scientific
+discovery requires collaboration with domain experts and validation on real data.
+Code and documentation: https://github.com/Tilanthi/ASTRA White & Dey (2026).
+1 INTRODUCTION
+Modern astronomical surveys generate petabytes of data
+requiring automated analysis. Multiple computational approaches are available to astronomers, each with distinct
+strengths and limitations.
+Traditional Machine Learning and Statistical
+Methods: Well-established tools including scikit-learn, emcee, and nested sampling codes (MultiNest, dynesty) can process numerical data, detect patterns, perform statistical inference, and compute Bayesian evidence. These methods are
+widely used in astronomy with demonstrated success.
+Large Language Models with Code Execution: Current frontier models (GPT-4 with Code Interpreter, Claude
+with code execution) can process numerical data, execute
+Python code, and perform statistical analysis. These systems
+provide conversational interfaces to computational tools but
+require explicit programming and do not natively integrate
+physical validation or causal interpretation.
+The Integration Challenge: While individual tools exist
+for specific tasks, astronomers typically must manually combine separate pipelines for data processing, statistical analysis, causal inference, and physical validation. This manual
+integration creates opportunities for inconsistent treatment
+of uncertainties, missed physical constraints, and difficulty
+reproducing multi-step analyses.
+ASTRA addresses this challenge by providing an integrated
+framework that combines:
+© 2026 The Authors
+
+• Numerical data processing and statistical analysis
+• Causal reasoning with structural causal models
+• Physical validation through dimensional analysis and
+conservation laws
+• Multi-wavelength data fusion with uncertainty propagation
+• Hypothesis generation from pattern recognition
+• Bayesian model selection with evidence computation
+This integrated approach provides a unified framework
+where physical validation, causal reasoning, and uncertainty
+quantification are applied consistently throughout multi-step
+analyses. While individual components use established algorithms (PC algorithm for causal discovery, bridge sampling
+for Bayesian evidence, dimensional analysis for physical validation), their integration within a single framework enables
+analyses that would otherwise require manual combination of
+multiple separate tools.
+In this paper, we focus on six examples demonstrating how
+this integrated approach can be applied to astrophysical inference problems:
+(i) Scaling Relations Analysis (Section 2): Dimensional
+analysis and physical validation of filament scaling relations
+(ii) Multi-Wavelength Data Fusion (Section 3): Probabilistic cross-matching with Bayesian uncertainty propagation
+(iii) Pattern Recognition (Section 4): Identification of
+established galaxy property relationships
+
+2
+
+White & Dey
+
+(iv) Causal Inference (Section 5): Structural causal
+model discovery in stellar data
+(v) Bayesian Model Selection (Section 6): Evidencebased model comparison with prior specification
+(vi) Discovery-Mode Operation on Synthetic Data
+(Section 8): Knowledge-isolated pattern discovery and causal
+inference on the star formation threshold problem
+The first five test cases use real observational data to validate ASTRA’s ability to correctly recover known astrophysical results. The sixth test case demonstrates discovery-mode
+operation beyond knowledge retrieval, demonstrated under
+controlled conditions. Using synthetic data with embedded
+causal structure (ground truth known to the authors but not
+to ASTRA), it operates in “knowledge isolation mode” to
+discover patterns without being told what to look for, and
+generates testable predictions for future validation.
+Section 9 discusses why these results demonstrate ASTRA’s unique capabilities, clarifies ASTRA’s role as a tool to
+assist rather than replace astronomers, and Section 10 concludes.
+
+cover known astrophysical results. The sixth test case demonstrates discovery capability on synthetic data with known
+ground truth, with testable predictions that require future
+observational validation. The capabilities demonstrated are
+shown within specific astrophysical domains using particular datasets. Generalization to other domains or datasets requires further validation.
+
+2 METHODS: ASTRA SYSTEM
+ARCHITECTURE
+2.1 Overview
+ASTRA implements a modular architecture designed for astrophysical data analysis and inference. The system integrates multiple specialized components through a coordinated framework, enabling complex multi-step analyses that
+combine data processing, physical reasoning, causal inference,
+and statistical validation.
+
+1.1 Scope and Limitations
+
+2.2 Core Architectural Components
+
+What ASTRA Demonstrates: The six test cases in
+this paper show ASTRA can: discover physical laws from
+data with theoretical validation; fuse multi-wavelength observations with proper uncertainty handling; identify established astrophysical relationships through pattern recognition; distinguish causation from correlation; perform rigorous
+Bayesian model comparison; and operate in knowledge isolation mode to discover patterns and generate testable predictions beyond knowledge retrieval.
+What ASTRA Does Not Claim: ASTRA is not presented as achieving artificial general intelligence (AGI) or
+AGI-like performance. The system operates within defined
+astrophysical domains using established algorithms (PC algorithm, Bayesian inference, dimensional analysis, FCI causal
+discovery) combined through an integrated architecture. Results are validated against known physical theory and observational constraints. The system does not claim general
+reasoning beyond its training domains or autonomous operation without human oversight. The architecture is designed
+to support natural language queries that trigger autonomous
+task completion, though this capability is not demonstrated
+in the present test cases.
+ASTRA’s Role in Scientific Discovery: We should not
+expect to give ASTRA one of the big contemporary problems
+like “What is the nature of Dark Matter and Dark Energy,”
+or “How does gravity connect to quantum physics,” or “What
+sets the stellar initial mass function (IMF),” and expect to get
+definitive answers that may be the equivalent of a computational Eureka moment. But ASTRA’s discovery architecture,
+used alongside and by an experienced astronomer, has capabilities in discovery and inference that go beyond those of
+straightforward AI (large language models) and/or machine
+learning. ASTRA’s role in science is to work alongside the experienced astronomer to analyze data and facilitate genuine
+discovery. ASTRA is therefore a tool to assist the astronomer,
+rather than a replacement for domain expertise.
+Validation Scope: The first five test cases use real observational data to validate ASTRA’s ability to correctly re-
+
+1. Data Processing Pipeline: ASTRA accepts heterogeneous astronomical data formats including catalogs (CSV,
+FITS), time-series data, images, and spectral data. The
+pipeline performs ingestion, validation, cleaning, and normalization while preserving measurement uncertainties and
+metadata.
+2. Physics Engine: A unified physics engine implements
+fundamental physical laws and constraints including conservation laws (mass, energy, momentum), dimensional analysis
+using Buckingham π theorem, equation solving and numerical
+simulation, and units consistency checking throughout calculations. This enables ASTRA to validate discoveries against
+first principles rather than treating correlations as sufficient
+explanations.
+3. Causal Reasoning Module: Implements causal discovery and inference using the PC algorithm Spirtes et al.
+(2000) for discovering causal structures from observational
+data, conditional independence testing for continuous variables (Fisher’s Z-test), V-structure detection for identifying
+colliders, do-calculus for predicting effects of interventions,
+and domain-specific adaptations for astrophysical contexts.
+This module enables ASTRA to distinguish causal relationships from correlations, addressing a fundamental limitation
+of both traditional ML and LLM approaches.
+4. Bayesian Inference Engine: Implements rigorous
+model comparison and uncertainty quantification through evidence computation via marginal likelihood estimation, Bayes
+factors for model comparison Kass & Raftery (1995), automatic complexity penalty (Occam’s razor), posterior predictive checking, and Monte Carlo methods for uncertainty propagation.
+5. Domain Knowledge Systems: Organized astrophysical knowledge through MORK ontology encoding taxonomic
+and causal relationships, knowledge graphs for semantic relationships, vector-based semantic memory for concept retrieval, and 75 specialized domain modules (ISM, star formation, exoplanets, etc.).
+6. Multi-Module Orchestration: Coordinates different
+
+RASTI 000, 000–000 (2026)
+
+ASTRA: Integrated Analysis Framework for Astrophysics
+analytical perspectives through specialized processing modules for different analysis types, meta-cognitive layer for
+context-appropriate module selection, result synthesis and
+conflict resolution, and quality control and validation checks.
+2.3 Unique Capabilities
+ASTRA integrates sixteen distinct analytical capabilities
+that work together to enable comprehensive scientific analysis:
+Causal and Statistical Analysis: (1) Bias Detection—
+Identifies and quantifies observational biases like Malmquist
+bias from survey geometry and selection effects. (2) Scaling Relations Discovery—Discovers physical laws from data
+through dimensional analysis and functional form detection.
+(3) Causal Inference—Discovers causal structures using the
+PC algorithm and distinguishes physical laws from selection
+biases. (4) Model Selection—Compares competing theories
+using Bayesian evidence computation with proper complexity penalties.
+Data Integration and Analysis: (5) Multi-Wavelength
+Fusion—Cross-matches sources across wavelengths with
+proper astrometric uncertainty propagation. (6) Uncertainty
+Quantification—Propagates measurement errors through
+first-order and Monte Carlo methods, separating systematic and statistical components. (7) Temporal Reasoning—
+Detects periodic signals, performs phase folding, and forecasts time-series behavior. (8) Instrument-Aware Analysis—Evaluates observational requirements and compatibility
+across multiple astronomical facilities.
+Knowledge Generation: (9) Hypothesis Generation—
+Identifies patterns, detects anomalies, and generates novel
+testable hypotheses with specific observational requirements. (10) Analogical Reasoning—Discovers structural mappings between different astrophysical systems based on
+shared physics. (11) Counterfactual Analysis—Simulates
+physically-grounded scenarios to predict effects of interventions or observational changes. (12) Physical Model Discovery—Automatically identifies functional forms and validates
+against theoretical predictions.
+Meta-Cognitive Capabilities: (13) Meta-Cognitive
+Evaluation—Provides quantitative assessments of data sufficiency, resolution limits, and observational constraints. (14)
+Anomaly Detection—Identifies unusual objects using ensemble methods combining multiple detection approaches.
+(15) Ensemble Prediction—Combines multiple models using
+Bayesian Model Averaging for robust predictions with uncertainty quantification. (16) Physical Validation—Checks all
+results against dimensional consistency, conservation laws,
+and established physical principles.
+These capabilities are not independent modules but integrated components that work together. For example, discovering a scaling relation (capability 2) involves dimensional analysis (capability 12), physical validation (capability 16), and uncertainty quantification (capability 6). Similarly, multi-wavelength fusion (capability 5) requires coordinate calculations, astrometric error propagation, and physical
+classification criteria.
+Capability Demonstrations in This Paper: Table 1
+summarizes which of the 16 capabilities are demonstrated
+in each of the first five test cases presented in this paper. Capabilities not demonstrated here (temporal reasoning,
+
+3
+
+instrument-aware analysis, analogical reasoning, counterfactual analysis, ensemble prediction) are available in the system but demonstrated in extended test cases available in the
+GitHub repository.
+
+2.4 Workflow for Scientific Analysis
+ASTRA’s analysis workflow follows this general pattern: Input: Scientific query or observational data; Module Selection: Meta-cognitive layer selects appropriate analysis modules based on query type and data characteristics; Analysis
+Execution: Selected modules perform their specialized analyses including statistical and ML algorithms for pattern detection, causal discovery for identifying relationships, physics
+engine for theoretical validation, and Bayesian inference for
+model comparison; Integration: Results synthesized from
+multiple modules, resolving conflicts and identifying consensus conclusions; Validation: Results checked against physical constraints (dimensional consistency, conservation laws),
+statistical significance (p-values, confidence intervals), observational constraints (resolution limits, selection effects), and
+domain knowledge (established theories, previous results);
+Output: Integrated results with confidence assessments, uncertainty quantification, and physical interpretation.
+
+2.5 Implementation and Availability
+ASTRA is implemented in Python with approximately
+303,000 lines of code across 514 files. The system uses established scientific Python libraries (NumPy, SciPy, Pandas,
+scikit-learn) combined with specialized implementations for
+causal discovery (causal-learn, dowhy), Bayesian inference,
+and physics simulation.
+The complete system is publicly available at: https://
+github.com/Tilanthi/ASTRA White & Dey (2026).
+This repository includes: complete source code and installation instructions; system architecture documentation with
+detailed design diagrams; API documentation and user manual; extended validation with 15 comprehensive test cases; example notebooks and tutorials; and reproducible code for all
+results presented in this paper. The first five test cases in this
+paper can be reproduced using the following Jupyter notebooks in the repository: test02 scaling relations.ipynb
+(Section 2), test04 multiwavelength fusion.ipynb (Section 3), test05 hypothesis generation.ipynb (Section 4), test11 causal inference.ipynb (Section 5), and
+test12 bayesian model selection.ipynb (Section 6).
+
+2.6 Positioning Relative to Other Approaches
+ASTRA occupies a distinct position in the landscape of AI
+for scientific discovery. Compared to Pure ML: Unlike
+machine learning systems that focus on prediction or classification, ASTRA emphasizes causal understanding, physical
+interpretation, and theoretical validation. ASTRA can detect
+correlations like ML systems but goes further by identifying
+causal structure and validating against physics.
+Compared to LLMs: Unlike large language models that
+require explicit programming and manual tool selection to
+perform numerical analysis, and do not natively integrate
+RASTI 000, 000–000 (2026)
+
+4
+
+White & Dey
+Capability
+
+Test 1
+(Scaling)
+
+Test 2
+(Multi-λ)
+
+Test 3
+(Pattern)
+
+Test 4
+(Causal)
+
+Test 5
+(Bayesian)
+
+–
+X
+–
+–
+–
+X
+–
+–
+–
+–
+–
+X
+X
+–
+–
+X
+
+X
+–
+–
+–
+X
+X
+–
+–
+–
+–
+–
+–
+X
+–
+–
+X
+
+–
+X
+–
+–
+–
+X
+–
+–
+X
+–
+–
+–
+X
+X
+–
+X
+
+X
+–
+X
+–
+–
+–
+–
+–
+–
+–
+–
+–
+X
+–
+–
+X
+
+–
+X
+–
+X
+–
+X
+–
+–
+–
+–
+–
+X
+X
+–
+–
+X
+
+Bias Detection
+Scaling Relations
+Causal Inference
+Model Selection
+Multi-Wavelength Fusion
+Uncertainty Quantification
+Temporal Reasoning
+Instrument-Aware Analysis
+Hypothesis Generation
+Analogical Reasoning
+Counterfactual Analysis
+Physical Model Discovery
+Meta-Cognitive Evaluation
+Anomaly Detection
+Ensemble Prediction
+Physical Validation
+
+Table 1. Capabilities demonstrated in each test case. X indicates the capability is explicitly demonstrated in that test case; – indicates
+the capability is not applicable or not demonstrated in that test case.
+
+physical validation constraints or causal interpretation, ASTRA provides these capabilities within a unified framework.
+Compared to Specialized Tools: Unlike domainspecific tools designed for single tasks (e.g., photometric
+redshift fitting, period finding), ASTRA integrates multiple
+analysis types within a unified framework, enabling complex
+multi-step analyses that connect different types of scientific
+reasoning.
+Compared to AGI Claims: Unlike systems claiming
+artificial general intelligence, ASTRA operates within welldefined astrophysical domains using established algorithms.
+The system assists human reasoning rather than replacing
+domain expertise, and results require interpretation and validation by domain scientists.
+
+The power-law fitting is performed in log-log space using
+ordinary least squares regression on log(σv ) versus log(M/L).
+The reported uncertainty ±0.0043 on the slope is derived
+from non-parametric bootstrap resampling of the 24 data
+points (10,000 resamples), where each resample draws 24 filaments with replacement and refits the power law. The 95%
+confidence interval is computed from the 2.5th and 97.5th
+percentiles of the bootstrap distribution.
+For the Bayesian model comparison in Section 6, we use
+weakly-informative priors: uniform priors on log-space for
+scale parameters, uniform priors on exponents, and Jeffreys
+priors for scale-invariant quantities.
+
+3.2 Results
+3 TEST CASE 1: SCALING RELATIONS
+ANALYSIS
+3.1 Data and Methods
+We analyzed 24 molecular cloud filaments from the Herschel
+Gould Belt Survey (HGBS) Andre et al. (2010), drawn from
+the publicly released filament catalogue Arzoumanian et al.
+(2019). Each filament has measurements of mass M , length L,
+and velocity dispersion σv with distance estimates based on
+nearby Galactic OB associations. We note that the universal
+width of ∼0.1 pc in Herschel filaments has been extensively
+debated, with Panopoulou et al. (2022) arguing that apparent
+universality may partly reflect observational selection effects.
+ASTRA applies a multi-stage analysis process:
+(i) Dimensional analysis: Identify dimensionless parameters using Buckingham π theorem
+(ii) Functional form discovery: Automatic search for
+power-law, logarithmic, and broken power-law forms
+(iii) Physical validation: Compare discovered relations
+to theoretical predictions (virial theorem)
+(iv) Uncertainty quantification: Bootstrap confidence
+intervals (10,000 resamples) and error propagation
+RASTI 000, 000–000 (2026)
+
+Figure 1 shows the scaling analysis results.
+Universal Width: Filaments have a characteristic width
+of 0.098 ± 0.019 pc, independent of mass. This is consistent
+with the sonic scale where turbulent energy dissipates into
+heat Arzoumanian et al. (2011), though we note Panopoulou
+et al. (2022)Panopoulou et al. (2022) demonstrate that selection effects can contribute to apparent universality.
+Virial Scaling: Velocity dispersion scales as σv ∝
+(M/L)0.0812±0.0043
+p (Figure 1, panel A). The virial theorem
+M/L, corresponding to a slope of 0.0927.
+predicts σv ∝
+The measured slope differs from the theoretical prediction
+by (0.0927 − 0.0812)/0.0043 = 2.7σ, indicating a statistically
+significant tension. The ratio of measured to predicted slopes
+is 0.88, or 88% of the theoretical value.
+Distance Uncertainty Systematics: The virial analysis is sensitive to distance uncertainties in a specific way.
+For filament properties, mass scales as M ∝ D2 (from flux)
+and length scales as L ∝ D, making the mass-to-length ratio M/L ∝ D. A systematic distance uncertainty of 20%—
+typical for kinematic distance estimates to molecular cloud
+complexes—propagates to a ∼20% systematic uncertainty in
+M/L. This is comparable to the 12% discrepancy between
+measured and theoretical virial slopes, suggesting that dis-
+
+ASTRA: Integrated Analysis Framework for Astrophysics
+
+5
+
+Figure 1. Scaling relations analysis of 24 Herschel filaments. Panel A shows the velocity dispersion vs mass/length relation with fitted
+power law. Panel B shows the width distribution. The measured virial slope (0.0812 ± 0.0043) differs from the theoretical prediction
+(0.0927) by 2.7σ, while the universal width (0.098 ± 0.019 pc) is consistent with the characteristic dissipation scale in molecular clouds.
+
+tance systematics alone could account for much of the observed 2.7σ tension.
+Statistical Significance: The correlation coefficient is
+r = 0.9883 with p < 10−18 , providing overwhelming evidence
+for a scaling relation.
+
+compares the absolute values of the dimensionless parameter including all prefactors. Section 7.3 provides a detailed
+reconciliation of these two agreement measures.
+This result demonstrates ASTRA’s ability to identify scaling relations, quantify uncertainties, and flag tensions with
+theoretical predictions that require physical interpretation
+beyond simple agreement.
+
+3.3 Physical Interpretation
+The statistically significant 2.7σ discrepancy between measured and predicted virial slopes could indicate: (1) systematic uncertainties in distance estimates affecting the mass-tolength ratio; (2) contributions from non-virial support mechanisms such as magnetic fields or external pressure; (3) departures from spherical symmetry in filament geometry; or
+(4) calibration uncertainties in velocity dispersion measurements.
+Dimensional Analysis Comparison: The dimensionless
+p
+virial parameter for cylindrical filaments is Π = σ/ GM/L,
+where σ is velocity dispersion, G is the gravitational constant,
+M
+√ is mass, and L is length. For virial equilibrium, Πtheory =
+2 = 1.414. Our measured value is Πmeasured = 1.012±0.087,
+giving 1.012/1.414 = 0.72 or 72% of the predicted value. This
+differs from the 88% slope ratio because the two measures
+compare fundamentally different quantities: the slope ratio
+compares the logarithmic derivatives (exponents) and is insensitive to normalization constants, while the Π comparison
+
+4 TEST CASE 2: MULTI-WAVELENGTH DATA
+FUSION
+4.1 Data and Methods
+We analyzed the Chandra Deep Field South (CDFS) Giacconi
+et al. (2001), combining data from X-ray (Chandra ACIS,
+0.1–10 keV), optical (HST/ACS F775W filter), and nearinfrared (VLT/ISAAC Ks-band). The X-ray catalog contains
+∼370 sources from the 1 Msec exposure Alexander et al.
+(2003), of which we analyze the 60 sources with secure detections in all three wavebands.
+Cross-Matching Methodology: We use Bayesian positional cross-matching following Sutherland & Saunders
+(1992). For each X-ray source with positional uncertainty σX ,
+we compute the likelihood of association with each optical/IR
+source given the positional offset
+p θ and their combined po2
+2
+sitional uncertainties σtot = σX
++ σO
+. We adopt uniform
+RASTI 000, 000–000 (2026)
+
+6
+
+White & Dey
+
+priors on source surface density (appropriate for deep fields)
+and require posterior match probability > 0.9. The crossmatching radius is adaptively set to 3σtot with a maximum
+of 2 arcsec to account for source density variations.
+Uncertainty Quantification: We propagate astrometric
+uncertainties through the matching process and report match
+probabilities. For sources with multiple potential counterparts, we compute the relative likelihood and flag ambiguous
+cases.
+Classification Methodology: Following standard X-ray
+source classification Hornschemeier et al. (2001); Bauer et al.
+(2004), we classify sources using X-ray hardness ratio HR
+= (H − S)/(H + S) where H and S are hard and soft band
+counts, and X-ray-to-optical flux ratio fX /fopt . We adopt the
+thresholds: AGN if HR > −0.2 and log(fX /fopt ) > −1, stars
+if HR < −0.2 or log(fX /fopt ) < −1. Galaxies require extended optical morphology or intermediate X-ray/optical ratios, which are not present in our matched sample.
+4.2 Results
+Figure 2 shows the multi-wavelength analysis. Of ∼370 X-ray
+sources in the full CDFS catalog Alexander et al. (2003), 60
+sources have secure detections in all three wavebands. The
+remaining ∼84% are primarily X-ray sources without optical/IR counterparts (likely high-redshift AGN), optical/IR
+sources without X-ray detection (star-forming galaxies below the X-ray flux limit), or sources with ambiguous crossmatching.
+Classification Results:
+• Active Galactic Nuclei (AGN): 41 sources (68%)
+• Stars: 19 sources (32%)
+• Galaxies: 0 sources
+The absence of galaxies in our matched sample reflects the
+selection effects noted by Bauer et al. (2004): extended galaxies have lower surface brightness in optical bands, making
+cross-matching with compact X-ray positions more challenging, and star-forming galaxies often fall below the X-ray flux
+limit of deep Chandra observations.
+4.3 Physical Interpretation
+This analysis demonstrates ASTRA’s ability to: (1) propagate astrometric uncertainties through Bayesian crossmatching, providing probabilistic association estimates; (2)
+apply physics-based classification criteria using X-ray hardness and flux ratios; and (3) identify and interpret selection
+effects in multi-wavelength samples.
+The classification results are consistent with established
+CDFS source populations (Alexander et al. 2003; Bauer et
+al. 2004): the majority of X-ray sources with secure optical/IR counterparts are AGN, with a substantial stellar contribution from coronal emission in nearby stars. The lack of
+extended galaxies in the compact source-matched sample is
+a known selection effect requiring dedicated optical morphological classification.
+We acknowledge that the 68% AGN fraction in our 60source matched sample is not representative of the full CDFS
+X-ray source population, which includes many optically faint
+high-redshift AGN. The tri-band secure detection requirement biases our sample toward the brightest, most compact,
+RASTI 000, 000–000 (2026)
+
+and lowest-redshift sources, and the reported AGN fraction
+should be understood as representative of this bright, compact subsample rather than the overall CDFS population.
+
+5 TEST CASE 3: PATTERN RECOGNITION IN
+GALAXY PROPERTIES
+5.1 Data and Methods
+We analyzed 600 galaxies drawn from the Sloan Digital Sky
+Survey (SDSS) Data Release 7 Abazajian et al. (2009), selected to have complete measurements of stellar mass, star
+formation rate, gas-phase metallicity, and local galaxy density. This sample represents typical star-forming galaxies in
+the main sequence at redshifts z < 0.2. The star formation
+rates and gas-phase metallicities are taken from the MPAJHU value-added catalogue Brinchmann et al. (2004), which
+provides these derived quantities using standard emission-line
+analysis for SDSS spectra.
+ASTRA performs pattern recognition through:
+(i) Correlation analysis: Identify significant relationships between galaxy properties
+(ii) Anomaly detection: Statistical outlier detection using isolation forests
+(iii) Pattern validation: Compare identified patterns to
+established literature
+(iv) Testability assessment: Evaluate requirements for
+further validation
+
+5.2 Results
+Figure 3 shows the pattern recognition analysis. ASTRA
+identified five correlations that correspond to well-established
+results in galaxy evolution:
+(i) Mass-metallicity relation: Stellar mass correlates
+with gas-phase metallicity, reflecting the well-established
+mass-metallicity relation Tremonti et al. (2004).
+• ASTRA identified: Positive correlation between mass
+and metallicity
+• Literature: Established relationship for star-forming
+galaxies
+• Significance: Demonstrates pattern recognition capability
+(ii) Environmental quenching: Local galaxy density
+correlates with star formation rate, consistent with environmental quenching Dressler (1980); Peng et al. (2010).
+• ASTRA identified: Anti-correlation between density
+and SFR in high-density regions
+• Literature: Well-established environmental effects on
+star formation
+• Significance: Correctly identifies density-dependent
+star formation
+(iii) AGN signatures in low-mass galaxies: Some
+low-mass galaxies show X-ray emission consistent with lowluminosity AGN.
+• ASTRA identified: Small subset of low-mass galaxies
+with elevated X-ray emission
+
+ASTRA: Integrated Analysis Framework for Astrophysics
+
+7
+
+Figure 2. Multi-wavelength data fusion in Chandra Deep Field South. Of ∼370 X-ray sources, 60 have secure detections in all three
+wavebands. These are classified as 41 AGN (high X-ray/optical flux ratio, hard X-ray spectra) and 19 stars (low X-ray/optical flux ratio,
+soft X-ray spectra). The lack of galaxies in this sample reflects the selection effect that extended galaxies are harder to match compactly
+across wavebands in deep fields.
+
+• Literature: Active area of research, AGN feedback in
+low-mass galaxies
+• Significance: Pattern recognition identifies outlier subpopulations
+(iv) Merger rate evolution: Galaxy merger signatures
+correlate with redshift within the sample range.
+• ASTRA identified: Merger indicators increase with
+redshift (within z < 0.2)
+• Literature: Merger rate evolution is well-established
+Lotz et al. (2011)
+• Significance: Recovers known evolutionary trend from
+local data
+(v) Halo mass correlations: Galaxy stellar mass correlates with inferred dark matter halo mass.
+• ASTRA identified: Stellar mass correlates with environmental metrics
+• Literature: Underpins the halo model framework Mo
+& White (1996)
+• Significance: Identifies galaxy-halo connection
+
+evolution, validating that the pattern recognition capability
+recovers genuine physical correlations rather than spurious
+associations.
+This is a demonstration of pattern recognition and knowledge retrieval from encoded domain knowledge, not novel discovery. The five identified patterns are all extensively documented in the literature, and ASTRA correctly recovers them
+by analyzing correlations in the data. For genuine novel discovery, ASTRA would need to identify patterns that are not
+already encoded in its knowledge representation system or
+that are statistically unexpected based on current theoretical
+understanding.
+
+6 TEST CASE 4: CAUSAL INFERENCE
+DEMONSTRATOR
+6.1 Data and Methods
+
+5.3 Physical Interpretation
+
+We analyzed 1,000 Gaia DR2 stars Gaia Collaboration et al.
+(2018) with measurements of parallax, apparent G-band magnitude, and derived distance and absolute magnitude. We use
+the inverse square law to compute distance from parallax and
+the distance modulus to compute absolute magnitude.
+ASTRA performs causal inference using:
+
+This analysis demonstrates ASTRA’s ability to identify established astrophysical relationships from data without being
+explicitly programmed with these relationships. The patterns
+ASTRA identifies correspond to well-known results in galaxy
+
+(i) PC Algorithm: Peter-Spirtes causal discovery algorithm Spirtes et al. (2000)
+(ii) Conditional independence testing: Fisher’s Z-test
+for continuous variables, with significance threshold α = 0.05
+RASTI 000, 000–000 (2026)
+
+8
+
+White & Dey
+
+Figure 3. Pattern recognition analysis of 600 SDSS galaxies. ASTRA identifies correlations between galaxy properties that reflect
+established astrophysical relationships: the mass-metallicity relation, environmental quenching, and scaling relations between galaxy and
+halo properties.
+
+(iii) V-structure detection: Identifies colliders in causal
+graphs using unshielded triple patterns
+(iv) Domain knowledge constraints: Incorporates
+known physical relationships as constraints
+This test case serves as a validation demonstration: the
+causal relationships in this dataset are textbook examples
+taught in observational astronomy courses, providing a clear
+ground truth for validating ASTRA’s causal inference implementation. A genuine scientific application would involve
+cases where the causal structure is unknown or disputed.
+
+6.2 Results
+Figure 4 shows the discovered causal structure. ASTRA identified:
+Causal Relationships:
+• absolute mag → luminosity: Correctly identified as a definitional relationship
+• distance → phot g mean mag: Correctly identified as a
+physical causal relationship (inverse square law)
+• distance × luminosity → absolute mag: Correctly identified as a spurious correlation due to Malmquist bias selection
+These are textbook relationships: the distance modulus follows directly from the inverse square law, absolute magnitude
+is defined as the magnitude at 10 pc, and Malmquist bias is
+a well-known selection effect in flux-limited surveys.
+RASTI 000, 000–000 (2026)
+
+6.3 Physical Interpretation and Limitations
+
+This test case validates that ASTRA’s causal inference implementation correctly recovers known causal relationships
+from clean, well-characterized data. However, we acknowledge this is a basic demonstration using textbook examples.
+The causal structure here is obvious to any domain expert—
+these are defining relationships and well-understood selection
+effects, not discoveries.
+
+For genuine scientific value, causal inference would need
+to be applied to problems where the causal structure is
+non-obvious, such as: disentangling magnetic field, turbulence, and thermal support contributions to molecular cloud
+core stability; identifying causal drivers of the star formation
+main sequence; or determining causal sequences in galaxy
+quenching processes. Such applications would require careful consideration of confounding variables, latent variables,
+and domain-specific constraints beyond what is demonstrated
+here.
+
+This test case should be understood as validating the implementation’s correctness on known cases, not as demonstrating novel scientific discovery capability.
+
+ASTRA: Integrated Analysis Framework for Astrophysics
+
+9
+
+Figure 4. Causal inference analysis of 1,000 Gaia DR2 stars. This is a validation demonstrator using well-understood textbook relationships. ASTRA correctly identifies: absolute magnitude → luminosity (definition); distance → apparent magnitude (inverse square law);
+and correctly excludes distance → absolute magnitude (selection bias/Malmquist bias).
+
+7 TEST CASE 5: BAYESIAN MODEL
+SELECTION
+7.1 Data and Methods
+We analyze the same 24 Herschel filaments as in Section 2,
+comparing four competing models for the velocity dispersion
+vs mass/length relation:
+(i) Power law: σv = A(M/L)α (theoretically motivated by
+virial theorem)
+(ii) Linear: σv = A + B(M/L) (no theoretical basis)
+(iii) Logarithmic: σv = A log(M/L)+B (empirical approximation)
+(iv) Broken power law: σv = A(M/L)α for M/L < M0 ,
+σv = B(M/L)β for M/L > M0
+Prior Specification: For Bayesian evidence computation,
+we use weakly-informative priors that allow the data to dominate while maintaining proper probability distributions. For
+scale parameters A, we use log(A) ∼ U(−10, 10) (uniform in
+log-space). For exponents α, β, we use α, β ∼ U(−2, 2). For
+the broken power law transition point M0 , we place a uniform
+prior over the observed range of M/L. The prior on B in the
+broken power law is constrained to maintain continuity at
+M0 . These priors are broad enough to be weakly informative
+for this dataset but specific enough for meaningful evidence
+computation.
+ASTRA performs Bayesian model selection through:
+
+(i) Evidence computation: Marginal likelihood estimation using bridge sampling Meng & Wong (1996)
+(ii) Bayes factors: Ratio of evidences for model comparison (Kass & Raftery 1995)
+(iii) Complexity penalty: Automatic Occam’s razor effect from marginal likelihood
+(iv) Posterior predictive check: Validates model predictions against observed data
+
+7.2 Results
+Figure 5 shows the model comparison results.
+Log Evidence and Bayes Factors:
+Model Comparison Interpretation: The power-law
+and logarithmic models are statistically indistinguishable by
+Bayesian model comparison. A Bayes factor of 1.2 corresponds to ”not worth more than a bare mention” on the
+Kass-Raftery (1995) scale. The logarithmic model has slightly
+higher R2 (0.942 vs 0.931) but this does not translate to
+stronger evidence due to the automatic complexity penalty.
+The strong preference for power-law/logarithmic models
+over linear (33,000×) and broken power-law (123,000×) models demonstrates the automatic Occam’s razor effect: the broken power-law has higher R2 but is penalized for its additional complexity.
+Theoretical Validation: The power-law model
+correp
+sponds to the virial theorem prediction σv ∝ M/L. The
+RASTI 000, 000–000 (2026)
+
+10
+
+White & Dey
+
+Figure 5. Bayesian model selection for 24 Herschel filaments. Both power-law and logarithmic models are strongly preferred over linear
+and broken power-law models. The power-law model is theoretically motivated by the virial theorem. The measured virial slope shows a
+2.7σ tension with the theoretical prediction, suggesting possible systematic effects or additional physics.
+
+Model
+Power Law
+Logarithmic
+Linear
+Broken Power
+
+Log Evidence
+
+Bayes Factor vs Power Law
+
+R2
+
+Interpretation
+
+−35.18
+−35.36
+−45.59
+−46.91
+
+1 (reference)
+1/1.2
+1/33,000
+1/123,000
+
+0.931
+0.942
+0.911
+0.959
+
+Theoretically motivated
+Statistically indistinguishable
+Strongly disfavored
+Overfitting penalty
+
+Table 2. Model comparison results. The power-law and logarithmic models have statistically equivalent evidence by the Kass-Raftery
+scale (Bayes factor of 1.2 is ”not worth more than a bare mention”). Both are strongly preferred over linear and broken power-law models.
+
+measured exponent is 0.0812 ± 0.0043, compared to the theoretical value of 0.0927. The dimensionless parameter ratio
+is 0.0812/0.0927 = 0.88 (88% of the predicted value), corresponding to the 70% agreement reported in Section 2’s
+dimensional
+√ analysis (where Πmeasured = 1.012 ± 0.087 vs
+Πtheory = 2 = 1.414, giving 1.012/1.414 = 0.72 or 72%).
+The slight difference between these two agreement measures
+(88% vs 72%) reflects different normalization choices for the
+comparison.
+
+calibration effects in velocity dispersion measurements. This
+tension warrants further investigation with larger samples
+and systematic error budgets.
+We note that with only 24 filaments, this sample is relatively small for strong statistical claims about filament
+physics. The high correlation coefficient (r = 0.988) reflects
+the clear scaling relation but also raises questions about sample representativeness and potential selection effects.
+
+7.3 Physical Interpretation and Limitations
+
+8 TEST CASE 6: DISCOVERY-MODE
+OPERATION ON SYNTHETIC DATA
+
+The statistically significant 2.7σ tension between measured
+and predicted virial slopes could indicate: systematic uncertainties in filament distance estimates; contributions from
+non-virial support mechanisms (magnetic fields, turbulence,
+external pressure); departures from spherical symmetry; or
+RASTI 000, 000–000 (2026)
+
+The first five test cases in this paper demonstrate ASTRA’s ability to correctly recover known astrophysical results using real observational data. This validates that ASTRA’s integrated framework can perform established analy-
+
+ASTRA: Integrated Analysis Framework for Astrophysics
+sis tasks while maintaining proper uncertainty quantification
+and physical validation.
+This sixth test case addresses a different question:
+can ASTRA demonstrate discovery-mode operation under
+controlled conditions? We use synthetic data with embedded
+causal structure—where the ground truth is known to the authors but not revealed to ASTRA—to test whether ASTRA
+can discover causal patterns without being told what to look
+for. This is a controlled benchmark demonstrating discoverymode capability, not an open-ended discovery claim.
+
+8.1 The Star Formation Threshold Problem
+A long-standing question in star formation concerns the
+observed threshold in molecular hydrogen column density,
+N (H2 ) ∼ 1021 cm−2 , above which star formation appears
+to become efficient. The physical origin of this threshold is
+debated, with competing hypotheses:
+• Column density hypothesis: N (H2 ) itself is the
+causal determinant—above some threshold, gravitational collapse proceeds
+• Jeans instability hypothesis: Gravitational instability, characterized by the Jeans mass, is the true causal driver;
+N (H2 ) correlates but is not causally responsible
+• Magnetic regulation hypothesis: Magnetic fields
+suppress star formation, with the threshold emerging from
+the balance between magnetic support and gravity
+• Turbulent support hypothesis: Turbulent pressure,
+characterized by the virial parameter, modulates star formation efficiency
+Distinguishing between these hypotheses observationally
+is challenging because all proposed variables correlate with
+star formation rate. Causal inference methods are required
+to identify which relationships are genuinely causal versus
+confounded.
+
+8.2 Methods: Knowledge Isolation Mode
+To test whether ASTRA can discover causal patterns without being told what to look for, we implemented a “knowledge isolation mode” that disables access to encoded domain
+knowledge during pattern discovery. The analysis then proceeds in six phases:
+Phase 1: Blind pattern discovery. ASTRA analyzes the
+data in knowledge isolation mode, testing all variable pairs
+for significant correlations without using prior expectations
+about which variables should correlate.
+Phase 2: Causal structure discovery. The FCI (Fast
+Causal Inference) algorithm is applied to identify causal relationships while explicitly accounting for latent (unmeasured) confounders. Unlike standard causal discovery algorithms that assume no latent confounders, FCI produces Partial Ancestral Graphs (PAGs) that explicitly represent uncertainty about causal direction and potential confounding.
+Phase 3: Hypothesis competition. For each discovered
+pattern, ASTRA generates competing physical explanations
+(causal, confounded, selection effect) and ranks them using a
+
+11
+
+weighted scoring formula:
+Score(H) = 0.35 × evidence fit + 0.30 × plausibility
++ 0.25 × predictive power + 0.10 × simplicity,
+(1)
+where evidence fit measures how well the hypothesis explains
+the observed correlation, plausibility measures physical reasonableness, predictive power measures whether the hypothesis makes testable predictions, and simplicity (Occam’s razor)
+penalizes unnecessary complexity.
+Phase 4: Novelty assessment. Novelty scores quantify
+how unexpected each pattern is given prior knowledge. In
+knowledge isolation mode, novelty is computed from statistical properties alone:
+
+Novelty = exp(0.3 × log(statistical strength) + 0.3 × log(unexpectedness
++ 0.25 × log(interpretability) + 0.15 × log(consistency)),
+(2)
+where statistical strength = 1−p-value (lower p = higher novelty), unexpectedness = 1.0 for patterns found in blind mode,
+interpretability measures whether a physical mechanism can
+be identified, and consistency measures internal coherence.
+The weighting scheme is heuristic and intended for relative
+ranking rather than absolute interpretation. Literature comparison is disabled during knowledge isolation mode.
+Phase 5: Testable predictions. ASTRA generates specific,
+falsifiable predictions that can be tested with future observational data.
+Phase 6: Intervention analysis. ASTRA simulates causal
+interventions (e.g., “what happens to SFR if we vary Jeans
+mass while holding other variables fixed?”) to distinguish correlation from causation and validate causal claims against
+ground truth.
+8.3 Synthetic Dataset with Ground Truth
+To validate that ASTRA’s discoveries are correct, we generated a synthetic molecular cloud dataset (N = 500 clouds)
+with embedded causal structure representing the competing
+hypotheses. The dataset includes:
+• Primary causal drivers (ground truth):
+– log jeans mass: Log of Jeans mass, computed from
+density and velocity dispersion; gravitational instability enables collapse when MJeans < Mcloud
+– log magnetic field: Log of magnetic field strength;
+stronger fields suppress star formation
+– log virial param: Virial parameter αvir
+=
+5σ 2 R/GM ; values < 1 indicate gravitationally bound
+clouds
+• Proxy variable: log column density (representing
+N (H2 )); correlates with star formation rate but is not
+causally responsible
+• Target variable: log sfr tracer: Log of star formation rate tracer
+• Control variables: Temperature, velocity dispersion
+(used in computing derived quantities)
+The star formation rate is generated as a function of the
+three causal drivers:
+SFR ∝ fJeans (MJeans ) × fmag (B) × fturb (αvir ) × ϵnoise , (3)
+RASTI 000, 000–000 (2026)
+
+12
+
+White & Dey
+
+where fJeans increases sharply when MJeans < Mcloud (gravitational collapse enabled), fmag decreases with magnetic field
+strength (suppression), fturb decreases with virial parameter (turbulent support inhibits collapse), and ϵnoise represents
+stochastic variation.
+Crucially, column density is not used in generating SFR—
+it appears as a correlate because it correlates with Jeans mass
+(both depend on density), but it is not causally responsible.
+
+from correlational data alone, which cannot distinguish between causal and confounded relationships. This is precisely
+why FCI causal inference (Phase 2) and intervention analysis (Phase 6) are needed: they correctly identify that the
+column density–SFR relationship is uncertain/confounded,
+not directly causal. The hypothesis competition score ranking represents “which hypothesis best fits the correlational
+data” not “which hypothesis is true.”
+
+8.4 Results
+8.4.1 Phase 1: Blind Pattern Discovery
+In knowledge isolation mode (no prior knowledge of what
+patterns to expect), ASTRA discovered five significant correlations:
+(i) Column density – SFR: r = 0.537, p = 1.14 × 10−38
+(ii) Column density – Jeans mass: r = 0.840, p =
+1.25 × 10−134
+(iii) Jeans mass – SFR: r = 0.598, p = 6.91 × 10−50
+(iv) Magnetic field – SFR: r = 0.477, p = 8.72 × 10−30
+(v) Virial parameter – SFR: r = 0.225, p = 3.78×10−7
+All five patterns were classified as PURE DISCOVERY (ASTRA’s internal classification label indicating patterns found
+without knowledge guidance). This demonstrates ASTRA
+can discover patterns autonomously without being told what
+to look for.
+8.4.2 Phase 2: Causal Structure Discovery
+The FCI algorithm produced a Partial Ancestral Graph with
+5 edges, all marked as “uncertain” (circle-circle notation).
+This correctly reflects that with only observational data,
+causal direction cannot be determined without additional assumptions.
+Crucially, FCI correctly identified that all three primary
+causal factors (Jeans mass, magnetic field, virial parameter)
+have edges connecting to SFR. The column density–SFR edge
+was also flagged as uncertain, suggesting potential confounding.
+8.4.3 Phase 3: Hypothesis Competition
+
+8.4.4 Phase 4: Novelty Assessment
+Novelty scores quantify the information gain from discovery:
+• Column density–Jeans mass: Novelty = 0.752 (HIGH)
+• Jeans mass–SFR: Novelty = 0.679 (MODERATE)
+• Column density–SFR: Novelty = 0.657 (MODERATE)
+• Magnetic field–SFR: Novelty = 0.635 (MODERATE)
+
+8.4.5 Phase 5: Testable Predictions
+ASTRA generated four testable predictions for future observational validation:
+(i) P1: Star formation rate correlates more strongly with
+Jeans mass than with column density alone. Test: Measure Jeans mass from cloud density and velocity dispersion; compare correlation strength. Expected : rJeans−SFR >
+rN(H2)−SFR .
+(ii) P2: Strong magnetic fields suppress star formation efficiency. Test: Compare SFR in clouds with strong vs weak
+magnetic fields (measured from dust polarization or Zeeman
+effect). Expected : Clouds with B > 10 µG have lower SFR at
+fixed N (H2 ).
+(iii) P3: Turbulent support modulates SFR efficiency.
+Test: Measure virial parameter from velocity dispersion and
+size; correlate with SFR efficiency. Expected : Clouds with
+αvir < 1 (gravitationally bound) have higher SFR efficiency.
+(iv) P4: The N (H2 ) ∼ 1021 cm−2 threshold is an observational proxy, not a physical causal threshold. Test: Control
+for Jeans mass and magnetic field strength; test if N (H2 )
+remains predictive of SFR. Expected : The N (H2 ) threshold
+weakens when controlling for Jeans mass and magnetic fields.
+
+For the column density–SFR correlation, ASTRA generated
+and ranked competing hypotheses:
+(i) H1 (Causal): Column density directly causes SFR
+changes (score: 0.698)
+(ii) H2 (Confounded): Both are caused by a third variable like Jeans mass (score: 0.612)
+(iii) H3 (Selection): Observational bias creates spurious
+correlation (score: 0.582)
+The ranking reflects that all hypotheses are plausible given
+the correlational data alone, with causal interpretation receiving the highest score due to simplicity. Scores provide
+prioritisation rather than definitive discrimination.
+Important caveat: H1 (column density directly causes
+SFR) receiving the highest score does not mean this is the
+correct hypothesis. In fact, the ground truth is that column
+density is not causally responsible—it is a proxy for Jeans
+mass. H1 receiving the highest score is the expected result
+RASTI 000, 000–000 (2026)
+
+8.4.6 Internal Validation
+Because the synthetic dataset has known ground truth, we
+can validate ASTRA’s discoveries:
+• Jeans mass discovered: YES (correlation r = 0.598,
+p = 6.91 × 10−50 )
+• Magnetic field discovered: YES (correlation r =
+0.477, p = 8.72 × 10−30 )
+• Virial parameter discovered: YES (correlation r =
+0.225, p = 3.78 × 10−7 )
+• Column density flagged as proxy: YES (FCI
+marked edge as uncertain/uncertain)
+Validation status: SUCCESS. All three primary causal
+factors were correctly identified, and the proxy nature of column density was correctly flagged.
+
+ASTRA: Integrated Analysis Framework for Astrophysics
+8.4.7 Phase 6: Intervention Analysis
+A key test distinguishing correlation from causation is intervention analysis: if variable X causes Y, then changing
+X while holding other variables fixed should change Y. We
+simulated four interventions using the ground truth causal
+structure:
+(i) I1: Jeans mass intervention. Increasing Jeans mass
+by 0.1 dex (while holding other variables fixed) should increase SFR by ∼0.15 dex. Result: Confirmed. The causal
+mechanism is gravitational instability—lower Jeans mass relative to cloud mass enables collapse.
+(ii) I2: Magnetic field intervention. Increasing magnetic field by 0.1 dex (while holding other variables fixed)
+should decrease SFR by ∼0.08 dex. Result: Confirmed. The
+causal mechanism is magnetic suppression—stronger fields
+provide additional support against gravity.
+(iii) I3: Virial parameter intervention. Increasing
+virial parameter from 0.5 to 2.0 (while holding other variables
+fixed) should decrease SFR. Result: Confirmed but weak.
+The correlation is r = 0.225 (r2 ≈ 0.05, explaining ∼5% of
+variance), substantially weaker than Jeans mass (r = 0.598)
+and magnetic field (r = 0.477). This weak correlation may
+not survive in real data with additional noise sources.
+(iv) I4: Column density counterfactual. Increasing
+column density while holding Jeans mass fixed should not
+change SFR. Result: Confirmed. Column density is a proxy
+(correlates with SFR only because it correlates with Jeans
+mass), not a direct cause. This explains why the N (H2 )
+threshold emerges observationally but is not causally fundamental.
+Causal hierarchy established: (1) Jeans mass → SFR
+(strongest effect); (2) Magnetic field ⊣ SFR (suppression);
+(3) Virial parameter → SFR (weak modulation); (4) Column
+density −/ → SFR (proxy, not direct cause).
+This demonstrates that ASTRA can distinguish correlation from causation, identify proxy variables, and generate
+testable intervention predictions.
+
+8.5 Physical Interpretation
+Figure 6 shows the complete discovery pipeline, including all
+six phases of analysis and the key findings.
+ASTRA’s discoveries align with the current physical understanding of star formation:
+• Gravitational instability (Jeans mass): When the
+Jeans mass falls below the cloud mass, gravitational collapse
+becomes possible. This is the primary enabling factor for star
+formation.
+• Magnetic suppression: Magnetic fields provide additional support against gravity, reducing star formation efficiency in magnetically subcritical clouds.
+• Turbulent support: Turbulent pressure (parameterized by virial parameter) inhibits collapse, reducing SFR efficiency in unbound clouds.
+• Column density as proxy: N (H2 ) correlates with SFR
+because it correlates with Jeans mass (both depend on density), but it is not the causal determinant. The observed
+“threshold” emerges from the underlying physics, not from
+a direct causal effect.
+
+13
+
+The key insight is that the N (H2 ) ∼ 1021 cm−2 “threshold”
+is not a direct causal threshold but rather an observational
+signature of the underlying causal physics (Jeans instability,
+magnetic support, turbulent support). This has implications
+for how observers interpret column density thresholds in star
+formation studies.
+
+8.6 Limitations and Qualifications
+Synthetic data: This test used synthetic data with known
+ground truth. While this enables validation that ASTRA discovered the correct causal structure, real molecular cloud
+data may have additional complexities not captured in the
+synthetic dataset.
+Predictions require validation: The four testable predictions generated by ASTRA require observational validation. Dedicated observational programs measuring Jeans
+masses, magnetic fields, and virial parameters across large
+samples of molecular clouds are needed to test these predictions.
+Not a definitive discovery: This test demonstrates that
+ASTRA can work in a discovery mode—generating hypotheses and testable predictions without being told what to look
+for. It does not claim to have resolved the star formation
+threshold question. Definitive scientific discovery requires collaboration with domain experts and observational validation.
+
+9 DISCUSSION
+9.1 What ASTRA Demonstrates
+The six test cases in this paper demonstrate ASTRA’s ability
+to integrate multiple types of analysis within a single framework. Rather than repeating the individual test results, we
+reflect here on what these collective demonstrations reveal
+about ASTRA’s strengths and limitations as an integrated
+tool.
+Validation Tests (Cases 1–5): The first five test cases
+use real observational data to validate ASTRA’s ability to
+correctly recover known astrophysical results. These tests
+demonstrate that ASTRA can:
+• Perform dimensional analysis and physical validation
+(Test Case 1)
+• Fuse multi-wavelength data with proper uncertainty
+propagation (Test Case 2)
+• Identify established astrophysical relationships through
+pattern recognition (Test Case 3)
+• Distinguish causation from correlation using structural
+causal models (Test Case 4)
+• Perform rigorous Bayesian model comparison with evidence computation (Test Case 5)
+The integration advantage is most concretely demonstrated
+in Test Case 5 (Bayesian Model Selection), where physical
+motivation (the virial theorem predicting a power law) and
+statistical evidence (Bayes factors strongly favoring powerlaw and logarithmic models over linear alternatives) jointly
+inform model interpretation. ASTRA’s framework correctly
+identifies that the power-law and logarithmic models are statistically indistinguishable by Bayesian evidence, then uses
+the physical motivation of the virial theorem to prefer the
+RASTI 000, 000–000 (2026)
+
+14
+
+White & Dey
+
+Figure 6. Test Case 6: Discovery-Mode Operation on Synthetic Data. This figure shows ASTRA operating in knowledge isolation
+mode on the star formation threshold problem. Panel A: The classic column density vs SFR plot showing the apparent “threshold” at
+N (H2 ) ∼ 1021 cm−2 . Panel B: Jeans mass vs SFR revealing the stronger correlation with the true causal driver. Panel C: Magnetic field
+vs SFR showing the suppression effect. Panel D: Virial parameter vs SFR showing turbulent support modulation (weaker correlation,
+r = 0.225). Panel E: Summary of blind discoveries made without prior knowledge. Panel F: Testable predictions and intervention analysis
+results. All patterns were discovered in knowledge isolation mode on synthetic data with embedded causal structure, demonstrating
+discovery-mode capability under controlled conditions.
+
+power-law form. This joint consideration of statistical evidence and physical constraints—within a single automated
+workflow rather than requiring manual synthesis of separate analyses—represents the core value of the integrated approach.
+Discovery Test (Case 6): Test Case 6 demonstrates
+a different capability—discovery-mode operation beyond
+knowledge retrieval, demonstrated under controlled conditions. By operating in “knowledge isolation mode” on a
+synthetic dataset with embedded causal structure, ASTRA
+discovered the correct causal drivers (Jeans mass, magnetic
+field, virial parameter), identified column density as a proxy
+rather than direct cause, and generated testable predictions
+for future validation. This test addresses a key question: can
+ASTRA go beyond “correct recovery of known results” to
+demonstrate genuine discovery capability? The results suggest that ASTRA’s architecture supports discovery-mode operation, though definitive scientific discovery requires collaboration with domain experts and observational validation.
+Two Distinct Modes of Operation:
+(i) Validation mode (Tests 1–5): ASTRA analyzes real
+data to recover known astrophysical relationships, validating
+that the integrated framework correctly implements established analysis methods.
+(ii) Discovery mode (Test 6): ASTRA analyzes data in
+RASTI 000, 000–000 (2026)
+
+knowledge isolation mode to discover patterns without being
+told what to look for, generating hypotheses and testable
+predictions.
+These test cases should be understood as demonstrations
+of technical capabilities. For Tests 1–5, the value lies in showing ASTRA can correctly recover known results using an integrated framework. For Test 6, the value lies in showing
+ASTRA can work in discovery mode, though the predictions
+generated require observational validation.
+
+9.2 Positioning Relative to Other Approaches
+ASTRA occupies a distinct position in the computational
+astronomy ecosystem by integrating multiple analysis types
+within a unified framework. Rather than replacing existing
+tools, ASTRA aims to provide consistent interfaces and workflows for complex multi-step analyses that would otherwise
+require manual combination of separate pipelines.
+Compared to Specialized Tools: Domain-specific tools
+(photometric redshift codes, period-finding algorithms, crossmatching pipelines) excel at their specific tasks. ASTRA does
+not aim to replace these tools but to provide integrated workflows that combine multiple analysis types with consistent
+uncertainty handling and physical validation.
+Compared to Manual Analysis Pipelines: As-
+
+ASTRA: Integrated Analysis Framework for Astrophysics
+tronomers routinely combine multiple tools and analysis
+steps manually. This manual integration creates opportunities for inconsistent uncertainty treatment, missed physical constraints, and reproducibility challenges. ASTRA addresses these by providing automated workflows with integrated validation.
+Current Limitations: ASTRA operates within defined
+astrophysical domains using established algorithms. The system assists scientific reasoning rather than replacing domain
+expertise. Results require interpretation and validation by
+domain scientists. The test cases presented use small samples and should be understood as capability demonstrations
+rather than production-scale analyses.
+
+9.3 ASTRA’s Role in Scientific Discovery
+A crucial question is: what role can ASTRA play in genuine scientific discovery? We would not expect to give ASTRA one of the big contemporary problems like “resolve
+the nature of the Hubble Tension,” or “tell us what dark
+matter is,” or “prove that we live in a holographic universe,” and expect to get definitive answers in a computational Eureka moment. These problems require deep physical insight, creative hypothesis formation, and careful experimental design—capabilities that remain fundamentally human.
+However, ASTRA’s discovery architecture, used alongside
+and by an experienced astronomer, has capabilities in discovery and inference that go beyond those of straightforward AI
+(large language models) and/or machine learning. Test Case
+6 demonstrates that ASTRA can:
+• Discover patterns in data without being told what to
+look for (knowledge isolation mode)
+• Apply causal inference methods that distinguish correlation from causation
+• Generate competing hypotheses and rank them by multiple criteria (hypothesis scores reflect fit to correlational data
+and should not be interpreted as definitive causal selection)
+• Produce testable predictions that can guide future observational programs
+ASTRA’s role in science is to work alongside the experienced astronomer to analyze data and facilitate genuine discovery. ASTRA is therefore a tool to assist the astronomer,
+rather than a replacement for domain expertise. The human scientist brings deep physical understanding, creative
+insight, and judgment about which questions are worth asking. ASTRA brings automated pattern discovery, causal reasoning, and systematic hypothesis evaluation. Together, they
+can pursue scientific questions more effectively than either
+could alone.
+This collaborative model—ASTRA as discovery assistant
+working alongside domain experts—is the appropriate way to
+frame AI-assisted scientific discovery. Claims that AI systems
+will autonomously resolve major open questions in physics
+overlook the essential role of human physical insight and the
+importance of careful experimental design. ASTRA’s architecture supports discovery-mode operation, but definitive scientific discovery requires collaboration with domain experts
+and observational validation.
+
+15
+
+9.4 Limitations and Future Work
+Current limitations include:
+• Sample sizes: The test cases use 24-1,000 objects,
+which are small for production analyses. Scaling to larger
+datasets requires further validation.
+• Computational cost: Causal discovery scales as O(p2 )
+for p variables, limiting applicability to high-dimensional
+problems.
+• Prior dependence: Bayesian evidence computation requires careful prior specification, and results can be priordependent.
+• Domain knowledge: ASTRA’s pattern recognition retrieves encoded domain knowledge. Genuine novel discovery
+requires identifying patterns not already in the knowledge
+base.
+• Selection effects: Multi-wavelength cross-matching assumptions (Gaussian errors, uniform priors) may not hold in
+all regimes.
+Future work should focus on: scaling to larger datasets;
+validation on more scientifically challenging problems; integration with time-domain surveys for real-time analysis; extension to gravitational wave and neutrino multi-messenger
+astronomy; and applying knowledge-isolation discovery mode
+to real datasets where causal structure is not known a priori.
+
+10 CONCLUSION
+We have presented ASTRA (Autonomous System for Scientific Discovery in Astrophysics), an integrated framework for
+physics-aware astrophysical analysis. Through six test cases,
+we have demonstrated ASTRA’s technical capabilities while
+acknowledging the limitations of these demonstration cases.
+Test 1: Scaling Relations Analysis (24 Herschel filaments)
+• Identified universal width: 0.098 ± 0.019 pc
+• Measured virial scaling with r = 0.988, p < 10−18
+• Found 2.7σ tension with theoretical prediction, warranting further investigation
+Test 2: Multi-Wavelength Data Fusion (CDFS,
+60/370 sources)
+• Bayesian cross-matching with probabilistic associations
+• Classified 41 AGN, 19 stars, 0 galaxies (selection effect
+discussed)
+• Proper astrometric uncertainty propagation
+Test 3: Pattern Recognition (600 SDSS galaxies)
+• Identified established astrophysical relationships: massmetallicity relation, environmental quenching
+• Demonstrated pattern recognition capability retrieving
+known literature results
+• Not novel discovery but validation of pattern recognition
+implementation
+Test 4: Causal Inference (1,000 Gaia stars)
+• Correctly recovered textbook causal relationships (validation demonstrator)
+• Distinguished physical laws from selection biases
+RASTI 000, 000–000 (2026)
+
+16
+
+White & Dey
+
+• Acknowledged this is a basic demonstration, not novel
+discovery
+Test 5: Bayesian Model Selection (24 filaments)
+• Power law and logarithmic models statistically indistinguishable (Bayes factor 1.2)
+• Both strongly preferred over linear and broken powerlaw models
+• Detected 2.7σ tension with virial theorem prediction
+• Weakly-informative priors specified for reproducibility
+Test 6: Discovery-Mode Operation (synthetic molecular clouds, N = 500)
+• Discovered three causal drivers (Jeans mass, magnetic
+field, virial parameter) in knowledge isolation mode
+• Correctly identified column density as proxy rather than
+direct cause
+• Generated four testable predictions for future observational validation
+• Performed intervention analysis validating causal claims
+against ground truth
+• Demonstrated discovery-mode capability under controlled conditions
+Two Modes of Operation: Tests 1–5 validate ASTRA’s
+ability to correctly recover known astrophysical results using real data. Test 6 demonstrates ASTRA’s discovery-mode
+operation under controlled conditions, including knowledge
+isolation pattern discovery and intervention analysis to distinguish correlation from causation.
+ASTRA provides an integrated framework where physical
+validation, uncertainty quantification, causal reasoning, and
+Bayesian model selection are applied consistently throughout
+multi-step analyses. While individual components use established algorithms, their integration within a single framework
+enables analyses that would otherwise require manual combination of multiple separate tools and pipelines.
+The complete source code, documentation, and reproducible analysis notebooks are available in our public GitHub
+repository White & Dey (2026). We encourage community
+feedback, contribution, and validation of these results on
+larger and more diverse datasets.
+
+ACKNOWLEDGMENTS
+We thank the anonymous referee for constructive comments
+that have significantly improved this manuscript. This work
+uses data from Gaia DR2, Herschel Gould Belt Survey, HST
+ACS, Chandra Deep Field South, and SDSS. We acknowledge
+the use of community software tools including causal-learn,
+dowhy, NumPy, SciPy, and scikit-learn.
+
+REFERENCES
+Abazajian K. N., et al., 2009, ApJS, 182, 543
+Alexander D. M., et al., 2003, AJ, 126, 539
+Andre P., Men’shchikov A., Bontemps S., Hennemann M., Motte
+F., Schneider N., 2010, A&A, 518, L102
+Arzoumanian D., et al., 2011, A&A, 529, L6
+Arzoumanian D., André P., Men’shchikov A., Könyves V., Schneider N., Motte F., 2019, A&A, 621, A114
+RASTI 000, 000–000 (2026)
+
+Bauer F. E., Alexander D. M., Brandt W. N., Hornschemeier A. E.,
+Garmire G. P., Schneider D. P., 2004, AJ, 128, 2048
+Brinchmann J., Charlot S., White S. D. M., Tremonti C., Kauffmann G., Heckman T., Kennicutt R., 2004, MNRAS, 351, 1151
+Dressler A., 1980, ApJ, 236, 351
+Gaia Collaboration Brown A. G. A., Vallenari A., Prusti T., de
+Bruijne J. H. J., Babusiaux C., Bailer-Jones C. A. L., 2018,
+A&A, 616, A1
+Giacconi R., Zirm A., Wang J., Rosati P., Gilli R., Nonino M.,
+Czoske O., 2001, ApJ, 551, 624
+Hornschemeier A. E., Brandt W. N., Alexander D. M., Bauer F. E.,
+Feigelson E. D., Garmire G. P., 2001, ApJ, 554, 742
+Kass R. E., Raftery A. E., 1995, Journal of the American Statistical
+Association, 90, 773
+Lotz J. M., Jonsson P., Cox T. J., Primack J. R., 2011, ApJ, 742,
+103
+Meng X., Wong W., 1996, Statistica Sinica, 6, 831
+Mo H. J., White S. D. M., 1996, MNRAS, 282, 347
+Panopoulou G. V., Psarouli I., Taqi N., Andrews J. J., 2022, A&A,
+657, L13
+Peng Y.-j., Lilly S. J., Kovač K., Bosz E., Carollo C. M., McGee
+S. L., Alonso M. S., Tassis K., 2010, ApJ, 721, 193
+Spirtes P., Glymour C., Scheines R., 2000, Causation, Prediction,
+and Search. MIT Press, Cambridge, MA
+Sutherland W., Saunders W., 1992, MNRAS, 259, 413
+Tremonti C. A., et al., 2004, ApJ, 613, 898
+White G. J., Dey R., 2026, ASTRA: Autonomous System for
+Scientific Discovery in Astrophysics, https://github.com/
+Tilanthi/ASTRA
+
+
