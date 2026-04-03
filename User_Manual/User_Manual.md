@@ -13,6 +13,10 @@
 1. [Introduction](#1-introduction)
 2. [System Architecture](#2-system-architecture)
 3. [Installation and Setup](#3-installation-and-setup)
+   - 3.1 System Requirements
+   - 3.2 Installation Methods
+   - 3.3 Configuration
+   - 3.4 Running ASTRA from Claude Code ⭐ NEW
 4. [Getting Started](#4-getting-started)
 5. [Core Capabilities Overview](#5-core-capabilities-overview)
 6. [V5.0 Discovery Enhancement System](#6-v50-discovery-enhancement-system)
@@ -199,6 +203,216 @@ Create a configuration file `~/.astra/config.json`:
   "num_workers": 4,
   "log_level": "INFO"
 }
+```
+
+### 3.4 Running ASTRA from Claude Code
+
+**Claude Code** is Anthropic's official CLI for Claude, providing direct integration with ASTRA for autonomous scientific research. This is the recommended method for running ASTRA with conversational AI assistance.
+
+#### 3.4.1 What is Claude Code?
+
+Claude Code is a command-line interface that:
+- Provides direct access to Claude's advanced reasoning capabilities
+- Enables autonomous execution of complex scientific workflows
+- Integrates seamlessly with ASTRA's domain modules
+- Supports collaborative human-AI research
+
+#### 3.4.2 Installation
+
+```bash
+# Install Claude Code via npm
+npm install -g @anthropic/claude-code
+
+# Or via Homebrew (macOS)
+brew install claude-code
+
+# Verify installation
+claude-code --version
+```
+
+#### 3.4.3 Configuration
+
+Set up your Claude Code environment:
+
+```bash
+# Configure API credentials
+claude-code config set api-key YOUR_ANTHROPIC_API_KEY
+
+# Set ASTRA workspace
+claude-code config set workspace /path/to/ASTRA
+
+# Enable ASTRA integration
+claude-code config set astra.enabled true
+```
+
+#### 3.4.4 Basic Usage
+
+**Interactive Mode**:
+```bash
+# Start Claude Code with ASTRA
+claude-code --astra
+
+# Or navigate to ASTRA directory and start
+cd /path/to/ASTRA
+claude-code
+```
+
+**Direct Commands**:
+```bash
+# Ask ASTRA a question
+claude-code "Using ASTRA, explain why filament widths cluster at 0.1 pc"
+
+# Run autonomous research
+claude-code "Use ASTRA's V7.0 autonomous scientist to study interstellar filaments"
+
+# Generate publication
+claude-code "Create a research paper on filament width analysis using ASTRA"
+```
+
+#### 3.4.5 ASTRA-Claude Code Integration Modes
+
+##### Mode 1: Conversational Query
+
+Ask ASTRA questions in natural language:
+
+```bash
+claude-code
+> In ASTRA, analyze the relationship between black hole mass and galaxy bulge velocity
+> ASTRA responds with analysis, confidence intervals, and physical interpretation
+```
+
+##### Mode 2: Autonomous Research
+
+Let ASTRA conduct independent research:
+
+```bash
+claude-code
+> Use ASTRA's V7.0 autonomous scientist to:
+>   1. Generate research questions about galaxy evolution
+>   2. Formulate testable hypotheses
+>   3. Design observational tests
+>   4. Execute analysis on SDSS data
+>   5. Generate publication-ready results
+```
+
+##### Mode 3: Collaborative Analysis
+
+Work alongside ASTRA on complex problems:
+
+```bash
+claude-code
+> I have ALMA observations of molecular clouds. Help me:
+>   - Load and calibrate the data
+>   - Detect filaments using ASTRA's filament detection
+>   - Measure filament widths
+>   - Test the sonic scale hypothesis
+>   - Create publication-quality figures
+```
+
+#### 3.4.6 Advanced Features
+
+**Multi-Mind Reasoning**:
+```bash
+claude-code "Use ASTRA's physics mind to analyze this dataset"
+claude-code "Apply ASTRA's creative mind to generate new hypotheses"
+```
+
+**Domain-Specific Analysis**:
+```bash
+claude-code "Load ASTRA's ISM domain and analyze Herschel data"
+claude-code "Use ASTRA's exoplanet domain to characterize this transit light curve"
+```
+
+**Automated Publication**:
+```bash
+claude-code "Generate an A&A-formatted paper from this ASTRA analysis"
+claude-code "Create figures and tables from ASTRA's filament width analysis"
+```
+
+#### 3.4.7 File Operations
+
+ASTRA through Claude Code can:
+- Read and analyze data files (FITS, CSV, HDF5)
+- Generate output files (plots, tables, papers)
+- Access domain modules and capabilities
+- Execute Python scripts within ASTRA
+
+```bash
+claude-code "Analyze this FITS file using ASTRA: observations.fits"
+claude-code "Save ASTRA's filament analysis results to filament_results.json"
+```
+
+#### 3.4.8 Best Practices
+
+1. **Be Specific**: Provide clear context and objectives
+2. **Use Domain Language**: ASTRA understands astrophysical terminology
+3. **Iterate**: Refine queries based on intermediate results
+4. **Leverage V7.0**: Use autonomous research for complex projects
+5. **Verify Results**: Always check physical plausibility of outputs
+
+#### 3.4.9 Troubleshooting Claude Code Integration
+
+**Issue**: ASTRA not found by Claude Code
+
+```bash
+# Verify ASTRA path
+claude-code config get workspace
+
+# Set correct path
+claude-code config set workspace /Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO
+```
+
+**Issue**: Domain modules not loading
+
+```bash
+# Check ASTRA installation
+python -c "import stan_core; print(stan_core.__version__)"
+
+# Verify domain modules
+python -c "from stan_core.domains import list_domains; print(list_domains())"
+```
+
+**Issue**: Memory errors with large datasets
+
+```bash
+# Increase memory limit
+claude-code config set astra.memory_limit 32  # GB
+
+# Use batch processing
+claude-code "Process this data in batches of 1000 sources each"
+```
+
+#### 3.4.10 Example Session
+
+```bash
+$ claude-code --astra
+ASTRA V7.0 initialized. Ready for autonomous research.
+
+> Analyze why filament widths cluster at 0.1 pc using ASTRA
+
+[ASTRA] Loading ISM domain...
+[ASTRA] Analyzing filament width measurements from 10 studies...
+[ASTRA] Mean width: 0.103 ± 0.008 pc across 5,476 filaments
+[ASTRA] Testing sonic scale hypothesis...
+[ASTRA] Confidence: 92% that sonic scale sets characteristic width
+
+Result: The 0.1 pc width corresponds to the sonic scale of interstellar
+turbulence, where turbulent velocity dispersion equals thermal sound speed.
+This scale is density-independent because it depends on large-scale turbulent
+properties rather than local density.
+
+> Create publication-quality figure showing width vs. Mach number
+
+[ASTRA] Generating parameter space plot...
+[ASTRA] Saving to: filament_width_vs_mach.png
+[ASTRA] Figure ready for publication
+
+> Generate methods section for paper
+
+[ASTRA] Writing methods section...
+[ASTRA] Includes: filament detection, width measurement, statistical analysis
+[ASTRA] Word count: 847
+[ASTRA] Saved to: methods_section.tex
 ```
 
 ---
