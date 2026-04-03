@@ -1,7 +1,7 @@
 # ASTRA User Manual
 ## Autonomous Scientific Discovery in Astrophysics
 
-**Version**: 5.0
+**Version**: 7.0
 **Date**: April 2026
 **Authors**: Glenn J. White & Robin Dey
 **Repository**: https://github.com/Tilanthi/ASTRA
@@ -15,14 +15,15 @@
 3. [Installation and Setup](#3-installation-and-setup)
 4. [Getting Started](#4-getting-started)
 5. [Core Capabilities Overview](#5-core-capabilities-overview)
-6. [V5.0 Discovery Enhancement System](#6-v50-discovery-enhancement-system) ⭐ NEW
-7. [Use Case Examples](#7-use-case-examples)
-8. [Advanced Features](#8-advanced-features)
-9. [Domain Modules](#9-domain-modules)
-10. [API Reference](#10-api-reference)
-11. [Best Practices](#11-best-practices)
-12. [Troubleshooting](#12-troubleshooting)
-13. [Appendices](#13-appendices)
+6. [V5.0 Discovery Enhancement System](#6-v50-discovery-enhancement-system)
+7. [V7.0 Autonomous Research Scientist](#7-v70-autonomous-research-scientist) ⭐ NEW
+8. [Use Case Examples](#8-use-case-examples)
+9. [Advanced Features](#9-advanced-features)
+10. [Domain Modules](#10-domain-modules)
+11. [API Reference](#11-api-reference)
+12. [Best Practices](#12-best-practices)
+13. [Troubleshooting](#13-troubleshooting)
+14. [Appendices](#14-appendices)
 
 ---
 
@@ -31,6 +32,8 @@
 ### 1.1 What is ASTRA?
 
 ASTRA (Autonomous Scientific Discovery in Astrophysics) is an integrated computational framework that combines numerical data analysis, causal reasoning, physical validation, and statistical inference to enable automated scientific discovery in astrophysics. Unlike traditional machine learning systems that detect patterns without understanding their physical meaning, or large language models that can explain concepts but cannot process numerical data, ASTRA integrates multiple analytical approaches to provide physically interpretable, validated scientific insights.
+
+**Version 7.0** represents a major evolution with the introduction of the **Autonomous Research Scientist**—a system capable of conducting the entire scientific research cycle from question formulation through publication.
 
 ### 1.2 Key Design Principles
 
@@ -42,7 +45,7 @@ ASTRA (Autonomous Scientific Discovery in Astrophysics) is an integrated computa
 
 **Reproducibility**: All analyses are fully documented and reproducible, with complete provenance tracking from raw data to final conclusions.
 
-**Modularity**: The system is organized into specialized components that can be used independently or combined for complex multi-step analyses.
+**Autonomous Research**: V7.0 can independently generate research questions, formulate hypotheses, design experiments, execute studies, and produce publications.
 
 ### 1.3 Who Should Use This Manual?
 
@@ -58,17 +61,21 @@ Users should have familiarity with:
 - Fundamental astrophysical principles
 - Command-line operation
 
-### 1.4 Scope of This Manual
+### 1.4 What's New in Version 7.0
 
-This manual covers:
-- Complete system architecture and component organization
-- Installation and configuration procedures
-- Twenty detailed use case examples with natural language commands
-- All core and advanced capabilities
-- Domain module reference
-- Best practices and troubleshooting
+**V7.0 Autonomous Research Scientist**:
+- Question generation engine
+- Hypothesis formulation system
+- Experiment design and execution
+- Automated theory revision
+- Publication generation
 
-For implementation details, algorithm documentation, and source code, readers are referred to the GitHub repository and technical documentation.
+**Enhanced Capabilities**:
+- Multi-Mind Orchestration (7 specialized minds)
+- Global coherence layer
+- Analogical reasoning
+- Continuous learning
+- Scientific taste evaluation
 
 ---
 
@@ -76,7 +83,7 @@ For implementation details, algorithm documentation, and source code, readers ar
 
 ### 2.1 Architectural Overview
 
-ASTRA implements a layered architecture designed for astrophysical data analysis and inference. The system consists of approximately 303,000 lines of Python code organized into modular components that work together through coordinated interfaces.
+ASTRA implements a layered architecture designed for astrophysical data analysis and inference:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -97,6 +104,11 @@ ASTRA implements a layered architecture designed for astrophysical data analysis
       └───────────┴───────────┴───────────┴───────────┘
                          │
 ┌────────────────────────▼────────────────────────────────────┐
+│              V7.0 Autonomous Research Layer                 │
+│  Question → Hypothesis → Experiment → Analysis → Theory   │
+└────────────────────────┬────────────────────────────────────┘
+                         │
+┌────────────────────────▼────────────────────────────────────┐
 │                    Foundation Layer                         │
 │  Memory systems, I/O handling, numerical libraries         │
 └─────────────────────────────────────────────────────────────┘
@@ -106,91 +118,23 @@ ASTRA implements a layered architecture designed for astrophysical data analysis
 
 #### 2.2.1 Physics Engine
 
-The Physics Engine implements fundamental physical laws and constraints that govern all analyses:
-
-**Conservation Laws**: Mass, energy, momentum, and charge conservation are enforced throughout all calculations. Discovered relations that violate these principles are automatically flagged for review.
-
-**Dimensional Analysis**: The Buckingham π theorem is automatically applied to identify dimensionless parameters and ensure dimensional consistency of all equations and relationships.
-
-**Equation Solving**: Numerical methods for solving differential equations, optimization problems, and constraint satisfaction problems.
-
-**Units Management**: Automatic unit conversion, consistency checking, and dimensional analysis throughout all calculations.
-
-**Physical Constraints**: Application of observational constraints such as resolution limits, sensitivity curves, and selection effects.
+The Physics Engine implements fundamental physical laws and constraints that govern all analyses.
 
 #### 2.2.2 Causal Reasoning Module
 
-The Causal Reasoning Module enables discovery and inference of causal relationships from observational data:
-
-**PC Algorithm**: The Peter-Spirtes causal discovery algorithm identifies causal structures from observational data by testing conditional independence relationships.
-
-**Conditional Independence Testing**: Fisher's Z-test and other statistical tests determine whether variables are independent given conditioning sets.
-
-**V-Structure Detection**: Identifies colliders in causal graphs, which are crucial for distinguishing causal directions.
-
-**Do-Calculus**: Predicts effects of interventions using Pearl's calculus of intervention.
-
-**Domain Adaptations**: Astrophysical domain knowledge constrains the search space to physically plausible causal structures.
+The Causal Reasoning Module enables discovery and inference of causal relationships from observational data.
 
 #### 2.2.3 Bayesian Inference Engine
 
-The Bayesian Inference Engine provides rigorous model comparison and uncertainty quantification:
-
-**Evidence Computation**: Marginal likelihood estimation using bridge sampling, thermodynamic integration, and other advanced Monte Carlo methods.
-
-**Bayes Factors**: Model comparison using ratios of evidences, with automatic interpretation using Kass-Raftery guidelines.
-
-**Occam's Razor**: Automatic complexity penalty prevents overfitting by favoring simpler models when fit is comparable.
-
-**Posterior Predictive Checking**: Validates model predictions against observed data to detect model inadequacy.
-
-**Markov Chain Monte Carlo**: Advanced sampling algorithms for posterior exploration and parameter estimation.
+The Bayesian Inference Engine provides rigorous model comparison and uncertainty quantification.
 
 #### 2.2.4 Data Processing Pipeline
 
-The Data Processing Pipeline handles ingestion, validation, and preparation of astronomical data:
-
-**Format Support**: CSV, FITS, HDF5, JSON, and astropy Tables for catalogs; time-series formats; image formats; spectral data formats.
-
-**Validation**: Automatic validation of data formats, units, value ranges, and required metadata.
-
-**Cleaning**: Outlier detection, missing value handling, and quality flag processing.
-
-**Normalization**: Coordinate system transformations, unit conversions, and standardization procedures.
-
-**Uncertainty Preservation**: Measurement uncertainties and error correlations are preserved through all transformations.
+The Data Processing Pipeline handles ingestion, validation, and preparation of astronomical data.
 
 #### 2.2.5 Domain Knowledge Systems
 
-Organized astrophysical knowledge provides context for all analyses:
-
-**MORK Ontology**: Hierarchical encoding of astronomical concepts, relationships, and causal structures.
-
-**Knowledge Graphs**: Semantic networks representing relationships between astronomical objects, phenomena, and theories.
-
-**Vector Memory**: Embedding-based retrieval of related concepts and prior analyses.
-
-**Domain Modules**: Seventy-five specialized modules for specific astrophysical domains (ISM, star formation, exoplanets, etc.).
-
-### 2.3 Memory Systems
-
-ASTRA implements multiple complementary memory systems:
-
-#### 2.3.1 Working Memory
-
-Short-term storage with 7±2 item capacity limit, implementing cognitive constraints on simultaneous information processing. Automatic management of information flow based on attention and relevance.
-
-#### 2.3.2 Episodic Memory
-
-Storage of specific analyses and their contexts, enabling retrieval of previous similar cases and their outcomes. Includes provenance tracking for all results.
-
-#### 2.3.3 Semantic Memory
-
-General astronomical knowledge including physical laws, typical parameter ranges, and established relationships. Automatically updated from successful analyses.
-
-#### 2.3.4 Procedural Memory
-
-Learned procedures and workflows that have proven effective for specific analysis types. Enables automatic adaptation of analysis strategies based on problem characteristics.
+Organized astrophysical knowledge provides context for all analyses.
 
 ---
 
@@ -220,60 +164,41 @@ Learned procedures and workflows that have proven effective for specific analysi
 
 #### 3.2.1 Installation from GitHub
 
-Clone the repository and install dependencies:
+```bash
+# Clone the repository
+git clone https://github.com/Tilanthi/ASTRA.git
+cd ASTRA
 
-```
-Clone the ASTRA repository from GitHub
-Navigate to the cloned directory
-Install ASTRA using pip with editable mode for development
-Install optional dependencies for full functionality
+# Install in editable mode
+pip install -e .
+
+# Install optional dependencies
+pip install -e ".[dev]"
 ```
 
 #### 3.2.2 Verification of Installation
 
-After installation, verify that ASTRA is correctly installed:
+```python
+# Test installation
+python -c "import stan_core; print('ASTRA installed successfully')"
 
+# Check version
+python -c "from stan_core import __version__; print(__version__)"
 ```
-Open a Python interpreter or Jupyter notebook
-Import the core ASTRA module
-Create a system instance
-Query the system status
-```
-
-Expected output includes version information, available capabilities, and system status.
 
 ### 3.3 Configuration
 
 #### 3.3.1 Basic Configuration
 
-ASTRA uses a configuration file for customizable settings:
+Create a configuration file `~/.astra/config.json`:
 
-```
-Create a configuration file in your home directory
-Set default data directories
-Configure memory limits
-Specify preferred computational backends
-```
-
-#### 3.3.2 Domain Module Loading
-
-Domain modules can be loaded on-demand to reduce startup time:
-
-```
-Load only required domains for your analysis
-Preload frequently used domains for faster access
-Customize domain parameters for specific research areas
-```
-
-#### 3.3.3 Computational Resources
-
-Configure ASTRA to use available computational resources:
-
-```
-Set the number of parallel worker processes
-Enable GPU acceleration if available
-Configure memory limits for large datasets
-Set timeout values for long-running analyses
+```json
+{
+  "data_directory": "~/astronomy_data",
+  "memory_limit_gb": 16,
+  "num_workers": 4,
+  "log_level": "INFO"
+}
 ```
 
 ---
@@ -282,1379 +207,696 @@ Set timeout values for long-running analyses
 
 ### 4.1 Your First Analysis
 
-The simplest way to use ASTRA is through the unified interface:
+#### Example 1: Basic Query
 
-```
-Create an ASTRA system instance
-Load your astronomical data
-Ask ASTRA to analyze the data
-Review the results including confidence assessments
+```python
+from stan_core import create_stan_system
+
+# Create system
+system = create_stan_system()
+
+# Ask a question
+result = system.answer("What is the typical temperature of a molecular cloud?")
+print(result['answer'])
+# Output: "Molecular clouds typically have temperatures in the range 10-20 K, 
+# with most around 10-15 K. This is set by the balance between heating and 
+# cooling processes..."
 ```
 
-ASTRA will automatically select appropriate analysis methods based on the data characteristics and your question.
+#### Example 2: Data Analysis
+
+```python
+# Load data
+data = system.load_data("my_catalog.csv")
+
+# Analyze scaling relation
+result = system.discover_scaling_relation(
+    data,
+    x_variable="luminosity",
+    y_variable="mass",
+    question="How does luminosity scale with mass?"
+)
+```
 
 ### 4.2 Understanding ASTRA's Output
 
-ASTRA provides structured output for every analysis:
+ASTRA provides structured output:
 
-**Results**: The primary answer to your question, with appropriate precision and units
-
-**Confidence**: Statistical confidence intervals or uncertainty bounds
-
-**Methodology**: Description of methods used, including algorithm choices and parameter values
-
-**Validation**: Checks performed against physical constraints and domain knowledge
-
-**Provenance**: Complete record of data processing steps from raw input to final result
-
-**Recommendations**: Suggestions for further analysis or validation when appropriate
-
-### 4.3 Interactive vs. Batch Processing
-
-ASTRA supports both interactive exploration and batch processing:
-
-**Interactive Mode**: Best for exploratory analysis, Jupyter notebooks, and rapid prototyping
-
-**Batch Mode**: Best for large-scale processing, automated pipelines, and production analyses
-
-### 4.4 Common First Tasks
-
-New users typically start with these tasks:
-
-```
-Load and explore a familiar dataset
-Perform basic statistical characterization
-Test specific hypotheses about the data
-Generate visualizations of results
-Export results for further analysis or publication
-```
+**Results**: Primary answer with precision and units
+**Confidence**: Statistical confidence intervals
+**Methodology**: Methods used and parameters
+**Validation**: Physical constraint checks
+**Provenance**: Complete processing record
+**Recommendations**: Suggestions for further analysis
 
 ---
 
 ## 5. Core Capabilities Overview
 
-ASTRA integrates sixteen distinct analytical capabilities. These capabilities can be used individually or combined for complex multi-step analyses.
+ASTRA integrates 20+ analytical capabilities.
 
 ### 5.1 Causal and Statistical Analysis
 
 #### 5.1.1 Bias Detection
 
-ASTRA identifies and quantifies observational biases that can affect scientific conclusions. Common biases include Malmquist bias, selection effects, and incompleteness.
+Identifies and quantifies observational biases.
 
-**What it does**: Detects biases from survey geometry, flux limits, and selection criteria
-
-**When to use**: When working with flux-limited surveys, magnitude-limited samples, or any dataset with non-uniform selection
-
-**Output**: Quantified bias magnitude, corrected estimates, physical interpretation
+```python
+result = system.detect_bias(
+    data=galaxy_catalog,
+    bias_type="malmquist",
+    flux_column="apparent_magnitude"
+)
+```
 
 #### 5.1.2 Scaling Relations Discovery
 
-Automatically discovers physical scaling laws from observational data using dimensional analysis and functional form detection.
+Automatically discovers physical scaling laws.
 
-**What it does**: Identifies power-law, logarithmic, or broken power-law relationships between physical quantities
-
-**When to use**: When exploring correlations between physical variables in astrophysical systems
-
-**Output**: Discovered scaling relation, statistical significance, physical validation against theory
+```python
+result = system.discover_scaling_relation(
+    data=cluster_data,
+    x_variable="temperature",
+    y_variable="luminosity"
+)
+# Output: L ∝ T^(2.5±0.3)
+```
 
 #### 5.1.3 Causal Inference
 
-Discovers causal structures from observational data using the PC algorithm and related methods.
+Discovers causal structures from data.
 
-**What it does**: Identifies causal relationships between variables, distinguishes physical laws from spurious correlations
-
-**When to use**: When you need to understand cause-and-effect relationships in your data
-
-**Output**: Causal graph, confidence in causal relationships, identification of confounding variables
-
-#### 5.1.4 Model Selection
-
-Compares competing scientific theories using Bayesian evidence computation.
-
-**What it does**: Computes Bayes factors comparing models, implements automatic Occam's razor
-
-**When to use**: When choosing between competing physical models or theoretical frameworks
-
-**Output**: Model rankings, Bayes factors with interpretation, predictive performance
+```python
+result = system.perform_causal_inference(
+    data=time_series,
+    variables=["mass", "luminosity", "star_formation_rate"]
+)
+```
 
 ### 5.2 Data Integration and Analysis
 
 #### 5.2.1 Multi-Wavelength Fusion
 
-Cross-matches sources across multiple wavelength observations with proper uncertainty propagation.
-
-**What it does**: Matches sources, combines measurements, classifies based on multi-wavelength properties
-
-**When to use**: When working with data from multiple telescopes or wavelength regimes
-
-**Output**: Matched source catalog, combined measurements, source classifications
-
-#### 5.2.2 Uncertainty Quantification
-
-Propagates measurement uncertainties through all analyses, separating systematic and statistical components.
-
-**What it does**: First-order error propagation, Monte Carlo methods, systematic error estimation
-
-**When to use**: For any analysis where measurement uncertainties are important
-
-**Output**: Results with confidence intervals, uncertainty budgets, error correlation matrices
-
-#### 5.2.3 Temporal Reasoning
-
-Analyzes time-series data to detect periodic signals, transients, and trends.
-
-**What it does**: Period detection, phase folding, transient detection, forecasting
-
-**When to use**: With light curves, radial velocity curves, or any time-series astronomical data
-
-**Output**: Period measurements, classifications, transient detections, forecasts with uncertainties
-
-#### 5.2.4 Instrument-Aware Analysis
-
-Evaluates observational requirements and compatibility across multiple astronomical facilities.
-
-**What it does**: Assesses whether instruments can observe targets, calculates signal-to-noise ratios
-
-**When to use**: When planning observations or selecting appropriate instruments for targets
-
-**Output**: Feasibility assessments, optimal instrument selection, exposure time calculations
-
-### 5.3 Knowledge Generation
-
-#### 5.3.1 Hypothesis Generation
-
-Identifies patterns in data and generates novel testable hypotheses with specific observational requirements.
-
-**What it does**: Pattern recognition, anomaly detection, hypothesis formulation, testability assessment
-
-**When to use**: When exploring new datasets or looking for novel phenomena
-
-**Output**: Generated hypotheses, testability ratings, required observations for validation
-
-#### 5.3.2 Analogical Reasoning
-
-Discovers structural similarities between different astrophysical systems based on shared physics.
-
-**What it does**: Structural mapping between systems, physics-based analogy identification
-
-**When to use**: When applying insights from one astrophysical domain to another
-
-**Output**: Discovered analogies, confidence assessments, predictive applications
-
-#### 5.3.3 Counterfactual Analysis
-
-Simulates physically-grounded scenarios to predict effects of interventions or observational changes.
-
-**What it does**: Simulates "what if" scenarios with proper physical constraints
-
-**When to use**: When predicting effects of observational changes or theoretical interventions
-
-**Output**: Simulated outcomes, physical consistency checks, quantitative predictions
-
-#### 5.3.4 Physical Model Discovery
-
-Automatically identifies functional forms and validates against theoretical predictions.
-
-**What it does**: Dimensional analysis, automatic model discovery, theory validation
-
-**When to use**: When discovering physical relationships from data
-
-**Output**: Discovered models, theoretical validation, comparison to established theory
-
-### 5.4 Meta-Cognitive Capabilities
-
-#### 5.4.1 Meta-Cognitive Evaluation
-
-Provides quantitative assessments of data sufficiency, resolution limits, and observational constraints.
-
-**What it does**: Evaluates whether data are sufficient for specific scientific questions
-
-**When to use**: Before committing to extensive analysis or when results are inconclusive
-
-**Output**: Sufficiency assessments, specific limitations, recommendations for improvement
-
-#### 5.4.2 Anomaly Detection
-
-Identifies unusual objects using ensemble methods combining multiple detection approaches.
-
-**What it does**: Multi-method anomaly detection, interpretation of anomalous features
-
-**When to use**: When searching for rare or unusual objects in large datasets
-
-**Output**: Anomaly scores, classifications, physical interpretation of anomalies
-
-#### 5.4.3 Ensemble Prediction
-
-Combines multiple models using Bayesian Model Averaging for robust predictions.
-
-**What it does**: Model combination, weight optimization, robust uncertainty quantification
-
-**When to use**: When making predictions with multiple plausible models
-
-**Output**: Ensemble predictions, improved uncertainties, model contribution analysis
-
-#### 5.4.4 Physical Validation
-
-Checks all results against dimensional consistency, conservation laws, and established principles.
-
-**What it does**: Validates results against physical constraints, flags potential issues
-
-**When to use**: Automatically for all analyses; essential for novel discoveries
-
-**Output**: Validation status, identified issues, physical consistency checks
+```python
+result = system.fuse_multiwavelength(
+    catalogs={
+        "xray": xmm_catalog,
+        "optical": hst_catalog,
+        "ir": spitzer_catalog
+    },
+    matching_radius=2.0  # arcsec
+)
+```
 
 ---
 
-## 6. V5.0 Discovery Enhancement System ⭐ NEW
+## 6. V5.0 Discovery Enhancement System
 
 ### 6.1 Overview
 
-The V5.0 Discovery Enhancement System is a major expansion of ASTRA's scientific discovery capabilities, introduced in April 2026. It provides eight new specialized capabilities designed to improve the discovery, validation, and interpretation of scientific findings.
+V5.0 adds advanced discovery capabilities for genuine scientific discovery.
 
-**Key Innovations:**
-- **Temporal Causal Discovery**: Understand how causal relationships evolve over time
-- **Counterfactual Reasoning**: Test "what-if" scenarios to validate causal claims
-- **Multi-Modal Evidence Integration**: Combine text, numerical, visual, and code evidence
-- **Adversarial Validation**: Systematic challenge of discoveries to reduce false positives
-- **Meta-Discovery Transfer Learning**: Apply successful discovery strategies across domains
-- **Explainable Causal Reasoning**: Natural language explanations from causal graphs
-- **Discovery Triage**: Prioritize discoveries by impact and publication readiness
-- **Real-Time Streaming Discovery**: Monitor data streams for live discovery alerts
+### 6.2 Capabilities
 
-### 6.2 V5.0 Capability Summary
-
-| Capability | Description | Use When |
-|------------|-------------|----------|
-| **V101** Temporal Causal Discovery | Discover time-lagged causal relationships and change points | Working with time-series or sequential data |
-| **V102** Counterfactual Engine | Test interventions and estimate causal effects | Validating causal claims from observational data |
-| **V103** Multi-Modal Evidence | Integrate evidence from text, numerical data, plots, and code | Corroborating findings across multiple evidence types |
-| **V104** Adversarial Discovery | Challenge hypotheses with systematic adversarial testing | Reducing false positives and validating discoveries |
-| **V105** Meta-Discovery Transfer | Apply discovery patterns from one domain to another | Exploring new domains with limited data |
-| **V106** Explainable Causal | Generate natural language explanations | Preparing papers or communicating results |
-| **V107** Discovery Triage | Prioritize discoveries by impact and readiness | Managing multiple discoveries or large surveys |
-| **V108** Streaming Discovery | Real-time causal discovery on data streams | Monitoring live observations or alerts |
-
-### 6.3 Quick Start
-
-The simplest way to use V5.0 is through the unified discovery interface:
+#### 6.2.1 Genuine Discovery Detection
 
 ```python
-from stan_core.v5_discovery_orchestrator import discover_in_dataset
-import numpy as np
-
-# Your data
-data = np.array([...])  # Shape: (n_samples, n_variables)
-variable_names = ['var1', 'var2', 'var3', 'var4']
-
-# Run complete V5.0 discovery pipeline
-result = discover_in_dataset(data, variable_names, domain="your_domain")
-
-# Access comprehensive results
-print(f"Claim: {result.claim}")
-print(f"Confidence: {result.confidence:.2f}")
-print(f"Recommendation: {result.recommendation}")
+# Discover novel relationships
+result = system.genuine_discovery(
+    data=survey_data,
+    knowledge_base="astrophysics_ontology",
+    novelty_threshold=0.95
+)
 ```
 
-### 6.4 Integration with Existing ASTRA
-
-V5.0 capabilities integrate seamlessly with:
-- **V97 Knowledge Isolation Mode**: Novelty scoring for new discoveries
-- **V98 FCI Causal Discovery**: Baseline causal graph generation
-- **V4.0 Meta-Cognitive Capabilities**: Context-aware processing
-
-### 6.5 When to Use V5.0
-
-- **V101 Temporal**: When you have time-series data and want to understand causality over time
-- **V102 Counterfactual**: When you need to test "what-if" scenarios or validate causal mechanisms
-- **V103 Multi-Modal**: When you have multiple types of evidence (data, papers, plots, code)
-- **V104 Adversarial**: When you want to rigorously validate a discovery before publication
-- **V105 Meta-Learning**: When exploring a new domain with limited data
-- **V106 Explainable**: When preparing papers or communicating results to astronomers
-- **V107 Triage**: When you have many discoveries and need to prioritize what to pursue
-- **V108 Streaming**: When monitoring live data streams (e.g., during observations)
-
-### 6.6 Detailed Documentation
-
-For complete documentation of V5.0 capabilities, including:
-- Detailed API reference
-- Code examples for each capability
-- Best practices and workflows
-- Performance considerations
-
-See the **[V5.0 Discovery Enhancement Guide](V5.0_DiscoveryEnhancement_Guide.md)** in this directory.
-
----
-
-## 7. Use Case Examples
-
-The following examples demonstrate typical ASTRA workflows using natural language descriptions. These examples illustrate how to interact with ASTRA for common astronomical analysis tasks.
-
-### Example 1: Discovering Scaling Relations in Molecular Cloud Filaments
-
-**Task**: Discover physical relationships between filament properties from Herschel observations
-
-**Natural Language Command**:
-```
-Load the Herschel filament catalog with mass, length, and velocity dispersion measurements
-Discover any scaling relations between these quantities using dimensional analysis
-Validate discovered relations against the virial theorem prediction
-Quantify uncertainties using bootstrap resampling
-Generate plots showing the discovered relationships with confidence bands
-```
-
-**What ASTRA Does**:
-- Performs dimensional analysis to identify relevant dimensionless parameters
-- Searches for power-law, logarithmic, and broken power-law relationships
-- Tests discovered relations against theoretical predictions from virial theorem
-- Computes confidence intervals using bootstrap methods
-- Creates publication-quality visualizations
-
-**Expected Output**:
-- Discovered scaling relation: σ_v ∝ √(M/L)
-- Statistical significance: r = 0.988, p < 10^-18
-- Agreement with virial theorem: 88%
-- Universal width: 0.098 ± 0.019 pc
-- Plots with data, fit, and confidence intervals
-
-### Example 2: Identifying Malmquist Bias in Gaia Data
-
-**Task**: Detect and quantify Malmquist bias in a stellar sample
-
-**Natural Language Command**:
-```
-Load the Gaia DR2 catalog with 10,000 stars including distance and luminosity data
-Test for correlation between distance and luminosity that would indicate Malmquist bias
-Quantify the magnitude of the bias in magnitudes
-Create volume-limited subsamples to verify the bias interpretation
-Generate visualizations showing the bias effect and corrected distributions
-```
-
-**What ASTRA Does**:
-- Computes correlation between distance and luminosity
-- Tests statistical significance of detected correlation
-- Calculates bias magnitude in magnitudes
-- Creates volume-limited samples for verification
-- Separates physical from selection effects
-
-**Expected Output**:
-- Detected correlation: r = 0.025, p = 0.012
-- Bias magnitude: -13.12 magnitudes
-- Interpretation: Severe Malmquist bias affecting sample
-- Corrected luminosity function
-- Diagnostic plots showing bias effect
-
-### Example 3: Cross-Matching Multi-Wavelength Sources
-
-**Task**: Match sources across X-ray, optical, and infrared catalogs
-
-**Natural Language Command**:
-```
-Load the Chandra Deep Field South X-ray source catalog
-Load the HST optical source catalog
-Load the infrared source catalog
-Cross-match sources across all three wavelengths using Bayesian likelihood methods
-Propagate astrometric uncertainties through the matching process
-Classify matched sources based on their multi-wavelength properties
-Generate completeness and reliability statistics for the matching
-```
-
-**What ASTRA Does**:
-- Computes Bayesian likelihood ratios for source matching
-- Properly propagates astrometric uncertainties
-- Uses physics-based classification criteria
-- Calculates completeness and reliability metrics
-- Identifies unmatched sources and investigates reasons
-
-**Expected Output**:
-- 60 matched sources across all three wavelengths
-- Classification: 41 AGN, 19 stars
-- Match quality statistics with confidence assessments
-- Plots of multi-wavelength properties
-- Unmatched source analysis
-
-### Example 4: Generating Novel Hypotheses from Galaxy Data
-
-**Task**: Generate testable hypotheses from SDSS galaxy properties
-
-**Natural Language Command**:
-```
-Load the SDSS galaxy catalog with stellar mass, star formation rate, metallicity, and environment
-Identify patterns and correlations in the high-dimensional parameter space
-Detect unusual objects that don't follow typical relationships
-Generate specific testable hypotheses based on identified patterns
-Assess testability of each hypothesis and identify required observations
-Rank hypotheses by scientific interest and feasibility
-```
-
-**What ASTRA Does**:
-- Performs correlation analysis across all parameters
-- Identifies outliers and unusual objects
-- Formulates specific, testable hypotheses
-- Assesses feasibility of testing each hypothesis
-- Ranks by potential scientific impact
-
-**Expected Output**:
-- Five novel testable hypotheses:
-  1. Metallicity-luminosity correlation evolution
-  2. Environment-driven star formation quenching
-  3. AGN feedback in low-mass galaxies
-  4. Merger rate vs redshift relation
-  5. Dark matter halo scaling laws
-- Testability assessments for each
-- Required observational data for validation
-- Scientific impact ranking
-
-### Example 5: Discovering Causal Structures in Stellar Data
-
-**Task**: Infer causal relationships between stellar properties
-
-**Natural Language Command**:
-```
-Load the Gaia DR2 stellar catalog with distance, parallax, apparent magnitude, absolute magnitude, and luminosity
-Apply the PC algorithm to discover causal structures
-Test conditional independence relationships
-Identify v-structures (colliders) in the causal graph
-Distinguish physical causal relationships from selection biases
-Perform intervention analysis using do-calculus
-Visualize the discovered causal structure
-```
-
-**What ASTRA Does**:
-- Applies PC algorithm with appropriate significance thresholds
-- Tests conditional independence using Fisher's Z-test
-- Detects v-structures for causal direction identification
-- Distinguishes physical from spurious relationships
-- Predicts effects of interventions
-
-**Expected Output**:
-- Causal graph showing relationships:
-  - absolute_mag → luminosity (definition, correctly identified)
-  - distance → apparent_magnitude (physical law, detected)
-  - distance × luminosity (confounding, correctly identified)
-- V-structures identified
-- Intervention predictions
-- Causal visualization
-
-### Example 6: Bayesian Model Selection for Scaling Relations
-
-**Task**: Compare competing models for filament scaling relations
-
-**Natural Language Command**:
-```
-Load the Herschel filament data with velocity dispersion and mass/length measurements
-Define four competing models: power law, linear, logarithmic, and broken power law
-Compute Bayesian evidence for each model using bridge sampling
-Calculate Bayes factors comparing all models to the power-law model
-Apply automatic complexity penalty (Occam's razor)
-Perform posterior predictive checks for the best model
-Validate the best model against virial theorem predictions
-Generate model comparison plots with evidence values
-```
-
-**What ASTRA Does**:
-- Fits all four models to the data
-- Computes marginal likelihood for each model
-- Calculates Bayes factors with proper interpretation
-- Applies complexity penalty
-- Performs posterior predictive checks
-- Validates against physical theory
-
-**Expected Output**:
-- Model comparison table:
-  - Power law: log evidence = -35.18 (reference)
-  - Linear: log evidence = -45.59, Bayes factor = 1/33,000
-  - Logarithmic: log evidence = -35.36, Bayes factor = 1/1.2
-  - Broken power: log evidence = -46.91, Bayes factor = 1/123,000
-- Power law strongly favored
-- Validation: 70% agreement with virial theorem
-- Model comparison visualizations
-
-### Example 7: Period Detection in Variable Star Light Curves
-
-**Task**: Detect and characterize periodic signals in time-series data
-
-**Natural Language Command**:
-```
-Load the light curve data for eclipsing binary candidates
-Apply Lomb-Scargle periodogram to detect periodic signals
-Identify significant peaks above the false alarm probability threshold
-Fold the light curve at the best-fit period
-Classify the variable type based on period and light curve shape
-Estimate uncertainty in the period measurement
-Forecast future epochs of minimum light
-Generate diagnostic plots including periodogram and folded light curve
-```
-
-**What ASTRA Does**:
-- Computes Lomb-Scargle periodogram across frequency range
-- Calculates false alarm probabilities
-- Identifies significant periods
-- Performs phase folding
-- Classifies variable type
-- Propagates timing uncertainties
-- Predicts future events
-
-**Expected Output**:
-- Detected period: 3.456 ± 0.002 days
-- False alarm probability: < 10^-10
-- Classification: Eclipsing binary
-- Ephemeris for future minima
-- Periodogram and folded light curve plots
-
-### Example 8: Anomaly Detection in Large Stellar Catalogs
-
-**Task**: Identify unusual objects in the Gaia catalog
-
-**Natural Language Command**:
-```
-Load the Gaia DR2 catalog with 9,851 stars
-Apply ensemble of anomaly detection methods: isolation forest, local outlier factor, and one-class SVM
-Combine results from multiple methods using Bayesian model averaging
-Identify high-confidence anomalies with agreement across methods
-Characterize the physical properties of detected anomalies
-Investigate potential explanations for each anomaly
-Generate anomaly ranking with interpretation
-```
-
-**What ASTRA Does**:
-- Applies multiple anomaly detection algorithms
-- Combines results using ensemble methods
-- Identifies high-confidence anomalies
-- Analyzes physical properties
-- Provides physical interpretation
-
-**Expected Output**:
-- 115 high-confidence anomalies detected
-- Anomaly types:
-  - 45 high proper motion stars
-  - 30 unusual color indices
-  - 25 parallax outliers
-  - 15 magnitude anomalies
-- Physical characterization of each anomaly
-- Investigative leads for follow-up
-
-### Example 9: Instrument Selection for Target Observations
-
-**Task**: Determine optimal instruments for observing exoplanet atmospheres
-
-**Natural Language Command**:
-```
-Define the target: exoplanet atmosphere transmission spectroscopy
-Specify target properties: host star magnitude, planetary radius, orbital period
-Load instrument specifications for HST, JWST, VLT, and Keck
-Calculate signal-to-noise ratios for each instrument
-Assess feasibility of detecting molecular features
-Consider wavelength coverage, spectral resolution, and sensitivity
-Rank instruments by scientific return and observational efficiency
-Provide exposure time estimates for feasible instruments
-```
-
-**What ASTRA Does**:
-- Loads instrument specifications from database
-- Calculates SNR for each instrument-target combination
-- Assesses feature detectability
-- Considers practical constraints
-- Ranks options by multiple criteria
-
-**Expected Output**:
-- Instrument rankings:
-  1. JWST NIRSpec: SNR = 25, 5 features detectable, 4 hours
-  2. HST WFC3: SNR = 12, 2 features detectable, 10 hours
-  3. VLT X-Shooter: SNR = 8, 1 feature detectable, 8 hours
-- Detailed feasibility assessment
-- Exposure time calculations
-- Scientific return estimates
-
-### Example 10: Counterfactual Analysis of Survey Depth
-
-**Task**: Predict how sample would change with deeper observations
-
-**Natural Language Command**:
-```
-Load the current magnitude-limited stellar sample
-Define counterfactual scenarios: deeper magnitude limits, improved astrometry, different wavelength coverage
-Simulate each scenario with proper physical models
-Predict which additional stars would be detected in each scenario
-Quantify selection effects and bias changes
-Compare physical properties of samples under different scenarios
-Generate visualizations showing sample evolution with depth
-```
-
-**What ASTRA Does**:
-- Applies physical models for stellar populations
-- Simulates detection under different conditions
-- Tracks selection effects through all scenarios
-- Compares sample properties systematically
-- Quantifies bias evolution
-
-**Expected Output**:
-- Scenario 1 (2 magnitudes deeper):
-  - Additional 2,500 stars detected
-  - Sample extends to 800 pc
-  - Malmquist bias reduced by 40%
-- Scenario 2 (improved astrometry):
-  - Distance precision: 3.3% → 1.7%
-  - Parallax outliers reduced by 60%
-- Bias evolution plots
-- Sample comparison statistics
-
-### Example 11: Physical Model Discovery from Observational Data
-
-**Task**: Automatically discover the functional form of a physical relationship
-
-**Natural Language Command**:
-```
-Load the dataset with two correlated physical quantities
-Perform dimensional analysis to identify dimensionless parameters
-Automatically search across functional forms: power laws, exponentials, logarithms
-Compare models using information criteria (AIC, BIC)
-Validate the best model against physical constraints
-Test whether discovered relationship matches theoretical predictions
-Quantify agreement between data and theory
-```
-
-**What ASTRA Does**:
-- Identifies dimensionless parameters using π theorem
-- Searches functional form space automatically
-- Compares models using multiple criteria
-- Validates against physical constraints
-- Tests theoretical predictions
-
-**Expected Output**:
-- Discovered model: power law with sqrt transformation
-- R² = 0.977, best among tested forms
-- Dimensionless parameter: Π = 1.012 ± 0.087
-- Theoretical prediction: Π = √2 = 1.414
-- Agreement: 72%
-- Physical interpretation: consistent with virial equilibrium
-
-### Example 12: Analogical Reasoning Between Astrophysical Systems
-
-**Task**: Discover structural similarities between different astrophysical systems
-
-**Natural Language Command**:
-```
-Define source systems: black hole accretion disks and protostellar infall
-Extract structural features: mass flow geometry, energy transport, timescales
-Identify shared physics principles between systems
-Map structural correspondences
-Test whether predictions transfer successfully between systems
-Generate novel insights from the discovered analogies
-Validate predictions against observational data
-```
-
-**What ASTRA Does**:
-- Extracts structural features from each system
-- Identifies shared underlying physics
-- Creates structural mappings
-- Tests transferability of predictions
-- Generates new insights from analogies
-
-**Expected Output**:
-- Discovered structural mapping:
-  - Accretion disk → Protostellar envelope (mass flow geometry)
-  - Jet launching → Outflow launching (magnetic fields)
-  - Variability timescales → Episodic accretion (gravitational instability)
-- Shared physics: gravity, magnetohydrodynamics
-- Transferable predictions: 5 confirmed
-- New insights: 3 novel predictions
-
-### Example 13: Ensemble Prediction Combining Multiple Models
-
-**Task**: Combine multiple stellar evolution models for robust predictions
-
-**Natural Language Command**:
-```
-Load results from three different stellar evolution codes
-Define the prediction task: main sequence lifetime as function of mass
-Assess model performance on validation dataset
-Calculate Bayesian model averaging weights based on predictive performance
-Generate ensemble predictions combining all three models
-Quantify uncertainty including model uncertainty
-Compare ensemble performance to individual models
-```
-
-**What ASTRA Does**:
-- Validates each model on held-out data
-- Calculates BMA weights from predictive likelihoods
-- Combines predictions with weight uncertainty
-- Separates model uncertainty from parametric uncertainty
-- Assesses improvement over individual models
-
-**Expected Output**:
-- Model weights:
-  - Model A: 0.45 ± 0.08
-  - Model B: 0.35 ± 0.07
-  - Model C: 0.20 ± 0.05
-- Ensemble RMSE: 12% lower than best single model
-- Uncertainty properly inflated by model disagreement
-- Predictions with 95% confidence intervals
-
-### Example 14: Meta-Cognitive Assessment of Data Sufficiency
-
-**Task**: Evaluate whether data are sufficient to answer specific scientific questions
-
-**Natural Language Command**:
-```
-Define the scientific question: What is the star formation history of this galaxy?
-Load the available observational data: photometry, limited spectroscopy
-Assess whether current data can constrain star formation history
-Identify specific limitations: wavelength coverage, spectral resolution, age sensitivity
-Quantify the degeneracies in current parameter constraints
-Recommend additional observations that would most improve constraints
-Provide specific metrics for data sufficiency
-```
-
-**What ASTRA Does**:
-- Analyzes information content of available data
-- Identifies parameter degeneracies
-- Quantifies constraints on star formation history
-- Assesses age-metallicity degeneracy
-- Recommends optimal additional observations
-
-**Expected Output**:
-- Sufficiency assessment: 60% sufficient for basic SFH
-- Main limitations: spectral resolution, age-sensitive features
-- Current constraints: formation epoch 8-11 Gyr ago, large uncertainty
-- Recommended additions:
-  - Higher resolution spectroscopy (R > 10,000)
-  - UV coverage for young populations
-- Expected improvement with additions: 85% sufficiency
-
-### Example 15: Multi-Epoch Transient Detection and Classification
-
-**Task**: Detect and classify transient events in time-domain survey data
-
-**Natural Language Command**:
-```
-Load multi-epoch survey data with thousands of observations
-Identify sources that show significant brightness variations
-Separate variables from transients based on light curve shape
-Classify transients using photometric and temporal features
-Estimate distances using standard candle relations or host galaxy redshifts
-Calculate luminosities and compare to known transient classes
-Identify unusual transients that don't fit standard classifications
-Generate alerts for high-priority candidates
-```
-
-**What ASTRA Does**:
-- Performs statistical change detection
-- Separates periodic from transient behavior
-- Classifies using feature-based machine learning
-- Estimates distances with proper uncertainty
-- Compares to known transient populations
-- Identifies outliers for special attention
-
-**Expected Output**:
-- 45 transients detected
-- Classifications:
-  - 20 supernovae (Type Ia: 12, Type II: 8)
-  - 15 classical novae
-  - 5 tidal disruption events
-  - 3 unknown/unusual
-- Distance estimates for all transients
-- 2 high-priority unusual candidates flagged
-
-### Example 16: Spectral Energy Distribution Fitting with Physical Models
-
-**Task**: Fit galaxy spectral energy distributions with stellar population synthesis
-
-**Natural Language Command**:
-```
-Load multi-wavelength photometry from UV to far-infrared
-Define grid of stellar population synthesis models
-Include dust attenuation and emission components
-Fit SEDs using Bayesian inference with proper likelihoods
-Generate posterior distributions for physical parameters
-Identify degeneracies between parameters
-Compare different model assumptions
-Assess model adequacy using posterior predictive checks
-```
-
-**What ASTRA Does**:
-- Fits full UV-FIR SEDs with physical models
-- Explores full posterior distribution
-- Identifies parameter degeneracies
-- Compares star formation histories
-- Tests different dust models
-- Validates model fit quality
-
-**Expected Output**:
-- Physical parameters with posteriors:
-  - Stellar mass: 10^10.5 ± 0.2 M_sun
-  - Star formation rate: 15 ± 3 M_sun/yr
-  - Dust attenuation: A_V = 1.2 ± 0.3 mag
-- Identified degeneracy: mass-SFR-dust
-- Model comparison: delayed vs. burst SFH
-- Posterior predictive checks: adequate fit
-
-### Example 17: Galaxy Cluster Analysis with Multi-Component Modeling
-
-**Task**: Analyze galaxy cluster properties using multi-wavelength data
-
-**Natural Language Command**:
-```
-Load X-ray data from Chandra observation of galaxy cluster
-Load optical spectroscopy of cluster members
-Load Sunyaev-Zel'dovich effect measurements
-Fit X-ray surface brightness profile to determine cluster mass
-Analyze velocity dispersion of member galaxies
-Combine mass estimates from different methods using Bayesian hierarchal model
-Test for hydrostatic equilibrium
-Compare cluster properties to scaling relations
-Identify merging or disturbed systems
-```
-
-**What ASTRA Does**:
-- Fits X-ray profiles to derive mass profiles
-- Analyzes galaxy velocity distributions
-- Combines mass measurements hierarchically
-- Tests dynamical state
-- Compares to cluster scaling relations
-- Identifies merging systems
-
-**Expected Output**:
-- Cluster mass: M_500 = 2.5 ± 0.4 × 10^14 M_sun
-- Velocity dispersion: 650 ± 50 km/s
-- Combined mass estimate from all methods
-- Hydrostatic test: consistent within 20%
-- Comparison to mass-temperature relation: 1.1σ outlier
-- Dynamical state: possibly disturbed
-
-### Example 18: Exoplanet Transit Analysis with Atmospheric Retrieval
-
-**Task**: Analyze transit light curves and perform atmospheric retrieval
-
-**Natural Language Command**:
-```
-Load high-precision transit light curves from multiple observatories
-Fit transit model to derive planetary radius, orbital inclination, and stellar density
-Perform joint fit with radial velocity data for planetary mass
-Search for transit timing variations
-Perform atmospheric retrieval from transmission spectroscopy
-Generate posterior distributions for atmospheric parameters
-Compare atmospheric composition to equilibrium chemistry models
-Assess detectability of specific molecular species
-Predict requirements for future observations
-```
-
-**What ASTRA Does**:
-- Fits transit models with limb-darkening
-- Combines transit and radial velocity data
-- Searches for TTVs indicating additional planets
-- Performs atmospheric retrieval using forward models
-- Compares to chemical equilibrium predictions
-- Assesses feasibility of detecting specific molecules
-
-**Expected Output**:
-- Planetary parameters:
-  - Radius: 1.15 ± 0.02 R_Jup
-  - Mass: 0.85 ± 0.05 M_Jup
-  - Density: 0.56 ± 0.04 g/cm³
-- No significant TTVs detected
-- Atmospheric retrieval:
-  - H2O: 3.2 × 10^-5 ± 30%
-  - CO2: < 10^-6 (upper limit)
-- Detectability predictions for JWST
-
-### Example 19: Gravitational Lens Modeling and Time Delay Cosmography
-
-**Task**: Model strong gravitational lens system for cosmography
-
-**Natural Language Command**:
-```
-Load HST images of strong lensing system with multiple images and arcs
-Identify lensing galaxy and background source components
-Construct lens model using mass profile parameterization
-Fit model to observed image positions and flux ratios
-Extract time delays between multiple images if monitored
-Use time delays and mass model to constrain Hubble constant
-Quantify systematic uncertainties from mass profile shape
-Combine with other lens systems for improved constraints
-```
-
-**What ASTRA Does**:
-- Models lens mass distribution
-- Fits to image positions and flux ratios
-- Incorporates stellar velocity dispersion if available
-- Extracts time delays from light curves
-- Performs cosmological inference
-- Assesses systematic uncertainties
-
-**Expected Output**:
-- Lens model parameters:
-  - Einstein radius: 1.45 ± 0.03 arcsec
-  - Mass profile slope: 2.05 ± 0.08
-- Time delays: Δt_AB = 45 ± 3 days
-- Derived Hubble constant: H0 = 72 ± 6 km/s/Mpc
-- Systematic uncertainty assessment
-- Combination with other lenses
-
-### Example 20: Population Synthesis and Inference
-
-**Task**: Infer population properties from observed sample with selection effects
-
-**Natural Language Command**:
-```
-Load observed sample of stellar mergers from gravitational wave detections
-Define population model: mass distribution, merger rate, redshift evolution
-Simulate detection process including detector sensitivity and selection effects
-Use hierarchical Bayesian inference to infer true population parameters
-Account for selection bias and measurement uncertainties
-Compare inferred population to theoretical predictions
-Forecast detection rates for future detector upgrades
-Identify features that would discriminate between formation channels
-```
-
-**What ASTRA Does**:
-- Constructs population models
-- Simulates full detection pipeline
-- Performs hierarchical Bayesian inference
-- Properly accounts for selection effects
-- Compares to astrophysical predictions
-- Forecasts future detections
-
-**Expected Output**:
-- Inferred population parameters:
-  - Primary mass: 35 ± 5 M_sun
-  - Mass ratio: 0.7 ± 0.2
-  - Merger rate: 15 ± 5 Gpc^-3 yr^-1
-- Evidence for mass gap objects: 3σ
-- Comparison to formation channel predictions
-- Forecasts for O4 and O5 observing runs
-
----
-
-## 8. Advanced Features
-
-### 7.1 Custom Analysis Workflows
-
-ASTRA allows users to define custom workflows combining multiple capabilities:
-
-```
-Define a custom workflow that sequences multiple analysis steps
-Specify input data requirements for each step
-Configure how results flow between steps
-Add custom validation or quality control checks
-Save the workflow for reuse or sharing
-```
-
-### 7.2 Distributed Computation
-
-For large datasets or computationally intensive analyses:
-
-```
-Configure ASTRA to use distributed computing resources
-Specify the number of worker processes
-Set up data partitioning for parallel processing
-Monitor progress of distributed jobs
-Combine results from parallel workers
-```
-
-### 7.3 Interactive Visualization
-
-ASTRA provides interactive visualization capabilities:
-
-```
-Generate interactive plots using plotly or bokeh
-Create dashboards for monitoring analysis progress
-Enable real-time visualization of streaming data
-Customize plot styles for publication or presentation
-Export figures in multiple formats (PDF, PNG, SVG)
-```
-
-### 7.4 Provenance Tracking
-
-Every analysis includes complete provenance information:
-
-```
-Track all data processing steps from input to output
-Record all parameter values and random seeds
-Document the reasoning behind method choices
-Enable reproducibility of all results
-Export provenance in standard formats (PROV, JSON-LD)
-```
-
-### 7.5 Extensibility
-
-Users can extend ASTRA with custom capabilities:
-
-```
-Define custom analysis functions following ASTRA conventions
-Register new domain modules for specialized astrophysical subfields
-Add new data format readers
-Contribute custom visualization methods
-Share extensions with the ASTRA community
+#### 6.2.2 Physical Model Discovery
+
+```python
+# Discover underlying physical models
+result = system.discover_physical_model(
+    data=observations,
+    model_space=["power_law", "exponential", "broken_power_law"]
+)
 ```
 
 ---
 
-## 9. Domain Modules
+## 7. V7.0 Autonomous Research Scientist
 
-ASTRA includes 75 specialized domain modules covering all major areas of astrophysics. These modules provide domain-specific knowledge, analysis methods, and validation criteria.
+### 7.1 Overview
 
-### 8.1 Available Domain Modules
-
-**Stellar and Galactic Astrophysics**:
-- Star Formation and the Interstellar Medium
-- Stellar Evolution and Remnants
-- Galactic Structure and Dynamics
-- Stellar Populations
-- Variable Stars
-
-**Extragalactic Astrophysics**:
-- Galaxy Evolution
-- Active Galactic Nuclei
-- Galaxy Clusters and Large-Scale Structure
-- Cosmology
-- High-Energy Astrophysics
-
-**Solar System and Exoplanets**:
-- Planetary Science
-- Exoplanet Detection and Characterization
-- Small Bodies (Comets, Asteroids)
-- Planetary Atmospheres
-
-**Time-Domain and Multi-Messenger**:
-- Time-Domain Astronomy
-- Gravitational Wave Astronomy
-- Neutrino Astronomy
-- High-Energy Particles
-
-**Observational Techniques**:
-- Photometry and Spectroscopy
-- Interferometry
-- Polarimetry
-- Astrometry
-
-### 8.2 Using Domain Modules
-
-Domain modules are automatically loaded based on the analysis context:
+The V7.0 Autonomous Research Scientist is a breakthrough system capable of conducting the **entire scientific research cycle**:
 
 ```
-ASTRA automatically selects relevant domain modules
-Users can manually specify preferred modules
-Domain modules provide specialized methods and validation
-Modules contribute domain knowledge to guide analysis
+Question → Hypothesis → Experiment → Analysis → Theory → Publication
+```
+
+### 7.2 Core Components
+
+#### 7.2.1 Question Generator
+
+Generates important, novel research questions.
+
+```python
+from stan_core.v7_autonomous_research import create_v7_scientist
+
+# Create autonomous scientist
+scientist = create_v7_scientist()
+
+# Generate research questions
+questions = scientist.generate_research_questions(
+    domain="interstellar_medium",
+    context={"focus": "filament_widths"},
+    num_questions=5
+)
+
+# Example output:
+# Question 1: "What determines the characteristic width of 
+# interstellar filaments across different density regimes?"
+# Importance: CRITICAL
+# Novelty: HIGH
+```
+
+#### 7.2.2 Hypothesis Formulator
+
+Formulates testable hypotheses from questions.
+
+```python
+# Formulate hypotheses
+hypotheses = scientist.formulate_hypotheses(
+    question=questions[0],
+    hypothesis_types=[HypothesisType.THEORETICAL, 
+                     HypothesisType.EMPIRICAL]
+)
+
+# Example output:
+# Hypothesis 1: "Filament width is set by the sonic scale of 
+# turbulent cascade, where velocity dispersion equals thermal 
+# sound speed (λ_sonic ≈ 0.1 pc for typical conditions)"
+# Testability: HIGH
+# Falsifiability: HIGH
+```
+
+#### 7.2.3 Experiment Designer
+
+Designs experiments to test hypotheses.
+
+```python
+# Design experiment
+experiment = scientist.design_experiment(
+    hypothesis=hypotheses[0],
+    experiment_type=ExperimentType.OBSERVATIONAL_TEST,
+    constraints={"telescope": "ALMA", "time": "10_hours"}
+)
+
+# Example output:
+# Experiment Design:
+# - Target: 5 molecular clouds spanning density range 10^2-10^5 cm^-3
+# - Observations: High-resolution N2H+ mapping
+# - Measurements: Filament widths, velocity dispersions, temperatures
+# - Required sensitivity: σ_N ≈ 10^11 cm^-2
+# - Expected outcome: Width ∝ M^(-2) if sonic scale theory correct
+```
+
+#### 7.2.4 Experiment Executor
+
+Executes experiments and collects results.
+
+```python
+# Execute experiment
+results = scientist.execute_experiment(
+    experiment=experiment,
+    data_sources=["archival_Herschel", "new_ALMA_proposal"],
+    analysis_pipeline=["filament_detection", "width_measurement"]
+)
+
+# Example output:
+# Results:
+# - 547 filaments measured across 5 clouds
+# - Mean width: 0.103 ± 0.008 pc
+# - Width vs. Mach number: ∝ M^(-0.84±0.15)
+# - Comparison with prediction: Consistent within uncertainties
+```
+
+#### 7.2.5 Analysis Engine
+
+Analyzes experimental results.
+
+```python
+# Analyze results
+analysis = scientist.analyze_results(
+    experiment=experiment,
+    results=results,
+    analysis_type=AnalysisType.CAUSAL_INFERENCE
+)
+
+# Example output:
+# Analysis:
+# - Causal relationship: Mach number → filament width
+# - Confirmed: Sonic scale hypothesis (p < 0.001)
+# - Effect size: Large (η² = 0.73)
+# - Alternative hypotheses: Rejected (Bayes factor > 100)
+```
+
+#### 7.2.6 Theory Revision Engine
+
+Revises theoretical understanding based on results.
+
+```python
+# Revise theory
+theory = scientist.revise_theory(
+    current_theory="sonic_scale_model",
+    new_evidence=analysis,
+    revision_type=RevisionType.PARAMETER_REFINEMENT
+)
+
+# Example output:
+# Revised Theory:
+# - Sonic scale prediction: λ ∝ M^(-2) → λ ∝ M^(-0.84±0.15)
+# - Physical explanation: Magnetic fields and non-isothermal 
+#   effects modify the pure sonic scale prediction
+# - Domain of validity: M ∈ [1, 20], β ∈ [0.1, 10]
+```
+
+#### 7.2.7 Publication Engine
+
+Generates publication-ready papers.
+
+```python
+# Generate publication
+paper = scientist.generate_publication(
+    research_cycle={
+        "question": questions[0],
+        "hypotheses": hypotheses,
+        "experiment": experiment,
+        "results": results,
+        "analysis": analysis,
+        "theory": theory
+    },
+    format="A&A",
+    include_figures=True
+)
+
+# Output includes:
+# - Complete paper text (introduction, methods, results, discussion)
+# - Publication-quality figures
+# - Tables with measurements
+# - Acknowledgments and references
+```
+
+### 7.3 Complete Research Cycle Example
+
+```python
+from stan_core.v7_autonomous_research import create_v7_scientist
+
+# Initialize autonomous scientist
+scientist = create_v7_scientist()
+
+# Conduct full research cycle
+print("=" * 80)
+print("AUTONOMOUS RESEARCH CYCLE: FILAMENT WIDTH MYSTERY")
+print("=" * 80)
+
+# Step 1: Generate questions
+print("\n[STEP 1] Generating research questions...")
+questions = scientist.generate_research_questions(
+    domain="interstellar_medium",
+    context={"focus": "filament_structure"},
+    num_questions=3
+)
+for i, q in enumerate(questions, 1):
+    print(f"  Q{i}: {q.text}")
+    print(f"      Importance: {q.importance}")
+
+# Step 2: Formulate hypotheses
+print("\n[STEP 2] Formulating hypotheses...")
+hypotheses = scientist.formulate_hypotheses(
+    question=questions[0],
+    num_hypotheses=3
+)
+for i, h in enumerate(hypotheses, 1):
+    print(f"  H{i}: {h.text}")
+    print(f"      Type: {h.type}")
+
+# Step 3: Design experiment
+print("\n[STEP 3] Designing experiment...")
+experiment = scientist.design_experiment(
+    hypothesis=hypotheses[0],
+    experiment_type=ExperimentType.SIMULATION
+)
+print(f"  Experiment: {experiment.description}")
+print(f"  Data required: {experiment.data_requirements}")
+
+# Step 4: Execute experiment
+print("\n[STEP 4] Executing experiment...")
+results = scientist.execute_experiment(
+    experiment=experiment,
+    num_simulations=10,
+    parameter_ranges={"M": [1, 20], "beta": [0.1, 10]}
+)
+print(f"  Simulations completed: {len(results.measurements)}")
+print(f"  Key result: {results.summary}")
+
+# Step 5: Analyze results
+print("\n[STEP 5] Analyzing results...")
+analysis = scientist.analyze_results(
+    results=results,
+    hypothesis=hypotheses[0]
+)
+print(f"  Statistical significance: {analysis.p_value}")
+print(f"  Effect size: {analysis.effect_size}")
+print(f"  Conclusion: {analysis.conclusion}")
+
+# Step 6: Revise theory
+print("\n[STEP 6] Revising theory...")
+theory = scientist.revise_theory(
+    analysis=analysis
+)
+print(f"  Revised prediction: {theory.predicted_relation}")
+print(f"  Confidence: {theory.confidence}")
+
+# Step 7: Generate publication
+print("\n[STEP 7] Generating publication...")
+paper = scientist.generate_publication(
+    title="The Origin of the 0.1 pc Filament Width in Interstellar Clouds",
+    abstract=analysis.summary,
+    results=results,
+    theory=theor
+)
+print(f"  Paper generated: {paper.filename}")
+print(f"  Word count: {paper.word_count}")
+print(f"  Figures: {len(paper.figures)}")
+
+print("\n" + "=" * 80)
+print("RESEARCH CYCLE COMPLETE")
+print("=" * 80)
+```
+
+### 7.4 Research Modes
+
+#### 7.4.1 Fully Autonomous Mode
+
+```python
+# Let ASTRA conduct research independently
+result = scientist.conduct_autonomous_research(
+    domain="your_choice",
+    duration="medium",  # quick, medium, long
+    output_format="publication"
+)
+```
+
+#### 7.4.2 Guided Research Mode
+
+```python
+# Guide specific steps
+result = scientist.conduct_guided_research(
+    initial_question="Your question",
+    guidance={
+        "hypothesis": "suggest your own",
+        "experiment": "use this data",
+        "analysis": "focus on this aspect"
+    }
+)
+```
+
+#### 7.4.3 Collaborative Mode
+
+```python
+# Collaborate with ASTRA
+result = scientist.collaborative_research(
+    your_data="your_dataset",
+    your_insights="your_hypotheses",
+    astra_role="hypothesis_testing"  # or "data_analysis", "theory_development"
+)
 ```
 
 ---
 
-## 10. API Reference
+## 8. Use Case Examples
 
-### 10.1 Core Functions
+### 8.1 Interstellar Medium Analysis
 
-#### 10.1.1 Creating a System Instance
+**Question**: "Why do filament widths cluster at 0.1 pc?"
 
-```
-Create an ASTRA system with default configuration
-Create with custom configuration options
-Create with specific domain modules preloaded
-```
+```python
+from stan_core import create_stan_system
 
-#### 9.1.2 Loading Data
+system = create_stan_system()
 
-```
-Load data from a file (CSV, FITS, etc.)
-Load data from a database query
-Load data from an Astropy Table object
-Validate loaded data for required fields
-```
+# Load Herschel data
+herschel_data = system.load_data("herschel_filaments.fits")
 
-#### 9.1.3 Running Analyses
+# Analyze filament widths
+result = system.analyze_filaments(
+    data=herschel_data,
+    analysis_type="width_distribution",
+    compare_regions=["Aquila", "Polaris", "Taurus"]
+)
 
-```
-Run a simple analysis with automatic method selection
-Run a specific analysis method
-Run multiple analyses in sequence
-Run analyses with custom parameters
+# Output: Width = 0.103 ± 0.008 pc, independent of density
 ```
 
-#### 9.1.4 Accessing Results
+### 8.2 Exoplanet Detection
 
-```
-Get the primary result of an analysis
-Get confidence intervals or uncertainties
-Get detailed method descriptions
-Get validation results
-Get provenance information
-```
-
-### 10.2 Advanced API Usage
-
-#### 10.2.1 Custom Workflows
-
-#### 10.2.2 V5.0 Discovery API ⭐ NEW
-
-```
-discover_in_dataset(data, variable_names, domain="", workflow="standard")
+```python
+# Detect exoplanets using radial velocity
+result = system.detect_exoplanets(
+    rv_data=hipparchos_timeseries,
+    method="bayesian_periodogram",
+    min_planets=1,
+    max_planets=5
+)
 ```
 
-**V5.0 Discovery Orchestrator** - Main entry point for V5.0 capabilities
+### 8.3 Galaxy Evolution
 
-The `discover_in_dataset()` function provides a unified interface to all V5.0 discovery capabilities. It automatically:
-1. Runs baseline causal discovery (V98 FCI)
-2. Applies temporal causal discovery (V101)
-3. Performs counterfactual analysis (V102)
-4. Integrates multi-modal evidence (V103)
-5. Validates with adversarial framework (V104)
-6. Generates explanations (V106)
-7. Triages by priority (V107)
-8. Returns comprehensive DiscoveryResult
-
-**See also**: [V5.0 Discovery Enhancement Guide](V5.0_DiscoveryEnhancement_Guide.md) for detailed V5.0 API documentation.
-
-```
-Define a workflow as a directed acyclic graph
-Specify dependencies between analysis steps
-Configure error handling and retry logic
-Save and load workflow definitions
-```
-
-#### 9.2.2 Batch Processing
-
-```
-Define a batch processing job
-Specify input data patterns
-Configure output file organization
-Monitor batch job progress
+```python
+# Study galaxy scaling relations
+result = system.discover_scaling_relation(
+    data=galaxy_catalog,
+    x="stellar_mass",
+    y="star_formation_rate",
+    control_variables=["redshift", "environment"]
+)
 ```
 
 ---
 
-## 11. Best Practices
+## 9. Advanced Features
 
-### 10.1 Data Preparation
+### 9.1 Multi-Mind Orchestration
 
-**Always validate data quality**:
-- Check for missing values and outliers
-- Verify units and coordinate systems
-- Examine data distributions before analysis
+ASTRA V7.0 includes 7 specialized minds:
 
-**Preserve uncertainty information**:
-- Keep measurement uncertainties with all data
-- Document error correlations
-- Propagate uncertainties through all operations
+```python
+# Query with specific mind
+result = system.answer_with_mind(
+    question="Explain filament formation",
+    mind="physics"  # physics, empathy, politics, poetry, 
+                    # mathematics, causal, creative
+)
+```
 
-**Document data provenance**:
-- Record source surveys and catalogs
-- Track any preprocessing steps
-- Note selection criteria and completeness
+### 9.2 Global Coherence Layer
 
-### 10.2 Analysis Design
-
-**Start with exploratory analysis**:
-- Examine basic statistics and distributions
-- Visualize key relationships
-- Identify potential issues before detailed analysis
-
-**Use appropriate significance thresholds**:
-- Account for multiple testing when needed
-- Consider false discovery rate for large datasets
-- Report both p-values and effect sizes
-
-**Validate against physical constraints**:
-- Check dimensional consistency
-- Verify conservation laws are satisfied
-- Compare to theoretical expectations
-
-### 10.3 Interpretation and Reporting
-
-**Report uncertainties properly**:
-- Always include confidence intervals
-- Distinguish statistical and systematic uncertainties
-- Report both central values and uncertainties
-
-**Acknowledge limitations**:
-- Discuss selection effects and biases
-- Note assumptions and their validity
-- Identify areas requiring further validation
-
-**Make analyses reproducible**:
-- Document all analysis steps
-- Record random seeds and parameter values
-- Share code and data where possible
-
-### 10.4 Computational Considerations
-
-**Optimize for large datasets**:
-- Use appropriate data types for memory efficiency
-- Consider chunking or streaming for very large datasets
-- Profile performance bottlenecks
-
-**Use appropriate computational resources**:
-- Enable parallel processing for independent tasks
-- Use GPU acceleration when available
-- Monitor memory usage for large analyses
+```python
+# Ensure global coherence across analyses
+result = system.coherent_analysis(
+    questions=[
+        "What causes filament width variations?",
+        "How does magnetic field affect filaments?",
+        "What is the role of turbulence?"
+    ],
+    coherence_threshold=0.8
+)
+```
 
 ---
 
-## 12. Troubleshooting
+## 10. Domain Modules
 
-### 11.1 Common Issues
+ASTRA includes 75 specialized domain modules.
 
-**Issue**: Analysis takes too long
-- **Solution**: Reduce dataset size for testing, enable parallel processing, check for inefficient operations
+### 10.1 Available Domains
 
-**Issue**: Results seem physically unreasonable
-- **Solution**: Check input data for errors, verify units, examine intermediate results, validate assumptions
+- **Interstellar Medium**: Molecular clouds, filaments, shocks
+- **Star Formation**: Core collapse, protostars, IMF
+- **Exoplanets**: Detection, characterization, atmospheres
+- **High-Energy Astrophysics**: X-ray binaries, AGN, GRBs
+- **Cosmology**: Large-scale structure, dark matter, dark energy
+- **Solar System**: Planets, asteroids, comets
+- **Time Domain**: Transients, variables, eruptions
+- **Galactic Archaeology**: Stellar populations, chemical evolution
+- **Submillimeter Astronomy**: Dust emission, star-forming regions
 
-**Issue**: Uncertainties seem too small or large
-- **Solution**: Verify uncertainty propagation, check for systematic errors, review statistical methods
+### 10.2 Using Domain Modules
+
+```python
+# Load specific domain
+from stan_core.domains import load_domain
+
+ism_domain = load_domain("ism")
+
+# Query domain
+result = ism_domain.process_query(
+    query="Calculate Jeans length in molecular cloud",
+    context={"density": 1e4, "temperature": 10}
+)
+```
+
+---
+
+## 11. API Reference
+
+### 11.1 Main System API
+
+```python
+class STANSystem:
+    """Main ASTRA system"""
+    
+    def answer(self, question: str) -> Dict:
+        """Answer a natural language question"""
+        
+    def discover_scaling_relation(self, data, x, y) -> Dict:
+        """Discover scaling relation"""
+        
+    def perform_causal_inference(self, data, variables) -> Dict:
+        """Perform causal discovery"""
+        
+    def detect_bias(self, data, bias_type) -> Dict:
+        """Detect observational biases"""
+```
+
+### 11.2 V7.0 API
+
+```python
+class V7AutonomousScientist:
+    """Autonomous research scientist"""
+    
+    def generate_research_questions(self, domain, context) -> List:
+        """Generate research questions"""
+        
+    def formulate_hypotheses(self, question) -> List:
+        """Formulate hypotheses"""
+        
+    def design_experiment(self, hypothesis) -> Experiment:
+        """Design experiment"""
+        
+    def execute_experiment(self, experiment) -> Results:
+        """Execute experiment"""
+        
+    def analyze_results(self, results) -> Analysis:
+        """Analyze results"""
+        
+    def generate_publication(self, research_cycle) -> Publication:
+        """Generate publication"""
+```
+
+---
+
+## 12. Best Practices
+
+### 12.1 Data Preparation
+
+- Use standard formats (FITS, CSV, HDF5)
+- Include proper metadata
+- Propagate uncertainties
+- Document data provenance
+
+### 12.2 Query Formulation
+
+- Be specific about your question
+- Provide context when relevant
+- Specify desired output format
+- Include constraints if applicable
+
+### 12.3 Result Interpretation
+
+- Always check confidence intervals
+- Validate against physical expectations
+- Consider alternative explanations
+- Reproduce analyses independently
+
+---
+
+## 13. Troubleshooting
+
+### 13.1 Common Issues
+
+**Issue**: System returns low confidence results
+
+**Solution**: 
+- Provide more context
+- Increase data quality
+- Check for missing variables
+- Consider alternative formulations
 
 **Issue**: Memory errors with large datasets
-- **Solution**: Process data in chunks, reduce memory footprint, use appropriate data types
 
-### 11.2 Getting Help
+**Solution**:
+- Increase memory limit
+- Use batch processing
+- Reduce data resolution
+- Enable memory-efficient algorithms
 
-**Documentation**: Check the GitHub repository for detailed documentation
-**Issues**: Report bugs or issues via GitHub Issues
-**Community**: Engage with the ASTRA user community for advice
-**Examples**: Review example notebooks and use cases
+### 13.2 Getting Help
+
+- Check GitHub issues
+- Consult documentation
+- Use verbose logging
+- Contact developers
 
 ---
 
-## 13. Appendices
+## 14. Appendices
 
-### Appendix A: Data Format Specifications
+### Appendix A: Complete Capability List
 
-**Supported Input Formats**:
-- CSV: Columnar data with header row
-- FITS: Binary and ASCII FITS tables
-- HDF5: Hierarchical data format
-- JSON: Structured data
-- Astropy Tables: Native Python format
+1. Bias Detection
+2. Scaling Relations Discovery
+3. Causal Inference
+4. Model Selection
+5. Multi-Wavelength Fusion
+6. Uncertainty Quantification
+7. Temporal Analysis
+8. Instrument-Aware Analysis
+9. Anomaly Detection
+10. Ensemble Prediction
+11. Physical Model Discovery
+12. Bayesian Model Selection
+13. Counterfactual Analysis
+14. Causal Inference
+15. Genuine Discovery Detection
+16. **V7.0: Question Generation**
+17. **V7.0: Hypothesis Formulation**
+18. **V7.0: Experiment Design**
+19. **V7.0: Experiment Execution**
+20. **V7.0: Theory Revision**
+21. **V7.0: Publication Generation**
 
-**Required Metadata**:
-- Units for all physical quantities
-- Coordinate system information
-- Time system information (MJD, JD, etc.)
-- Uncertainty information
+### Appendix B: Domain Module List
 
-### Appendix B: Configuration Reference
+[Complete list of 75 domain modules]
 
-**Global Configuration Options**:
-- Maximum memory usage
-- Number of worker processes
-- Default plot styles
-- Logging verbosity
+### Appendix C: Physical Constants
 
-**Domain-Specific Options**:
-- Module-specific parameters
-- Validation criteria
-- Visualization preferences
+[Comprehensive list of physical constants used]
 
-### Appendix C: Performance Benchmarks
+### Appendix D: Unit Conversions
 
-**Typical Analysis Times**:
-- Scaling relations: < 1 second for 100 objects
-- Causal inference: 10 seconds for 1000 objects, 10 variables
-- Bayesian model selection: 30 seconds for 4 models, 100 objects
-- Anomaly detection: 5 seconds for 10,000 objects
-
-**Scaling with Dataset Size**:
-- Most analyses scale linearly with number of objects
-- Causal inference scales quadratically with number of variables
-- Bayesian methods scale linearly with dataset size
-
-### Appendix D: Glossary
-
-**Bayes Factor**: Ratio of evidences for two competing models
-**Causal Graph**: Directed graph representing causal relationships
-**Dimensional Analysis**: Method for checking dimensional consistency
-**Evidence**: Marginal likelihood of data given a model
-**Malmquist Bias**: Selection effect in flux-limited surveys
-**Occam's Razor**: Principle favoring simpler explanations
-**Posterior Predictive Check**: Validation of model fit
-
-### Appendix E: References
-
-**Key Methodological References**:
-- Pearl, J. (2009). Causality: Models, Reasoning, and Inference
-- Kass, R. E., & Raftery, A. E. (1995). Bayes Factors
-- Spirtes, P., Glymour, C., & Scheines, R. (2000). Causation, Prediction, and Search
-- Gelman, A., et al. (2013). Bayesian Data Analysis
-
-**ASTRA Documentation**:
-- GitHub Repository: https://github.com/Tilanthi/ASTRA
-- API Documentation: Available in repository
-- Example Notebooks: Available in repository
+[Unit conversion reference]
 
 ---
 
 ## Index
 
-A
-Analogical Reasoning, 45
-Anomaly Detection, 47
-Architecture, 13
-ASTRA (definition), 3
-
-B
-Bayesian Inference, 18
-Bayes Factors, 43
-Bias Detection, 37
-
-C
-Causal Inference, 40
-Causal Reasoning Module, 16
-Configuration, 29
-Counterfactual Analysis, 44
-
-D
-Data Processing Pipeline, 17
-Domain Knowledge Systems, 18
-Domain Modules, 59
-
-E
-Ensemble Prediction, 48
-Examples, 31
-Installation, 25
-
-G
-Getting Started, 30
-
-H
-Hypothesis Generation, 42
-
-I
-Instrument-Aware Analysis, 40
-Installation, 25
-
-M
-Memory Systems, 22
-Meta-Cognitive Evaluation, 46
-Methods, 15
-Model Selection, 43
-Multi-Wavelength Fusion, 38
-
-O
-Orchestration Layer, 14
-
-P
-Physical Model Discovery, 45
-Physics Engine, 15
-Positioning, 50
-Provenance, 57
-
-S
-Scaling Relations, 38
-System Requirements, 25
-
-T
-Temporal Reasoning, 39
-Troubleshooting, 62
-
-U
-Uncertainty Quantification, 38
-User Interface, 14
+[Comprehensive index]
 
 ---
 
-**Document Version**: 1.0
+**Document Version**: 7.0
 **Last Updated**: April 2026
-**Maintainers**: Glenn J. White & Robin Dey
-**License**: See GitHub Repository
+**Authors**: Glenn J. White & Robin Dey
+**License**: [License information]
 
-For the latest version of this manual and additional documentation, please visit:
-https://github.com/Tilanthi/ASTRA
+For the latest version, visit: https://github.com/Tilanthi/ASTRA
