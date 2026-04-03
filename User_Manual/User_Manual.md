@@ -3,7 +3,7 @@
 
 **Version**: 7.0
 **Date**: April 2026
-**Authors**: Glenn J. White & Robin Dey
+**Authors**: Glenn J. White, Open University and Rutherford Appleton Laboratory, England
 **Repository**: https://github.com/Tilanthi/ASTRA
 
 ---
@@ -985,7 +985,7 @@ class V7AutonomousScientist:
 
 **Document Version**: 7.0
 **Last Updated**: April 2026
-**Authors**: Glenn J. White & Robin Dey
+**Authors**: Glenn J. White, Open University and Rutherford Appleton Laboratory, England
 **License**: [License information]
 
 For the latest version, visit: https://github.com/Tilanthi/ASTRA
