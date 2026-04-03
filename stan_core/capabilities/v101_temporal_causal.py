@@ -822,3 +822,7 @@ def _generate_temporal_summary(
             summary.append(f"  t={cp.time_idx}: {cp.physical_interpretation}")
 
     return "\n".join(summary)
+
+
+# Compatibility aliases for common naming patterns
+TemporalCausalDiscovery = TemporalFCIDiscovery

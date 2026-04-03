@@ -50,6 +50,8 @@ class DiscoveryStrategy(Enum):
     MORPHOLOGICAL_ANALYSIS = "morphological"
     STATISTICAL_TESTING = "statistical_testing"
     PATTERN_RECOGNITION = "pattern_recognition"
+    SCALING_RELATIONS = "scaling_relations"
+    DIMENSIONAL_ANALYSIS = "dimensional_analysis"
 
 
 @dataclass
@@ -546,3 +548,7 @@ def meta_discovery_across_domains(
         data=target_data,
         variable_names=variable_names
     )
+
+
+# Compatibility aliases for common naming patterns
+MetaDiscoveryTransferLearning = MetaDiscoveryTransferEngine

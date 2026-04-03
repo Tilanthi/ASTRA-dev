@@ -316,8 +316,11 @@ class OnlineCausalDiscovery:
             from stan_core.capabilities.v98_fci_causal_discovery import FCIDiscovery
             fci = FCIDiscovery(alpha=0.05)
 
+            # Convert numpy array to dict format expected by V98
+            data_dict = {name: all_data[:, i] for i, name in enumerate(self.variable_names)}
+
             # Run FCI
-            new_pag = fci.discover_causal_graph(all_data, self.variable_names)
+            new_pag = fci.discover_pag(data_dict, self.variable_names)
 
             # Update edge history and confidence
             self._update_edge_tracking(new_pag)

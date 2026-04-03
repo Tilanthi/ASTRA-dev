@@ -516,3 +516,7 @@ def adversarially_validate_discovery(
         discovery_data,
         variable_names
     )
+
+
+# Compatibility aliases for common naming patterns
+AdversarialHypothesisFramework = AdversarialDiscoverySystem
