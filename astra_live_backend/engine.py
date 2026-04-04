@@ -24,6 +24,7 @@ from .data_fetcher import (
     DataResult, search_arxiv_astroph,
 )
 from .novelty import NoveltyDetector
+from .literature import get_literature_store
 from .cosmology import distance_modulus, hubble_residual, fit_h0_from_sne, PLANCK_2018, SH0ES_2022
 from .causal import pc_algorithm, fci_algorithm, test_intervention
 from .dimensional import discover_scaling_relations, buckingham_pi, check_dimensional_consistency, ASTRO_DIMENSIONS
@@ -118,6 +119,9 @@ class DiscoveryEngine:
 
         # Novelty detector — compares results against known science
         self.novelty_detector = NoveltyDetector()
+
+        # Literature store — TF-IDF similarity for paper matching and novelty scoring
+        self.literature_store = get_literature_store()
 
         # Discovery memory — tracks findings, method effectiveness, exploration coverage
         self.discovery_memory = DiscoveryMemory()
@@ -960,17 +964,34 @@ class DiscoveryEngine:
             })
 
     def _literature_check(self, h: Hypothesis):
-        """Search arXiv for related work on this hypothesis topic."""
+        """Search arXiv for related work and compute literature novelty."""
         try:
             # Extract key terms from hypothesis name for search
             search_terms = h.name.replace("Analysis", "").replace("Structure", "").strip()
-            papers = search_arxiv_astroph(search_terms, max_results=3)
+            papers = search_arxiv_astroph(search_terms, max_results=5)
             if papers:
+                # Ingest into literature store for TF-IDF indexing
+                added = self.literature_store.add_papers_from_arxiv(papers)
+                if added > 0:
+                    self._log("LITERATURE", "ENGINE",
+                              f"📚 Indexed {added} new papers into literature store "
+                              f"(total: {self.literature_store.paper_count})", h.id)
+
                 self._log("LITERATURE", "ENGINE",
                           f"📚 Related papers: {len(papers)} found on arXiv for '{search_terms}'", h.id)
                 for p in papers[:2]:
                     self._log("LITERATURE", "ENGINE",
                               f"  → [{p['published']}] {p['title'][:80]}", h.id)
+
+                # Compute literature-based novelty score
+                hypothesis_text = f"{h.name} {h.description}"
+                novelty = self.literature_store.compute_novelty_score(hypothesis_text)
+                h.literature_novelty = novelty
+                self._log("LITERATURE", "ENGINE",
+                          f"📊 Literature novelty for {h.id}: {novelty:.2f} "
+                          f"({'novel' if novelty > 0.7 else 'incremental' if novelty > 0.4 else 'well-established'})",
+                          h.id)
+
                 return papers
         except Exception as e:
             self._log("LITERATURE", "ENGINE", f"arXiv search failed: {e}", h.id)
@@ -1043,6 +1064,8 @@ class DiscoveryEngine:
 
             # Record evaluation outcome
             conf_delta = h.confidence - conf_before
+            lit_novelty = getattr(h, 'literature_novelty', 0.0)
+            novelty_count = 1 if lit_novelty > 0.7 else 0
             self.discovery_memory.record_method_outcome(
                 method_name=f"evaluate_{category}",
                 hypothesis_id=h.id,
@@ -1052,7 +1075,7 @@ class DiscoveryEngine:
                 tests_run=len(h.test_results) - tests_before,
                 significant_results=sum(1 for t in new_tests
                                         if isinstance(t, dict) and t.get('p_value', 1.0) < 0.05),
-                novelty_signals=0,
+                novelty_signals=novelty_count,
                 confidence_delta=conf_delta,
                 success=len(new_tests) > 0,
             )

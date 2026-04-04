@@ -486,6 +486,55 @@ def api_literature_search(query: str = "galaxy", max_results: int = 5):
     return {"query": query, "results": papers, "count": len(papers)}
 
 
+# ── Literature Integration (Phase 9.1+9.2) ──────────────────────
+
+@app.get("/api/literature/papers")
+def api_literature_papers():
+    """List all cached papers in the literature store."""
+    from astra_live_backend.literature import get_literature_store
+    store = get_literature_store()
+    return {
+        "papers": store.get_papers(),
+        "total": store.paper_count,
+        "backend": "sklearn" if store._vectorizer is not None else "custom",
+        "timestamp": time.time(),
+    }
+
+
+@app.post("/api/literature/search-similar")
+async def api_literature_search_similar(request: Request):
+    """Find papers similar to a text query using TF-IDF cosine similarity."""
+    body = await request.json()
+    text = body.get("text", "")
+    top_k = body.get("top_k", 5)
+
+    if not text:
+        return JSONResponse({"error": "'text' field is required"}, 400)
+
+    from astra_live_backend.literature import get_literature_store
+    store = get_literature_store()
+    report = store.novelty_report(text, top_k=top_k)
+    report["timestamp"] = time.time()
+    return report
+
+
+@app.get("/api/literature/novelty/{hid}")
+def api_literature_novelty(hid: str):
+    """Compute novelty score for a hypothesis by its ID."""
+    h = engine.store.get(hid)
+    if not h:
+        return JSONResponse({"error": "Hypothesis not found"}, 404)
+
+    from astra_live_backend.literature import get_literature_store
+    store = get_literature_store()
+    text = f"{h.name} {h.description}"
+    report = store.novelty_report(text, top_k=5)
+    report["hypothesis_id"] = hid
+    report["hypothesis_name"] = h.name
+    report["timestamp"] = time.time()
+    return report
+
+
 # ── ASTRA Core Scientific Capabilities (White & Dey 2026) ───────
 
 @app.post("/api/science/causal-discovery")

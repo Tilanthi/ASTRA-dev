@@ -484,16 +484,24 @@ def search_arxiv(query: str, max_results: int = 10) -> List[Dict]:
             id_el = entry.find('atom:id', ns)
 
             title = title_el.text.strip().replace('\n', ' ') if title_el is not None and title_el.text else ''
-            abstract = summary_el.text.strip().replace('\n', ' ')[:500] if summary_el is not None and summary_el.text else ''
+            abstract = summary_el.text.strip().replace('\n', ' ') if summary_el is not None and summary_el.text else ''
             published = published_el.text[:10] if published_el is not None and published_el.text else ''
             arxiv_id = id_el.text.split('/abs/')[-1] if id_el is not None and id_el.text else ''
+
+            # Extract authors
+            authors = []
+            for author_el in entry.findall('atom:author', ns):
+                name_el = author_el.find('atom:name', ns)
+                if name_el is not None and name_el.text:
+                    authors.append(name_el.text.strip())
 
             if title:
                 papers.append({
                     'title': title,
-                    'abstract': abstract + ('...' if len(abstract) == 200 else ''),
+                    'abstract': abstract,
                     'published': published,
                     'arxiv_id': arxiv_id,
+                    'authors': authors,
                 })
 
         _arxiv_cache[cache_key] = (time.time(), papers)
