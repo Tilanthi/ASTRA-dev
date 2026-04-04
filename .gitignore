@@ -58,3 +58,10 @@ data/
 .evolution_*
 .evolution_checkpoint_*
 .claude/
+supplement.aux
+supplement.out
+supplement.toc
+supplement.log
+*.aux
+*.out
+*.toc
