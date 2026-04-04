@@ -1784,8 +1784,8 @@ class DiscoveryEngine:
             self._thread.join(timeout=5)
 
     def get_state(self) -> dict:
-        """Get full engine state for the API."""
-        with self._lock:
+        """Get full engine state for the API (lock-free read for responsiveness)."""
+        try:
             return {
                 "running": self.running,
                 "current_phase": self.current_phase,
@@ -1808,6 +1808,24 @@ class DiscoveryEngine:
                 "discovery_memory": self.discovery_memory.to_dict(),
                 "degradation": self.degradation_detector.get_status(),
             }
+        except Exception:
+            # Fallback if read races with cycle — return minimal state
+            return {
+                "running": self.running,
+                "current_phase": self.current_phase,
+                "cycle_count": self.cycle_count,
+                "uptime_seconds": time.time() - self.start_time,
+                "system_confidence": self.system_confidence,
+                "total_data_points": self.total_data_points,
+                "total_scripts": 0, "total_plots": 0,
+                "total_decisions": 0, "hypotheses_tested": 0,
+                "cross_domain_links": 0, "papers_drafted": 0,
+                "gpu_utilization": 0, "queue_depth": 0,
+                "domains_active": 0,
+                "funnel": {}, "safety_state": "NOMINAL",
+                "pending_approvals": 0,
+                "discovery_memory": {}, "degradation": {},
+            }
 
     def get_hypotheses(self) -> list[dict]:
         return [h.to_dict() for h in self.store.all()]
@@ -1821,8 +1839,8 @@ class DiscoveryEngine:
         return [e.to_dict() for e in entries]
 
     def get_chart_data(self) -> dict:
-        """Generate chart data from real engine state."""
-        with self._lock:
+        """Generate chart data from real engine state (lock-free)."""
+        try:
             funnel = self.store.funnel_counts()
 
             # Domain distribution from real data
@@ -1865,5 +1883,12 @@ class DiscoveryEngine:
                     "labels": radar_labels,
                     "data": [round(v, 3) for v in radar_values]
                 },
+                "system_confidence": self.system_confidence,
+            }
+        except Exception:
+            return {
+                "funnel": {"labels": [], "data": []},
+                "domain": {"labels": [], "data": []},
+                "radar": {"labels": [], "data": []},
                 "system_confidence": self.system_confidence,
             }
