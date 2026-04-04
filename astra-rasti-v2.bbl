@@ -54,6 +54,12 @@ Brinchmann J.,  Charlot S.,  White S. D.~M.,  Tremonti C.,  Kauffmann G.,
   Heckman T.,   Kennicutt R.,  2004, \mn@doi [MNRAS]
   {10.1111/j.1365-2966.2004.07881.x}, 351, 1151
 
+\bibitem[\protect\citeauthoryear{Brout et~al.,}{Brout et~al.}{2022}]{Brout2022}
+Brout D.,  et~al., 2022, \mn@doi [ApJ] {10.3847/1538-4357/ac8e04}, 938, 110
+
+\bibitem[\protect\citeauthoryear{Buckingham}{Buckingham}{1914}]{Buckingham1914}
+Buckingham E.,  1914, \mn@doi [Physical Review] {10.1103/PhysRev.4.345}, 4, 345
+
 \bibitem[\protect\citeauthoryear{Dressler}{Dressler}{1980}]{Dressler1980}
 Dressler A.,  1980, \mn@doi [ApJ] {10.1086/157753}, 236, 351
 
@@ -97,6 +103,10 @@ Mo H.~J.,  White S. D.~M.,  1996, \mn@doi [MNRAS] {10.1093/mnras/282.2.347},
 Panopoulou G.~V.,  Psarouli I.,  Taqi N.,   Andrews J.~J.,  2022, \mn@doi
   [A\&A] {10.1051/0004-6361/202142953}, 657, L13
 
+\bibitem[\protect\citeauthoryear{Pearl}{Pearl}{2009}]{Pearl2009}
+Pearl J.,  2009, {Causality: Models, Reasoning, and Inference}, 2nd edn.
+Cambridge University Press, Cambridge
+
 \bibitem[\protect\citeauthoryear{Peng, Lilly, Kova{\v{c}}, Bosz, Carollo,
   McGee, Alonso  \& Tassis}{Peng et~al.}{2010}]{Peng2010}
 Peng Y.-j.,  Lilly S.~J.,  Kova{\v{c}} K.,  Bosz E.,  Carollo C.~M.,  McGee
@@ -113,11 +123,21 @@ Perlmutter S.,  Aldering G.,  Goldhaber G.,   et~al., 1999, \mn@doi [ApJ]
 Riess A.~G.,  Filippenko A.~V.,  Challis P.,   et~al., 1998, \mn@doi [AJ]
   {10.1086/300499}, 116, 1009
 
+\bibitem[\protect\citeauthoryear{Schwarz}{Schwarz}{1978}]{Schwarz1978}
+Schwarz G.,  1978, \mn@doi [Annals of Statistics] {10.1214/aos/1176344136}, 6,
+  461
+
 \bibitem[\protect\citeauthoryear{Spirtes, Glymour  \& Scheines}{Spirtes
   et~al.}{2000}]{Spirtes2000}
 Spirtes P.,  Glymour C.,   Scheines R.,  2000, {Causation, Prediction, and
   Search}, 2nd edn.
 MIT Press, Cambridge, MA
+
+\bibitem[\protect\citeauthoryear{Strateva, Ivezi{\'c}, Knapp, Heckman, Strauss,
+  Gunn  \& Lupton}{Strateva et~al.}{2001}]{Strateva2001}
+Strateva I.,  Ivezi{\'c} {\v{Z}}.,  Knapp G.~R.,  Heckman T.~M.,  Strauss
+  M.~A.,  Gunn J.~E.,   Lupton R.~H.,  2001, \mn@doi [AJ] {10.1086/323301},
+  122, 1861
 
 \bibitem[\protect\citeauthoryear{Sutherland \& Saunders}{Sutherland \&
   Saunders}{1992}]{SutherlandSaunders1992}
@@ -133,6 +153,10 @@ Tremonti C.~A.,  Heckman T.~M.,  Kauffmann G.,   et~al., 2004, \mn@doi [ApJ]
   Dey}{2026}]{WhiteDey2026}
 White G.~J.,  Dey R.,  2026, {ASTRA: Autonomous System for Scientific Discovery
   in Astrophysics}, \url{https://github.com/Tilanthi/ASTRA}
+
+\bibitem[\protect\citeauthoryear{Zhang}{Zhang}{2008}]{Zhang2008}
+Zhang J.,  2008, \mn@doi [Artificial Intelligence]
+  {10.1016/j.artint.2008.08.001}, 172, 1873
 
 \makeatother
 \end{thebibliography}
