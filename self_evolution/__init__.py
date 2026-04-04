@@ -1,7 +1,7 @@
 """
 STAN Self-Evolution Framework
 
-An autonomous self-improvement system that evolves stan_core's reasoning
+An autonomous self-improvement system that evolves astra_core's reasoning
 and discovery capabilities through iterative mutation, evaluation, and selection.
 
 Core Principles:

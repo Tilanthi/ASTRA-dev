@@ -146,22 +146,22 @@ class CodeAnalyzer:
         # Map capability areas to files
         area_to_files = {
             'causal_inference': [
-                'stan_core/causal/discovery/pc_algorithm.py',
-                'stan_core/causal/model/counterfactual.py',
+                'astra_core/causal/discovery/pc_algorithm.py',
+                'astra_core/causal/model/counterfactual.py',
             ],
             'pattern_discovery': [
-                'stan_core/astro_physics/spectral_line_analysis.py',
-                'stan_core/arc_agi/pattern_library.py',
+                'astra_core/astro_physics/spectral_line_analysis.py',
+                'astra_core/arc_agi/pattern_library.py',
             ],
             'abstraction': [
-                'stan_core/reasoning/abstraction_stack.py',
-                'stan_core/memory/abstraction_memory.py',
+                'astra_core/reasoning/abstraction_stack.py',
+                'astra_core/memory/abstraction_memory.py',
             ],
             'uncertainty': [
-                'stan_core/astro_physics/uncertainty_quantification.py',
+                'astra_core/astro_physics/uncertainty_quantification.py',
             ],
             'multi_scale': [
-                'stan_core/astro_physics/multiscale_coupling.py',
+                'astra_core/astro_physics/multiscale_coupling.py',
             ],
         }
 
@@ -268,7 +268,7 @@ class MutationEngine:
         """Generate mutation to improve pattern discovery"""
         return MutationSpec(
             mutation_type=MutationType.ALGORITHM_OPTIMIZATION,
-            target_file="stan_core/astro_physics/spectral_line_analysis.py",
+            target_file="astra_core/astro_physics/spectral_line_analysis.py",
             target_function="identify_lines",
             description="Add multi-scale pattern detection for spectral lines",
             code_changes={
@@ -282,7 +282,7 @@ class MutationEngine:
         """Generate mutation to improve causal inference"""
         return MutationSpec(
             mutation_type=MutationType.CAUSAL_MODEL_UPDATE,
-            target_file="stan_core/causal/discovery/pc_algorithm.py",
+            target_file="astra_core/causal/discovery/pc_algorithm.py",
             target_function="discover_structure",
             description="Add conditional independence tests for time-series data",
             code_changes={
@@ -295,7 +295,7 @@ class MutationEngine:
         """Generate mutation to improve abstraction formation"""
         return MutationSpec(
             mutation_type=MutationType.ABSTRACTION_REFINEMENT,
-            target_file="stan_core/reasoning/abstraction_stack.py",
+            target_file="astra_core/reasoning/abstraction_stack.py",
             target_function="extract_principle",
             description="Add symbolic abstraction from numerical patterns",
             new_code='''
@@ -317,7 +317,7 @@ def extract_principle_enhanced(examples):
         """Generate mutation to improve uncertainty quantification"""
         return MutationSpec(
             mutation_type=MutationType.NUMERICAL_PRECISION,
-            target_file="stan_core/astro_physics/uncertainty_quantification.py",
+            target_file="astra_core/astro_physics/uncertainty_quantification.py",
             target_function="propagate_uncertainty",
             description="Add Bayesian uncertainty propagation",
             code_changes={
@@ -330,7 +330,7 @@ def extract_principle_enhanced(examples):
         """Generate mutation to improve multi-scale inference"""
         return MutationSpec(
             mutation_type=MutationType.CAPABILITY_COMPOSITION,
-            target_file="stan_core/astro_physics/multiscale_coupling.py",
+            target_file="astra_core/astro_physics/multiscale_coupling.py",
             target_function="integrate_scales",
             description="Add scale-crossing constraints from physics",
             new_code='''
@@ -356,19 +356,19 @@ def integrate_scales_with_constraints(scales_data):
         exploratory_ideas = [
             MutationSpec(
                 mutation_type=MutationType.CROSS_DOMAIN_LINKING,
-                target_file="stan_core/astro_physics/physics.py",
+                target_file="astra_core/astro_physics/physics.py",
                 description="Link quantum mechanics with stellar astrophysics",
                 expected_improvement="cross_domain_transfer"
             ),
             MutationSpec(
                 mutation_type=MutationType.PHYSICS_CONSTRAINT_ADDITION,
-                target_file="stan_core/causal/model/scm.py",
+                target_file="astra_core/causal/model/scm.py",
                 description="Add thermodynamic constraints to causal models",
                 expected_improvement="logical_consistency"
             ),
             MutationSpec(
                 mutation_type=MutationType.MODULE_INTEGRATION,
-                target_file="stan_core/__init__.py",
+                target_file="astra_core/__init__.py",
                 description="Integrate swarm intelligence with causal discovery",
                 expected_improvement="generalization_score"
             ),

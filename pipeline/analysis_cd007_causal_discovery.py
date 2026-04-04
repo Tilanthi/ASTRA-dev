@@ -36,8 +36,8 @@ import matplotlib.pyplot as plt
 import networkx as nx
 
 # Ensure the ASTRA codebase is in the path
-sys.path.append('/shared/ASTRA/stan_core')
-from stan_core.reasoning.causal_discovery import BiasAwareCausalDiscovery
+sys.path.append('/shared/ASTRA/astra_core')
+from astra_core.reasoning.causal_discovery import BiasAwareCausalDiscovery
 
 # Data paths
 CO2_PATH = '/shared/ASTRA/data/climate/co2_emissions.csv'

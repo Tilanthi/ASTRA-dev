@@ -1,7 +1,7 @@
 """
 Code Analyzer for STAN Self-Evolution
 
-Analyzes the stan_core codebase to identify:
+Analyzes the astra_core codebase to identify:
 - Potential improvement targets
 - Code complexity
 - Dependencies between modules
@@ -35,7 +35,7 @@ class AnalysisResult:
 
 class CodeAnalyzer:
     """
-    Analyzes stan_core codebase to guide evolution.
+    Analyzes astra_core codebase to guide evolution.
 
     Identifies high-value targets for mutation and provides
     insights into code structure.
@@ -48,7 +48,7 @@ class CodeAnalyzer:
 
     def analyze_codebase(self) -> Dict[str, Any]:
         """
-        Analyze entire stan_core codebase.
+        Analyze entire astra_core codebase.
 
         Returns:
             Summary of codebase structure
@@ -104,7 +104,7 @@ class CodeAnalyzer:
         Analyze a single Python file.
 
         Args:
-            filepath: Relative path to file from stan_core_path
+            filepath: Relative path to file from astra_core_path
 
         Returns:
             AnalysisResult or None if analysis fails
@@ -161,7 +161,7 @@ class CodeAnalyzer:
             return None
 
     def _find_python_files(self) -> List[str]:
-        """Find all Python files in stan_core"""
+        """Find all Python files in astra_core"""
         python_files = []
 
         for root, dirs, files in os.walk(self.stan_core_path):
@@ -235,16 +235,16 @@ class CodeAnalyzer:
         """Extract file dependencies"""
         dependencies = set()
 
-        # Find stan_core imports
+        # Find astra_core imports
         for node in ast.walk(tree):
             if isinstance(node, (ast.Import, ast.ImportFrom)):
                 if isinstance(node, ast.Import):
                     for alias in node.names:
-                        if alias.name.startswith('stan_core'):
+                        if alias.name.startswith('astra_core'):
                             dependencies.add(alias.name)
                 else:
                     module = node.module if node.module else ''
-                    if module.startswith('stan_core'):
+                    if module.startswith('astra_core'):
                         dependencies.add(module)
 
         return dependencies
@@ -350,8 +350,8 @@ class CodeAnalyzer:
         """Extract module name from filepath"""
         parts = filepath.split(os.sep)
 
-        if 'stan_core' in parts:
-            idx = parts.index('stan_core')
+        if 'astra_core' in parts:
+            idx = parts.index('astra_core')
             if idx + 1 < len(parts):
                 return parts[idx + 1]
 

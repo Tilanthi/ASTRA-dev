@@ -116,7 +116,7 @@ ASTRA/
 │   │   └── fig6-discovery-mode.*      Discovery cycle performance
 │   └── *.pdf                       Compiled PDFs (not tracked)
 │
-├── stan_core/                   ← Legacy cognitive framework (~614 modules)
+├── astra_core/                   ← Legacy cognitive framework (~614 modules)
 │   ├── capabilities/               Analysis capabilities
 │   ├── reasoning/                   Reasoning engines
 │   ├── memory/                      Persistent memory system

@@ -72,16 +72,16 @@ class CapabilityEvaluator:
 
     def load_system(self) -> bool:
         """
-        Load the stan_core system for evaluation.
+        Load the astra_core system for evaluation.
 
         Returns:
             True if system loaded successfully
         """
         try:
-            # Import stan_core
+            # Import astra_core
             sys.path.insert(0, self.stan_core_path)
 
-            from stan_core import create_stan_system
+            from astra_core import create_stan_system
 
             self.system = create_stan_system(version="unified", mode="astronomy")
 

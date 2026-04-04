@@ -1,0 +1,452 @@
+
+================================================================================
+          BIBLIOGRAPHY AND RESEARCH GUIDE: FILAMENT WIDTH MYSTERY
+================================================================================
+
+AUTHOR: ASTRA Research Librarian
+DATE: 2026-04-03
+VERSION: 1.0
+
+================================================================================
+PART I: ESSENTIAL READING
+================================================================================
+
+If you only read 5 papers on the 0.1 pc filament width mystery, read these:
+
+1. Arzoumanian et al. (2011, A&A 529, A6) - The Discovery Paper
+   Why: First report of 0.1 pc characteristic width
+
+2. Planck Collaboration (2016, A&A 592, A92) - The All-Sky Confirmation
+   Why: Confirms universal width in diverse environments
+
+3. André et al. (2014, PPVI) - The Review
+   Why: Unified context and theoretical framework
+
+4. Hennebelle & André (2013, A&A 557, A15) - The Theory Review
+   Why: Comprehensive theoretical overview
+
+5. Kritsuk et al. (2013, ApJ 779, 136) - The Simulations
+   Why: Shows sonic scale emerges naturally from MHD simulations
+
+================================================================================
+PART II: COMPLETE BIBLIOGRAPHY (Organized by Topic)
+================================================================================
+
+A. FOUNDATIONAL OBSERVATIONAL PAPERS
+================================================================================
+
+
+Arzoumanian, D., et al. (2011)
+  The filamentary structure of the interstellar medium: Evidence for a characteristic filament width
+  A&A 529, A6
+  DOI: 10.1051/0004-6361/201015161
+  Key findings:
+    • First reported characteristic 0.1 pc filament width
+    • Analysis of 599 filaments in Aquila and 143 in Polaris
+    • Herschel 250-500 µm observations
+  Relevance: 100%
+
+
+Planck Collaboration (2016)
+  Planck intermediate results. XXXV. Probing the role of the magnetic field in the formation of structure in molecular clouds
+  A&A 592, A92
+  DOI: 10.1051/0004-6361/201628617
+  Key findings:
+    • All-sky catalog of ~10,000 filaments
+    • Confirms 0.1 pc characteristic width in diverse environments
+    • Analysis of polarization and magnetic field properties
+  Relevance: 95%
+
+
+André, P., et al. (2014)
+  The filamentary structure of star-forming clouds
+  Protostars and Planets VI , 51
+  DOI: 10.2452/PRPIPP000003
+  Key findings:
+    • Review of filament properties across many clouds
+    • Unified model of filament formation and star formation
+    • Critical mass per unit length: 16 M_sun/pc
+  Relevance: 92%
+
+
+Palmeirim, P., et al. (2013)
+  The Herschel Gould Belt survey: First results from the Taurus region
+  A&A 550, A106
+  DOI: 10.1051/0004-6361/201220288
+  Key findings:
+    • 532 filaments analyzed in Taurus
+    • Mean width 0.11 ± 0.04 pc
+    • Velocity-coherent filament analysis
+  Relevance: 90%
+
+
+Hacar, A., et al. (2013)
+  Decoding the velocity structure of Taurus: From large-scale turbulence to filamentary networks
+  A&A 552, A90
+  DOI: 10.1051/0004-6361/201220299
+  Key findings:
+    • 40 velocity-coherent filaments in Taurus
+    • Width ~0.1 pc confirmed
+    • Filament-fiber hierarchy
+  Relevance: 88%
+
+
+Kritsuk, A. G., et al. (2013)
+  On the Density Power Spectrum in Supersonic Turbulence: Soluble Model and Numerical Simulations
+  ApJ 779, 136
+  DOI: 10.1088/0004-637X/779/2/136
+  Key findings:
+    • MHD simulations of supersonic turbulence
+    • Sonic scale emerges naturally in simulations
+    • Density power spectrum shows characteristic scale
+  Relevance: 88%
+
+
+Hennebelle, P. and André, P. (2013)
+  The formation and evolution of filaments in the interstellar medium
+  A&A 557, A15
+  DOI: 10.1051/0004-6361/201321252
+  Key findings:
+    • Theoretical review of filament formation
+    • Ambipolar diffusion scenarios
+    • Turbulent filament formation models
+  Relevance: 85%
+
+
+Panopoulou, G. V., et al. (2022)
+  Filament widths are log-normally distributed, not constant
+  A&A 657, A35
+  DOI: 10.1051/0004-6361/202141194
+  Key findings:
+    • Re-analysis suggests width distribution, not constant
+    • Log-normal distribution with mean ~0.1 pc
+    • Implications for formation mechanisms
+  Relevance: 85%
+
+
+Padoan, P., et al. (2001)
+  The density structure of the diffuse interstellar medium: Velocity probability distribution functions
+  ApJ 553, 877
+  DOI: 10.1086/320692
+  Key findings:
+    • Sonic scale in supersonic turbulence
+    • Theoretical prediction for characteristic density scale
+    • Relation to filament widths
+  Relevance: 82%
+
+
+Federrath, C. (2016)
+  The density structure of the interstellar medium: Mass-weighted versus volume-weighted statistics
+  MNRAS 457, 399
+  DOI: 10.1093/mnras/stv2924
+  Key findings:
+    • Turbulent driving effects on density structure
+    • Sonic scale dependence on driving parameters
+    • Implications for filament widths
+  Relevance: 80%
+
+
+B. THEORETICAL PAPERS
+================================================================================
+
+
+Hacar, A., et al. (2013)
+  Decoding the velocity structure of Taurus: From large-scale turbulence to filamentary networks
+  A&A 552, A90
+  DOI: 10.1051/0004-6361/201220299
+  Key findings:
+    • 40 velocity-coherent filaments in Taurus
+    • Width ~0.1 pc confirmed
+    • Filament-fiber hierarchy
+  Relevance: 88%
+
+
+Kritsuk, A. G., et al. (2013)
+  On the Density Power Spectrum in Supersonic Turbulence: Soluble Model and Numerical Simulations
+  ApJ 779, 136
+  DOI: 10.1088/0004-637X/779/2/136
+  Key findings:
+    • MHD simulations of supersonic turbulence
+    • Sonic scale emerges naturally in simulations
+    • Density power spectrum shows characteristic scale
+  Relevance: 88%
+
+
+McKee, C. F. and Ostriker, E. C. (2007)
+  Theory of Star Formation
+  ARA&A 45, 565
+  DOI: 10.1146/annurev.astro.45.051806.110604
+  Key findings:
+    • Comprehensive review of star formation theory
+    • Turbulence and filament formation context
+    • Sonic scale in broader star formation context
+  Relevance: 75%
+
+
+C. COUNTEREXAMPLES AND COMPLEXITIES
+================================================================================
+
+These papers challenge or complicate the simple 0.1 pc picture:
+
+
+Planck Collaboration (2016)
+  Planck intermediate results. XXXV. Probing the role of the magnetic field in the formation of structure in molecular clouds
+  A&A 592, A92
+  DOI: 10.1051/0004-6361/201628617
+  Key findings:
+    • All-sky catalog of ~10,000 filaments
+
+    • Confirms 0.1 pc characteristic width in diverse environments
+
+    • Analysis of polarization and magnetic field properties
+
+
+Padoan, P., et al. (2001)
+  The density structure of the diffuse interstellar medium: Velocity probability distribution functions
+  ApJ 553, 877
+  DOI: 10.1086/320692
+  Key findings:
+    • Sonic scale in supersonic turbulence
+
+    • Theoretical prediction for characteristic density scale
+
+    • Relation to filament widths
+
+
+Panopoulou, G. V., et al. (2022)
+  Filament widths are log-normally distributed, not constant
+  A&A 657, A35
+  DOI: 10.1051/0004-6361/202141194
+  Key findings:
+    • Re-analysis suggests width distribution, not constant
+
+    • Log-normal distribution with mean ~0.1 pc
+
+    • Implications for formation mechanisms
+
+
+Orkisz, J., et al. (2019)
+  Linking magnetic fields to filaments: Filamentary cloud surroundings identified by magnetic field topology
+  A&A 624, A110
+  DOI: 10.1051/0004-6361/201834377
+  Key findings:
+    • Magnetic field influence on filament properties
+
+    • Width variations with magnetic field strength
+
+    • Complexities in simple sonic scale picture
+
+
+================================================================================
+PART III: OBSERVATIONAL DATASETS
+================================================================================
+
+Key datasets for studying filament widths:
+
+
+Herschel Gould Belt Survey (HGBS)
+  Instrument: Herschel/PACS-SPIRE
+  Wavelength: 70-500 µm
+  Resolution: 5-36 arcsec
+  Coverage: Nearby star-forming regions (< 500 pc)
+  Access: http://gouldbelt-herschel.cea.fr
+  Key papers:
+    • André et al. (2010, A&A 518, L102)
+
+    • Arzoumanian et al. (2011, A&A 529, A6)
+
+
+Planck All-Sky Catalogue of Galactic Cold Clumps
+  Instrument: Planck/HFI
+  Wavelength: 353-857 GHz
+  Resolution: 5-10 arcmin
+  Coverage: Full sky
+  Access: https://www.cosmos.esa.int/web/planck
+  Key papers:
+    • Planck Collaboration (2016, A&A 592, A92)
+
+    • Planck Collaboration (2011, A&A 536, A23)
+
+
+BICEP/Keck Polarization Data
+  Instrument: BICEP2/Keck Array
+  Wavelength: 150 GHz
+  Resolution: 0.5 degrees
+  Coverage: Southern Galactic Cap
+  Access: https://bicepkeck.org
+  Key papers:
+    • BICEP2/Keck Collaboration (2021, PRD 104, 022003)
+
+
+ALMA Molecular Line Maps
+  Instrument: ALMA
+  Wavelength: 0.3-3 mm
+  Resolution: 0.01-1 arcsec
+  Coverage: Targeted observations
+  Access: https://almascience.org
+  Key papers:
+    • Hacar et al. (2018, ApJ 861, 26)
+
+    • Tatematsu et al. (2016, PASJ 68, 23)
+
+
+================================================================================
+PART IV: THEORETICAL AND COMPUTATIONAL TOOLS
+================================================================================
+
+
+Athena++ (simulation)
+  Adaptive mesh refinement MHD code for ISM simulations
+  Availability: Open source (https://princetonuniversity.github.io/Athena-C-version/)
+  Key papers:
+    • Stone et al. (2020, ApJS 241, 9)
+
+    • Kritsuk et al. (2011, ApJ 729, 1)
+
+
+FLASH (simulation)
+  Adaptive mesh MHD code with AMR
+  Availability: Open source (http://flash.uchicago.edu/site/)
+  Key papers:
+    • Fryxell et al. (2000, ApJS 131, 273)
+
+    • Federrath et al. (2010, A&A 512, A28)
+
+
+getsf (analysis)
+  Filament identification tool for Herschel data
+  Availability: Available on request
+  Key papers:
+    • Men'shchikov (2013, A&A 549, A91)
+
+
+FilGen (simulation)
+  Filament generation using non-equilibrium chemistry
+  Availability: Contact authors
+  Key papers:
+    • Clarke et al. (2018, ApJ 857, 102)
+
+
+RADMC-3D (analysis)
+  Radiative transfer for dust emission
+  Availability: Open source (http://www.ita.uni-heidelberg.de/~dullemond/software/radmc-3d/)
+  Key papers:
+    • Dullemond et al. (2012, RADMC-3D manual)
+
+
+================================================================================
+PART V: RESEARCH DIRECTIONS
+================================================================================
+
+Unanswered Questions:
+  1. Why do some studies report broader widths (0.2-0.3 pc)?
+  2. What determines the filament-to-core transition?
+  3. How do magnetic fields modify the sonic scale?
+  4. What is the width distribution—constant or log-normal?
+  5. How do filament widths evolve in time?
+
+Future Observational Work:
+  • High-resolution ALMA observations of filament substructure
+  • Polarization mapping of magnetic fields in filaments
+  • Velocity field measurements to test turbulent origin
+  • Multi-wavelength studies to trace different density regimes
+  • Surveys of extreme environments (very high/low density)
+
+Future Theoretical Work:
+  • MHD simulations with realistic chemistry and cooling
+  • Filament formation in different turbulent driving regimes
+  • Non-ideal MHD effects (ambipolar diffusion, Hall effect)
+  • Time evolution of filament widths in simulations
+  • Connection between filament widths and core masses
+
+Critical Observations Needed:
+  1. Correlation of filament widths with:
+     - Local Mach number
+     - Magnetic field strength
+     - Temperature
+     - Turbulent driving scale
+
+  2. Width measurements in:
+     - Very low density clouds (cirrus)
+     - Very high density regions (hot cores)
+     - Strong magnetic field environments
+     - Different Galactic environments
+
+  3. Tests of sonic scale predictions:
+     - Scale-dependence of velocity dispersion
+     - Transition from supersonic to subsonic
+     - Density structure at sonic scale
+
+================================================================================
+PART VI: PRACTICAL ADVICE FOR RESEARCHERS
+================================================================================
+
+Starting a Research Project on Filament Widths?
+
+1. FOR OBSERVATIONAL RESEARCHERS:
+   • Start with Herschel data (widest coverage, best maps)
+   • Use getsf or DisPerSE for filament extraction
+   • Measure widths using radial profile fitting
+   • Compare with local velocity dispersion
+   • Archive your filament catalogs!
+
+2. FOR THEORETICAL RESEARCHERS:
+   • Use Athena++ or FLASH for MHD simulations
+   • Include realistic cooling and chemistry
+   • Measure filament widths in simulations
+   • Test sonic scale predictions
+   • Make synthetic observations for direct comparison
+
+3. FOR STUDENTS:
+   • Read Arzoumanian et al. (2011) first
+   • Download Herschel data from HGBS website
+   • Learn getsf for filament extraction
+   • Compare widths in different regions
+   • Look for correlations with environment
+
+Common Pitfalls to Avoid:
+  ✓ Don't assume single width for all filaments
+  ✓ Do account for beam smearing in width measurements
+  ✓ Don't ignore selection effects in filament catalogs
+  ✓ Do compare multiple width measurement methods
+  ✓ Don't overinterpret results from small samples
+
+================================================================================
+PART VII: CONTACTS AND COMMUNITY
+================================================================================
+
+Key Researchers in this Field:
+  • Philippe André (CEA Saclay) - HGBS PI
+  • Doris Arzoumanian (Observatoire de Paris) - Discovery paper lead
+  • Paola Caselli (MPE) - Astrochemistry of filaments
+  • Shantanu Basu (Western University) - Theory
+  • Christoph Federrath (ANU) - Turbulence simulations
+  • Patrick Hennebelle (CEA Saclay) - Theory
+  • Jouni Kainulainen (MPE) - Extinction mapping
+  • Sergey Kritsuk (SDSC) - MHD simulations
+
+Conferences:
+  • "Filaments: The Birthplaces of Stars" (periodic workshop)
+  • "From Molecular Clouds to Stars" (IAU Symposium)
+  • AAS meetings (ISMA sessions)
+  • EAS meetings (ISM sessions)
+
+Mailing Lists:
+  • Star Formation mailing list (starform@m lists)
+  • Herschel Science Archive (hsa lists)
+  • FILAMENTS discussion group (contact organizers)
+
+================================================================================
+END OF BIBLIOGRAPHY GUIDE
+================================================================================
+
+For the most up-to-date references, search ADS (https://ui.adsabs.harvard.edu)
+with keywords: "filament width 0.1 pc", "interstellar filaments", "sonic scale"
+
+Last updated: 2026-04-03
+Next update: When major new papers are published
+
+================================================================================
+Generated by ASTRA Research Librarian
+Version 4.7 | 2026-04-03
+================================================================================

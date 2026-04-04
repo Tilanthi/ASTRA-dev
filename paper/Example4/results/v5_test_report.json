@@ -1,0 +1,72 @@
+{
+  "timestamp": "2026-04-03T11:41:02.414127",
+  "example": "Time-Domain Astronomy - Supernova Light Curves",
+  "dataset": {
+    "n_sne": 3000,
+    "redshift_range": [
+      0.0100089084651609,
+      0.2998717339426271
+    ],
+    "type_Ia": 2094,
+    "type_II": 608,
+    "type_Ibc": 298
+  },
+  "results": {
+    "V101": {
+      "capability": "Temporal Causal Discovery",
+      "status": "SUCCESS",
+      "edges_discovered": 0
+    },
+    "V102": {
+      "capability": "Scalable Counterfactual Engine",
+      "status": "SUCCESS",
+      "ate": -9.20824070328926,
+      "interventions_tested": 3
+    },
+    "V103": {
+      "capability": "Multi-Modal Evidence Integration",
+      "status": "SUCCESS",
+      "confidence": 0.9996666666666667,
+      "triangulation": "strong",
+      "supporting": 2,
+      "contradicting": 0
+    },
+    "V104": {
+      "capability": "Adversarial Hypothesis Framework",
+      "status": "SUCCESS",
+      "challenges_generated": 1,
+      "hypothesis_refined": true
+    },
+    "V105": {
+      "capability": "Meta-Discovery Transfer Learning",
+      "status": "SUCCESS",
+      "pattern_added": "phillips_relation",
+      "domain": "time_domain_astronomy",
+      "strategy": "scaling_relations"
+    },
+    "V106": {
+      "capability": "Explainable Causal Reasoning",
+      "status": "SUCCESS",
+      "initialized": true
+    },
+    "V107": {
+      "capability": "Discovery Triage and Prioritization",
+      "status": "SUCCESS",
+      "candidates_ranked": 3,
+      "top_priority": "Super-Chandrasekhar SNe Ia"
+    },
+    "V108": {
+      "capability": "Real-Time Streaming Discovery",
+      "status": "SUCCESS",
+      "batches_processed": 10,
+      "alerts_detected": 0,
+      "streaming_functional": true
+    }
+  },
+  "summary": {
+    "total": 8,
+    "successful": 8,
+    "failed": 0,
+    "success_rate": "100.0%"
+  }
+}

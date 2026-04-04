@@ -431,11 +431,11 @@ def with_error_handling(func, *args, **kwargs):
         """
         # Map capabilities to files
         capability_to_file = {
-            'pattern_discovery': 'stan_core/astro_physics/spectral_line_analysis.py',
-            'causal_inference': 'stan_core/causal/discovery/pc_algorithm.py',
-            'uncertainty_quantification': 'stan_core/astro_physics/uncertainty_quantification.py',
-            'abstraction_formation': 'stan_core/reasoning/abstraction_stack.py',
-            'multi_scale_inference': 'stan_core/astro_physics/multiscale_coupling.py',
+            'pattern_discovery': 'astra_core/astro_physics/spectral_line_analysis.py',
+            'causal_inference': 'astra_core/causal/discovery/pc_algorithm.py',
+            'uncertainty_quantification': 'astra_core/astro_physics/uncertainty_quantification.py',
+            'abstraction_formation': 'astra_core/reasoning/abstraction_stack.py',
+            'multi_scale_inference': 'astra_core/astro_physics/multiscale_coupling.py',
         }
 
         target_file = capability_to_file.get(target_capability)

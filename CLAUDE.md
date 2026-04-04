@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 The system has two main components:
 1. **`astra_live_backend/`** — The active system: a FastAPI server with 89 endpoints, an OODA discovery engine, safety architecture, and self-improvement loop
-2. **`stan_core/`** — Legacy cognitive framework (~614 modules, retained for backward compatibility)
+2. **`astra_core/`** — Legacy cognitive framework (~614 modules, retained for backward compatibility)
 
 ### Naming Convention
 
@@ -56,7 +56,7 @@ ASTRA/
 │   ├── mnras.cls, mnras.bst        MNRAS LaTeX class & style
 │   └── generate_supplement.py      Auto-generate supplement from API
 │
-├── stan_core/                   ← Legacy cognitive framework (~614 modules)
+├── astra_core/                   ← Legacy cognitive framework (~614 modules)
 ├── self_evolution/              ← Self-improvement engine
 ├── pipeline/                    ← Per-hypothesis analysis scripts
 ├── config/                      ← System prompts & configuration
@@ -163,9 +163,9 @@ python3 reproduce.py --all               # Reproduce all
 
 ---
 
-## Legacy System: stan_core/
+## Legacy System: astra_core/
 
-The `stan_core/` directory contains the original cognitive framework (~614 Python modules, ~280K LoC). It includes domain modules, physics engines, reasoning capabilities, and memory systems. **This code is retained for backward compatibility but is not actively developed.** The active system is `astra_live_backend/`.
+The `astra_core/` directory contains the original cognitive framework (~614 Python modules, ~280K LoC). It includes domain modules, physics engines, reasoning capabilities, and memory systems. **This code is retained for backward compatibility but is not actively developed.** The active system is `astra_live_backend/`.
 
 Internal module names still use `stan_` prefixes — this is intentional and should not be renamed.
 
