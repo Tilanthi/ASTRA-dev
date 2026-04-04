@@ -58,3 +58,18 @@ data/
 .evolution_*
 .evolution_checkpoint_*
 .claude/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Compiled PDFs (regenerate from source)
+paper/*.pdf
+paper/figures/*.pdf
+paper/figures/*.png
