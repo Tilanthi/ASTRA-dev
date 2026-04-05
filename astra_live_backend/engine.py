@@ -45,6 +45,8 @@ from .adaptive_strategist import AdaptiveStrategist
 from .degradation import DegradationDetector
 from .paper_generator import get_paper_generator
 from .provenance import ProvenanceTracker
+from .stigmergy_bridge import StigmergyBridge, get_stigmergy_bridge
+from .swarm_agents import SwarmCoordinator
 
 
 @dataclass
@@ -142,6 +144,10 @@ class DiscoveryEngine:
 
         # Provenance tracker — Phase 11.1
         self.provenance_tracker = ProvenanceTracker()
+
+        # Stigmergy bridge — connects pheromone subsystem to engine
+        self.stigmergy = get_stigmergy_bridge(pheromone_weight=0.3)
+        self.swarm = SwarmCoordinator(self.stigmergy)
 
         # Exploration schedule — Phase 10.6: force domain round-robin
         self._forced_domain: Optional[str] = None
@@ -350,6 +356,23 @@ class DiscoveryEngine:
 
         self.queue_depth = len(self.store.by_phase(Phase.SCREENING)) + len(self.store.by_phase(Phase.TESTING))
 
+        # Stigmergy: scout for novelty and get exploration direction
+        try:
+            self.stigmergy.on_engine_cycle(self.cycle_count)
+            scout_action = self.swarm.run_orient_phase()
+            if scout_action:
+                direction = self.stigmergy.get_exploration_direction(
+                    scout_action.target_domain
+                )
+                if direction.get('strategy') == 'explore' and direction.get('recommended_domain'):
+                    rec = direction['recommended_domain']
+                    self._log("ORIENT", "STIGMERGY",
+                              f"Pheromone scout: strategy={direction['strategy']}, "
+                              f"C_k={direction.get('curiosity_value', 0):.2f}, "
+                              f"recommended={rec}")
+        except Exception as e:
+            self._log("ORIENT", "STIGMERGY", f"Stigmergy orient error: {e}")
+
     # ── SELECT Phase ──────────────────────────────────────────────
     def select(self):
         """Rank hypotheses by information gain, novelty, and testability."""
@@ -382,6 +405,26 @@ class DiscoveryEngine:
             scored.append((h, score))
 
         scored.sort(key=lambda x: x[1], reverse=True)
+
+        # Stigmergy: re-rank using pheromone signals
+        try:
+            if scored:
+                candidates = [h for h, _ in scored]
+                scores_list = [s for _, s in scored]
+                h_dicts = [
+                    {'domain': h.domain, 'category': self.strategist.classify_hypothesis(h),
+                     'id': h.id, 'name': h.name, 'confidence': h.confidence}
+                    for h in candidates
+                ]
+                reranked = self.stigmergy.rank_hypotheses(h_dicts, scores_list)
+                # Map back to hypothesis objects
+                h_by_id = {h.id: h for h in candidates}
+                scored = [(h_by_id.get(d['id'], candidates[0]), s) for d, s in reranked
+                          if d['id'] in h_by_id]
+                self._log("SELECT", "STIGMERGY",
+                          f"Pheromone re-ranking applied (weight={self.stigmergy.pheromone_weight:.2f})")
+        except Exception as e:
+            self._log("SELECT", "STIGMERGY", f"Stigmergy ranking error: {e}")
 
         # Log top selections
         for i, (h, score) in enumerate(scored[:3]):
@@ -508,6 +551,36 @@ class DiscoveryEngine:
                     )
                 except Exception:
                     pass  # Provenance is best-effort, never block discovery
+
+            # Stigmergy: deposit pheromones based on investigation outcome
+            try:
+                h_dict = {
+                    'id': h.id, 'domain': h.domain, 'confidence': h.confidence,
+                    'category': category, 'name': h.name,
+                }
+                # Determine best test result from this investigation
+                new_tests = h.test_results[tests_before_investigate:]
+                best_p = 1.0
+                best_effect = 0.0
+                any_passed = False
+                for t in new_tests:
+                    if isinstance(t, dict):
+                        p = t.get('p_value', 1.0)
+                        if p < best_p:
+                            best_p = p
+                            best_effect = t.get('effect_size', t.get('statistic', 0))
+                        if p < 0.05:
+                            any_passed = True
+                self.stigmergy.on_hypothesis_tested(h_dict, {
+                    'passed': any_passed,
+                    'p_value': best_p,
+                    'effect_size': best_effect,
+                    'test_name': f'investigate_{category}',
+                })
+                # A/B tracking
+                self.stigmergy.record_ab_result(guided=True, success=any_passed)
+            except Exception as e:
+                self._log("INVESTIGATE", "STIGMERGY", f"Stigmergy deposit error: {e}")
 
         self.total_scripts += len(targets)
 
@@ -1088,6 +1161,19 @@ class DiscoveryEngine:
                             data_source=category,
                             sample_size=h.data_points_used,
                         )
+                        # Stigmergy: record discovery in pheromone field
+                        try:
+                            self.stigmergy.on_discovery({
+                                'domain': h.domain,
+                                'category': category,
+                                'significance': 1.0 - p_val,
+                                'content': f"{h.name}: {test.get('details', '')}",
+                                'reward': abs(stat),
+                                'novelty': 0.5,
+                                'confidence': h.confidence,
+                            })
+                        except Exception:
+                            pass
                     # Check novelty
                     self._check_novelty(h, test.get('test_name', ''), stat, p_val,
                                        {"data_points": h.data_points_used})
@@ -1493,6 +1579,30 @@ class DiscoveryEngine:
                 self._decide("expand",
                              f"Initiated paper draft #{self.papers_drafted} from {h.id} ({h.name})",
                              "DRAFTING", h.id)
+
+        # Stigmergy: swarm update phase — all agents deposit pheromones
+        try:
+            cycle_results = [{
+                'domain': h.domain,
+                'passed': h.phase in (Phase.VALIDATED, Phase.PUBLISHED),
+                'hypothesis_id': h.id,
+                'effect_size': h.confidence,
+            } for h in active[:5]]
+            self.swarm.run_update_phase(cycle_results)
+
+            # Record cross-domain connections in pheromone field
+            for h in active:
+                if hasattr(h, 'cross_domain_links') and h.cross_domain_links:
+                    for link_id in h.cross_domain_links[:2]:
+                        linked = self.store.get(link_id)
+                        if linked and linked.domain != h.domain:
+                            self.stigmergy.on_cross_domain_connection(
+                                h.domain, linked.domain,
+                                'pattern', 'pattern',
+                                similarity=min(h.confidence, linked.confidence),
+                            )
+        except Exception as e:
+            self._log("UPDATE", "STIGMERGY", f"Swarm update error: {e}")
 
         # Cross-domain link discovery — based on shared discovery structure, not random
         self._update_cross_domain_links(active)

@@ -52,7 +52,7 @@ from .orchestrator import (
 )
 
 # Pheromone dynamics
-from .pheromone_dynamics import (
+from ..intelligence.pheromone_dynamics import (
     DigitalPheromoneField,
     PheromoneType,
     PheromoneDeposit

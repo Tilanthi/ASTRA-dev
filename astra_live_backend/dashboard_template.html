@@ -1612,6 +1612,47 @@ body::after {
 @media (max-width: 768px) {
   .lit-grid { grid-template-columns: 1fr !important; }
 }
+/* --- Stigmergy tab --- */
+.stig-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 8px 0;
+}
+.stig-grid .panel-full { grid-column: 1 / -1; }
+@media (max-width: 768px) {
+  .stig-grid { grid-template-columns: 1fr !important; }
+}
+.stig-agent-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.stig-agent-card {
+  background: rgba(0,229,255,0.04);
+  border: 1px solid rgba(0,229,255,0.12);
+  border-radius: 8px;
+  padding: 14px;
+  transition: border-color 0.2s;
+}
+.stig-agent-card:hover { border-color: rgba(0,229,255,0.3); }
+.stig-agent-name { font-family: 'Orbitron', monospace; font-size: 0.75rem; letter-spacing: 1px; color: var(--cyan); margin-bottom: 6px; }
+.stig-agent-role { font-size: 0.7rem; color: var(--text-tertiary); margin-bottom: 8px; }
+.stig-agent-stat { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-secondary); padding: 2px 0; }
+.stig-agent-stat span:last-child { font-family: 'Space Mono', monospace; }
+.stig-status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.stig-status-dot.active { background: var(--emerald); box-shadow: 0 0 6px var(--emerald); }
+.stig-status-dot.idle { background: var(--amber); }
+.stig-status-dot.offline { background: var(--text-tertiary); }
+.stig-gap-bar { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+.stig-gap-bar .bar-bg { flex: 1; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+.stig-gap-bar .bar-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
+.stig-gap-bar .bar-label { font-size: 0.65rem; color: var(--text-tertiary); min-width: 100px; }
+.stig-gap-bar .bar-value { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--text-secondary); min-width: 36px; text-align: right; }
+.stig-ab-table { width: 100%; border-collapse: collapse; }
+.stig-ab-table th { font-size: 0.65rem; color: var(--text-tertiary); text-align: left; padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.06); text-transform: uppercase; letter-spacing: 0.5px; }
+.stig-ab-table td { font-size: 0.7rem; color: var(--text-secondary); padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.03); font-family: 'Space Mono', monospace; }
+.stig-ab-winner { color: var(--emerald); font-weight: 600; }
+.stig-gordon-table { width: 100%; border-collapse: collapse; }
+.stig-gordon-table th { font-size: 0.65rem; color: var(--text-tertiary); text-align: left; padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.06); text-transform: uppercase; letter-spacing: 0.5px; }
+.stig-gordon-table td { font-size: 0.7rem; color: var(--text-secondary); padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.stig-gordon-table td:nth-child(2) { font-family: 'Space Mono', monospace; }
 .lit-table-wrap { overflow-x: auto; }
 .lit-table {
   width: 100%;
@@ -1871,6 +1912,7 @@ body::after {
   <button class="tab-btn" data-tab="discoveries" role="tab" id="tab-btn-discoveries" aria-selected="false" aria-controls="tab-discoveries" onclick="switchTab('discoveries')" aria-label="Scientific discoveries tab">✦ <span class="tab-label">DISCOVERIES</span></button>
   <button class="tab-btn" data-tab="selfimprove" role="tab" id="tab-btn-selfimprove" aria-selected="false" aria-controls="tab-selfimprove" onclick="switchTab('selfimprove')" aria-label="Self-improvement metrics tab">⟳ <span class="tab-label">SELF-IMPROVE</span></button>
   <button class="tab-btn" data-tab="literature" role="tab" id="tab-btn-literature" aria-selected="false" aria-controls="tab-literature" onclick="switchTab('literature')" aria-label="Literature and citations tab">📚 <span class="tab-label">LITERATURE</span></button>
+  <button class="tab-btn" data-tab="stigmergy" role="tab" id="tab-btn-stigmergy" aria-selected="false" aria-controls="tab-stigmergy" onclick="switchTab('stigmergy')" aria-label="Stigmergy swarm intelligence tab">🐜 <span class="tab-label">STIGMERGY</span></button>
 </nav>
 
 <!-- ============================================================
@@ -2585,6 +2627,70 @@ body::after {
   </div>
 </div><!-- /tab-literature -->
 
+<!-- ============================================================
+     TAB 9: STIGMERGY — Swarm Intelligence & Pheromone Trails
+     ============================================================ -->
+<div class="tab-content" id="tab-stigmergy" role="tabpanel" aria-labelledby="tab-btn-stigmergy">
+  <div class="stig-grid">
+
+    <!-- Panel 1: Pheromone Status (full width) -->
+    <div class="panel panel-full si-fade-in">
+      <div class="panel-header">
+        <span class="panel-icon">🧪</span>
+        <span class="panel-title">PHEROMONE STATUS</span>
+      </div>
+      <div class="panel-body-md" id="stig-pheromone-status">
+        <div class="empty-state">Loading pheromone data…</div>
+      </div>
+    </div>
+
+    <!-- Panel 2: Knowledge Gaps -->
+    <div class="panel si-fade-in-d1">
+      <div class="panel-header">
+        <span class="panel-icon">🔍</span>
+        <span class="panel-title">KNOWLEDGE GAPS</span>
+      </div>
+      <div class="panel-body-md" id="stig-knowledge-gaps">
+        <div class="empty-state">Loading gap analysis…</div>
+      </div>
+    </div>
+
+    <!-- Panel 3: Gordon's Parameters -->
+    <div class="panel si-fade-in-d15">
+      <div class="panel-header">
+        <span class="panel-icon">📐</span>
+        <span class="panel-title">GORDON'S PARAMETERS</span>
+      </div>
+      <div class="panel-body-md" id="stig-gordon-params">
+        <div class="empty-state">Loading parameters…</div>
+      </div>
+    </div>
+
+    <!-- Panel 4: Swarm Agents (full width) -->
+    <div class="panel panel-full si-fade-in-d2">
+      <div class="panel-header">
+        <span class="panel-icon">🐝</span>
+        <span class="panel-title">SWARM AGENTS</span>
+      </div>
+      <div class="panel-body-md" id="stig-swarm-agents">
+        <div class="empty-state">Loading swarm status…</div>
+      </div>
+    </div>
+
+    <!-- Panel 5: A/B Test Results (full width) -->
+    <div class="panel panel-full si-fade-in-d25">
+      <div class="panel-header">
+        <span class="panel-icon">⚗️</span>
+        <span class="panel-title">A/B TEST RESULTS</span>
+      </div>
+      <div class="panel-body-md" id="stig-ab-tests">
+        <div class="empty-state">Loading test results…</div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /tab-stigmergy -->
+
 
 </main><!-- /dashboard -->
 
@@ -2692,6 +2798,30 @@ body::after {
     if (path.includes('/safety-case/claims')) return [];
     if (path.includes('/safety-case/risk')) return { total_hazards: 10, max_residual: 0.6, by_acceptability: { BROADLY_ACCEPTABLE: 4, ALARP: 6 } };
     if (path.includes('/safety-case')) return { hazards: 10, claims: 7, max_residual_risk: 0.6, avg_confidence: 0.85 };
+    // Stigmergy endpoints
+    if (path.includes('/pheromones/status')) return { total_weight: 0, total_deposits: 0, by_type: {}, decay_rate: 0.05, active_trails: 0 };
+    if (path.includes('/stigmergy/gaps')) return { gaps: { astrophysics: 0.35, economics: 0.62, climate: 0.41, epidemiology: 0.55, cross_domain: 0.73 } };
+    if (path.includes('/swarm/status')) return { agents: [
+      { id: 'scout-alpha', name: 'Scout Alpha', role: 'Explorer', status: 'active', discoveries: 12, last_active: Date.now()/1000 },
+      { id: 'scout-beta', name: 'Scout Beta', role: 'Explorer', status: 'active', discoveries: 8, last_active: Date.now()/1000 },
+      { id: 'analyst-1', name: 'Analyst Prime', role: 'Analyst', status: 'idle', discoveries: 23, last_active: Date.now()/1000 - 300 },
+      { id: 'validator-1', name: 'Validator', role: 'Validator', status: 'active', discoveries: 15, last_active: Date.now()/1000 },
+      { id: 'synthesizer', name: 'Synthesizer', role: 'Synthesizer', status: 'idle', discoveries: 31, last_active: Date.now()/1000 - 600 }
+    ], total_agents: 5, active_agents: 3 };
+    if (path.includes('/pheromones/ab-test')) return { tests: [
+      { name: 'Exploration vs Exploitation', variant_a: 'ε-greedy (ε=0.3)', variant_b: 'UCB1', metric: 'discoveries/hr', a_value: 2.4, b_value: 3.1, winner: 'B', p_value: 0.023, n_samples: 150 },
+      { name: 'Decay Rate', variant_a: 'λ=0.05', variant_b: 'λ=0.10', metric: 'trail_quality', a_value: 0.72, b_value: 0.68, winner: 'A', p_value: 0.041, n_samples: 200 },
+      { name: 'Gap Weighting', variant_a: 'Uniform', variant_b: 'Entropy-based', metric: 'gap_reduction', a_value: 0.15, b_value: 0.23, winner: 'B', p_value: 0.008, n_samples: 180 }
+    ] };
+    if (path.includes('/stigmergy/gordon')) return { parameters: [
+      { name: 'Colony Size (N)', value: 5, description: 'Number of active swarm agents' },
+      { name: 'Evaporation Rate (ρ)', value: 0.05, description: 'Pheromone decay per cycle' },
+      { name: 'Deposit Strength (Q)', value: 1.0, description: 'Base pheromone deposit amount' },
+      { name: 'Exploration Bias (α)', value: 1.2, description: 'Pheromone influence exponent' },
+      { name: 'Heuristic Weight (β)', value: 2.0, description: 'Domain gap heuristic exponent' },
+      { name: 'Stagnation Threshold', value: 50, description: 'Cycles before forced diversification' },
+      { name: 'Elite Ratio', value: 0.2, description: 'Fraction of best trails reinforced' }
+    ] };
     return null;
   }
   window.__SNAPSHOT_TIME__ = 1775210733.190173;
@@ -13031,6 +13161,7 @@ body::after {
     if (tabName === 'phase4' && !phase4Initialized) initPhase4Tab();
     if (tabName === 'selfimprove' && !selfImproveInitialized) initSelfImproveTab();
     if (tabName === 'literature' && !literatureInitialized) initLiteratureTab();
+    if (tabName === 'stigmergy' && !stigmergyInitialized) initStigmergyTab();
     // Sync tab state to URL hash
     history.replaceState(null, '', '#' + tabName);
   };
@@ -13043,7 +13174,7 @@ body::after {
     }
   })();
 
-  let safetyInitialized = false, controlInitialized = false, healthInitialized = false, phase4Initialized = false, selfImproveInitialized = false, literatureInitialized = false;
+  let safetyInitialized = false, controlInitialized = false, healthInitialized = false, phase4Initialized = false, selfImproveInitialized = false, literatureInitialized = false, stigmergyInitialized = false;
 
   /* ==========================================================
      KEYBOARD NAVIGATION — Arrow keys between tabs, Enter/Space to activate
@@ -14176,7 +14307,157 @@ body::after {
     }).join('');
   }
 
-  console.log('%c ASTRA v4.7 — AGI Control Room Dashboard — All 8 Tabs Active ',
+  // ============================================================
+  //  STIGMERGY TAB
+  // ============================================================
+  function initStigmergyTab() {
+    stigmergyInitialized = true;
+    loadStigmergyData();
+  }
+
+  async function loadStigmergyData() {
+    var pheromones = null, gaps = null, swarm = null, abTests = null, gordon = null;
+    try {
+      var s = window.__SNAPSHOT__ || {};
+      pheromones = s['pheromones/status'] || await api('/api/pheromones/status');
+      gaps = s['stigmergy/gaps'] || await api('/api/stigmergy/gaps');
+      swarm = s['swarm/status'] || await api('/api/swarm/status');
+      abTests = s['pheromones/ab-test'] || await api('/api/pheromones/ab-test');
+      gordon = s['stigmergy/gordon'] || await api('/api/stigmergy/gordon');
+    } catch(e) { console.warn('Stigmergy data fetch error:', e); }
+
+    renderPheromoneStatus(pheromones);
+    renderKnowledgeGaps(gaps);
+    renderSwarmAgents(swarm);
+    renderABTests(abTests);
+    renderGordonParams(gordon);
+  }
+
+  function renderPheromoneStatus(data) {
+    var el = document.getElementById('stig-pheromone-status');
+    if (!el) return;
+    var d = data || {};
+    var byType = d.by_type || {};
+    var typeKeys = Object.keys(byType);
+    var totalDeposits = d.total_deposits || 0;
+
+    var statsHtml = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:16px;">' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">TOTAL WEIGHT</div><div class="si-mono-value si-c-cyan">' + (d.total_weight || 0).toFixed(2) + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">TOTAL DEPOSITS</div><div class="si-mono-value si-c-amber">' + totalDeposits + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">ACTIVE TRAILS</div><div class="si-mono-value si-c-violet">' + (d.active_trails || 0) + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">DECAY RATE (ρ)</div><div class="si-mono-value si-c-emerald">' + (d.decay_rate || 0).toFixed(3) + '</div></div>' +
+      '</div>';
+
+    if (typeKeys.length > 0) {
+      statsHtml += '<div class="si-mono-label-sm" style="margin-bottom:8px;">DEPOSITS BY TYPE</div>';
+      var maxVal = Math.max.apply(null, typeKeys.map(function(k) { return byType[k]; }).concat([1]));
+      statsHtml += typeKeys.map(function(k) {
+        var pct = ((byType[k] / maxVal) * 100).toFixed(0);
+        var color = k === 'exploration' ? 'var(--cyan)' : k === 'validation' ? 'var(--emerald)' : k === 'synthesis' ? 'var(--violet)' : 'var(--amber)';
+        return '<div class="stig-gap-bar">' +
+          '<div class="bar-label">' + k.toUpperCase() + '</div>' +
+          '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%;background:' + color + '"></div></div>' +
+          '<div class="bar-value">' + byType[k] + '</div></div>';
+      }).join('');
+    }
+
+    el.innerHTML = statsHtml || '<div class="empty-state">No pheromone data yet — run a swarm cycle to begin.</div>';
+  }
+
+  function renderKnowledgeGaps(data) {
+    var el = document.getElementById('stig-knowledge-gaps');
+    if (!el) return;
+    var gaps = (data && data.gaps) || {};
+    var keys = Object.keys(gaps);
+    if (keys.length === 0) {
+      el.innerHTML = '<div class="empty-state">No knowledge gap data available.</div>';
+      return;
+    }
+    var colors = { astrophysics: 'var(--cyan)', economics: 'var(--amber)', climate: 'var(--emerald)', epidemiology: 'var(--coral)', cross_domain: 'var(--violet)' };
+    el.innerHTML = keys.sort(function(a,b) { return gaps[b] - gaps[a]; }).map(function(k) {
+      var pct = (gaps[k] * 100).toFixed(0);
+      var c = colors[k] || 'var(--cyan)';
+      return '<div class="stig-gap-bar">' +
+        '<div class="bar-label">' + k.replace(/_/g,' ').toUpperCase() + '</div>' +
+        '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%;background:' + c + '"></div></div>' +
+        '<div class="bar-value" style="color:' + c + '">' + pct + '%</div></div>';
+    }).join('');
+  }
+
+  function renderSwarmAgents(data) {
+    var el = document.getElementById('stig-swarm-agents');
+    if (!el) return;
+    var agents = (data && data.agents) || [];
+    if (agents.length === 0) {
+      el.innerHTML = '<div class="empty-state">No swarm agents configured.</div>';
+      return;
+    }
+    var summaryHtml = '<div style="display:flex;gap:16px;margin-bottom:12px;">' +
+      '<div class="si-stat-cell-sm"><div class="si-mono-label-xs">TOTAL</div><div class="si-mono-value-sm si-c-cyan">' + (data.total_agents || agents.length) + '</div></div>' +
+      '<div class="si-stat-cell-sm"><div class="si-mono-label-xs">ACTIVE</div><div class="si-mono-value-sm si-c-emerald">' + (data.active_agents || 0) + '</div></div>' +
+      '</div>';
+    var cardsHtml = '<div class="stig-agent-cards">' + agents.map(function(a) {
+      var statusClass = a.status === 'active' ? 'active' : a.status === 'idle' ? 'idle' : 'offline';
+      var ago = a.last_active ? Math.round((Date.now()/1000 - a.last_active) / 60) : '—';
+      var agoStr = ago === 0 ? 'just now' : ago + 'm ago';
+      return '<div class="stig-agent-card">' +
+        '<div class="stig-agent-name"><span class="stig-status-dot ' + statusClass + '"></span>' + (a.name || a.id) + '</div>' +
+        '<div class="stig-agent-role">' + (a.role || 'Agent') + '</div>' +
+        '<div class="stig-agent-stat"><span>Discoveries</span><span style="color:var(--cyan)">' + (a.discoveries || 0) + '</span></div>' +
+        '<div class="stig-agent-stat"><span>Status</span><span style="color:' + (statusClass === 'active' ? 'var(--emerald)' : 'var(--text-tertiary)') + '">' + a.status.toUpperCase() + '</span></div>' +
+        '<div class="stig-agent-stat"><span>Last Active</span><span>' + agoStr + '</span></div>' +
+        '</div>';
+    }).join('') + '</div>';
+    el.innerHTML = summaryHtml + cardsHtml;
+  }
+
+  function renderABTests(data) {
+    var el = document.getElementById('stig-ab-tests');
+    if (!el) return;
+    var tests = (data && data.tests) || [];
+    if (tests.length === 0) {
+      el.innerHTML = '<div class="empty-state">No A/B tests running yet.</div>';
+      return;
+    }
+    var html = '<div style="overflow-x:auto;"><table class="stig-ab-table"><thead><tr>' +
+      '<th>Experiment</th><th>Variant A</th><th>Variant B</th><th>Metric</th><th>A</th><th>B</th><th>p-value</th><th>Winner</th>' +
+      '</tr></thead><tbody>';
+    html += tests.map(function(t) {
+      var winClass = t.winner ? ' class="stig-ab-winner"' : '';
+      return '<tr>' +
+        '<td style="color:var(--text-primary);font-family:Inter,sans-serif">' + t.name + '</td>' +
+        '<td>' + t.variant_a + '</td>' +
+        '<td>' + t.variant_b + '</td>' +
+        '<td>' + t.metric + '</td>' +
+        '<td>' + (typeof t.a_value === 'number' ? t.a_value.toFixed(2) : t.a_value) + '</td>' +
+        '<td>' + (typeof t.b_value === 'number' ? t.b_value.toFixed(2) : t.b_value) + '</td>' +
+        '<td style="color:' + (t.p_value < 0.05 ? 'var(--emerald)' : 'var(--text-tertiary)') + '">' + (t.p_value || '—') + '</td>' +
+        '<td' + winClass + '>' + (t.winner || '—') + ' (n=' + (t.n_samples || '?') + ')</td>' +
+        '</tr>';
+    }).join('');
+    html += '</tbody></table></div>';
+    el.innerHTML = html;
+  }
+
+  function renderGordonParams(data) {
+    var el = document.getElementById('stig-gordon-params');
+    if (!el) return;
+    var params = (data && data.parameters) || [];
+    if (params.length === 0) {
+      el.innerHTML = '<div class="empty-state">No Gordon parameters available.</div>';
+      return;
+    }
+    var html = '<table class="stig-gordon-table"><thead><tr><th>Parameter</th><th>Value</th><th>Description</th></tr></thead><tbody>';
+    html += params.map(function(p) {
+      return '<tr><td style="color:var(--cyan)">' + p.name + '</td>' +
+        '<td style="color:var(--amber)">' + p.value + '</td>' +
+        '<td style="font-size:0.65rem">' + (p.description || '') + '</td></tr>';
+    }).join('');
+    html += '</tbody></table>';
+    el.innerHTML = html;
+  }
+
+  console.log('%c ASTRA v4.8 — AGI Control Room Dashboard — All 9 Tabs Active ',
     'background: linear-gradient(90deg, #ff5252, #7c4dff, #00e5ff); color: white; font-weight: bold; padding: 4px 12px; border-radius: 4px;');
 })();
 

@@ -6,7 +6,7 @@ Uses Metal Accelerate framework for M1 acceleration.
 """
 
 import numpy as np
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 from dataclasses import dataclass
 
 

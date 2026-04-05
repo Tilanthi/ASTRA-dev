@@ -101,9 +101,17 @@ _snapshot_thread.start()
 def api_status():
     """Engine status — is it running, cycle count, uptime."""
     state = engine.get_state()
+    stigmergy_summary = {
+        "pheromone_weight": engine.stigmergy.pheromone_weight,
+        "total_deposits": engine.stigmergy.metrics.get("total_deposits", 0),
+        "success_deposits": engine.stigmergy.metrics.get("success_deposits", 0),
+        "failure_deposits": engine.stigmergy.metrics.get("failure_deposits", 0),
+        "novelty_deposits": engine.stigmergy.metrics.get("novelty_deposits", 0),
+    }
     return {
         "status": "running" if engine.running else "stopped",
         "engine": state,
+        "stigmergy": stigmergy_summary,
         "timestamp": time.time(),
     }
 
@@ -1292,6 +1300,91 @@ async def api_export_full_report():
         content=json.loads(_exporter.export_full_report_json()),
         media_type="application/json",
     )
+
+
+# ── Stigmergy / Pheromone API ────────────────────────────────────────
+
+@app.get("/api/pheromones/status")
+async def api_pheromones_status():
+    """Full stigmergy status — pheromone field, memory, metrics, A/B test."""
+    return engine.stigmergy.get_status()
+
+
+@app.get("/api/pheromones/hotspots")
+async def api_pheromones_hotspots(pheromone_type: str = "success", top_k: int = 10):
+    """Top-N pheromone hotspots for a given type."""
+    return engine.stigmergy.get_hotspots(pheromone_type, top_k)
+
+
+@app.post("/api/pheromones/gradient")
+async def api_pheromones_gradient(request: Request):
+    """Compute pheromone gradient at a domain location."""
+    body = await request.json()
+    domain = body.get("domain", "Astrophysics")
+    ptype = body.get("pheromone_type", "success")
+    return engine.stigmergy.compute_gradient(domain, ptype)
+
+
+@app.get("/api/pheromones/deposits")
+async def api_pheromones_deposits(limit: int = 50):
+    """Recent pheromone deposit history."""
+    return engine.stigmergy.get_recent_deposits(limit)
+
+
+@app.get("/api/stigmergy/state")
+async def api_stigmergy_state():
+    """StigmergicMemory state — fields, trails, discoveries."""
+    return engine.stigmergy.stigmergic_memory.get_state()
+
+
+@app.post("/api/stigmergy/recommendations")
+async def api_stigmergy_recommendations(request: Request):
+    """Get swarm recommendations for a location/agent type."""
+    body = await request.json()
+    location = body.get("location", "astrophysics")
+    agent_type = body.get("agent_type", "explorer")
+    return engine.stigmergy.stigmergic_memory.get_swarm_recommendations(
+        location, agent_type
+    )
+
+
+@app.get("/api/stigmergy/gaps")
+async def api_stigmergy_gaps():
+    """Knowledge gap analysis from pheromone coverage."""
+    return engine.stigmergy.stigmergy_gaps()
+
+
+@app.get("/api/pheromones/field")
+async def api_pheromones_field():
+    """Full pheromone field data for visualization."""
+    return engine.stigmergy.get_field_data()
+
+
+@app.get("/api/pheromones/ab-test")
+async def api_pheromones_ab_test():
+    """A/B test results — pheromone-guided vs baseline."""
+    return engine.stigmergy.get_ab_summary()
+
+
+@app.post("/api/pheromones/weight")
+async def api_pheromones_weight(request: Request):
+    """Adjust pheromone blending weight (0-1)."""
+    body = await request.json()
+    weight = body.get("weight", 0.3)
+    new_weight = engine.stigmergy.set_weight(weight)
+    return {"pheromone_weight": new_weight}
+
+
+@app.get("/api/swarm/status")
+async def api_swarm_status():
+    """Swarm agent status — all 5 agent types."""
+    return engine.swarm.get_swarm_summary()
+
+
+@app.get("/api/stigmergy/exploration")
+async def api_stigmergy_exploration(domain: str = "Astrophysics"):
+    """Get pheromone-guided exploration direction for a domain."""
+    return engine.stigmergy.get_exploration_direction(domain)
 
 
 if __name__ == "__main__":
