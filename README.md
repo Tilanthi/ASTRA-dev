@@ -1,10 +1,17 @@
-# ASTRA — Autonomous Scientific & Technological Research Agent
+# ASTRA: Autonomous Scientific Discovery in Astrophysics
 
-> An AI-driven framework for autonomous cross-domain scientific discovery,
-> hypothesis generation, and validation using real astronomical and socioeconomic data.
+> A unified framework for autonomous hypothesis generation and validation
+> in astronomy and astrophysics, integrating causal reasoning, Bayesian inference,
+> dimensional analysis, and multi-wavelength data fusion.
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg)](https://fastapi.tiangolo.com)
+
+**Author**: Glenn J. White (The Open University & RAL Space)  
+**Paper**: White, G.J. (2026). *ASTRA: Autonomous Scientific Discovery in Astrophysics.* RASTI, in press.  
+**Repository**: [github.com/Tilanthi/ASTRA](https://github.com/Tilanthi/ASTRA)
+
+---
 
 ## Highlights
 
@@ -12,10 +19,11 @@
 - **Autonomous OODA research cycle** — Orient → Select → Investigate → Evaluate → Update
 - **9 real data sources** (27,430+ data points): Pantheon+ SNe Ia, NASA Exoplanet Archive, Gaia DR3, SDSS DR18, LIGO gravitational waves, Planck CMB, ZTF transients, TESS, SDSS galaxy clusters
 - **40+ validated hypotheses** across 5 scientific domains
-- **Self-improving discovery memory** — SQLite-backed with 726+ discoveries and 3,600+ method outcomes
+- **Self-improving discovery memory** — SQLite-backed with 770+ discoveries and 3,500+ method outcomes
 - **Safety architecture** — 5-state controller, arbiter, circuit breakers, phased autonomy, ethics reasoning
 - **Live dashboard** with 8 interactive tabs (glassmorphism UI, 95/100 design critic score)
-- **RASTI paper** in MNRAS format (22 pages, 6 publication-quality figures)
+- **RASTI paper** with 6 reproducible worked examples and publication-quality figures
+- **75 astrophysics domain modules** covering cosmology, stellar physics, galaxy evolution, ISM, and more
 - **Causal inference** — PC/FCI algorithms, do-calculus interventions, confounder detection
 - **Bayesian framework** — BIC model comparison, Bayes factors, Laplace posteriors
 - **Full reproducibility** — every discovery can be independently re-verified from source data
@@ -80,7 +88,7 @@ ASTRA/
 │   ├── exporter.py                 JSON/CSV/LaTeX/report export
 │   ├── provenance.py               Discovery lineage tracking
 │   ├── generate_dashboard.py       Dashboard HTML + snapshot generator
-│   ├── safety/                     Safety subsystem
+│   ├── safety/                     Safety subsystem (13 modules)
 │   │   ├── controller.py              5-state safety controller
 │   │   ├── arbiter.py                 Verdicts & override system
 │   │   ├── supervisor.py             Shift-based human oversight
@@ -99,28 +107,48 @@ ASTRA/
 │   ├── state_space/                State-space analysis (PCA, attractors)
 │   └── test_*.py                   Test suites (58+ tests)
 │
-├── paper/                       ← RASTI paper (MNRAS format)
-│   ├── astra-rasti-v2.tex          Main manuscript (V2.2, ~1,340 lines)
-│   ├── supplement.tex              Supplementary material (~420 lines)
-│   ├── references-v2.bib           Bibliography (37 entries)
-│   ├── mnras.cls                   MNRAS document class
-│   ├── mnras.bst                   MNRAS bibliography style
-│   ├── generate_supplement.py      Auto-generate supplement from API
-│   ├── figures/                    Publication figures
-│   │   ├── generate_figures.py        Figure generation script
-│   │   ├── fig1-scaling-relations.*   Kepler's Third Law + HR diagram
-│   │   ├── fig2-multiwavelength.*     Multi-source data integration
-│   │   ├── fig3-pattern-recognition.* Galaxy bimodality + clustering
-│   │   ├── fig4-causal-inference.*    Causal graph + confounders
-│   │   ├── fig5-bayesian-model.*      Model comparison + posteriors
-│   │   └── fig6-discovery-mode.*      Discovery cycle performance
-│   └── *.pdf                       Compiled PDFs (not tracked)
-│
-├── astra_core/                   ← Legacy cognitive framework (~614 modules)
+├── astra_core/                  ← Core cognitive framework (~614 modules)
+│   ├── domains/                    75 astrophysics domain modules
+│   ├── reasoning/                  98 reasoning engines
 │   ├── capabilities/               Analysis capabilities
-│   ├── reasoning/                   Reasoning engines
-│   ├── memory/                      Persistent memory system
-│   └── ...                          (retained for backward compatibility)
+│   ├── memory/                     Persistent memory system
+│   ├── autonomous_research/        V7 Autonomous Scientist
+│   ├── causal/                     Causal inference subsystem
+│   ├── metacognitive/              Meta-cognitive monitoring
+│   ├── simulation/                 Physics & market simulations
+│   ├── swarm/                      Swarm intelligence
+│   └── tests/                      Core test suites
+│
+├── paper/                       ← RASTI paper
+│   ├── astra-rasti-v2.3.tex        Main manuscript (RASTI class, ~1,375 lines)
+│   ├── RASTI_paper_V1.12.tex       Reference version
+│   ├── supplement.tex              Supplementary material (~420 lines)
+│   ├── references-v2.bib           Bibliography (57 entries)
+│   ├── RASTI.cls                   RASTI document class
+│   ├── mnras.cls / mnras.bst       MNRAS class (alternative)
+│   ├── figures/                    Publication figures (6 PDFs + generation script)
+│   ├── Example1/                   Scaling relations (Herschel filaments)
+│   ├── Example2/                   Multi-wavelength fusion (Chandra CDFS)
+│   ├── Example3/                   Pattern recognition (SDSS galaxies)
+│   ├── Example4/                   Causal inference (Gaia stellar + Phillips)
+│   ├── Example5/                   Bayesian model selection (virial scaling)
+│   └── Example6/                   Discovery mode (galaxy survey, 3,000 objects)
+│
+├── filaments/                   ← Filament width research
+│   ├── filament_width_analysis.py  Analysis of the 0.1 pc mystery
+│   ├── mhd_simulation_suite.py     MHD simulations (Mach number, plasma beta)
+│   ├── sonic_scale_theory_deep_dive.py  Sonic scale theory investigation
+│   └── simulation_results/         Simulation output data
+│
+├── RASTI_AI/                    ← Jupyter notebook demonstrations
+│   ├── test02_scaling_relations_figure.ipynb
+│   ├── test04_multiwavelength_fusion.ipynb
+│   ├── test06_genuine_discovery.ipynb
+│   ├── test11_causal_inference.ipynb
+│   └── test12_bayesian_model_selection.ipynb
+│
+├── User_Manual/                 ← User documentation
+│   └── User_Manual.md
 │
 ├── self_evolution/              ← Self-improvement & mutation engine
 ├── pipeline/                    ← Per-hypothesis analysis scripts
@@ -143,7 +171,7 @@ ASTRA/
 ### Installation
 
 ```bash
-git clone https://github.com/web3guru888/ASTRA.git
+git clone https://github.com/Tilanthi/ASTRA.git
 cd ASTRA
 
 pip install fastapi uvicorn scipy numpy pandas requests beautifulsoup4 \
@@ -155,6 +183,19 @@ pip install fastapi uvicorn scipy numpy pandas requests beautifulsoup4 \
 ```bash
 python3 -m astra_live_backend.server
 # → Server running at http://localhost:8787/
+```
+
+### Using the Core Framework
+
+```python
+from astra_core import create_stan_system
+
+# Create system with auto-optimized capabilities
+system = create_stan_system()
+
+# Answer queries with automatic capability selection
+result = system.answer("What causes supernovae?")
+print(result['answer'])
 ```
 
 ### Verify It Works
@@ -257,6 +298,54 @@ curl http://localhost:8787/api/discovery-memory | python3 -m json.tool
 
 ---
 
+## RASTI Paper
+
+**"ASTRA: Autonomous Scientific Discovery in Astrophysics"**
+
+- **Author**: Glenn J. White (The Open University & RAL Space)
+- **Target**: RASTI (Royal Astronomical Society Techniques and Instruments)
+- **Format**: RASTI LaTeX class, 22 pages, 6 figures, 57 references
+- **Location**: `paper/` directory
+
+### Six Worked Examples
+
+The paper includes six fully reproducible test cases, each with data generation, analysis, and figure scripts:
+
+| Example | Topic | Data | Key Results |
+|---------|-------|------|-------------|
+| 1 | Scaling relations | Herschel filaments | Dimensional analysis, physical validation |
+| 2 | Multi-wavelength fusion | Chandra CDFS | Probabilistic cross-matching, Bayesian uncertainty |
+| 3 | Pattern recognition | SDSS galaxies | Galaxy property correlations, bimodality |
+| 4 | Causal inference | Gaia stellar + SNe Ia | Structural causal models, Phillips relation |
+| 5 | Bayesian model selection | Virial scaling | Evidence computation, prior specification |
+| 6 | Discovery mode | Galaxy survey (3,000) | Main sequence recovery, outlier detection |
+
+### Building the Paper
+
+```bash
+cd paper
+
+# Generate figures
+python3 figures/generate_figures.py
+
+# Compile PDF (RASTI class)
+pdflatex astra-rasti-v2.3.tex
+bibtex astra-rasti-v2.3
+pdflatex astra-rasti-v2.3.tex
+pdflatex astra-rasti-v2.3.tex
+
+# Compile supplement
+pdflatex supplement.tex
+
+# Run a worked example
+cd Example1
+python3 01_generate_data.py
+python3 02_v5_discovery_test.py
+python3 03_generate_figures.py
+```
+
+---
+
 ## Scientific Domains
 
 ASTRA operates across five scientific domains simultaneously, generating and validating hypotheses using real data.
@@ -293,6 +382,17 @@ Key findings validated with real data:
 - GDP–CO₂ nexus, Life expectancy–CO₂ relationship
 - Wealth-Health correlation: R² = 0.700
 - Urbanization–emissions patterns, renewables paradox
+
+---
+
+## Filaments Research
+
+ASTRA includes an investigation into the long-standing mystery of why interstellar filament widths cluster at ~0.1 pc across three orders of magnitude in density:
+
+- **Finding**: The sonic scale of the turbulent cascade (λ_sonic ≈ 0.1 pc) sets the minimum filament width
+- **Evidence**: 5,476 filaments measured across 10+ regions (Herschel, Planck, ALMA)
+- **Simulations**: 7 MHD simulations varying Mach number (1–20) and plasma beta (0.1–10)
+- **Location**: `filaments/` directory
 
 ---
 
@@ -379,43 +479,20 @@ State transitions require formal ceremonies with documented justification and ro
 
 ---
 
-## RASTI Paper
+## Self-Improvement
 
-**"ASTRA: An Integrated Analysis Framework for Physics-Aware Astrophysical Discovery"**
+ASTRA includes a self-improvement loop that learns from its own research history:
 
-- **Authors**: Glenn J. White (The Open University) & Robin Dey (VBRL Holdings Inc)
-- **Target**: Monthly Notices of the Royal Astronomical Society (MNRAS) / Research Notes
-- **Format**: MNRAS LaTeX class, 22 pages, 6 figures, 37 references
-- **Location**: `paper/` directory
+1. **Discovery Memory** — Every investigation outcome (success or failure) is stored in SQLite with method, domain, effect size, and p-value
+2. **Hypothesis Generation** — New hypotheses are auto-generated from patterns in the discovery memory
+3. **Adaptive Strategy** — Method selection adapts based on historical success rates per domain
+4. **Sprint Success Rate** — Currently ~89–90% across all domains
+5. **Exploration Balance** — Epsilon-greedy strategy ensures novel hypothesis spaces are explored
 
-### Building the Paper
-
-```bash
-cd paper
-
-# Generate figures
-python3 figures/generate_figures.py
-
-# Compile PDF
-pdflatex astra-rasti-v2.tex
-bibtex astra-rasti-v2
-pdflatex astra-rasti-v2.tex
-pdflatex astra-rasti-v2.tex
-
-# Compile supplement
-pdflatex supplement.tex
-```
-
-### Figures
-
-| Figure | Content |
-|--------|---------|
-| Fig. 1 | Scaling relations — Kepler's Third Law + HR diagram |
-| Fig. 2 | Multi-wavelength data integration across 9 sources |
-| Fig. 3 | Pattern recognition — galaxy bimodality + clustering |
-| Fig. 4 | Causal inference — causal graph + confounder analysis |
-| Fig. 5 | Bayesian model comparison + posterior distributions |
-| Fig. 6 | Discovery cycle — performance metrics + convergence |
+Current statistics:
+- 770+ discoveries recorded
+- 3,500+ method outcomes tracked
+- 5 active scientific domains
 
 ---
 
@@ -432,9 +509,6 @@ python3 reproduce.py <discovery_id>
 
 # Reproduce all discoveries (takes a while)
 python3 reproduce.py --all
-
-# Use a custom database
-python3 reproduce.py --db /path/to/astra_discoveries.db --list
 ```
 
 The tool re-fetches original data from source APIs and re-runs the statistical test to verify the recorded result matches.
@@ -460,15 +534,10 @@ pytest astra_live_backend/test_literature.py -v  # Literature integration
 The live dashboard is a single-file HTML application with embedded CSS/JS.
 
 ```bash
-# Edit the HTML template directly
-vim astra_live_backend/generate_dashboard.py  # or the HTML source
-
 # Regenerate with latest data snapshot
 python3 astra_live_backend/generate_dashboard.py
-# Output: /shared/public/astra-live/index.html
+# Output: astra_live_dashboard.html
 ```
-
-**Note**: The generator injects a `__SNAPSHOT__` JSON blob into the HTML. CSS and JS edits to the template persist through regeneration.
 
 ### Generating Figures
 
@@ -479,20 +548,13 @@ python3 paper/figures/generate_figures.py
 
 ---
 
-## Self-Improvement
+## Scope and Limitations
 
-ASTRA includes a self-improvement loop that learns from its own research history:
+ASTRA is not presented as achieving artificial general intelligence (AGI) or AGI-like performance. The system operates within defined astrophysical domains using established algorithms (PC algorithm, Bayesian inference, dimensional analysis, FCI causal discovery) combined through an integrated architecture.
 
-1. **Discovery Memory** — Every investigation outcome (success or failure) is stored in SQLite with method, domain, effect size, and p-value
-2. **Hypothesis Generation** — New hypotheses are auto-generated from patterns in the discovery memory
-3. **Adaptive Strategy** — Method selection adapts based on historical success rates per domain
-4. **Sprint Success Rate** — Currently ~89–90% across all domains
-5. **Exploration Balance** — Epsilon-greedy strategy ensures novel hypothesis spaces are explored
+We should not expect to give ASTRA one of the big contemporary problems like "What is the nature of Dark Matter and Dark Energy" and expect a computational Eureka moment. ASTRA's role in science is to work alongside the experienced astronomer to analyze data and facilitate genuine discovery. ASTRA is therefore a tool to assist the astronomer, rather than a replacement for domain expertise.
 
-Current statistics:
-- 726+ discoveries recorded
-- 3,600+ method outcomes tracked
-- 5 active scientific domains
+Results are validated against known physical theory and observational constraints. The system does not claim general reasoning beyond its training domains or autonomous operation without human oversight.
 
 ---
 
@@ -504,6 +566,11 @@ TBD
 
 ## Acknowledgments
 
+**Research Partner**: [OpenHub](https://openhub.co.th/), Thailand  
+**Research Platform**: [Taurus](https://taurus.cloud) multi-agent orchestration platform
+
+The development of ASTRA builds upon foundational work on stigmergic intelligence and autonomous navigation by Dey, R. (2025) — [STAN: Stigmergic A* Navigation](https://github.com/vbrltech/STAN) — at OpenHub, Thailand.
+
 Built on data from:
 - [Pantheon+](https://pantheonplussh0es.github.io/) (Scolnic et al. 2022)
 - [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/)
@@ -513,3 +580,6 @@ Built on data from:
 - [Planck 2018](https://www.cosmos.esa.int/web/planck) (ESA)
 - [ZTF](https://www.ztf.caltech.edu/) (Zwicky Transient Facility)
 - [TESS](https://tess.mit.edu/) (NASA)
+- [World Bank Open Data](https://data.worldbank.org/)
+- [NASA GISS](https://data.giss.nasa.gov/) Surface Temperature Analysis
+- [NOAA Global Monitoring Laboratory](https://gml.noaa.gov/) (Mauna Loa CO₂)
