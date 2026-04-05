@@ -328,6 +328,37 @@ def api_reject_hypothesis(hid: str, reason: str = "Rejected via API"):
         }, 400)
 
 
+@app.post("/api/hypothesis/{hid}/archive")
+def api_archive_hypothesis(hid: str, reason: str = "Archived via API"):
+    """Force-archive a hypothesis regardless of current phase."""
+    from astra_live_backend.hypotheses import Phase
+    h = engine.store.get(hid)
+    if not h:
+        return JSONResponse({"error": "Hypothesis not found"}, 404)
+    h.phase = Phase.ARCHIVED
+    h.archived_at = __import__("time").time()
+    h.updated_at = h.archived_at
+    return {"success": True, "hypothesis": h.to_dict()}
+
+
+@app.post("/api/hypotheses/cleanup")
+def api_cleanup_hypotheses(pattern: str = "", min_version: int = 2):
+    """Archive duplicate/versioned hypotheses matching a pattern."""
+    import re
+    from astra_live_backend.hypotheses import Phase
+    archived = []
+    for h in engine.store.all():
+        name = h.name
+        m = re.search(r'\(v(\d+)\)', name)
+        if m and int(m.group(1)) >= min_version:
+            if not pattern or pattern.lower() in name.lower():
+                h.phase = Phase.ARCHIVED
+                h.archived_at = __import__("time").time()
+                h.updated_at = h.archived_at
+                archived.append(name)
+    return {"archived_count": len(archived), "archived": archived}
+
+
 @app.get("/api/system/health_old")
 def api_system_health_old():
     """System component health status."""
