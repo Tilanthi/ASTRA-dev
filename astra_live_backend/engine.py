@@ -62,6 +62,14 @@ try:
 except ImportError:
     THEORY_MODULES_AVAILABLE = False
 
+# Phase 15: Cognitive Architecture
+try:
+    from .cognitive_core import CognitiveCore
+    from .state_persistence import save_engine_state, save_hypotheses, load_hypotheses, load_engine_state, save_cognitive_state
+    COGNITIVE_ARCHITECTURE_AVAILABLE = True
+except ImportError:
+    COGNITIVE_ARCHITECTURE_AVAILABLE = False
+
 
 @dataclass
 class ActivityLogEntry:
@@ -183,6 +191,32 @@ class DiscoveryEngine:
         # Theory discovery runs every N cycles (default: 10)
         self._theory_discovery_interval = 10
         self._last_theory_discovery_cycle = 0
+
+        # Phase 15: Cognitive Architecture (Scientific AGI capabilities)
+        # Integrates: Knowledge Graph + Neuro-Symbolic + Meta-Cognition
+        if COGNITIVE_ARCHITECTURE_AVAILABLE:
+            self.cognitive_core = CognitiveCore()
+            self._cognitive_discovery_enabled = True
+            self._cognitive_discovery_interval = 15  # Run every 15 cycles
+            self._last_cognitive_discovery_cycle = 0
+            self._state_save_interval = 50  # Save state every 50 cycles
+            self._last_state_save_cycle = 0
+
+            # Load saved state on initialization
+            loaded_hypotheses = load_hypotheses(self.store)
+            if loaded_hypotheses > 0:
+                self._log("INIT", "COGNITIVE", f"Loaded {loaded_hypotheses} hypotheses from state")
+
+            engine_loaded = load_engine_state(self)
+            if engine_loaded:
+                self._log("INIT", "COGNITIVE", f"Loaded engine state from previous session")
+        else:
+            self.cognitive_core = None
+            self._cognitive_discovery_enabled = False
+            self._cognitive_discovery_interval = 15
+            self._last_cognitive_discovery_cycle = 0
+            self._state_save_interval = 50
+            self._last_state_save_cycle = 0
 
         # Exploration schedule — Phase 10.6: force domain round-robin
         self._forced_domain: Optional[str] = None
@@ -377,6 +411,151 @@ class DiscoveryEngine:
             self._log("UPDATE", "TREE_SEARCH", f"Error: {e}")
 
         return hypotheses_generated
+
+    def _run_cognitive_discovery(self) -> int:
+        """
+        Run cognitive architecture discovery for Scientific AGI capabilities.
+
+        Integrates:
+        - Knowledge Graph: Semantic reasoning and belief propagation
+        - Neuro-Symbolic Engine: Pattern discovery + symbolic formalization
+        - Meta-Cognition: Self-awareness and self-improvement
+
+        Returns: Number of cognitive insights generated.
+        """
+        if not self._cognitive_discovery_enabled or not self.cognitive_core:
+            return 0
+
+        insights_generated = 0
+        existing_names = {h.name for h in self.store.all()}
+
+        try:
+            # 1. Reflect on recent performance (meta-cognition)
+            reflection = self.cognitive_core.reflect()
+
+            if reflection and reflection.get('reflection'):
+                refl = reflection['reflection']
+                if refl.insights:
+                    self._log("UPDATE", "METACOGNITION",
+                              f"Reflection: {len(refl.insights)} insights, "
+                              f"{len(refl.improvements)} improvements suggested")
+
+                # Log knowledge gaps
+                gaps = reflection.get('knowledge_gaps', [])
+                high_priority_gaps = [g for g in gaps if g.priority > 0.7]
+                if high_priority_gaps:
+                    self._log("UPDATE", "KNOWLEDGE_GRAPH",
+                              f"Found {len(high_priority_gaps)} high-priority knowledge gaps")
+
+            # 2. Cognitive discovery from recent data
+            # Try to get data from cache for cognitive processing
+            for source_name in ["exoplanets", "sdss", "gaia"]:
+                try:
+                    cached = data_cache.get(source_name)
+                    if cached and hasattr(cached, 'data') and len(cached.data) > 0:
+                        df = cached.data.select_dtypes(include=[np.number])
+
+                        if len(df.columns) >= 2 and len(df) > 20:
+                            # Sample data for cognitive processing
+                            sample_size = min(100, len(df))
+                            sample_data = df.iloc[:sample_size].values
+
+                            # Create features dictionary
+                            features = {col: df[col].iloc[:sample_size].values
+                                      for col in df.columns[:min(5, len(df.columns))]}
+
+                            # Run cognitive discovery
+                            discovery = self.cognitive_core.discover(
+                                sample_data,
+                                "numerical",
+                                features
+                            )
+
+                            if discovery:
+                                insights_generated += len(discovery.insights)
+
+                                # Generate hypothesis from high-confidence discovery
+                                if discovery.confidence > 0.6 and discovery.title not in existing_names:
+                                    h = self.store.add(
+                                        f"Cognitive: {discovery.title[:50]}",
+                                        "Astrophysics",
+                                        discovery.explanation[:500],
+                                        confidence=discovery.confidence * 0.7
+                                    )
+                                    h.phase = Phase.PROPOSED
+                                    insights_generated += 1
+
+                                    self._log("UPDATE", "COGNITIVE_DISCOVERY",
+                                              f"Generated: {discovery.title[:50]}... "
+                                              f"(confidence: {discovery.confidence:.2f})", h.id)
+
+                                # Process only one source per cycle to avoid overload
+                                break
+
+                except Exception as e:
+                    self._log("UPDATE", "COGNITIVE_ERROR", f"Error processing {source_name}: {e}")
+
+            # 3. Knowledge graph cross-domain reasoning
+            try:
+                analogies = self.cognitive_core.knowledge_graph.find_cross_domain_analogies()
+
+                if analogies and len(analogies) > 0:
+                    top_analogies = analogies[:3]  # Top 3
+
+                    for analogy in top_analogies:
+                        if analogy['similarity'] > 0.7:
+                            # Generate hypothesis from analogy
+                            h_name = f"Analogy: {analogy['entity1']} ↔ {analogy['entity2']}"
+                            if h_name not in existing_names:
+                                h = self.store.add(
+                                    h_name,
+                                    "Cross-Domain",
+                                    f"Cross-domain analogy discovered: {analogy['entity1']} ({analogy['domain1']}) "
+                                    f"is similar to {analogy['entity2']} ({analogy['domain2']}). "
+                                    f"Similarity: {analogy['similarity']:.2f}. "
+                                    f"Shared properties: {', '.join(analogy['shared_properties'][:3])}",
+                                    confidence=analogy['similarity'] * 0.5
+                                )
+                                h.phase = Phase.PROPOSED
+                                h.cross_domain_links = []  # Mark as cross-domain
+                                insights_generated += 1
+
+                                self._log("UPDATE", "KNOWLEDGE_GRAPH",
+                                          f"Cross-domain analogy: {analogy['entity1']} ↔ {analogy['entity2']}", h.id)
+
+            except Exception as e:
+                self._log("UPDATE", "KNOWLEDGE_GRAPH", f"Error in cross-domain reasoning: {e}")
+
+            # 4. Design experiments based on knowledge gaps
+            try:
+                proposals = self.cognitive_core.design_experiments(n_proposals=2)
+
+                if proposals:
+                    for proposal in proposals[:2]:  # Top 2
+                        # Create hypothesis for experiment proposal
+                        h_name = f"Experiment: {proposal['gap_type'][:30]}..."
+                        if h_name not in existing_names:
+                            h = self.store.add(
+                                h_name,
+                                "Experimental Design",
+                                f"Observation proposal: {proposal['description']}. "
+                                f"Priority: {proposal['priority']:.2f}. "
+                                f"Suggested: {'; '.join(proposal['suggested_experiments'][:2])}",
+                                confidence=proposal['priority'] * 0.6
+                            )
+                            h.phase = Phase.PROPOSED
+                            insights_generated += 1
+
+                            self._log("UPDATE", "EXPERIMENT_DESIGN",
+                                      f"Observation proposal: {proposal['gap_type'][:30]}...", h.id)
+
+            except Exception as e:
+                self._log("UPDATE", "EXPERIMENT_DESIGN", f"Error designing experiments: {e}")
+
+        except Exception as e:
+            self._log("UPDATE", "COGNITIVE", f"Cognitive discovery error: {e}")
+
+        return insights_generated
 
     def _recalculate_system_confidence(self):
         active = self.store.active()
@@ -2247,6 +2426,26 @@ class DiscoveryEngine:
             self._log("UPDATE", "THEORY_DISCOVERY",
                       f"Completed theoretical discovery cycle #{self.cycle_count // self._theory_discovery_interval}. "
                       f"Generated {theory_hypotheses} novel theoretical hypotheses.")
+
+        # Phase 15: Cognitive Architecture discovery runs every N cycles (default: every 15 cycles)
+        # This integrates Knowledge Graph + Neuro-Symbolic + Meta-Cognition for Scientific AGI
+        if self._cognitive_discovery_enabled and self.cognitive_core and (self.cycle_count - self._last_cognitive_discovery_cycle >= self._cognitive_discovery_interval):
+            cognitive_discoveries = self._run_cognitive_discovery()
+            self._last_cognitive_discovery_cycle = self.cycle_count
+            self._log("UPDATE", "COGNITIVE",
+                      f"Completed cognitive discovery cycle #{self.cycle_count // self._cognitive_discovery_interval}. "
+                      f"Generated {cognitive_discoveries} cognitive insights.")
+
+        # State persistence: save state every N cycles (default: every 50 cycles)
+        if self.cognitive_core and (self.cycle_count - self._last_state_save_cycle >= self._state_save_interval):
+            save_engine_state(self)
+            save_hypotheses(self.store)
+            if self.cognitive_core:
+                save_cognitive_state(self.cognitive_core)
+            self._last_state_save_cycle = self.cycle_count
+            self._log("UPDATE", "PERSISTENCE",
+                      f"Saved state at cycle {self.cycle_count}: "
+                      f"{len(self.store.hypotheses)} hypotheses, {self.cycle_count} cycles completed")
 
         self._recalculate_system_confidence()
         self._log("UPDATE", "UPDATE",

@@ -7,6 +7,7 @@ import time
 import json
 import os
 import sys
+import numpy as np
 from pathlib import Path
 
 from fastapi import FastAPI, Request
@@ -1690,6 +1691,325 @@ async def get_critical_experiments():
 async def get_consistency_reports():
     """Self-consistency check results for all active theories."""
     return {"reports": engine.theory_engine.get_consistency_reports()}
+
+
+# ═══════════════════════════════════════════════════════════════
+# Phase 15: Cognitive Architecture Endpoints (Scientific AGI)
+# ═══════════════════════════════════════════════════════════════
+
+@app.get("/api/cognitive/status")
+async def api_cognitive_status():
+    """Cognitive architecture status and capabilities."""
+    if not engine.cognitive_core:
+        return {"enabled": False, "message": "Cognitive architecture not available"}
+
+    summary = engine.cognitive_core.get_cognitive_summary()
+
+    return {
+        "enabled": True,
+        "cognitive_mode": summary.get("cognitive_mode"),
+        "perceptions": summary.get("perceptions", 0),
+        "insights": summary.get("insights", 0),
+        "discoveries": summary.get("discoveries", 0),
+        "knowledge_graph": summary.get("knowledge_graph_stats", {}),
+        "neuro_symbolic": summary.get("neuro_symbolic_stats", {}),
+        "metacognition": summary.get("metacognitive_report", {})
+    }
+
+
+@app.get("/api/knowledge-graph/statistics")
+async def api_knowledge_graph_stats():
+    """Knowledge graph statistics: entities, relations, gaps."""
+    if not engine.cognitive_core:
+        return {"error": "Cognitive core not available"}
+
+    stats = engine.cognitive_core.knowledge_graph.get_statistics()
+
+    return {
+        "statistics": stats,
+        "total_entities": stats.get("total_entities", 0),
+        "total_relations": stats.get("total_relations", 0),
+        "knowledge_gaps": stats.get("knowledge_gaps", 0),
+        "domains": stats.get("domains", {}),
+        "graph_density": stats.get("graph_density", 0)
+    }
+
+
+@app.get("/api/knowledge-graph/gaps")
+async def api_knowledge_graph_gaps():
+    """Get current knowledge gaps identified by the knowledge graph."""
+    if not engine.cognitive_core:
+        return {"error": "Cognitive core not available"}
+
+    gaps = engine.cognitive_core.knowledge_graph.find_knowledge_gaps()
+
+    # Return top 10 gaps by priority
+    top_gaps = sorted(gaps, key=lambda g: g.priority, reverse=True)[:10]
+
+    return {
+        "total_gaps": len(gaps),
+        "high_priority_gaps": len([g for g in gaps if g.priority > 0.7]),
+        "top_gaps": [
+            {
+                "gap_type": g.gap_type,
+                "description": g.description,
+                "priority": g.priority,
+                "suggestions": g.suggestions
+            }
+            for g in top_gaps
+        ]
+    }
+
+
+@app.get("/api/knowledge-graph/analogies")
+async def api_knowledge_graph_analogies():
+    """Get cross-domain analogies discovered by the knowledge graph."""
+    if not engine.cognitive_core:
+        return {"error": "Cognitive core not available"}
+
+    analogies = engine.cognitive_core.knowledge_graph.find_cross_domain_analogies()
+
+    return {
+        "total_analogies": len(analogies),
+        "analogies": [
+            {
+                "domain1": a["domain1"],
+                "domain2": a["domain2"],
+                "entity1": a["entity1"],
+                "entity2": a["entity2"],
+                "similarity": a["similarity"],
+                "shared_properties": a["shared_properties"]
+            }
+            for a in analogies[:10]  # Top 10
+        ]
+    }
+
+
+@app.get("/api/metacognition/report")
+async def api_metacognition_report():
+    """Get meta-cognitive self-awareness report."""
+    if not engine.cognitive_core:
+        return {"error": "Cognitive core not available"}
+
+    report = engine.cognitive_core.metacognition.get_self_awareness_report()
+
+    return {
+        "cognitive_state": report.get("cognitive_state"),
+        "total_traces": report.get("total_traces", 0),
+        "recent_success_rate": report.get("recent_success_rate", 0),
+        "error_patterns": report.get("error_patterns_detected", 0),
+        "methods_tracked": report.get("methods_tracked", 0),
+        "top_errors": report.get("top_error_patterns", []),
+        "best_methods": report.get("best_methods", [])
+    }
+
+
+@app.post("/api/cognitive/discover")
+async def api_cognitive_discover(request: Request):
+    """
+    Run cognitive discovery on provided data.
+
+    Expected body:
+    {
+        "data": [[...]],  # Numerical data array
+        "features": {"feature1": [...], "feature2": [...]},
+        "data_type": "numerical"
+    }
+    """
+    if not engine.cognitive_core:
+        return {"error": "Cognitive core not available"}
+
+    body = await request.json()
+
+    data = np.array(body.get("data", []))
+    features = body.get("features", {})
+    data_type = body.get("data_type", "numerical")
+
+    discovery = engine.cognitive_core.discover(data, data_type, features)
+
+    if discovery:
+        return {
+            "discovery_id": discovery.discovery_id,
+            "title": discovery.title,
+            "confidence": discovery.confidence,
+            "significance": discovery.significance,
+            "novelty": discovery.novelty,
+            "explanation": discovery.explanation,
+            "next_steps": discovery.next_steps
+        }
+
+    return {"error": "No discovery generated"}
+
+
+@app.get("/api/cognitive/discoveries")
+async def api_cognitive_discoveries():
+    """Get recent cognitive discoveries."""
+    if not engine.cognitive_core:
+        return {"error": "Cognitive core not available"}
+
+    discoveries = engine.cognitive_core.discoveries[-10:]  # Last 10
+
+    return {
+        "total_discoveries": len(engine.cognitive_core.discoveries),
+        "recent_discoveries": [
+            {
+                "id": d.discovery_id,
+                "title": d.title,
+                "type": d.discovery_type,
+                "confidence": d.confidence,
+                "significance": d.significance,
+                "novelty": d.novelty,
+                "explanation": d.explanation[:200] + "..." if len(d.explanation) > 200 else d.explanation
+            }
+            for d in discoveries
+        ]
+    }
+
+
+@app.get("/api/cognitive/explain/{discovery_id}")
+async def api_cognitive_explain(discovery_id: str, audience: str = "expert"):
+    """
+    Get explanation for a cognitive discovery at different audience levels.
+
+    Audience levels: expert, student, public
+    """
+    if not engine.cognitive_core:
+        return {"error": "Cognitive core not available"}
+
+    try:
+        explanation = engine.cognitive_core.explain_discovery(
+            int(discovery_id) if discovery_id.isdigit() else discovery_id,
+            audience_level=audience
+        )
+
+        if explanation:
+            return explanation
+
+        return {"error": "Discovery not found"}
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@app.post("/api/cognitive/reflect")
+async def api_cognitive_reflect():
+    """Trigger meta-cognitive reflection and self-improvement."""
+    if not engine.cognitive_core:
+        return {"error": "Cognitive core not available"}
+
+    reflection = engine.cognitive_core.reflect()
+
+    if reflection and reflection.get("reflection"):
+        refl = reflection["reflection"]
+
+        return {
+            "timestamp": refl.timestamp,
+            "insights": refl.insights,
+            "improvements": refl.improvements,
+            "strategy_changes": refl.strategy_changes,
+            "cognitive_state": reflection.get("cognitive_state"),
+            "knowledge_gaps_found": len(reflection.get("knowledge_gaps", []))
+        }
+
+    return {"error": "Reflection failed"}
+
+
+@app.post("/api/cognitive/integrate-theory-data")
+async def api_cognitive_integrate(request: Request):
+    """
+    Integrate theoretical description with empirical data validation.
+
+    Expected body:
+    {
+        "theory_description": "Entropic gravity predicts MOND-like behavior",
+        "data": [[...]]  # Observational data
+    }
+    """
+    if not engine.cognitive_core:
+        return {"error": "Cognitive core not available"}
+
+    body = await request.json()
+
+    theory_description = body.get("theory_description", "")
+    data = np.array(body.get("data", []))
+
+    result = engine.cognitive_core.unify_theory_and_data(theory_description, data)
+
+    return result
+
+
+@app.get("/api/state/persistence")
+async def api_state_persistence():
+    """Get state persistence status and summary."""
+    from astra_live_backend.state_persistence import get_state_summary
+
+    summary = get_state_summary()
+
+    return {
+        "persistence_enabled": True,
+        "state_dir_exists": summary.get("state_dir_exists"),
+        "engine_state_saved": summary.get("engine_state_exists"),
+        "hypotheses_saved": summary.get("hypotheses_exist"),
+        "cognitive_state_saved": summary.get("cognitive_state_exists"),
+        "last_saved": summary.get("last_saved"),
+        "cycle_count": summary.get("cycle_count"),
+        "hypotheses_count": summary.get("hypotheses_count", 0),
+        "active_hypotheses": summary.get("active_hypotheses", 0)
+    }
+
+
+@app.post("/api/state/save")
+async def api_state_save():
+    """Manually trigger state save."""
+    from astra_live_backend.state_persistence import save_engine_state, save_hypotheses, save_cognitive_state
+
+    try:
+        save_engine_state(engine)
+        save_hypotheses(engine.store)
+        if engine.cognitive_core:
+            save_cognitive_state(engine.cognitive_core)
+
+        return {
+            "success": True,
+            "message": "State saved successfully",
+            "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+@app.get("/api/cognitive/dashboard")
+async def api_cognitive_dashboard():
+    """
+    Get comprehensive cognitive dashboard data.
+
+    Combines all cognitive systems into a unified view.
+    """
+    if not engine.cognitive_core:
+        return {"enabled": False, "message": "Cognitive architecture not available"}
+
+    summary = engine.cognitive_core.get_cognitive_summary()
+
+    # Get additional details
+    kg_stats = engine.cognitive_core.knowledge_graph.get_statistics()
+    meta_report = engine.cognitive_core.metacognition.get_self_awareness_report()
+    gaps = engine.cognitive_core.knowledge_graph.find_knowledge_gaps()
+
+    return {
+        "enabled": True,
+        "summary": summary,
+        "knowledge_graph": {
+            "statistics": kg_stats,
+            "gaps_count": len(gaps),
+            "high_priority_gaps": len([g for g in gaps if g.priority > 0.7])
+        },
+        "metacognition": {
+            "cognitive_state": meta_report.get("cognitive_state"),
+            "success_rate": meta_report.get("recent_success_rate", 0),
+            "error_patterns": meta_report.get("error_patterns_detected", 0)
+        },
+        "recent_discoveries": len(engine.cognitive_core.discoveries),
+        "total_insights": len(engine.cognitive_core.insights)
+    }
 
 
 if __name__ == "__main__":
