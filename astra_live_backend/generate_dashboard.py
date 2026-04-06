@@ -171,8 +171,21 @@ def ensure_snapshot_api(html: str) -> str:
     return html
 
 
+TEMPLATE_PATH = "/shared/ASTRA/shared/public/astra-live/index.html"
+
+
 def build_dashboard_html(snapshot_data: dict) -> str:
     """Read the HTML, inject snapshot data, ensure API fallback. Idempotent."""
+    import os, shutil
+    # Safety: if output is missing, empty, or corrupted, restore from template
+    if not os.path.exists(OUTPUT_PATH) or os.path.getsize(OUTPUT_PATH) < 10000:
+        if os.path.exists(TEMPLATE_PATH) and os.path.getsize(TEMPLATE_PATH) > 10000:
+            os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+            shutil.copy2(TEMPLATE_PATH, OUTPUT_PATH)
+            print(f"  Restored dashboard from template ({os.path.getsize(TEMPLATE_PATH)} bytes)")
+        else:
+            print(f"  ERROR: Dashboard template missing at {TEMPLATE_PATH}")
+            return ""
     with open(OUTPUT_PATH, 'r') as f:
         html = f.read()
 
