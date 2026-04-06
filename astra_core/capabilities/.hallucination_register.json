@@ -1,0 +1,42 @@
+{
+  "hallucinations": [
+    {
+      "claim": "54 MHz observations of planetary nebulae using LOFAR LBA",
+      "correct_value": "144 MHz observations using LOFAR HBA (LoTSS)",
+      "category": "observation_frequency",
+      "source_document": "Electron temperatures derived from low-frequency observations of planetary nebulae",
+      "date": "2026-03-24",
+      "notes": "The paper uses LoTSS at 144 MHz (HBA), NOT 54 MHz LBA observations. This was a serious hallucination in the initial review."
+    },
+    {
+      "claim": "29 planetary nebulae observed with 12 detections",
+      "correct_value": "198 PNe detected in LoTSS DR3, 61 with electron temperatures determined",
+      "category": "sample_size",
+      "source_document": "Electron temperatures derived from low-frequency observations of planetary nebulae",
+      "date": "2026-03-24",
+      "notes": "Completely wrong sample size. Paper analyzed 198 PNe from LoTSS DR3, with 61 showing turnover for temperature determination."
+    },
+    {
+      "claim": "LOFAR LBA (Low Band Antenna) observations",
+      "correct_value": "LOFAR HBA (High Band Antenna) via LoTSS survey",
+      "category": "instrument",
+      "source_document": "Electron temperatures derived from low-frequency observations of planetary nebulae",
+      "date": "2026-03-24",
+      "notes": "LoTSS uses the High Band Antenna at 120-168 MHz (center ~144 MHz), not the Low Band Antenna which operates at lower frequencies."
+    },
+    {
+      "claim": "S/N > 3 detection threshold for 12/29 sources",
+      "correct_value": "Detection based on LoTSS DR3 catalog plus visual inspection for 198 PNe",
+      "category": "methodology",
+      "source_document": "Electron temperatures derived from low-frequency observations of planetary nebulae",
+      "date": "2026-03-24",
+      "notes": "The paper uses standard LoTSS detection plus visual inspection, not a simple S/N > 3 threshold as claimed."
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "last_updated": "2026-03-24",
+    "total_hallucinations": 4,
+    "incident_source": "PN_24March review incident - serious failure requiring corrective action"
+  }
+}

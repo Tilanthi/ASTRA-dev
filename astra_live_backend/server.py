@@ -1,0 +1,1756 @@
+from astra_live_backend.safety.health import SystemHealthReport
+"""
+ASTRA Live — FastAPI Server
+Real-time API for the ASTRA Live dashboard.
+"""
+import time
+import json
+import os
+import sys
+from pathlib import Path
+
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse, JSONResponse
+
+# Add parent to path for imports
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from astra_live_backend.engine import DiscoveryEngine
+
+app = FastAPI(title="ASTRA Live API", version="1.0.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Initialize the discovery engine
+engine = DiscoveryEngine()
+
+# Start the engine on import (5s delay before first cycle)
+engine.start(interval=25.0)
+
+# ── Scheduled Dashboard Snapshots (Phase 10.2) ────────────────
+import threading
+import logging
+
+_snap_logger = logging.getLogger(__name__ + ".snapshot")
+
+_snapshot_lock = threading.Lock()
+_snapshot_status = {
+    "last_refresh": None,
+    "last_refresh_iso": None,
+    "auto_enabled": True,
+    "refresh_count": 0,
+    "last_error": None,
+}
+
+
+def _do_snapshot_refresh():
+    """Generate dashboard snapshot by calling generate_dashboard."""
+    try:
+        from astra_live_backend.generate_dashboard import fetch_all_data, build_dashboard_html, OUTPUT_PATH
+        data = fetch_all_data()
+        html = build_dashboard_html(data)
+        with open(OUTPUT_PATH, 'w') as f:
+            f.write(html)
+        with _snapshot_lock:
+            _snapshot_status["last_refresh"] = time.time()
+            _snapshot_status["last_refresh_iso"] = time.strftime(
+                "%Y-%m-%dT%H:%M:%SZ", time.gmtime()
+            )
+            _snapshot_status["refresh_count"] += 1
+            _snapshot_status["last_error"] = None
+        _snap_logger.info(
+            f"Dashboard snapshot #{_snapshot_status['refresh_count']} written ({len(html)} bytes)"
+        )
+    except Exception as e:
+        with _snapshot_lock:
+            _snapshot_status["last_error"] = str(e)
+        _snap_logger.error(f"Snapshot refresh failed: {e}")
+
+
+def _snapshot_thread_fn(interval=120):
+    """Background thread: refresh dashboard every `interval` seconds."""
+    time.sleep(30)  # Initial delay to let server fully start
+    while True:
+        with _snapshot_lock:
+            if not _snapshot_status["auto_enabled"]:
+                time.sleep(10)
+                continue
+        try:
+            _do_snapshot_refresh()
+        except Exception as e:
+            _snap_logger.error(f"Snapshot thread error: {e}")
+        time.sleep(interval)
+
+
+_snapshot_thread = threading.Thread(
+    target=_snapshot_thread_fn, args=(120,), daemon=True, name="snapshot-refresh"
+)
+_snapshot_thread.start()
+
+
+# ── API Endpoints ────────────────────────────────────────────────
+
+@app.get("/api/status")
+def api_status():
+    """Engine status — is it running, cycle count, uptime."""
+    state = engine.get_state()
+    stigmergy_summary = {
+        "pheromone_weight": engine.stigmergy.pheromone_weight,
+        "total_deposits": engine.stigmergy.metrics.get("total_deposits", 0),
+        "success_deposits": engine.stigmergy.metrics.get("success_deposits", 0),
+        "failure_deposits": engine.stigmergy.metrics.get("failure_deposits", 0),
+        "novelty_deposits": engine.stigmergy.metrics.get("novelty_deposits", 0),
+    }
+    return {
+        "status": "running" if engine.running else "stopped",
+        "engine": state,
+        "stigmergy": stigmergy_summary,
+        "timestamp": time.time(),
+    }
+
+
+@app.get("/api/state")
+def api_state():
+    """Full engine state for dashboard."""
+    return engine.get_state()
+
+
+@app.get("/api/hypotheses")
+def api_hypotheses():
+    """All hypotheses with their current state."""
+    return engine.get_hypotheses()
+
+
+@app.get("/api/hypotheses/{hid}")
+def api_hypothesis(hid: str):
+    """Single hypothesis detail."""
+    h = engine.store.get(hid)
+    if not h:
+        return JSONResponse({"error": "not found"}, 404)
+    return h.to_dict()
+
+
+@app.post("/api/hypotheses")
+def api_create_hypothesis(name: str, domain: str, description: str,
+                          confidence: float = 0.25):
+    """Create a new hypothesis."""
+    from astra_live_backend.hypotheses import Phase
+    h = engine.store.add(name, domain, description, confidence=confidence)
+    h.phase = Phase.PROPOSED
+    return h.to_dict()
+
+
+@app.get("/api/activity")
+def api_activity(limit: int = 50):
+    """Recent activity log entries."""
+    return engine.get_activity_log(limit)
+
+
+@app.get("/api/decisions")
+def api_decisions(limit: int = 20):
+    """Recent autonomous decision log."""
+    return engine.get_decision_log(limit)
+
+
+@app.get("/api/charts")
+def api_charts():
+    """Chart data computed from real engine state."""
+    return engine.get_chart_data()
+
+
+@app.get("/api/metrics")
+def api_metrics():
+    """Key metrics for the metrics bar."""
+    state = engine.get_state()
+    return {
+        "runtime_seconds": state["uptime_seconds"],
+        "data_points": state["total_data_points"],
+        "scripts_written": state["total_scripts"],
+        "plots_generated": state["total_plots"],
+        "hypotheses_tested": state["hypotheses_tested"],
+        "queue_depth": state["queue_depth"],
+        "domains_active": state["domains_active"],
+        "system_confidence": state["system_confidence"],
+        "auto_decisions": state["total_decisions"],
+        "papers_drafted": state["papers_drafted"],
+        "cross_domain_links": state["cross_domain_links"],
+        "gpu_utilization": state["gpu_utilization"],
+    }
+
+
+@app.post("/api/engine/cycle")
+def api_force_cycle():
+    """Force a discovery cycle to run now."""
+    engine.run_cycle()
+    return {"status": "cycle completed", "cycle_count": engine.cycle_count}
+
+
+@app.post("/api/engine/start")
+def api_start_engine():
+    engine.start(interval=20.0)
+    return {"status": "started"}
+
+
+@app.post("/api/engine/stop")
+def api_stop_engine():
+    engine.stop()
+    return {"status": "stopped"}
+
+
+# ── Safety & Control Endpoints (Phase 1 AGI Transformation) ─────
+
+@app.post("/api/engine/pause")
+def api_pause_engine():
+    """Pause the discovery engine OODA cycle."""
+    result = engine.safety.pause("Manual pause via API")
+    return result
+
+
+@app.post("/api/engine/resume")
+def api_resume_engine():
+    """Resume the discovery engine from pause."""
+    result = engine.safety.resume("Manual resume via API")
+    return result
+
+
+@app.post("/api/engine/emergency-stop")
+def api_emergency_stop():
+    """Emergency stop: halt engine, save state."""
+    result = engine.safety.emergency_stop("Emergency stop via API")
+    return result
+
+
+@app.post("/api/engine/safe-mode")
+def api_safe_mode():
+    """Switch to safe mode: read-only analysis only."""
+    result = engine.safety.safe_mode("Switched to safe mode via API")
+    return result
+
+
+@app.get("/api/engine/safety-status")
+def api_safety_status():
+    """Get safety controller state + audit log."""
+    return engine.safety.get_full_status()
+
+
+@app.get("/api/engine/state-space")
+def api_state_space():
+    """Phase 3: PCA mapped state space and attractors."""
+    from astra_live_backend.state_space import StateSpaceVisualizer, AttractorMapper
+
+    history = engine.get_state_vector_with_history()["history"]
+    visualizer = StateSpaceVisualizer()
+    mapper = AttractorMapper()
+
+    trajectory = visualizer.fit_transform(history) or []
+    steady_state = mapper.identify_steady_state(history)
+
+    return {
+        "trajectory": trajectory,
+        "steady_state_attractor": steady_state,
+    }
+
+
+@app.get("/api/engine/state-vector")
+def api_state_vector():
+    """Get current state vector + history (last 100 cycles)."""
+    return engine.get_state_vector_with_history()
+
+
+@app.get("/api/engine/alignment")
+def api_alignment():
+    """Get alignment metrics."""
+    return engine.alignment_checker.compute(engine.store, engine)
+
+
+@app.get("/api/engine/anomalies")
+def api_anomalies():
+    """Get current anomalies + alert history."""
+    return engine.anomaly_detector.get_full_report()
+
+
+@app.get("/api/engine/pending")
+def api_pending_approvals():
+    """Get hypotheses awaiting approval for publication."""
+    pending = engine.store.pending_approvals()
+    return {
+        "count": len(pending),
+        "hypotheses": [h.to_dict() for h in pending],
+    }
+
+
+@app.post("/api/hypothesis/{hid}/approve")
+def api_approve_hypothesis(hid: str, reason: str = "Approved via API"):
+    """Approve a hypothesis for VALIDATED → PUBLISHED advancement."""
+    h = engine.store.get(hid)
+    if not h:
+        return JSONResponse({"error": "Hypothesis not found"}, 404)
+
+    # Safety check
+    if not engine.safety.can_advance_hypotheses():
+        return JSONResponse({
+            "error": f"Cannot approve hypotheses in safety state {engine.safety.state.value}"
+        }, 403)
+
+    if h.approve(reason):
+        engine.safety._audit(
+            _get_safety_action("APPROVE"),
+            engine.safety.state,
+            engine.safety.state,
+            f"Approved hypothesis {hid} ({h.name}): {reason}",
+            "api",
+        )
+        return {"success": True, "hypothesis": h.to_dict()}
+    else:
+        return JSONResponse({
+            "error": f"Cannot approve hypothesis {hid} (phase={h.phase.value}, approval_status={h.approval_status})"
+        }, 400)
+
+
+@app.post("/api/hypothesis/{hid}/reject")
+def api_reject_hypothesis(hid: str, reason: str = "Rejected via API"):
+    """Reject a hypothesis — stays at VALIDATED, approval cleared."""
+    h = engine.store.get(hid)
+    if not h:
+        return JSONResponse({"error": "Hypothesis not found"}, 404)
+
+    if h.reject(reason):
+        engine.safety._audit(
+            _get_safety_action("REJECT"),
+            engine.safety.state,
+            engine.safety.state,
+            f"Rejected hypothesis {hid} ({h.name}): {reason}",
+            "api",
+        )
+        return {"success": True, "hypothesis": h.to_dict()}
+    else:
+        return JSONResponse({
+            "error": f"Cannot reject hypothesis {hid} (approval_status={h.approval_status})"
+        }, 400)
+
+
+@app.post("/api/hypothesis/{hid}/archive")
+def api_archive_hypothesis(hid: str, reason: str = "Archived via API"):
+    """Force-archive a hypothesis regardless of current phase."""
+    from astra_live_backend.hypotheses import Phase
+    h = engine.store.get(hid)
+    if not h:
+        return JSONResponse({"error": "Hypothesis not found"}, 404)
+    h.phase = Phase.ARCHIVED
+    h.archived_at = __import__("time").time()
+    h.updated_at = h.archived_at
+    return {"success": True, "hypothesis": h.to_dict()}
+
+
+@app.post("/api/hypotheses/cleanup")
+def api_cleanup_hypotheses(pattern: str = "", min_version: int = 2):
+    """Archive duplicate/versioned hypotheses matching a pattern."""
+    import re
+    from astra_live_backend.hypotheses import Phase
+    archived = []
+    for h in engine.store.all():
+        name = h.name
+        m = re.search(r'\(v(\d+)\)', name)
+        if m and int(m.group(1)) >= min_version:
+            if not pattern or pattern.lower() in name.lower():
+                h.phase = Phase.ARCHIVED
+                h.archived_at = __import__("time").time()
+                h.updated_at = h.archived_at
+                archived.append(name)
+    return {"archived_count": len(archived), "archived": archived}
+
+
+@app.get("/api/system/health_old")
+def api_system_health_old():
+    """System component health status."""
+    components = {}
+
+    # Engine
+    components["engine"] = {
+        "status": "healthy" if engine.running else "stopped",
+        "cycle_count": engine.cycle_count,
+        "uptime_seconds": time.time() - engine.start_time,
+    }
+
+    # Safety controller
+    components["safety_controller"] = {
+        "status": "healthy",
+        "state": engine.safety.state.value,
+        "audit_log_size": len(engine.safety._audit_log),
+    }
+
+    # Hypothesis store
+    total_h = len(engine.store.all())
+    active_h = len(engine.store.active())
+    components["hypothesis_store"] = {
+        "status": "healthy" if total_h > 0 else "empty",
+        "total": total_h,
+        "active": active_h,
+        "pending_approvals": len(engine.store.pending_approvals()),
+    }
+
+    # Anomaly detector
+    anomalies = engine.anomaly_detector.get_current_anomalies()
+    critical = sum(1 for a in anomalies if a.get("severity") == "CRITICAL")
+    components["anomaly_detector"] = {
+        "status": "critical" if critical > 0 else ("warning" if anomalies else "healthy"),
+        "current_anomalies": len(anomalies),
+        "critical_count": critical,
+        "total_alerts": len(engine.anomaly_detector._alerts),
+    }
+
+    # Alignment checker
+    try:
+        alignment = engine.alignment_checker.compute(engine.store, engine)
+        components["alignment_checker"] = {
+            "status": "healthy",
+            "composite_score": alignment["composite_score"],
+        }
+    except Exception as e:
+        components["alignment_checker"] = {
+            "status": "error",
+            "error": str(e),
+        }
+
+    # State vector
+    components["state_vector"] = {
+        "status": "healthy" if len(engine.state_vector_history) > 0 else "initializing",
+        "history_length": len(engine.state_vector_history),
+    }
+
+    # Overall health
+    statuses = [c["status"] for c in components.values()]
+    if "critical" in statuses or "error" in statuses:
+        overall = "degraded"
+    elif all(s == "healthy" for s in statuses):
+        overall = "healthy"
+    else:
+        overall = "operational"
+
+    return {
+        "overall": overall,
+        "components": components,
+        "timestamp": time.time(),
+    }
+
+
+def _get_safety_action(name: str):
+    """Helper to get SafetyAction enum value."""
+    from astra_live_backend.safety import SafetyAction
+    return SafetyAction[name]
+
+
+# ── Serve the Dashboard ──────────────────────────────────────────
+
+# Use local dashboard file
+DASHBOARD_FILE = Path(__file__).parent / "dashboard.html"
+
+
+@app.get("/")
+def serve_dashboard():
+    return FileResponse(DASHBOARD_FILE)
+
+
+# ── Phase 4: Operational Readiness Endpoints ──────────────────────
+
+@app.get("/api/engine/arbiter")
+def api_arbiter_status():
+    """Safety Arbiter status and recent verdicts."""
+    return engine.arbiter.get_status()
+
+
+@app.get("/api/engine/arbiter/verdicts")
+def api_arbiter_verdicts(limit: int = 50):
+    """Safety Arbiter verdict history."""
+    return engine.arbiter.get_verdict_history(limit)
+
+
+@app.post("/api/engine/arbiter/override")
+def api_arbiter_override(supervisor_id: str = "system", reason: str = "Manual override",
+                         force: str = "GO", duration: float = 300.0):
+    """Add a supervisor override to the arbiter."""
+    return engine.arbiter.add_override(supervisor_id, reason, force, duration)
+
+
+@app.get("/api/engine/supervisors")
+def api_supervisors():
+    """Supervisor of Record status."""
+    return engine.supervisor_registry.get_status()
+
+
+@app.get("/api/engine/supervisors/list")
+def api_supervisors_list():
+    """List all registered supervisors."""
+    return engine.supervisor_registry.get_supervisors()
+
+
+@app.get("/api/engine/supervisors/actions")
+def api_supervisor_actions(limit: int = 50):
+    """Supervisor action log."""
+    return engine.supervisor_registry.get_action_log(limit)
+
+
+@app.post("/api/engine/supervisors/shift/start")
+def api_start_shift(supervisor_id: str = "system", handoff_notes: str = ""):
+    """Start a new supervisor shift."""
+    return engine.supervisor_registry.start_shift(supervisor_id, handoff_notes)
+
+
+@app.post("/api/engine/supervisors/shift/end")
+def api_end_shift(supervisor_id: str = "system", handoff_notes: str = ""):
+    """End the current supervisor shift."""
+    return engine.supervisor_registry.end_shift(supervisor_id, handoff_notes)
+
+
+@app.get("/api/engine/ceremony")
+def api_ceremony_status():
+    """Phase Commencement Ceremony status."""
+    return engine.ceremony_protocol.get_status()
+
+
+@app.post("/api/engine/ceremony/initiate")
+def api_ceremony_initiate(from_level: str = "SHADOW", to_level: str = "SUPERVISED",
+                          supervisor_id: str = "system"):
+    """Initiate a phase commencement ceremony."""
+    return engine.ceremony_protocol.initiate(from_level, to_level, supervisor_id)
+
+
+@app.get("/api/engine/orp")
+def api_orp_status():
+    """Operational Readiness Plan status."""
+    return engine.orp.get_status()
+
+
+@app.get("/api/engine/orp/checklist")
+def api_orp_checklist():
+    """Full ORP checklist."""
+    return engine.orp.get_checklist()
+
+
+@app.get("/api/engine/orp/assess")
+def api_orp_assess():
+    """Full readiness assessment with go/no-go."""
+    return engine.orp.assess_readiness()
+
+
+@app.get("/api/engine/safety-case")
+def api_safety_case():
+    """Safety Case status."""
+    return engine.safety_case.get_status()
+
+
+@app.get("/api/engine/safety-case/hazards")
+def api_safety_hazards():
+    """Hazard register."""
+    return engine.safety_case.get_hazard_register()
+
+
+@app.get("/api/engine/safety-case/claims")
+def api_safety_claims():
+    """Safety claims with evidence."""
+    return engine.safety_case.get_safety_claims()
+
+
+@app.get("/api/engine/safety-case/risk")
+def api_safety_risk():
+    """Risk summary with ALARP assessment."""
+    return engine.safety_case.get_risk_summary()
+
+
+@app.get("/api/engine/orp/rollback/{level}")
+def api_rollback_procedure(level: str):
+    """Get rollback procedure for given autonomy level."""
+    return engine.orp.get_rollback_procedure(level)
+
+
+@app.get("/api/engine/novelty")
+def api_novelty_status():
+    """Novelty detector status and recent signals."""
+    return engine.novelty_detector.get_status()
+
+
+@app.get("/api/engine/novelty/signals")
+def api_novelty_signals(limit: int = 20, min_score: float = 0.0):
+    """Novelty signals filtered by minimum novelty score."""
+    return engine.novelty_detector.get_signals(limit, min_score)
+
+
+@app.get("/api/engine/novelty/unexplored")
+def api_novelty_unexplored():
+    """Unexplored high-novelty signals."""
+    return engine.novelty_detector.get_unexplored()
+
+
+@app.get("/api/literature/search")
+def api_literature_search(query: str = "galaxy", max_results: int = 5):
+    """Search arXiv for related literature."""
+    from astra_live_backend.data_fetcher import search_arxiv_astroph
+    papers = search_arxiv_astroph(query, max_results)
+    return {"query": query, "results": papers, "count": len(papers)}
+
+
+# ── Literature Integration (Phase 9.1+9.2) ──────────────────────
+
+@app.get("/api/literature/papers")
+def api_literature_papers():
+    """List all cached papers in the literature store."""
+    from astra_live_backend.literature import get_literature_store
+    store = get_literature_store()
+    return {
+        "papers": store.get_papers(),
+        "total": store.paper_count,
+        "backend": "sklearn" if store._vectorizer is not None else "custom",
+        "timestamp": time.time(),
+    }
+
+
+@app.post("/api/literature/search-similar")
+async def api_literature_search_similar(request: Request):
+    """Find papers similar to a text query using TF-IDF cosine similarity."""
+    body = await request.json()
+    text = body.get("text", "")
+    top_k = body.get("top_k", 5)
+
+    if not text:
+        return JSONResponse({"error": "'text' field is required"}, 400)
+
+    from astra_live_backend.literature import get_literature_store
+    store = get_literature_store()
+    report = store.novelty_report(text, top_k=top_k)
+    report["timestamp"] = time.time()
+    return report
+
+
+@app.get("/api/literature/novelty/{hid}")
+def api_literature_novelty(hid: str):
+    """Compute novelty score for a hypothesis by its ID."""
+    h = engine.store.get(hid)
+    if not h:
+        return JSONResponse({"error": "Hypothesis not found"}, 404)
+
+    from astra_live_backend.literature import get_literature_store
+    store = get_literature_store()
+    text = f"{h.name} {h.description}"
+    report = store.novelty_report(text, top_k=5)
+    report["hypothesis_id"] = hid
+    report["hypothesis_name"] = h.name
+    report["timestamp"] = time.time()
+    return report
+
+
+# ── Citation Network (Phase 9.4) ─────────────────────────────────
+
+@app.get("/api/literature/citation-graph")
+def api_citation_graph():
+    """Return the citation graph as {nodes, edges} for visualization."""
+    from astra_live_backend.literature import get_citation_graph, get_literature_store
+    graph = get_citation_graph()
+    graph.build_from_literature_store(get_literature_store())
+    return graph.to_graph_json()
+
+
+@app.get("/api/literature/citation-metrics")
+def api_citation_metrics():
+    """Return citation metrics: most cited papers, network stats, h-index."""
+    from astra_live_backend.literature import get_citation_graph, get_literature_store
+    graph = get_citation_graph()
+    graph.build_from_literature_store(get_literature_store())
+    store = get_literature_store()
+    most_cited = graph.most_cited(10)
+    enriched = []
+    for pid, count in most_cited:
+        paper = store._papers.get(pid)
+        enriched.append({
+            "paper_id": pid,
+            "title": paper.title if paper else pid,
+            "citation_count": count,
+        })
+    return {
+        "most_cited": enriched,
+        "network_stats": graph.network_stats(),
+        "h_index": graph.h_index(),
+        "timestamp": time.time(),
+    }
+
+
+# ── Dashboard Snapshots (Phase 10.2) ─────────────────────────────
+
+@app.get("/api/system/snapshot-status")
+def api_snapshot_status():
+    """Return the current snapshot status."""
+    with _snapshot_lock:
+        return {**_snapshot_status, "timestamp": time.time()}
+
+
+@app.post("/api/system/snapshot-refresh")
+def api_snapshot_refresh():
+    """Trigger an immediate dashboard snapshot refresh."""
+    t = threading.Thread(target=_do_snapshot_refresh, daemon=True)
+    t.start()
+    return {"status": "refresh_triggered", "timestamp": time.time()}
+
+
+# ── ASTRA Core Scientific Capabilities (White & Dey 2026) ───────
+
+@app.post("/api/science/causal-discovery")
+def api_causal_discovery(variables: str = "", method: str = "PC", alpha: float = 0.05):
+    """
+    Run causal discovery (PC or FCI algorithm).
+    variables: comma-separated variable names to include
+    """
+    import numpy as np
+    # Use cached SDSS data for demonstration
+    from astra_live_backend.data_fetcher import get_cached_sdss
+    sdss = get_cached_sdss()
+    if sdss.data is None or len(sdss.data) < 10:
+        return {"error": "No data available"}
+
+    if variables:
+        var_names = [v.strip() for v in variables.split(",")]
+    else:
+        var_names = ["redshift", "u", "g", "r", "i"]
+
+    # Build data matrix
+    available = [v for v in var_names if v in sdss.data.dtype.names]
+    if len(available) < 2:
+        return {"error": f"Not enough variables found. Available: {list(sdss.data.dtype.names)}"}
+
+    data = np.column_stack([sdss.data[v] for v in available])
+    valid = np.all(np.isfinite(data), axis=1)
+    data = data[valid]
+
+    return engine.run_causal_discovery(available, data, method, alpha)
+
+
+@app.post("/api/science/dimensional-analysis")
+def api_dimensional_analysis(variables: str = ""):
+    """
+    Apply Buckingham π theorem.
+    variables: JSON dict of variable_name: dimension_type
+    """
+    import json
+    if variables:
+        try:
+            var_dict = json.loads(variables)
+        except:
+            return {"error": "Invalid JSON for variables"}
+    else:
+        # Default: filament scaling relation
+        var_dict = {
+            "mass": "mass",
+            "length": "length",
+            "velocity_dispersion": "velocity",
+            "gravitational_constant": "dimensionless",  # G appears in π groups
+        }
+    return engine.run_dimensional_analysis(var_dict)
+
+
+@app.post("/api/science/scaling-relation")
+def api_scaling_relation(x_col: str = "sma", y_col: str = "period"):
+    """Discover power-law scaling relation between two variables."""
+    import numpy as np
+    from astra_live_backend.data_fetcher import get_cached_exoplanets, get_cached_sdss
+
+    # Try exoplanets first
+    exo = get_cached_exoplanets()
+    if exo.data is not None and x_col in exo.data.dtype.names and y_col in exo.data.dtype.names:
+        x = exo.data[x_col]
+        y = exo.data[y_col]
+        return engine.run_scaling_discovery(x, y, x_col, y_col)
+
+    # Try SDSS
+    sdss = get_cached_sdss()
+    if sdss.data is not None and x_col in sdss.data.dtype.names and y_col in sdss.data.dtype.names:
+        x = sdss.data[x_col]
+        y = sdss.data[y_col]
+        return engine.run_scaling_discovery(x, y, x_col, y_col)
+
+    return {"error": f"Columns {x_col},{y_col} not found in available data"}
+
+
+@app.post("/api/science/model-comparison")
+def api_model_comparison(x_col: str = "sma", y_col: str = "period"):
+    """Bayesian model comparison on two variables."""
+    import numpy as np
+    from astra_live_backend.data_fetcher import get_cached_exoplanets
+    exo = get_cached_exoplanets()
+    if exo.data is None:
+        return {"error": "No exoplanet data available"}
+
+    if x_col not in exo.data.dtype.names or y_col not in exo.data.dtype.names:
+        return {"error": f"Columns not found. Available: {list(exo.data.dtype.names)}"}
+
+    x = exo.data[x_col]
+    y = exo.data[y_col]
+    valid = (x > 0) & (y > 0) & np.isfinite(x) & np.isfinite(y)
+
+    return engine.run_model_comparison(x[valid], y[valid])
+
+
+@app.post("/api/science/knowledge-isolation")
+def api_knowledge_isolation(target: str = "", variables: str = ""):
+    """
+    Full knowledge isolation discovery pipeline.
+    Implements Test Case 6 from the paper.
+    """
+    import numpy as np
+    from astra_live_backend.data_fetcher import get_cached_sdss
+    sdss = get_cached_sdss()
+    if sdss.data is None or len(sdss.data) < 10:
+        return {"error": "No data available"}
+
+    if variables:
+        var_names = [v.strip() for v in variables.split(",")]
+    else:
+        var_names = ["redshift", "u", "g", "r", "i"]
+
+    available = [v for v in var_names if v in sdss.data.dtype.names]
+    if len(available) < 3:
+        return {"error": "Need at least 3 variables"}
+
+    data = np.column_stack([sdss.data[v] for v in available])
+    valid = np.all(np.isfinite(data), axis=1)
+    data = data[valid]
+
+    target_var = target if target in available else available[0]
+
+    return engine.run_knowledge_isolation(data, available, target_var)
+
+
+@app.post("/api/science/intervention-test")
+def api_intervention_test(cause: str = "g", effect: str = "r"):
+    """Test a causal claim via intervention analysis."""
+    import numpy as np
+    from astra_live_backend.data_fetcher import get_cached_sdss
+    sdss = get_cached_sdss()
+    if sdss.data is None:
+        return {"error": "No data available"}
+
+    available = list(sdss.data.dtype.names)
+    if cause not in available or effect not in available:
+        return {"error": f"Variables not found. Available: {available}"}
+
+    var_names = [cause, effect]
+    data = np.column_stack([sdss.data[v] for v in var_names])
+    valid = np.all(np.isfinite(data), axis=1)
+    data = data[valid]
+
+    return engine.run_intervention_test(data, var_names, cause, effect)
+
+
+# ── Discovery Memory & Self-Improvement Endpoints ─────────────────
+
+@app.get("/api/discovery-memory")
+def api_discovery_memory():
+    """Discovery memory state — tracks findings, method effectiveness, exploration."""
+    return engine.discovery_memory.to_dict()
+
+
+@app.get("/api/discovery-memory/discoveries")
+def api_discovery_discoveries(min_strength: float = 0.0, limit: int = 50):
+    """List recorded discoveries, optionally filtered by strength."""
+    discoveries = [d for d in engine.discovery_memory.discoveries
+                   if d.strength >= min_strength]
+    discoveries.sort(key=lambda d: d.strength, reverse=True)
+    from dataclasses import asdict
+    return [asdict(d) for d in discoveries[:limit]]
+
+
+@app.get("/api/discovery-memory/graph")
+def api_discovery_graph():
+    """Discovery relationship graph — how findings connect."""
+    return engine.discovery_memory.get_discovery_graph()
+
+
+@app.get("/api/discovery-memory/improvement")
+def api_improvement_metrics():
+    """Self-improvement metrics — how the system is evolving."""
+    return engine.discovery_memory.compute_improvement_metrics()
+
+
+@app.get("/api/strategy")
+def api_strategy():
+    """Current adaptive strategy state."""
+    return engine.strategist.get_strategy_summary()
+
+
+@app.get("/api/strategy/exploration")
+def api_exploration():
+    """Exploration coverage — which data/variable combinations have been tested."""
+    result = {}
+    for source in ["exoplanets", "sdss", "gaia", "pantheon"]:
+        untested = engine.discovery_memory.get_unexplored_variable_pairs(source)
+        es = engine.discovery_memory.exploration.get(source)
+        result[source] = {
+            "untested_pairs": len(untested),
+            "sample_untested": untested[:5],
+            "explored_count": es.total_explorations if es else 0,
+            "novelty_rate": round(es.novelty_rate, 3) if es else 0,
+        }
+    return result
+
+
+@app.post("/api/discovery-memory/generate")
+def api_generate_hypotheses():
+    """Force hypothesis generation from discovery memory."""
+    existing_names = {h.name for h in engine.store.all()}
+    candidates = engine.hypothesis_generator.generate_from_discoveries(
+        current_cycle=engine.cycle_count,
+        existing_names=existing_names,
+        max_new=3,
+    )
+    generated = []
+    for c in candidates:
+        h = engine.store.add(c["name"], c["domain"], c["description"],
+                             confidence=c["confidence"])
+        h.phase = engine.hypotheses.Phase.PROPOSED
+        engine.discovery_memory.generation_count += 1
+        generated.append({"id": h.id, "name": c["name"], "source": c.get("source_discovery_id")})
+    return {"generated": generated, "total_memory_discoveries": len(engine.discovery_memory.discoveries)}
+
+
+# ── Serve the Dashboard ──────────────────────────────────────────
+
+# Use local dashboard file
+DASHBOARD_FILE = Path(__file__).parent / "dashboard.html"
+
+
+@app.get("/")
+def serve_dashboard():
+    return FileResponse(DASHBOARD_FILE)
+
+
+@app.get("/api/system/health")
+def api_system_health():
+    """Component health for the Health tab (Phase 2 Update)."""
+    health = SystemHealthReport()
+    return health.get_report(engine.get_state())
+
+
+# ═══════════════════════════════════════════════════════════════
+# Data Registry Endpoints (Phase 6)
+# ═══════════════════════════════════════════════════════════════
+
+@app.get("/api/data-sources")
+def api_data_sources():
+    """List all registered data sources."""
+    from astra_live_backend.data_registry import get_registry
+    reg = get_registry()
+    return {
+        "sources": reg.list_sources(),
+        "stats": reg.get_stats(),
+        "timestamp": time.time(),
+    }
+
+
+@app.get("/api/data-sources/{source_id}")
+def api_data_source_detail(source_id: str):
+    """Get details and schema for a specific data source."""
+    from astra_live_backend.data_registry import get_registry
+    reg = get_registry()
+    source = reg.get_source(source_id)
+    if not source:
+        return JSONResponse(status_code=404,
+                            content={"error": f"Unknown source: {source_id}"})
+    return {
+        "id": source_id,
+        "name": source.schema.name,
+        "description": source.schema.description,
+        "domain": source.schema.domain.value,
+        "columns": [{"name": c.name, "dtype": c.dtype, "unit": c.unit,
+                      "description": c.description} for c in source.schema.columns],
+        "variables": source.variables,
+        "api_url": source.schema.api_url,
+        "reference": source.schema.reference,
+        "cross_match_keys": source.schema.cross_match_keys,
+        "priority": source.priority,
+        "timestamp": time.time(),
+    }
+
+
+@app.get("/api/data-sources/{source_id}/fetch")
+def api_fetch_data_source(source_id: str):
+    """Fetch data from a specific source."""
+    from astra_live_backend.data_registry import get_registry
+    reg = get_registry()
+    result = reg.fetch(source_id, use_cache=True)
+    return {
+        "source": result.source,
+        "row_count": result.row_count,
+        "fetch_time": result.fetch_time,
+        "columns": list(result.data.dtype.names) if result.data is not None and result.data.dtype.names else [],
+        "metadata": {k: v for k, v in result.metadata.items()
+                     if k != 'records'},  # Don't return raw records in API
+        "timestamp": time.time(),
+    }
+
+
+@app.get("/api/cross-matches")
+def api_cross_matches():
+    """Get all possible cross-source data links."""
+    from astra_live_backend.data_registry import get_registry
+    reg = get_registry()
+    pairs = reg.get_cross_link_pairs()
+    links = []
+    for a, b, key in pairs:
+        src_a = reg.get_source(a)
+        src_b = reg.get_source(b)
+        if src_a and src_b:
+            links.append({
+                "source_a": a,
+                "source_a_name": src_a.schema.name,
+                "source_b": b,
+                "source_b_name": src_b.schema.name,
+                "match_key": key,
+                "common_variables": list(set(src_a.variables) & set(src_b.variables)),
+            })
+    return {
+        "links": links,
+        "total_pairs": len(links),
+        "timestamp": time.time(),
+    }
+
+
+@app.get("/api/variables")
+def api_variables():
+    """Get all available variables with affinities."""
+    from astra_live_backend.data_registry import get_registry, Domain
+    reg = get_registry()
+    return {
+        "variables": reg.get_variables(),
+        "affinities": reg.get_variable_affinities(),
+        "by_domain": {
+            "exoplanets": reg.get_variables(Domain.EXOPLANETS),
+            "cosmology": reg.get_variables(Domain.COSMOLOGY),
+            "stellar": reg.get_variables(Domain.STELLAR),
+            "galaxies": reg.get_variables(Domain.GALAXIES),
+        },
+        "timestamp": time.time(),
+    }
+
+
+@app.get("/api/persistence")
+def api_persistence():
+    """SQLite persistence stats."""
+    return engine.discovery_memory.get_persistence_stats()
+
+
+# ── Checkpoint Endpoints (Phase 12.0) ─────────────────────────────────────
+
+@app.get("/api/checkpoint/status")
+def api_checkpoint_status():
+    """Get checkpoint system status and history."""
+    return {
+        "status": engine.checkpoint_manager.get_status(),
+        "history": engine.checkpoint_manager.get_checkpoint_history(limit=10)
+    }
+
+
+@app.post("/api/checkpoint/save")
+def api_checkpoint_save():
+    """Manually save a checkpoint."""
+    try:
+        cp_info = engine.checkpoint_manager.save_checkpoint(
+            engine.store,
+            cycle_count=engine.cycle_count,
+            metadata={
+                'system_confidence': engine.system_confidence,
+                'active_hypotheses': len(engine.store.active()),
+                'current_phase': engine.current_phase,
+                'manual': True
+            },
+            is_auto=False
+        )
+        return {
+            "success": True,
+            "checkpoint": cp_info,
+            "message": f"Checkpoint #{cp_info['checkpoint_id']} saved ({cp_info['hypotheses_saved']} hypotheses)"
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+@app.post("/api/checkpoint/restore")
+def api_checkpoint_restore():
+    """Manually restore from the latest checkpoint."""
+    try:
+        # Get current state for comparison
+        old_count = len(engine.store.all())
+        old_cycle = engine.cycle_count
+
+        cp_info = engine.checkpoint_manager.load_latest_checkpoint(engine.store)
+        if cp_info:
+            engine.cycle_count = cp_info.get('cycle_count', engine.cycle_count)
+            engine._recalculate_system_confidence()
+            return {
+                "success": True,
+                "checkpoint": cp_info,
+                "changes": {
+                    "hypotheses_before": old_count,
+                    "hypotheses_after": len(engine.store.all()),
+                    "cycle_before": old_cycle,
+                    "cycle_after": engine.cycle_count
+                },
+                "message": f"Restored from checkpoint #{cp_info['checkpoint_id']}"
+            }
+        else:
+            return {"success": False, "error": "No checkpoint found"}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+@app.post("/api/checkpoint/prune")
+def api_checkpoint_prune(keep_count: int = 10):
+    """Remove old checkpoints, keeping only the most recent ones."""
+    try:
+        deleted = engine.checkpoint_manager.prune_old_checkpoints(keep_count=keep_count)
+        return {
+            "success": True,
+            "deleted": deleted,
+            "message": f"Pruned {deleted} old checkpoint(s)"
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+@app.get("/api/checkpoint/prune")
+def api_checkpoint_prune(keep_count: int = 10):
+    """Remove old checkpoints, keeping only the most recent ones."""
+    try:
+        deleted = engine.checkpoint_manager.prune_old_checkpoints(keep_count=keep_count)
+        return {
+            "success": True,
+            "deleted": deleted,
+            "message": f"Pruned {deleted} old checkpoint(s)"
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+# ── FITS File Endpoints ─────────────────────────────────────────────────
+
+@app.get("/api/fits/list")
+def api_list_fits_files():
+    """List all FITS files in the data/fits directory."""
+    from astra_live_backend.fits_reader import list_fits_files, ASTROPY_AVAILABLE
+    if not ASTROPY_AVAILABLE:
+        return {"error": "astropy not installed. Install with: pip install astropy"}
+    return {
+        "fits_dir": str(Path(__file__).parent.parent / "data" / "fits"),
+        "files": list_fits_files(),
+        "total": len(list_fits_files())
+    }
+
+
+@app.get("/api/fits/summary/{filename}")
+def api_fits_summary(filename: str):
+    """Get summary of a FITS file without loading all data."""
+    from astra_live_backend.fits_reader import get_fits_summary
+    return get_fits_summary(filename)
+
+
+@app.get("/api/fits/read/{filename}")
+def api_read_fits_file(filename: str, hdu: int = 0):
+    """Read a FITS file and return data and header."""
+    from astra_live_backend.fits_reader import read_fits_file
+    result = read_fits_file(filename, hdu=hdu)
+
+    # Convert numpy arrays to lists for JSON serialization
+    if result and 'data' in result and result['data'] is not None:
+        # Only return shape and dtype for large arrays
+        if result['data'].size > 1000:
+            result['data_sample'] = result['data'].flat[:100].tolist()
+            result['data'] = None
+            result['note'] = "Data too large for JSON, use alternative export method"
+        else:
+            result['data'] = result['data'].tolist()
+
+    return result
+
+
+# ── Theoretical Analysis Endpoints ────────────────────────────────────────
+
+@app.get("/api/theory/mass-luminosity")
+def api_mass_luminosity_relation(mass_min: float = 0.1, mass_max: float = 100.0,
+                                 n_points: int = 100):
+    """
+    Get theoretical mass-luminosity relation from first principles.
+
+    Derivation steps:
+    1. Hydrostatic equilibrium: P ∝ GM²/R⁴
+    2. Ideal gas: P ∝ ρT ∝ MT/R³
+    3. Radiative diffusion: L ∝ R⁴T⁴/κρ
+    4. Kramers opacity: κ ∝ ρT^(-3.5)
+
+    Result: L ∝ M^α where α ≈ 2.3-4.0 depending on regime
+    """
+    from astra_live_backend.stellar_theory import (
+        MassLuminosityDerivation, get_mass_luminosity_prediction
+    )
+    import numpy as np
+
+    deriv = MassLuminosityDerivation()
+    masses = np.logspace(np.log10(mass_min), np.log10(mass_max), n_points)
+    luminosities = get_mass_luminosity_prediction(masses)
+
+    # Get regime information
+    regimes = []
+    for M in [0.2, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0]:
+        if mass_min <= M <= mass_max:
+            result = deriv.derive_mass_luminosity_relation(
+                M_range=np.array([M]),
+                transport="radiative" if M > 0.43 else "convective",
+                opacity_source="kramers" if M < 2.0 else "electron_scattering"
+            )
+            regimes.append({
+                "mass_Msun": M,
+                "luminosity_Lsun": float(luminosities[np.argmin(np.abs(masses - M))]),
+                "regime": result["regime"],
+                "exponent": result["exponent"]
+            })
+
+    return {
+        "masses": masses.tolist(),
+        "luminosities": luminosities.tolist(),
+        "regimes": regimes,
+        "theory": {
+            "title": "Stellar Mass-Luminosity Relation from First Principles",
+            "derivation": [
+                "1. Hydrostatic equilibrium: dP/dr = -GMρ/r²",
+                "2. Ideal gas law: P = (ρ/μ)kT",
+                "3. Radiative energy transport: L = -(16πσr²/3κ)(dT/dr)",
+                "4. Kramers opacity: κ ∝ ρT^(-3.5)",
+                "5. Nuclear energy generation: ε_pp ∝ ρT⁶ (low mass), ε_CNO ∝ ρT¹⁷ (high mass)"
+            ],
+            "exponents": {
+                "low_mass": "α ≈ 2.3 (M < 0.5 M☉, convective)",
+                "intermediate": "α ≈ 4.0 (0.5-2 M☉, radiative + Kramers)",
+                "high_mass": "α ≈ 3.0 (M > 2 M☉, radiative + e⁻ scattering)"
+            }
+        },
+        "timestamp": time.time()
+    }
+
+
+@app.post("/api/theory/fit-observed")
+async def api_fit_observed_ml_relation(request: Request):
+    """
+    Fit mass-luminosity relation to observed data and compare to theory.
+
+    Expected JSON body:
+    {
+        "masses": [1.0, 2.0, ...],  # Solar masses
+        "luminosities": [1.0, 16.0, ...]  # Solar luminosities
+    }
+    """
+    from astra_live_backend.stellar_theory import fit_mass_luminosity_relation
+    import numpy as np
+
+    body = await request.json()
+
+    masses = np.array(body.get("masses", []))
+    luminosities = np.array(body.get("luminosities", []))
+
+    if len(masses) == 0 or len(luminosities) == 0:
+        return {"error": "Missing masses or luminosities data"}
+
+    result = fit_mass_luminosity_relation(masses, luminosities)
+
+    return {
+        "fit_results": {
+            "observed_exponent": round(result["observed_exponent"], 3),
+            "observed_intercept": round(result["observed_intercept"], 3),
+            "rms_residual": round(result["rms_residual"], 4),
+            "chi2_reduced": round(result["chi2_reduced"], 3)
+        },
+        "theoretical_comparison": {
+            "theoretical_exponent": 3.5,
+            "difference": round(result["observed_exponent"] - result["theoretical_exponent"], 3),
+            "agreement": "Good" if abs(result["observed_exponent"] - 3.5) < 0.5 else "Poor"
+        },
+        "data_points": len(masses),
+        "timestamp": time.time()
+    }
+
+
+@app.get("/api/theory/filament-critical-mass")
+def api_filament_critical_mass(T: float = 10.0, sigma_turb: float = 0.0):
+    """
+    Get critical line mass for interstellar filaments from first principles.
+
+    Ostriker (1964) derivation for isothermal cylinder:
+    M_line,crit = 2c_s²/G
+
+    where c_s = sqrt(kT/μm_H) is the sound speed.
+
+    Observations find critical mass ~16 M_sun/pc for T=10K (thermal only)
+    or ~30-50 M_sun/pc when turbulence is included.
+    """
+    from astra_live_backend.filament_theory import (
+        FilamentStabilityDerivation, filament_stability_summary
+    )
+
+    deriv = FilamentStabilityDerivation()
+
+    # Critical mass
+    M_crit_thermal = deriv.critical_line_mass_ostriker(T)
+    M_crit_total = deriv.critical_line_mass_with_turbulence(T, sigma_turb * 1e5)
+    c_s = deriv.sound_speed(T)
+
+    # Column density relation for typical radius
+    R_typical = 0.1  # pc
+    N_crit = deriv.critical_column_density(T, R_typical)
+
+    return {
+        "title": "Interstellar Filament Critical Line Mass",
+        "derivation": "Ostriker (1964) - Isothermal Cylinder",
+        "formula": "M_line,crit = 2c_s²/G",
+        "parameters": {
+            "temperature_K": T,
+            "sound_speed_km_s": c_s / 1e5,
+            "turbulent_velocity_km_s": sigma_turb
+        },
+        "critical_values": {
+            "M_line_thermal_Msun_pc": M_crit_thermal,
+            "M_line_with_turbulence_Msun_pc": M_crit_total,
+            "N_H2_critical_cm2": N_crit,
+            "filament_radius_pc": R_typical
+        },
+        "stability_regimes": {
+            "stable": f"M_line < {M_crit_thermal:.1f} M_sun/pc",
+            "critical": f"M_line ≈ {M_crit_thermal:.1f} M_sun/pc",
+            "unstable": f"M_line > {M_crit_thermal:.1f} M_sun/pc"
+        },
+        "observational_predictions": {
+            "fragmentation_spacing_pc": 0.5,
+            "universal_width_pc": 0.1,
+            "critical_column_density_cm2": f"{N_crit:.2e}"
+        },
+        "first_principles": [
+            "1. Hydrostatic equilibrium: (1/ρ) dP/dr = -GM(<r)/r²",
+            "2. Isothermal equation of state: P = ρkT/μm_H",
+            "3. Mass per unit length: M_line = ∫ 2πrρ dr",
+            "4. Sound speed: c_s = sqrt(kT/μm_H)",
+            "5. Critical condition: M_line,crit = 2c_s²/G"
+        ],
+        "timestamp": time.time()
+    }
+
+
+@app.post("/api/theory/filament-stability")
+async def api_filament_stability(request: Request):
+    """
+    Check stability of a filament based on observed parameters.
+
+    Expected JSON body:
+    {
+        "M_line": 20.0,           # Line mass [M_sun/pc]
+        "radius": 0.1,            # Radius [pc]
+        "temperature": 10.0,      # Temperature [K]
+        "sigma_turb": 0.3,        # Turbulent dispersion [km/s]
+        "B_perp": 10.0            # Perpendicular B field [μG] (optional)
+    }
+    """
+    from astra_live_backend.filament_theory import FilamentStabilityDerivation
+
+    body = await request.json()
+
+    M_line = body.get("M_line", 16.0)
+    radius = body.get("radius", 0.1)
+    T = body.get("temperature", 10.0)
+    sigma_turb = body.get("sigma_turb", 0.0)
+    B_perp = body.get("B_perp", 0.0)
+
+    deriv = FilamentStabilityDerivation()
+
+    # Stability analysis
+    stability = deriv.stability_criterion(M_line, T, sigma_turb * 1e5)
+
+    # Column density
+    N_H2 = deriv.column_density_from_line_mass(M_line, radius)
+
+    # Magnetic support if B field provided
+    magnetic = None
+    if B_perp > 0:
+        magnetic = deriv.magnetic_support(M_line, B_perp, radius)
+
+    return {
+        "input_parameters": {
+            "M_line_Msun_pc": M_line,
+            "radius_pc": radius,
+            "temperature_K": T,
+            "turbulence_km_s": sigma_turb,
+            "B_perp_uG": B_perp if B_perp > 0 else None
+        },
+        "stability": stability,
+        "column_density": {
+            "N_H2_cm2": N_H2,
+            "A_V_mag": N_H2 / 1.87e21  # Av to N_H2 conversion
+        },
+        "magnetic_support": magnetic,
+        "timestamp": time.time()
+    }
+
+
+@app.get("/api/engine/degradation-status")
+def api_degradation_status():
+    """Current degradation detection metrics and recommendations."""
+    return engine.degradation_detector.get_status()
+
+
+@app.get("/api/statistics/methods")
+def api_statistics_methods():
+    """Available advanced statistical methods and their status."""
+    from astra_live_backend.statistics import (
+        fdr_correction, cohen_d, cramers_v, eta_squared,
+        detect_autocorrelation, change_point_detection,
+    )
+    return {
+        "methods": {
+            "fdr_correction": {"available": True, "description": "Benjamini-Hochberg FDR correction"},
+            "cohen_d": {"available": True, "description": "Cohen's d effect size (continuous)"},
+            "cramers_v": {"available": True, "description": "Cramér's V effect size (categorical)"},
+            "eta_squared": {"available": True, "description": "η² effect size (ANOVA)"},
+            "effect_size_report": {"available": True, "description": "Auto-select effect size measure"},
+            "detect_autocorrelation": {"available": True, "description": "Ljung-Box autocorrelation test"},
+            "change_point_detection": {"available": True, "description": "CUSUM change point detection"},
+            "granger_causality": {"available": True, "description": "Granger causality F-test"},
+            "compute_posterior_intervals": {"available": True, "description": "Laplace approximation posterior"},
+            "confounder_detection": {"available": True, "description": "Backdoor criterion proxy — detect confounders"},
+        },
+        "timestamp": time.time(),
+    }
+
+
+@app.post("/api/statistics/confounder-analysis")
+async def api_confounder_analysis(request: Request):
+    """Detect confounders between a cause-effect pair in a data source."""
+    body = await request.json()
+    cause = body.get("cause")
+    effect = body.get("effect")
+    data_source = body.get("data_source", "sdss")
+    alpha = body.get("alpha", 0.05)
+
+    if not cause or not effect:
+        return {"error": "Both 'cause' and 'effect' fields are required"}
+
+    import pandas as pd
+    import numpy as np
+    from astra_live_backend.statistics import detect_confounders
+    from astra_live_backend.data_fetcher import data_cache
+
+    # Fetch data from shared cache
+    try:
+        # Map source name to cached fetch function
+        source_map = {
+            "sdss": "sdss",
+            "exoplanets": "exoplanets",
+            "gaia": "gaia",
+            "pantheon": "pantheon",
+        }
+        cache_key = source_map.get(data_source, data_source)
+        source_data = data_cache.get(cache_key)
+
+        if source_data is None:
+            # Trigger a fetch
+            from astra_live_backend.data_fetcher import (
+                get_cached_sdss, get_cached_exoplanets,
+                get_cached_gaia, get_cached_pantheon,
+            )
+            fetch_map = {
+                "sdss": get_cached_sdss,
+                "exoplanets": get_cached_exoplanets,
+                "gaia": get_cached_gaia,
+                "pantheon": get_cached_pantheon,
+            }
+            fetcher = fetch_map.get(data_source)
+            if fetcher:
+                source_data = fetcher()
+            else:
+                return {"error": f"Unknown data source '{data_source}'",
+                        "available_sources": list(source_map.keys())}
+
+        # Extract the numpy array from DataResult
+        raw_data = source_data.data if hasattr(source_data, 'data') else source_data
+
+        # Convert structured/recarray numpy to DataFrame
+        if isinstance(raw_data, np.ndarray) and raw_data.dtype.names:
+            df = pd.DataFrame({name: raw_data[name] for name in raw_data.dtype.names})
+        elif isinstance(raw_data, np.ndarray):
+            df = pd.DataFrame(raw_data)
+        elif isinstance(raw_data, pd.DataFrame):
+            df = raw_data
+        else:
+            return {"error": f"Cannot convert {type(raw_data)} to DataFrame"}
+
+        # Validate columns
+        available = list(df.select_dtypes(include=[np.number]).columns)
+        if cause not in df.columns:
+            return {"error": f"Column '{cause}' not found in {data_source}",
+                    "available_columns": available[:30]}
+        if effect not in df.columns:
+            return {"error": f"Column '{effect}' not found in {data_source}",
+                    "available_columns": available[:30]}
+
+        result = detect_confounders(df, cause, effect, alpha)
+        result["data_source"] = data_source
+        result["n_rows"] = len(df)
+        result["timestamp"] = time.time()
+        return result
+
+    except Exception as e:
+        import traceback
+        return {"error": str(e), "traceback": traceback.format_exc(),
+                "cause": cause, "effect": effect, "data_source": data_source}
+
+
+# ── Paper Draft Endpoints (Phase 9.5) ─────────────────────────
+
+@app.get("/api/papers")
+async def api_papers():
+    """List all generated paper drafts."""
+    return {
+        "drafts": engine.paper_generator.get_all_drafts(),
+        "count": engine.paper_generator.draft_count,
+        "timestamp": time.time(),
+    }
+
+
+@app.get("/api/papers/{hypothesis_id}")
+async def api_paper_detail(hypothesis_id: str):
+    """Get a full paper draft for a specific hypothesis."""
+    draft = engine.paper_generator.get_draft(hypothesis_id)
+    if draft is None:
+        # Check if hypothesis exists at all
+        h = engine.store.get(hypothesis_id)
+        if h is None:
+            return JSONResponse(
+                status_code=404,
+                content={"error": f"Hypothesis '{hypothesis_id}' not found"},
+            )
+        return JSONResponse(
+            status_code=404,
+            content={
+                "error": f"No paper draft exists for hypothesis '{hypothesis_id}'",
+                "hypothesis_phase": h.phase.value,
+                "confidence": h.confidence,
+                "hint": "Paper drafts are auto-generated for hypotheses validated with confidence > 0.95. "
+                        "You can also POST to /api/papers/{id}/regenerate to force generation.",
+            },
+        )
+    return {
+        "draft": draft.to_dict(),
+        "full_text": draft.full_text(),
+        "timestamp": time.time(),
+    }
+
+
+@app.post("/api/papers/{hypothesis_id}/regenerate")
+async def api_paper_regenerate(hypothesis_id: str):
+    """Force regenerate a paper draft for a hypothesis."""
+    h = engine.store.get(hypothesis_id)
+    if h is None:
+        return JSONResponse(
+            status_code=404,
+            content={"error": f"Hypothesis '{hypothesis_id}' not found"},
+        )
+    try:
+        draft = engine.paper_generator.generate_full_draft(h)
+        engine.papers_drafted = engine.paper_generator.draft_count
+        return {
+            "status": "regenerated",
+            "draft": draft.to_dict(),
+            "full_text": draft.full_text(),
+            "version": draft.version,
+            "timestamp": time.time(),
+        }
+    except Exception as e:
+        import traceback
+        return JSONResponse(
+            status_code=500,
+            content={"error": str(e), "traceback": traceback.format_exc()},
+        )
+
+
+# ── Phase 11.1+11.2: Provenance & Export ─────────────────────
+from astra_live_backend.exporter import ASTRAExporter
+
+_exporter = ASTRAExporter(engine)
+
+
+@app.get("/api/provenance")
+async def api_provenance():
+    """List all provenance records."""
+    records = engine.provenance_tracker.get_all()
+    return {
+        "records": records,
+        "count": len(records),
+        "timestamp": time.time(),
+    }
+
+
+@app.get("/api/provenance/{discovery_id}")
+async def api_provenance_detail(discovery_id: str):
+    """Get provenance records for a specific discovery/hypothesis."""
+    from dataclasses import asdict
+    records = engine.provenance_tracker.get_by_discovery(discovery_id)
+    return {
+        "discovery_id": discovery_id,
+        "records": [asdict(r) for r in records],
+        "count": len(records),
+        "timestamp": time.time(),
+    }
+
+
+@app.get("/api/provenance/{discovery_id}/lineage")
+async def api_provenance_lineage(discovery_id: str):
+    """Get full lineage chain for a discovery."""
+    from dataclasses import asdict
+    lineage = engine.provenance_tracker.get_lineage(discovery_id)
+    return {
+        "discovery_id": discovery_id,
+        "lineage": [asdict(r) for r in lineage],
+        "chain_length": len(lineage),
+        "timestamp": time.time(),
+    }
+
+
+@app.get("/api/export/discoveries.json")
+async def api_export_discoveries_json(domain: str = None):
+    """Export all discoveries as JSON with provenance."""
+    return JSONResponse(
+        content=json.loads(_exporter.export_discoveries_json(filter_domain=domain)),
+        media_type="application/json",
+    )
+
+
+@app.get("/api/export/discoveries.csv")
+async def api_export_discoveries_csv(domain: str = None):
+    """Export all discoveries as CSV."""
+    from fastapi.responses import PlainTextResponse
+    csv_text = _exporter.export_discoveries_csv(filter_domain=domain)
+    return PlainTextResponse(content=csv_text, media_type="text/csv")
+
+
+@app.get("/api/export/hypothesis/{hypothesis_id}.tex")
+async def api_export_hypothesis_latex(hypothesis_id: str):
+    """Export a hypothesis as LaTeX for paper supplement."""
+    from fastapi.responses import PlainTextResponse
+    latex = _exporter.export_hypothesis_latex(hypothesis_id)
+    if latex is None:
+        return JSONResponse(
+            status_code=404,
+            content={"error": f"Hypothesis '{hypothesis_id}' not found"},
+        )
+    return PlainTextResponse(content=latex, media_type="application/x-tex")
+
+
+@app.get("/api/export/full-report.json")
+async def api_export_full_report():
+    """Export complete ASTRA report — hypotheses, discoveries, provenance, engine state."""
+    return JSONResponse(
+        content=json.loads(_exporter.export_full_report_json()),
+        media_type="application/json",
+    )
+
+
+# ── Stigmergy / Pheromone API ────────────────────────────────────────
+
+@app.get("/api/pheromones/status")
+async def api_pheromones_status():
+    """Full stigmergy status — pheromone field, memory, metrics, A/B test."""
+    return engine.stigmergy.get_status()
+
+
+@app.get("/api/pheromones/hotspots")
+async def api_pheromones_hotspots(pheromone_type: str = "success", top_k: int = 10):
+    """Top-N pheromone hotspots for a given type."""
+    return engine.stigmergy.get_hotspots(pheromone_type, top_k)
+
+
+@app.post("/api/pheromones/gradient")
+async def api_pheromones_gradient(request: Request):
+    """Compute pheromone gradient at a domain location."""
+    body = await request.json()
+    domain = body.get("domain", "Astrophysics")
+    ptype = body.get("pheromone_type", "success")
+    return engine.stigmergy.compute_gradient(domain, ptype)
+
+
+@app.get("/api/pheromones/deposits")
+async def api_pheromones_deposits(limit: int = 50):
+    """Recent pheromone deposit history."""
+    return engine.stigmergy.get_recent_deposits(limit)
+
+
+@app.get("/api/stigmergy/state")
+async def api_stigmergy_state():
+    """StigmergicMemory state — fields, trails, discoveries."""
+    return engine.stigmergy.stigmergic_memory.get_state()
+
+
+@app.post("/api/stigmergy/recommendations")
+async def api_stigmergy_recommendations(request: Request):
+    """Get swarm recommendations for a location/agent type."""
+    body = await request.json()
+    location = body.get("location", "astrophysics")
+    agent_type = body.get("agent_type", "explorer")
+    return engine.stigmergy.stigmergic_memory.get_swarm_recommendations(
+        location, agent_type
+    )
+
+
+@app.get("/api/stigmergy/gaps")
+async def api_stigmergy_gaps():
+    """Knowledge gap analysis from pheromone coverage."""
+    return engine.stigmergy.stigmergy_gaps()
+
+
+@app.get("/api/pheromones/field")
+async def api_pheromones_field():
+    """Full pheromone field data for visualization."""
+    return engine.stigmergy.get_field_data()
+
+
+@app.get("/api/pheromones/ab-test")
+async def api_pheromones_ab_test():
+    """A/B test results — pheromone-guided vs baseline."""
+    return engine.stigmergy.get_ab_summary()
+
+
+@app.post("/api/pheromones/weight")
+async def api_pheromones_weight(request: Request):
+    """Adjust pheromone blending weight (0-1)."""
+    body = await request.json()
+    weight = body.get("weight", 0.3)
+    new_weight = engine.stigmergy.set_weight(weight)
+    return {"pheromone_weight": new_weight}
+
+
+@app.get("/api/swarm/status")
+async def api_swarm_status():
+    """Swarm agent status — all 5 agent types."""
+    return engine.swarm.get_swarm_summary()
+
+
+@app.get("/api/stigmergy/exploration")
+async def api_stigmergy_exploration(domain: str = "Astrophysics"):
+    """Get pheromone-guided exploration direction for a domain."""
+    return engine.stigmergy.get_exploration_direction(domain)
+
+
+if __name__ == "__main__":
+    import uvicorn
+    print("=" * 60)
+    print("  ASTRA Live — Autonomous Scientific Discovery")
+    print("  Dashboard: http://0.0.0.0:8787")
+    print("  API Docs:  http://0.0.0.0:8787/docs")
+    print("=" * 60)
+    uvicorn.run(app, host="0.0.0.0", port=8787, log_level="info")

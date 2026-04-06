@@ -1,0 +1,76 @@
+{
+  "timestamp": "2026-04-03T11:35:52.286908",
+  "example": "Stellar Evolution - HR Diagram",
+  "dataset": {
+    "n_stars": 10000,
+    "mass_range": [
+      0.1000008616466537,
+      27.490458103660064
+    ],
+    "temperature_range": [
+      1827.171903877203,
+      35754.24608055104
+    ],
+    "ms_stars": 9871,
+    "giants": 57,
+    "white_dwarfs": 72
+  },
+  "results": {
+    "V101": {
+      "capability": "Temporal Causal Discovery",
+      "status": "SUCCESS",
+      "edges_discovered": 3
+    },
+    "V102": {
+      "capability": "Scalable Counterfactual Engine",
+      "status": "SUCCESS",
+      "ate": -0.6264548637552348,
+      "interventions_tested": 3
+    },
+    "V103": {
+      "capability": "Multi-Modal Evidence Integration",
+      "status": "SUCCESS",
+      "confidence": 0.9996666666666667,
+      "triangulation": "strong",
+      "supporting": 2,
+      "contradicting": 0
+    },
+    "V104": {
+      "capability": "Adversarial Hypothesis Framework",
+      "status": "SUCCESS",
+      "challenges_generated": 0,
+      "hypothesis_refined": true
+    },
+    "V105": {
+      "capability": "Meta-Discovery Transfer Learning",
+      "status": "SUCCESS",
+      "pattern_added": "mass_luminosity_relation",
+      "domain": "stellar_evolution",
+      "strategy": "scaling_relations"
+    },
+    "V106": {
+      "capability": "Explainable Causal Reasoning",
+      "status": "SUCCESS",
+      "initialized": true
+    },
+    "V107": {
+      "capability": "Discovery Triage and Prioritization",
+      "status": "SUCCESS",
+      "candidates_ranked": 3,
+      "top_priority": "Rotation-activity connection"
+    },
+    "V108": {
+      "capability": "Real-Time Streaming Discovery",
+      "status": "SUCCESS",
+      "batches_processed": 10,
+      "alerts_detected": 0,
+      "streaming_functional": true
+    }
+  },
+  "summary": {
+    "total": 8,
+    "successful": 8,
+    "failed": 0,
+    "success_rate": "100.0%"
+  }
+}

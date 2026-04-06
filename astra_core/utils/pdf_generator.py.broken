@@ -1,0 +1,774 @@
+"""
+STAN_IX_ASTRO PDF Generator
+==========================
+
+Direct PDF generation module for creating PDF documents without intermediate HTML.
+This module provides a simple interface for generating professional PDFs with
+support for text, tables, code blocks, and structured sections.
+
+Author: STAN_IX_ASTRO
+Date: January 10, 2026
+"""
+
+from typing import List, Dict, Any, Optional, Tuple
+from dataclasses import dataclass, field
+from pathlib import Path
+from enum import Enum
+import re
+from datetime import datetime
+
+# Conditional imports for PDF generation
+try:
+    from reportlab.lib.pagesizes import A4, letter
+    from reportlab.lib.units import inch, cm
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT, TA_JUSTIFY
+    from reportlab.lib.colors import HexColor
+    from reportlab.platypus import (
+        SimpleDocTemplate, Paragraph, Spacer, PageBreak, Table, TableStyle,
+        KeepTogether, Preformatted
+    )
+    from reportlab.platypus.tableofcontents import TableOfContents
+    from reportlab.lib import colors
+    from reportlab.pdfbase import pdfmetrics
+    from reportlab.pdfbase.ttfonts import TTFont
+    REPORTLAB_AVAILABLE = True
+except ImportError:
+    REPORTLAB_AVAILABLE = False
+    print("Warning: reportlab not available, PDF generation disabled")
+
+try:
+    from fpdf import FPDF
+    FPDF_AVAILABLE = True
+except ImportError:
+    FPDF_AVAILABLE = False
+
+
+class PDFFormat(Enum):
+    """PDF page formats."""
+    A4 = "A4"
+    LETTER = "Letter"
+    LEGAL = "Legal"
+
+
+class TextAlign(Enum):
+    """Text alignment options."""
+    LEFT = "left"
+    CENTER = "center"
+    RIGHT = "right"
+    JUSTIFY = "justify"
+
+
+@dataclass
+class PDFSection:
+    """A section in the PDF document."""
+    title: str
+    content: str
+    level: int = 1  # 1=h1, 2=h2, 3=h3, etc.
+    page_break_before: bool = False
+
+
+@dataclass
+class PDFTable:
+    """A table in the PDF document."""
+    headers: List[str]
+    rows: List[List[str]]
+    title: Optional[str] = None
+    column_widths: Optional[List[float]] = None
+
+
+@dataclass
+class PDFCodeBlock:
+    """A code block in the PDF document."""
+    code: str
+    language: str = "Python"
+    title: Optional[str] = None
+
+
+class PDFGenerator:
+    """
+    Direct PDF generator for STAN_IX_ASTRO.
+
+    Creates professional PDF documents with support for:
+    - Multi-level headings
+    - Paragraphs with various formatting
+    - Tables with custom styling
+    - Code blocks with syntax highlighting
+    - Table of contents
+    - Headers and footers
+    - Page numbering
+    """
+
+    def __init__(
+        self,
+        filename: str,
+        format: PDFFormat = PDFFormat.A4,
+        title: str = "STAN_IX_ASTRO Document",
+        author: str = "STAN_IX_ASTRO",
+        subject: str = "",
+        keywords: List[str] = None
+    ):
+        """
+        Initialize the PDF generator.
+
+        Args:
+            filename: Output PDF filename
+            format: Page format (A4, Letter, Legal)
+            title: Document title (metadata)
+            author: Document author (metadata)
+            subject: Document subject (metadata)
+            keywords: Document keywords (metadata)
+        """
+        self.filename = Path(filename)
+        self.format = format
+        self.title = title
+        self.author = author
+        self.subject = subject
+        self.keywords = keywords or []
+
+        # Document content
+        self.sections: List[PDFSection] = []
+        self.tables: List[PDFTable] = []
+        self.code_blocks: List[PDFCodeBlock] = []
+        self.toc_enabled = True
+
+        # Setup
+        self._setup_document()
+
+    def _setup_document(self):
+        """Setup the PDF document based on available libraries."""
+        if REPORTLAB_AVAILABLE:
+            self._setup_reportlab()
+        elif FPDF_AVAILABLE:
+            self._setup_fpdf()
+        else:
+            raise ImportError(
+                "No PDF generation library available. "
+                "Install reportlab: pip install reportlab"
+            )
+
+    def _setup_reportlab(self):
+        """Setup ReportLab-based document."""
+        # Page size
+        if self.format == PDFFormat.A4:
+            pagesize = A4
+        elif self.format == PDFFormat.LETTER:
+            pagesize = letter
+        else:
+            pagesize = A4
+
+        # Create document
+        self.doc = SimpleDocTemplate(
+            str(self.filename),
+            pagesize=pagesize,
+            rightMargin=2*cm,
+            leftMargin=2*cm,
+            topMargin=2*cm,
+            bottomMargin=2*cm
+        )
+
+        # Set up metadata
+        self.doc.title = self.title
+        self.doc.author = self.author
+        self.doc.subject = self.subject
+        self.doc.keywords = ", ".join(self.keywords)
+
+        # Document elements container
+        self.elements = []
+
+        # Styles
+        self.styles = getSampleStyleSheet()
+        self._setup_styles()
+
+    def _setup_styles(self):
+        """Setup custom paragraph styles."""
+        # Title style
+        self.styles.add(ParagraphStyle(
+            name='CustomTitle',
+            parent=self.styles['Heading1'],
+            fontSize=24,
+            textColor=HexColor('#1a1a2e'),
+            spaceAfter=30,
+            alignment=TA_CENTER,
+            fontName='Helvetica-Bold'
+        ))
+
+        # Heading 1
+        self.styles.add(ParagraphStyle(
+            name='CustomHeading1',
+            parent=self.styles['Heading1'],
+            fontSize=18,
+            textColor=HexColor('#1a1a2e'),
+            spaceAfter=12,
+            spaceBefore=20,
+            fontName='Helvetica-Bold'
+        ))
+
+        # Heading 2
+        self.styles.add(ParagraphStyle(
+            name='CustomHeading2',
+            parent=self.styles['Heading2'],
+            fontSize=14,
+            textColor=HexColor('#2d3436'),
+            spaceAfter=10,
+            spaceBefore=15,
+            fontName='Helvetica-Bold'
+        ))
+
+        # Heading 3
+        self.styles.add(ParagraphStyle(
+            name='CustomHeading3',
+            parent=self.styles['Heading3'],
+            fontSize=12,
+            textColor=HexColor('#4a4a4a'),
+            spaceAfter=8,
+            spaceBefore=12,
+            fontName='Helvetica-Bold'
+        ))
+
+        # Body text
+        self.styles.add(ParagraphStyle(
+            name='CustomBody',
+            parent=self.styles['BodyText'],
+            fontSize=11,
+            textColor=HexColor('#2d3436'),
+            spaceAfter=10,
+            leading=16,
+            fontName='Helvetica'
+        ))
+
+        # Code block
+        self.styles.add(ParagraphStyle(
+            name='CustomCode',
+            parent=self.styles['Code'],
+            fontSize=9,
+            textColor=HexColor('#dfe6e9'),
+            backColor=HexColor('#2d3436'),
+            spaceAfter=10,
+            spaceBefore=10,
+            leftIndent=10,
+            fontName='Courier',
+            leading=12
+        ))
+
+    def _setup_fpdf(self):
+        """Setup FPDF-based document (fallback)."""
+        self.pdf = FPDF()
+        self.pdf.set_title(self.title)
+        self.pdf.set_author(self.author)
+        self.pdf.set_subject(self.subject)
+
+        if self.format == PDFFormat.A4:
+            self.pdf.add_page("A4")
+        else:
+            self.pdf.add_page("Letter")
+
+    def add_title_page(self, title: str, authors: List[str], affiliations: List[str] = None, date: str = None):
+        """Add a title page to the document."""
+        if not REPORTLAB_AVAILABLE:
+            return
+
+        # Title
+        self.elements.append(Paragraph(title, self.styles['CustomTitle']))
+        self.elements.append(Spacer(0.3*inch, 0.3*inch))
+
+        # Authors
+        authors_text = ", ".join(authors)
+        self.elements.append(Paragraph(authors_text, ParagraphStyle(
+            "Authors", parent=self.styles['Normal'], alignment=TA_CENTER, fontSize=12
+        )))
+
+        # Affiliations
+        if affiliations:
+            for aff in affiliations:
+                self.elements.append(Paragraph(aff, ParagraphStyle(
+                    "Affiliation", parent=self.styles['Normal'], alignment=TA_CENTER, fontSize=10
+                )))
+
+        # Date
+        if date:
+            self.elements.append(Paragraph(date, ParagraphStyle(
+                "Date", parent=self.styles['Normal'], alignment=TA_CENTER, fontSize=10
+            )))
+
+        self.elements.append(Spacer(0.5*inch, 0.5*inch))
+
+    def add_abstract(self, abstract: str, keywords: List[str] = None):
+        """Add an abstract to the document."""
+        if not REPORTLAB_AVAILABLE:
+            return
+
+        self.elements.append(Paragraph("Abstract", self.styles['CustomHeading2']))
+        self.elements.append(Paragraph(abstract, ParagraphStyle(
+            "AbstractStyle", parent=self.styles['BodyText'],
+            fontSize=10, leftIndent=0.2*inch, rightIndent=0.2*inch,
+            fontName='Times-Italic', textColor=HexColor('#555555')
+        )))
+
+        if keywords:
+            kw_text = ", ".join(keywords)
+            self.elements.append(Paragraph(
+                f"<i>Keywords:</i> {kw_text}",
+                ParagraphStyle("Keywords", parent=self.styles['Normal'], fontSize=9)
+            ))
+
+        self.elements.append(Spacer(0.3*inch, 0.3*inch))
+
+    def add_section(self, title: str, content: str = "", level: int = 1):
+        """Add a section to the document."""
+        if not REPORTLAB_AVAILABLE:
+            return
+
+        if level == 1:
+            self.elements.append(Paragraph(title, self.styles['CustomHeading1']))
+        elif level == 2:
+            self.elements.append(Paragraph(title, self.styles['CustomHeading2']))
+        elif level == 3:
+            self.elements.append(Paragraph(title, self.styles['CustomHeading3']))
+        else:
+            self.elements.append(Paragraph(title, self.styles['Heading4']))
+
+        if content:
+            self.elements.append(Paragraph(content, self.styles['CustomBody']))
+
+    def add_paragraph(self, text: str):
+        """Add a paragraph to the document."""
+        if not REPORTLAB_AVAILABLE:
+            return
+        self.elements.append(Paragraph(text, self.styles['CustomBody']))
+
+    def add_table(self, headers: List[str], rows: List[List[str]], title: str = None):
+        """Add a table to the document."""
+        if not REPORTLAB_AVAILABLE:
+            return
+
+        if title:
+            self.elements.append(Paragraph(title, self.styles['CustomHeading3']))
+
+        # Create table data
+        table_data = [headers] + rows
+
+        # Create table
+        t = Table(table_data)
+        t.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#34495e')),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, 0), 10),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+            ('GRID', (0, 0), (-1, -1), 1, colors.black),
+            ('FONTSIZE', (0, 1), (-1, -1), 9),
+        ]))
+
+        self.elements.append(t)
+        self.elements.append(Spacer(0.2*inch, 0.2*inch))
+
+    def add_page_break(self):
+        """Add a page break."""
+        if not REPORTLAB_AVAILABLE:
+            return
+        self.elements.append(PageBreak())
+
+    def generate_from_markdown(self, markdown_file: str):
+        """Generate PDF content from a Markdown file."""
+        with open(markdown_file, 'r', encoding='utf-8') as f:
+            md_content = f.read()
+
+        self._parse_markdown_content(md_content)
+
+    def _parse_markdown_content(self, md_content: str):
+        """Parse markdown content and add to document."""
+        lines = md_content.split('\n')
+        i = 0
+
+        while i < len(lines):
+            line = lines[i].strip()
+
+            # Skip empty lines
+            if not line:
+                i += 1
+                continue
+
+            # Headers
+            if line.startswith('# '):
+                self.add_section(line[2:], level=1)
+            elif line.startswith('## '):
+                self.add_section(line[3:], level=2)
+            elif line.startswith('### '):
+                self.add_section(line[4:], level=3)
+            elif line.startswith('#### '):
+                self.add_section(line[5:], level=4)
+
+            # Tables
+            elif line.startswith('|') and i + 1 < len(lines) and lines[i + 1].strip().startswith('|'):
+                table_data = []
+                while i < len(lines) and lines[i].strip().startswith('|'):
+                    row = [cell.strip() for cell in lines[i].strip().split('|')[1:-1]]
+                    table_data.append(row)
+                    i += 1
+                if len(table_data) >= 2:
+                    self.add_table(table_data[0], table_data[1:])
+                continue
+
+            # Regular paragraphs (skip if it's just metadata)
+            elif not line.startswith('**') and ':' not in line[:20]:
+                para_text = self._process_inline_formatting(line)
+                if para_text:
+                    self.add_paragraph(para_text)
+
+            i += 1
+
+    def _process_inline_formatting(self, text: str) -> str:
+        """Process inline markdown formatting."""
+        # Bold
+        text = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', text)
+        # Italic
+        text = re.sub(r'\*(.+?)\*', r'<i>\1</i>', text)
+        # Links
+        text = re.sub(r'\[(.+?)\]\(.+?\)', r'\1', text)
+        return text
+
+    def build(self):
+        """Build and save the PDF document."""
+        if not REPORTLAB_AVAILABLE:
+            raise ImportError("ReportLab not available for PDF generation")
+
+        self.doc.build(self.elements)
+        return str(self.filename)
+
+
+def generate_stan_paper(
+    markdown_file: str,
+    output_pdf: str,
+    title: str = "STAN: An Artificial General Intelligence System for Astronomical Discovery",
+    authors: List[str] = None,
+    abstract: str = None,
+    keywords: List[str] = None
+) -> str:
+    """
+    Generate a STAN paper from Markdown file.
+
+    Args:
+        markdown_file: Path to Markdown source file
+        output_pdf: Path for output PDF
+        title: Paper title
+        authors: List of authors
+        abstract: Paper abstract
+        keywords: List of keywords
+
+    Returns:
+        Path to generated PDF
+    """
+    generator = PDFGenerator(
+        filename=output_pdf,
+        title=title,
+        author=", ".join(authors or ["STAN Development Team"]),
+        subject="Astronomical Discovery with Artificial General Intelligence",
+        keywords=keywords or []
+    )
+
+    # Add title page
+    generator.add_title_page(
+        title=title,
+        authors=authors or ["STAN Development Team"],
+        affiliations=["STAN-XI-ASTRO Project"],
+        date="March 2026"
+    )
+
+    # Add abstract
+    if abstract:
+        generator.add_abstract(abstract, keywords)
+
+    # Generate content from markdown
+    generator.generate_from_markdown(markdown_file)
+
+    # Build PDF
+    return generator.build()
+
+
+# Convenience function for quick research notes
+def create_research_note(
+    title: str,
+    content: str,
+    output_pdf: str
+) -> str:
+    """Create a quick research note PDF."""
+    generator = PDFGenerator(
+        filename=output_pdf,
+        title=title,
+        author="STAN-XI-ASTRO",
+        subject="Research Note"
+    )
+
+    generator.add_section(title)
+    generator.add_paragraph(content)
+
+    return generator.build()
+
+
+__all__ = [
+    'PDFGenerator',
+    'PDFFormat',
+    'TextAlign',
+    'PDFSection',
+    'PDFTable',
+    'PDFCodeBlock',
+    'generate_stan_paper',
+    'create_research_note'
+]
+
+    def add_figure(self, image_path: str, caption: str, width: float = 6.0):
+        """Add a figure to the document.
+        
+        Args:
+            image_path: Path to the image file
+            caption: Figure caption text
+            width: Figure width in inches
+        """
+        if not REPORTLAB_AVAILABLE:
+            return
+        
+        from reportlab.platypus import Image
+        
+        # Add the image
+        try:
+            img = Image(image_path, width=width*inch, lazy=1)
+            self.elements.append(img)
+            
+            # Add caption
+            caption_style = ParagraphStyle(
+                "FigureCaption",
+                parent=self.styles['Normal'],
+                fontSize=9,
+                fontStyle='Italic',
+                alignment=TA_CENTER,
+                textColor=HexColor('#7f8c8d'),
+                spaceAfter=20
+            )
+            self.elements.append(Paragraph(caption, caption_style))
+            
+        except Exception as e:
+            # If image can't be loaded, add a placeholder
+            self.elements.append(Paragraph(
+                f"[Figure: {image_path}]", 
+                self.styles['CustomBody']
+            ))
+
+    def add_figure_with_reference(self, image_path: str, caption: str, figure_number: int, width: float = 6.0):
+        """Add a figure with automatic reference numbering.
+        
+        Args:
+            image_path: Path to the image file
+            caption: Figure caption text (without "Figure X:" prefix)
+            figure_number: Figure number for reference
+            width: Figure width in inches
+        """
+        if not REPORTLAB_AVAILABLE:
+            return
+            
+        from reportlab.platypus import Image
+        
+        # Add the image
+        try:
+            img = Image(image_path, width=width*inch, lazy=1)
+            self.elements.append(img)
+            
+            # Add caption with figure number
+            full_caption = f"Figure {figure_number}: {caption}"
+            caption_style = ParagraphStyle(
+                "FigureCaption",
+                parent=self.styles['Normal'],
+                fontSize=9,
+                fontStyle='Italic',
+                alignment=TA_CENTER,
+                textColor=HexColor('#7f8c8d'),
+                spaceAfter=20
+            )
+            self.elements.append(Paragraph(full_caption, caption_style))
+            
+        except Exception as e:
+            self.elements.append(Paragraph(
+                f"Figure {figure_number}: {caption}",
+                self.styles['CustomBody']
+            ))
+
+    def generate_from_markdown_with_figures(
+        self, 
+        markdown_file: str, 
+        figures_dir: str = None
+    ):
+        """Generate PDF content from Markdown file with embedded figures.
+        
+        Args:
+            markdown_file: Path to Markdown file
+            figures_dir: Directory containing figure images
+        """
+        with open(markdown_file, 'r', encoding='utf-8') as f:
+            md_content = f.read()
+        
+        self.figures_dir = figures_dir or Path(markdown_file).parent / "figures"
+        self._parse_markdown_with_figures(md_content)
+
+    def _parse_markdown_with_figures(self, md_content: str):
+        """Parse markdown content with figure embedding."""
+        lines = md_content.split('\n')
+        i = 0
+        figure_counter = 0
+        
+        while i < len(lines):
+            line = lines[i].strip()
+            
+            # Skip empty lines
+            if not line:
+                i += 1
+                continue
+            
+            # Detect figure references: **Figure X:** or similar patterns
+            if '**Figure' in line and ':' in line:
+                # Extract figure number and caption
+                figure_counter += 1
+                
+                # Parse caption (everything after the colon)
+                if ':' in line:
+                    caption = line.split(':', 1)[1].replace('*', '').strip()
+                else:
+                    caption = "Figure caption"
+                
+                # Determine which image to use
+                figure_path = self._get_figure_path(figure_counter)
+                
+                if figure_path:
+                    self.add_figure_with_reference(
+                        figure_path,
+                        caption,
+                        figure_counter
+                    )
+                
+                i += 1
+                continue
+            
+            # Detect inline image markdown: ![alt](path)
+            elif line.startswith('!['):
+                match = re.match(r'!\[([^\]]*)\]\(([^)]+)\)', line)
+                if match:
+                    alt_text = match.group(1)
+                    img_path = match.group(2)
+                    figure_counter += 1
+                    
+                    self.add_figure(img_path, alt_text)
+                    i += 1
+                    continue
+            
+            # Headers
+            elif line.startswith('# '):
+                self.add_section(line[2:], level=1)
+            elif line.startswith('## '):
+                self.add_section(line[3:], level=2)
+            elif line.startswith('### '):
+                self.add_section(line[4:], level=3)
+            elif line.startswith('#### '):
+                self.add_section(line[5:], level=4)
+            
+            # Tables
+            elif line.startswith('|') and i + 1 < len(lines) and lines[i + 1].strip().startswith('|'):
+                table_data = []
+                while i < len(lines) and lines[i].strip().startswith('|'):
+                    row = [cell.strip() for cell in lines[i].strip().split('|')[1:-1]]
+                    table_data.append(row)
+                    i += 1
+                if len(table_data) >= 2:
+                    self.add_table(table_data[0], table_data[1:])
+                continue
+            
+            # Regular paragraphs
+            elif line and not line.startswith('**') and not line.startswith('* '):
+                para_text = self._process_inline_formatting(line)
+                if para_text and not para_text.startswith('Figure'):
+                    self.add_paragraph(para_text)
+            
+            i += 1
+    
+    def _get_figure_path(self, figure_number: int) -> Optional[str]:
+        """Get the path to a figure by number."""
+        if not hasattr(self, 'figures_dir'):
+            return None
+        
+        figures_dir = Path(self.figures_dir)
+        if not figures_dir.exists():
+            return None
+        
+        # Map figure numbers to files
+        figure_files = {
+            1: "figure1_architecture.png",
+            2: "figure2_adaptation.png", 
+            3: "figure3_causal.png",
+            4: "figure4_curriculum.png"
+        }
+        
+        if figure_number in figure_files:
+            figure_path = figures_dir / figure_files[figure_number]
+            if figure_path.exists():
+                return str(figure_path)
+        
+        # Try to find any matching file
+        pattern = f"figure{figure_number}_*.png"
+        matches = list(figures_dir.glob(pattern))
+        if matches:
+            return str(matches[0])
+        
+        return None
+
+def generate_stan_paper_with_figures(
+    markdown_file: str,
+    output_pdf: str,
+    title: str = "STAN: An Artificial General Intelligence System for Astronomical Discovery",
+    authors: List[str] = None,
+    abstract: str = None,
+    keywords: List[str] = None,
+    figures_dir: str = None
+) -> str:
+    """
+    Generate a STAN paper from Markdown file with embedded figures.
+
+    Args:
+        markdown_file: Path to Markdown source file
+        output_pdf: Path for output PDF
+        title: Paper title
+        authors: List of authors
+        abstract: Paper abstract
+        keywords: List of keywords
+        figures_dir: Directory containing figure images
+
+    Returns:
+        Path to generated PDF
+    """
+    generator = PDFGenerator(
+        filename=output_pdf,
+        title=title,
+        author=", ".join(authors or ["STAN Development Team"]),
+        subject="Astronomical Discovery with Artificial General Intelligence",
+        keywords=keywords or []
+    )
+
+    # Add title page
+    generator.add_title_page(
+        title=title,
+        authors=authors or ["STAN Development Team"],
+        affiliations=["STAN-XI-ASTRO Project"],
+        date="March 2026"
+    )
+
+    # Add abstract
+    if abstract:
+        generator.add_abstract(abstract, keywords)
+
+    # Generate content from markdown with figures
+    generator.generate_from_markdown_with_figures(
+        markdown_file,
+        figures_dir=figures_dir
+    )
+
+    # Build PDF
+    return generator.build()

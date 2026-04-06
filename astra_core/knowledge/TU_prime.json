@@ -1,0 +1,95 @@
+{
+  "theory_name": "T_U' (Extended Unified Meta-Theory)",
+  "version": "U.2",
+  "extends": "T_U (Challenge 21)",
+  "date": "2025-11-22",
+  "universal_laws_retained": {
+    "L1_multi_timescale_latents": "Unchanged",
+    "L2_autoregressive_dynamics": "Unchanged",
+    "L3_regime_transitions": "Unchanged",
+    "L4_delayed_causal_effects": "Unchanged",
+    "L5_intervention_modifiability": "Unchanged",
+    "L6_hierarchical_latent_organization": "Unchanged"
+  },
+  "universal_laws_added": {
+    "L7_blended_observation_laws": {
+      "statement": "Observation functions can be BLENDS of multiple families (e.g., polynomial + exponential)",
+      "evidence": "E_\u03b5 Y3: 0.2*L1^2 + 0.15*exp(0.2*L2)",
+      "confidence": 0.85,
+      "added_from": "Challenge 22 Task A violation"
+    },
+    "L8_cross_domain_multiplicative_coupling": {
+      "statement": "Latents from different domains can have multiplicative interactions",
+      "evidence": "E_\u03b5 Y1: L1*L2 where L1 from CLD, L2 from D1",
+      "confidence": 0.8,
+      "added_from": "Challenge 22 Task A violation"
+    }
+  },
+  "prohibitive_constraints": {
+    "N1_no_instantaneous_feedback": {
+      "statement": "No X_t \u2192 Y_t \u2192 X_t without delay",
+      "severity": "FATAL"
+    },
+    "N2_no_regime_timescale_jumps": {
+      "statement": "AR coefficients cannot jump discontinuously across regimes",
+      "severity": "MODERATE"
+    },
+    "N3_no_unbounded_growth_stationary": {
+      "statement": "Cannot have exp(\u03bbt) with \u03bb>0 in stationary domain assumptions",
+      "severity": "STRONG"
+    }
+  },
+  "mutual_exclusions": {
+    "equilibrium_vs_growth": {
+      "assumption_A": "stationary_equilibrium",
+      "assumption_B": "exponential_unbounded_growth",
+      "resolvable": false,
+      "explanation": "Fundamentally incompatible assumptions"
+    }
+  },
+  "observation_law_families": {
+    "simple_families": [
+      "linear",
+      "polynomial",
+      "exponential",
+      "multiplicative",
+      "logarithmic"
+    ],
+    "blended_families": {
+      "polynomial_exponential": "a*X^n + b*exp(c*Y)",
+      "linear_multiplicative": "a*X + b*Y*Z",
+      "delayed_exponential": "a*exp(b*X_{t-\u03c4})"
+    },
+    "cross_domain_coupling": [
+      "multiplicative_cross_domain",
+      "additive_cross_domain"
+    ]
+  },
+  "symbolic_templates": [
+    "stable_autoregressive",
+    "responsive_autoregressive",
+    "delayed_response",
+    "nonlinear_exponential",
+    "nonlinear_multiplicative",
+    "regime_dependent",
+    "hybrid_blended"
+  ],
+  "cross_domain_analogies": {
+    "functional_role_equivalences": [
+      "CLD L_slow \u2248 D2 M_macro (slow_driver)",
+      "CLD K_fast \u2248 D2 P_policy (fast_responder)",
+      "D1 beta \u2248 D2 P (mid_regime_sensitive)"
+    ],
+    "total_analogies_discovered": 10
+  },
+  "hybrid_world_support": {
+    "enabled": true,
+    "mixture_types": [
+      "additive",
+      "multiplicative",
+      "conditional"
+    ],
+    "max_domains_blend": 3,
+    "inference_method": "feature_based_mixture_decomposition"
+  }
+}
