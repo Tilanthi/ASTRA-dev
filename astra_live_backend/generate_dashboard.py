@@ -27,6 +27,7 @@ ENDPOINTS = [
     'pheromones/status', 'pheromones/ab-test',
     'stigmergy/gaps', 'stigmergy/exploration', 'swarm/status',
     'persistence',
+    'ecdlp/status', 'ecdlp/parameters', 'ecdlp/approaches',
 ]
 
 

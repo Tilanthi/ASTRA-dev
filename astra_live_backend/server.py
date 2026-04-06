@@ -1387,6 +1387,170 @@ async def api_stigmergy_exploration(domain: str = "Astrophysics"):
     return engine.stigmergy.get_exploration_direction(domain)
 
 
+# ═══════════════════════════════════════════════════════════════
+# ECCp-131 ECDLP Challenge Endpoints
+# ═══════════════════════════════════════════════════════════════
+
+try:
+    from astra_live_backend.ecdlp_solver import (
+        EllipticCurve, PollardRhoSolver,
+        ECCP131, ECCP131_P, ECCP131_Q,
+    )
+    _ecdlp_available = True
+    _ECCP131_PARAMS = {
+        "q": ECCP131.q, "a": ECCP131.a, "b": ECCP131.b,
+        "order": ECCP131.order,
+        "Px": ECCP131_P[0], "Py": ECCP131_P[1],
+        "Qx": ECCP131_Q[0], "Qy": ECCP131_Q[1],
+    }
+except Exception as _ecdlp_err:
+    print(f"Warning: ecdlp_solver not available: {_ecdlp_err}")
+    _ecdlp_available = False
+    _ECCP131_PARAMS = {}
+
+# Global solver state
+_ecdlp_solver_state = {
+    "running": False,
+    "thread": None,
+    "solver": None,
+    "iterations": 0,
+    "distinguished_points": 0,
+    "hashrate": 0,
+    "start_time": None,
+    "last_benchmark": None,
+}
+
+@app.get("/api/ecdlp/status")
+async def ecdlp_status():
+    """Current ECCp-131 solver status"""
+    state = _ecdlp_solver_state
+    elapsed = 0
+    if state["start_time"]:
+        elapsed = time.time() - state["start_time"]
+    return {
+        "challenge": "ECCp-131",
+        "prize": "$20,000 USD",
+        "status": "running" if state["running"] else "idle",
+        "iterations_completed": state["iterations"],
+        "distinguished_points": state["distinguished_points"],
+        "hashrate_ips": state["hashrate"],
+        "elapsed_seconds": elapsed,
+        "estimated_total_iterations": "2^65.4 ≈ 4.5 × 10^19",
+        "estimated_years_single_thread": round(4.5e19 / max(state["hashrate"], 1) / 3.156e7, 1) if state["hashrate"] > 0 else None,
+        "solved": False
+    }
+
+@app.get("/api/ecdlp/parameters")
+async def ecdlp_parameters():
+    """ECCp-131 challenge curve parameters"""
+    if not _ecdlp_available:
+        return {"error": "ecdlp_solver module not available"}
+    p = _ECCP131_PARAMS
+    return {
+        "challenge": "ECCp-131 (Certicom ECC Challenge Level I)",
+        "curve_type": "Weierstrass y² = x³ + ax + b over GF(q)",
+        "field_prime_q": hex(p["q"]),
+        "coefficient_a": hex(p["a"]),
+        "coefficient_b": hex(p["b"]),
+        "generator_P": {"x": hex(p["Px"]), "y": hex(p["Py"])},
+        "target_Q": {"x": hex(p["Qx"]), "y": hex(p["Qy"])},
+        "point_order": hex(p["order"]),
+        "bit_length": 131,
+        "security_level_bits": 65.5,
+        "goal": "Find integer k such that Q = k·P",
+        "source": "https://www.certicom.com/content/certicom/en/the-certicom-ecc-challenge.html"
+    }
+
+@app.get("/api/ecdlp/benchmark")
+async def ecdlp_benchmark():
+    """Run a quick benchmark on ECCp-131 curve"""
+    if not _ecdlp_available:
+        return {"error": "ecdlp_solver module not available"}
+    P = ECCP131_P
+    Q = ECCP131_Q
+
+    import time as _time
+    start = _time.time()
+    R = P
+    for i in range(10000):
+        R = ECCP131.add(R, Q)  # EC point addition
+    elapsed = _time.time() - start
+
+    ips = 10000 / elapsed
+    _ecdlp_solver_state["last_benchmark"] = ips
+    _ecdlp_solver_state["hashrate"] = ips
+
+    total_needed = 2**65.4
+    years = total_needed / ips / 3.156e7
+
+    return {
+        "iterations": 10000,
+        "elapsed_seconds": round(elapsed, 3),
+        "iterations_per_second": round(ips, 1),
+        "estimated_total_iterations": "2^65.4",
+        "estimated_years_single_thread": round(years, 1),
+        "estimated_years_1000_gpus": round(years / 50000, 2),
+        "platform": "Python (pure, no C extensions)"
+    }
+
+@app.get("/api/ecdlp/approaches")
+async def ecdlp_approaches():
+    """Known approaches for solving ECCp-131"""
+    return {
+        "approaches": [
+            {
+                "name": "Pollard's Rho",
+                "complexity": "O(√n) ≈ 2^65.5",
+                "feasibility": "Feasible with ~$2-5M GPU compute",
+                "status": "Implemented in ASTRA",
+                "description": "Random walk on EC group with cycle detection. Best known generic algorithm."
+            },
+            {
+                "name": "Pollard's Kangaroo",
+                "complexity": "O(√n) for bounded range",
+                "feasibility": "Same as Rho (full range search needed)",
+                "status": "Not applicable (no range constraint)",
+                "description": "Only useful when private key is known to lie in a small range."
+            },
+            {
+                "name": "Baby-Step Giant-Step",
+                "complexity": "O(√n) time and space",
+                "feasibility": "Infeasible (2^65 memory entries needed)",
+                "status": "Not practical",
+                "description": "Deterministic but requires impossible amount of memory."
+            },
+            {
+                "name": "Index Calculus (Summation Polynomials)",
+                "complexity": "Subexponential (binary fields only)",
+                "feasibility": "Not applicable to prime field curves",
+                "status": "Research only",
+                "description": "Semaev's approach works for characteristic-2 fields but not GF(p)."
+            },
+            {
+                "name": "Shor's Algorithm (Quantum)",
+                "complexity": "O(log³ n) ≈ polynomial",
+                "feasibility": "Requires fault-tolerant quantum computer (10-20+ years)",
+                "status": "Future technology",
+                "description": "Would solve ECDLP trivially but requires ~500+ logical qubits."
+            },
+            {
+                "name": "Weil Descent",
+                "complexity": "Varies",
+                "feasibility": "Only for extension field curves",
+                "status": "Not applicable",
+                "description": "Transfers ECDLP to hyperelliptic Jacobian. Not useful for prime fields."
+            },
+            {
+                "name": "AI/ML-Guided Search",
+                "complexity": "Unknown",
+                "feasibility": "Speculative",
+                "status": "Research direction",
+                "description": "Use neural networks to optimize walk functions or predict distinguished points."
+            }
+        ]
+    }
+
+
 if __name__ == "__main__":
     import uvicorn
     print("=" * 60)

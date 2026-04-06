@@ -1866,6 +1866,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--cyan); outline-
   <button class="tab-btn" data-tab="selfimprove" role="tab" id="tab-btn-selfimprove" aria-selected="false" aria-controls="tab-selfimprove" onclick="switchTab('selfimprove')" aria-label="Self-improvement metrics tab">⟳ <span class="tab-label">SELF-IMPROVE</span></button>
   <button class="tab-btn" data-tab="literature" role="tab" id="tab-btn-literature" aria-selected="false" aria-controls="tab-literature" onclick="switchTab('literature')" aria-label="Literature and citations tab">📚 <span class="tab-label">LITERATURE</span></button>
   <button class="tab-btn" data-tab="stigmergy" role="tab" id="tab-btn-stigmergy" aria-selected="false" aria-controls="tab-stigmergy" onclick="switchTab('stigmergy')" aria-label="Stigmergy swarm intelligence tab">🐜 <span class="tab-label">STIGMERGY</span></button>
+  <button class="tab-btn" data-tab="ecdlp" role="tab" id="tab-btn-ecdlp" aria-selected="false" aria-controls="tab-ecdlp" onclick="switchTab('ecdlp')" aria-label="ECCp-131 ECDLP Challenge tab">🔐 <span class="tab-label">ECCp-131</span></button>
 </nav>
 
 <!-- ============================================================
@@ -2651,6 +2652,57 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--cyan); outline-
 
   </div>
 </div><!-- /tab-stigmergy -->
+
+<!-- ==================== TAB: ECCp-131 ECDLP CHALLENGE ==================== -->
+<div class="tab-content" id="tab-ecdlp" role="tabpanel" aria-labelledby="tab-btn-ecdlp">
+  <div class="lit-grid">
+    <div class="panel panel-full si-fade-in">
+      <div class="panel-header">
+        <span class="panel-icon">🏆</span>
+        <span class="panel-title">ECCp-131 CHALLENGE OVERVIEW</span>
+      </div>
+      <div class="panel-body" id="ecdlp-overview">
+        <div class="empty-state">Loading challenge data…</div>
+      </div>
+    </div>
+    <div class="panel panel-full si-fade-in-d1">
+      <div class="panel-header">
+        <span class="panel-icon">📐</span>
+        <span class="panel-title">CURVE PARAMETERS</span>
+      </div>
+      <div class="panel-body" id="ecdlp-params">
+        <div class="empty-state">Loading parameters…</div>
+      </div>
+    </div>
+    <div class="panel si-fade-in-d15">
+      <div class="panel-header">
+        <span class="panel-icon">⚡</span>
+        <span class="panel-title">SOLVER STATUS</span>
+      </div>
+      <div class="panel-body" id="ecdlp-solver">
+        <div class="empty-state">Loading solver status…</div>
+      </div>
+    </div>
+    <div class="panel si-fade-in-d15">
+      <div class="panel-header">
+        <span class="panel-icon">📊</span>
+        <span class="panel-title">PROGRESS METRICS</span>
+      </div>
+      <div class="panel-body" id="ecdlp-progress">
+        <div class="empty-state">Loading progress…</div>
+      </div>
+    </div>
+    <div class="panel panel-full si-fade-in-d2">
+      <div class="panel-header">
+        <span class="panel-icon">🔬</span>
+        <span class="panel-title">ATTACK APPROACHES</span>
+      </div>
+      <div class="panel-body" id="ecdlp-approaches">
+        <div class="empty-state">Loading approaches…</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /tab-ecdlp -->
 
 
 </main><!-- /dashboard -->
@@ -18302,6 +18354,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--cyan); outline-
     if (tabName === 'selfimprove' && !selfImproveInitialized) initSelfImproveTab();
     if (tabName === 'literature' && !literatureInitialized) initLiteratureTab();
     if (tabName === 'stigmergy' && !stigmergyInitialized) initStigmergyTab();
+    if (tabName === 'ecdlp' && !ecdlpInitialized && window.initEcdlpTab) { ecdlpInitialized = true; window.initEcdlpTab(); }
     // Sync tab state to URL hash
     history.replaceState(null, '', '#' + tabName);
   };
@@ -18314,7 +18367,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--cyan); outline-
     }
   })();
 
-  let safetyInitialized = false, controlInitialized = false, healthInitialized = false, phase4Initialized = false, selfImproveInitialized = false, literatureInitialized = false, stigmergyInitialized = false;
+  let safetyInitialized = false, controlInitialized = false, healthInitialized = false, phase4Initialized = false, selfImproveInitialized = false, literatureInitialized = false, stigmergyInitialized = false, ecdlpInitialized = false;
 
   /* ==========================================================
      KEYBOARD NAVIGATION — Arrow keys between tabs, Enter/Space to activate
@@ -19713,8 +19766,178 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--cyan); outline-
     el.innerHTML = html;
   }
 
-  // Expose stigmergy init to global scope for switchTab() access
+  // Expose stigmergy + ecdlp init to global scope for switchTab() access
   window.initStigmergyTab = initStigmergyTab;
+
+  /* ==========================================================
+     ECCp-131 ECDLP CHALLENGE TAB
+     ========================================================== */
+  function initEcdlpTab() {
+    ecdlpInitialized = true;
+    loadEcdlpData();
+    setInterval(loadEcdlpData, 30000);
+  }
+
+  function loadEcdlpData() {
+    var s = window.__SNAPSHOT__ || {};
+    var status = s['ecdlp/status'] || {};
+    var params = s['ecdlp/parameters'] || {};
+    var approaches = s['ecdlp/approaches'] || {};
+    renderEcdlpOverview(status, params);
+    renderEcdlpParams(params);
+    renderEcdlpSolver(status);
+    renderEcdlpProgress(status);
+    renderEcdlpApproaches(approaches);
+  }
+
+  function renderEcdlpOverview(status, params) {
+    var el = document.getElementById('ecdlp-overview');
+    if (!el) return;
+    var challenge = status.challenge || 'ECCp-131';
+    var prize = status.prize || '$20,000 USD';
+    var solved = status.solved ? '\u2705 SOLVED' : '\ud83d\udd34 UNSOLVED';
+    var solvedColor = status.solved ? 'var(--emerald)' : 'var(--coral)';
+    var source = params.source || 'https://www.certicom.com/content/certicom/en/the-certicom-ecc-challenge.html';
+    var html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px;">';
+    html += '<div class="si-key-metric"><div class="si-key-metric-val" style="color:var(--cyan);font-size:1.4rem;">' + challenge + '</div><div class="si-key-metric-label">CHALLENGE</div></div>';
+    html += '<div class="si-key-metric"><div class="si-key-metric-val" style="color:var(--amber);font-size:1.4rem;">' + prize + '</div><div class="si-key-metric-label">PRIZE</div></div>';
+    html += '<div class="si-key-metric"><div class="si-key-metric-val" style="color:' + solvedColor + ';font-size:1.4rem;">' + solved + '</div><div class="si-key-metric-label">STATUS</div></div>';
+    html += '<div class="si-key-metric"><div class="si-key-metric-val" style="font-size:1.4rem;">' + (params.bit_length || 131) + '-bit</div><div class="si-key-metric-label">FIELD SIZE</div></div>';
+    html += '</div>';
+    html += '<div style="color:var(--text-secondary);font-size:0.9rem;line-height:1.6;max-width:900px;">';
+    html += '<p style="margin:0 0 8px 0;">The <strong style="color:var(--cyan);">Certicom ECC Challenge</strong> offers prizes for solving the Elliptic Curve Discrete Logarithm Problem (ECDLP) on standardized curves. ECCp-131 is Level I: find integer <em>k</em> such that <em>Q = k\u00b7P</em> on a 131-bit prime field curve.</p>';
+    html += '<p style="margin:0 0 8px 0;"><strong style="color:var(--amber);">Goal:</strong> ' + (params.goal || 'Find integer k such that Q = k\u00b7P') + '</p>';
+    html += '<p style="margin:0;"><strong style="color:var(--violet);">Security Level:</strong> ~' + (params.security_level_bits || 65.5) + ' bits (\u221an birthday bound)</p>';
+    html += '</div>';
+    html += '<div style="margin-top:12px;"><a href="' + source + '" target="_blank" rel="noopener" style="color:var(--cyan);font-size:0.85rem;">\ud83d\udd17 Certicom ECC Challenge Page</a></div>';
+    el.innerHTML = html;
+  }
+
+  function renderEcdlpParams(params) {
+    var el = document.getElementById('ecdlp-params');
+    if (!el) return;
+    var fields = [
+      { label: 'Curve Type', value: params.curve_type || 'Weierstrass y\u00b2 = x\u00b3 + ax + b over GF(q)', color: 'var(--text-primary)' },
+      { label: 'Field Prime q', value: params.field_prime_q || '\u2014', color: 'var(--cyan)' },
+      { label: 'Coefficient a', value: params.coefficient_a || '\u2014', color: 'var(--amber)' },
+      { label: 'Coefficient b', value: params.coefficient_b || '\u2014', color: 'var(--amber)' },
+      { label: 'Generator P.x', value: (params.generator_P && params.generator_P.x) || '\u2014', color: 'var(--emerald)' },
+      { label: 'Generator P.y', value: (params.generator_P && params.generator_P.y) || '\u2014', color: 'var(--emerald)' },
+      { label: 'Target Q.x', value: (params.target_Q && params.target_Q.x) || '\u2014', color: 'var(--coral)' },
+      { label: 'Target Q.y', value: (params.target_Q && params.target_Q.y) || '\u2014', color: 'var(--coral)' },
+      { label: 'Point Order n', value: params.point_order || '\u2014', color: 'var(--violet)' }
+    ];
+    var html = '<div style="display:grid;gap:8px;font-family:var(--font-mono);font-size:0.82rem;">';
+    fields.forEach(function(f) {
+      html += '<div style="display:flex;gap:12px;align-items:baseline;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.03);">';
+      html += '<span style="color:var(--text-secondary);min-width:130px;flex-shrink:0;font-size:0.78rem;">' + f.label + '</span>';
+      html += '<span style="color:' + f.color + ';word-break:break-all;">' + f.value + '</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+    el.innerHTML = html;
+  }
+
+  function renderEcdlpSolver(status) {
+    var el = document.getElementById('ecdlp-solver');
+    if (!el) return;
+    var solverStatus = status.status || 'idle';
+    var statusColor = solverStatus === 'running' ? 'var(--emerald)' : solverStatus === 'idle' ? 'var(--text-secondary)' : 'var(--amber)';
+    var html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;">';
+    html += '<div class="si-key-metric"><div class="si-key-metric-val" style="color:' + statusColor + ';text-transform:uppercase;">' + solverStatus + '</div><div class="si-key-metric-label">SOLVER STATE</div></div>';
+    html += '<div class="si-key-metric"><div class="si-key-metric-val" style="color:var(--cyan);">' + (status.iterations_completed || 0).toLocaleString() + '</div><div class="si-key-metric-label">ITERATIONS</div></div>';
+    html += '<div class="si-key-metric"><div class="si-key-metric-val" style="color:var(--amber);">' + (status.distinguished_points || 0).toLocaleString() + '</div><div class="si-key-metric-label">DISTINGUISHED PTS</div></div>';
+    var hashrate = status.hashrate_ips || 0;
+    var hrStr = hashrate >= 1e6 ? (hashrate/1e6).toFixed(1) + 'M' : hashrate >= 1e3 ? (hashrate/1e3).toFixed(1) + 'K' : hashrate.toFixed(0);
+    html += '<div class="si-key-metric"><div class="si-key-metric-val" style="color:var(--emerald);">' + hrStr + '</div><div class="si-key-metric-label">ITER/SEC</div></div>';
+    html += '</div>';
+    html += '<div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:0.85rem;">';
+    html += '<div style="color:var(--text-secondary);">Elapsed: <span style="color:var(--text-primary);">' + formatDuration(status.elapsed_seconds || 0) + '</span></div>';
+    html += '<div style="color:var(--text-secondary);">Est. Total: <span style="color:var(--coral);">' + (status.estimated_total_iterations || '\u2014') + '</span></div>';
+    html += '<div style="color:var(--text-secondary);">Est. Time (1 thread): <span style="color:var(--coral);">' + formatYears(status.estimated_years_single_thread) + '</span></div>';
+    html += '<div style="color:var(--text-secondary);">Solved: <span style="color:' + (status.solved ? 'var(--emerald)' : 'var(--coral)') + ';">' + (status.solved ? 'YES \u2705' : 'NO') + '</span></div>';
+    html += '</div>';
+    el.innerHTML = html;
+  }
+
+  function renderEcdlpProgress(status) {
+    var el = document.getElementById('ecdlp-progress');
+    if (!el) return;
+    var iters = status.iterations_completed || 0;
+    var total = 4.5e19;
+    var pct = Math.min((iters / total) * 100, 100);
+    var pctStr = pct < 0.0001 ? pct.toExponential(2) : pct.toFixed(6);
+    var html = '<div style="margin-bottom:16px;">';
+    html += '<div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:6px;">';
+    html += '<span style="color:var(--text-secondary);">Completion</span>';
+    html += '<span style="color:var(--cyan);">' + pctStr + '%</span>';
+    html += '</div>';
+    html += '<div style="background:rgba(255,255,255,0.05);border-radius:8px;height:20px;overflow:hidden;border:1px solid rgba(0,229,255,0.15);">';
+    var barWidth = Math.max(pct, 0.5);
+    html += '<div style="height:100%;width:' + barWidth + '%;background:linear-gradient(90deg,var(--cyan),var(--violet));border-radius:8px;transition:width 0.5s;min-width:3px;"></div>';
+    html += '</div></div>';
+    html += '<div style="font-size:0.85rem;color:var(--text-secondary);line-height:1.8;">';
+    html += '<div>\ud83d\udda5\ufe0f <strong style="color:var(--text-primary);">Single thread:</strong> <span style="color:var(--coral);">~100M years</span></div>';
+    html += '<div>\ud83d\udd27 <strong style="color:var(--text-primary);">1,000 GPUs:</strong> <span style="color:var(--amber);">~2-5 years</span></div>';
+    html += '<div>\ud83c\udfed <strong style="color:var(--text-primary);">100K GPUs (cloud):</strong> <span style="color:var(--emerald);">~weeks to months</span></div>';
+    html += '<div>\u269b\ufe0f <strong style="color:var(--text-primary);">Quantum (Shor):</strong> <span style="color:var(--violet);">~minutes (future)</span></div>';
+    html += '</div>';
+    el.innerHTML = html;
+  }
+
+  function renderEcdlpApproaches(data) {
+    var el = document.getElementById('ecdlp-approaches');
+    if (!el) return;
+    var approaches = data.approaches || [];
+    if (!approaches.length) { el.innerHTML = '<div class="empty-state">No approach data available</div>'; return; }
+    var html = '<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.85rem;">';
+    html += '<thead><tr style="border-bottom:1px solid rgba(0,229,255,0.2);">';
+    html += '<th style="text-align:left;padding:10px 12px;color:var(--cyan);font-family:var(--font-heading);font-size:0.75rem;letter-spacing:1px;">APPROACH</th>';
+    html += '<th style="text-align:left;padding:10px 12px;color:var(--cyan);font-family:var(--font-heading);font-size:0.75rem;letter-spacing:1px;">COMPLEXITY</th>';
+    html += '<th style="text-align:left;padding:10px 12px;color:var(--cyan);font-family:var(--font-heading);font-size:0.75rem;letter-spacing:1px;">FEASIBILITY</th>';
+    html += '<th style="text-align:left;padding:10px 12px;color:var(--cyan);font-family:var(--font-heading);font-size:0.75rem;letter-spacing:1px;">STATUS</th>';
+    html += '<th style="text-align:left;padding:10px 12px;color:var(--cyan);font-family:var(--font-heading);font-size:0.75rem;letter-spacing:1px;">DESCRIPTION</th>';
+    html += '</tr></thead><tbody>';
+    approaches.forEach(function(a, i) {
+      var feasColor = 'var(--text-secondary)';
+      if (a.feasibility && a.feasibility.indexOf('Feasible') >= 0) feasColor = 'var(--emerald)';
+      else if (a.feasibility && a.feasibility.indexOf('Infeasible') >= 0) feasColor = 'var(--coral)';
+      else if (a.feasibility && a.feasibility.indexOf('Not') >= 0) feasColor = 'var(--coral)';
+      else if (a.feasibility && a.feasibility.indexOf('Speculative') >= 0) feasColor = 'var(--violet)';
+      else if (a.feasibility && a.feasibility.indexOf('Requires') >= 0) feasColor = 'var(--amber)';
+      var statusColor = 'var(--text-secondary)';
+      if (a.status && a.status.indexOf('Implemented') >= 0) statusColor = 'var(--emerald)';
+      else if (a.status && a.status.indexOf('Future') >= 0) statusColor = 'var(--amber)';
+      else if (a.status && a.status.indexOf('Research') >= 0) statusColor = 'var(--violet)';
+      var bg = i % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent';
+      html += '<tr style="border-bottom:1px solid rgba(255,255,255,0.05);background:' + bg + ';">';
+      html += '<td style="padding:10px 12px;color:var(--text-primary);font-weight:600;">' + (a.name || '\u2014') + '</td>';
+      html += '<td style="padding:10px 12px;color:var(--amber);font-family:var(--font-mono);font-size:0.8rem;">' + (a.complexity || '\u2014') + '</td>';
+      html += '<td style="padding:10px 12px;color:' + feasColor + ';">' + (a.feasibility || '\u2014') + '</td>';
+      html += '<td style="padding:10px 12px;color:' + statusColor + ';">' + (a.status || '\u2014') + '</td>';
+      html += '<td style="padding:10px 12px;color:var(--text-secondary);font-size:0.82rem;max-width:300px;">' + (a.description || '\u2014') + '</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    el.innerHTML = html;
+  }
+
+  function formatDuration(sec) {
+    if (!sec || sec <= 0) return '0s';
+    if (sec < 60) return sec.toFixed(1) + 's';
+    if (sec < 3600) return Math.floor(sec/60) + 'm ' + Math.floor(sec%60) + 's';
+    if (sec < 86400) return Math.floor(sec/3600) + 'h ' + Math.floor((sec%3600)/60) + 'm';
+    return Math.floor(sec/86400) + 'd ' + Math.floor((sec%86400)/3600) + 'h';
+  }
+
+  function formatYears(y) {
+    if (!y) return '\u2014';
+    if (y >= 1e6) return '~' + (y/1e6).toFixed(0) + 'M years';
+    if (y >= 1e3) return '~' + (y/1e3).toFixed(0) + 'K years';
+    return '~' + y.toFixed(1) + ' years';
+  }
+
+  window.initEcdlpTab = initEcdlpTab;
 
 })();
 </script>
