@@ -66,6 +66,24 @@ _METHOD_REGISTRY = {
         "data_source": "tess_mast",
         "primary_vars": ["teff", "radius", "mass"],
     },
+    "economics": {
+        "methods": ["_investigate_economics", "run_causal_discovery",
+                     "run_scaling_discovery"],
+        "data_source": "world_bank",
+        "primary_vars": ["gdp_per_capita", "year", "country"],
+    },
+    "climate": {
+        "methods": ["_investigate_climate", "run_causal_discovery",
+                     "run_scaling_discovery"],
+        "data_source": "gistemp",
+        "primary_vars": ["year", "temp_anomaly"],
+    },
+    "epidemiology": {
+        "methods": ["_investigate_epidemiology", "run_causal_discovery",
+                     "run_scaling_discovery"],
+        "data_source": "who_gho",
+        "primary_vars": ["life_expectancy", "year", "country"],
+    },
     "generic": {
         "methods": ["_investigate_generic", "run_scaling_discovery",
                      "run_causal_discovery", "run_model_comparison"],
@@ -111,6 +129,12 @@ class AdaptiveStrategist:
             return "time_domain"
         elif "cluster" in name_lower or "richness" in name_lower:
             return "galaxy"
+        elif "gdp" in name_lower or "trade" in name_lower or "inflation" in name_lower or "inequality" in name_lower or "nexus" in name_lower:
+            return "economics"
+        elif "co2" in name_lower or "temperature" in name_lower or "climate" in name_lower or "sea level" in name_lower or "weather" in name_lower or "extreme" in name_lower:
+            return "climate"
+        elif "vaccination" in name_lower or "mortality" in name_lower or "disease" in name_lower or "health" in name_lower or "preston" in name_lower or "burden" in name_lower or "life expectancy" in name_lower or "epidem" in name_lower:
+            return "epidemiology"
         elif "econ" in name_lower or "funding" in name_lower:
             return "crossdomain"
         else:
