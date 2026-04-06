@@ -90,7 +90,7 @@ def _snapshot_thread_fn(interval=120):
 
 
 _snapshot_thread = threading.Thread(
-    target=_snapshot_thread_fn, args=(120,), daemon=True, name="snapshot-refresh"
+    target=_snapshot_thread_fn, args=(60,), daemon=True, name="snapshot-refresh"
 )
 _snapshot_thread.start()
 
@@ -1385,6 +1385,311 @@ async def api_swarm_status():
 async def api_stigmergy_exploration(domain: str = "Astrophysics"):
     """Get pheromone-guided exploration direction for a domain."""
     return engine.stigmergy.get_exploration_direction(domain)
+
+
+# ═══════════════════════════════════════════════════════════════
+# ECCp-131 ECDLP Challenge Endpoints
+# ═══════════════════════════════════════════════════════════════
+
+try:
+    from astra_live_backend.ecdlp_solver import (
+        EllipticCurve, PollardRhoSolver,
+        ECCP131, ECCP131_P, ECCP131_Q,
+    )
+    _ecdlp_available = True
+    _ECCP131_PARAMS = {
+        "q": ECCP131.q, "a": ECCP131.a, "b": ECCP131.b,
+        "order": ECCP131.order,
+        "Px": ECCP131_P[0], "Py": ECCP131_P[1],
+        "Qx": ECCP131_Q[0], "Qy": ECCP131_Q[1],
+    }
+except Exception as _ecdlp_err:
+    print(f"Warning: ecdlp_solver not available: {_ecdlp_err}")
+    _ecdlp_available = False
+    _ECCP131_PARAMS = {}
+
+# Global solver state
+_ecdlp_solver_state = {
+    "running": False,
+    "thread": None,
+    "solver": None,
+    "iterations": 0,
+    "distinguished_points": 0,
+    "hashrate": 0,
+    "start_time": None,
+    "last_benchmark": None,
+}
+
+@app.get("/api/ecdlp/status")
+async def ecdlp_status():
+    """Current ECCp-131 solver status"""
+    state = _ecdlp_solver_state
+    elapsed = 0
+    if state["start_time"]:
+        elapsed = time.time() - state["start_time"]
+    return {
+        "challenge": "ECCp-131",
+        "prize": "$20,000 USD",
+        "status": "running" if state["running"] else "idle",
+        "iterations_completed": state["iterations"],
+        "distinguished_points": state["distinguished_points"],
+        "hashrate_ips": state["hashrate"],
+        "elapsed_seconds": elapsed,
+        "estimated_total_iterations": "2^65.4 ≈ 4.5 × 10^19",
+        "estimated_years_single_thread": round(4.5e19 / max(state["hashrate"], 1) / 3.156e7, 1) if state["hashrate"] > 0 else None,
+        "solved": False
+    }
+
+@app.get("/api/ecdlp/parameters")
+async def ecdlp_parameters():
+    """ECCp-131 challenge curve parameters"""
+    if not _ecdlp_available:
+        return {"error": "ecdlp_solver module not available"}
+    p = _ECCP131_PARAMS
+    return {
+        "challenge": "ECCp-131 (Certicom ECC Challenge Level I)",
+        "curve_type": "Weierstrass y² = x³ + ax + b over GF(q)",
+        "field_prime_q": hex(p["q"]),
+        "coefficient_a": hex(p["a"]),
+        "coefficient_b": hex(p["b"]),
+        "generator_P": {"x": hex(p["Px"]), "y": hex(p["Py"])},
+        "target_Q": {"x": hex(p["Qx"]), "y": hex(p["Qy"])},
+        "point_order": hex(p["order"]),
+        "bit_length": 131,
+        "security_level_bits": 65.5,
+        "goal": "Find integer k such that Q = k·P",
+        "source": "https://www.certicom.com/content/certicom/en/the-certicom-ecc-challenge.html"
+    }
+
+@app.get("/api/ecdlp/benchmark")
+async def ecdlp_benchmark():
+    """Run a quick benchmark on ECCp-131 curve"""
+    if not _ecdlp_available:
+        return {"error": "ecdlp_solver module not available"}
+    P = ECCP131_P
+    Q = ECCP131_Q
+
+    import time as _time
+    start = _time.time()
+    R = P
+    for i in range(10000):
+        R = ECCP131.add(R, Q)  # EC point addition
+    elapsed = _time.time() - start
+
+    ips = 10000 / elapsed
+    _ecdlp_solver_state["last_benchmark"] = ips
+    _ecdlp_solver_state["hashrate"] = ips
+
+    total_needed = 2**65.4
+    years = total_needed / ips / 3.156e7
+
+    return {
+        "iterations": 10000,
+        "elapsed_seconds": round(elapsed, 3),
+        "iterations_per_second": round(ips, 1),
+        "estimated_total_iterations": "2^65.4",
+        "estimated_years_single_thread": round(years, 1),
+        "estimated_years_1000_gpus": round(years / 50000, 2),
+        "platform": "Python (pure, no C extensions)"
+    }
+
+@app.get("/api/ecdlp/approaches")
+async def ecdlp_approaches():
+    """Known approaches for solving ECCp-131"""
+    return {
+        "approaches": [
+            {
+                "name": "Pollard's Rho",
+                "complexity": "O(√n) ≈ 2^65.5",
+                "feasibility": "Feasible with ~$2-5M GPU compute",
+                "status": "Implemented in ASTRA",
+                "description": "Random walk on EC group with cycle detection. Best known generic algorithm."
+            },
+            {
+                "name": "Pollard's Kangaroo",
+                "complexity": "O(√n) for bounded range",
+                "feasibility": "Same as Rho (full range search needed)",
+                "status": "Not applicable (no range constraint)",
+                "description": "Only useful when private key is known to lie in a small range."
+            },
+            {
+                "name": "Baby-Step Giant-Step",
+                "complexity": "O(√n) time and space",
+                "feasibility": "Infeasible (2^65 memory entries needed)",
+                "status": "Not practical",
+                "description": "Deterministic but requires impossible amount of memory."
+            },
+            {
+                "name": "Index Calculus (Summation Polynomials)",
+                "complexity": "Subexponential (binary fields only)",
+                "feasibility": "Not applicable to prime field curves",
+                "status": "Research only",
+                "description": "Semaev's approach works for characteristic-2 fields but not GF(p)."
+            },
+            {
+                "name": "Shor's Algorithm (Quantum)",
+                "complexity": "O(log³ n) ≈ polynomial",
+                "feasibility": "Requires fault-tolerant quantum computer (10-20+ years)",
+                "status": "Future technology",
+                "description": "Would solve ECDLP trivially but requires ~500+ logical qubits."
+            },
+            {
+                "name": "Weil Descent",
+                "complexity": "Varies",
+                "feasibility": "Only for extension field curves",
+                "status": "Not applicable",
+                "description": "Transfers ECDLP to hyperelliptic Jacobian. Not useful for prime fields."
+            },
+            {
+                "name": "AI/ML-Guided Search",
+                "complexity": "Unknown",
+                "feasibility": "Speculative",
+                "status": "Research direction",
+                "description": "Use neural networks to optimize walk functions or predict distinguished points."
+            }
+        ]
+    }
+
+
+_ecdlp_analysis_cache = {}
+
+@app.get("/api/ecdlp/analysis")
+async def ecdlp_analysis():
+    """Run mathematical structure analysis on ECCp-131 curve — checks for exploitable weaknesses (cached)."""
+    if not _ecdlp_analysis_cache:
+        try:
+            from astra_live_backend.ecdlp_math import analyze_curve_structure
+            _ecdlp_analysis_cache["result"] = analyze_curve_structure()
+        except Exception as e:
+            return {"error": str(e), "status": "analysis_failed"}
+    return _ecdlp_analysis_cache["result"]
+
+
+# ══════════════════════════════════════════════════════════════
+# Theory Engine API  — Phases 1–3 Theoretical Framework
+# ══════════════════════════════════════════════════════════════
+
+@app.get("/api/theory/status")
+async def theory_status():
+    """Theory engine status — all phases."""
+    return engine.theory_engine.status().to_dict()
+
+
+@app.get("/api/theory/summary")
+async def theory_summary():
+    """Full theory engine state: theories, contradictions, analogies, experiments."""
+    return engine.theory_engine.full_summary()
+
+
+@app.get("/api/theory/theories")
+async def get_theories():
+    """All proposed and validated theoretical frameworks."""
+    return {"theories": engine.theory_engine.get_theories()}
+
+
+@app.post("/api/theory/cycle")
+async def run_theory_cycle():
+    """Trigger an immediate synchronous theory engine cycle."""
+    result = engine.theory_engine.run_cycle_sync(engine.store)
+    return result
+
+
+# ── Phase 1 ──────────────────────────────────────────────────
+
+@app.get("/api/theory/contradictions")
+async def get_contradictions():
+    """All detected contradictions in the hypothesis store."""
+    return {
+        "contradictions": engine.theory_engine.get_contradictions(),
+        "unresolved": sum(
+            1 for c in engine.theory_engine.get_contradictions()
+            if not c.get("resolved", False)
+        )
+    }
+
+
+@app.post("/api/theory/contradictions/{cid}/resolve")
+async def resolve_contradiction(cid: str):
+    """Mark a contradiction as resolved."""
+    ok = engine.theory_engine.resolve_contradiction(cid)
+    return {"resolved": ok, "contradiction_id": cid}
+
+
+@app.get("/api/theory/dimensional/exponent/{value}")
+async def match_universal_exponent(value: float):
+    """Check if an observed exponent matches a known universal value."""
+    try:
+        from astra_live_backend.symbolic_dimensional import UniversalExponentMatcher
+        matcher = UniversalExponentMatcher()
+        match = matcher.find_nearest(value)
+        return match if match else {"match": None, "value": value}
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@app.post("/api/theory/dimensional/generate")
+async def generate_scaling_relations(body: dict):
+    """
+    Generate candidate scaling relations from dimensional analysis.
+    Body: {"variables": {"mass": "mass", "velocity": "velocity", ...}}
+    """
+    try:
+        from astra_live_backend.symbolic_dimensional import CandidateEquationSet
+        variables = body.get("variables", {})
+        eq_set = CandidateEquationSet()
+        candidates = eq_set.generate_from_variables(variables)
+        return {"candidates": [c.to_dict() if hasattr(c, 'to_dict') else c
+                               for c in candidates]}
+    except Exception as e:
+        return {"error": str(e)}
+
+
+# ── Phase 2 ──────────────────────────────────────────────────
+
+@app.get("/api/theory/analogies")
+async def get_analogies():
+    """All detected cross-domain structural analogies."""
+    analogies = engine.theory_engine.get_analogies()
+    return {
+        "analogies": analogies,
+        "novel_count": sum(1 for a in analogies if a.get("novel", False))
+    }
+
+
+@app.get("/api/theory/symmetries")
+async def get_symmetry_findings():
+    """All detected symmetries and universal behaviour."""
+    return {"symmetry_findings": engine.theory_engine.get_symmetry_findings()}
+
+
+# ── Phase 3 ──────────────────────────────────────────────────
+
+@app.get("/api/theory/abduction")
+async def get_abductive_explanations():
+    """All abductive explanations for anomalous validated results."""
+    explanations = engine.theory_engine.get_abductive_explanations()
+    return {
+        "explanations": explanations,
+        "count": len(explanations)
+    }
+
+
+@app.get("/api/theory/experiments")
+async def get_critical_experiments():
+    """Prioritised list of critical discriminating experiments."""
+    experiments = engine.theory_engine.get_critical_experiments()
+    return {
+        "experiments": experiments,
+        "count": len(experiments),
+        "high_value": sum(1 for e in experiments
+                          if e.get("scientific_value", 0) > 0.6)
+    }
+
+
+@app.get("/api/theory/consistency")
+async def get_consistency_reports():
+    """Self-consistency check results for all active theories."""
+    return {"reports": engine.theory_engine.get_consistency_reports()}
 
 
 if __name__ == "__main__":

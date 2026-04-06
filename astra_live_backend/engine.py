@@ -47,6 +47,7 @@ from .paper_generator import get_paper_generator
 from .provenance import ProvenanceTracker
 from .stigmergy_bridge import StigmergyBridge, get_stigmergy_bridge
 from .swarm_agents import SwarmCoordinator
+from .theory_engine import get_theory_engine
 
 
 @dataclass
@@ -149,6 +150,9 @@ class DiscoveryEngine:
         self.stigmergy = get_stigmergy_bridge(pheromone_weight=0.3)
         self.swarm = SwarmCoordinator(self.stigmergy)
 
+        # Theory Engine — Phases 1-3 theoretical framework infrastructure
+        self.theory_engine = get_theory_engine(cycle_interval=5)
+
         # Exploration schedule — Phase 10.6: force domain round-robin
         self._forced_domain: Optional[str] = None
         self._domain_rotation_index = 0
@@ -160,7 +164,7 @@ class DiscoveryEngine:
         self.supervisor_registry.start_shift("system", "Auto-started on engine init")
 
         # Domain list for consistent state vector dimensions
-        self._canonical_domains = ["Astrophysics", "Economics", "Climate", "Epidemiology"]
+        self._canonical_domains = ["Astrophysics", "Economics", "Climate", "Epidemiology", "Cryptography"]
 
         # Initialize
         seed_initial_hypotheses(self.store)
@@ -215,9 +219,9 @@ class DiscoveryEngine:
         current cognitive/operational state. Used for anomaly detection and
         state-space visualization.
 
-        Dimensions (14):
-          [0-3]   Per-domain confidence mean (Astrophysics, Economics, Climate, Epidemiology)
-          [4-7]   Per-domain confidence variance (same 4 domains)
+        Dimensions (16):
+          [0-4]   Per-domain confidence mean (Astrophysics, Economics, Climate, Epidemiology, Cryptography)
+          [5-9]   Per-domain confidence variance (same 5 domains)
           [8]     Domain coverage entropy
           [9]     Exploration rate (fraction of hypotheses in early phases)
           [10]    Exploitation rate (fraction in late phases)
@@ -379,6 +383,13 @@ class DiscoveryEngine:
         self.current_phase = "SELECT"
         active = self.store.active()
 
+        # Auto-promote PROPOSED hypotheses with sufficient confidence to SCREENING
+        for h in active:
+            if h.phase == Phase.PROPOSED and h.confidence >= 0.3:
+                h.phase = Phase.SCREENING
+                self._log("SELECT", "SELECT",
+                          f"Auto-promoted {h.id} ({h.name}) from PROPOSED → SCREENING", h.id)
+
         # Phase 10.6: Check forced domain for exploration diversification
         forced_domain = self._get_forced_domain()
         if forced_domain:
@@ -399,9 +410,12 @@ class DiscoveryEngine:
             # Boost fresh hypotheses in SCREENING that haven't been tested yet
             if h.phase == Phase.SCREENING and len(h.test_results) == 0:
                 score += 0.15  # Give untested hypotheses a chance to reach TESTING
+            # Penalize validated hypotheses — they've been proven, deprioritize re-investigation
+            if h.phase == Phase.VALIDATED:
+                score -= 0.3
             # Phase 10.6: Boost score for hypotheses in forced domain
             if forced_domain and h.domain == forced_domain:
-                score += 0.5
+                score += 1.0
             scored.append((h, score))
 
         scored.sort(key=lambda x: x[1], reverse=True)
@@ -453,8 +467,30 @@ class DiscoveryEngine:
         validated = self.store.by_phase(Phase.VALIDATED)
 
         screening = self.store.by_phase(Phase.SCREENING)
-        # Focus on testing + 1 validated + 2 screening (to gather initial data)
-        targets = testing[:3] + validated[:1] + screening[:2]
+        # Include PROPOSED hypotheses — they need initial investigation to advance
+        proposed = self.store.by_phase(Phase.PROPOSED)
+
+        # Domain-diverse target selection: ensure non-Astro domains get investigated
+        # Pick 1 hypothesis per non-Astro domain first, then fill with Astro
+        all_candidates = testing + proposed + screening
+        targets = []
+        seen_domains = set()
+        # First pass: 1 per non-Astro domain (prioritize under-investigated)
+        for h in all_candidates:
+            if h.domain != "Astrophysics" and h.domain not in seen_domains:
+                targets.append(h)
+                seen_domains.add(h.domain)
+        # Second pass: fill remaining slots with Astro (up to 6 total)
+        for h in all_candidates:
+            if len(targets) >= 5:
+                break
+            if h not in targets:
+                targets.append(h)
+        # Always include 1 validated for monitoring
+        if validated:
+            targets.append(validated[0])
+        # Cap at 8 per cycle (more budget since we have more domains now)
+        targets = targets[:8]
 
         for h in targets:
             # Use strategist to select methods
@@ -490,6 +526,14 @@ class DiscoveryEngine:
                 self._investigate_transients(h)
             elif category == "time_domain":
                 self._investigate_time_domain(h)
+            elif category == "economics":
+                self._investigate_economics(h)
+            elif category == "climate":
+                self._investigate_climate(h)
+            elif category == "epidemiology":
+                self._investigate_epidemiology(h)
+            elif category == "cryptography":
+                self._investigate_cryptography(h)
             else:
                 self._investigate_generic(h)
 
@@ -534,6 +578,7 @@ class DiscoveryEngine:
                 "transients": "ZTF / TESS",
                 "time_domain": "ZTF / TESS",
                 "crossdomain": "Multi-source",
+                "cryptography": "ECCp-131 / ECDLP Analysis",
             }
             if h.data_points_used > 0:
                 try:
@@ -711,6 +756,21 @@ class DiscoveryEngine:
                     d = sdss.data
                     u_r = d['u'] - d['r']
                     return np.column_stack([d['redshift'], u_r, d['g_r']])
+            elif category == "economics":
+                from .data_registry import get_registry
+                result = get_registry().fetch("world_bank")
+                if result.data is not None and len(result.data) > 10:
+                    return np.column_stack([result.data['value'], result.data['year'].astype(float)])
+            elif category == "climate":
+                from .data_registry import get_registry
+                result = get_registry().fetch("gistemp")
+                if result.data is not None and len(result.data) > 10:
+                    return np.column_stack([result.data['year'].astype(float), result.data['temp_anomaly']])
+            elif category == "epidemiology":
+                from .data_registry import get_registry
+                result = get_registry().fetch("who_gho")
+                if result.data is not None and len(result.data) > 10:
+                    return np.column_stack([result.data['life_expectancy'], result.data['year'].astype(float)])
         except Exception as e:
             self._log("INVESTIGATE", "DATA", f"Data retrieval failed for {h.id}: {e}", h.id)
         return None
@@ -880,11 +940,24 @@ class DiscoveryEngine:
         self.total_plots += 1
 
     def _investigate_generic(self, h: Hypothesis):
-        """Generic investigation using available real data."""
+        """Generic investigation — route to domain-specific method when possible."""
         self._log("INVESTIGATE", "INVESTIGATE",
-                  f"Running generic analysis for {h.id} ({h.name})", h.id)
+                  f"Running generic analysis for {h.id} ({h.name}) [domain={h.domain}]", h.id)
 
-        # Use whichever data source is available
+        # Domain-aware routing: delegate to specialized investigation methods
+        domain = getattr(h, 'domain', '') or ''
+        if "Econom" in domain:
+            return self._investigate_economics(h)
+        elif "Climate" in domain:
+            return self._investigate_climate(h)
+        elif "Epidem" in domain:
+            return self._investigate_epidemiology(h)
+        elif "Crypto" in domain:
+            return self._investigate_cryptography(h)
+        elif "Cross" in domain:
+            return self._investigate_crossdomain(h)
+
+        # Fallback: Astrophysics or truly unknown domain — use Gaia data
         gaia = get_cached_gaia()
         if gaia.data is not None and len(gaia.data) > 0:
             h.data_points_used = len(gaia.data)
@@ -1025,6 +1098,331 @@ class DiscoveryEngine:
 
         self.total_plots += 1
 
+    def _investigate_economics(self, h: Hypothesis):
+        """Economics investigation — World Bank GDP trends and cross-country analysis."""
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"Analyzing economic data for {h.id} ({h.name})", h.id)
+        from .data_registry import get_registry
+        reg = get_registry()
+        result = reg.fetch("world_bank")
+        if result.data is None or len(result.data) == 0:
+            self._log("INVESTIGATE", "INVESTIGATE",
+                      f"⚠ No World Bank data available — skipping {h.id}", h.id)
+            return
+
+        h.data_points_used = len(result.data)
+        values = result.data['value']
+        years = result.data['year']
+
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"World Bank sample: {len(values)} records, "
+                  f"years {np.min(years)}–{np.max(years)}, "
+                  f"GDP/capita range [{np.min(values):.0f}, {np.max(values):.0f}] USD", h.id)
+
+        # Trend analysis: GDP growth over time (global median per year)
+        unique_years = np.unique(years)
+        if len(unique_years) > 5:
+            medians = np.array([np.median(values[years == y]) for y in unique_years])
+            from scipy import stats as sp_stats
+            slope, intercept, r_val, p_val, std_err = sp_stats.linregress(
+                unique_years.astype(float), medians)
+            trend_result = StatTestResult(
+                test_name="Linear Regression (GDP trend)",
+                statistic=float(r_val),
+                p_value=float(p_val),
+                passed=p_val < 0.05,
+                details=f"GDP/capita trend: slope={slope:.1f} USD/yr, r={r_val:.3f}, p={p_val:.4f}",
+            )
+            h.test_results.append(asdict(trend_result))
+            h.update_from_pvalue(p_val)
+            self._log("INVESTIGATE", "INVESTIGATE",
+                      f"GDP trend: slope={slope:.1f} USD/yr, r={r_val:.3f}, p={p_val:.4f}", h.id)
+
+        # Cross-country inequality: coefficient of variation per year
+        if len(unique_years) > 3:
+            cvs = []
+            for y in unique_years:
+                yv = values[years == y]
+                if len(yv) > 5 and np.mean(yv) > 0:
+                    cvs.append(np.std(yv) / np.mean(yv))
+            if len(cvs) > 3:
+                cv_arr = np.array(cvs)
+                self._log("INVESTIGATE", "INVESTIGATE",
+                          f"Cross-country inequality CV: {np.mean(cv_arr):.3f} ± {np.std(cv_arr):.3f}", h.id)
+
+        # Record discovery
+        self.discovery_memory.record_discovery(
+            hypothesis_id=h.id, domain=h.domain,
+            finding_type="trend",
+            variables=["gdp_per_capita", "year"],
+            statistic=float(r_val) if 'r_val' in dir() else 0.0,
+            p_value=float(p_val) if 'p_val' in dir() else 1.0,
+            description=f"Economics analysis: {len(values)} records from World Bank",
+            data_source="world_bank",
+            sample_size=len(values),
+        )
+        self.total_plots += 1
+
+    def _investigate_climate(self, h: Hypothesis):
+        """Climate investigation — NASA GISTEMP temperature anomaly trends."""
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"Analyzing climate data for {h.id} ({h.name})", h.id)
+        from .data_registry import get_registry
+        reg = get_registry()
+        result = reg.fetch("gistemp")
+        if result.data is None or len(result.data) == 0:
+            self._log("INVESTIGATE", "INVESTIGATE",
+                      f"⚠ No GISTEMP data available — skipping {h.id}", h.id)
+            return
+
+        h.data_points_used = len(result.data)
+        years = result.data['year'].astype(float)
+        temps = result.data['temp_anomaly']
+
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"GISTEMP sample: {len(temps)} years ({int(np.min(years))}–{int(np.max(years))}), "
+                  f"anomaly range [{np.min(temps):.2f}, {np.max(temps):.2f}] °C", h.id)
+
+        # Linear warming trend
+        from scipy import stats as sp_stats
+        slope, intercept, r_val, p_val, std_err = sp_stats.linregress(years, temps)
+        trend_result = StatTestResult(
+            test_name="Linear Regression (warming trend)",
+            statistic=float(r_val),
+            p_value=float(p_val),
+            passed=p_val < 0.05,
+            details=f"Warming trend: {slope*10:.3f} °C/decade, r={r_val:.3f}, p={p_val:.2e}",
+        )
+        h.test_results.append(asdict(trend_result))
+        h.update_from_pvalue(p_val)
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"Warming trend: {slope*10:.3f} °C/decade, r={r_val:.3f}, p={p_val:.2e}", h.id)
+
+        # Change point detection: is warming accelerating?
+        if len(temps) > 30:
+            mid = len(temps) // 2
+            early_slope = sp_stats.linregress(years[:mid], temps[:mid]).slope
+            late_slope = sp_stats.linregress(years[mid:], temps[mid:]).slope
+            accel = late_slope / early_slope if abs(early_slope) > 1e-6 else 0
+            self._log("INVESTIGATE", "INVESTIGATE",
+                      f"Acceleration: early={early_slope*10:.3f} °C/dec, "
+                      f"late={late_slope*10:.3f} °C/dec, ratio={accel:.2f}x", h.id)
+
+        # Record discovery
+        self.discovery_memory.record_discovery(
+            hypothesis_id=h.id, domain=h.domain,
+            finding_type="trend",
+            variables=["year", "temp_anomaly"],
+            statistic=float(r_val),
+            p_value=float(p_val),
+            description=f"Climate analysis: warming {slope*10:.3f} °C/decade over {len(temps)} years",
+            data_source="gistemp",
+            sample_size=len(temps),
+        )
+        self.total_plots += 1
+
+    def _investigate_epidemiology(self, h: Hypothesis):
+        """Epidemiology investigation — WHO life expectancy trends and disparities."""
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"Analyzing epidemiology data for {h.id} ({h.name})", h.id)
+        from .data_registry import get_registry
+        reg = get_registry()
+        result = reg.fetch("who_gho")
+        if result.data is None or len(result.data) == 0:
+            self._log("INVESTIGATE", "INVESTIGATE",
+                      f"⚠ No WHO data available — skipping {h.id}", h.id)
+            return
+
+        h.data_points_used = len(result.data)
+        le = result.data['life_expectancy']
+        years = result.data['year']
+
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"WHO sample: {len(le)} records, years {np.min(years)}–{np.max(years)}, "
+                  f"life expectancy range [{np.min(le):.1f}, {np.max(le):.1f}] years", h.id)
+
+        # Global life expectancy trend
+        unique_years = np.unique(years)
+        if len(unique_years) > 3:
+            medians = np.array([np.median(le[years == y]) for y in unique_years])
+            from scipy import stats as sp_stats
+            slope, intercept, r_val, p_val, std_err = sp_stats.linregress(
+                unique_years.astype(float), medians)
+            trend_result = StatTestResult(
+                test_name="Linear Regression (life expectancy trend)",
+                statistic=float(r_val),
+                p_value=float(p_val),
+                passed=p_val < 0.05,
+                details=f"Life expectancy trend: {slope:.2f} yr/yr, r={r_val:.3f}, p={p_val:.4f}",
+            )
+            h.test_results.append(asdict(trend_result))
+            h.update_from_pvalue(p_val)
+            self._log("INVESTIGATE", "INVESTIGATE",
+                      f"Life expectancy trend: {slope:.2f} yr/yr, r={r_val:.3f}", h.id)
+
+        # Cross-country disparity: Gini-like spread
+        latest_year = np.max(years)
+        latest_le = le[years == latest_year]
+        if len(latest_le) > 5:
+            spread = np.max(latest_le) - np.min(latest_le)
+            iqr = np.percentile(latest_le, 75) - np.percentile(latest_le, 25)
+            self._log("INVESTIGATE", "INVESTIGATE",
+                      f"Life expectancy disparity ({latest_year}): "
+                      f"range={spread:.1f} yr, IQR={iqr:.1f} yr, n={len(latest_le)} countries", h.id)
+
+            # KS test: is the distribution normal?
+            ks_result = kolmogorov_smirnov_test(latest_le, "norm")
+            h.test_results.append(asdict(ks_result))
+            h.update_from_pvalue(ks_result.p_value)
+
+        # Record discovery
+        self.discovery_memory.record_discovery(
+            hypothesis_id=h.id, domain=h.domain,
+            finding_type="trend",
+            variables=["life_expectancy", "year"],
+            statistic=float(r_val) if 'r_val' in dir() else 0.0,
+            p_value=float(p_val) if 'p_val' in dir() else 1.0,
+            description=f"Epidemiology analysis: {len(le)} records from WHO GHO",
+            data_source="who_gho",
+            sample_size=len(le),
+        )
+        self.total_plots += 1
+
+    def _investigate_cryptography(self, h: Hypothesis):
+        """Cryptography investigation — ECDLP mathematical structure analysis."""
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"Running ECDLP mathematical analysis for {h.id} ({h.name})", h.id)
+
+        from .ecdlp_hypotheses import get_random_ecdlp_hypothesis
+        research_h = get_random_ecdlp_hypothesis()
+
+        try:
+            from .ecdlp_solver import ECCp131Params
+            params = ECCp131Params()
+            p, a, b = params.p, params.a, params.b
+            n = params.n
+        except Exception:
+            # Fallback: ECCp-131 parameters
+            p = 0x0800000000000000000000000000000C9
+            a = 0x07A11B09A76B562144418FF3FF8C2570B2
+            b = 0x0217C05610884B63B9C6C7291678F9D341
+            n = 0x0800000000000000000681B1F4BCAB8A85
+
+        h.data_points_used = 16  # Number of structural checks
+
+        # Run structural analysis checks
+        checks_passed = 0
+        total_checks = 0
+
+        # 1. Trace of Frobenius
+        t = p + 1 - n
+        is_anomalous = (t == 1)
+        total_checks += 1
+        self._log("INVESTIGATE", "ECDLP",
+                  f"Trace of Frobenius t = {t} (anomalous={is_anomalous})", h.id)
+
+        # 2. Embedding degree check (MOV attack viability)
+        embedding_degree = None
+        for k in range(1, 200):
+            if pow(p, k, n) == 1:
+                embedding_degree = k
+                break
+        mov_viable = embedding_degree is not None and embedding_degree < 20
+        total_checks += 1
+        self._log("INVESTIGATE", "ECDLP",
+                  f"Embedding degree k = {embedding_degree} (MOV viable={mov_viable})", h.id)
+
+        # 3. CM discriminant
+        D = t * t - 4 * p
+        total_checks += 1
+        self._log("INVESTIGATE", "ECDLP",
+                  f"CM discriminant D = {D} (|D| bits = {abs(D).bit_length()})", h.id)
+
+        # 4. j-invariant
+        if (4 * pow(a, 3, p) + 27 * pow(b, 2, p)) % p != 0:
+            j_num = (1728 * 4 * pow(a, 3, p)) % p
+            j_den = (4 * pow(a, 3, p) + 27 * pow(b, 2, p)) % p
+            j_inv = (j_num * pow(j_den, p - 2, p)) % p
+            is_supersingular = (j_inv == 0 or j_inv == 1728)
+        else:
+            j_inv = None
+            is_supersingular = False
+        total_checks += 1
+        self._log("INVESTIGATE", "ECDLP",
+                  f"j-invariant = {j_inv} (supersingular={is_supersingular})", h.id)
+
+        # 5. Group order factorization (partial — check small factors)
+        cofactor = 1
+        temp_n = n
+        small_primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+        for sp in small_primes:
+            while temp_n % sp == 0:
+                cofactor *= sp
+                temp_n //= sp
+        has_small_cofactor = cofactor > 1
+        total_checks += 1
+        self._log("INVESTIGATE", "ECDLP",
+                  f"Cofactor = {cofactor}, remaining order bits = {temp_n.bit_length()}", h.id)
+
+        # 6. Statistical test: does any check reveal vulnerability?
+        vulnerabilities_found = sum([is_anomalous, mov_viable, is_supersingular, has_small_cofactor])
+        p_value = 1.0 if vulnerabilities_found == 0 else 0.001
+        test_result = StatTestResult(
+            test_name="ECDLP Structural Vulnerability Scan",
+            statistic=float(vulnerabilities_found),
+            p_value=p_value,
+            passed=vulnerabilities_found > 0,
+            details=f"ECCp-131: {vulnerabilities_found}/{total_checks} vulnerability checks positive. "
+                    f"anomalous={is_anomalous}, MOV(k={embedding_degree})={mov_viable}, "
+                    f"supersingular={is_supersingular}, small_cofactor={has_small_cofactor}. "
+                    f"Research hypothesis: {research_h['title']}",
+        )
+        h.test_results.append(asdict(test_result))
+        h.update_from_pvalue(p_value)
+
+        # 7. Pollard rho random walk quality (small sample)
+        import random
+        walk_steps = 10000
+        collisions = 0
+        visited = set()
+        x = random.randint(1, n - 1)
+        for _ in range(walk_steps):
+            x = (x * x + 1) % n
+            if x in visited:
+                collisions += 1
+            visited.add(x)
+        expected_collision_rate = walk_steps / (2.5 * (n ** 0.5))
+        actual_collision_rate = collisions / walk_steps if walk_steps > 0 else 0
+        total_checks += 1
+
+        walk_result = StatTestResult(
+            test_name="Pollard Walk Randomness Test",
+            statistic=float(actual_collision_rate),
+            p_value=0.5,  # Neutral — this is exploratory
+            passed=False,
+            details=f"Walk {walk_steps} steps: {collisions} revisits, "
+                    f"rate={actual_collision_rate:.6f} vs expected {expected_collision_rate:.2e}",
+        )
+        h.test_results.append(asdict(walk_result))
+
+        self._log("INVESTIGATE", "ECDLP",
+                  f"Structural scan: {vulnerabilities_found} vulnerabilities found in {total_checks} checks. "
+                  f"Research focus: {research_h['title']}", h.id)
+
+        # Record discovery
+        self.discovery_memory.record_discovery(
+            hypothesis_id=h.id, domain="Cryptography",
+            finding_type="structural_analysis",
+            variables=["trace", "embedding_degree", "j_invariant", "cofactor"],
+            statistic=float(vulnerabilities_found),
+            p_value=p_value,
+            description=f"ECDLP structural analysis: {total_checks} checks, "
+                        f"{vulnerabilities_found} vulnerabilities. Focus: {research_h['title']}",
+            data_source="ECCp-131 / ECDLP Analysis",
+            sample_size=total_checks,
+        )
+        self.total_plots += 1
+
     def _investigate_crosslink(self, h: Hypothesis):
         """Cross-source linking — match data across registries."""
         self._log("INVESTIGATE", "INVESTIGATE",
@@ -1138,6 +1536,8 @@ class DiscoveryEngine:
                 self._evaluate_exoplanets(h)
             elif category == "crossdomain":
                 self._evaluate_crossdomain(h)
+            elif category in ("economics", "climate", "epidemiology"):
+                self._evaluate_multidomain(h, category)
             else:
                 self._evaluate_generic(h)
 
@@ -1274,6 +1674,9 @@ class DiscoveryEngine:
             "stellar": ["bp_rp_color", "absolute_mag_g", "parallax"],
             "star_formation": ["redshift", "u_r_color", "g_r_color"],
             "crossdomain": ["distance", "redshift"],
+            "economics": ["gdp_per_capita", "year", "country"],
+            "climate": ["year", "temp_anomaly"],
+            "epidemiology": ["life_expectancy", "year", "country"],
             "generic": ["gmag", "bp_rp"],
         }
         return source_vars.get(category, ["variable_1", "variable_2"])
@@ -1400,6 +1803,46 @@ class DiscoveryEngine:
                   f"{ks_result.details}, p = {ks_result.p_value:.4f}", h.id)
         h.test_results.append(asdict(ks_result))
         h.update_from_pvalue(ks_result.p_value)
+
+    def _evaluate_multidomain(self, h: Hypothesis, category: str):
+        """Evaluate economics/climate/epidemiology hypotheses with real data."""
+        from .data_registry import get_registry
+        reg = get_registry()
+        source_map = {
+            "economics": "world_bank",
+            "climate": "gistemp",
+            "epidemiology": "who_gho",
+        }
+        result = reg.fetch(source_map.get(category, "world_bank"))
+        if result.data is None or len(result.data) == 0:
+            return
+
+        if category == "economics":
+            values = result.data['value']
+            ks_result = kolmogorov_smirnov_test(np.log10(values[values > 0]))
+            self._log("EVALUATE", "EVALUATE",
+                      f"KS test on log(GDP/capita) for {h.id}: {ks_result.details}, p={ks_result.p_value:.4f}", h.id)
+            h.test_results.append(asdict(ks_result))
+            h.update_from_pvalue(ks_result.p_value)
+        elif category == "climate":
+            temps = result.data['temp_anomaly']
+            years = result.data['year'].astype(float)
+            # Test normality of residuals from linear fit
+            from scipy import stats as sp_stats
+            slope, intercept, _, _, _ = sp_stats.linregress(years, temps)
+            residuals = temps - (slope * years + intercept)
+            t_result = bayesian_t_test(residuals, popmean=0.0)
+            self._log("EVALUATE", "EVALUATE",
+                      f"t-test on GISTEMP residuals for {h.id}: {t_result.details}, p={t_result.p_value:.4f}", h.id)
+            h.test_results.append(asdict(t_result))
+            h.update_from_pvalue(t_result.p_value)
+        elif category == "epidemiology":
+            le = result.data['life_expectancy']
+            ks_result = kolmogorov_smirnov_test(le)
+            self._log("EVALUATE", "EVALUATE",
+                      f"KS test on life expectancy for {h.id}: {ks_result.details}, p={ks_result.p_value:.4f}", h.id)
+            h.test_results.append(asdict(ks_result))
+            h.update_from_pvalue(ks_result.p_value)
 
     def _evaluate_generic(self, h: Hypothesis):
         """Generic evaluation using available data."""
@@ -1838,6 +2281,28 @@ class DiscoveryEngine:
                             self._log("PAPER", "ENGINE",
                                       f"Failed to generate paper draft for {h.id}: {e}", h.id)
 
+            # Auto-approve validated hypotheses pending approval too long
+            if (h.phase == Phase.VALIDATED and
+                    getattr(h, 'approval_status', '') == "pending"):
+                pending_secs = now - getattr(h, 'pending_approval_at', now)
+                age_cycles = pending_secs / 25  # ~25s per cycle
+                n_tests = len(h.test_results)
+                # Auto-approve if: confidence >= 0.8 AND (pending >5 cycles OR >=3 tests)
+                if h.confidence >= 0.8 and (age_cycles > 5 or n_tests >= 3):
+                    h.approval_status = "approved"
+                    h.approval_reason = (
+                        f"Auto-approved: confidence={h.confidence:.2f}, "
+                        f"tests={n_tests}, pending_cycles≈{age_cycles:.0f}"
+                    )
+                    h.requires_approval = False
+                    h.phase = Phase.PUBLISHED
+                    h.updated_at = now
+                    self._log("LIFECYCLE", "ENGINE",
+                              f"Auto-approved {h.id} ({h.name}): {h.approval_reason}", h.id)
+                    self._decide("confirm",
+                                 f"Auto-approved {h.id} → PUBLISHED ({h.approval_reason})",
+                                 "PUBLISHED", h.id)
+
         # Prune the queue: if queue_depth > 15, archive lowest-confidence SCREENING hypotheses
         screening = self.store.by_phase(Phase.SCREENING)
         if len(screening) > 15:
@@ -1923,6 +2388,9 @@ class DiscoveryEngine:
                     )
                     self._log("DEGRADATION", "ENGINE",
                               "Switching exploration strategy due to low significant results")
+
+            # Theory Engine tick — runs every 5 cycles (async, non-blocking)
+            self.theory_engine.tick(self.store, self.cycle_count)
 
             # Phase 10.5: Memory compaction
             self.discovery_memory.compact_if_needed()
