@@ -1565,6 +1565,133 @@ async def ecdlp_analysis():
     return _ecdlp_analysis_cache["result"]
 
 
+# ══════════════════════════════════════════════════════════════
+# Theory Engine API  — Phases 1–3 Theoretical Framework
+# ══════════════════════════════════════════════════════════════
+
+@app.get("/api/theory/status")
+async def theory_status():
+    """Theory engine status — all phases."""
+    return engine.theory_engine.status().to_dict()
+
+
+@app.get("/api/theory/summary")
+async def theory_summary():
+    """Full theory engine state: theories, contradictions, analogies, experiments."""
+    return engine.theory_engine.full_summary()
+
+
+@app.get("/api/theory/theories")
+async def get_theories():
+    """All proposed and validated theoretical frameworks."""
+    return {"theories": engine.theory_engine.get_theories()}
+
+
+@app.post("/api/theory/cycle")
+async def run_theory_cycle():
+    """Trigger an immediate synchronous theory engine cycle."""
+    result = engine.theory_engine.run_cycle_sync(engine.store)
+    return result
+
+
+# ── Phase 1 ──────────────────────────────────────────────────
+
+@app.get("/api/theory/contradictions")
+async def get_contradictions():
+    """All detected contradictions in the hypothesis store."""
+    return {
+        "contradictions": engine.theory_engine.get_contradictions(),
+        "unresolved": sum(
+            1 for c in engine.theory_engine.get_contradictions()
+            if not c.get("resolved", False)
+        )
+    }
+
+
+@app.post("/api/theory/contradictions/{cid}/resolve")
+async def resolve_contradiction(cid: str):
+    """Mark a contradiction as resolved."""
+    ok = engine.theory_engine.resolve_contradiction(cid)
+    return {"resolved": ok, "contradiction_id": cid}
+
+
+@app.get("/api/theory/dimensional/exponent/{value}")
+async def match_universal_exponent(value: float):
+    """Check if an observed exponent matches a known universal value."""
+    try:
+        from astra_live_backend.symbolic_dimensional import UniversalExponentMatcher
+        matcher = UniversalExponentMatcher()
+        match = matcher.find_nearest(value)
+        return match if match else {"match": None, "value": value}
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@app.post("/api/theory/dimensional/generate")
+async def generate_scaling_relations(body: dict):
+    """
+    Generate candidate scaling relations from dimensional analysis.
+    Body: {"variables": {"mass": "mass", "velocity": "velocity", ...}}
+    """
+    try:
+        from astra_live_backend.symbolic_dimensional import CandidateEquationSet
+        variables = body.get("variables", {})
+        eq_set = CandidateEquationSet()
+        candidates = eq_set.generate_from_variables(variables)
+        return {"candidates": [c.to_dict() if hasattr(c, 'to_dict') else c
+                               for c in candidates]}
+    except Exception as e:
+        return {"error": str(e)}
+
+
+# ── Phase 2 ──────────────────────────────────────────────────
+
+@app.get("/api/theory/analogies")
+async def get_analogies():
+    """All detected cross-domain structural analogies."""
+    analogies = engine.theory_engine.get_analogies()
+    return {
+        "analogies": analogies,
+        "novel_count": sum(1 for a in analogies if a.get("novel", False))
+    }
+
+
+@app.get("/api/theory/symmetries")
+async def get_symmetry_findings():
+    """All detected symmetries and universal behaviour."""
+    return {"symmetry_findings": engine.theory_engine.get_symmetry_findings()}
+
+
+# ── Phase 3 ──────────────────────────────────────────────────
+
+@app.get("/api/theory/abduction")
+async def get_abductive_explanations():
+    """All abductive explanations for anomalous validated results."""
+    explanations = engine.theory_engine.get_abductive_explanations()
+    return {
+        "explanations": explanations,
+        "count": len(explanations)
+    }
+
+
+@app.get("/api/theory/experiments")
+async def get_critical_experiments():
+    """Prioritised list of critical discriminating experiments."""
+    experiments = engine.theory_engine.get_critical_experiments()
+    return {
+        "experiments": experiments,
+        "count": len(experiments),
+        "high_value": sum(1 for e in experiments
+                          if e.get("scientific_value", 0) > 0.6)
+    }
+
+
+@app.get("/api/theory/consistency")
+async def get_consistency_reports():
+    """Self-consistency check results for all active theories."""
+    return {"reports": engine.theory_engine.get_consistency_reports()}
+
+
 if __name__ == "__main__":
     import uvicorn
     print("=" * 60)

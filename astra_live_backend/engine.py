@@ -47,6 +47,7 @@ from .paper_generator import get_paper_generator
 from .provenance import ProvenanceTracker
 from .stigmergy_bridge import StigmergyBridge, get_stigmergy_bridge
 from .swarm_agents import SwarmCoordinator
+from .theory_engine import get_theory_engine
 
 
 @dataclass
@@ -148,6 +149,9 @@ class DiscoveryEngine:
         # Stigmergy bridge — connects pheromone subsystem to engine
         self.stigmergy = get_stigmergy_bridge(pheromone_weight=0.3)
         self.swarm = SwarmCoordinator(self.stigmergy)
+
+        # Theory Engine — Phases 1-3 theoretical framework infrastructure
+        self.theory_engine = get_theory_engine(cycle_interval=5)
 
         # Exploration schedule — Phase 10.6: force domain round-robin
         self._forced_domain: Optional[str] = None
@@ -2384,6 +2388,9 @@ class DiscoveryEngine:
                     )
                     self._log("DEGRADATION", "ENGINE",
                               "Switching exploration strategy due to low significant results")
+
+            # Theory Engine tick — runs every 5 cycles (async, non-blocking)
+            self.theory_engine.tick(self.store, self.cycle_count)
 
             # Phase 10.5: Memory compaction
             self.discovery_memory.compact_if_needed()
