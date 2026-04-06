@@ -453,9 +453,78 @@ def _get_safety_action(name: str):
 DASHBOARD_DIR = Path("astra-live")
 
 
+async def _ensure_dashboard_exists():
+    """Ensure dashboard directory and file exist. Auto-generates if missing."""
+    import subprocess
+    import shutil
+    from pathlib import Path
+
+    # Create directory if it doesn't exist
+    DASHBOARD_DIR.mkdir(parents=True, exist_ok=True)
+
+    dashboard_path = DASHBOARD_DIR / "index.html"
+
+    if not dashboard_path.exists():
+        # Copy template if available
+        template_path = Path(__file__).parent / "dashboard_template.html"
+        if template_path.exists():
+            shutil.copy(str(template_path), str(dashboard_path))
+        else:
+            # Create minimal dashboard as fallback
+            minimal_html = """<!DOCTYPE html>
+<html>
+<head>
+    <title>ASTRA Live</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header { border-bottom: 2px solid #0066cc; padding-bottom: 20px; margin-bottom: 30px; }
+        .status { background: #f0f8ff; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #0066cc; }
+        .cognitive { background: #f0fff0; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #28a745; }
+        h1 { color: #333; margin: 0; }
+        h2 { color: #444; margin-top: 30px; }
+        a { color: #0066cc; }
+        .endpoint { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 ASTRA Live — Autonomous Scientific Discovery</h1>
+            <p>With Cognitive Architecture (Phase 15: Scientific AGI)</p>
+        </div>
+        <div class="status">
+            <h2>⚡ System Status</h2>
+            <p><strong>Server:</strong> Running at <a href="http://localhost:8787">http://localhost:8787</a></p>
+            <p><strong>Dashboard:</strong> <a href="/api/status">API Status</a></p>
+            <p><strong>Documentation:</strong> <a href="/docs">API Docs</a></p>
+        </div>
+        <div class="cognitive">
+            <h2>🧠 Cognitive Architecture (New!)</h2>
+            <div class="endpoint"><a href="/api/cognitive/status">/api/cognitive/status</a></div>
+            <div class="endpoint"><a href="/api/cognitive/dashboard">/api/cognitive/dashboard</a></div>
+            <div class="endpoint"><a href="/api/knowledge-graph/statistics">/api/knowledge-graph/statistics</a></div>
+            <div class="endpoint"><a href="/api/knowledge-graph/gaps">/api/knowledge-graph/gaps</a></div>
+            <div class="endpoint"><a href="/api/metacognition/report">/api/metacognition/report</a></div>
+        </div>
+        <p><em>ASTRA is running with Scientific AGI capabilities enabled.</em></p>
+    </div>
+</body>
+</html>"""
+            with open(dashboard_path, 'w') as f:
+                f.write(minimal_html)
+
+
 @app.get("/")
-def serve_dashboard():
-    return FileResponse(DASHBOARD_DIR / "index.html")
+async def serve_dashboard():
+    """ASTRA Live dashboard. Auto-generates if missing."""
+    dashboard_path = DASHBOARD_DIR / "index.html"
+
+    # Auto-generate dashboard if it doesn't exist
+    if not dashboard_path.exists():
+        await _ensure_dashboard_exists()
+
+    return FileResponse(dashboard_path)
 
 
 # ── Phase 4: Operational Readiness Endpoints ──────────────────────
@@ -982,39 +1051,6 @@ async def _ensure_dashboard_exists():
 </html>"""
             with open(dashboard_path, 'w') as f:
                 f.write(minimal_html)
-
-
-@app.get("/")
-async def serve_dashboard():
-    """ASTRA Live dashboard. Auto-generates if missing."""
-    dashboard_path = DASHBOARD_DIR / "index.html"
-
-    # Auto-generate dashboard if it doesn't exist
-    if not dashboard_path.exists():
-        try:
-            await _ensure_dashboard_exists()
-        except Exception as e:
-            # Return HTML with error if generation fails
-            return f"""
-            <html>
-            <head><title>ASTRA Live</title></head>
-            <body>
-                <h1>ASTRA Live — Autonomous Scientific Discovery</h1>
-                <p>Dashboard is being generated... Please refresh in a moment.</p>
-                <p><a href="/api/status">API Status</a></p>
-                <p><a href="/docs">API Documentation</a></p>
-                <p><strong>Cognitive Architecture Active:</strong></p>
-                <ul>
-                    <li><a href="/api/cognitive/status">Cognitive Status</a></li>
-                    <li><a href="/api/knowledge-graph/statistics">Knowledge Graph</a></li>
-                    <li><a href="/api/metacognition/report">Meta-Cognition</a></li>
-                </ul>
-                <p><em>Error: {e}</em></p>
-            </body>
-            </html>
-            """
-
-    return FileResponse(dashboard_path)
 
 
 @app.get("/api/system/health")
