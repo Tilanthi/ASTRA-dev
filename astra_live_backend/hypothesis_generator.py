@@ -78,15 +78,15 @@ _HYPOTHESIS_TEMPLATES = {
     ],
 }
 
-# Generic fallback templates
+# Generic fallback templates — domain is set dynamically from discovery
 _GENERIC_TEMPLATES = [
-    ("Cross-Domain: {v1} Pattern in {source}", "Astrophysics",
+    ("Cross-Domain: {v1} Pattern in {source}", None,
      "Test whether the {v1} pattern observed in {desc_context} "
      "also appears in {source} data. Structural comparison."),
-    ("Follow-up: {finding_type} in {source}", "Astrophysics",
+    ("Follow-up: {finding_type} in {source}", None,
      "Systematic follow-up of {finding_type} signal: {desc}. "
      "Extended statistical characterization with larger sample."),
-    ("Causal Probe: {v1} Mechanism", "Astrophysics",
+    ("Causal Probe: {v1} Mechanism", None,
      "Test causal mechanism behind {v1} relationship: {desc}. "
      "Intervention analysis + physical constraint checking."),
 ]
@@ -107,7 +107,7 @@ class HypothesisGenerator:
         self._name_counter = {}  # avoid duplicate names
 
     # Domains the engine should actively explore
-    ALL_DOMAINS = ["Astrophysics", "Economics", "Climate", "Epidemiology", "Cross-Domain"]
+    ALL_DOMAINS = ["Astrophysics", "Economics", "Climate", "Epidemiology", "Cross-Domain", "Cryptography"]
 
     # Multi-domain exploration templates (non-astrophysics)
     _DOMAIN_EXPLORATION_TEMPLATES = {
@@ -143,6 +143,17 @@ class HypothesisGenerator:
             ("Disease Burden Inequality", "Epidemiology",
              "Analyze concentration of disease burden by income quintile. "
              "Gini-like health inequality metrics across countries and time."),
+        ],
+        "Cryptography": [
+            ("ECDLP Summation Polynomial Sparsity", "Cryptography",
+             "Investigate summation polynomial structure for ECCp-131. "
+             "Search for sparse representations enabling index calculus speedup."),
+            ("Isogeny-Based DLP Reduction", "Cryptography",
+             "Search for curves isogenous to ECCp-131 with exploitable structure. "
+             "Enumerate small-degree isogenies for weak curve transfer."),
+            ("Lattice Reduction EC Relations", "Cryptography",
+             "Apply LLL/BKZ lattice reduction to elliptic curve group relations. "
+             "Search for short vectors encoding DLP solutions."),
         ],
         "Cross-Domain": [
             ("Wealth-Health-Climate Triad", "Cross-Domain",

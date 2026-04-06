@@ -936,11 +936,24 @@ class DiscoveryEngine:
         self.total_plots += 1
 
     def _investigate_generic(self, h: Hypothesis):
-        """Generic investigation using available real data."""
+        """Generic investigation — route to domain-specific method when possible."""
         self._log("INVESTIGATE", "INVESTIGATE",
-                  f"Running generic analysis for {h.id} ({h.name})", h.id)
+                  f"Running generic analysis for {h.id} ({h.name}) [domain={h.domain}]", h.id)
 
-        # Use whichever data source is available
+        # Domain-aware routing: delegate to specialized investigation methods
+        domain = getattr(h, 'domain', '') or ''
+        if "Econom" in domain:
+            return self._investigate_economics(h)
+        elif "Climate" in domain:
+            return self._investigate_climate(h)
+        elif "Epidem" in domain:
+            return self._investigate_epidemiology(h)
+        elif "Crypto" in domain:
+            return self._investigate_cryptography(h)
+        elif "Cross" in domain:
+            return self._investigate_crossdomain(h)
+
+        # Fallback: Astrophysics or truly unknown domain — use Gaia data
         gaia = get_cached_gaia()
         if gaia.data is not None and len(gaia.data) > 0:
             h.data_points_used = len(gaia.data)
@@ -2263,6 +2276,28 @@ class DiscoveryEngine:
                         except Exception as e:
                             self._log("PAPER", "ENGINE",
                                       f"Failed to generate paper draft for {h.id}: {e}", h.id)
+
+            # Auto-approve validated hypotheses pending approval too long
+            if (h.phase == Phase.VALIDATED and
+                    getattr(h, 'approval_status', '') == "pending"):
+                pending_secs = now - getattr(h, 'pending_approval_at', now)
+                age_cycles = pending_secs / 25  # ~25s per cycle
+                n_tests = len(h.test_results)
+                # Auto-approve if: confidence >= 0.8 AND (pending >5 cycles OR >=3 tests)
+                if h.confidence >= 0.8 and (age_cycles > 5 or n_tests >= 3):
+                    h.approval_status = "approved"
+                    h.approval_reason = (
+                        f"Auto-approved: confidence={h.confidence:.2f}, "
+                        f"tests={n_tests}, pending_cycles≈{age_cycles:.0f}"
+                    )
+                    h.requires_approval = False
+                    h.phase = Phase.PUBLISHED
+                    h.updated_at = now
+                    self._log("LIFECYCLE", "ENGINE",
+                              f"Auto-approved {h.id} ({h.name}): {h.approval_reason}", h.id)
+                    self._decide("confirm",
+                                 f"Auto-approved {h.id} → PUBLISHED ({h.approval_reason})",
+                                 "PUBLISHED", h.id)
 
         # Prune the queue: if queue_depth > 15, archive lowest-confidence SCREENING hypotheses
         screening = self.store.by_phase(Phase.SCREENING)
