@@ -26,6 +26,7 @@ ENDPOINTS = [
     'literature/papers', 'literature/citation-graph', 'literature/citation-metrics',
     'pheromones/status', 'pheromones/ab-test',
     'stigmergy/gaps', 'stigmergy/exploration', 'swarm/status',
+    'persistence',
 ]
 
 
