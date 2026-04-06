@@ -921,9 +921,100 @@ def api_generate_hypotheses():
 DASHBOARD_DIR = Path("astra-live")
 
 
+async def _ensure_dashboard_exists():
+    """Ensure dashboard directory and file exist."""
+    import subprocess
+    import shutil
+
+    # Create directory if it doesn't exist
+    DASHBOARD_DIR.mkdir(parents=True, exist_ok=True)
+
+    dashboard_path = DASHBOARD_DIR / "index.html"
+
+    if not dashboard_path.exists():
+        # Copy template if available
+        template_path = Path(__file__).parent / "dashboard_template.html"
+        if template_path.exists():
+            shutil.copy(template_path, dashboard_path)
+        else:
+            # Create minimal dashboard as fallback
+            minimal_html = """<!DOCTYPE html>
+<html>
+<head>
+    <title>ASTRA Live</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .status { background: #f0f8ff; padding: 20px; border-radius: 5px; margin: 20px 0; }
+        .cognitive { background: #f0fff0; padding: 20px; border-radius: 5px; margin: 20px 0; }
+        .endpoints { background: #fff8f0; padding: 20px; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>🧠 ASTRA Live — Autonomous Scientific Discovery</h1>
+    <p>With Cognitive Architecture (Phase 15)</p>
+    <div class="status">
+        <h2>System Status</h2>
+        <p><strong>Server:</strong> Running</p>
+        <p><strong>Dashboard:</strong> <a href="/api/status">API Status</a></p>
+        <p><strong>Documentation:</strong> <a href="/docs">API Docs</a></p>
+    </div>
+    <div class="cognitive">
+        <h2>🧠 Cognitive Architecture (New!)</h2>
+        <ul>
+            <li><a href="/api/cognitive/status">Cognitive Status</a></li>
+            <li><a href="/api/cognitive/dashboard">Cognitive Dashboard</a></li>
+            <li><a href="/api/knowledge-graph/statistics">Knowledge Graph</a></li>
+            <li><a href="/api/knowledge-graph/gaps">Knowledge Gaps</a></li>
+            <li><a href="/api/metacognition/report">Meta-Cognition Report</a></li>
+        </ul>
+    </div>
+    <div class="endpoints">
+        <h2>Key API Endpoints</h2>
+        <ul>
+            <li><a href="/api/hypotheses">Hypotheses</a></li>
+            <li><a href="/api/activity">Activity Log</a></li>
+            <li><a href="/api/engine/state-space">State Space</a></li>
+            <li><a href="/api/discovery-memory">Discovery Memory</a></li>
+        </ul>
+    </div>
+    <p><em>ASTRA is running with Scientific AGI capabilities enabled.</em></p>
+</body>
+</html>"""
+            with open(dashboard_path, 'w') as f:
+                f.write(minimal_html)
+
+
 @app.get("/")
-def serve_dashboard():
-    return FileResponse(DASHBOARD_DIR / "index.html")
+async def serve_dashboard():
+    """ASTRA Live dashboard. Auto-generates if missing."""
+    dashboard_path = DASHBOARD_DIR / "index.html"
+
+    # Auto-generate dashboard if it doesn't exist
+    if not dashboard_path.exists():
+        try:
+            await _ensure_dashboard_exists()
+        except Exception as e:
+            # Return HTML with error if generation fails
+            return f"""
+            <html>
+            <head><title>ASTRA Live</title></head>
+            <body>
+                <h1>ASTRA Live — Autonomous Scientific Discovery</h1>
+                <p>Dashboard is being generated... Please refresh in a moment.</p>
+                <p><a href="/api/status">API Status</a></p>
+                <p><a href="/docs">API Documentation</a></p>
+                <p><strong>Cognitive Architecture Active:</strong></p>
+                <ul>
+                    <li><a href="/api/cognitive/status">Cognitive Status</a></li>
+                    <li><a href="/api/knowledge-graph/statistics">Knowledge Graph</a></li>
+                    <li><a href="/api/metacognition/report">Meta-Cognition</a></li>
+                </ul>
+                <p><em>Error: {e}</em></p>
+            </body>
+            </html>
+            """
+
+    return FileResponse(dashboard_path)
 
 
 @app.get("/api/system/health")
