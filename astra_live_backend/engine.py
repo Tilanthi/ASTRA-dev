@@ -465,10 +465,28 @@ class DiscoveryEngine:
         screening = self.store.by_phase(Phase.SCREENING)
         # Include PROPOSED hypotheses — they need initial investigation to advance
         proposed = self.store.by_phase(Phase.PROPOSED)
-        # Prioritize: testing first, then proposed (new exploration), then screening, then 1 validated for monitoring
-        targets = testing[:3] + proposed[:2] + screening[:2] + validated[:1]
-        # Cap at 6 per cycle to avoid overload
-        targets = targets[:6]
+
+        # Domain-diverse target selection: ensure non-Astro domains get investigated
+        # Pick 1 hypothesis per non-Astro domain first, then fill with Astro
+        all_candidates = testing + proposed + screening
+        targets = []
+        seen_domains = set()
+        # First pass: 1 per non-Astro domain (prioritize under-investigated)
+        for h in all_candidates:
+            if h.domain != "Astrophysics" and h.domain not in seen_domains:
+                targets.append(h)
+                seen_domains.add(h.domain)
+        # Second pass: fill remaining slots with Astro (up to 6 total)
+        for h in all_candidates:
+            if len(targets) >= 5:
+                break
+            if h not in targets:
+                targets.append(h)
+        # Always include 1 validated for monitoring
+        if validated:
+            targets.append(validated[0])
+        # Cap at 8 per cycle (more budget since we have more domains now)
+        targets = targets[:8]
 
         for h in targets:
             # Use strategist to select methods
@@ -1092,6 +1110,7 @@ class DiscoveryEngine:
                 test_name="Linear Regression (GDP trend)",
                 statistic=float(r_val),
                 p_value=float(p_val),
+                passed=p_val < 0.05,
                 details=f"GDP/capita trend: slope={slope:.1f} USD/yr, r={r_val:.3f}, p={p_val:.4f}",
             )
             h.test_results.append(asdict(trend_result))
@@ -1151,6 +1170,7 @@ class DiscoveryEngine:
             test_name="Linear Regression (warming trend)",
             statistic=float(r_val),
             p_value=float(p_val),
+            passed=p_val < 0.05,
             details=f"Warming trend: {slope*10:.3f} °C/decade, r={r_val:.3f}, p={p_val:.2e}",
         )
         h.test_results.append(asdict(trend_result))
@@ -1212,6 +1232,7 @@ class DiscoveryEngine:
                 test_name="Linear Regression (life expectancy trend)",
                 statistic=float(r_val),
                 p_value=float(p_val),
+                passed=p_val < 0.05,
                 details=f"Life expectancy trend: {slope:.2f} yr/yr, r={r_val:.3f}, p={p_val:.4f}",
             )
             h.test_results.append(asdict(trend_result))

@@ -129,15 +129,29 @@ class AdaptiveStrategist:
             return "time_domain"
         elif "cluster" in name_lower or "richness" in name_lower:
             return "galaxy"
-        elif "gdp" in name_lower or "trade" in name_lower or "inflation" in name_lower or "inequality" in name_lower or "nexus" in name_lower:
+        elif "gdp" in name_lower or "trade" in name_lower or "inflation" in name_lower or "nexus" in name_lower:
             return "economics"
         elif "co2" in name_lower or "temperature" in name_lower or "climate" in name_lower or "sea level" in name_lower or "weather" in name_lower or "extreme" in name_lower:
             return "climate"
-        elif "vaccination" in name_lower or "mortality" in name_lower or "disease" in name_lower or "health" in name_lower or "preston" in name_lower or "burden" in name_lower or "life expectancy" in name_lower or "epidem" in name_lower:
+        elif "vaccination" in name_lower or "mortality" in name_lower or "disease" in name_lower or "health" in name_lower or "preston" in name_lower or "burden" in name_lower or "life expectancy" in name_lower or "epidem" in name_lower or "survey" in name_lower:
             return "epidemiology"
+        elif "inequality" in name_lower:
+            # Context-aware: "inequality" could be Economics or Epidemiology
+            domain = getattr(h, 'domain', '').lower()
+            if "epidem" in domain:
+                return "epidemiology"
+            return "economics"
         elif "econ" in name_lower or "funding" in name_lower:
             return "crossdomain"
         else:
+            # Fallback: use hypothesis domain if available
+            domain = getattr(h, 'domain', '').lower()
+            if "econom" in domain:
+                return "economics"
+            elif "climate" in domain:
+                return "climate"
+            elif "epidem" in domain:
+                return "epidemiology"
             return "generic"
 
     def select_investigation_methods(self, h, cycle: int) -> List[str]:
