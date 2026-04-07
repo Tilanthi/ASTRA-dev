@@ -244,7 +244,8 @@
     "publications": 0,
     "data_points_used": 5000,
     "cross_domain_links": [
-      "H025"
+      "H025",
+      "CD-002"
     ],
     "requires_approval": false,
     "pending_approval_at": 1775551379.437354,
@@ -392,10 +393,12 @@
         "alpha": 0.05
       }
     ],
-    "priority": "NORMAL",
+    "priority": "MEDIUM",
     "publications": 0,
     "data_points_used": 15553,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551379.437472,
     "approval_status": "approved",
@@ -422,10 +425,12 @@
         "alpha": 0.05
       }
     ],
-    "priority": "MEDIUM",
+    "priority": "NORMAL",
     "publications": 0,
     "data_points_used": 5000,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551379.437479,
     "approval_status": "approved",
@@ -479,7 +484,9 @@
     "priority": "NORMAL",
     "publications": 0,
     "data_points_used": 1284,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551487.8485372,
     "approval_status": "approved",
@@ -641,7 +648,9 @@
     "priority": "NORMAL",
     "publications": 0,
     "data_points_used": 2507,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551520.917711,
     "approval_status": "approved",
@@ -706,10 +715,12 @@
         "alpha": 0.05
       }
     ],
-    "priority": "NORMAL",
+    "priority": "HIGH",
     "publications": 0,
     "data_points_used": 15553,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551553.925022,
     "approval_status": "approved",
@@ -739,7 +750,9 @@
     "priority": "NORMAL",
     "publications": 0,
     "data_points_used": 15553,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551553.925048,
     "approval_status": "approved",
@@ -777,7 +790,9 @@
     "priority": "NORMAL",
     "publications": 0,
     "data_points_used": 280,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551553.925059,
     "approval_status": "approved",
@@ -807,310 +822,14 @@
     "priority": "NORMAL",
     "publications": 0,
     "data_points_used": 15553,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551580.9440799,
     "approval_status": "approved",
     "approval_reason": "Auto-approved: confidence=0.81, tests=1, pending_cycles\u22485",
     "last_tested_at": 1775551547.058631,
-    "archived_at": 0.0
-  },
-  {
-    "id": "CD-001",
-    "name": "Econ-Astro Funding Correlation",
-    "domain": "Economics",
-    "description": "Correlation between national R&D funding and astronomical discovery rates",
-    "confidence": 0.25,
-    "phase": "proposed",
-    "created_at": 1775147309.082293,
-    "updated_at": 1775549456.237227,
-    "test_results": [],
-    "priority": "HIGH",
-    "publications": 0,
-    "data_points_used": 0,
-    "cross_domain_links": [],
-    "requires_approval": false,
-    "pending_approval_at": 0.0,
-    "approval_status": "",
-    "approval_reason": "",
-    "last_tested_at": 0.0,
-    "archived_at": 0.0
-  },
-  {
-    "id": "CD-002",
-    "name": "Survey Design Optimization",
-    "domain": "Epidemiology",
-    "description": "Apply epidemiological adaptive sampling to astronomical survey strategy",
-    "confidence": 0.964824120603015,
-    "phase": "published",
-    "created_at": 1774973543.6567142,
-    "updated_at": 1775551739.801908,
-    "test_results": [
-      {
-        "test_name": "Kolmogorov-Smirnov",
-        "statistic": 0.9999938333722036,
-        "p_value": 0.0,
-        "passed": false,
-        "details": "D = 1.0000 (vs norm)",
-        "alpha": 0.05
-      },
-      {
-        "test_name": "Kolmogorov-Smirnov",
-        "statistic": 0.9999938333722036,
-        "p_value": 0.0,
-        "passed": false,
-        "details": "D = 1.0000 (vs norm)",
-        "alpha": 0.05
-      }
-    ],
-    "priority": "NORMAL",
-    "publications": 0,
-    "data_points_used": 15553,
-    "cross_domain_links": [
-      "H002"
-    ],
-    "requires_approval": false,
-    "pending_approval_at": 1775551580.944106,
-    "approval_status": "approved",
-    "approval_reason": "Auto-approved: confidence=0.96, tests=2, pending_cycles\u22486",
-    "last_tested_at": 1775551739.458266,
-    "archived_at": 0.0
-  },
-  {
-    "id": "H018",
-    "name": "GDP-Inequality Nexus",
-    "domain": "Economics",
-    "description": "Test Kuznets curve and Gini-GDP relationship across countries. Bayesian model comparison for linear vs inverted-U vs no relationship.",
-    "confidence": 0.2,
-    "phase": "proposed",
-    "created_at": 1775549517.848883,
-    "updated_at": 1775549517.848883,
-    "test_results": [],
-    "priority": "MEDIUM",
-    "publications": 0,
-    "data_points_used": 0,
-    "cross_domain_links": [],
-    "requires_approval": false,
-    "pending_approval_at": 0.0,
-    "approval_status": "",
-    "approval_reason": "",
-    "last_tested_at": 0.0,
-    "archived_at": 0.0
-  },
-  {
-    "id": "H019",
-    "name": "Trade Network Structure",
-    "domain": "Economics",
-    "description": "Analyze global trade network topology. Test scale-free properties, hub-and-spoke structure, and trade flow power laws.",
-    "confidence": 0.2,
-    "phase": "proposed",
-    "created_at": 1775549517.8488991,
-    "updated_at": 1775549517.8488991,
-    "test_results": [],
-    "priority": "NORMAL",
-    "publications": 0,
-    "data_points_used": 0,
-    "cross_domain_links": [],
-    "requires_approval": false,
-    "pending_approval_at": 0.0,
-    "approval_status": "",
-    "approval_reason": "",
-    "last_tested_at": 0.0,
-    "archived_at": 0.0
-  },
-  {
-    "id": "H020",
-    "name": "Inflation-Growth Dynamics",
-    "domain": "Economics",
-    "description": "Investigate nonlinear inflation\u2013growth relationship across economies. Threshold regression to find optimal inflation ranges.",
-    "confidence": 0.2,
-    "phase": "proposed",
-    "created_at": 1775549569.460587,
-    "updated_at": 1775549569.460587,
-    "test_results": [],
-    "priority": "NORMAL",
-    "publications": 0,
-    "data_points_used": 0,
-    "cross_domain_links": [],
-    "requires_approval": false,
-    "pending_approval_at": 0.0,
-    "approval_status": "",
-    "approval_reason": "",
-    "last_tested_at": 0.0,
-    "archived_at": 0.0
-  },
-  {
-    "id": "H021",
-    "name": "CO2-Temperature Attribution",
-    "domain": "Climate",
-    "description": "Quantify CO2 forcing contribution to observed warming using Granger causality and attribution analysis on instrumental records.",
-    "confidence": 0.2,
-    "phase": "proposed",
-    "created_at": 1775549569.460608,
-    "updated_at": 1775549569.460608,
-    "test_results": [],
-    "priority": "NORMAL",
-    "publications": 0,
-    "data_points_used": 0,
-    "cross_domain_links": [],
-    "requires_approval": false,
-    "pending_approval_at": 0.0,
-    "approval_status": "",
-    "approval_reason": "",
-    "last_tested_at": 0.0,
-    "archived_at": 0.0
-  },
-  {
-    "id": "H022",
-    "name": "Extreme Weather Trends",
-    "domain": "Climate",
-    "description": "Statistical analysis of extreme weather event frequency trends. Fit GEV distributions, test for changing return periods.",
-    "confidence": 0.2,
-    "phase": "proposed",
-    "created_at": 1775549594.536876,
-    "updated_at": 1775549594.536876,
-    "test_results": [],
-    "priority": "NORMAL",
-    "publications": 0,
-    "data_points_used": 0,
-    "cross_domain_links": [],
-    "requires_approval": false,
-    "pending_approval_at": 0.0,
-    "approval_status": "",
-    "approval_reason": "",
-    "last_tested_at": 0.0,
-    "archived_at": 0.0
-  },
-  {
-    "id": "H023",
-    "name": "Sea Level Acceleration",
-    "domain": "Climate",
-    "description": "Test for acceleration in sea level rise using tide gauge + satellite altimetry data. Quadratic vs linear trend comparison.",
-    "confidence": 0.2,
-    "phase": "proposed",
-    "created_at": 1775549594.536911,
-    "updated_at": 1775549594.536911,
-    "test_results": [],
-    "priority": "NORMAL",
-    "publications": 0,
-    "data_points_used": 0,
-    "cross_domain_links": [],
-    "requires_approval": false,
-    "pending_approval_at": 0.0,
-    "approval_status": "",
-    "approval_reason": "",
-    "last_tested_at": 0.0,
-    "archived_at": 0.0
-  },
-  {
-    "id": "H024",
-    "name": "Vaccination-Mortality Reduction",
-    "domain": "Epidemiology",
-    "description": "Quantify causal effect of DPT/measles vaccination coverage on under-5 mortality rates. Instrumental variable + panel data approach.",
-    "confidence": 0.2,
-    "phase": "proposed",
-    "created_at": 1775549651.4131908,
-    "updated_at": 1775549651.4131908,
-    "test_results": [],
-    "priority": "NORMAL",
-    "publications": 0,
-    "data_points_used": 0,
-    "cross_domain_links": [
-      "H003"
-    ],
-    "requires_approval": false,
-    "pending_approval_at": 0.0,
-    "approval_status": "",
-    "approval_reason": "",
-    "last_tested_at": 0.0,
-    "archived_at": 0.0
-  },
-  {
-    "id": "H025",
-    "name": "Preston Curve Evolution",
-    "domain": "Epidemiology",
-    "description": "Test whether the Preston curve (income vs life expectancy) has shifted upward over decades. Time-varying coefficient analysis.",
-    "confidence": 0.2,
-    "phase": "proposed",
-    "created_at": 1775549651.413236,
-    "updated_at": 1775549651.413236,
-    "test_results": [],
-    "priority": "NORMAL",
-    "publications": 0,
-    "data_points_used": 0,
-    "cross_domain_links": [
-      "H004"
-    ],
-    "requires_approval": false,
-    "pending_approval_at": 0.0,
-    "approval_status": "",
-    "approval_reason": "",
-    "last_tested_at": 0.0,
-    "archived_at": 0.0
-  },
-  {
-    "id": "H026",
-    "name": "Disease Burden Inequality",
-    "domain": "Epidemiology",
-    "description": "Analyze concentration of disease burden by income quintile. Gini-like health inequality metrics across countries and time.",
-    "confidence": 0.2,
-    "phase": "proposed",
-    "created_at": 1775549677.916866,
-    "updated_at": 1775549677.916866,
-    "test_results": [],
-    "priority": "NORMAL",
-    "publications": 0,
-    "data_points_used": 0,
-    "cross_domain_links": [
-      "H005"
-    ],
-    "requires_approval": false,
-    "pending_approval_at": 0.0,
-    "approval_status": "",
-    "approval_reason": "",
-    "last_tested_at": 0.0,
-    "archived_at": 0.0
-  },
-  {
-    "id": "H027",
-    "name": "Wealth-Health-Climate Triad",
-    "domain": "Cross-Domain",
-    "description": "Three-way interaction: GDP per capita, life expectancy, and CO2 emissions. Test Environmental Kuznets Curve with health co-benefits.",
-    "confidence": 0.2,
-    "phase": "proposed",
-    "created_at": 1775549677.919467,
-    "updated_at": 1775549677.919467,
-    "test_results": [],
-    "priority": "NORMAL",
-    "publications": 0,
-    "data_points_used": 0,
-    "cross_domain_links": [],
-    "requires_approval": false,
-    "pending_approval_at": 0.0,
-    "approval_status": "",
-    "approval_reason": "",
-    "last_tested_at": 0.0,
-    "archived_at": 0.0
-  },
-  {
-    "id": "H028",
-    "name": "Urbanization Cascade",
-    "domain": "Cross-Domain",
-    "description": "Urbanization \u2192 economic growth \u2192 emissions \u2192 health impacts causal chain. Structural equation modeling across 150+ countries.",
-    "confidence": 0.2,
-    "phase": "proposed",
-    "created_at": 1775549704.415909,
-    "updated_at": 1775549704.415909,
-    "test_results": [],
-    "priority": "NORMAL",
-    "publications": 0,
-    "data_points_used": 0,
-    "cross_domain_links": [],
-    "requires_approval": false,
-    "pending_approval_at": 0.0,
-    "approval_status": "",
-    "approval_reason": "",
-    "last_tested_at": 0.0,
     "archived_at": 0.0
   },
   {
@@ -1332,7 +1051,9 @@
     "priority": "NORMAL",
     "publications": 0,
     "data_points_used": 5000,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551580.944173,
     "approval_status": "approved",
@@ -1421,7 +1142,9 @@
     "priority": "NORMAL",
     "publications": 0,
     "data_points_used": 15553,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551607.8073092,
     "approval_status": "approved",
@@ -1480,7 +1203,9 @@
     "priority": "NORMAL",
     "publications": 0,
     "data_points_used": 5000,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551607.807317,
     "approval_status": "approved",
@@ -1531,35 +1256,14 @@
     "priority": "NORMAL",
     "publications": 0,
     "data_points_used": 5000,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551634.223409,
     "approval_status": "approved",
     "approval_reason": "Auto-approved: confidence=0.84, tests=1, pending_cycles\u22485",
     "last_tested_at": 1775551607.067071,
-    "archived_at": 0.0
-  },
-  {
-    "id": "H046",
-    "name": "Cross-Domain: Correlation from Astrophysics\u2192Epidemiology",
-    "domain": "Epidemiology",
-    "description": "Does the correlation pattern observed in Astrophysics (Pearson correlation: r = 0.4320, r\u00b2 = 0.1867) have an analog in Epidemiology? Structural comparison across domains.",
-    "confidence": 0.12,
-    "phase": "proposed",
-    "created_at": 1775551553.940725,
-    "updated_at": 1775551553.940725,
-    "test_results": [],
-    "priority": "NORMAL",
-    "publications": 0,
-    "data_points_used": 0,
-    "cross_domain_links": [
-      "H006"
-    ],
-    "requires_approval": false,
-    "pending_approval_at": 0.0,
-    "approval_status": "",
-    "approval_reason": "",
-    "last_tested_at": 0.0,
     "archived_at": 0.0
   },
   {
@@ -1592,7 +1296,9 @@
     "priority": "NORMAL",
     "publications": 0,
     "data_points_used": 15553,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551634.223428,
     "approval_status": "approved",
@@ -1643,7 +1349,9 @@
     "priority": "NORMAL",
     "publications": 0,
     "data_points_used": 5000,
-    "cross_domain_links": [],
+    "cross_domain_links": [
+      "CD-002"
+    ],
     "requires_approval": false,
     "pending_approval_at": 1775551634.223435,
     "approval_status": "approved",
@@ -1656,10 +1364,286 @@
     "name": "Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes",
     "domain": "Astrophysics",
     "description": "Constraint transfer: Unitarity (from quantum_mechanics) \u2192 black_holes. Implications: ['Information cannot be destroyed', 'Hawking radiation must carry information']",
-    "confidence": 0.42,
-    "phase": "proposed",
+    "confidence": 0.99,
+    "phase": "published",
     "created_at": 1775552372.715234,
-    "updated_at": 1775552372.715234,
+    "updated_at": 1775552452.3134289,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775552425.989231,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775552451.9524622,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H051",
+    "name": "Theoretical: Entropic Gravity Deep-MOND (Entropic)",
+    "domain": "Astrophysics",
+    "description": "Information-theoretic prediction: At a = 7.008e-41 m/s\u00b2: Entropic suppression. Newtonian a=7.008e-41 m/s\u00b2, Entropic a=9.171e-26 m/s\u00b2.",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775552636.038817,
+    "updated_at": 1775552715.1152241,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775552688.772935,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775552714.7638521,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H052",
+    "name": "Theoretical: Entropic Gravity Deep-MOND (Entropic)",
+    "domain": "Astrophysics",
+    "description": "Information-theoretic prediction: At a = 7.008e-41 m/s\u00b2: Entropic suppression. Newtonian a=7.008e-41 m/s\u00b2, Entropic a=9.171e-26 m/s\u00b2.",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775552898.894928,
+    "updated_at": 1775552978.7761412,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775552952.3316522,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775552978.3249989,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H053",
+    "name": "Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes",
+    "domain": "Astrophysics",
+    "description": "Constraint transfer: Unitarity (from quantum_mechanics) \u2192 black_holes. Implications: ['Information cannot be destroyed', 'Hawking radiation must carry information']",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775552898.895116,
+    "updated_at": 1775553031.483327,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775552952.3317802,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22483",
+    "last_tested_at": 1775553031.101345,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H054",
+    "name": "Theoretical: Multi-Method Analysis",
+    "domain": "Astrophysics",
+    "description": "Tree search found 60 methods. Best score: 0.985",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775552898.899463,
+    "updated_at": 1775553084.1373389,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775552952.331789,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22485",
+    "last_tested_at": 1775553083.790689,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H055",
+    "name": "Theoretical: Entropic Gravity Deep-MOND (Entropic)",
+    "domain": "Astrophysics",
+    "description": "Information-theoretic prediction: At a = 7.008e-41 m/s\u00b2: Entropic suppression. Newtonian a=7.008e-41 m/s\u00b2, Entropic a=9.171e-26 m/s\u00b2.",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775553162.870951,
+    "updated_at": 1775555093.610925,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775555066.4906602,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775555093.270758,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H056",
+    "name": "Theoretical: Black Hole Information Paradox",
+    "domain": "Astrophysics",
+    "description": "Paradox analysis: Black holes appear to destroy information, violating quantum unitarity. Implications: ['Quantum gravity must preserve unitarity', 'Spacetime may be emergent from entanglement']",
+    "confidence": 0.25,
+    "phase": "proposed",
+    "created_at": 1775553707.11994,
+    "updated_at": 1775553707.11994,
     "test_results": [],
     "priority": "NORMAL",
     "publications": 0,
@@ -1670,6 +1654,1075 @@
     "approval_status": "",
     "approval_reason": "",
     "last_tested_at": 0.0,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H057",
+    "name": "Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes",
+    "domain": "Astrophysics",
+    "description": "Constraint transfer: Unitarity (from quantum_mechanics) \u2192 black_holes. Implications: ['Information cannot be destroyed', 'Hawking radiation must carry information']",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775553707.120011,
+    "updated_at": 1775555146.2859468,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775555066.4907122,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22483",
+    "last_tested_at": 1775555145.940362,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H058",
+    "name": "Theoretical: Multi-Method Analysis",
+    "domain": "Astrophysics",
+    "description": "Tree search found 53 methods. Best score: 0.994",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775553707.121227,
+    "updated_at": 1775555200.42695,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775555066.4907148,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22485",
+    "last_tested_at": 1775555200.021256,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H059",
+    "name": "Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes",
+    "domain": "Astrophysics",
+    "description": "Constraint transfer: Unitarity (from quantum_mechanics) \u2192 black_holes. Implications: ['Information cannot be destroyed', 'Hawking radiation must carry information']",
+    "confidence": 0.9788783685360525,
+    "phase": "published",
+    "created_at": 1775553970.796606,
+    "updated_at": 1775555226.7550058,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5553,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775555093.607135,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.98, tests=2, pending_cycles\u22485",
+    "last_tested_at": 1775555226.416714,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H060",
+    "name": "Theoretical: Multi-Method Analysis",
+    "domain": "Astrophysics",
+    "description": "Tree search found 46 methods. Best score: 0.955",
+    "confidence": 0.831824358874585,
+    "phase": "published",
+    "created_at": 1775553970.797652,
+    "updated_at": 1775555226.7550058,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5553,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775555093.607221,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.83, tests=1, pending_cycles\u22485",
+    "last_tested_at": 1775555066.090341,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H061",
+    "name": "Theoretical: Black Hole Information Paradox",
+    "domain": "Astrophysics",
+    "description": "Paradox analysis: Black holes appear to destroy information, violating quantum unitarity. Implications: ['Quantum gravity must preserve unitarity', 'Spacetime may be emergent from entanglement']",
+    "confidence": 0.25,
+    "phase": "proposed",
+    "created_at": 1775554237.057246,
+    "updated_at": 1775554237.057247,
+    "test_results": [],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 0,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 0.0,
+    "approval_status": "",
+    "approval_reason": "",
+    "last_tested_at": 0.0,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H062",
+    "name": "Theoretical: Black Hole Information Paradox",
+    "domain": "Astrophysics",
+    "description": "Paradox analysis: Black holes appear to destroy information, violating quantum unitarity. Implications: ['Quantum gravity must preserve unitarity', 'Spacetime may be emergent from entanglement']",
+    "confidence": 0.25,
+    "phase": "proposed",
+    "created_at": 1775554766.186583,
+    "updated_at": 1775554766.186583,
+    "test_results": [],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 0,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 0.0,
+    "approval_status": "",
+    "approval_reason": "",
+    "last_tested_at": 0.0,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H063",
+    "name": "Theoretical: Multi-Method Analysis",
+    "domain": "Astrophysics",
+    "description": "Tree search found 51 methods. Best score: 0.994",
+    "confidence": 0.8407121037040742,
+    "phase": "published",
+    "created_at": 1775554766.187655,
+    "updated_at": 1775555226.7550058,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5553,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775555093.6072268,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.84, tests=1, pending_cycles\u22485",
+    "last_tested_at": 1775555066.136496,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H064",
+    "name": "Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes",
+    "domain": "Astrophysics",
+    "description": "Constraint transfer: Unitarity (from quantum_mechanics) \u2192 black_holes. Implications: ['Information cannot be destroyed', 'Hawking radiation must carry information']",
+    "confidence": 0.9788783685360525,
+    "phase": "published",
+    "created_at": 1775555066.496309,
+    "updated_at": 1775555253.1562681,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775555119.9376671,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.98, tests=2, pending_cycles\u22485",
+    "last_tested_at": 1775555252.759723,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H065",
+    "name": "Theoretical: Multi-Method Analysis",
+    "domain": "Astrophysics",
+    "description": "Tree search found 51 methods. Best score: 1.000",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775555331.93046,
+    "updated_at": 1775555411.599443,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775555385.20499,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775555411.227521,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H066",
+    "name": "Theoretical: Black Hole Information Paradox",
+    "domain": "Astrophysics",
+    "description": "Paradox analysis: Black holes appear to destroy information, violating quantum unitarity. Implications: ['Quantum gravity must preserve unitarity', 'Spacetime may be emergent from entanglement']",
+    "confidence": 0.25,
+    "phase": "proposed",
+    "created_at": 1775555595.420568,
+    "updated_at": 1775555595.420568,
+    "test_results": [],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 0,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 0.0,
+    "approval_status": "",
+    "approval_reason": "",
+    "last_tested_at": 0.0,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H067",
+    "name": "Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes",
+    "domain": "Astrophysics",
+    "description": "Constraint transfer: Unitarity (from quantum_mechanics) \u2192 black_holes. Implications: ['Information cannot be destroyed', 'Hawking radiation must carry information']",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775555595.4206002,
+    "updated_at": 1775555675.296224,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775555648.889865,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775555674.947988,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H068",
+    "name": "Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes",
+    "domain": "Astrophysics",
+    "description": "Constraint transfer: Unitarity (from quantum_mechanics) \u2192 black_holes. Implications: ['Information cannot be destroyed', 'Hawking radiation must carry information']",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775555859.2191749,
+    "updated_at": 1775555938.478822,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775555912.0224938,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775555938.072248,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H069",
+    "name": "Theoretical: Black Hole Information Paradox",
+    "domain": "Astrophysics",
+    "description": "Paradox analysis: Black holes appear to destroy information, violating quantum unitarity. Implications: ['Quantum gravity must preserve unitarity', 'Spacetime may be emergent from entanglement']",
+    "confidence": 0.25,
+    "phase": "proposed",
+    "created_at": 1775556387.434303,
+    "updated_at": 1775556387.434303,
+    "test_results": [],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 0,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 0.0,
+    "approval_status": "",
+    "approval_reason": "",
+    "last_tested_at": 0.0,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H070",
+    "name": "Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes",
+    "domain": "Astrophysics",
+    "description": "Constraint transfer: Unitarity (from quantum_mechanics) \u2192 black_holes. Implications: ['Information cannot be destroyed', 'Hawking radiation must carry information']",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775556387.434377,
+    "updated_at": 1775556466.807376,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775556440.342568,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775556466.401721,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H071",
+    "name": "Theoretical: Entropic Gravity Deep-MOND (Entropic)",
+    "domain": "Astrophysics",
+    "description": "Information-theoretic prediction: At a = 7.008e-41 m/s\u00b2: Entropic suppression. Newtonian a=7.008e-41 m/s\u00b2, Entropic a=9.171e-26 m/s\u00b2.",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775556914.1174989,
+    "updated_at": 1775557010.783537,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775556984.400358,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775557010.425329,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H072",
+    "name": "Theoretical: Entropic Gravity Deep-MOND (Entropic)",
+    "domain": "Astrophysics",
+    "description": "Information-theoretic prediction: At a = 7.008e-41 m/s\u00b2: Entropic suppression. Newtonian a=7.008e-41 m/s\u00b2, Entropic a=9.171e-26 m/s\u00b2.",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775557458.057494,
+    "updated_at": 1775557537.050774,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775557510.7057412,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775557536.706461,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H073",
+    "name": "Theoretical: Entropic Gravity Deep-MOND (Entropic)",
+    "domain": "Astrophysics",
+    "description": "Information-theoretic prediction: At a = 7.008e-41 m/s\u00b2: Entropic suppression. Newtonian a=7.008e-41 m/s\u00b2, Entropic a=9.171e-26 m/s\u00b2.",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775558247.811751,
+    "updated_at": 1775558327.683696,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775558301.341873,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775558327.343474,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H074",
+    "name": "Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes",
+    "domain": "Astrophysics",
+    "description": "Constraint transfer: Unitarity (from quantum_mechanics) \u2192 black_holes. Implications: ['Information cannot be destroyed', 'Hawking radiation must carry information']",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775558247.811816,
+    "updated_at": 1775558380.303145,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775558301.342224,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22483",
+    "last_tested_at": 1775558379.9639559,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H075",
+    "name": "Theoretical: Multi-Method Analysis",
+    "domain": "Astrophysics",
+    "description": "Tree search found 53 methods. Best score: 0.993",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775558247.818559,
+    "updated_at": 1775558432.9032059,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775558301.342392,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22485",
+    "last_tested_at": 1775558432.56143,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H076",
+    "name": "Theoretical: Entropic Gravity Deep-MOND (Entropic)",
+    "domain": "Astrophysics",
+    "description": "Information-theoretic prediction: At a = 7.008e-41 m/s\u00b2: Entropic suppression. Newtonian a=7.008e-41 m/s\u00b2, Entropic a=9.171e-26 m/s\u00b2.",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775558774.2745001,
+    "updated_at": 1775558870.694603,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775558844.34161,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775558870.3271492,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H077",
+    "name": "Theoretical: Black Hole Information Paradox",
+    "domain": "Astrophysics",
+    "description": "Paradox analysis: Black holes appear to destroy information, violating quantum unitarity. Implications: ['Quantum gravity must preserve unitarity', 'Spacetime may be emergent from entanglement']",
+    "confidence": 0.25,
+    "phase": "proposed",
+    "created_at": 1775558774.2745368,
+    "updated_at": 1775558774.2745368,
+    "test_results": [],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 0,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 0.0,
+    "approval_status": "",
+    "approval_reason": "",
+    "last_tested_at": 0.0,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H078",
+    "name": "Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes",
+    "domain": "Astrophysics",
+    "description": "Constraint transfer: Unitarity (from quantum_mechanics) \u2192 black_holes. Implications: ['Information cannot be destroyed', 'Hawking radiation must carry information']",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775558774.2745512,
+    "updated_at": 1775558923.344233,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775558844.3416362,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22483",
+    "last_tested_at": 1775558922.9936771,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H079",
+    "name": "Theoretical: Entropic Gravity Deep-MOND (Entropic)",
+    "domain": "Astrophysics",
+    "description": "Information-theoretic prediction: At a = 7.008e-41 m/s\u00b2: Entropic suppression. Newtonian a=7.008e-41 m/s\u00b2, Entropic a=9.171e-26 m/s\u00b2.",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775559318.5955598,
+    "updated_at": 1775559398.51663,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775559372.220101,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775559398.1912498,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H080",
+    "name": "Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes",
+    "domain": "Astrophysics",
+    "description": "Constraint transfer: Unitarity (from quantum_mechanics) \u2192 black_holes. Implications: ['Information cannot be destroyed', 'Hawking radiation must carry information']",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775559318.595586,
+    "updated_at": 1775559451.294253,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775559372.22014,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22483",
+    "last_tested_at": 1775559450.9038668,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H081",
+    "name": "Theoretical: Entropic Gravity Deep-MOND (Entropic)",
+    "domain": "Astrophysics",
+    "description": "Information-theoretic prediction: At a = 7.008e-41 m/s\u00b2: Entropic suppression. Newtonian a=7.008e-41 m/s\u00b2, Entropic a=9.171e-26 m/s\u00b2.",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775559582.72145,
+    "updated_at": 1775559661.978956,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775559635.556486,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775559661.6114502,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H082",
+    "name": "Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes",
+    "domain": "Astrophysics",
+    "description": "Constraint transfer: Unitarity (from quantum_mechanics) \u2192 black_holes. Implications: ['Information cannot be destroyed', 'Hawking radiation must carry information']",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775559582.7215512,
+    "updated_at": 1775559714.838478,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775559635.5565262,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22483",
+    "last_tested_at": 1775559714.45325,
+    "archived_at": 0.0
+  },
+  {
+    "id": "H083",
+    "name": "Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes",
+    "domain": "Astrophysics",
+    "description": "Constraint transfer: Unitarity (from quantum_mechanics) \u2192 black_holes. Implications: ['Information cannot be destroyed', 'Hawking radiation must carry information']",
+    "confidence": 0.99,
+    "phase": "published",
+    "created_at": 1775560109.415775,
+    "updated_at": 1775560188.3479838,
+    "test_results": [
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      },
+      {
+        "test_name": "Kolmogorov-Smirnov",
+        "statistic": 0.9999938333722036,
+        "p_value": 0.0,
+        "passed": false,
+        "details": "D = 1.0000 (vs norm)",
+        "alpha": 0.05
+      }
+    ],
+    "priority": "NORMAL",
+    "publications": 0,
+    "data_points_used": 5000,
+    "cross_domain_links": [],
+    "requires_approval": false,
+    "pending_approval_at": 1775560162.012716,
+    "approval_status": "approved",
+    "approval_reason": "Auto-approved: confidence=0.99, tests=3, pending_cycles\u22481",
+    "last_tested_at": 1775560188.017611,
     "archived_at": 0.0
   }
 ]
