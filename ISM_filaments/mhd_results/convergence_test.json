@@ -1,0 +1,35 @@
+[
+  {
+    "resolution": 128,
+    "mach_number": 5.0,
+    "plasma_beta": 1.0,
+    "mean_width_pc": 0.089,
+    "std_width_pc": 0.012,
+    "median_width_pc": 0.087,
+    "num_filaments": 12,
+    "sonic_scale_prediction_pc": 0.2,
+    "convergence_metric": 0.0
+  },
+  {
+    "resolution": 256,
+    "mach_number": 5.0,
+    "plasma_beta": 1.0,
+    "mean_width_pc": 0.095,
+    "std_width_pc": 0.008,
+    "median_width_pc": 0.094,
+    "num_filaments": 18,
+    "sonic_scale_prediction_pc": 0.2,
+    "convergence_metric": 0.063
+  },
+  {
+    "resolution": 512,
+    "mach_number": 5.0,
+    "plasma_beta": 1.0,
+    "mean_width_pc": 0.099,
+    "std_width_pc": 0.003,
+    "median_width_pc": 0.098,
+    "num_filaments": 24,
+    "sonic_scale_prediction_pc": 0.2,
+    "convergence_metric": 0.041
+  }
+]
