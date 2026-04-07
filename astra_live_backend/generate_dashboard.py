@@ -28,6 +28,10 @@ ENDPOINTS = [
     'stigmergy/gaps', 'stigmergy/exploration', 'swarm/status',
     'persistence',
     'ecdlp/status', 'ecdlp/parameters', 'ecdlp/approaches',
+    'cognitive/status', 'cognitive/dashboard',
+    'knowledge-graph/statistics', 'knowledge-graph/gaps', 'knowledge-graph/analogies',
+    'agents/status', 'metacognition/report',
+    'agenda/status', 'agenda/goals', 'state/persistence',
 ]
 
 
