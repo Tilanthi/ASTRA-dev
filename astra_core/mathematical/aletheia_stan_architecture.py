@@ -128,3 +128,51 @@ class AletheiaSTANSystem:
             'total_problems': 0,
             'successful_proofs': 0,
             'strategy_success': {s.value: 0 for s in ProofStrategy},
+            'avg_proof_time': 0.0,
+            'learning_rate': 0.1
+        }
+
+        # Learning from past problems
+        self.strategy_weights = {s.value: 1.0 for s in ProofStrategy}
+
+    def solve(self, problem: str, domain: str = "") -> Dict[str, Any]:
+        """
+        Solve a mathematical problem using adaptive strategies.
+
+        Args:
+            problem: Problem statement
+            domain: Math domain (algebra, geometry, calculus, etc.)
+
+        Returns:
+            Solution with proof steps
+        """
+        self.stats['total_problems'] += 1
+        start_time = time.time()
+
+        # Try strategies in order of weight
+        for strategy in sorted(ProofStrategy, key=lambda s: self.strategy_weights[s.value], reverse=True):
+            try:
+                result = self._try_strategy(problem, domain, strategy)
+                if result['success']:
+                    self.stats['successful_proofs'] += 1
+                    self.stats['strategy_success'][strategy.value] += 1
+                    # Update weights
+                    self.strategy_weights[strategy.value] *= (1 + self.stats['learning_rate'])
+                    return result
+            except Exception as e:
+                continue
+
+        return {
+            'success': False,
+            'problem': problem,
+            'error': 'All strategies failed'
+        }
+
+    def _try_strategy(self, problem: str, domain: str, strategy: ProofStrategy) -> Dict[str, Any]:
+        """Try a specific proof strategy."""
+        # Simplified implementation
+        return {
+            'success': False,
+            'strategy': strategy.value,
+            'problem': problem
+        }

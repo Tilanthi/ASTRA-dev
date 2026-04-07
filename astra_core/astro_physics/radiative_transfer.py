@@ -146,3 +146,71 @@ class MolecularData:
         return len(self.levels)
 
     def get_collision_rate(self, upper: int, lower: int, T_kin: float,
+                           collider: str = 'H2') -> float:
+        """
+        Get collisional rate coefficient for a transition.
+
+        Args:
+            upper: Upper level index
+            lower: Lower level index
+            T_kin: Kinetic temperature (K)
+            collider: Collider species ('H2', 'He', 'H', etc.)
+
+        Returns:
+            Collisional rate coefficient (cm³/s)
+        """
+        # Find the appropriate collision rates
+        for cr in self.collision_rates:
+            if cr.collider == collider:
+                # Interpolate in temperature
+                return np.interp(T_kin, cr.temperatures, cr.coefficients[upper, lower])
+
+        # Default: return 0 if no data available
+        return 0.0
+
+    def level_population(self, T_kin: float, density: float,
+                        collider: str = 'H2') -> np.ndarray:
+        """
+        Calculate level populations using statistical equilibrium.
+
+        Args:
+            T_kin: Kinetic temperature (K)
+            density: Gas density (cm⁻³)
+            collider: Collider species
+
+        Returns:
+            Level populations (normalized to sum to 1)
+        """
+        n_levels = self.n_levels
+        populations = np.ones(n_levels) / n_levels  # Start with equal populations
+
+        # Simplified iterative solution
+        for _ in range(100):
+            new_populations = populations.copy()
+            for i in range(n_levels):
+                for j in range(n_levels):
+                    if i == j:
+                        continue
+
+                    # Radiative rates
+                    if i > j:
+                        rate = self.einstein_A[i, j]
+                    else:
+                        rate = 0
+
+                    # Collisional rates
+                    rate += density * self.get_collision_rate(i, j, T_kin, collider)
+
+                    # Update populations (simplified)
+                    new_populations[i] += rate * populations[j]
+
+            # Normalize
+            new_populations /= np.sum(new_populations)
+
+            # Check convergence
+            if np.max(np.abs(new_populations - populations)) < 1e-6:
+                break
+
+            populations = new_populations
+
+        return populations

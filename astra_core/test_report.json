@@ -1,216 +1,6 @@
 {
   "errors": [
     {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (<unknown>, line 164)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/paper_rag_query.py",
-      "details": "'[' was never closed (<unknown>, line 353)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/setup_paper_library.py",
-      "details": "expected an indented block after 'if' statement on line 132 (<unknown>, line 132)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/adaptive_reasoning.py",
-      "details": "unterminated triple-quoted string literal (detected at line 193) (<unknown>, line 192)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/intelligence/redundant_executor.py",
-      "details": "'[' was never closed (<unknown>, line 149)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_agi/pattern_library.py",
-      "details": "unterminated triple-quoted string literal (detected at line 501) (<unknown>, line 492)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/symbolic_verification.py",
-      "details": "'(' was never closed (<unknown>, line 508)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/integrated_reasoning.py",
-      "details": "unmatched ')' (<unknown>, line 217)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/v70_predictive_geometry.py",
-      "details": "'[' was never closed (<unknown>, line 354)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/formal_logic_enhanced.py",
-      "details": "expected an indented block after function definition on line 112 (<unknown>, line 112)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/abstraction_stack.py",
-      "details": "invalid syntax (<unknown>, line 2)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/sharded_retrieval.py",
-      "details": "'{' was never closed (<unknown>, line 251)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/query_expander.py",
-      "details": "'{' was never closed (<unknown>, line 275)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/context_distiller.py",
-      "details": "'{' was never closed (<unknown>, line 243)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/gsd/xml_task_formatting.py",
-      "details": "expected an indented block after 'if' statement on line 269 (<unknown>, line 269)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/gsd/atomic_workflow.py",
-      "details": "unterminated triple-quoted string literal (detected at line 283) (<unknown>, line 276)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/gsd/codebase_mapper.py",
-      "details": "'{' was never closed (<unknown>, line 362)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_reasoning/super_ensemble_solver.py",
-      "details": "'{' was never closed (<unknown>, line 196)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_reasoning/improved_solver.py",
-      "details": "'[' was never closed (<unknown>, line 107)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_reasoning/llm_code_generator.py",
-      "details": "unterminated triple-quoted string literal (detected at line 104) (<unknown>, line 103)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_reasoning/neuro_symbolic_solver.py",
-      "details": "unterminated triple-quoted string literal (detected at line 230) (<unknown>, line 228)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/symbolic/v37_system.py",
-      "details": "unterminated triple-quoted string literal (detected at line 185) (<unknown>, line 182)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/symbolic/tool_integration.py",
-      "details": "'{' was never closed (<unknown>, line 139)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/mathematical/aletheia_stan_architecture.py",
-      "details": "'{' was never closed (<unknown>, line 127)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/inference_improved.py",
-      "details": "invalid syntax (<unknown>, line 2)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/spectral_line_analysis.py",
-      "details": "invalid syntax (<unknown>, line 2)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/radiative_transfer.py",
-      "details": "'(' was never closed (<unknown>, line 148)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/data_visualization.py",
-      "details": "expected 'except' or 'finally' block (<unknown>, line 33)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/self_teaching/architecture_rewriter.py",
-      "details": "'(' was never closed (<unknown>, line 144)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/self_teaching/consciousness_simulator.py",
-      "details": "'{' was never closed (<unknown>, line 340)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/self_teaching/astronomy_causal_discovery.py",
-      "details": "'(' was never closed (<unknown>, line 174)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/next_gen/alert_processing.py",
-      "details": "unterminated triple-quoted string literal (detected at line 460) (<unknown>, line 456)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/next_gen/astrochemistry.py",
-      "details": "unterminated triple-quoted string literal (detected at line 239) (<unknown>, line 234)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/hypothesis_engine.py",
-      "details": "expected an indented block after function definition on line 295 (<unknown>, line 296)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/multi_step_decomposition.py",
-      "details": "expected an indented block after 'if' statement on line 659 (<unknown>, line 659)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/formal_logic.py",
-      "details": "expected an indented block after function definition on line 112 (<unknown>, line 112)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/meta_cognitive.py",
-      "details": "expected an indented block after 'for' statement on line 544 (<unknown>, line 544)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v92/v92_system.py",
-      "details": "expected an indented block after function definition on line 336 (<unknown>, line 336)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v94/sensorimotor_system.py",
-      "details": "unterminated triple-quoted string literal (detected at line 232) (<unknown>, line 231)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v94/language_grounding.py",
-      "details": "expected an indented block after function definition on line 543 (<unknown>, line 543)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v93/self_modifying_architecture.py",
-      "details": "'(' was never closed (<unknown>, line 92)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to parse /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core/v105/scientific_discovery.py",
-      "details": "'(' was never closed (<unknown>, line 378)"
-    },
-    {
       "category": "import_error",
       "message": "Failed to import abductive_inference",
       "details": "No module named 'abductive_inference'"
@@ -2057,6 +1847,11 @@
     },
     {
       "category": "import_error",
+      "message": "Failed to import paper_library",
+      "details": "No module named 'paper_library'"
+    },
+    {
+      "category": "import_error",
       "message": "Failed to import parallel_rag",
       "details": "No module named 'parallel_rag'"
     },
@@ -2157,6 +1952,16 @@
     },
     {
       "category": "import_error",
+      "message": "Failed to import pygame",
+      "details": "No module named 'pygame'"
+    },
+    {
+      "category": "import_error",
+      "message": "Failed to import pymunk",
+      "details": "No module named 'pymunk'"
+    },
+    {
+      "category": "import_error",
       "message": "Failed to import pywt",
       "details": "No module named 'pywt'"
     },
@@ -2252,6 +2057,11 @@
     },
     {
       "category": "import_error",
+      "message": "Failed to import reasoning.metacognition",
+      "details": "No module named 'reasoning'"
+    },
+    {
+      "category": "import_error",
       "message": "Failed to import reasoning.symbolic_math_engine",
       "details": "No module named 'reasoning'"
     },
@@ -2309,6 +2119,16 @@
       "category": "import_error",
       "message": "Failed to import scientific_data",
       "details": "No module named 'scientific_data'"
+    },
+    {
+      "category": "import_error",
+      "message": "Failed to import scientific_discovery.paper_library",
+      "details": "No module named 'scientific_discovery'"
+    },
+    {
+      "category": "import_error",
+      "message": "Failed to import scientific_discovery.paper_rag_query",
+      "details": "No module named 'scientific_discovery'"
     },
     {
       "category": "import_error",
@@ -2444,6 +2264,11 @@
       "category": "import_error",
       "message": "Failed to import source_extraction",
       "details": "No module named 'source_extraction'"
+    },
+    {
+      "category": "import_error",
+      "message": "Failed to import spacy",
+      "details": "No module named 'spacy'"
     },
     {
       "category": "import_error",
@@ -3157,833 +2982,13 @@
     },
     {
       "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.discovery_orchestrator",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.data_repositories",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.paper_library",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.test_imports",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.research_papers",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.theoretical_physics",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.paper_library_comparison",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.advanced_analysis",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.paper_rag_query",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.astro_databases",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.setup_paper_library",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.literature_synthesis",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.feasibility_checker",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.scientific_discovery.adaptive_reasoning",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.intelligence.redundant_executor",
-      "details": "'[' was never closed (redundant_executor.py, line 149)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.reasoning.symbolic_verification",
-      "details": "'(' was never closed (symbolic_verification.py, line 508)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.reasoning.integrated_reasoning",
-      "details": "unmatched ')' (integrated_reasoning.py, line 217)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.reasoning.v70_predictive_geometry",
-      "details": "'[' was never closed (v70_predictive_geometry.py, line 354)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.reasoning.formal_logic_enhanced",
-      "details": "expected an indented block after function definition on line 112 (formal_logic_enhanced.py, line 112"
+      "message": "Failed to import z3",
+      "details": "No module named 'z3'"
     },
     {
       "category": "import_error",
       "message": "Error importing astra_core.reasoning.filament_counterfactual_demo",
       "details": "attempted relative import with no known parent package"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.reasoning.abstraction_stack",
-      "details": "invalid syntax (abstraction_stack.py, line 2)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.retrieval.hybrid_search",
-      "details": "'{' was never closed (context_distiller.py, line 243)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.retrieval.sharded_retrieval",
-      "details": "'{' was never closed (context_distiller.py, line 243)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.retrieval",
-      "details": "'{' was never closed (context_distiller.py, line 243)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.retrieval.query_expander",
-      "details": "'{' was never closed (context_distiller.py, line 243)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.retrieval.parallel_rag",
-      "details": "'{' was never closed (context_distiller.py, line 243)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.retrieval.context_distiller",
-      "details": "'{' was never closed (context_distiller.py, line 243)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.gsd.spec_driven_development",
-      "details": "expected an indented block after 'if' statement on line 269 (xml_task_formatting.py, line 269)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.gsd.context_quality",
-      "details": "expected an indented block after 'if' statement on line 269 (xml_task_formatting.py, line 269)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.gsd.xml_task_formatting",
-      "details": "expected an indented block after 'if' statement on line 269 (xml_task_formatting.py, line 269)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.gsd.atomic_workflow",
-      "details": "expected an indented block after 'if' statement on line 269 (xml_task_formatting.py, line 269)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.gsd.codebase_mapper",
-      "details": "expected an indented block after 'if' statement on line 269 (xml_task_formatting.py, line 269)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.gsd",
-      "details": "expected an indented block after 'if' statement on line 269 (xml_task_formatting.py, line 269)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.super_ensemble_solver",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.semantic_reasoning",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.semantic_compression",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.pattern_extension",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.improved_solver",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.enhanced_transformation",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.llm_code_generator",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.llm_guided_solver",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.comprehensive_solver",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.semantic_pattern_solver",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.neuro_symbolic_solver",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.advanced_arc_solver",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.ensemble_arc_solver",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.causal_arc_solver",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.ultra_arc_solver",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.neuro_symbolic_clean",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.neuro_symbolic_v2",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.arc_reasoning.interactive_arc_solver",
-      "details": "'[' was never closed (improved_solver.py, line 107)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.mathematical.aletheia_stan_architecture",
-      "details": "'{' was never closed (aletheia_stan_architecture.py, line 127)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.mathematical",
-      "details": "'{' was never closed (aletheia_stan_architecture.py, line 127)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v40.enhanced_knowledge",
-      "details": "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v40.hypothesis_engine",
-      "details": "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v40.causal_world_model",
-      "details": "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v40.v40_system",
-      "details": "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v40",
-      "details": "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v40.theorem_prover",
-      "details": "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v40.continuous_learning",
-      "details": "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v40.multi_step_decomposition",
-      "details": "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v40.formal_logic",
-      "details": "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v40.meta_cognitive",
-      "details": "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v40.answer_verification",
-      "details": "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v92.hypothesis_engine",
-      "details": "expected an indented block after function definition on line 336 (v92_system.py, line 336)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v92.causal_discovery",
-      "details": "expected an indented block after function definition on line 336 (v92_system.py, line 336)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v92.experimental_design",
-      "details": "expected an indented block after function definition on line 336 (v92_system.py, line 336)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v92",
-      "details": "expected an indented block after function definition on line 336 (v92_system.py, line 336)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v92.v92_system",
-      "details": "expected an indented block after function definition on line 336 (v92_system.py, line 336)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v92.mathematical_intuition",
-      "details": "expected an indented block after function definition on line 336 (v92_system.py, line 336)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v94.developmental_learning",
-      "details": "'(' was never closed (self_modifying_architecture.py, line 92)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v94.common_sense_engine",
-      "details": "'(' was never closed (self_modifying_architecture.py, line 92)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v94",
-      "details": "'(' was never closed (self_modifying_architecture.py, line 92)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v94.sensorimotor_system",
-      "details": "'(' was never closed (self_modifying_architecture.py, line 92)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v94.language_grounding",
-      "details": "'(' was never closed (self_modifying_architecture.py, line 92)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v94.astro_embodied_integration",
-      "details": "'(' was never closed (self_modifying_architecture.py, line 92)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v94.embodied_learning_engine",
-      "details": "'(' was never closed (self_modifying_architecture.py, line 92)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v94.v94_complete",
-      "details": "'(' was never closed (self_modifying_architecture.py, line 92)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core_legacy.v93.self_modifying_architecture",
-      "details": "'(' was never closed (self_modifying_architecture.py, line 92)"
-    },
-    {
-      "category": "import_error",
-      "message": "Error importing astra_core.core.v105.scientific_discovery",
-      "details": "'(' was never closed (scientific_discovery.py, line 378)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (<unknown>, line 164)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/paper_rag_query.py",
-      "details": "'[' was never closed (<unknown>, line 353)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/setup_paper_library.py",
-      "details": "expected an indented block after 'if' statement on line 132 (<unknown>, line 132)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/adaptive_reasoning.py",
-      "details": "unterminated triple-quoted string literal (detected at line 193) (<unknown>, line 192)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/intelligence/redundant_executor.py",
-      "details": "'[' was never closed (<unknown>, line 149)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_agi/pattern_library.py",
-      "details": "unterminated triple-quoted string literal (detected at line 501) (<unknown>, line 492)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/symbolic_verification.py",
-      "details": "'(' was never closed (<unknown>, line 508)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/integrated_reasoning.py",
-      "details": "unmatched ')' (<unknown>, line 217)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/v70_predictive_geometry.py",
-      "details": "'[' was never closed (<unknown>, line 354)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/formal_logic_enhanced.py",
-      "details": "expected an indented block after function definition on line 112 (<unknown>, line 112)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/abstraction_stack.py",
-      "details": "invalid syntax (<unknown>, line 2)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/sharded_retrieval.py",
-      "details": "'{' was never closed (<unknown>, line 251)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/query_expander.py",
-      "details": "'{' was never closed (<unknown>, line 275)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/context_distiller.py",
-      "details": "'{' was never closed (<unknown>, line 243)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/gsd/xml_task_formatting.py",
-      "details": "expected an indented block after 'if' statement on line 269 (<unknown>, line 269)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/gsd/atomic_workflow.py",
-      "details": "unterminated triple-quoted string literal (detected at line 283) (<unknown>, line 276)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/gsd/codebase_mapper.py",
-      "details": "'{' was never closed (<unknown>, line 362)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_reasoning/super_ensemble_solver.py",
-      "details": "'{' was never closed (<unknown>, line 196)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_reasoning/improved_solver.py",
-      "details": "'[' was never closed (<unknown>, line 107)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_reasoning/llm_code_generator.py",
-      "details": "unterminated triple-quoted string literal (detected at line 104) (<unknown>, line 103)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_reasoning/neuro_symbolic_solver.py",
-      "details": "unterminated triple-quoted string literal (detected at line 230) (<unknown>, line 228)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/symbolic/v37_system.py",
-      "details": "unterminated triple-quoted string literal (detected at line 185) (<unknown>, line 182)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/symbolic/tool_integration.py",
-      "details": "'{' was never closed (<unknown>, line 139)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/mathematical/aletheia_stan_architecture.py",
-      "details": "'{' was never closed (<unknown>, line 127)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/inference_improved.py",
-      "details": "invalid syntax (<unknown>, line 2)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/spectral_line_analysis.py",
-      "details": "invalid syntax (<unknown>, line 2)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/radiative_transfer.py",
-      "details": "'(' was never closed (<unknown>, line 148)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/data_visualization.py",
-      "details": "expected 'except' or 'finally' block (<unknown>, line 33)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/self_teaching/architecture_rewriter.py",
-      "details": "'(' was never closed (<unknown>, line 144)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/self_teaching/consciousness_simulator.py",
-      "details": "'{' was never closed (<unknown>, line 340)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/self_teaching/astronomy_causal_discovery.py",
-      "details": "'(' was never closed (<unknown>, line 174)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/next_gen/alert_processing.py",
-      "details": "unterminated triple-quoted string literal (detected at line 460) (<unknown>, line 456)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/next_gen/astrochemistry.py",
-      "details": "unterminated triple-quoted string literal (detected at line 239) (<unknown>, line 234)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/hypothesis_engine.py",
-      "details": "expected an indented block after function definition on line 295 (<unknown>, line 296)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/multi_step_decomposition.py",
-      "details": "expected an indented block after 'if' statement on line 659 (<unknown>, line 659)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/formal_logic.py",
-      "details": "expected an indented block after function definition on line 112 (<unknown>, line 112)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/meta_cognitive.py",
-      "details": "expected an indented block after 'for' statement on line 544 (<unknown>, line 544)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v92/v92_system.py",
-      "details": "expected an indented block after function definition on line 336 (<unknown>, line 336)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v94/sensorimotor_system.py",
-      "details": "unterminated triple-quoted string literal (detected at line 232) (<unknown>, line 231)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v94/language_grounding.py",
-      "details": "expected an indented block after function definition on line 543 (<unknown>, line 543)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v93/self_modifying_architecture.py",
-      "details": "'(' was never closed (<unknown>, line 92)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core/v105/scientific_discovery.py",
-      "details": "'(' was never closed (<unknown>, line 378)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py",
-      "details": "unterminated triple-quoted string literal (detected at line 170) (<unknown>, line 164)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/paper_rag_query.py",
-      "details": "'[' was never closed (<unknown>, line 353)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/setup_paper_library.py",
-      "details": "expected an indented block after 'if' statement on line 132 (<unknown>, line 132)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/adaptive_reasoning.py",
-      "details": "unterminated triple-quoted string literal (detected at line 193) (<unknown>, line 192)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/intelligence/redundant_executor.py",
-      "details": "'[' was never closed (<unknown>, line 149)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_agi/pattern_library.py",
-      "details": "unterminated triple-quoted string literal (detected at line 501) (<unknown>, line 492)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/symbolic_verification.py",
-      "details": "'(' was never closed (<unknown>, line 508)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/integrated_reasoning.py",
-      "details": "unmatched ')' (<unknown>, line 217)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/v70_predictive_geometry.py",
-      "details": "'[' was never closed (<unknown>, line 354)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/formal_logic_enhanced.py",
-      "details": "expected an indented block after function definition on line 112 (<unknown>, line 112)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/abstraction_stack.py",
-      "details": "invalid syntax (<unknown>, line 2)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/sharded_retrieval.py",
-      "details": "'{' was never closed (<unknown>, line 251)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/query_expander.py",
-      "details": "'{' was never closed (<unknown>, line 275)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/context_distiller.py",
-      "details": "'{' was never closed (<unknown>, line 243)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/gsd/xml_task_formatting.py",
-      "details": "expected an indented block after 'if' statement on line 269 (<unknown>, line 269)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/gsd/atomic_workflow.py",
-      "details": "unterminated triple-quoted string literal (detected at line 283) (<unknown>, line 276)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/gsd/codebase_mapper.py",
-      "details": "'{' was never closed (<unknown>, line 362)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_reasoning/super_ensemble_solver.py",
-      "details": "'{' was never closed (<unknown>, line 196)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_reasoning/improved_solver.py",
-      "details": "'[' was never closed (<unknown>, line 107)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_reasoning/llm_code_generator.py",
-      "details": "unterminated triple-quoted string literal (detected at line 104) (<unknown>, line 103)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/arc_reasoning/neuro_symbolic_solver.py",
-      "details": "unterminated triple-quoted string literal (detected at line 230) (<unknown>, line 228)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/symbolic/v37_system.py",
-      "details": "unterminated triple-quoted string literal (detected at line 185) (<unknown>, line 182)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/symbolic/tool_integration.py",
-      "details": "'{' was never closed (<unknown>, line 139)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/mathematical/aletheia_stan_architecture.py",
-      "details": "'{' was never closed (<unknown>, line 127)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/inference_improved.py",
-      "details": "invalid syntax (<unknown>, line 2)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/spectral_line_analysis.py",
-      "details": "invalid syntax (<unknown>, line 2)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/radiative_transfer.py",
-      "details": "'(' was never closed (<unknown>, line 148)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/data_visualization.py",
-      "details": "expected 'except' or 'finally' block (<unknown>, line 33)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/self_teaching/architecture_rewriter.py",
-      "details": "'(' was never closed (<unknown>, line 144)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/self_teaching/consciousness_simulator.py",
-      "details": "'{' was never closed (<unknown>, line 340)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/self_teaching/astronomy_causal_discovery.py",
-      "details": "'(' was never closed (<unknown>, line 174)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/next_gen/alert_processing.py",
-      "details": "unterminated triple-quoted string literal (detected at line 460) (<unknown>, line 456)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/astro_physics/next_gen/astrochemistry.py",
-      "details": "unterminated triple-quoted string literal (detected at line 239) (<unknown>, line 234)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/hypothesis_engine.py",
-      "details": "expected an indented block after function definition on line 295 (<unknown>, line 296)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/multi_step_decomposition.py",
-      "details": "expected an indented block after 'if' statement on line 659 (<unknown>, line 659)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/formal_logic.py",
-      "details": "expected an indented block after function definition on line 112 (<unknown>, line 112)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/meta_cognitive.py",
-      "details": "expected an indented block after 'for' statement on line 544 (<unknown>, line 544)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v92/v92_system.py",
-      "details": "expected an indented block after function definition on line 336 (<unknown>, line 336)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v94/sensorimotor_system.py",
-      "details": "unterminated triple-quoted string literal (detected at line 232) (<unknown>, line 231)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v94/language_grounding.py",
-      "details": "expected an indented block after function definition on line 543 (<unknown>, line 543)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v93/self_modifying_architecture.py",
-      "details": "'(' was never closed (<unknown>, line 92)"
-    },
-    {
-      "category": "parse_error",
-      "message": "Failed to analyze /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core/v105/scientific_discovery.py",
-      "details": "'(' was never closed (<unknown>, line 378)"
     },
     {
       "category": "broken_reference",
@@ -4699,6 +3704,76 @@
     },
     {
       "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery.discovery_orchestrator",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery.data_repositories",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery.paper_library",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery.test_imports",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery.theoretical_physics",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery.paper_library_comparison",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery.advanced_analysis",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery.paper_rag_query",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery.astro_databases",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery.setup_paper_library",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery.literature_synthesis",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery.feasibility_checker",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.scientific_discovery.adaptive_reasoning",
+      "details": "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/"
+    },
+    {
+      "category": "import_failed",
       "message": "Could not import astra_core.arc_agi.neural_patterns",
       "details": "cannot import name 'HypothesisTester' from 'astra_core.arc_agi.hypothesis_engine' (/Users/gjw255/ast"
     },
@@ -4771,6 +3846,31 @@
       "category": "import_failed",
       "message": "Could not import astra_core.reasoning.v60_cognitive_agent",
       "details": "cannot import name 'create_world_model_system' from 'astra_core.reasoning.v60_predictive_world_model"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.retrieval.hybrid_search",
+      "details": "cannot import name 'create_context_distiller' from 'astra_core.retrieval.context_distiller' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.retrieval.sharded_retrieval",
+      "details": "cannot import name 'create_context_distiller' from 'astra_core.retrieval.context_distiller' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.retrieval",
+      "details": "cannot import name 'create_context_distiller' from 'astra_core.retrieval.context_distiller' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.retrieval.query_expander",
+      "details": "cannot import name 'create_context_distiller' from 'astra_core.retrieval.context_distiller' (/Users/"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.retrieval.parallel_rag",
+      "details": "cannot import name 'create_context_distiller' from 'astra_core.retrieval.context_distiller' (/Users/"
     },
     {
       "category": "import_failed",
@@ -5194,8 +4294,93 @@
     },
     {
       "category": "import_failed",
-      "message": "Could not import astra_core.core_legacy.v42",
-      "details": "cannot import name 'create_v42_fast' from 'astra_core.core_legacy.v42.v42_system' (/Users/gjw255/ast"
+      "message": "Could not import astra_core.core_legacy.v40.enhanced_knowledge",
+      "details": "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v40.causal_world_model",
+      "details": "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v40.v40_system",
+      "details": "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v40",
+      "details": "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v40.theorem_prover",
+      "details": "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v40.continuous_learning",
+      "details": "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v40.meta_cognitive",
+      "details": "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v40.answer_verification",
+      "details": "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v92.hypothesis_engine",
+      "details": "cannot import name 'create_v92_system' from 'astra_core.core_legacy.v92.v92_system' (/Users/gjw255/a"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v92",
+      "details": "cannot import name 'create_v92_system' from 'astra_core.core_legacy.v92.v92_system' (/Users/gjw255/a"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v94.developmental_learning",
+      "details": "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architectur"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v94.common_sense_engine",
+      "details": "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architectur"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v94",
+      "details": "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architectur"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v94.sensorimotor_system",
+      "details": "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architectur"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v94.language_grounding",
+      "details": "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architectur"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v94.astro_embodied_integration",
+      "details": "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architectur"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v94.embodied_learning_engine",
+      "details": "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architectur"
+    },
+    {
+      "category": "import_failed",
+      "message": "Could not import astra_core.core_legacy.v94.v94_complete",
+      "details": "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architectur"
     },
     {
       "category": "import_failed",
@@ -5225,7 +4410,7 @@
   ],
   "results": {
     "imports": {
-      "total_unique": 758,
+      "total_unique": 772,
       "by_file": {
         "__init__.py": {
           "standard": [],
@@ -8752,8 +7937,25 @@
           ]
         },
         "scientific_discovery/research_papers.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "re",
+            "json",
+            "logging",
+            "dataclasses",
+            "typing",
+            "pathlib",
+            "collections",
+            "hashlib",
+            "datetime"
+          ],
+          "third_party": [
+            "pdfplumber",
+            "PyPDF2",
+            "spacy",
+            "networkx",
+            "pdfplumber",
+            "PyPDF2"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -8804,8 +8006,18 @@
           "astra_core": []
         },
         "scientific_discovery/paper_rag_query.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "os",
+            "json",
+            "logging",
+            "typing",
+            "dataclasses",
+            "pathlib"
+          ],
+          "third_party": [
+            "paper_library",
+            "paper_library"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -8822,8 +8034,18 @@
           "astra_core": []
         },
         "scientific_discovery/setup_paper_library.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "os",
+            "sys",
+            "argparse",
+            "logging",
+            "pathlib",
+            "json"
+          ],
+          "third_party": [
+            "scientific_discovery.paper_library",
+            "scientific_discovery.paper_rag_query"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -8853,10 +8075,23 @@
           "astra_core": []
         },
         "scientific_discovery/adaptive_reasoning.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "time",
+            "logging",
+            "dataclasses",
+            "typing",
+            "enum",
+            "collections"
+          ],
+          "third_party": [
+            "reasoning.v41_orchestrator",
+            "reasoning.metacognition"
+          ],
           "local": [],
-          "astra_core": []
+          "astra_core": [
+            "astra_core.reasoning.v41_orchestrator",
+            "astra_core.reasoning.metacognition"
+          ]
         },
         "causal/__init__.py": {
           "standard": [],
@@ -8930,8 +8165,16 @@
           "astra_core": []
         },
         "intelligence/redundant_executor.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "time",
+            "random",
+            "dataclasses",
+            "typing",
+            "enum"
+          ],
+          "third_party": [
+            "concurrent.futures"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -9060,8 +8303,19 @@
           "astra_core": []
         },
         "arc_agi/pattern_library.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "enum",
+            "collections",
+            "itertools",
+            "functools"
+          ],
+          "third_party": [
+            "numpy",
+            "grid_dsl",
+            "numpy"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -9640,14 +8894,26 @@
           "astra_core": []
         },
         "reasoning/symbolic_verification.py": {
-          "standard": [],
+          "standard": [
+            "dataclasses",
+            "typing",
+            "enum",
+            "re",
+            "math"
+          ],
           "third_party": [],
           "local": [],
           "astra_core": []
         },
         "reasoning/integrated_reasoning.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing"
+          ],
+          "third_party": [
+            "numpy",
+            "numpy",
+            "numpy"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -9682,8 +8948,17 @@
           "astra_core": []
         },
         "reasoning/v70_predictive_geometry.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "dataclasses",
+            "typing",
+            "enum",
+            "abc",
+            "collections",
+            "time"
+          ],
+          "third_party": [
+            "numpy"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -9825,8 +9100,16 @@
           "astra_core": []
         },
         "reasoning/formal_logic_enhanced.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "re",
+            "dataclasses",
+            "typing",
+            "enum",
+            "abc"
+          ],
+          "third_party": [
+            "z3"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -10838,8 +10121,17 @@
           "astra_core": []
         },
         "reasoning/abstraction_stack.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "enum",
+            "time"
+          ],
+          "third_party": [
+            "numpy",
+            "numpy",
+            "numpy"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -11107,8 +10399,16 @@
           "astra_core": []
         },
         "retrieval/sharded_retrieval.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "time",
+            "dataclasses",
+            "typing",
+            "enum"
+          ],
+          "third_party": [
+            "concurrent.futures",
+            "hybrid_search"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -11125,8 +10425,17 @@
           "astra_core": []
         },
         "retrieval/query_expander.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "time",
+            "re",
+            "dataclasses",
+            "typing",
+            "abc"
+          ],
+          "third_party": [
+            "concurrent.futures",
+            "hybrid_search"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -11150,8 +10459,16 @@
           "astra_core": []
         },
         "retrieval/context_distiller.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "time",
+            "dataclasses",
+            "typing",
+            "abc"
+          ],
+          "third_party": [
+            "concurrent.futures",
+            "tiktoken"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -11195,20 +10512,55 @@
           "astra_core": []
         },
         "gsd/xml_task_formatting.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "dataclasses",
+            "typing",
+            "enum",
+            "re",
+            "hashlib",
+            "json"
+          ],
+          "third_party": [
+            "__future__",
+            "xml.etree.ElementTree",
+            "xml.dom"
+          ],
           "local": [],
           "astra_core": []
         },
         "gsd/atomic_workflow.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "os",
+            "json",
+            "pathlib",
+            "dataclasses",
+            "typing",
+            "enum",
+            "datetime"
+          ],
+          "third_party": [
+            "__future__",
+            "subprocess",
+            "xml_task_formatting"
+          ],
           "local": [],
           "astra_core": []
         },
         "gsd/codebase_mapper.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "os",
+            "re",
+            "json",
+            "pathlib",
+            "dataclasses",
+            "typing",
+            "collections"
+          ],
+          "third_party": [
+            "__future__",
+            "ast",
+            "concurrent.futures"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -11241,8 +10593,15 @@
           "astra_core": []
         },
         "arc_reasoning/super_ensemble_solver.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "collections"
+          ],
+          "third_party": [
+            "numpy",
+            "improved_solver"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -11290,8 +10649,16 @@
           "astra_core": []
         },
         "arc_reasoning/improved_solver.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "collections",
+            "copy",
+            "itertools"
+          ],
+          "third_party": [
+            "numpy"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -11309,8 +10676,16 @@
           "astra_core": []
         },
         "arc_reasoning/llm_code_generator.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "collections",
+            "sys"
+          ],
+          "third_party": [
+            "numpy",
+            "ast"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -11355,8 +10730,15 @@
           "astra_core": []
         },
         "arc_reasoning/neuro_symbolic_solver.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "collections",
+            "copy"
+          ],
+          "third_party": [
+            "numpy"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -11497,8 +10879,21 @@
           "astra_core": []
         },
         "symbolic/v37_system.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "sys",
+            "pathlib",
+            "typing"
+          ],
+          "third_party": [
+            "core_legacy.v36.v36_system",
+            "memory.mork_ontology",
+            "memory.memory_graph",
+            "memory.milvus_store",
+            "memory.rrf_fusion",
+            "intelligence.pheromone_dynamics",
+            "intelligence.leapcore_evolution",
+            "intelligence.orchestrator"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -11529,8 +10924,19 @@
           "astra_core": []
         },
         "symbolic/tool_integration.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "re",
+            "json",
+            "typing",
+            "dataclasses",
+            "math"
+          ],
+          "third_party": [
+            "urllib.request",
+            "urllib.parse",
+            "urllib.error",
+            "xml.etree.ElementTree"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -11667,8 +11073,18 @@
           "astra_core": []
         },
         "mathematical/aletheia_stan_architecture.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "re",
+            "time",
+            "typing",
+            "dataclasses",
+            "enum",
+            "json",
+            "pathlib"
+          ],
+          "third_party": [
+            "capabilities.llm_inference"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -11769,8 +11185,17 @@
           "astra_core": []
         },
         "astro_physics/inference_improved.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing"
+          ],
+          "third_party": [
+            "numpy",
+            "numpy",
+            "scipy.stats",
+            "numpy",
+            "scipy.stats",
+            "numpy"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -11910,8 +11335,16 @@
           "astra_core": []
         },
         "astro_physics/spectral_line_analysis.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "math",
+            "dataclasses",
+            "enum",
+            "typing",
+            "random"
+          ],
+          "third_party": [
+            "numpy"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -12071,8 +11504,20 @@
           "astra_core": []
         },
         "astro_physics/radiative_transfer.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "dataclasses",
+            "typing",
+            "enum",
+            "abc",
+            "warnings"
+          ],
+          "third_party": [
+            "numpy",
+            "scipy.integrate",
+            "scipy.optimize",
+            "scipy.interpolate",
+            "scipy.special"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -12300,8 +11745,21 @@
           "astra_core": []
         },
         "astro_physics/data_visualization.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "enum",
+            "warnings"
+          ],
+          "third_party": [
+            "numpy",
+            "matplotlib.pyplot",
+            "matplotlib.colors",
+            "matplotlib.patches",
+            "matplotlib.gridspec",
+            "numpy",
+            "scipy.signal"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -12449,14 +11907,29 @@
           "astra_core": []
         },
         "self_teaching/architecture_rewriter.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "enum",
+            "copy"
+          ],
+          "third_party": [
+            "ast"
+          ],
           "local": [],
           "astra_core": []
         },
         "self_teaching/consciousness_simulator.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "enum",
+            "datetime",
+            "time"
+          ],
+          "third_party": [
+            "numpy"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -12686,8 +12159,16 @@
           "astra_core": []
         },
         "self_teaching/astronomy_causal_discovery.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "enum",
+            "datetime",
+            "itertools"
+          ],
+          "third_party": [
+            "numpy"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -12787,8 +12268,18 @@
           "astra_core": []
         },
         "astro_physics/next_gen/alert_processing.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "enum",
+            "abc",
+            "warnings",
+            "datetime",
+            "json"
+          ],
+          "third_party": [
+            "numpy"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -12824,8 +12315,16 @@
           "astra_core": []
         },
         "astro_physics/next_gen/astrochemistry.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "enum",
+            "abc",
+            "warnings"
+          ],
+          "third_party": [
+            "numpy"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -13583,7 +13082,15 @@
           "astra_core": []
         },
         "core_legacy/v40/hypothesis_engine.py": {
-          "standard": [],
+          "standard": [
+            "re",
+            "math",
+            "dataclasses",
+            "typing",
+            "enum",
+            "abc",
+            "random"
+          ],
           "third_party": [],
           "local": [],
           "astra_core": []
@@ -13670,19 +13177,40 @@
           "astra_core": []
         },
         "core_legacy/v40/multi_step_decomposition.py": {
-          "standard": [],
+          "standard": [
+            "re",
+            "dataclasses",
+            "typing",
+            "enum",
+            "abc",
+            "hashlib"
+          ],
           "third_party": [],
           "local": [],
           "astra_core": []
         },
         "core_legacy/v40/formal_logic.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "re",
+            "dataclasses",
+            "typing",
+            "enum",
+            "abc"
+          ],
+          "third_party": [
+            "z3"
+          ],
           "local": [],
           "astra_core": []
         },
         "core_legacy/v40/meta_cognitive.py": {
-          "standard": [],
+          "standard": [
+            "time",
+            "math",
+            "dataclasses",
+            "typing",
+            "enum"
+          ],
           "third_party": [],
           "local": [],
           "astra_core": []
@@ -14410,10 +13938,26 @@
           "astra_core": []
         },
         "core_legacy/v92/v92_system.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "enum",
+            "time",
+            "json",
+            "collections"
+          ],
+          "third_party": [
+            "numpy",
+            "pandas",
+            "hypothesis_engine",
+            "mathematical_intuition",
+            "causal_discovery",
+            "experimental_design"
+          ],
           "local": [],
-          "astra_core": []
+          "astra_core": [
+            "astra_core.causal.discovery"
+          ]
         },
         "core_legacy/v92/mathematical_intuition.py": {
           "standard": [
@@ -14480,14 +14024,35 @@
           "astra_core": []
         },
         "core_legacy/v94/sensorimotor_system.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "abc",
+            "time",
+            "logging",
+            "enum"
+          ],
+          "third_party": [
+            "numpy",
+            "pygame",
+            "pymunk"
+          ],
           "local": [],
           "astra_core": []
         },
         "core_legacy/v94/language_grounding.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "abc",
+            "time",
+            "logging",
+            "enum"
+          ],
+          "third_party": [
+            "numpy",
+            "sensorimotor_system"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -14615,8 +14180,14 @@
           "astra_core": []
         },
         "core_legacy/v93/self_modifying_architecture.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "typing",
+            "dataclasses",
+            "enum"
+          ],
+          "third_party": [
+            "numpy"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -15606,8 +15177,17 @@
           "astra_core": []
         },
         "core/v105/scientific_discovery.py": {
-          "standard": [],
-          "third_party": [],
+          "standard": [
+            "time",
+            "typing",
+            "dataclasses",
+            "enum",
+            "logging"
+          ],
+          "third_party": [
+            "numpy",
+            "pandas"
+          ],
           "local": [],
           "astra_core": []
         },
@@ -16402,8 +15982,8 @@
     "references": {},
     "modules": {
       "total_files": 612,
-      "successful": 417,
-      "failed": 195,
+      "successful": 462,
+      "failed": 150,
       "failed_list": [
         [
           "astra_core..",
@@ -16451,67 +16031,59 @@
         ],
         [
           "astra_core.scientific_discovery.discovery_orchestrator",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.scientific_discovery.data_repositories",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.scientific_discovery.paper_library",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.scientific_discovery.test_imports",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-        ],
-        [
-          "astra_core.scientific_discovery.research_papers",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.scientific_discovery.theoretical_physics",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.scientific_discovery",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.scientific_discovery.paper_library_comparison",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.scientific_discovery.advanced_analysis",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.scientific_discovery.paper_rag_query",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.scientific_discovery.astro_databases",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.scientific_discovery.setup_paper_library",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.scientific_discovery.literature_synthesis",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.scientific_discovery.feasibility_checker",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.scientific_discovery.adaptive_reasoning",
-          "unterminated triple-quoted string literal (detected at line 170) (research_papers.py, line 164)"
-        ],
-        [
-          "astra_core.intelligence.redundant_executor",
-          "'[' was never closed (redundant_executor.py, line 149)"
+          "cannot import name 'CitationNetwork' from 'astra_core.scientific_discovery.research_papers' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/scientific_discovery/research_papers.py)"
         ],
         [
           "astra_core.arc_agi.neural_patterns",
@@ -16558,22 +16130,6 @@
           "cannot import name 'get_integration_bus' from 'astra_core.reasoning.integration_bus' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/integration_bus.py)"
         ],
         [
-          "astra_core.reasoning.symbolic_verification",
-          "'(' was never closed (symbolic_verification.py, line 508)"
-        ],
-        [
-          "astra_core.reasoning.integrated_reasoning",
-          "unmatched ')' (integrated_reasoning.py, line 217)"
-        ],
-        [
-          "astra_core.reasoning.v70_predictive_geometry",
-          "'[' was never closed (v70_predictive_geometry.py, line 354)"
-        ],
-        [
-          "astra_core.reasoning.formal_logic_enhanced",
-          "expected an indented block after function definition on line 112 (formal_logic_enhanced.py, line 112)"
-        ],
-        [
           "astra_core.reasoning.dynamic_replanning",
           "cannot import name 'get_integration_bus' from 'astra_core.reasoning.integration_bus' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/integration_bus.py)"
         ],
@@ -16590,136 +16146,28 @@
           "cannot import name 'get_integration_bus' from 'astra_core.reasoning.integration_bus' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/integration_bus.py)"
         ],
         [
-          "astra_core.reasoning.abstraction_stack",
-          "invalid syntax (abstraction_stack.py, line 2)"
-        ],
-        [
           "astra_core.reasoning.v60_cognitive_agent",
           "cannot import name 'create_world_model_system' from 'astra_core.reasoning.v60_predictive_world_models' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/reasoning/v60_predictive_world_models.py)"
         ],
         [
           "astra_core.retrieval.hybrid_search",
-          "'{' was never closed (context_distiller.py, line 243)"
+          "cannot import name 'create_context_distiller' from 'astra_core.retrieval.context_distiller' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/context_distiller.py)"
         ],
         [
           "astra_core.retrieval.sharded_retrieval",
-          "'{' was never closed (context_distiller.py, line 243)"
+          "cannot import name 'create_context_distiller' from 'astra_core.retrieval.context_distiller' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/context_distiller.py)"
         ],
         [
           "astra_core.retrieval",
-          "'{' was never closed (context_distiller.py, line 243)"
+          "cannot import name 'create_context_distiller' from 'astra_core.retrieval.context_distiller' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/context_distiller.py)"
         ],
         [
           "astra_core.retrieval.query_expander",
-          "'{' was never closed (context_distiller.py, line 243)"
+          "cannot import name 'create_context_distiller' from 'astra_core.retrieval.context_distiller' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/context_distiller.py)"
         ],
         [
           "astra_core.retrieval.parallel_rag",
-          "'{' was never closed (context_distiller.py, line 243)"
-        ],
-        [
-          "astra_core.retrieval.context_distiller",
-          "'{' was never closed (context_distiller.py, line 243)"
-        ],
-        [
-          "astra_core.gsd.spec_driven_development",
-          "expected an indented block after 'if' statement on line 269 (xml_task_formatting.py, line 269)"
-        ],
-        [
-          "astra_core.gsd.context_quality",
-          "expected an indented block after 'if' statement on line 269 (xml_task_formatting.py, line 269)"
-        ],
-        [
-          "astra_core.gsd.xml_task_formatting",
-          "expected an indented block after 'if' statement on line 269 (xml_task_formatting.py, line 269)"
-        ],
-        [
-          "astra_core.gsd.atomic_workflow",
-          "expected an indented block after 'if' statement on line 269 (xml_task_formatting.py, line 269)"
-        ],
-        [
-          "astra_core.gsd.codebase_mapper",
-          "expected an indented block after 'if' statement on line 269 (xml_task_formatting.py, line 269)"
-        ],
-        [
-          "astra_core.gsd",
-          "expected an indented block after 'if' statement on line 269 (xml_task_formatting.py, line 269)"
-        ],
-        [
-          "astra_core.arc_reasoning.super_ensemble_solver",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.semantic_reasoning",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.semantic_compression",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.pattern_extension",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.improved_solver",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.enhanced_transformation",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.llm_code_generator",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.llm_guided_solver",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.comprehensive_solver",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.semantic_pattern_solver",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.neuro_symbolic_solver",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.advanced_arc_solver",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.ensemble_arc_solver",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.causal_arc_solver",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.ultra_arc_solver",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.neuro_symbolic_clean",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.neuro_symbolic_v2",
-          "'[' was never closed (improved_solver.py, line 107)"
-        ],
-        [
-          "astra_core.arc_reasoning.interactive_arc_solver",
-          "'[' was never closed (improved_solver.py, line 107)"
+          "cannot import name 'create_context_distiller' from 'astra_core.retrieval.context_distiller' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/retrieval/context_distiller.py)"
         ],
         [
           "astra_core.symbolic.v36_system",
@@ -16748,14 +16196,6 @@
         [
           "astra_core.symbolic.stan_enhanced",
           "cannot import name 'EnhancedSelfConsistency' from 'astra_core.symbolic.self_consistency' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/symbolic/self_consistency.py)"
-        ],
-        [
-          "astra_core.mathematical.aletheia_stan_architecture",
-          "'{' was never closed (aletheia_stan_architecture.py, line 127)"
-        ],
-        [
-          "astra_core.mathematical",
-          "'{' was never closed (aletheia_stan_architecture.py, line 127)"
         ],
         [
           "astra_core.astro_physics.uncertainty_quantification",
@@ -17067,111 +16507,75 @@
         ],
         [
           "astra_core.core_legacy.v40.enhanced_knowledge",
-          "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-        ],
-        [
-          "astra_core.core_legacy.v40.hypothesis_engine",
-          "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
+          "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/formal_logic.py)"
         ],
         [
           "astra_core.core_legacy.v40.causal_world_model",
-          "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
+          "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/formal_logic.py)"
         ],
         [
           "astra_core.core_legacy.v40.v40_system",
-          "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
+          "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/formal_logic.py)"
         ],
         [
           "astra_core.core_legacy.v40",
-          "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
+          "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/formal_logic.py)"
         ],
         [
           "astra_core.core_legacy.v40.theorem_prover",
-          "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
+          "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/formal_logic.py)"
         ],
         [
           "astra_core.core_legacy.v40.continuous_learning",
-          "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-        ],
-        [
-          "astra_core.core_legacy.v40.multi_step_decomposition",
-          "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-        ],
-        [
-          "astra_core.core_legacy.v40.formal_logic",
-          "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
+          "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/formal_logic.py)"
         ],
         [
           "astra_core.core_legacy.v40.meta_cognitive",
-          "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
+          "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/formal_logic.py)"
         ],
         [
           "astra_core.core_legacy.v40.answer_verification",
-          "expected an indented block after 'if' statement on line 659 (multi_step_decomposition.py, line 659)"
-        ],
-        [
-          "astra_core.core_legacy.v42",
-          "cannot import name 'create_v42_fast' from 'astra_core.core_legacy.v42.v42_system' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v42/v42_system.py)"
+          "cannot import name 'FormalLogicEngine' from 'astra_core.core_legacy.v40.formal_logic' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v40/formal_logic.py)"
         ],
         [
           "astra_core.core_legacy.v92.hypothesis_engine",
-          "expected an indented block after function definition on line 336 (v92_system.py, line 336)"
-        ],
-        [
-          "astra_core.core_legacy.v92.causal_discovery",
-          "expected an indented block after function definition on line 336 (v92_system.py, line 336)"
-        ],
-        [
-          "astra_core.core_legacy.v92.experimental_design",
-          "expected an indented block after function definition on line 336 (v92_system.py, line 336)"
+          "cannot import name 'create_v92_system' from 'astra_core.core_legacy.v92.v92_system' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v92/v92_system.py)"
         ],
         [
           "astra_core.core_legacy.v92",
-          "expected an indented block after function definition on line 336 (v92_system.py, line 336)"
-        ],
-        [
-          "astra_core.core_legacy.v92.v92_system",
-          "expected an indented block after function definition on line 336 (v92_system.py, line 336)"
-        ],
-        [
-          "astra_core.core_legacy.v92.mathematical_intuition",
-          "expected an indented block after function definition on line 336 (v92_system.py, line 336)"
+          "cannot import name 'create_v92_system' from 'astra_core.core_legacy.v92.v92_system' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v92/v92_system.py)"
         ],
         [
           "astra_core.core_legacy.v94.developmental_learning",
-          "'(' was never closed (self_modifying_architecture.py, line 92)"
+          "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architecture' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v93/self_modifying_architecture.py)"
         ],
         [
           "astra_core.core_legacy.v94.common_sense_engine",
-          "'(' was never closed (self_modifying_architecture.py, line 92)"
+          "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architecture' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v93/self_modifying_architecture.py)"
         ],
         [
           "astra_core.core_legacy.v94",
-          "'(' was never closed (self_modifying_architecture.py, line 92)"
+          "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architecture' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v93/self_modifying_architecture.py)"
         ],
         [
           "astra_core.core_legacy.v94.sensorimotor_system",
-          "'(' was never closed (self_modifying_architecture.py, line 92)"
+          "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architecture' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v93/self_modifying_architecture.py)"
         ],
         [
           "astra_core.core_legacy.v94.language_grounding",
-          "'(' was never closed (self_modifying_architecture.py, line 92)"
+          "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architecture' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v93/self_modifying_architecture.py)"
         ],
         [
           "astra_core.core_legacy.v94.astro_embodied_integration",
-          "'(' was never closed (self_modifying_architecture.py, line 92)"
+          "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architecture' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v93/self_modifying_architecture.py)"
         ],
         [
           "astra_core.core_legacy.v94.embodied_learning_engine",
-          "'(' was never closed (self_modifying_architecture.py, line 92)"
+          "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architecture' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v93/self_modifying_architecture.py)"
         ],
         [
           "astra_core.core_legacy.v94.v94_complete",
-          "'(' was never closed (self_modifying_architecture.py, line 92)"
-        ],
-        [
-          "astra_core.core_legacy.v93.self_modifying_architecture",
-          "'(' was never closed (self_modifying_architecture.py, line 92)"
+          "cannot import name 'DynamicArchitecture' from 'astra_core.core_legacy.v93.self_modifying_architecture' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/core_legacy/v93/self_modifying_architecture.py)"
         ],
         [
           "astra_core.tests.ablation.run_ablations",
@@ -17180,10 +16584,6 @@
         [
           "astra_core.causal.routing",
           "cannot import name 'create_moe_router' from 'astra_core.causal.routing.moe_router' (/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_core/causal/routing/moe_router.py)"
-        ],
-        [
-          "astra_core.core.v105.scientific_discovery",
-          "'(' was never closed (scientific_discovery.py, line 378)"
         ]
       ]
     },
@@ -28439,6 +27839,37 @@
           "Path"
         ]
       },
+      "scientific_discovery/research_papers.py": {
+        "imports": [],
+        "function_calls": [
+          "logging.getLogger",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "logger.info",
+          "len",
+          "len",
+          "len",
+          "logger.warning",
+          "logger.error",
+          "pdfplumber.open",
+          "PdfReader",
+          "datetime.now",
+          "hashlib.md5",
+          "page.extract_text",
+          "page.extract_text"
+        ],
+        "class_usage": [
+          "PdfReader"
+        ]
+      },
       "scientific_discovery/theoretical_physics.py": {
         "imports": [],
         "function_calls": [
@@ -28480,6 +27911,79 @@
         ],
         "class_usage": []
       },
+      "scientific_discovery/paper_rag_query.py": {
+        "imports": [],
+        "function_calls": [
+          "logging.getLogger",
+          "context_parts.append",
+          "context_parts.append",
+          "paper_chunks.items",
+          "PaperLibrary",
+          "logger.info",
+          "logger.info",
+          "logger.info",
+          "logger.info",
+          "set",
+          "RetrievedContext",
+          "logger.info",
+          "query.lower",
+          "set",
+          "scored_chunks.sort",
+          "self._keyword_search",
+          "set",
+          "logger.info",
+          "self.retrieve",
+          "context.format_for_llm",
+          "self._build_prompt",
+          "QueryResult",
+          "logger.info",
+          "Path",
+          "list",
+          "logger.info",
+          "logger.info",
+          "enumerate",
+          "context_parts.append",
+          "context_parts.append",
+          "context_parts.append",
+          "context_parts.append",
+          "self._keyword_search",
+          "query_lower.split",
+          "sum",
+          "llm_callback",
+          "sources.append",
+          "directory.rglob",
+          "len",
+          "context_parts.append",
+          "context_parts.append",
+          "self._vector_search",
+          "self._keyword_search",
+          "self._vector_search",
+          "self._merge_results",
+          "scored_chunks.append",
+          "merged.append",
+          "seen.add",
+          "self.process_pdf",
+          "len",
+          "len",
+          "len",
+          "len",
+          "len",
+          "len",
+          "len",
+          "len",
+          "len",
+          "logger.error",
+          "papers.items",
+          "str",
+          "logger.info"
+        ],
+        "class_usage": [
+          "PaperLibrary",
+          "RetrievedContext",
+          "QueryResult",
+          "Path"
+        ]
+      },
       "scientific_discovery/astro_databases.py": {
         "imports": [],
         "function_calls": [
@@ -28491,6 +27995,42 @@
           "len"
         ],
         "class_usage": []
+      },
+      "scientific_discovery/setup_paper_library.py": {
+        "imports": [],
+        "function_calls": [
+          "logging.basicConfig",
+          "logging.getLogger",
+          "str",
+          "logger.info",
+          "logger.info",
+          "argparse.ArgumentParser",
+          "parser.add_argument",
+          "parser.add_argument",
+          "parser.add_argument",
+          "parser.add_argument",
+          "parser.add_argument",
+          "parser.add_argument",
+          "parser.add_argument",
+          "parser.add_argument",
+          "parser.parse_args",
+          "PaperLibrary",
+          "library.initialize",
+          "library.get_stats",
+          "print",
+          "print",
+          "open",
+          "json.dump",
+          "create_example_config",
+          "library.add_papers_from_directory",
+          "print",
+          "Path.home",
+          "Path"
+        ],
+        "class_usage": [
+          "PaperLibrary",
+          "Path"
+        ]
       },
       "scientific_discovery/literature_synthesis.py": {
         "imports": [],
@@ -28607,6 +28147,34 @@
           "ResourceEstimate",
           "ResourceEstimate"
         ]
+      },
+      "scientific_discovery/adaptive_reasoning.py": {
+        "imports": [
+          "astra_core.reasoning.v41_orchestrator",
+          "astra_core.reasoning.metacognition"
+        ],
+        "function_calls": [
+          "logging.getLogger",
+          "field",
+          "field",
+          "field",
+          "time.time",
+          "defaultdict",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "time.time",
+          "len",
+          "logging.warning",
+          "sum",
+          "sum",
+          "len",
+          "len"
+        ],
+        "class_usage": []
       },
       "causal/__init__.py": {
         "imports": [],
@@ -29016,6 +28584,40 @@
           "SynergyModel",
           "ConflictPrediction",
           "ConflictPrediction"
+        ]
+      },
+      "intelligence/redundant_executor.py": {
+        "imports": [],
+        "function_calls": [
+          "TypeVar",
+          "field",
+          "field",
+          "time.time",
+          "ExecutionResult",
+          "self._execute_first_success",
+          "ThreadPoolExecutor",
+          "as_completed",
+          "self._execute_majority_vote",
+          "executor.submit",
+          "len",
+          "self._execute_all_success",
+          "ValueError",
+          "min",
+          "range",
+          "future.result",
+          "all_results.append",
+          "ExecutionResult",
+          "time.time",
+          "all_errors.append",
+          "len",
+          "time.time"
+        ],
+        "class_usage": [
+          "TypeVar",
+          "ExecutionResult",
+          "ThreadPoolExecutor",
+          "ValueError",
+          "ExecutionResult"
         ]
       },
       "intelligence/pheromone_dynamics.py": {
@@ -29902,6 +29504,172 @@
           "TypedPrimitive",
           "TypedPrimitive",
           "TypedPrimitive"
+        ]
+      },
+      "arc_agi/pattern_library.py": {
+        "imports": [],
+        "function_calls": [
+          "functools.lru_cache",
+          "np.array",
+          "np.array",
+          "np.corrcoef",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "field",
+          "np.linspace",
+          "patterns.extend",
+          "patterns.extend",
+          "patterns.extend",
+          "patterns.extend",
+          "grid.find_objects",
+          "range",
+          "range",
+          "range",
+          "range",
+          "grid.detect_symmetry",
+          "empty_grid",
+          "range",
+          "range",
+          "empty_grid",
+          "grid.copy",
+          "grid.copy",
+          "grid.find_objects",
+          "defaultdict",
+          "by_color.items",
+          "grid.find_objects",
+          "len",
+          "grid.copy",
+          "grid.detect_periodicity",
+          "grid.copy",
+          "grid.copy",
+          "zip",
+          "defaultdict",
+          "enumerate",
+          "dict",
+          "sorted",
+          "defaultdict",
+          "dict",
+          "cls",
+          "np.sin",
+          "self._detect_rectangles",
+          "self._detect_lines",
+          "self._detect_grid_structure",
+          "self._detect_symmetric_patterns",
+          "range",
+          "set",
+          "set",
+          "patterns.append",
+          "patterns.append",
+          "range",
+          "range",
+          "range",
+          "grid.copy",
+          "range",
+          "grid.scale",
+          "grid.crop",
+          "range",
+          "enumerate",
+          "sorted",
+          "sorted",
+          "transform",
+          "np.sign",
+          "range",
+          "patterns.append",
+          "set",
+          "range",
+          "all",
+          "h_separators.append",
+          "all",
+          "v_separators.append",
+          "Pattern",
+          "Pattern",
+          "enumerate",
+          "range",
+          "range",
+          "grid.copy",
+          "range",
+          "len",
+          "range",
+          "grid.crop",
+          "range",
+          "np.sin",
+          "np.sin",
+          "Pattern",
+          "range",
+          "patterns.append",
+          "len",
+          "len",
+          "reversed",
+          "enumerate",
+          "range",
+          "range",
+          "result.draw_line",
+          "grid.crop",
+          "abs",
+          "abs",
+          "interior.add",
+          "Pattern",
+          "patterns.append",
+          "patterns.append",
+          "range",
+          "range",
+          "BoundingBox",
+          "set",
+          "BoundingBox",
+          "set",
+          "range",
+          "enumerate",
+          "range",
+          "len",
+          "int",
+          "int",
+          "int",
+          "int",
+          "np.floor",
+          "Pattern",
+          "Pattern",
+          "range",
+          "list",
+          "range",
+          "list",
+          "range",
+          "enumerate",
+          "range",
+          "range",
+          "list",
+          "list",
+          "len",
+          "len",
+          "range",
+          "reversed",
+          "BoundingBox",
+          "BoundingBox",
+          "range"
+        ],
+        "class_usage": [
+          "Pattern",
+          "Pattern",
+          "Pattern",
+          "Pattern",
+          "BoundingBox",
+          "BoundingBox",
+          "Pattern",
+          "Pattern",
+          "BoundingBox",
+          "BoundingBox"
         ]
       },
       "arc_agi/enhanced_solver.py": {
@@ -32844,6 +32612,268 @@
           "StructuralElement"
         ]
       },
+      "reasoning/symbolic_verification.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "text.lower",
+          "self._infer_expected_dimension",
+          "self.extract_dimension",
+          "question.lower",
+          "question.lower",
+          "any",
+          "any",
+          "any",
+          "any",
+          "ConstraintCheck",
+          "any",
+          "ConstraintCheck",
+          "any",
+          "ConstraintCheck",
+          "question.lower",
+          "any",
+          "any",
+          "any",
+          "ConstraintCheck",
+          "any",
+          "ConstraintCheck",
+          "question.lower",
+          "any",
+          "any",
+          "any",
+          "ConstraintCheck",
+          "any",
+          "ConstraintCheck",
+          "re.findall",
+          "ConstraintCheck",
+          "parts.append",
+          "parts.append",
+          "parts.append",
+          "parts.append",
+          "parts.append",
+          "parts.append",
+          "isinstance",
+          "Dimension",
+          "ConstraintCheck",
+          "ConstraintCheck",
+          "ConstraintCheck",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "reasoning.lower",
+          "self._check_energy_conservation",
+          "checks.append",
+          "self._check_momentum_conservation",
+          "checks.append",
+          "self._check_charge_conservation",
+          "checks.append",
+          "self._check_reaction_balance",
+          "checks.append",
+          "self._check_oxidation_balance",
+          "checks.append",
+          "self._check_central_dogma",
+          "checks.append",
+          "self._check_compartmentalization",
+          "checks.append",
+          "ConstraintCheck",
+          "float",
+          "Dimension",
+          "abs",
+          "ConstraintCheck"
+        ],
+        "class_usage": [
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "ConstraintCheck",
+          "ConstraintCheck",
+          "ConstraintCheck",
+          "ConstraintCheck",
+          "ConstraintCheck",
+          "ConstraintCheck",
+          "ConstraintCheck",
+          "ConstraintCheck",
+          "Dimension",
+          "ConstraintCheck",
+          "ConstraintCheck",
+          "ConstraintCheck",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "Dimension",
+          "ConstraintCheck",
+          "Dimension",
+          "ConstraintCheck"
+        ]
+      },
+      "reasoning/integrated_reasoning.py": {
+        "imports": [],
+        "function_calls": [
+          "neural_symbolic_bridge_0",
+          "theory_data_bridge_16",
+          "memory_inference_bridge_32",
+          "neural_symbolic_bridge_48",
+          "theory_data_bridge_64",
+          "memory_inference_bridge_80",
+          "neural_symbolic_bridge_96",
+          "theory_data_bridge_112",
+          "memory_inference_bridge_128",
+          "neural_symbolic_bridge_144",
+          "list",
+          "len",
+          "sum",
+          "min",
+          "range",
+          "data.keys",
+          "domain_knowledge.get",
+          "domain_knowledge.get",
+          "evidence_weights.append",
+          "evidence_scores.append",
+          "np.abs",
+          "evidence_weights.append",
+          "evidence_scores.append",
+          "np.gradient",
+          "evidence_weights.append",
+          "evidence_scores.append",
+          "np.array",
+          "float",
+          "len",
+          "patterns.append",
+          "principles.append",
+          "all",
+          "all",
+          "all",
+          "all",
+          "all",
+          "all",
+          "all",
+          "all",
+          "all",
+          "all",
+          "np.mean",
+          "visual_data.flatten",
+          "temporal_data.flatten",
+          "sum",
+          "hasattr",
+          "weighted_inference.tolist",
+          "len",
+          "self._validate_request_structure",
+          "isinstance",
+          "result.get",
+          "self._validate_request_structure",
+          "isinstance",
+          "result.get",
+          "self._validate_request_structure",
+          "isinstance",
+          "result.get",
+          "self._validate_request_structure",
+          "isinstance",
+          "result.get",
+          "self._validate_request_structure",
+          "isinstance",
+          "result.get",
+          "self._validate_request_structure",
+          "isinstance",
+          "result.get",
+          "self._validate_request_structure",
+          "isinstance",
+          "result.get",
+          "self._validate_request_structure",
+          "isinstance",
+          "result.get",
+          "self._validate_request_structure",
+          "isinstance",
+          "result.get",
+          "self._validate_request_structure",
+          "isinstance",
+          "result.get",
+          "self._validate_request_structure",
+          "len",
+          "len",
+          "spectral_data.flatten",
+          "isinstance",
+          "isinstance",
+          "isinstance",
+          "isinstance",
+          "isinstance",
+          "isinstance",
+          "isinstance",
+          "isinstance",
+          "isinstance",
+          "isinstance",
+          "len",
+          "zip"
+        ],
+        "class_usage": []
+      },
       "reasoning/nested_sampling.py": {
         "imports": [],
         "function_calls": [
@@ -33236,6 +33266,138 @@
           "ObservedPattern",
           "ObservedPattern"
         ]
+      },
+      "reasoning/v70_predictive_geometry.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "np.clip",
+          "np.clip",
+          "np.clip",
+          "np.clip",
+          "np.sum",
+          "np.clip",
+          "np.clip",
+          "np.sqrt",
+          "np.sort",
+          "np.sort",
+          "min",
+          "np.mean",
+          "np.sum",
+          "np.sum",
+          "np.arccos",
+          "np.sum",
+          "np.sum",
+          "np.sum",
+          "np.sum",
+          "len",
+          "len",
+          "np.abs",
+          "np.mean",
+          "features.append",
+          "features.append",
+          "features.append",
+          "features.append",
+          "np.array",
+          "np.concatenate",
+          "np.mean",
+          "np.clip",
+          "np.log",
+          "np.arange",
+          "np.sum",
+          "np.sum",
+          "features.extend",
+          "features.extend",
+          "np.array",
+          "np.exp",
+          "data.get",
+          "data.get",
+          "np.zeros",
+          "np.clip",
+          "np.log",
+          "np.sum",
+          "np.array",
+          "np.std",
+          "np.mean",
+          "np.std",
+          "np.min",
+          "np.max",
+          "len",
+          "np.diff",
+          "features.append",
+          "features.append",
+          "features.extend",
+          "len",
+          "features.append",
+          "features.append",
+          "features.extend",
+          "len",
+          "np.pad",
+          "abs",
+          "np.std",
+          "np.sum",
+          "np.sum",
+          "np.max",
+          "np.sum",
+          "len",
+          "len",
+          "np.pad",
+          "np.sum",
+          "np.array",
+          "np.array",
+          "np.sum",
+          "np.mean",
+          "np.std",
+          "np.sum",
+          "fisher_rao_distance",
+          "np.sum",
+          "np.mean",
+          "np.std",
+          "len",
+          "features.append",
+          "features.append",
+          "np.abs",
+          "len",
+          "len",
+          "np.max",
+          "np.sum",
+          "np.sum",
+          "adj.diagonal",
+          "len",
+          "kl_divergence",
+          "np.sqrt",
+          "np.sin",
+          "np.cos",
+          "np.tanh",
+          "np.exp",
+          "np.corrcoef",
+          "np.argmax",
+          "len",
+          "np.sum",
+          "np.log",
+          "len",
+          "len",
+          "hellinger_distance",
+          "np.sqrt",
+          "np.sqrt",
+          "np.sign",
+          "np.log",
+          "len",
+          "np.sum",
+          "len",
+          "len",
+          "abs",
+          "np.sign",
+          "np.isnan",
+          "abs",
+          "len",
+          "len"
+        ],
+        "class_usage": []
       },
       "reasoning/v70_emergent_computation.py": {
         "imports": [],
@@ -35313,6 +35475,18 @@
           "ComputeBudget",
           "ComputeBudget"
         ]
+      },
+      "reasoning/formal_logic_enhanced.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "field",
+          "z3.Solver",
+          "s.to_dict",
+          "str"
+        ],
+        "class_usage": []
       },
       "reasoning/v50_abstraction_learning.py": {
         "imports": [],
@@ -42619,6 +42793,104 @@
           "CausalRelation"
         ]
       },
+      "reasoning/abstraction_stack.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "AbstractionStack",
+          "concept.get",
+          "list",
+          "np.zeros",
+          "range",
+          "StackLevel",
+          "max",
+          "get_level_at_height",
+          "self.push_level",
+          "ZoomOperation",
+          "min",
+          "get_level_at_height",
+          "self.push_level",
+          "ZoomOperation",
+          "compress_func",
+          "enumerate",
+          "expand_func",
+          "enumerate",
+          "sorted",
+          "float",
+          "sorted",
+          "sorted",
+          "range",
+          "len",
+          "len",
+          "len",
+          "np.array",
+          "essential_features.items",
+          "float",
+          "len",
+          "range",
+          "len",
+          "ZoomOperation",
+          "ZoomOperation",
+          "removed.append",
+          "self.zoom_out",
+          "self.push_level",
+          "StackLevel",
+          "new_ids.append",
+          "abs",
+          "sum",
+          "len",
+          "len",
+          "len",
+          "len",
+          "self.estimate_quality",
+          "np.vstack",
+          "len",
+          "np.std",
+          "range",
+          "len",
+          "np.mean",
+          "np.std",
+          "time.time",
+          "target_level.get",
+          "target_level.get",
+          "target_level.get",
+          "target_level.get",
+          "self.zoom_in",
+          "ZoomOperation",
+          "len",
+          "len",
+          "min",
+          "max",
+          "sum",
+          "len",
+          "float",
+          "float",
+          "sum",
+          "max",
+          "scores.append",
+          "target_level.get",
+          "target_level.get",
+          "time.time",
+          "np.ones",
+          "len",
+          "float",
+          "abs",
+          "sum",
+          "len",
+          "len",
+          "len"
+        ],
+        "class_usage": [
+          "AbstractionStack",
+          "StackLevel",
+          "ZoomOperation",
+          "ZoomOperation",
+          "ZoomOperation",
+          "ZoomOperation",
+          "StackLevel",
+          "ZoomOperation"
+        ]
+      },
       "reasoning/v60_cognitive_agent.py": {
         "imports": [],
         "function_calls": [
@@ -45228,10 +45500,117 @@
           "TfidfVectorizer"
         ]
       },
+      "retrieval/sharded_retrieval.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "len",
+          "query.lower",
+          "keywords.get",
+          "time.time",
+          "QueryResult",
+          "VectorRetriever",
+          "domain.lower",
+          "ShardSelector",
+          "ShardSelector",
+          "temp_selector.select_shards",
+          "ShardedRetrievalResult",
+          "ThreadPoolExecutor",
+          "as_completed",
+          "len",
+          "self._selective_select",
+          "any",
+          "selected.append",
+          "executor.submit",
+          "self._rerank",
+          "self._selective_select",
+          "min",
+          "future.result",
+          "all_docs.extend",
+          "time.time",
+          "time.time",
+          "len",
+          "self._get_domain_keywords"
+        ],
+        "class_usage": [
+          "QueryResult",
+          "VectorRetriever",
+          "ShardSelector",
+          "ShardSelector",
+          "ShardedRetrievalResult",
+          "ThreadPoolExecutor"
+        ]
+      },
       "retrieval/__init__.py": {
         "imports": [],
         "function_calls": [],
         "class_usage": []
+      },
+      "retrieval/query_expander.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "self._generate_hypothetical",
+          "self._generate_sub_questions",
+          "self._extract_keywords",
+          "ExpandedQueries",
+          "query.startswith",
+          "list",
+          "re.findall",
+          "list",
+          "list",
+          "RuleBasedExpander",
+          "expander.expand",
+          "time.time",
+          "expanded.all_queries",
+          "set",
+          "unique_docs.sort",
+          "QueryExpansionResult",
+          "query.split",
+          "query.lower",
+          "sub_questions.append",
+          "sub_questions.append",
+          "sub_questions.append",
+          "sub_questions.append",
+          "sub_questions.append",
+          "sub_questions.append",
+          "sub_questions.append",
+          "sub_questions.append",
+          "set",
+          "query.lower",
+          "mappings.items",
+          "set",
+          "RuleBasedExpander",
+          "ThreadPoolExecutor",
+          "as_completed",
+          "len",
+          "query.lower",
+          "query.lower",
+          "query.lower",
+          "query.lower",
+          "query.lower",
+          "executor.submit",
+          "seen.add",
+          "unique_docs.append",
+          "expanded.all_queries",
+          "expanded.extend",
+          "min",
+          "future.result",
+          "all_docs.extend",
+          "time.time",
+          "query.lower",
+          "query.lower",
+          "query.lower",
+          "len",
+          "len"
+        ],
+        "class_usage": [
+          "ExpandedQueries",
+          "RuleBasedExpander",
+          "QueryExpansionResult",
+          "RuleBasedExpander",
+          "ThreadPoolExecutor"
+        ]
       },
       "retrieval/parallel_rag.py": {
         "imports": [],
@@ -45343,6 +45722,49 @@
           "TfidfRetriever",
           "ShardSelector",
           "SimpleKeywordChecker"
+        ]
+      },
+      "retrieval/context_distiller.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "hash",
+          "query.lower",
+          "sum",
+          "RelevancyCheck",
+          "SimpleKeywordChecker",
+          "checker.check_relevance",
+          "time.time",
+          "time.time",
+          "DistillationResult",
+          "len",
+          "SimpleKeywordChecker",
+          "ThreadPoolExecutor",
+          "as_completed",
+          "time.time",
+          "tuple",
+          "query_lower.split",
+          "executor.submit",
+          "sorted",
+          "min",
+          "future.result",
+          "explanations.append",
+          "time.time",
+          "len",
+          "len",
+          "len",
+          "relevant_docs.append",
+          "filtered_docs.append",
+          "relevant_docs.append",
+          "explanations.append"
+        ],
+        "class_usage": [
+          "RelevancyCheck",
+          "SimpleKeywordChecker",
+          "DistillationResult",
+          "SimpleKeywordChecker",
+          "ThreadPoolExecutor"
         ]
       },
       "knowledge/__init__.py": {
@@ -45459,6 +45881,235 @@
         ],
         "class_usage": []
       },
+      "gsd/xml_task_formatting.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "ET.Element",
+          "elem.set",
+          "elem.set",
+          "cls",
+          "ET.Element",
+          "root.set",
+          "root.set",
+          "root.set",
+          "root.set",
+          "ET.SubElement",
+          "ET.SubElement",
+          "ET.SubElement",
+          "ET.fromstring",
+          "cls",
+          "root.find",
+          "root.find",
+          "root.find",
+          "root.find",
+          "root.find",
+          "str",
+          "ET.SubElement",
+          "root.append",
+          "ET.SubElement",
+          "ET.SubElement",
+          "ET.SubElement",
+          "json.dumps",
+          "ET.SubElement",
+          "ET.SubElement",
+          "ET.tostring",
+          "minidom.parseString",
+          "reparsed.toprettyxml",
+          "ET.tostring",
+          "TaskVerification.from_xml_element",
+          "element.get",
+          "int",
+          "verify.to_xml_element",
+          "root.get",
+          "TaskType",
+          "TaskPriority",
+          "TaskStatus",
+          "f.strip",
+          "root.findall",
+          "d.strip",
+          "str",
+          "element.get",
+          "root.get",
+          "root.get",
+          "root.get",
+          "d.strip",
+          "element.get",
+          "hashlib.sha256",
+          "hashlib.sha256",
+          "__import__",
+          "__import__",
+          "xml_string.encode",
+          "id",
+          "__import__"
+        ],
+        "class_usage": [
+          "TaskType",
+          "TaskPriority",
+          "TaskStatus"
+        ]
+      },
+      "gsd/atomic_workflow.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "lines.extend",
+          "Path",
+          "entry.to_markdown",
+          "StateManager",
+          "TaskCompletion",
+          "getattr",
+          "getattr",
+          "lines.extend",
+          "lines.extend",
+          "lines.extend",
+          "lines.extend",
+          "lines.extend",
+          "lines.extend",
+          "lines.extend",
+          "lines.append",
+          "lines.append",
+          "str",
+          "Path",
+          "time.time",
+          "datetime.utcnow",
+          "datetime.utcnow",
+          "datetime.utcnow"
+        ],
+        "class_usage": [
+          "Path",
+          "StateManager",
+          "TaskCompletion",
+          "Path"
+        ]
+      },
+      "gsd/codebase_mapper.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "sorted",
+          "lines.extend",
+          "lines.extend",
+          "Counter",
+          "dep_counter.most_common",
+          "lines.extend",
+          "lines.extend",
+          "sorted",
+          "lines.extend",
+          "output_path.mkdir",
+          "CodebaseDocumentation",
+          "lines.append",
+          "lines.append",
+          "lines.extend",
+          "lines.extend",
+          "dep_counter.update",
+          "lines.append",
+          "lines.append",
+          "lines.append",
+          "lines.extend",
+          "lines.extend",
+          "lines.append",
+          "lines.append",
+          "lines.extend",
+          "lines.append",
+          "lines.extend",
+          "lines.extend",
+          "lines.append",
+          "lines.append",
+          "lines.extend",
+          "lines.extend",
+          "lines.extend",
+          "lines.extend",
+          "lines.extend",
+          "lines.extend",
+          "lines.extend",
+          "lines.extend",
+          "path_obj.exists",
+          "ValueError",
+          "ThreadPoolExecutor",
+          "as_completed",
+          "lines.append",
+          "lines.append",
+          "lines.append",
+          "lines.append",
+          "lines.append",
+          "len",
+          "lines.append",
+          "lines.append",
+          "lines.append",
+          "lines.append",
+          "lines.append",
+          "Path",
+          "Path",
+          "executor.submit",
+          "executor.submit",
+          "executor.submit",
+          "executor.submit",
+          "executor.submit",
+          "executor.submit",
+          "lines.append",
+          "future.result",
+          "setattr",
+          "logger.warning",
+          "len"
+        ],
+        "class_usage": [
+          "Counter",
+          "CodebaseDocumentation",
+          "ValueError",
+          "ThreadPoolExecutor",
+          "Path",
+          "Path"
+        ]
+      },
       "gsd/__init__.py": {
         "imports": [],
         "function_calls": [],
@@ -45468,6 +46119,90 @@
         "imports": [],
         "function_calls": [
           "all"
+        ],
+        "class_usage": []
+      },
+      "arc_reasoning/super_ensemble_solver.py": {
+        "imports": [],
+        "function_calls": [
+          "zip",
+          "range",
+          "zip",
+          "learn_color_mapping",
+          "zip",
+          "list",
+          "list",
+          "min",
+          "min",
+          "range",
+          "len",
+          "range",
+          "result.append",
+          "len",
+          "len",
+          "all",
+          "apply_color_map",
+          "candidates.append",
+          "len",
+          "len",
+          "zip",
+          "zip",
+          "len",
+          "len",
+          "len",
+          "len",
+          "range",
+          "color_map.get",
+          "len",
+          "row.append",
+          "len",
+          "len",
+          "func",
+          "candidates.append",
+          "len",
+          "len",
+          "len",
+          "len",
+          "len",
+          "len",
+          "len",
+          "len",
+          "all",
+          "all",
+          "len",
+          "len",
+          "len",
+          "len",
+          "list",
+          "zip",
+          "all",
+          "crop",
+          "candidates.append",
+          "apply_color_map",
+          "composed",
+          "candidates.append",
+          "range",
+          "len",
+          "func",
+          "zip",
+          "subsample",
+          "candidates.append",
+          "func",
+          "range",
+          "len",
+          "crop",
+          "zip",
+          "composed",
+          "zip",
+          "len",
+          "len",
+          "range",
+          "candidates.append",
+          "subsample",
+          "zip",
+          "range",
+          "result.append",
+          "row.append"
         ],
         "class_usage": []
       },
@@ -45738,6 +46473,45 @@
         ],
         "class_usage": []
       },
+      "arc_reasoning/improved_solver.py": {
+        "imports": [],
+        "function_calls": [
+          "range",
+          "range",
+          "zip",
+          "list",
+          "list",
+          "len",
+          "range",
+          "len",
+          "range",
+          "result.append",
+          "min",
+          "min",
+          "range",
+          "all",
+          "zip",
+          "zip",
+          "len",
+          "range",
+          "len",
+          "row.append",
+          "len",
+          "len",
+          "range",
+          "color_map.get",
+          "candidates.append",
+          "list",
+          "zip",
+          "len",
+          "len",
+          "len",
+          "transform",
+          "zip",
+          "len"
+        ],
+        "class_usage": []
+      },
       "arc_reasoning/enhanced_transformation.py": {
         "imports": [],
         "function_calls": [
@@ -45907,6 +46681,58 @@
           "TransformationHypothesis",
           "TransformationHypothesis"
         ]
+      },
+      "arc_reasoning/llm_code_generator.py": {
+        "imports": [],
+        "function_calls": [
+          "description_parts.append",
+          "description_parts.append",
+          "description_parts.append",
+          "description_parts.append",
+          "set",
+          "set",
+          "description_parts.append",
+          "description_parts.append",
+          "set",
+          "zip",
+          "description_parts.append",
+          "description_parts.append",
+          "description_parts.append",
+          "any",
+          "len",
+          "len",
+          "len",
+          "len",
+          "len",
+          "len",
+          "description_parts.append",
+          "description_parts.append",
+          "min",
+          "min",
+          "range",
+          "description_parts.append",
+          "description_parts.append",
+          "patterns.append",
+          "patterns.append",
+          "patterns.append",
+          "patterns.append",
+          "description_parts.append",
+          "input_colors.update",
+          "output_colors.update",
+          "len",
+          "len",
+          "len",
+          "len",
+          "range",
+          "sorted",
+          "sorted",
+          "len",
+          "len",
+          "len",
+          "len",
+          "color_changes.add"
+        ],
+        "class_usage": []
       },
       "arc_reasoning/llm_guided_solver.py": {
         "imports": [],
@@ -46125,6 +46951,70 @@
           "LearnedPattern",
           "LearnedPattern",
           "LearnedPattern",
+          "Counter"
+        ]
+      },
+      "arc_reasoning/neuro_symbolic_solver.py": {
+        "imports": [],
+        "function_calls": [
+          "np.zeros",
+          "np.array",
+          "np.zeros",
+          "range",
+          "np.zeros",
+          "len",
+          "range",
+          "enumerate",
+          "np.sum",
+          "np.sum",
+          "np.zeros_like",
+          "range",
+          "len",
+          "np.dot",
+          "float",
+          "similarities.sort",
+          "Counter",
+          "np.zeros",
+          "len",
+          "len",
+          "padded.flatten",
+          "min",
+          "np.abs",
+          "np.abs",
+          "range",
+          "np.sum",
+          "np.sum",
+          "np.sum",
+          "np.sum",
+          "set",
+          "np.sum",
+          "np.sum",
+          "np.sum",
+          "np.sum",
+          "np.sum",
+          "np.sum",
+          "FeatureExtractor.compute_similarity",
+          "len",
+          "dict",
+          "any",
+          "len",
+          "min",
+          "min",
+          "np.diff",
+          "np.diff",
+          "np.abs",
+          "np.abs",
+          "inp_features.copy",
+          "out_features.copy",
+          "similarities.append",
+          "conclusions.append",
+          "np.sum",
+          "np.flipud",
+          "np.fliplr",
+          "stack.pop",
+          "stack.append"
+        ],
+        "class_usage": [
           "Counter"
         ]
       },
@@ -46997,6 +47887,29 @@
           "CrossDomainAnalogy"
         ]
       },
+      "symbolic/v37_system.py": {
+        "imports": [],
+        "function_calls": [
+          "MORKOntology",
+          "MemoryGraph",
+          "MilvusVectorStore",
+          "ThreeWayRRF",
+          "DigitalPheromoneField",
+          "LEAPCoreEvolution",
+          "self.analyze_world",
+          "SwarmOrchestrator",
+          "super"
+        ],
+        "class_usage": [
+          "MORKOntology",
+          "MemoryGraph",
+          "MilvusVectorStore",
+          "ThreeWayRRF",
+          "DigitalPheromoneField",
+          "LEAPCoreEvolution",
+          "SwarmOrchestrator"
+        ]
+      },
       "symbolic/__init__.py": {
         "imports": [],
         "function_calls": [],
@@ -47074,6 +47987,39 @@
           "MORKConcept",
           "MORKConcept",
           "DomainScore"
+        ]
+      },
+      "symbolic/tool_integration.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "self._extract_search_terms",
+          "self._search",
+          "self._get_summary",
+          "requests.get",
+          "response.raise_for_status",
+          "response.json",
+          "str",
+          "ToolResult",
+          "ToolResult",
+          "ToolResult",
+          "ToolResult",
+          "question.lower",
+          "len",
+          "logger.warning",
+          "len",
+          "str",
+          "str",
+          "str",
+          "len",
+          "summary.get",
+          "summary.get"
+        ],
+        "class_usage": [
+          "ToolResult",
+          "ToolResult",
+          "ToolResult",
+          "ToolResult"
         ]
       },
       "symbolic/self_consistency.py": {
@@ -47565,6 +48511,20 @@
           "ValueError"
         ]
       },
+      "mathematical/aletheia_stan_architecture.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "self._load_memory",
+          "time.time",
+          "sorted",
+          "self._try_strategy",
+          "Path"
+        ],
+        "class_usage": [
+          "Path"
+        ]
+      },
       "mathematical/__init__.py": {
         "imports": [],
         "function_calls": [],
@@ -47990,6 +48950,32 @@
       "astro_physics/gravitational_collapse.py": {
         "imports": [],
         "function_calls": [],
+        "class_usage": []
+      },
+      "astro_physics/inference_improved.py": {
+        "imports": [],
+        "function_calls": [
+          "len",
+          "np.zeros",
+          "likelihood_func",
+          "range",
+          "np.mean",
+          "np.cov",
+          "list",
+          "len",
+          "enumerate",
+          "min",
+          "np.zeros",
+          "np.zeros",
+          "range",
+          "likelihood_func",
+          "timeseries_data.keys",
+          "enumerate",
+          "len",
+          "len",
+          "min",
+          "_granger_causality_test"
+        ],
         "class_usage": []
       },
       "astro_physics/kinematic_analysis.py": {
@@ -49039,6 +50025,219 @@
           "TransitSignal"
         ]
       },
+      "astro_physics/spectral_line_analysis.py": {
+        "imports": [],
+        "function_calls": [
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "auto",
+          "get_gaussian_fitter",
+          "fitter.fit",
+          "get_line_identifier",
+          "identifier.identify",
+          "get_column_calculator",
+          "calculator.column_density_co",
+          "math.sqrt",
+          "range",
+          "peaks.sort",
+          "max",
+          "range",
+          "list",
+          "float",
+          "range",
+          "self._compute_model",
+          "self._compute_residuals",
+          "math.sqrt",
+          "LineFitResult",
+          "y.index",
+          "max",
+          "range",
+          "range",
+          "VoigtParameters",
+          "HyperfineStructure",
+          "HyperfineStructure",
+          "HyperfineStructure",
+          "GaussianLineFitter",
+          "self.get_hyperfine_structure",
+          "max",
+          "matches.sort",
+          "sorted",
+          "range",
+          "range",
+          "max",
+          "self.tau_from_ratio",
+          "self.excitation_temperature",
+          "OpticalDepthResult",
+          "math.sqrt",
+          "ColumnDensityResult",
+          "ColumnDensityResult",
+          "GaussianLineFitter",
+          "len",
+          "int",
+          "math.sqrt",
+          "len",
+          "len",
+          "range",
+          "VelocityField",
+          "GaussianLineFitter",
+          "VoigtProfileFitter",
+          "HyperfineStructureFitter",
+          "LineIdentifier",
+          "OpticalDepthCorrector",
+          "ColumnDensityCalculator",
+          "VelocityFieldExtractor",
+          "np.std",
+          "math.exp",
+          "math.sqrt",
+          "params.append",
+          "len",
+          "params.append",
+          "len",
+          "enumerate",
+          "len",
+          "self._estimate_initial_params",
+          "self._compute_model",
+          "self._compute_chi_squared",
+          "enumerate",
+          "len",
+          "self.sigma_to_fwhm",
+          "components.append",
+          "math.sqrt",
+          "math.sqrt",
+          "math.exp",
+          "max",
+          "len",
+          "initial.append",
+          "len",
+          "abs",
+          "math.exp",
+          "sum",
+          "len",
+          "sum",
+          "len",
+          "range",
+          "math.sqrt",
+          "math.sqrt",
+          "len",
+          "peaks.append",
+          "self.gaussian",
+          "range",
+          "list",
+          "new_params.append",
+          "sum",
+          "len",
+          "math.sqrt",
+          "GaussianComponent",
+          "math.sqrt",
+          "math.exp",
+          "matches.append",
+          "len",
+          "len",
+          "self.identify",
+          "abs",
+          "math.exp",
+          "range",
+          "range",
+          "range",
+          "range",
+          "range",
+          "self.estimate_noise",
+          "max",
+          "math.log",
+          "len",
+          "self.fwhm_to_sigma",
+          "self.fwhm_to_sigma",
+          "abs",
+          "list",
+          "self._compute_model",
+          "self._compute_chi_squared",
+          "list",
+          "self._compute_model",
+          "self._compute_chi_squared",
+          "list",
+          "self._compute_model",
+          "self._compute_chi_squared",
+          "math.log",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "LineIdentification",
+          "identifications.append",
+          "math.exp",
+          "math.exp",
+          "math.exp",
+          "math.exp",
+          "float",
+          "float",
+          "float",
+          "valid_pixels.append",
+          "math.log",
+          "min",
+          "math.log",
+          "len",
+          "max",
+          "max",
+          "math.exp",
+          "math.exp",
+          "math.exp",
+          "math.exp",
+          "len",
+          "math.exp",
+          "math.exp",
+          "math.exp"
+        ],
+        "class_usage": [
+          "LineFitResult",
+          "VoigtParameters",
+          "HyperfineStructure",
+          "HyperfineStructure",
+          "HyperfineStructure",
+          "GaussianLineFitter",
+          "OpticalDepthResult",
+          "ColumnDensityResult",
+          "ColumnDensityResult",
+          "GaussianLineFitter",
+          "VelocityField",
+          "GaussianLineFitter",
+          "VoigtProfileFitter",
+          "HyperfineStructureFitter",
+          "LineIdentifier",
+          "OpticalDepthCorrector",
+          "ColumnDensityCalculator",
+          "VelocityFieldExtractor",
+          "GaussianComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "HyperfineComponent",
+          "LineIdentification"
+        ]
+      },
       "astro_physics/__init__.py": {
         "imports": [],
         "function_calls": [],
@@ -49667,6 +50866,31 @@
       "astro_physics/agents.py": {
         "imports": [],
         "function_calls": [],
+        "class_usage": []
+      },
+      "astro_physics/radiative_transfer.py": {
+        "imports": [],
+        "function_calls": [
+          "np.abs",
+          "len",
+          "range",
+          "np.ones",
+          "populations.copy",
+          "range",
+          "np.sum",
+          "np.interp",
+          "range",
+          "np.max",
+          "np.abs",
+          "np.exp",
+          "self.get_collision_rate",
+          "np.exp",
+          "np.exp",
+          "np.sqrt",
+          "np.log",
+          "np.exp",
+          "np.sqrt"
+        ],
         "class_usage": []
       },
       "astro_physics/physics.py": {
@@ -51130,6 +52354,88 @@
           "Cosmology"
         ]
       },
+      "astro_physics/data_visualization.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "DataCube",
+          "CubeVisualizer",
+          "viz.moment_map",
+          "Spectrum",
+          "SpectrumVisualizer",
+          "viz.plot",
+          "np.trapezoid",
+          "int",
+          "zip",
+          "plt.subplots",
+          "zip",
+          "plt.tight_layout",
+          "ax.plot",
+          "ax.set_xlabel",
+          "ax.set_ylabel",
+          "ax.set_title",
+          "plt.tight_layout",
+          "np.median",
+          "np.median",
+          "_trapz_compat",
+          "find_peaks",
+          "plt.figure",
+          "range",
+          "GridSpec",
+          "plt.close",
+          "np.trapz",
+          "ValueError",
+          "np.nansum",
+          "np.nansum",
+          "np.nansum",
+          "np.sqrt",
+          "np.arange",
+          "np.arange",
+          "np.nanmean",
+          "pv_data.append",
+          "np.array",
+          "warnings.warn",
+          "len",
+          "len",
+          "self.moment_map",
+          "ax.imshow",
+          "ax.set_title",
+          "plt.colorbar",
+          "warnings.warn",
+          "plt.subplots",
+          "ax.fill_between",
+          "np.abs",
+          "lines.append",
+          "warnings.warn",
+          "np.nansum",
+          "np.linspace",
+          "np.linspace",
+          "max",
+          "min",
+          "max",
+          "min",
+          "np.ones_like",
+          "np.std",
+          "np.nansum",
+          "np.nansum",
+          "np.sqrt",
+          "ValueError",
+          "np.mean",
+          "np.nansum",
+          "np.nansum",
+          "np.nansum"
+        ],
+        "class_usage": [
+          "DataCube",
+          "CubeVisualizer",
+          "Spectrum",
+          "SpectrumVisualizer",
+          "GridSpec",
+          "ValueError",
+          "ValueError"
+        ]
+      },
       "trading/__init__.py": {
         "imports": [],
         "function_calls": [],
@@ -52059,6 +53365,84 @@
           "ComponentSeparation",
           "SourceDetection",
           "CausalInferenceFusion"
+        ]
+      },
+      "self_teaching/architecture_rewriter.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "self._setup_default_validation_rules",
+          "copy.deepcopy",
+          "current_code.copy",
+          "self._generate_version_id",
+          "RewriteResult",
+          "code.items",
+          "str",
+          "self._apply_add_module",
+          "len",
+          "RewriteResult",
+          "int",
+          "self._apply_remove_module",
+          "self._apply_mutation",
+          "applied.append",
+          "ast.parse",
+          "time.time",
+          "self._apply_modify_connection",
+          "self._validate_mutation",
+          "len",
+          "self._apply_adjust_parameter",
+          "self._apply_restructure_hierarchy",
+          "len",
+          "self._apply_optimize_flow"
+        ],
+        "class_usage": [
+          "RewriteResult",
+          "RewriteResult"
+        ]
+      },
+      "self_teaching/consciousness_simulator.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "field",
+          "MetacognitiveState",
+          "AttentionalState",
+          "self._introspect",
+          "self._monitor_attention",
+          "self._calibrate_confidence",
+          "self._judge_learning",
+          "min",
+          "min",
+          "min",
+          "IntrospectiveReport",
+          "self._generate_thought_content",
+          "self._calculate_importance",
+          "self._calculate_valence",
+          "Thought",
+          "templates.get",
+          "placeholder_map.get",
+          "template.format",
+          "min",
+          "max",
+          "self._update_mental_state",
+          "list",
+          "self._get_mental_state_description",
+          "self._get_current_strategy",
+          "self._generate_associations",
+          "self._select_mental_process",
+          "self._generate_thought",
+          "thoughts.append",
+          "datetime.now",
+          "datetime.now",
+          "datetime.now",
+          "self._get_active_processes"
+        ],
+        "class_usage": [
+          "MetacognitiveState",
+          "AttentionalState",
+          "IntrospectiveReport",
+          "Thought"
         ]
       },
       "self_teaching/stigmergic_memory.py": {
@@ -53413,6 +54797,48 @@
           "LoopConfig"
         ]
       },
+      "self_teaching/astronomy_causal_discovery.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "len",
+          "enumerate",
+          "CausalModel",
+          "self._run_pc_algorithm",
+          "enumerate",
+          "CausalModel",
+          "enumerate",
+          "variables.index",
+          "np.mean",
+          "variables.index",
+          "np.mean",
+          "models.sort",
+          "enumerate",
+          "np.array",
+          "np.array",
+          "np.array",
+          "np.array",
+          "np.array",
+          "self._estimate_gas_dynamics_parameters",
+          "self._discover_for_process",
+          "models.append",
+          "np.corrcoef",
+          "abs",
+          "causes.append",
+          "np.corrcoef",
+          "abs"
+        ],
+        "class_usage": [
+          "CausalModel",
+          "CausalModel"
+        ]
+      },
       "self_teaching/performance_deltas.py": {
         "imports": [],
         "function_calls": [
@@ -53788,6 +55214,85 @@
         "function_calls": [],
         "class_usage": []
       },
+      "astro_physics/next_gen/alert_processing.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "handler.parse_alert",
+          "handler.process",
+          "self._add_to_buffer",
+          "data.get",
+          "Alert",
+          "self._extract_light_curve",
+          "self._cross_match",
+          "self._classify",
+          "self._calculate_priority",
+          "ProcessedAlert",
+          "data.get",
+          "data.get",
+          "points.sort",
+          "xmatch.get",
+          "min",
+          "Alert",
+          "self._extract_light_curve",
+          "ProcessedAlert",
+          "data.get",
+          "warnings.warn",
+          "len",
+          "len",
+          "points.append",
+          "len",
+          "points.append",
+          "filt",
+          "max",
+          "str",
+          "datetime.now",
+          "candidate.get",
+          "candidate.get",
+          "candidate.get",
+          "candidate.get",
+          "LightCurvePoint",
+          "prv.get",
+          "points.append",
+          "max",
+          "min",
+          "str",
+          "datetime.now",
+          "data.get",
+          "data.get",
+          "data.get",
+          "data.get",
+          "data.get",
+          "LightCurvePoint",
+          "np.log10",
+          "filter_func",
+          "data.get",
+          "candidate.get",
+          "LightCurvePoint",
+          "data.get",
+          "data.get",
+          "data.get",
+          "cand.get",
+          "cand.get",
+          "src.get",
+          "self._flux_to_mag",
+          "src.get",
+          "cand.get",
+          "prv.get",
+          "src.get",
+          "prv.get"
+        ],
+        "class_usage": [
+          "Alert",
+          "ProcessedAlert",
+          "Alert",
+          "ProcessedAlert",
+          "LightCurvePoint",
+          "LightCurvePoint",
+          "LightCurvePoint"
+        ]
+      },
       "astro_physics/next_gen/radio_astronomy.py": {
         "imports": [],
         "function_calls": [
@@ -53888,6 +55393,31 @@
       "astro_physics/next_gen/__init__.py": {
         "imports": [],
         "function_calls": [],
+        "class_usage": []
+      },
+      "astro_physics/next_gen/astrochemistry.py": {
+        "imports": [],
+        "function_calls": [
+          "hash",
+          "abundances.copy",
+          "enumerate",
+          "len",
+          "np.zeros",
+          "self.get_rates",
+          "enumerate",
+          "np.arange",
+          "len",
+          "np.zeros",
+          "range",
+          "rxn.rate_coefficient",
+          "len",
+          "self.compute_derivatives",
+          "np.exp",
+          "enumerate",
+          "len",
+          "np.exp",
+          "np.exp"
+        ],
         "class_usage": []
       },
       "astro_physics/next_gen/atmospheric_retrieval.py": {
@@ -58868,6 +60398,70 @@
         ],
         "class_usage": []
       },
+      "core_legacy/v40/hypothesis_engine.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "field",
+          "field",
+          "field",
+          "problem.lower",
+          "re.findall",
+          "enumerate",
+          "context.get",
+          "enumerate",
+          "context.get",
+          "context.get",
+          "re.findall",
+          "scored_hypotheses.sort",
+          "len",
+          "min",
+          "self._update_probability",
+          "len",
+          "len",
+          "hypotheses.append",
+          "hypotheses.extend",
+          "similar.get",
+          "DirectAnswerGenerator",
+          "AnalogicalGenerator",
+          "DeductiveGenerator",
+          "self._score_hypothesis",
+          "scored_hypotheses.append",
+          "self._update_probability",
+          "sum",
+          "len",
+          "sum",
+          "Hypothesis",
+          "hypotheses.append",
+          "float",
+          "hypotheses.append",
+          "generator.generate",
+          "hypotheses.extend",
+          "probs.values",
+          "Hypothesis",
+          "Hypothesis",
+          "Hypothesis",
+          "Hypothesis",
+          "math.log2",
+          "probs.values",
+          "text.strip",
+          "similar.get",
+          "str",
+          "len",
+          "similar.get"
+        ],
+        "class_usage": [
+          "DirectAnswerGenerator",
+          "AnalogicalGenerator",
+          "DeductiveGenerator",
+          "Hypothesis",
+          "Hypothesis",
+          "Hypothesis",
+          "Hypothesis",
+          "Hypothesis"
+        ]
+      },
       "core_legacy/v40/causal_world_model.py": {
         "imports": [],
         "function_calls": [
@@ -59314,6 +60908,251 @@
           "LearningEvent",
           "LearnedPattern",
           "LearnedPattern"
+        ]
+      },
+      "core_legacy/v40/multi_step_decomposition.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "field",
+          "field",
+          "all",
+          "problem.lower",
+          "sub_problems.append",
+          "sub_problems.append",
+          "sub_problems.append",
+          "sub_problems.append",
+          "sub_problems.append",
+          "problem.lower",
+          "sub_problems.append",
+          "sub_problems.append",
+          "sub_problems.append",
+          "sub_problems.append",
+          "sub_problems.append",
+          "problem.lower",
+          "any",
+          "sub_problems.append",
+          "sub_problems.append",
+          "sub_problems.append",
+          "sub_problems.append",
+          "problem.lower",
+          "any",
+          "sub_problems.append",
+          "sub_problems.append",
+          "sub_problems.append",
+          "sub_problems.append",
+          "sub_problems.append",
+          "problem.split",
+          "sum",
+          "bool",
+          "bool",
+          "re.findall",
+          "problem.lower",
+          "re.search",
+          "any",
+          "self.analyze_complexity",
+          "self.select_strategy",
+          "ProblemDecomposition",
+          "self._generate_composition_template",
+          "sub_problems.append",
+          "sub_problems.append",
+          "sub_problems.append",
+          "sub_problems.append",
+          "decomposition.get_solution_map",
+          "len",
+          "set",
+          "decomposition.update_solved_status",
+          "self._compose_solutions",
+          "any",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "any",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "MathProofDecomposition",
+          "CalculationDecomposition",
+          "CausalReasoningDecomposition",
+          "ComparisonDecomposition",
+          "re.search",
+          "re.search",
+          "problem.lower",
+          "len",
+          "len",
+          "len",
+          "len",
+          "min",
+          "pattern.matches",
+          "self._generic_decomposition",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "self._solve_in_order",
+          "self._compose_sequential",
+          "min",
+          "len",
+          "len",
+          "len",
+          "decomposition.get_ready_subproblems",
+          "sp.to_dict",
+          "len",
+          "len",
+          "pattern.decompose",
+          "sum",
+          "len",
+          "self._compose_parallel",
+          "sp.is_ready",
+          "s.split",
+          "len",
+          "len",
+          "self._compose_hierarchical",
+          "self._compose_generic",
+          "solver",
+          "result.is_solved",
+          "solved_ids.add"
+        ],
+        "class_usage": [
+          "ProblemDecomposition",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "MathProofDecomposition",
+          "CalculationDecomposition",
+          "CausalReasoningDecomposition",
+          "ComparisonDecomposition",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem",
+          "SubProblem"
+        ]
+      },
+      "core_legacy/v40/formal_logic.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "field",
+          "z3.Solver",
+          "s.to_dict",
+          "str"
+        ],
+        "class_usage": []
+      },
+      "core_legacy/v40/meta_cognitive.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "max",
+          "max",
+          "self._evaluate_reasoning_trace",
+          "self._combine_factors",
+          "self._check_alignment",
+          "self._combine_factors",
+          "self._domain_adjustment",
+          "self._combine_factors",
+          "self._apply_calibration",
+          "min",
+          "min",
+          "min",
+          "sum",
+          "str",
+          "min",
+          "domain_difficulty.get",
+          "sorted",
+          "ConfidenceEstimator",
+          "StrategySelector",
+          "question.lower",
+          "ProblemCharacteristics",
+          "any",
+          "any",
+          "any",
+          "any",
+          "any",
+          "min",
+          "ResourceBudget",
+          "time.time",
+          "self.analyze_problem",
+          "self.remaining_time",
+          "self.remaining_llm_calls",
+          "str",
+          "len",
+          "self._compute_consistency",
+          "self._combine_factors",
+          "max",
+          "any",
+          "max",
+          "budget.remaining_llm_calls",
+          "weights.items",
+          "len",
+          "len",
+          "question.count",
+          "ResourceBudget",
+          "self.allocate_budget",
+          "len",
+          "len",
+          "answer_str.lower",
+          "int",
+          "budget.remaining_time",
+          "float",
+          "sum",
+          "bool",
+          "question.count",
+          "len",
+          "results.append",
+          "c.isdigit",
+          "len",
+          "int",
+          "weights.get",
+          "weights.get",
+          "question.lower",
+          "logger.warning",
+          "results.append",
+          "str",
+          "StrategyResult",
+          "__import__",
+          "str",
+          "str"
+        ],
+        "class_usage": [
+          "ConfidenceEstimator",
+          "StrategySelector",
+          "ProblemCharacteristics",
+          "ResourceBudget",
+          "ResourceBudget",
+          "StrategyResult"
         ]
       },
       "core_legacy/v40/answer_verification.py": {
@@ -61196,12 +63035,18 @@
         "imports": [],
         "function_calls": [
           "V42CompleteSystem",
+          "V42CompleteSystem",
+          "V42CompleteSystem",
+          "V42CompleteSystem",
           "self._init_components",
           "V42Stats",
           "V41Config",
           "V41CompleteSystem",
           "time.time",
           "self._generate_answer",
+          "V42Config",
+          "V42Config",
+          "V42Config",
           "V42Config",
           "V42Config",
           "SearchConfig",
@@ -61222,9 +63067,15 @@
         ],
         "class_usage": [
           "V42CompleteSystem",
+          "V42CompleteSystem",
+          "V42CompleteSystem",
+          "V42CompleteSystem",
           "V42Stats",
           "V41Config",
           "V41CompleteSystem",
+          "V42Config",
+          "V42Config",
+          "V42Config",
           "V42Config",
           "V42Config",
           "SearchConfig",
@@ -62096,6 +63947,94 @@
         "function_calls": [],
         "class_usage": []
       },
+      "core_legacy/v92/v92_system.py": {
+        "imports": [
+          "astra_core.causal.discovery"
+        ],
+        "function_calls": [
+          "field",
+          "field",
+          "field",
+          "defaultdict",
+          "defaultdict",
+          "print",
+          "print",
+          "print",
+          "print",
+          "print",
+          "print",
+          "self._generate_hypotheses",
+          "print",
+          "ScientificDiscovery",
+          "print",
+          "self._classify_question",
+          "time.time",
+          "V92Config",
+          "HypothesisGenerator",
+          "MathematicalIntuitionModule",
+          "CausalDiscoveryEngine",
+          "ExperimentalDesignEngine",
+          "print",
+          "self._generate_mathematical_conjectures",
+          "print",
+          "print",
+          "self._discover_causal_structure",
+          "print",
+          "print",
+          "self._design_experiments",
+          "print",
+          "print",
+          "self._cross_domain_synthesis",
+          "print",
+          "self._generate_recommendations",
+          "time.time",
+          "PCAlgorithm",
+          "pc.discover",
+          "CausalModel",
+          "causal_models.append",
+          "self._analyze_question",
+          "self._generate_answer",
+          "time.time",
+          "int",
+          "self._calculate_novelty_score",
+          "self._calculate_confidence_score",
+          "self._assess_impact",
+          "domain.lower",
+          "observation.lower",
+          "data.to_numpy",
+          "str",
+          "domain.upper",
+          "time.time",
+          "len",
+          "list",
+          "len",
+          "len",
+          "len",
+          "observation.lower",
+          "observation.lower",
+          "domain.lower",
+          "len",
+          "len",
+          "len",
+          "len",
+          "len",
+          "ExperimentalVariable",
+          "ExperimentalVariable",
+          "len"
+        ],
+        "class_usage": [
+          "ScientificDiscovery",
+          "V92Config",
+          "HypothesisGenerator",
+          "MathematicalIntuitionModule",
+          "CausalDiscoveryEngine",
+          "ExperimentalDesignEngine",
+          "PCAlgorithm",
+          "CausalModel",
+          "ExperimentalVariable",
+          "ExperimentalVariable"
+        ]
+      },
       "core_legacy/v92/mathematical_intuition.py": {
         "imports": [],
         "function_calls": [
@@ -62468,6 +64407,196 @@
         "imports": [],
         "function_calls": [],
         "class_usage": []
+      },
+      "core_legacy/v94/sensorimotor_system.py": {
+        "imports": [],
+        "function_calls": [
+          "logging.info",
+          "field",
+          "isinstance",
+          "self._initialize_environment",
+          "np.array",
+          "feedback.append",
+          "feedback.append",
+          "logging.getLogger",
+          "self._initialize_sensory_processors",
+          "self.process_input",
+          "self.update_state",
+          "ActionResult",
+          "ActionResult",
+          "pymunk.Space",
+          "pymunk.Segment",
+          "time.time",
+          "SensoryInput",
+          "SensoryInput",
+          "VirtualEnvironment",
+          "time.time",
+          "np.array",
+          "time.time"
+        ],
+        "class_usage": [
+          "ActionResult",
+          "ActionResult",
+          "SensoryInput",
+          "SensoryInput",
+          "VirtualEnvironment"
+        ]
+      },
+      "core_legacy/v94/language_grounding.py": {
+        "imports": [],
+        "function_calls": [
+          "field",
+          "field",
+          "field",
+          "logging.getLogger",
+          "self._initialize_feature_extractors",
+          "self._filter_relevant_experiences",
+          "self._build_multimodal_representation",
+          "len",
+          "float",
+          "self._extract_concepts_from_text",
+          "self._infer_grounding_type",
+          "self.ground_concept",
+          "self._extract_concepts_from_experience",
+          "min",
+          "MultimodalRepresentation",
+          "SymbolGrounding",
+          "min",
+          "time.time",
+          "any",
+          "any",
+          "concept.endswith",
+          "np.mean",
+          "min",
+          "np.array",
+          "np.array",
+          "np.array",
+          "np.array",
+          "concepts.extend",
+          "isinstance",
+          "list",
+          "self._compute_relevance",
+          "logging.getLogger",
+          "ConceptGroundingEngine",
+          "MultimodalRepresentation",
+          "features.append",
+          "features.append",
+          "features.append",
+          "features.append",
+          "features.append",
+          "features.append",
+          "features.append",
+          "np.concatenate",
+          "np.array",
+          "self._update_grounding",
+          "self._create_grounding",
+          "np.dot",
+          "GroundingExperience",
+          "self._should_ground_concept",
+          "len",
+          "len",
+          "self._get_grounding_type_distribution",
+          "self._compute_relevance",
+          "concept.lower",
+          "concept.lower",
+          "concept.lower",
+          "self._extract_context_features",
+          "np.mean",
+          "np.mean",
+          "np.mean",
+          "GroundingExperience",
+          "GroundingExperience",
+          "len",
+          "concept.endswith",
+          "len",
+          "np.array",
+          "len",
+          "np.array",
+          "features.extend",
+          "len",
+          "float",
+          "float",
+          "float",
+          "set",
+          "GroundingExperience",
+          "time.time",
+          "len",
+          "len",
+          "np.mean",
+          "relevant.append",
+          "self._extract_motor_features_from_action",
+          "all_context.append",
+          "self._infer_word_class",
+          "self._compute_initial_confidence",
+          "str",
+          "self._compute_relevance",
+          "len",
+          "float",
+          "float",
+          "float",
+          "str",
+          "concepts.append",
+          "isinstance",
+          "text.lower",
+          "min",
+          "max",
+          "sensory_patterns.get",
+          "sensory_patterns.get",
+          "sensory_patterns.get",
+          "sensory_patterns.get",
+          "phrase.lower",
+          "representations.append",
+          "len",
+          "self._compute_relevance",
+          "self._update_existing_grounding",
+          "self.ground_concept",
+          "str",
+          "str",
+          "self._extract_visual_features",
+          "all_motor.append",
+          "self._infer_grounding_type",
+          "self._compute_relevance",
+          "self._infer_grounding_type",
+          "self._compute_relevance",
+          "str",
+          "concept.endswith",
+          "concept.endswith",
+          "np.mean",
+          "np.std",
+          "np.min",
+          "np.max",
+          "np.mean",
+          "np.std",
+          "np.max",
+          "hash",
+          "str",
+          "str",
+          "str",
+          "str",
+          "concepts.extend",
+          "c.lower",
+          "len",
+          "len",
+          "self._infer_grounding_type",
+          "self._compute_relevance",
+          "set",
+          "len",
+          "all_visual.append",
+          "np.abs",
+          "np.abs",
+          "str",
+          "value.split"
+        ],
+        "class_usage": [
+          "MultimodalRepresentation",
+          "SymbolGrounding",
+          "ConceptGroundingEngine",
+          "MultimodalRepresentation",
+          "GroundingExperience",
+          "GroundingExperience",
+          "GroundingExperience",
+          "GroundingExperience"
+        ]
       },
       "core_legacy/v94/astro_embodied_integration.py": {
         "imports": [],
@@ -63026,6 +65155,23 @@
         "imports": [],
         "function_calls": [],
         "class_usage": []
+      },
+      "core_legacy/v93/self_modifying_architecture.py": {
+        "imports": [],
+        "function_calls": [
+          "self._initialize_architecture",
+          "performance_data.items",
+          "ArchitectureModification",
+          "np.mean",
+          "len",
+          "list",
+          "list",
+          "self._generate_modification_candidate",
+          "performance_data.values"
+        ],
+        "class_usage": [
+          "ArchitectureModification"
+        ]
       },
       "core_legacy/v93/v93_system.py": {
         "imports": [],
@@ -66925,6 +69071,66 @@
         "function_calls": [],
         "class_usage": []
       },
+      "core/v105/scientific_discovery.py": {
+        "imports": [],
+        "function_calls": [
+          "logging.getLogger",
+          "field",
+          "field",
+          "knowledge_graph.get",
+          "range",
+          "logger.info",
+          "hypothesis.get",
+          "statement.split",
+          "result.get",
+          "hypothesis.get",
+          "hypothesis.get",
+          "hypothesis.get",
+          "statement.split",
+          "Experiment",
+          "logger.info",
+          "self.get_experiment",
+          "data_source.query",
+          "self.analyze_outcomes",
+          "logger.info",
+          "ExperimentResult",
+          "list",
+          "self._fill_hypothesis_template",
+          "hypotheses.append",
+          "time.time",
+          "len",
+          "len",
+          "abs",
+          "ExperimentConfig",
+          "ValueError",
+          "test.run",
+          "results.append",
+          "d.to_dict",
+          "domain.split",
+          "content.replace",
+          "abs",
+          "abs",
+          "int",
+          "int",
+          "len",
+          "abs",
+          "h.get",
+          "time.time",
+          "max",
+          "len",
+          "len",
+          "time.time",
+          "time.time",
+          "abs",
+          "len"
+        ],
+        "class_usage": [
+          "Experiment",
+          "ExperimentResult",
+          "ExperimentConfig",
+          "ValueError"
+        ]
+      },
       "domains/stellar_structure/__init__.py": {
         "imports": [],
         "function_calls": [
@@ -69602,8 +71808,8 @@
     }
   },
   "summary": {
-    "total_errors": 818,
-    "total_warnings": 226,
+    "total_errors": 619,
+    "total_warnings": 262,
     "status": "FAIL"
   }
 }

@@ -351,3 +351,21 @@ ANSWER:"""
         for i, pdf_file in enumerate(pdf_files):
             # Check if already in library
             existing_papers = [p for p in self.library.papers.values()
+                             if p.filepath == str(pdf_file)]
+
+            if existing_papers:
+                continue
+
+            # Process PDF
+            try:
+                paper = self.process_pdf(pdf_file)
+                if paper:
+                    self.library.add_paper(paper)
+                    added_count += 1
+
+                    if added_count % num_at_time == 0:
+                        logger.info(f"Added {added_count} papers so far...")
+            except Exception as e:
+                logger.error(f"Error processing {pdf_file}: {e}")
+
+        return added_count

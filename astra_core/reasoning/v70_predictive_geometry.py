@@ -356,3 +356,12 @@ class GraphEncoder(DataEncoder):
             n_edges,
             n_edges / (n_nodes * (n_nodes - 1) / 2 + 1e-10),  # Density
             np.mean(np.sum(adj, axis=1)),  # Avg degree
+            np.std(np.sum(adj, axis=1)),  # Std degree
+            np.sum(adj.diagonal()),  # Self-loops
+        ]
+
+        # Pad to dimension
+        encoding = np.zeros(self.dimension)
+        encoding[:len(graph_features)] = graph_features[:self.dimension]
+
+        return encoding

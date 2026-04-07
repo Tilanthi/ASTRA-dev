@@ -175,3 +175,70 @@ class GasDynamicsCausalDiscovery:
         self,
         data: np.ndarray,
         variables: List[str]
+    ) -> Dict[str, float]:
+        """Estimate parameters for gas dynamics model."""
+        # Simplified parameter estimation
+        params = {}
+
+        if 'density' in variables:
+            idx = variables.index('density')
+            params['mean_density'] = np.mean(data[:, idx])
+
+        if 'velocity' in variables:
+            idx = variables.index('velocity')
+            params['mean_velocity'] = np.mean(data[:, idx])
+
+        return params
+
+    def discover_causal_structure(self, data: np.ndarray,
+                                   variables: List[str]) -> CausalModel:
+        """
+        Discover causal structure from observational data.
+
+        Args:
+            data: Observational data (n_samples x n_variables)
+            variables: List of variable names
+
+        Returns:
+            Discovered causal model
+        """
+        # Try all domain-specific models
+        models = []
+
+        for process in AstrophysicsProcess:
+            try:
+                model = self._discover_for_process(data, variables, process)
+                if model:
+                    models.append(model)
+            except Exception as e:
+                continue
+
+        # Select best model by confidence
+        if models:
+            models.sort(key=lambda m: m.confidence, reverse=True)
+            return models[0]
+
+        # Fallback: run PC algorithm
+        return self._run_pc_algorithm(data, variables)
+
+    def _run_pc_algorithm(self, data: np.ndarray,
+                          variables: List[str]) -> CausalModel:
+        """Run PC algorithm as fallback."""
+        # Simplified implementation
+        causal_structure = {v: [] for v in variables}
+
+        # Compute correlations
+        for i, var1 in enumerate(variables):
+            for j, var2 in enumerate(variables):
+                if i != j:
+                    corr = np.corrcoef(data[:, i], data[:, j])[0, 1]
+                    if abs(corr) > 0.5:
+                        causal_structure[var1].append(var2)
+
+        return CausalModel(
+            process=AstrophysicsProcess.UNKNOWN,
+            variables=variables,
+            causal_structure=causal_structure,
+            parameters={},
+            confidence=0.5
+        )

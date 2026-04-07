@@ -541,3 +541,59 @@ class LanguageGroundingEngine:
         self.grounding_cache = {}
 
     def build_concept_representation(self, concept: str, sensory_patterns: Dict) -> MultimodalRepresentation:
+        """
+        Build a multimodal representation for a concept.
+
+        Args:
+            concept: Concept name
+            sensory_patterns: Sensory pattern data
+
+        Returns:
+            Multimodal representation
+        """
+        # Create representation from sensory patterns
+        representation = MultimodalRepresentation(
+            concept=concept,
+            visual_features=sensory_patterns.get('visual', []),
+            auditory_features=sensory_patterns.get('auditory', []),
+            tactile_features=sensory_patterns.get('tactile', []),
+            semantic_features=sensory_patterns.get('semantic', [])
+        )
+
+        # Cache the representation
+        self.grounding_cache[concept] = representation
+
+        return representation
+
+    def ground_phrase(self, phrase: str) -> Dict[str, Any]:
+        """
+        Ground a phrase to sensorimotor experience.
+
+        Args:
+            phrase: Phrase to ground
+
+        Returns:
+            Grounding information
+        """
+        # Check cache
+        if phrase in self.grounding_cache:
+            return {
+                'phrase': phrase,
+                'grounded': True,
+                'representation': self.grounding_cache[phrase]
+            }
+
+        # Try to extract concepts from phrase
+        words = phrase.lower().split()
+        concepts = [w for w in words if len(w) > 3]
+
+        representations = []
+        for concept in concepts:
+            if concept in self.grounding_cache:
+                representations.append(self.grounding_cache[concept])
+
+        return {
+            'phrase': phrase,
+            'grounded': len(representations) > 0,
+            'representations': representations
+        }

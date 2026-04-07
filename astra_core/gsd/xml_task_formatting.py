@@ -267,3 +267,9 @@ class XMLTask:
         # Dependencies
         deps_elem = root.find("dependencies")
         if deps_elem is not None and deps_elem.text:
+            task.dependencies = [
+                d.strip() for d in deps_elem.text.split(",")
+                if d.strip()
+            ]
+
+        return task

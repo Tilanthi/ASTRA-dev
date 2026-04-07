@@ -130,3 +130,18 @@ def main():
         return
 
     if args.add_dir:
+        # Add papers from directory
+        count = library.add_papers_from_directory(
+            args.add_dir,
+            num_at_time=args.num_at_time
+        )
+        print(f"Added {count} papers from {args.add_dir}")
+        return
+
+    # Initialize library
+    library.initialize()
+
+    # Print library stats
+    stats = library.get_stats()
+    print(f"Library initialized with {stats['num_papers']} papers")
+    print(f"Library path: {args.library_path}")

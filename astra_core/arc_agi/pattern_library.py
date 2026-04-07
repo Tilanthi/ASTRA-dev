@@ -499,3 +499,19 @@ def generate_test_pattern(pattern_type: str = 'sine',
 
     Returns:
         Test pattern data
+    """
+    x = np.linspace(0, 4 * np.pi, n_points)
+
+    if pattern_type == 'sine':
+        y = np.sin(x)
+    elif pattern_type == 'square':
+        y = np.sign(np.sin(x))
+    elif pattern_type == 'sawtooth':
+        y = 2 * (x / (2 * np.pi) - np.floor(0.5 + x / (2 * np.pi)))
+    else:
+        y = np.sin(x)
+
+    # Add noise
+    y += noise_level * np.random.randn(n_points)
+
+    return y

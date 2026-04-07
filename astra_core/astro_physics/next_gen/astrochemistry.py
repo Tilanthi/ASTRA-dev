@@ -237,3 +237,24 @@ class ChemicalNetwork(ABC):
         Args:
             t_final: Final time (s)
             dt_output: Output time step (s)
+            method: Integration method
+
+        Returns:
+            Tuple of (time_points, concentration_arrays)
+        """
+        if dt_output is None:
+            dt_output = t_final / 100
+
+        t_eval = np.arange(0, t_final, dt_output)
+
+        # Simple Euler integration for now
+        n_species = len(self.species)
+        concentrations = np.zeros((len(t_eval), n_species))
+        concentrations[0] = self.initial_abundances
+
+        for i in range(1, len(t_eval)):
+            dt = t_eval[i] - t_eval[i-1]
+            dndt = self.compute_derivatives(concentrations[i-1])
+            concentrations[i] = concentrations[i-1] + dndt * dt
+
+        return t_eval, concentrations

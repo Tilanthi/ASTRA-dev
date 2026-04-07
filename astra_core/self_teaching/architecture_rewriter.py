@@ -147,3 +147,52 @@ class ArchitectureRewriter:
                 validation_passed=False,
                 new_version_id="",
                 error_message=f"Too many mutations: {len(mutations)} > {self.max_mutations_per_cycle}"
+            )
+
+        # Apply mutations sequentially
+        applied = []
+        current_code = current_code.copy()
+
+        for mutation in mutations:
+            try:
+                new_code = self._apply_mutation(current_code, mutation)
+
+                if validate:
+                    is_valid = self._validate_mutation(new_code)
+                    if not is_valid:
+                        continue
+
+                current_code = new_code
+                applied.append(mutation)
+
+            except Exception as e:
+                continue
+
+        # Generate new version ID
+        new_version_id = self._generate_version_id()
+
+        return RewriteResult(
+            success=len(applied) > 0,
+            applied_mutations=applied,
+            validation_passed=True,
+            new_version_id=new_version_id,
+            error_message=None
+        )
+
+    def _apply_mutation(self, code: Dict[str, str], mutation: Mutation) -> Dict[str, str]:
+        """Apply a single mutation to the codebase."""
+        # Simplified implementation
+        return code
+
+    def _validate_mutation(self, code: Dict[str, str]) -> bool:
+        """Validate that the mutated code is syntactically correct."""
+        for filepath, content in code.items():
+            try:
+                ast.parse(content)
+            except SyntaxError:
+                return False
+        return True
+
+    def _generate_version_id(self) -> str:
+        """Generate a unique version ID."""
+        return str(int(time.time()))

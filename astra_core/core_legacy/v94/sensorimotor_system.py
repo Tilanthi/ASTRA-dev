@@ -230,3 +230,29 @@ class SensorimotorInterface:
     def execute(self, action: WorldAction) -> ActionResult:
         """
         Execute a complete action in the world.
+
+        Args:
+            action: Action to execute
+
+        Returns:
+            Result of the action execution
+        """
+        # Process sensory input for the action
+        sensory_state = self.process_input(action.sensory_data)
+
+        # Execute the motor command
+        motor_output = self.motor_system.execute_command(action.motor_command)
+
+        # Update internal state
+        self.update_state(sensory_state, motor_output)
+
+        return ActionResult(
+            success=True,
+            sensory_state=sensory_state,
+            motor_output=motor_output
+        )
+
+    def update_state(self, sensory_state: SensoryState, motor_output: MotorOutput):
+        """Update internal state based on sensory and motor information."""
+        self.current_sensory_state = sensory_state
+        self.current_motor_output = motor_output

@@ -148,3 +148,29 @@ class RedundantExecutor:
             # Submit all copies
             futures = [
                 executor.submit(func, *args, **kwargs)
+                for _ in range(self.num_copies)
+            ]
+
+            # Wait for first success
+            for future in as_completed(futures):
+                try:
+                    result = future.result(timeout=self.timeout_per_copy)
+                    all_results.append(result)
+                    # Return first successful result
+                    return ExecutionResult(
+                        success=True,
+                        result=result,
+                        execution_time=time.time() - start_time,
+                        num_copies_used=len(all_results)
+                    )
+                except Exception as e:
+                    all_errors.append(e)
+
+        # If all failed, return last error
+        return ExecutionResult(
+            success=False,
+            result=None,
+            execution_time=time.time() - start_time,
+            num_copies_used=len(all_errors),
+            error=all_errors[-1] if all_errors else "Unknown error"
+        )
