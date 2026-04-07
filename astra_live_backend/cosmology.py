@@ -57,7 +57,12 @@ def comoving_distance(z: float, cosmo: dict = None, n_steps: int = 1000) -> floa
 
     zs = np.linspace(0, z, n_steps)
     integrand = 1.0 / e_z(zs, cosmo)
-    dc = (c / H0) * np.trapz(integrand, zs)
+    # Use trapezoid for NumPy 2.0+ compatibility (trapz was removed)
+    try:
+        dc = (c / H0) * np.trapezoid(integrand, zs)
+    except AttributeError:
+        # Fallback for older NumPy versions
+        dc = (c / H0) * np.trapz(integrand, zs)
     return dc
 
 

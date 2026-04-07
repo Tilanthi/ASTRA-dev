@@ -28,6 +28,15 @@ try:
     import matplotlib.pyplot as plt
     import matplotlib.colors as mcolors
     from matplotlib.patches import Circle, Rectangle
+
+# NumPy 2.0 compatibility: trapz was renamed to trapezoid
+def _trapz_compat(y, x=None, dx=1.0, axis=-1):
+    """Compatibility wrapper for np.trapz (removed in NumPy 2.0)."""
+    try:
+        return np.trapezoid(y, x=x, dx=dx, axis=axis)
+    except AttributeError:
+        # Fallback for NumPy < 2.0
+        return np.trapz(y, x=x, dx=dx, axis=axis)
     from matplotlib.gridspec import GridSpec
     MATPLOTLIB_AVAILABLE = True
 except ImportError:
@@ -338,7 +347,7 @@ class SpectrumVisualizer:
 
         # Integrate line region
         line_mask = np.abs(self.spectrum.wavelength - line_center) < continuum_width/2
-        integrated_flux = np.trapz(self.spectrum.flux[line_mask],
+        integrated_flux = _trapz_compat(self.spectrum.flux[line_mask],
                                     self.spectrum.wavelength[line_mask])
 
         # Equivalent width
