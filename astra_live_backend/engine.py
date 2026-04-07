@@ -204,7 +204,7 @@ class DiscoveryEngine:
             self._theory_discovery_enabled = False
 
         # Theory discovery runs every N cycles (default: 10)
-        self._theory_discovery_interval = 10
+        self._theory_discovery_interval = 5  # Was 10; run more frequently
         self._last_theory_discovery_cycle = 0
 
         # Phase 15: Cognitive Architecture (Scientific AGI capabilities)
@@ -212,7 +212,7 @@ class DiscoveryEngine:
         if COGNITIVE_ARCHITECTURE_AVAILABLE:
             self.cognitive_core = CognitiveCore()
             self._cognitive_discovery_enabled = True
-            self._cognitive_discovery_interval = 15  # Run every 15 cycles
+            self._cognitive_discovery_interval = 7  # Was 15; run more frequently
             self._last_cognitive_discovery_cycle = 0
             self._state_save_interval = 50  # Save state every 50 cycles
             self._last_state_save_cycle = 0
@@ -251,7 +251,7 @@ class DiscoveryEngine:
                 self.expertise_tracker.register_agent(agent)
 
             self._multi_agent_enabled = True
-            self._debate_interval = 20  # Run debates every 20 cycles
+            self._debate_interval = 10  # Was 20; run more frequently
             self._last_debate_cycle = 0
 
             self._log("INIT", "V9_MULTI_AGENT",
@@ -279,7 +279,7 @@ class DiscoveryEngine:
             )
 
             self._autonomous_agenda_enabled = True
-            self._agenda_generation_interval = 25  # Generate agenda every 25 cycles
+            self._agenda_generation_interval = 12  # Was 25; run more frequently
             self._last_agenda_generation_cycle = 0
 
             self._log("INIT", "V9_AUTONOMOUS_AGENDA",
@@ -293,6 +293,8 @@ class DiscoveryEngine:
         # Exploration schedule — Phase 10.6: force domain round-robin
         self._forced_domain: Optional[str] = None
         self._domain_rotation_index = 0
+        # Pattern blacklist: set of "method|source" strings to avoid (cleared each cycle that gets results)
+        self._blacklisted_patterns: set = set()
 
         # Historical results for pattern anomaly detection
         self._result_history: dict = {}  # hypothesis_id -> list of result dicts
@@ -1042,6 +1044,17 @@ class DiscoveryEngine:
             # Use strategist to select methods
             methods = self.strategist.select_investigation_methods(h, self.cycle_count)
             category = self.strategist.classify_hypothesis(h)
+
+            # Filter out blacklisted method|source patterns
+            if self._blacklisted_patterns and methods:
+                data_source = getattr(h, 'data_source', h.name.split()[0].lower() if h.name else '')
+                filtered = [m for m in methods
+                            if f"{m}|{data_source}" not in self._blacklisted_patterns]
+                if filtered:
+                    methods = filtered
+                    self._log("INVESTIGATE", "ANTI_LOOP",
+                              f"Filtered methods for {h.id}: blacklisted patterns avoided", h.id)
+
             params = self.strategist.select_test_parameters(h, methods[0] if methods else "")
 
             self._log("INVESTIGATE", "INVESTIGATE",
@@ -2981,8 +2994,36 @@ class DiscoveryEngine:
                     self._forced_domain = self.degradation_detector.get_least_explored_domain(
                         self.discovery_memory, self._canonical_domains
                     )
+                    # Boost exploration bonus to try novel methods
+                    self.strategist._exploration_bonus = min(
+                        self.strategist._exploration_bonus + 0.2, 1.0
+                    )
+                    # Force V9.0 discovery modes to fire next cycle
+                    self._last_theory_discovery_cycle = 0
+                    self._last_cognitive_discovery_cycle = 0
+                    self._last_debate_cycle = 0
+                    self._last_agenda_generation_cycle = 0
+                    # Reset flag so it can fire again if still degraded after switch
+                    self.degradation_detector.strategy_switch_recommended = False
                     self._log("DEGRADATION", "ENGINE",
-                              "Switching exploration strategy due to low significant results")
+                              "Switching strategy: boosted exploration bonus, "
+                              "forcing all V9.0 discovery modes next cycle")
+
+                if "BREAK_REPETITION" in deg_result["actions"]:
+                    # Blacklist the stuck patterns so strategist avoids them
+                    stuck = deg_result["metrics"].get("repetitive_patterns", {})
+                    self._blacklisted_patterns = set(stuck.keys())
+                    self._log("DEGRADATION", "ENGINE",
+                              f"Blacklisted {len(stuck)} repetitive patterns: "
+                              f"{list(stuck.keys())[:5]}")
+
+            # Clear blacklist if degradation has recovered
+            if not deg_result["degraded"] and self._blacklisted_patterns:
+                self._log("DEGRADATION", "ENGINE",
+                          "Degradation recovered — clearing pattern blacklist")
+                self._blacklisted_patterns.clear()
+                # Reset exploration bonus to default
+                self.strategist._exploration_bonus = 0.3
 
             # Theory Engine tick — runs every 5 cycles (async, non-blocking)
             self.theory_engine.tick(self.store, self.cycle_count)
