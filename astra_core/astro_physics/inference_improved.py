@@ -1,4 +1,5 @@
 
+"""
 Uncertainty Quantification Module
 ==================================
 
@@ -9,11 +10,6 @@ Capabilities:
 - Hierarchical Bayesian modeling
 - Partial pooling (shrinkage estimators)
 - Uncertainty decomposition (aleatoric vs epistemic)
-
-
-
-"""
-Improved inference methods for astrophysics reasoning
 """
 
 import numpy as np

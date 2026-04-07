@@ -281,3 +281,26 @@ class AtomicCommitWorkflow:
             files_changed: List of files that were changed
             outcomes: List of outcomes achieved
             commit_message: Custom commit message
+
+        Returns:
+            TaskCompletion with results
+        """
+        if files_changed is None:
+            files_changed = []
+        if outcomes is None:
+            outcomes = []
+
+        # Create commit message
+        if commit_message is None:
+            commit_message = f"Complete task: {task.title}"
+
+        # Save task completion
+        completion = TaskCompletion(
+            task_id=task.id,
+            files_changed=files_changed,
+            outcomes=outcomes,
+            commit_message=commit_message,
+            completed_at=time.time()
+        )
+
+        return completion

@@ -28,6 +28,13 @@ try:
     import matplotlib.pyplot as plt
     import matplotlib.colors as mcolors
     from matplotlib.patches import Circle, Rectangle
+    MATPLOTLIB_AVAILABLE = True
+except ImportError:
+    MATPLOTLIB_AVAILABLE = False
+    plt = None
+    mcolors = None
+    Circle = None
+    Rectangle = None
 
 # NumPy 2.0 compatibility: trapz was renamed to trapezoid
 def _trapz_compat(y, x=None, dx=1.0, axis=-1):

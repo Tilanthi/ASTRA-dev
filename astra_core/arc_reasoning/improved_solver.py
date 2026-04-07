@@ -112,3 +112,10 @@ def detect_geometric_transform(train_inputs, train_outputs) -> Optional[str]:
         ("reflect_h", reflect_h),
         ("reflect_v", reflect_v),
         ("transpose", transpose),
+    ]
+
+    for name, transform in transforms:
+        if all(transform(inp) == out for inp, out in zip(train_inputs, train_outputs)):
+            candidates.append(name)
+
+    return candidates[0] if candidates else None

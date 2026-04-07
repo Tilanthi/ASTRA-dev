@@ -376,3 +376,51 @@ class ExperimentDesigner:
         return experiment
 
     def run_experiment(self,
+                       experiment_id: str,
+                       data_source: DataSource = None,
+                       config: ExperimentConfig = None) -> ExperimentResult:
+        """
+        Execute a designed experiment and collect results.
+
+        Args:
+            experiment_id: ID of experiment to run
+            data_source: Source of experimental data
+            config: Experiment configuration
+
+        Returns:
+            ExperimentResult with outcomes and analysis
+        """
+        if config is None:
+            config = ExperimentConfig()
+
+        # Get experiment design
+        experiment = self.get_experiment(experiment_id)
+        if not experiment:
+            raise ValueError(f"Experiment {experiment_id} not found")
+
+        # Collect data
+        if data_source is None:
+            data_source = self.default_data_source
+
+        data = data_source.query(experiment.data_query)
+
+        # Run statistical tests
+        results = []
+        for test in experiment.statistical_tests:
+            test_result = test.run(data)
+            results.append(test_result)
+
+        # Analyze outcomes
+        outcome = self.analyze_outcomes(results, experiment.expected_outcomes)
+
+        logger.info(f"Completed experiment {experiment_id}")
+        return ExperimentResult(
+            experiment_id=experiment_id,
+            results=results,
+            outcome=outcome,
+            metadata={
+                'data_size': len(data),
+                'tests_run': len(results),
+                'timestamp': time.time()
+            }
+        )

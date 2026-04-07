@@ -196,3 +196,7 @@ def generate_all_candidates(
                         candidates.append({
                             'prediction': result,
                             'source': 'pattern_extend_horizontal',
+                            'confidence': 0.7
+                        })
+
+        return candidates

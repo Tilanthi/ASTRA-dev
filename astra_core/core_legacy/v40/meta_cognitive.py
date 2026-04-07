@@ -542,3 +542,27 @@ class MetaCognitiveController:
         results: List[StrategyResult] = []
 
         for strategy in strategies:
+            # Allocate sub-budget for this strategy
+            sub_budget = budget / len(strategies)
+
+            # Execute strategy
+            try:
+                result = self.strategy_executor.execute(
+                    strategy, question, category, sub_budget
+                )
+                results.append(result)
+            except Exception as e:
+                # Log error and continue with other strategies
+                logger.warning(f"Strategy {strategy.name} failed: {e}")
+                results.append(StrategyResult(
+                    strategy=strategy.name,
+                    success=False,
+                    confidence=0.0,
+                    answer=None,
+                    error=str(e)
+                ))
+
+        # 5. Aggregate results
+        final_result = self.result_aggregator.aggregate(results)
+
+        return final_result

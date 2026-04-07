@@ -294,3 +294,48 @@ class HypothesisEngine:
 
     def generate_hypotheses(self, problem: str,
                            context: Dict = None) -> List[Hypothesis]:
+        """Generate multiple hypotheses for a given problem."""
+        context = context or {}
+        hypotheses = []
+
+        # Use each generator to create hypotheses
+        for generator in self.generators:
+            try:
+                gen_hypotheses = generator.generate(problem, context)
+                hypotheses.extend(gen_hypotheses)
+            except Exception as e:
+                # Log error and continue with other generators
+                continue
+
+        # Score and rank hypotheses
+        scored_hypotheses = []
+        for hyp in hypotheses:
+            score = self._score_hypothesis(hyp, problem, context)
+            hyp.confidence = score
+            scored_hypotheses.append(hyp)
+
+        # Sort by confidence
+        scored_hypotheses.sort(key=lambda h: h.confidence, reverse=True)
+
+        self.hypotheses_generated += len(scored_hypotheses)
+
+        return scored_hypotheses
+
+    def _score_hypothesis(self, hypothesis: Hypothesis,
+                          problem: str, context: Dict) -> float:
+        """Score a hypothesis based on various criteria."""
+        score = 0.5  # Base score
+
+        # Boost for explanatory power
+        if hypothesis.explanation:
+            score += 0.1
+
+        # Boost for testability
+        if hypothesis.test_prediction:
+            score += 0.1
+
+        # Boost for novelty
+        if hypothesis.novelty_score:
+            score += hypothesis.novelty_score * 0.2
+
+        return min(1.0, score)

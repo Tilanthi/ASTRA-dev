@@ -1,4 +1,5 @@
 
+"""
 Pattern Discovery Module
 ========================
 
@@ -13,8 +14,6 @@ Key Functions:
 - detect_patterns_wavelet: Automatic pattern detection
 - validate_pattern: Statistical significance testing
 
-
-"""
 Spectral Line Analysis Module for STAN V43
 
 Complete spectral line fitting and analysis for radio/submillimeter astronomy.
