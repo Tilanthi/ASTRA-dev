@@ -49,6 +49,13 @@ from .stigmergy_bridge import StigmergyBridge, get_stigmergy_bridge
 from .swarm_agents import SwarmCoordinator
 from .theory_engine import get_theory_engine
 
+# Automatic discovery verification
+try:
+    from .verification_auto import DiscoveryVerifier, VerificationCriteria, VerifiedDiscoveryManager
+    VERIFICATION_AVAILABLE = True
+except ImportError:
+    VERIFICATION_AVAILABLE = False
+
 # Advanced theory discovery modules
 try:
     from .conceptual_blending import ConceptualBlender
@@ -834,6 +841,65 @@ class DiscoveryEngine:
 
     def _count_domains(self) -> int:
         return len(set(h.domain for h in self.store.active()))
+
+    def _run_automatic_verification(self) -> int:
+        """
+        Run automatic discovery verification workflow.
+
+        Evaluates high-strength discoveries against verification criteria
+        and promotes those that pass to "Verified" status.
+
+        Returns:
+            Number of newly verified discoveries
+        """
+        try:
+            # Import the verification module
+            from .verification_auto import DiscoveryVerifier, VerificationCriteria
+
+            # Create verifier with slightly relaxed criteria for automatic verification
+            # (since we want to capture more discoveries for the dashboard)
+            criteria = VerificationCriteria(
+                min_strength=0.80,        # Lower threshold for auto-verification
+                min_effect_size=0.3,     # Lower effect size threshold
+                min_sample_size=50,        # Lower sample size requirement
+                min_reproducibility=1,     # Single occurrence is acceptable
+                max_p_value=0.10,          # More relaxed significance threshold
+                require_physical_validation=True,
+                require_novelty=True
+            )
+
+            verifier = DiscoveryVerifier(self.memory.db_path)
+
+            # Run verification
+            results = verifier.verify_pending_discoveries(limit=10)
+
+            # Count passed verifications
+            verified_count = sum(1 for r in results if r.status == 'passed')
+
+            # Log results
+            if verified_count > 0:
+                for result in results:
+                    if result.status == 'passed':
+                        self._log("UPDATE", "VERIFICATION",
+                                  f"Verified {result.discovery_id} (score: {result.score:.3f}) — "
+                                  f"Hypothesis: {result.hypothesis_id}")
+                    elif result.status == 'failed':
+                        self._log("UPDATE", "VERIFICATION",
+                                  f"Verification failed for {result.discovery_id} — "
+                                  f"Failed criteria: {', '.join(result.failures)}")
+            elif results:
+                self._log("UPDATE", "VERIFICATION",
+                                  f"Ran verification on {len(results)} discoveries — "
+                                  f"None met verification criteria this cycle")
+
+            return verified_count
+
+        except ImportError:
+            # Verification module not available, skip silently
+            return 0
+        except Exception as e:
+            self._log("UPDATE", "VERIFICATION", f"Verification error: {e}")
+            return 0
 
     def compute_state_vector(self) -> dict:
         """
@@ -2729,6 +2795,14 @@ class DiscoveryEngine:
 
         # Cross-domain link discovery — based on shared discovery structure, not random
         self._update_cross_domain_links(active)
+
+        # Automatic Discovery Verification: verify high-strength discoveries
+        # Run every cycle to automatically promote discoveries to "Verified" status
+        if self.cycle_count % 5 == 0:  # Run every 5 cycles to avoid excessive checks
+            verified_count = self._run_automatic_verification()
+            if verified_count > 0:
+                self._log("UPDATE", "VERIFICATION",
+                          f"Verified {verified_count} new discovery(ies) — promoted to Verified status")
 
         # Discovery-guided hypothesis generation (replaces random hardcoded list)
         self._generate_discovery_guided_hypotheses()

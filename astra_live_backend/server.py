@@ -235,6 +235,99 @@ def api_safe_mode():
     return result
 
 
+# ── Discovery Verification Endpoints ─────────────────────────────────────
+
+@app.get("/api/verification/status")
+def api_verification_status():
+    """Get verification system status and statistics."""
+    try:
+        from astra_live_backend.verification_auto import get_discovery_verifier
+
+        verifier = get_discovery_verifier()
+        report = verifier.get_verification_report()
+
+        return {
+            'status': 'active',
+            'total_evaluated': report['total_evaluated'],
+            'total_verified': report['total_verified'],
+            'total_rejected': report['total_rejected'],
+            'verification_rate': report['verification_rate'],
+            'available': True
+        }
+    except ImportError:
+        return {
+            'status': 'unavailable',
+            'message': 'Verification module not available',
+            'available': False
+        }
+
+
+@app.post("/api/verification/run")
+def api_run_verification():
+    """
+    Trigger automatic verification workflow.
+
+    Evaluates pending discoveries and promotes those that pass
+    verification criteria to "Verified" status.
+    """
+    try:
+        from astra_live_backend.verification_auto import get_verified_manager
+
+        manager = get_verified_manager()
+
+        # Run verification workflow
+        new_verified = manager.update_verified_discoveries()
+
+        # Get all verified discoveries
+        all_verified = manager.get_all_verified_discoveries()
+
+        return {
+            'status': 'completed',
+            'newly_verified': len(new_verified),
+            'total_verified': len(all_verified),
+            'discoveries': new_verified
+        }
+    except ImportError:
+        return {
+            'status': 'unavailable',
+            'message': 'Verification module not available',
+            'newly_verified': 0,
+            'total_verified': 0,
+            'discoveries': []
+        }
+    except Exception as e:
+        return {
+            'status': 'error',
+            'message': str(e),
+            'newly_verified': 0,
+            'total_verified': 0,
+            'discoveries': []
+        }
+
+
+@app.get("/api/verification/verified")
+def api_verified_discoveries():
+    """Get all verified discoveries for dashboard display."""
+    try:
+        from astra_live_backend.verification_auto import get_verified_manager
+
+        manager = get_verified_manager()
+        discoveries = manager.get_all_verified_discoveries()
+
+        return {
+            'status': 'success',
+            'count': len(discoveries),
+            'discoveries': discoveries
+        }
+    except ImportError:
+        return {
+            'status': 'unavailable',
+            'message': 'Verification module not available',
+            'count': 0,
+            'discoveries': []
+        }
+
+
 @app.get("/api/engine/safety-status")
 def api_safety_status():
     """Get safety controller state + audit log."""
