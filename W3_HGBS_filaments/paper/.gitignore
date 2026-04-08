@@ -1,0 +1,52 @@
+# LaTeX files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex.gz(busy)
+
+# PDF files - they're large and not needed for 3D sims
+*.pdf
+*.PDF
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Large data files (keep small ones, ignore large ones)
+*.pdf
+*.fits
+*.hdf5
+*.h5
+*.fits.gz
+*.tar.gz
+*.zip
+
+# But keep important data files
+!hgbs_complete_data.json
+!filament_simulation_results.json
+!strategic_3d_validation_results.json
+!benchmark_results.json
+!3d_simulation_results.json
