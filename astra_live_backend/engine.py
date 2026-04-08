@@ -874,10 +874,95 @@ class DiscoveryEngine:
             "history_length": len(self.state_vector_history),
         }
 
+    # ── Multi-Domain Replenishment ────────────────────────────────
+    def _replenish_hypotheses(self):
+        """Seed fresh hypotheses across ALL domains when active pool is critically low.
+        Prevents the engine from getting stuck in a single-domain theoretical loop."""
+        active = self.store.active()
+        if len(active) >= 5:
+            return  # Enough active hypotheses
+
+        existing_names = {h.name for h in self.store.all()}
+        domains_active = {h.domain for h in active}
+        added = 0
+
+        # Multi-domain hypothesis seeds — real testable hypotheses with data sources
+        multi_domain_seeds = [
+            # Economics
+            ("GDP Growth Rate Clustering", "Economics",
+             "Cluster World Bank GDP growth trajectories to identify regime transitions and outlier economies"),
+            ("Income Inequality Trends", "Economics",
+             "Analyze Gini coefficient evolution across income groups using World Bank WDI data"),
+            ("Trade Network Topology", "Economics",
+             "Test small-world properties and hub-spoke structures in global merchandise trade flows"),
+            ("Inflation-Unemployment Tradeoff", "Economics",
+             "Test Phillips curve relationship across OECD economies using World Bank labor and price data"),
+            # Climate
+            ("Temperature Anomaly Acceleration", "Climate",
+             "Test whether GISTEMP global mean temperature anomalies show accelerating trend vs linear"),
+            ("Seasonal Warming Asymmetry", "Climate",
+             "Compare winter vs summer warming rates in GISTEMP zonal data — polar amplification test"),
+            ("Urban Heat Island Signal", "Climate",
+             "Compare GISTEMP station-based vs satellite-based temperature trends for UHI bias detection"),
+            ("Arctic Amplification Magnitude", "Climate",
+             "Quantify Arctic vs global mean warming ratio from GISTEMP latitudinal breakdown"),
+            # Epidemiology
+            ("Disease Burden Transition", "Epidemiology",
+             "Test epidemiological transition hypothesis: NCDs overtaking infectious disease burden in WHO GHO data"),
+            ("Vaccination Coverage Impact", "Epidemiology",
+             "Correlate WHO vaccination coverage rates with disease incidence across regions"),
+            ("Life Expectancy Convergence", "Epidemiology",
+             "Test whether global life expectancy variance is decreasing over time using WHO GHO data"),
+            ("Antimicrobial Resistance Trends", "Epidemiology",
+             "Analyze WHO AMR surveillance data for resistance rate trends across pathogen-antibiotic pairs"),
+            # Cross-Domain
+            ("GDP-Health Nexus", "Cross-Domain",
+             "Test causal relationship between GDP per capita (World Bank) and life expectancy (WHO GHO) controlling for confounders"),
+            ("Climate-Economy Coupling", "Cross-Domain",
+             "Correlate GISTEMP regional temperature anomalies with agricultural GDP from World Bank data"),
+            ("Pollution-Disease Burden", "Cross-Domain",
+             "Link WHO air quality indicators with respiratory disease DALY rates across countries"),
+            # Astrophysics — fresh empirical hypotheses (not theoretical)
+            ("Exoplanet Metallicity Dependence", "Astrophysics",
+             "Test whether host star metallicity predicts giant planet occurrence rate in NASA exoplanet data"),
+            ("SDSS Redshift-Morphology Relation", "Astrophysics",
+             "Analyze galaxy morphology indicators vs redshift in SDSS photometric sample"),
+            ("Gaia Stellar Stream Detection", "Astrophysics",
+             "Use Gaia proper motions and parallaxes to identify co-moving stellar streams in solar neighborhood"),
+        ]
+
+        # Prioritize domains that have NO active hypotheses
+        priority_seeds = [s for s in multi_domain_seeds
+                          if s[1] not in domains_active and s[0] not in existing_names]
+
+        # Add up to 6 new hypotheses, spread across domains
+        domains_seeded = set()
+        for name, domain, desc in priority_seeds:
+            if added >= 6:
+                break
+            if domain in domains_seeded and added >= 3:
+                continue  # Spread across domains first
+            h = self.store.add(name, domain, desc, confidence=0.20 + np.random.random() * 0.10)
+            h.phase = Phase.PROPOSED
+            self.discovery_memory.generation_count += 1
+            domains_seeded.add(domain)
+            added += 1
+            self._log("ORIENT", "REPLENISH",
+                      f"Seeded {h.id} ({name}) in {domain} — active pool was critically low", h.id)
+
+        if added > 0:
+            self._log("ORIENT", "REPLENISH",
+                      f"Replenished {added} hypotheses across {len(domains_seeded)} domains "
+                      f"(active pool was {len(active)}, now {len(self.store.active())})")
+
     # ── ORIENT Phase ──────────────────────────────────────────────
     def orient(self):
         """Scan data feeds — lightweight version that doesn't block on API calls."""
         self.current_phase = "ORIENT"
+
+        # Critical: replenish if active pool is depleted (prevents single-domain loops)
+        self._replenish_hypotheses()
+
         self._log("ORIENT", "ORIENT", "Scanning astronomical data feeds…")
 
         # Check what's in cache (legacy sources — doesn't trigger new fetches)
@@ -2849,11 +2934,11 @@ class DiscoveryEngine:
         now = time.time()
 
         for h in list(self.store.all()):
-            # Auto-archive hypotheses stuck in SCREENING for >20 cycles with no progress
+            # Auto-archive hypotheses stuck in SCREENING for >50 cycles with no progress
             if h.phase == Phase.SCREENING:
                 age_seconds = now - h.updated_at
-                # ~20 cycles at 25s interval = 500s
-                if len(h.test_results) == 0 and age_seconds > 500:
+                # ~50 cycles at 25s interval = 1250s (give hypotheses more time to be investigated)
+                if len(h.test_results) == 0 and age_seconds > 1250:
                     h.phase = Phase.ARCHIVED
                     h.updated_at = now
                     h.archived_at = now
