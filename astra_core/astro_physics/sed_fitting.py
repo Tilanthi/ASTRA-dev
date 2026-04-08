@@ -628,3 +628,14 @@ class SEDFitter:
         filter_list = [filter_dict[name] for name in filter_names if name in filter_dict]
 
         def chi_squared(theta):
+            """Chi-squared function for optimization."""
+            # Convert theta to actual parameter values
+            params = dict(zip(free_params, theta))
+
+            # Calculate model flux for each filter
+            chi2 = 0.0
+            for i, filt in enumerate(filter_list):
+                model_flux = filt.get_flux(params)
+                chi2 += ((flux_obs[i] - model_flux) / flux_err[i])**2
+
+            return chi2

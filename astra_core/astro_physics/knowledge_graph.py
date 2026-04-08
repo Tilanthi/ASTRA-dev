@@ -1178,3 +1178,20 @@ def bootstrap_uncertainty(data: np.ndarray,
     estimates = []
 
     for _ in range(n_bootstrap):
+        # Bootstrap sampling
+        sample = np.random.choice(data, size=len(data), replace=True)
+        estimate = estimator_func(sample)
+        estimates.append(estimate)
+
+    # Compute confidence interval
+    alpha = 1 - ci_level
+    lower = np.percentile(estimates, 100 * alpha / 2)
+    upper = np.percentile(estimates, 100 * (1 - alpha / 2))
+    point_estimate = estimator_func(data)
+
+    return {
+        'estimate': point_estimate,
+        'ci_lower': lower,
+        'ci_upper': upper,
+        'ci_level': ci_level
+    }

@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "date": "2026-04-08T10:59:18.087183",
+    "model": "refined_fragmentation_model",
+    "purpose": "Explain 2\u00d7 vs 4\u00d7 filament spacing discrepancy"
+  },
+  "observations": {
+    "width_pc": 0.1,
+    "spacing_pc": 0.21,
+    "ratio": 2.0999999999999996
+  },
+  "theory": {
+    "predicted_ratio": 4.0,
+    "discrepancy_factor": 1.904761904761905
+  },
+  "solutions": [
+    {
+      "L_over_H": 5.0,
+      "P_ext_kbcm": 0,
+      "accretion": true,
+      "wavelength_pc": 0.1936688597802509,
+      "ratio": 1.9366885978025088
+    },
+    {
+      "L_over_H": 5.454545454545454,
+      "P_ext_kbcm": 0,
+      "accretion": true,
+      "wavelength_pc": 0.20185977210255707,
+      "ratio": 2.0185977210255706
+    },
+    {
+      "L_over_H": 5.909090909090909,
+      "P_ext_kbcm": 0,
+      "accretion": true,
+      "wavelength_pc": 0.20980619800868966,
+      "ratio": 2.0980619800868965
+    },
+    {
+      "L_over_H": 6.363636363636363,
+      "P_ext_kbcm": 0,
+      "accretion": true,
+      "wavelength_pc": 0.21751543505053803,
+      "ratio": 2.1751543505053803
+    },
+    {
+      "L_over_H": 6.818181818181818,
+      "P_ext_kbcm": 0,
+      "accretion": true,
+      "wavelength_pc": 0.224994562959041,
+      "ratio": 2.24994562959041
+    }
+  ]
+}

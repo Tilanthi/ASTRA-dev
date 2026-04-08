@@ -1,0 +1,274 @@
+[
+  {
+    "sim_id": 1,
+    "name": "Length_L32",
+    "L_pc": 0.32,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 0,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 49.84950399398804,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.06222222222222223,
+      "spacing_std_pc": 0.0313884624617353,
+      "L_over_H": 228.10673869797995
+    }
+  },
+  {
+    "sim_id": 2,
+    "name": "Length_L40",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 0,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 49.649213790893555,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.07777777777777778,
+      "spacing_std_pc": 0.03923557807716914,
+      "L_over_H": 285.13342337247497
+    }
+  },
+  {
+    "sim_id": 3,
+    "name": "Length_L48",
+    "L_pc": 0.48,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 0,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 49.729048013687134,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.09333333333333332,
+      "spacing_std_pc": 0.047082693692602935,
+      "L_over_H": 342.1601080469699
+    }
+  },
+  {
+    "sim_id": 4,
+    "name": "Pressure_P1",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 100000.0,
+    "B_microG": 0,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 49.712352991104126,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.07777777777777778,
+      "spacing_std_pc": 0.03923557807716914,
+      "L_over_H": 201.64497180854923
+    }
+  },
+  {
+    "sim_id": 5,
+    "name": "Pressure_P2",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 0,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 49.72561001777649,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.07777777777777778,
+      "spacing_std_pc": 0.03923557807716914,
+      "L_over_H": 285.13342337247497
+    }
+  },
+  {
+    "sim_id": 6,
+    "name": "Pressure_P3",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 300000.0,
+    "B_microG": 0,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 49.73153495788574,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.07777777777777778,
+      "spacing_std_pc": 0.03923557807716914,
+      "L_over_H": 349.2011506174392
+    }
+  },
+  {
+    "sim_id": 7,
+    "name": "Time_t2",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 0,
+    "t_myr": 2.0,
+    "n_steps": 4000,
+    "elapsed_seconds": 33.87345099449158,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.07777777777777778,
+      "spacing_std_pc": 0.03923557807716914,
+      "L_over_H": 285.13342337247497
+    }
+  },
+  {
+    "sim_id": 8,
+    "name": "Time_t3",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 0,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 49.79718804359436,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.07777777777777778,
+      "spacing_std_pc": 0.03923557807716914,
+      "L_over_H": 285.13342337247497
+    }
+  },
+  {
+    "sim_id": 9,
+    "name": "Time_t5",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 0,
+    "t_myr": 5.0,
+    "n_steps": 10000,
+    "elapsed_seconds": 83.13856911659241,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.07777777777777778,
+      "spacing_std_pc": 0.03923557807716914,
+      "L_over_H": 285.13342337247497
+    }
+  },
+  {
+    "sim_id": 10,
+    "name": "Magnetic_B0",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 0,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 49.529557943344116,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.07777777777777778,
+      "spacing_std_pc": 0.03923557807716914,
+      "L_over_H": 285.13342337247497
+    }
+  },
+  {
+    "sim_id": 11,
+    "name": "Magnetic_B10",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 10,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 50.72040772438049,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.07777777777777778,
+      "spacing_std_pc": 0.03923557807716914,
+      "L_over_H": 285.13342337247497
+    }
+  },
+  {
+    "sim_id": 12,
+    "name": "Magnetic_B20",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 20,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 50.447741985321045,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.07777777777777778,
+      "spacing_std_pc": 0.03923557807716914,
+      "L_over_H": 285.13342337247497
+    }
+  },
+  {
+    "sim_id": 13,
+    "name": "Best_2D_match",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 0,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 51.110132932662964,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.07777777777777778,
+      "spacing_std_pc": 0.03923557807716914,
+      "L_over_H": 285.13342337247497
+    }
+  },
+  {
+    "sim_id": 14,
+    "name": "W3_like",
+    "L_pc": 0.32,
+    "P_ext_kbcm": 500000.0,
+    "B_microG": 0,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 53.097235918045044,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.06222222222222223,
+      "spacing_std_pc": 0.0313884624617353,
+      "L_over_H": 360.6413775744908
+    }
+  },
+  {
+    "sim_id": 15,
+    "name": "CRA_like",
+    "L_pc": 0.48,
+    "P_ext_kbcm": 100000.0,
+    "B_microG": 0,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 50.96506094932556,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.09333333333333332,
+      "spacing_std_pc": 0.047082693692602935,
+      "L_over_H": 241.97396617025908
+    }
+  },
+  {
+    "sim_id": 16,
+    "name": "WithB_field",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 150000.0,
+    "B_microG": 10,
+    "t_myr": 3.0,
+    "n_steps": 6000,
+    "elapsed_seconds": 50.678324937820435,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.07777777777777778,
+      "spacing_std_pc": 0.03923557807716914,
+      "L_over_H": 246.9430741889491
+    }
+  },
+  {
+    "sim_id": 17,
+    "name": "Best_long",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 0,
+    "t_myr": 5.0,
+    "n_steps": 10000,
+    "elapsed_seconds": 83.02369928359985,
+    "analysis": {
+      "n_cores": 5,
+      "spacing_pc": 0.07777777777777778,
+      "spacing_std_pc": 0.03923557807716914,
+      "L_over_H": 285.13342337247497
+    }
+  }
+]

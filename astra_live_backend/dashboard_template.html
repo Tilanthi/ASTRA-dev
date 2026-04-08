@@ -14577,12 +14577,14 @@ body::after {
       container.innerHTML = '<p style="color:var(--text-tertiary);font-size:0.8rem;">No hypothesis data available.</p>';
       return;
     }
-    var phaseOrder = ['validated','testing','screening','proposed','archived'];
-    var phaseLabels = { validated:'✓ Validated', testing:'⟳ Testing', screening:'◎ Screening', proposed:'◇ Proposed', archived:'▪ Archived' };
+    var phaseOrder = ['validated','testing','screening','proposed'];  // Exclude 'archived' from display
+    var phaseLabels = { validated:'✓ Validated', testing:'⟳ Testing', screening:'◎ Screening', proposed:'◇ Proposed' };
     var groups = {};
     phaseOrder.forEach(function(p){ groups[p] = []; });
     hypotheses.forEach(function(h){
       var ph = (h.phase || 'proposed').toLowerCase();
+      // Skip archived hypotheses - don't display them
+      if (ph === 'archived') return;
       if (!groups[ph]) groups[ph] = [];
       groups[ph].push(h);
     });
@@ -14600,10 +14602,9 @@ body::after {
         var conf = h.confidence || 0;
         var pct = Math.round(conf * 100);
         var cls = conf >= 0.8 ? 'high' : conf >= 0.5 ? 'mid' : conf >= 0.3 ? 'low' : 'vlow';
-        var isArchived = phase === 'archived' ? ' archived-card' : '';
         var desc = h.description || '';
         if (desc.length > 120) desc = desc.substring(0,117) + '…';
-        html += '<div class="hyp-card' + isArchived + '">';
+        html += '<div class="hyp-card">';
         html += '<div class="hyp-card-top"><span class="hyp-card-id">' + (h.id||'?') + '</span>';
         html += '<span class="hyp-card-domain">' + (h.domain||'General') + '</span></div>';
         html += '<div class="hyp-card-name">' + (h.name||'Unnamed') + '</div>';

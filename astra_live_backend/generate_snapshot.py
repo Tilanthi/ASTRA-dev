@@ -8,8 +8,8 @@ import time
 import requests
 
 API_BASE = "http://localhost:8787"
-DASHBOARD_PATH = "/shared/public/astra-live/index.html"
-SNAPSHOT_PATH = "/shared/public/astra-live/index.html"
+DASHBOARD_PATH = "astra-live/index.html"
+SNAPSHOT_PATH = "astra-live/index.html"
 
 
 def fetch_all_data():

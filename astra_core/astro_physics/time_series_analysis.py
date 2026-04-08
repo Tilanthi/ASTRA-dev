@@ -1,4 +1,4 @@
-
+"""
 Multi-Scale Inference Module
 =============================
 
@@ -8,6 +8,7 @@ scales for robust inference.
 Key Functions:
 - multi_scale_fusion: Combine evidence from multiple scales
 - scale_voting: Ensemble inference across scales
+"""
 
 
 """

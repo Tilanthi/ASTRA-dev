@@ -1068,3 +1068,4 @@ class HierarchicalRefinement:
             Boolean array indicating cells to refine
         """
         if current_level >= self.max_level:
+            return np.array([], dtype=bool)

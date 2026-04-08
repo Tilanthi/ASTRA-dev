@@ -77,7 +77,7 @@ class DiscoveryMemory:
     """
 
     def __init__(self, max_records: int = 500,
-                 db_path: str = "/workspace/astra_discoveries.db"):
+                 db_path: str = "astra_discoveries.db"):
         self.discoveries: deque[DiscoveryRecord] = deque(maxlen=max_records)
         self.method_outcomes: deque[MethodOutcome] = deque(maxlen=500)
         self.exploration: dict[str, ExplorationState] = {}

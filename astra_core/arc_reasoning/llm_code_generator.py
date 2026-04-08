@@ -102,3 +102,15 @@ def generate_task_description(task_id: str,
 CODE_TEMPLATES = {
     "color_map": """
 # Color mapping transformation
+def solve(grid):
+    # Apply color mapping
+    color_map = {0: 1, 1: 2, 2: 3, 3: 4, 4: 5}
+    return [[color_map.get(cell, cell) for cell in row] for row in grid]
+""",
+    "rotation": """
+# Rotation transformation
+def solve(grid):
+    # Rotate 90 degrees clockwise
+    return [list(row) for row in zip(*grid[::-1])]
+"""
+}

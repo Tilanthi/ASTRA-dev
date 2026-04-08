@@ -657,3 +657,19 @@ class CompositionEngine:
             # Get ready sub-problems
             ready = decomposition.get_ready_subproblems()
             if not ready:
+                break  # No more ready sub-problems
+
+            # Solve each ready sub-problem
+            for sub_problem in ready:
+                if sub_problem.id not in solved_ids:
+                    try:
+                        result = solver(sub_problem)
+                        if result.is_solved():
+                            solved_ids.add(sub_problem.id)
+                    except Exception as e:
+                        # Log error and continue
+                        pass
+
+        # Finalize composition
+        decomposition.update_solved_status(solved_ids)
+        decomposition.final_composition = self._compose_solutions(solved_ids)

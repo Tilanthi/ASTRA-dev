@@ -16,7 +16,7 @@ import requests
 from scipy import stats
 from io import StringIO
 
-DB_PATH = '/workspace/astra_discoveries.db'
+DB_PATH = 'astra_discoveries.db'
 
 # ─── DB Setup ───────────────────────────────────────────────────────────────
 

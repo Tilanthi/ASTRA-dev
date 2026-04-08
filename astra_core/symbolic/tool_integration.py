@@ -141,3 +141,18 @@ class WikipediaAPI:
             'search': query,
             'limit': 5,
             'namespace': 0,
+            'format': 'json'
+        }
+
+        try:
+            response = requests.get(self.api_url, params=params, timeout=5)
+            response.raise_for_status()
+            data = response.json()
+
+            # Return article titles (second element in response)
+            if len(data) > 1:
+                return data[1]
+            return []
+        except Exception as e:
+            logger.warning(f"Wikipedia search failed: {e}")
+            return []

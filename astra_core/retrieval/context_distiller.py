@@ -243,3 +243,30 @@ class ContextDistiller:
             future_to_doc = {
                 executor.submit(self.checker.check_relevance, query, doc): doc
                 for doc in documents
+            }
+
+            # Collect results
+            for future in as_completed(future_to_doc):
+                doc = future_to_doc[future]
+                try:
+                    is_relevant, explanation = future.result(timeout=5)
+                    if is_relevant:
+                        relevant_docs.append(doc)
+                    else:
+                        filtered_docs.append(doc)
+                    explanations.append((doc, explanation))
+                except Exception as e:
+                    # On error, keep doc
+                    relevant_docs.append(doc)
+                    explanations.append((doc, f"Error: {e}"))
+
+        distill_time = time.time() - distill_start
+
+        return DistillationResult(
+            query=query,
+            relevant_documents=relevant_docs,
+            filtered_documents=filtered_docs,
+            explanations=explanations,
+            distillation_time=distill_time,
+            total_time=time.time() - start_time
+        )

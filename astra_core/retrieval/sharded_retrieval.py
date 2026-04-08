@@ -251,3 +251,27 @@ class ShardedRetriever:
             future_to_shard = {
                 executor.submit(self._timed_retrieve, shard, query, self.k_per_shard): shard
                 for shard in selected_shards
+            }
+
+            # Collect results
+            for future in as_completed(future_to_shard):
+                shard = future_to_shard[future]
+                try:
+                    docs, shard_time = future.result(timeout=10)
+                    shard_results[shard] = docs
+                    shard_times[shard] = shard_time
+                    all_docs.extend(docs)
+                except Exception as e:
+                    shard_results[shard] = []
+                    shard_times[shard] = 0
+
+        # Rerank globally
+        if len(all_docs) > self.top_k:
+            all_docs = self._rerank(all_docs, query)[:self.top_k]
+
+        return QueryResult(
+            query=query,
+            documents=all_docs,
+            execution_time=time.time() - start_time,
+            shard_times=shard_times
+        )

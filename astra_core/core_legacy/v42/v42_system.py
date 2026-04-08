@@ -260,3 +260,84 @@ class V42CompleteSystem:
         """Generate final answer based on analysis."""
         # Simplified answer generation
         return f"Answer to '{question}' in {domain} based on V42 analysis."
+
+
+def create_v42_standard(config: V42Config = None, mode: V42Mode = V42Mode.STANDARD):
+    """
+    Factory function to create a V42 system.
+
+    Args:
+        config: V42 configuration (uses default if None)
+        mode: V42 operation mode
+
+    Returns:
+        V42CompleteSystem: Configured V42 system instance
+    """
+    if config is None:
+        config = V42Config()
+
+    system = V42CompleteSystem(config=config, mode=mode)
+    return system
+
+
+def create_v42_fast(config: V42Config = None, mode: V42Mode = V42Mode.STANDARD):
+    """
+    Factory function to create a fast V42 system (optimized for speed).
+
+    Args:
+        config: V42 configuration (uses default if None)
+        mode: V42 operation mode
+
+    Returns:
+        V42CompleteSystem: Configured V42 system instance
+    """
+    if config is None:
+        config = V42Config()
+        # Optimize for speed
+        config.enable_search = False
+        config.enable_adaptive_compute = True
+
+    system = V42CompleteSystem(config=config, mode=mode)
+    return system
+
+
+def create_v42_deep(config: V42Config = None, mode: V42Mode = V42Mode.DEEP):
+    """
+    Factory function to create a deep V42 system (optimized for accuracy).
+
+    Args:
+        config: V42 configuration (uses default if None)
+        mode: V42 operation mode (defaults to DEEP)
+
+    Returns:
+        V42CompleteSystem: Configured V42 system instance
+    """
+    if config is None:
+        config = V42Config()
+        # Optimize for depth
+        config.max_reasoning_depth = 10
+        config.enable_search = True
+
+    system = V42CompleteSystem(config=config, mode=mode)
+    return system
+
+
+def create_v42_gpqa(config: V42Config = None, mode: V42Mode = V42Mode.GPQA):
+    """
+    Factory function to create a GPQA-optimized V42 system.
+
+    Args:
+        config: V42 configuration (uses default if None)
+        mode: V42 operation mode (defaults to GPQA)
+
+    Returns:
+        V42CompleteSystem: Configured V42 system instance
+    """
+    if config is None:
+        config = V42Config()
+        # Optimize for GPQA
+        config.gpqa_optimized = True
+        config.domain_strategies = True
+
+    system = V42CompleteSystem(config=config, mode=mode)
+    return system

@@ -458,3 +458,20 @@ class AlertFilterPipeline:
 
         Args:
             alert: Alert to filter
+
+        Returns:
+            Tuple of (passed, reason)
+        """
+        for name, filter_func in self.filters:
+            try:
+                passed, reason = filter_func(alert)
+                if passed:
+                    self.filter_stats[name]['passed'] += 1
+                else:
+                    self.filter_stats[name]['failed'] += 1
+                    return False, f"{name}: {reason}"
+            except Exception as e:
+                self.filter_stats[name]['failed'] += 1
+                return False, f"{name}: Error - {e}"
+
+        return True, "All filters passed"

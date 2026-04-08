@@ -94,3 +94,5 @@ class SelfModifyingArchitecture:
             target=target,
             parameters={'strength': np.random.rand()},
             expected_impact=np.random.rand(),
+            description=f"Modify {target} using {modification_type.value} strategy"
+        )

@@ -1,4 +1,5 @@
 
+"""
 Abstraction Formation Module
 ============================
 
@@ -15,8 +16,6 @@ Key Functions:
 - build_abstraction_hierarchy: Construct hierarchy from examples
 - find_analogies: Discover cross-domain analogies
 
-
-"""
 Abstraction Stack for Cognitive-Relativity Navigator
 
 Manages the active stack of abstraction levels with zoom operations,

@@ -12,7 +12,7 @@ Tests cover:
 """
 import sys
 import time
-sys.path.insert(0, "/shared/ASTRA")
+sys.path.insert(0, ".")
 
 from astra_live_backend.safety.arbiter import SafetyArbiter, Decision, RiskLevel
 from astra_live_backend.safety.supervisor import SupervisorRegistry, CertLevel

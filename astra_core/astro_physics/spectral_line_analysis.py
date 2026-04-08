@@ -1,4 +1,5 @@
 
+"""
 Pattern Discovery Module
 ========================
 
@@ -13,8 +14,6 @@ Key Functions:
 - detect_patterns_wavelet: Automatic pattern detection
 - validate_pattern: Statistical significance testing
 
-
-"""
 Spectral Line Analysis Module for STAN V43
 
 Complete spectral line fitting and analysis for radio/submillimeter astronomy.
@@ -1315,3 +1314,18 @@ def detect_multiscale_patterns(signal, scales=None, wavelet='morl'):
         signal: Input signal (1D array)
         scales: List of scales to analyze (None for automatic)
         wavelet: Type of wavelet ('morl' = Morlet, 'mexh' = Mexican hat)
+
+    Returns:
+        Dictionary containing detected patterns and their scales
+    """
+    import numpy as np
+
+    if scales is None:
+        scales = [1, 2, 4, 8, 16]
+
+    patterns = {}
+    for scale in scales:
+        # Simple implementation - in practice would use pywt
+        patterns[scale] = np.std(signal[:min(len(signal), scale * 10)])
+
+    return patterns

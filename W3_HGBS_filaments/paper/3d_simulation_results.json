@@ -1,0 +1,41 @@
+[
+  {
+    "sim_id": 2,
+    "name": "Best2D_L10_P2e5",
+    "description": "Best 2D match (L/H=10, P=2e5)",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 0,
+    "analysis": {
+      "n_cores": 0,
+      "spacing_pc": null,
+      "L_over_H": 285.13342337247497
+    }
+  },
+  {
+    "sim_id": 3,
+    "name": "W3_like_L8_P5e5",
+    "description": "W3-like (L/H=8, P=5e5)",
+    "L_pc": 0.32,
+    "P_ext_kbcm": 500000.0,
+    "B_microG": 0,
+    "analysis": {
+      "n_cores": 0,
+      "spacing_pc": null,
+      "L_over_H": 360.6413775744908
+    }
+  },
+  {
+    "sim_id": 4,
+    "name": "WithB_L10_P2e5_B20",
+    "description": "With magnetic field",
+    "L_pc": 0.4,
+    "P_ext_kbcm": 200000.0,
+    "B_microG": 20,
+    "analysis": {
+      "n_cores": 0,
+      "spacing_pc": null,
+      "L_over_H": 285.13342337247497
+    }
+  }
+]

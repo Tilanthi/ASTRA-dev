@@ -21,16 +21,53 @@ from dataclasses import dataclass, field
 from enum import Enum
 from collections import defaultdict
 
-from .unified_world_model import (
-    UnifiedWorldModel, CausalGraph, CausalEdge,
-    Hypothesis, Evidence, EvidenceSource, get_world_model
-)
+# Try relative imports first, fall back to absolute imports for dynamic loading
+try:
+    from .unified_world_model import (
+        UnifiedWorldModel, CausalGraph, CausalEdge,
+        Hypothesis, Evidence, EvidenceSource, get_world_model
+    )
+except ImportError:
+    try:
+        from astra_core.reasoning.unified_world_model import (
+            UnifiedWorldModel, CausalGraph, CausalEdge,
+            Hypothesis, Evidence, EvidenceSource, get_world_model
+        )
+    except ImportError:
+        # Last resort: try direct import
+        import sys
+        import os
+        sys.path.insert(0, os.path.dirname(__file__))
+        import unified_world_model
+        UnifiedWorldModel = unified_world_model.UnifiedWorldModel
+        CausalGraph = unified_world_model.CausalGraph
+        CausalEdge = unified_world_model.CausalEdge
+        Hypothesis = unified_world_model.Hypothesis
+        Evidence = unified_world_model.Evidence
+        EvidenceSource = unified_world_model.EvidenceSource
+        get_world_model = unified_world_model.get_world_model
 
 # Try to import integration bus, fall back to stub if not available
 try:
     from .integration_bus import IntegrationBus, EventType, get_integration_bus
 except ImportError:
-    from .integration_bus_stub import IntegrationBus, EventType, get_integration_bus
+    try:
+        from astra_core.reasoning.integration_bus import IntegrationBus, EventType, get_integration_bus
+    except ImportError:
+        try:
+            from .integration_bus_stub import IntegrationBus, EventType, get_integration_bus
+        except ImportError:
+            try:
+                from astra_core.reasoning.integration_bus_stub import IntegrationBus, EventType, get_integration_bus
+            except ImportError:
+                # Last resort: direct import
+                import sys
+                import os
+                sys.path.insert(0, os.path.dirname(__file__))
+                import integration_bus_stub
+                IntegrationBus = integration_bus_stub.IntegrationBus
+                EventType = integration_bus_stub.EventType
+                get_integration_bus = integration_bus_stub.get_integration_bus
 
 
 class InterventionType(Enum):

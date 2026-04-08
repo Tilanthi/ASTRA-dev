@@ -191,3 +191,32 @@ class UncertaintyTracker:
 class MetacognitiveMonitor:
     """
     Monitor reasoning quality using V41 metacognition.
+
+    Tracks confidence, uncertainty, and reasoning quality metrics.
+    """
+
+    def __init__(self):
+        self.confidence_history = []
+        self.uncertainty_history = []
+
+    def update(self, confidence: float, uncertainty: float):
+        """Update monitoring metrics."""
+        self.confidence_history.append(confidence)
+        self.uncertainty_history.append(uncertainty)
+
+    def get_status(self) -> Dict[str, Any]:
+        """Get current monitoring status."""
+        if not self.confidence_history:
+            return {
+                'current_confidence': 0.0,
+                'avg_confidence': 0.0,
+                'current_uncertainty': 0.0,
+                'trend': 'unknown'
+            }
+
+        return {
+            'current_confidence': self.confidence_history[-1],
+            'avg_confidence': sum(self.confidence_history) / len(self.confidence_history),
+            'current_uncertainty': self.uncertainty_history[-1],
+            'trend': 'improving' if len(self.confidence_history) > 1 and self.confidence_history[-1] > self.confidence_history[-2] else 'stable'
+        }

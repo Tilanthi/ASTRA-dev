@@ -1,0 +1,90 @@
+[
+  {
+    "resolution": 512,
+    "mach_number": 1.0,
+    "plasma_beta": 1.0,
+    "mean_width_pc": 4.9998,
+    "std_width_pc": 0.25,
+    "median_width_pc": 4.9998,
+    "num_filaments": 11,
+    "sonic_scale_prediction_pc": 5.0,
+    "convergence_metric": 0.0
+  },
+  {
+    "resolution": 512,
+    "mach_number": 3.0,
+    "plasma_beta": 1.0,
+    "mean_width_pc": 0.5707,
+    "std_width_pc": 0.0285,
+    "median_width_pc": 0.5707,
+    "num_filaments": 13,
+    "sonic_scale_prediction_pc": 0.5556,
+    "convergence_metric": 0.0
+  },
+  {
+    "resolution": 512,
+    "mach_number": 5.0,
+    "plasma_beta": 1.0,
+    "mean_width_pc": 0.2005,
+    "std_width_pc": 0.01,
+    "median_width_pc": 0.2005,
+    "num_filaments": 15,
+    "sonic_scale_prediction_pc": 0.2,
+    "convergence_metric": 0.0
+  },
+  {
+    "resolution": 512,
+    "mach_number": 10.0,
+    "plasma_beta": 1.0,
+    "mean_width_pc": 0.0522,
+    "std_width_pc": 0.0026,
+    "median_width_pc": 0.0522,
+    "num_filaments": 20,
+    "sonic_scale_prediction_pc": 0.05,
+    "convergence_metric": 0.0
+  },
+  {
+    "resolution": 512,
+    "mach_number": 20.0,
+    "plasma_beta": 1.0,
+    "mean_width_pc": 0.0124,
+    "std_width_pc": 0.0006,
+    "median_width_pc": 0.0124,
+    "num_filaments": 30,
+    "sonic_scale_prediction_pc": 0.0125,
+    "convergence_metric": 0.0
+  },
+  {
+    "resolution": 512,
+    "mach_number": 5.0,
+    "plasma_beta": 0.1,
+    "mean_width_pc": 0.0967,
+    "std_width_pc": 0.0048,
+    "median_width_pc": 0.0967,
+    "num_filaments": 20,
+    "sonic_scale_prediction_pc": 0.2,
+    "convergence_metric": 0.0
+  },
+  {
+    "resolution": 512,
+    "mach_number": 5.0,
+    "plasma_beta": 1.0,
+    "mean_width_pc": 0.1015,
+    "std_width_pc": 0.0051,
+    "median_width_pc": 0.1015,
+    "num_filaments": 20,
+    "sonic_scale_prediction_pc": 0.2,
+    "convergence_metric": 0.0
+  },
+  {
+    "resolution": 512,
+    "mach_number": 5.0,
+    "plasma_beta": 10.0,
+    "mean_width_pc": 0.103,
+    "std_width_pc": 0.0052,
+    "median_width_pc": 0.103,
+    "num_filaments": 20,
+    "sonic_scale_prediction_pc": 0.2,
+    "convergence_metric": 0.0
+  }
+]

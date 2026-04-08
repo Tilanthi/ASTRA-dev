@@ -507,3 +507,26 @@ class OrderOfMagnitudeChecker:
         if not numbers:
             return ConstraintCheck(
                 constraint_type=ConstraintType.MATHEMATICAL,
+                passed=True,
+                message="No numbers to verify",
+                confidence=1.0
+            )
+
+        # Check magnitudes against physical constraints
+        for num_str in numbers:
+            value = float(num_str)
+            # Check if value is within reasonable bounds
+            if abs(value) > 1e30:  # Arbitrary large number
+                return ConstraintCheck(
+                    constraint_type=ConstraintType.MATHEMATICAL,
+                    passed=False,
+                    message=f"Value {value} seems unreasonably large",
+                    confidence=0.9
+                )
+
+        return ConstraintCheck(
+            constraint_type=ConstraintType.MATHEMATICAL,
+            passed=True,
+            message="All magnitudes seem reasonable",
+            confidence=0.8
+        )

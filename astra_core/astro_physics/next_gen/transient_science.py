@@ -24,6 +24,16 @@ KEV_TO_ERG = 1.602e-9
 STEFAN_BOLTZMANN = 5.67e-5  # erg/cm^2/s/K^4
 
 
+# NumPy 2.0 compatibility: trapz was renamed to trapezoid
+def _trapz_compat(y, x=None, dx=1.0, axis=-1):
+    """Compatibility wrapper for _trapz_compat (removed in NumPy 2.0)."""
+    try:
+        return np.trapezoid(y, x=x, dx=dx, axis=axis)
+    except AttributeError:
+        # Fallback for NumPy < 2.0
+        return _trapz_compat(y, x=x, dx=dx, axis=axis)
+
+
 class TransientType(Enum):
     """Classification of transient types"""
     SN_IA = "SN Ia"
@@ -169,7 +179,7 @@ class SupernovaModels:
                        np.exp((t_prime / tau_m_sec)**2 - (t_sec / tau_m_sec)**2)
 
             L[i] = (2 / tau_m_sec) * np.exp(-(t_sec / tau_m_sec)**2) * \
-                   np.trapz(integrand * t_prime / tau_m_sec, dx=dt / tau_m_sec)
+                   _trapz_compat(integrand * t_prime / tau_m_sec, dx=dt / tau_m_sec)
 
         return L
 
@@ -563,7 +573,7 @@ class KilonovaModel:
             kernel = (2 / tau_d_days) * t_prime / tau_d_days * \
                     np.exp((t_prime / tau_d_days)**2 - (ti / tau_d_days)**2)
 
-            L[i] = np.trapz(Q * kernel, t_prime)
+            L[i] = _trapz_compat(Q * kernel, t_prime)
 
         return L
 

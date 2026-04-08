@@ -25,6 +25,16 @@ N_S = 0.96
 RHO_CRIT_0 = 2.775e11  # M_sun/Mpc^3 * h^2
 
 
+# NumPy 2.0 compatibility: trapz was renamed to trapezoid
+def _trapz_compat(y, x=None, dx=1.0, axis=-1):
+    """Compatibility wrapper for np.trapz (removed in NumPy 2.0)."""
+    try:
+        return np.trapezoid(y, x=x, dx=dx, axis=axis)
+    except AttributeError:
+        # Fallback for NumPy < 2.0
+        return np.trapz(y, x=x, dx=dx, axis=axis)
+
+
 @dataclass
 class CosmologyParams:
     """Cosmological parameters"""
@@ -251,7 +261,7 @@ class HaloMassFunction:
             dndlnM = self.tinker(M, z)
 
         # Integrate
-        return np.trapz(dndlnM, np.log(M))
+        return _trapz_compat(dndlnM, np.log(M))
 
 
 # =============================================================================
@@ -631,7 +641,7 @@ class CGMModel:
         else:
             f_ion = 0.01
 
-        N = np.trapz(n_gas * f_ion, z_los * 3.086e21)  # Convert kpc to cm
+        N = _trapz_compat(n_gas * f_ion, z_los * 3.086e21)  # Convert kpc to cm
 
         return N
 
@@ -741,7 +751,7 @@ class ReionizationModel:
 
         # Integrate
         integrand = sigma_T * n_e0 * (1 + z)**3 * Q * C_LIGHT * 1e5 * np.abs(dtdz)
-        tau = np.trapz(integrand, z)
+        tau = _trapz_compat(integrand, z)
 
         return tau
 

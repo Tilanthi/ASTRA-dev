@@ -25,7 +25,7 @@ from scipy import stats as scipy_stats
 warnings.filterwarnings("ignore")
 
 # ── Configuration ──────────────────────────────────────────────────────────
-DB_PATH = "/workspace/astra_discoveries.db"
+DB_PATH = "astra_discoveries.db"
 WB_BASE = "https://api.worldbank.org/v2/country/all/indicator"
 FRED_BASE = "https://fred.stlouisfed.org/graph/fredgraph.csv"
 TIMEOUT = 30

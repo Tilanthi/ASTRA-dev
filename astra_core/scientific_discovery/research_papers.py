@@ -168,3 +168,26 @@ class PDFProcessor:
             pdf_path: Path to PDF file
 
         Returns:
+            Extracted text content
+        """
+        if not self.has_pdf_support:
+            return ""
+
+        try:
+            if HAS_PDFPLUMBER:
+                import pdfplumber
+                with pdfplumber.open(pdf_path) as pdf:
+                    text = ""
+                    for page in pdf.pages:
+                        text += page.extract_text() or ""
+                    return text
+            elif HAS_PYPDF2:
+                from PyPDF2 import PdfReader
+                reader = PdfReader(pdf_path)
+                text = ""
+                for page in reader.pages:
+                    text += page.extract_text() or ""
+                return text
+        except Exception as e:
+            logger.error(f"Error extracting text from PDF: {e}")
+            return ""

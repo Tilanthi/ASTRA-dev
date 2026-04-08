@@ -5,7 +5,7 @@ hypothesis lifecycle management, and exploration diversification.
 """
 import sys
 import time
-sys.path.insert(0, "/shared/ASTRA")
+sys.path.insert(0, ".")
 
 import pytest
 from collections import deque

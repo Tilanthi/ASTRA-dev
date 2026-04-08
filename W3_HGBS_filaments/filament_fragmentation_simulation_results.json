@@ -1,0 +1,263 @@
+{
+  "metadata": {
+    "date": "2026-04-08T10:57:31.910779",
+    "purpose": "Filament spacing simulation: 2\u00d7 vs 4\u00d7 discrepancy",
+    "physics": {
+      "T": 10,
+      "n_H2": 10000.0,
+      "filament_width_pc": 0.1
+    }
+  },
+  "simulations": [
+    {
+      "suite": "finite_length_effects",
+      "description": "Fragmentation wavelength vs. length-to-width ratio",
+      "data": [
+        {
+          "L_over_H": 5.0,
+          "wavelength_pc": 0.28658173525292147,
+          "width_ratio": 2.8658173525292145
+        },
+        {
+          "L_over_H": 10.0,
+          "wavelength_pc": 0.3856964580369404,
+          "width_ratio": 3.856964580369404
+        },
+        {
+          "L_over_H": 15.0,
+          "wavelength_pc": 0.4695952595412119,
+          "width_ratio": 4.695952595412119
+        },
+        {
+          "L_over_H": 20.0,
+          "wavelength_pc": 0.5406140617548028,
+          "width_ratio": 5.4061406175480275
+        },
+        {
+          "L_over_H": 30.0,
+          "wavelength_pc": 0.6516173753777135,
+          "width_ratio": 6.516173753777134
+        },
+        {
+          "L_over_H": 50.0,
+          "wavelength_pc": 0.7881457266493175,
+          "width_ratio": 7.881457266493174
+        },
+        {
+          "L_over_H": 100.0,
+          "wavelength_pc": 0.9049944118537907,
+          "width_ratio": 9.049944118537907
+        }
+      ]
+    },
+    {
+      "suite": "external_pressure_effects",
+      "description": "Fragmentation wavelength vs. external pressure",
+      "data": [
+        {
+          "L_over_H": 10,
+          "P_ext_kbcm": 0.0,
+          "wavelength_pc": 0.3856964580369404,
+          "width_ratio": 3.856964580369404
+        },
+        {
+          "L_over_H": 10,
+          "P_ext_kbcm": 1000.0,
+          "wavelength_pc": 0.3845001177270096,
+          "width_ratio": 3.845001177270096
+        },
+        {
+          "L_over_H": 10,
+          "P_ext_kbcm": 10000.0,
+          "wavelength_pc": 0.3745186693491837,
+          "width_ratio": 3.7451866934918367
+        },
+        {
+          "L_over_H": 10,
+          "P_ext_kbcm": 100000.0,
+          "wavelength_pc": 0.3154008055794522,
+          "width_ratio": 3.154008055794522
+        },
+        {
+          "L_over_H": 10,
+          "P_ext_kbcm": 1000000.0,
+          "wavelength_pc": 0.19563858348307778,
+          "width_ratio": 1.9563858348307777
+        },
+        {
+          "L_over_H": 20,
+          "P_ext_kbcm": 0.0,
+          "wavelength_pc": 0.5406140617548028,
+          "width_ratio": 5.4061406175480275
+        },
+        {
+          "L_over_H": 20,
+          "P_ext_kbcm": 1000.0,
+          "wavelength_pc": 0.5389692631868613,
+          "width_ratio": 5.389692631868613
+        },
+        {
+          "L_over_H": 20,
+          "P_ext_kbcm": 10000.0,
+          "wavelength_pc": 0.5251213511786242,
+          "width_ratio": 5.251213511786242
+        },
+        {
+          "L_over_H": 20,
+          "P_ext_kbcm": 100000.0,
+          "wavelength_pc": 0.4380436116476704,
+          "width_ratio": 4.380436116476704
+        },
+        {
+          "L_over_H": 20,
+          "P_ext_kbcm": 1000000.0,
+          "wavelength_pc": 0.24055133437211812,
+          "width_ratio": 2.405513343721181
+        },
+        {
+          "L_over_H": 30,
+          "P_ext_kbcm": 0.0,
+          "wavelength_pc": 0.6516173753777135,
+          "width_ratio": 6.516173753777134
+        },
+        {
+          "L_over_H": 30,
+          "P_ext_kbcm": 1000.0,
+          "wavelength_pc": 0.6494335037560165,
+          "width_ratio": 6.494335037560164
+        },
+        {
+          "L_over_H": 30,
+          "P_ext_kbcm": 10000.0,
+          "wavelength_pc": 0.630981046500993,
+          "width_ratio": 6.309810465009929
+        },
+        {
+          "L_over_H": 30,
+          "P_ext_kbcm": 100000.0,
+          "wavelength_pc": 0.5129733809000359,
+          "width_ratio": 5.129733809000358
+        },
+        {
+          "L_over_H": 30,
+          "P_ext_kbcm": 1000000.0,
+          "wavelength_pc": 0.2600513508122195,
+          "width_ratio": 2.6005135081221944
+        },
+        {
+          "L_over_H": 50,
+          "P_ext_kbcm": 0.0,
+          "wavelength_pc": 0.7881457266493175,
+          "width_ratio": 7.881457266493174
+        },
+        {
+          "L_over_H": 50,
+          "P_ext_kbcm": 1000.0,
+          "wavelength_pc": 0.7849201911251992,
+          "width_ratio": 7.849201911251991
+        },
+        {
+          "L_over_H": 50,
+          "P_ext_kbcm": 10000.0,
+          "wavelength_pc": 0.7576935675743384,
+          "width_ratio": 7.576935675743384
+        },
+        {
+          "L_over_H": 50,
+          "P_ext_kbcm": 100000.0,
+          "wavelength_pc": 0.5867215586823769,
+          "width_ratio": 5.867215586823768
+        },
+        {
+          "L_over_H": 50,
+          "P_ext_kbcm": 1000000.0,
+          "wavelength_pc": 0.2600513508122195,
+          "width_ratio": 2.6005135081221944
+        }
+      ]
+    },
+    {
+      "suite": "mass_accretion_effects",
+      "description": "Fragmentation wavelength vs. accretion rate",
+      "data": [
+        {
+          "accretion_rate_Msunyr": 1e-06,
+          "L_over_H": 10,
+          "wavelength_pc": 0.16949152542372883,
+          "width_ratio": 1.6949152542372883
+        },
+        {
+          "accretion_rate_Msunyr": 1e-06,
+          "L_over_H": 20,
+          "wavelength_pc": 0.16949152542372883,
+          "width_ratio": 1.6949152542372883
+        },
+        {
+          "accretion_rate_Msunyr": 1e-06,
+          "L_over_H": 30,
+          "wavelength_pc": 0.16949152542372883,
+          "width_ratio": 1.6949152542372883
+        },
+        {
+          "accretion_rate_Msunyr": 1e-06,
+          "L_over_H": 50,
+          "wavelength_pc": 0.16949152542372883,
+          "width_ratio": 1.6949152542372883
+        },
+        {
+          "accretion_rate_Msunyr": 1e-05,
+          "L_over_H": 10,
+          "wavelength_pc": 0.3856964580369404,
+          "width_ratio": 3.856964580369404
+        },
+        {
+          "accretion_rate_Msunyr": 1e-05,
+          "L_over_H": 20,
+          "wavelength_pc": 0.5406140617548028,
+          "width_ratio": 5.4061406175480275
+        },
+        {
+          "accretion_rate_Msunyr": 1e-05,
+          "L_over_H": 30,
+          "wavelength_pc": 0.6516173753777135,
+          "width_ratio": 6.516173753777134
+        },
+        {
+          "accretion_rate_Msunyr": 1e-05,
+          "L_over_H": 50,
+          "wavelength_pc": 0.7881457266493175,
+          "width_ratio": 7.881457266493174
+        },
+        {
+          "accretion_rate_Msunyr": 0.0001,
+          "L_over_H": 10,
+          "wavelength_pc": 0.3856964580369404,
+          "width_ratio": 3.856964580369404
+        },
+        {
+          "accretion_rate_Msunyr": 0.0001,
+          "L_over_H": 20,
+          "wavelength_pc": 0.5406140617548028,
+          "width_ratio": 5.4061406175480275
+        },
+        {
+          "accretion_rate_Msunyr": 0.0001,
+          "L_over_H": 30,
+          "wavelength_pc": 0.6516173753777135,
+          "width_ratio": 6.516173753777134
+        },
+        {
+          "accretion_rate_Msunyr": 0.0001,
+          "L_over_H": 50,
+          "wavelength_pc": 0.7881457266493175,
+          "width_ratio": 7.881457266493174
+        }
+      ]
+    },
+    {
+      "suite": "combined_effects",
+      "description": "Finite length + External pressure + Mass accretion",
+      "data": []
+    }
+  ]
+}

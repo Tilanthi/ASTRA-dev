@@ -175,7 +175,7 @@ print("=" * 105)
 
 # ── Save to DB ─────────────────────────────────────────────────────────
 
-DB_PATH = "/workspace/astra_discoveries.db"
+DB_PATH = "astra_discoveries.db"
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()
 

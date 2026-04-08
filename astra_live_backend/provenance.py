@@ -14,7 +14,7 @@ from dataclasses import dataclass, field, asdict
 from typing import Optional, List
 
 
-DB_PATH = "/workspace/astra_discoveries.db"
+DB_PATH = "astra_discoveries.db"
 
 
 @dataclass

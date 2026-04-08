@@ -366,3 +366,15 @@ class CodebaseMapper:
                 executor.submit(self._analyze_conventions, path_obj): "conventions",
                 executor.submit(self._analyze_testing, path_obj): "testing",
                 executor.submit(self._analyze_integrations, path_obj): "integrations",
+            }
+
+            # Collect results
+            for future in as_completed(futures):
+                analysis_type = futures[future]
+                try:
+                    result = future.result()
+                    setattr(docs, analysis_type, result)
+                except Exception as e:
+                    logger.warning(f"Failed to analyze {analysis_type}: {e}")
+
+        return docs
