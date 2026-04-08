@@ -527,22 +527,36 @@ class RealDataCache:
         self._cache: Dict[str, Tuple[float, Any]] = {}
         self._ttl = ttl
 
+    def set(self, key: str, data: Any, ttl_override: Optional[float] = None):
+        ttl = ttl_override if ttl_override is not None else self._ttl
+        self._cache[key] = (time.time(), data, ttl)
+
     def get(self, key: str) -> Optional[Any]:
         if key in self._cache:
-            ts, data = self._cache[key]
-            if time.time() - ts < self._ttl:
+            entry = self._cache[key]
+            ts = entry[0]
+            data = entry[1]
+            ttl = entry[2] if len(entry) > 2 else self._ttl
+            if time.time() - ts < ttl:
                 return data
         return None
-
-    def set(self, key: str, data: Any):
-        self._cache[key] = (time.time(), data)
 
     def fetch_or_cache(self, key: str, fetcher, *args, **kwargs):
         cached = self.get(key)
         if cached is not None:
             return cached
         result = fetcher(*args, **kwargs)
-        self.set(key, result)
+        # Don't cache empty/failed results for the full TTL — use 60s retry
+        is_empty = False
+        if isinstance(result, DataResult) and (result.data is None or len(result.data) == 0):
+            is_empty = True
+        elif isinstance(result, tuple) and all(
+            isinstance(a, np.ndarray) and len(a) == 0 for a in result
+        ):
+            is_empty = True
+        self.set(key, result, ttl_override=60.0 if is_empty else None)
+        if is_empty:
+            logger.warning(f"Cache [{key}]: empty result — cached with 60s retry TTL")
         return result
 
 

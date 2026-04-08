@@ -4,7 +4,8 @@ Initialize ASTRA with baseline astrophysical hypotheses.
 Run this to populate the hypothesis queue when starting fresh.
 """
 import sys
-sys.path.insert(0, '/Users/gjw255/astrodata/SWARM/ASTRA-dev-main')
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from astra_live_backend.hypotheses import HypothesisStore, Phase
 from astra_live_backend.state_persistence import save_hypotheses

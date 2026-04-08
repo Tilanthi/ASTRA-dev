@@ -30,6 +30,9 @@ class Domain(Enum):
     TRANSIENTS = "transients"
     CMB = "cmb"
     TIME_DOMAIN = "time_domain"
+    ECONOMICS = "economics"
+    CLIMATE = "climate"
+    EPIDEMIOLOGY = "epidemiology"
 
 
 @dataclass
@@ -818,6 +821,119 @@ def fetch_sdss_clusters(limit: int = MAX_ROWS) -> DataResult:
 # Register all sources
 # ═══════════════════════════════════════════════════════════════
 
+# ═══════════════════════════════════════════════════════════════
+# Multi-Domain Sources: Economics, Climate, Epidemiology
+# ═══════════════════════════════════════════════════════════════
+
+def fetch_world_bank(indicator: str = "NY.GDP.PCAP.CD", limit: int = 300) -> DataResult:
+    """Fetch World Bank indicator data (GDP per capita by default)."""
+    t0 = time.time()
+    url = f"https://api.worldbank.org/v2/country/all/indicator/{indicator}"
+    try:
+        resp = requests.get(url, params={
+            'format': 'json', 'per_page': str(limit), 'date': '2000:2023'
+        }, timeout=TIMEOUT)
+        resp.raise_for_status()
+        data = resp.json()
+        if len(data) < 2 or data[1] is None:
+            return DataResult(source="World Bank", query=f"indicator={indicator}",
+                              data=np.array([]), fetch_time=time.time() - t0)
+        records = [r for r in data[1] if r.get('value') is not None]
+        if not records:
+            return DataResult(source="World Bank", query=f"indicator={indicator}",
+                              data=np.array([]), fetch_time=time.time() - t0)
+        arr = np.array(
+            [(float(r['value']), int(r['date']), r['country']['value'][:40])
+             for r in records],
+            dtype=[('value', 'f8'), ('year', 'i4'), ('country', 'U40')]
+        )
+        return DataResult(
+            source="World Bank", query=f"indicator={indicator} ({len(arr)} records)",
+            data=arr, metadata={'indicator': indicator, 'total': len(arr)},
+            fetch_time=time.time() - t0,
+        )
+    except Exception as e:
+        logger.error(f"World Bank fetch failed: {e}")
+        return DataResult(source="World Bank", query=f"indicator={indicator}",
+                          data=np.array([]), metadata={'error': str(e)},
+                          fetch_time=time.time() - t0)
+
+
+def fetch_gistemp() -> DataResult:
+    """Fetch NASA GISTEMP global temperature anomalies."""
+    t0 = time.time()
+    url = "https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv"
+    try:
+        resp = requests.get(url, timeout=TIMEOUT)
+        resp.raise_for_status()
+        lines = resp.text.strip().split('\n')
+        header_idx = next((i for i, l in enumerate(lines) if l.startswith('Year')), None)
+        if header_idx is None:
+            return DataResult(source="NASA GISTEMP", query="GLB.Ts+dSST",
+                              data=np.array([]), fetch_time=time.time() - t0)
+        years, temps = [], []
+        for line in lines[header_idx + 1:]:
+            parts = line.split(',')
+            if len(parts) >= 14:
+                try:
+                    year = int(parts[0])
+                    annual = parts[13].strip()  # J-D column (annual mean)
+                    if annual and annual != '***':
+                        years.append(year)
+                        temps.append(float(annual))
+                except (ValueError, IndexError):
+                    continue
+        if not years:
+            return DataResult(source="NASA GISTEMP", query="GLB.Ts+dSST",
+                              data=np.array([]), fetch_time=time.time() - t0)
+        arr = np.array(
+            list(zip(years, temps)),
+            dtype=[('year', 'i4'), ('temp_anomaly', 'f8')]
+        )
+        return DataResult(
+            source="NASA GISTEMP", query=f"GLB.Ts+dSST ({len(arr)} years)",
+            data=arr, metadata={'total': len(arr)},
+            fetch_time=time.time() - t0,
+        )
+    except Exception as e:
+        logger.error(f"GISTEMP fetch failed: {e}")
+        return DataResult(source="NASA GISTEMP", query="GLB.Ts+dSST",
+                          data=np.array([]), metadata={'error': str(e)},
+                          fetch_time=time.time() - t0)
+
+
+def fetch_who_life_expectancy() -> DataResult:
+    """Fetch WHO life expectancy data from the Global Health Observatory."""
+    t0 = time.time()
+    url = "https://ghoapi.azureedge.net/api/WHOSIS_000001?$top=500"
+    try:
+        resp = requests.get(url, timeout=TIMEOUT)
+        resp.raise_for_status()
+        data = resp.json()
+        records = data.get('value', [])
+        valid = [r for r in records
+                 if r.get('NumericValue') is not None and r.get('TimeDim')]
+        if not valid:
+            return DataResult(source="WHO GHO", query="WHOSIS_000001",
+                              data=np.array([]), fetch_time=time.time() - t0)
+        arr = np.array(
+            [(float(r['NumericValue']), int(r['TimeDim']),
+              r.get('SpatialDim', 'UNK')[:10])
+             for r in valid],
+            dtype=[('life_expectancy', 'f8'), ('year', 'i4'), ('country', 'U10')]
+        )
+        return DataResult(
+            source="WHO GHO", query=f"life_expectancy ({len(arr)} records)",
+            data=arr, metadata={'total': len(arr)},
+            fetch_time=time.time() - t0,
+        )
+    except Exception as e:
+        logger.error(f"WHO GHO fetch failed: {e}")
+        return DataResult(source="WHO GHO", query="WHOSIS_000001",
+                          data=np.array([]), metadata={'error': str(e)},
+                          fetch_time=time.time() - t0)
+
+
 def register_all_sources():
     """Register all data sources into the global registry."""
     # Existing 4 sources
@@ -950,6 +1066,72 @@ def register_all_sources():
             "sdss_clusters", fetch_sdss_clusters, **kw),
         variables=["richness", "cluster_redshift", "bcg_magnitude", "lambda"],
         priority=72,
+    ))
+
+    # ── Multi-domain sources ────────────────────────────────────
+    _registry.register(DataSource(
+        id="world_bank",
+        schema=SourceSchema(
+            name="World Bank Indicators",
+            description="World Bank development indicators (GDP per capita, etc.)",
+            domain=Domain.ECONOMICS,
+            api_url="https://api.worldbank.org/v2/",
+            reference="World Bank Open Data",
+            cross_match_keys=[],
+            columns=[
+                ColumnSchema("value", "float", "USD", "Indicator value"),
+                ColumnSchema("year", "int", "", "Year"),
+                ColumnSchema("country", "str", "", "Country name"),
+            ]
+        ),
+        fetcher=fetch_world_bank,
+        cached_fetcher=lambda **kw: _registry._cache_get_or_set(
+            "world_bank", fetch_world_bank, **kw),
+        variables=["gdp_per_capita", "year", "country"],
+        priority=65,
+    ))
+
+    _registry.register(DataSource(
+        id="gistemp",
+        schema=SourceSchema(
+            name="NASA GISTEMP",
+            description="NASA GISS global surface temperature anomalies",
+            domain=Domain.CLIMATE,
+            api_url="https://data.giss.nasa.gov/gistemp/",
+            reference="GISTEMP Team 2024, NASA GISS",
+            cross_match_keys=[],
+            columns=[
+                ColumnSchema("year", "int", "", "Year"),
+                ColumnSchema("temp_anomaly", "float", "°C", "Temperature anomaly"),
+            ]
+        ),
+        fetcher=fetch_gistemp,
+        cached_fetcher=lambda **kw: _registry._cache_get_or_set(
+            "gistemp", fetch_gistemp, **kw),
+        variables=["year", "temp_anomaly"],
+        priority=68,
+    ))
+
+    _registry.register(DataSource(
+        id="who_gho",
+        schema=SourceSchema(
+            name="WHO Global Health Observatory",
+            description="WHO life expectancy and health indicators",
+            domain=Domain.EPIDEMIOLOGY,
+            api_url="https://ghoapi.azureedge.net/api/",
+            reference="WHO Global Health Observatory",
+            cross_match_keys=[],
+            columns=[
+                ColumnSchema("life_expectancy", "float", "years", "Life expectancy at birth"),
+                ColumnSchema("year", "int", "", "Year"),
+                ColumnSchema("country", "str", "", "Country code"),
+            ]
+        ),
+        fetcher=fetch_who_life_expectancy,
+        cached_fetcher=lambda **kw: _registry._cache_get_or_set(
+            "who_gho", fetch_who_life_expectancy, **kw),
+        variables=["life_expectancy", "year", "country"],
+        priority=63,
     ))
 
     logger.info(f"Registry initialized: {_registry.get_stats()}")

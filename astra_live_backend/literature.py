@@ -184,6 +184,50 @@ class LiteratureStore:
         """Return all papers as dicts."""
         return [p.to_dict() for p in self._papers.values()]
 
+    def get_papers_with_relevance(self, query_text: str = "") -> List[dict]:
+        """Return all papers with similarity scores against a query.
+        
+        If query_text is empty, uses a generic research query built from
+        paper titles to provide relative importance scores.
+        """
+        if not self._papers:
+            return []
+
+        self._rebuild_index()
+
+        papers_list = [p.to_dict() for p in self._papers.values()]
+
+        if not query_text:
+            # Build a query from hypothesis names if available
+            query_text = "astrophysics discovery dark energy galaxy exoplanet climate economics epidemiology"
+
+        if HAS_SKLEARN and self._vectorizer is not None and self._tfidf_matrix is not None:
+            query_vec = self._vectorizer.transform([query_text])
+            similarities = sklearn_cosine(query_vec, self._tfidf_matrix).flatten()
+            for i, paper in enumerate(papers_list):
+                if i < len(similarities):
+                    paper["similarity"] = round(float(similarities[i]), 4)
+                else:
+                    paper["similarity"] = 0.0
+        elif self._custom_vectors:
+            query_tokens = _tokenize(query_text)
+            query_tf: Counter = Counter(query_tokens)
+            total = len(query_tokens) or 1
+            query_vec = {
+                word: (count / total) * self._custom_idf.get(word, 0)
+                for word, count in query_tf.items()
+            }
+            for i, paper in enumerate(papers_list):
+                if i < len(self._custom_vectors):
+                    paper["similarity"] = round(float(_cosine_similarity_dicts(query_vec, self._custom_vectors[i])), 4)
+                else:
+                    paper["similarity"] = 0.0
+        else:
+            for paper in papers_list:
+                paper["similarity"] = 0.0
+
+        return papers_list
+
     @property
     def paper_count(self) -> int:
         return len(self._papers)

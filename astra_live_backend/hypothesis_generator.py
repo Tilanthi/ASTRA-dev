@@ -78,20 +78,17 @@ _HYPOTHESIS_TEMPLATES = {
     ],
 }
 
-# Generic fallback templates (astrophysics-focused)
+# Generic fallback templates — domain is set dynamically from discovery
 _GENERIC_TEMPLATES = [
-    ("Astronomy: {v1} Pattern in {source}", "Astrophysics",
+    ("Cross-Domain: {v1} Pattern in {source}", None,
      "Test whether the {v1} pattern observed in {desc_context} "
-     "also appears in {source} data. Cross-dataset structural comparison."),
-    ("Follow-up: {finding_type} in {source}", "Astrophysics",
+     "also appears in {source} data. Structural comparison."),
+    ("Follow-up: {finding_type} in {source}", None,
      "Systematic follow-up of {finding_type} signal: {desc}. "
-     "Extended statistical characterization with larger sample and improved controls."),
-    ("Causal Probe: {v1} Mechanism", "Astrophysics",
+     "Extended statistical characterization with larger sample."),
+    ("Causal Probe: {v1} Mechanism", None,
      "Test causal mechanism behind {v1} relationship: {desc}. "
-     "Intervention analysis + physical constraint checking + theoretical modeling."),
-    ("Physics Interpretation: {v1}", "Physics",
-     "Interpret {v1} phenomenon in terms of fundamental physics: {desc}. "
-     "Test theoretical predictions against observational constraints."),
+     "Intervention analysis + physical constraint checking."),
 ]
 
 
@@ -109,40 +106,62 @@ class HypothesisGenerator:
         self.memory = memory
         self._name_counter = {}  # avoid duplicate names
 
-    # Domains the engine should actively explore (astrophysics-focused)
-    ALL_DOMAINS = ["Astrophysics", "Physics", "Cosmology"]
+    # Domains the engine should actively explore
+    ALL_DOMAINS = ["Astrophysics", "Economics", "Climate", "Epidemiology", "Cross-Domain", "Cryptography"]
 
-    # Astrophysics sub-domain exploration templates
+    # Multi-domain exploration templates (non-astrophysics)
     _DOMAIN_EXPLORATION_TEMPLATES = {
-        "Astrophysics": [
-            ("Stellar Evolution Calibrations", "Astrophysics",
-             "Test stellar evolution model predictions against Gaia DR3 observations. "
-             "Compare main sequence lifetimes, giant branch transitions, and white dwarf cooling tracks."),
-            ("Galaxy Formation Scaling Laws", "Astrophysics",
-             "Investigate galaxy scaling relations across mass, size, and metallicity. "
-             "Test whether scaling exponents vary with redshift and environment."),
-            ("Exoplanet Atmospheric Trends", "Astrophysics",
-             "Search for correlations between exoplanet atmospheric properties and host star parameters. "
-             "Test irradiation-mass-loss relationships and composition trends."),
+        "Economics": [
+            ("GDP-Inequality Nexus", "Economics",
+             "Test Kuznets curve and Gini-GDP relationship across countries. "
+             "Bayesian model comparison for linear vs inverted-U vs no relationship."),
+            ("Trade Network Structure", "Economics",
+             "Analyze global trade network topology. Test scale-free properties, "
+             "hub-and-spoke structure, and trade flow power laws."),
+            ("Inflation-Growth Dynamics", "Economics",
+             "Investigate nonlinear inflation–growth relationship across economies. "
+             "Threshold regression to find optimal inflation ranges."),
         ],
-        "Cosmology": [
-            ("Hubble Constant Consistency Tests", "Cosmology",
-             "Test H0 consistency across different distance ladders and methods. "
-             "Compare CMB, SNe Ia, and strong lensing measurements for systematic offsets."),
-            ("Growth Rate of Structure", "Cosmology",
-             "Measure the growth rate of cosmic structure using redshift-space distortions. "
-             "Test GR predictions against modified gravity alternatives."),
-            ("Dark Energy Equation of State", "Cosmology",
-             "Constrain w(a) parameterization using combined distance and growth rate data. "
-             "Test consistency with ΛCDM w = -1 prediction."),
+        "Climate": [
+            ("CO2-Temperature Attribution", "Climate",
+             "Quantify CO2 forcing contribution to observed warming using Granger "
+             "causality and attribution analysis on instrumental records."),
+            ("Extreme Weather Trends", "Climate",
+             "Statistical analysis of extreme weather event frequency trends. "
+             "Fit GEV distributions, test for changing return periods."),
+            ("Sea Level Acceleration", "Climate",
+             "Test for acceleration in sea level rise using tide gauge + satellite "
+             "altimetry data. Quadratic vs linear trend comparison."),
         ],
-        "Physics": [
-            ("Fundamental Constants Stability", "Physics",
-             "Test temporal variation of fundamental constants using quasar absorption spectra. "
-             "Search for variations in α, μ, and me/mp over cosmic time."),
-            ("Lorentz Invariance Violation", "Physics",
-             "Test Lorentz symmetry using high-energy astrophysical observations. "
-             "Search for energy-dependent speed of light effects in GRB and AGN data."),
+        "Epidemiology": [
+            ("Vaccination-Mortality Reduction", "Epidemiology",
+             "Quantify causal effect of DPT/measles vaccination coverage on under-5 "
+             "mortality rates. Instrumental variable + panel data approach."),
+            ("Preston Curve Evolution", "Epidemiology",
+             "Test whether the Preston curve (income vs life expectancy) has shifted "
+             "upward over decades. Time-varying coefficient analysis."),
+            ("Disease Burden Inequality", "Epidemiology",
+             "Analyze concentration of disease burden by income quintile. "
+             "Gini-like health inequality metrics across countries and time."),
+        ],
+        "Cryptography": [
+            ("ECDLP Summation Polynomial Sparsity", "Cryptography",
+             "Investigate summation polynomial structure for ECCp-131. "
+             "Search for sparse representations enabling index calculus speedup."),
+            ("Isogeny-Based DLP Reduction", "Cryptography",
+             "Search for curves isogenous to ECCp-131 with exploitable structure. "
+             "Enumerate small-degree isogenies for weak curve transfer."),
+            ("Lattice Reduction EC Relations", "Cryptography",
+             "Apply LLL/BKZ lattice reduction to elliptic curve group relations. "
+             "Search for short vectors encoding DLP solutions."),
+        ],
+        "Cross-Domain": [
+            ("Wealth-Health-Climate Triad", "Cross-Domain",
+             "Three-way interaction: GDP per capita, life expectancy, and CO2 emissions. "
+             "Test Environmental Kuznets Curve with health co-benefits."),
+            ("Urbanization Cascade", "Cross-Domain",
+             "Urbanization → economic growth → emissions → health impacts causal chain. "
+             "Structural equation modeling across 150+ countries."),
         ],
     }
 
@@ -157,7 +176,7 @@ class HypothesisGenerator:
         """
         candidates = []
 
-        # --- Astrophysics sub-domain diversification check ---
+        # --- Domain diversification check ---
         # Count domain distribution in existing hypotheses (from hot_domains)
         hot = self.memory.get_hot_domains(top_n=5)
         dominant_domain = hot[0][0] if hot else "Astrophysics"
@@ -165,11 +184,11 @@ class HypothesisGenerator:
         total_weight = sum(w for _, w in hot) if hot else 1
         concentration = dominant_weight / max(total_weight, 1e-6)
 
-        # If >80% concentration in one sub-domain, force diversification within astrophysics
+        # If >80% concentration in one domain, force diversification
         force_diversify = concentration > 0.8
 
         if force_diversify:
-            # Prioritize underrepresented astrophysics sub-domains
+            # Prioritize underrepresented domains
             represented = {d for d, _ in hot}
             missing_domains = [d for d in self.ALL_DOMAINS if d != dominant_domain]
             for domain in missing_domains:
@@ -184,7 +203,7 @@ class HypothesisGenerator:
                             "finding_type": "exploration",
                             "data_source": "multi",
                             "variables": [],
-                            "_weight": 0.9,  # High weight to beat follow-ups
+                            "_weight": 0.9,  # High weight to beat Astro follow-ups
                             "source_discovery_id": None,
                         })
 
@@ -233,31 +252,29 @@ class HypothesisGenerator:
                             "source_discovery_id": None,
                         })
 
-        # 3. Cross-dataset analogies (15% weight) - astrophysics only
+        # 3. Cross-domain analogies (15% weight)
         if len(hot) >= 2:
             d1, d2 = hot[0][0], hot[1][0]
-            # Only generate analogies within astrophysics/physics/cosmology
-            if d1 in self.ALL_DOMAINS and d2 in self.ALL_DOMAINS:
-                d1_discoveries = [d for d in self.memory.discoveries if d.domain == d1]
-                if d1_discoveries:
-                    latest = d1_discoveries[-1]
-                    name = f"Cross-Dataset: {latest.finding_type.title()} from {d1}→{d2}"
-                    if name not in existing_names:
-                        candidates.append({
-                            "name": name,
-                            "domain": d2,
-                            "description": (
-                                f"Does the {latest.finding_type} pattern observed in {d1} "
-                                f"({latest.description[:80]}) have an analog in {d2}? "
-                                f"Structural comparison across astrophysical datasets."
-                            ),
-                            "confidence": 0.12,
-                            "finding_type": "cross_dataset",
-                            "data_source": latest.data_source,
-                            "variables": latest.variables,
-                            "_weight": 0.15,
-                            "source_discovery_id": latest.id,
-                        })
+            d1_discoveries = [d for d in self.memory.discoveries if d.domain == d1]
+            if d1_discoveries:
+                latest = d1_discoveries[-1]
+                name = f"Cross-Domain: {latest.finding_type.title()} from {d1}→{d2}"
+                if name not in existing_names:
+                    candidates.append({
+                        "name": name,
+                        "domain": d2,
+                        "description": (
+                            f"Does the {latest.finding_type} pattern observed in {d1} "
+                            f"({latest.description[:80]}) have an analog in {d2}? "
+                            f"Structural comparison across domains."
+                        ),
+                        "confidence": 0.12,
+                        "finding_type": "cross_domain",
+                        "data_source": latest.data_source,
+                        "variables": latest.variables,
+                        "_weight": 0.15,
+                        "source_discovery_id": latest.id,
+                    })
 
         # Sort by weight and take top N
         candidates.sort(key=lambda c: c.get("_weight", 0), reverse=True)

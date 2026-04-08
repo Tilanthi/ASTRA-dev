@@ -7,8 +7,8 @@ import time
 import json
 import os
 import sys
-import numpy as np
 from pathlib import Path
+import numpy as np
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -235,99 +235,6 @@ def api_safe_mode():
     return result
 
 
-# ── Discovery Verification Endpoints ─────────────────────────────────────
-
-@app.get("/api/verification/status")
-def api_verification_status():
-    """Get verification system status and statistics."""
-    try:
-        from astra_live_backend.verification_auto import get_discovery_verifier
-
-        verifier = get_discovery_verifier()
-        report = verifier.get_verification_report()
-
-        return {
-            'status': 'active',
-            'total_evaluated': report['total_evaluated'],
-            'total_verified': report['total_verified'],
-            'total_rejected': report['total_rejected'],
-            'verification_rate': report['verification_rate'],
-            'available': True
-        }
-    except ImportError:
-        return {
-            'status': 'unavailable',
-            'message': 'Verification module not available',
-            'available': False
-        }
-
-
-@app.post("/api/verification/run")
-def api_run_verification():
-    """
-    Trigger automatic verification workflow.
-
-    Evaluates pending discoveries and promotes those that pass
-    verification criteria to "Verified" status.
-    """
-    try:
-        from astra_live_backend.verification_auto import get_verified_manager
-
-        manager = get_verified_manager()
-
-        # Run verification workflow
-        new_verified = manager.update_verified_discoveries()
-
-        # Get all verified discoveries
-        all_verified = manager.get_all_verified_discoveries()
-
-        return {
-            'status': 'completed',
-            'newly_verified': len(new_verified),
-            'total_verified': len(all_verified),
-            'discoveries': new_verified
-        }
-    except ImportError:
-        return {
-            'status': 'unavailable',
-            'message': 'Verification module not available',
-            'newly_verified': 0,
-            'total_verified': 0,
-            'discoveries': []
-        }
-    except Exception as e:
-        return {
-            'status': 'error',
-            'message': str(e),
-            'newly_verified': 0,
-            'total_verified': 0,
-            'discoveries': []
-        }
-
-
-@app.get("/api/verification/verified")
-def api_verified_discoveries():
-    """Get all verified discoveries for dashboard display."""
-    try:
-        from astra_live_backend.verification_auto import get_verified_manager
-
-        manager = get_verified_manager()
-        discoveries = manager.get_all_verified_discoveries()
-
-        return {
-            'status': 'success',
-            'count': len(discoveries),
-            'discoveries': discoveries
-        }
-    except ImportError:
-        return {
-            'status': 'unavailable',
-            'message': 'Verification module not available',
-            'count': 0,
-            'discoveries': []
-        }
-
-
 @app.get("/api/engine/safety-status")
 def api_safety_status():
     """Get safety controller state + audit log."""
@@ -543,81 +450,12 @@ def _get_safety_action(name: str):
 
 # ── Serve the Dashboard ──────────────────────────────────────────
 
-DASHBOARD_DIR = Path("astra-live")
-
-
-async def _ensure_dashboard_exists():
-    """Ensure dashboard directory and file exist. Auto-generates if missing."""
-    import subprocess
-    import shutil
-    from pathlib import Path
-
-    # Create directory if it doesn't exist
-    DASHBOARD_DIR.mkdir(parents=True, exist_ok=True)
-
-    dashboard_path = DASHBOARD_DIR / "index.html"
-
-    if not dashboard_path.exists():
-        # Copy template if available
-        template_path = Path(__file__).parent / "dashboard_template.html"
-        if template_path.exists():
-            shutil.copy(str(template_path), str(dashboard_path))
-        else:
-            # Create minimal dashboard as fallback
-            minimal_html = """<!DOCTYPE html>
-<html>
-<head>
-    <title>ASTRA Live</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; background: #f5f5f5; }
-        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .header { border-bottom: 2px solid #0066cc; padding-bottom: 20px; margin-bottom: 30px; }
-        .status { background: #f0f8ff; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #0066cc; }
-        .cognitive { background: #f0fff0; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #28a745; }
-        h1 { color: #333; margin: 0; }
-        h2 { color: #444; margin-top: 30px; }
-        a { color: #0066cc; }
-        .endpoint { margin: 10px 0; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>🧠 ASTRA Live — Autonomous Scientific Discovery</h1>
-            <p>With Cognitive Architecture (Phase 15: Scientific AGI)</p>
-        </div>
-        <div class="status">
-            <h2>⚡ System Status</h2>
-            <p><strong>Server:</strong> Running at <a href="http://localhost:8787">http://localhost:8787</a></p>
-            <p><strong>Dashboard:</strong> <a href="/api/status">API Status</a></p>
-            <p><strong>Documentation:</strong> <a href="/docs">API Docs</a></p>
-        </div>
-        <div class="cognitive">
-            <h2>🧠 Cognitive Architecture (New!)</h2>
-            <div class="endpoint"><a href="/api/cognitive/status">/api/cognitive/status</a></div>
-            <div class="endpoint"><a href="/api/cognitive/dashboard">/api/cognitive/dashboard</a></div>
-            <div class="endpoint"><a href="/api/knowledge-graph/statistics">/api/knowledge-graph/statistics</a></div>
-            <div class="endpoint"><a href="/api/knowledge-graph/gaps">/api/knowledge-graph/gaps</a></div>
-            <div class="endpoint"><a href="/api/metacognition/report">/api/metacognition/report</a></div>
-        </div>
-        <p><em>ASTRA is running with Scientific AGI capabilities enabled.</em></p>
-    </div>
-</body>
-</html>"""
-            with open(dashboard_path, 'w') as f:
-                f.write(minimal_html)
+DASHBOARD_DIR = Path("/shared/public/astra-live")
 
 
 @app.get("/")
-async def serve_dashboard():
-    """ASTRA Live dashboard. Auto-generates if missing."""
-    dashboard_path = DASHBOARD_DIR / "index.html"
-
-    # Auto-generate dashboard if it doesn't exist
-    if not dashboard_path.exists():
-        await _ensure_dashboard_exists()
-
-    return FileResponse(dashboard_path)
+def serve_dashboard():
+    return FileResponse(DASHBOARD_DIR / "index.html")
 
 
 # ── Phase 4: Operational Readiness Endpoints ──────────────────────
@@ -762,11 +600,22 @@ def api_literature_search(query: str = "galaxy", max_results: int = 5):
 
 @app.get("/api/literature/papers")
 def api_literature_papers():
-    """List all cached papers in the literature store."""
+    """List all cached papers in the literature store, with relevance scores."""
     from astra_live_backend.literature import get_literature_store
     store = get_literature_store()
+    # Build a query from current hypothesis names for relevance scoring
+    query_parts = []
+    try:
+        hyps = engine.hypotheses if engine else []
+        for h in hyps[:20]:
+            name = getattr(h, 'name', '') or ''
+            desc = getattr(h, 'description', '') or ''
+            query_parts.append(f"{name} {desc}")
+    except Exception:
+        pass
+    query_text = " ".join(query_parts) if query_parts else ""
     return {
-        "papers": store.get_papers(),
+        "papers": store.get_papers_with_relevance(query_text),
         "total": store.paper_count,
         "backend": "sklearn" if store._vectorizer is not None else "custom",
         "timestamp": time.time(),
@@ -1080,70 +929,12 @@ def api_generate_hypotheses():
 
 # ── Serve the Dashboard ──────────────────────────────────────────
 
-DASHBOARD_DIR = Path("astra-live")
+DASHBOARD_DIR = Path("/shared/public/astra-live")
 
 
-async def _ensure_dashboard_exists():
-    """Ensure dashboard directory and file exist."""
-    import subprocess
-    import shutil
-
-    # Create directory if it doesn't exist
-    DASHBOARD_DIR.mkdir(parents=True, exist_ok=True)
-
-    dashboard_path = DASHBOARD_DIR / "index.html"
-
-    if not dashboard_path.exists():
-        # Copy template if available
-        template_path = Path(__file__).parent / "dashboard_template.html"
-        if template_path.exists():
-            shutil.copy(template_path, dashboard_path)
-        else:
-            # Create minimal dashboard as fallback
-            minimal_html = """<!DOCTYPE html>
-<html>
-<head>
-    <title>ASTRA Live</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        .status { background: #f0f8ff; padding: 20px; border-radius: 5px; margin: 20px 0; }
-        .cognitive { background: #f0fff0; padding: 20px; border-radius: 5px; margin: 20px 0; }
-        .endpoints { background: #fff8f0; padding: 20px; border-radius: 5px; margin: 20px 0; }
-    </style>
-</head>
-<body>
-    <h1>🧠 ASTRA Live — Autonomous Scientific Discovery</h1>
-    <p>With Cognitive Architecture (Phase 15)</p>
-    <div class="status">
-        <h2>System Status</h2>
-        <p><strong>Server:</strong> Running</p>
-        <p><strong>Dashboard:</strong> <a href="/api/status">API Status</a></p>
-        <p><strong>Documentation:</strong> <a href="/docs">API Docs</a></p>
-    </div>
-    <div class="cognitive">
-        <h2>🧠 Cognitive Architecture (New!)</h2>
-        <ul>
-            <li><a href="/api/cognitive/status">Cognitive Status</a></li>
-            <li><a href="/api/cognitive/dashboard">Cognitive Dashboard</a></li>
-            <li><a href="/api/knowledge-graph/statistics">Knowledge Graph</a></li>
-            <li><a href="/api/knowledge-graph/gaps">Knowledge Gaps</a></li>
-            <li><a href="/api/metacognition/report">Meta-Cognition Report</a></li>
-        </ul>
-    </div>
-    <div class="endpoints">
-        <h2>Key API Endpoints</h2>
-        <ul>
-            <li><a href="/api/hypotheses">Hypotheses</a></li>
-            <li><a href="/api/activity">Activity Log</a></li>
-            <li><a href="/api/engine/state-space">State Space</a></li>
-            <li><a href="/api/discovery-memory">Discovery Memory</a></li>
-        </ul>
-    </div>
-    <p><em>ASTRA is running with Scientific AGI capabilities enabled.</em></p>
-</body>
-</html>"""
-            with open(dashboard_path, 'w') as f:
-                f.write(minimal_html)
+@app.get("/")
+def serve_dashboard():
+    return FileResponse(DASHBOARD_DIR / "index.html")
 
 
 @app.get("/api/system/health")
@@ -1262,6 +1053,7 @@ def api_persistence():
 
 
 @app.get("/api/engine/degradation-status")
+@app.get("/api/engine/degradation")
 def api_degradation_status():
     """Current degradation detection metrics and recommendations."""
     return engine.degradation_detector.get_status()
@@ -1920,183 +1712,99 @@ async def get_consistency_reports():
 @app.get("/api/cognitive/status")
 async def api_cognitive_status():
     """Cognitive architecture status and capabilities."""
-    if not engine.cognitive_core:
-        return {"enabled": False, "message": "Cognitive architecture not available"}
+    try:
+        if not engine.cognitive_core:
+            return {"enabled": False, "message": "Cognitive architecture not available"}
 
-    summary = engine.cognitive_core.get_cognitive_summary()
+        summary = engine.cognitive_core.get_cognitive_summary()
 
-    return {
-        "enabled": True,
-        "cognitive_mode": summary.get("cognitive_mode"),
-        "perceptions": summary.get("perceptions", 0),
-        "insights": summary.get("insights", 0),
-        "discoveries": summary.get("discoveries", 0),
-        "knowledge_graph": summary.get("knowledge_graph_stats", {}),
-        "neuro_symbolic": summary.get("neuro_symbolic_stats", {}),
-        "metacognition": summary.get("metacognitive_report", {})
-    }
-
-
-@app.get("/api/knowledge-graph/statistics")
-async def api_knowledge_graph_stats():
-    """Knowledge graph statistics: entities, relations, gaps."""
-    if not engine.cognitive_core:
-        return {"error": "Cognitive core not available"}
-
-    stats = engine.cognitive_core.knowledge_graph.get_statistics()
-
-    return {
-        "statistics": stats,
-        "total_entities": stats.get("total_entities", 0),
-        "total_relations": stats.get("total_relations", 0),
-        "knowledge_gaps": stats.get("knowledge_gaps", 0),
-        "domains": stats.get("domains", {}),
-        "graph_density": stats.get("graph_density", 0)
-    }
-
-
-@app.get("/api/knowledge-graph/gaps")
-async def api_knowledge_graph_gaps():
-    """Get current knowledge gaps identified by the knowledge graph."""
-    if not engine.cognitive_core:
-        return {"error": "Cognitive core not available"}
-
-    gaps = engine.cognitive_core.knowledge_graph.find_knowledge_gaps()
-
-    # Return top 10 gaps by priority
-    top_gaps = sorted(gaps, key=lambda g: g.priority, reverse=True)[:10]
-
-    return {
-        "total_gaps": len(gaps),
-        "high_priority_gaps": len([g for g in gaps if g.priority > 0.7]),
-        "top_gaps": [
-            {
-                "gap_type": g.gap_type,
-                "description": g.description,
-                "priority": g.priority,
-                "suggestions": g.suggestions
-            }
-            for g in top_gaps
-        ]
-    }
-
-
-@app.get("/api/knowledge-graph/analogies")
-async def api_knowledge_graph_analogies():
-    """Get cross-domain analogies discovered by the knowledge graph."""
-    if not engine.cognitive_core:
-        return {"error": "Cognitive core not available"}
-
-    analogies = engine.cognitive_core.knowledge_graph.find_cross_domain_analogies()
-
-    return {
-        "total_analogies": len(analogies),
-        "analogies": [
-            {
-                "domain1": a["domain1"],
-                "domain2": a["domain2"],
-                "entity1": a["entity1"],
-                "entity2": a["entity2"],
-                "similarity": a["similarity"],
-                "shared_properties": a["shared_properties"]
-            }
-            for a in analogies[:10]  # Top 10
-        ]
-    }
-
-
-@app.get("/api/metacognition/report")
-async def api_metacognition_report():
-    """Get meta-cognitive self-awareness report."""
-    if not engine.cognitive_core:
-        return {"error": "Cognitive core not available"}
-
-    report = engine.cognitive_core.metacognition.get_self_awareness_report()
-
-    return {
-        "cognitive_state": report.get("cognitive_state"),
-        "total_traces": report.get("total_traces", 0),
-        "recent_success_rate": report.get("recent_success_rate", 0),
-        "error_patterns": report.get("error_patterns_detected", 0),
-        "methods_tracked": report.get("methods_tracked", 0),
-        "top_errors": report.get("top_error_patterns", []),
-        "best_methods": report.get("best_methods", [])
-    }
-
-
-@app.post("/api/cognitive/discover")
-async def api_cognitive_discover(request: Request):
-    """
-    Run cognitive discovery on provided data.
-
-    Expected body:
-    {
-        "data": [[...]],  # Numerical data array
-        "features": {"feature1": [...], "feature2": [...]},
-        "data_type": "numerical"
-    }
-    """
-    if not engine.cognitive_core:
-        return {"error": "Cognitive core not available"}
-
-    body = await request.json()
-
-    data = np.array(body.get("data", []))
-    features = body.get("features", {})
-    data_type = body.get("data_type", "numerical")
-
-    discovery = engine.cognitive_core.discover(data, data_type, features)
-
-    if discovery:
         return {
-            "discovery_id": discovery.discovery_id,
-            "title": discovery.title,
-            "confidence": discovery.confidence,
-            "significance": discovery.significance,
-            "novelty": discovery.novelty,
-            "explanation": discovery.explanation,
-            "next_steps": discovery.next_steps
+            "enabled": True,
+            "cognitive_mode": summary.get("cognitive_mode"),
+            "perceptions": summary.get("perceptions", 0),
+            "insights": summary.get("insights", 0),
+            "discoveries": summary.get("discoveries", 0),
+            "knowledge_graph": summary.get("knowledge_graph_stats", {}),
+            "neuro_symbolic": summary.get("neuro_symbolic_stats", {}),
+            "metacognition": summary.get("metacognitive_report", {})
         }
+    except Exception as e:
+        return {"enabled": False, "error": str(e)}
 
-    return {"error": "No discovery generated"}
+
+@app.get("/api/cognitive/dashboard")
+async def api_cognitive_dashboard():
+    """
+    Get comprehensive cognitive dashboard data.
+    Combines all cognitive systems into a unified view.
+    """
+    try:
+        if not engine.cognitive_core:
+            return {"enabled": False, "message": "Cognitive architecture not available"}
+
+        summary = engine.cognitive_core.get_cognitive_summary()
+        kg_stats = engine.cognitive_core.knowledge_graph.get_statistics()
+        meta_report = engine.cognitive_core.metacognition.get_self_awareness_report()
+        gaps = engine.cognitive_core.knowledge_graph.find_knowledge_gaps()
+
+        return {
+            "enabled": True,
+            "summary": summary,
+            "knowledge_graph": {
+                "statistics": kg_stats,
+                "gaps_count": len(gaps),
+                "high_priority_gaps": len([g for g in gaps if g.priority > 0.7])
+            },
+            "metacognition": {
+                "cognitive_state": meta_report.get("cognitive_state"),
+                "success_rate": meta_report.get("recent_success_rate", 0),
+                "error_patterns": meta_report.get("error_patterns_detected", 0)
+            },
+            "recent_discoveries": len(engine.cognitive_core.discoveries),
+            "total_insights": len(engine.cognitive_core.insights)
+        }
+    except Exception as e:
+        return {"enabled": False, "error": str(e)}
 
 
 @app.get("/api/cognitive/discoveries")
 async def api_cognitive_discoveries():
     """Get recent cognitive discoveries."""
-    if not engine.cognitive_core:
-        return {"error": "Cognitive core not available"}
+    try:
+        if not engine.cognitive_core:
+            return {"error": "Cognitive core not available"}
 
-    discoveries = engine.cognitive_core.discoveries[-10:]  # Last 10
+        discoveries = engine.cognitive_core.discoveries[-10:]
 
-    return {
-        "total_discoveries": len(engine.cognitive_core.discoveries),
-        "recent_discoveries": [
-            {
-                "id": d.discovery_id,
-                "title": d.title,
-                "type": d.discovery_type,
-                "confidence": d.confidence,
-                "significance": d.significance,
-                "novelty": d.novelty,
-                "explanation": d.explanation[:200] + "..." if len(d.explanation) > 200 else d.explanation
-            }
-            for d in discoveries
-        ]
-    }
+        return {
+            "total_discoveries": len(engine.cognitive_core.discoveries),
+            "recent_discoveries": [
+                {
+                    "id": d.discovery_id,
+                    "title": d.title,
+                    "type": d.discovery_type,
+                    "confidence": d.confidence,
+                    "significance": d.significance,
+                    "novelty": d.novelty,
+                    "explanation": d.explanation[:200] + "..." if len(d.explanation) > 200 else d.explanation
+                }
+                for d in discoveries
+            ]
+        }
+    except Exception as e:
+        return {"error": str(e)}
 
 
 @app.get("/api/cognitive/explain/{discovery_id}")
 async def api_cognitive_explain(discovery_id: str, audience: str = "expert"):
     """
     Get explanation for a cognitive discovery at different audience levels.
-
     Audience levels: expert, student, public
     """
-    if not engine.cognitive_core:
-        return {"error": "Cognitive core not available"}
-
     try:
+        if not engine.cognitive_core:
+            return {"error": "Cognitive core not available"}
+
         explanation = engine.cognitive_core.explain_discovery(
             int(discovery_id) if discovery_id.isdigit() else discovery_id,
             audience_level=audience
@@ -2110,79 +1818,501 @@ async def api_cognitive_explain(discovery_id: str, audience: str = "expert"):
         return {"error": str(e)}
 
 
-@app.post("/api/cognitive/reflect")
-async def api_cognitive_reflect():
-    """Trigger meta-cognitive reflection and self-improvement."""
-    if not engine.cognitive_core:
-        return {"error": "Cognitive core not available"}
+@app.post("/api/cognitive/discover")
+async def api_cognitive_discover(request: Request):
+    """
+    Run cognitive discovery on provided data.
+    Expected body: {"data": [[...]], "features": {...}, "data_type": "numerical"}
+    """
+    try:
+        if not engine.cognitive_core:
+            return {"error": "Cognitive core not available"}
 
-    reflection = engine.cognitive_core.reflect()
+        body = await request.json()
+        data = np.array(body.get("data", []))
+        features = body.get("features", {})
+        data_type = body.get("data_type", "numerical")
 
-    if reflection and reflection.get("reflection"):
-        refl = reflection["reflection"]
+        discovery = engine.cognitive_core.discover(data, data_type, features)
 
-        return {
-            "timestamp": refl.timestamp,
-            "insights": refl.insights,
-            "improvements": refl.improvements,
-            "strategy_changes": refl.strategy_changes,
-            "cognitive_state": reflection.get("cognitive_state"),
-            "knowledge_gaps_found": len(reflection.get("knowledge_gaps", []))
-        }
+        if discovery:
+            return {
+                "discovery_id": discovery.discovery_id,
+                "title": discovery.title,
+                "confidence": discovery.confidence,
+                "significance": discovery.significance,
+                "novelty": discovery.novelty,
+                "explanation": discovery.explanation,
+                "next_steps": discovery.next_steps
+            }
 
-    return {"error": "Reflection failed"}
+        return {"error": "No discovery generated"}
+    except Exception as e:
+        return {"error": str(e)}
 
 
 @app.post("/api/cognitive/integrate-theory-data")
 async def api_cognitive_integrate(request: Request):
     """
     Integrate theoretical description with empirical data validation.
-
-    Expected body:
-    {
-        "theory_description": "Entropic gravity predicts MOND-like behavior",
-        "data": [[...]]  # Observational data
-    }
+    Expected body: {"theory_description": "...", "data": [[...]]}
     """
-    if not engine.cognitive_core:
-        return {"error": "Cognitive core not available"}
+    try:
+        if not engine.cognitive_core:
+            return {"error": "Cognitive core not available"}
 
-    body = await request.json()
+        body = await request.json()
+        theory_description = body.get("theory_description", "")
+        data = np.array(body.get("data", []))
 
-    theory_description = body.get("theory_description", "")
-    data = np.array(body.get("data", []))
+        result = engine.cognitive_core.unify_theory_and_data(theory_description, data)
+        return result
+    except Exception as e:
+        return {"error": str(e)}
 
-    result = engine.cognitive_core.unify_theory_and_data(theory_description, data)
 
-    return result
+@app.post("/api/cognitive/reflect")
+async def api_cognitive_reflect():
+    """Trigger meta-cognitive reflection and self-improvement."""
+    try:
+        if not engine.cognitive_core:
+            return {"error": "Cognitive core not available"}
 
+        reflection = engine.cognitive_core.reflect()
+
+        if reflection and reflection.get("reflection"):
+            refl = reflection["reflection"]
+            return {
+                "timestamp": refl.timestamp,
+                "insights": refl.insights,
+                "improvements": refl.improvements,
+                "strategy_changes": refl.strategy_changes,
+                "cognitive_state": reflection.get("cognitive_state"),
+                "knowledge_gaps_found": len(reflection.get("knowledge_gaps", []))
+            }
+
+        return {"message": "No cognitive traces available yet — reflection requires completed cognitive discovery cycles", "insights": [], "improvements": []}
+    except Exception as e:
+        return {"error": str(e)}
+
+
+# ═══════════════════════════════════════════════════════════════
+# Knowledge Graph Endpoints
+# ═══════════════════════════════════════════════════════════════
+
+@app.get("/api/knowledge-graph/statistics")
+async def api_knowledge_graph_stats():
+    """Knowledge graph statistics: entities, relations, gaps."""
+    try:
+        if not engine.cognitive_core:
+            return {"error": "Cognitive core not available"}
+
+        stats = engine.cognitive_core.knowledge_graph.get_statistics()
+
+        return {
+            "statistics": stats,
+            "total_entities": stats.get("total_entities", 0),
+            "total_relations": stats.get("total_relations", 0),
+            "knowledge_gaps": stats.get("knowledge_gaps", 0),
+            "domains": stats.get("domains", {}),
+            "graph_density": stats.get("graph_density", 0)
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@app.get("/api/knowledge-graph/gaps")
+async def api_knowledge_graph_gaps():
+    """Get current knowledge gaps identified by the knowledge graph."""
+    try:
+        if not engine.cognitive_core:
+            return {"error": "Cognitive core not available"}
+
+        gaps = engine.cognitive_core.knowledge_graph.find_knowledge_gaps()
+        top_gaps = sorted(gaps, key=lambda g: g.priority, reverse=True)[:10]
+
+        return {
+            "total_gaps": len(gaps),
+            "high_priority_gaps": len([g for g in gaps if g.priority > 0.7]),
+            "top_gaps": [
+                {
+                    "gap_type": g.gap_type,
+                    "description": g.description,
+                    "priority": g.priority,
+                    "suggestions": g.suggestions
+                }
+                for g in top_gaps
+            ]
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@app.get("/api/knowledge-graph/analogies")
+async def api_knowledge_graph_analogies():
+    """Get cross-domain analogies discovered by the knowledge graph."""
+    try:
+        if not engine.cognitive_core:
+            return {"error": "Cognitive core not available"}
+
+        analogies = engine.cognitive_core.knowledge_graph.find_cross_domain_analogies()
+
+        return {
+            "total_analogies": len(analogies),
+            "analogies": [
+                {
+                    "domain1": a["domain1"],
+                    "domain2": a["domain2"],
+                    "entity1": a["entity1"],
+                    "entity2": a["entity2"],
+                    "similarity": a["similarity"],
+                    "shared_properties": a["shared_properties"]
+                }
+                for a in analogies[:10]
+            ]
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
+# ═══════════════════════════════════════════════════════════════
+# Metacognition Endpoint
+# ═══════════════════════════════════════════════════════════════
+
+@app.get("/api/metacognition/report")
+async def api_metacognition_report():
+    """Get meta-cognitive self-awareness report."""
+    try:
+        if not engine.cognitive_core:
+            return {"error": "Cognitive core not available"}
+
+        report = engine.cognitive_core.metacognition.get_self_awareness_report()
+
+        return {
+            "cognitive_state": report.get("cognitive_state"),
+            "total_traces": report.get("total_traces", 0),
+            "recent_success_rate": report.get("recent_success_rate", 0),
+            "error_patterns": report.get("error_patterns_detected", 0),
+            "methods_tracked": report.get("methods_tracked", 0),
+            "top_errors": report.get("top_error_patterns", []),
+            "best_methods": report.get("best_methods", [])
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
+# ═══════════════════════════════════════════════════════════════
+# V9.0: Multi-Agent Scientific Collaboration
+# ═══════════════════════════════════════════════════════════════
+
+@app.get("/api/agents/status")
+@app.get("/api/multi-agent/status")
+async def api_agents_status():
+    """Get status of multi-agent collaboration system (V9.0)."""
+    try:
+        if not engine.multi_agent_orchestrator:
+            return {"enabled": False, "message": "Multi-agent system not initialized"}
+
+        orchestrator = engine.multi_agent_orchestrator
+        metrics = orchestrator.metrics.get_summary() if hasattr(orchestrator, 'metrics') else {}
+
+        return {
+            "enabled": True,
+            "registered_agents": len(orchestrator.agent_registry),
+            "active_debates": len(orchestrator.active_debates),
+            "debate_history": len(orchestrator.debate_history),
+            "metrics": metrics
+        }
+    except Exception as e:
+        return {"enabled": False, "error": str(e)}
+
+
+@app.post("/api/agents/create")
+async def api_agents_create(request: Request):
+    """
+    Create specialized agents for collaboration (V9.0).
+    Body: {"roles": ["theorist", "empiricist", ...], "count": 1}
+    """
+    try:
+        if not engine.multi_agent_orchestrator:
+            return {"success": False, "error": "Multi-agent system not initialized"}
+
+        data = await request.json()
+        roles = data.get("roles", ["theorist", "empiricist", "synthesizer"])
+        count = data.get("count", 1)
+
+        from astra_live_backend.multi_agent import AgentFactory, AgentRole
+
+        role_map = {
+            "theorist": AgentRole.THEORIST,
+            "empiricist": AgentRole.EMPIRICIST,
+            "experimentalist": AgentRole.EXPERIMENTALIST,
+            "mathematician": AgentRole.MATHEMATICIAN,
+            "skeptic": AgentRole.SKEPTIC,
+            "synthesizer": AgentRole.SYNTHESIZER
+        }
+
+        created_agents = []
+        for role_name in roles:
+            role = role_map.get(role_name)
+            if role:
+                for _ in range(count):
+                    agent = AgentFactory.create_agent(role)
+                    engine.multi_agent_orchestrator.register_agent(agent)
+                    created_agents.append({
+                        "id": agent.id,
+                        "role": role.value,
+                        "domains": agent.expertise.domains
+                    })
+
+        return {
+            "success": True,
+            "created_agents": created_agents,
+            "total_agents": len(engine.multi_agent_orchestrator.agent_registry)
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+@app.get("/api/agents/consensus")
+async def api_agents_consensus(question: str = None):
+    """
+    Get consensus from multi-agent system on a question (V9.0).
+    Query parameters: question (required), method (optional)
+    """
+    try:
+        if not engine.multi_agent_orchestrator:
+            return {"consensus": None, "error": "Multi-agent system not initialized"}
+
+        if not question:
+            return {"consensus": None, "error": "Question parameter required"}
+
+        agents = list(engine.multi_agent_orchestrator.agent_registry.values())
+        if not agents:
+            return {"consensus": None, "error": "No agents available"}
+
+        opinions = []
+        for agent in agents:
+            try:
+                opinion = agent.analyze(question, {})
+                opinions.append(opinion)
+            except Exception:
+                pass
+
+        from astra_live_backend.multi_agent import ConsensusEngine
+
+        consensus_engine = ConsensusEngine()
+        consensus = consensus_engine.compute_consensus(opinions)
+
+        return {
+            "question": question,
+            "consensus": consensus.to_dict(),
+            "opinions_count": len(opinions),
+            "agents_participated": len(opinions)
+        }
+    except Exception as e:
+        return {"consensus": None, "error": str(e)}
+
+
+@app.post("/api/agents/debate")
+async def api_agents_debate(request: Request):
+    """
+    Start or advance a structured scientific debate (V9.0).
+    Body: {"question": "...", "participants": [...], "action": "start|advance|conclude", "debate_id": "..."}
+    """
+    try:
+        if not engine.multi_agent_orchestrator:
+            return {"success": False, "error": "Multi-agent system not initialized"}
+
+        data = await request.json()
+        action = data.get("action", "start")
+
+        if action == "start":
+            question = data.get("question")
+            participants = data.get("participants", [])
+
+            if not question:
+                return {"success": False, "error": "Question required"}
+
+            if not participants:
+                participants = list(engine.multi_agent_orchestrator.agent_registry.keys())
+
+            debate_id = engine.multi_agent_orchestrator.start_debate(question, participants)
+
+            return {
+                "success": True,
+                "debate_id": debate_id,
+                "question": question,
+                "participants": participants
+            }
+
+        elif action == "advance":
+            debate_id = data.get("debate_id")
+            if not debate_id:
+                return {"success": False, "error": "debate_id required"}
+
+            new_phase = engine.multi_agent_orchestrator.advance_debate(debate_id)
+            return {"success": True, "debate_id": debate_id, "current_phase": new_phase}
+
+        elif action == "conclude":
+            debate_id = data.get("debate_id")
+            if not debate_id:
+                return {"success": False, "error": "debate_id required"}
+
+            result = engine.multi_agent_orchestrator.conclude_debate(debate_id)
+
+            if result:
+                return {
+                    "success": True,
+                    "debate_id": debate_id,
+                    "result": {
+                        "consensus_reached": result.final_consensus.consensus_reached,
+                        "consensus_position": result.final_consensus.consensus_position,
+                        "agreement_level": result.final_consensus.agreement_level,
+                        "recommendation": result.recommendation,
+                        "key_insights": result.key_insights
+                    }
+                }
+            else:
+                return {"success": False, "error": "Debate not found"}
+
+        else:
+            return {"success": False, "error": f"Unknown action: {action}"}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+# ═══════════════════════════════════════════════════════════════
+# V9.0: Autonomous Scientific Agenda
+# ═══════════════════════════════════════════════════════════════
+
+@app.get("/api/agenda/status")
+async def api_agenda_status():
+    """Get status of autonomous scientific agenda (V9.0)."""
+    try:
+        if not engine.autonomous_agenda:
+            return {"enabled": False, "message": "Autonomous agenda not initialized"}
+
+        summary = engine.autonomous_agenda.get_agenda_summary()
+        return {"enabled": True, "mode": engine.autonomous_agenda.mode, **summary}
+    except Exception as e:
+        return {"enabled": False, "error": str(e)}
+
+
+@app.get("/api/agenda/goals")
+async def api_agenda_goals():
+    """Get current research goals."""
+    try:
+        if not engine.autonomous_agenda:
+            return {"goals": [], "error": "Autonomous agenda not initialized"}
+
+        goals = engine.autonomous_agenda.current_goals
+        return {"goals": [g.to_dict() for g in goals], "total": len(goals)}
+    except Exception as e:
+        return {"goals": [], "error": str(e)}
+
+
+@app.post("/api/agenda/generate")
+async def api_agenda_generate(request: Request):
+    """
+    Generate new research goals based on knowledge gaps (V9.0).
+    Body: {"num_goals": 5, "time_horizon": "medium"}
+    """
+    try:
+        if not engine.autonomous_agenda:
+            return {"success": False, "error": "Autonomous agenda not initialized"}
+
+        data = await request.json()
+        num_goals = data.get("num_goals", 5)
+        time_horizon = data.get("time_horizon", "medium")
+
+        goals = engine.autonomous_agenda.generate_research_agenda(
+            num_goals=num_goals,
+            time_horizon=time_horizon
+        )
+
+        return {
+            "success": True,
+            "goals_generated": len(goals),
+            "goals": [g.to_dict() for g in goals]
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+@app.post("/api/agenda/approve")
+async def api_agenda_approve(request: Request):
+    """
+    Approve or reject a proposed research goal (V9.0).
+    Body: {"goal_id": "...", "approved": true, "feedback": "..."}
+    """
+    try:
+        if not engine.autonomous_agenda:
+            return {"success": False, "error": "Autonomous agenda not initialized"}
+
+        data = await request.json()
+        goal_id = data.get("goal_id")
+        approved = data.get("approved", False)
+        feedback = data.get("feedback", "")
+
+        goal = None
+        for g in engine.autonomous_agenda.current_goals:
+            if g.id == goal_id:
+                goal = g
+                break
+
+        if not goal:
+            return {"success": False, "error": f"Goal {goal_id} not found"}
+
+        if approved:
+            goal.status = "approved"
+            goal.approved_by = "human"
+        else:
+            goal.status = "cancelled"
+
+        return {
+            "success": True,
+            "goal_id": goal_id,
+            "new_status": goal.status,
+            "feedback_recorded": bool(feedback)
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+# ═══════════════════════════════════════════════════════════════
+# State Persistence Endpoints
+# ═══════════════════════════════════════════════════════════════
 
 @app.get("/api/state/persistence")
 async def api_state_persistence():
     """Get state persistence status and summary."""
-    from astra_live_backend.state_persistence import get_state_summary
+    try:
+        from astra_live_backend.state_persistence import get_state_summary
 
-    summary = get_state_summary()
+        summary = get_state_summary()
 
-    return {
-        "persistence_enabled": True,
-        "state_dir_exists": summary.get("state_dir_exists"),
-        "engine_state_saved": summary.get("engine_state_exists"),
-        "hypotheses_saved": summary.get("hypotheses_exist"),
-        "cognitive_state_saved": summary.get("cognitive_state_exists"),
-        "last_saved": summary.get("last_saved"),
-        "cycle_count": summary.get("cycle_count"),
-        "hypotheses_count": summary.get("hypotheses_count", 0),
-        "active_hypotheses": summary.get("active_hypotheses", 0)
-    }
+        return {
+            "persistence_enabled": True,
+            "state_dir_exists": summary.get("state_dir_exists"),
+            "engine_state_saved": summary.get("engine_state_exists"),
+            "hypotheses_saved": summary.get("hypotheses_exist"),
+            "cognitive_state_saved": summary.get("cognitive_state_exists"),
+            "last_saved": summary.get("last_saved"),
+            "cycle_count": summary.get("cycle_count"),
+            "hypotheses_count": summary.get("hypotheses_count", 0),
+            "active_hypotheses": summary.get("active_hypotheses", 0)
+        }
+    except Exception as e:
+        return {"persistence_enabled": False, "error": str(e)}
 
 
 @app.post("/api/state/save")
 async def api_state_save():
     """Manually trigger state save."""
-    from astra_live_backend.state_persistence import save_engine_state, save_hypotheses, save_cognitive_state
-
     try:
+        from astra_live_backend.state_persistence import save_engine_state, save_hypotheses, save_cognitive_state
+
         save_engine_state(engine)
         save_hypotheses(engine.store)
         if engine.cognitive_core:
@@ -2195,336 +2325,6 @@ async def api_state_save():
         }
     except Exception as e:
         return {"success": False, "error": str(e)}
-
-
-@app.get("/api/cognitive/dashboard")
-async def api_cognitive_dashboard():
-    """
-    Get comprehensive cognitive dashboard data.
-
-    Combines all cognitive systems into a unified view.
-    """
-    if not engine.cognitive_core:
-        return {"enabled": False, "message": "Cognitive architecture not available"}
-
-    summary = engine.cognitive_core.get_cognitive_summary()
-
-    # Get additional details
-    kg_stats = engine.cognitive_core.knowledge_graph.get_statistics()
-    meta_report = engine.cognitive_core.metacognition.get_self_awareness_report()
-    gaps = engine.cognitive_core.knowledge_graph.find_knowledge_gaps()
-
-    return {
-        "enabled": True,
-        "summary": summary,
-        "knowledge_graph": {
-            "statistics": kg_stats,
-            "gaps_count": len(gaps),
-            "high_priority_gaps": len([g for g in gaps if g.priority > 0.7])
-        },
-        "metacognition": {
-            "cognitive_state": meta_report.get("cognitive_state"),
-            "success_rate": meta_report.get("recent_success_rate", 0),
-            "error_patterns": meta_report.get("error_patterns_detected", 0)
-        },
-        "recent_discoveries": len(engine.cognitive_core.discoveries),
-        "total_insights": len(engine.cognitive_core.insights)
-    }
-
-
-# ── V9.0: Multi-Agent Scientific Collaboration ─────────────────────
-
-@app.get("/api/agents/status")
-async def api_agents_status():
-    """
-    Get status of multi-agent collaboration system (V9.0).
-    """
-    if not engine.multi_agent_orchestrator:
-        return {"enabled": False, "message": "Multi-agent system not initialized"}
-
-    orchestrator = engine.multi_agent_orchestrator
-    metrics = orchestrator.metrics.get_summary() if hasattr(orchestrator, 'metrics') else {}
-
-    return {
-        "enabled": True,
-        "registered_agents": len(orchestrator.agent_registry),
-        "active_debates": len(orchestrator.active_debates),
-        "debate_history": len(orchestrator.debate_history),
-        "metrics": metrics
-    }
-
-
-@app.post("/api/agents/create")
-async def api_agents_create(request: Request):
-    """
-    Create specialized agents for collaboration (V9.0).
-
-    Body:
-        roles: List[str] - Agent roles to create (theorist, empiricist, etc.)
-        count: int - Number of agents per role
-    """
-    if not engine.multi_agent_orchestrator:
-        return {"success": False, "error": "Multi-agent system not initialized"}
-
-    data = await request.json()
-    roles = data.get("roles", ["theorist", "empiricist", "synthesizer"])
-    count = data.get("count", 1)
-
-    from astra_live_backend.multi_agent import AgentFactory, AgentRole
-
-    role_map = {
-        "theorist": AgentRole.THEORIST,
-        "empiricist": AgentRole.EMPIRICIST,
-        "experimentalist": AgentRole.EXPERIMENTALIST,
-        "mathematician": AgentRole.MATHEMATICIAN,
-        "skeptic": AgentRole.SKEPTIC,
-        "synthesizer": AgentRole.SYNTHESIZER
-    }
-
-    created_agents = []
-    for role_name in roles:
-        role = role_map.get(role_name)
-        if role:
-            for _ in range(count):
-                agent = AgentFactory.create_agent(role)
-                engine.multi_agent_orchestrator.register_agent(agent)
-                created_agents.append({
-                    "id": agent.id,
-                    "role": role.value,
-                    "domains": agent.expertise.domains
-                })
-
-    return {
-        "success": True,
-        "created_agents": created_agents,
-        "total_agents": len(engine.multi_agent_orchestrator.agent_registry)
-    }
-
-
-@app.get("/api/agents/consensus")
-async def api_agents_consensus(question: str = None):
-    """
-    Get consensus from multi-agent system on a question (V9.0).
-
-    Query parameters:
-        question: The scientific question to analyze
-        method: Consensus method (majority_vote, weighted_vote, etc.)
-    """
-    if not engine.multi_agent_orchestrator:
-        return {"consensus": None, "error": "Multi-agent system not initialized"}
-
-    if not question:
-        return {"consensus": None, "error": "Question parameter required"}
-
-    # Get all agents
-    agents = list(engine.multi_agent_orchestrator.agent_registry.values())
-    if not agents:
-        return {"consensus": None, "error": "No agents available"}
-
-    # Collect opinions
-    opinions = []
-    for agent in agents:
-        try:
-            opinion = agent.analyze(question, {})
-            opinions.append(opinion)
-        except Exception as e:
-            # Continue with other agents
-            pass
-
-    # Compute consensus
-    from astra_live_backend.multi_agent import ConsensusEngine
-
-    consensus_engine = ConsensusEngine()
-    consensus = consensus_engine.compute_consensus(opinions)
-
-    return {
-        "question": question,
-        "consensus": consensus.to_dict(),
-        "opinions_count": len(opinions),
-        "agents_participated": len(opinions)
-    }
-
-
-@app.post("/api/agents/debate")
-async def api_agents_debate(request: Request):
-    """
-    Start or advance a structured scientific debate (V9.0).
-
-    Body:
-        question: str - Research question to debate
-        participants: List[str] - Agent IDs to participate
-        action: str - "start", "advance", or "conclude"
-        debate_id: str - Required for advance/conclude
-    """
-    if not engine.multi_agent_orchestrator:
-        return {"success": False, "error": "Multi-agent system not initialized"}
-
-    data = await request.json()
-    action = data.get("action", "start")
-
-    if action == "start":
-        question = data.get("question")
-        participants = data.get("participants", [])
-
-        if not question:
-            return {"success": False, "error": "Question required"}
-
-        # Use all agents if no participants specified
-        if not participants:
-            participants = list(engine.multi_agent_orchestrator.agent_registry.keys())
-
-        debate_id = engine.multi_agent_orchestrator.start_debate(question, participants)
-
-        return {
-            "success": True,
-            "debate_id": debate_id,
-            "question": question,
-            "participants": participants
-        }
-
-    elif action == "advance":
-        debate_id = data.get("debate_id")
-        if not debate_id:
-            return {"success": False, "error": "debate_id required"}
-
-        new_phase = engine.multi_agent_orchestrator.advance_debate(debate_id)
-
-        return {
-            "success": True,
-            "debate_id": debate_id,
-            "current_phase": new_phase
-        }
-
-    elif action == "conclude":
-        debate_id = data.get("debate_id")
-        if not debate_id:
-            return {"success": False, "error": "debate_id required"}
-
-        result = engine.multi_agent_orchestrator.conclude_debate(debate_id)
-
-        if result:
-            return {
-                "success": True,
-                "debate_id": debate_id,
-                "result": {
-                    "consensus_reached": result.final_consensus.consensus_reached,
-                    "consensus_position": result.final_consensus.consensus_position,
-                    "agreement_level": result.final_consensus.agreement_level,
-                    "recommendation": result.recommendation,
-                    "key_insights": result.key_insights
-                }
-            }
-        else:
-            return {"success": False, "error": "Debate not found"}
-
-    else:
-        return {"success": False, "error": f"Unknown action: {action}"}
-
-
-# ── V9.0: Autonomous Scientific Agenda ───────────────────────────────
-
-@app.get("/api/agenda/status")
-async def api_agenda_status():
-    """
-    Get status of autonomous scientific agenda (V9.0).
-    """
-    if not engine.autonomous_agenda:
-        return {"enabled": False, "message": "Autonomous agenda not initialized"}
-
-    summary = engine.autonomous_agenda.get_agenda_summary()
-
-    return {
-        "enabled": True,
-        "mode": engine.autonomous_agenda.mode,
-        **summary
-    }
-
-
-@app.get("/api/agenda/goals")
-async def api_agenda_goals():
-    """
-    Get current research goals.
-    """
-    if not engine.autonomous_agenda:
-        return {"goals": [], "error": "Autonomous agenda not initialized"}
-
-    goals = engine.autonomous_agenda.current_goals
-
-    return {
-        "goals": [g.to_dict() for g in goals],
-        "total": len(goals)
-    }
-
-
-@app.post("/api/agenda/generate")
-async def api_agenda_generate(request: Request):
-    """
-    Generate new research goals based on knowledge gaps (V9.0).
-
-    Body:
-        num_goals: int - Number of goals to generate (default: 5)
-        time_horizon: str - "short", "medium", or "long"
-    """
-    if not engine.autonomous_agenda:
-        return {"success": False, "error": "Autonomous agenda not initialized"}
-
-    data = await request.json()
-    num_goals = data.get("num_goals", 5)
-    time_horizon = data.get("time_horizon", "medium")
-
-    goals = engine.autonomous_agenda.generate_research_agenda(
-        num_goals=num_goals,
-        time_horizon=time_horizon
-    )
-
-    return {
-        "success": True,
-        "goals_generated": len(goals),
-        "goals": [g.to_dict() for g in goals]
-    }
-
-
-@app.post("/api/agenda/approve")
-async def api_agenda_approve(request: Request):
-    """
-    Approve or reject a proposed research goal (V9.0).
-
-    Body:
-        goal_id: str - ID of goal to approve/reject
-        approved: bool - True to approve, False to reject
-        feedback: str - Optional feedback for rejection
-    """
-    if not engine.autonomous_agenda:
-        return {"success": False, "error": "Autonomous agenda not initialized"}
-
-    data = await request.json()
-    goal_id = data.get("goal_id")
-    approved = data.get("approved", False)
-    feedback = data.get("feedback", "")
-
-    # Find goal
-    goal = None
-    for g in engine.autonomous_agenda.current_goals:
-        if g.id == goal_id:
-            goal = g
-            break
-
-    if not goal:
-        return {"success": False, "error": f"Goal {goal_id} not found"}
-
-    # Update goal status
-    if approved:
-        goal.status = "approved"  # String to match JSON serialization
-        goal.approved_by = "human"
-    else:
-        goal.status = "cancelled"
-
-    return {
-        "success": True,
-        "goal_id": goal_id,
-        "new_status": goal.status,
-        "feedback_recorded": bool(feedback)
-    }
 
 
 if __name__ == "__main__":

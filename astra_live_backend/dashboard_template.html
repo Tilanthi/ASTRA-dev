@@ -1160,9 +1160,10 @@ body::after {
    AGI CONTROL ROOM — TAB BAR
    ============================================================ */
 .tab-bar {
-  display: flex; gap: 0; padding: 0 20px;
+  display: flex; gap: 2px; padding: 0 20px;
   background: rgba(10,14,24,0.6);
   border-bottom: 1px solid var(--border-glass);
+  -webkit-overflow-scrolling: touch;
   position: sticky; top: 74px; z-index: 99;
   backdrop-filter: blur(8px);
   overflow-x: auto;
@@ -1171,9 +1172,9 @@ body::after {
 .tab-bar::-webkit-scrollbar-track { background: transparent; }
 .tab-bar::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.2); border-radius: 2px; }
 .tab-btn {
-  padding: 12px 24px; border: none; background: transparent; cursor: pointer;
+  padding: 12px 14px; border: none; background: transparent; cursor: pointer;
   font-family: var(--font-heading); font-size: 0.7rem; letter-spacing: 1.5px;
-  color: var(--text-tertiary); text-transform: uppercase;
+  color: var(--text-tertiary); text-transform: uppercase; white-space: nowrap;
   border-bottom: 2px solid transparent;
   transition: all 0.2s;
   min-height: 44px; min-width: 44px;
@@ -1206,7 +1207,7 @@ body::after {
     z-index: 1000;
     overflow-x: auto; padding: 0 8px;
   }
-  .tab-btn { padding: 10px 8px; font-size: 0.55rem; white-space: nowrap; letter-spacing: 0.5px; }
+  .tab-btn { padding: 10px 8px; font-size: 0.65rem; white-space: nowrap; letter-spacing: 0.5px; }
 }
 @media (max-width: 600px) {
   .tab-label { display: none; }
@@ -1873,7 +1874,7 @@ body::after {
     <span id="utc-clock" aria-live="off" aria-label="UTC clock">--:--:--</span>
     <span class="header-sep">|</span>
     <span>UP <span id="uptime" aria-live="polite" aria-label="System uptime">0d 0h 0m</span></span>
-    <span class="version">v4.7</span>
+    <span class="version">v4.8</span>
   </div>
 </header>
 
@@ -2653,6 +2654,7 @@ body::after {
       <div class="panel-body-md" id="stig-knowledge-gaps">
         <div class="empty-state">Loading gap analysis…</div>
       </div>
+      <div style="padding:0 16px 16px;"><canvas id="stigmergy-gaps-chart" height="180"></canvas></div>
     </div>
 
     <!-- Panel 3: Gordon's Parameters -->
@@ -2698,7 +2700,7 @@ body::after {
      FOOTER
      ============================================================ -->
 <footer class="footer">
-  ASTRA v4.7 &mdash; Autonomous System for Scientific Discovery in Astrophysics &mdash; White &amp; Dey, 2026 &mdash;
+  ASTRA v4.8 &mdash; Autonomous System for Scientific Discovery in Astrophysics &mdash; White &amp; Dey, 2026 &mdash;
   <a href="https://github.com/web3guru888/ASTRA" target="_blank" rel="noopener" aria-label="ASTRA GitHub repository">GitHub</a>
 </footer>
 
@@ -2798,30 +2800,33 @@ body::after {
     if (path.includes('/safety-case/claims')) return [];
     if (path.includes('/safety-case/risk')) return { total_hazards: 10, max_residual: 0.6, by_acceptability: { BROADLY_ACCEPTABLE: 4, ALARP: 6 } };
     if (path.includes('/safety-case')) return { hazards: 10, claims: 7, max_residual_risk: 0.6, avg_confidence: 0.85 };
-    // Stigmergy endpoints
-    if (path.includes('/pheromones/status')) return { total_weight: 0, total_deposits: 0, by_type: {}, decay_rate: 0.05, active_trails: 0 };
-    if (path.includes('/stigmergy/gaps')) return { gaps: { astrophysics: 0.35, economics: 0.62, climate: 0.41, epidemiology: 0.55, cross_domain: 0.73 } };
-    if (path.includes('/swarm/status')) return { agents: [
-      { id: 'scout-alpha', name: 'Scout Alpha', role: 'Explorer', status: 'active', discoveries: 12, last_active: Date.now()/1000 },
-      { id: 'scout-beta', name: 'Scout Beta', role: 'Explorer', status: 'active', discoveries: 8, last_active: Date.now()/1000 },
-      { id: 'analyst-1', name: 'Analyst Prime', role: 'Analyst', status: 'idle', discoveries: 23, last_active: Date.now()/1000 - 300 },
-      { id: 'validator-1', name: 'Validator', role: 'Validator', status: 'active', discoveries: 15, last_active: Date.now()/1000 },
-      { id: 'synthesizer', name: 'Synthesizer', role: 'Synthesizer', status: 'idle', discoveries: 31, last_active: Date.now()/1000 - 600 }
-    ], total_agents: 5, active_agents: 3 };
-    if (path.includes('/pheromones/ab-test')) return { tests: [
-      { name: 'Exploration vs Exploitation', variant_a: 'ε-greedy (ε=0.3)', variant_b: 'UCB1', metric: 'discoveries/hr', a_value: 2.4, b_value: 3.1, winner: 'B', p_value: 0.023, n_samples: 150 },
-      { name: 'Decay Rate', variant_a: 'λ=0.05', variant_b: 'λ=0.10', metric: 'trail_quality', a_value: 0.72, b_value: 0.68, winner: 'A', p_value: 0.041, n_samples: 200 },
-      { name: 'Gap Weighting', variant_a: 'Uniform', variant_b: 'Entropy-based', metric: 'gap_reduction', a_value: 0.15, b_value: 0.23, winner: 'B', p_value: 0.008, n_samples: 180 }
-    ] };
-    if (path.includes('/stigmergy/gordon')) return { parameters: [
-      { name: 'Colony Size (N)', value: 5, description: 'Number of active swarm agents' },
-      { name: 'Evaporation Rate (ρ)', value: 0.05, description: 'Pheromone decay per cycle' },
-      { name: 'Deposit Strength (Q)', value: 1.0, description: 'Base pheromone deposit amount' },
-      { name: 'Exploration Bias (α)', value: 1.2, description: 'Pheromone influence exponent' },
-      { name: 'Heuristic Weight (β)', value: 2.0, description: 'Domain gap heuristic exponent' },
-      { name: 'Stagnation Threshold', value: 50, description: 'Cycles before forced diversification' },
-      { name: 'Elite Ratio', value: 0.2, description: 'Fraction of best trails reinforced' }
-    ] };
+    // Stigmergy endpoints — shapes match real API responses
+    if (path.includes('/pheromones/status')) return {
+      pheromone_weight: 0.3,
+      pheromone_field: { total_deposits: 0, deposits_by_type: { exploration: 0, success: 0, failure: 0, analogy: 0, novelty: 0, attention: 0 }, field_stats: {} },
+      stigmergic_memory: { n_fields: 0, n_trails: 0, n_discoveries: 0, avg_tau: 0, avg_eta: 0, avg_c_k: 0 },
+      metrics: { total_deposits: 0, success_deposits: 0, failure_deposits: 0, novelty_deposits: 0, analogy_deposits: 0, queries: 0, engine_cycles: 0 },
+      ab_test: { pheromone_guided: { total: 0, successes: 0, rate: 0 }, baseline: { total: 0, successes: 0, rate: 0 } },
+      circuit_breaker_active: false,
+      gordon_params: { evaporation_rate: 0.05, reinforcement_rate: 0.1, anternet_weight: 0.6, restraint_weight: 0.4, switch_probability: 0.15, contact_rate_min: 0.033, contact_rate_max: 0.167 }
+    };
+    if (path.includes('/stigmergy/gaps')) return { astrophysics: 0.8, economics: 0.8, climate: 0.8, epidemiology: 0.8, cross_domain: 0.8 };
+    if (path.includes('/swarm/status')) return {
+      agent_count: 5,
+      agents: [
+        { agent_id: 'explorer_0', agent_type: 'explorer', contacts: 0, contact_rate: 0.033, actions_taken: 0, successes: 0, success_rate: 0 },
+        { agent_id: 'exploiter_0', agent_type: 'exploiter', contacts: 0, contact_rate: 0.033, actions_taken: 0, successes: 0, success_rate: 0 },
+        { agent_id: 'falsifier_0', agent_type: 'falsifier', contacts: 0, contact_rate: 0.033, actions_taken: 0, successes: 0, success_rate: 0 },
+        { agent_id: 'analogist_0', agent_type: 'analogist', contacts: 0, contact_rate: 0.033, actions_taken: 0, successes: 0, success_rate: 0 },
+        { agent_id: 'scout_0', agent_type: 'scout', contacts: 0, contact_rate: 0.033, actions_taken: 0, successes: 0, success_rate: 0 }
+      ],
+      total_actions: 0, total_successes: 0, overall_success_rate: 0,
+      gordon_params: { evaporation_rate: 0.05, reinforcement_rate: 0.1, anternet_weight: 0.6, restraint_weight: 0.4, switch_probability: 0.15, contact_rate_min: 0.033, contact_rate_max: 0.167 }
+    };
+    if (path.includes('/pheromones/ab-test')) return {
+      pheromone_guided: { total: 0, successes: 0, rate: 0 },
+      baseline: { total: 0, successes: 0, rate: 0 }
+    };
     return null;
   }
   window.__SNAPSHOT_TIME__ = 1775210733.190173;
@@ -13170,7 +13175,7 @@ body::after {
   (function() {
     const hash = window.location.hash.replace('#', '');
     if (hash && document.getElementById('tab-' + hash)) {
-      setTimeout(function() { window.switchTab(hash); }, 100);
+      window.switchTab(hash);
     }
   })();
 
@@ -14323,7 +14328,8 @@ body::after {
       gaps = s['stigmergy/gaps'] || await api('/api/stigmergy/gaps');
       swarm = s['swarm/status'] || await api('/api/swarm/status');
       abTests = s['pheromones/ab-test'] || await api('/api/pheromones/ab-test');
-      gordon = s['stigmergy/gordon'] || await api('/api/stigmergy/gordon');
+      // Gordon params come from pheromones/status or swarm/status — no separate endpoint needed
+      gordon = (pheromones && pheromones.gordon_params) || (swarm && swarm.gordon_params) || null;
     } catch(e) { console.warn('Stigmergy data fetch error:', e); }
 
     renderPheromoneStatus(pheromones);
@@ -14337,23 +14343,30 @@ body::after {
     var el = document.getElementById('stig-pheromone-status');
     if (!el) return;
     var d = data || {};
-    var byType = d.by_type || {};
-    var typeKeys = Object.keys(byType);
-    var totalDeposits = d.total_deposits || 0;
+    // Real API shape: { pheromone_weight, pheromone_field: { total_deposits, deposits_by_type }, metrics, gordon_params }
+    var weight = d.pheromone_weight || 0;
+    var field = d.pheromone_field || {};
+    var metrics = d.metrics || {};
+    var gordon = d.gordon_params || {};
+    var totalDeposits = field.total_deposits || metrics.total_deposits || 0;
+    var byType = field.deposits_by_type || {};
+    var typeKeys = Object.keys(byType).filter(function(k) { return byType[k] > 0; });
+    var evapRate = gordon.evaporation_rate || 0.05;
 
     var statsHtml = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:16px;">' +
-      '<div class="si-stat-cell"><div class="si-mono-label-sm">TOTAL WEIGHT</div><div class="si-mono-value si-c-cyan">' + (d.total_weight || 0).toFixed(2) + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">PHEROMONE WEIGHT</div><div class="si-mono-value si-c-cyan">' + weight.toFixed(2) + '</div></div>' +
       '<div class="si-stat-cell"><div class="si-mono-label-sm">TOTAL DEPOSITS</div><div class="si-mono-value si-c-amber">' + totalDeposits + '</div></div>' +
-      '<div class="si-stat-cell"><div class="si-mono-label-sm">ACTIVE TRAILS</div><div class="si-mono-value si-c-violet">' + (d.active_trails || 0) + '</div></div>' +
-      '<div class="si-stat-cell"><div class="si-mono-label-sm">DECAY RATE (ρ)</div><div class="si-mono-value si-c-emerald">' + (d.decay_rate || 0).toFixed(3) + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">SUCCESS</div><div class="si-mono-value si-c-emerald">' + (metrics.success_deposits || byType.success || 0) + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">EVAPORATION (ρ)</div><div class="si-mono-value si-c-violet">' + evapRate.toFixed(3) + '</div></div>' +
       '</div>';
 
     if (typeKeys.length > 0) {
       statsHtml += '<div class="si-mono-label-sm" style="margin-bottom:8px;">DEPOSITS BY TYPE</div>';
       var maxVal = Math.max.apply(null, typeKeys.map(function(k) { return byType[k]; }).concat([1]));
+      var typeColors = { exploration: 'var(--cyan)', success: 'var(--emerald)', failure: 'var(--coral)', analogy: 'var(--violet)', novelty: 'var(--amber)', attention: 'var(--text-tertiary)' };
       statsHtml += typeKeys.map(function(k) {
         var pct = ((byType[k] / maxVal) * 100).toFixed(0);
-        var color = k === 'exploration' ? 'var(--cyan)' : k === 'validation' ? 'var(--emerald)' : k === 'synthesis' ? 'var(--violet)' : 'var(--amber)';
+        var color = typeColors[k] || 'var(--cyan)';
         return '<div class="stig-gap-bar">' +
           '<div class="bar-label">' + k.toUpperCase() + '</div>' +
           '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%;background:' + color + '"></div></div>' +
@@ -14361,13 +14374,16 @@ body::after {
       }).join('');
     }
 
-    el.innerHTML = statsHtml || '<div class="empty-state">No pheromone data yet — run a swarm cycle to begin.</div>';
+    el.innerHTML = statsHtml || '<div class="empty-state">No pheromone data yet — engine cycles will deposit pheromones automatically.</div>';
   }
 
+  var _stigGapsChart = null;
   function renderKnowledgeGaps(data) {
     var el = document.getElementById('stig-knowledge-gaps');
     if (!el) return;
-    var gaps = (data && data.gaps) || {};
+    // Real API returns flat dict: { astrophysics: 0.8, economics: 0.9, ... }
+    var gaps = data || {};
+    if (gaps.gaps) gaps = gaps.gaps; // backward compat with old mock
     var keys = Object.keys(gaps);
     if (keys.length === 0) {
       el.innerHTML = '<div class="empty-state">No knowledge gap data available.</div>';
@@ -14382,30 +14398,60 @@ body::after {
         '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%;background:' + c + '"></div></div>' +
         '<div class="bar-value" style="color:' + c + '">' + pct + '%</div></div>';
     }).join('');
+    // Chart.js horizontal bar chart
+    var canvas = document.getElementById('stigmergy-gaps-chart');
+    if (!canvas || typeof Chart === 'undefined') return;
+    if (_stigGapsChart) { _stigGapsChart.destroy(); _stigGapsChart = null; }
+    var rawColors = { astrophysics: '#00e5ff', economics: '#ffab00', climate: '#00e676', epidemiology: '#ff5252', cross_domain: '#7c4dff' };
+    var sorted = keys.sort(function(a,b) { return gaps[b] - gaps[a]; });
+    var labels = sorted.map(function(k) { return k.replace(/_/g,' ').toUpperCase(); });
+    var values = sorted.map(function(k) { return +(gaps[k] * 100).toFixed(1); });
+    var bgColors = sorted.map(function(k) { return rawColors[k] || '#00e5ff'; });
+    _stigGapsChart = new Chart(canvas, {
+      type: 'bar',
+      data: { labels: labels, datasets: [{ data: values, backgroundColor: bgColors, borderWidth: 0, borderRadius: 4, barPercentage: 0.7 }] },
+      options: {
+        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(c) { return c.raw + '%'; } } } },
+        scales: {
+          x: { min: 0, max: 100, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: 'rgba(255,255,255,0.5)', callback: function(v) { return v + '%'; } } },
+          y: { grid: { display: false }, ticks: { color: 'rgba(255,255,255,0.7)', font: { family: "'Space Mono', monospace", size: 11 } } }
+        }
+      }
+    });
   }
 
   function renderSwarmAgents(data) {
     var el = document.getElementById('stig-swarm-agents');
     if (!el) return;
+    // Real API: { agent_count, agents: [{agent_id, agent_type, contacts, contact_rate, actions_taken, successes, success_rate}], total_actions, total_successes, overall_success_rate }
     var agents = (data && data.agents) || [];
     if (agents.length === 0) {
-      el.innerHTML = '<div class="empty-state">No swarm agents configured.</div>';
+      el.innerHTML = '<div class="empty-state">No swarm agents active yet — agents start with the discovery engine.</div>';
       return;
     }
-    var summaryHtml = '<div style="display:flex;gap:16px;margin-bottom:12px;">' +
-      '<div class="si-stat-cell-sm"><div class="si-mono-label-xs">TOTAL</div><div class="si-mono-value-sm si-c-cyan">' + (data.total_agents || agents.length) + '</div></div>' +
-      '<div class="si-stat-cell-sm"><div class="si-mono-label-xs">ACTIVE</div><div class="si-mono-value-sm si-c-emerald">' + (data.active_agents || 0) + '</div></div>' +
+    var totalActions = data.total_actions || 0;
+    var totalSuccesses = data.total_successes || 0;
+    var overallRate = data.overall_success_rate || 0;
+    var summaryHtml = '<div style="display:flex;gap:16px;margin-bottom:12px;flex-wrap:wrap;">' +
+      '<div class="si-stat-cell-sm"><div class="si-mono-label-xs">AGENTS</div><div class="si-mono-value-sm si-c-cyan">' + (data.agent_count || agents.length) + '</div></div>' +
+      '<div class="si-stat-cell-sm"><div class="si-mono-label-xs">TOTAL ACTIONS</div><div class="si-mono-value-sm si-c-amber">' + totalActions + '</div></div>' +
+      '<div class="si-stat-cell-sm"><div class="si-mono-label-xs">SUCCESSES</div><div class="si-mono-value-sm si-c-emerald">' + totalSuccesses + '</div></div>' +
+      '<div class="si-stat-cell-sm"><div class="si-mono-label-xs">SUCCESS RATE</div><div class="si-mono-value-sm si-c-violet">' + (overallRate * 100).toFixed(1) + '%</div></div>' +
       '</div>';
+    var typeEmoji = { explorer: '🔭', exploiter: '⛏️', falsifier: '🔬', analogist: '🔗', scout: '🐜' };
+    var typeDesc = { explorer: 'Seeks unexplored regions', exploiter: 'Follows success trails', falsifier: 'Tests established theories', analogist: 'Cross-domain patterns', scout: 'Random novelty walk' };
     var cardsHtml = '<div class="stig-agent-cards">' + agents.map(function(a) {
-      var statusClass = a.status === 'active' ? 'active' : a.status === 'idle' ? 'idle' : 'offline';
-      var ago = a.last_active ? Math.round((Date.now()/1000 - a.last_active) / 60) : '—';
-      var agoStr = ago === 0 ? 'just now' : ago + 'm ago';
+      var isActive = a.actions_taken > 0;
+      var statusClass = isActive ? 'active' : 'idle';
+      var emoji = typeEmoji[a.agent_type] || '🤖';
+      var desc = typeDesc[a.agent_type] || '';
       return '<div class="stig-agent-card">' +
-        '<div class="stig-agent-name"><span class="stig-status-dot ' + statusClass + '"></span>' + (a.name || a.id) + '</div>' +
-        '<div class="stig-agent-role">' + (a.role || 'Agent') + '</div>' +
-        '<div class="stig-agent-stat"><span>Discoveries</span><span style="color:var(--cyan)">' + (a.discoveries || 0) + '</span></div>' +
-        '<div class="stig-agent-stat"><span>Status</span><span style="color:' + (statusClass === 'active' ? 'var(--emerald)' : 'var(--text-tertiary)') + '">' + a.status.toUpperCase() + '</span></div>' +
-        '<div class="stig-agent-stat"><span>Last Active</span><span>' + agoStr + '</span></div>' +
+        '<div class="stig-agent-name"><span class="stig-status-dot ' + statusClass + '"></span>' + emoji + ' ' + a.agent_type.toUpperCase() + '</div>' +
+        '<div class="stig-agent-role">' + desc + '</div>' +
+        '<div class="stig-agent-stat"><span>Actions</span><span style="color:var(--cyan)">' + a.actions_taken + '</span></div>' +
+        '<div class="stig-agent-stat"><span>Successes</span><span style="color:var(--emerald)">' + a.successes + '</span></div>' +
+        '<div class="stig-agent-stat"><span>Contact Rate</span><span style="color:var(--amber)">' + a.contact_rate.toFixed(3) + '/s</span></div>' +
         '</div>';
     }).join('') + '</div>';
     el.innerHTML = summaryHtml + cardsHtml;
@@ -14414,44 +14460,77 @@ body::after {
   function renderABTests(data) {
     var el = document.getElementById('stig-ab-tests');
     if (!el) return;
-    var tests = (data && data.tests) || [];
-    if (tests.length === 0) {
-      el.innerHTML = '<div class="empty-state">No A/B tests running yet.</div>';
+    // Real API: { pheromone_guided: { total, successes, rate }, baseline: { total, successes, rate } }
+    var d = data || {};
+    var guided = d.pheromone_guided || { total: 0, successes: 0, rate: 0 };
+    var baseline = d.baseline || { total: 0, successes: 0, rate: 0 };
+    if (guided.total === 0 && baseline.total === 0) {
+      el.innerHTML = '<div class="empty-state">A/B test collecting data — results appear after enough engine cycles.</div>';
       return;
     }
+    var winner = '—';
+    var winColor = 'var(--text-tertiary)';
+    if (guided.total >= 10 && baseline.total >= 10) {
+      if (guided.rate > baseline.rate) { winner = 'PHEROMONE'; winColor = 'var(--emerald)'; }
+      else if (baseline.rate > guided.rate) { winner = 'BASELINE'; winColor = 'var(--coral)'; }
+      else { winner = 'TIE'; }
+    }
     var html = '<div style="overflow-x:auto;"><table class="stig-ab-table"><thead><tr>' +
-      '<th>Experiment</th><th>Variant A</th><th>Variant B</th><th>Metric</th><th>A</th><th>B</th><th>p-value</th><th>Winner</th>' +
+      '<th>Arm</th><th>Samples</th><th>Successes</th><th>Rate</th>' +
       '</tr></thead><tbody>';
-    html += tests.map(function(t) {
-      var winClass = t.winner ? ' class="stig-ab-winner"' : '';
-      return '<tr>' +
-        '<td style="color:var(--text-primary);font-family:Inter,sans-serif">' + t.name + '</td>' +
-        '<td>' + t.variant_a + '</td>' +
-        '<td>' + t.variant_b + '</td>' +
-        '<td>' + t.metric + '</td>' +
-        '<td>' + (typeof t.a_value === 'number' ? t.a_value.toFixed(2) : t.a_value) + '</td>' +
-        '<td>' + (typeof t.b_value === 'number' ? t.b_value.toFixed(2) : t.b_value) + '</td>' +
-        '<td style="color:' + (t.p_value < 0.05 ? 'var(--emerald)' : 'var(--text-tertiary)') + '">' + (t.p_value || '—') + '</td>' +
-        '<td' + winClass + '>' + (t.winner || '—') + ' (n=' + (t.n_samples || '?') + ')</td>' +
-        '</tr>';
-    }).join('');
+    html += '<tr><td style="color:var(--cyan)">Pheromone-Guided</td>' +
+      '<td>' + guided.total + '</td><td>' + guided.successes + '</td>' +
+      '<td style="color:var(--emerald)">' + (guided.rate * 100).toFixed(1) + '%</td></tr>';
+    html += '<tr><td style="color:var(--amber)">Baseline</td>' +
+      '<td>' + baseline.total + '</td><td>' + baseline.successes + '</td>' +
+      '<td style="color:var(--amber)">' + (baseline.rate * 100).toFixed(1) + '%</td></tr>';
     html += '</tbody></table></div>';
+    html += '<div style="margin-top:8px;text-align:center;font-size:0.75rem;">Winner: <span style="color:' + winColor + ';font-weight:bold;">' + winner + '</span></div>';
     el.innerHTML = html;
   }
 
   function renderGordonParams(data) {
     var el = document.getElementById('stig-gordon-params');
     if (!el) return;
-    var params = (data && data.parameters) || [];
-    if (params.length === 0) {
-      el.innerHTML = '<div class="empty-state">No Gordon parameters available.</div>';
+    // Real API: flat dict { evaporation_rate, reinforcement_rate, anternet_weight, restraint_weight, switch_probability, contact_rate_min, contact_rate_max }
+    // Can come from pheromones/status.gordon_params or swarm/status.gordon_params
+    var params = data || {};
+    if (params.parameters) {
+      // old mock format — shouldn't happen anymore but backward compat
+      var html = '<table class="stig-gordon-table"><thead><tr><th>Parameter</th><th>Value</th><th>Description</th></tr></thead><tbody>';
+      html += params.parameters.map(function(p) { return '<tr><td style="color:var(--cyan)">' + p.name + '</td><td style="color:var(--amber)">' + p.value + '</td><td style="font-size:0.65rem">' + (p.description||'') + '</td></tr>'; }).join('');
+      html += '</tbody></table>';
+      el.innerHTML = html;
+      return;
+    }
+    var descriptions = {
+      evaporation_rate: 'Trail decay per timestep (ρ)',
+      reinforcement_rate: 'Trail reinforcement strength (α)',
+      anternet_weight: 'Success feedback weight (β)',
+      restraint_weight: 'Cost/utility balance (γ)',
+      switch_probability: 'Task switching probability',
+      contact_rate_min: 'Min contacts/second (2/min)',
+      contact_rate_max: 'Max contacts/second (10/min)'
+    };
+    var names = {
+      evaporation_rate: 'Evaporation Rate (ρ)',
+      reinforcement_rate: 'Reinforcement Rate (α)',
+      anternet_weight: 'Anternet Weight (β)',
+      restraint_weight: 'Restraint Weight (γ)',
+      switch_probability: 'Switch Probability',
+      contact_rate_min: 'Contact Rate Min',
+      contact_rate_max: 'Contact Rate Max'
+    };
+    var keys = Object.keys(params);
+    if (keys.length === 0) {
+      el.innerHTML = '<div class="empty-state">Gordon parameters not yet loaded.</div>';
       return;
     }
     var html = '<table class="stig-gordon-table"><thead><tr><th>Parameter</th><th>Value</th><th>Description</th></tr></thead><tbody>';
-    html += params.map(function(p) {
-      return '<tr><td style="color:var(--cyan)">' + p.name + '</td>' +
-        '<td style="color:var(--amber)">' + p.value + '</td>' +
-        '<td style="font-size:0.65rem">' + (p.description || '') + '</td></tr>';
+    html += keys.map(function(k) {
+      return '<tr><td style="color:var(--cyan)">' + (names[k] || k) + '</td>' +
+        '<td style="color:var(--amber)">' + params[k] + '</td>' +
+        '<td style="font-size:0.65rem">' + (descriptions[k] || '') + '</td></tr>';
     }).join('');
     html += '</tbody></table>';
     el.innerHTML = html;

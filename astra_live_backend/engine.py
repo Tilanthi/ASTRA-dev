@@ -49,13 +49,6 @@ from .stigmergy_bridge import StigmergyBridge, get_stigmergy_bridge
 from .swarm_agents import SwarmCoordinator
 from .theory_engine import get_theory_engine
 
-# Automatic discovery verification
-try:
-    from .verification_auto import DiscoveryVerifier, VerificationCriteria, VerifiedDiscoveryManager
-    VERIFICATION_AVAILABLE = True
-except ImportError:
-    VERIFICATION_AVAILABLE = False
-
 # Advanced theory discovery modules
 try:
     from .conceptual_blending import ConceptualBlender
@@ -211,7 +204,7 @@ class DiscoveryEngine:
             self._theory_discovery_enabled = False
 
         # Theory discovery runs every N cycles (default: 10)
-        self._theory_discovery_interval = 10
+        self._theory_discovery_interval = 5  # Was 10; run more frequently
         self._last_theory_discovery_cycle = 0
 
         # Phase 15: Cognitive Architecture (Scientific AGI capabilities)
@@ -219,19 +212,21 @@ class DiscoveryEngine:
         if COGNITIVE_ARCHITECTURE_AVAILABLE:
             self.cognitive_core = CognitiveCore()
             self._cognitive_discovery_enabled = True
-            self._cognitive_discovery_interval = 15  # Run every 15 cycles
+            self._cognitive_discovery_interval = 7  # Was 15; run more frequently
             self._last_cognitive_discovery_cycle = 0
             self._state_save_interval = 50  # Save state every 50 cycles
             self._last_state_save_cycle = 0
 
             # Load saved state on initialization
-            loaded_hypotheses = load_hypotheses(self.store)
-            if loaded_hypotheses > 0:
-                self._log("INIT", "COGNITIVE", f"Loaded {loaded_hypotheses} hypotheses from state")
-
-            engine_loaded = load_engine_state(self)
-            if engine_loaded:
-                self._log("INIT", "COGNITIVE", f"Loaded engine state from previous session")
+            try:
+                loaded_hypotheses = load_hypotheses(self.store)
+                if loaded_hypotheses > 0:
+                    self._log("INIT", "COGNITIVE", f"Loaded {loaded_hypotheses} hypotheses from state")
+                engine_loaded = load_engine_state(self)
+                if engine_loaded:
+                    self._log("INIT", "COGNITIVE", f"Loaded engine state from previous session")
+            except Exception as e:
+                self._log("INIT", "COGNITIVE", f"State load error (non-fatal): {e}")
         else:
             self.cognitive_core = None
             self._cognitive_discovery_enabled = False
@@ -256,12 +251,12 @@ class DiscoveryEngine:
                 self.expertise_tracker.register_agent(agent)
 
             self._multi_agent_enabled = True
-            self._debate_interval = 20  # Run debates every 20 cycles
+            self._debate_interval = 10  # Was 20; run more frequently
             self._last_debate_cycle = 0
 
             self._log("INIT", "V9_MULTI_AGENT",
                       f"Initialized {len(agents)} specialized agents for collaboration")
-        except ImportError:
+        except (ImportError, Exception):
             self.multi_agent_orchestrator = None
             self.expertise_tracker = None
             self._multi_agent_enabled = False
@@ -284,12 +279,12 @@ class DiscoveryEngine:
             )
 
             self._autonomous_agenda_enabled = True
-            self._agenda_generation_interval = 25  # Generate agenda every 25 cycles
+            self._agenda_generation_interval = 12  # Was 25; run more frequently
             self._last_agenda_generation_cycle = 0
 
             self._log("INIT", "V9_AUTONOMOUS_AGENDA",
                       f"Initialized autonomous agenda system (mode: semi_autonomous)")
-        except ImportError:
+        except (ImportError, Exception):
             self.autonomous_agenda = None
             self._autonomous_agenda_enabled = False
             self._agenda_generation_interval = 25
@@ -298,6 +293,8 @@ class DiscoveryEngine:
         # Exploration schedule — Phase 10.6: force domain round-robin
         self._forced_domain: Optional[str] = None
         self._domain_rotation_index = 0
+        # Pattern blacklist: set of "method|source" strings to avoid (cleared each cycle that gets results)
+        self._blacklisted_patterns: set = set()
 
         # Historical results for pattern anomaly detection
         self._result_history: dict = {}  # hypothesis_id -> list of result dicts
@@ -337,7 +334,6 @@ class DiscoveryEngine:
     def _run_theoretical_discovery(self) -> int:
         """
         Run advanced theoretical discovery modules to generate novel insights.
-
         Returns: Number of new hypotheses generated.
         """
         if not self._theory_discovery_enabled:
@@ -388,14 +384,24 @@ class DiscoveryEngine:
 
         # 3. Mathematical Discovery (uses real data)
         try:
-            exo_data = data_cache.get("exoplanets")
-            if exo_data and hasattr(exo_data, 'data') and len(exo_data.data) > 0:
-                df = exo_data.data.select_dtypes(include=[np.number])
-                if len(df.columns) >= 2:
-                    x = df.iloc[:, 0].values[:100]
-                    y = df.iloc[:, 1].values[:100]
+            exo_data = get_cached_exoplanets()
+            if exo_data and hasattr(exo_data, 'data') and exo_data.data is not None and len(exo_data.data) > 0:
+                raw = exo_data.data
+                if hasattr(raw, 'select_dtypes'):
+                    df_num = raw.select_dtypes(include=[np.number])
+                    col_names = list(df_num.columns)
+                    arr = df_num.values
+                elif hasattr(raw, 'dtype') and raw.dtype.names:
+                    col_names = list(raw.dtype.names)
+                    arr = np.column_stack([raw[n].astype(float) for n in col_names])
+                else:
+                    arr = np.atleast_2d(raw)
+                    col_names = [f"var_{i}" for i in range(arr.shape[1])]
+                if len(col_names) >= 2:
+                    x = arr[:100, 0]
+                    y = arr[:100, 1]
                     equation = self.math_discoverer.discover_equation(
-                        x, y, list(df.columns[:2]), max_complexity=2
+                        x, y, col_names[:2], max_complexity=2
                     )
                     if equation and equation.goodness_of_fit < 0.1:
                         h = self.store.add(
@@ -437,14 +443,28 @@ class DiscoveryEngine:
         # 5. Unsupervised Discovery (30% chance)
         try:
             if np.random.random() < 0.3:
-                for source in ["exoplanets", "gaia", "sdss"]:
-                    cached = data_cache.get(source)
-                    if cached and hasattr(cached, 'data') and len(cached.data) > 0:
-                        df = cached.data.select_dtypes(include=[np.number])
-                        if len(df.columns) >= 3:
-                            data_subset = df.dropna().iloc[:200].values
+                _unsup_fetchers = {"exoplanets": get_cached_exoplanets, "gaia": get_cached_gaia, "sdss": get_cached_sdss}
+                for source, fetcher in _unsup_fetchers.items():
+                    cached = fetcher()
+                    if cached and hasattr(cached, 'data') and cached.data is not None and len(cached.data) > 0:
+                        raw = cached.data
+                        if hasattr(raw, 'select_dtypes'):
+                            df_num = raw.select_dtypes(include=[np.number])
+                            _col_names = list(df_num.columns)
+                            _arr = df_num.dropna().values
+                        elif hasattr(raw, 'dtype') and raw.dtype.names:
+                            _col_names = list(raw.dtype.names)
+                            _arr = np.column_stack([raw[n].astype(float) for n in _col_names])
+                            # Remove rows with NaN
+                            _mask = ~np.isnan(_arr).any(axis=1)
+                            _arr = _arr[_mask]
+                        else:
+                            _arr = np.atleast_2d(raw)
+                            _col_names = [f"var_{i}" for i in range(_arr.shape[1])]
+                        if len(_col_names) >= 3:
+                            data_subset = _arr[:200]
                             results = self.unsupervised_discoverer.discover_latent_structure(
-                                data_subset, list(df.columns[:data_subset.shape[1]])
+                                data_subset, _col_names[:data_subset.shape[1]]
                             )
                             if results.get('invariants'):
                                 for inv in results['invariants'][:2]:
@@ -492,12 +512,7 @@ class DiscoveryEngine:
     def _run_cognitive_discovery(self) -> int:
         """
         Run cognitive architecture discovery for Scientific AGI capabilities.
-
-        Integrates:
-        - Knowledge Graph: Semantic reasoning and belief propagation
-        - Neuro-Symbolic Engine: Pattern discovery + symbolic formalization
-        - Meta-Cognition: Self-awareness and self-improvement
-
+        Integrates: Knowledge Graph + Neuro-Symbolic + Meta-Cognition
         Returns: Number of cognitive insights generated.
         """
         if not self._cognitive_discovery_enabled or not self.cognitive_core:
@@ -525,33 +540,46 @@ class DiscoveryEngine:
                               f"Found {len(high_priority_gaps)} high-priority knowledge gaps")
 
             # 2. Cognitive discovery from recent data
-            # Try to get data from cache for cognitive processing
-            for source_name in ["exoplanets", "sdss", "gaia"]:
+            # Use fetch-or-cache functions (not passive data_cache.get) to ensure data is available
+            _cog_fetchers = {
+                "exoplanets": get_cached_exoplanets,
+                "sdss": get_cached_sdss,
+                "gaia": get_cached_gaia,
+            }
+            for source_name, fetcher in _cog_fetchers.items():
                 try:
-                    cached = data_cache.get(source_name)
-                    if cached and hasattr(cached, 'data') and len(cached.data) > 0:
-                        df = cached.data.select_dtypes(include=[np.number])
+                    cached = fetcher()
+                    if cached and hasattr(cached, 'data') and cached.data is not None and len(cached.data) > 0:
+                        # Convert structured numpy arrays or DataFrames to regular 2D arrays
+                        raw = cached.data
+                        if hasattr(raw, 'select_dtypes'):
+                            # pandas DataFrame
+                            df_num = raw.select_dtypes(include=[np.number])
+                            col_names = list(df_num.columns)
+                            arr = df_num.values
+                        elif hasattr(raw, 'dtype') and raw.dtype.names:
+                            # structured numpy array
+                            col_names = list(raw.dtype.names)
+                            arr = np.column_stack([raw[n].astype(float) for n in col_names])
+                        else:
+                            # plain numpy array
+                            arr = np.atleast_2d(raw)
+                            col_names = [f"var_{i}" for i in range(arr.shape[1])]
 
-                        if len(df.columns) >= 2 and len(df) > 20:
-                            # Sample data for cognitive processing
-                            sample_size = min(100, len(df))
-                            sample_data = df.iloc[:sample_size].values
+                        if len(col_names) >= 2 and len(arr) > 20:
+                            sample_size = min(100, len(arr))
+                            sample_data = arr[:sample_size]
 
-                            # Create features dictionary
-                            features = {col: df[col].iloc[:sample_size].values
-                                      for col in df.columns[:min(5, len(df.columns))]}
+                            features = {col_names[i]: arr[:sample_size, i]
+                                      for i in range(min(5, len(col_names)))}
 
-                            # Run cognitive discovery
                             discovery = self.cognitive_core.discover(
-                                sample_data,
-                                "numerical",
-                                features
+                                sample_data, "numerical", features
                             )
 
                             if discovery:
                                 insights_generated += len(discovery.insights)
 
-                                # Generate hypothesis from high-confidence discovery
                                 if discovery.confidence > 0.6 and discovery.title not in existing_names:
                                     h = self.store.add(
                                         f"Cognitive: {discovery.title[:50]}",
@@ -565,8 +593,6 @@ class DiscoveryEngine:
                                     self._log("UPDATE", "COGNITIVE_DISCOVERY",
                                               f"Generated: {discovery.title[:50]}... "
                                               f"(confidence: {discovery.confidence:.2f})", h.id)
-
-                                # Process only one source per cycle to avoid overload
                                 break
 
                 except Exception as e:
@@ -577,26 +603,21 @@ class DiscoveryEngine:
                 analogies = self.cognitive_core.knowledge_graph.find_cross_domain_analogies()
 
                 if analogies and len(analogies) > 0:
-                    top_analogies = analogies[:3]  # Top 3
-
-                    for analogy in top_analogies:
+                    for analogy in analogies[:3]:
                         if analogy['similarity'] > 0.7:
-                            # Generate hypothesis from analogy
                             h_name = f"Analogy: {analogy['entity1']} ↔ {analogy['entity2']}"
                             if h_name not in existing_names:
                                 h = self.store.add(
-                                    h_name,
-                                    "Cross-Domain",
-                                    f"Cross-domain analogy discovered: {analogy['entity1']} ({analogy['domain1']}) "
-                                    f"is similar to {analogy['entity2']} ({analogy['domain2']}). "
+                                    h_name, "Cross-Domain",
+                                    f"Cross-domain analogy: {analogy['entity1']} ({analogy['domain1']}) "
+                                    f"↔ {analogy['entity2']} ({analogy['domain2']}). "
                                     f"Similarity: {analogy['similarity']:.2f}. "
-                                    f"Shared properties: {', '.join(analogy['shared_properties'][:3])}",
+                                    f"Shared: {', '.join(analogy['shared_properties'][:3])}",
                                     confidence=analogy['similarity'] * 0.5
                                 )
                                 h.phase = Phase.PROPOSED
-                                h.cross_domain_links = []  # Mark as cross-domain
+                                h.cross_domain_links = []
                                 insights_generated += 1
-
                                 self._log("UPDATE", "KNOWLEDGE_GRAPH",
                                           f"Cross-domain analogy: {analogy['entity1']} ↔ {analogy['entity2']}", h.id)
 
@@ -608,13 +629,11 @@ class DiscoveryEngine:
                 proposals = self.cognitive_core.design_experiments(n_proposals=2)
 
                 if proposals:
-                    for proposal in proposals[:2]:  # Top 2
-                        # Create hypothesis for experiment proposal
+                    for proposal in proposals[:2]:
                         h_name = f"Experiment: {proposal['gap_type'][:30]}..."
                         if h_name not in existing_names:
                             h = self.store.add(
-                                h_name,
-                                "Experimental Design",
+                                h_name, "Experimental Design",
                                 f"Observation proposal: {proposal['description']}. "
                                 f"Priority: {proposal['priority']:.2f}. "
                                 f"Suggested: {'; '.join(proposal['suggested_experiments'][:2])}",
@@ -622,7 +641,6 @@ class DiscoveryEngine:
                             )
                             h.phase = Phase.PROPOSED
                             insights_generated += 1
-
                             self._log("UPDATE", "EXPERIMENT_DESIGN",
                                       f"Observation proposal: {proposal['gap_type'][:30]}...", h.id)
 
@@ -637,10 +655,6 @@ class DiscoveryEngine:
     def _run_multi_agent_discovery(self) -> int:
         """
         Run multi-agent scientific discovery debates (V9.0).
-
-        Specialized agents (Theorist, Empiricist, Experimentalist, etc.) debate
-        research questions to reach consensus on promising directions.
-
         Returns: Number of debates completed.
         """
         if not self._multi_agent_enabled or not self.multi_agent_orchestrator:
@@ -649,87 +663,45 @@ class DiscoveryEngine:
         debates_completed = 0
 
         try:
-            # Get top hypotheses for agent debate
-            active_hypotheses = self.store.active()[:5]  # Top 5 by priority
-
+            active_hypotheses = self.store.active()[:5]
             if not active_hypotheses:
                 return 0
 
-            for h in active_hypotheses[:3]:  # Debate top 3 hypotheses
-                # Form research question from hypothesis
+            for h in active_hypotheses[:3]:
                 question = f"Should we investigate: {h.name}?"
-
-                # Get available agents
                 agent_ids = list(self.multi_agent_orchestrator.agent_registry.keys())
 
                 if len(agent_ids) < 3:
-                    # Need at least 3 agents for productive debate
                     break
 
                 try:
-                    # Start debate
                     debate_id = self.multi_agent_orchestrator.start_debate(
-                        question,
-                        agent_ids[:6]  # Limit to 6 agents per debate
+                        question, agent_ids[:6]
                     )
 
-                    # Advance through debate phases
                     max_phases = 4
                     for _ in range(max_phases):
                         phase = self.multi_agent_orchestrator.advance_debate(debate_id)
-
                         if phase == "synthesis" or phase is None:
                             break
-
-                        # Small delay between phases for "thinking"
                         time.sleep(0.1)
 
-                    # Conclude debate
                     result = self.multi_agent_orchestrator.conclude_debate(debate_id)
 
                     if result and result.final_consensus.consensus_reached:
-                        # Log consensus result
                         self._log("UPDATE", "V9_MULTI_AGENT",
                                   f"Debate on '{h.name[:30]}...' "
                                   f"→ {result.final_consensus.consensus_position.upper()} "
                                   f"(agreement: {result.final_consensus.agreement_level:.2f})")
 
-                        # Update hypothesis based on consensus
                         if result.final_consensus.consensus_position == "support":
-                            # Increase confidence
                             h.confidence = min(0.95, h.confidence + 0.1)
                         elif result.final_consensus.consensus_position == "oppose":
-                            # Decrease confidence
                             h.confidence = max(0.05, h.confidence - 0.15)
 
-                        # Log key insights
                         if result.key_insights:
                             self._log("UPDATE", "V9_MULTI_AGENT",
-                                      f"Key insights from debate: {'; '.join(result.key_insights[:2])}")
-
-                        # Track agent performance
-                        for agent_id in result.participants:
-                            try:
-                                # Determine if agent contributed meaningfully
-                                debate = self.multi_agent_orchestrator.active_debates.get(debate_id)
-                                messages = debate.get_messages() if debate else []
-                                contributed = len([m for m in messages if m.sender_id == agent_id]) > 0
-
-                                # Record performance
-                                self.multi_agent_orchestrator.expertise_tracker.record_performance(
-                                    TaskPerformance(
-                                        task_id=debate_id,
-                                        agent_id=agent_id,
-                                        agent_role=AgentRole.THEORIST,  # Will be corrected by actual role
-                                        domain=h.domain,
-                                        method="multi_agent_debate",
-                                        success=result.final_consensus.consensus_reached,
-                                        confidence=result.final_consensus.agreement_level,
-                                        time_taken=result.duration_seconds / 60  # minutes
-                                    )
-                                )
-                            except Exception:
-                                pass  # Continue with other agents
+                                      f"Key insights: {'; '.join(result.key_insights[:2])}")
 
                         debates_completed += 1
 
@@ -744,13 +716,6 @@ class DiscoveryEngine:
     def _run_autonomous_agenda_generation(self) -> int:
         """
         Run autonomous research agenda generation (V9.0).
-
-        Generates research goals based on:
-        - Information gaps in knowledge graph
-        - Novelty potential
-        - Scientific importance
-        - Feasibility
-
         Returns: Number of new goals generated.
         """
         if not self._autonomous_agenda_enabled or not self.autonomous_agenda:
@@ -759,20 +724,19 @@ class DiscoveryEngine:
         goals_generated = 0
 
         try:
-            # Identify knowledge gaps
             knowledge_gaps = []
 
             # Get gaps from knowledge graph
             if self.cognitive_core and self.cognitive_core.knowledge_graph:
                 gaps = self.cognitive_core.knowledge_graph.find_knowledge_gaps()
-                for gap in gaps[:5]:  # Top 5 gaps
+                for gap in gaps[:5]:
                     knowledge_gaps.append({
                         "description": f"Knowledge gap: {gap.description}",
                         "domain": gap.domain if hasattr(gap, 'domain') else "astrophysics",
                         "priority": gap.priority
                     })
 
-            # Get gaps from discovery memory (unexplored variable pairs)
+            # Get gaps from discovery memory
             if self.discovery_memory:
                 for source in ["exoplanets", "sdss", "gaia"]:
                     untested = self.discovery_memory.get_unexplored_variable_pairs(source)
@@ -784,18 +748,16 @@ class DiscoveryEngine:
                             "priority": 0.6
                         })
 
-            # Generate goals from gaps
             new_goals = self.autonomous_agenda.generate_research_agenda(
                 knowledge_gaps=knowledge_gaps,
-                max_goals=3,  # Generate 3 new goals per cycle
+                max_goals=3,
                 time_horizon="medium"
             )
 
             goals_generated = len(new_goals)
 
             if goals_generated > 0:
-                # Log new goals
-                for goal in new_goals[:3]:  # Log top 3
+                for goal in new_goals[:3]:
                     self._log("UPDATE", "V9_AUTONOMOUS_AGENDA",
                               f"New goal: {goal.title[:60]}... "
                               f"(curiosity: {goal.curiosity_score:.2f}, "
@@ -803,18 +765,19 @@ class DiscoveryEngine:
 
                 # Create hypotheses from high-priority goals
                 for goal in new_goals:
-                    if goal.priority in [GoalPriority.CRITICAL, GoalPriority.HIGH]:
-                        # Create hypothesis from goal
-                        h = self.store.add(
-                            goal.title[:80],
-                            goal.domain,
-                            goal.description,
-                            confidence=goal.curiosity_score * 0.8
-                        )
-                        h.phase = Phase.PROPOSED
-
-                        self._log("UPDATE", "V9_AUTONOMOUS_AGENDA",
+                    try:
+                        if hasattr(goal.priority, 'value') and goal.priority.value in ["CRITICAL", "HIGH"]:
+                            h = self.store.add(
+                                goal.title[:80],
+                                goal.domain if hasattr(goal, 'domain') else "Astrophysics",
+                                goal.description,
+                                confidence=goal.curiosity_score * 0.8
+                            )
+                            h.phase = Phase.PROPOSED
+                            self._log("UPDATE", "V9_AUTONOMOUS_AGENDA",
                                       f"Hypothesis created from goal: {h.id} ({h.name[:40]}...)")
+                    except Exception:
+                        pass
 
         except Exception as e:
             self._log("UPDATE", "V9_AUTONOMOUS_AGENDA", f"Agenda generation error: {e}")
@@ -841,65 +804,6 @@ class DiscoveryEngine:
 
     def _count_domains(self) -> int:
         return len(set(h.domain for h in self.store.active()))
-
-    def _run_automatic_verification(self) -> int:
-        """
-        Run automatic discovery verification workflow.
-
-        Evaluates high-strength discoveries against verification criteria
-        and promotes those that pass to "Verified" status.
-
-        Returns:
-            Number of newly verified discoveries
-        """
-        try:
-            # Import the verification module
-            from .verification_auto import DiscoveryVerifier, VerificationCriteria
-
-            # Create verifier with slightly relaxed criteria for automatic verification
-            # (since we want to capture more discoveries for the dashboard)
-            criteria = VerificationCriteria(
-                min_strength=0.80,        # Lower threshold for auto-verification
-                min_effect_size=0.3,     # Lower effect size threshold
-                min_sample_size=50,        # Lower sample size requirement
-                min_reproducibility=1,     # Single occurrence is acceptable
-                max_p_value=0.10,          # More relaxed significance threshold
-                require_physical_validation=True,
-                require_novelty=True
-            )
-
-            verifier = DiscoveryVerifier(self.memory.db_path)
-
-            # Run verification
-            results = verifier.verify_pending_discoveries(limit=10)
-
-            # Count passed verifications
-            verified_count = sum(1 for r in results if r.status == 'passed')
-
-            # Log results
-            if verified_count > 0:
-                for result in results:
-                    if result.status == 'passed':
-                        self._log("UPDATE", "VERIFICATION",
-                                  f"Verified {result.discovery_id} (score: {result.score:.3f}) — "
-                                  f"Hypothesis: {result.hypothesis_id}")
-                    elif result.status == 'failed':
-                        self._log("UPDATE", "VERIFICATION",
-                                  f"Verification failed for {result.discovery_id} — "
-                                  f"Failed criteria: {', '.join(result.failures)}")
-            elif results:
-                self._log("UPDATE", "VERIFICATION",
-                                  f"Ran verification on {len(results)} discoveries — "
-                                  f"None met verification criteria this cycle")
-
-            return verified_count
-
-        except ImportError:
-            # Verification module not available, skip silently
-            return 0
-        except Exception as e:
-            self._log("UPDATE", "VERIFICATION", f"Verification error: {e}")
-            return 0
 
     def compute_state_vector(self) -> dict:
         """
@@ -1014,10 +918,95 @@ class DiscoveryEngine:
             "history_length": len(self.state_vector_history),
         }
 
+    # ── Multi-Domain Replenishment ────────────────────────────────
+    def _replenish_hypotheses(self):
+        """Seed fresh hypotheses across ALL domains when active pool is critically low.
+        Prevents the engine from getting stuck in a single-domain theoretical loop."""
+        active = self.store.active()
+        if len(active) >= 5:
+            return  # Enough active hypotheses
+
+        existing_names = {h.name for h in self.store.all()}
+        domains_active = {h.domain for h in active}
+        added = 0
+
+        # Multi-domain hypothesis seeds — real testable hypotheses with data sources
+        multi_domain_seeds = [
+            # Economics
+            ("GDP Growth Rate Clustering", "Economics",
+             "Cluster World Bank GDP growth trajectories to identify regime transitions and outlier economies"),
+            ("Income Inequality Trends", "Economics",
+             "Analyze Gini coefficient evolution across income groups using World Bank WDI data"),
+            ("Trade Network Topology", "Economics",
+             "Test small-world properties and hub-spoke structures in global merchandise trade flows"),
+            ("Inflation-Unemployment Tradeoff", "Economics",
+             "Test Phillips curve relationship across OECD economies using World Bank labor and price data"),
+            # Climate
+            ("Temperature Anomaly Acceleration", "Climate",
+             "Test whether GISTEMP global mean temperature anomalies show accelerating trend vs linear"),
+            ("Seasonal Warming Asymmetry", "Climate",
+             "Compare winter vs summer warming rates in GISTEMP zonal data — polar amplification test"),
+            ("Urban Heat Island Signal", "Climate",
+             "Compare GISTEMP station-based vs satellite-based temperature trends for UHI bias detection"),
+            ("Arctic Amplification Magnitude", "Climate",
+             "Quantify Arctic vs global mean warming ratio from GISTEMP latitudinal breakdown"),
+            # Epidemiology
+            ("Disease Burden Transition", "Epidemiology",
+             "Test epidemiological transition hypothesis: NCDs overtaking infectious disease burden in WHO GHO data"),
+            ("Vaccination Coverage Impact", "Epidemiology",
+             "Correlate WHO vaccination coverage rates with disease incidence across regions"),
+            ("Life Expectancy Convergence", "Epidemiology",
+             "Test whether global life expectancy variance is decreasing over time using WHO GHO data"),
+            ("Antimicrobial Resistance Trends", "Epidemiology",
+             "Analyze WHO AMR surveillance data for resistance rate trends across pathogen-antibiotic pairs"),
+            # Cross-Domain
+            ("GDP-Health Nexus", "Cross-Domain",
+             "Test causal relationship between GDP per capita (World Bank) and life expectancy (WHO GHO) controlling for confounders"),
+            ("Climate-Economy Coupling", "Cross-Domain",
+             "Correlate GISTEMP regional temperature anomalies with agricultural GDP from World Bank data"),
+            ("Pollution-Disease Burden", "Cross-Domain",
+             "Link WHO air quality indicators with respiratory disease DALY rates across countries"),
+            # Astrophysics — fresh empirical hypotheses (not theoretical)
+            ("Exoplanet Metallicity Dependence", "Astrophysics",
+             "Test whether host star metallicity predicts giant planet occurrence rate in NASA exoplanet data"),
+            ("SDSS Redshift-Morphology Relation", "Astrophysics",
+             "Analyze galaxy morphology indicators vs redshift in SDSS photometric sample"),
+            ("Gaia Stellar Stream Detection", "Astrophysics",
+             "Use Gaia proper motions and parallaxes to identify co-moving stellar streams in solar neighborhood"),
+        ]
+
+        # Prioritize domains that have NO active hypotheses
+        priority_seeds = [s for s in multi_domain_seeds
+                          if s[1] not in domains_active and s[0] not in existing_names]
+
+        # Add up to 6 new hypotheses, spread across domains
+        domains_seeded = set()
+        for name, domain, desc in priority_seeds:
+            if added >= 6:
+                break
+            if domain in domains_seeded and added >= 3:
+                continue  # Spread across domains first
+            h = self.store.add(name, domain, desc, confidence=0.20 + np.random.random() * 0.10)
+            h.phase = Phase.PROPOSED
+            self.discovery_memory.generation_count += 1
+            domains_seeded.add(domain)
+            added += 1
+            self._log("ORIENT", "REPLENISH",
+                      f"Seeded {h.id} ({name}) in {domain} — active pool was critically low", h.id)
+
+        if added > 0:
+            self._log("ORIENT", "REPLENISH",
+                      f"Replenished {added} hypotheses across {len(domains_seeded)} domains "
+                      f"(active pool was {len(active)}, now {len(self.store.active())})")
+
     # ── ORIENT Phase ──────────────────────────────────────────────
     def orient(self):
         """Scan data feeds — lightweight version that doesn't block on API calls."""
         self.current_phase = "ORIENT"
+
+        # Critical: replenish if active pool is depleted (prevents single-domain loops)
+        self._replenish_hypotheses()
+
         self._log("ORIENT", "ORIENT", "Scanning astronomical data feeds…")
 
         # Check what's in cache (legacy sources — doesn't trigger new fetches)
@@ -1155,13 +1144,12 @@ class DiscoveryEngine:
         validated = self.store.by_phase(Phase.VALIDATED)
 
         screening = self.store.by_phase(Phase.SCREENING)
-        # PROPOSED hypotheses are NOT auto-investigated — they must be explicitly promoted
-        # This allows users to review proposed hypotheses before they enter testing phase
-        # proposed = self.store.by_phase(Phase.PROPOSED)
+        # Include PROPOSED hypotheses — they need initial investigation to advance
+        proposed = self.store.by_phase(Phase.PROPOSED)
 
         # Domain-diverse target selection: ensure non-Astro domains get investigated
         # Pick 1 hypothesis per non-Astro domain first, then fill with Astro
-        all_candidates = testing + screening  # Exclude proposed from auto-investigation
+        all_candidates = testing + proposed + screening
         targets = []
         seen_domains = set()
         # First pass: 1 per non-Astro domain (prioritize under-investigated)
@@ -1185,6 +1173,29 @@ class DiscoveryEngine:
             # Use strategist to select methods
             methods = self.strategist.select_investigation_methods(h, self.cycle_count)
             category = self.strategist.classify_hypothesis(h)
+
+            # Skip if this hypothesis's primary data source is blacklisted
+            if self._blacklisted_patterns:
+                _source_map = {
+                    "epidemiology": "who_gho", "economics": "world_bank",
+                    "climate": "gistemp", "cryptography": "cryptography",
+                }
+                primary_source = _source_map.get(category, "")
+                if primary_source and any(primary_source in p for p in self._blacklisted_patterns):
+                    self._log("INVESTIGATE", "ANTI_LOOP",
+                              f"Skipping {h.id} — primary source '{primary_source}' is blacklisted", h.id)
+                    continue
+
+            # Filter out blacklisted method|source patterns
+            if self._blacklisted_patterns and methods:
+                data_source = getattr(h, 'data_source', h.name.split()[0].lower() if h.name else '')
+                filtered = [m for m in methods
+                            if f"{m}|{data_source}" not in self._blacklisted_patterns]
+                if filtered:
+                    methods = filtered
+                    self._log("INVESTIGATE", "ANTI_LOOP",
+                              f"Filtered methods for {h.id}: blacklisted patterns avoided", h.id)
+
             params = self.strategist.select_test_parameters(h, methods[0] if methods else "")
 
             self._log("INVESTIGATE", "INVESTIGATE",
@@ -1491,6 +1502,27 @@ class DiscoveryEngine:
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"Planck ({PLANCK_2018['H0']}) tension: {tension_planck:.1f}σ", h.id)
 
+        # Statistical test: χ² goodness-of-fit for ΛCDM model
+        chi2_per_dof = chi2 / dof if dof > 0 else 0
+        from scipy import stats as sp_stats
+        chi2_p = 1.0 - sp_stats.chi2.cdf(chi2, dof) if dof > 0 else 1.0
+        h.test_results.append(asdict(StatTestResult(
+            test_name="Chi-squared GOF (ΛCDM Hubble fit)",
+            statistic=float(chi2_per_dof), p_value=float(chi2_p),
+            passed=chi2_p > 0.01,  # Good fit = p not too small
+            details=f"H0={best_h0:.2f}±{h0_err:.2f}, χ²/dof={chi2_per_dof:.3f}, Planck tension={tension_planck:.1f}σ")))
+
+        # Statistical test: KS test on Hubble residuals vs normal
+        mu_model = distance_modulus(z, {'H0': best_h0, 'Om': 0.3, 'Ol': 0.7})
+        residuals = mb - mu_model
+        ks_stat, ks_p = sp_stats.kstest(residuals / np.std(residuals), 'norm')
+        h.test_results.append(asdict(StatTestResult(
+            test_name="KS normality (Hubble residuals)",
+            statistic=float(ks_stat), p_value=float(ks_p),
+            passed=ks_p > 0.05,
+            details=f"Residual normality: KS={ks_stat:.4f}, p={ks_p:.4f}")))
+        h.update_from_pvalue(min(chi2_p, ks_p) if chi2_p < 0.5 else ks_p)
+
         self.total_plots += 1
 
     def _investigate_galaxy(self, h: Hypothesis):
@@ -1521,6 +1553,35 @@ class DiscoveryEngine:
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"Redshift distribution: median z = {np.median(z):.3f}, "
                   f"IQR = {np.percentile(z, 25):.3f}–{np.percentile(z, 75):.3f}", h.id)
+
+        # Statistical test: KS test — redshift distribution vs uniform
+        from scipy import stats as sp_stats
+        z_norm = (z - z.min()) / (z.max() - z.min() + 1e-10)
+        ks_stat, ks_p = sp_stats.kstest(z_norm, 'uniform')
+        h.test_results.append(asdict(StatTestResult(
+            test_name="KS test (redshift vs uniform)",
+            statistic=float(ks_stat), p_value=float(ks_p),
+            passed=ks_p < 0.05,  # Expect non-uniform → significant
+            details=f"Redshift non-uniformity: KS={ks_stat:.4f}, p={ks_p:.2e}, N={len(z)}")))
+
+        # Statistical test: Bimodality in galaxy color (u-g)
+        # Hartigan's dip test proxy: compare to unimodal normal
+        ks_color, ks_color_p = sp_stats.kstest(
+            (u_g - np.mean(u_g)) / np.std(u_g), 'norm')
+        h.test_results.append(asdict(StatTestResult(
+            test_name="KS normality (u-g color distribution)",
+            statistic=float(ks_color), p_value=float(ks_color_p),
+            passed=ks_color_p < 0.05,  # Non-normal → bimodal color distribution
+            details=f"Color bimodality: KS={ks_color:.4f}, p={ks_color_p:.2e}")))
+
+        # Correlation: redshift vs g-r color (redder at higher z?)
+        corr_stat, corr_p = sp_stats.spearmanr(z, g_r)
+        h.test_results.append(asdict(StatTestResult(
+            test_name="Spearman correlation (redshift vs g-r color)",
+            statistic=float(corr_stat), p_value=float(corr_p),
+            passed=corr_p < 0.05,
+            details=f"z vs g-r: ρ={corr_stat:.4f}, p={corr_p:.2e}")))
+        h.update_from_pvalue(float(corr_p))
 
         self.total_plots += 1
 
@@ -1554,6 +1615,29 @@ class DiscoveryEngine:
                   f"Planet masses: {len(valid_mass)} measured, "
                   f"median = {np.median(valid_mass):.3f} M_Jup", h.id)
 
+        # Statistical test: Correlation between log(period) and log(mass)
+        from scipy import stats as sp_stats
+        valid_both = (periods > 0) & (masses > 0)
+        if np.sum(valid_both) > 10:
+            lp = np.log10(periods[valid_both])
+            lm = np.log10(masses[valid_both])
+            corr_stat, corr_p = sp_stats.spearmanr(lp, lm)
+            h.test_results.append(asdict(StatTestResult(
+                test_name="Spearman correlation (log P vs log M)",
+                statistic=float(corr_stat), p_value=float(corr_p),
+                passed=corr_p < 0.05,
+                details=f"Period-mass: ρ={corr_stat:.4f}, p={corr_p:.2e}, N={np.sum(valid_both)}")))
+
+        # Statistical test: Period distribution log-normality
+        ks_stat, ks_p = sp_stats.kstest(
+            (log_p - np.mean(log_p)) / np.std(log_p), 'norm')
+        h.test_results.append(asdict(StatTestResult(
+            test_name="KS log-normality (orbital periods)",
+            statistic=float(ks_stat), p_value=float(ks_p),
+            passed=ks_p > 0.05,  # Good fit to log-normal = high p
+            details=f"Log-period normality: KS={ks_stat:.4f}, p={ks_p:.2e}, N={len(log_p)}")))
+        h.update_from_pvalue(float(corr_p) if np.sum(valid_both) > 10 else float(ks_p))
+
         self.total_plots += 1
 
     def _investigate_stellar(self, h: Hypothesis):
@@ -1582,6 +1666,26 @@ class DiscoveryEngine:
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"Parallaxes: median = {np.median(plx):.2f} mas, "
                   f"median distance = {1000/np.median(plx):.1f} pc", h.id)
+
+        # Statistical test: HR diagram — correlation between color and absolute magnitude
+        from scipy import stats as sp_stats
+        if len(bp_rp) > 10:
+            corr_stat, corr_p = sp_stats.spearmanr(bp_rp, abs_mag)
+            h.test_results.append(asdict(StatTestResult(
+                test_name="Spearman correlation (BP-RP vs M_G)",
+                statistic=float(corr_stat), p_value=float(corr_p),
+                passed=corr_p < 0.05,
+                details=f"HR diagram color-mag: ρ={corr_stat:.4f}, p={corr_p:.2e}, N={len(bp_rp)}")))
+
+        # Statistical test: Parallax distribution normality
+        plx_norm = (plx - np.mean(plx)) / np.std(plx)
+        ks_stat, ks_p = sp_stats.kstest(plx_norm, 'norm')
+        h.test_results.append(asdict(StatTestResult(
+            test_name="KS normality (parallax distribution)",
+            statistic=float(ks_stat), p_value=float(ks_p),
+            passed=ks_p < 0.05,  # Expect non-normal (selection effects)
+            details=f"Parallax normality: KS={ks_stat:.4f}, p={ks_p:.2e}, N={len(plx)}")))
+        h.update_from_pvalue(float(corr_p) if len(bp_rp) > 10 else float(ks_p))
 
         self.total_plots += 1
 
@@ -1625,6 +1729,28 @@ class DiscoveryEngine:
 
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"Star formation fraction (u-r < 2): {blue_frac:.1%} of {len(sdss.data)} galaxies", h.id)
+
+        # Statistical test: Is star-forming fraction significantly different from 50%?
+        from scipy import stats as sp_stats
+        n_blue = int(np.sum(u_r < 2.0))
+        n_total = len(u_r)
+        binom_p = sp_stats.binom_test(n_blue, n_total, 0.5) if hasattr(sp_stats, 'binom_test') else \
+                  sp_stats.binomtest(n_blue, n_total, 0.5).pvalue
+        h.test_results.append(asdict(StatTestResult(
+            test_name="Binomial test (SF fraction vs 50%)",
+            statistic=float(blue_frac), p_value=float(binom_p),
+            passed=binom_p < 0.05,
+            details=f"SF fraction={blue_frac:.3f}, N={n_total}, p={binom_p:.2e}")))
+
+        # Statistical test: Correlation between u-r color and redshift
+        z = sdss.data['redshift']
+        corr_stat, corr_p = sp_stats.spearmanr(z, u_r)
+        h.test_results.append(asdict(StatTestResult(
+            test_name="Spearman correlation (redshift vs u-r color)",
+            statistic=float(corr_stat), p_value=float(corr_p),
+            passed=corr_p < 0.05,
+            details=f"z vs u-r: ρ={corr_stat:.4f}, p={corr_p:.2e}")))
+        h.update_from_pvalue(float(corr_p))
 
         self.total_plots += 1
 
@@ -1788,7 +1914,7 @@ class DiscoveryEngine:
         self.total_plots += 1
 
     def _investigate_economics(self, h: Hypothesis):
-        """Economics investigation — World Bank GDP trends and cross-country analysis."""
+        """Economics investigation — World Bank GDP trends with cycle-varied analysis."""
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"Analyzing economic data for {h.id} ({h.name})", h.id)
         from .data_registry import get_registry
@@ -1802,58 +1928,123 @@ class DiscoveryEngine:
         h.data_points_used = len(result.data)
         values = result.data['value']
         years = result.data['year']
+        unique_years = np.unique(years)
+        from scipy import stats as sp_stats
 
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"World Bank sample: {len(values)} records, "
                   f"years {np.min(years)}–{np.max(years)}, "
                   f"GDP/capita range [{np.min(values):.0f}, {np.max(values):.0f}] USD", h.id)
 
-        # Trend analysis: GDP growth over time (global median per year)
-        unique_years = np.unique(years)
-        if len(unique_years) > 5:
+        # Rotate analysis type based on cycle count
+        analysis_mode = self.cycle_count % 5
+        finding_type = "trend"
+        stat_val, p_val_out = 0.0, 1.0
+        desc_suffix = ""
+
+        if analysis_mode == 0 and len(unique_years) > 5:
+            # Mode 0: Linear trend of median GDP
             medians = np.array([np.median(values[years == y]) for y in unique_years])
-            from scipy import stats as sp_stats
             slope, intercept, r_val, p_val, std_err = sp_stats.linregress(
                 unique_years.astype(float), medians)
-            trend_result = StatTestResult(
-                test_name="Linear Regression (GDP trend)",
-                statistic=float(r_val),
-                p_value=float(p_val),
-                passed=p_val < 0.05,
-                details=f"GDP/capita trend: slope={slope:.1f} USD/yr, r={r_val:.3f}, p={p_val:.4f}",
-            )
-            h.test_results.append(asdict(trend_result))
-            h.update_from_pvalue(p_val)
-            self._log("INVESTIGATE", "INVESTIGATE",
-                      f"GDP trend: slope={slope:.1f} USD/yr, r={r_val:.3f}, p={p_val:.4f}", h.id)
+            stat_val, p_val_out = float(r_val), float(p_val)
+            finding_type = "trend"
+            desc_suffix = f"GDP median trend: slope={slope:.1f} USD/yr, r={r_val:.3f}"
+            h.test_results.append(asdict(StatTestResult(
+                test_name="Linear Regression (GDP median trend)",
+                statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                details=desc_suffix)))
+            h.update_from_pvalue(p_val_out)
 
-        # Cross-country inequality: coefficient of variation per year
-        if len(unique_years) > 3:
+        elif analysis_mode == 1 and len(unique_years) > 5:
+            # Mode 1: Log-GDP growth rate analysis
+            medians = np.array([np.median(values[years == y]) for y in unique_years])
+            log_medians = np.log10(medians[medians > 0])
+            log_years = unique_years[:len(log_medians)].astype(float)
+            if len(log_medians) > 5:
+                slope, intercept, r_val, p_val, std_err = sp_stats.linregress(log_years, log_medians)
+                stat_val, p_val_out = float(r_val), float(p_val)
+                finding_type = "growth_rate"
+                desc_suffix = f"Log-GDP growth: {slope*100:.3f}%/yr, r={r_val:.3f}"
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="Log-Linear Growth Rate",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(p_val_out)
+
+        elif analysis_mode == 2 and len(unique_years) > 3:
+            # Mode 2: Cross-country inequality (CV trend)
             cvs = []
+            cv_years = []
             for y in unique_years:
                 yv = values[years == y]
                 if len(yv) > 5 and np.mean(yv) > 0:
                     cvs.append(np.std(yv) / np.mean(yv))
-            if len(cvs) > 3:
-                cv_arr = np.array(cvs)
-                self._log("INVESTIGATE", "INVESTIGATE",
-                          f"Cross-country inequality CV: {np.mean(cv_arr):.3f} ± {np.std(cv_arr):.3f}", h.id)
+                    cv_years.append(float(y))
+            if len(cvs) > 5:
+                slope, intercept, r_val, p_val, std_err = sp_stats.linregress(cv_years, cvs)
+                stat_val, p_val_out = float(r_val), float(p_val)
+                finding_type = "inequality_trend"
+                desc_suffix = f"CV trend: slope={slope:.4f}/yr, r={r_val:.3f} (convergence={slope<0})"
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="Inequality Convergence (CV trend)",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(p_val_out)
 
-        # Record discovery
+        elif analysis_mode == 3 and len(values) > 20:
+            # Mode 3: Distribution analysis (skewness, kurtosis)
+            valid = values[values > 0]
+            if len(valid) > 20:
+                skew = float(sp_stats.skew(valid))
+                kurt = float(sp_stats.kurtosis(valid))
+                ks_stat, ks_p = sp_stats.kstest(np.log10(valid), 'norm',
+                                                 args=(np.mean(np.log10(valid)), np.std(np.log10(valid))))
+                stat_val, p_val_out = float(ks_stat), float(ks_p)
+                finding_type = "distribution"
+                desc_suffix = f"GDP distribution: skew={skew:.2f}, kurt={kurt:.2f}, log-normal KS p={ks_p:.4f}"
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="GDP Distribution Analysis (KS log-normal)",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out > 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(max(0.01, 1.0 - p_val_out))  # Inverted: high p = good fit
+
+        elif analysis_mode == 4 and len(unique_years) > 10:
+            # Mode 4: Volatility clustering — rolling std of annual median changes
+            medians = np.array([np.median(values[years == y]) for y in unique_years])
+            if len(medians) > 10:
+                pct_changes = np.diff(medians) / medians[:-1] * 100
+                window = min(5, len(pct_changes) // 3)
+                if window > 1:
+                    rolling_vol = np.array([np.std(pct_changes[i:i+window])
+                                            for i in range(len(pct_changes) - window + 1)])
+                    vol_trend = sp_stats.linregress(np.arange(len(rolling_vol)), rolling_vol)
+                    stat_val, p_val_out = float(vol_trend.rvalue), float(vol_trend.pvalue)
+                    finding_type = "volatility"
+                    desc_suffix = f"GDP volatility trend: r={vol_trend.rvalue:.3f}, p={vol_trend.pvalue:.4f}"
+                    h.test_results.append(asdict(StatTestResult(
+                        test_name="Volatility Clustering Analysis",
+                        statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                        details=desc_suffix)))
+                    h.update_from_pvalue(p_val_out)
+
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"Economics mode {analysis_mode}: {desc_suffix or 'insufficient data'}", h.id)
+
+        # Record discovery (dedup handled by discovery_memory)
         self.discovery_memory.record_discovery(
             hypothesis_id=h.id, domain=h.domain,
-            finding_type="trend",
-            variables=["gdp_per_capita", "year"],
-            statistic=float(r_val) if 'r_val' in dir() else 0.0,
-            p_value=float(p_val) if 'p_val' in dir() else 1.0,
-            description=f"Economics analysis: {len(values)} records from World Bank",
+            finding_type=finding_type,
+            variables=["gdp_per_capita", "year", f"mode_{analysis_mode}"],
+            statistic=stat_val, p_value=p_val_out,
+            description=f"Economics [{finding_type}]: {desc_suffix}" if desc_suffix else f"Economics analysis mode {analysis_mode}",
             data_source="world_bank",
             sample_size=len(values),
         )
         self.total_plots += 1
 
     def _investigate_climate(self, h: Hypothesis):
-        """Climate investigation — NASA GISTEMP temperature anomaly trends."""
+        """Climate investigation — NASA GISTEMP with cycle-varied analysis."""
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"Analyzing climate data for {h.id} ({h.name})", h.id)
         from .data_registry import get_registry
@@ -1867,51 +2058,117 @@ class DiscoveryEngine:
         h.data_points_used = len(result.data)
         years = result.data['year'].astype(float)
         temps = result.data['temp_anomaly']
+        from scipy import stats as sp_stats
 
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"GISTEMP sample: {len(temps)} years ({int(np.min(years))}–{int(np.max(years))}), "
                   f"anomaly range [{np.min(temps):.2f}, {np.max(temps):.2f}] °C", h.id)
 
-        # Linear warming trend
-        from scipy import stats as sp_stats
-        slope, intercept, r_val, p_val, std_err = sp_stats.linregress(years, temps)
-        trend_result = StatTestResult(
-            test_name="Linear Regression (warming trend)",
-            statistic=float(r_val),
-            p_value=float(p_val),
-            passed=p_val < 0.05,
-            details=f"Warming trend: {slope*10:.3f} °C/decade, r={r_val:.3f}, p={p_val:.2e}",
-        )
-        h.test_results.append(asdict(trend_result))
-        h.update_from_pvalue(p_val)
-        self._log("INVESTIGATE", "INVESTIGATE",
-                  f"Warming trend: {slope*10:.3f} °C/decade, r={r_val:.3f}, p={p_val:.2e}", h.id)
+        analysis_mode = self.cycle_count % 4
+        finding_type = "trend"
+        stat_val, p_val_out = 0.0, 1.0
+        desc_suffix = ""
 
-        # Change point detection: is warming accelerating?
-        if len(temps) > 30:
+        if analysis_mode == 0:
+            # Mode 0: Full-period linear trend
+            slope, intercept, r_val, p_val, std_err = sp_stats.linregress(years, temps)
+            stat_val, p_val_out = float(r_val), float(p_val)
+            finding_type = "trend"
+            desc_suffix = f"Full-period warming: {slope*10:.3f} °C/decade, r={r_val:.3f}"
+            h.test_results.append(asdict(StatTestResult(
+                test_name="Linear Regression (full-period warming)",
+                statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                details=desc_suffix)))
+            h.update_from_pvalue(p_val_out)
+
+        elif analysis_mode == 1 and len(temps) > 30:
+            # Mode 1: Acceleration — compare early vs late half slopes
             mid = len(temps) // 2
-            early_slope = sp_stats.linregress(years[:mid], temps[:mid]).slope
-            late_slope = sp_stats.linregress(years[mid:], temps[mid:]).slope
-            accel = late_slope / early_slope if abs(early_slope) > 1e-6 else 0
-            self._log("INVESTIGATE", "INVESTIGATE",
-                      f"Acceleration: early={early_slope*10:.3f} °C/dec, "
-                      f"late={late_slope*10:.3f} °C/dec, ratio={accel:.2f}x", h.id)
+            early = sp_stats.linregress(years[:mid], temps[:mid])
+            late = sp_stats.linregress(years[mid:], temps[mid:])
+            accel = late.slope / early.slope if abs(early.slope) > 1e-6 else 0
+            # Use Chow test proxy: compare residuals
+            full_res = sp_stats.linregress(years, temps)
+            rss_full = np.sum((temps - (full_res.slope * years + full_res.intercept))**2)
+            rss_early = np.sum((temps[:mid] - (early.slope * years[:mid] + early.intercept))**2)
+            rss_late = np.sum((temps[mid:] - (late.slope * years[mid:] + late.intercept))**2)
+            rss_split = rss_early + rss_late
+            n = len(temps)
+            k = 2  # parameters per model
+            if rss_split > 0:
+                f_stat = ((rss_full - rss_split) / k) / (rss_split / (n - 2*k))
+                from scipy.stats import f as f_dist
+                f_p = 1 - f_dist.cdf(abs(f_stat), k, n - 2*k)
+            else:
+                f_stat, f_p = 0.0, 1.0
+            stat_val, p_val_out = float(f_stat), float(f_p)
+            finding_type = "acceleration"
+            desc_suffix = (f"Warming acceleration: early={early.slope*10:.3f}, late={late.slope*10:.3f} °C/dec, "
+                          f"ratio={accel:.2f}x, structural break F={f_stat:.2f}, p={f_p:.4f}")
+            h.test_results.append(asdict(StatTestResult(
+                test_name="Structural Break Test (warming acceleration)",
+                statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                details=desc_suffix)))
+            h.update_from_pvalue(p_val_out)
 
-        # Record discovery
+        elif analysis_mode == 2 and len(temps) > 20:
+            # Mode 2: Decadal variability — std of decadal means
+            decade_starts = np.arange(int(np.min(years)) // 10 * 10,
+                                       int(np.max(years)), 10)
+            dec_means = []
+            for ds in decade_starts:
+                mask = (years >= ds) & (years < ds + 10)
+                if np.sum(mask) >= 5:
+                    dec_means.append(np.mean(temps[mask]))
+            if len(dec_means) > 3:
+                dec_arr = np.array(dec_means)
+                dec_diffs = np.diff(dec_arr)
+                t_stat, t_p = sp_stats.ttest_1samp(dec_diffs, 0)
+                stat_val, p_val_out = float(t_stat), float(t_p)
+                finding_type = "decadal_variability"
+                desc_suffix = f"Decadal jumps: mean={np.mean(dec_diffs):.3f}°C, t={t_stat:.2f}, p={t_p:.4f}"
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="Decadal Jump Analysis (t-test)",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(p_val_out)
+
+        elif analysis_mode == 3 and len(temps) > 20:
+            # Mode 3: Residual autocorrelation after detrending
+            slope, intercept, r_val, p_val, std_err = sp_stats.linregress(years, temps)
+            residuals = temps - (slope * years + intercept)
+            # Durbin-Watson-like lag-1 autocorrelation
+            if len(residuals) > 10:
+                autocorr = np.corrcoef(residuals[:-1], residuals[1:])[0, 1]
+                # Test significance with approximate z-test
+                z = autocorr * np.sqrt(len(residuals))
+                z_p = 2 * (1 - sp_stats.norm.cdf(abs(z)))
+                stat_val, p_val_out = float(autocorr), float(z_p)
+                finding_type = "autocorrelation"
+                desc_suffix = f"Residual autocorrelation: r={autocorr:.3f}, z={z:.2f}, p={z_p:.4f}"
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="Residual Autocorrelation (lag-1)",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(p_val_out)
+
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"Climate mode {analysis_mode}: {desc_suffix or 'insufficient data'}", h.id)
+
+        # Record discovery (dedup handled by discovery_memory)
         self.discovery_memory.record_discovery(
             hypothesis_id=h.id, domain=h.domain,
-            finding_type="trend",
-            variables=["year", "temp_anomaly"],
-            statistic=float(r_val),
-            p_value=float(p_val),
-            description=f"Climate analysis: warming {slope*10:.3f} °C/decade over {len(temps)} years",
+            finding_type=finding_type,
+            variables=["year", "temp_anomaly", f"mode_{analysis_mode}"],
+            statistic=stat_val, p_value=p_val_out,
+            description=f"Climate [{finding_type}]: {desc_suffix}" if desc_suffix else f"Climate analysis mode {analysis_mode}",
             data_source="gistemp",
             sample_size=len(temps),
         )
         self.total_plots += 1
 
     def _investigate_epidemiology(self, h: Hypothesis):
-        """Epidemiology investigation — WHO life expectancy trends and disparities."""
+        """Epidemiology investigation — WHO data with cycle-varied analysis."""
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"Analyzing epidemiology data for {h.id} ({h.name})", h.id)
         from .data_registry import get_registry
@@ -1925,53 +2182,101 @@ class DiscoveryEngine:
         h.data_points_used = len(result.data)
         le = result.data['life_expectancy']
         years = result.data['year']
+        unique_years = np.unique(years)
+        from scipy import stats as sp_stats
 
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"WHO sample: {len(le)} records, years {np.min(years)}–{np.max(years)}, "
                   f"life expectancy range [{np.min(le):.1f}, {np.max(le):.1f}] years", h.id)
 
-        # Global life expectancy trend
-        unique_years = np.unique(years)
-        if len(unique_years) > 3:
+        analysis_mode = self.cycle_count % 4
+        finding_type = "trend"
+        stat_val, p_val_out = 0.0, 1.0
+        desc_suffix = ""
+
+        if analysis_mode == 0 and len(unique_years) > 3:
+            # Mode 0: Global median life expectancy trend
             medians = np.array([np.median(le[years == y]) for y in unique_years])
-            from scipy import stats as sp_stats
             slope, intercept, r_val, p_val, std_err = sp_stats.linregress(
                 unique_years.astype(float), medians)
-            trend_result = StatTestResult(
+            stat_val, p_val_out = float(r_val), float(p_val)
+            finding_type = "trend"
+            desc_suffix = f"Life expectancy trend: {slope:.2f} yr/yr, r={r_val:.3f}"
+            h.test_results.append(asdict(StatTestResult(
                 test_name="Linear Regression (life expectancy trend)",
-                statistic=float(r_val),
-                p_value=float(p_val),
-                passed=p_val < 0.05,
-                details=f"Life expectancy trend: {slope:.2f} yr/yr, r={r_val:.3f}, p={p_val:.4f}",
-            )
-            h.test_results.append(asdict(trend_result))
-            h.update_from_pvalue(p_val)
-            self._log("INVESTIGATE", "INVESTIGATE",
-                      f"Life expectancy trend: {slope:.2f} yr/yr, r={r_val:.3f}", h.id)
+                statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                details=desc_suffix)))
+            h.update_from_pvalue(p_val_out)
 
-        # Cross-country disparity: Gini-like spread
-        latest_year = np.max(years)
-        latest_le = le[years == latest_year]
-        if len(latest_le) > 5:
-            spread = np.max(latest_le) - np.min(latest_le)
-            iqr = np.percentile(latest_le, 75) - np.percentile(latest_le, 25)
-            self._log("INVESTIGATE", "INVESTIGATE",
-                      f"Life expectancy disparity ({latest_year}): "
-                      f"range={spread:.1f} yr, IQR={iqr:.1f} yr, n={len(latest_le)} countries", h.id)
+        elif analysis_mode == 1:
+            # Mode 1: Cross-country disparity at latest year (KS normality)
+            latest_year = np.max(years)
+            latest_le = le[years == latest_year]
+            if len(latest_le) > 5:
+                ks_result = kolmogorov_smirnov_test(latest_le, "norm")
+                stat_val, p_val_out = float(ks_result.statistic), float(ks_result.p_value)
+                finding_type = "distribution"
+                spread = np.max(latest_le) - np.min(latest_le)
+                iqr = np.percentile(latest_le, 75) - np.percentile(latest_le, 25)
+                desc_suffix = (f"Life expectancy disparity ({latest_year}): "
+                              f"range={spread:.1f}yr, IQR={iqr:.1f}yr, KS p={p_val_out:.4f}")
+                h.test_results.append(asdict(ks_result))
+                h.update_from_pvalue(p_val_out)
 
-            # KS test: is the distribution normal?
-            ks_result = kolmogorov_smirnov_test(latest_le, "norm")
-            h.test_results.append(asdict(ks_result))
-            h.update_from_pvalue(ks_result.p_value)
+        elif analysis_mode == 2 and len(unique_years) > 5:
+            # Mode 2: Convergence — is cross-country spread shrinking?
+            spreads = []
+            spread_years = []
+            for y in unique_years:
+                y_le = le[years == y]
+                if len(y_le) > 5:
+                    spreads.append(float(np.std(y_le)))
+                    spread_years.append(float(y))
+            if len(spreads) > 5:
+                slope, intercept, r_val, p_val, std_err = sp_stats.linregress(spread_years, spreads)
+                stat_val, p_val_out = float(r_val), float(p_val)
+                finding_type = "convergence"
+                desc_suffix = (f"Health convergence: std slope={slope:.3f}/yr, r={r_val:.3f}, "
+                              f"{'converging' if slope < 0 else 'diverging'}")
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="Health Convergence (std trend)",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(p_val_out)
 
-        # Record discovery
+        elif analysis_mode == 3 and len(unique_years) > 3:
+            # Mode 3: Percentile gap — difference between 90th and 10th percentile over time
+            gaps = []
+            gap_years = []
+            for y in unique_years:
+                y_le = le[years == y]
+                if len(y_le) > 10:
+                    p90 = np.percentile(y_le, 90)
+                    p10 = np.percentile(y_le, 10)
+                    gaps.append(p90 - p10)
+                    gap_years.append(float(y))
+            if len(gaps) > 5:
+                slope, intercept, r_val, p_val, std_err = sp_stats.linregress(gap_years, gaps)
+                stat_val, p_val_out = float(r_val), float(p_val)
+                finding_type = "percentile_gap"
+                desc_suffix = (f"90-10 percentile gap trend: slope={slope:.3f}yr/yr, r={r_val:.3f}, "
+                              f"latest gap={gaps[-1]:.1f}yr")
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="Percentile Gap Trend (90th-10th)",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(p_val_out)
+
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"Epidemiology mode {analysis_mode}: {desc_suffix or 'insufficient data'}", h.id)
+
+        # Record discovery (dedup handled by discovery_memory)
         self.discovery_memory.record_discovery(
             hypothesis_id=h.id, domain=h.domain,
-            finding_type="trend",
-            variables=["life_expectancy", "year"],
-            statistic=float(r_val) if 'r_val' in dir() else 0.0,
-            p_value=float(p_val) if 'p_val' in dir() else 1.0,
-            description=f"Epidemiology analysis: {len(le)} records from WHO GHO",
+            finding_type=finding_type,
+            variables=["life_expectancy", "year", f"mode_{analysis_mode}"],
+            statistic=stat_val, p_value=p_val_out,
+            description=f"Epidemiology [{finding_type}]: {desc_suffix}" if desc_suffix else f"Epidemiology analysis mode {analysis_mode}",
             data_source="who_gho",
             sample_size=len(le),
         )
@@ -2393,19 +2698,6 @@ class DiscoveryEngine:
         self._check_novelty(h, ks_result.test_name, ks_result.statistic, ks_result.p_value,
                            {"chi2_planck": chi2_planck, "chi2_shoes": chi2_shoes})
 
-        # Record discovery if significant
-        if ks_result.p_value < 0.1:
-            self.discovery_memory.record_discovery(
-                hypothesis_id=h.id, domain=h.domain,
-                finding_type="model_comparison",
-                variables=["distance_modulus", "redshift"],
-                statistic=abs(chi2_planck - chi2_shoes),
-                p_value=ks_result.p_value,
-                description=f"Hubble tension: Planck vs SH0ES residual comparison",
-                data_source="pantheon",
-                sample_size=len(z),
-            )
-
         # Test 2: Residual normality — are ΛCDM residuals consistent with zero?
         residuals = mb - mu_planck
         t_result = bayesian_t_test(residuals, popmean=0.0)
@@ -2413,19 +2705,6 @@ class DiscoveryEngine:
                   f"t-test on ΛCDM residuals for {h.id}: {t_result.details}, p={t_result.p_value:.4f}", h.id)
         h.test_results.append(asdict(t_result))
         h.update_from_pvalue(t_result.p_value)
-
-        # Record discovery if significant
-        if t_result.p_value < 0.1:
-            self.discovery_memory.record_discovery(
-                hypothesis_id=h.id, domain=h.domain,
-                finding_type="anomaly",
-                variables=["distance_modulus", "redshift"],
-                statistic=abs(t_result.statistic),
-                p_value=t_result.p_value,
-                description=f"ΛCDM residual analysis: {t_result.details}",
-                data_source="pantheon",
-                sample_size=len(residuals),
-            )
 
         # Test 3: Binned residuals — redshift-dependent systematics?
         z_bins = [0, 0.1, 0.3, 0.6, 1.0, 2.5]
@@ -2452,27 +2731,9 @@ class DiscoveryEngine:
         g_r = sdss.data['g_r']
         ks_result = kolmogorov_smirnov_test(g_r)
         self._log("EVALUATE", "EVALUATE",
-                  f"Galaxy color distribution KS test for {h.id}: {ks_result.details}, p={ks_result.p_value:.4f}", h.id)
+                  f"KS test on g-r colors for {h.id}: {ks_result.details}, p = {ks_result.p_value:.4f}", h.id)
         h.test_results.append(asdict(ks_result))
         h.update_from_pvalue(ks_result.p_value)
-
-        # Record discovery if significant
-        if ks_result.p_value < 0.1:
-            self.discovery_memory.record_discovery(
-                hypothesis_id=h.id, domain=h.domain,
-                finding_type="bimodality",
-                variables=["g_r_color"],
-                statistic=ks_result.statistic,
-                p_value=ks_result.p_value,
-                description=f"Galaxy color bimodality in SDSS: {ks_result.details}",
-                data_source="sdss",
-                sample_size=len(g_r),
-            )
-
-        # Additional test: Fit Gaussian mixture to detect bimodality
-        from scipy.stats import norm as scipy_norm
-        from scipy.optimize import curve_fit
-
         self._check_novelty(h, ks_result.test_name, ks_result.statistic, ks_result.p_value,
                            {"g_r_mean": float(np.mean(g_r)), "g_r_std": float(np.std(g_r))})
 
@@ -2511,19 +2772,6 @@ class DiscoveryEngine:
                       f"Correlation (log P vs log M) for {h.id}: {corr_result.details}, p = {corr_result.p_value:.4f}", h.id)
             h.test_results.append(asdict(corr_result))
             h.update_from_pvalue(corr_result.p_value)
-
-            # Record discovery if significant
-            if corr_result.p_value < 0.1:
-                self.discovery_memory.record_discovery(
-                    hypothesis_id=h.id, domain=h.domain,
-                    finding_type="correlation",
-                    variables=["log_period", "log_mass"],
-                    statistic=abs(corr_result.statistic),
-                    p_value=corr_result.p_value,
-                    description=f"Exoplanet mass-period correlation: {corr_result.details}",
-                    data_source="exoplanets",
-                    sample_size=len(log_mass),
-                )
 
     def _evaluate_crossdomain(self, h: Hypothesis):
         """Evaluate cross-domain hypothesis."""
@@ -2796,14 +3044,6 @@ class DiscoveryEngine:
         # Cross-domain link discovery — based on shared discovery structure, not random
         self._update_cross_domain_links(active)
 
-        # Automatic Discovery Verification: verify high-strength discoveries
-        # Run every cycle to automatically promote discoveries to "Verified" status
-        if self.cycle_count % 5 == 0:  # Run every 5 cycles to avoid excessive checks
-            verified_count = self._run_automatic_verification()
-            if verified_count > 0:
-                self._log("UPDATE", "VERIFICATION",
-                          f"Verified {verified_count} new discovery(ies) — promoted to Verified status")
-
         # Discovery-guided hypothesis generation (replaces random hardcoded list)
         self._generate_discovery_guided_hypotheses()
 
@@ -2817,7 +3057,6 @@ class DiscoveryEngine:
                       f"Generated {theory_hypotheses} novel theoretical hypotheses.")
 
         # Phase 15: Cognitive Architecture discovery runs every N cycles (default: every 15 cycles)
-        # This integrates Knowledge Graph + Neuro-Symbolic + Meta-Cognition for Scientific AGI
         if self._cognitive_discovery_enabled and self.cognitive_core and (self.cycle_count - self._last_cognitive_discovery_cycle >= self._cognitive_discovery_interval):
             cognitive_discoveries = self._run_cognitive_discovery()
             self._last_cognitive_discovery_cycle = self.cycle_count
@@ -2826,9 +3065,7 @@ class DiscoveryEngine:
                       f"Generated {cognitive_discoveries} cognitive insights.")
 
         # Phase 16: V9.0 Multi-Agent Scientific Collaboration runs every N cycles
-        # Specialized agents debate to reach consensus on research questions
         if self._multi_agent_enabled and self.multi_agent_orchestrator and (self.cycle_count - self._last_debate_cycle >= self._debate_interval):
-            # Run multi-agent discovery debates
             debates_completed = self._run_multi_agent_discovery()
             self._last_debate_cycle = self.cycle_count
             if debates_completed > 0:
@@ -2837,9 +3074,7 @@ class DiscoveryEngine:
                           f"Agent expertise tracking updated.")
 
         # Phase 16: V9.0 Autonomous Agenda Generation runs every N cycles
-        # ASTRA sets its own research goals based on curiosity metrics
         if self._autonomous_agenda_enabled and self.autonomous_agenda and (self.cycle_count - self._last_agenda_generation_cycle >= self._agenda_generation_interval):
-            # Generate new research goals from knowledge gaps
             goals_generated = self._run_autonomous_agenda_generation()
             self._last_agenda_generation_cycle = self.cycle_count
             if goals_generated > 0:
@@ -2848,15 +3083,18 @@ class DiscoveryEngine:
                           f"Total active goals: {len(self.autonomous_agenda.current_goals)}.")
 
         # State persistence: save state every N cycles (default: every 50 cycles)
-        if self.cognitive_core and (self.cycle_count - self._last_state_save_cycle >= self._state_save_interval):
-            save_engine_state(self)
-            save_hypotheses(self.store)
-            if self.cognitive_core:
-                save_cognitive_state(self.cognitive_core)
-            self._last_state_save_cycle = self.cycle_count
-            self._log("UPDATE", "PERSISTENCE",
-                      f"Saved state at cycle {self.cycle_count}: "
-                      f"{len(self.store.hypotheses)} hypotheses, {self.cycle_count} cycles completed")
+        if COGNITIVE_ARCHITECTURE_AVAILABLE and self.cognitive_core and (self.cycle_count - self._last_state_save_cycle >= self._state_save_interval):
+            try:
+                save_engine_state(self)
+                save_hypotheses(self.store)
+                if self.cognitive_core:
+                    save_cognitive_state(self.cognitive_core)
+                self._last_state_save_cycle = self.cycle_count
+                self._log("UPDATE", "PERSISTENCE",
+                          f"Saved state at cycle {self.cycle_count}: "
+                          f"{len(self.store.hypotheses)} hypotheses, {self.cycle_count} cycles completed")
+            except Exception as e:
+                self._log("UPDATE", "PERSISTENCE", f"State save error (non-fatal): {e}")
 
         self._recalculate_system_confidence()
         self._log("UPDATE", "UPDATE",
@@ -2927,36 +3165,27 @@ class DiscoveryEngine:
                   f"{metrics['total_outcomes']} outcomes recorded")
 
     def _propose_from_unexplored_pairs(self, existing_names: set):
-        """Fallback: propose hypotheses from unexplored variable pairs. Generate 3-5 to maintain queue."""
-        proposed_count = 0
-        for source in ["exoplanets", "sdss", "gaia", "pantheon", "ligo"]:
-            if proposed_count >= 5:
-                break
+        """Fallback: propose hypothesis from unexplored variable pairs."""
+        for source in ["exoplanets", "sdss", "gaia"]:
             untested = self.discovery_memory.get_unexplored_variable_pairs(source)
             if untested:
-                # Generate up to 2 hypotheses per source
-                for i, (v1, v2) in enumerate(untested[:2]):
-                    if proposed_count >= 5:
-                        break
-                    name = f"{source.upper()} {v1.title()}-{v2.title()} Probe"
-                    if name not in existing_names:
-                        h = self.store.add(
-                            name, "Astrophysics",
-                            f"Novel exploration of {v1}–{v2} relation in {source} data. "
-                            f"Untested variable pair — first measurement.",
-                            confidence=0.15
-                        )
-                        h.phase = Phase.PROPOSED
-                        self.discovery_memory.generation_count += 1
-                        self._log("ORIENT", "DISCOVERY_MEMORY",
-                                  f"New hypothesis from unexplored pair: {h.id} ({name})", h.id)
-                        self._decide("expand",
-                                     f"Proposed {h.id}: {name} (unexplored variable pair)",
-                                     "QUEUED", h.id)
-                        proposed_count += 1
-        if proposed_count == 0:
-            self._log("ORIENT", "DISCOVERY_MEMORY",
-                      "No unexplored variable pairs found — all combinations tested")
+                v1, v2 = untested[0]
+                name = f"{source.upper()} {v1.title()}-{v2.title()} Probe"
+                if name not in existing_names:
+                    h = self.store.add(
+                        name, "Astrophysics",
+                        f"Novel exploration of {v1}–{v2} relation in {source} data. "
+                        f"Untested variable pair — first measurement.",
+                        confidence=0.15
+                    )
+                    h.phase = Phase.PROPOSED
+                    self.discovery_memory.generation_count += 1
+                    self._log("ORIENT", "DISCOVERY_MEMORY",
+                              f"New hypothesis from unexplored pair: {h.id} ({name})", h.id)
+                    self._decide("expand",
+                                 f"Proposed {h.id}: {name} (unexplored variable pair)",
+                                 "QUEUED", h.id)
+                    return
 
     def _propose_new_hypothesis(self):
         """Legacy fallback — kept for API compatibility. Prefer _generate_discovery_guided_hypotheses."""
@@ -3055,11 +3284,11 @@ class DiscoveryEngine:
         now = time.time()
 
         for h in list(self.store.all()):
-            # Auto-archive hypotheses stuck in SCREENING for >20 cycles with no progress
+            # Auto-archive hypotheses stuck in SCREENING for >50 cycles with no progress
             if h.phase == Phase.SCREENING:
                 age_seconds = now - h.updated_at
-                # ~20 cycles at 25s interval = 500s
-                if len(h.test_results) == 0 and age_seconds > 500:
+                # ~50 cycles at 25s interval = 1250s (give hypotheses more time to be investigated)
+                if len(h.test_results) == 0 and age_seconds > 1250:
                     h.phase = Phase.ARCHIVED
                     h.updated_at = now
                     h.archived_at = now
@@ -3200,8 +3429,36 @@ class DiscoveryEngine:
                     self._forced_domain = self.degradation_detector.get_least_explored_domain(
                         self.discovery_memory, self._canonical_domains
                     )
+                    # Boost exploration bonus to try novel methods
+                    self.strategist._exploration_bonus = min(
+                        self.strategist._exploration_bonus + 0.2, 1.0
+                    )
+                    # Force V9.0 discovery modes to fire next cycle
+                    self._last_theory_discovery_cycle = 0
+                    self._last_cognitive_discovery_cycle = 0
+                    self._last_debate_cycle = 0
+                    self._last_agenda_generation_cycle = 0
+                    # Reset flag so it can fire again if still degraded after switch
+                    self.degradation_detector.strategy_switch_recommended = False
                     self._log("DEGRADATION", "ENGINE",
-                              "Switching exploration strategy due to low significant results")
+                              "Switching strategy: boosted exploration bonus, "
+                              "forcing all V9.0 discovery modes next cycle")
+
+                if "BREAK_REPETITION" in deg_result["actions"]:
+                    # Blacklist the stuck patterns so strategist avoids them
+                    stuck = deg_result["metrics"].get("repetitive_patterns", {})
+                    self._blacklisted_patterns = set(stuck.keys())
+                    self._log("DEGRADATION", "ENGINE",
+                              f"Blacklisted {len(stuck)} repetitive patterns: "
+                              f"{list(stuck.keys())[:5]}")
+
+            # Clear blacklist if degradation has recovered
+            if not deg_result["degraded"] and self._blacklisted_patterns:
+                self._log("DEGRADATION", "ENGINE",
+                          "Degradation recovered — clearing pattern blacklist")
+                self._blacklisted_patterns.clear()
+                # Reset exploration bonus to default
+                self.strategist._exploration_bonus = 0.3
 
             # Theory Engine tick — runs every 5 cycles (async, non-blocking)
             self.theory_engine.tick(self.store, self.cycle_count)

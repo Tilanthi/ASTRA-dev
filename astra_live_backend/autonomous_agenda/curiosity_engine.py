@@ -201,7 +201,7 @@ class CuriosityEngine:
             # Check if concepts exist in knowledge graph
             known_concepts = 0
             for concept in concepts:
-                entities = self.knowledge_graph.get_entities_by_name(concept)
+                entities = self.knowledge_graph.query(concept) if hasattr(self.knowledge_graph, 'query') else []
                 if entities:
                     known_concepts += 1
 

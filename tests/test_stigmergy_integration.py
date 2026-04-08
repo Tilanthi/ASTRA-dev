@@ -266,6 +266,12 @@ class TestStigmergyBridge:
 
     def setup_method(self):
         self.bridge = StigmergyBridge(pheromone_weight=0.3)
+        # Reset accumulated state so tests are deterministic
+        self.bridge.ab_test_results = {
+            'pheromone_guided': {'successes': 0, 'total': 0},
+            'baseline': {'successes': 0, 'total': 0},
+        }
+        self.bridge.metrics = {k: 0 for k in self.bridge.metrics}
 
     def test_on_hypothesis_tested_success(self):
         h = {'id': 'H1', 'domain': 'Astrophysics', 'confidence': 0.8,
