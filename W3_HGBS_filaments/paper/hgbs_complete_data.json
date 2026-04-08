@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "n_regions": 9,
+    "total_cores": 5411,
+    "weighted_mean_spacing_pc": 0.2134849726775956,
+    "weighted_std_pc": 0.006945812385798156
+  },
+  "regions": [
+    {
+      "name": "Orion B",
+      "distance_pc": 260,
+      "total_cores": 1844,
+      "spacing_pc": 0.211,
+      "spacing_std": 0.032,
+      "n_pairs": 188,
+      "L_over_H": 12.0,
+      "pressure_kbcm": 200000.0
+    },
+    {
+      "name": "Aquila",
+      "distance_pc": 260,
+      "total_cores": 749,
+      "spacing_pc": 0.206,
+      "spacing_std": 0.028,
+      "n_pairs": 78,
+      "L_over_H": 15.0,
+      "pressure_kbcm": 150000.0
+    },
+    {
+      "name": "Perseus",
+      "distance_pc": 260,
+      "total_cores": 816,
+      "spacing_pc": 0.218,
+      "spacing_std": 0.035,
+      "n_pairs": 341,
+      "L_over_H": 14.0,
+      "pressure_kbcm": 180000.0
+    },
+    {
+      "name": "Taurus",
+      "distance_pc": 140,
+      "total_cores": 536,
+      "spacing_pc": 0.205,
+      "spacing_std": 0.041,
+      "n_pairs": 31,
+      "L_over_H": 10.0,
+      "pressure_kbcm": 50000.0
+    },
+    {
+      "name": "Ophiuchus",
+      "distance_pc": 130,
+      "total_cores": 513,
+      "spacing_pc": 0.195,
+      "spacing_std": 0.05,
+      "n_pairs": 18,
+      "L_over_H": 11.0,
+      "pressure_kbcm": 80000.0
+    },
+    {
+      "name": "Serpens",
+      "distance_pc": 260,
+      "total_cores": 194,
+      "spacing_pc": 0.188,
+      "spacing_std": 0.055,
+      "n_pairs": 12,
+      "L_over_H": 9.0,
+      "pressure_kbcm": 30000.0
+    },
+    {
+      "name": "TMC1",
+      "distance_pc": 140,
+      "total_cores": 178,
+      "spacing_pc": 0.202,
+      "spacing_std": 0.058,
+      "n_pairs": 8,
+      "L_over_H": 13.0,
+      "pressure_kbcm": 40000.0
+    },
+    {
+      "name": "CRA",
+      "distance_pc": 130,
+      "total_cores": 239,
+      "spacing_pc": 0.215,
+      "spacing_std": 0.062,
+      "n_pairs": 14,
+      "L_over_H": 16.0,
+      "pressure_kbcm": 20000.0
+    },
+    {
+      "name": "W3",
+      "distance_pc": 400,
+      "total_cores": 342,
+      "spacing_pc": 0.225,
+      "spacing_std": 0.038,
+      "n_pairs": 42,
+      "L_over_H": 8.0,
+      "pressure_kbcm": 500000.0
+    }
+  ]
+}

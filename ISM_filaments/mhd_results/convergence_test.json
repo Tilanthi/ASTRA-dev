@@ -3,10 +3,10 @@
     "resolution": 128,
     "mach_number": 5.0,
     "plasma_beta": 1.0,
-    "mean_width_pc": 0.089,
-    "std_width_pc": 0.012,
-    "median_width_pc": 0.087,
-    "num_filaments": 12,
+    "mean_width_pc": 1.3041063107247892,
+    "std_width_pc": 0.4159686452971618,
+    "median_width_pc": 1.2320662235921025,
+    "num_filaments": 3,
     "sonic_scale_prediction_pc": 0.2,
     "convergence_metric": 0.0
   },
@@ -14,22 +14,22 @@
     "resolution": 256,
     "mach_number": 5.0,
     "plasma_beta": 1.0,
-    "mean_width_pc": 0.095,
-    "std_width_pc": 0.008,
-    "median_width_pc": 0.094,
-    "num_filaments": 18,
+    "mean_width_pc": 1.3116332720158888,
+    "std_width_pc": 0.45973174325643495,
+    "median_width_pc": 1.3116332720158888,
+    "num_filaments": 2,
     "sonic_scale_prediction_pc": 0.2,
-    "convergence_metric": 0.063
+    "convergence_metric": 0.005771739028635049
   },
   {
     "resolution": 512,
     "mach_number": 5.0,
     "plasma_beta": 1.0,
-    "mean_width_pc": 0.099,
-    "std_width_pc": 0.003,
-    "median_width_pc": 0.098,
-    "num_filaments": 24,
+    "mean_width_pc": 1.1879606178275433,
+    "std_width_pc": 0.6608785048334227,
+    "median_width_pc": 1.0299617790694502,
+    "num_filaments": 3,
     "sonic_scale_prediction_pc": 0.2,
-    "convergence_metric": 0.041
+    "convergence_metric": 0.09428904925404132
   }
 ]

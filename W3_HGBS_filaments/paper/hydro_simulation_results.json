@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "method": "2D hydrodynamical simulation",
+    "grid": "Finite difference, 128\u00d732",
+    "physics": "Isothermal Euler equations",
+    "boundary_conditions": "Periodic (z), Outflow (r)"
+  },
+  "results": [
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 0,
+      "B_microG": 0,
+      "n_cores": 10,
+      "spacing_pc": 0.19463315238696322,
+      "spacing_std_pc": 0.01946331523869632
+    },
+    {
+      "L_over_H": 8,
+      "P_ext_kbcm": 100000.0,
+      "B_microG": 0,
+      "n_cores": 8,
+      "spacing_pc": 0.09545996657457306,
+      "spacing_std_pc": 0.009545996657457307
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 0,
+      "B_microG": 20,
+      "n_cores": 10,
+      "spacing_pc": 0.1887941578153543,
+      "spacing_std_pc": 0.01887941578153543
+    },
+    {
+      "L_over_H": 8,
+      "P_ext_kbcm": 100000.0,
+      "B_microG": 20,
+      "n_cores": 8,
+      "spacing_pc": 0.09259616757733587,
+      "spacing_std_pc": 0.009259616757733588
+    }
+  ]
+}

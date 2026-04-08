@@ -1,0 +1,928 @@
+{
+  "metadata": {
+    "date": "2026-04-08",
+    "purpose": "Corrected Phase 3 distribution with extended accretion rates"
+  },
+  "statistics": {
+    "total_simulations": 2500,
+    "mean_ratio": 0.42690748140983553,
+    "median_ratio": 0.043088782359260544,
+    "std_ratio": 0.8075475192408452,
+    "min_ratio": 0.011236809668411247,
+    "max_ratio": 3.043198903363529,
+    "within_10pct_count": 150,
+    "within_20pct_count": 250,
+    "within_50pct_count": 500
+  },
+  "best_fit": {
+    "L_over_H": 8,
+    "P_ext_kbcm": 200000.0,
+    "taper_amount": 0.2,
+    "accretion_rate_Msunyr": 1e-06,
+    "B_microG": 20,
+    "wavelength_pc": 0.002551847707751384,
+    "ratio": 0.025518477077513837
+  },
+  "all_results": [
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 0,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 10,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 20,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 30,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 50,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 0,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 10,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 20,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 30,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 50,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 0,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 10,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 20,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 30,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 50,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 0,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 10,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 20,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 30,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 50,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 0,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 10,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 20,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 30,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.0,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 50,
+      "wavelength_pc": 0.16053387849784798,
+      "ratio": 1.6053387849784797
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 0,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 10,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 20,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 30,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 50,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 0,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 10,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 20,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 30,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 50,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 0,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 10,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 20,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 30,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 50,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 0,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 10,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 20,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 30,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 50,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 0,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 10,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 20,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 30,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.1,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 50,
+      "wavelength_pc": 0.1444804906480632,
+      "ratio": 1.4448049064806319
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 0,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 10,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 20,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 30,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 50,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 0,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 10,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 20,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 30,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 50,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 0,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 10,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 20,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 30,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 50,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 0,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 10,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 20,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 30,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 50,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 0,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 10,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 20,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 30,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 50,
+      "wavelength_pc": 0.12842710279827838,
+      "ratio": 1.2842710279827836
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 0,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 10,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 20,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 30,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 50,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 0,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 10,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 20,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 30,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 50,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 0,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 10,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 20,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 30,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 50,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 0,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 10,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 20,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 30,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 50,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 0,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 10,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 20,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 30,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    },
+    {
+      "L_over_H": 5,
+      "P_ext_kbcm": 0,
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0.0001,
+      "B_microG": 50,
+      "wavelength_pc": 0.11237371494849357,
+      "ratio": 1.1237371494849357
+    }
+  ]
+}
