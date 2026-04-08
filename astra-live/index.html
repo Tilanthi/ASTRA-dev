@@ -3153,33 +3153,33 @@ body::after {
     "status": "running",
     "engine": {
       "running": true,
-      "current_phase": "UPDATE",
-      "cycle_count": 3305,
-      "uptime_seconds": 130393.18668627739,
-      "system_confidence": 0.9168559349301867,
+      "current_phase": "INVESTIGATE",
+      "cycle_count": 3307,
+      "uptime_seconds": 130453.29274320602,
+      "system_confidence": 0.9198997945827333,
       "total_data_points": 11284,
-      "total_scripts": 17,
-      "total_plots": 20,
-      "total_decisions": 1060,
-      "hypotheses_tested": 11,
+      "total_scripts": 23,
+      "total_plots": 31,
+      "total_decisions": 1062,
+      "hypotheses_tested": 15,
       "cross_domain_links": 1,
       "papers_drafted": 1,
       "gpu_utilization": 45.0,
-      "queue_depth": 16,
+      "queue_depth": 11,
       "domains_active": 5,
       "funnel": {
         "proposed": 62,
         "screening": 0,
-        "testing": 13,
-        "validated": 4,
+        "testing": 11,
+        "validated": 6,
         "published": 174,
         "archived": 1
       },
       "safety_state": "NOMINAL",
-      "pending_approvals": 2,
+      "pending_approvals": 4,
       "discovery_memory": {
-        "discovery_count": 479,
-        "method_outcome_count": 470,
+        "discovery_count": 490,
+        "method_outcome_count": 481,
         "exploration_sources": [
           "pantheon",
           "sdss",
@@ -3188,23 +3188,24 @@ body::after {
           "exoplanets",
           "exoplanet",
           "stellar",
-          "generic"
+          "generic",
+          "star_formation"
         ],
         "generation_count": 2,
         "hot_domains": [
           [
             "Astrophysics",
-            144.12262253048183
+            151.22273723441862
           ],
           [
             "Epidemiology",
-            1.0131929059031017e-32
+            4.60746789896394e-45
           ]
         ],
         "improvement": {
           "status": "ok",
-          "total_discoveries": 479,
-          "total_outcomes": 470,
+          "total_discoveries": 490,
+          "total_outcomes": 481,
           "hypotheses_generated_from_memory": 2,
           "metrics": {
             "success_rate": {
@@ -3215,20 +3216,20 @@ body::after {
             },
             "avg_significant_results": {
               "early": 0.0,
-              "recent": 0.07,
-              "delta": 0.07,
+              "recent": 0.09,
+              "delta": 0.09,
               "improving": true
             },
             "avg_novelty_signals": {
               "early": 0.0,
-              "recent": 0.05,
-              "delta": 0.05,
+              "recent": 0.06,
+              "delta": 0.06,
               "improving": true
             },
             "avg_confidence_delta": {
               "early": 0.0,
-              "recent": 0.0105,
-              "delta": 0.0105,
+              "recent": 0.0142,
+              "delta": 0.0142,
               "improving": true
             }
           }
@@ -3236,34 +3237,37 @@ body::after {
         "top_variable_affinities": {
           "gmag": 89.57610337783314,
           "bp_rp": 89.57610337783314,
-          "redshift": 17.371598403543594,
-          "distance_modulus": 10.3961197646466,
-          "g_r_color": 6.250343590917557,
+          "redshift": 18.53988541983684,
+          "distance_modulus": 10.981695470526837,
+          "g_r_color": 6.455843526167965,
+          "abs_mag": 5.555757058802356,
           "u_g_color": 5.261133202996174,
-          "abs_mag": 5.255757058802356,
-          "orbital_period": 1.5081746050857276,
-          "planet_mass": 1.5081746050857276,
-          "planet_radius": 1.5081746050857276
+          "orbital_period": 1.9130242672780022,
+          "planet_mass": 1.9130242672780022,
+          "planet_radius": 1.9130242672780022
         }
       },
       "degradation": {
-        "last_check_cycle": 3305,
+        "last_check_cycle": 3306,
         "rolling_success_rates": [
           0.95,
+          1.0,
           1.0,
           1.0
         ],
         "rolling_sig_results": [
           0.25,
           0.55,
-          0.6
+          0.6,
+          0.55
         ],
         "low_success_streak": 0,
-        "low_sig_streak": 3,
+        "low_sig_streak": 4,
         "safe_mode_triggered": false,
         "strategy_switch_recommended": false,
         "recommendations": [
-          "Domain 'Astrophysics' has 100% of recent 50 discoveries \u2014 force-switching to underrepresented domains"
+          "Domain 'Astrophysics' has 100% of recent 50 discoveries \u2014 force-switching to underrepresented domains",
+          "Pattern 'correlation|exoplanet' repeated 6 times in last 20 discoveries \u2014 stuck in loop"
         ],
         "thresholds": {
           "success_rate": 0.5,
@@ -3276,42 +3280,42 @@ body::after {
     },
     "stigmergy": {
       "pheromone_weight": 0.3,
-      "total_deposits": 10729,
+      "total_deposits": 10738,
       "success_deposits": 0,
-      "failure_deposits": 4686,
-      "novelty_deposits": 3758
+      "failure_deposits": 4693,
+      "novelty_deposits": 3763
     },
-    "timestamp": 1775679848.856425
+    "timestamp": 1775679908.962498
   },
   "state": {
     "running": true,
-    "current_phase": "UPDATE",
-    "cycle_count": 3305,
-    "uptime_seconds": 130393.19032597542,
-    "system_confidence": 0.9168559349301867,
+    "current_phase": "INVESTIGATE",
+    "cycle_count": 3307,
+    "uptime_seconds": 130453.29819107056,
+    "system_confidence": 0.9198997945827333,
     "total_data_points": 11284,
-    "total_scripts": 17,
-    "total_plots": 20,
-    "total_decisions": 1060,
-    "hypotheses_tested": 11,
+    "total_scripts": 23,
+    "total_plots": 31,
+    "total_decisions": 1062,
+    "hypotheses_tested": 15,
     "cross_domain_links": 1,
     "papers_drafted": 1,
     "gpu_utilization": 45.0,
-    "queue_depth": 16,
+    "queue_depth": 11,
     "domains_active": 5,
     "funnel": {
       "proposed": 62,
       "screening": 0,
-      "testing": 13,
-      "validated": 4,
+      "testing": 11,
+      "validated": 6,
       "published": 174,
       "archived": 1
     },
     "safety_state": "NOMINAL",
-    "pending_approvals": 2,
+    "pending_approvals": 4,
     "discovery_memory": {
-      "discovery_count": 479,
-      "method_outcome_count": 470,
+      "discovery_count": 490,
+      "method_outcome_count": 481,
       "exploration_sources": [
         "pantheon",
         "sdss",
@@ -3320,23 +3324,24 @@ body::after {
         "exoplanets",
         "exoplanet",
         "stellar",
-        "generic"
+        "generic",
+        "star_formation"
       ],
       "generation_count": 2,
       "hot_domains": [
         [
           "Astrophysics",
-          144.12262253048183
+          151.22273723441862
         ],
         [
           "Epidemiology",
-          5.0659645295155085e-33
+          2.30373394948197e-45
         ]
       ],
       "improvement": {
         "status": "ok",
-        "total_discoveries": 479,
-        "total_outcomes": 470,
+        "total_discoveries": 490,
+        "total_outcomes": 481,
         "hypotheses_generated_from_memory": 2,
         "metrics": {
           "success_rate": {
@@ -3347,20 +3352,20 @@ body::after {
           },
           "avg_significant_results": {
             "early": 0.0,
-            "recent": 0.07,
-            "delta": 0.07,
+            "recent": 0.09,
+            "delta": 0.09,
             "improving": true
           },
           "avg_novelty_signals": {
             "early": 0.0,
-            "recent": 0.05,
-            "delta": 0.05,
+            "recent": 0.06,
+            "delta": 0.06,
             "improving": true
           },
           "avg_confidence_delta": {
             "early": 0.0,
-            "recent": 0.0105,
-            "delta": 0.0105,
+            "recent": 0.0142,
+            "delta": 0.0142,
             "improving": true
           }
         }
@@ -3368,34 +3373,37 @@ body::after {
       "top_variable_affinities": {
         "gmag": 89.57610337783314,
         "bp_rp": 89.57610337783314,
-        "redshift": 17.371598403543594,
-        "distance_modulus": 10.3961197646466,
-        "g_r_color": 6.250343590917557,
+        "redshift": 18.53988541983684,
+        "distance_modulus": 10.981695470526837,
+        "g_r_color": 6.455843526167965,
+        "abs_mag": 5.555757058802356,
         "u_g_color": 5.261133202996174,
-        "abs_mag": 5.255757058802356,
-        "orbital_period": 1.5081746050857276,
-        "planet_mass": 1.5081746050857276,
-        "planet_radius": 1.5081746050857276
+        "orbital_period": 1.9130242672780022,
+        "planet_mass": 1.9130242672780022,
+        "planet_radius": 1.9130242672780022
       }
     },
     "degradation": {
-      "last_check_cycle": 3305,
+      "last_check_cycle": 3306,
       "rolling_success_rates": [
         0.95,
+        1.0,
         1.0,
         1.0
       ],
       "rolling_sig_results": [
         0.25,
         0.55,
-        0.6
+        0.6,
+        0.55
       ],
       "low_success_streak": 0,
-      "low_sig_streak": 3,
+      "low_sig_streak": 4,
       "safe_mode_triggered": false,
       "strategy_switch_recommended": false,
       "recommendations": [
-        "Domain 'Astrophysics' has 100% of recent 50 discoveries \u2014 force-switching to underrepresented domains"
+        "Domain 'Astrophysics' has 100% of recent 50 discoveries \u2014 force-switching to underrepresented domains",
+        "Pattern 'correlation|exoplanet' repeated 6 times in last 20 discoveries \u2014 stuck in loop"
       ],
       "thresholds": {
         "success_rate": 0.5,
@@ -3616,11 +3624,19 @@ body::after {
       "name": "Gaia HR Diagram Structure",
       "domain": "Astrophysics",
       "description": "Gaia DR3 astrometry+photometry: characterize main sequence, giant branch, and white dwarf sequence",
-      "confidence": 0.8807339449541285,
+      "confidence": 0.9833546734955185,
       "phase": "validated",
       "created_at": 1775636424.0612295,
-      "updated_at": 1775679833.395624,
+      "updated_at": 1775679881.328862,
       "test_results": [
+        {
+          "test_name": "Kolmogorov-Smirnov",
+          "statistic": 0.9999938333722036,
+          "p_value": 0.0,
+          "passed": false,
+          "details": "D = 1.0000 (vs norm)",
+          "alpha": 0.05
+        },
         {
           "test_name": "Kolmogorov-Smirnov",
           "statistic": 0.9999938333722036,
@@ -3638,7 +3654,7 @@ body::after {
       "pending_approval_at": 1775679833.395624,
       "approval_status": "pending",
       "approval_reason": "",
-      "last_tested_at": 1775679790.452667,
+      "last_tested_at": 1775679881.328853,
       "archived_at": 0.0
     },
     {
@@ -3687,7 +3703,7 @@ body::after {
       "confidence": 0.9719626168224299,
       "phase": "validated",
       "created_at": 1775494852.1443439,
-      "updated_at": 1775679833.395647,
+      "updated_at": 1775679881.688579,
       "test_results": [
         {
           "test_name": "Kolmogorov-Smirnov",
@@ -3710,9 +3726,9 @@ body::after {
       "publications": 0,
       "data_points_used": 1284,
       "cross_domain_links": [],
-      "requires_approval": false,
-      "pending_approval_at": 0.0,
-      "approval_status": "",
+      "requires_approval": true,
+      "pending_approval_at": 1775679881.688579,
+      "approval_status": "pending",
       "approval_reason": "",
       "last_tested_at": 1775679829.50776,
       "archived_at": 0.0
@@ -3725,7 +3741,7 @@ body::after {
       "confidence": 0.8421052631578948,
       "phase": "validated",
       "created_at": 1775673588.875272,
-      "updated_at": 1775679833.395691,
+      "updated_at": 1775679881.6885881,
       "test_results": [
         {
           "test_name": "Kolmogorov-Smirnov",
@@ -3740,9 +3756,9 @@ body::after {
       "publications": 0,
       "data_points_used": 5000,
       "cross_domain_links": [],
-      "requires_approval": false,
-      "pending_approval_at": 0.0,
-      "approval_status": "",
+      "requires_approval": true,
+      "pending_approval_at": 1775679881.6885881,
+      "approval_status": "pending",
       "approval_reason": "",
       "last_tested_at": 1775679830.1240761,
       "archived_at": 0.0
@@ -3752,20 +3768,29 @@ body::after {
       "name": "Star Formation Fraction",
       "domain": "Astrophysics",
       "description": "SDSS u-r color as star formation proxy: measure blue fraction evolution with redshift",
-      "confidence": 0.46,
-      "phase": "testing",
+      "confidence": 0.8720379146919431,
+      "phase": "validated",
       "created_at": 1775419895.3442976,
-      "updated_at": 1775679698.095673,
-      "test_results": [],
+      "updated_at": 1775679881.688591,
+      "test_results": [
+        {
+          "test_name": "Kolmogorov-Smirnov",
+          "statistic": 0.9999938333722036,
+          "p_value": 0.0,
+          "passed": false,
+          "details": "D = 1.0000 (vs norm)",
+          "alpha": 0.05
+        }
+      ],
       "priority": "NORMAL",
       "publications": 0,
-      "data_points_used": 5000,
+      "data_points_used": 15553,
       "cross_domain_links": [],
       "requires_approval": false,
       "pending_approval_at": 0.0,
       "approval_status": "",
       "approval_reason": "",
-      "last_tested_at": 0.0,
+      "last_tested_at": 1775679872.295447,
       "archived_at": 0.0
     },
     {
@@ -3773,20 +3798,37 @@ body::after {
       "name": "Transit Depth Statistics",
       "domain": "Astrophysics",
       "description": "NASA Exoplanet Archive: distribution of transit depths across discovery methods",
-      "confidence": 0.38,
-      "phase": "testing",
+      "confidence": 0.9514866979655713,
+      "phase": "validated",
       "created_at": 1775616332.342879,
-      "updated_at": 1775679698.095677,
-      "test_results": [],
+      "updated_at": 1775679881.6886332,
+      "test_results": [
+        {
+          "test_name": "Kolmogorov-Smirnov",
+          "statistic": 1.0,
+          "p_value": 0.0015564202334630343,
+          "passed": false,
+          "details": "D = 1.0000 (two-sample)",
+          "alpha": 0.05
+        },
+        {
+          "test_name": "Pearson correlation",
+          "statistic": 0.43204120193240453,
+          "p_value": 1.5685477197777295e-59,
+          "passed": true,
+          "details": "r = 0.4320, r\u00b2 = 0.1867",
+          "alpha": 0.05
+        }
+      ],
       "priority": "NORMAL",
       "publications": 0,
-      "data_points_used": 0,
+      "data_points_used": 15553,
       "cross_domain_links": [],
       "requires_approval": false,
       "pending_approval_at": 0.0,
       "approval_status": "",
       "approval_reason": "",
-      "last_tested_at": 0.0,
+      "last_tested_at": 1775679872.7719831,
       "archived_at": 0.0
     },
     {
@@ -3794,20 +3836,45 @@ body::after {
       "name": "Dark Energy Equation of State",
       "domain": "Astrophysics",
       "description": "Pantheon+ distance modulus: constrain w(z) with binned SNe Ia analysis",
-      "confidence": 0.35,
+      "confidence": 0.2121212121212121,
       "phase": "testing",
       "created_at": 1775321342.505122,
-      "updated_at": 1775679698.095681,
-      "test_results": [],
+      "updated_at": 1775679878.466774,
+      "test_results": [
+        {
+          "test_name": "Kolmogorov-Smirnov",
+          "statistic": 0.018224573780129337,
+          "p_value": 0.9402844576493801,
+          "passed": true,
+          "details": "D = 0.0182 (two-sample)",
+          "alpha": 0.05
+        },
+        {
+          "test_name": "Bayesian t-test",
+          "statistic": -4642.0558950228415,
+          "p_value": 0.0,
+          "passed": true,
+          "details": "t = -4642.0559 (one-sample vs \u03bc=0.0), n=1701",
+          "alpha": 0.05
+        },
+        {
+          "test_name": "Chi-squared",
+          "statistic": 0.0035733553560542333,
+          "p_value": 0.9999984057913186,
+          "passed": true,
+          "details": "\u03c7\u00b2 = 0.0036, dof = 4, \u03c7\u00b2/dof = 0.00",
+          "alpha": 0.05
+        }
+      ],
       "priority": "NORMAL",
       "publications": 0,
-      "data_points_used": 0,
+      "data_points_used": 1701,
       "cross_domain_links": [],
       "requires_approval": false,
       "pending_approval_at": 0.0,
       "approval_status": "",
       "approval_reason": "",
-      "last_tested_at": 0.0,
+      "last_tested_at": 1775679878.466771,
       "archived_at": 0.0
     },
     {
@@ -3822,7 +3889,7 @@ body::after {
       "test_results": [],
       "priority": "NORMAL",
       "publications": 0,
-      "data_points_used": 0,
+      "data_points_used": 15553,
       "cross_domain_links": [],
       "requires_approval": false,
       "pending_approval_at": 0.0,
@@ -13245,371 +13312,357 @@ body::after {
   ],
   "activity": [
     {
-      "timestamp": 1775679828.958333,
-      "phase": "INVESTIGATE",
-      "module": "INVESTIGATE",
-      "message": "Running experiment for H007 (Stellar Parallax Accuracy) \u2014 strategy: generic, methods: ['_investigate_generic', 'run_scaling_discovery']",
-      "hypothesis_id": "H007"
-    },
-    {
-      "timestamp": 1775679828.9583502,
-      "phase": "INVESTIGATE",
-      "module": "INVESTIGATE",
-      "message": "Running generic analysis for H007 (Stellar Parallax Accuracy) [domain=Astrophysics]",
-      "hypothesis_id": "H007"
-    },
-    {
-      "timestamp": 1775679828.958393,
-      "phase": "INVESTIGATE",
-      "module": "INVESTIGATE",
-      "message": "Using Gaia sample: 5000 stars",
-      "hypothesis_id": "H007"
-    },
-    {
-      "timestamp": 1775679828.971026,
-      "phase": "INVESTIGATE",
-      "module": "INVESTIGATE",
-      "message": "Running experiment for H008 (Star Formation Fraction) \u2014 strategy: star_formation, methods: ['_investigate_star_formation', 'run_causal_discovery']",
-      "hypothesis_id": "H008"
-    },
-    {
-      "timestamp": 1775679828.9710422,
-      "phase": "INVESTIGATE",
-      "module": "INVESTIGATE",
-      "message": "Analyzing star formation indicators for H008",
-      "hypothesis_id": "H008"
-    },
-    {
-      "timestamp": 1775679828.9711869,
-      "phase": "INVESTIGATE",
-      "module": "INVESTIGATE",
-      "message": "Star formation fraction (u-r < 2): 17.7% of 5000 galaxies",
-      "hypothesis_id": "H008"
-    },
-    {
-      "timestamp": 1775679828.971257,
-      "phase": "CAUSAL",
-      "module": "ENGINE",
-      "message": "Running PC causal discovery on 3 variables (\u03b1=0.05)",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775679828.974818,
-      "phase": "CAUSAL",
-      "module": "ENGINE",
-      "message": "Causal graph: 3 edges, 0 v-structures",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775679829.002203,
-      "phase": "INVESTIGATE",
-      "module": "INVESTIGATE",
-      "message": "Running experiment for H003 (Exoplanet Mass-Period Relation) \u2014 strategy: exoplanet, methods: ['_investigate_exoplanets', 'run_scaling_discovery']",
-      "hypothesis_id": "H003"
-    },
-    {
-      "timestamp": 1775679829.002218,
-      "phase": "INVESTIGATE",
-      "module": "INVESTIGATE",
-      "message": "Fetching NASA Exoplanet Archive for H003",
-      "hypothesis_id": "H003"
-    },
-    {
-      "timestamp": 1775679829.002267,
-      "phase": "INVESTIGATE",
-      "module": "INVESTIGATE",
-      "message": "Loaded 1284 confirmed exoplanets",
-      "hypothesis_id": "H003"
-    },
-    {
-      "timestamp": 1775679829.002423,
-      "phase": "INVESTIGATE",
-      "module": "INVESTIGATE",
-      "message": "Orbital periods: log\u2081\u2080(P/days) = 1.69 \u00b1 1.17 (range: 0.09\u20137300000.00 days)",
-      "hypothesis_id": "H003"
-    },
-    {
-      "timestamp": 1775679829.0025752,
-      "phase": "INVESTIGATE",
-      "module": "INVESTIGATE",
-      "message": "Planet masses: 1284 measured, median = 0.838 M_Jup",
-      "hypothesis_id": "H003"
-    },
-    {
-      "timestamp": 1775679829.0025961,
-      "phase": "INVESTIGATE",
-      "module": "DATA",
-      "message": "Data retrieval failed for H003: no field of name radius",
-      "hypothesis_id": "H003"
-    },
-    {
-      "timestamp": 1775679829.324794,
-      "phase": "EVALUATE",
-      "module": "EVALUATE",
-      "message": "Running statistical battery on H001 (Hubble Tension Analysis)",
-      "hypothesis_id": "H001"
-    },
-    {
-      "timestamp": 1775679829.446559,
-      "phase": "EVALUATE",
-      "module": "EVALUATE",
-      "message": "KS (Planck vs SH0ES residuals) on H001: D = 0.0182 (two-sample), \u03c7\u00b2_P=15058432 \u03c7\u00b2_S=14787312, p=0.9403",
-      "hypothesis_id": "H001"
-    },
-    {
-      "timestamp": 1775679829.446631,
-      "phase": "NOVELTY",
-      "module": "ENGINE",
-      "message": "\ud83d\udd0d NOVELTY [40%] Hubble tension: \u0394\u03c7\u00b2(Planck vs SH0ES) = 271120 \u2014 model preference detected",
-      "hypothesis_id": "H001"
-    },
-    {
-      "timestamp": 1775679829.447291,
-      "phase": "EVALUATE",
-      "module": "EVALUATE",
-      "message": "t-test on \u039bCDM residuals for H001: t = -4642.0559 (one-sample vs \u03bc=0.0), n=1701, p=0.0000",
-      "hypothesis_id": "H001"
-    },
-    {
-      "timestamp": 1775679829.450676,
-      "phase": "EVALUATE",
-      "module": "EVALUATE",
-      "message": "Chi\u00b2 on binned residuals for H001: \u03c7\u00b2 = 0.0036, dof = 4, \u03c7\u00b2/dof = 0.00, p=1.0000",
-      "hypothesis_id": "H001"
-    },
-    {
-      "timestamp": 1775679829.505298,
-      "phase": "EVALUATE",
-      "module": "FDR",
-      "message": "FDR correction for H001: 3/9 tests significant after BH correction (\u03b1*=0.0000)",
-      "hypothesis_id": "H001"
-    },
-    {
-      "timestamp": 1775679829.505345,
-      "phase": "EVALUATE",
-      "module": "EVALUATE",
-      "message": "Running statistical battery on H006 (Exoplanet Period Distribution)",
-      "hypothesis_id": "H006"
-    },
-    {
-      "timestamp": 1775679829.507363,
-      "phase": "EVALUATE",
-      "module": "EVALUATE",
-      "message": "KS test on log(P) for H006: D = 1.0000 (two-sample), p = 0.0016",
-      "hypothesis_id": "H006"
-    },
-    {
-      "timestamp": 1775679829.507752,
-      "phase": "EVALUATE",
-      "module": "EVALUATE",
-      "message": "Correlation (log P vs log M) for H006: r = 0.4320, r\u00b2 = 0.1867, p = 0.0000",
-      "hypothesis_id": "H006"
-    },
-    {
-      "timestamp": 1775679830.072143,
-      "phase": "LITERATURE",
-      "module": "ENGINE",
-      "message": "\ud83d\udcda Related papers: 5 found on arXiv for 'Exoplanet Period Distribution'",
-      "hypothesis_id": "H006"
-    },
-    {
-      "timestamp": 1775679830.072171,
-      "phase": "LITERATURE",
-      "module": "ENGINE",
-      "message": "  \u2192 [2026-04-07] The Character Error Vector: Decomposable errors for page-level OCR evaluation",
-      "hypothesis_id": "H006"
-    },
-    {
-      "timestamp": 1775679830.0721788,
-      "phase": "LITERATURE",
-      "module": "ENGINE",
-      "message": "  \u2192 [2026-04-07] Target Policy Optimization",
-      "hypothesis_id": "H006"
-    },
-    {
-      "timestamp": 1775679830.0752902,
-      "phase": "LITERATURE",
-      "module": "ENGINE",
-      "message": "\ud83d\udcca Literature novelty for H006: 0.94 (novel)",
-      "hypothesis_id": "H006"
-    },
-    {
-      "timestamp": 1775679830.122506,
-      "phase": "EVALUATE",
-      "module": "FDR",
-      "message": "FDR correction for H006: 2/2 tests significant after BH correction (\u03b1*=0.0016)",
-      "hypothesis_id": "H006"
-    },
-    {
-      "timestamp": 1775679830.122549,
-      "phase": "EVALUATE",
-      "module": "EVALUATE",
-      "message": "Running statistical battery on H007 (Stellar Parallax Accuracy)",
-      "hypothesis_id": "H007"
-    },
-    {
-      "timestamp": 1775679830.124043,
-      "phase": "EVALUATE",
-      "module": "EVALUATE",
-      "message": "KS test on Gaia G-mag for H007: D = 1.0000 (vs norm), p = 0.0000",
-      "hypothesis_id": "H007"
-    },
-    {
-      "timestamp": 1775679832.950028,
-      "phase": "LITERATURE",
-      "module": "ENGINE",
-      "message": "\ud83d\udcda Indexed 2 new papers into literature store (total: 26)",
-      "hypothesis_id": "H007"
-    },
-    {
-      "timestamp": 1775679832.950036,
-      "phase": "LITERATURE",
-      "module": "ENGINE",
-      "message": "\ud83d\udcda Related papers: 5 found on arXiv for 'Stellar Parallax Accuracy'",
-      "hypothesis_id": "H007"
-    },
-    {
-      "timestamp": 1775679832.950043,
-      "phase": "LITERATURE",
-      "module": "ENGINE",
-      "message": "  \u2192 [2026-04-07] Topological Characterization of Churn Flow and Unsupervised Correction to the Wu",
-      "hypothesis_id": "H007"
-    },
-    {
-      "timestamp": 1775679832.950043,
+      "timestamp": 1775679872.737964,
       "phase": "LITERATURE",
       "module": "ENGINE",
       "message": "  \u2192 [2026-04-07] Tractable model for a fractionalized Fermi liquid (FL$^*$) on a square lattice",
-      "hypothesis_id": "H007"
+      "hypothesis_id": "H008"
     },
     {
-      "timestamp": 1775679832.958796,
+      "timestamp": 1775679872.749193,
       "phase": "LITERATURE",
       "module": "ENGINE",
-      "message": "\ud83d\udcca Literature novelty for H007: 0.94 (novel)",
-      "hypothesis_id": "H007"
+      "message": "\ud83d\udcca Literature novelty for H008: 0.93 (novel)",
+      "hypothesis_id": "H008"
     },
     {
-      "timestamp": 1775679833.019349,
+      "timestamp": 1775679872.769366,
       "phase": "EVALUATE",
       "module": "EVALUATE",
-      "message": "Running statistical battery on H003 (Exoplanet Mass-Period Relation)",
-      "hypothesis_id": "H003"
+      "message": "Running statistical battery on H009 (Transit Depth Statistics)",
+      "hypothesis_id": "H009"
     },
     {
-      "timestamp": 1775679833.02419,
+      "timestamp": 1775679872.7715242,
       "phase": "EVALUATE",
       "module": "EVALUATE",
-      "message": "KS test on log(P) for H003: D = 1.0000 (two-sample), p = 0.0016",
-      "hypothesis_id": "H003"
+      "message": "KS test on log(P) for H009: D = 1.0000 (two-sample), p = 0.0016",
+      "hypothesis_id": "H009"
     },
     {
-      "timestamp": 1775679833.025534,
+      "timestamp": 1775679872.7719748,
       "phase": "EVALUATE",
       "module": "EVALUATE",
-      "message": "Correlation (log P vs log M) for H003: r = 0.4320, r\u00b2 = 0.1867, p = 0.0000",
-      "hypothesis_id": "H003"
+      "message": "Correlation (log P vs log M) for H009: r = 0.4320, r\u00b2 = 0.1867, p = 0.0000",
+      "hypothesis_id": "H009"
     },
     {
-      "timestamp": 1775679833.0934389,
+      "timestamp": 1775679878.2430909,
+      "phase": "LITERATURE",
+      "module": "ENGINE",
+      "message": "\ud83d\udcda Indexed 2 new papers into literature store (total: 31)",
+      "hypothesis_id": "H009"
+    },
+    {
+      "timestamp": 1775679878.243097,
+      "phase": "LITERATURE",
+      "module": "ENGINE",
+      "message": "\ud83d\udcda Related papers: 5 found on arXiv for 'Transit Depth Statistics'",
+      "hypothesis_id": "H009"
+    },
+    {
+      "timestamp": 1775679878.2431,
+      "phase": "LITERATURE",
+      "module": "ENGINE",
+      "message": "  \u2192 [2026-04-07] In-Place Test-Time Training",
+      "hypothesis_id": "H009"
+    },
+    {
+      "timestamp": 1775679878.243101,
+      "phase": "LITERATURE",
+      "module": "ENGINE",
+      "message": "  \u2192 [2026-04-07] Topological Characterization of Churn Flow and Unsupervised Correction to the Wu",
+      "hypothesis_id": "H009"
+    },
+    {
+      "timestamp": 1775679878.254047,
+      "phase": "LITERATURE",
+      "module": "ENGINE",
+      "message": "\ud83d\udcca Literature novelty for H009: 0.93 (novel)",
+      "hypothesis_id": "H009"
+    },
+    {
+      "timestamp": 1775679878.313421,
       "phase": "EVALUATE",
       "module": "FDR",
-      "message": "FDR correction for H003: 4/4 tests significant after BH correction (\u03b1*=0.0016)",
-      "hypothesis_id": "H003"
+      "message": "FDR correction for H009: 2/2 tests significant after BH correction (\u03b1*=0.0016)",
+      "hypothesis_id": "H009"
     },
     {
-      "timestamp": 1775679833.093646,
+      "timestamp": 1775679878.313469,
+      "phase": "EVALUATE",
+      "module": "EVALUATE",
+      "message": "Running statistical battery on H010 (Dark Energy Equation of State)",
+      "hypothesis_id": "H010"
+    },
+    {
+      "timestamp": 1775679878.409492,
+      "phase": "EVALUATE",
+      "module": "EVALUATE",
+      "message": "KS (Planck vs SH0ES residuals) on H010: D = 0.0182 (two-sample), \u03c7\u00b2_P=15058432 \u03c7\u00b2_S=14787312, p=0.9403",
+      "hypothesis_id": "H010"
+    },
+    {
+      "timestamp": 1775679878.409936,
+      "phase": "EVALUATE",
+      "module": "EVALUATE",
+      "message": "t-test on \u039bCDM residuals for H010: t = -4642.0559 (one-sample vs \u03bc=0.0), n=1701, p=0.0000",
+      "hypothesis_id": "H010"
+    },
+    {
+      "timestamp": 1775679878.4667258,
+      "phase": "EVALUATE",
+      "module": "EVALUATE",
+      "message": "Chi\u00b2 on binned residuals for H010: \u03c7\u00b2 = 0.0036, dof = 4, \u03c7\u00b2/dof = 0.00, p=1.0000",
+      "hypothesis_id": "H010"
+    },
+    {
+      "timestamp": 1775679881.1971378,
+      "phase": "LITERATURE",
+      "module": "ENGINE",
+      "message": "\ud83d\udcda Indexed 2 new papers into literature store (total: 33)",
+      "hypothesis_id": "H010"
+    },
+    {
+      "timestamp": 1775679881.197141,
+      "phase": "LITERATURE",
+      "module": "ENGINE",
+      "message": "\ud83d\udcda Related papers: 5 found on arXiv for 'Dark Energy Equation of State'",
+      "hypothesis_id": "H010"
+    },
+    {
+      "timestamp": 1775679881.1971478,
+      "phase": "LITERATURE",
+      "module": "ENGINE",
+      "message": "  \u2192 [2026-04-07] Action Images: End-to-End Policy Learning via Multiview Video Generation",
+      "hypothesis_id": "H010"
+    },
+    {
+      "timestamp": 1775679881.1971478,
+      "phase": "LITERATURE",
+      "module": "ENGINE",
+      "message": "  \u2192 [2026-04-07] The Galois Alperin weight conjecture for finite category algebras",
+      "hypothesis_id": "H010"
+    },
+    {
+      "timestamp": 1775679881.20624,
+      "phase": "LITERATURE",
+      "module": "ENGINE",
+      "message": "\ud83d\udcca Literature novelty for H010: 0.66 (incremental)",
+      "hypothesis_id": "H010"
+    },
+    {
+      "timestamp": 1775679881.32726,
+      "phase": "EVALUATE",
+      "module": "FDR",
+      "message": "FDR correction for H010: 1/3 tests significant after BH correction (\u03b1*=0.0000)",
+      "hypothesis_id": "H010"
+    },
+    {
+      "timestamp": 1775679881.327289,
+      "phase": "EVALUATE",
+      "module": "EVALUATE",
+      "message": "Running statistical battery on H004 (Gaia HR Diagram Structure)",
+      "hypothesis_id": "H004"
+    },
+    {
+      "timestamp": 1775679881.32882,
+      "phase": "EVALUATE",
+      "module": "EVALUATE",
+      "message": "KS test on Gaia G-mag for H004: D = 1.0000 (vs norm), p = 0.0000",
+      "hypothesis_id": "H004"
+    },
+    {
+      "timestamp": 1775679881.383138,
+      "phase": "EVALUATE",
+      "module": "FDR",
+      "message": "FDR correction for H004: 2/2 tests significant after BH correction (\u03b1*=0.0000)",
+      "hypothesis_id": "H004"
+    },
+    {
+      "timestamp": 1775679881.38331,
       "phase": "NOVELTY",
       "module": "ENGINE",
       "message": "\ud83d\udd0d 3 unexplored novelty signals \u2014 potential follow-up candidates",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775679833.395544,
+      "timestamp": 1775679881.6886091,
       "phase": "UPDATE",
       "module": "UPDATE",
-      "message": "Archived H001 (Hubble Tension Analysis): confidence 0.13 below threshold after 9 tests",
-      "hypothesis_id": "H001"
+      "message": "Promoted H008 (Star Formation Fraction): testing \u2192 validated (confidence 0.87, \u0394+0.000)",
+      "hypothesis_id": "H008"
     },
     {
-      "timestamp": 1775679833.395669,
+      "timestamp": 1775679881.688639,
       "phase": "UPDATE",
       "module": "UPDATE",
-      "message": "Promoted H006 (Exoplanet Period Distribution): testing \u2192 validated (confidence 0.97, \u0394+0.000)",
-      "hypothesis_id": "H006"
+      "message": "Promoted H009 (Transit Depth Statistics): testing \u2192 validated (confidence 0.95, \u0394+0.000)",
+      "hypothesis_id": "H009"
     },
     {
-      "timestamp": 1775679833.395699,
-      "phase": "UPDATE",
-      "module": "UPDATE",
-      "message": "Promoted H007 (Stellar Parallax Accuracy): testing \u2192 validated (confidence 0.84, \u0394+0.000)",
-      "hypothesis_id": "H007"
-    },
-    {
-      "timestamp": 1775679833.416619,
-      "phase": "UPDATE",
-      "module": "VERIFICATION",
-      "message": "Verification error: 'DiscoveryEngine' object has no attribute 'memory'",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775679833.417082,
+      "timestamp": 1775679881.692966,
       "phase": "ORIENT",
       "module": "DISCOVERY_MEMORY",
       "message": "No unexplored variable pairs found \u2014 all combinations tested",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775679833.417784,
+      "timestamp": 1775679881.693126,
       "phase": "UPDATE",
       "module": "UPDATE",
-      "message": "System confidence: 0.917 (253 active hypotheses across 5 domains)",
+      "message": "System confidence: 0.920 (253 active hypotheses across 5 domains)",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775679833.4180238,
+      "timestamp": 1775679881.693228,
       "phase": "DEGRADATION",
       "module": "ENGINE",
       "message": "\u26a0 Domain 'Astrophysics' has 100% of recent 50 discoveries \u2014 force-switching to underrepresented domains",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775679833.418145,
+      "timestamp": 1775679881.693235,
+      "phase": "DEGRADATION",
+      "module": "ENGINE",
+      "message": "\u26a0 Pattern 'correlation|exoplanet' repeated 6 times in last 20 discoveries \u2014 stuck in loop",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775679881.693248,
       "phase": "DEGRADATION",
       "module": "ENGINE",
       "message": "Forcing exploration of domain 'Economics' next cycle",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775679833.426614,
-      "phase": "LIFECYCLE",
-      "module": "ENGINE",
-      "message": "Auto-approved H003 (Exoplanet Mass-Period Relation): Auto-approved: confidence=0.99, tests=4, pending_cycles\u22482",
-      "hypothesis_id": "H003"
-    },
-    {
-      "timestamp": 1775679833.4276211,
+      "timestamp": 1775679881.6947598,
       "phase": "UPDATE",
       "module": "ENGINE",
-      "message": "\u2501\u2501\u2501 Cycle #3305 complete: 0.917 system confidence, 253 active hypotheses \u2501\u2501\u2501",
+      "message": "\u2501\u2501\u2501 Cycle #3306 complete: 0.920 system confidence, 253 active hypotheses \u2501\u2501\u2501",
       "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775679906.699287,
+      "phase": "ORIENT",
+      "module": "ENGINE",
+      "message": "\u2501\u2501\u2501 Discovery Cycle #3307 starting \u2501\u2501\u2501",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775679906.699297,
+      "phase": "ORIENT",
+      "module": "ORIENT",
+      "message": "Scanning astronomical data feeds\u2026",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775679906.69941,
+      "phase": "ORIENT",
+      "module": "ORIENT",
+      "message": "Registry: 9 sources across 8 domains, 29 cross-match pairs, 45 variables",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775679906.699413,
+      "phase": "ORIENT",
+      "module": "ORIENT",
+      "message": "Cached data: Exoplanets: 1284, Gaia DR3: 5000, SDSS galaxies: 5000",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775679906.700564,
+      "phase": "ORIENT",
+      "module": "STIGMERGY",
+      "message": "Pheromone scout: strategy=explore, C_k=0.90, recommended=Economics",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775679907.003927,
+      "phase": "SELECT",
+      "module": "SELECT",
+      "message": "\ud83d\udd04 Forced domain exploration: Economics",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775679907.0441432,
+      "phase": "SELECT",
+      "module": "STIGMERGY",
+      "message": "Pheromone re-ranking applied (weight=0.30)",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775679907.044162,
+      "phase": "SELECT",
+      "module": "SELECT",
+      "message": "Rank #1: CD-001 (Econ-Astro Funding Correlation) \u2014 score 1.147, confidence 0.25, priority HIGH",
+      "hypothesis_id": "CD-001"
+    },
+    {
+      "timestamp": 1775679907.0441651,
+      "phase": "SELECT",
+      "module": "SELECT",
+      "message": "Rank #2: H030 (Theoretical: Multi-Method Analysis) \u2014 score 0.848, confidence 0.99, priority MEDIUM",
+      "hypothesis_id": "H030"
+    },
+    {
+      "timestamp": 1775679907.044173,
+      "phase": "SELECT",
+      "module": "SELECT",
+      "message": "Rank #3: H040 (Theoretical: Unitarity (from quantum_mechanics) \u2192 black_holes) \u2014 score 0.848, confidence 0.99, priority NORMAL",
+      "hypothesis_id": "H040"
+    },
+    {
+      "timestamp": 1775679907.345601,
+      "phase": "INVESTIGATE",
+      "module": "INVESTIGATE",
+      "message": "Running experiment for CD-002 (Survey Design Optimization) \u2014 strategy: generic, methods: ['_investigate_generic', 'run_scaling_discovery']",
+      "hypothesis_id": "CD-002"
+    },
+    {
+      "timestamp": 1775679907.345609,
+      "phase": "INVESTIGATE",
+      "module": "INVESTIGATE",
+      "message": "Running generic analysis for CD-002 (Survey Design Optimization) [domain=Epidemiology]",
+      "hypothesis_id": "CD-002"
+    },
+    {
+      "timestamp": 1775679907.3456142,
+      "phase": "INVESTIGATE",
+      "module": "INVESTIGATE",
+      "message": "Analyzing epidemiology data for CD-002 (Survey Design Optimization)",
+      "hypothesis_id": "CD-002"
+    },
+    {
+      "timestamp": 1775679907.345649,
+      "phase": "INVESTIGATE",
+      "module": "INVESTIGATE",
+      "message": "\u26a0 No WHO data available \u2014 skipping CD-002",
+      "hypothesis_id": "CD-002"
+    },
+    {
+      "timestamp": 1775679907.38306,
+      "phase": "INVESTIGATE",
+      "module": "INVESTIGATE",
+      "message": "Running experiment for H010 (Dark Energy Equation of State) \u2014 strategy: hubble, methods: ['_investigate_hubble', 'run_causal_discovery']",
+      "hypothesis_id": "H010"
+    },
+    {
+      "timestamp": 1775679907.3830779,
+      "phase": "INVESTIGATE",
+      "module": "INVESTIGATE",
+      "message": "Fetching Pantheon+ SNe Ia sample for H010",
+      "hypothesis_id": "H010"
+    },
+    {
+      "timestamp": 1775679907.383167,
+      "phase": "INVESTIGATE",
+      "module": "INVESTIGATE",
+      "message": "Loaded 1701 supernovae from Pantheon+ (z = 0.0012\u20132.2614)",
+      "hypothesis_id": "H010"
     }
   ],
   "decisions": [
-    {
-      "timestamp": 1775679703.447652,
-      "action": "escalate",
-      "text": "Promoted H015 (Cluster Richness-Mass Scaling) to TESTING \u2014 score 0.701",
-      "status": "INVESTIGATING",
-      "hypothesis_id": "H015"
-    },
-    {
-      "timestamp": 1775679703.447653,
-      "action": "escalate",
-      "text": "Promoted H010 (Dark Energy Equation of State) to TESTING \u2014 score 0.694",
-      "status": "INVESTIGATING",
-      "hypothesis_id": "H010"
-    },
     {
       "timestamp": 1775679703.447655,
       "action": "escalate",
@@ -13735,6 +13788,20 @@ body::after {
       "text": "Auto-approved H003 \u2192 PUBLISHED (Auto-approved: confidence=0.99, tests=4, pending_cycles\u22482)",
       "status": "PUBLISHED",
       "hypothesis_id": "H003"
+    },
+    {
+      "timestamp": 1775679881.6886258,
+      "action": "confirm",
+      "text": "Promoted H008 (Star Formation Fraction) to validated \u2014 confidence 0.87",
+      "status": "CONFIRMED",
+      "hypothesis_id": "H008"
+    },
+    {
+      "timestamp": 1775679881.688643,
+      "action": "confirm",
+      "text": "Promoted H009 (Transit Depth Statistics) to validated \u2014 confidence 0.95",
+      "status": "CONFIRMED",
+      "hypothesis_id": "H009"
     }
   ],
   "charts": {
@@ -13749,8 +13816,8 @@ body::after {
       "data": [
         62,
         0,
-        13,
-        4,
+        11,
+        6,
         174
       ]
     },
@@ -13780,39 +13847,39 @@ body::after {
         "Testability"
       ],
       "data": [
-        0.772,
-        0.739,
-        0.262,
+        0.776,
+        0.773,
+        0.265,
         0.067,
-        0.791,
-        0.711
+        0.788,
+        0.723
       ]
     },
-    "system_confidence": 0.9168559349301867
+    "system_confidence": 0.9198997945827333
   },
   "metrics": {
-    "runtime_seconds": 130393.23294615746,
+    "runtime_seconds": 130453.34998130798,
     "data_points": 11284,
-    "scripts_written": 17,
-    "plots_generated": 20,
-    "hypotheses_tested": 11,
-    "queue_depth": 16,
+    "scripts_written": 23,
+    "plots_generated": 31,
+    "hypotheses_tested": 15,
+    "queue_depth": 11,
     "domains_active": 5,
-    "system_confidence": 0.9168559349301867,
-    "auto_decisions": 1060,
+    "system_confidence": 0.9198997945827333,
+    "auto_decisions": 1062,
     "papers_drafted": 1,
     "cross_domain_links": 1,
     "gpu_utilization": 45.0
   },
   "engine/safety-status": {
     "state": "NOMINAL",
-    "uptime_seconds": 151.40841698646545,
+    "uptime_seconds": 211.52691197395325,
     "can_advance_hypotheses": true,
     "can_run_cycle": true,
     "can_investigate": true,
     "can_modify_state": true,
     "audit_log_size": 2,
-    "timestamp": 1775679848.9051929,
+    "timestamp": 1775679909.0236878,
     "audit_log": [
       {
         "timestamp": 1775679697.4968362,
@@ -13836,8 +13903,8 @@ body::after {
     "trajectory": [
       {
         "cycle": 0,
-        "x": -51.70957269977587,
-        "y": 0.16712647318137142,
+        "x": -74.23897052980881,
+        "y": 0.19322472763532378,
         "z": 0.0,
         "original": {
           "vector": [
@@ -13881,8 +13948,8 @@ body::after {
       },
       {
         "cycle": 1,
-        "x": -41.48588491157188,
-        "y": -0.03541879758916492,
+        "x": -64.01543855157833,
+        "y": -0.01703812567099301,
         "z": -0.0,
         "original": {
           "vector": [
@@ -13926,8 +13993,8 @@ body::after {
       },
       {
         "cycle": 2,
-        "x": -41.485314964587644,
-        "y": -0.03543008902026479,
+        "x": -64.01486861328014,
+        "y": -0.01704984733949681,
         "z": 0.0,
         "original": {
           "vector": [
@@ -13971,8 +14038,8 @@ body::after {
       },
       {
         "cycle": 3,
-        "x": 14.233981773623706,
-        "y": -0.13910951720972578,
+        "x": -8.295666016001046,
+        "y": -0.16279053501114368,
         "z": 0.0,
         "original": {
           "vector": [
@@ -14016,8 +14083,8 @@ body::after {
       },
       {
         "cycle": 4,
-        "x": 14.235349789408964,
-        "y": -0.13913661947784894,
+        "x": -8.29429802106448,
+        "y": -0.16281866995700034,
         "z": 0.0,
         "original": {
           "vector": [
@@ -14061,8 +14128,8 @@ body::after {
       },
       {
         "cycle": 5,
-        "x": 53.10545567537674,
-        "y": 0.090989521725145,
+        "x": 30.5759705072408,
+        "y": 0.03796520551216513,
         "z": -0.0,
         "original": {
           "vector": [
@@ -14106,8 +14173,8 @@ body::after {
       },
       {
         "cycle": 6,
-        "x": 53.10598557589784,
-        "y": 0.09097902366937959,
+        "x": 30.57650039968618,
+        "y": 0.03795430744897653,
         "z": -0.0,
         "original": {
           "vector": [
@@ -14148,19 +14215,109 @@ body::after {
           "cycle": 3305,
           "timestamp": 1775679833.427552
         }
+      },
+      {
+        "cycle": 7,
+        "x": 78.85287089470464,
+        "y": 0.045287050547978096,
+        "z": -0.0,
+        "original": {
+          "vector": [
+            0.788949,
+            0.25,
+            0.0,
+            0.3,
+            0.0,
+            0.107668,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.089286,
+            0.245059,
+            0.711462,
+            6.3e-05,
+            0.784183,
+            0.032123
+          ],
+          "labels": [
+            "astro_conf_mean",
+            "econ_conf_mean",
+            "climate_conf_mean",
+            "epi_conf_mean",
+            "astro_conf_var",
+            "econ_conf_var",
+            "climate_conf_var",
+            "epi_conf_var",
+            "domain_entropy",
+            "exploration_rate",
+            "exploitation_rate",
+            "coupling_density",
+            "resource_utilization",
+            "decision_velocity"
+          ],
+          "dimensions": 16,
+          "cycle": 3306,
+          "timestamp": 1775679881.693565
+        }
+      },
+      {
+        "cycle": 8,
+        "x": 78.85390183704662,
+        "y": 0.04526584761352433,
+        "z": -0.0,
+        "original": {
+          "vector": [
+            0.788949,
+            0.25,
+            0.0,
+            0.3,
+            0.0,
+            0.107668,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.089286,
+            0.245059,
+            0.711462,
+            6.3e-05,
+            0.784183,
+            0.032123
+          ],
+          "labels": [
+            "astro_conf_mean",
+            "econ_conf_mean",
+            "climate_conf_mean",
+            "epi_conf_mean",
+            "astro_conf_var",
+            "econ_conf_var",
+            "climate_conf_var",
+            "epi_conf_var",
+            "domain_entropy",
+            "exploration_rate",
+            "exploitation_rate",
+            "coupling_density",
+            "resource_utilization",
+            "decision_velocity"
+          ],
+          "dimensions": 16,
+          "cycle": 3306,
+          "timestamp": 1775679881.694596
+        }
       }
     ],
     "steady_state_attractor": null
   },
   "engine/alignment": {
-    "composite_score": 0.3461,
+    "composite_score": 0.3513,
     "dimensions": {
-      "scientific_rigor": 0.7036,
+      "scientific_rigor": 0.7154,
       "domain_balance": 0.0893,
       "novelty_pursuit": 0.0,
-      "epistemic_humility": 0.0165,
-      "resource_efficiency": 0.5386,
-      "reproducibility": 0.689
+      "epistemic_humility": 0.0205,
+      "resource_efficiency": 0.5443,
+      "reproducibility": 0.6929
     },
     "weights": {
       "scientific_rigor": 0.25,
@@ -14173,9 +14330,9 @@ body::after {
     "metadata": {
       "total_hypotheses": 254,
       "active_hypotheses": 253,
-      "cycle_count": 3305,
+      "cycle_count": 3307,
       "new_hypotheses_last_10": 254,
-      "timestamp": 1775679848.91325
+      "timestamp": 1775679909.033077
     }
   },
   "engine/anomalies": {
@@ -14184,15 +14341,15 @@ body::after {
     "rolling_stats": {
       "available": true,
       "window_size": 20,
-      "samples_in_window": 3,
+      "samples_in_window": 4,
       "dimensions": {
         "astro_conf_mean": {
-          "mean": 0.779615,
-          "std": 0.004328,
+          "mean": 0.781948,
+          "std": 0.005512,
           "min": 0.774534,
-          "max": 0.78511,
-          "current": 0.78511,
-          "samples": 3
+          "max": 0.788949,
+          "current": 0.788949,
+          "samples": 4
         },
         "econ_conf_mean": {
           "mean": 0.25,
@@ -14200,7 +14357,7 @@ body::after {
           "min": 0.25,
           "max": 0.25,
           "current": 0.25,
-          "samples": 3
+          "samples": 4
         },
         "climate_conf_mean": {
           "mean": 0.0,
@@ -14208,7 +14365,7 @@ body::after {
           "min": 0.0,
           "max": 0.0,
           "current": 0.0,
-          "samples": 3
+          "samples": 4
         },
         "epi_conf_mean": {
           "mean": 0.3,
@@ -14216,7 +14373,7 @@ body::after {
           "min": 0.3,
           "max": 0.3,
           "current": 0.3,
-          "samples": 3
+          "samples": 4
         },
         "astro_conf_var": {
           "mean": 0.0,
@@ -14224,15 +14381,15 @@ body::after {
           "min": 0.0,
           "max": 0.0,
           "current": 0.0,
-          "samples": 3
+          "samples": 4
         },
         "econ_conf_var": {
-          "mean": 0.109072,
-          "std": 0.000817,
-          "min": 0.107948,
+          "mean": 0.108721,
+          "std": 0.000933,
+          "min": 0.107668,
           "max": 0.109869,
-          "current": 0.107948,
-          "samples": 3
+          "current": 0.107668,
+          "samples": 4
         },
         "climate_conf_var": {
           "mean": 0.0,
@@ -14240,7 +14397,7 @@ body::after {
           "min": 0.0,
           "max": 0.0,
           "current": 0.0,
-          "samples": 3
+          "samples": 4
         },
         "epi_conf_var": {
           "mean": 0.0,
@@ -14248,7 +14405,7 @@ body::after {
           "min": 0.0,
           "max": 0.0,
           "current": 0.0,
-          "samples": 3
+          "samples": 4
         },
         "domain_entropy": {
           "mean": 0.0,
@@ -14256,7 +14413,7 @@ body::after {
           "min": 0.0,
           "max": 0.0,
           "current": 0.0,
-          "samples": 3
+          "samples": 4
         },
         "exploration_rate": {
           "mean": 0.0,
@@ -14264,58 +14421,66 @@ body::after {
           "min": 0.0,
           "max": 0.0,
           "current": 0.0,
-          "samples": 3
+          "samples": 4
         },
         "exploitation_rate": {
-          "mean": 0.079592,
-          "std": 0.013502,
+          "mean": 0.082016,
+          "std": 0.012424,
           "min": 0.060498,
           "max": 0.089286,
           "current": 0.089286,
-          "samples": 3
+          "samples": 4
         },
         "coupling_density": {
-          "mean": 0.244416,
-          "std": 0.000455,
+          "mean": 0.244577,
+          "std": 0.000482,
           "min": 0.244094,
           "max": 0.245059,
           "current": 0.245059,
-          "samples": 3
+          "samples": 4
         },
         "resource_utilization": {
-          "mean": 0.695149,
-          "std": 0.006159,
+          "mean": 0.699227,
+          "std": 0.008851,
           "min": 0.688976,
-          "max": 0.703557,
-          "current": 0.703557,
-          "samples": 3
+          "max": 0.711462,
+          "current": 0.711462,
+          "samples": 4
         },
         "decision_velocity": {
-          "mean": 7.8e-05,
+          "mean": 7.4e-05,
           "std": 1.2e-05,
           "min": 6.3e-05,
           "max": 9.3e-05,
           "current": 6.3e-05,
-          "samples": 3
+          "samples": 4
         }
       }
     },
     "total_alerts": 0,
-    "timestamp": 1775679848.916021
+    "timestamp": 1775679909.0370471
   },
   "engine/pending": {
-    "count": 2,
+    "count": 4,
     "hypotheses": [
       {
         "id": "H004",
         "name": "Gaia HR Diagram Structure",
         "domain": "Astrophysics",
         "description": "Gaia DR3 astrometry+photometry: characterize main sequence, giant branch, and white dwarf sequence",
-        "confidence": 0.8807339449541285,
+        "confidence": 0.9833546734955185,
         "phase": "validated",
         "created_at": 1775636424.0612295,
-        "updated_at": 1775679833.395624,
+        "updated_at": 1775679881.328862,
         "test_results": [
+          {
+            "test_name": "Kolmogorov-Smirnov",
+            "statistic": 0.9999938333722036,
+            "p_value": 0.0,
+            "passed": false,
+            "details": "D = 1.0000 (vs norm)",
+            "alpha": 0.05
+          },
           {
             "test_name": "Kolmogorov-Smirnov",
             "statistic": 0.9999938333722036,
@@ -14333,7 +14498,7 @@ body::after {
         "pending_approval_at": 1775679833.395624,
         "approval_status": "pending",
         "approval_reason": "",
-        "last_tested_at": 1775679790.452667,
+        "last_tested_at": 1775679881.328853,
         "archived_at": 0.0
       },
       {
@@ -14373,12 +14538,80 @@ body::after {
         "approval_reason": "",
         "last_tested_at": 1775679791.110838,
         "archived_at": 0.0
+      },
+      {
+        "id": "H006",
+        "name": "Exoplanet Period Distribution",
+        "domain": "Astrophysics",
+        "description": "Transit/RV discoveries: test for period valley near 10 days and hot Jupiter desert",
+        "confidence": 0.9719626168224299,
+        "phase": "validated",
+        "created_at": 1775494852.1443439,
+        "updated_at": 1775679881.688579,
+        "test_results": [
+          {
+            "test_name": "Kolmogorov-Smirnov",
+            "statistic": 1.0,
+            "p_value": 0.0015564202334630343,
+            "passed": false,
+            "details": "D = 1.0000 (two-sample)",
+            "alpha": 0.05
+          },
+          {
+            "test_name": "Pearson correlation",
+            "statistic": 0.43204120193240453,
+            "p_value": 1.5685477197777295e-59,
+            "passed": true,
+            "details": "r = 0.4320, r\u00b2 = 0.1867",
+            "alpha": 0.05
+          }
+        ],
+        "priority": "NORMAL",
+        "publications": 0,
+        "data_points_used": 1284,
+        "cross_domain_links": [],
+        "requires_approval": true,
+        "pending_approval_at": 1775679881.688579,
+        "approval_status": "pending",
+        "approval_reason": "",
+        "last_tested_at": 1775679829.50776,
+        "archived_at": 0.0
+      },
+      {
+        "id": "H007",
+        "name": "Stellar Parallax Accuracy",
+        "domain": "Astrophysics",
+        "description": "Gaia DR3 parallax error analysis: quantify systematic offsets and distance uncertainties",
+        "confidence": 0.8421052631578948,
+        "phase": "validated",
+        "created_at": 1775673588.875272,
+        "updated_at": 1775679881.6885881,
+        "test_results": [
+          {
+            "test_name": "Kolmogorov-Smirnov",
+            "statistic": 0.9999938333722036,
+            "p_value": 0.0,
+            "passed": false,
+            "details": "D = 1.0000 (vs norm)",
+            "alpha": 0.05
+          }
+        ],
+        "priority": "NORMAL",
+        "publications": 0,
+        "data_points_used": 5000,
+        "cross_domain_links": [],
+        "requires_approval": true,
+        "pending_approval_at": 1775679881.6885881,
+        "approval_status": "pending",
+        "approval_reason": "",
+        "last_tested_at": 1775679830.1240761,
+        "archived_at": 0.0
       }
     ]
   },
   "system/health": {
     "status": "HEALTHY",
-    "uptime_seconds": 0.0005152225494384766,
+    "uptime_seconds": 0.00047779083251953125,
     "components": [
       {
         "id": "c1",
@@ -14414,10 +14647,10 @@ body::after {
         "id": "c6",
         "name": "System Resources",
         "status": "nominal",
-        "message": "CPU: 0.0% MEM: 524.9MB"
+        "message": "CPU: 0.0% MEM: 433.9MB"
       }
     ],
-    "timestamp": 1775679848.9286551
+    "timestamp": 1775679909.044927
   },
   "literature/papers": {
     "papers": [
@@ -14813,11 +15046,105 @@ body::after {
         "arxiv_id": "2604.06135v1",
         "published": "2026-04-07",
         "added_at": 1775679832.9500191
+      },
+      {
+        "title": "MMEmb-R1: Reasoning-Enhanced Multimodal Embedding with Pair-Aware Selection and Adaptive Control",
+        "abstract": "MLLMs have been successfully applied to multimodal embedding tasks, yet their generative reasoning capabilities remain underutilized. Directly incorporating chain-of-thought reasoning into embedding learning introduces two fundamental challenges. First, structural misalignment between instance-level reasoning and pairwise contrastive supervision may lead to shortcut behavior, where the model merely learns the superficial format of reasoning. Second, reasoning is not universally beneficial for embedding tasks. Enforcing reasoning for all inputs may introduce unnecessary computation and latency, and can even obscure salient semantic signals for simple cases. To address these issues, we propose MMEmb-R1, an adaptive reasoning-based multimodal embedding framework. We formulate reasoning as a latent variable and introduce pair-aware reasoning selection that employs counterfactual intervention to identify reasoning paths beneficial for query-target alignment. Furthermore, we adopt reinforcement learning to selectively invoke reasoning only when necessary. Experiments on the MMEB-V2 benchmark demonstrate that our model achieves a score of 71.2 with only 4B parameters, establishing a new state-of-the-art while significantly reducing reasoning overhead and inference latency.",
+        "authors": [
+          "Yuchi Wang",
+          "Haiyang Yu",
+          "Weikang Bian",
+          "Jiefeng Long",
+          "Xiao Liang",
+          "Chao Feng",
+          "Hongsheng Li"
+        ],
+        "arxiv_id": "2604.06156v1",
+        "published": "2026-04-07",
+        "added_at": 1775679872.737937
+      },
+      {
+        "title": "Algebraic approach to quantum gravity IV: applications",
+        "abstract": "We provide a relatively self-contained introduction to the application of quantum spacetime and quantum Riemannian geometry to theoretical physics. Recent successes include calculation of the vacuum energy of spacetime curvature fluctuations in a single-plaquette model of quantum gravity, derivation of the Kaluza-Klein ansatz as a consequence of quantum spacetime, exactly conserved Noether charges from variational calculus on a lattice, and a new theory of classical and quantum geodesics. The latter leads to a theory of generally covariant quantum mechanics applicable in General Relativity with intriguing first results for the case of a black-hole. We discuss several open problems past and present, and how they might be addressed going forward. New results include a phase transition for Euclidean quantum gravity on a 4-pointed star.",
+        "authors": [
+          "Shahn Majid"
+        ],
+        "arxiv_id": "2604.06118v1",
+        "published": "2026-04-07",
+        "added_at": 1775679872.737939
+      },
+      {
+        "title": "Key Role of Charge Disproportionation in Monoclinic Semiconducting Fe$_2$PO$_5$, a Room-Temperature d-Wave Altermagnet Candidate",
+        "abstract": "$\u03b2$-Fe$_2$PO$_5$ is an emerging room-temperature d-wave altermagnet featuring quasi-one-dimensional crystal and magnetic structures, orthogonal transport channels for opposite spins, and large band spin splitting, which is a promising material for next-generation spintronics and magnonics. However, its crystal and electronic structures remain inconclusive. Here, joint experimental and theoretical studies confirm and explain the appearance of its monoclinic structure and semiconducting band gap. We discover that an electronic instability appears in the tetragonal metallic state as the joint effect of density functional theory and Hubbard U correction (DFT+U) and results in a charge disproportionation, which in turn stabilizes the monoclinic distortion with narrow gap formation. The successful capture of this effect within DFT+U requires accounting for the relevant symmetry-breaking energy-lowering channels -- charge disproportionation and structural distortion; otherwise, tetragonal-symmetry-constrained calculations yield only a metallic state. Fe$_2$PO$_5$ is thus best described as a correlation- and hybridization-assisted, distortion-coupled, charge-disproportionated semiconductor. It represents a rare room-temperature semiconducting d-wave altermagnet. It also provides a rare platform for studying the coexistence of altermagnetism and charge density wave in quasi-one-dimensional systems.",
+        "authors": [
+          "Zhen Zhang",
+          "Mohd Anas",
+          "Andrey Kutepov",
+          "Parashu Kharel",
+          "Vladimir Antropov"
+        ],
+        "arxiv_id": "2604.06114v1",
+        "published": "2026-04-07",
+        "added_at": 1775679872.73794
+      },
+      {
+        "title": "HaloProbe: Bayesian Detection and Mitigation of Object Hallucinations in Vision-Language Models",
+        "abstract": "Large vision-language models can produce object hallucinations in image descriptions, highlighting the need for effective detection and mitigation strategies. Prior work commonly relies on the model's attention weights on visual tokens as a detection signal. We reveal that coarse-grained attention-based analysis is unreliable due to hidden confounders, specifically token position and object repetition in a description. This leads to Simpson's paradox: the attention trends reverse or disappear when statistics are aggregated. Based on this observation, we introduce HaloProbe, a Bayesian framework that factorizes external description statistics and internal decoding signals to estimate token-level hallucination probabilities. HaloProbe uses balanced training to isolate internal evidence and combines it with learned prior over external features to recover the true posterior. While intervention-based mitigation methods often degrade utility or fluency by modifying models' internals, we use HaloProbe as an external scoring signal for non-invasive mitigation. Our experiments show that HaloProbe-guided decoding reduces hallucinations more effectively than state-of-the-art intervention-based methods while preserving utility.",
+        "authors": [
+          "Reihaneh Zohrabi",
+          "Hosein Hasani",
+          "Akshita Gupta",
+          "Mahdieh Soleymani Baghshah",
+          "Anna Rohrbach",
+          "Marcus Rohrbach"
+        ],
+        "arxiv_id": "2604.06165v1",
+        "published": "2026-04-07",
+        "added_at": 1775679878.2430809
+      },
+      {
+        "title": "Mutual Linearity in and out of Stationarity for Markov Jump Processes: A Trajectory-Based Approach",
+        "abstract": "Nonequilibrium response theory is a fundamental framework for understanding how physical systems respond to perturbations. Recently, a mutual linearity has been discovered for Markov jump processes using linear algebra analysis. This mutual linearity states that two observables are linearly dependent on each other in the long-time limit when the transition rate of a single edge is altered. It has also been extended to non-stationary cases for current observables. In this work, we provide a trajectory-based derivation of mutual linearity utilizing the trajectory-level linear response theory. The trajectory approach allows us to generalize the mutual linearity to non-stationary relaxation dynamics for state observables and counting observables. Our results shed light on the fundamental response properties far from equilibrium and the trajectory-level origin of mutual linearity. Our trajectory-based approach makes it possible to generalize the mutual linearity to a broader class of systems, including diffusion processes and open quantum systems.",
+        "authors": [
+          "Jiming Zheng",
+          "Zhiyue Lu"
+        ],
+        "arxiv_id": "2604.06162v1",
+        "published": "2026-04-07",
+        "added_at": 1775679878.243083
+      },
+      {
+        "title": "Action Images: End-to-End Policy Learning via Multiview Video Generation",
+        "abstract": "World action models (WAMs) have emerged as a promising direction for robot policy learning, as they can leverage powerful video backbones to model the future states. However, existing approaches often rely on separate action modules, or use action representations that are not pixel-grounded, making it difficult to fully exploit the pretrained knowledge of video models and limiting transfer across viewpoints and environments. In this work, we present Action Images, a unified world action model that formulates policy learning as multiview video generation. Instead of encoding control as low-dimensional tokens, we translate 7-DoF robot actions into interpretable action images: multi-view action videos that are grounded in 2D pixels and explicitly track robot-arm motion. This pixel-grounded action representation allows the video backbone itself to act as a zero-shot policy, without a separate policy head or action module. Beyond control, the same unified model supports video-action joint generation, action-conditioned video generation, and action labeling under a shared representation. On RLBench and real-world evaluations, our model achieves the strongest zero-shot success rates and improves video-action joint generation quality over prior video-space world models, suggesting that interpretable action images are a promising route to policy learning.",
+        "authors": [
+          "Haoyu Zhen",
+          "Zixian Gao",
+          "Qiao Sun",
+          "Yilin Zhao",
+          "Yuncong Yang",
+          "Yilun Du",
+          "Tsun-Hsuan Wang",
+          "Yi-Ling Qiao",
+          "Chuang Gan"
+        ],
+        "arxiv_id": "2604.06168v1",
+        "published": "2026-04-07",
+        "added_at": 1775679881.19713
+      },
+      {
+        "title": "The Galois Alperin weight conjecture for finite category algebras",
+        "abstract": "Let $p$ be a prime, $k$ an algebraic closure of $\\mathbb{F}_p$ and $\u0393$ the Galois group ${\\rm Gal}(k/\\mathbb{F}_p)$. Let $\\mathcal{C}$ be a finite category and $\\mathcal{O}_{\\mathcal{C}}$ the $p$-orbit category of $\\mathcal{C}$ defined by Linckelmann. We formulate a version of the Galois Alperin weight conjecture (GAWC) for finite category algebras stating that there exists a $\u0393$-equivariant bijection between the set of isomorphism classes of simple $k\\mathcal{C}$-modules and that of the weight algebra $W(k\\mathcal{O}_{\\mathcal{C}})$. We show that the versions of the GAWC for finite groups and for finite categories are in fact equivalent. If $\\mathcal{C}$ is an EI-category, we can give a partition of weights of $k\\mathcal{O}_{\\mathcal{C}}$ with respect to blocks of $k\\mathcal{C}$ and formulate a blockwise Galois Alperin weight conjecture (BGAWC) for $\\mathcal{C}$. We show that the versions of the BGAWC for finite groups and for finite EI-categories are equivalent.",
+        "authors": [
+          "Xin Huang"
+        ],
+        "arxiv_id": "2604.06166v1",
+        "published": "2026-04-07",
+        "added_at": 1775679881.197132
       }
     ],
-    "total": 26,
+    "total": 33,
     "backend": "sklearn",
-    "timestamp": 1775679848.9312088
+    "timestamp": 1775679909.048963
   },
   "literature/citation-graph": {
     "nodes": [],
@@ -14832,10 +15159,10 @@ body::after {
       "max_citations": 0
     },
     "h_index": 0,
-    "timestamp": 1775679848.942443
+    "timestamp": 1775679909.06448
   }
 };
-  window.__SNAPSHOT_TIME__ = 1775679848.947582;
+  window.__SNAPSHOT_TIME__ = 1775679909.070179;
 
   async function api(path) {
     if (!apiConnected || API === null) return snapshotFor(path);
