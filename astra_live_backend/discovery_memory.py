@@ -222,8 +222,22 @@ class DiscoveryMemory:
                          description: str, data_source: str,
                          sample_size: int = 0,
                          effect_size: Optional[float] = None,
-                         metadata: Optional[dict] = None) -> DiscoveryRecord:
-        """Record a scientific finding for future hypothesis generation."""
+                         metadata: Optional[dict] = None) -> Optional[DiscoveryRecord]:
+        """Record a scientific finding for future hypothesis generation.
+        Returns None if the discovery is a duplicate of a recent one."""
+        # ── Deduplication: skip if last N discoveries have same fingerprint ──
+        dedup_window = 20  # look back this many discoveries
+        variables_key = tuple(sorted(variables)) if variables else ()
+        recent = self.discoveries[-dedup_window:] if len(self.discoveries) > 0 else []
+        for prev in recent:
+            prev_vars = tuple(sorted(prev.variables)) if prev.variables else ()
+            if (prev.finding_type == finding_type
+                    and prev.data_source == data_source
+                    and prev_vars == variables_key
+                    and abs(prev.statistic - statistic) < 0.01):
+                # Duplicate — skip recording
+                return None
+
         # Composite strength: significance × effect size proxy × log sample size
         sig_score = max(0, 1 - p_value) if p_value <= 1 else 0
         effect_score = min(1.0, abs(statistic) / 10.0)

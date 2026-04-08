@@ -1174,6 +1174,18 @@ class DiscoveryEngine:
             methods = self.strategist.select_investigation_methods(h, self.cycle_count)
             category = self.strategist.classify_hypothesis(h)
 
+            # Skip if this hypothesis's primary data source is blacklisted
+            if self._blacklisted_patterns:
+                _source_map = {
+                    "epidemiology": "who_gho", "economics": "world_bank",
+                    "climate": "gistemp", "cryptography": "cryptography",
+                }
+                primary_source = _source_map.get(category, "")
+                if primary_source and any(primary_source in p for p in self._blacklisted_patterns):
+                    self._log("INVESTIGATE", "ANTI_LOOP",
+                              f"Skipping {h.id} — primary source '{primary_source}' is blacklisted", h.id)
+                    continue
+
             # Filter out blacklisted method|source patterns
             if self._blacklisted_patterns and methods:
                 data_source = getattr(h, 'data_source', h.name.split()[0].lower() if h.name else '')
@@ -1787,7 +1799,7 @@ class DiscoveryEngine:
         self.total_plots += 1
 
     def _investigate_economics(self, h: Hypothesis):
-        """Economics investigation — World Bank GDP trends and cross-country analysis."""
+        """Economics investigation — World Bank GDP trends with cycle-varied analysis."""
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"Analyzing economic data for {h.id} ({h.name})", h.id)
         from .data_registry import get_registry
@@ -1801,58 +1813,123 @@ class DiscoveryEngine:
         h.data_points_used = len(result.data)
         values = result.data['value']
         years = result.data['year']
+        unique_years = np.unique(years)
+        from scipy import stats as sp_stats
 
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"World Bank sample: {len(values)} records, "
                   f"years {np.min(years)}–{np.max(years)}, "
                   f"GDP/capita range [{np.min(values):.0f}, {np.max(values):.0f}] USD", h.id)
 
-        # Trend analysis: GDP growth over time (global median per year)
-        unique_years = np.unique(years)
-        if len(unique_years) > 5:
+        # Rotate analysis type based on cycle count
+        analysis_mode = self.cycle_count % 5
+        finding_type = "trend"
+        stat_val, p_val_out = 0.0, 1.0
+        desc_suffix = ""
+
+        if analysis_mode == 0 and len(unique_years) > 5:
+            # Mode 0: Linear trend of median GDP
             medians = np.array([np.median(values[years == y]) for y in unique_years])
-            from scipy import stats as sp_stats
             slope, intercept, r_val, p_val, std_err = sp_stats.linregress(
                 unique_years.astype(float), medians)
-            trend_result = StatTestResult(
-                test_name="Linear Regression (GDP trend)",
-                statistic=float(r_val),
-                p_value=float(p_val),
-                passed=p_val < 0.05,
-                details=f"GDP/capita trend: slope={slope:.1f} USD/yr, r={r_val:.3f}, p={p_val:.4f}",
-            )
-            h.test_results.append(asdict(trend_result))
-            h.update_from_pvalue(p_val)
-            self._log("INVESTIGATE", "INVESTIGATE",
-                      f"GDP trend: slope={slope:.1f} USD/yr, r={r_val:.3f}, p={p_val:.4f}", h.id)
+            stat_val, p_val_out = float(r_val), float(p_val)
+            finding_type = "trend"
+            desc_suffix = f"GDP median trend: slope={slope:.1f} USD/yr, r={r_val:.3f}"
+            h.test_results.append(asdict(StatTestResult(
+                test_name="Linear Regression (GDP median trend)",
+                statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                details=desc_suffix)))
+            h.update_from_pvalue(p_val_out)
 
-        # Cross-country inequality: coefficient of variation per year
-        if len(unique_years) > 3:
+        elif analysis_mode == 1 and len(unique_years) > 5:
+            # Mode 1: Log-GDP growth rate analysis
+            medians = np.array([np.median(values[years == y]) for y in unique_years])
+            log_medians = np.log10(medians[medians > 0])
+            log_years = unique_years[:len(log_medians)].astype(float)
+            if len(log_medians) > 5:
+                slope, intercept, r_val, p_val, std_err = sp_stats.linregress(log_years, log_medians)
+                stat_val, p_val_out = float(r_val), float(p_val)
+                finding_type = "growth_rate"
+                desc_suffix = f"Log-GDP growth: {slope*100:.3f}%/yr, r={r_val:.3f}"
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="Log-Linear Growth Rate",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(p_val_out)
+
+        elif analysis_mode == 2 and len(unique_years) > 3:
+            # Mode 2: Cross-country inequality (CV trend)
             cvs = []
+            cv_years = []
             for y in unique_years:
                 yv = values[years == y]
                 if len(yv) > 5 and np.mean(yv) > 0:
                     cvs.append(np.std(yv) / np.mean(yv))
-            if len(cvs) > 3:
-                cv_arr = np.array(cvs)
-                self._log("INVESTIGATE", "INVESTIGATE",
-                          f"Cross-country inequality CV: {np.mean(cv_arr):.3f} ± {np.std(cv_arr):.3f}", h.id)
+                    cv_years.append(float(y))
+            if len(cvs) > 5:
+                slope, intercept, r_val, p_val, std_err = sp_stats.linregress(cv_years, cvs)
+                stat_val, p_val_out = float(r_val), float(p_val)
+                finding_type = "inequality_trend"
+                desc_suffix = f"CV trend: slope={slope:.4f}/yr, r={r_val:.3f} (convergence={slope<0})"
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="Inequality Convergence (CV trend)",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(p_val_out)
 
-        # Record discovery
+        elif analysis_mode == 3 and len(values) > 20:
+            # Mode 3: Distribution analysis (skewness, kurtosis)
+            valid = values[values > 0]
+            if len(valid) > 20:
+                skew = float(sp_stats.skew(valid))
+                kurt = float(sp_stats.kurtosis(valid))
+                ks_stat, ks_p = sp_stats.kstest(np.log10(valid), 'norm',
+                                                 args=(np.mean(np.log10(valid)), np.std(np.log10(valid))))
+                stat_val, p_val_out = float(ks_stat), float(ks_p)
+                finding_type = "distribution"
+                desc_suffix = f"GDP distribution: skew={skew:.2f}, kurt={kurt:.2f}, log-normal KS p={ks_p:.4f}"
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="GDP Distribution Analysis (KS log-normal)",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out > 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(max(0.01, 1.0 - p_val_out))  # Inverted: high p = good fit
+
+        elif analysis_mode == 4 and len(unique_years) > 10:
+            # Mode 4: Volatility clustering — rolling std of annual median changes
+            medians = np.array([np.median(values[years == y]) for y in unique_years])
+            if len(medians) > 10:
+                pct_changes = np.diff(medians) / medians[:-1] * 100
+                window = min(5, len(pct_changes) // 3)
+                if window > 1:
+                    rolling_vol = np.array([np.std(pct_changes[i:i+window])
+                                            for i in range(len(pct_changes) - window + 1)])
+                    vol_trend = sp_stats.linregress(np.arange(len(rolling_vol)), rolling_vol)
+                    stat_val, p_val_out = float(vol_trend.rvalue), float(vol_trend.pvalue)
+                    finding_type = "volatility"
+                    desc_suffix = f"GDP volatility trend: r={vol_trend.rvalue:.3f}, p={vol_trend.pvalue:.4f}"
+                    h.test_results.append(asdict(StatTestResult(
+                        test_name="Volatility Clustering Analysis",
+                        statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                        details=desc_suffix)))
+                    h.update_from_pvalue(p_val_out)
+
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"Economics mode {analysis_mode}: {desc_suffix or 'insufficient data'}", h.id)
+
+        # Record discovery (dedup handled by discovery_memory)
         self.discovery_memory.record_discovery(
             hypothesis_id=h.id, domain=h.domain,
-            finding_type="trend",
-            variables=["gdp_per_capita", "year"],
-            statistic=float(r_val) if 'r_val' in dir() else 0.0,
-            p_value=float(p_val) if 'p_val' in dir() else 1.0,
-            description=f"Economics analysis: {len(values)} records from World Bank",
+            finding_type=finding_type,
+            variables=["gdp_per_capita", "year", f"mode_{analysis_mode}"],
+            statistic=stat_val, p_value=p_val_out,
+            description=f"Economics [{finding_type}]: {desc_suffix}" if desc_suffix else f"Economics analysis mode {analysis_mode}",
             data_source="world_bank",
             sample_size=len(values),
         )
         self.total_plots += 1
 
     def _investigate_climate(self, h: Hypothesis):
-        """Climate investigation — NASA GISTEMP temperature anomaly trends."""
+        """Climate investigation — NASA GISTEMP with cycle-varied analysis."""
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"Analyzing climate data for {h.id} ({h.name})", h.id)
         from .data_registry import get_registry
@@ -1866,51 +1943,117 @@ class DiscoveryEngine:
         h.data_points_used = len(result.data)
         years = result.data['year'].astype(float)
         temps = result.data['temp_anomaly']
+        from scipy import stats as sp_stats
 
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"GISTEMP sample: {len(temps)} years ({int(np.min(years))}–{int(np.max(years))}), "
                   f"anomaly range [{np.min(temps):.2f}, {np.max(temps):.2f}] °C", h.id)
 
-        # Linear warming trend
-        from scipy import stats as sp_stats
-        slope, intercept, r_val, p_val, std_err = sp_stats.linregress(years, temps)
-        trend_result = StatTestResult(
-            test_name="Linear Regression (warming trend)",
-            statistic=float(r_val),
-            p_value=float(p_val),
-            passed=p_val < 0.05,
-            details=f"Warming trend: {slope*10:.3f} °C/decade, r={r_val:.3f}, p={p_val:.2e}",
-        )
-        h.test_results.append(asdict(trend_result))
-        h.update_from_pvalue(p_val)
-        self._log("INVESTIGATE", "INVESTIGATE",
-                  f"Warming trend: {slope*10:.3f} °C/decade, r={r_val:.3f}, p={p_val:.2e}", h.id)
+        analysis_mode = self.cycle_count % 4
+        finding_type = "trend"
+        stat_val, p_val_out = 0.0, 1.0
+        desc_suffix = ""
 
-        # Change point detection: is warming accelerating?
-        if len(temps) > 30:
+        if analysis_mode == 0:
+            # Mode 0: Full-period linear trend
+            slope, intercept, r_val, p_val, std_err = sp_stats.linregress(years, temps)
+            stat_val, p_val_out = float(r_val), float(p_val)
+            finding_type = "trend"
+            desc_suffix = f"Full-period warming: {slope*10:.3f} °C/decade, r={r_val:.3f}"
+            h.test_results.append(asdict(StatTestResult(
+                test_name="Linear Regression (full-period warming)",
+                statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                details=desc_suffix)))
+            h.update_from_pvalue(p_val_out)
+
+        elif analysis_mode == 1 and len(temps) > 30:
+            # Mode 1: Acceleration — compare early vs late half slopes
             mid = len(temps) // 2
-            early_slope = sp_stats.linregress(years[:mid], temps[:mid]).slope
-            late_slope = sp_stats.linregress(years[mid:], temps[mid:]).slope
-            accel = late_slope / early_slope if abs(early_slope) > 1e-6 else 0
-            self._log("INVESTIGATE", "INVESTIGATE",
-                      f"Acceleration: early={early_slope*10:.3f} °C/dec, "
-                      f"late={late_slope*10:.3f} °C/dec, ratio={accel:.2f}x", h.id)
+            early = sp_stats.linregress(years[:mid], temps[:mid])
+            late = sp_stats.linregress(years[mid:], temps[mid:])
+            accel = late.slope / early.slope if abs(early.slope) > 1e-6 else 0
+            # Use Chow test proxy: compare residuals
+            full_res = sp_stats.linregress(years, temps)
+            rss_full = np.sum((temps - (full_res.slope * years + full_res.intercept))**2)
+            rss_early = np.sum((temps[:mid] - (early.slope * years[:mid] + early.intercept))**2)
+            rss_late = np.sum((temps[mid:] - (late.slope * years[mid:] + late.intercept))**2)
+            rss_split = rss_early + rss_late
+            n = len(temps)
+            k = 2  # parameters per model
+            if rss_split > 0:
+                f_stat = ((rss_full - rss_split) / k) / (rss_split / (n - 2*k))
+                from scipy.stats import f as f_dist
+                f_p = 1 - f_dist.cdf(abs(f_stat), k, n - 2*k)
+            else:
+                f_stat, f_p = 0.0, 1.0
+            stat_val, p_val_out = float(f_stat), float(f_p)
+            finding_type = "acceleration"
+            desc_suffix = (f"Warming acceleration: early={early.slope*10:.3f}, late={late.slope*10:.3f} °C/dec, "
+                          f"ratio={accel:.2f}x, structural break F={f_stat:.2f}, p={f_p:.4f}")
+            h.test_results.append(asdict(StatTestResult(
+                test_name="Structural Break Test (warming acceleration)",
+                statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                details=desc_suffix)))
+            h.update_from_pvalue(p_val_out)
 
-        # Record discovery
+        elif analysis_mode == 2 and len(temps) > 20:
+            # Mode 2: Decadal variability — std of decadal means
+            decade_starts = np.arange(int(np.min(years)) // 10 * 10,
+                                       int(np.max(years)), 10)
+            dec_means = []
+            for ds in decade_starts:
+                mask = (years >= ds) & (years < ds + 10)
+                if np.sum(mask) >= 5:
+                    dec_means.append(np.mean(temps[mask]))
+            if len(dec_means) > 3:
+                dec_arr = np.array(dec_means)
+                dec_diffs = np.diff(dec_arr)
+                t_stat, t_p = sp_stats.ttest_1samp(dec_diffs, 0)
+                stat_val, p_val_out = float(t_stat), float(t_p)
+                finding_type = "decadal_variability"
+                desc_suffix = f"Decadal jumps: mean={np.mean(dec_diffs):.3f}°C, t={t_stat:.2f}, p={t_p:.4f}"
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="Decadal Jump Analysis (t-test)",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(p_val_out)
+
+        elif analysis_mode == 3 and len(temps) > 20:
+            # Mode 3: Residual autocorrelation after detrending
+            slope, intercept, r_val, p_val, std_err = sp_stats.linregress(years, temps)
+            residuals = temps - (slope * years + intercept)
+            # Durbin-Watson-like lag-1 autocorrelation
+            if len(residuals) > 10:
+                autocorr = np.corrcoef(residuals[:-1], residuals[1:])[0, 1]
+                # Test significance with approximate z-test
+                z = autocorr * np.sqrt(len(residuals))
+                z_p = 2 * (1 - sp_stats.norm.cdf(abs(z)))
+                stat_val, p_val_out = float(autocorr), float(z_p)
+                finding_type = "autocorrelation"
+                desc_suffix = f"Residual autocorrelation: r={autocorr:.3f}, z={z:.2f}, p={z_p:.4f}"
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="Residual Autocorrelation (lag-1)",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(p_val_out)
+
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"Climate mode {analysis_mode}: {desc_suffix or 'insufficient data'}", h.id)
+
+        # Record discovery (dedup handled by discovery_memory)
         self.discovery_memory.record_discovery(
             hypothesis_id=h.id, domain=h.domain,
-            finding_type="trend",
-            variables=["year", "temp_anomaly"],
-            statistic=float(r_val),
-            p_value=float(p_val),
-            description=f"Climate analysis: warming {slope*10:.3f} °C/decade over {len(temps)} years",
+            finding_type=finding_type,
+            variables=["year", "temp_anomaly", f"mode_{analysis_mode}"],
+            statistic=stat_val, p_value=p_val_out,
+            description=f"Climate [{finding_type}]: {desc_suffix}" if desc_suffix else f"Climate analysis mode {analysis_mode}",
             data_source="gistemp",
             sample_size=len(temps),
         )
         self.total_plots += 1
 
     def _investigate_epidemiology(self, h: Hypothesis):
-        """Epidemiology investigation — WHO life expectancy trends and disparities."""
+        """Epidemiology investigation — WHO data with cycle-varied analysis."""
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"Analyzing epidemiology data for {h.id} ({h.name})", h.id)
         from .data_registry import get_registry
@@ -1924,53 +2067,101 @@ class DiscoveryEngine:
         h.data_points_used = len(result.data)
         le = result.data['life_expectancy']
         years = result.data['year']
+        unique_years = np.unique(years)
+        from scipy import stats as sp_stats
 
         self._log("INVESTIGATE", "INVESTIGATE",
                   f"WHO sample: {len(le)} records, years {np.min(years)}–{np.max(years)}, "
                   f"life expectancy range [{np.min(le):.1f}, {np.max(le):.1f}] years", h.id)
 
-        # Global life expectancy trend
-        unique_years = np.unique(years)
-        if len(unique_years) > 3:
+        analysis_mode = self.cycle_count % 4
+        finding_type = "trend"
+        stat_val, p_val_out = 0.0, 1.0
+        desc_suffix = ""
+
+        if analysis_mode == 0 and len(unique_years) > 3:
+            # Mode 0: Global median life expectancy trend
             medians = np.array([np.median(le[years == y]) for y in unique_years])
-            from scipy import stats as sp_stats
             slope, intercept, r_val, p_val, std_err = sp_stats.linregress(
                 unique_years.astype(float), medians)
-            trend_result = StatTestResult(
+            stat_val, p_val_out = float(r_val), float(p_val)
+            finding_type = "trend"
+            desc_suffix = f"Life expectancy trend: {slope:.2f} yr/yr, r={r_val:.3f}"
+            h.test_results.append(asdict(StatTestResult(
                 test_name="Linear Regression (life expectancy trend)",
-                statistic=float(r_val),
-                p_value=float(p_val),
-                passed=p_val < 0.05,
-                details=f"Life expectancy trend: {slope:.2f} yr/yr, r={r_val:.3f}, p={p_val:.4f}",
-            )
-            h.test_results.append(asdict(trend_result))
-            h.update_from_pvalue(p_val)
-            self._log("INVESTIGATE", "INVESTIGATE",
-                      f"Life expectancy trend: {slope:.2f} yr/yr, r={r_val:.3f}", h.id)
+                statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                details=desc_suffix)))
+            h.update_from_pvalue(p_val_out)
 
-        # Cross-country disparity: Gini-like spread
-        latest_year = np.max(years)
-        latest_le = le[years == latest_year]
-        if len(latest_le) > 5:
-            spread = np.max(latest_le) - np.min(latest_le)
-            iqr = np.percentile(latest_le, 75) - np.percentile(latest_le, 25)
-            self._log("INVESTIGATE", "INVESTIGATE",
-                      f"Life expectancy disparity ({latest_year}): "
-                      f"range={spread:.1f} yr, IQR={iqr:.1f} yr, n={len(latest_le)} countries", h.id)
+        elif analysis_mode == 1:
+            # Mode 1: Cross-country disparity at latest year (KS normality)
+            latest_year = np.max(years)
+            latest_le = le[years == latest_year]
+            if len(latest_le) > 5:
+                ks_result = kolmogorov_smirnov_test(latest_le, "norm")
+                stat_val, p_val_out = float(ks_result.statistic), float(ks_result.p_value)
+                finding_type = "distribution"
+                spread = np.max(latest_le) - np.min(latest_le)
+                iqr = np.percentile(latest_le, 75) - np.percentile(latest_le, 25)
+                desc_suffix = (f"Life expectancy disparity ({latest_year}): "
+                              f"range={spread:.1f}yr, IQR={iqr:.1f}yr, KS p={p_val_out:.4f}")
+                h.test_results.append(asdict(ks_result))
+                h.update_from_pvalue(p_val_out)
 
-            # KS test: is the distribution normal?
-            ks_result = kolmogorov_smirnov_test(latest_le, "norm")
-            h.test_results.append(asdict(ks_result))
-            h.update_from_pvalue(ks_result.p_value)
+        elif analysis_mode == 2 and len(unique_years) > 5:
+            # Mode 2: Convergence — is cross-country spread shrinking?
+            spreads = []
+            spread_years = []
+            for y in unique_years:
+                y_le = le[years == y]
+                if len(y_le) > 5:
+                    spreads.append(float(np.std(y_le)))
+                    spread_years.append(float(y))
+            if len(spreads) > 5:
+                slope, intercept, r_val, p_val, std_err = sp_stats.linregress(spread_years, spreads)
+                stat_val, p_val_out = float(r_val), float(p_val)
+                finding_type = "convergence"
+                desc_suffix = (f"Health convergence: std slope={slope:.3f}/yr, r={r_val:.3f}, "
+                              f"{'converging' if slope < 0 else 'diverging'}")
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="Health Convergence (std trend)",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(p_val_out)
 
-        # Record discovery
+        elif analysis_mode == 3 and len(unique_years) > 3:
+            # Mode 3: Percentile gap — difference between 90th and 10th percentile over time
+            gaps = []
+            gap_years = []
+            for y in unique_years:
+                y_le = le[years == y]
+                if len(y_le) > 10:
+                    p90 = np.percentile(y_le, 90)
+                    p10 = np.percentile(y_le, 10)
+                    gaps.append(p90 - p10)
+                    gap_years.append(float(y))
+            if len(gaps) > 5:
+                slope, intercept, r_val, p_val, std_err = sp_stats.linregress(gap_years, gaps)
+                stat_val, p_val_out = float(r_val), float(p_val)
+                finding_type = "percentile_gap"
+                desc_suffix = (f"90-10 percentile gap trend: slope={slope:.3f}yr/yr, r={r_val:.3f}, "
+                              f"latest gap={gaps[-1]:.1f}yr")
+                h.test_results.append(asdict(StatTestResult(
+                    test_name="Percentile Gap Trend (90th-10th)",
+                    statistic=stat_val, p_value=p_val_out, passed=p_val_out < 0.05,
+                    details=desc_suffix)))
+                h.update_from_pvalue(p_val_out)
+
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"Epidemiology mode {analysis_mode}: {desc_suffix or 'insufficient data'}", h.id)
+
+        # Record discovery (dedup handled by discovery_memory)
         self.discovery_memory.record_discovery(
             hypothesis_id=h.id, domain=h.domain,
-            finding_type="trend",
-            variables=["life_expectancy", "year"],
-            statistic=float(r_val) if 'r_val' in dir() else 0.0,
-            p_value=float(p_val) if 'p_val' in dir() else 1.0,
-            description=f"Epidemiology analysis: {len(le)} records from WHO GHO",
+            finding_type=finding_type,
+            variables=["life_expectancy", "year", f"mode_{analysis_mode}"],
+            statistic=stat_val, p_value=p_val_out,
+            description=f"Epidemiology [{finding_type}]: {desc_suffix}" if desc_suffix else f"Epidemiology analysis mode {analysis_mode}",
             data_source="who_gho",
             sample_size=len(le),
         )
