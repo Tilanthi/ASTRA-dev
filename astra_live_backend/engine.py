@@ -384,8 +384,8 @@ class DiscoveryEngine:
 
         # 3. Mathematical Discovery (uses real data)
         try:
-            exo_data = data_cache.get("exoplanets")
-            if exo_data and hasattr(exo_data, 'data') and len(exo_data.data) > 0:
+            exo_data = get_cached_exoplanets()
+            if exo_data and hasattr(exo_data, 'data') and exo_data.data is not None and len(exo_data.data) > 0:
                 df = exo_data.data.select_dtypes(include=[np.number])
                 if len(df.columns) >= 2:
                     x = df.iloc[:, 0].values[:100]
@@ -433,9 +433,10 @@ class DiscoveryEngine:
         # 5. Unsupervised Discovery (30% chance)
         try:
             if np.random.random() < 0.3:
-                for source in ["exoplanets", "gaia", "sdss"]:
-                    cached = data_cache.get(source)
-                    if cached and hasattr(cached, 'data') and len(cached.data) > 0:
+                _unsup_fetchers = {"exoplanets": get_cached_exoplanets, "gaia": get_cached_gaia, "sdss": get_cached_sdss}
+                for source, fetcher in _unsup_fetchers.items():
+                    cached = fetcher()
+                    if cached and hasattr(cached, 'data') and cached.data is not None and len(cached.data) > 0:
                         df = cached.data.select_dtypes(include=[np.number])
                         if len(df.columns) >= 3:
                             data_subset = df.dropna().iloc[:200].values
@@ -516,10 +517,16 @@ class DiscoveryEngine:
                               f"Found {len(high_priority_gaps)} high-priority knowledge gaps")
 
             # 2. Cognitive discovery from recent data
-            for source_name in ["exoplanets", "sdss", "gaia"]:
+            # Use fetch-or-cache functions (not passive data_cache.get) to ensure data is available
+            _cog_fetchers = {
+                "exoplanets": get_cached_exoplanets,
+                "sdss": get_cached_sdss,
+                "gaia": get_cached_gaia,
+            }
+            for source_name, fetcher in _cog_fetchers.items():
                 try:
-                    cached = data_cache.get(source_name)
-                    if cached and hasattr(cached, 'data') and len(cached.data) > 0:
+                    cached = fetcher()
+                    if cached and hasattr(cached, 'data') and cached.data is not None and len(cached.data) > 0:
                         df = cached.data.select_dtypes(include=[np.number])
 
                         if len(df.columns) >= 2 and len(df) > 20:

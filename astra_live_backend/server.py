@@ -1042,6 +1042,7 @@ def api_persistence():
 
 
 @app.get("/api/engine/degradation-status")
+@app.get("/api/engine/degradation")
 def api_degradation_status():
     """Current degradation detection metrics and recommendations."""
     return engine.degradation_detector.get_status()
@@ -1994,6 +1995,7 @@ async def api_metacognition_report():
 # ═══════════════════════════════════════════════════════════════
 
 @app.get("/api/agents/status")
+@app.get("/api/multi-agent/status")
 async def api_agents_status():
     """Get status of multi-agent collaboration system (V9.0)."""
     try:
