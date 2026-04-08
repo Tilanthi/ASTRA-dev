@@ -1,0 +1,524 @@
+{
+  "metadata": {
+    "date": "2026-04-08T11:17:38.764185",
+    "phase": 2,
+    "purpose": "Combined effects simulation"
+  },
+  "observations": {
+    "width_pc": 0.1,
+    "spacing_pc": 0.21,
+    "ratio": 2.0999999999999996
+  },
+  "parameters_tested": {
+    "L_over_H_values": [
+      10,
+      15,
+      20,
+      25
+    ],
+    "P_ext_values": [
+      0,
+      10000.0,
+      30000.0,
+      100000.0
+    ],
+    "taper_types": [
+      "none",
+      "linear",
+      "exponential"
+    ]
+  },
+  "results": [
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.542914547123972,
+      "ratio": 5.42914547123972,
+      "compression_factor": 1.0,
+      "expected_wavelength_pc": 0.542914547123972
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.38067890598339693,
+      "ratio": 3.806789059833969,
+      "compression_factor": 1.0,
+      "expected_wavelength_pc": 0.542914547123972
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.3800464448565683,
+      "ratio": 3.8004644485656827,
+      "compression_factor": 1.0,
+      "expected_wavelength_pc": 0.542914547123972
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 10000.0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.5273559101198098,
+      "ratio": 5.273559101198098,
+      "compression_factor": 0.9455445718350759,
+      "expected_wavelength_pc": 0.542914547123972
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 10000.0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.3697695558016548,
+      "ratio": 3.697695558016548,
+      "compression_factor": 0.9455445718350759,
+      "expected_wavelength_pc": 0.542914547123972
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 10000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.3691552195033903,
+      "ratio": 3.691552195033903,
+      "compression_factor": 0.9455445718350759,
+      "expected_wavelength_pc": 0.542914547123972
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 30000.0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.501352513662772,
+      "ratio": 5.013525136627719,
+      "compression_factor": 0.8589151023704521,
+      "expected_wavelength_pc": 0.542914547123972
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 30000.0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.35153658605060245,
+      "ratio": 3.5153658605060243,
+      "compression_factor": 0.8589151023704521,
+      "expected_wavelength_pc": 0.542914547123972
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 30000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.35095254206539483,
+      "ratio": 3.509525420653948,
+      "compression_factor": 0.8589151023704521,
+      "expected_wavelength_pc": 0.542914547123972
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.4399076270163838,
+      "ratio": 4.399076270163838,
+      "compression_factor": 0.6765100914917385,
+      "expected_wavelength_pc": 0.542914547123972
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.3084528772961938,
+      "ratio": 3.0845287729619377,
+      "compression_factor": 0.6765100914917385,
+      "expected_wavelength_pc": 0.542914547123972
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.3079404127196649,
+      "ratio": 3.0794041271966486,
+      "compression_factor": 0.6765100914917385,
+      "expected_wavelength_pc": 0.542914547123972
+    },
+    {
+      "L_over_H": 15,
+      "P_ext_kbcm": 0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.6543902152729377,
+      "ratio": 6.543902152729377,
+      "compression_factor": 1.0,
+      "expected_wavelength_pc": 0.6543902152729377
+    },
+    {
+      "L_over_H": 15,
+      "P_ext_kbcm": 0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.45884302153255396,
+      "ratio": 4.588430215325539,
+      "compression_factor": 1.0,
+      "expected_wavelength_pc": 0.6543902152729377
+    },
+    {
+      "L_over_H": 15,
+      "P_ext_kbcm": 0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.4580806982993129,
+      "ratio": 4.580806982993129,
+      "compression_factor": 1.0,
+      "expected_wavelength_pc": 0.6543902152729377
+    },
+    {
+      "L_over_H": 15,
+      "P_ext_kbcm": 10000.0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.6336660722307844,
+      "ratio": 6.336660722307844,
+      "compression_factor": 0.9455445718350759,
+      "expected_wavelength_pc": 0.6543902152729377
+    },
+    {
+      "L_over_H": 15,
+      "P_ext_kbcm": 10000.0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.44431174005829116,
+      "ratio": 4.443117400582912,
+      "compression_factor": 0.9455445718350759,
+      "expected_wavelength_pc": 0.6543902152729377
+    },
+    {
+      "L_over_H": 15,
+      "P_ext_kbcm": 10000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.44357355914160884,
+      "ratio": 4.435735591416088,
+      "compression_factor": 0.9455445718350759,
+      "expected_wavelength_pc": 0.6543902152729377
+    },
+    {
+      "L_over_H": 15,
+      "P_ext_kbcm": 30000.0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.5987271479166826,
+      "ratio": 5.987271479166825,
+      "compression_factor": 0.8589151023704521,
+      "expected_wavelength_pc": 0.6543902152729377
+    },
+    {
+      "L_over_H": 15,
+      "P_ext_kbcm": 30000.0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.41981338842157984,
+      "ratio": 4.198133884215798,
+      "compression_factor": 0.8589151023704521,
+      "expected_wavelength_pc": 0.6543902152729377
+    },
+    {
+      "L_over_H": 15,
+      "P_ext_kbcm": 30000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.41911590914304464,
+      "ratio": 4.191159091430446,
+      "compression_factor": 0.8589151023704521,
+      "expected_wavelength_pc": 0.6543902152729377
+    },
+    {
+      "L_over_H": 15,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.5151562463506743,
+      "ratio": 5.1515624635067425,
+      "compression_factor": 0.6765100914917385,
+      "expected_wavelength_pc": 0.6543902152729377
+    },
+    {
+      "L_over_H": 15,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.3612154386176492,
+      "ratio": 3.612154386176492,
+      "compression_factor": 0.6765100914917385,
+      "expected_wavelength_pc": 0.6543902152729377
+    },
+    {
+      "L_over_H": 15,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.36061531415646886,
+      "ratio": 3.6061531415646884,
+      "compression_factor": 0.6765100914917385,
+      "expected_wavelength_pc": 0.6543902152729377
+    },
+    {
+      "L_over_H": 20,
+      "P_ext_kbcm": 0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.734266021868805,
+      "ratio": 7.342660218688049,
+      "compression_factor": 1.0,
+      "expected_wavelength_pc": 0.734266021868805
+    },
+    {
+      "L_over_H": 20,
+      "P_ext_kbcm": 0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.5148500576868327,
+      "ratio": 5.148500576868327,
+      "compression_factor": 1.0,
+      "expected_wavelength_pc": 0.734266021868805
+    },
+    {
+      "L_over_H": 20,
+      "P_ext_kbcm": 0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.5139946841882901,
+      "ratio": 5.1399468418829,
+      "compression_factor": 1.0,
+      "expected_wavelength_pc": 0.734266021868805
+    },
+    {
+      "L_over_H": 20,
+      "P_ext_kbcm": 10000.0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.7083922406763414,
+      "ratio": 7.083922406763414,
+      "compression_factor": 0.9455445718350759,
+      "expected_wavelength_pc": 0.734266021868805
+    },
+    {
+      "L_over_H": 20,
+      "P_ext_kbcm": 10000.0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.4967079711095288,
+      "ratio": 4.967079711095288,
+      "compression_factor": 0.9455445718350759,
+      "expected_wavelength_pc": 0.734266021868805
+    },
+    {
+      "L_over_H": 20,
+      "P_ext_kbcm": 10000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.4958827389304536,
+      "ratio": 4.958827389304536,
+      "compression_factor": 0.9455445718350759,
+      "expected_wavelength_pc": 0.734266021868805
+    },
+    {
+      "L_over_H": 20,
+      "P_ext_kbcm": 30000.0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.6647815894928316,
+      "ratio": 6.647815894928316,
+      "compression_factor": 0.8589151023704521,
+      "expected_wavelength_pc": 0.734266021868805
+    },
+    {
+      "L_over_H": 20,
+      "P_ext_kbcm": 30000.0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.4661292086326207,
+      "ratio": 4.661292086326207,
+      "compression_factor": 0.8589151023704521,
+      "expected_wavelength_pc": 0.734266021868805
+    },
+    {
+      "L_over_H": 20,
+      "P_ext_kbcm": 30000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.46535478010530856,
+      "ratio": 4.653547801053086,
+      "compression_factor": 0.8589151023704521,
+      "expected_wavelength_pc": 0.734266021868805
+    },
+    {
+      "L_over_H": 20,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.5611300940147698,
+      "ratio": 5.611300940147697,
+      "compression_factor": 0.6765100914917385,
+      "expected_wavelength_pc": 0.734266021868805
+    },
+    {
+      "L_over_H": 20,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.3934512188621209,
+      "ratio": 3.934512188621209,
+      "compression_factor": 0.6765100914917385,
+      "expected_wavelength_pc": 0.734266021868805
+    },
+    {
+      "L_over_H": 20,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.39279753777466797,
+      "ratio": 3.9279753777466797,
+      "compression_factor": 0.6765100914917385,
+      "expected_wavelength_pc": 0.734266021868805
+    },
+    {
+      "L_over_H": 25,
+      "P_ext_kbcm": 0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.7914995382520803,
+      "ratio": 7.914995382520803,
+      "compression_factor": 1.0,
+      "expected_wavelength_pc": 0.7914995382520803
+    },
+    {
+      "L_over_H": 25,
+      "P_ext_kbcm": 0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.5549808527038116,
+      "ratio": 5.549808527038116,
+      "compression_factor": 1.0,
+      "expected_wavelength_pc": 0.7914995382520803
+    },
+    {
+      "L_over_H": 25,
+      "P_ext_kbcm": 0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.5540588057767232,
+      "ratio": 5.5405880577672315,
+      "compression_factor": 1.0,
+      "expected_wavelength_pc": 0.7914995382520803
+    },
+    {
+      "L_over_H": 25,
+      "P_ext_kbcm": 10000.0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.7609177955214632,
+      "ratio": 7.609177955214632,
+      "compression_factor": 0.9455445718350759,
+      "expected_wavelength_pc": 0.7914995382520803
+    },
+    {
+      "L_over_H": 25,
+      "P_ext_kbcm": 10000.0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.53353765427152,
+      "ratio": 5.3353765427152,
+      "compression_factor": 0.9455445718350759,
+      "expected_wavelength_pc": 0.7914995382520803
+    },
+    {
+      "L_over_H": 25,
+      "P_ext_kbcm": 10000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.5326512331414752,
+      "ratio": 5.326512331414752,
+      "compression_factor": 0.9455445718350759,
+      "expected_wavelength_pc": 0.7914995382520803
+    },
+    {
+      "L_over_H": 25,
+      "P_ext_kbcm": 30000.0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.7095898630783277,
+      "ratio": 7.095898630783277,
+      "compression_factor": 0.8589151023704521,
+      "expected_wavelength_pc": 0.7914995382520803
+    },
+    {
+      "L_over_H": 25,
+      "P_ext_kbcm": 30000.0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.49754771575845097,
+      "ratio": 4.97547715758451,
+      "compression_factor": 0.8589151023704521,
+      "expected_wavelength_pc": 0.7914995382520803
+    },
+    {
+      "L_over_H": 25,
+      "P_ext_kbcm": 30000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.4967210884249855,
+      "ratio": 4.967210884249855,
+      "compression_factor": 0.8589151023704521,
+      "expected_wavelength_pc": 0.7914995382520803
+    },
+    {
+      "L_over_H": 25,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "none",
+      "taper_amount": 0.0,
+      "wavelength_pc": 0.5892182461661316,
+      "ratio": 5.892182461661315,
+      "compression_factor": 0.6765100914917385,
+      "expected_wavelength_pc": 0.7914995382520803
+    },
+    {
+      "L_over_H": 25,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.41314597025295813,
+      "ratio": 4.131459702529581,
+      "compression_factor": 0.6765100914917385,
+      "expected_wavelength_pc": 0.7914995382520803
+    },
+    {
+      "L_over_H": 25,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_pc": 0.4124595682438532,
+      "ratio": 4.124595682438532,
+      "compression_factor": 0.6765100914917385,
+      "expected_wavelength_pc": 0.7914995382520803
+    }
+  ],
+  "matches": [],
+  "best_match": {
+    "L_over_H": 10,
+    "P_ext_kbcm": 100000.0,
+    "taper_type": "exponential",
+    "taper_amount": 0.3,
+    "wavelength_pc": 0.3079404127196649,
+    "ratio": 3.0794041271966486,
+    "compression_factor": 0.6765100914917385,
+    "expected_wavelength_pc": 0.542914547123972
+  }
+}

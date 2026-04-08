@@ -1,0 +1,250 @@
+{
+  "metadata": {
+    "date": "2026-04-08T11:09:21.500785",
+    "phase": 1,
+    "purpose": "Rapid tests of single effects"
+  },
+  "observations": {
+    "width_pc": 0.1,
+    "spacing_pc": 0.21,
+    "ratio": 2.0999999999999996
+  },
+  "finite_length_results": [
+    {
+      "L_over_H": 5,
+      "wavelength_pc": 0.8020412203039915,
+      "ratio": 8.020412203039914,
+      "reduction_from_infinite": 1.1672345374108428
+    },
+    {
+      "L_over_H": 10,
+      "wavelength_pc": 1.0952669621912619,
+      "ratio": 10.952669621912618,
+      "reduction_from_infinite": 0.8547415790694488
+    },
+    {
+      "L_over_H": 15,
+      "wavelength_pc": 1.323631399589762,
+      "ratio": 13.23631399589762,
+      "reduction_from_infinite": 0.707274104449402
+    },
+    {
+      "L_over_H": 20,
+      "wavelength_pc": 1.5014818022613743,
+      "ratio": 15.014818022613742,
+      "reduction_from_infinite": 0.6234975417990389
+    },
+    {
+      "L_over_H": 25,
+      "wavelength_pc": 1.6399918351315912,
+      "ratio": 16.39991835131591,
+      "reduction_from_infinite": 0.5708383375523575
+    },
+    {
+      "L_over_H": 30,
+      "wavelength_pc": 1.7478635571941614,
+      "ratio": 17.478635571941613,
+      "reduction_from_infinite": 0.5356082909977183
+    },
+    {
+      "L_over_H": 40,
+      "wavelength_pc": 1.8973016455547014,
+      "ratio": 18.97301645554701,
+      "reduction_from_infinite": 0.4934219157820082
+    },
+    {
+      "L_over_H": 50,
+      "wavelength_pc": 1.987940427874214,
+      "ratio": 19.87940427874214,
+      "reduction_from_infinite": 0.47092468146394234
+    },
+    {
+      "L_over_H": 75,
+      "wavelength_pc": 2.087629368755729,
+      "ratio": 20.876293687557286,
+      "reduction_from_infinite": 0.4484369815720377
+    },
+    {
+      "L_over_H": 100,
+      "wavelength_pc": 2.127659574468084,
+      "ratio": 21.27659574468084,
+      "reduction_from_infinite": 0.4400000000000002
+    }
+  ],
+  "external_pressure_results": [
+    {
+      "P_ext_kbcm": 0,
+      "wavelength_pc": 0.734266021868805,
+      "ratio": 7.342660218688049,
+      "compression_factor": 1.0
+    },
+    {
+      "P_ext_kbcm": 1000.0,
+      "wavelength_pc": 0.7315285785373545,
+      "ratio": 7.315285785373545,
+      "compression_factor": 0.9941271437703156
+    },
+    {
+      "P_ext_kbcm": 5000.0,
+      "wavelength_pc": 0.720925340714584,
+      "ratio": 7.20925340714584,
+      "compression_factor": 0.9716296600893537
+    },
+    {
+      "P_ext_kbcm": 10000.0,
+      "wavelength_pc": 0.7083922406763414,
+      "ratio": 7.083922406763414,
+      "compression_factor": 0.9455445718350759
+    },
+    {
+      "P_ext_kbcm": 30000.0,
+      "wavelength_pc": 0.6647815894928316,
+      "ratio": 6.647815894928316,
+      "compression_factor": 0.8589151023704521
+    },
+    {
+      "P_ext_kbcm": 50000.0,
+      "wavelength_pc": 0.629018150770176,
+      "ratio": 6.290181507701759,
+      "compression_factor": 0.7924288517503274
+    },
+    {
+      "P_ext_kbcm": 100000.0,
+      "wavelength_pc": 0.5611300940147698,
+      "ratio": 5.611300940147697,
+      "compression_factor": 0.6765100914917385
+    },
+    {
+      "P_ext_kbcm": 300000.0,
+      "wavelength_pc": 0.41779240982999294,
+      "ratio": 4.177924098299929,
+      "compression_factor": 0.4685498566501218
+    },
+    {
+      "P_ext_kbcm": 1000000.0,
+      "wavelength_pc": 0.25936319736492053,
+      "ratio": 2.593631973649205,
+      "compression_factor": 0.27896417632583537
+    }
+  ],
+  "tapered_geometry_results": [
+    {
+      "taper_type": "linear",
+      "taper_amount": 0.2,
+      "wavelength_min_pc": 0.6134675613981128,
+      "ratio_min": 6.134675613981127,
+      "wavelength_mean_pc": 0.6609026115969894,
+      "ratio_mean": 6.609026115969893
+    },
+    {
+      "taper_type": "linear",
+      "taper_amount": 0.3,
+      "wavelength_min_pc": 0.5510489780923977,
+      "ratio_min": 5.510489780923977,
+      "wavelength_mean_pc": 0.6236185434591858,
+      "ratio_mean": 6.2361854345918575
+    },
+    {
+      "taper_type": "linear",
+      "taper_amount": 0.4,
+      "wavelength_min_pc": 0.4867040291219726,
+      "ratio_min": 4.867040291219726,
+      "wavelength_mean_pc": 0.5858234066909198,
+      "ratio_mean": 5.858234066909198
+    },
+    {
+      "taper_type": "linear",
+      "taper_amount": 0.5,
+      "wavelength_min_pc": 0.41975643523985057,
+      "ratio_min": 4.197564352398506,
+      "wavelength_mean_pc": 0.5473989674306472,
+      "ratio_mean": 5.4739896743064715
+    },
+    {
+      "taper_type": "exponential",
+      "taper_amount": 0.2,
+      "wavelength_min_pc": 0.6103245643720081,
+      "ratio_min": 6.103245643720081,
+      "wavelength_mean_pc": 0.6539293685856287,
+      "ratio_mean": 6.539293685856286
+    },
+    {
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "wavelength_min_pc": 0.5465942146727881,
+      "ratio_min": 5.465942146727881,
+      "wavelength_mean_pc": 0.6130406099643233,
+      "ratio_mean": 6.130406099643233
+    },
+    {
+      "taper_type": "exponential",
+      "taper_amount": 0.4,
+      "wavelength_min_pc": 0.48115729401024,
+      "ratio_min": 4.811572940102399,
+      "wavelength_mean_pc": 0.5715230558099683,
+      "ratio_mean": 5.715230558099683
+    },
+    {
+      "taper_type": "exponential",
+      "taper_amount": 0.5,
+      "wavelength_min_pc": 0.4133740751740472,
+      "ratio_min": 4.133740751740471,
+      "wavelength_mean_pc": 0.5292107005060854,
+      "ratio_mean": 5.292107005060854
+    },
+    {
+      "taper_type": "gaussian",
+      "taper_amount": 0.2,
+      "wavelength_min_pc": 0.7549611001892436,
+      "ratio_min": 7.549611001892435,
+      "wavelength_mean_pc": 0.7909938161212897,
+      "ratio_mean": 7.909938161212897
+    },
+    {
+      "taper_type": "gaussian",
+      "taper_amount": 0.3,
+      "wavelength_min_pc": 0.7645776977784509,
+      "ratio_min": 7.645776977784508,
+      "wavelength_mean_pc": 0.8188228511160798,
+      "ratio_mean": 8.188228511160798
+    },
+    {
+      "taper_type": "gaussian",
+      "taper_amount": 0.4,
+      "wavelength_min_pc": 0.7737405176650117,
+      "ratio_min": 7.737405176650117,
+      "wavelength_mean_pc": 0.8463493493623064,
+      "ratio_mean": 8.463493493623064
+    },
+    {
+      "taper_type": "gaussian",
+      "taper_amount": 0.5,
+      "wavelength_min_pc": 0.7824730356016084,
+      "ratio_min": 7.824730356016084,
+      "wavelength_mean_pc": 0.8736052037077418,
+      "ratio_mean": 8.736052037077418
+    }
+  ],
+  "best_matches": {
+    "finite_length": {
+      "L_over_H": 5,
+      "wavelength_pc": 0.8020412203039915,
+      "ratio": 8.020412203039914,
+      "reduction_from_infinite": 1.1672345374108428
+    },
+    "external_pressure": {
+      "P_ext_kbcm": 1000000.0,
+      "wavelength_pc": 0.25936319736492053,
+      "ratio": 2.593631973649205,
+      "compression_factor": 0.27896417632583537
+    },
+    "tapered_geometry": {
+      "taper_type": "exponential",
+      "taper_amount": 0.5,
+      "wavelength_min_pc": 0.4133740751740472,
+      "ratio_min": 4.133740751740471,
+      "wavelength_mean_pc": 0.5292107005060854,
+      "ratio_mean": 5.292107005060854
+    }
+  }
+}

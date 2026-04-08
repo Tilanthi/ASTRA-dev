@@ -1,0 +1,225 @@
+{
+  "metadata": {
+    "date": "2026-04-08T11:19:32.604390",
+    "phase": 3,
+    "purpose": "Full physics with mass accretion and magnetic fields"
+  },
+  "observations": {
+    "width_pc": 0.1,
+    "spacing_pc": 0.21,
+    "ratio": 2.0999999999999996
+  },
+  "results": [
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 0,
+      "wavelength_pc": 4.0442226661398104e+16,
+      "ratio": 4.04422266613981e+17
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 10,
+      "wavelength_pc": 3.2750459938899988e+16,
+      "ratio": 3.275045993889999e+17
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 30,
+      "wavelength_pc": 2.880299213808104e+16,
+      "ratio": 2.880299213808104e+17
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 50,
+      "wavelength_pc": 2.8487194714015524e+16,
+      "ratio": 2.8487194714015523e+17
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 0,
+      "wavelength_pc": 1.4456054576229406e+33,
+      "ratio": 1.4456054576229406e+34
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 10,
+      "wavelength_pc": 1.1706636240314911e+33,
+      "ratio": 1.170663624031491e+34
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 30,
+      "wavelength_pc": 1.0295615763022175e+33,
+      "ratio": 1.0295615763022175e+34
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-07,
+      "B_microG": 50,
+      "wavelength_pc": 1.0182734124838756e+33,
+      "ratio": 1.0182734124838755e+34
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 0,
+      "wavelength_pc": 1.4456054576229404e+34,
+      "ratio": 1.4456054576229402e+35
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 10,
+      "wavelength_pc": 1.170663624031491e+34,
+      "ratio": 1.1706636240314909e+35
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 30,
+      "wavelength_pc": 1.0295615763022174e+34,
+      "ratio": 1.0295615763022173e+35
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-06,
+      "B_microG": 50,
+      "wavelength_pc": 1.0182734124838754e+34,
+      "ratio": 1.0182734124838753e+35
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 5e-06,
+      "B_microG": 0,
+      "wavelength_pc": 7.228027288114705e+34,
+      "ratio": 7.228027288114705e+35
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 5e-06,
+      "B_microG": 10,
+      "wavelength_pc": 5.853318120157457e+34,
+      "ratio": 5.853318120157457e+35
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 5e-06,
+      "B_microG": 30,
+      "wavelength_pc": 5.147807881511089e+34,
+      "ratio": 5.147807881511089e+35
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 5e-06,
+      "B_microG": 50,
+      "wavelength_pc": 5.091367062419379e+34,
+      "ratio": 5.0913670624193794e+35
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 0,
+      "wavelength_pc": 1.445605457622941e+35,
+      "ratio": 1.445605457622941e+36
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 10,
+      "wavelength_pc": 1.1706636240314914e+35,
+      "ratio": 1.1706636240314914e+36
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 30,
+      "wavelength_pc": 1.0295615763022178e+35,
+      "ratio": 1.0295615763022178e+36
+    },
+    {
+      "L_over_H": 10,
+      "P_ext_kbcm": 100000.0,
+      "taper_type": "exponential",
+      "taper_amount": 0.3,
+      "accretion_rate_Msunyr": 1e-05,
+      "B_microG": 50,
+      "wavelength_pc": 1.0182734124838759e+35,
+      "ratio": 1.0182734124838759e+36
+    }
+  ],
+  "matches": [],
+  "best_match": {
+    "L_over_H": 10,
+    "P_ext_kbcm": 100000.0,
+    "taper_type": "exponential",
+    "taper_amount": 0.3,
+    "accretion_rate_Msunyr": 0,
+    "B_microG": 50,
+    "wavelength_pc": 2.8487194714015524e+16,
+    "ratio": 2.8487194714015523e+17
+  }
+}

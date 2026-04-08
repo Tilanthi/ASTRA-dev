@@ -1,0 +1,8 @@
+{
+  "observed_width_pc": 0.1,
+  "observed_iqr_pc": 0.07,
+  "best_match_theory": "Sonic Scale",
+  "m_line_prestellar_correlation": 0.85,
+  "scaling_exponent": -0.31,
+  "n_regions": 7
+}

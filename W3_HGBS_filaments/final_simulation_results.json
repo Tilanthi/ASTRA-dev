@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "date": "2026-04-08T11:20:41.915706",
+    "phase": 3,
+    "purpose": "Full physics with all effects"
+  },
+  "observations": {
+    "width_pc": 0.1,
+    "spacing_pc": 0.21,
+    "ratio": 2.0999999999999996
+  },
+  "total_simulations": 960,
+  "results_summary": {
+    "best_match": {
+      "L_over_H": 8,
+      "P_ext_kbcm": 200000.0,
+      "taper_type": "linear",
+      "taper_amount": 0.2,
+      "accretion_rate_Msunyr": 0,
+      "B_microG": 20,
+      "wavelength_pc": 0.24019131889586134,
+      "ratio": 2.401913188958613
+    },
+    "num_matches": 6,
+    "target_achieved": true
+  }
+}
