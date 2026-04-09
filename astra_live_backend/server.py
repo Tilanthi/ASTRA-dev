@@ -69,6 +69,23 @@ class NumpySafeResponse(JSONResponse):
         ).encode("utf-8")
 
 
+def _safe(data):
+    """Shorthand: sanitize and wrap in NumpySafeResponse so FastAPI skips its encoder."""
+    return NumpySafeResponse(content=_sanitize_for_json(data))
+
+
+# Monkey-patch FastAPI's jsonable_encoder to handle numpy types
+import fastapi.encoders as _enc
+_original_jsonable_encoder = _enc.jsonable_encoder
+
+def _patched_jsonable_encoder(obj, **kwargs):
+    """Wrapper that converts numpy types before FastAPI tries to serialize."""
+    obj = _sanitize_for_json(obj)
+    return _original_jsonable_encoder(obj, **kwargs)
+
+_enc.jsonable_encoder = _patched_jsonable_encoder
+
+
 app = FastAPI(
     title="ASTRA Live API",
     version="1.0.0",

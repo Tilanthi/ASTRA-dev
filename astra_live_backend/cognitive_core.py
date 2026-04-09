@@ -354,30 +354,104 @@ class CognitiveCore:
         updated_entities = []
 
         for insight in insights:
-            # Create entities in knowledge graph from insights
-            if insight.insight_type == "pattern":
-                # Create pattern entity
-                entity = self.knowledge_graph.add_entity(
-                    name=insight.description[:50],
-                    entity_type=EntityType.CONCEPT,
-                    domain="discovered_patterns",
-                    properties={
-                        "confidence": insight.confidence,
-                        "uncertainty": insight.uncertainty
-                    },
-                    confidence=insight.confidence
-                )
-                updated_entities.append(entity.id)
+            try:
+                # Create entities in knowledge graph from insights
+                if insight.insight_type == "pattern":
+                    entity = self.knowledge_graph.add_entity(
+                        name=insight.description[:50],
+                        entity_type=EntityType.CONCEPT,
+                        domain="discovered_patterns",
+                        properties={
+                            "confidence": insight.confidence,
+                            "uncertainty": insight.uncertainty
+                        },
+                        confidence=insight.confidence
+                    )
+                    updated_entities.append(entity.id)
 
-            elif insight.insight_type == "correlation":
-                # Create relation between correlated features
-                if len(insight.reasoning_chain) > 0:
-                    # Parse reasoning chain to extract features
-                    # (This is simplified)
-                    pass
+                elif insight.insight_type == "correlation":
+                    # Create entity for the correlation itself
+                    entity = self.knowledge_graph.add_entity(
+                        name=insight.description[:50],
+                        entity_type=EntityType.OBSERVABLE,
+                        domain="discovered_correlations",
+                        properties={
+                            "confidence": insight.confidence,
+                            "uncertainty": insight.uncertainty,
+                            "reasoning": insight.reasoning_chain[:3] if insight.reasoning_chain else []
+                        },
+                        confidence=insight.confidence
+                    )
+                    updated_entities.append(entity.id)
 
-        # Trigger belief propagation in knowledge graph
-        # (This updates confidences across the network)
+                elif insight.insight_type == "cluster":
+                    entity = self.knowledge_graph.add_entity(
+                        name=insight.description[:50],
+                        entity_type=EntityType.REGIME,
+                        domain="discovered_clusters",
+                        properties={
+                            "confidence": insight.confidence,
+                            "uncertainty": insight.uncertainty
+                        },
+                        confidence=insight.confidence
+                    )
+                    updated_entities.append(entity.id)
+
+                elif insight.insight_type == "anomaly":
+                    entity = self.knowledge_graph.add_entity(
+                        name=insight.description[:50],
+                        entity_type=EntityType.OBSERVATION,
+                        domain="anomalies",
+                        properties={
+                            "confidence": insight.confidence,
+                            "uncertainty": insight.uncertainty
+                        },
+                        confidence=insight.confidence
+                    )
+                    updated_entities.append(entity.id)
+
+                elif insight.insight_type == "distribution":
+                    entity = self.knowledge_graph.add_entity(
+                        name=insight.description[:50],
+                        entity_type=EntityType.MEASUREMENT,
+                        domain="distributions",
+                        properties={
+                            "confidence": insight.confidence,
+                            "uncertainty": insight.uncertainty
+                        },
+                        confidence=insight.confidence
+                    )
+                    updated_entities.append(entity.id)
+
+                else:
+                    # Generic insight — still add to KG as concept
+                    entity = self.knowledge_graph.add_entity(
+                        name=insight.description[:50],
+                        entity_type=EntityType.CONCEPT,
+                        domain="general_insights",
+                        properties={
+                            "confidence": insight.confidence,
+                            "insight_type": insight.insight_type
+                        },
+                        confidence=insight.confidence
+                    )
+                    updated_entities.append(entity.id)
+
+            except Exception:
+                pass  # KG population is best-effort
+
+        # Add relations between co-occurring insights
+        if len(updated_entities) >= 2:
+            try:
+                for i in range(min(3, len(updated_entities) - 1)):
+                    self.knowledge_graph.add_relation(
+                        updated_entities[i],
+                        updated_entities[i + 1],
+                        "correlates_with",
+                        confidence=0.5
+                    )
+            except Exception:
+                pass
 
         return updated_entities
 
