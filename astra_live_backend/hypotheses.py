@@ -254,6 +254,27 @@ class HypothesisStore:
     def to_json(self) -> str:
         return json.dumps([h.to_dict() for h in self.hypotheses.values()], indent=2)
 
+    def deduplicate(self) -> int:
+        """Remove duplicate hypotheses (same name), keeping the one with highest confidence.
+        Returns number of duplicates removed."""
+        seen: dict[str, tuple[str, float]] = {}  # name -> (id, confidence)
+        to_remove = []
+        for hid, h in self.hypotheses.items():
+            if h.name in seen:
+                existing_id, existing_conf = seen[h.name]
+                if h.confidence > existing_conf:
+                    # New one is better — mark old for removal
+                    to_remove.append(existing_id)
+                    seen[h.name] = (hid, h.confidence)
+                else:
+                    # Existing one is better — mark new for removal
+                    to_remove.append(hid)
+            else:
+                seen[h.name] = (hid, h.confidence)
+        for hid in to_remove:
+            del self.hypotheses[hid]
+        return len(to_remove)
+
 
 def seed_initial_hypotheses(store: HypothesisStore):
     """Seed with real astrophysical hypotheses backed by live data sources."""

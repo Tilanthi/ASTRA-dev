@@ -201,6 +201,15 @@ def api_create_hypothesis(name: str, domain: str, description: str,
     return h.to_dict()
 
 
+@app.post("/api/hypotheses/deduplicate")
+def api_deduplicate_hypotheses():
+    """Remove duplicate hypotheses, keeping highest confidence for each name."""
+    before = len(engine.store.hypotheses)
+    removed = engine.store.deduplicate()
+    after = len(engine.store.hypotheses)
+    return {"removed": removed, "before": before, "after": after}
+
+
 @app.get("/api/activity")
 def api_activity(limit: int = 50):
     """Recent activity log entries."""

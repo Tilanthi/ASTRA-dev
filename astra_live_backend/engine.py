@@ -222,6 +222,10 @@ class DiscoveryEngine:
                 loaded_hypotheses = load_hypotheses(self.store)
                 if loaded_hypotheses > 0:
                     self._log("INIT", "COGNITIVE", f"Loaded {loaded_hypotheses} hypotheses from state")
+                    # Deduplicate after loading (theoretical/cognitive pipelines may have created duplicates)
+                    removed = self.store.deduplicate()
+                    if removed > 0:
+                        self._log("INIT", "COGNITIVE", f"Removed {removed} duplicate hypotheses during startup")
                 engine_loaded = load_engine_state(self)
                 if engine_loaded:
                     self._log("INIT", "COGNITIVE", f"Loaded engine state from previous session")
@@ -349,18 +353,21 @@ class DiscoveryEngine:
                     system="galaxy",
                     parameters={"mass": 1e11, "radius": 10}
                 )
-                h = self.store.add(
-                    f"Theoretical: Entropic Gravity {result['regime']}",
-                    "Astrophysics",
-                    f"Information-theoretic prediction: {result['prediction']}. "
-                    f"Newtonian a={result['newtonian_acceleration']:.3e} m/s², "
-                    f"Entropic a={result['entropic_acceleration']:.3e} m/s².",
-                    confidence=0.30
-                )
-                h.phase = Phase.PROPOSED
-                hypotheses_generated += 1
-                self._log("UPDATE", "INFO_PHYSICS",
-                          f"Generated entropic gravity prediction", h.id)
+                name = f"Theoretical: Entropic Gravity {result['regime']}"
+                if name not in existing_names:
+                    h = self.store.add(
+                        name,
+                        "Astrophysics",
+                        f"Information-theoretic prediction: {result['prediction']}. "
+                        f"Newtonian a={result['newtonian_acceleration']:.3e} m/s², "
+                        f"Entropic a={result['entropic_acceleration']:.3e} m/s².",
+                        confidence=0.30
+                    )
+                    h.phase = Phase.PROPOSED
+                    hypotheses_generated += 1
+                    existing_names.add(name)
+                    self._log("UPDATE", "INFO_PHYSICS",
+                              f"Generated entropic gravity prediction", h.id)
         except Exception as e:
             self._log("UPDATE", "INFO_PHYSICS", f"Error: {e}")
 
@@ -368,17 +375,20 @@ class DiscoveryEngine:
         try:
             if np.random.random() < 0.2:
                 paradox = self.paradox_generator.generate_black_hole_information_paradox()
-                h = self.store.add(
-                    f"Theoretical: Black Hole Information Paradox",
-                    "Astrophysics",
-                    f"Paradox analysis: {paradox.description}. "
-                    f"Implications: {paradox.implications[:2]}",
-                    confidence=0.25
-                )
-                h.phase = Phase.PROPOSED
-                hypotheses_generated += 1
-                self._log("UPDATE", "PARADOX_GEN",
-                          f"Generated paradox analysis", h.id)
+                name = f"Theoretical: Black Hole Information Paradox"
+                if name not in existing_names:
+                    h = self.store.add(
+                        name,
+                        "Astrophysics",
+                        f"Paradox analysis: {paradox.description}. "
+                        f"Implications: {paradox.implications[:2]}",
+                        confidence=0.25
+                    )
+                    h.phase = Phase.PROPOSED
+                    hypotheses_generated += 1
+                    existing_names.add(name)
+                    self._log("UPDATE", "PARADOX_GEN",
+                              f"Generated paradox analysis", h.id)
         except Exception as e:
             self._log("UPDATE", "PARADOX_GEN", f"Error: {e}")
 
@@ -404,17 +414,20 @@ class DiscoveryEngine:
                         x, y, col_names[:2], max_complexity=2
                     )
                     if equation and equation.goodness_of_fit < 0.1:
-                        h = self.store.add(
-                            f"Theoretical: {equation.equation}",
-                            "Astrophysics",
-                            f"Discovered: {equation.equation}. "
-                            f"Goodness of fit: {equation.goodness_of_fit:.4f}",
-                            confidence=equation.confidence * 0.5
-                        )
-                        h.phase = Phase.PROPOSED
-                        hypotheses_generated += 1
-                        self._log("UPDATE", "MATH_DISCOVER",
-                                  f"Discovered equation: {equation.equation}", h.id)
+                        name = f"Theoretical: {equation.equation}"
+                        if name not in existing_names:
+                            h = self.store.add(
+                                name,
+                                "Astrophysics",
+                                f"Discovered: {equation.equation}. "
+                                f"Goodness of fit: {equation.goodness_of_fit:.4f}",
+                                confidence=equation.confidence * 0.5
+                            )
+                            h.phase = Phase.PROPOSED
+                            hypotheses_generated += 1
+                            existing_names.add(name)
+                            self._log("UPDATE", "MATH_DISCOVER",
+                                      f"Discovered equation: {equation.equation}", h.id)
         except Exception as e:
             self._log("UPDATE", "MATH_DISCOVER", f"Error: {e}")
 
@@ -425,17 +438,20 @@ class DiscoveryEngine:
                 for constraint in qm_constraints:
                     if 'Unitarity' in constraint.name:
                         result = self.constraint_transfer.transfer_constraint(constraint, "black_holes")
-                        h = self.store.add(
-                            f"Theoretical: {result.transferred_constraint}",
-                            "Astrophysics",
-                            f"Constraint transfer: {result.transferred_constraint}. "
-                            f"Implications: {result.implications[:2] if result.implications else []}",
-                            confidence=result.confidence * 0.6
-                        )
-                        h.phase = Phase.PROPOSED
-                        hypotheses_generated += 1
-                        self._log("UPDATE", "CONSTRAINT_TRANSFER",
-                                  f"Transferred constraint: {constraint.name}", h.id)
+                        name = f"Theoretical: {result.transferred_constraint}"
+                        if name not in existing_names:
+                            h = self.store.add(
+                                name,
+                                "Astrophysics",
+                                f"Constraint transfer: {result.transferred_constraint}. "
+                                f"Implications: {result.implications[:2] if result.implications else []}",
+                                confidence=result.confidence * 0.6
+                            )
+                            h.phase = Phase.PROPOSED
+                            hypotheses_generated += 1
+                            existing_names.add(name)
+                            self._log("UPDATE", "CONSTRAINT_TRANSFER",
+                                      f"Transferred constraint: {constraint.name}", h.id)
                         break
         except Exception as e:
             self._log("UPDATE", "CONSTRAINT_TRANSFER", f"Error: {e}")
@@ -468,17 +484,20 @@ class DiscoveryEngine:
                             )
                             if results.get('invariants'):
                                 for inv in results['invariants'][:2]:
-                                    h = self.store.add(
-                                        f"Theoretical: Conserved {inv.name}",
-                                        "Astrophysics",
-                                        f"Unsupervised discovery: {inv.mathematical_form}. "
-                                        f"Strength: {inv.strength:.2f}",
-                                        confidence=min(0.5, inv.strength * 0.3)
-                                    )
-                                    h.phase = Phase.PROPOSED
-                                    hypotheses_generated += 1
-                                    self._log("UPDATE", "UNSUPERVISED_DISCOVER",
-                                              f"Found conserved quantity: {inv.name}", h.id)
+                                    name = f"Theoretical: Conserved {inv.name}"
+                                    if name not in existing_names:
+                                        h = self.store.add(
+                                            name,
+                                            "Astrophysics",
+                                            f"Unsupervised discovery: {inv.mathematical_form}. "
+                                            f"Strength: {inv.strength:.2f}",
+                                            confidence=min(0.5, inv.strength * 0.3)
+                                        )
+                                        h.phase = Phase.PROPOSED
+                                        hypotheses_generated += 1
+                                        existing_names.add(name)
+                                        self._log("UPDATE", "UNSUPERVISED_DISCOVER",
+                                                  f"Found conserved quantity: {inv.name}", h.id)
                                 break
         except Exception as e:
             self._log("UPDATE", "UNSUPERVISED_DISCOVER", f"Error: {e}")
@@ -493,17 +512,20 @@ class DiscoveryEngine:
                 }
                 search_results = self.tree_search_engine.search_theoretical_space(problem)
                 if search_results['best_solution']:
-                    h = self.store.add(
-                        f"Theoretical: Multi-Method Analysis",
-                        "Astrophysics",
-                        f"Tree search found {len(search_results['all_solutions'])} methods. "
-                        f"Best score: {search_results['best_score']:.3f}",
-                        confidence=search_results['best_score'] * 0.4
-                    )
-                    h.phase = Phase.PROPOSED
-                    hypotheses_generated += 1
-                    self._log("UPDATE", "TREE_SEARCH",
-                              f"Tree search completed", h.id)
+                    name = f"Theoretical: Multi-Method Analysis"
+                    if name not in existing_names:
+                        h = self.store.add(
+                            name,
+                            "Astrophysics",
+                            f"Tree search found {len(search_results['all_solutions'])} methods. "
+                            f"Best score: {search_results['best_score']:.3f}",
+                            confidence=search_results['best_score'] * 0.4
+                        )
+                        h.phase = Phase.PROPOSED
+                        hypotheses_generated += 1
+                        existing_names.add(name)
+                        self._log("UPDATE", "TREE_SEARCH",
+                                  f"Tree search completed", h.id)
         except Exception as e:
             self._log("UPDATE", "TREE_SEARCH", f"Error: {e}")
 
@@ -580,15 +602,17 @@ class DiscoveryEngine:
                             if discovery:
                                 insights_generated += len(discovery.insights)
 
-                                if discovery.confidence > 0.6 and discovery.title not in existing_names:
+                                name = f"Cognitive: {discovery.title[:50]}"
+                                if discovery.confidence > 0.6 and name not in existing_names:
                                     h = self.store.add(
-                                        f"Cognitive: {discovery.title[:50]}",
+                                        name,
                                         "Astrophysics",
                                         discovery.explanation[:500],
                                         confidence=discovery.confidence * 0.7
                                     )
                                     h.phase = Phase.PROPOSED
                                     insights_generated += 1
+                                    existing_names.add(name)
 
                                     self._log("UPDATE", "COGNITIVE_DISCOVERY",
                                               f"Generated: {discovery.title[:50]}... "
