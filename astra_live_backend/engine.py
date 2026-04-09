@@ -1513,7 +1513,7 @@ class DiscoveryEngine:
             details=f"H0={best_h0:.2f}±{h0_err:.2f}, χ²/dof={chi2_per_dof:.3f}, Planck tension={tension_planck:.1f}σ")))
 
         # Statistical test: KS test on Hubble residuals vs normal
-        mu_model = distance_modulus(z, {'H0': best_h0, 'Om': 0.3, 'Ol': 0.7})
+        mu_model = distance_modulus(z, {'H0': best_h0, 'Omega_m': 0.3, 'Omega_L': 0.7, 'c': 299792.458})
         residuals = mb - mu_model
         ks_stat, ks_p = sp_stats.kstest(residuals / np.std(residuals), 'norm')
         h.test_results.append(asdict(StatTestResult(
@@ -3518,7 +3518,8 @@ class DiscoveryEngine:
                 try:
                     self.run_cycle()
                 except Exception as e:
-                    self._log("ERROR", "ENGINE", f"Cycle error: {e}")
+                    import traceback
+                    self._log("ERROR", "ENGINE", f"Cycle error: {e}\n{traceback.format_exc()}")
                 time.sleep(interval)
 
         self._thread = threading.Thread(target=loop, daemon=True)
