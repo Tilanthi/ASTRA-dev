@@ -1006,6 +1006,7 @@ body::after {
   display: inline-block;
 }
 .badge-success       { background: var(--emerald-dim); color: var(--emerald); }
+.badge-archived      { background: var(--coral-dim);   color: var(--coral); }
 .badge-pending       { background: var(--amber-dim);   color: var(--amber); }
 .badge-investigating { background: var(--cyan-dim);    color: var(--cyan); }
 
@@ -1059,11 +1060,12 @@ body::after {
    ============================================================ */
 .footer {
   text-align: center;
-  padding: 16px;
+  padding: 32px 16px 24px;
   font-family: var(--font-mono);
   font-size: 0.6rem;
   color: var(--text-tertiary);
   letter-spacing: 1.5px;
+  clear: both;
 }
 .footer a { color: var(--cyan); text-decoration: none; display: inline-block; padding: 12px 8px; min-height: 44px; }
 .footer a:hover { text-decoration: underline; }
@@ -15268,6 +15270,7 @@ body::after {
   };
 
   async function refreshActivity() {
+    if (_activeTab !== 'overview' && _activeTab !== '') return;
     const data = await api('/api/activity?limit=40');
     if (!data || !Array.isArray(data)) return;
 
@@ -15291,7 +15294,7 @@ body::after {
 
   // Initial load + polling
   refreshActivity();
-  setInterval(refreshActivity, 3000);
+  if (window.registerTabTimer) window.registerTabTimer('overview', setInterval(refreshActivity, 3000), refreshActivity, 3000); else setInterval(refreshActivity, 3000);
 
   /* ==========================================================
      4. DECISION ENGINE — 5-PHASE CYCLE (from /api/state)
@@ -15326,6 +15329,7 @@ body::after {
   });
 
   async function refreshPhase() {
+    if (_activeTab !== 'overview' && _activeTab !== '') return;
     const data = await api('/api/state');
     if (!data) return;
     const current = (data.current_phase || 'ORIENT').toLowerCase();
@@ -15349,7 +15353,7 @@ body::after {
   }
 
   refreshPhase();
-  setInterval(refreshPhase, 5000);
+  if (window.registerTabTimer) window.registerTabTimer('overview', setInterval(refreshPhase, 5000), refreshPhase, 5000); else setInterval(refreshPhase, 5000);
 
   /* ==========================================================
      5. AGI BRAIN VISUALIZATION — D3.js Force Graph (from /api/hypotheses)
@@ -15569,7 +15573,7 @@ body::after {
         .attr('opacity', 0).attr('r', 5).remove();
     }
     const PULSE_INTERVAL = window.innerWidth < 768 ? 1200 : 400;
-    setInterval(sendPulse, PULSE_INTERVAL);
+    if (window.registerTabTimer) window.registerTabTimer('overview', setInterval(sendPulse, PULSE_INTERVAL), sendPulse, PULSE_INTERVAL); else setInterval(sendPulse, PULSE_INTERVAL);
 
     // Fetch and build
     async function refreshBrain() {
@@ -15579,7 +15583,7 @@ body::after {
     }
 
     refreshBrain();
-    setInterval(refreshBrain, 15000); // Rebuild graph every 15s with live data
+    if (window.registerTabTimer) window.registerTabTimer('overview', setInterval(refreshBrain, 15000), refreshBrain, 15000); else setInterval(refreshBrain, 15000); // Rebuild graph every 15s with live data
 
     // Resize
     window.addEventListener('resize', () => {
@@ -15617,7 +15621,7 @@ body::after {
   }
 
   setTimeout(() => refreshGauge(), 500);
-  setInterval(refreshGauge, 8000);
+  if (window.registerTabTimer) window.registerTabTimer('overview', setInterval(refreshGauge, 8000), refreshGauge, 8000); else setInterval(refreshGauge, 8000);
 
   /* ==========================================================
      7. CHART.JS MINI CHARTS — from /api/charts
@@ -15638,6 +15642,10 @@ body::after {
     try {
       var el = typeof canvasOrId === 'string' ? document.getElementById(canvasOrId) : canvasOrId;
       if (!el) { console.warn('Chart canvas not found:', canvasOrId); return null; }
+      const existingChart = Chart.getChart(el);
+      if (existingChart) {
+        existingChart.destroy();
+      }
       var chart = new Chart(el, config);
       return chart;
     } catch(e) {
@@ -15808,6 +15816,7 @@ body::after {
   let h0History = [];
 
   async function refreshCharts() {
+    if (_activeTab !== 'overview' && _activeTab !== '') return;
     const [charts, state, hypotheses] = await Promise.all([
       api('/api/charts'),
       api('/api/state'),
@@ -15883,7 +15892,7 @@ body::after {
   }
 
   refreshCharts();
-  setInterval(refreshCharts, 9000);
+  if (window.registerTabTimer) window.registerTabTimer('overview', setInterval(refreshCharts, 9000), refreshCharts, 9000); else setInterval(refreshCharts, 9000);
 
   /* ==========================================================
      8. METRICS BAR — from /api/metrics
@@ -15965,6 +15974,7 @@ body::after {
   const prevMetricValues = {};
 
   async function refreshMetrics() {
+    if (_activeTab !== 'overview' && _activeTab !== '') return;
     const data = await api('/api/metrics');
     if (!data) return;
 
@@ -16018,7 +16028,7 @@ body::after {
   }
 
   refreshMetrics();
-  setInterval(refreshMetrics, 7000);
+  if (window.registerTabTimer) window.registerTabTimer('overview', setInterval(refreshMetrics, 7000), refreshMetrics, 7000); else setInterval(refreshMetrics, 7000);
 
   /* ==========================================================
      9. AUTONOMOUS DECISION LOG — from /api/decisions
@@ -16034,6 +16044,7 @@ body::after {
   };
 
   async function refreshDecisions() {
+    if (_activeTab !== 'overview' && _activeTab !== '') return;
     const data = await api('/api/decisions?limit=10');
     if (!data || !Array.isArray(data)) return;
 
@@ -16042,7 +16053,7 @@ body::after {
       const ts = new Date(d.timestamp * 1000);
       const tsStr = `${String(ts.getUTCHours()).padStart(2,'0')}:${String(ts.getUTCMinutes()).padStart(2,'0')}:${String(ts.getUTCSeconds()).padStart(2,'0')}`;
       const mapping = ACTION_MAP[d.action] || { icon: '●', badge: 'success', badgeText: d.status };
-      const badgeClass = d.status === 'ARCHIVED' ? 'badge-pending' :
+      const badgeClass = d.status === 'ARCHIVED' ? 'badge-archived' :
                          d.status === 'INVESTIGATING' ? 'badge-investigating' :
                          d.status === 'PENDING' || d.status === 'QUEUED' ? 'badge-pending' :
                          d.status === 'DRAFTING' ? 'badge-pending' :
@@ -16063,7 +16074,7 @@ body::after {
   }
 
   refreshDecisions();
-  setInterval(refreshDecisions, 10000);
+  if (window.registerTabTimer) window.registerTabTimer('overview', setInterval(refreshDecisions, 10000), refreshDecisions, 10000); else setInterval(refreshDecisions, 10000);
 
   /* ==========================================================
      10. INITIAL LOAD ANIMATION — Stagger panels
@@ -16079,26 +16090,31 @@ body::after {
      AGI CONTROL ROOM — TAB SWITCHING
      ========================================================== */
   // Tab-scoped timer registry: tracks intervals per tab so we can pause inactive tabs
-  const _tabTimers = {}; // { tabName: [intervalId, ...] }
-  let _activeTab = 'overview';
-  window.registerTabTimer = function(tabName, intervalId) {
+  const _tabTimers = {}; // { tabName: [{id, fn, delay}, ...] }
+  let _activeTab = window.location.hash.replace('#', '') || 'overview';
+  window.registerTabTimer = function(tabName, intervalId, fn, delay) {
     if (!_tabTimers[tabName]) _tabTimers[tabName] = [];
-    _tabTimers[tabName].push(intervalId);
+    _tabTimers[tabName].push({ id: intervalId, fn, delay });
   };
   function pauseTabTimers(tabName) {
-    // Note: Tab-scoped intervals registered via registerTabTimer() are paused here.
-    // The global visibilitychange handler (above) manages page-level pause/resume.
-    // Canvas rAF loops in inactive tabs are naturally throttled by browsers, but
-    // we also gate them via _activeTab checks where performance-critical.
     if (!_tabTimers[tabName]) return;
-    _tabTimers[tabName].forEach(id => clearInterval(id));
-    _tabTimers[tabName] = [];
+    _tabTimers[tabName].forEach(t => clearInterval(t.id));
+  }
+  function resumeTabTimers(tabName) {
+    if (!_tabTimers[tabName]) return;
+    _tabTimers[tabName].forEach(t => {
+      clearInterval(t.id);
+      t.id = window.setInterval(t.fn, t.delay);
+      try { t.fn(); } catch(e) {}
+    });
   }
 
   window.switchTab = function(tabName) {
-    // Pause timers from the previously active tab
-    pauseTabTimers(_activeTab);
-    _activeTab = tabName;
+    if (_activeTab !== tabName) {
+      pauseTabTimers(_activeTab);
+      _activeTab = tabName;
+      resumeTabTimers(tabName);
+    }
 
     document.querySelectorAll('.tab-btn').forEach(b => {
       b.classList.toggle('active', b.dataset.tab === tabName);
@@ -16235,11 +16251,12 @@ body::after {
 
   // Poll safety status
   async function refreshSafetyStatus() {
+    if (_activeTab !== 'overview' && _activeTab !== '') return;
     const data = await api('/api/engine/safety-status');
     if (data && data.state) updateEngineState(data.state);
   }
   refreshSafetyStatus();
-  setInterval(refreshSafetyStatus, 5000);
+  if (window.registerTabTimer) window.registerTabTimer('overview', setInterval(refreshSafetyStatus, 5000), refreshSafetyStatus, 5000); else setInterval(refreshSafetyStatus, 5000);
 
   /* ==========================================================
      AGI CONTROL ROOM — SAFETY TAB
@@ -16249,9 +16266,9 @@ body::after {
     initStateSpace();
     initAnomalyGauges();
     initAlignmentPanel();
-    registerTabTimer('safety', setInterval(refreshStateSpace, 10000));
-    registerTabTimer('safety', setInterval(refreshAnomalies, 8000));
-    registerTabTimer('safety', setInterval(refreshAlignment, 12000));
+    registerTabTimer('safety', setInterval(refreshStateSpace, 10000), refreshStateSpace, 10000);
+    registerTabTimer('safety', setInterval(refreshAnomalies, 8000), refreshAnomalies, 8000);
+    registerTabTimer('safety', setInterval(refreshAlignment, 12000), refreshAlignment, 12000);
   }
 
   // -- State Space Navigator (D3.js) --
@@ -16466,7 +16483,7 @@ body::after {
     controlInitialized = true;
     initSorPanel();
     refreshPending();
-    registerTabTimer('control', setInterval(refreshPending, 8000));
+    registerTabTimer('control', setInterval(refreshPending, 8000), refreshPending, 8000);
   }
 
   // -- Supervisor of Record --
@@ -16588,8 +16605,8 @@ body::after {
     initHealthCharts();
     initAuditLog();
     loadPersistence();
-    registerTabTimer('health', setInterval(refreshHealth, 10000));
-    registerTabTimer('health', setInterval(loadPersistence, 15000));
+    registerTabTimer('health', setInterval(refreshHealth, 10000), refreshHealth, 10000);
+    registerTabTimer('health', setInterval(loadPersistence, 15000), loadPersistence, 15000);
   }
 
   const COMPONENTS = [
@@ -16718,7 +16735,7 @@ body::after {
   function initPhase4Tab() {
     phase4Initialized = true;
     refreshPhase4();
-    registerTabTimer('phase4', setInterval(refreshPhase4, 15000));
+    registerTabTimer('phase4', setInterval(refreshPhase4, 15000), refreshPhase4, 15000);
   }
 
   async function refreshPhase4() {
@@ -17348,7 +17365,7 @@ body::after {
     container.innerHTML = html;
   }
   renderHypothesisPipeline();
-  if (window.registerTabTimer) registerTabTimer('discoveries', setInterval(renderHypothesisPipeline, 15000));
+  if (window.registerTabTimer) registerTabTimer('discoveries', setInterval(renderHypothesisPipeline, 15000), renderHypothesisPipeline, 15000);
   else setInterval(renderHypothesisPipeline, 15000);
 })();
 </script>
