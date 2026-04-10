@@ -3154,8 +3154,8 @@ body::after {
     "engine": {
       "running": true,
       "current_phase": "UPDATE",
-      "cycle_count": 7157,
-      "uptime_seconds": 298879.41561317444,
+      "cycle_count": 7160,
+      "uptime_seconds": 298939.54729413986,
       "system_confidence": 0.9365753661323097,
       "total_data_points": 5000,
       "total_scripts": 862,
@@ -3252,7 +3252,7 @@ body::after {
         }
       },
       "degradation": {
-        "last_check_cycle": 7157,
+        "last_check_cycle": 7160,
         "rolling_success_rates": [
           1.0,
           1.0,
@@ -3358,7 +3358,7 @@ body::after {
           0.5
         ],
         "low_success_streak": 0,
-        "low_sig_streak": 114,
+        "low_sig_streak": 117,
         "safe_mode_triggered": false,
         "strategy_switch_recommended": true,
         "recommendations": [
@@ -3376,18 +3376,18 @@ body::after {
     },
     "stigmergy": {
       "pheromone_weight": 0.3,
-      "total_deposits": 16507,
+      "total_deposits": 16512,
       "success_deposits": 0,
       "failure_deposits": 5531,
       "novelty_deposits": 4601
     },
-    "timestamp": 1775848335.085582
+    "timestamp": 1775848395.2172558
   },
   "state": {
     "running": true,
     "current_phase": "UPDATE",
-    "cycle_count": 7157,
-    "uptime_seconds": 298879.4185321331,
+    "cycle_count": 7160,
+    "uptime_seconds": 298939.55011200905,
     "system_confidence": 0.9365753661323097,
     "total_data_points": 5000,
     "total_scripts": 862,
@@ -3484,7 +3484,7 @@ body::after {
       }
     },
     "degradation": {
-      "last_check_cycle": 7157,
+      "last_check_cycle": 7160,
       "rolling_success_rates": [
         1.0,
         1.0,
@@ -3590,7 +3590,7 @@ body::after {
         0.5
       ],
       "low_success_streak": 0,
-      "low_sig_streak": 114,
+      "low_sig_streak": 117,
       "safe_mode_triggered": false,
       "strategy_switch_recommended": true,
       "recommendations": [
@@ -19152,353 +19152,353 @@ body::after {
   ],
   "activity": [
     {
-      "timestamp": 1775848260.030132,
-      "phase": "ORIENT",
-      "module": "STIGMERGY",
-      "message": "Pheromone scout: strategy=explore, C_k=0.90, recommended=Epidemiology",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848260.335382,
-      "phase": "SELECT",
-      "module": "SELECT",
-      "message": "\ud83d\udd04 Forced domain exploration: Economics",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848260.415225,
+      "timestamp": 1775848339.462337,
       "phase": "SELECT",
       "module": "STIGMERGY",
       "message": "Pheromone re-ranking applied (weight=0.30)",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775848260.415241,
+      "timestamp": 1775848339.462349,
       "phase": "SELECT",
       "module": "SELECT",
       "message": "Rank #1: CD-001 (Econ-Astro Funding Correlation) \u2014 score 1.147, confidence 0.25, priority HIGH",
       "hypothesis_id": "CD-001"
     },
     {
-      "timestamp": 1775848260.415244,
+      "timestamp": 1775848339.4623518,
       "phase": "SELECT",
       "module": "SELECT",
       "message": "Rank #2: H012 (CMB Acoustic Peak Structure) \u2014 score 0.833, confidence 0.98, priority MEDIUM",
       "hypothesis_id": "H012"
     },
     {
-      "timestamp": 1775848260.415245,
+      "timestamp": 1775848339.462354,
       "phase": "SELECT",
       "module": "SELECT",
       "message": "Rank #3: H006 (Exoplanet Period Distribution) \u2014 score 0.831, confidence 0.97, priority NORMAL",
       "hypothesis_id": "H006"
     },
     {
-      "timestamp": 1775848261.0218298,
+      "timestamp": 1775848340.072053,
       "phase": "NOVELTY",
       "module": "ENGINE",
       "message": "\ud83d\udd0d 3 unexplored novelty signals \u2014 potential follow-up candidates",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775848261.341713,
+      "timestamp": 1775848340.387446,
+      "phase": "ORIENT",
+      "module": "DISCOVERY_MEMORY",
+      "message": "No unexplored variable pairs found \u2014 all combinations tested",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848340.387521,
+      "phase": "UPDATE",
+      "module": "COGNITIVE_ERROR",
+      "message": "Error processing gaia: 'numpy.ndarray' object has no attribute 'select_dtypes'",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848340.387541,
+      "phase": "UPDATE",
+      "module": "COGNITIVE",
+      "message": "Completed cognitive discovery cycle #477. Generated 0 cognitive insights.",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848340.387728,
+      "phase": "UPDATE",
+      "module": "UPDATE",
+      "message": "System confidence: 0.937 (392 active hypotheses across 5 domains)",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848340.387771,
+      "phase": "DEGRADATION",
+      "module": "ENGINE",
+      "message": "\u26a0 Domain 'Astrophysics' has 100% of recent 50 discoveries \u2014 force-switching to underrepresented domains",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848340.3877718,
+      "phase": "DEGRADATION",
+      "module": "ENGINE",
+      "message": "\u26a0 Pattern 'correlation|generic' repeated 20 times in last 20 discoveries \u2014 stuck in loop",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848340.3877802,
+      "phase": "DEGRADATION",
+      "module": "ENGINE",
+      "message": "Forcing exploration of domain 'Economics' next cycle",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848340.3891919,
+      "phase": "ANOMALY",
+      "module": "ENGINE",
+      "message": "[WARNING] Exploration stall: exploration rate below 5% for 10+ cycles",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848340.389222,
+      "phase": "UPDATE",
+      "module": "ENGINE",
+      "message": "\u2501\u2501\u2501 Cycle #7158 complete: 0.937 system confidence, 392 active hypotheses \u2501\u2501\u2501",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848365.394517,
+      "phase": "ORIENT",
+      "module": "ENGINE",
+      "message": "\u2501\u2501\u2501 Discovery Cycle #7159 starting \u2501\u2501\u2501",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848365.394526,
+      "phase": "ORIENT",
+      "module": "ORIENT",
+      "message": "Scanning astronomical data feeds\u2026",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848365.394586,
+      "phase": "ORIENT",
+      "module": "ORIENT",
+      "message": "Registry: 9 sources across 8 domains, 29 cross-match pairs, 45 variables",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848365.394588,
+      "phase": "ORIENT",
+      "module": "ORIENT",
+      "message": "Cached data: Gaia DR3: 5000",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848365.395859,
+      "phase": "ORIENT",
+      "module": "STIGMERGY",
+      "message": "Pheromone scout: strategy=explore, C_k=0.90, recommended=Economics",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848365.701025,
+      "phase": "SELECT",
+      "module": "SELECT",
+      "message": "\ud83d\udd04 Forced domain exploration: Economics",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848365.7568178,
+      "phase": "SELECT",
+      "module": "STIGMERGY",
+      "message": "Pheromone re-ranking applied (weight=0.30)",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848365.756832,
+      "phase": "SELECT",
+      "module": "SELECT",
+      "message": "Rank #1: CD-001 (Econ-Astro Funding Correlation) \u2014 score 1.147, confidence 0.25, priority HIGH",
+      "hypothesis_id": "CD-001"
+    },
+    {
+      "timestamp": 1775848365.756834,
+      "phase": "SELECT",
+      "module": "SELECT",
+      "message": "Rank #2: H012 (CMB Acoustic Peak Structure) \u2014 score 0.833, confidence 0.98, priority MEDIUM",
+      "hypothesis_id": "H012"
+    },
+    {
+      "timestamp": 1775848365.7568362,
+      "phase": "SELECT",
+      "module": "SELECT",
+      "message": "Rank #3: H006 (Exoplanet Period Distribution) \u2014 score 0.831, confidence 0.97, priority NORMAL",
+      "hypothesis_id": "H006"
+    },
+    {
+      "timestamp": 1775848366.366931,
+      "phase": "NOVELTY",
+      "module": "ENGINE",
+      "message": "\ud83d\udd0d 3 unexplored novelty signals \u2014 potential follow-up candidates",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848366.6768582,
+      "phase": "ORIENT",
+      "module": "DISCOVERY_MEMORY",
+      "message": "No unexplored variable pairs found \u2014 all combinations tested",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848366.6770508,
+      "phase": "UPDATE",
+      "module": "UPDATE",
+      "message": "System confidence: 0.937 (392 active hypotheses across 5 domains)",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848366.677108,
+      "phase": "DEGRADATION",
+      "module": "ENGINE",
+      "message": "\u26a0 Domain 'Astrophysics' has 100% of recent 50 discoveries \u2014 force-switching to underrepresented domains",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848366.677109,
+      "phase": "DEGRADATION",
+      "module": "ENGINE",
+      "message": "\u26a0 Pattern 'correlation|generic' repeated 20 times in last 20 discoveries \u2014 stuck in loop",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848366.677118,
+      "phase": "DEGRADATION",
+      "module": "ENGINE",
+      "message": "Forcing exploration of domain 'Economics' next cycle",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848366.67857,
+      "phase": "ANOMALY",
+      "module": "ENGINE",
+      "message": "[WARNING] Exploration stall: exploration rate below 5% for 10+ cycles",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848366.678603,
+      "phase": "UPDATE",
+      "module": "ENGINE",
+      "message": "\u2501\u2501\u2501 Cycle #7159 complete: 0.937 system confidence, 392 active hypotheses \u2501\u2501\u2501",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848391.683267,
+      "phase": "ORIENT",
+      "module": "ENGINE",
+      "message": "\u2501\u2501\u2501 Discovery Cycle #7160 starting \u2501\u2501\u2501",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848391.683276,
+      "phase": "ORIENT",
+      "module": "ORIENT",
+      "message": "Scanning astronomical data feeds\u2026",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848391.6833432,
+      "phase": "ORIENT",
+      "module": "ORIENT",
+      "message": "Registry: 9 sources across 8 domains, 29 cross-match pairs, 45 variables",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848391.6833448,
+      "phase": "ORIENT",
+      "module": "ORIENT",
+      "message": "Cached data: Gaia DR3: 5000",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848391.98877,
+      "phase": "SELECT",
+      "module": "SELECT",
+      "message": "\ud83d\udd04 Forced domain exploration: Economics",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848392.0478861,
+      "phase": "SELECT",
+      "module": "STIGMERGY",
+      "message": "Pheromone re-ranking applied (weight=0.30)",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848392.0479019,
+      "phase": "SELECT",
+      "module": "SELECT",
+      "message": "Rank #1: CD-001 (Econ-Astro Funding Correlation) \u2014 score 1.147, confidence 0.25, priority HIGH",
+      "hypothesis_id": "CD-001"
+    },
+    {
+      "timestamp": 1775848392.047905,
+      "phase": "SELECT",
+      "module": "SELECT",
+      "message": "Rank #2: H012 (CMB Acoustic Peak Structure) \u2014 score 0.833, confidence 0.98, priority MEDIUM",
+      "hypothesis_id": "H012"
+    },
+    {
+      "timestamp": 1775848392.047907,
+      "phase": "SELECT",
+      "module": "SELECT",
+      "message": "Rank #3: H006 (Exoplanet Period Distribution) \u2014 score 0.831, confidence 0.97, priority NORMAL",
+      "hypothesis_id": "H006"
+    },
+    {
+      "timestamp": 1775848392.658489,
+      "phase": "NOVELTY",
+      "module": "ENGINE",
+      "message": "\ud83d\udd0d 3 unexplored novelty signals \u2014 potential follow-up candidates",
+      "hypothesis_id": null
+    },
+    {
+      "timestamp": 1775848392.9640162,
       "phase": "UPDATE",
       "module": "VERIFICATION",
       "message": "Verification error: 'DiscoveryEngine' object has no attribute 'memory'",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775848261.3429399,
+      "timestamp": 1775848392.9642072,
       "phase": "ORIENT",
       "module": "DISCOVERY_MEMORY",
       "message": "No unexplored variable pairs found \u2014 all combinations tested",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775848261.344005,
+      "timestamp": 1775848392.9644082,
       "phase": "UPDATE",
       "module": "UPDATE",
       "message": "System confidence: 0.937 (392 active hypotheses across 5 domains)",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775848261.344296,
+      "timestamp": 1775848392.964458,
       "phase": "DEGRADATION",
       "module": "ENGINE",
       "message": "\u26a0 Domain 'Astrophysics' has 100% of recent 50 discoveries \u2014 force-switching to underrepresented domains",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775848261.344301,
+      "timestamp": 1775848392.964459,
       "phase": "DEGRADATION",
       "module": "ENGINE",
       "message": "\u26a0 Pattern 'correlation|generic' repeated 20 times in last 20 discoveries \u2014 stuck in loop",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775848261.344337,
+      "timestamp": 1775848392.964468,
       "phase": "DEGRADATION",
       "module": "ENGINE",
       "message": "Forcing exploration of domain 'Economics' next cycle",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775848261.3593159,
+      "timestamp": 1775848392.978731,
       "phase": "ANOMALY",
       "module": "ENGINE",
       "message": "[WARNING] Exploration stall: exploration rate below 5% for 10+ cycles",
       "hypothesis_id": null
     },
     {
-      "timestamp": 1775848261.3594072,
+      "timestamp": 1775848392.978763,
       "phase": "UPDATE",
       "module": "ENGINE",
-      "message": "\u2501\u2501\u2501 Cycle #7155 complete: 0.937 system confidence, 392 active hypotheses \u2501\u2501\u2501",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848286.365078,
-      "phase": "ORIENT",
-      "module": "ENGINE",
-      "message": "\u2501\u2501\u2501 Discovery Cycle #7156 starting \u2501\u2501\u2501",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848286.365131,
-      "phase": "ORIENT",
-      "module": "ORIENT",
-      "message": "Scanning astronomical data feeds\u2026",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848286.365558,
-      "phase": "ORIENT",
-      "module": "ORIENT",
-      "message": "Registry: 9 sources across 8 domains, 29 cross-match pairs, 45 variables",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848286.365571,
-      "phase": "ORIENT",
-      "module": "ORIENT",
-      "message": "Cached data: Gaia DR3: 5000",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848286.677541,
-      "phase": "SELECT",
-      "module": "SELECT",
-      "message": "\ud83d\udd04 Forced domain exploration: Economics",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848286.769161,
-      "phase": "SELECT",
-      "module": "STIGMERGY",
-      "message": "Pheromone re-ranking applied (weight=0.30)",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848286.769181,
-      "phase": "SELECT",
-      "module": "SELECT",
-      "message": "Rank #1: CD-001 (Econ-Astro Funding Correlation) \u2014 score 1.147, confidence 0.25, priority HIGH",
-      "hypothesis_id": "CD-001"
-    },
-    {
-      "timestamp": 1775848286.769185,
-      "phase": "SELECT",
-      "module": "SELECT",
-      "message": "Rank #2: H012 (CMB Acoustic Peak Structure) \u2014 score 0.833, confidence 0.98, priority MEDIUM",
-      "hypothesis_id": "H012"
-    },
-    {
-      "timestamp": 1775848286.769187,
-      "phase": "SELECT",
-      "module": "SELECT",
-      "message": "Rank #3: H006 (Exoplanet Period Distribution) \u2014 score 0.831, confidence 0.97, priority NORMAL",
-      "hypothesis_id": "H006"
-    },
-    {
-      "timestamp": 1775848287.4107678,
-      "phase": "NOVELTY",
-      "module": "ENGINE",
-      "message": "\ud83d\udd0d 3 unexplored novelty signals \u2014 potential follow-up candidates",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848287.72879,
-      "phase": "ORIENT",
-      "module": "DISCOVERY_MEMORY",
-      "message": "No unexplored variable pairs found \u2014 all combinations tested",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848287.729693,
-      "phase": "UPDATE",
-      "module": "UPDATE",
-      "message": "System confidence: 0.937 (392 active hypotheses across 5 domains)",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848287.729985,
-      "phase": "DEGRADATION",
-      "module": "ENGINE",
-      "message": "\u26a0 Domain 'Astrophysics' has 100% of recent 50 discoveries \u2014 force-switching to underrepresented domains",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848287.72999,
-      "phase": "DEGRADATION",
-      "module": "ENGINE",
-      "message": "\u26a0 Pattern 'correlation|generic' repeated 20 times in last 20 discoveries \u2014 stuck in loop",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848287.730027,
-      "phase": "DEGRADATION",
-      "module": "ENGINE",
-      "message": "Forcing exploration of domain 'Economics' next cycle",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848287.7379599,
-      "phase": "ANOMALY",
-      "module": "ENGINE",
-      "message": "[WARNING] Exploration stall: exploration rate below 5% for 10+ cycles",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848287.7380931,
-      "phase": "UPDATE",
-      "module": "ENGINE",
-      "message": "\u2501\u2501\u2501 Cycle #7156 complete: 0.937 system confidence, 392 active hypotheses \u2501\u2501\u2501",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848312.744847,
-      "phase": "ORIENT",
-      "module": "ENGINE",
-      "message": "\u2501\u2501\u2501 Discovery Cycle #7157 starting \u2501\u2501\u2501",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848312.7448661,
-      "phase": "ORIENT",
-      "module": "ORIENT",
-      "message": "Scanning astronomical data feeds\u2026",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848312.745002,
-      "phase": "ORIENT",
-      "module": "ORIENT",
-      "message": "Registry: 9 sources across 8 domains, 29 cross-match pairs, 45 variables",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848312.745007,
-      "phase": "ORIENT",
-      "module": "ORIENT",
-      "message": "Cached data: Gaia DR3: 5000",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848312.750128,
-      "phase": "ORIENT",
-      "module": "STIGMERGY",
-      "message": "Pheromone scout: strategy=explore, C_k=0.90, recommended=Epidemiology",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848313.055703,
-      "phase": "SELECT",
-      "module": "SELECT",
-      "message": "\ud83d\udd04 Forced domain exploration: Economics",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848313.157901,
-      "phase": "SELECT",
-      "module": "STIGMERGY",
-      "message": "Pheromone re-ranking applied (weight=0.30)",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848313.1579158,
-      "phase": "SELECT",
-      "module": "SELECT",
-      "message": "Rank #1: CD-001 (Econ-Astro Funding Correlation) \u2014 score 1.147, confidence 0.25, priority HIGH",
-      "hypothesis_id": "CD-001"
-    },
-    {
-      "timestamp": 1775848313.157918,
-      "phase": "SELECT",
-      "module": "SELECT",
-      "message": "Rank #2: H012 (CMB Acoustic Peak Structure) \u2014 score 0.833, confidence 0.98, priority MEDIUM",
-      "hypothesis_id": "H012"
-    },
-    {
-      "timestamp": 1775848313.15792,
-      "phase": "SELECT",
-      "module": "SELECT",
-      "message": "Rank #3: H006 (Exoplanet Period Distribution) \u2014 score 0.831, confidence 0.97, priority NORMAL",
-      "hypothesis_id": "H006"
-    },
-    {
-      "timestamp": 1775848313.7723598,
-      "phase": "NOVELTY",
-      "module": "ENGINE",
-      "message": "\ud83d\udd0d 3 unexplored novelty signals \u2014 potential follow-up candidates",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848314.086724,
-      "phase": "ORIENT",
-      "module": "DISCOVERY_MEMORY",
-      "message": "No unexplored variable pairs found \u2014 all combinations tested",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848314.087577,
-      "phase": "UPDATE",
-      "module": "UPDATE",
-      "message": "System confidence: 0.937 (392 active hypotheses across 5 domains)",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848314.087771,
-      "phase": "DEGRADATION",
-      "module": "ENGINE",
-      "message": "\u26a0 Domain 'Astrophysics' has 100% of recent 50 discoveries \u2014 force-switching to underrepresented domains",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848314.087774,
-      "phase": "DEGRADATION",
-      "module": "ENGINE",
-      "message": "\u26a0 Pattern 'correlation|generic' repeated 20 times in last 20 discoveries \u2014 stuck in loop",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848314.0878,
-      "phase": "DEGRADATION",
-      "module": "ENGINE",
-      "message": "Forcing exploration of domain 'Economics' next cycle",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848314.0915709,
-      "phase": "ANOMALY",
-      "module": "ENGINE",
-      "message": "[WARNING] Exploration stall: exploration rate below 5% for 10+ cycles",
-      "hypothesis_id": null
-    },
-    {
-      "timestamp": 1775848314.09165,
-      "phase": "UPDATE",
-      "module": "ENGINE",
-      "message": "\u2501\u2501\u2501 Cycle #7157 complete: 0.937 system confidence, 392 active hypotheses \u2501\u2501\u2501",
+      "message": "\u2501\u2501\u2501 Cycle #7160 complete: 0.937 system confidence, 392 active hypotheses \u2501\u2501\u2501",
       "hypothesis_id": null
     }
   ],
@@ -19698,7 +19698,7 @@ body::after {
     "system_confidence": 0.9365753661323097
   },
   "metrics": {
-    "runtime_seconds": 298879.47633624077,
+    "runtime_seconds": 298939.6037449837,
     "data_points": 5000,
     "scripts_written": 862,
     "plots_generated": 1417,
@@ -19713,13 +19713,13 @@ body::after {
   },
   "engine/safety-status": {
     "state": "NOMINAL",
-    "uptime_seconds": 168637.6514070034,
+    "uptime_seconds": 168697.77965521812,
     "can_advance_hypotheses": true,
     "can_run_cycle": true,
     "can_investigate": true,
     "can_modify_state": true,
     "audit_log_size": 2,
-    "timestamp": 1775848335.148183,
+    "timestamp": 1775848395.276431,
     "audit_log": [
       {
         "timestamp": 1775679697.4968362,
@@ -19743,279 +19743,9 @@ body::after {
     "trajectory": [
       {
         "cycle": 0,
-        "x": -656.9726376533508,
-        "y": 2.0879525663985987e-08,
-        "z": 0.012385599315166473,
-        "original": {
-          "vector": [
-            0.79677,
-            0.25,
-            0.0,
-            0.964824,
-            0.0,
-            0.106026,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.062098,
-            0.264103,
-            0.735897,
-            0.000138,
-            1.0,
-            0.028306
-          ],
-          "labels": [
-            "astro_conf_mean",
-            "econ_conf_mean",
-            "climate_conf_mean",
-            "epi_conf_mean",
-            "astro_conf_var",
-            "econ_conf_var",
-            "climate_conf_var",
-            "epi_conf_var",
-            "domain_entropy",
-            "exploration_rate",
-            "exploitation_rate",
-            "coupling_density",
-            "resource_utilization",
-            "decision_velocity"
-          ],
-          "dimensions": 16,
-          "cycle": 7108,
-          "timestamp": 1775847005.990562
-        }
-      },
-      {
-        "cycle": 1,
-        "x": -656.971773147583,
-        "y": 2.076927785310545e-08,
-        "z": 0.012353315949440002,
-        "original": {
-          "vector": [
-            0.79677,
-            0.25,
-            0.0,
-            0.964824,
-            0.0,
-            0.106026,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.062098,
-            0.264103,
-            0.735897,
-            0.000138,
-            1.0,
-            0.028306
-          ],
-          "labels": [
-            "astro_conf_mean",
-            "econ_conf_mean",
-            "climate_conf_mean",
-            "epi_conf_mean",
-            "astro_conf_var",
-            "econ_conf_var",
-            "climate_conf_var",
-            "epi_conf_var",
-            "domain_entropy",
-            "exploration_rate",
-            "exploitation_rate",
-            "coupling_density",
-            "resource_utilization",
-            "decision_velocity"
-          ],
-          "dimensions": 16,
-          "cycle": 7108,
-          "timestamp": 1775847005.9914272
-        }
-      },
-      {
-        "cycle": 2,
-        "x": -630.6590695381165,
-        "y": 8.398311024393479e-08,
-        "z": 0.030609913170337677,
-        "original": {
-          "vector": [
-            0.79677,
-            0.25,
-            0.0,
-            0.964824,
-            0.0,
-            0.106026,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.062098,
-            0.264103,
-            0.735897,
-            0.000138,
-            1.0,
-            0.028302
-          ],
-          "labels": [
-            "astro_conf_mean",
-            "econ_conf_mean",
-            "climate_conf_mean",
-            "epi_conf_mean",
-            "astro_conf_var",
-            "econ_conf_var",
-            "climate_conf_var",
-            "epi_conf_var",
-            "domain_entropy",
-            "exploration_rate",
-            "exploitation_rate",
-            "coupling_density",
-            "resource_utilization",
-            "decision_velocity"
-          ],
-          "dimensions": 16,
-          "cycle": 7109,
-          "timestamp": 1775847032.2851279
-        }
-      },
-      {
-        "cycle": 3,
-        "x": -630.6580421924591,
-        "y": 8.385214300687949e-08,
-        "z": 0.030571550130844116,
-        "original": {
-          "vector": [
-            0.79677,
-            0.25,
-            0.0,
-            0.964824,
-            0.0,
-            0.106026,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.062098,
-            0.264103,
-            0.735897,
-            0.000138,
-            1.0,
-            0.028302
-          ],
-          "labels": [
-            "astro_conf_mean",
-            "econ_conf_mean",
-            "climate_conf_mean",
-            "epi_conf_mean",
-            "astro_conf_var",
-            "econ_conf_var",
-            "climate_conf_var",
-            "epi_conf_var",
-            "domain_entropy",
-            "exploration_rate",
-            "exploitation_rate",
-            "coupling_density",
-            "resource_utilization",
-            "decision_velocity"
-          ],
-          "dimensions": 16,
-          "cycle": 7109,
-          "timestamp": 1775847032.286156
-        }
-      },
-      {
-        "cycle": 4,
-        "x": -604.3449895381927,
-        "y": 1.4702143857903138e-07,
-        "z": 0.04881510138511658,
-        "original": {
-          "vector": [
-            0.79677,
-            0.25,
-            0.0,
-            0.964824,
-            0.0,
-            0.106026,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.062098,
-            0.264103,
-            0.735897,
-            0.000138,
-            1.0,
-            0.028298
-          ],
-          "labels": [
-            "astro_conf_mean",
-            "econ_conf_mean",
-            "climate_conf_mean",
-            "epi_conf_mean",
-            "astro_conf_var",
-            "econ_conf_var",
-            "climate_conf_var",
-            "epi_conf_var",
-            "domain_entropy",
-            "exploration_rate",
-            "exploitation_rate",
-            "coupling_density",
-            "resource_utilization",
-            "decision_velocity"
-          ],
-          "dimensions": 16,
-          "cycle": 7110,
-          "timestamp": 1775847058.5802062
-        }
-      },
-      {
-        "cycle": 5,
-        "x": -604.3434326648712,
-        "y": 1.4682296978207887e-07,
-        "z": 0.048756979405879974,
-        "original": {
-          "vector": [
-            0.79677,
-            0.25,
-            0.0,
-            0.964824,
-            0.0,
-            0.106026,
-            0.0,
-            0.0,
-            0.0,
-            0.0,
-            0.062098,
-            0.264103,
-            0.735897,
-            0.000138,
-            1.0,
-            0.028298
-          ],
-          "labels": [
-            "astro_conf_mean",
-            "econ_conf_mean",
-            "climate_conf_mean",
-            "epi_conf_mean",
-            "astro_conf_var",
-            "econ_conf_var",
-            "climate_conf_var",
-            "epi_conf_var",
-            "domain_entropy",
-            "exploration_rate",
-            "exploitation_rate",
-            "coupling_density",
-            "resource_utilization",
-            "decision_velocity"
-          ],
-          "dimensions": 16,
-          "cycle": 7110,
-          "timestamp": 1775847058.581764
-        }
-      },
-      {
-        "cycle": 6,
-        "x": -578.0267009735107,
-        "y": 2.0952319346179138e-07,
-        "z": 0.06686316430568695,
+        "x": -658.1465923786163,
+        "y": 0.0,
+        "z": 0.23251623660326004,
         "original": {
           "vector": [
             0.79677,
@@ -20057,10 +19787,10 @@ body::after {
         }
       },
       {
-        "cycle": 7,
-        "x": -578.0257756710052,
-        "y": 2.0940521494594577e-07,
-        "z": 0.06682861596345901,
+        "cycle": 1,
+        "x": -658.1456670761108,
+        "y": 0.0,
+        "z": 0.2324814349412918,
         "original": {
           "vector": [
             0.79677,
@@ -20102,10 +19832,10 @@ body::after {
         }
       },
       {
-        "cycle": 8,
-        "x": -551.7123560905457,
-        "y": 2.725277852277941e-07,
-        "z": 0.08505848050117493,
+        "cycle": 2,
+        "x": -631.832243680954,
+        "y": 0.0,
+        "z": 0.2436627447605133,
         "original": {
           "vector": [
             0.79677,
@@ -20147,10 +19877,10 @@ body::after {
         }
       },
       {
-        "cycle": 9,
-        "x": -551.7114329338074,
-        "y": 2.724100909290428e-07,
-        "z": 0.08502400666475296,
+        "cycle": 3,
+        "x": -631.8313205242157,
+        "y": 0.0,
+        "z": 0.24362802505493164,
         "original": {
           "vector": [
             0.79677,
@@ -20192,10 +19922,10 @@ body::after {
         }
       },
       {
-        "cycle": 10,
-        "x": -525.3942720890045,
-        "y": 3.3505560281810176e-07,
-        "z": 0.10311417281627655,
+        "cycle": 4,
+        "x": -605.514155626297,
+        "y": 0.0,
+        "z": 0.2546686381101608,
         "original": {
           "vector": [
             0.79677,
@@ -20237,10 +19967,10 @@ body::after {
         }
       },
       {
-        "cycle": 11,
-        "x": -525.3933997154236,
-        "y": 3.3494441709081e-07,
-        "z": 0.1030816063284874,
+        "cycle": 5,
+        "x": -605.5132834911346,
+        "y": 0.0,
+        "z": 0.25463584065437317,
         "original": {
           "vector": [
             0.79677,
@@ -20282,10 +20012,10 @@ body::after {
         }
       },
       {
-        "cycle": 12,
-        "x": -499.09097385406494,
-        "y": 3.9946854712979984e-07,
-        "z": 0.12172193825244904,
+        "cycle": 6,
+        "x": -579.2108535766602,
+        "y": 0.0,
+        "z": 0.2662305608391762,
         "original": {
           "vector": [
             0.79677,
@@ -20327,10 +20057,10 @@ body::after {
         }
       },
       {
-        "cycle": 13,
-        "x": -499.0900983810425,
-        "y": 3.993569634985761e-07,
-        "z": 0.12168925255537033,
+        "cycle": 7,
+        "x": -579.2099781036377,
+        "y": 0.0,
+        "z": 0.26619764417409897,
         "original": {
           "vector": [
             0.79677,
@@ -20372,10 +20102,10 @@ body::after {
         }
       },
       {
-        "cycle": 14,
-        "x": -472.77341747283936,
-        "y": 4.620636673280387e-07,
-        "z": 0.13979732990264893,
+        "cycle": 8,
+        "x": -552.8932931423187,
+        "y": 0.0,
+        "z": 0.2772562950849533,
         "original": {
           "vector": [
             0.79677,
@@ -20417,10 +20147,10 @@ body::after {
         }
       },
       {
-        "cycle": 15,
-        "x": -472.7724800109863,
-        "y": 4.619441824615933e-07,
-        "z": 0.13976233452558517,
+        "cycle": 9,
+        "x": -552.8923559188843,
+        "y": 0.0,
+        "z": 0.27722105383872986,
         "original": {
           "vector": [
             0.79677,
@@ -20462,10 +20192,10 @@ body::after {
         }
       },
       {
-        "cycle": 16,
-        "x": -446.46761989593506,
-        "y": 5.261579758553125e-07,
-        "z": 0.15831177681684494,
+        "cycle": 10,
+        "x": -526.5874917507172,
+        "y": 0.0,
+        "z": 0.28872422873973846,
         "original": {
           "vector": [
             0.79677,
@@ -20507,10 +20237,10 @@ body::after {
         }
       },
       {
-        "cycle": 17,
-        "x": -446.4667115211487,
-        "y": 5.260421289676742e-07,
-        "z": 0.15827786177396774,
+        "cycle": 11,
+        "x": -526.5865831375122,
+        "y": 0.0,
+        "z": 0.28869006782770157,
         "original": {
           "vector": [
             0.79677,
@@ -20552,10 +20282,10 @@ body::after {
         }
       },
       {
-        "cycle": 18,
-        "x": -420.1571035385132,
-        "y": 5.896506536373636e-07,
-        "z": 0.1766500324010849,
+        "cycle": 12,
+        "x": -500.27697134017944,
+        "y": 0.0,
+        "z": 0.3000147119164467,
         "original": {
           "vector": [
             0.79677,
@@ -20597,10 +20327,10 @@ body::after {
         }
       },
       {
-        "cycle": 19,
-        "x": -420.15614128112793,
-        "y": 5.895279571177525e-07,
-        "z": 0.17661410570144653,
+        "cycle": 13,
+        "x": -500.2760090827942,
+        "y": 0.0,
+        "z": 0.2999785244464874,
         "original": {
           "vector": [
             0.79677,
@@ -20642,10 +20372,10 @@ body::after {
         }
       },
       {
-        "cycle": 20,
-        "x": -393.8541171550751,
-        "y": 6.541033314988454e-07,
-        "z": 0.19526942819356918,
+        "cycle": 14,
+        "x": -473.9739809036255,
+        "y": 0.0,
+        "z": 0.311588354408741,
         "original": {
           "vector": [
             0.79677,
@@ -20687,10 +20417,10 @@ body::after {
         }
       },
       {
-        "cycle": 21,
-        "x": -393.8529808521271,
-        "y": 6.539584660458786e-07,
-        "z": 0.1952270045876503,
+        "cycle": 15,
+        "x": -473.9728446006775,
+        "y": 0.0,
+        "z": 0.31154562532901764,
         "original": {
           "vector": [
             0.79677,
@@ -20732,10 +20462,10 @@ body::after {
         }
       },
       {
-        "cycle": 22,
-        "x": -367.5432231426239,
-        "y": 7.175478629051213e-07,
-        "z": 0.21359358727931976,
+        "cycle": 16,
+        "x": -447.6630828380585,
+        "y": 0.0,
+        "z": 0.3228646367788315,
         "original": {
           "vector": [
             0.79677,
@@ -20777,10 +20507,10 @@ body::after {
         }
       },
       {
-        "cycle": 23,
-        "x": -367.5423278808594,
-        "y": 7.174336928983394e-07,
-        "z": 0.21356015652418137,
+        "cycle": 17,
+        "x": -447.66218757629395,
+        "y": 0.0,
+        "z": 0.3228309601545334,
         "original": {
           "vector": [
             0.79677,
@@ -20822,10 +20552,10 @@ body::after {
         }
       },
       {
-        "cycle": 24,
-        "x": -341.2384238243103,
-        "y": 7.817693870038056e-07,
-        "z": 0.232145294547081,
+        "cycle": 18,
+        "x": -421.358279466629,
+        "y": 0.0,
+        "z": 0.33437009900808334,
         "original": {
           "vector": [
             0.79677,
@@ -20867,10 +20597,10 @@ body::after {
         }
       },
       {
-        "cycle": 25,
-        "x": -341.23750734329224,
-        "y": 7.816525737780466e-07,
-        "z": 0.23211108148097992,
+        "cycle": 19,
+        "x": -421.35736322402954,
+        "y": 0.0,
+        "z": 0.33433564007282257,
         "original": {
           "vector": [
             0.79677,
@@ -20912,10 +20642,10 @@ body::after {
         }
       },
       {
-        "cycle": 26,
-        "x": -314.93496561050415,
-        "y": 8.461619529498421e-07,
-        "z": 0.25074708461761475,
+        "cycle": 20,
+        "x": -395.0548174381256,
+        "y": 0.0,
+        "z": 0.345926009118557,
         "original": {
           "vector": [
             0.79677,
@@ -20957,10 +20687,10 @@ body::after {
         }
       },
       {
-        "cycle": 27,
-        "x": -314.9341013431549,
-        "y": 8.46051733560671e-07,
-        "z": 0.25071480870246887,
+        "cycle": 21,
+        "x": -395.0539529323578,
+        "y": 0.0,
+        "z": 0.3458935022354126,
         "original": {
           "vector": [
             0.79677,
@@ -21002,10 +20732,10 @@ body::after {
         }
       },
       {
-        "cycle": 28,
-        "x": -288.628977060318,
-        "y": 9.102319040721341e-07,
-        "z": 0.2692543938755989,
+        "cycle": 22,
+        "x": -368.7488248348236,
+        "y": 0.0,
+        "z": 0.3573867529630661,
         "original": {
           "vector": [
             0.79677,
@@ -21047,10 +20777,10 @@ body::after {
         }
       },
       {
-        "cycle": 29,
-        "x": -288.62798285484314,
-        "y": 9.101051432480745e-07,
-        "z": 0.26921727508306503,
+        "cycle": 23,
+        "x": -368.74783062934875,
+        "y": 0.0,
+        "z": 0.35734936594963074,
         "original": {
           "vector": [
             0.79677,
@@ -21092,10 +20822,10 @@ body::after {
         }
       },
       {
-        "cycle": 30,
-        "x": -261.70881175994873,
-        "y": 8.959985677847726e-07,
-        "z": 0.264830119907856,
+        "cycle": 24,
+        "x": -341.82866168022156,
+        "y": 0.0,
+        "z": 0.34575140476226807,
         "original": {
           "vector": [
             0.79548,
@@ -21137,10 +20867,10 @@ body::after {
         }
       },
       {
-        "cycle": 31,
-        "x": -261.70794439315796,
-        "y": 8.958879504916695e-07,
-        "z": 0.26479773223400116,
+        "cycle": 25,
+        "x": -341.8277943134308,
+        "y": 0.0,
+        "z": 0.34571877866983414,
         "original": {
           "vector": [
             0.79548,
@@ -21182,10 +20912,10 @@ body::after {
         }
       },
       {
-        "cycle": 32,
-        "x": -218.65871047973633,
-        "y": -1.1746896575459687e-06,
-        "z": -0.3418392837047577,
+        "cycle": 26,
+        "x": -298.778724193573,
+        "y": 0.0,
+        "z": -0.2724497690796852,
         "original": {
           "vector": [
             0.796711,
@@ -21227,10 +20957,10 @@ body::after {
         }
       },
       {
-        "cycle": 33,
-        "x": -218.65771508216858,
-        "y": -1.1748165889002848e-06,
-        "z": -0.34187644720077515,
+        "cycle": 27,
+        "x": -298.77772879600525,
+        "y": 0.0,
+        "z": -0.27248720824718475,
         "original": {
           "vector": [
             0.796711,
@@ -21272,10 +21002,10 @@ body::after {
         }
       },
       {
-        "cycle": 34,
-        "x": -192.2831745147705,
-        "y": -1.1194865408015175e-06,
-        "z": -0.3259286731481552,
+        "cycle": 28,
+        "x": -272.40318512916565,
+        "y": 0.0,
+        "z": -0.2636043503880501,
         "original": {
           "vector": [
             0.797206,
@@ -21317,10 +21047,10 @@ body::after {
         }
       },
       {
-        "cycle": 35,
-        "x": -192.28126978874207,
-        "y": -1.1197294043086004e-06,
-        "z": -0.32599978893995285,
+        "cycle": 29,
+        "x": -272.4012801647186,
+        "y": 0.0,
+        "z": -0.2636759802699089,
         "original": {
           "vector": [
             0.797206,
@@ -21362,10 +21092,10 @@ body::after {
         }
       },
       {
-        "cycle": 36,
-        "x": -165.8854260444641,
-        "y": -1.0671153347630025e-06,
-        "z": -0.3108474090695381,
+        "cycle": 30,
+        "x": -246.00543355941772,
+        "y": 0.0,
+        "z": -0.25559423118829727,
         "original": {
           "vector": [
             0.797272,
@@ -21407,10 +21137,10 @@ body::after {
         }
       },
       {
-        "cycle": 37,
-        "x": -165.88385605812073,
-        "y": -1.0673155088625208e-06,
-        "z": -0.3109060302376747,
+        "cycle": 31,
+        "x": -246.00386357307434,
+        "y": 0.0,
+        "z": -0.2556532695889473,
         "original": {
           "vector": [
             0.797272,
@@ -21452,10 +21182,10 @@ body::after {
         }
       },
       {
-        "cycle": 38,
-        "x": -139.57294273376465,
-        "y": -1.0038734501449653e-06,
-        "z": -0.29258259385824203,
+        "cycle": 32,
+        "x": -219.692946434021,
+        "y": 0.0,
+        "z": -0.2443777173757553,
         "original": {
           "vector": [
             0.797272,
@@ -21497,10 +21227,10 @@ body::after {
         }
       },
       {
-        "cycle": 39,
-        "x": -139.57208251953125,
-        "y": -1.0039831295216572e-06,
-        "z": -0.2926147133111954,
+        "cycle": 33,
+        "x": -219.69208598136902,
+        "y": 0.0,
+        "z": -0.24441006779670715,
         "original": {
           "vector": [
             0.797272,
@@ -21542,10 +21272,10 @@ body::after {
         }
       },
       {
-        "cycle": 40,
-        "x": -113.26250863075256,
-        "y": -9.403702847521345e-07,
-        "z": -0.27424126863479614,
+        "cycle": 34,
+        "x": -193.38250827789307,
+        "y": 0.0,
+        "z": -0.23308414220809937,
         "original": {
           "vector": [
             0.797272,
@@ -21587,10 +21317,10 @@ body::after {
         }
       },
       {
-        "cycle": 41,
-        "x": -113.26166129112244,
-        "y": -9.404783440913889e-07,
-        "z": -0.2742729112505913,
+        "cycle": 35,
+        "x": -193.38166069984436,
+        "y": 0.0,
+        "z": -0.2331160083413124,
         "original": {
           "vector": [
             0.797272,
@@ -21632,10 +21362,10 @@ body::after {
         }
       },
       {
-        "cycle": 42,
-        "x": -86.95114398002625,
-        "y": -8.769857799961756e-07,
-        "z": -0.2559346854686737,
+        "cycle": 36,
+        "x": -167.0711395740509,
+        "y": 0.0,
+        "z": -0.22182556241750717,
         "original": {
           "vector": [
             0.797272,
@@ -21677,10 +21407,10 @@ body::after {
         }
       },
       {
-        "cycle": 43,
-        "x": -86.94998264312744,
-        "y": -8.771338286805985e-07,
-        "z": -0.2559780478477478,
+        "cycle": 37,
+        "x": -167.0699782371521,
+        "y": 0.0,
+        "z": -0.22186923027038574,
         "original": {
           "vector": [
             0.797272,
@@ -21722,10 +21452,10 @@ body::after {
         }
       },
       {
-        "cycle": 44,
-        "x": -60.62859892845154,
-        "y": -8.150266523898608e-07,
-        "z": -0.23804555088281631,
+        "cycle": 38,
+        "x": -140.74859070777893,
+        "y": 0.0,
+        "z": -0.2109874188899994,
         "original": {
           "vector": [
             0.797272,
@@ -21767,10 +21497,10 @@ body::after {
         }
       },
       {
-        "cycle": 45,
-        "x": -60.627689838409424,
-        "y": -8.151425845426274e-07,
-        "z": -0.2380794957280159,
+        "cycle": 39,
+        "x": -140.74768161773682,
+        "y": 0.0,
+        "z": -0.21102160960435867,
         "original": {
           "vector": [
             0.797272,
@@ -21812,10 +21542,10 @@ body::after {
         }
       },
       {
-        "cycle": 46,
-        "x": -34.33002948760986,
-        "y": -7.500108551994344e-07,
-        "z": -0.21926123648881912,
+        "cycle": 40,
+        "x": -114.45001721382141,
+        "y": 0.0,
+        "z": -0.19924768060445786,
         "original": {
           "vector": [
             0.797272,
@@ -21857,10 +21587,10 @@ body::after {
         }
       },
       {
-        "cycle": 47,
-        "x": -34.3291220664978,
-        "y": -7.501265315568162e-07,
-        "z": -0.21929510682821274,
+        "cycle": 41,
+        "x": -114.44910979270935,
+        "y": 0.0,
+        "z": -0.19928179681301117,
         "original": {
           "vector": [
             0.797272,
@@ -21902,10 +21632,10 @@ body::after {
         }
       },
       {
-        "cycle": 48,
-        "x": -8.017481565475464,
-        "y": -6.867771844554227e-07,
-        "z": -0.20099883526563644,
+        "cycle": 42,
+        "x": -88.13746523857117,
+        "y": 0.0,
+        "z": -0.1880335956811905,
         "original": {
           "vector": [
             0.797272,
@@ -21947,10 +21677,10 @@ body::after {
         }
       },
       {
-        "cycle": 49,
-        "x": -8.016602277755737,
-        "y": -6.868893080991256e-07,
-        "z": -0.2010316625237465,
+        "cycle": 43,
+        "x": -88.13658595085144,
+        "y": 0.0,
+        "z": -0.18806666880846024,
         "original": {
           "vector": [
             0.797272,
@@ -21992,10 +21722,10 @@ body::after {
         }
       },
       {
-        "cycle": 50,
-        "x": 18.29114007949829,
-        "y": -6.230429505649226e-07,
-        "z": -0.1825898364186287,
+        "cycle": 44,
+        "x": -61.82883954048157,
+        "y": 0.0,
+        "z": -0.17667187005281448,
         "original": {
           "vector": [
             0.797272,
@@ -22037,10 +21767,10 @@ body::after {
         }
       },
       {
-        "cycle": 51,
-        "x": 18.292020320892334,
-        "y": -6.231551594737539e-07,
-        "z": -0.18262270092964172,
+        "cycle": 45,
+        "x": -61.8279595375061,
+        "y": 0.0,
+        "z": -0.17670496553182602,
         "original": {
           "vector": [
             0.797272,
@@ -22082,10 +21812,10 @@ body::after {
         }
       },
       {
-        "cycle": 52,
-        "x": 44.5865957736969,
-        "y": -5.576301589371724e-07,
-        "z": -0.1636892557144165,
+        "cycle": 46,
+        "x": -35.533379793167114,
+        "y": 0.0,
+        "z": -0.1648150309920311,
         "original": {
           "vector": [
             0.797272,
@@ -22127,10 +21857,10 @@ body::after {
         }
       },
       {
-        "cycle": 53,
-        "x": 44.5874502658844,
-        "y": -5.577390709277097e-07,
-        "z": -0.16372115910053253,
+        "cycle": 47,
+        "x": -35.53252553939819,
+        "y": 0.0,
+        "z": -0.16484715789556503,
         "original": {
           "vector": [
             0.797272,
@@ -22172,10 +21902,10 @@ body::after {
         }
       },
       {
-        "cycle": 54,
-        "x": 70.90336179733276,
-        "y": -4.949342553572933e-07,
-        "z": -0.1455843448638916,
+        "cycle": 48,
+        "x": -9.216609954833984,
+        "y": 0.0,
+        "z": -0.15375956147909164,
         "original": {
           "vector": [
             0.797272,
@@ -22217,10 +21947,10 @@ body::after {
         }
       },
       {
-        "cycle": 55,
-        "x": 70.90470290184021,
-        "y": -4.951052403612266e-07,
-        "z": -0.14563442021608353,
+        "cycle": 49,
+        "x": -9.215268850326538,
+        "y": 0.0,
+        "z": -0.15380999445915222,
         "original": {
           "vector": [
             0.797272,
@@ -22262,10 +21992,10 @@ body::after {
         }
       },
       {
-        "cycle": 56,
-        "x": 97.26321768760681,
-        "y": -4.3773204083663586e-07,
-        "z": -0.12908829003572464,
+        "cycle": 50,
+        "x": 17.14324951171875,
+        "y": 0.0,
+        "z": -0.14432450383901596,
         "original": {
           "vector": [
             0.797272,
@@ -22307,10 +22037,10 @@ body::after {
         }
       },
       {
-        "cycle": 57,
-        "x": 97.26411771774292,
-        "y": -4.3784680769931583e-07,
-        "z": -0.12912189960479736,
+        "cycle": 51,
+        "x": 17.14414954185486,
+        "y": 0.0,
+        "z": -0.14435835182666779,
         "original": {
           "vector": [
             0.797272,
@@ -22352,10 +22082,10 @@ body::after {
         }
       },
       {
-        "cycle": 58,
-        "x": 123.60821390151978,
-        "y": -3.78635320430476e-07,
-        "z": -0.11203741282224655,
+        "cycle": 52,
+        "x": 43.4882493019104,
+        "y": 0.0,
+        "z": -0.1343306377530098,
         "original": {
           "vector": [
             0.797272,
@@ -22397,10 +22127,10 @@ body::after {
         }
       },
       {
-        "cycle": 59,
-        "x": 123.60909605026245,
-        "y": -3.787477851346921e-07,
-        "z": -0.11207035183906555,
+        "cycle": 53,
+        "x": 43.489131450653076,
+        "y": 0.0,
+        "z": -0.1343638151884079,
         "original": {
           "vector": [
             0.797272,
@@ -22442,10 +22172,10 @@ body::after {
         }
       },
       {
-        "cycle": 60,
-        "x": 149.9165496826172,
-        "y": -3.1486464990848617e-07,
-        "z": -0.093617744743824,
+        "cycle": 54,
+        "x": 69.79658913612366,
+        "y": 0.0,
+        "z": -0.12295815348625183,
         "original": {
           "vector": [
             0.797272,
@@ -22487,10 +22217,10 @@ body::after {
         }
       },
       {
-        "cycle": 61,
-        "x": 149.9174301624298,
-        "y": -3.1497688723902684e-07,
-        "z": -0.09365060925483704,
+        "cycle": 55,
+        "x": 69.7974693775177,
+        "y": 0.0,
+        "z": -0.12299126386642456,
         "original": {
           "vector": [
             0.797272,
@@ -22532,10 +22262,10 @@ body::after {
         }
       },
       {
-        "cycle": 62,
-        "x": 176.23402428627014,
-        "y": -2.522590705211769e-07,
-        "z": -0.07553928345441818,
+        "cycle": 56,
+        "x": 96.11406755447388,
+        "y": 0.0,
+        "z": -0.11192933470010757,
         "original": {
           "vector": [
             0.797272,
@@ -22577,10 +22307,10 @@ body::after {
         }
       },
       {
-        "cycle": 63,
-        "x": 176.2349135875702,
-        "y": -2.523724731418042e-07,
-        "z": -0.07557249069213867,
+        "cycle": 57,
+        "x": 96.11495685577393,
+        "y": 0.0,
+        "z": -0.11196278035640717,
         "original": {
           "vector": [
             0.797272,
@@ -22622,10 +22352,10 @@ body::after {
         }
       },
       {
-        "cycle": 64,
-        "x": 202.54526376724243,
-        "y": -1.8885862118622754e-07,
-        "z": -0.05722803622484207,
+        "cycle": 58,
+        "x": 122.42531108856201,
+        "y": 0.0,
+        "z": -0.10066605359315872,
         "original": {
           "vector": [
             0.797272,
@@ -22667,10 +22397,10 @@ body::after {
         }
       },
       {
-        "cycle": 65,
-        "x": 202.54619431495667,
-        "y": -1.8897725340139004e-07,
-        "z": -0.05726277828216553,
+        "cycle": 59,
+        "x": 122.42624163627625,
+        "y": 0.0,
+        "z": -0.10070104897022247,
         "original": {
           "vector": [
             0.797272,
@@ -22712,10 +22442,10 @@ body::after {
         }
       },
       {
-        "cycle": 66,
-        "x": 228.86420512199402,
-        "y": -1.2644005664697033e-07,
-        "z": -0.039204344153404236,
+        "cycle": 60,
+        "x": 148.74425625801086,
+        "y": 0.0,
+        "z": -0.08969239890575409,
         "original": {
           "vector": [
             0.797272,
@@ -22757,10 +22487,10 @@ body::after {
         }
       },
       {
-        "cycle": 67,
-        "x": 228.86505770683289,
-        "y": -1.265487412638322e-07,
-        "z": -0.039236173033714294,
+        "cycle": 61,
+        "x": 148.74510884284973,
+        "y": 0.0,
+        "z": -0.08972445130348206,
         "original": {
           "vector": [
             0.797272,
@@ -22802,10 +22532,10 @@ body::after {
         }
       },
       {
-        "cycle": 68,
-        "x": 255.18607783317566,
-        "y": -6.439523758672294e-08,
-        "z": -0.02129010111093521,
+        "cycle": 62,
+        "x": 175.06613278388977,
+        "y": 0.0,
+        "z": -0.07882896810770035,
         "original": {
           "vector": [
             0.797272,
@@ -22847,10 +22577,10 @@ body::after {
         }
       },
       {
-        "cycle": 69,
-        "x": 255.18700408935547,
-        "y": -6.451332978940627e-08,
-        "z": -0.02132468670606613,
+        "cycle": 63,
+        "x": 175.06705904006958,
+        "y": 0.0,
+        "z": -0.07886379957199097,
         "original": {
           "vector": [
             0.797272,
@@ -22892,10 +22622,10 @@ body::after {
         }
       },
       {
-        "cycle": 70,
-        "x": 282.1064028739929,
-        "y": -7.8648952239746e-08,
-        "z": -0.025720342993736267,
+        "cycle": 64,
+        "x": 201.98645567893982,
+        "y": 0.0,
+        "z": -0.0904703289270401,
         "original": {
           "vector": [
             0.795854,
@@ -22937,10 +22667,10 @@ body::after {
         }
       },
       {
-        "cycle": 71,
-        "x": 282.1073224544525,
-        "y": -7.876619179114641e-08,
-        "z": -0.025754675269126892,
+        "cycle": 65,
+        "x": 201.9873752593994,
+        "y": 0.0,
+        "z": -0.09050490707159042,
         "original": {
           "vector": [
             0.795854,
@@ -22982,10 +22712,10 @@ body::after {
         }
       },
       {
-        "cycle": 72,
-        "x": 308.41254448890686,
-        "y": -1.4598526831832714e-08,
-        "z": -0.007218740880489349,
+        "cycle": 66,
+        "x": 228.2926013469696,
+        "y": 0.0,
+        "z": -0.0790153369307518,
         "original": {
           "vector": [
             0.795854,
@@ -23027,10 +22757,10 @@ body::after {
         }
       },
       {
-        "cycle": 73,
-        "x": 308.41341972351074,
-        "y": -1.471011046305648e-08,
-        "z": -0.007251426577568054,
+        "cycle": 67,
+        "x": 228.2934765815735,
+        "y": 0.0,
+        "z": -0.07904825359582901,
         "original": {
           "vector": [
             0.795854,
@@ -23072,10 +22802,10 @@ body::after {
         }
       },
       {
-        "cycle": 74,
-        "x": 334.72592854499817,
-        "y": 4.85285340801056e-08,
-        "z": 0.011012434959411621,
+        "cycle": 68,
+        "x": 254.60598945617676,
+        "y": 0.0,
+        "z": -0.06783270090818405,
         "original": {
           "vector": [
             0.795854,
@@ -23117,10 +22847,10 @@ body::after {
         }
       },
       {
-        "cycle": 75,
-        "x": 334.72682523727417,
-        "y": 4.8414221964776516e-08,
-        "z": 0.010978959500789642,
+        "cycle": 69,
+        "x": 254.60688591003418,
+        "y": 0.0,
+        "z": -0.06786641478538513,
         "original": {
           "vector": [
             0.795854,
@@ -23162,10 +22892,10 @@ body::after {
         }
       },
       {
-        "cycle": 76,
-        "x": 361.03290820121765,
-        "y": 1.1247209386056056e-07,
-        "z": 0.029482737183570862,
+        "cycle": 70,
+        "x": 280.9129729270935,
+        "y": 0.0,
+        "z": -0.05640921741724014,
         "original": {
           "vector": [
             0.795854,
@@ -23207,10 +22937,10 @@ body::after {
         }
       },
       {
-        "cycle": 77,
-        "x": 361.0337359905243,
-        "y": 1.123665924751549e-07,
-        "z": 0.029451832175254822,
+        "cycle": 71,
+        "x": 280.91380071640015,
+        "y": 0.0,
+        "z": -0.05644034594297409,
         "original": {
           "vector": [
             0.795854,
@@ -23252,10 +22982,10 @@ body::after {
         }
       },
       {
-        "cycle": 78,
-        "x": 387.3419635295868,
-        "y": 1.7615104752621846e-07,
-        "z": 0.0478755459189415,
+        "cycle": 72,
+        "x": 307.2220323085785,
+        "y": 0.0,
+        "z": -0.0450638011097908,
         "original": {
           "vector": [
             0.795854,
@@ -23297,10 +23027,10 @@ body::after {
         }
       },
       {
-        "cycle": 79,
-        "x": 387.3432676792145,
-        "y": 1.759847805260506e-07,
-        "z": 0.047826848924160004,
+        "cycle": 73,
+        "x": 307.2233364582062,
+        "y": 0.0,
+        "z": -0.045112840831279755,
         "original": {
           "vector": [
             0.795854,
@@ -23342,10 +23072,10 @@ body::after {
         }
       },
       {
-        "cycle": 80,
-        "x": 413.64718747138977,
-        "y": 2.403184566901473e-07,
-        "z": 0.06641139835119247,
+        "cycle": 74,
+        "x": 333.5272603034973,
+        "y": 0.0,
+        "z": -0.03357429802417755,
         "original": {
           "vector": [
             0.795854,
@@ -23387,10 +23117,10 @@ body::after {
         }
       },
       {
-        "cycle": 81,
-        "x": 413.6480870246887,
-        "y": 2.4020380351430504e-07,
-        "z": 0.06637781858444214,
+        "cycle": 75,
+        "x": 333.52815985679626,
+        "y": 0.0,
+        "z": -0.033608123660087585,
         "original": {
           "vector": [
             0.795854,
@@ -23432,10 +23162,10 @@ body::after {
         }
       },
       {
-        "cycle": 82,
-        "x": 439.9493730068207,
-        "y": 3.0487328217532195e-07,
-        "z": 0.08506070822477341,
+        "cycle": 76,
+        "x": 359.8294496536255,
+        "y": 0.0,
+        "z": -0.021970532834529877,
         "original": {
           "vector": [
             0.795854,
@@ -23477,10 +23207,10 @@ body::after {
         }
       },
       {
-        "cycle": 83,
-        "x": 439.95058488845825,
-        "y": 3.0471875334114884e-07,
-        "z": 0.08501546084880829,
+        "cycle": 77,
+        "x": 359.83066177368164,
+        "y": 0.0,
+        "z": -0.02201610803604126,
         "original": {
           "vector": [
             0.795854,
@@ -23522,10 +23252,10 @@ body::after {
         }
       },
       {
-        "cycle": 84,
-        "x": 467.67613101005554,
-        "y": 1.878049715742236e-07,
-        "z": 0.05052059888839722,
+        "cycle": 78,
+        "x": 387.55619764328003,
+        "y": 0.0,
+        "z": -0.06393778324127197,
         "original": {
           "vector": [
             0.795854,
@@ -23567,10 +23297,10 @@ body::after {
         }
       },
       {
-        "cycle": 85,
-        "x": 467.67703557014465,
-        "y": 1.8768966469906445e-07,
-        "z": 0.05048682540655136,
+        "cycle": 79,
+        "x": 387.55710196495056,
+        "y": 0.0,
+        "z": -0.06397179514169693,
         "original": {
           "vector": [
             0.795854,
@@ -23612,10 +23342,10 @@ body::after {
         }
       },
       {
-        "cycle": 86,
-        "x": 493.98124527931213,
-        "y": 2.519863642191922e-07,
-        "z": 0.0690605491399765,
+        "cycle": 80,
+        "x": 413.8613157272339,
+        "y": 0.0,
+        "z": -0.05244415998458862,
         "original": {
           "vector": [
             0.795854,
@@ -23657,10 +23387,10 @@ body::after {
         }
       },
       {
-        "cycle": 87,
-        "x": 493.9821035861969,
-        "y": 2.5187694063788513e-07,
-        "z": 0.06902850419282913,
+        "cycle": 81,
+        "x": 413.86217427253723,
+        "y": 0.0,
+        "z": -0.0524764358997345,
         "original": {
           "vector": [
             0.795854,
@@ -23702,10 +23432,10 @@ body::after {
         }
       },
       {
-        "cycle": 88,
-        "x": 520.2871916294098,
-        "y": 3.160616870445665e-07,
-        "z": 0.08756943792104721,
+        "cycle": 82,
+        "x": 440.1672661304474,
+        "y": 0.0,
+        "z": -0.04098182171583176,
         "original": {
           "vector": [
             0.795854,
@@ -23747,10 +23477,10 @@ body::after {
         }
       },
       {
-        "cycle": 89,
-        "x": 520.2880759239197,
-        "y": 3.159489381232561e-07,
-        "z": 0.08753641694784164,
+        "cycle": 83,
+        "x": 440.16815066337585,
+        "y": 0.0,
+        "z": -0.041015081107616425,
         "original": {
           "vector": [
             0.795854,
@@ -23792,10 +23522,10 @@ body::after {
         }
       },
       {
-        "cycle": 90,
-        "x": 546.6112806797028,
-        "y": 3.778239374696568e-07,
-        "z": 0.1054009273648262,
+        "cycle": 84,
+        "x": 466.4913589954376,
+        "y": 0.0,
+        "z": -0.030201740562915802,
         "original": {
           "vector": [
             0.795854,
@@ -23837,10 +23567,10 @@ body::after {
         }
       },
       {
-        "cycle": 91,
-        "x": 546.6121578216553,
-        "y": 3.7771209804304817e-07,
-        "z": 0.10536817461252213,
+        "cycle": 85,
+        "x": 466.4922363758087,
+        "y": 0.0,
+        "z": -0.03023473173379898,
         "original": {
           "vector": [
             0.795854,
@@ -23882,10 +23612,10 @@ body::after {
         }
       },
       {
-        "cycle": 92,
-        "x": 572.9154841899872,
-        "y": 4.421214327976486e-07,
-        "z": 0.12397488206624985,
+        "cycle": 86,
+        "x": 492.79556679725647,
+        "y": 0.0,
+        "z": -0.018673866987228394,
         "original": {
           "vector": [
             0.795854,
@@ -23927,10 +23657,10 @@ body::after {
         }
       },
       {
-        "cycle": 93,
-        "x": 572.9163665771484,
-        "y": 4.4200893967172306e-07,
-        "z": 0.12394193559885025,
+        "cycle": 87,
+        "x": 492.7964491844177,
+        "y": 0.0,
+        "z": -0.01870705932378769,
         "original": {
           "vector": [
             0.795854,
@@ -23972,10 +23702,10 @@ body::after {
         }
       },
       {
-        "cycle": 94,
-        "x": 599.2724311351776,
-        "y": 4.996945506263728e-07,
-        "z": 0.14057955145835876,
+        "cycle": 88,
+        "x": 519.152517080307,
+        "y": 0.0,
+        "z": -0.009129412472248077,
         "original": {
           "vector": [
             0.795854,
@@ -24017,10 +23747,10 @@ body::after {
         }
       },
       {
-        "cycle": 95,
-        "x": 599.2753531932831,
-        "y": 4.993220272808685e-07,
-        "z": 0.140470452606678,
+        "cycle": 89,
+        "x": 519.1554391384125,
+        "y": 0.0,
+        "z": -0.00923929363489151,
         "original": {
           "vector": [
             0.795854,
@@ -24062,10 +23792,10 @@ body::after {
         }
       },
       {
-        "cycle": 96,
-        "x": 625.667115688324,
-        "y": 5.524563562175899e-07,
-        "z": 0.15577521175146103,
+        "cycle": 90,
+        "x": 545.5472047328949,
+        "y": 0.0,
+        "z": -0.0010040700435638428,
         "original": {
           "vector": [
             0.795854,
@@ -24107,10 +23837,10 @@ body::after {
         }
       },
       {
-        "cycle": 97,
-        "x": 625.6726610660553,
-        "y": 5.517493661955086e-07,
-        "z": 0.1555681675672531,
+        "cycle": 91,
+        "x": 545.5527501106262,
+        "y": 0.0,
+        "z": -0.0012126043438911438,
         "original": {
           "vector": [
             0.795854,
@@ -24152,10 +23882,10 @@ body::after {
         }
       },
       {
-        "cycle": 98,
-        "x": 652.0434060096741,
-        "y": 6.075632938973285e-07,
-        "z": 0.17165765166282654,
+        "cycle": 92,
+        "x": 571.9234986305237,
+        "y": 0.0,
+        "z": 0.007812976837158203,
         "original": {
           "vector": [
             0.795854,
@@ -24197,10 +23927,10 @@ body::after {
         }
       },
       {
-        "cycle": 99,
-        "x": 652.0455636978149,
-        "y": 6.072882001717517e-07,
-        "z": 0.1715770959854126,
+        "cycle": 93,
+        "x": 571.925656080246,
+        "y": 0.0,
+        "z": 0.007731840014457703,
         "original": {
           "vector": [
             0.795854,
@@ -24240,18 +23970,288 @@ body::after {
           "cycle": 7157,
           "timestamp": 1775848314.091352
         }
+      },
+      {
+        "cycle": 94,
+        "x": 598.2415065765381,
+        "y": 0.0,
+        "z": 0.018821880221366882,
+        "original": {
+          "vector": [
+            0.795854,
+            0.25,
+            0.0,
+            0.964824,
+            0.0,
+            0.106347,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.06183,
+            0.265306,
+            0.734694,
+            0.000137,
+            1.0,
+            0.02815
+          ],
+          "labels": [
+            "astro_conf_mean",
+            "econ_conf_mean",
+            "climate_conf_mean",
+            "epi_conf_mean",
+            "astro_conf_var",
+            "econ_conf_var",
+            "climate_conf_var",
+            "epi_conf_var",
+            "domain_entropy",
+            "exploration_rate",
+            "exploitation_rate",
+            "coupling_density",
+            "resource_utilization",
+            "decision_velocity"
+          ],
+          "dimensions": 16,
+          "cycle": 7158,
+          "timestamp": 1775848340.388198
+        }
+      },
+      {
+        "cycle": 95,
+        "x": 598.2423799037933,
+        "y": 0.0,
+        "z": 0.018789030611515045,
+        "original": {
+          "vector": [
+            0.795854,
+            0.25,
+            0.0,
+            0.964824,
+            0.0,
+            0.106347,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.06183,
+            0.265306,
+            0.734694,
+            0.000137,
+            1.0,
+            0.02815
+          ],
+          "labels": [
+            "astro_conf_mean",
+            "econ_conf_mean",
+            "climate_conf_mean",
+            "epi_conf_mean",
+            "astro_conf_var",
+            "econ_conf_var",
+            "climate_conf_var",
+            "epi_conf_var",
+            "domain_entropy",
+            "exploration_rate",
+            "exploitation_rate",
+            "coupling_density",
+            "resource_utilization",
+            "decision_velocity"
+          ],
+          "dimensions": 16,
+          "cycle": 7158,
+          "timestamp": 1775848340.389072
+        }
+      },
+      {
+        "cycle": 96,
+        "x": 624.5498812198639,
+        "y": 0.0,
+        "z": 0.030193038284778595,
+        "original": {
+          "vector": [
+            0.795854,
+            0.25,
+            0.0,
+            0.964824,
+            0.0,
+            0.106347,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.06183,
+            0.265306,
+            0.734694,
+            0.000137,
+            1.0,
+            0.028146
+          ],
+          "labels": [
+            "astro_conf_mean",
+            "econ_conf_mean",
+            "climate_conf_mean",
+            "epi_conf_mean",
+            "astro_conf_var",
+            "econ_conf_var",
+            "climate_conf_var",
+            "epi_conf_var",
+            "domain_entropy",
+            "exploration_rate",
+            "exploitation_rate",
+            "coupling_density",
+            "resource_utilization",
+            "decision_velocity"
+          ],
+          "dimensions": 16,
+          "cycle": 7159,
+          "timestamp": 1775848366.677563
+        }
+      },
+      {
+        "cycle": 97,
+        "x": 624.5508048534393,
+        "y": 0.0,
+        "z": 0.030158311128616333,
+        "original": {
+          "vector": [
+            0.795854,
+            0.25,
+            0.0,
+            0.964824,
+            0.0,
+            0.106347,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.06183,
+            0.265306,
+            0.734694,
+            0.000137,
+            1.0,
+            0.028146
+          ],
+          "labels": [
+            "astro_conf_mean",
+            "econ_conf_mean",
+            "climate_conf_mean",
+            "epi_conf_mean",
+            "astro_conf_var",
+            "econ_conf_var",
+            "climate_conf_var",
+            "epi_conf_var",
+            "domain_entropy",
+            "exploration_rate",
+            "exploitation_rate",
+            "coupling_density",
+            "resource_utilization",
+            "decision_velocity"
+          ],
+          "dimensions": 16,
+          "cycle": 7159,
+          "timestamp": 1775848366.678487
+        }
+      },
+      {
+        "cycle": 98,
+        "x": 650.8691115379333,
+        "y": 0.0,
+        "z": 0.04115598648786545,
+        "original": {
+          "vector": [
+            0.795854,
+            0.25,
+            0.0,
+            0.964824,
+            0.0,
+            0.106347,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.06183,
+            0.265306,
+            0.734694,
+            0.000137,
+            1.0,
+            0.028142
+          ],
+          "labels": [
+            "astro_conf_mean",
+            "econ_conf_mean",
+            "climate_conf_mean",
+            "epi_conf_mean",
+            "astro_conf_var",
+            "econ_conf_var",
+            "climate_conf_var",
+            "epi_conf_var",
+            "domain_entropy",
+            "exploration_rate",
+            "exploitation_rate",
+            "coupling_density",
+            "resource_utilization",
+            "decision_velocity"
+          ],
+          "dimensions": 16,
+          "cycle": 7160,
+          "timestamp": 1775848392.977791
+        }
+      },
+      {
+        "cycle": 99,
+        "x": 650.8699676990509,
+        "y": 0.0,
+        "z": 0.04112378507852554,
+        "original": {
+          "vector": [
+            0.795854,
+            0.25,
+            0.0,
+            0.964824,
+            0.0,
+            0.106347,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.06183,
+            0.265306,
+            0.734694,
+            0.000137,
+            1.0,
+            0.028142
+          ],
+          "labels": [
+            "astro_conf_mean",
+            "econ_conf_mean",
+            "climate_conf_mean",
+            "epi_conf_mean",
+            "astro_conf_var",
+            "econ_conf_var",
+            "climate_conf_var",
+            "epi_conf_var",
+            "domain_entropy",
+            "exploration_rate",
+            "exploitation_rate",
+            "coupling_density",
+            "resource_utilization",
+            "decision_velocity"
+          ],
+          "dimensions": 16,
+          "cycle": 7160,
+          "timestamp": 1775848392.978648
+        }
       }
     ],
     "steady_state_attractor": null
   },
   "engine/alignment": {
-    "composite_score": 0.3405,
+    "composite_score": 0.3404,
     "dimensions": {
       "scientific_rigor": 0.7347,
       "domain_balance": 0.0618,
       "novelty_pursuit": 0.0,
       "epistemic_humility": 0.0165,
-      "resource_efficiency": 0.4024,
+      "resource_efficiency": 0.4022,
       "reproducibility": 0.7081
     },
     "weights": {
@@ -24265,9 +24265,9 @@ body::after {
     "metadata": {
       "total_hypotheses": 394,
       "active_hypotheses": 392,
-      "cycle_count": 7157,
+      "cycle_count": 7160,
       "new_hypotheses_last_10": 0,
-      "timestamp": 1775848335.160911
+      "timestamp": 1775848395.313631
     }
   },
   "engine/anomalies": {
@@ -24281,11 +24281,47 @@ body::after {
         "mean": 0.0,
         "std": 0.0,
         "z_score": 0.0,
-        "cycle": 7157,
-        "timestamp": 1775848314.091352
+        "cycle": 7160,
+        "timestamp": 1775848392.978648
       }
     ],
     "alert_history": [
+      {
+        "severity": "WARNING",
+        "dimension": "exploration_rate",
+        "dimension_index": 9,
+        "message": "Exploration stall: exploration rate below 5% for 10+ cycles",
+        "value": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "z_score": 0.0,
+        "cycle": 7160,
+        "timestamp": 1775848392.978648
+      },
+      {
+        "severity": "WARNING",
+        "dimension": "exploration_rate",
+        "dimension_index": 9,
+        "message": "Exploration stall: exploration rate below 5% for 10+ cycles",
+        "value": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "z_score": 0.0,
+        "cycle": 7159,
+        "timestamp": 1775848366.678487
+      },
+      {
+        "severity": "WARNING",
+        "dimension": "exploration_rate",
+        "dimension_index": 9,
+        "message": "Exploration stall: exploration rate below 5% for 10+ cycles",
+        "value": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "z_score": 0.0,
+        "cycle": 7158,
+        "timestamp": 1775848340.389072
+      },
       {
         "severity": "WARNING",
         "dimension": "exploration_rate",
@@ -25449,42 +25485,6 @@ body::after {
         "z_score": 0.0,
         "cycle": 7100,
         "timestamp": 1775846794.7289238
-      },
-      {
-        "severity": "WARNING",
-        "dimension": "exploration_rate",
-        "dimension_index": 9,
-        "message": "Exploration stall: exploration rate below 5% for 10+ cycles",
-        "value": 0.0,
-        "mean": 0.0,
-        "std": 0.0,
-        "z_score": 0.0,
-        "cycle": 7099,
-        "timestamp": 1775846767.058486
-      },
-      {
-        "severity": "WARNING",
-        "dimension": "exploration_rate",
-        "dimension_index": 9,
-        "message": "Exploration stall: exploration rate below 5% for 10+ cycles",
-        "value": 0.0,
-        "mean": 0.0,
-        "std": 0.0,
-        "z_score": 0.0,
-        "cycle": 7098,
-        "timestamp": 1775846740.7739909
-      },
-      {
-        "severity": "WARNING",
-        "dimension": "exploration_rate",
-        "dimension_index": 9,
-        "message": "Exploration stall: exploration rate below 5% for 10+ cycles",
-        "value": 0.0,
-        "mean": 0.0,
-        "std": 0.0,
-        "z_score": 0.0,
-        "cycle": 7097,
-        "timestamp": 1775846714.47936
       }
     ],
     "rolling_stats": {
@@ -25493,8 +25493,8 @@ body::after {
       "samples_in_window": 20,
       "dimensions": {
         "astro_conf_mean": {
-          "mean": 0.796208,
-          "std": 0.000614,
+          "mean": 0.795996,
+          "std": 0.000425,
           "min": 0.795854,
           "max": 0.797272,
           "current": 0.795854,
@@ -25533,8 +25533,8 @@ body::after {
           "samples": 20
         },
         "econ_conf_var": {
-          "mean": 0.106222,
-          "std": 0.000217,
+          "mean": 0.106297,
+          "std": 0.00015,
           "min": 0.105847,
           "max": 0.106347,
           "current": 0.106347,
@@ -25573,24 +25573,24 @@ body::after {
           "samples": 20
         },
         "exploitation_rate": {
-          "mean": 0.061864,
-          "std": 5.8e-05,
+          "mean": 0.061843,
+          "std": 4e-05,
           "min": 0.06183,
           "max": 0.061964,
           "current": 0.06183,
           "samples": 20
         },
         "coupling_density": {
-          "mean": 0.264836,
-          "std": 0.000814,
+          "mean": 0.265118,
+          "std": 0.000564,
           "min": 0.263427,
           "max": 0.265306,
           "current": 0.265306,
           "samples": 20
         },
         "resource_utilization": {
-          "mean": 0.735164,
-          "std": 0.000814,
+          "mean": 0.734882,
+          "std": 0.000564,
           "min": 0.734694,
           "max": 0.736573,
           "current": 0.734694,
@@ -25606,8 +25606,8 @@ body::after {
         }
       }
     },
-    "total_alerts": 294,
-    "timestamp": 1775848335.1631591
+    "total_alerts": 297,
+    "timestamp": 1775848395.3165371
   },
   "engine/pending": {
     "count": 0,
@@ -25615,7 +25615,7 @@ body::after {
   },
   "system/health": {
     "status": "HEALTHY",
-    "uptime_seconds": 0.0005490779876708984,
+    "uptime_seconds": 0.0006420612335205078,
     "components": [
       {
         "id": "c1",
@@ -25654,7 +25654,7 @@ body::after {
         "message": "CPU: 0.0% MEM: 490.0MB"
       }
     ],
-    "timestamp": 1775848335.170219
+    "timestamp": 1775848395.324825
   },
   "literature/papers": {
     "papers": [
@@ -26855,7 +26855,7 @@ body::after {
     ],
     "total": 82,
     "backend": "sklearn",
-    "timestamp": 1775848335.17223
+    "timestamp": 1775848395.327084
   },
   "literature/citation-graph": {
     "nodes": [],
@@ -26870,10 +26870,10 @@ body::after {
       "max_citations": 0
     },
     "h_index": 0,
-    "timestamp": 1775848335.194829
+    "timestamp": 1775848395.352106
   }
 };
-  window.__SNAPSHOT_TIME__ = 1775848335.201131;
+  window.__SNAPSHOT_TIME__ = 1775848395.3577201;
 
   async function api(path) {
     if (!apiConnected || API === null) return snapshotFor(path);
