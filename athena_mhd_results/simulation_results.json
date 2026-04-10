@@ -1,0 +1,128 @@
+{
+  "M1_beta1": {
+    "label": "M=1, \u03b2=1 (trans-sonic, equipartition)",
+    "runtime_min": 232,
+    "grid": "128\u00b3",
+    "initial_ME": 1.0,
+    "saturated": {
+      "KE_total": {
+        "mean": 0.7040949407407409,
+        "std": 0.037880472747782605,
+        "min": 0.6356543,
+        "max": 0.7617867999999999
+      },
+      "ME_total": {
+        "mean": 1.0512883408641975,
+        "std": 0.0028301343939271446,
+        "min": 1.0470228,
+        "max": 1.05567979
+      },
+      "ME_turb": {
+        "mean": 0.031169081604938274,
+        "std": 0.0016636402876968456,
+        "min": 0.02831403999999993,
+        "max": 0.03370851000000008
+      },
+      "vrms": {
+        "mean": 1.1862400560256028,
+        "std": 0.03200642063486031,
+        "min": 1.1275232148386125,
+        "max": 1.2343312359330456
+      },
+      "ME_KE_ratio": {
+        "mean": 1.497281116524908,
+        "std": 0.07770699280303926,
+        "min": 1.3857942799743972,
+        "max": 1.6502926197462995
+      },
+      "dt": {
+        "mean": 0.0004908955679012346,
+        "std": 2.4371153004400674e-05,
+        "min": 0.000459319,
+        "max": 0.000531937
+      }
+    },
+    "ME_amplification": 1.0512883408641975,
+    "peak_ME_KE": Infinity,
+    "peak_ME_KE_time": 0.0,
+    "dynamo_growth_rate": 1.621737257759815,
+    "final_KE": 0.7617867999999999,
+    "final_ME": 1.05567979,
+    "final_ME_KE": 1.3857942799743972,
+    "final_vrms": 1.2343312359330456,
+    "vA_saturated": 1.4500264417342172,
+    "c_eff_magnetic": 1.7614132626185133,
+    "c_eff_turb_magnetic": 1.8898761437110823,
+    "frag_scale_enhancement": 1.7614132626185133,
+    "Alfvenic_Mach": 0.8180816720879044
+  },
+  "M3_beta1": {
+    "label": "M=3, \u03b2=1 (supersonic, equipartition)",
+    "runtime_min": 681,
+    "grid": "128\u00b3",
+    "initial_ME": 1.0,
+    "saturated": {
+      "KE_total": {
+        "mean": 1.8880600123456788,
+        "std": 0.02002787061682525,
+        "min": 1.8622329999999998,
+        "max": 1.935224
+      },
+      "ME_total": {
+        "mean": 1.55875650617284,
+        "std": 0.025686291684415555,
+        "min": 1.505896,
+        "max": 1.605626
+      },
+      "ME_turb": {
+        "mean": 0.40584625925925927,
+        "std": 0.011809558869232649,
+        "min": 0.37876599999999994,
+        "max": 0.43501600000000007
+      },
+      "vrms": {
+        "mean": 1.9431969539901879,
+        "std": 0.01027729023693626,
+        "min": 1.9298875614916013,
+        "max": 1.9673454195946374
+      },
+      "ME_KE_ratio": {
+        "mean": 0.8258073812679281,
+        "std": 0.02165916355275638,
+        "min": 0.7783256985645464,
+        "max": 0.8589161120659818
+      },
+      "dt": {
+        "mean": 0.00017029824691358025,
+        "std": 2.4627398449860057e-05,
+        "min": 0.000120139,
+        "max": 0.000204891
+      }
+    },
+    "ME_amplification": 1.55875650617284,
+    "peak_ME_KE": Infinity,
+    "peak_ME_KE_time": 0.0,
+    "dynamo_growth_rate": 47.36994441091863,
+    "final_KE": 1.9347889999999999,
+    "final_ME": 1.505896,
+    "final_ME_KE": 0.7783256985645464,
+    "final_vrms": 1.9671242970387,
+    "vA_saturated": 1.7656480431687624,
+    "c_eff_magnetic": 2.0291655951020067,
+    "c_eff_turb_magnetic": 2.318660061259073,
+    "frag_scale_enhancement": 2.0291655951020067,
+    "Alfvenic_Mach": 1.1005573627815333
+  },
+  "filament_implications": {
+    "observed_spacing_pc": 0.21,
+    "observed_spacing_err_pc": 0.01,
+    "filament_width_pc": 0.1,
+    "observed_ratio_spacing_width": 2.1,
+    "inutsuka_miyama_prediction": 4.0,
+    "M1_magnetic_Jeans_enhancement": 1.7614132626185133,
+    "M3_magnetic_Jeans_enhancement": 2.0291655951020067,
+    "M1_predicted_spacing_ratio": 7.045653050474053,
+    "M3_predicted_spacing_ratio": 8.116662380408027,
+    "note": "Pure magnetic Jeans enhancement moves prediction further from 2x. Magnetic tension on long wavelengths needed."
+  }
+}
