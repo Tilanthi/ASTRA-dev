@@ -351,20 +351,40 @@ class HypothesisGenerator:
         Check if a candidate hypothesis is semantically too similar to existing ones.
         Prevents the v1-v12 duplication problem by checking variable overlap + finding_type.
         """
+        c_name = candidate.get("name", "").lower()
         c_vars = set(candidate.get("variables", []))
         c_ft = candidate.get("finding_type", "")
         c_src = candidate.get("data_source", "")
 
         for existing in existing_hypotheses:
+            e_name = existing.get("name", "").lower()
             e_vars = set(existing.get("variables", []))
             e_ft = existing.get("finding_type", "")
             e_src = existing.get("data_source", "")
 
-            # Same finding type + same data source + >50% variable overlap = duplicate
-            if c_ft == e_ft and c_src == e_src and c_vars and e_vars:
-                overlap = len(c_vars & e_vars) / max(len(c_vars | e_vars), 1)
-                if overlap >= 0.5:
+            # CRITICAL FIX: Check for exact or near-exact name match FIRST
+            # This catches theoretical hypotheses that have empty variables
+            if c_name and e_name:
+                # Exact match
+                if c_name == e_name:
                     return True
+                # Contains match (handles cases where one is substring of another)
+                if c_name in e_name or e_name in c_name:
+                    return True
+
+            # For hypotheses with variables, use the original overlap check
+            # Same finding type + same data source + >50% variable overlap = duplicate
+            if c_ft == e_ft and c_src == e_src:
+                # Handle case where both have variables
+                if c_vars and e_vars:
+                    overlap = len(c_vars & e_vars) / max(len(c_vars | e_vars), 1)
+                    if overlap >= 0.5:
+                        return True
+                # Handle case where both have NO variables (exploration/theoretical)
+                elif not c_vars and not e_vars:
+                    # Same finding_type and data_source with no variables = likely duplicate
+                    return True
+
         return False
 
     def generate_diversification_hypotheses(self, current_cycle: int,
