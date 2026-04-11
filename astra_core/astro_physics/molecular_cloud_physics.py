@@ -313,8 +313,8 @@ class DustModelLibrary:
             silicate_fraction=0.40, carbon_fraction=0.25
         ),
         DustModel.PLANCK: DustProperties(
-            model="Planck Collaboration",
-            kappa_ref=0.92, lambda_ref=353.0,  # 353 GHz = 850 μm
+            model="Planck Collaboration 2013",
+            kappa_ref=0.92, lambda_ref=850.0,  # 0.92 cm²/g at 850 μm (353 GHz)
             beta=1.62, beta_uncertainty=0.10,
             gas_to_dust=136.0,
             T_min=14, T_max=30,

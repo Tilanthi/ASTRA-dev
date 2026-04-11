@@ -398,9 +398,11 @@ Feedback Potential:
         gas_surface_density = params.get('gas_density', 10)  # M_sun/pc^2
         region_size = params.get('region_size', 1.0)  # kpc
 
-        # Kennicutt-Schmidt law: Σ_SFR = 2.5e-4 * (Σ_gas / 1e7)^1.4
-        # in M_sun/yr/kpc^2
-        ks_sfr = 2.5e-4 * (gas_surface_density * 1e6 / 1e7)**1.4  # M_sun/yr/kpc^2
+        # Kennicutt-Schmidt law: Σ_SFR = (2.5 ± 0.7) × 10^-4 * (Σ_gas / 1e7)^1.4 ± 0.15
+        # Kennicutt 1998, Eq. 4: Σ_SFR in M_sun/yr/kpc^2, Σ_gas in M_sun/pc^2
+        # Original: Σ_gas in M_sun/pc^2, so convert from input units
+        # The factor 2.5e-4 is already normalized to Σ_gas in M_sun/pc^2
+        ks_sfr = 2.5e-4 * (gas_surface_density / 1.0)**1.4  # M_sun/yr/kpc^2 per kpc^2
 
         # Total SFR
         total_sfr = ks_sfr * region_size**2  # M_sun/yr
@@ -463,11 +465,14 @@ Implications:
         sfr_halpha = 5.5e-42 * halpha_luminosity
 
         # UV (150 nm): SFR (M_sun/yr) = 2.6e-43 * L_UV (erg/s/Hz) * nu(150nm)
-        # For 150 nm, L_nu ~ L_lambda * c / lambda^2
-        sfr_uv = 2.6e-10 * uv_luminosity  # Simplified
+        # nu(150nm) = c/lambda = 3e18/150 = 2e15 Hz
+        # SFR = 2.6e-43 * L_nu * nu = 2.6e-43 * 2e15 * L_nu = 5.2e-28 * L_nu
+        nu_uv = 3e18 / 150  # Hz at 150 nm (c/lambda)
+        sfr_uv = 2.6e-43 * uv_luminosity * nu_uv  # Correct: M_sun/yr
 
-        # FUV (GALEX)
-        sfr_fuv = 2.6e-10 * fuv_luminosity
+        # FUV (GALEX, 152 nm): Same calibration with nu_FUV
+        nu_fuv = 3e18 / 152  # Hz at 152 nm
+        sfr_fuv = 2.6e-43 * fuv_luminosity * nu_fuv  # Correct: M_sun/yr
 
         # TIR (Total IR)
         sfr_tir = 4.5e-44 * ir_luminosity * 3.826e33  # Convert L_sun to erg/s
@@ -803,7 +808,21 @@ Output Analysis:
         age = params.get('age', 1e5)  # years
 
         # Protostellar luminosity components
-        accretion_luminosity = accretion_rate * 6.67e33 * protostar_mass / 3.826e33  # L_sun
+        # Accretion luminosity: L_acc = G * M * Mdot / R
+        # Using stellar radius approx R ~ R_sun * M^0.8 for PMS stars
+        G_cgs = 6.674e-8  # cm^3/g/s^2
+        M_sun_g = 1.989e33  # g
+        R_sun_cm = 6.957e10  # cm
+        L_sun_erg_s = 3.826e33  # erg/s
+        Mdot_Msun_yr_to_g_s = 1.989e33 / (3.154e7)  # g/s
+
+        stellar_radius_cm = R_sun_cm * (protostar_mass**0.8)  # cm
+        accretion_rate_g_s = accretion_rate * Mdot_Msun_yr_to_g_s  # g/s
+        protostar_mass_g = protostar_mass * M_sun_g  # g
+
+        accretion_luminosity_erg_s = G_cgs * protostar_mass_g * accretion_rate_g_s / stellar_radius_cm
+        accretion_luminosity = accretion_luminosity_erg_s / L_sun_erg_s  # L_sun
+
         internal_luminosity = protostar_mass**3.5 * 0.1  # L_sun (factor 0.1 for PMS)
         total_luminosity = accretion_luminosity + internal_luminosity
 
