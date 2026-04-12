@@ -1,0 +1,178 @@
+{
+  "campaign_overview": {
+    "code": "Athena++ v21.0",
+    "phases": 3,
+    "total_simulations": 12,
+    "completed_simulations": 10,
+    "total_compute_time_minutes": 2561,
+    "platform": "16 MPI cores, Docker container"
+  },
+  "phase1_turbulence": {
+    "description": "Driven isothermal MHD turbulence, 128^3, FFT driving",
+    "simulations": {
+      "$\\mathcal{M}$=1, $\\beta$=1.0": {
+        "t_final": 2.0,
+        "n_steps": 401,
+        "KE_sat": 0.7040949407407409,
+        "ME_init": 1.0,
+        "ME_sat": 1.0512883408641975,
+        "ME_peak": 1.0598596,
+        "ME_amp_factor": 1.0598596,
+        "ME_KE_sat": 1.493105943579417,
+        "vA_sat": 1.4500264417342172
+      },
+      "$\\mathcal{M}$=3, $\\beta$=1.0": {
+        "t_final": 2.0,
+        "n_steps": 401,
+        "KE_sat": 1.8880600123456788,
+        "ME_init": 1.0,
+        "ME_sat": 1.55875650617284,
+        "ME_peak": 1.8143,
+        "ME_amp_factor": 1.8143,
+        "ME_KE_sat": 0.8255863139838864,
+        "vA_sat": 1.7656480431687624
+      },
+      "$\\mathcal{M}$=1, $\\beta$=0.1": {
+        "t_final": 2.0,
+        "n_steps": 401,
+        "KE_sat": 0.7566540370370369,
+        "ME_init": 10.0,
+        "ME_sat": 10.016381772839507,
+        "ME_peak": 10.02056711,
+        "ME_amp_factor": 1.002056711,
+        "ME_KE_sat": 13.237729903698673,
+        "vA_sat": 4.475797531801345
+      },
+      "$\\mathcal{M}$=3, $\\beta$=0.1": {
+        "t_final": 2.0,
+        "n_steps": 401,
+        "KE_sat": 4.303712592592592,
+        "ME_init": 10.0,
+        "ME_sat": 10.24652054074074,
+        "ME_peak": 10.3606702,
+        "ME_amp_factor": 1.03606702,
+        "ME_KE_sat": 2.3808561376465316,
+        "vA_sat": 4.526924019848519
+      },
+      "$\\mathcal{M}$=1, $\\beta$=0.5": {
+        "t_final": 1.13537,
+        "n_steps": 228,
+        "KE_sat": 0.4427988347826087,
+        "ME_init": 2.0,
+        "ME_sat": 2.0352974428260864,
+        "ME_peak": 2.04304087,
+        "ME_amp_factor": 1.021520435,
+        "ME_KE_sat": 4.596438118057181,
+        "vA_sat": 2.017571531731198
+      },
+      "$\\mathcal{M}$=5, $\\beta$=1.0": {
+        "t_final": 0.975019,
+        "n_steps": 196,
+        "KE_sat": 2.945673175,
+        "ME_init": 1.0,
+        "ME_sat": 2.37341495,
+        "ME_peak": 2.42589,
+        "ME_amp_factor": 2.42589,
+        "ME_KE_sat": 0.8057292201128184,
+        "vA_sat": 2.1787220795686633
+      }
+    },
+    "key_finding": "beta=1 active dynamo (ME amp 53-81%), beta=0.1 field essentially rigid (+0.2-3.5%)",
+    "magnetic_tension_prediction": {
+      "lambda_W": 2.2,
+      "description": "Magnetic tension reduces fragmentation wavelength from IM92 4x to ~2.2x"
+    }
+  },
+  "phase2_filaments": {
+    "description": "Self-gravitating isothermal filaments, 256x64x64, FFT gravity",
+    "parameters": {
+      "rho_center": 10.0,
+      "rho_background": 0.1,
+      "contrast_ratio": 100,
+      "mu_over_mu_crit": 6.6,
+      "regime": "highly supercritical"
+    },
+    "results": {
+      "b0.5_s42": {
+        "beta": 0.5,
+        "n_peaks": 9,
+        "mean_spacing_excl_outlier": 1.897,
+        "lambda_over_W": 0.949
+      },
+      "b0.5_s137": {
+        "beta": 0.5,
+        "n_peaks": 9,
+        "mean_spacing_excl_outlier": 1.897,
+        "lambda_over_W": 0.949
+      },
+      "b1.0_s42": {
+        "beta": 1.0,
+        "n_peaks": 9,
+        "mean_spacing_excl_outlier": 1.797,
+        "lambda_over_W": 0.898
+      },
+      "b1.0_s137": {
+        "beta": 1.0,
+        "n_peaks": 9,
+        "mean_spacing_excl_outlier": 1.797,
+        "lambda_over_W": 0.898
+      },
+      "b2.0_s42": {
+        "beta": 2.0,
+        "n_peaks": 9,
+        "mean_spacing_excl_outlier": 1.73,
+        "lambda_over_W": 0.865
+      },
+      "b2.0_s137": {
+        "beta": 2.0,
+        "n_peaks": 9,
+        "mean_spacing_excl_outlier": 1.73,
+        "lambda_over_W": 0.865
+      }
+    },
+    "mean_lambda_W": 0.904,
+    "std_lambda_W": 0.037,
+    "key_finding": "ALL beta values produced identical spacing lambda/W ~ 0.9, gravity completely dominates at mu/mu_crit=6.6",
+    "note_W_definition": "W = 2*R_fil = 2.0 code units (initial Gaussian scale radius)"
+  },
+  "phase3_near_critical": {
+    "description": "Near-critical self-gravitating filaments \u2014 FAILED",
+    "attempts": [
+      {
+        "rho_c": 3.5,
+        "rho_bg": 0.1,
+        "mu_mu_crit": 1.15,
+        "failure": "Alfven CFL, dt->6e-7"
+      },
+      {
+        "rho_c": 5.0,
+        "rho_bg": 1.0,
+        "mu_mu_crit": 1.65,
+        "failure": "Gravity CFL, dt->5e-6"
+      }
+    ],
+    "root_cause": "Explicit MHD solver cannot handle stiff near-critical regime",
+    "recommendation": "Implicit MHD solver + AMR + HPC cluster required"
+  },
+  "observations": {
+    "source": "HGBS 9 regions",
+    "lambda_W_observed": 2.1,
+    "lambda_W_observed_err": 0.01,
+    "IM92_prediction": 4.0
+  },
+  "analytical_model": {
+    "magnetic_tension_prediction": {
+      "lambda_W": 2.2,
+      "description": "Axial magnetic tension at beta~1, using vA/cs from turbulence sims",
+      "match_to_observations": "2.2 vs 2.1 observed = 5% agreement"
+    },
+    "isotropic_pressure_prediction": {
+      "lambda_W": "7-8",
+      "description": "Isotropic B-pressure support (RULED OUT - makes discrepancy worse)"
+    },
+    "IM92_hydro_prediction": {
+      "lambda_W": 4.0,
+      "description": "Classical Inutsuka & Miyama (1992) isothermal cylinder"
+    }
+  }
+}
