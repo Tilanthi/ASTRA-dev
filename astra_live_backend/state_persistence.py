@@ -62,15 +62,40 @@ def save_hypotheses(store):
 
 
 def load_hypotheses(store):
-    """Load hypotheses from JSON if available."""
+    """
+    Load hypotheses from JSON if available.
+
+    CRITICAL FIX: Deduplicates hypotheses by name during loading.
+    Keeps the hypothesis with the highest confidence when duplicates are found.
+    """
     if not HYPOTHESES_FILE.exists():
         return 0
 
     with open(HYPOTHESES_FILE, 'r') as f:
         hypotheses_data = json.load(f)
 
-    loaded_count = 0
+    # Deduplicate by name (case-insensitive)
+    # When duplicates exist, keep the one with highest confidence
+    seen_names = {}
     for h_dict in hypotheses_data:
+        name_key = h_dict.get('name', '').lower().strip()
+        if not name_key:
+            continue
+
+        # Store by name key, keeping the version with highest confidence
+        if name_key not in seen_names:
+            seen_names[name_key] = h_dict
+        else:
+            # Compare confidence - keep the higher one
+            existing_conf = seen_names[name_key].get('confidence', 0)
+            new_conf = h_dict.get('confidence', 0)
+            if new_conf > existing_conf:
+                seen_names[name_key] = h_dict
+
+    # Load deduplicated hypotheses
+    loaded_count = 0
+    skipped_count = 0
+    for h_dict in seen_names.values():
         try:
             from .hypotheses import Hypothesis, Phase
 
@@ -83,6 +108,10 @@ def load_hypotheses(store):
             loaded_count += 1
         except Exception as e:
             print(f"Error loading hypothesis {h_dict.get('id')}: {e}")
+
+    skipped_count = len(hypotheses_data) - loaded_count
+    if skipped_count > 0:
+        print(f"State persistence: Skipped {skipped_count} duplicate hypotheses during loading")
 
     return loaded_count
 

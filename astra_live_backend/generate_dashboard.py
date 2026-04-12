@@ -24,7 +24,17 @@ def _ensure_output_dir():
 
 def fetch_all_data():
     data = {}
-    for ep in ['status', 'state', 'hypotheses', 'activity', 'decisions', 'charts', 'metrics', 'engine/safety-status', 'engine/state-space', 'engine/alignment', 'engine/anomalies', 'engine/pending', 'system/health', 'literature/papers', 'literature/citation-graph', 'literature/citation-metrics']:
+    endpoints = [
+        'status', 'state', 'hypotheses', 'activity', 'decisions', 'charts', 'metrics',
+        'engine/safety-status', 'engine/state-space', 'engine/alignment', 'engine/anomalies', 'engine/pending',
+        'system/health',
+        'literature/papers', 'literature/citation-graph', 'literature/citation-metrics',
+        # Stigmergy endpoints
+        'pheromones/status', 'stigmergy/gaps', 'swarm/status', 'pheromones/ab-test', 'stigmergy/gordon',
+        # Self-improve endpoints
+        'discovery-memory', 'discovery-memory/discoveries'
+    ]
+    for ep in endpoints:
         try:
             r = requests.get(f"{API_BASE}/api/{ep}", timeout=15)
             data[ep] = r.json()
@@ -118,6 +128,15 @@ def build_dashboard_html(snapshot_data):
     if (path.includes('/literature/papers')) return s["literature/papers"];
     if (path.includes('/literature/citation-graph')) return s["literature/citation-graph"];
     if (path.includes('/literature/citation-metrics')) return s["literature/citation-metrics"];
+    // Stigmergy endpoints
+    if (path.includes('/pheromones/status')) return s["pheromones/status"];
+    if (path.includes('/stigmergy/gaps')) return s["stigmergy/gaps"];
+    if (path.includes('/swarm/status')) return s["swarm/status"];
+    if (path.includes('/pheromones/ab-test')) return s["pheromones/ab-test"];
+    if (path.includes('/stigmergy/gordon')) return s["stigmergy/gordon"];
+    // Self-improve endpoints
+    if (path.includes('/discovery-memory') && path.includes('/discoveries')) return s["discovery-memory/discoveries"];
+    if (path.includes('/discovery-memory')) return s["discovery-memory"];
     return null;
   }
 

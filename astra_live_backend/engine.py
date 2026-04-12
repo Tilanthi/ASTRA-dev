@@ -39,6 +39,7 @@ from .safety.safety_case import SafetyCase
 from .alignment import AlignmentChecker
 from .anomaly import AnomalyDetector
 from .safety.circuit_breakers import SafetyMonitor
+from .stalemate_detector import StalemateDetector, create_stalemate_detector
 from .discovery_memory import DiscoveryMemory
 from .hypothesis_generator import HypothesisGenerator
 from .adaptive_strategist import AdaptiveStrategist
@@ -182,6 +183,11 @@ class DiscoveryEngine:
 
         # Degradation detector — Phase 10.3
         self.degradation_detector = DegradationDetector()
+
+        # Stalemate detector — prevents pipeline stagnation
+        self.stalemate_detector = create_stalemate_detector()
+        self._last_stalemate_check_cycle = 0
+        self._stalemate_check_interval = 5  # Check every 5 cycles
 
         # Paper draft generator — Phase 9.5
         self.paper_generator = get_paper_generator()
@@ -3063,6 +3069,33 @@ class DiscoveryEngine:
     def _manage_hypothesis_lifecycle(self):
         """Auto-archive stale hypotheses, auto-promote strong ones, prune queue."""
         now = time.time()
+
+        # ── Stalemate Detection: Run periodically to prevent pipeline stagnation ──
+        if self.cycle_count - self._last_stalemate_check_cycle >= self._stalemate_check_interval:
+            self._last_stalemate_check_cycle = self.cycle_count
+
+            all_hypotheses = list(self.store.all())
+            if all_hypotheses:
+                summary = self.stalemate_detector.cleanup_stale_hypotheses(
+                    all_hypotheses, self.cycle_count
+                )
+
+                if summary["auto_archived"] > 0:
+                    self._log("LIFECYCLE", "STALEMATE",
+                              f"Cleaned {summary['checked']} hypotheses: "
+                              f"{summary['stale_found']} stale, "
+                              f"{summary['auto_archived']} auto-archived, "
+                              f"{summary['retained']} retained",
+                              "SYSTEM")
+
+                # Also log the detector summary for monitoring
+                detector_summary = self.stalemate_detector.get_summary()
+                if detector_summary["stale_found"] > 0:
+                    self._log("LIFECYCLE", "STALEMATE_STATS",
+                              f"Stalemate detector: {detector_summary['total_detections']} checks, "
+                              f"{detector_summary['stale_found']} stale found, "
+                              f"{detector_summary['auto_archived']} archived this session",
+                              "SYSTEM")
 
         for h in list(self.store.all()):
             # Auto-archive hypotheses stuck in SCREENING for >20 cycles with no progress

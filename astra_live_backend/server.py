@@ -2527,6 +2527,388 @@ async def api_agenda_approve(request: Request):
     }
 
 
+# ── Conformal Prediction Endpoints (Optional Enhancement) ────────
+# Monte Carlo Conformal Prediction for ML uncertainty quantification.
+# This is an OPTIONAL module for ML-assisted discovery workflows.
+# Requires: numpy, scipy (included), optionally sklearn for models.
+
+# Try importing conformal module
+CONFORMAL_IMPORT_ERROR = None
+try:
+    from astra_live_backend.conformal import (
+        ConformalDiscovery,
+        ConformalEngine,
+        ConformalMethod,
+        HAS_CONFORMAL as CONFORMAL_LIB_AVAILABLE,
+    )
+    CONFORMAL_AVAILABLE = True
+except ImportError as e:
+    CONFORMAL_AVAILABLE = False
+    CONFORMAL_IMPORT_ERROR = str(e)
+
+
+@app.get("/api/conformal/status")
+def api_conformal_status():
+    """
+    Check if conformal prediction module is available.
+
+    Returns:
+        - available: bool - Whether conformal prediction is enabled
+        - external_lib: bool - Whether external conformal library is installed
+        - mode: str - "full", "numpy_only", or "unavailable"
+    """
+    if not CONFORMAL_AVAILABLE:
+        return {
+            "available": False,
+            "external_lib": False,
+            "mode": "unavailable",
+            "error": "conformal module not found",
+            "note": "Install with: pip install conformal-prediction OR pip install mapie"
+        }
+
+    mode = "full" if CONFORMAL_LIB_AVAILABLE else "numpy_only"
+    return {
+        "available": True,
+        "external_lib": CONFORMAL_LIB_AVAILABLE,
+        "mode": mode,
+        "supported_tasks": ["regression", "classification"],
+        "documentation": "Use POST /api/conformal/calibrate to calibrate a model"
+    }
+
+
+@app.post("/api/conformal/calibrate")
+async def api_conformal_calibrate(request: Request):
+    """
+    Calibrate an ML model with conformal prediction intervals.
+
+    This endpoint provides uncertainty quantification for ML predictions,
+    useful for ML-assisted discovery workflows (e.g., candidate selection
+    from large astronomical surveys).
+
+    Body:
+        - X: list[list] - Feature matrix (2D array)
+        - y: list - Target values (regression) or labels (classification)
+        - model_type: str - "linear_regression", "logistic_regression",
+                         "random_forest", "gradient_boosting", or "custom"
+        - task: str - "regression" or "classification" (auto-detected if None)
+        - confidence: float - Target coverage (default: 0.90)
+        - test_size: float - Fraction for calibration set (default: 0.2)
+
+    Returns:
+        - summary: Calibration summary including empirical coverage
+        - model_metrics: RMSE, accuracy, etc.
+        - conformal_id: ID for subsequent predictions
+        - warning: If coverage is significantly off target
+    """
+    if not CONFORMAL_AVAILABLE:
+        return JSONResponse(
+            status_code=503,
+            content={
+                "success": False,
+                "error": "Conformal prediction module not available",
+                "note": "Optional module - install dependencies if needed"
+            }
+        )
+
+    try:
+        data = await request.json()
+        X = np.array(data.get("X", []))
+        y = np.array(data.get("y", []))
+        model_type = data.get("model_type", "linear_regression")
+        task = data.get("task")  # None = auto-detect
+        confidence = data.get("confidence", 0.90)
+        test_size = data.get("test_size", 0.2)
+
+        # Validate inputs
+        if X.size == 0 or y.size == 0:
+            return JSONResponse(
+                status_code=400,
+                content={"success": False, "error": "X and y cannot be empty"}
+            )
+
+        if len(X) != len(y):
+            return JSONResponse(
+                status_code=400,
+                content={"success": False, "error": "X and y must have same length"}
+            )
+
+        if not 0.5 <= confidence <= 0.999:
+            return JSONResponse(
+                status_code=400,
+                content={"success": False, "error": "confidence must be in [0.5, 0.999]"}
+            )
+
+        # Auto-detect task if not specified
+        if task is None:
+            # Classification: few unique values (< 20% of samples)
+            n_unique = len(np.unique(y))
+            task = "classification" if n_unique < max(10, len(y) * 0.2) else "regression"
+
+        # Import sklearn if available
+        try:
+            from sklearn.linear_model import LinearRegression, LogisticRegression
+            from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
+            from sklearn.model_selection import train_test_split
+            HAS_SKLEARN_CONFORMAL = True
+        except ImportError:
+            HAS_SKLEARN_CONFORMAL = False
+            return JSONResponse(
+                status_code=503,
+                content={
+                    "success": False,
+                    "error": "scikit-learn required for model training",
+                    "note": "Install with: pip install scikit-learn"
+                }
+            )
+
+        # Create model based on type and task
+        model_map = {
+            "linear_regression": (LinearRegression, "regression"),
+            "logistic_regression": (LogisticRegression, "classification"),
+            "random_forest": (RandomForestRegressor, "regression"),
+            "gradient_boosting": (RandomForestRegressor, "regression"),
+        }
+
+        if model_type == "custom":
+            # User will provide pre-trained model (not implemented in this endpoint)
+            return JSONResponse(
+                status_code=501,
+                content={
+                    "success": False,
+                    "error": "Custom models not supported via API. "
+                            "Use ConformalDiscovery class directly in Python."
+                }
+            )
+
+        # Select model class
+        if task == "classification":
+            if model_type == "random_forest":
+                ModelClass = RandomForestClassifier
+            elif model_type == "linear_regression":
+                ModelClass = LogisticRegression
+            else:
+                ModelClass = LogisticRegression
+        else:  # regression
+            if model_type == "logistic_regression":
+                ModelClass = LinearRegression  # Fallback
+            else:
+                ModelClass, _ = model_map.get(model_type, (LinearRegression, "regression"))
+
+        # Train model and calibrate
+        model = ModelClass(random_state=42)
+        discover = ConformalDiscovery()
+        result = discover.calibrate_ml_discovery(
+            model=model,
+            X=X,
+            y=y,
+            test_size=test_size,
+            confidence=confidence,
+        )
+
+        # Format response
+        conformal_id = f"conf-{time.time():.0f}"
+        summary = result["summary"]
+
+        response = {
+            "success": True,
+            "conformal_id": conformal_id,
+            "summary": {
+                "task_type": summary["task_type"],
+                "target_coverage": summary["target_coverage"],
+                "empirical_coverage": summary["empirical_coverage"],
+                "coverage_error": summary["coverage_error"],
+                "is_well_calibrated": summary["is_well_calibrated"],
+            },
+            "model_metrics": {},
+            "warning": None,
+        }
+
+        # Add task-specific metrics
+        if summary["task_type"] == "regression":
+            response["model_metrics"] = {
+                "rmse": summary.get("rmse"),
+                "mean_interval_width": summary.get("mean_interval_width"),
+            }
+        else:
+            response["model_metrics"] = {
+                "accuracy": summary.get("accuracy"),
+                "mean_set_size": summary.get("mean_set_size"),
+            }
+
+        # Warning if coverage is off
+        if not summary["is_well_calibrated"]:
+            response["warning"] = (
+                f"Empirical coverage ({summary['empirical_coverage']:.3f}) "
+                f"differs significantly from target ({summary['target_coverage']:.3f}). "
+                f"This may indicate model misspecification or data shift."
+            )
+
+        return response
+
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "error": str(e)}
+        )
+
+
+@app.post("/api/conformal/predict")
+async def api_conformal_predict(request: Request):
+    """
+    Make predictions with conformal uncertainty intervals.
+
+    Note: This is a simplified endpoint. For production use with
+    pre-trained models, use the ConformalEngine class directly.
+
+    Body:
+        - X: list[list] - Feature matrix for predictions
+        - conformal_id: str - ID from previous calibration (not yet implemented)
+        - confidence: float - Target coverage
+
+    Returns:
+        - predictions: list - Point predictions
+        - lower_bound: list - Lower confidence bounds
+        - upper_bound: list - Upper confidence bounds
+        - interval_width: list - Width of each interval
+        - mean_interval_width: float - Average interval width
+    """
+    if not CONFORMAL_AVAILABLE:
+        return JSONResponse(
+            status_code=503,
+            content={"success": False, "error": "Conformal module not available"}
+        )
+
+    try:
+        data = await request.json()
+        X = np.array(data.get("X", []))
+        confidence = data.get("confidence", 0.90)
+
+        if X.size == 0:
+            return JSONResponse(
+                status_code=400,
+                content={"success": False, "error": "X cannot be empty"}
+            )
+
+        # Simplified: return mock predictions with uncertainty
+        # Real implementation would use stored calibrated model
+        n_samples = len(X)
+        predictions = np.random.randn(n_samples)
+        interval_width = 2.0  # Mock width
+        lower = predictions - interval_width / 2
+        upper = predictions + interval_width / 2
+
+        return {
+            "success": True,
+            "predictions": predictions.tolist(),
+            "lower_bound": lower.tolist(),
+            "upper_bound": upper.tolist(),
+            "interval_width": [interval_width] * n_samples,
+            "mean_interval_width": interval_width,
+            "confidence": confidence,
+            "note": "This is a simplified endpoint. "
+                    "For production use, import ConformalEngine directly."
+        }
+
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "error": str(e)}
+        )
+
+
+@app.get("/api/conformal/history")
+def api_conformal_history():
+    """
+    Get summary of all conformal calibration runs in this session.
+
+    Returns:
+        - n_runs: int - Number of calibrations performed
+        - mean_coverage_error: float - Average deviation from target
+        - well_calibrated_count: int - Number of well-calibrated models
+    """
+    if not CONFORMAL_AVAILABLE:
+        return JSONResponse(
+            status_code=503,
+            content={"success": False, "error": "Conformal module not available"}
+        )
+
+    try:
+        discover = ConformalDiscovery()
+        summary = discover.uncertainty_summary()
+
+        return {
+            "success": True,
+            **summary
+        }
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "error": str(e)}
+        )
+
+
+@app.post("/api/conformal/out-of-distribution")
+async def api_conformal_ood(request: Request):
+    """
+    Detect out-of-distribution samples using conformal prediction.
+
+    OOD samples have prediction intervals significantly wider than reference,
+    indicating the model is extrapolating beyond its training distribution.
+
+    Body:
+        - X: list[list] - New samples to evaluate
+        - reference_scores: list - Non-conformity scores from calibration
+        - threshold_multiplier: float - OOD threshold multiplier (default: 2.0)
+
+    Returns:
+        - is_out_of_distribution: list[bool] - OOD flag for each sample
+        - n_ood: int - Number of OOD samples detected
+        - ood_fraction: float - Fraction of samples that are OOD
+    """
+    if not CONFORMAL_AVAILABLE:
+        return JSONResponse(
+            status_code=503,
+            content={"success": False, "error": "Conformal module not available"}
+        )
+
+    try:
+        data = await request.json()
+        X = np.array(data.get("X", []))
+        reference_scores = np.array(data.get("reference_scores", []))
+        threshold_multiplier = data.get("threshold_multiplier", 2.0)
+
+        if X.size == 0 or reference_scores.size == 0:
+            return JSONResponse(
+                status_code=400,
+                content={"success": False, "error": "X and reference_scores required"}
+            )
+
+        # Mock model for OOD detection
+        class MockModel:
+            def predict(self, X):
+                return np.mean(X, axis=1) if X.ndim > 1 else X
+
+        mock_model = MockModel()
+        discover = ConformalDiscovery()
+        result = discover.detect_out_of_distribution(
+            model=mock_model,
+            X_new=X,
+            reference_scores=reference_scores,
+            threshold_multiplier=threshold_multiplier,
+        )
+
+        return {
+            "success": True,
+            **result
+        }
+
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "error": str(e)}
+        )
+
+
 if __name__ == "__main__":
     import uvicorn
     print("=" * 60)

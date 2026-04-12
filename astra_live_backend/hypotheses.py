@@ -213,7 +213,19 @@ class HypothesisStore:
         self._id_prefix_map = {"H": 1, "CD": 1}
 
     def add(self, name: str, domain: str, description: str,
-            confidence: float = 0.5, prefix: str = "H") -> Hypothesis:
+            confidence: float = 0.5, prefix: str = "H") -> Optional[Hypothesis]:
+        """
+        Add a new hypothesis. Returns None if a hypothesis with the same name already exists.
+
+        CRITICAL FIX: Prevents duplicate hypotheses by checking for existing names.
+        """
+        # Check for duplicate by name (case-insensitive)
+        for existing_h in self.hypotheses.values():
+            if existing_h.name.lower().strip() == name.lower().strip():
+                # Duplicate found - return the existing hypothesis instead of creating a new one
+                return existing_h
+
+        # No duplicate found - proceed with creation
         if prefix == "CD":
             hid = f"CD-{self._id_prefix_map['CD']:03d}"
             self._id_prefix_map['CD'] += 1

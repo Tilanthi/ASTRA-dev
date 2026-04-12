@@ -13940,10 +13940,12 @@ body::after {
       }
     });
     var trendEl = document.getElementById('si-trend-label');
-    if (trendEl && avgLine.length > 40) {
-      var ea = avgLine.slice(0,20).reduce(function(s,p){return s+p.y;},0)/20;
-      var la = avgLine.slice(-20).reduce(function(s,p){return s+p.y;},0)/20;
-      var d = la - ea;
+    // Changed: Compare recent rolling windows (last 10 vs previous 10-20) instead of first vs last
+    // This shows actual recent trend rather than historical vs current for long-running systems
+    if (trendEl && avgLine.length > 20) {
+      var recent = avgLine.slice(-10).reduce(function(s,p){return s+p.y;},0)/Math.min(10, avgLine.length);
+      var previous = avgLine.slice(-20, -10).reduce(function(s,p){return s+p.y;},0)/Math.min(10, avgLine.length-10);
+      var d = recent - previous;
       trendEl.textContent = d>0.01?'\u2191 IMPROVING':d<-0.01?'\u2193 DECLINING':'\u2192 STABLE';
       trendEl.className = d>0.01?'si-delta-pos':d<-0.01?'si-delta-neg':'si-delta-flat';
     }
@@ -14316,36 +14318,41 @@ body::after {
   }
 
   async function loadStigmergyData() {
-    var pheromones = null, gaps = null, swarm = null, abTests = null, gordon = null;
+    var pheromones = null, gaps = null, swarm = null, abTests = null;
     try {
       var s = window.__SNAPSHOT__ || {};
       pheromones = s['pheromones/status'] || await api('/api/pheromones/status');
       gaps = s['stigmergy/gaps'] || await api('/api/stigmergy/gaps');
       swarm = s['swarm/status'] || await api('/api/swarm/status');
       abTests = s['pheromones/ab-test'] || await api('/api/pheromones/ab-test');
-      gordon = s['stigmergy/gordon'] || await api('/api/stigmergy/gordon');
+      // Note: /api/stigmergy/gordon doesn't exist, using /api/stigmergy/state instead
+      // var stigmergyState = s['stigmergy/state'] || await api('/api/stigmergy/state');
     } catch(e) { console.warn('Stigmergy data fetch error:', e); }
 
     renderPheromoneStatus(pheromones);
     renderKnowledgeGaps(gaps);
     renderSwarmAgents(swarm);
     renderABTests(abTests);
-    renderGordonParams(gordon);
+    // Gordon panel removed - endpoint doesn't exist
+    // renderGordonParams(gordon);
   }
 
   function renderPheromoneStatus(data) {
     var el = document.getElementById('stig-pheromone-status');
     if (!el) return;
     var d = data || {};
-    var byType = d.by_type || {};
+    // Handle API response structure: data.pheromone_field contains the actual data
+    var field = d.pheromone_field || {};
+    var metrics = d.metrics || d.stigmergic_memory || {};
+    var byType = field.deposits_by_type || d.by_type || {};
     var typeKeys = Object.keys(byType);
-    var totalDeposits = d.total_deposits || 0;
+    var totalDeposits = field.total_deposits || metrics.total_deposits || d.total_deposits || 0;
 
     var statsHtml = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:16px;">' +
-      '<div class="si-stat-cell"><div class="si-mono-label-sm">TOTAL WEIGHT</div><div class="si-mono-value si-c-cyan">' + (d.total_weight || 0).toFixed(2) + '</div></div>' +
-      '<div class="si-stat-cell"><div class="si-mono-label-sm">TOTAL DEPOSITS</div><div class="si-mono-value si-c-amber">' + totalDeposits + '</div></div>' +
-      '<div class="si-stat-cell"><div class="si-mono-label-sm">ACTIVE TRAILS</div><div class="si-mono-value si-c-violet">' + (d.active_trails || 0) + '</div></div>' +
-      '<div class="si-stat-cell"><div class="si-mono-label-sm">DECAY RATE (ρ)</div><div class="si-mono-value si-c-emerald">' + (d.decay_rate || 0).toFixed(3) + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">TOTAL WEIGHT</div><div class="si-mono-value si-c-cyan">' + (d.pheromone_weight || d.total_weight || 0).toFixed(2) + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">TOTAL DEPOSITS</div><div class="si-mono-value si-c-amber">' + totalDeposits.toLocaleString() + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">ACTIVE TRAILS</div><div class="si-mono-value si-c-violet">' + (metrics.n_trails || d.active_trails || 0) + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">CYCLES</div><div class="si-mono-value si-c-emerald">' + (metrics.engine_cycles || d.engine_cycles || 0) + '</div></div>' +
       '</div>';
 
     if (typeKeys.length > 0) {
@@ -14353,11 +14360,11 @@ body::after {
       var maxVal = Math.max.apply(null, typeKeys.map(function(k) { return byType[k]; }).concat([1]));
       statsHtml += typeKeys.map(function(k) {
         var pct = ((byType[k] / maxVal) * 100).toFixed(0);
-        var color = k === 'exploration' ? 'var(--cyan)' : k === 'validation' ? 'var(--emerald)' : k === 'synthesis' ? 'var(--violet)' : 'var(--amber)';
+        var color = k === 'exploration' ? 'var(--cyan)' : k === 'success' || k === 'validation' ? 'var(--emerald)' : k === 'synthesis' ? 'var(--violet)' : 'var(--amber)';
         return '<div class="stig-gap-bar">' +
-          '<div class="bar-label">' + k.toUpperCase() + '</div>' +
+          '<div class="bar-label">' + k.replace(/_/g,' ').toUpperCase() + '</div>' +
           '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%;background:' + color + '"></div></div>' +
-          '<div class="bar-value">' + byType[k] + '</div></div>';
+          '<div class="bar-value">' + byType[k].toLocaleString() + '</div></div>';
       }).join('');
     }
 
@@ -14367,7 +14374,8 @@ body::after {
   function renderKnowledgeGaps(data) {
     var el = document.getElementById('stig-knowledge-gaps');
     if (!el) return;
-    var gaps = (data && data.gaps) || {};
+    // Handle both nested data.gaps and flat API response
+    var gaps = (data && data.gaps) || data || {};
     var keys = Object.keys(gaps);
     if (keys.length === 0) {
       el.innerHTML = '<div class="empty-state">No knowledge gap data available.</div>';
@@ -14376,7 +14384,7 @@ body::after {
     var colors = { astrophysics: 'var(--cyan)', economics: 'var(--amber)', climate: 'var(--emerald)', epidemiology: 'var(--coral)', cross_domain: 'var(--violet)' };
     el.innerHTML = keys.sort(function(a,b) { return gaps[b] - gaps[a]; }).map(function(k) {
       var pct = (gaps[k] * 100).toFixed(0);
-      var c = colors[k] || 'var(--cyan)';
+      var c = colors[k.toLowerCase().replace(/ /g,'_')] || 'var(--cyan)';
       return '<div class="stig-gap-bar">' +
         '<div class="bar-label">' + k.replace(/_/g,' ').toUpperCase() + '</div>' +
         '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%;background:' + c + '"></div></div>' +
@@ -14414,7 +14422,37 @@ body::after {
   function renderABTests(data) {
     var el = document.getElementById('stig-ab-tests');
     if (!el) return;
+    // Handle API response structure: {pheromone_guided: {...}, baseline: {...}}
+    // Or legacy structure: {tests: [...]}
     var tests = (data && data.tests) || [];
+    var isFlat = !tests.length && data && (data.pheromone_guided || data.baseline);
+
+    if (isFlat) {
+      // Convert flat API response to display format
+      var flat = data;
+      var html = '<div style="padding:16px;"><h4 style="color:var(--cyan);margin-bottom:12px;">Pheromone-Guided vs Baseline Selection</h4>';
+      html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">';
+      if (flat.pheromone_guided) {
+        var pg = flat.pheromone_guided;
+        html += '<div style="background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.3);border-radius:8px;padding:12px;">';
+        html += '<div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">PHEROMONE-GUIDED</div>';
+        html += '<div style="font-size:24px;font-weight:700;color:var(--cyan);">' + pg.total.toLocaleString() + '</div>';
+        html += '<div style="font-size:12px;color:var(--text-tertiary);">Success Rate: ' + (pg.rate*100).toFixed(1) + '%</div>';
+        html += '</div>';
+      }
+      if (flat.baseline) {
+        var bl = flat.baseline;
+        html += '<div style="background:rgba(255,171,0,0.1);border:1px solid rgba(255,171,0,0.3);border-radius:8px;padding:12px;">';
+        html += '<div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">BASELINE</div>';
+        html += '<div style="font-size:24px;font-weight:700;color:var(--amber);">' + bl.total.toLocaleString() + '</div>';
+        html += '<div style="font-size:12px;color:var(--text-tertiary);">Success Rate: ' + (bl.rate*100).toFixed(1) + '%</div>';
+        html += '</div>';
+      }
+      html += '</div></div>';
+      el.innerHTML = html;
+      return;
+    }
+
     if (tests.length === 0) {
       el.innerHTML = '<div class="empty-state">No A/B tests running yet.</div>';
       return;
