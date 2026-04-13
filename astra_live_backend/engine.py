@@ -1796,12 +1796,81 @@ class DiscoveryEngine:
         elif "Cross" in domain:
             return self._investigate_crossdomain(h)
 
-        # Fallback: Astrophysics or truly unknown domain — use Gaia data
+        # Fallback: Astrophysics or truly unknown domain — run statistical tests on Gaia data
         gaia = get_cached_gaia()
-        if gaia.data is not None and len(gaia.data) > 0:
-            h.data_points_used = len(gaia.data)
+        if gaia.data is None or len(gaia.data) == 0:
             self._log("INVESTIGATE", "INVESTIGATE",
-                      f"Using Gaia sample: {len(gaia.data)} stars", h.id)
+                      f"⚠ No Gaia data available — skipping {h.id}", h.id)
+            return
+
+        h.data_points_used = len(gaia.data)
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"Using Gaia sample: {len(gaia.data)} stars for generic analysis", h.id)
+
+        from scipy import stats as sp_stats
+
+        plx = gaia.data['parallax']
+        dist = gaia.data['distance']
+        gmag = gaia.data['gmag']
+        abs_mag = gaia.data['abs_mag']
+        bp_rp = gaia.data['bp_rp']
+        teff = gaia.data['teff']
+
+        # --- Test 1: Correlation between parallax and apparent magnitude ---
+        corr_plx_gmag, p_plx_gmag = sp_stats.spearmanr(plx, gmag)
+        h.test_results.append(asdict(StatTestResult(
+            test_name="Spearman correlation (parallax vs apparent mag)",
+            statistic=float(corr_plx_gmag), p_value=float(p_plx_gmag),
+            passed=p_plx_gmag < 0.05,
+            details=f"parallax vs gmag: ρ={corr_plx_gmag:.4f}, p={p_plx_gmag:.2e}, N={len(plx)}")))
+        self._log("INVESTIGATE", "INVESTIGATE",
+                  f"Parallax-magnitude correlation: ρ={corr_plx_gmag:.4f}, p={p_plx_gmag:.2e}", h.id)
+
+        # --- Test 2: Color-magnitude correlation (HR diagram structure) ---
+        valid_color = bp_rp != 0
+        if np.sum(valid_color) > 10:
+            corr_color, p_color = sp_stats.spearmanr(bp_rp[valid_color], abs_mag[valid_color])
+            h.test_results.append(asdict(StatTestResult(
+                test_name="Spearman correlation (BP-RP color vs absolute mag)",
+                statistic=float(corr_color), p_value=float(p_color),
+                passed=p_color < 0.05,
+                details=f"BP-RP vs M_G: ρ={corr_color:.4f}, p={p_color:.2e}, N={int(np.sum(valid_color))}")))
+
+        # --- Test 3: Parallax distribution normality ---
+        plx_z = (plx - np.mean(plx)) / (np.std(plx) + 1e-10)
+        ks_stat, ks_p = sp_stats.kstest(plx_z, 'norm')
+        h.test_results.append(asdict(StatTestResult(
+            test_name="KS normality (parallax distribution)",
+            statistic=float(ks_stat), p_value=float(ks_p),
+            passed=ks_p < 0.05,
+            details=f"Parallax normality: KS={ks_stat:.4f}, p={ks_p:.2e}, N={len(plx)}")))
+
+        # --- Test 4: Distance-magnitude correlation (Malmquist bias proxy) ---
+        corr_dist_mag, p_dist_mag = sp_stats.spearmanr(dist, gmag)
+        h.test_results.append(asdict(StatTestResult(
+            test_name="Spearman correlation (distance vs apparent mag)",
+            statistic=float(corr_dist_mag), p_value=float(p_dist_mag),
+            passed=p_dist_mag < 0.05,
+            details=f"distance vs gmag: ρ={corr_dist_mag:.4f}, p={p_dist_mag:.2e}, N={len(dist)}")))
+
+        # --- Test 5: Outlier detection — flag stars with extreme parallax ---
+        plx_median = np.median(plx)
+        plx_mad = np.median(np.abs(plx - plx_median))
+        if plx_mad > 0:
+            n_outliers = int(np.sum(np.abs(plx - plx_median) > 5 * plx_mad))
+            outlier_frac = n_outliers / len(plx)
+            # Use binomial test: is outlier fraction significantly above expected 0.1%?
+            binom_p = sp_stats.binomtest(n_outliers, len(plx), 0.001).pvalue
+            h.test_results.append(asdict(StatTestResult(
+                test_name="Outlier detection (parallax >5 MAD)",
+                statistic=float(outlier_frac), p_value=float(binom_p),
+                passed=binom_p < 0.05,
+                details=f"Outliers: {n_outliers}/{len(plx)} ({outlier_frac:.1%}), p={binom_p:.2e}")))
+            self._log("INVESTIGATE", "INVESTIGATE",
+                      f"Parallax outliers (>5 MAD): {n_outliers}/{len(plx)} ({outlier_frac:.1%})", h.id)
+
+        # Update confidence from most informative test
+        h.update_from_pvalue(float(p_plx_gmag))
 
         self.total_plots += 1
 

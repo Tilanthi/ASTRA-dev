@@ -120,7 +120,7 @@ class AdaptiveStrategist:
             return "galaxy"
         elif "exoplanet" in name_lower or "transit" in name_lower or "period" in name_lower:
             return "exoplanet"
-        elif "hr" in name_lower or ("star" in name_lower and "formation" not in name_lower):
+        elif "hr" in name_lower or "stellar" in name_lower or "parallax" in name_lower or "magnitude" in name_lower or ("star" in name_lower and "formation" not in name_lower):
             return "stellar"
         elif "star formation" in name_lower or "scaling" in name_lower:
             return "star_formation"
