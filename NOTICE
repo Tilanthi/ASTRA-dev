@@ -1,0 +1,20 @@
+ASTRA — Autonomous Scientific Discovery in Astrophysics
+Copyright 2024-2026 Glenn J. White (The Open University / RAL Space)
+
+This product includes software developed at:
+- The Open University, Milton Keynes, UK
+- RAL Space, STFC Rutherford Appleton Laboratory, UK
+
+Contributors:
+- Glenn J. White (The Open University / RAL Space) — Principal Investigator, scientific design, core algorithms
+- Robin Dey (VBRL Holdings / OpenHub Thailand) — STAN framework (Dey, 2025), software engineering, infrastructure
+
+Research Platform:
+- Taurus (taurus.cloud) — Multi-agent orchestration platform
+
+Third-party components:
+- NumPy, SciPy, scikit-learn — BSD License
+- FastAPI — MIT License
+- LiNGAM — MIT License
+- NetworkX — BSD License
+- Matplotlib — PSF License

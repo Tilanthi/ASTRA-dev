@@ -95,7 +95,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{newtxtext,newtxmath}
+% newtxtext,newtxmath removed — RASTI class handles fonts internally
 % hyperref is already loaded by RASTI.cls — do not reload
 \usepackage{xspace}
 \usepackage{booktabs}
@@ -106,7 +106,7 @@
 \newcommand{\fci}{FCI\xspace}
 
 % ======================================================================
-\title[ASTRA: Autonomous Scientific Discovery in Astrophysics]{ASTRA: Autonomous Scientific Discovery in Astrophysics}
+\title[ASTRA: Autonomous Scientific Discovery]{ASTRA: Autonomous Scientific Discovery in Astrophysics}
 
 \author[White]{
 Glenn~J.~White$^{1,2}$\thanks{E-mail: glenn.white@open.ac.uk}\\
@@ -129,11 +129,10 @@ A cognitive architecture incorporating a dynamic knowledge graph, neuro-symbolic
 A stigmergic swarm intelligence layer---inspired by ant colony foraging---coordinates hypothesis exploration through five specialized agents that deposit and follow digital pheromone trails.
 We validate the framework through six controlled astrophysical test cases, six live deployments recovering established physics (including Kepler's third law at $R^{2}=0.9982$), and cross-domain validation across economics, climate science, and epidemiology, collectively validating 38 hypotheses across five scientific domains.
 \astra is a tool to assist scientists, not replace domain expertise.
-Code and documentation: \url{https://github.com/Tilanthi/ASTRA}.
 \end{abstract}
 
 \begin{keywords}
-methods: data analysis -- methods: statistical -- methods: general -- techniques: miscellaneous -- ISM: clouds -- stars: formation
+methods: data analysis -- methods: statistical -- methods: numerical -- software: public release -- ISM: clouds -- stars: formation
 \end{keywords}
 
 % ======================================================================
@@ -147,7 +146,7 @@ Yet these tools operate largely in isolation: astronomers must manually stitch t
 \astra (Autonomous System for Scientific Discovery in Astrophysics) addresses this integration challenge.
 Rather than replacing any single tool, \astra provides a unified framework that chains established algorithms into coherent, physics-aware analytical workflows.
 The system combines:
-\begin{itemize}
+\begin{description}
   \item Numerical data processing and statistical analysis
   \item Causal reasoning with structural causal models
   \item Physical validation through dimensional analysis and conservation laws
@@ -158,7 +157,7 @@ The system combines:
   \item Cognitive architecture with dynamic knowledge graph and neuro-symbolic reasoning
   \item Multi-agent scientific debate for hypothesis evaluation and consensus
   \item Theory framework with automated consistency checking and abductive reasoning
-\end{itemize}
+\end{description}
 
 This integrated approach ensures that physical validation, causal reasoning, and uncertainty quantification are applied consistently throughout multi-step analyses.
 While individual components use established algorithms (\pc algorithm for causal discovery, nested sampling for Bayesian evidence, the Buckingham $\pi$ theorem for dimensional analysis; \citealt{Buckingham1914}), their integration within a single framework enables analyses that would otherwise require manual combination of multiple separate tools.
@@ -387,13 +386,13 @@ Scientific discovery in large hypothesis spaces requires balancing exploration o
 The core data structure is a \emph{digital pheromone field} defined over a domain-mixture simplex $\mathbf{x} = (\mathrm{CLD}, D_1, D_2)$ where $\mathrm{CLD} + D_1 + D_2 = 1$.
 Each scientific domain maps to a fixed point on this simplex (e.g.\ Astrophysics at $(0.8, 0.1, 0.1)$, Economics at $(0.1, 0.8, 0.1)$), and hypotheses are associated with the coordinates of their parent domain.
 Five pheromone types encode different discovery signals:
-\begin{itemize}
+\begin{description}
   \item \textsc{Success} --- deposited when a hypothesis is confirmed with $p < 0.05$; strength scales as $2(1 - p)(1 + |d|)$ where $d$ is the effect size, capped at 5.0.
   \item \textsc{Failure} --- deposited when a hypothesis is rejected; strength scales with prior confidence.
   \item \textsc{Novelty} --- deposited when a genuinely new discovery is recorded; strength proportional to significance.
   \item \textsc{Exploration} --- deposited whenever a domain is visited, regardless of outcome.
   \item \textsc{Danger} --- deposited at locations where analyses produce anomalous or numerically unstable results.
-\end{itemize}
+\end{description}
 Pheromone concentrations evolve according to equation~(\ref{eq:pheromone}):
 \begin{equation}
   \phi_i(t+1) = (1 - \varepsilon)\,\phi_i(t) + \rho\,\Delta\phi_i,
@@ -406,11 +405,11 @@ This update rule, adapted from ant colony optimization \citep{Dorigo1996}, cause
 
 The exploration--exploitation balance is calibrated using parameters derived from \citet{Gordon2010}'s empirical studies of harvester ant colonies (\textit{Pogonomyrmex barbatus}).
 Three key parameters govern agent behaviour:
-\begin{itemize}
+\begin{description}
   \item \textbf{Anternet weight} ($w_a = 0.600$): The degree to which interaction frequency influences foraging decisions. In the ant colony, returning foragers stimulate outgoing foragers through brief antennal contact; in \astra, successful hypothesis tests stimulate further investigation of the same domain.
   \item \textbf{Restraint weight} ($w_r = 0.400$): Colony-level restraint under resource scarcity. When recent discovery rates are low, \astra reduces exploitation and increases exploratory behaviour.
   \item \textbf{Switch probability} ($p_s = 0.150$): The probability of task-switching per contact cycle. This prevents agents from perseverating on unproductive strategies, analogous to the 15\,per\,cent task-switching rate observed in ant colonies.
-\end{itemize}
+\end{description}
 Agent contact rates are bounded between $\nu_{\min} = 0.033$ and $\nu_{\max} = 0.167$ contacts\,s$^{-1}$ (2--10 contacts\,min$^{-1}$), matching the empirical range for \textit{P.\ barbatus} \citep{Gordon2010}.
 Successful outcomes increase the contact rate by 10\,per\,cent (up to $\nu_{\max}$), while failures decrease it by 5\,per\,cent (down to $\nu_{\min}$), implementing the ``anternet'' feedback principle where colony-level foraging activity tracks food availability.
 
@@ -603,22 +602,22 @@ The dimensional analysis module produces results in agreement with the virial th
 
 \textbf{Theoretical Origin of Filament Widths:}
 In evaluating competing mechanisms for the observed characteristic width, \astra autonomously tested five theoretical length scales. The system identified the \emph{turbulent dissipation scale} (sonic scale) as the statistically preferred model:
-\begin{itemize}
+\begin{description}
   \item \emph{Sonic Scale (best match):} Predicts $0.080$~pc with negligible scatter ($<0.001$~pc) across diverse ISM conditions, agreeing with the observed median value within 20\,per\,cent. The theoretical robustness arises from the transition from supersonic to subsonic turbulence.
   \item \emph{Ostriker Hydrostatic Scale (plausible):} Predicts $0.088 \pm 0.073$~pc, broadly consistent in the mean but dominated by 83.5\,per\,cent system-derived scatter over realistic conditions, lowering its predictive power.
   \item \emph{Poor/Rejected Models:} \astra rejected the Thermal Jeans Length ($0.28 \pm 0.23$~pc), Turbulent Jeans Length ($0.87 \pm 0.73$~pc), and Ion-Neutral Damping scales as severely overpredicting the observed widths by factors of 3 to orders of magnitude. 
-\end{itemize}
+\end{description}
 
 \subsection{Physical Interpretation}
 \label{sec:tc1:interpretation}
 
 The results are consistent with several established results in the ISM filament literature:
-\begin{itemize}
+\begin{description}
   \item The ${\sim}0.1$~pc characteristic width is consistent with the sonic scale identified by \astra's analysis, where turbulent and thermal pressures are comparable \citep{Andre2010}. The insensitivity of this scale to local temperature and density may explain the observed universality of filament widths.
   \item This mechanism suggests a natural link between the filament fragmentation scale ($\approx 4\times$ width, or $\sim$0.4~pc) and the peak of the Stellar Initial Mass Function (IMF), as noted in the literature \citep{Andre2010}. Assuming typical densities, \astra estimates a core mass of $\sim$0.15~M$_\odot$, consistent with (within 25\,per\,cent of) the empirically observed IMF peak ($\sim$0.2~M$_\odot$).
   \item The strong virial scaling relation ($r = 0.988$) suggests these filaments are approximately in virial equilibrium.
   \item Dimensional analysis correctly identifies the key physical quantities and their relationships without requiring prior specification of the expected functional form.
-\end{itemize}
+\end{description}
 
 \textbf{Limitations:} The sample of 24~filaments is small and drawn from a limited set of molecular clouds.
 The identified relations are well-established in the literature; the value of this test case is not in novel discovery but in demonstrating \astra's ability to correctly recover known physical scaling relations through automated dimensional analysis and statistical fitting.
@@ -662,11 +661,11 @@ Figure~\ref{fig:crossmatch} shows the cross-matching results.
 
 From the input catalogues, \astra identifies 60~secure matches from 370~X-ray sources, with a false match rate below 5\,per\,cent.
 Source classification based on X-ray and optical properties yields:
-\begin{itemize}
+\begin{description}
   \item 41 Active Galactic Nuclei (AGN), identified by high X-ray-to-optical flux ratios and hard X-ray spectra
   \item 19 Stars, identified by soft X-ray emission and stellar optical colours
   \item 0 Normal galaxies classified (reflecting the bias toward X-ray-bright AGN in the CDFS rather than the absence of galaxies in the field; normal galaxies are present in the optical catalogue but fall below the X-ray detection threshold)
-\end{itemize}
+\end{description}
 We adopt the classification thresholds: AGN if hardness ratio $\mathrm{HR} > -0.2$ and $\log(f_X/f_{\mathrm{opt}}) > -1$; stars if $\mathrm{HR} < -0.2$ or $\log(f_X/f_{\mathrm{opt}}) < -1$.
 
 \textbf{Quality assessment:}
@@ -721,39 +720,39 @@ Figure~\ref{fig:pattern} shows the galaxy property distributions and relationshi
 We highlight five that correspond to well-established astrophysical relationships:
 
 \textbf{1. Mass--Metallicity Relation:}
-\begin{itemize}
+\begin{description}
   \item \emph{ASTRA identified:} Positive correlation between stellar mass and gas-phase metallicity ($r = 0.68$, $p < 10^{-27}$)
   \item \emph{Literature:} Mass--metallicity relation \citep{Tremonti2004}, one of the most fundamental relationships in galaxy evolution
   \item \emph{Significance:} \astra correctly identifies this as a primary relationship rather than a secondary correlation
-\end{itemize}
+\end{description}
 
 \textbf{2. Downsizing of Star Formation:}
-\begin{itemize}
+\begin{description}
   \item \emph{ASTRA identified:} Anti-correlation between stellar mass and specific star formation rate (sSFR) for $\log M_{\star}/M_{\odot} > 10$ ($r = -0.45$, $p < 10^{-14}$)
   \item \emph{Literature:} Downsizing \citep{Brinchmann2004}, where more massive galaxies form stars less efficiently
   \item \emph{Significance:} \astra identifies this as a mass-dependent effect, correctly separating it from the star-forming main sequence
-\end{itemize}
+\end{description}
 
 \textbf{3. Morphology--Density Relation:}
-\begin{itemize}
+\begin{description}
   \item \emph{ASTRA identified:} Correlation between environment density and galaxy type (early-type fraction increasing with density, $r = 0.37$, $p < 10^{-8}$)
   \item \emph{Literature:} Morphology--density relation \citep{Dressler1980}
   \item \emph{Significance:} \astra correctly identifies environment as a secondary driver of galaxy properties, distinct from mass
-\end{itemize}
+\end{description}
 
 \textbf{4. Faber--Jackson/Tully--Fisher Relations:}
-\begin{itemize}
+\begin{description}
   \item \emph{ASTRA identified:} Correlation between velocity dispersion and stellar mass ($r = 0.71$, $p < 10^{-30}$)
   \item \emph{Literature:} Faber--Jackson relation for early-type galaxies; the analogous Tully--Fisher relation for late-types
   \item \emph{Significance:} \astra identifies this across the full galaxy population, correctly noting different slopes for early-type and late-type subsamples
-\end{itemize}
+\end{description}
 
 \textbf{5. Environmental Quenching:}
-\begin{itemize}
+\begin{description}
   \item \emph{ASTRA identified:} Suppressed star formation rates in high-density environments, conditional on stellar mass ($\Delta\mathrm{SFR} \approx -0.3$~dex at fixed mass)
   \item \emph{Literature:} Environmental quenching \citep{Peng2010}, mass quenching distinguished from environmental quenching
   \item \emph{Significance:} \astra's causal reasoning module identifies environment and mass as independent quenching channels
-\end{itemize}
+\end{description}
 
 \subsection{Physical Interpretation}
 \label{sec:tc3:interpretation}
@@ -799,12 +798,12 @@ Figure~\ref{fig:causal} shows the recovered causal structure.
 \label{sec:tc4:results}
 
 \astra's causal discovery correctly recovers several textbook causal relationships:
-\begin{itemize}
+\begin{description}
   \item \textbf{Distance $\rightarrow$ apparent magnitude:} Distance causes the observed brightness (not the reverse). This is physically obvious but non-trivial for a purely data-driven algorithm to identify, since distance and apparent magnitude are strongly correlated.
   \item \textbf{Stellar mass $\rightarrow$ luminosity:} The mass--luminosity relation is identified as causal rather than merely correlational.
   \item \textbf{Temperature $\rightarrow$ colour:} Effective temperature causes photometric colour, correctly oriented.
   \item \textbf{Parallax as distance proxy:} \astra correctly identifies parallax as a proxy for distance (inverse relationship), flagging potential biases from parallax error propagation.
-\end{itemize}
+\end{description}
 
 The \fci algorithm additionally identifies one potential latent confounder: metallicity, which is not directly measured in the Gaia photometric catalogue but affects both temperature and luminosity.
 
@@ -844,11 +843,11 @@ The candidate models are:
 
 \textbf{Prior specification:}
 For model comparison, we adopt the following weakly-informative priors:
-\begin{itemize}
+\begin{description}
   \item Amplitude $A$: log-uniform on $[0.01, 10]$~km\,s$^{-1}$
   \item Exponent $\alpha$: Gaussian $\mathcal{N}(0.5, 0.3)$, centred on the virial prediction
   \item Intrinsic scatter: half-Cauchy($0, 0.1$)
-\end{itemize}
+\end{description}
 These priors are broad enough to accommodate all physically reasonable values while providing proper normalization for the Bayesian evidence integral.
 Results are robust to moderate changes in prior widths (factor of 2).
 
@@ -909,12 +908,12 @@ This test case is conceptually different from Tests 1--5: rather than recovering
 
 Star formation in molecular clouds appears to require exceeding a column density threshold \citep{Andre2010}, but the physical mechanism underlying this threshold---and whether column density is a cause or proxy---remains debated.
 Several candidate mechanisms have been proposed:
-\begin{itemize}
+\begin{description}
   \item \textbf{Gravitational instability:} Star formation begins when the Jeans mass drops below the cloud mass, allowing gravitational collapse
   \item \textbf{Magnetic support:} Magnetic fields provide support against collapse; star formation requires sufficient mass-to-flux ratio
   \item \textbf{Turbulent support:} Turbulence provides support against collapse; the virial parameter characterises the balance
   \item \textbf{Shielding:} Column density provides self-shielding from dissociating radiation, enabling molecule formation
-\end{itemize}
+\end{description}
 
 \subsection{Methods: Knowledge Isolation Mode}
 \label{sec:tc6:methods}
@@ -922,12 +921,12 @@ Several candidate mechanisms have been proposed:
 To provide a controlled test of discovery capability, we designed a synthetic dataset with embedded causal structure (described in Section~\ref{sec:tc6:dataset}) and operated \astra in ``knowledge isolation mode'':
 
 \textbf{Knowledge Isolation Protocol:}
-\begin{itemize}
+\begin{description}
   \item \textbf{Disabled:} Access to MORK ontology, domain knowledge base, and literature embeddings
   \item \textbf{Disabled:} Astrophysical terminology recognition and concept mapping
   \item \textbf{Enabled:} Statistical analysis, causal discovery algorithms, dimensional analysis, hypothesis generation
   \item \textbf{Enabled:} Physical reasoning (conservation laws, dimensional consistency) but without domain-specific knowledge
-\end{itemize}
+\end{description}
 
 This protocol ensures that any patterns \astra discovers come from the data, not from encoded domain knowledge.
 The knowledge isolation is implemented at the software level by disabling the MORK knowledge base query interface and removing domain-specific prompt templates.
@@ -983,23 +982,23 @@ Initial feature importance ranking (random forest, $R^{2} = 0.87$):
 \label{sec:tc6:phase2}
 
 The \pc algorithm identifies a directed acyclic graph (DAG) with the following edges:
-\begin{itemize}
+\begin{description}
   \item Jeans mass $\rightarrow$ Star Formation Rate (direct causal edge)
   \item Magnetic field $\rightarrow$ Star Formation Rate (direct causal edge)
   \item Virial parameter $\rightarrow$ Star Formation Rate (direct causal edge)
   \item Column density $\leftrightarrow$ Star Formation Rate (undirected; \astra cannot determine causal direction from these data alone)
-\end{itemize}
+\end{description}
 
 \subsubsection{Phase 3: Distinguishing Cause from Proxy}
 \label{sec:tc6:phase3}
 
 The \fci algorithm \citep{Zhang2008}, which accounts for latent confounders, refines the causal structure:
-\begin{itemize}
+\begin{description}
   \item Jeans mass $\rightarrow$ SFR: Confirmed as direct cause (conditional independence tests show Jeans mass is not d-separated from SFR by any other variable)
   \item Magnetic field $\rightarrow$ SFR: Confirmed as direct cause (suppressive)
   \item Virial parameter $\rightarrow$ SFR: Confirmed as direct cause
   \item Column density $\rightarrow$ SFR: \textbf{Identified as having a latent common cause} (cloud mass, which is not directly measured). \astra correctly identifies column density as a proxy rather than a direct cause.
-\end{itemize}
+\end{description}
 
 This is the key result: \astra correctly distinguishes the three genuine causal drivers from the correlated proxy variable, despite column density having the highest univariate feature importance (Fig.~\ref{fig:tc6_causal}).
 
@@ -1038,13 +1037,13 @@ These intervention results are consistent with the ground truth causal structure
 \label{sec:tc6:validation}
 
 Comparing \astra's discoveries with the known ground truth:
-\begin{itemize}
+\begin{description}
   \item \textbf{Correct:} All three causal drivers identified (Jeans mass, magnetic field, virial parameter) $\checkmark$
   \item \textbf{Correct:} Column density identified as proxy, not cause $\checkmark$
   \item \textbf{Correct:} Relative ordering of causal importance (Jeans mass $>$ magnetic field $>$ virial parameter) $\checkmark$
   \item \textbf{Correct:} Magnetic field identified as suppressive rather than enhancing $\checkmark$
   \item \textbf{Partially correct:} Temperature identified as correlated but \astra did not fully resolve its relationship to Jeans mass (they are connected through $M_J \propto T^{3/2}$)
-\end{itemize}
+\end{description}
 
 \subsubsection{Testable Predictions}
 \label{sec:tc6:phase6}
@@ -1067,12 +1066,12 @@ These predictions are generated by \astra based on the discovered causal structu
 
 This test case demonstrates that \astra can discover genuine causal structure from data alone, without relying on encoded domain knowledge.
 The key achievements are:
-\begin{itemize}
+\begin{description}
   \item \textbf{Correct causal identification:} All three causal drivers identified, in the correct relative ordering
   \item \textbf{Proxy detection:} Column density correctly identified as a proxy rather than a cause, despite having the highest univariate feature importance
   \item \textbf{Intervention validation:} Do-calculus interventions confirm the causal claims against the known ground truth
   \item \textbf{Prediction generation:} Four testable predictions generated that are consistent with current theory and amenable to observational testing
-\end{itemize}
+\end{description}
 
 The discovery that column density is a proxy rather than a direct cause is particularly significant: in many ML-based analyses, the variable with the highest feature importance would be treated as the primary driver.
 \astra's causal reasoning module goes beyond correlation to identify the true causal structure, demonstrating a capability that purely statistical or ML-based approaches cannot match.
@@ -1472,7 +1471,7 @@ Claims that AI systems will autonomously resolve major open questions overlook t
 \label{sec:discussion:limitations}
 
 Current limitations include:
-\begin{itemize}
+\begin{description}
   \item \textbf{Sample sizes:} The controlled test cases use 24--1000 objects. The live deployments reach larger scales (up to 4\,984 stars), but scaling to survey-scale datasets ($10^{6}$--$10^{9}$ objects) requires further validation.
   \item \textbf{Computational cost:} Causal discovery scales as $\mathcal{O}(p^2)$ for $p$ variables, limiting applicability to high-dimensional problems.
   \item \textbf{Prior dependence:} Bayesian evidence computation requires careful prior specification, and results can be prior-dependent.
@@ -1481,7 +1480,7 @@ Current limitations include:
   \item \textbf{Live validation scope:} The live deployment results recover well-established physics and validate the pipeline's correctness, not its ability to find genuinely new science.
   \item \textbf{Cross-domain depth:} The cross-domain validation uses well-established benchmarks. Production-quality analysis in other domains would require domain-specific knowledge modules analogous to \astra's astrophysical MORK ontology.
   \item \textbf{Cognitive architecture:} The cognitive architecture, multi-agent debate, theory framework, and autonomous research agenda (Sections~\ref{sec:methods:cognitive}--\ref{sec:methods:agenda}) are operational but have not been independently validated through ablation studies. Their individual contributions to analytical quality remain to be quantified.
-\end{itemize}
+\end{description}
 
 \astra is currently being applied to ongoing research on interstellar medium filaments, where its dimensional analysis and causal inference capabilities are being used to investigate filament stability and fragmentation properties.
 
@@ -1544,7 +1543,7 @@ All data used in this paper are publicly available from the original survey arch
 World Bank data are available at \url{https://data.worldbank.org}; NASA GISS temperature data at \url{https://data.giss.nasa.gov/gistemp/}; NOAA Mauna Loa CO$_{2}$ data at \url{https://gml.noaa.gov/ccgg/trends/}.
 
 % ======================================================================
-\bibliographystyle{mnras}
+\bibliographystyle{rasti}
 \bibliography{references-v6}
 % ======================================================================
 

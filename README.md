@@ -4,6 +4,7 @@
 > in astronomy and astrophysics, integrating causal reasoning, Bayesian inference,
 > dimensional analysis, and multi-wavelength data fusion.
 
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg)](https://fastapi.tiangolo.com)
 
@@ -575,7 +576,13 @@ Results are validated against known physical theory and observational constraint
 
 ## License
 
-TBD
+| Component | License |
+|-----------|---------|
+| ASTRA codebase (Python, backend, engine) | [Apache License 2.0](LICENSE) |
+| Paper & documentation | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
+| Data outputs (discoveries, datasets) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
+
+See [LICENSE](LICENSE) and [NOTICE](NOTICE) for full terms and attribution.
 
 ---
 
