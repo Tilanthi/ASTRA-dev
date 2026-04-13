@@ -1,32 +1,32 @@
 {
-  "timestamp": 1775894059.083227,
-  "iso_timestamp": "2026-04-11T07:54:19Z",
-  "cycle_count": 7554,
-  "total_data_points": 5000,
-  "total_decisions": 2132,
-  "system_confidence": 0.9383025266818689,
+  "timestamp": 1776074593.255147,
+  "iso_timestamp": "2026-04-13T10:03:13Z",
+  "cycle_count": 11464,
+  "total_data_points": 10000,
+  "total_decisions": 13036,
+  "system_confidence": 0.937890504669498,
   "current_phase": "UPDATE",
   "running": true,
   "start_time": 1775549455.669479,
   "state_vector_history": [
     {
       "vector": [
-        0.470358,
+        0.827672,
         0.25,
         0.0,
-        0.3,
+        0.964824,
         0.0,
-        0.086536,
-        0.0,
-        0.0,
+        0.086199,
         0.0,
         0.0,
-        0.393856,
-        0.358974,
-        0.179487,
         0.0,
-        0.769036,
-        0.028171
+        0.0,
+        0.221017,
+        0.130435,
+        0.086957,
+        0.057312,
+        1.0,
+        0.113529
       ],
       "labels": [
         "astro_conf_mean",
@@ -45,8 +45,8 @@
         "decision_velocity"
       ],
       "dimensions": 16,
-      "cycle": 7554,
-      "timestamp": 1775894039.300883
+      "cycle": 11464,
+      "timestamp": 1776074527.3839371
     }
   ]
 }

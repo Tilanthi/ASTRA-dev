@@ -185,6 +185,15 @@ def build_dashboard_html(snapshot_data):
   }"""
 
     html = html.replace(old_status, new_status)
+
+    # Update hardcoded discoveries count with live data
+    discovery_count = (data.get('discovery-memory') or {}).get('improvement', {}).get('total_discoveries', 0)
+    if discovery_count > 0:
+        html = html.replace(
+            'id="si-discoveries-count">102</div>',
+            f'id="si-discoveries-count">{discovery_count}</div>'
+        )
+
     return html
 
 

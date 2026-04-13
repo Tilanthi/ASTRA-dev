@@ -2405,19 +2405,19 @@ body::after {
       <div class="discovery-body">
         <div class="improvement-stats-grid">
           <div class="improvement-stat-card si-stat-bg-amber">
-            <div class="stat-value color-amber">102</div>
+            <div class="stat-value color-amber" id="si-discoveries-count"><!-- UPDATED Dynamically -->23</div>
             <div class="stat-label">Discoveries</div>
           </div>
           <div class="improvement-stat-card si-stat-bg-cyan">
-            <div class="stat-value color-cyan">100%</div>
+            <div class="stat-value color-cyan" id="si-success-rate">100%</div>
             <div class="stat-label">Success Rate</div>
           </div>
           <div class="improvement-stat-card si-stat-bg-emerald">
-            <div class="stat-value color-emerald">+532%</div>
+            <div class="stat-value color-emerald" id="si-sig-results-change">+532%</div>
             <div class="stat-label">Sig. Results ↑</div>
           </div>
           <div class="improvement-stat-card si-stat-bg-violet">
-            <div class="stat-value color-violet">20</div>
+            <div class="stat-value color-violet" id="si-memory-gen-hypotheses">20</div>
             <div class="stat-label">Memory-Gen Hypotheses</div>
           </div>
         </div>
@@ -13159,6 +13159,7 @@ body::after {
     if (tabName === 'control' && !controlInitialized) initControlTab();
     if (tabName === 'health' && !healthInitialized) initHealthTab();
     if (tabName === 'phase4' && !phase4Initialized) initPhase4Tab();
+    if (tabName === 'discoveries' && !discoveriesInitialized) initDiscoveriesTab();
     if (tabName === 'selfimprove' && !selfImproveInitialized) initSelfImproveTab();
     if (tabName === 'literature' && !literatureInitialized) initLiteratureTab();
     if (tabName === 'stigmergy' && !stigmergyInitialized) initStigmergyTab();
@@ -13174,7 +13175,7 @@ body::after {
     }
   })();
 
-  let safetyInitialized = false, controlInitialized = false, healthInitialized = false, phase4Initialized = false, selfImproveInitialized = false, literatureInitialized = false, stigmergyInitialized = false;
+  let safetyInitialized = false, controlInitialized = false, healthInitialized = false, phase4Initialized = false, discoveriesInitialized = false, selfImproveInitialized = false, literatureInitialized = false, stigmergyInitialized = false;
 
   /* ==========================================================
      KEYBOARD NAVIGATION — Arrow keys between tabs, Enter/Space to activate
@@ -13889,6 +13890,12 @@ body::after {
   };
   var siTimelineChart = null;
 
+  function initDiscoveriesTab() {
+    discoveriesInitialized = true;
+    // Load self-improvement data since discoveries tab has self-improvement panel
+    loadSelfImproveData();
+  }
+
   function initSelfImproveTab() {
     selfImproveInitialized = true;
     loadSelfImproveData();
@@ -13985,8 +13992,18 @@ body::after {
   function renderSiKeyMetrics(data) {
     var imp = data.improvement || SI_SNAPSHOT.improvement;
     var el;
-    el = document.getElementById('si-km-discoveries'); if(el) el.textContent = data.total_discoveries || SI_SNAPSHOT.total_discoveries;
-    el = document.getElementById('si-km-outcomes'); if(el) el.textContent = data.total_outcomes || SI_SNAPSHOT.total_outcomes;
+    // Access via improvement object since that's how API returns it
+    var totalDisc = imp.total_discoveries || SI_SNAPSHOT.improvement?.total_discoveries || data.total_discoveries || 0;
+    var totalOut = imp.total_outcomes || SI_SNAPSHOT.improvement?.total_outcomes || data.total_outcomes || 0;
+    el = document.getElementById('si-km-discoveries'); if(el) el.textContent = totalDisc;
+    el = document.getElementById('si-km-outcomes'); if(el) el.textContent = totalOut;
+    // Also update discoveries tab self-improvement panel
+    el = document.getElementById('si-discoveries-count'); if(el) el.textContent = totalDisc;
+    el = document.getElementById('si-success-rate'); if(el) el.textContent = ((imp.success_rate?.recent||SI_SNAPSHOT.improvement?.success_rate?.recent||0)*100).toFixed(0)+'%';
+    var sig = imp.avg_significant_results || SI_SNAPSHOT.improvement?.avg_significant_results || {};
+    var sigChange = ((sig.recent||0) - (sig.early||0)) / (sig.early||1) * 100;
+    el = document.getElementById('si-sig-results-change'); if(el) el.textContent = (sigChange>=0?'+':'')+sigChange.toFixed(0)+'%';
+    el = document.getElementById('si-memory-gen-hypotheses'); if(el) el.textContent = data.generation_count || SI_SNAPSHOT.generation_count || 0;
     var sr = imp.success_rate;
     el = document.getElementById('si-km-rate'); if(el) el.textContent = (sr.recent*100).toFixed(1)+'%';
     el = document.getElementById('si-km-rate-delta'); if(el) {
