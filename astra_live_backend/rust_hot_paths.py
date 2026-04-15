@@ -281,39 +281,37 @@ class RustHotPathBridge:
         """
         start_time = time.time()
         metrics = self._metrics[HotPathType.RMS_NORM]
+        metrics.total_calls += 1
 
-        with metrics:
-            metrics.total_calls += 1
+        if self._using_rust and self._rust_available:
+            try:
+                # Ensure contiguous float32 array
+                x_contiguous = np.ascontiguousarray(x, dtype=np.float32)
+                output = np.empty_like(x_contiguous)
 
-            if self._using_rust and self._rust_available:
-                try:
-                    # Ensure contiguous float32 array
-                    x_contiguous = np.ascontiguousarray(x, dtype=np.float32)
-                    output = np.empty_like(x_contiguous)
+                # Call Rust function
+                self._lib.rms_norm(
+                    x_contiguous.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
+                    output.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
+                    ctypes.c_int(x.size),
+                    ctypes.c_float(epsilon),
+                )
 
-                    # Call Rust function
-                    self._lib.rms_norm(
-                        x_contiguous.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
-                        output.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
-                        ctypes.c_int(x.size),
-                        ctypes.c_float(epsilon),
-                    )
+                elapsed_us = (time.time() - start_time) * 1e6
+                metrics.rust_calls += 1
+                metrics.total_rust_time_us += elapsed_us
+                return output
 
-                    elapsed_us = (time.time() - start_time) * 1e6
-                    metrics.rust_calls += 1
-                    metrics.total_rust_time_us += elapsed_us
-                    return output
+            except Exception as e:
+                logger.debug(f'Rust RMSNorm failed: {e}, falling back')
+                metrics.errors += 1
 
-                except Exception as e:
-                    logger.debug(f'Rust RMSNorm failed: {e}, falling back')
-                    metrics.errors += 1
-
-            # Fallback to NumPy
-            result = x * (1.0 / np.sqrt(np.mean(x ** 2) + epsilon))
-            elapsed_us = (time.time() - start_time) * 1e6
-            metrics.fallback_calls += 1
-            metrics.total_fallback_time_us += elapsed_us
-            return result
+        # Fallback to NumPy
+        result = x * (1.0 / np.sqrt(np.mean(x ** 2) + epsilon))
+        elapsed_us = (time.time() - start_time) * 1e6
+        metrics.fallback_calls += 1
+        metrics.total_fallback_time_us += elapsed_us
+        return result
 
     def cosine_similarity(self, a: np.ndarray, b: np.ndarray) -> float:
         """
@@ -333,38 +331,36 @@ class RustHotPathBridge:
         """
         start_time = time.time()
         metrics = self._metrics[HotPathType.COSINE_SIMILARITY]
+        metrics.total_calls += 1
 
-        with metrics:
-            metrics.total_calls += 1
+        if self._using_rust and self._rust_available and a.shape == b.shape:
+            try:
+                a_contiguous = np.ascontiguousarray(a.flatten(), dtype=np.float32)
+                b_contiguous = np.ascontiguousarray(b.flatten(), dtype=np.float32)
 
-            if self._using_rust and self._rust_available and a.shape == b.shape:
-                try:
-                    a_contiguous = np.ascontiguousarray(a.flatten(), dtype=np.float32)
-                    b_contiguous = np.ascontiguousarray(b.flatten(), dtype=np.float32)
+                result = self._lib.cosine_similarity(
+                    a_contiguous.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
+                    b_contiguous.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
+                    ctypes.c_int(a.size),
+                )
 
-                    result = self._lib.cosine_similarity(
-                        a_contiguous.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
-                        b_contiguous.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
-                        ctypes.c_int(a.size),
-                    )
+                elapsed_us = (time.time() - start_time) * 1e6
+                metrics.rust_calls += 1
+                metrics.total_rust_time_us += elapsed_us
+                return float(result)
 
-                    elapsed_us = (time.time() - start_time) * 1e6
-                    metrics.rust_calls += 1
-                    metrics.total_rust_time_us += elapsed_us
-                    return float(result)
+            except Exception as e:
+                logger.debug(f'Rust cosine_similarity failed: {e}, falling back')
+                metrics.errors += 1
 
-                except Exception as e:
-                    logger.debug(f'Rust cosine_similarity failed: {e}, falling back')
-                    metrics.errors += 1
-
-            # Fallback to NumPy
-            result = np.dot(a.flatten(), b.flatten()) / (
-                np.linalg.norm(a) * np.linalg.norm(b)
-            )
-            elapsed_us = (time.time() - start_time) * 1e6
-            metrics.fallback_calls += 1
-            metrics.total_fallback_time_us += elapsed_us
-            return float(result)
+        # Fallback to NumPy
+        result = np.dot(a.flatten(), b.flatten()) / (
+            np.linalg.norm(a) * np.linalg.norm(b)
+        )
+        elapsed_us = (time.time() - start_time) * 1e6
+        metrics.fallback_calls += 1
+        metrics.total_fallback_time_us += elapsed_us
+        return float(result)
 
     def matrix_multiply(self,
                        A: np.ndarray,
@@ -386,45 +382,43 @@ class RustHotPathBridge:
         """
         start_time = time.time()
         metrics = self._metrics[HotPathType.MATRIX_MULTIPLY]
+        metrics.total_calls += 1
 
-        with metrics:
-            metrics.total_calls += 1
+        if self._using_rust and self._rust_available:
+            try:
+                M, K = A.shape
+                K2, N = B.shape
+                if K != K2:
+                    raise ValueError(f"Shape mismatch: {A.shape} @ {B.shape}")
 
-            if self._using_rust and self._rust_available:
-                try:
-                    M, K = A.shape
-                    K2, N = B.shape
-                    if K != K2:
-                        raise ValueError(f"Shape mismatch: {A.shape} @ {B.shape}")
+                A_contiguous = np.ascontiguousarray(A, dtype=np.float32)
+                B_contiguous = np.ascontiguousarray(B, dtype=np.float32)
+                C = np.empty((M, N), dtype=np.float32)
 
-                    A_contiguous = np.ascontiguousarray(A, dtype=np.float32)
-                    B_contiguous = np.ascontiguousarray(B, dtype=np.float32)
-                    C = np.empty((M, N), dtype=np.float32)
+                self._lib.mat_mul(
+                    A_contiguous.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
+                    B_contiguous.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
+                    C.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
+                    ctypes.c_int(M),
+                    ctypes.c_int(N),
+                    ctypes.c_int(K),
+                )
 
-                    self._lib.mat_mul(
-                        A_contiguous.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
-                        B_contiguous.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
-                        C.ctypes.data_as(ctypes.POINTER(ctypes.c_float)),
-                        ctypes.c_int(M),
-                        ctypes.c_int(N),
-                        ctypes.c_int(K),
-                    )
+                elapsed_us = (time.time() - start_time) * 1e6
+                metrics.rust_calls += 1
+                metrics.total_rust_time_us += elapsed_us
+                return C
 
-                    elapsed_us = (time.time() - start_time) * 1e6
-                    metrics.rust_calls += 1
-                    metrics.total_rust_time_us += elapsed_us
-                    return C
+            except Exception as e:
+                logger.debug(f'Rust mat_mul failed: {e}, falling back')
+                metrics.errors += 1
 
-                except Exception as e:
-                    logger.debug(f'Rust mat_mul failed: {e}, falling back')
-                    metrics.errors += 1
-
-            # Fallback to NumPy
-            result = A @ B
-            elapsed_us = (time.time() - start_time) * 1e6
-            metrics.fallback_calls += 1
-            metrics.total_fallback_time_us += elapsed_us
-            return result
+        # Fallback to NumPy
+        result = A @ B
+        elapsed_us = (time.time() - start_time) * 1e6
+        metrics.fallback_calls += 1
+        metrics.total_fallback_time_us += elapsed_us
+        return result
 
     def ks_test(self, x: np.ndarray, y: np.ndarray) -> Tuple[float, float]:
         """
@@ -444,7 +438,6 @@ class RustHotPathBridge:
         """
         start_time = time.time()
         metrics = self._metrics[HotPathType.KS_TEST]
-
         metrics.total_calls += 1
 
         # Fallback to scipy (Rust not yet implemented for KS test)

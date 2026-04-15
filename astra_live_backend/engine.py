@@ -1599,6 +1599,7 @@ class DiscoveryEngine:
                         'p_value': min([t.get('p_value', 1.0) for t in hypothesis.test_results[tests_before:]]
                                        if hypothesis.test_results[tests_before:] else [1.0]),
                         'effect_size': 0.0,
+                        'test_name': f'investigate_{category}',
                     })
 
                     # ATLAS V10.0: GraphPalace pheromone deposit (parallel to stigmergy)
@@ -1615,12 +1616,11 @@ class DiscoveryEngine:
                                 'p_value': min([t.get('p_value', 1.0) for t in hypothesis.test_results[tests_before:]]
                                                if hypothesis.test_results[tests_before:] else [1.0]),
                                 'effect_size': 0.0,
+                                'test_name': f'investigate_{category}',
                             })
                         except Exception as gp_e:
                             logger = __import__('logging').getLogger(__name__)
                             logger.warning(f"GraphPalace deposit error in parallel investigate: {gp_e}")
-                        'test_name': f'investigate_{category}',
-                    })
                 except Exception as e:
                     engine._log("INVESTIGATE", "STIGMERGY",
                               f"Stigmergy deposit error: {e}")

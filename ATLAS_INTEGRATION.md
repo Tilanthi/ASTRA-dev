@@ -129,7 +129,7 @@ else:
 **Purpose**: Interface to 28 ATLAS capabilities via JSON-RPC 2.0.
 
 **Key Features**:
-- 28 tools across 8 categories
+- 26 tools across 8 categories
 - Result caching with TTL
 - Batch execution with parallel support
 - Graceful fallback to local implementations
