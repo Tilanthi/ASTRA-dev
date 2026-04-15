@@ -1843,6 +1843,59 @@ body::after {
 .si-delta-pos { color: var(--emerald) !important; }
 .si-delta-neg { color: var(--coral) !important; }
 .si-delta-flat { color: var(--text-tertiary) !important; }
+
+/* ============================================================
+   CONNECTIONS TAB STYLES
+   ============================================================ */
+.network-viz { position: relative; width: 100%; height: 100%; min-height: 500px; }
+.network-viz svg { display: block; }
+
+.domain-list { padding: 8px; }
+.domain-item { padding: 12px; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); }
+.domain-name { font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; }
+.domain-metrics { display: flex; flex-wrap: wrap; gap: 8px; }
+.metric { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+
+.discovery-list { max-height: 400px; overflow-y: auto; }
+.discovery-item { padding: 12px; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); }
+.discovery-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.discovery-domain { font-weight: 600; font-size: 0.8rem; }
+.discovery-strength { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+.discovery-content { font-size: 0.8rem; color: rgba(255,255,255,0.8); margin-bottom: 6px; }
+.cross-domains { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+
+.tunnel-list { max-height: 300px; overflow-y: auto; }
+.tunnel-item { padding: 10px; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); }
+.tunnel-path { font-size: 0.8rem; font-weight: 500; margin-bottom: 4px; }
+.tunnel-info { display: flex; justify-content: space-between; font-size: 0.75rem; }
+.tunnel-topic { color: rgba(255,255,255,0.7); }
+.tunnel-confidence { color: rgba(255,255,255,0.5); }
+
+.palace-status { padding: 8px; }
+.palace-status.enabled { border-left: 3px solid #00e5ff; }
+.palace-status.disabled { border-left: 3px solid rgba(255,255,255,0.2); }
+.status-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.status-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+.status-value { font-size: 0.75rem; font-weight: 500; }
+.status-value.on { color: #00e5ff; }
+.status-value.off { color: rgba(255,255,255,0.4); }
+
+.search-container { display: flex; gap: 8px; margin-bottom: 12px; }
+.search-input { flex: 1; padding: 10px 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: #fff; font-size: 0.85rem; }
+.search-input::placeholder { color: rgba(255,255,255,0.4); }
+.search-input:focus { outline: none; border-color: rgba(0,229,255,0.5); }
+.search-btn { padding: 10px 16px; background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.3); border-radius: 6px; color: #00e5ff; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+.search-btn:hover { background: rgba(0,229,255,0.2); border-color: rgba(0,229,255,0.5); }
+
+.search-results { max-height: 300px; overflow-y: auto; }
+.search-loading, .search-error, .search-empty { padding: 20px; text-align: center; color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+.search-results-list { max-height: 300px; overflow-y: auto; }
+.search-result-item { padding: 12px; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); cursor: pointer; transition: all 0.2s; }
+.search-result-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(0,229,255,0.3); }
+.result-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.result-domain { font-weight: 600; font-size: 0.8rem; }
+.result-score { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+.result-content { font-size: 0.8rem; color: rgba(255,255,255,0.8); }
 </style>
 <noscript><style>.tab-content,.header,.tab-bar{display:none}</style></noscript>
 </head>
@@ -1913,6 +1966,7 @@ body::after {
   <button class="tab-btn" data-tab="selfimprove" role="tab" id="tab-btn-selfimprove" aria-selected="false" aria-controls="tab-selfimprove" onclick="switchTab('selfimprove')" aria-label="Self-improvement metrics tab">⟳ <span class="tab-label">SELF-IMPROVE</span></button>
   <button class="tab-btn" data-tab="literature" role="tab" id="tab-btn-literature" aria-selected="false" aria-controls="tab-literature" onclick="switchTab('literature')" aria-label="Literature and citations tab">📚 <span class="tab-label">LITERATURE</span></button>
   <button class="tab-btn" data-tab="stigmergy" role="tab" id="tab-btn-stigmergy" aria-selected="false" aria-controls="tab-stigmergy" onclick="switchTab('stigmergy')" aria-label="Stigmergy swarm intelligence tab">🐜 <span class="tab-label">STIGMERGY</span></button>
+  <button class="tab-btn" data-tab="connections" role="tab" id="tab-btn-connections" aria-selected="false" aria-controls="tab-connections" onclick="switchTab('connections')" aria-label="Cross-domain connections tab">🔗 <span class="tab-label">CONNECTIONS</span></button>
 </nav>
 
 <!-- ============================================================
@@ -2280,163 +2334,9 @@ body::after {
 
   <div class="hyp-pipeline-header" style="margin-top:8px;">✦ Verified Discoveries</div>
 
-  <div class="discoveries-grid">
-
-    <!-- Kepler's Third Law -->
-    <div class="panel si-discovery-full-cyan">
-      <div class="panel-header">
-        <span class="panel-icon">⚛</span>
-        <span class="panel-title">KEPLER'S THIRD LAW — VERIFIED FROM 2,839 EXOPLANETS</span>
-      </div>
-      <div class="discovery-body">
-        <div class="discovery-detail-box discovery-box-cyan">
-          Theory: P² ∝ a³/M* → log(P) = <strong>1.500</strong>·log(a) − <strong>0.500</strong>·log(M*) + C<br>
-          ASTRA: log(P) = <strong>1.497</strong>·log(a) − <strong>0.474</strong>·log(M*) + C &nbsp;|&nbsp; R² = <strong>0.9982</strong>
-        </div>
-        <div class="discovery-desc">
-          ASTRA independently recovered Newton's gravitational law from the NASA Exoplanet Archive. The semi-major axis exponent matches theory to <strong class="color-emerald">0.2%</strong> accuracy. This is one of the most precise empirical verifications of Kepler's Third Law from exoplanet data — measured blindly by a discovery system with zero prior assumptions about orbital mechanics.
-        </div>
-        <div class="discovery-meta">
-          <span>📡 NASA Exoplanet Archive (TAP)</span>
-          <span>🔢 2,839 confirmed exoplanets</span>
-          <span>📊 Pearson r = 0.9945</span>
-          <span class="discovery-stat-badge badge-fdr">FDR corrected</span>
-          <span class="discovery-stat-badge badge-effect">d = 1.42 (large)</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Accelerating Universe -->
-    <div class="panel si-discovery-full-amber">
-      <div class="panel-header">
-        <span class="panel-icon">🌌</span>
-        <span class="panel-title">THE ACCELERATING UNIVERSE — MEASURED FROM 1,701 SUPERNOVAE</span>
-      </div>
-      <div class="discovery-body">
-        <div class="discovery-detail-box discovery-box-amber">
-          Hubble diagram: μ = <strong>5.33</strong>·log(z) + 24.42 &nbsp;|&nbsp; r = <strong>0.9982</strong><br>
-          Pure Hubble law predicts slope = 5.00 &nbsp;→&nbsp; ASTRA measured: <strong>5.33</strong> (+6.6% excess)
-        </div>
-        <div class="discovery-desc">
-          The distance modulus slope being steeper than 5.0 means luminosity distance grows <em>faster</em> than a non-accelerating universe predicts. This is exactly the signature of dark energy / cosmological constant that won the <strong class="color-amber">2011 Nobel Prize</strong> (Perlmutter, Schmidt, Riess). ASTRA found it independently from the full Pantheon+ sample. Binned residuals show the deviation is strongest at z &gt; 0.5 — consistent with acceleration onset.
-        </div>
-        <div class="discovery-meta">
-          <span>📡 Pantheon+ SH0ES (GitHub)</span>
-          <span>🔢 1,701 Type Ia supernovae</span>
-          <span>📊 χ²/dof = 0.64</span>
-          <span class="discovery-stat-badge badge-fdr">BH α* = 0.016</span>
-          <span class="discovery-stat-badge badge-effect">Laplace CI: ±0.83</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Galaxy Bimodality -->
-    <div class="panel si-discovery-accent-coral">
-      <div class="panel-header">
-        <span class="panel-icon">🔴🔵</span>
-        <span class="panel-title">GALAXY DEATH IN REAL TIME</span>
-      </div>
-      <div class="discovery-body">
-        <div class="discovery-detail-box discovery-box-coral">
-          <table class="discovery-table">
-            <tr class="discovery-table-header"><th class="text-left">Redshift</th><th>u-g</th><th>Blue %</th></tr>
-            <tr><td>z = 0.02–0.05</td><td class="text-center">1.44</td><td class="text-center color-blue">50%</td></tr>
-            <tr><td>z = 0.05–0.10</td><td class="text-center">1.70</td><td class="text-center color-amber">23%</td></tr>
-            <tr><td>z = 0.10–0.15</td><td class="text-center">1.77</td><td class="text-center color-coral">16%</td></tr>
-            <tr><td>z = 0.15–0.25</td><td class="text-center">1.92</td><td class="text-center color-coral">10%</td></tr>
-          </table>
-        </div>
-        <div class="discovery-desc">
-          From 2,000 SDSS galaxies: the blue fraction (actively star-forming) drops from 50% to 10% over the last 3 billion years. This is cosmic <strong class="color-coral">"downsizing"</strong> — star formation shuts off progressively. The bimodal color distribution (peaks at u-g ≈ 1.4 and 1.9) is the famous red sequence / blue cloud.
-        </div>
-        <div class="si-muted-note">
-          �📡 SDSS DR18 · 🔢 2,000 galaxies · 📊 z–color r = 0.33
-        </div>
-      </div>
-    </div>
-
-    <!-- HR Diagram -->
-    <div class="panel si-discovery-accent-violet">
-      <div class="panel-header">
-        <span class="panel-icon">⭐</span>
-        <span class="panel-title">STELLAR PHYSICS FROM GAIA DR3</span>
-      </div>
-      <div class="discovery-body">
-        <div class="discovery-detail-box discovery-box-violet">
-          Main sequence: M_G = <strong>3.66</strong> × (BP-RP) &nbsp;|&nbsp; r = <strong>0.90</strong><br>
-          MS slope ~2–3 expected · ASTRA: 3.66 (includes metallicity scatter)
-        </div>
-        <div class="discovery-desc">
-          From 4,984 Gaia DR3 stars (parallax S/N &gt; 10). Density peaks at <strong class="color-violet">M_G ≈ 6.3</strong> (K-dwarf main sequence), <strong class="color-violet">12.5</strong> (white dwarfs), and <strong class="color-violet">1.8</strong> (subgiants). All three major stellar populations independently identified from raw astrometry.
-        </div>
-        <div class="si-muted-note">
-          📡 Gaia DR3 TAP · 🔢 4,984 stars · BP-RP ∈ [−0.5, 3.2]
-        </div>
-      </div>
-    </div>
-
-    <!-- Causal Inference -->
-    <div class="panel si-discovery-accent-emerald">
-      <div class="panel-header">
-        <span class="panel-icon">🔗</span>
-        <span class="panel-title">CAUSAL INFERENCE — REDSHIFT DRIVES COLOR</span>
-      </div>
-      <div class="discovery-body">
-        <div class="discovery-detail-box discovery-box-emerald">
-          Strongest edges: r↔i (0.994), g↔r (0.950), u↔g (0.903)<br>
-          do(brightness) → redshift: <strong>NOT significant</strong> ✓<br>
-          do(redshift) → brightness: <strong>significant</strong> ✓
-        </div>
-        <div class="discovery-desc">
-          PC/FCI causal discovery on 5,000 SDSS galaxies correctly found that <strong class="color-emerald">redshift causes color changes</strong> (K-correction), not the reverse. Intervention tests (do-calculus) confirmed: artificially changing photometric band brightness has zero causal effect on measured redshift. The system rejected the spurious correlation.
-        </div>
-        <div class="si-muted-note">
-          📡 SDSS DR18 · 🔢 5,000 galaxies · PC + FCI algorithms
-        </div>
-      </div>
-    </div>
-
-    <!-- Self-Improvement System -->
-    <div class="panel si-discovery-full-amber">
-      <div class="panel-header">
-        <span class="panel-icon">🧠</span>
-        <span class="panel-title">SELF-IMPROVEMENT — AUTONOMOUS LEARNING LOOP</span>
-      </div>
-      <div class="discovery-body">
-        <div class="improvement-stats-grid">
-          <div class="improvement-stat-card si-stat-bg-amber">
-            <div class="stat-value color-amber">102</div>
-            <div class="stat-label">Discoveries</div>
-          </div>
-          <div class="improvement-stat-card si-stat-bg-cyan">
-            <div class="stat-value color-cyan">100%</div>
-            <div class="stat-label">Success Rate</div>
-          </div>
-          <div class="improvement-stat-card si-stat-bg-emerald">
-            <div class="stat-value color-emerald">+532%</div>
-            <div class="stat-label">Sig. Results ↑</div>
-          </div>
-          <div class="improvement-stat-card si-stat-bg-violet">
-            <div class="stat-value color-violet">20</div>
-            <div class="stat-label">Memory-Gen Hypotheses</div>
-          </div>
-        </div>
-        <div class="si-feedback-summary">
-          Three feedback loops: <strong>Discovery → Hypothesis</strong> (60% from strong discoveries, strength&gt;0.4) · <strong>Method → Strategy</strong> (50 outcomes tracked, adaptive α) · <strong>Exploration → Coverage</strong> (7/7 sources active, 157 untested pairs mapped)
-        </div>
-        <div class="discovery-desc">
-          ASTRA's Discovery Memory tracks every finding with strength scoring, records which statistical methods succeed per domain, and maps explored vs. unexplored variable pairs. The Adaptive Strategist selects investigation methods by historical success rate (exploration bonus for untested methods). The Hypothesis Generator spawns new hypotheses from strong discoveries, untested variable pairs, and cross-domain structural analogies. <strong class="color-emerald">All three improvement metrics are trending upward</strong> — success rate 76%→100%, significant results per evaluation 1.76→11.12, confidence delta improving.
-        </div>
-        <div class="discovery-meta">
-          <span>🔬 50 method outcomes recorded</span>
-          <span>📡 7 data sources explored</span>
-          <span>🧬 Top affinity: redshift (3.17)</span>
-          <span>🔥 Hot domain: Astrophysics (60.9)</span>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /discoveries grid -->
+  <div class="discoveries-grid" id="verified-discoveries-container">
+    <div class="empty-state">Loading verified discoveries…</div>
+    </div><!-- /discoveries grid -->
 
   <div class="si-methodology-box">
     <strong class="color-text-secondary">ℹ Methodology:</strong> All results above were measured from real astronomical data — <strong class="color-cyan">11,284+ data points</strong> from 4 independent live APIs (NASA Exoplanet Archive, Pantheon+ SH0ES, Gaia DR3, SDSS DR18). No simulations, no synthetic data. ASTRA fetched raw data, ran statistical tests, applied causal inference, and discovered these patterns autonomously with zero prior assumptions about the underlying physics. The self-improvement system tracks 102 discoveries across 7 data sources with 50 method outcomes driving adaptive strategy selection.
@@ -2691,6 +2591,89 @@ body::after {
   </div>
 </div><!-- /tab-stigmergy -->
 
+<!-- ==================== TAB: CONNECTIONS ==================== -->
+<div class="tab-content" id="tab-connections" role="tabpanel" aria-labelledby="tab-btn-connections">
+  <div class="main-grid">
+
+    <!-- Panel 1: Connection Network Visualization -->
+    <div class="panel panel-full si-fade-in">
+      <div class="panel-header">
+        <span class="panel-icon">🌐</span>
+        <span class="panel-title">CROSS-DOMAIN DISCOVERY NETWORK</span>
+        <div class="panel-controls">
+          <button id="refresh-connections" class="control-btn" title="Refresh connections">↻</button>
+        </div>
+      </div>
+      <div class="panel-body-lg">
+        <div id="connections-network" class="network-viz">
+          <svg id="connections-svg" width="100%" height="500"></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 2: Domain Statistics -->
+    <div class="panel si-fade-in-d1">
+      <div class="panel-header">
+        <span class="panel-icon">📊</span>
+        <span class="panel-title">DOMAIN STATISTICS</span>
+      </div>
+      <div class="panel-body-md" id="connections-domain-stats">
+        <div class="empty-state">Loading domain statistics…</div>
+      </div>
+    </div>
+
+    <!-- Panel 3: Recent Cross-Domain Discoveries -->
+    <div class="panel si-fade-in-d15">
+      <div class="panel-header">
+        <span class="panel-icon">🔍</span>
+        <span class="panel-title">CROSS-DOMAIN DISCOVERIES</span>
+      </div>
+      <div class="panel-body-md" id="connections-cross-discoveries">
+        <div class="empty-state">Loading cross-domain discoveries…</div>
+      </div>
+    </div>
+
+    <!-- Panel 4: Auto-Tunnel Status -->
+    <div class="panel si-fade-in-d2">
+      <div class="panel-header">
+        <span class="panel-icon">🚇</span>
+        <span class="panel-title">AUTO-TUNNEL STATUS</span>
+      </div>
+      <div class="panel-body-md" id="connections-tunnel-status">
+        <div class="empty-state">Loading tunnel status…</div>
+      </div>
+    </div>
+
+    <!-- Panel 5: GraphPalace Status -->
+    <div class="panel si-fade-in-d25">
+      <div class="panel-header">
+        <span class="panel-icon">🏰</span>
+        <span class="panel-title">GRAPHPALACE STATUS</span>
+      </div>
+      <div class="panel-body-md" id="connections-palace-status">
+        <div class="empty-state">Loading palace status…</div>
+      </div>
+    </div>
+
+    <!-- Panel 6: Semantic Search -->
+    <div class="panel si-fade-in-d2">
+      <div class="panel-header">
+        <span class="panel-icon">🔎</span>
+        <span class="panel-title">SEMANTIC SEARCH</span>
+      </div>
+      <div class="panel-body-md">
+        <div class="search-container">
+          <input type="text" id="semantic-search-input" class="search-input" placeholder="Search discoveries...">
+          <button id="semantic-search-btn" class="search-btn">Search</button>
+        </div>
+        <div id="semantic-search-results" class="search-results"></div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /tab-connections -->
+
+
 
 </main><!-- /dashboard -->
 
@@ -2740,7 +2723,7 @@ body::after {
     cyan: '#00e5ff',
     amber: '#ffab00',
     violet: '#7c4dff',
-    emerald: '#00e676',
+    emerald: '#ff5252',
     coral: '#ff5252',
     blue: '#7c4dff',
     white: 'rgba(255,255,255,0.9)',
@@ -2756,9 +2739,9 @@ body::after {
 
   const DOMAIN_COLORS = {
     'Astrophysics': '#00e5ff',
-    'Economics': '#ffab00',
-    'Climate': '#ff5252',
-    'Epidemiology': '#00e676',
+    'Mathematics': '#00e676',
+    'Cosmology': '#ffab00',
+    'Physics': '#ff5252',
     'Dark Matter': '#7c4dff',
   };
 
@@ -2800,7 +2783,7 @@ body::after {
     if (path.includes('/safety-case')) return { hazards: 10, claims: 7, max_residual_risk: 0.6, avg_confidence: 0.85 };
     // Stigmergy endpoints
     if (path.includes('/pheromones/status')) return { total_weight: 0, total_deposits: 0, by_type: {}, decay_rate: 0.05, active_trails: 0 };
-    if (path.includes('/stigmergy/gaps')) return { gaps: { astrophysics: 0.35, economics: 0.62, climate: 0.41, epidemiology: 0.55, cross_domain: 0.73 } };
+    if (path.includes('/stigmergy/gaps')) return { gaps: { astrophysics: 0.35, astronomy: 0.28, physics: 0.20, mathematics: 0.15, general: 0.10 } };
     if (path.includes('/swarm/status')) return { agents: [
       { id: 'scout-alpha', name: 'Scout Alpha', role: 'Explorer', status: 'active', discoveries: 12, last_active: Date.now()/1000 },
       { id: 'scout-beta', name: 'Scout Beta', role: 'Explorer', status: 'active', discoveries: 8, last_active: Date.now()/1000 },
@@ -3200,7 +3183,7 @@ body::after {
             240.0727532825097
           ],
           [
-            "Epidemiology",
+            "Physics",
             3.6353526016993506e-12
           ]
         ],
@@ -3386,7 +3369,7 @@ body::after {
           240.0727532825097
         ],
         [
-          "Epidemiology",
+          "Physics",
           1.8176763008496753e-12
         ]
       ],
@@ -4666,7 +4649,7 @@ body::after {
     {
       "id": "CD-001",
       "name": "Econ-Astro Funding Correlation",
-      "domain": "Economics",
+      "domain": "Mathematics",
       "description": "Correlation between national R&D funding and astronomical discovery rates",
       "confidence": 0.25,
       "phase": "proposed",
@@ -4687,7 +4670,7 @@ body::after {
     {
       "id": "CD-002",
       "name": "Survey Design Optimization",
-      "domain": "Epidemiology",
+      "domain": "Physics",
       "description": "Apply epidemiological adaptive sampling to astronomical survey strategy",
       "confidence": 0.7741935483870968,
       "phase": "validated",
@@ -5812,7 +5795,7 @@ body::after {
       "timestamp": 1775319171.6009922,
       "phase": "DEGRADATION",
       "module": "ENGINE",
-      "message": "Forcing exploration of domain 'Economics' next cycle",
+      "message": "Forcing exploration of domain 'Mathematics' next cycle",
       "hypothesis_id": null
     },
     {
@@ -5854,7 +5837,7 @@ body::after {
       "timestamp": 1775319196.91823,
       "phase": "SELECT",
       "module": "SELECT",
-      "message": "\ud83d\udd04 Forced domain exploration: Economics",
+      "message": "\ud83d\udd04 Forced domain exploration: Mathematics",
       "hypothesis_id": null
     },
     {
@@ -6036,7 +6019,7 @@ body::after {
       "timestamp": 1775319197.898222,
       "phase": "DEGRADATION",
       "module": "ENGINE",
-      "message": "Forcing exploration of domain 'Economics' next cycle",
+      "message": "Forcing exploration of domain 'Mathematics' next cycle",
       "hypothesis_id": null
     },
     {
@@ -6209,8 +6192,8 @@ body::after {
     "domain": {
       "labels": [
         "Astrophysics",
-        "Economics",
-        "Epidemiology"
+        "Mathematics",
+        "Physics"
       ],
       "data": [
         42,
@@ -10285,7 +10268,7 @@ body::after {
       {
         "id": "CD-002",
         "name": "Survey Design Optimization",
-        "domain": "Epidemiology",
+        "domain": "Physics",
         "description": "Apply epidemiological adaptive sampling to astronomical survey strategy",
         "confidence": 0.7741935483870968,
         "phase": "validated",
@@ -13159,9 +13142,11 @@ body::after {
     if (tabName === 'control' && !controlInitialized) initControlTab();
     if (tabName === 'health' && !healthInitialized) initHealthTab();
     if (tabName === 'phase4' && !phase4Initialized) initPhase4Tab();
+    if (tabName === 'discoveries' && !discoveriesInitialized) initDiscoveriesTab();
     if (tabName === 'selfimprove' && !selfImproveInitialized) initSelfImproveTab();
     if (tabName === 'literature' && !literatureInitialized) initLiteratureTab();
     if (tabName === 'stigmergy' && !stigmergyInitialized) initStigmergyTab();
+    if (tabName === 'connections' && !connectionsInitialized) initConnectionsTab();
     // Sync tab state to URL hash
     history.replaceState(null, '', '#' + tabName);
   };
@@ -13174,7 +13159,7 @@ body::after {
     }
   })();
 
-  let safetyInitialized = false, controlInitialized = false, healthInitialized = false, phase4Initialized = false, selfImproveInitialized = false, literatureInitialized = false, stigmergyInitialized = false;
+  let safetyInitialized = false, controlInitialized = false, healthInitialized = false, phase4Initialized = false, discoveriesInitialized = false, selfImproveInitialized = false, literatureInitialized = false, stigmergyInitialized = false, connectionsInitialized = false;
 
   /* ==========================================================
      KEYBOARD NAVIGATION — Arrow keys between tabs, Enter/Space to activate
@@ -13706,7 +13691,7 @@ body::after {
       safeChart(ctxDomain, {
         type: 'doughnut',
         data: {
-          labels: ['Astrophysics','Economics','Climate','Epidemiology','Dark Matter'],
+          labels: ['Astrophysics','Physics','Mathematics','Cosmology','Dark Matter'],
           datasets: [{
             data: [35,22,18,15,10],
             backgroundColor: [COLORS.cyan, COLORS.amber, COLORS.coral, COLORS.emerald, COLORS.violet],
@@ -13889,6 +13874,12 @@ body::after {
   };
   var siTimelineChart = null;
 
+  function initDiscoveriesTab() {
+    discoveriesInitialized = true;
+    // Load self-improvement data since discoveries tab has self-improvement panel
+    loadSelfImproveData();
+  }
+
   function initSelfImproveTab() {
     selfImproveInitialized = true;
     loadSelfImproveData();
@@ -13918,7 +13909,7 @@ body::after {
   function renderSiTimeline(discoveries) {
     var canvas = document.getElementById('si-timeline-canvas');
     if (!canvas) return;
-    var srcColors = { sdss:'#7c4dff', exoplanet:'#00e5ff', pantheon:'#ffab00', gaia:'#7c4dff', tess:'#00e676', ztf:'#ff5252', cmb:'#ffab00', galaxy:'#7c4dff', stellar:'#7c4dff', hubble:'#ffab00', star_formation:'#00e676', default:'#00e5ff' };
+    var srcColors = { sdss:'#7c4dff', exoplanet:'#00e5ff', pantheon:'#ffab00', gaia:'#7c4dff', tess:'#ff5252', ztf:'#ff5252', cmb:'#ffab00', galaxy:'#7c4dff', stellar:'#7c4dff', hubble:'#ffab00', star_formation:'#ff5252', default:'#00e5ff' };
     var points = discoveries.map(function(d,i){ return {x:i, y: typeof d.strength==='number'?d.strength:(d.confidence||0.5), src: d.data_source||d.source||'default'}; });
     var W=20, avgLine = points.map(function(p,i){ var s=Math.max(0,i-W+1), sl=points.slice(s,i+1); return {x:p.x, y:sl.reduce(function(a,q){return a+q.y;},0)/sl.length}; });
     var bg = points.map(function(p){return (srcColors[p.src]||srcColors.default)+'99';});
@@ -13940,10 +13931,12 @@ body::after {
       }
     });
     var trendEl = document.getElementById('si-trend-label');
-    if (trendEl && avgLine.length > 40) {
-      var ea = avgLine.slice(0,20).reduce(function(s,p){return s+p.y;},0)/20;
-      var la = avgLine.slice(-20).reduce(function(s,p){return s+p.y;},0)/20;
-      var d = la - ea;
+    // Changed: Compare recent rolling windows (last 10 vs previous 10-20) instead of first vs last
+    // This shows actual recent trend rather than historical vs current for long-running systems
+    if (trendEl && avgLine.length > 20) {
+      var recent = avgLine.slice(-10).reduce(function(s,p){return s+p.y;},0)/Math.min(10, avgLine.length);
+      var previous = avgLine.slice(-20, -10).reduce(function(s,p){return s+p.y;},0)/Math.min(10, avgLine.length-10);
+      var d = recent - previous;
       trendEl.textContent = d>0.01?'\u2191 IMPROVING':d<-0.01?'\u2193 DECLINING':'\u2192 STABLE';
       trendEl.className = d>0.01?'si-delta-pos':d<-0.01?'si-delta-neg':'si-delta-flat';
     }
@@ -13983,8 +13976,18 @@ body::after {
   function renderSiKeyMetrics(data) {
     var imp = data.improvement || SI_SNAPSHOT.improvement;
     var el;
-    el = document.getElementById('si-km-discoveries'); if(el) el.textContent = data.total_discoveries || SI_SNAPSHOT.total_discoveries;
-    el = document.getElementById('si-km-outcomes'); if(el) el.textContent = data.total_outcomes || SI_SNAPSHOT.total_outcomes;
+    // Use unique_discoveries (excluding duplicates) instead of total_discoveries
+    var totalDisc = imp.unique_discoveries || SI_SNAPSHOT.improvement?.unique_discoveries || data.unique_discovery_count || imp.total_discoveries || 0;
+    var totalOut = imp.total_outcomes || SI_SNAPSHOT.improvement?.total_outcomes || data.total_outcomes || 0;
+    el = document.getElementById('si-km-discoveries'); if(el) el.textContent = totalDisc;
+    el = document.getElementById('si-km-outcomes'); if(el) el.textContent = totalOut;
+    // Also update discoveries tab self-improvement panel
+    el = document.getElementById('si-discoveries-count'); if(el) el.textContent = totalDisc;
+    el = document.getElementById('si-success-rate'); if(el) el.textContent = ((imp.success_rate?.recent||SI_SNAPSHOT.improvement?.success_rate?.recent||0)*100).toFixed(0)+'%';
+    var sig = imp.avg_significant_results || SI_SNAPSHOT.improvement?.avg_significant_results || {};
+    var sigChange = ((sig.recent||0) - (sig.early||0)) / (sig.early||1) * 100;
+    el = document.getElementById('si-sig-results-change'); if(el) el.textContent = (sigChange>=0?'+':'')+sigChange.toFixed(0)+'%';
+    el = document.getElementById('si-memory-gen-hypotheses'); if(el) el.textContent = data.generation_count || SI_SNAPSHOT.generation_count || 0;
     var sr = imp.success_rate;
     el = document.getElementById('si-km-rate'); if(el) el.textContent = (sr.recent*100).toFixed(1)+'%';
     el = document.getElementById('si-km-rate-delta'); if(el) {
@@ -14100,9 +14103,15 @@ body::after {
       hypotheses = s['hypotheses'] || await api('/api/hypotheses');
     } catch(e) { console.warn('Literature data fetch error:', e); }
 
-    renderPaperLibrary(papers);
+    // Extract papers array from response if wrapped
+    var papersArray = papers;
+    if (papers && papers.papers && Array.isArray(papers.papers)) {
+      papersArray = papers.papers;
+    }
+
+    renderPaperLibrary(papersArray);
     renderCitationNetwork(citGraph);
-    renderNoveltyScores(papers, hypotheses);
+    renderNoveltyScores(papersArray, hypotheses);
     renderLiteratureMetrics(citMetrics);
   }
 
@@ -14316,36 +14325,41 @@ body::after {
   }
 
   async function loadStigmergyData() {
-    var pheromones = null, gaps = null, swarm = null, abTests = null, gordon = null;
+    var pheromones = null, gaps = null, swarm = null, abTests = null;
     try {
       var s = window.__SNAPSHOT__ || {};
       pheromones = s['pheromones/status'] || await api('/api/pheromones/status');
       gaps = s['stigmergy/gaps'] || await api('/api/stigmergy/gaps');
       swarm = s['swarm/status'] || await api('/api/swarm/status');
       abTests = s['pheromones/ab-test'] || await api('/api/pheromones/ab-test');
-      gordon = s['stigmergy/gordon'] || await api('/api/stigmergy/gordon');
+      // Note: /api/stigmergy/gordon doesn't exist, using /api/stigmergy/state instead
+      // var stigmergyState = s['stigmergy/state'] || await api('/api/stigmergy/state');
     } catch(e) { console.warn('Stigmergy data fetch error:', e); }
 
     renderPheromoneStatus(pheromones);
     renderKnowledgeGaps(gaps);
     renderSwarmAgents(swarm);
     renderABTests(abTests);
-    renderGordonParams(gordon);
+    // Gordon panel removed - endpoint doesn't exist
+    // renderGordonParams(gordon);
   }
 
   function renderPheromoneStatus(data) {
     var el = document.getElementById('stig-pheromone-status');
     if (!el) return;
     var d = data || {};
-    var byType = d.by_type || {};
+    // Handle API response structure: data.pheromone_field contains the actual data
+    var field = d.pheromone_field || {};
+    var metrics = d.metrics || d.stigmergic_memory || {};
+    var byType = field.deposits_by_type || d.by_type || {};
     var typeKeys = Object.keys(byType);
-    var totalDeposits = d.total_deposits || 0;
+    var totalDeposits = field.total_deposits || metrics.total_deposits || d.total_deposits || 0;
 
     var statsHtml = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:16px;">' +
-      '<div class="si-stat-cell"><div class="si-mono-label-sm">TOTAL WEIGHT</div><div class="si-mono-value si-c-cyan">' + (d.total_weight || 0).toFixed(2) + '</div></div>' +
-      '<div class="si-stat-cell"><div class="si-mono-label-sm">TOTAL DEPOSITS</div><div class="si-mono-value si-c-amber">' + totalDeposits + '</div></div>' +
-      '<div class="si-stat-cell"><div class="si-mono-label-sm">ACTIVE TRAILS</div><div class="si-mono-value si-c-violet">' + (d.active_trails || 0) + '</div></div>' +
-      '<div class="si-stat-cell"><div class="si-mono-label-sm">DECAY RATE (ρ)</div><div class="si-mono-value si-c-emerald">' + (d.decay_rate || 0).toFixed(3) + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">TOTAL WEIGHT</div><div class="si-mono-value si-c-cyan">' + (d.pheromone_weight || d.total_weight || 0).toFixed(2) + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">TOTAL DEPOSITS</div><div class="si-mono-value si-c-amber">' + totalDeposits.toLocaleString() + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">ACTIVE TRAILS</div><div class="si-mono-value si-c-violet">' + (metrics.n_trails || d.active_trails || 0) + '</div></div>' +
+      '<div class="si-stat-cell"><div class="si-mono-label-sm">CYCLES</div><div class="si-mono-value si-c-emerald">' + (metrics.engine_cycles || d.engine_cycles || 0) + '</div></div>' +
       '</div>';
 
     if (typeKeys.length > 0) {
@@ -14353,11 +14367,11 @@ body::after {
       var maxVal = Math.max.apply(null, typeKeys.map(function(k) { return byType[k]; }).concat([1]));
       statsHtml += typeKeys.map(function(k) {
         var pct = ((byType[k] / maxVal) * 100).toFixed(0);
-        var color = k === 'exploration' ? 'var(--cyan)' : k === 'validation' ? 'var(--emerald)' : k === 'synthesis' ? 'var(--violet)' : 'var(--amber)';
+        var color = k === 'exploration' ? 'var(--cyan)' : k === 'success' || k === 'validation' ? 'var(--emerald)' : k === 'synthesis' ? 'var(--violet)' : 'var(--amber)';
         return '<div class="stig-gap-bar">' +
-          '<div class="bar-label">' + k.toUpperCase() + '</div>' +
+          '<div class="bar-label">' + k.replace(/_/g,' ').toUpperCase() + '</div>' +
           '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%;background:' + color + '"></div></div>' +
-          '<div class="bar-value">' + byType[k] + '</div></div>';
+          '<div class="bar-value">' + byType[k].toLocaleString() + '</div></div>';
       }).join('');
     }
 
@@ -14367,16 +14381,17 @@ body::after {
   function renderKnowledgeGaps(data) {
     var el = document.getElementById('stig-knowledge-gaps');
     if (!el) return;
-    var gaps = (data && data.gaps) || {};
+    // Handle both nested data.gaps and flat API response
+    var gaps = (data && data.gaps) || data || {};
     var keys = Object.keys(gaps);
     if (keys.length === 0) {
       el.innerHTML = '<div class="empty-state">No knowledge gap data available.</div>';
       return;
     }
-    var colors = { astrophysics: 'var(--cyan)', economics: 'var(--amber)', climate: 'var(--emerald)', epidemiology: 'var(--coral)', cross_domain: 'var(--violet)' };
+    var colors = { astrophysics: 'var(--cyan)', economics: 'var(--amber)', climate: 'var(--emerald)', physics: 'var(--coral)', cross_domain: 'var(--violet)' };
     el.innerHTML = keys.sort(function(a,b) { return gaps[b] - gaps[a]; }).map(function(k) {
       var pct = (gaps[k] * 100).toFixed(0);
-      var c = colors[k] || 'var(--cyan)';
+      var c = colors[k.toLowerCase().replace(/ /g,'_')] || 'var(--cyan)';
       return '<div class="stig-gap-bar">' +
         '<div class="bar-label">' + k.replace(/_/g,' ').toUpperCase() + '</div>' +
         '<div class="bar-bg"><div class="bar-fill" style="width:' + pct + '%;background:' + c + '"></div></div>' +
@@ -14414,7 +14429,37 @@ body::after {
   function renderABTests(data) {
     var el = document.getElementById('stig-ab-tests');
     if (!el) return;
+    // Handle API response structure: {pheromone_guided: {...}, baseline: {...}}
+    // Or legacy structure: {tests: [...]}
     var tests = (data && data.tests) || [];
+    var isFlat = !tests.length && data && (data.pheromone_guided || data.baseline);
+
+    if (isFlat) {
+      // Convert flat API response to display format
+      var flat = data;
+      var html = '<div style="padding:16px;"><h4 style="color:var(--cyan);margin-bottom:12px;">Pheromone-Guided vs Baseline Selection</h4>';
+      html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">';
+      if (flat.pheromone_guided) {
+        var pg = flat.pheromone_guided;
+        html += '<div style="background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.3);border-radius:8px;padding:12px;">';
+        html += '<div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">PHEROMONE-GUIDED</div>';
+        html += '<div style="font-size:24px;font-weight:700;color:var(--cyan);">' + pg.total.toLocaleString() + '</div>';
+        html += '<div style="font-size:12px;color:var(--text-tertiary);">Success Rate: ' + (pg.rate*100).toFixed(1) + '%</div>';
+        html += '</div>';
+      }
+      if (flat.baseline) {
+        var bl = flat.baseline;
+        html += '<div style="background:rgba(255,171,0,0.1);border:1px solid rgba(255,171,0,0.3);border-radius:8px;padding:12px;">';
+        html += '<div style="color:var(--text-secondary);font-size:11px;margin-bottom:4px;">BASELINE</div>';
+        html += '<div style="font-size:24px;font-weight:700;color:var(--amber);">' + bl.total.toLocaleString() + '</div>';
+        html += '<div style="font-size:12px;color:var(--text-tertiary);">Success Rate: ' + (bl.rate*100).toFixed(1) + '%</div>';
+        html += '</div>';
+      }
+      html += '</div></div>';
+      el.innerHTML = html;
+      return;
+    }
+
     if (tests.length === 0) {
       el.innerHTML = '<div class="empty-state">No A/B tests running yet.</div>';
       return;
@@ -14457,7 +14502,366 @@ body::after {
     el.innerHTML = html;
   }
 
-  console.log('%c ASTRA v4.8 — AGI Control Room Dashboard — All 9 Tabs Active ',
+  // ============================================================
+  //  CONNECTIONS TAB
+  // ============================================================
+  function initConnectionsTab() {
+    if (connectionsInitialized) return;
+    connectionsInitialized = true;
+
+    loadConnectionsNetwork();
+    loadDomainStats();
+    loadCrossDomainDiscoveries();
+    loadTunnelStatus();
+    loadPalaceStatus();
+    initSemanticSearch();
+
+    // Set up refresh button
+    var refreshBtn = document.getElementById('refresh-connections');
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', function() {
+        loadConnectionsNetwork();
+        loadDomainStats();
+        loadCrossDomainDiscoveries();
+        loadTunnelStatus();
+      });
+    }
+
+    // Refresh every 30 seconds
+    setInterval(function() {
+      if (document.getElementById('tab-connections').classList.contains('active')) {
+        loadConnectionsNetwork();
+        loadTunnelStatus();
+      }
+    }, 30000);
+  }
+
+  async function loadConnectionsNetwork() {
+    try {
+      var response = await fetch('/api/connections/network');
+      var data = await response.json();
+      renderConnectionsNetwork(data);
+    } catch (error) {
+      console.error('Failed to load connections network:', error);
+    }
+  }
+
+  function renderConnectionsNetwork(data) {
+    var svg = d3.select('#connections-svg');
+    svg.selectAll('*').remove();
+
+    var width = svg.node().getBoundingClientRect().width;
+    var height = 500;
+
+    var g = svg.append('g');
+
+    if (!data.nodes || data.nodes.length === 0) {
+      svg.node().innerHTML = '<text x="50%" y="50%" text-anchor="middle" fill="rgba(255,255,255,0.5)">No connections data available</text>';
+      return;
+    }
+
+    // Create force simulation
+    var simulation = d3.forceSimulation(data.nodes)
+      .force('link', d3.forceLink(data.links).id(function(d) { return d.id; }).distance(100))
+      .force('charge', d3.forceManyBody().strength(-300))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('collision', d3.forceCollide().radius(30));
+
+    // Create links
+    var link = g.append('g')
+      .selectAll('line')
+      .data(data.links)
+      .enter().append('line')
+      .attr('stroke', function(d) {
+        var strength = d.strength || 0.5;
+        return strength > 0.7 ? '#00e5ff' : strength > 0.4 ? '#7c4dff' : 'rgba(255,255,255,0.2)';
+      })
+      .attr('stroke-width', function(d) { return (d.strength || 0.5) * 3; })
+      .attr('stroke-opacity', 0.6);
+
+    // Create nodes
+    var node = g.append('g')
+      .selectAll('circle')
+      .data(data.nodes)
+      .enter().append('circle')
+      .attr('r', function(d) { return 10 + (d.discoveries || 0) * 2; })
+      .attr('fill', function(d) { return DOMAIN_COLORS[d.domain] || '#7c4dff'; })
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 2)
+      .style('cursor', 'pointer')
+      .call(d3.drag()
+        .on('start', dragstarted)
+        .on('drag', dragged)
+        .on('end', dragended));
+
+    // Add labels
+    var labels = g.append('g')
+      .selectAll('text')
+      .data(data.nodes)
+      .enter().append('text')
+      .text(function(d) { return d.label; })
+      .attr('text-anchor', 'middle')
+      .attr('dy', -20)
+      .attr('fill', '#fff')
+      .attr('font-size', '12px')
+      .attr('font-weight', '500')
+      .style('pointer-events', 'none');
+
+    // Update positions on tick
+    simulation.on('tick', function() {
+      link
+        .attr('x1', function(d) { return d.source.x; })
+        .attr('y1', function(d) { return d.source.y; })
+        .attr('x2', function(d) { return d.target.x; })
+        .attr('y2', function(d) { return d.target.y; });
+
+      node
+        .attr('cx', function(d) { return d.x; })
+        .attr('cy', function(d) { return d.y; });
+
+      labels
+        .attr('x', function(d) { return d.x; })
+        .attr('y', function(d) { return d.y; });
+    });
+
+    function dragstarted(event, d) {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+    }
+
+    function dragged(event, d) {
+      d.fx = event.x;
+      d.fy = event.y;
+    }
+
+    function dragended(event, d) {
+      if (!event.active) simulation.alphaTarget(0);
+      d.fx = null;
+      d.fy = null;
+    }
+
+    // Zoom and pan
+    var zoom = d3.zoom()
+      .scaleExtent([0.1, 4])
+      .on('zoom', function(event) {
+        g.attr('transform', event.transform);
+      });
+
+    svg.call(zoom);
+  }
+
+  async function loadDomainStats() {
+    try {
+      var response = await fetch('/api/connections/domains');
+      var data = await response.json();
+      renderDomainStats(data);
+    } catch (error) {
+      console.error('Failed to load domain stats:', error);
+      var container = document.getElementById('connections-domain-stats');
+      if (container) container.innerHTML = '<div class="empty-state">Failed to load domain statistics</div>';
+    }
+  }
+
+  function renderDomainStats(data) {
+    var container = document.getElementById('connections-domain-stats');
+
+    if (!data.domains || data.domains.length === 0) {
+      container.innerHTML = '<div class="empty-state">No domain data available</div>';
+      return;
+    }
+
+    var html = '<div class="domain-list">';
+    data.domains.forEach(function(domain) {
+      html += '<div class="domain-item">' +
+        '<div class="domain-name" style="color: ' + (DOMAIN_COLORS[domain.name] || '#7c4dff') + '">' + domain.name + '</div>' +
+        '<div class="domain-metrics">' +
+        '<span class="metric">Discoveries: ' + (domain.discoveries || 0) + '</span>' +
+        '<span class="metric">Connections: ' + (domain.connections || 0) + '</span>' +
+        '<span class="metric">Momentum: ' + ((domain.momentum * 100).toFixed(1)) + '%</span>' +
+        '</div></div>';
+    });
+    html += '</div>';
+
+    container.innerHTML = html;
+  }
+
+  async function loadCrossDomainDiscoveries() {
+    try {
+      var response = await fetch('/api/connections/cross-domain');
+      var data = await response.json();
+      renderCrossDomainDiscoveries(data);
+    } catch (error) {
+      console.error('Failed to load cross-domain discoveries:', error);
+      var container = document.getElementById('connections-cross-discoveries');
+      if (container) container.innerHTML = '<div class="empty-state">Failed to load cross-domain discoveries</div>';
+    }
+  }
+
+  function renderCrossDomainDiscoveries(data) {
+    var container = document.getElementById('connections-cross-discoveries');
+
+    if (!data.discoveries || data.discoveries.length === 0) {
+      container.innerHTML = '<div class="empty-state">No cross-domain discoveries yet</div>';
+      return;
+    }
+
+    var html = '<div class="discovery-list">';
+    data.discoveries.slice(0, 10).forEach(function(disc) {
+      var crossDomainsHtml = '';
+      if (disc.cross_domains && disc.cross_domains.length > 0) {
+        crossDomainsHtml = '<div class="cross-domains">Cross: ' +
+          disc.cross_domains.map(function(d) { return '<span style="color: ' + (DOMAIN_COLORS[d] || '#7c4dff') + '">' + d + '</span>'; }).join(', ') +
+          '</div>';
+      }
+
+      html += '<div class="discovery-item">' +
+        '<div class="discovery-header">' +
+        '<span class="discovery-domain" style="color: ' + (DOMAIN_COLORS[disc.domain] || '#7c4dff') + '">' + disc.domain + '</span>' +
+        '<span class="discovery-strength">' + ((disc.strength * 100).toFixed(0)) + '%)</span>' +
+        '</div>' +
+        '<div class="discovery-content">' + disc.description + '</div>' +
+        crossDomainsHtml +
+        '</div>';
+    });
+    html += '</div>';
+
+    container.innerHTML = html;
+  }
+
+  async function loadTunnelStatus() {
+    try {
+      var response = await fetch('/api/connections/tunnels');
+      var data = await response.json();
+      renderTunnelStatus(data);
+    } catch (error) {
+      console.error('Failed to load tunnel status:', error);
+      var container = document.getElementById('connections-tunnel-status');
+      if (container) container.innerHTML = '<div class="empty-state">Failed to load tunnel status</div>';
+    }
+  }
+
+  function renderTunnelStatus(data) {
+    var container = document.getElementById('connections-tunnel-status');
+
+    if (!data.tunnels || data.tunnels.length === 0) {
+      container.innerHTML = '<div class="empty-state">No auto-tunnels discovered yet</div>';
+      return;
+    }
+
+    var html = '<div class="tunnel-list">';
+    data.tunnels.forEach(function(tunnel) {
+      var fromColor = DOMAIN_COLORS[tunnel.from_domain] || '#7c4dff';
+      var toColor = DOMAIN_COLORS[tunnel.to_domain] || '#7c4dff';
+
+      html += '<div class="tunnel-item">' +
+        '<div class="tunnel-path">' +
+        '<span style="color: ' + fromColor + '">' + tunnel.from_domain + '</span> → ' +
+        '<span style="color: ' + toColor + '">' + tunnel.to_domain + '</span>' +
+        '</div>' +
+        '<div class="tunnel-info">' +
+        '<span class="tunnel-topic">' + tunnel.topic + '</span>' +
+        '<span class="tunnel-confidence">' + ((tunnel.confidence * 100).toFixed(0)) + '%)</span>' +
+        '</div>' +
+        '</div>';
+    });
+    html += '</div>';
+
+    container.innerHTML = html;
+  }
+
+  async function loadPalaceStatus() {
+    try {
+      var response = await fetch('/api/connections/palace-status');
+      var data = await response.json();
+      renderPalaceStatus(data);
+    } catch (error) {
+      console.error('Failed to load palace status:', error);
+      var container = document.getElementById('connections-palace-status');
+      if (container) container.innerHTML = '<div class="empty-state">Failed to load palace status</div>';
+    }
+  }
+
+  function renderPalaceStatus(data) {
+    var container = document.getElementById('connections-palace-status');
+
+    var enabled = data.graphpalace_enabled || false;
+
+    var html = '<div class="palace-status ' + (enabled ? 'enabled' : 'disabled') + '">' +
+      '<div class="status-item">' +
+      '<span class="status-label">GraphPalace</span>' +
+      '<span class="status-value ' + (enabled ? 'on' : 'off') + '">' + (enabled ? 'Enabled' : 'Disabled') + '</span>' +
+      '</div>';
+
+    if (enabled) {
+      html += '<div class="status-item"><span class="status-label">Wings</span><span class="status-value">' + (data.total_wings || 0) + '</span></div>' +
+        '<div class="status-item"><span class="status-label">Rooms</span><span class="status-value">' + (data.total_rooms || 0) + '</span></div>' +
+        '<div class="status-item"><span class="status-label">Drawers</span><span class="status-value">' + (data.total_drawers || 0) + '</span></div>' +
+        '<div class="status-item"><span class="status-label">Entities</span><span class="status-value">' + (data.entity_count || 0) + '</span></div>' +
+        '<div class="status-item"><span class="status-label">Relationships</span><span class="status-value">' + (data.relationship_count || 0) + '</span></div>' +
+        '<div class="status-item"><span class="status-label">Discoveries</span><span class="status-value">' + (data.total_discoveries || 0) + '</span></div>';
+    }
+
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
+  function initSemanticSearch() {
+    var input = document.getElementById('semantic-search-input');
+    var btn = document.getElementById('semantic-search-btn');
+    var results = document.getElementById('semantic-search-results');
+
+    async function performSearch() {
+      var query = input.value.trim();
+      if (!query) return;
+
+      results.innerHTML = '<div class="search-loading">Searching…</div>';
+
+      try {
+        var response = await fetch('/api/connections/search', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: query, k: 10 })
+        });
+        var data = await response.json();
+        renderSearchResults(data);
+      } catch (error) {
+        results.innerHTML = '<div class="search-error">Search failed</div>';
+      }
+    }
+
+    function renderSearchResults(data) {
+      if (!data.results || data.results.length === 0) {
+        results.innerHTML = '<div class="search-empty">No results found</div>';
+        return;
+      }
+
+      var html = '<div class="search-results-list">';
+      data.results.forEach(function(result) {
+        html += '<div class="search-result-item">' +
+          '<div class="result-header">' +
+          '<span class="result-domain" style="color: ' + (DOMAIN_COLORS[result.domain] || '#7c4dff') + '">' + result.domain + '</span>' +
+          '<span class="result-score">' + ((result.score * 100).toFixed(0)) + '%)</span>' +
+          '</div>' +
+          '<div class="result-content">' + result.content + '</div>' +
+          '</div>';
+      });
+      html += '</div>';
+
+      results.innerHTML = html;
+    }
+
+    if (btn) {
+      btn.addEventListener('click', performSearch);
+    }
+    if (input) {
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') performSearch();
+      });
+    }
+  }
+
+  console.log('%c ASTRA v4.8 — AGI Control Room Dashboard — All 10 Tabs Active ',
     'background: linear-gradient(90deg, #ff5252, #7c4dff, #00e5ff); color: white; font-weight: bold; padding: 4px 12px; border-radius: 4px;');
 })();
 
@@ -14541,6 +14945,111 @@ body::after {
   renderHypothesisPipeline();
   if (window.registerTabTimer) registerTabTimer('discoveries', setInterval(renderHypothesisPipeline, 15000));
   else setInterval(renderHypothesisPipeline, 15000);
+
+  /* ==========================================================
+     VERIFIED DISCOVERIES — Dynamic loading from API
+     ========================================================== */
+  (function() {
+    async function loadVerifiedDiscoveries() {
+      const container = document.getElementById('verified-discoveries-container');
+      if (!container) return;
+
+      try {
+        // Try live API first
+        if (window._astraApi) {
+          const data = await window._astraApi('/verification/verified');
+          if (data && data.discoveries && data.discoveries.length > 0) {
+            renderVerifiedDiscoveries(data.discoveries);
+            return;
+          }
+        }
+
+        // Fallback to snapshot data
+        const s = window.__SNAPSHOT__;
+        if (s && s['verification/verified'] && s['verification/verified'].discoveries) {
+          renderVerifiedDiscoveries(s['verification/verified'].discoveries);
+          return;
+        }
+
+        // No discoveries available
+        container.innerHTML = '<div class="empty-state">No verified discoveries yet. Discoveries must meet verification criteria: p < 0.05, effect size d > 0.5, n > 100, physical consistency, and novelty.</div>';
+      } catch (e) {
+        container.innerHTML = '<div class="empty-state">Failed to load verified discoveries: ' + e.message + '</div>';
+      }
+    }
+
+    function renderVerifiedDiscoveries(discoveries) {
+      const container = document.getElementById('verified-discoveries-container');
+      if (!container || !discoveries || !discoveries.length) {
+        if (container) container.innerHTML = '<div class="empty-state">No verified discoveries yet.</div>';
+        return;
+      }
+
+      // Color mapping for discovery types
+      const typeColors = {
+        'scaling': 'si-discovery-full-cyan',
+        'bimodality': 'si-discovery-full-amber',
+        'correlation': 'si-discovery-accent-emerald',
+        'causality': 'si-discovery-accent-violet',
+        'default': 'si-discovery-full-cyan'
+      };
+
+      // Domain icons
+      const domainIcons = {
+        'Astrophysics': '⚛',
+        'Cosmology': '🌌',
+        'Galaxy': '🔴🔵',
+        'Stellar': '⭐',
+        'Exoplanet': '🪐',
+        'default': '🔬'
+      };
+
+      let html = '';
+      discoveries.forEach(discovery => {
+        const colorClass = typeColors[discovery.finding_type] || typeColors['default'];
+        const icon = domainIcons[discovery.domain] || domainIcons['default'];
+
+        html += '<div class="panel ' + colorClass + '">';
+        html += '  <div class="panel-header">';
+        html += '    <span class="panel-icon">' + icon + '</span>';
+        html += '    <span class="panel-title">' + escapeHtml(discovery.description.substring(0, 100)) + '...</span>';
+        html += '  </div>';
+        html += '  <div class="discovery-body">';
+        html += '    <div class="discovery-detail-box discovery-box-cyan">';
+        html += '      <strong>Discovery ID:</strong> ' + escapeHtml(discovery.id) + '<br>';
+        html += '      <strong>Domain:</strong> ' + escapeHtml(discovery.domain) + ' · ';
+        html += '      <strong>Type:</strong> ' + escapeHtml(discovery.finding_type) + '<br>';
+        html += '      <strong>Strength:</strong> ' + discovery.strength.toFixed(3) + ' · ';
+        html += '      <strong>Effect Size:</strong> ' + (discovery.effect_size ? discovery.effect_size.toFixed(3) : 'N/A');
+        html += '    </div>';
+        html += '    <div class="discovery-desc">';
+        html += '      ' + escapeHtml(discovery.description);
+        html += '    </div>';
+        html += '    <div class="discovery-meta">';
+        html += '      <span>📡 ' + escapeHtml(discovery.data_source) + '</span>';
+        html += '      <span class="discovery-stat-badge badge-verified">VERIFIED</span>';
+        html += '      <span class="discovery-stat-badge badge-effect">strength = ' + discovery.strength.toFixed(3) + '</span>';
+        html += '    </div>';
+        html += '  </div>';
+        html += '</div>';
+      });
+
+      container.innerHTML = html;
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Initial load
+    loadVerifiedDiscoveries();
+
+    // Refresh every 30 seconds
+    setInterval(loadVerifiedDiscoveries, 30000);
+  })();
 })();
 </script>
 </body>

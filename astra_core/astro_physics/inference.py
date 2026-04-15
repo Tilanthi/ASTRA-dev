@@ -1,3 +1,17 @@
+# Copyright 2024-2026 Glenn J. White (The Open University / RAL Space)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """
 Bayesian Swarm Inference for Astronomy
 
@@ -401,25 +415,35 @@ class BayesianSwarmInference:
 
     def _estimate_uncertainties(self) -> np.ndarray:
         """
-        Estimate parameter uncertainties from particle distribution
+        Estimate parameter uncertainties from particle distribution.
 
-        Uses the spread of particles near the best solution.
+        WARNING: PSO is an optimization algorithm, NOT a posterior sampler.
+        Using particle spread as posterior uncertainty is statistically invalid
+        because PSO particles converge to the MODE, not spread according to
+        the posterior distribution.
+
+        This approximation should only be used for rough uncertainty estimates.
+        For proper uncertainties, use MCMC or nested sampling after PSO finds the mode.
         """
-        # Get particles within 2x of best chi-squared
+        # Get particles within likelihood threshold (delta chi2 < 1 for ~1 sigma)
+        # This is STILL an approximation, not a proper posterior sample
+        threshold = self.global_best_chi_squared + 1.0
         good_particles = [
             p for p in self.particles
-            if p.best_chi_squared < 2 * self.global_best_chi_squared
+            if p.best_chi_squared < threshold
         ]
 
         if len(good_particles) < 3:
+            # Fallback: use all particles, but this is very crude
             good_particles = self.particles
 
         positions = np.array([p.best_position for p in good_particles])
 
-        # Standard deviation as uncertainty estimate
+        # Use standard deviation as ROUGH uncertainty approximation
+        # NOTE: This underestimates true uncertainty for non-Gaussian posteriors
         uncertainties = np.std(positions, axis=0)
 
-        # Ensure minimum uncertainty (1% of range)
+        # Ensure minimum uncertainty (prevent zero-width posteriors)
         for i, (low, high) in enumerate(self.param_bounds):
             min_unc = 0.01 * (high - low)
             uncertainties[i] = max(uncertainties[i], min_unc)
@@ -428,15 +452,47 @@ class BayesianSwarmInference:
 
     def _estimate_evidence(self) -> float:
         """
-        Estimate log evidence (marginal likelihood)
+        Estimate log evidence (marginal likelihood) using Laplace approximation.
 
-        Uses Laplace approximation for simplicity.
+        log Z ≈ log L_max + log P_vol + 0.5 * log|2π * H^-1|
+
+        where:
+        - L_max is maximum likelihood (exp(-0.5 * chi²_min))
+        - P_vol is prior volume
+        - H is Hessian matrix of -log posterior at mode
         """
-        # Simplified: -0.5 * chi² + prior volume term
         n_params = len(self.param_names)
-        prior_volume = np.prod([high - low for low, high in self.param_bounds])
 
-        return -0.5 * self.global_best_chi_squared - 0.5 * n_params * np.log(2 * np.pi)
+        # Maximum log-likelihood
+        log_L_max = -0.5 * self.global_best_chi_squared
+
+        # Log prior volume: product of parameter ranges
+        # CRITICAL: This term was being computed but discarded in the original code
+        prior_volume = np.prod([high - low for low, high in self.param_bounds])
+        log_prior_volume = np.log(prior_volume)
+
+        # Hessian term: need curvature at peak to get posterior width
+        # Approximate from particle distribution (this is crude; proper Laplace needs actual Hessian)
+        good_particles = [
+            p for p in self.particles
+            if p.best_chi_squared < 2 * self.global_best_chi_squared
+        ]
+        if len(good_particles) > n_params:
+            positions = np.array([p.best_position for p in good_particles])
+            # Approximate Hessian from inverse covariance
+            cov = np.cov(positions.T)
+            try:
+                sign, logdet = np.linalg.slogdet(cov)
+                if sign > 0:
+                    hessian_term = 0.5 * (logdet + n_params * np.log(2 * np.pi))
+                else:
+                    hessian_term = 0.0
+            except:
+                hessian_term = 0.0
+        else:
+            hessian_term = 0.0
+
+        return log_L_max + log_prior_volume + hessian_term
 
     def _count_data_points(self, observations: Dict) -> int:
         """Count the number of data points in observations"""
@@ -497,7 +553,16 @@ class NestedSamplingInference:
                             n_live: int = 100,
                             max_iterations: int = 1000) -> Dict:
         """
-        Run nested sampling algorithm
+        Run nested sampling algorithm.
+
+        Nested sampling estimates the marginal likelihood (evidence) by
+        transforming the multi-dimensional integral into a 1D integral over
+        prior volume X.
+
+        Z = ∫ L(θ) π(θ) dθ = ∫_0^1 L(X) dX
+
+        where X is the prior volume remaining and L(X) is the likelihood
+        at the contour containing that prior volume.
 
         Simplified implementation - production would use dynesty or ultranest.
         """
@@ -510,23 +575,38 @@ class NestedSamplingInference:
         ])
 
         log_evidence = -np.inf
+        log_X = 0.0  # Log prior volume (shrinks as we iterate)
         samples = []
+        prev_L = -np.inf
 
         for i in range(max_iterations):
             # Find worst point
             worst_idx = np.argmin(live_likelihoods)
             worst_L = live_likelihoods[worst_idx]
 
-            # Contribution to evidence
-            log_weight = -i / n_live  # Simplified shrinkage
-            log_evidence = np.logaddexp(log_evidence, log_weight + worst_L)
+            # Prior volume shrinkage: X_i = exp(-i / n_live) is a rough approximation
+            # A better approximation uses the expected value of the minimum of n_live
+            # exponential random variables: t_i ~ Beta(n_live, 1)
+            # Shrinkage factor: X_{i-1} - X_i = X_{i-1} * t_i where E[t_i] = 1/(n_live + 1)
+            # For iterative approximation: log_X -= 1/n_live
+            log_shrinkage = -1.0 / n_live
+            log_X += log_shrinkage
 
-            # Store sample
+            # Contribution to evidence: Z = Σ L_i * (X_{i-1} - X_i)
+            # log contribution = log(L_i) + log(t_i) + log(X_{i-1})
+            # Using logsumexp for numerical stability
+            log_contribution = worst_L + log_shrinkage + log_X
+            log_evidence = np.logaddexp(log_evidence, log_contribution)
+
+            # Store sample with proper weight
             samples.append({
                 'params': live_points[worst_idx].copy(),
                 'log_likelihood': worst_L,
-                'log_weight': log_weight
+                'log_weight': log_shrinkage + log_X,  # Log of the weight (prior volume difference)
+                'log_X_remaining': log_X
             })
+
+            prev_L = worst_L
 
             # Replace worst point with new sample above likelihood threshold
             for _ in range(100):  # Max attempts
@@ -573,15 +653,22 @@ class MCMCInference:
     def run_mcmc(self, observations: Dict,
                  n_samples: int = 10000,
                  n_burn: int = 1000,
-                 proposal_scale: float = 0.1) -> Dict:
+                 proposal_scale: float = 0.1,
+                 adapt_interval: int = 100,
+                 target_acceptance: float = 0.25) -> Dict:
         """
-        Run MCMC sampling
+        Run MCMC sampling with adaptive proposal and convergence diagnostics.
 
         Args:
             observations: Observed data
             n_samples: Number of samples to draw
             n_burn: Burn-in samples to discard
-            proposal_scale: Scale of proposal distribution
+            proposal_scale: Initial scale of proposal distribution
+            adapt_interval: Steps between proposal adaptations (during burn-in)
+            target_acceptance: Target acceptance rate for adaptive proposals
+
+        Returns:
+            Dictionary with samples, acceptance rate, and convergence diagnostics
         """
         n_params = len(self.param_names)
 
@@ -599,25 +686,39 @@ class MCMCInference:
 
         samples = []
         accepted = 0
+        log_probs = []  # Track for convergence diagnostics
+
+        # Adaptive proposal: track acceptance rate to adjust scale
+        current_proposal_scale = proposal_scale
 
         for i in range(n_samples + n_burn):
             # Propose new position
-            proposal = current + np.random.normal(0, proposal_scale, n_params) * np.array([
+            proposal = current + np.random.normal(0, current_proposal_scale, n_params) * np.array([
                 high - low for low, high in self.param_bounds
             ])
 
-            # Enforce bounds
+            # Check bounds BEFORE evaluating (reflective boundary condition)
+            # This is better than clipping which causes pile-up at boundaries
+            in_bounds = True
             for j, (low, high) in enumerate(self.param_bounds):
-                proposal[j] = np.clip(proposal[j], low, high)
+                if proposal[j] < low or proposal[j] > high:
+                    in_bounds = False
+                    # Reflect back into bounds (mirror boundary)
+                    if proposal[j] < low:
+                        proposal[j] = low + (low - proposal[j])
+                    else:
+                        proposal[j] = high - (proposal[j] - high)
+                    # Clip if still out (shouldn't happen with reflection)
+                    proposal[j] = np.clip(proposal[j], low, high)
 
-            # Evaluate proposal
+            # Evaluate proposal (log prior = 0 for uniform prior within bounds)
             params = {name: proposal[j] for j, name in enumerate(self.param_names)}
             proposal_chi2 = self.physics.compute_chi_squared(
                 self.model_name, params, observations
             )
             proposal_log_prob = -0.5 * proposal_chi2
 
-            # Accept/reject
+            # Accept/reject (Metropolis-Hastings)
             log_alpha = proposal_log_prob - current_log_prob
 
             if np.log(np.random.random()) < log_alpha:
@@ -625,18 +726,57 @@ class MCMCInference:
                 current_log_prob = proposal_log_prob
                 accepted += 1
 
+            # Track log probability for convergence diagnostics
+            log_probs.append(current_log_prob)
+
+            # Adaptive proposal (during burn-in only)
+            if i < n_burn and i % adapt_interval == 0 and i > 0:
+                recent_acceptance = accepted / i
+                if recent_acceptance < target_acceptance:
+                    current_proposal_scale *= 0.9  # Decrease step size
+                elif recent_acceptance > target_acceptance * 1.5:
+                    current_proposal_scale *= 1.1  # Increase step size
+
             # Store sample (after burn-in)
             if i >= n_burn:
                 samples.append(current.copy())
 
         samples = np.array(samples)
+        acceptance_rate = accepted / (n_samples + n_burn)
+
+        # Convergence diagnostics
+        log_probs = np.array(log_probs[n_burn:])  # Post-burn-in
+
+        # Gelman-Rubin statistic would need multiple chains - provide what we can
+        # Effective sample size (ESS) approximation based on autocorrelation
+        def ess_estimate(x):
+            """Rough ESS estimate from autocorrelation"""
+            from scipy import signal
+            acf = signal.correlate(x - np.mean(x), x - np.mean(x), mode='full')
+            acf = acf[len(acf)//2:] / np.var(x)
+            # Find where ACF drops below 0.05
+            for i in range(1, len(acf)):
+                if acf[i] < 0.05:
+                    break
+            return len(x) / (2 * i + 1) if i < len(acf) else len(x) / 10
+
+        ess_values = [ess_estimate(samples[:, j]) for j in range(n_params)]
 
         return {
             'samples': samples,
-            'acceptance_rate': accepted / (n_samples + n_burn),
+            'acceptance_rate': acceptance_rate,
             'mean': np.mean(samples, axis=0),
             'std': np.std(samples, axis=0),
-            'param_names': self.param_names
+            'param_names': self.param_names,
+            'convergence_diagnostics': {
+                'ess_per_param': ess_values,
+                'min_ess': min(ess_values) if ess_values else 0,
+                'acceptance_rate': acceptance_rate,
+                'final_proposal_scale': current_proposal_scale,
+                'log_prob_mean': np.mean(log_probs),
+                'log_prob_std': np.std(log_probs),
+                'acceptance_rate_ideal': 0.2 < acceptance_rate < 0.5
+            }
         }
 
 

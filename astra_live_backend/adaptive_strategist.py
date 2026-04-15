@@ -1,3 +1,17 @@
+# Copyright 2024-2026 Glenn J. White (The Open University / RAL Space)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """
 ASTRA Live — Adaptive Strategist
 Chooses investigation methods, test parameters, and exploration direction
@@ -7,7 +21,7 @@ This replaces the hardcoded name-matching dispatch with data-driven strategy.
 """
 import numpy as np
 from typing import Optional, List, Dict, Tuple
-from .discovery_memory import DiscoveryMemory
+from .graphpalace_memory import GraphPalaceMemory as DiscoveryMemory
 
 
 # Maps hypothesis characteristics to available investigation methods
@@ -227,7 +241,7 @@ class AdaptiveStrategist:
         return {
             "method_rankings": {
                 domain: self.memory.get_best_methods(domain)
-                for domain in ["Astrophysics", "Economics", "Climate"]
+                for domain in ["Astrophysics", "Physics", "Mathematics", "Cosmology"]
             },
             "hot_domains": self.memory.get_hot_domains(),
             "exploration_coverage": {

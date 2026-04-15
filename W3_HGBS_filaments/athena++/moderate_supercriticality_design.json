@@ -1,0 +1,185 @@
+{
+  "design": "moderate_supercriticality_test",
+  "budget_cpu_hours": "-144",
+  "n_simulations": 18,
+  "grid": "192x48x48",
+  "domain": "20x5x5 R_fil",
+  "supercriticality_range": [
+    0.8117881497040963,
+    1.2176822245561445,
+    2.029470374260241
+  ],
+  "beta_values": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "seeds": [
+    42,
+    137
+  ],
+  "simulations": [
+    {
+      "name": "rho2.0_beta0.5_s42",
+      "rho_center": 2.0,
+      "beta": 0.5,
+      "seed": 42,
+      "supercriticality": 0.8117881497040963,
+      "expected_lambda_W": 15.64657716031165,
+      "expected_lambda_pc": 31.2931543206233
+    },
+    {
+      "name": "rho2.0_beta0.5_s137",
+      "rho_center": 2.0,
+      "beta": 0.5,
+      "seed": 137,
+      "supercriticality": 0.8117881497040963,
+      "expected_lambda_W": 15.64657716031165,
+      "expected_lambda_pc": 31.2931543206233
+    },
+    {
+      "name": "rho2.0_beta1.0_s42",
+      "rho_center": 2.0,
+      "beta": 1.0,
+      "seed": 42,
+      "supercriticality": 0.8117881497040963,
+      "expected_lambda_W": 19.163065131924462,
+      "expected_lambda_pc": 38.326130263848924
+    },
+    {
+      "name": "rho2.0_beta1.0_s137",
+      "rho_center": 2.0,
+      "beta": 1.0,
+      "seed": 137,
+      "supercriticality": 0.8117881497040963,
+      "expected_lambda_W": 19.163065131924462,
+      "expected_lambda_pc": 38.326130263848924
+    },
+    {
+      "name": "rho2.0_beta2.0_s42",
+      "rho_center": 2.0,
+      "beta": 2.0,
+      "seed": 42,
+      "supercriticality": 0.8117881497040963,
+      "expected_lambda_W": 22.127601624829843,
+      "expected_lambda_pc": 44.25520324965969
+    },
+    {
+      "name": "rho2.0_beta2.0_s137",
+      "rho_center": 2.0,
+      "beta": 2.0,
+      "seed": 137,
+      "supercriticality": 0.8117881497040963,
+      "expected_lambda_W": 22.127601624829843,
+      "expected_lambda_pc": 44.25520324965969
+    },
+    {
+      "name": "rho3.0_beta0.5_s42",
+      "rho_center": 3.0,
+      "beta": 0.5,
+      "seed": 42,
+      "supercriticality": 1.2176822245561445,
+      "expected_lambda_W": 10.431051440207767,
+      "expected_lambda_pc": 20.862102880415534
+    },
+    {
+      "name": "rho3.0_beta0.5_s137",
+      "rho_center": 3.0,
+      "beta": 0.5,
+      "seed": 137,
+      "supercriticality": 1.2176822245561445,
+      "expected_lambda_W": 10.431051440207767,
+      "expected_lambda_pc": 20.862102880415534
+    },
+    {
+      "name": "rho3.0_beta1.0_s42",
+      "rho_center": 3.0,
+      "beta": 1.0,
+      "seed": 42,
+      "supercriticality": 1.2176822245561445,
+      "expected_lambda_W": 12.775376754616309,
+      "expected_lambda_pc": 25.550753509232617
+    },
+    {
+      "name": "rho3.0_beta1.0_s137",
+      "rho_center": 3.0,
+      "beta": 1.0,
+      "seed": 137,
+      "supercriticality": 1.2176822245561445,
+      "expected_lambda_W": 12.775376754616309,
+      "expected_lambda_pc": 25.550753509232617
+    },
+    {
+      "name": "rho3.0_beta2.0_s42",
+      "rho_center": 3.0,
+      "beta": 2.0,
+      "seed": 42,
+      "supercriticality": 1.2176822245561445,
+      "expected_lambda_W": 14.75173441655323,
+      "expected_lambda_pc": 29.50346883310646
+    },
+    {
+      "name": "rho3.0_beta2.0_s137",
+      "rho_center": 3.0,
+      "beta": 2.0,
+      "seed": 137,
+      "supercriticality": 1.2176822245561445,
+      "expected_lambda_W": 14.75173441655323,
+      "expected_lambda_pc": 29.50346883310646
+    },
+    {
+      "name": "rho5.0_beta0.5_s42",
+      "rho_center": 5.0,
+      "beta": 0.5,
+      "seed": 42,
+      "supercriticality": 2.029470374260241,
+      "expected_lambda_W": 6.25863086412466,
+      "expected_lambda_pc": 12.51726172824932
+    },
+    {
+      "name": "rho5.0_beta0.5_s137",
+      "rho_center": 5.0,
+      "beta": 0.5,
+      "seed": 137,
+      "supercriticality": 2.029470374260241,
+      "expected_lambda_W": 6.25863086412466,
+      "expected_lambda_pc": 12.51726172824932
+    },
+    {
+      "name": "rho5.0_beta1.0_s42",
+      "rho_center": 5.0,
+      "beta": 1.0,
+      "seed": 42,
+      "supercriticality": 2.029470374260241,
+      "expected_lambda_W": 7.665226052769785,
+      "expected_lambda_pc": 15.33045210553957
+    },
+    {
+      "name": "rho5.0_beta1.0_s137",
+      "rho_center": 5.0,
+      "beta": 1.0,
+      "seed": 137,
+      "supercriticality": 2.029470374260241,
+      "expected_lambda_W": 7.665226052769785,
+      "expected_lambda_pc": 15.33045210553957
+    },
+    {
+      "name": "rho5.0_beta2.0_s42",
+      "rho_center": 5.0,
+      "beta": 2.0,
+      "seed": 42,
+      "supercriticality": 2.029470374260241,
+      "expected_lambda_W": 8.851040649931937,
+      "expected_lambda_pc": 17.702081299863874
+    },
+    {
+      "name": "rho5.0_beta2.0_s137",
+      "rho_center": 5.0,
+      "beta": 2.0,
+      "seed": 137,
+      "supercriticality": 2.029470374260241,
+      "expected_lambda_W": 8.851040649931937,
+      "expected_lambda_pc": 17.702081299863874
+    }
+  ]
+}

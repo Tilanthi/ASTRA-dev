@@ -1,3 +1,17 @@
+# Copyright 2024-2026 Glenn J. White (The Open University / RAL Space)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """
 ASTRA Live — Phase 10 Test Suite
 Tests degradation detection, importance-weighted memory compaction,
@@ -196,12 +210,13 @@ class TestMemoryCompaction:
         """Compaction should evict lowest-importance discoveries."""
         db_path = str(tmp_path / "test.db")
         mem = DiscoveryMemory(max_records=20, db_path=db_path)
-        
+
         # Add 20 discoveries: 15 weak Astrophysics, 5 strong Economics
+        # Use different variables for each to avoid deduplication
         for i in range(15):
             mem.record_discovery(
                 hypothesis_id=f"H{i:03d}", domain="Astrophysics",
-                finding_type="correlation", variables=["x", "y"],
+                finding_type="correlation", variables=[f"x{i}", f"y{i}"],
                 statistic=0.5, p_value=0.8,  # weak
                 description=f"weak {i}", data_source="sdss",
                 sample_size=10,
@@ -209,18 +224,18 @@ class TestMemoryCompaction:
         for i in range(5):
             mem.record_discovery(
                 hypothesis_id=f"H{100+i:03d}", domain="Economics",
-                finding_type="scaling", variables=["a", "b"],
+                finding_type="scaling", variables=[f"a{i}", f"b{i}"],
                 statistic=8.0, p_value=0.001,  # strong
                 description=f"strong {i}", data_source="cross",
                 sample_size=5000,
             )
-        
+
         assert len(mem.discoveries) == 20
-        
+
         # Trigger compaction
         result = mem.compact_if_needed()
         assert result  # should have compacted
-        
+
         # Verify strong discoveries (Economics) survived more than weak ones
         remaining_domains = [d.domain for d in mem.discoveries]
         econ_count = remaining_domains.count("Economics")
@@ -230,12 +245,13 @@ class TestMemoryCompaction:
         """Discoveries from underrepresented domains should get diversity bonus."""
         db_path = str(tmp_path / "test.db")
         mem = DiscoveryMemory(max_records=20, db_path=db_path)
-        
+
         # Fill with 19 Astrophysics + 1 Climate (same strength)
+        # Use different variables for each to avoid deduplication
         for i in range(19):
             mem.record_discovery(
                 hypothesis_id=f"H{i:03d}", domain="Astrophysics",
-                finding_type="correlation", variables=["x", "y"],
+                finding_type="correlation", variables=[f"x{i}", f"y{i}"],
                 statistic=3.0, p_value=0.01,
                 description=f"astro {i}", data_source="sdss",
                 sample_size=100,
@@ -258,16 +274,17 @@ class TestMemoryCompaction:
         """No compaction should happen when below capacity."""
         db_path = str(tmp_path / "test.db")
         mem = DiscoveryMemory(max_records=100, db_path=db_path)
-        
+
+        # Use different variables for each to avoid deduplication
         for i in range(10):
             mem.record_discovery(
                 hypothesis_id=f"H{i:03d}", domain="Astrophysics",
-                finding_type="correlation", variables=["x", "y"],
+                finding_type="correlation", variables=[f"x{i}", f"y{i}"],
                 statistic=2.0, p_value=0.05,
                 description=f"disc {i}", data_source="sdss",
                 sample_size=50,
             )
-        
+
         result = mem.compact_if_needed()
         assert not result  # should NOT compact
         assert len(mem.discoveries) == 10

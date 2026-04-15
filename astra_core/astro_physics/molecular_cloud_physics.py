@@ -1,3 +1,17 @@
+# Copyright 2024-2026 Glenn J. White (The Open University / RAL Space)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 
 """
 Documentation for multi_scale_inference module.
@@ -313,8 +327,8 @@ class DustModelLibrary:
             silicate_fraction=0.40, carbon_fraction=0.25
         ),
         DustModel.PLANCK: DustProperties(
-            model="Planck Collaboration",
-            kappa_ref=0.92, lambda_ref=353.0,  # 353 GHz = 850 μm
+            model="Planck Collaboration 2013",
+            kappa_ref=0.92, lambda_ref=850.0,  # 0.92 cm²/g at 850 μm (353 GHz)
             beta=1.62, beta_uncertainty=0.10,
             gas_to_dust=136.0,
             T_min=14, T_max=30,

@@ -1,3 +1,17 @@
+# Copyright 2024-2026 Glenn J. White (The Open University / RAL Space)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """
 ASTRA Live — Discovery Memory
 Persistent learning memory that tracks what works, what's been found,
@@ -12,10 +26,15 @@ import json
 import math
 import sqlite3
 import os
+import queue
 import numpy as np
+import threading
+import logging
 from dataclasses import dataclass, field, asdict
 from collections import defaultdict, deque, Counter
 from typing import Optional, List, Dict, Tuple
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -88,9 +107,16 @@ class DiscoveryMemory:
         # Domain momentum: which domains are currently "hot"
         self._domain_momentum: dict[str, float] = defaultdict(float)
 
-        # ── SQLite persistence ──────────────────────────────────────
+        # ── Thread Safety ─────────────────────────────────────────
+        self._affinity_lock = threading.Lock()  # Protect variable_affinity updates
+        self._momentum_lock = threading.Lock()   # Protect domain_momentum updates
+        self._memory_lock = threading.RLock()     # Protect in-memory deques
+
+        # ── SQLite Connection Pool ─────────────────────────────────────
         self.db_path = db_path
+        self._connection_pool = queue.Queue(maxsize=10)
         self._init_db()
+        self._init_connection_pool(5)  # Start with 5 connections
         self._load_from_db(max_records)
 
     # ── Database init & load ─────────────────────────────────────
@@ -138,6 +164,20 @@ class DiscoveryMemory:
                 source_discovery_id TEXT,
                 hypothesis_text TEXT,
                 domain TEXT
+            );
+            -- Table for cross-session variable affinity persistence
+            CREATE TABLE IF NOT EXISTS variable_affinity (
+                variable_name TEXT PRIMARY KEY,
+                affinity_score REAL DEFAULT 0.0,
+                last_updated REAL DEFAULT 0.0,
+                discovery_count INTEGER DEFAULT 0
+            );
+            -- Table for cross-session domain momentum persistence
+            CREATE TABLE IF NOT EXISTS domain_momentum (
+                domain_name TEXT PRIMARY KEY,
+                momentum_score REAL DEFAULT 0.0,
+                last_updated REAL DEFAULT 0.0,
+                discovery_count INTEGER DEFAULT 0
             );
         """)
         conn.commit()
@@ -213,7 +253,47 @@ class DiscoveryMemory:
         ).fetchone()[0]
         self.generation_count = gen_count
 
+        # Load variable affinity from database (cross-session persistence)
+        for row in conn.execute("SELECT * FROM variable_affinity").fetchall():
+            self._variable_affinity[row["variable_name"]] = row["affinity_score"]
+
+        # Load domain momentum from database (cross-session persistence)
+        for row in conn.execute("SELECT * FROM domain_momentum").fetchall():
+            self._domain_momentum[row["domain_name"]] = row["momentum_score"]
+
         conn.close()
+
+    def _init_connection_pool(self, pool_size: int = 5):
+        """Initialize SQLite connection pool for thread-safe concurrent access."""
+        for _ in range(pool_size):
+            try:
+                conn = sqlite3.connect(self.db_path, check_same_thread=False)
+                conn.row_factory = sqlite3.Row
+                conn.execute("PRAGMA journal_mode=WAL")
+                self._connection_pool.put(conn)
+            except Exception as e:
+                logger.warning(f"Failed to create connection pool entry: {e}")
+
+    def _get_connection(self) -> sqlite3.Connection:
+        """Get a connection from the pool (blocking with timeout)."""
+        try:
+            conn = self._connection_pool.get(timeout=5.0)
+            return conn
+        except queue.Empty:
+            # Fallback: create new connection if pool is exhausted
+            logger.warning("Connection pool exhausted, creating fallback connection")
+            conn = sqlite3.connect(self.db_path, check_same_thread=False)
+            conn.row_factory = sqlite3.Row
+            conn.execute("PRAGMA journal_mode=WAL")
+            return conn
+
+    def _return_connection(self, conn: sqlite3.Connection):
+        """Return a connection to the pool."""
+        try:
+            self._connection_pool.put_nowait(conn)
+        except queue.Full:
+            # Pool is full, just close the connection
+            conn.close()
 
     # ── Recording ────────────────────────────────────────────────────
 
@@ -222,8 +302,29 @@ class DiscoveryMemory:
                          description: str, data_source: str,
                          sample_size: int = 0,
                          effect_size: Optional[float] = None,
-                         metadata: Optional[dict] = None) -> DiscoveryRecord:
-        """Record a scientific finding for future hypothesis generation."""
+                         metadata: Optional[dict] = None) -> Optional[DiscoveryRecord]:
+        """
+        Record a scientific finding for future hypothesis generation.
+
+        Returns None if discovery is a duplicate (same finding_type + data_source + variables
+        already recorded within last 10 cycles).
+        """
+        # ── Deduplication: Check if similar discovery exists ──
+        # Create a key from finding characteristics
+        var_key = tuple(sorted(variables)) if variables else ()
+        dedup_key = (finding_type, data_source, var_key)
+
+        # Check ALL discoveries (not just recent) for duplicates
+        # This prevents the same discovery from being recorded multiple times
+        for disc in self.discoveries:
+            # Compare key characteristics
+            disc_var_key = tuple(sorted(disc.variables)) if disc.variables else ()
+            if (finding_type == disc.finding_type and
+                data_source == disc.data_source and
+                var_key == disc_var_key):
+                # Duplicate found! Skip recording.
+                return None
+
         # Composite strength: significance × effect size proxy × log sample size
         sig_score = max(0, 1 - p_value) if p_value <= 1 else 0
         effect_score = min(1.0, abs(statistic) / 10.0)
@@ -252,12 +353,14 @@ class DiscoveryMemory:
         # Persist to SQLite
         self._persist_discovery(rec)
 
-        # Update variable affinity
+        # Update variable affinity (with cross-session persistence)
         for v in variables:
             self._variable_affinity[v] += strength * 0.3
+            self._persist_variable_affinity(v, self._variable_affinity[v])
 
-        # Update domain momentum
+        # Update domain momentum (with cross-session persistence)
         self._domain_momentum[domain] += strength * 0.2
+        self._persist_domain_momentum(domain, self._domain_momentum[domain])
 
         # Update exploration state
         key = data_source
@@ -301,30 +404,62 @@ class DiscoveryMemory:
     # ── SQLite persistence helpers ─────────────────────────────────
 
     def _persist_discovery(self, rec: DiscoveryRecord):
-        """INSERT a discovery record into SQLite."""
+        """Thread-safe INSERT a discovery record into SQLite with deduplication using connection pool."""
+        conn = None
         try:
-            conn = sqlite3.connect(self.db_path)
-            conn.execute(
-                """INSERT OR REPLACE INTO discoveries
-                   (id, timestamp, cycle, hypothesis_id, domain, finding_type,
-                    variables, statistic, p_value, description, data_source,
-                    strength, follow_ups_generated, verified, effect_size)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-                (rec.id, rec.timestamp, rec.cycle, rec.hypothesis_id,
-                 rec.domain, rec.finding_type, json.dumps(rec.variables),
-                 rec.statistic, rec.p_value, rec.description, rec.data_source,
-                 rec.strength, rec.follow_ups_generated, int(rec.verified),
-                 rec.effect_size),
-            )
+            conn = self._get_connection()
+
+            # Check for duplicate in database first (with connection lock)
+            var_key = json.dumps(sorted(rec.variables)) if rec.variables else "[]"
+            dedup_check = conn.execute(
+                """SELECT id FROM discoveries
+                   WHERE finding_type = ? AND data_source = ? AND variables = ?
+                   LIMIT 1""",
+                (rec.finding_type, rec.data_source, var_key)
+            ).fetchone()
+
+            if dedup_check:
+                # Duplicate found - update existing record instead of inserting new one
+                existing_id = dedup_check["id"]
+                conn.execute(
+                    """UPDATE discoveries
+                       SET timestamp = ?, cycle = ?, hypothesis_id = ?, domain = ?,
+                           statistic = ?, p_value = ?, description = ?,
+                           strength = ?, verified = ?, effect_size = ?
+                       WHERE id = ?""",
+                    (rec.timestamp, rec.cycle, rec.hypothesis_id, rec.domain,
+                     rec.statistic, rec.p_value, rec.description,
+                     rec.strength, int(rec.verified), rec.effect_size,
+                     existing_id)
+                )
+                logger.info(f"[DiscoveryMemory] Updated existing discovery {existing_id} instead of creating duplicate")
+            else:
+                # No duplicate - insert new record
+                conn.execute(
+                    """INSERT INTO discoveries
+                       (id, timestamp, cycle, hypothesis_id, domain, finding_type,
+                        variables, statistic, p_value, description, data_source,
+                        strength, follow_ups_generated, verified, effect_size)
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                    (rec.id, rec.timestamp, rec.cycle, rec.hypothesis_id,
+                     rec.domain, rec.finding_type, var_key,
+                     rec.statistic, rec.p_value, rec.description, rec.data_source,
+                     rec.strength, rec.follow_ups_generated, int(rec.verified),
+                     rec.effect_size),
+                )
+
             conn.commit()
-            conn.close()
         except Exception as e:
-            print(f"[DiscoveryMemory] SQLite persist discovery error: {e}")
+            logger.error(f"[DiscoveryMemory] SQLite persist discovery error: {e}")
+        finally:
+            if conn:
+                self._return_connection(conn)
 
     def _persist_method_outcome(self, outcome: MethodOutcome):
-        """INSERT a method outcome into SQLite."""
+        """Thread-safe INSERT a method outcome into SQLite using connection pool."""
+        conn = None
         try:
-            conn = sqlite3.connect(self.db_path)
+            conn = self._get_connection()
             conn.execute(
                 """INSERT INTO method_outcomes
                    (method_name, hypothesis_id, domain, timestamp, cycle,
@@ -338,16 +473,85 @@ class DiscoveryMemory:
                  int(outcome.success)),
             )
             conn.commit()
-            conn.close()
         except Exception as e:
-            print(f"[DiscoveryMemory] SQLite persist outcome error: {e}")
+            logger.error(f"[DiscoveryMemory] SQLite persist outcome error: {e}")
+        finally:
+            if conn:
+                self._return_connection(conn)
+
+    def _persist_variable_affinity(self, variable: str, score: float):
+        """Thread-safe UPDATE or INSERT variable affinity score using connection pool."""
+        conn = None
+        try:
+            conn = self._get_connection()
+            existing = conn.execute(
+                "SELECT discovery_count FROM variable_affinity WHERE variable_name = ?",
+                (variable,)
+            ).fetchone()
+
+            now = time.time()
+            if existing:
+                # Update existing record
+                conn.execute(
+                    """UPDATE variable_affinity
+                       SET affinity_score = ?, last_updated = ?, discovery_count = discovery_count + 1
+                       WHERE variable_name = ?""",
+                    (score, now, variable),
+                )
+            else:
+                # Insert new record
+                conn.execute(
+                    """INSERT INTO variable_affinity (variable_name, affinity_score, last_updated, discovery_count)
+                       VALUES (?, ?, ?, 1)""",
+                    (variable, score, now),
+                )
+            conn.commit()
+        except Exception as e:
+            logger.error(f"[DiscoveryMemory] SQLite persist affinity error: {e}")
+        finally:
+            if conn:
+                self._return_connection(conn)
+
+    def _persist_domain_momentum(self, domain: str, score: float):
+        """Thread-safe UPDATE or INSERT domain momentum score using connection pool."""
+        conn = None
+        try:
+            conn = self._get_connection()
+            existing = conn.execute(
+                "SELECT discovery_count FROM domain_momentum WHERE domain_name = ?",
+                (domain,)
+            ).fetchone()
+
+            now = time.time()
+            if existing:
+                # Update existing record
+                conn.execute(
+                    """UPDATE domain_momentum
+                       SET momentum_score = ?, last_updated = ?, discovery_count = discovery_count + 1
+                       WHERE domain_name = ?""",
+                    (score, now, domain),
+                )
+            else:
+                # Insert new record
+                conn.execute(
+                    """INSERT INTO domain_momentum (domain_name, momentum_score, last_updated, discovery_count)
+                       VALUES (?, ?, ?, 1)""",
+                    (domain, score, now),
+                )
+            conn.commit()
+        except Exception as e:
+            logger.error(f"[DiscoveryMemory] SQLite persist momentum error: {e}")
+        finally:
+            if conn:
+                self._return_connection(conn)
 
     def record_generated_hypothesis(self, source_discovery_id: str,
                                      hypothesis_text: str, domain: str):
-        """Record a hypothesis generated from a discovery (persisted to SQLite)."""
+        """Thread-safe record a hypothesis generated from a discovery using connection pool."""
         self.generation_count += 1
+        conn = None
         try:
-            conn = sqlite3.connect(self.db_path)
+            conn = self._get_connection()
             conn.execute(
                 """INSERT INTO generated_hypotheses
                    (timestamp, source_discovery_id, hypothesis_text, domain)
@@ -355,9 +559,11 @@ class DiscoveryMemory:
                 (time.time(), source_discovery_id, hypothesis_text, domain),
             )
             conn.commit()
-            conn.close()
         except Exception as e:
-            print(f"[DiscoveryMemory] SQLite persist hypothesis error: {e}")
+            logger.error(f"[DiscoveryMemory] SQLite persist hypothesis error: {e}")
+        finally:
+            if conn:
+                self._return_connection(conn)
 
     # ── Phase 10.5: Importance-Weighted Memory Compaction ──────────
 
@@ -434,17 +640,20 @@ class DiscoveryMemory:
                 self.discoveries.append(d)
 
             # Remove from SQLite too
+            conn = None
             try:
-                conn = sqlite3.connect(self.db_path)
+                conn = self._get_connection()
                 placeholders = ",".join("?" * len(evict_ids))
                 conn.execute(
                     f"DELETE FROM discoveries WHERE id IN ({placeholders})",
                     list(evict_ids)
                 )
                 conn.commit()
-                conn.close()
             except Exception as e:
-                print(f"[DiscoveryMemory] Compaction DB cleanup error: {e}")
+                logger.error(f"[DiscoveryMemory] Compaction DB cleanup error: {e}")
+            finally:
+                if conn:
+                    self._return_connection(conn)
 
             compacted = True
 
@@ -468,16 +677,19 @@ class DiscoveryMemory:
         return compacted
 
     def get_persistence_stats(self) -> Dict:
-        """Return SQLite persistence statistics."""
+        """Thread-safe return SQLite persistence statistics using connection pool."""
+        conn = None
         try:
-            conn = sqlite3.connect(self.db_path)
+            conn = self._get_connection()
             disc_count = conn.execute("SELECT COUNT(*) FROM discoveries").fetchone()[0]
             out_count = conn.execute("SELECT COUNT(*) FROM method_outcomes").fetchone()[0]
             hyp_count = conn.execute("SELECT COUNT(*) FROM generated_hypotheses").fetchone()[0]
-            conn.close()
             db_size = os.path.getsize(self.db_path) if os.path.exists(self.db_path) else 0
         except Exception as e:
             return {"error": str(e), "db_path": self.db_path}
+        finally:
+            if conn:
+                self._return_connection(conn)
 
         return {
             "db_path": self.db_path,
@@ -654,9 +866,12 @@ class DiscoveryMemory:
                 "improving": delta > 0,
             }
 
+        unique_count = self._get_unique_discovery_count()
+
         return {
             "status": "ok",
             "total_discoveries": len(self.discoveries),
+            "unique_discoveries": unique_count,
             "total_outcomes": len(self.method_outcomes),
             "hypotheses_generated_from_memory": self.generation_count,
             "metrics": improvement,
@@ -664,8 +879,12 @@ class DiscoveryMemory:
 
     def to_dict(self) -> dict:
         """Serialize for API response."""
+        # Compute unique discovery count (excluding duplicates)
+        unique_count = self._get_unique_discovery_count()
+
         return {
             "discovery_count": len(self.discoveries),
+            "unique_discovery_count": unique_count,
             "method_outcome_count": len(self.method_outcomes),
             "exploration_sources": list(self.exploration.keys()),
             "generation_count": self.generation_count,
@@ -675,3 +894,16 @@ class DiscoveryMemory:
                 self._variable_affinity.items(), key=lambda x: x[1], reverse=True
             )[:10]),
         }
+
+    def _get_unique_discovery_count(self) -> int:
+        """
+        Get the count of unique discoveries (excluding duplicates).
+
+        Uses the same deduplication logic as record_discovery().
+        """
+        seen_keys = set()
+        for disc in self.discoveries:
+            var_key = tuple(sorted(disc.variables)) if disc.variables else ()
+            dedup_key = (disc.finding_type, disc.data_source, var_key)
+            seen_keys.add(dedup_key)
+        return len(seen_keys)

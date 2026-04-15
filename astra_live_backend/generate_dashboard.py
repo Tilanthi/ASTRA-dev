@@ -1,3 +1,17 @@
+# Copyright 2024-2026 Glenn J. White (The Open University / RAL Space)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """
 Generate a self-contained ASTRA Live dashboard with all API data embedded inline.
 This makes the dashboard work at any URL without needing a live API connection.
@@ -24,7 +38,19 @@ def _ensure_output_dir():
 
 def fetch_all_data():
     data = {}
-    for ep in ['status', 'state', 'hypotheses', 'activity', 'decisions', 'charts', 'metrics', 'engine/safety-status', 'engine/state-space', 'engine/alignment', 'engine/anomalies', 'engine/pending', 'system/health', 'literature/papers', 'literature/citation-graph', 'literature/citation-metrics']:
+    endpoints = [
+        'status', 'state', 'hypotheses', 'activity', 'decisions', 'charts', 'metrics',
+        'engine/safety-status', 'engine/state-space', 'engine/alignment', 'engine/anomalies', 'engine/pending',
+        'system/health',
+        'literature/papers', 'literature/citation-graph', 'literature/citation-metrics',
+        # Stigmergy endpoints
+        'pheromones/status', 'stigmergy/gaps', 'swarm/status', 'pheromones/ab-test', 'stigmergy/gordon',
+        # Self-improve endpoints
+        'discovery-memory', 'discovery-memory/discoveries',
+        # Verified discoveries
+        'verification/verified'
+    ]
+    for ep in endpoints:
         try:
             r = requests.get(f"{API_BASE}/api/{ep}", timeout=15)
             data[ep] = r.json()
@@ -118,6 +144,17 @@ def build_dashboard_html(snapshot_data):
     if (path.includes('/literature/papers')) return s["literature/papers"];
     if (path.includes('/literature/citation-graph')) return s["literature/citation-graph"];
     if (path.includes('/literature/citation-metrics')) return s["literature/citation-metrics"];
+    // Stigmergy endpoints
+    if (path.includes('/pheromones/status')) return s["pheromones/status"];
+    if (path.includes('/stigmergy/gaps')) return s["stigmergy/gaps"];
+    if (path.includes('/swarm/status')) return s["swarm/status"];
+    if (path.includes('/pheromones/ab-test')) return s["pheromones/ab-test"];
+    if (path.includes('/stigmergy/gordon')) return s["stigmergy/gordon"];
+    // Self-improve endpoints
+    if (path.includes('/discovery-memory') && path.includes('/discoveries')) return s["discovery-memory/discoveries"];
+    if (path.includes('/discovery-memory')) return s["discovery-memory"];
+    // Verified discoveries
+    if (path.includes('/verification/verified')) return s["verification/verified"];
     return null;
   }
 
@@ -166,6 +203,40 @@ def build_dashboard_html(snapshot_data):
   }"""
 
     html = html.replace(old_status, new_status)
+
+    # Update hardcoded discovery and outcome counts with live data
+    import re
+
+    # Get discovery count (total, not unique)
+    discovery_count = (snapshot_data.get('discovery-memory') or {}).get('discovery_count', 0)
+    if discovery_count == 0:
+        discovery_count = (snapshot_data.get('discovery-memory') or {}).get('improvement', {}).get('total_discoveries', 0)
+
+    # Get method outcomes count
+    outcomes_count = (snapshot_data.get('discovery-memory') or {}).get('improvement', {}).get('total_outcomes', 0)
+
+    if discovery_count > 0:
+        # Update the key metric value (si-km-discoveries)
+        html = re.sub(
+            r'id="si-km-discoveries">[0-9]+</div>',
+            f'id="si-km-discoveries">{discovery_count}</div>',
+            html
+        )
+        # Also update the summary section (si-discoveries-count)
+        html = re.sub(
+            r'id="si-discoveries-count">.*?</div>',
+            f'id="si-discoveries-count">{discovery_count}</div>',
+            html
+        )
+
+    if outcomes_count > 0:
+        # Update the method outcomes count
+        html = re.sub(
+            r'id="si-km-outcomes">[0-9]+</div>',
+            f'id="si-km-outcomes">{outcomes_count}</div>',
+            html
+        )
+
     return html
 
 

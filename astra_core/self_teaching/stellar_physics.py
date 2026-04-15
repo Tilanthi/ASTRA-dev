@@ -1,3 +1,17 @@
+# Copyright 2024-2026 Glenn J. White (The Open University / RAL Space)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """
 Stellar Physics and HII Region Modeling Module
 
@@ -132,22 +146,38 @@ class InitialMassFunction:
                 return 0.0
 
         elif self.imf_type == "kroupa":
-            # Kroupa (2001): broken power law
+            # Kroupa (2001): THREE-segment broken power law (standard form)
+            # Segment 1: 0.08-0.5 M_sun, slope -0.3 (NOT -1.3 - that's the system IMF)
+            # Segment 2: 0.5-1.0 M_sun, slope -1.3
+            # Segment 3: >1.0 M_sun, slope -2.3
             if 0.08 <= mass < 0.5:
-                return mass**(-1.3)
-            elif mass >= 0.5:
-                return 0.5**(-1.3) * mass**(-2.3)
+                # Normalized at 0.08 M_sun
+                return mass**(-0.3)
+            elif 0.5 <= mass < 1.0:
+                # Continuity at 0.5: (0.5/0.08)^-0.3 * (mass/0.5)^-1.3
+                return (0.5/0.08)**(-0.3) * mass**(-1.3)
+            elif mass >= 1.0:
+                # Continuity at 1.0: previous value * (mass/1.0)^-2.3
+                return (0.5/0.08)**(-0.3) * (1.0/0.5)**(-1.3) * mass**(-2.3)
             else:
                 return 0.0
 
         elif self.imf_type == "chabrier":
             # Chabrier (2003): log-normal at low mass, power law at high
+            # System IMF: lognormal for M < 1 M_sun, power law for M > 1 M_sun
             if mass < 1.0:
-                mc = 0.079  # Characteristic mass
+                mc = 0.079  # Characteristic mass (M_sun)
                 sigma = 0.69
-                return np.exp(-(np.log(mass) - np.log(mc))**2 / (2 * sigma**2))
+                # Normalization factor: ensures continuity at 1 M_sun
+                # The lognormal is: dN/dlogM ∝ exp(-(log M - log mc)^2 / (2*sigma^2))
+                # Converting to dN/dM: divide by M
+                norm = 1.0 / (mass * sigma * np.sqrt(2 * np.pi))
+                return norm * np.exp(-(np.log(mass) - np.log(mc))**2 / (2 * sigma**2))
             else:
-                return mass**(-2.3)
+                # Power law with continuity at 1 M_sun
+                # Value at 1 M_sun from lognormal: 1/(1*0.69*sqrt(2pi)) * exp(-(log(1/0.079))^2/(2*0.69^2))
+                value_at_1 = 1.0 / (1.0 * sigma * np.sqrt(2 * np.pi)) * np.exp(-(np.log(1.0/mc))**2 / (2 * sigma**2))
+                return value_at_1 * mass**(-2.3)
 
         else:
             return mass**(-2.35)  # Default to Salpeter

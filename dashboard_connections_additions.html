@@ -1,0 +1,534 @@
+# Add to dashboard_template.html after line 1915 (after stigmergy tab button)
+  <button class="tab-btn" data-tab="connections" role="tab" id="tab-btn-connections" aria-selected="false" aria-controls="tab-connections" onclick="switchTab('connections')" aria-label="Cross-domain connections tab">🔗 <span class="tab-label">CONNECTIONS</span></button>
+
+# Add to dashboard_template.html after line 2692 (after stigmergy tab content)
+  <!-- ============================================================
+       TAB 10: CONNECTIONS — Cross-Domain Discovery Network
+       ============================================================ -->
+  <div class="tab-content" id="tab-connections" role="tabpanel" aria-labelledby="tab-btn-connections">
+    <div class="main-grid">
+
+      <!-- Panel 1: Connection Network Visualization -->
+      <div class="panel panel-full si-fade-in">
+        <div class="panel-header">
+          <span class="panel-icon">🌐</span>
+          <span class="panel-title">CROSS-DOMAIN DISCOVERY NETWORK</span>
+          <div class="panel-controls">
+            <button id="refresh-connections" class="control-btn" title="Refresh connections">↻</button>
+          </div>
+        </div>
+        <div class="panel-body-lg">
+          <div id="connections-network" class="network-viz">
+            <svg id="connections-svg" width="100%" height="500"></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Domain Statistics -->
+      <div class="panel si-fade-in-d1">
+        <div class="panel-header">
+          <span class="panel-icon">📊</span>
+          <span class="panel-title">DOMAIN STATISTICS</span>
+        </div>
+        <div class="panel-body-md" id="connections-domain-stats">
+          <div class="empty-state">Loading domain statistics…</div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Recent Cross-Domain Discoveries -->
+      <div class="panel si-fade-in-d15">
+        <div class="panel-header">
+          <span class="panel-icon">🔍</span>
+          <span class="panel-title">CROSS-DOMAIN DISCOVERIES</span>
+        </div>
+        <div class="panel-body-md" id="connections-cross-discoveries">
+          <div class="empty-state">Loading cross-domain discoveries…</div>
+        </div>
+      </div>
+
+      <!-- Panel 4: Auto-Tunnel Status -->
+      <div class="panel si-fade-in-d2">
+        <div class="panel-header">
+          <span class="panel-icon">🚇</span>
+          <span class="panel-title">AUTO-TUNNEL STATUS</span>
+        </div>
+        <div class="panel-body-md" id="connections-tunnel-status">
+          <div class="empty-state">Loading tunnel status…</div>
+        </div>
+      </div>
+
+      <!-- Panel 5: GraphPalace Status -->
+      <div class="panel si-fade-in-d25">
+        <div class="panel-header">
+          <span class="panel-icon">🏰</span>
+          <span class="panel-title">GRAPHPALACE STATUS</span>
+        </div>
+        <div class="panel-body-md" id="connections-palace-status">
+          <div class="empty-state">Loading palace status…</div>
+        </div>
+      </div>
+
+      <!-- Panel 6: Semantic Search -->
+      <div class="panel si-fade-in-d2">
+        <div class="panel-header">
+          <span class="panel-icon">🔎</span>
+          <span class="panel-title">SEMANTIC SEARCH</span>
+        </div>
+        <div class="panel-body-md">
+          <div class="search-container">
+            <input type="text" id="semantic-search-input" class="search-input" placeholder="Search discoveries...">
+            <button id="semantic-search-btn" class="search-btn">Search</button>
+          </div>
+          <div id="semantic-search-results" class="search-results"></div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /tab-connections -->
+
+# Add to dashboard_template.html JavaScript section (around line 13178):
+  if (tabName === 'connections' && !connectionsInitialized) initConnectionsTab();
+
+# Add to dashboard_template.html variable declarations (around line 13178):
+  let connectionsInitialized = false;
+
+# Add to dashboard_template.html after initStigmergyTab() function:
+  /* ==========================================================
+     CONNECTIONS TAB INITIALIZATION
+     ========================================================== */
+  function initConnectionsTab() {
+    if (connectionsInitialized) return;
+    connectionsInitialized = true;
+
+    loadConnectionsNetwork();
+    loadDomainStats();
+    loadCrossDomainDiscoveries();
+    loadTunnelStatus();
+    loadPalaceStatus();
+    initSemanticSearch();
+
+    // Set up refresh button
+    document.getElementById('refresh-connections').addEventListener('click', () => {
+      loadConnectionsNetwork();
+      loadDomainStats();
+      loadCrossDomainDiscoveries();
+      loadTunnelStatus();
+    });
+
+    // Refresh every 30 seconds
+    setInterval(() => {
+      if (document.getElementById('tab-connections').classList.contains('active')) {
+        loadConnectionsNetwork();
+        loadTunnelStatus();
+      }
+    }, 30000);
+  }
+
+  async function loadConnectionsNetwork() {
+    try {
+      const response = await fetch('/api/connections/network');
+      const data = await response.json();
+      renderConnectionsNetwork(data);
+    } catch (error) {
+      console.error('Failed to load connections network:', error);
+    }
+  }
+
+  function renderConnectionsNetwork(data) {
+    const svg = d3.select('#connections-svg');
+    svg.selectAll('*').remove();
+
+    const width = svg.node().getBoundingClientRect().width;
+    const height = 500;
+
+    const g = svg.append('g');
+
+    // Create force simulation
+    const simulation = d3.forceSimulation(data.nodes)
+      .force('link', d3.forceLink(data.links).id(d => d.id).distance(100))
+      .force('charge', d3.forceManyBody().strength(-300))
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('collision', d3.forceCollide().radius(30));
+
+    // Create links
+    const link = g.append('g')
+      .selectAll('line')
+      .data(data.links)
+      .enter().append('line')
+      .attr('stroke', d => {
+        const strength = d.strength || 0.5;
+        return strength > 0.7 ? '#00e5ff' : strength > 0.4 ? '#7c4dff' : 'rgba(255,255,255,0.2)';
+      })
+      .attr('stroke-width', d => (d.strength || 0.5) * 3)
+      .attr('stroke-opacity', 0.6);
+
+    // Create nodes
+    const node = g.append('g')
+      .selectAll('circle')
+      .data(data.nodes)
+      .enter().append('circle')
+      .attr('r', d => 10 + (d.discoveries || 0) * 2)
+      .attr('fill', d => DOMAIN_COLORS[d.domain] || '#7c4dff')
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 2)
+      .style('cursor', 'pointer')
+      .call(d3.drag()
+        .on('start', dragstarted)
+        .on('drag', dragged)
+        .on('end', dragended));
+
+    // Add labels
+    const labels = g.append('g')
+      .selectAll('text')
+      .data(data.nodes)
+      .enter().append('text')
+      .text(d => d.label)
+      .attr('text-anchor', 'middle')
+      .attr('dy', -20)
+      .attr('fill', '#fff')
+      .attr('font-size', '12px')
+      .attr('font-weight', '500')
+      .style('pointer-events', 'none');
+
+    // Add tooltips
+    node.append('title')
+      .text(d => `${d.label}\nDiscoveries: ${d.discoveries || 0}\nDomain: ${d.domain}`);
+
+    // Update positions on tick
+    simulation.on('tick', () => {
+      link
+        .attr('x1', d => d.source.x)
+        .attr('y1', d => d.source.y)
+        .attr('x2', d => d.target.x)
+        .attr('y2', d => d.target.y);
+
+      node
+        .attr('cx', d => d.x)
+        .attr('cy', d => d.y);
+
+      labels
+        .attr('x', d => d.x)
+        .attr('y', d => d.y);
+    });
+
+    function dragstarted(event, d) {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+    }
+
+    function dragged(event, d) {
+      d.fx = event.x;
+      d.fy = event.y;
+    }
+
+    function dragended(event, d) {
+      if (!event.active) simulation.alphaTarget(0);
+      d.fx = null;
+      d.fy = null;
+    }
+
+    // Zoom and pan
+    const zoom = d3.zoom()
+      .scaleExtent([0.1, 4])
+      .on('zoom', (event) => {
+        g.attr('transform', event.transform);
+      });
+
+    svg.call(zoom);
+  }
+
+  async function loadDomainStats() {
+    try {
+      const response = await fetch('/api/connections/domains');
+      const data = await response.json();
+      renderDomainStats(data);
+    } catch (error) {
+      console.error('Failed to load domain stats:', error);
+      document.getElementById('connections-domain-stats').innerHTML =
+        '<div class="empty-state">Failed to load domain statistics</div>';
+    }
+  }
+
+  function renderDomainStats(data) {
+    const container = document.getElementById('connections-domain-stats');
+
+    if (!data.domains || data.domains.length === 0) {
+      container.innerHTML = '<div class="empty-state">No domain data available</div>';
+      return;
+    }
+
+    let html = '<div class="domain-list">';
+    data.domains.forEach(domain => {
+      html += `
+        <div class="domain-item">
+          <div class="domain-name" style="color: ${DOMAIN_COLORS[domain.name] || '#7c4dff'}">
+            ${domain.name}
+          </div>
+          <div class="domain-metrics">
+            <span class="metric">Discoveries: ${domain.discoveries || 0}</span>
+            <span class="metric">Connections: ${domain.connections || 0}</span>
+            <span class="metric">Momentum: ${(domain.momentum * 100).toFixed(1)}%</span>
+          </div>
+        </div>
+      `;
+    });
+    html += '</div>';
+
+    container.innerHTML = html;
+  }
+
+  async function loadCrossDomainDiscoveries() {
+    try {
+      const response = await fetch('/api/connections/cross-domain');
+      const data = await response.json();
+      renderCrossDomainDiscoveries(data);
+    } catch (error) {
+      console.error('Failed to load cross-domain discoveries:', error);
+      document.getElementById('connections-cross-discoveries').innerHTML =
+        '<div class="empty-state">Failed to load cross-domain discoveries</div>';
+    }
+  }
+
+  function renderCrossDomainDiscoveries(data) {
+    const container = document.getElementById('connections-cross-discoveries');
+
+    if (!data.discoveries || data.discoveries.length === 0) {
+      container.innerHTML = '<div class="empty-state">No cross-domain discoveries yet</div>';
+      return;
+    }
+
+    let html = '<div class="discovery-list">';
+    data.discoveries.slice(0, 10).forEach(disc => {
+      html += `
+        <div class="discovery-item">
+          <div class="discovery-header">
+            <span class="discovery-domain" style="color: ${DOMAIN_COLORS[disc.domain] || '#7c4dff'}">
+              ${disc.domain}
+            </span>
+            <span class="discovery-strength">${(disc.strength * 100).toFixed(0)}%</span>
+          </div>
+          <div class="discovery-content">${disc.description}</div>
+          ${disc.cross_domains ? `
+            <div class="cross-domains">
+              Cross: ${disc.cross_domains.map(d => `<span style="color: ${DOMAIN_COLORS[d] || '#7c4dff'}">${d}</span>`).join(', ')}
+            </div>
+          ` : ''}
+        </div>
+      `;
+    });
+    html += '</div>';
+
+    container.innerHTML = html;
+  }
+
+  async function loadTunnelStatus() {
+    try {
+      const response = await fetch('/api/connections/tunnels');
+      const data = await response.json();
+      renderTunnelStatus(data);
+    } catch (error) {
+      console.error('Failed to load tunnel status:', error);
+      document.getElementById('connections-tunnel-status').innerHTML =
+        '<div class="empty-state">Failed to load tunnel status</div>';
+    }
+  }
+
+  function renderTunnelStatus(data) {
+    const container = document.getElementById('connections-tunnel-status');
+
+    if (!data.tunnels || data.tunnels.length === 0) {
+      container.innerHTML = '<div class="empty-state">No auto-tunnels discovered yet</div>';
+      return;
+    }
+
+    let html = '<div class="tunnel-list">';
+    data.tunnels.forEach(tunnel => {
+      html += `
+        <div class="tunnel-item">
+          <div class="tunnel-path">
+            ${DOMAIN_COLORS[tunnel.from_domain] ?
+              `<span style="color: ${DOMAIN_COLORS[tunnel.from_domain]}">${tunnel.from_domain}</span>` :
+              tunnel.from_domain
+            }
+            →
+            ${DOMAIN_COLORS[tunnel.to_domain] ?
+              `<span style="color: ${DOMAIN_COLORS[tunnel.to_domain]}">${tunnel.to_domain}</span>` :
+              tunnel.to_domain
+            }
+          </div>
+          <div class="tunnel-info">
+            <span class="tunnel-topic">${tunnel.topic}</span>
+            <span class="tunnel-confidence">${(tunnel.confidence * 100).toFixed(0)}%</span>
+          </div>
+        </div>
+      `;
+    });
+    html += '</div>';
+
+    container.innerHTML = html;
+  }
+
+  async function loadPalaceStatus() {
+    try {
+      const response = await fetch('/api/connections/palace-status');
+      const data = await response.json();
+      renderPalaceStatus(data);
+    } catch (error) {
+      console.error('Failed to load palace status:', error);
+      document.getElementById('connections-palace-status').innerHTML =
+        '<div class="empty-state">Failed to load palace status</div>';
+    }
+  }
+
+  function renderPalaceStatus(data) {
+    const container = document.getElementById('connections-palace-status');
+
+    const enabled = data.graphpalace_enabled || false;
+
+    let html = `
+      <div class="palace-status ${enabled ? 'enabled' : 'disabled'}">
+        <div class="status-item">
+          <span class="status-label">GraphPalace</span>
+          <span class="status-value ${enabled ? 'on' : 'off'}">${enabled ? 'Enabled' : 'Disabled'}</span>
+        </div>
+      `;
+
+    if (enabled) {
+      html += `
+        <div class="status-item">
+          <span class="status-label">Wings</span>
+          <span class="status-value">${data.total_wings || 0}</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Rooms</span>
+          <span class="status-value">${data.total_rooms || 0}</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Drawers</span>
+          <span class="status-value">${data.total_drawers || 0}</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Entities</span>
+          <span class="status-value">${data.entity_count || 0}</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Relationships</span>
+          <span class="status-value">${data.relationship_count || 0}</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Discoveries</span>
+          <span class="status-value">${data.total_discoveries || 0}</span>
+        </div>
+      `;
+    }
+
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
+  function initSemanticSearch() {
+    const input = document.getElementById('semantic-search-input');
+    const btn = document.getElementById('semantic-search-btn');
+    const results = document.getElementById('semantic-search-results');
+
+    async function performSearch() {
+      const query = input.value.trim();
+      if (!query) return;
+
+      results.innerHTML = '<div class="search-loading">Searching…</div>';
+
+      try {
+        const response = await fetch('/api/connections/search', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query, k: 10 })
+        });
+        const data = await response.json();
+        renderSearchResults(data);
+      } catch (error) {
+        results.innerHTML = '<div class="search-error">Search failed</div>';
+      }
+    }
+
+    function renderSearchResults(data) {
+      if (!data.results || data.results.length === 0) {
+        results.innerHTML = '<div class="search-empty">No results found</div>';
+        return;
+      }
+
+      let html = '<div class="search-results-list">';
+      data.results.forEach(result => {
+        html += `
+          <div class="search-result-item">
+            <div class="result-header">
+              <span class="result-domain" style="color: ${DOMAIN_COLORS[result.domain] || '#7c4dff'}">
+                ${result.domain}
+              </span>
+              <span class="result-score">${(result.score * 100).toFixed(0)}%</span>
+            </div>
+            <div class="result-content">${result.content}</div>
+          </div>
+        `;
+      });
+      html += '</div>';
+
+      results.innerHTML = html;
+    }
+
+    btn.addEventListener('click', performSearch);
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') performSearch();
+    });
+  }
+
+# Add CSS to dashboard_template.html styles section (around line 200):
+  .network-viz { position: relative; width: 100%; height: 100%; min-height: 500px; }
+  .network-viz svg { display: block; }
+
+  .domain-list { padding: 8px; }
+  .domain-item { padding: 12px; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); }
+  .domain-name { font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; }
+  .domain-metrics { display: flex; flex-wrap: wrap; gap: 8px; }
+  .metric { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+
+  .discovery-list { max-height: 400px; overflow-y: auto; }
+  .discovery-item { padding: 12px; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); }
+  .discovery-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+  .discovery-domain { font-weight: 600; font-size: 0.8rem; }
+  .discovery-strength { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+  .discovery-content { font-size: 0.8rem; color: rgba(255,255,255,0.8); margin-bottom: 6px; }
+  .cross-domains { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+
+  .tunnel-list { max-height: 300px; overflow-y: auto; }
+  .tunnel-item { padding: 10px; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); }
+  .tunnel-path { font-size: 0.8rem; font-weight: 500; margin-bottom: 4px; }
+  .tunnel-info { display: flex; justify-content: space-between; font-size: 0.75rem; }
+  .tunnel-topic { color: rgba(255,255,255,0.7); }
+  .tunnel-confidence { color: rgba(255,255,255,0.5); }
+
+  .palace-status { padding: 8px; }
+  .palace-status.enabled { border-left: 3px solid #00e5ff; }
+  .palace-status.disabled { border-left: 3px solid rgba(255,255,255,0.2); }
+  .status-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .status-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+  .status-value { font-size: 0.75rem; font-weight: 500; }
+  .status-value.on { color: #00e5ff; }
+  .status-value.off { color: rgba(255,255,255,0.4); }
+
+  .search-container { display: flex; gap: 8px; margin-bottom: 12px; }
+  .search-input { flex: 1; padding: 10px 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: #fff; font-size: 0.85rem; }
+  .search-input::placeholder { color: rgba(255,255,255,0.4); }
+  .search-input:focus { outline: none; border-color: rgba(0,229,255,0.5); }
+  .search-btn { padding: 10px 16px; background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.3); border-radius: 6px; color: #00e5ff; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+  .search-btn:hover { background: rgba(0,229,255,0.2); border-color: rgba(0,229,255,0.5); }
+
+  .search-results { max-height: 300px; overflow-y: auto; }
+  .search-loading, .search-error, .search-empty { padding: 20px; text-align: center; color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+  .search-results-list { max-height: 300px; overflow-y: auto; }
+  .search-result-item { padding: 12px; margin-bottom: 8px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); cursor: pointer; transition: all 0.2s; }
+  .search-result-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(0,229,255,0.3); }
+  .result-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+  .result-domain { font-weight: 600; font-size: 0.8rem; }
+  .result-score { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+  .result-content { font-size: 0.8rem; color: rgba(255,255,255,0.8); }

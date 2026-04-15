@@ -1,0 +1,17 @@
+{
+  "wings": {},
+  "rooms": {},
+  "closets": {},
+  "drawers": {},
+  "entities": {},
+  "relationships": [],
+  "parent_map": {},
+  "edge_pheromones": {},
+  "edge_costs": {},
+  "similarity_edges": {},
+  "halls": {},
+  "tunnels": {},
+  "agents": {},
+  "next_id": 0,
+  "schema_initialized": true
+}

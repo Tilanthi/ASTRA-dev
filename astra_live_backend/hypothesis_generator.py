@@ -1,3 +1,17 @@
+# Copyright 2024-2026 Glenn J. White (The Open University / RAL Space)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """
 ASTRA Live — Hypothesis Generator
 Generates new hypotheses from discovery memory, not from a hardcoded list.
@@ -10,7 +24,7 @@ The generator creates three types of follow-ups:
 import time
 import numpy as np
 from typing import Optional, List, Dict, Tuple
-from .discovery_memory import DiscoveryRecord, DiscoveryMemory
+from .graphpalace_memory import DiscoveryRecord, GraphPalaceMemory as DiscoveryMemory
 
 
 # Template hypothesis descriptions by finding type and data source
@@ -110,7 +124,7 @@ class HypothesisGenerator:
         self._name_counter = {}  # avoid duplicate names
 
     # Domains the engine should actively explore (astrophysics-focused)
-    ALL_DOMAINS = ["Astrophysics", "Physics", "Cosmology"]
+    ALL_DOMAINS = ["Astrophysics", "Physics", "Cosmology", "Mathematics"]
 
     # Astrophysics sub-domain exploration templates
     _DOMAIN_EXPLORATION_TEMPLATES = {
@@ -143,6 +157,14 @@ class HypothesisGenerator:
             ("Lorentz Invariance Violation", "Physics",
              "Test Lorentz symmetry using high-energy astrophysical observations. "
              "Search for energy-dependent speed of light effects in GRB and AGN data."),
+        ],
+        "Mathematics": [
+            ("Number Theory Pattern Discovery", "Mathematics",
+             "Discover novel patterns in prime number distributions and arithmetic functions. "
+             "Test conjectures using computational verification against large datasets."),
+            ("Geometric Topology Invariants", "Mathematics",
+             "Explore topological invariants of manifolds using computational algebraic topology. "
+             "Search for relationships between Betti numbers and geometric properties."),
         ],
     }
 
@@ -351,18 +373,144 @@ class HypothesisGenerator:
         Check if a candidate hypothesis is semantically too similar to existing ones.
         Prevents the v1-v12 duplication problem by checking variable overlap + finding_type.
         """
+        c_name = candidate.get("name", "").lower()
         c_vars = set(candidate.get("variables", []))
         c_ft = candidate.get("finding_type", "")
         c_src = candidate.get("data_source", "")
 
         for existing in existing_hypotheses:
+            e_name = existing.get("name", "").lower()
             e_vars = set(existing.get("variables", []))
             e_ft = existing.get("finding_type", "")
             e_src = existing.get("data_source", "")
 
-            # Same finding type + same data source + >50% variable overlap = duplicate
-            if c_ft == e_ft and c_src == e_src and c_vars and e_vars:
-                overlap = len(c_vars & e_vars) / max(len(c_vars | e_vars), 1)
-                if overlap >= 0.5:
+            # CRITICAL FIX: Check for exact or near-exact name match FIRST
+            # This catches theoretical hypotheses that have empty variables
+            if c_name and e_name:
+                # Exact match
+                if c_name == e_name:
                     return True
+                # Contains match (handles cases where one is substring of another)
+                if c_name in e_name or e_name in c_name:
+                    return True
+
+            # For hypotheses with variables, use the original overlap check
+            # Same finding type + same data source + >50% variable overlap = duplicate
+            if c_ft == e_ft and c_src == e_src:
+                # Handle case where both have variables
+                if c_vars and e_vars:
+                    overlap = len(c_vars & e_vars) / max(len(c_vars | e_vars), 1)
+                    if overlap >= 0.5:
+                        return True
+                # Handle case where both have NO variables (exploration/theoretical)
+                elif not c_vars and not e_vars:
+                    # Same finding_type and data_source with no variables = likely duplicate
+                    return True
+
         return False
+
+    def generate_diversification_hypotheses(self, current_cycle: int,
+                                          existing_names: set,
+                                          max_new: int = 5) -> List[Dict]:
+        """
+        Generate hypotheses specifically for domain diversification.
+
+        When one domain dominates (>70% of discoveries), this method
+        generates hypotheses in underrepresented domains to balance
+        the exploration.
+
+        Returns list of {name, domain, description, confidence, source_discovery_id}
+        """
+        candidates = []
+
+        # Get domain distribution
+        hot = self.memory.get_hot_domains(top_n=10)
+        if not hot:
+            return candidates
+
+        dominant_domain = hot[0][0] if hot else "Astrophysics"
+        dominant_weight = hot[0][1] if hot else 0
+        total_weight = sum(w for _, w in hot) if hot else 1
+        concentration = dominant_weight / max(total_weight, 1e-6)
+
+        # Only generate diversification hypotheses if concentration > 70%
+        if concentration < 0.7:
+            return candidates
+
+        # Underrepresented domains
+        represented = {d for d, _ in hot}
+        underrepresented = [d for d in self.ALL_DOMAINS if d not in represented or d != dominant_domain]
+
+        # Enhanced templates for Physics and Cosmology
+        _PHYSICS_TEMPLATES = [
+            ("Fundamental Constants Variation Test", "Physics",
+             "Test whether fundamental constants (α, μ, me/mp) vary over cosmic time. "
+             "Use quasar absorption spectra to measure fine-structure constant at high redshift."),
+            ("Quantum Gravity Signatures", "Physics",
+             "Search for quantum gravity effects in high-energy astrophysical phenomena. "
+             "Test energy-dependent speed of light in GRB light curves and AGN variability."),
+            ("Dark Matter Direct Detection", "Physics",
+             "Analyze experimental constraints on WIMP dark matter cross-sections. "
+             "Compare null results with theoretical predictions and identify allowed parameter space."),
+            ("Neutrino Physics Constraints", "Physics",
+             "Use neutrino oscillation data from IceCube and Super-Kamiokande to test "
+             "mass hierarchy and CP violation in the lepton sector."),
+            ("Modified Gravity Tests", "Physics",
+             "Test deviations from General Relativity using strong-field gravity regimes. "
+             "Analyzing pulsar timing and binary black hole mergers for GR violations."),
+        ]
+
+        _COSMOLOGY_TEMPLATES = [
+            ("H0 Tension Resolution", "Cosmology",
+             "Investigate systematic effects in Hubble constant measurements. "
+             "Compare Cepheid, TRGB, and maser distance ladder methods for unaccounted systematics."),
+            ("Early Universe Inflation", "Cosmology",
+             "Test inflationary model predictions against CMB B-mode polarization data. "
+             "Constrain tensor-to-scalar ratio and inflation energy scale."),
+            ("Dark Energy Evolution", "Cosmology",
+             "Test time-varying dark energy equation of state w(a). "
+             "Use combined SN Ia, BAO, and cosmic chronometer data to break degeneracies."),
+            ("Primordial Non-Gaussianity", "Cosmology",
+             "Search for deviations from Gaussian initial conditions in CMB data. "
+             "Constrain f_NL parameters to test single-field vs multi-field inflation."),
+            ("Reionization History", "Cosmology",
+             "Use high-redshift quasar spectra and CMB optical depth to constrain "
+             "hydrogen reionization history and helium reionization timing."),
+        ]
+
+        # Combine templates
+        diversification_templates = []
+        for domain in underrepresented:
+            if domain == "Physics":
+                diversification_templates.extend(_PHYSICS_TEMPLATES)
+            elif domain == "Cosmology":
+                diversification_templates.extend(_COSMOLOGY_TEMPLATES)
+
+        # Generate candidates with high weight
+        for name, domain, desc in diversification_templates:
+            if name not in existing_names:
+                candidates.append({
+                    "name": name,
+                    "domain": domain,
+                    "description": desc,
+                    "confidence": 0.25,  # Higher confidence for exploratory
+                    "finding_type": "exploration",
+                    "data_source": "multi",
+                    "variables": [],
+                    "_weight": 1.0,  # Very high weight to override normal follow-ups
+                    "source_discovery_id": None,
+                })
+
+        # Sort and return top candidates
+        candidates.sort(key=lambda c: c.get("_weight", 0), reverse=True)
+        result = []
+        seen_names = set(existing_names)
+
+        for c in candidates[:max_new]:
+            if c["name"] in seen_names:
+                continue
+            c.pop("_weight", None)
+            result.append(c)
+            seen_names.add(c["name"])
+
+        return result

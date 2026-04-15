@@ -1,3 +1,17 @@
+# Copyright 2024-2026 Glenn J. White (The Open University / RAL Space)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """
 Kernel-Based Associative Memory (KAM) with Corrected Mathematics
 
@@ -1468,40 +1482,5 @@ def gaussian_process_predict(X_train: np.ndarray,
         'std': np.sqrt(np.maximum(y_var, 0)),
         'covariance': K_ss - v.T @ v
     }
-
-
-
-def direct_lingam(data: np.ndarray) -> Dict[str, Any]:
-    """
-    Apply DirectLiNGAM algorithm for causal discovery.
-
-    Uses non-Gaussianity to estimate causal order and structure.
-
-    Args:
-        data: Data matrix (n_samples x n_variables)
-
-    Returns:
-        Dictionary with causal matrix and causal order
-    """
-    import numpy as np
-
-    n_samples, n_vars = data.shape
-
-    # Standardize data
-    data = (data - np.mean(data, axis=0)) / (np.std(data, axis=0) + 1e-10)
-
-    # Initialize
-    causal_order = []
-    remaining_vars = list(range(n_vars))
-    B = np.zeros((n_vars, n_vars))  # Causal matrix
-
-    for _ in range(n_vars):
-        scores = []
-
-        for var in remaining_vars:
-            # Compute independence score using non-Gaussianity
-            test_vars = [v for v in remaining_vars if v != var]
-
-            if not test_vars:
                 scores.append((var, 0))
                 continue

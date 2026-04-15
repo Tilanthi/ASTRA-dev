@@ -1,3 +1,17 @@
+# Copyright 2024-2026 Glenn J. White (The Open University / RAL Space)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """
 ASTRA Live — Real Astronomical Data Fetcher
 Connects to live astronomical APIs for real scientific data.
@@ -15,6 +29,7 @@ import json
 import logging
 import numpy as np
 import requests
+import threading
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Any
 from functools import lru_cache
@@ -437,26 +452,33 @@ ARXIV_API = "http://export.arxiv.org/api/query"
 
 _arxiv_cache: Dict[str, Tuple[float, List[Dict]]] = {}
 _arxiv_last_call: float = 0
+_arxiv_cache_lock = threading.Lock()  # Protect arXiv cache from concurrent access
+_arxiv_rate_limit_lock = threading.Lock()  # Protect _arxiv_last_call updates
 
 
 def search_arxiv(query: str, max_results: int = 10) -> List[Dict]:
-    """Search arXiv for recent papers. Includes caching and rate limit handling."""
+    """Thread-safe arXiv search with caching and rate limit handling."""
     global _arxiv_last_call
 
-    # Check cache first
     cache_key = f"{query}:{max_results}"
-    if cache_key in _arxiv_cache:
-        ts, papers = _arxiv_cache[cache_key]
-        if time.time() - ts < 3600:  # 1 hour cache
-            return papers
 
-    # Rate limit: max 1 request per 3 seconds
-    elapsed = time.time() - _arxiv_last_call
-    if elapsed < 3.0:
-        time.sleep(3.0 - elapsed)
+    # Check cache first (with lock)
+    with _arxiv_cache_lock:
+        if cache_key in _arxiv_cache:
+            ts, papers = _arxiv_cache[cache_key]
+            if time.time() - ts < 3600:  # 1 hour cache
+                return papers
+            # Cache expired, remove it
+            del _arxiv_cache[cache_key]
+
+    # Rate limit: max 1 request per 3 seconds (with lock)
+    with _arxiv_rate_limit_lock:
+        elapsed = time.time() - _arxiv_last_call
+        if elapsed < 3.0:
+            time.sleep(3.0 - elapsed)
+        _arxiv_last_call = time.time()
 
     try:
-        _arxiv_last_call = time.time()
         r = requests.get(ARXIV_API, params={
             'search_query': query,
             'start': 0,
@@ -467,7 +489,8 @@ def search_arxiv(query: str, max_results: int = 10) -> List[Dict]:
 
         if r.status_code == 429:
             logger.warning("arXiv rate limited — returning cached or empty")
-            return _arxiv_cache.get(cache_key, (0, []))[1]
+            with _arxiv_cache_lock:
+                return _arxiv_cache.get(cache_key, (0, []))[1]
 
         r.raise_for_status()
 
@@ -504,11 +527,14 @@ def search_arxiv(query: str, max_results: int = 10) -> List[Dict]:
                     'authors': authors,
                 })
 
-        _arxiv_cache[cache_key] = (time.time(), papers)
+        # Update cache (with lock)
+        with _arxiv_cache_lock:
+            _arxiv_cache[cache_key] = (time.time(), papers)
         return papers
     except Exception as e:
         logger.error(f"arXiv search failed: {e}")
-        return _arxiv_cache.get(cache_key, (0, []))[1]
+        with _arxiv_cache_lock:
+            return _arxiv_cache.get(cache_key, (0, []))[1]
 
 
 def search_arxiv_astroph(topic: str, max_results: int = 3) -> List[Dict]:
@@ -521,27 +547,37 @@ def search_arxiv_astroph(topic: str, max_results: int = 3) -> List[Dict]:
 # ═══════════════════════════════════════════════════════════════
 
 class RealDataCache:
-    """Caches fetched data to avoid hammering APIs every cycle."""
+    """Thread-safe cache that avoids hammering APIs every cycle."""
 
     def __init__(self, ttl: float = 600.0):  # 10-minute TTL
         self._cache: Dict[str, Tuple[float, Any]] = {}
         self._ttl = ttl
+        self._lock = threading.RLock()  # Reentrant lock for nested calls
 
     def get(self, key: str) -> Optional[Any]:
-        if key in self._cache:
-            ts, data = self._cache[key]
-            if time.time() - ts < self._ttl:
-                return data
+        with self._lock:
+            if key in self._cache:
+                ts, data = self._cache[key]
+                if time.time() - ts < self._ttl:
+                    return data
+                # Cache expired, remove it
+                del self._cache[key]
         return None
 
     def set(self, key: str, data: Any):
-        self._cache[key] = (time.time(), data)
+        with self._lock:
+            self._cache[key] = (time.time(), data)
 
     def fetch_or_cache(self, key: str, fetcher, *args, **kwargs):
+        # First try to get from cache without holding lock during fetch
         cached = self.get(key)
         if cached is not None:
             return cached
+
+        # Cache miss — fetch data (outside lock to allow concurrent fetches of different keys)
         result = fetcher(*args, **kwargs)
+
+        # Store result in cache
         self.set(key, result)
         return result
 
