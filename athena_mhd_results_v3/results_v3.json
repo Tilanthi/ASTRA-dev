@@ -1,0 +1,22 @@
+{
+  "analysis_date": "2026-04-14",
+  "new_simulations": {
+    "M3_b0.75": {
+      "beta": 0.75,
+      "lam_W_tension": 2.0889,
+      "lam_W_IM92": 4.0,
+      "lam_W_iso_pressure": 7.6594
+    },
+    "M3_b0.5": {
+      "beta": 0.5,
+      "lam_W_tension": 1.7889,
+      "lam_W_IM92": 4.0,
+      "lam_W_iso_pressure": 8.9443
+    }
+  },
+  "beta_curve": {
+    "beta_exact_match": 0.7610008628127697,
+    "observed_lam_W": 2.1,
+    "observed_err": 0.1
+  }
+}
