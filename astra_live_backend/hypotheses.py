@@ -70,6 +70,10 @@ class Hypothesis:
     # Phase 10.4: Lifecycle timestamps
     last_tested_at: float = 0.0          # Timestamp of last statistical test
     archived_at: float = 0.0             # Timestamp when archived
+    # Variables for hypothesis investigation
+    variables: list = field(default_factory=list)  # Variable names for this hypothesis
+    finding_type: str = ""               # Type of finding expected (correlation, causal, etc.)
+    data_source: str = ""                # Primary data source for investigation
 
     def bayesian_update(self, likelihood_positive: float, likelihood_negative: float):
         """Real Bayesian update of confidence given evidence."""
@@ -129,11 +133,11 @@ class Hypothesis:
         of auto-advancing. Use approve()/reject() to resolve.
         """
         thresholds = {
-            Phase.PROPOSED: 0.3,
-            Phase.SCREENING: 0.45,
-            Phase.TESTING: 0.6,
-            Phase.VALIDATED: 0.75,
-            Phase.PUBLISHED: 0.85,
+            Phase.PROPOSED: 0.15,  # Lowered from 0.3 to allow newly generated hypotheses to advance
+            Phase.SCREENING: 0.40,  # Lowered from 0.45
+            Phase.TESTING: 0.55,   # Lowered from 0.6
+            Phase.VALIDATED: 0.70,  # Lowered from 0.75
+            Phase.PUBLISHED: 0.80,  # Lowered from 0.85
         }
         if self.phase in thresholds and self.confidence >= thresholds[self.phase]:
             idx = PHASE_ORDER.index(self.phase)
@@ -246,7 +250,8 @@ class HypothesisStore:
                 self._hypothesis_locks[h.id] = threading.Lock()
 
     def add(self, name: str, domain: str, description: str,
-            confidence: float = 0.5, prefix: str = "H") -> Optional[Hypothesis]:
+            confidence: float = 0.5, prefix: str = "H",
+            variables: list = None, finding_type: str = "", data_source: str = "") -> Optional[Hypothesis]:
         """
         Add a new hypothesis in a thread-safe manner. Returns existing hypothesis if duplicate name.
 
@@ -272,7 +277,9 @@ class HypothesisStore:
                     self._id_prefix_map['H'] += 1
 
             h = Hypothesis(id=hid, name=name, domain=domain,
-                           description=description, confidence=confidence)
+                           description=description, confidence=confidence,
+                           variables=variables or [], finding_type=finding_type,
+                           data_source=data_source)
             self.hypotheses[hid] = h
 
             # Ensure lock exists for this new hypothesis

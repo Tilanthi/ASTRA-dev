@@ -282,16 +282,19 @@ class GraphPalaceMemory:
 
         Compatible with DiscoveryMemory interface.
         """
-        # Deduplication check
+        # Deduplication check - only reject if SAME hypothesis
+        # Allow different hypotheses to record similar findings
         var_key = tuple(sorted(variables)) if variables else ()
-        dedup_key = (finding_type, data_source, var_key)
+        dedup_key = (finding_type, data_source, var_key, hypothesis_id)
 
         for disc in self.discoveries:
             disc_var_key = tuple(sorted(disc.variables)) if disc.variables else ()
+            # Only reject exact duplicates (same finding, same hypothesis)
             if (finding_type == disc.finding_type and
                 data_source == disc.data_source and
-                var_key == disc_var_key):
-                return None  # Duplicate
+                var_key == disc_var_key and
+                hypothesis_id == disc.hypothesis_id):
+                return None  # Duplicate - same hypothesis already recorded this finding
 
         # Calculate strength
         sig_score = max(0, 1 - p_value) if p_value <= 1 else 0

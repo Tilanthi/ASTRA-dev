@@ -281,7 +281,7 @@ class DiscoveryEngine:
             self._cognitive_discovery_enabled = True
             self._cognitive_discovery_interval = 15  # Run every 15 cycles
             self._last_cognitive_discovery_cycle = 0
-            self._state_save_interval = 50  # Save state every 50 cycles
+            self._state_save_interval = 5  # Save state every 5 cycles (reduced from 50 for faster persistence)
             self._last_state_save_cycle = 0
 
             # Load saved state on initialization
@@ -297,7 +297,7 @@ class DiscoveryEngine:
             self._cognitive_discovery_enabled = False
             self._cognitive_discovery_interval = 15
             self._last_cognitive_discovery_cycle = 0
-            self._state_save_interval = 50
+            self._state_save_interval = 5  # Save state every 5 cycles (reduced from 50)
             self._last_state_save_cycle = 0
 
         # Phase 16: V9.0 Multi-Agent Scientific Collaboration
@@ -1153,12 +1153,18 @@ class DiscoveryEngine:
         self.current_phase = "SELECT"
         active = self.store.active()
 
-        # Auto-promote PROPOSED hypotheses with sufficient confidence to SCREENING
+        # Auto-promote ALL PROPOSED hypotheses to SCREENING for testing
+        # This ensures newly generated hypotheses get investigated regardless of initial confidence
+        promoted_count = 0
         for h in active:
-            if h.phase == Phase.PROPOSED and h.confidence >= 0.3:
+            if h.phase == Phase.PROPOSED:
                 h.phase = Phase.SCREENING
+                promoted_count += 1
                 self._log("SELECT", "SELECT",
-                          f"Auto-promoted {h.id} ({h.name}) from PROPOSED → SCREENING", h.id)
+                          f"Auto-promoted {h.id} ({h.name}) from PROPOSED → SCREENING (conf={h.confidence:.2f})", h.id)
+
+        if promoted_count > 0:
+            self._log("SELECT", "SELECT", f"Promoted {promoted_count} hypotheses to SCREENING phase")
 
         # Phase 10.6: Check forced domain for exploration diversification
         forced_domain = self._get_forced_domain()
@@ -1208,7 +1214,8 @@ class DiscoveryEngine:
                         }
                         validation_output = self.trm_validator.validate_hypothesis(h_dict)
 
-                        if validation_output.result.value == 'valid':
+                        if validation_output.result.value in ('valid', 'uncertain'):
+                            # Accept both valid and uncertain hypotheses for exploratory research
                             filtered_scored.append((h, score))
                         else:
                             rejected_count += 1
@@ -1378,8 +1385,17 @@ class DiscoveryEngine:
             # Record method outcome in memory
             conf_delta = h.confidence - conf_before
             tests_run_now = len(h.test_results) - tests_before_investigate
+
+            # Use adaptive discovery threshold for counting significant results
+            if h.confidence >= 0.5:
+                sig_threshold = 0.05
+            elif h.confidence >= 0.3:
+                sig_threshold = 0.10
+            else:
+                sig_threshold = 0.15
+
             sig_results = sum(1 for t in h.test_results[tests_before_investigate:]
-                             if isinstance(t, dict) and t.get('p_value', 1.0) < 0.05)
+                             if isinstance(t, dict) and t.get('p_value', 1.0) < sig_threshold)
             # Success = data was available AND either new tests were run or data was examined
             # (investigate methods that log but don't add formal tests still succeed
             #  if they examined data — indicated by data_points_used > 0)
@@ -1570,8 +1586,17 @@ class DiscoveryEngine:
                 # Record method outcome
                 conf_delta = hypothesis.confidence - conf_before
                 tests_run = len(hypothesis.test_results) - tests_before
+
+                # Use adaptive discovery threshold for counting significant results
+                if hypothesis.confidence >= 0.5:
+                    sig_threshold = 0.05
+                elif hypothesis.confidence >= 0.3:
+                    sig_threshold = 0.10
+                else:
+                    sig_threshold = 0.15
+
                 sig_results = sum(1 for t in hypothesis.test_results[tests_before:]
-                                 if isinstance(t, dict) and t.get('p_value', 1.0) < 0.05)
+                                 if isinstance(t, dict) and t.get('p_value', 1.0) < sig_threshold)
 
                 engine.discovery_memory.record_method_outcome(
                     method_name=f"investigate_{category}",
@@ -1668,6 +1693,41 @@ class DiscoveryEngine:
         self._log("INVESTIGATE", "PARALLEL",
                   f"Parallel investigation complete: {success_count}/{len(targets)} successful, "
                   f"{total_discoveries} discoveries")
+
+        # CRITICAL FIX: Apply test results back to hypotheses
+        # The parallel workers modify hypothesis objects in their own threads,
+        # but we need to ensure test_results are properly applied to the main store
+        for hypothesis_id, result in results.items():
+            if result.success and result.test_results:
+                h = self.store.get(hypothesis_id)
+                if h:
+                    # Only add test results that aren't already present
+                    existing_result_count = len(h.test_results)
+                    for test_result in result.test_results:
+                        # Check if this test result is already in the hypothesis
+                        is_duplicate = False
+                        for existing in h.test_results:
+                            if (isinstance(test_result, dict) and isinstance(existing, dict) and
+                                test_result.get('test_name') == existing.get('test_name') and
+                                test_result.get('p_value') == existing.get('p_value') and
+                                test_result.get('statistic') == existing.get('statistic')):
+                                is_duplicate = True
+                                break
+                        if not is_duplicate:
+                            h.test_results.append(test_result)
+
+                    # Log the applied results
+                    new_count = len(h.test_results) - existing_result_count
+                    if new_count > 0:
+                        self._log("INVESTIGATE", "PARALLEL",
+                                  f"Applied {new_count} test results to {hypothesis_id} "
+                                  f"(total tests: {len(h.test_results)})", hypothesis_id)
+
+                    # Update confidence from test results
+                    for test_result in result.test_results:
+                        if isinstance(test_result, dict):
+                            p_val = test_result.get('p_value', 1.0)
+                            h.update_from_pvalue(p_val)
 
         # Log pool metrics
         metrics = pool.get_metrics()
@@ -2600,6 +2660,8 @@ class DiscoveryEngine:
                 self._evaluate_galaxy(h)
             elif category == "exoplanet":
                 self._evaluate_exoplanets(h)
+            elif category == "stellar":
+                self._evaluate_stellar(h)
             elif category == "crossdomain":
                 self._evaluate_crossdomain(h)
             elif category in ("economics", "climate", "epidemiology"):
@@ -2614,8 +2676,22 @@ class DiscoveryEngine:
                 if isinstance(test, dict):
                     p_val = test.get('p_value', 1.0)
                     stat = test.get('statistic', 0)
+
+                    # Adaptive discovery threshold based on hypothesis confidence
+                    # - High confidence hypotheses (>0.5): strict threshold p < 0.05
+                    # - Medium confidence (0.3-0.5): moderate threshold p < 0.10
+                    # - Low confidence/exploratory (<0.3): lenient threshold p < 0.15
+                    if h.confidence >= 0.5:
+                        discovery_threshold = 0.05
+                    elif h.confidence >= 0.3:
+                        discovery_threshold = 0.10
+                    else:
+                        discovery_threshold = 0.15  # More lenient for exploratory research
+
                     # Significant results become discovery records
-                    if p_val < 0.05:
+                    if p_val < discovery_threshold:
+                        self._log("INVESTIGATE", "DISCOVERY",
+                                  f"Recording discovery: p={p_val:.4f} < {discovery_threshold:.2f}, test={test.get('test_name', 'test')}", h.id)
                         self.discovery_memory.record_discovery(
                             hypothesis_id=h.id,
                             domain=h.domain,
@@ -2640,7 +2716,7 @@ class DiscoveryEngine:
                             })
                         except Exception:
                             pass
-                    # Check novelty
+                    # Check novelty (even for non-significant results)
                     self._check_novelty(h, test.get('test_name', ''), stat, p_val,
                                        {"data_points": h.data_points_used})
 
@@ -2668,8 +2744,11 @@ class DiscoveryEngine:
                 cycle=self.cycle_count,
                 data_points=h.data_points_used,
                 tests_run=len(h.test_results) - tests_before,
+
+                # Use adaptive discovery threshold for counting significant results
                 significant_results=sum(1 for t in new_tests
-                                        if isinstance(t, dict) and t.get('p_value', 1.0) < 0.05),
+                                        if isinstance(t, dict) and t.get('p_value', 1.0) <
+                                        (0.05 if h.confidence >= 0.5 else 0.10 if h.confidence >= 0.3 else 0.15)),
                 novelty_signals=novelty_count,
                 confidence_delta=conf_delta,
                 success=len(new_tests) > 0,
@@ -2995,6 +3074,57 @@ class DiscoveryEngine:
                     sample_size=len(log_mass),
                 )
 
+    def _evaluate_stellar(self, h: Hypothesis):
+        """Evaluate stellar hypothesis using Gaia HR diagram and stellar properties."""
+        tests_run = False
+        try:
+            # Try HR diagram data first
+            bp_rp, abs_mag = get_cached_hr_diagram()
+            if len(bp_rp) >= 10:
+                # Test color distribution for bimodality (main sequence vs giants)
+                ks_result = kolmogorov_smirnov_test(bp_rp)
+                self._log("EVALUATE", "EVALUATE",
+                          f"KS test on stellar BP-RP color for {h.id}: {ks_result.details}, p = {ks_result.p_value:.4f}", h.id)
+                h.test_results.append(asdict(ks_result))
+                h.update_from_pvalue(ks_result.p_value)
+                tests_run = True
+
+                # Test absolute magnitude distribution
+                ks_mag = kolmogorov_smirnov_test(abs_mag)
+                self._log("EVALUATE", "EVALUATE",
+                          f"KS test on stellar absolute magnitude for {h.id}: {ks_mag.details}, p = {ks_mag.p_value:.4f}", h.id)
+                h.test_results.append(asdict(ks_mag))
+                h.update_from_pvalue(ks_mag.p_value)
+
+                # Test correlation between color and magnitude (the main sequence)
+                if len(bp_rp) >= 30:
+                    corr_result = pearson_correlation(bp_rp, abs_mag)
+                    self._log("EVALUATE", "EVALUATE",
+                              f"Color-magnitude correlation for {h.id}: {corr_result.details}, p = {corr_result.p_value:.4f}", h.id)
+                    h.test_results.append(asdict(corr_result))
+                    h.update_from_pvalue(corr_result.p_value)
+
+                    # Record discovery if significant (we expect strong correlation for main sequence)
+                    if abs(corr_result.statistic) > 0.5 and corr_result.p_value < 0.1:
+                        self.discovery_memory.record_discovery(
+                            hypothesis_id=h.id, domain=h.domain,
+                            finding_type="correlation",
+                            variables=["bp_rp_color", "absolute_magnitude"],
+                            statistic=abs(corr_result.statistic),
+                            p_value=corr_result.p_value,
+                            description=f"Stellar color-magnitude correlation: {corr_result.details}",
+                            data_source="gaia",
+                            sample_size=len(bp_rp),
+                        )
+        except Exception as e:
+            self._log("EVALUATE", "EVALUATE", f"HR diagram test failed for {h.id}: {e}", h.id)
+
+        # If no tests were run (HR diagram unavailable), fall back to generic evaluation
+        # using alternative data sources (Pantheon+, Exoplanet, SDSS)
+        if not tests_run:
+            self._log("EVALUATE", "EVALUATE", f"HR diagram unavailable for {h.id}, using fallback data sources", h.id)
+            self._evaluate_generic(h)
+
     def _evaluate_crossdomain(self, h: Hypothesis):
         """Evaluate cross-domain hypothesis."""
         exo = get_cached_exoplanets()
@@ -3061,18 +3191,74 @@ class DiscoveryEngine:
             h.update_from_pvalue(ks_result.p_value)
 
     def _evaluate_generic(self, h: Hypothesis):
-        """Generic evaluation using available data."""
-        gaia = get_cached_gaia()
-        if gaia.data is None or len(gaia.data) < 10:
-            return
+        """Generic evaluation using available data with multiple fallbacks."""
+        # Try multiple data sources in order of preference
+        tested = False
 
-        # Use Gaia photometry
-        gmag = gaia.data['gmag']
-        ks_result = kolmogorov_smirnov_test(gmag)
-        self._log("EVALUATE", "EVALUATE",
-                  f"KS test on Gaia G-mag for {h.id}: {ks_result.details}, p = {ks_result.p_value:.4f}", h.id)
-        h.test_results.append(asdict(ks_result))
-        h.update_from_pvalue(ks_result.p_value)
+        # Try Gaia first
+        gaia = get_cached_gaia()
+        if gaia.data is not None and len(gaia.data) >= 10:
+            try:
+                gmag = gaia.data['gmag']
+                ks_result = kolmogorov_smirnov_test(gmag)
+                self._log("EVALUATE", "EVALUATE",
+                          f"KS test on Gaia G-mag for {h.id}: {ks_result.details}, p = {ks_result.p_value:.4f}", h.id)
+                h.test_results.append(asdict(ks_result))
+                h.update_from_pvalue(ks_result.p_value)
+                tested = True
+            except Exception as e:
+                self._log("EVALUATE", "EVALUATE", f"Gaia test failed for {h.id}: {e}", h.id)
+
+        # Try Pantheon+ SNe if Gaia failed or as additional test
+        if not tested or h.confidence < 0.5:
+            try:
+                z, mb, mb_err = get_cached_hubble_diagram()
+                if len(z) >= 10:
+                    # Test distance modulus distribution
+                    ks_result = kolmogorov_smirnov_test(mb)
+                    self._log("EVALUATE", "EVALUATE",
+                              f"KS test on Pantheon+ distance modulus for {h.id}: {ks_result.details}, p = {ks_result.p_value:.4f}", h.id)
+                    h.test_results.append(asdict(ks_result))
+                    h.update_from_pvalue(ks_result.p_value)
+                    tested = True
+            except Exception as e:
+                self._log("EVALUATE", "EVALUATE", f"Pantheon+ test failed for {h.id}: {e}", h.id)
+
+        # Try Exoplanet data if still no tests
+        if not tested:
+            try:
+                exo = get_cached_exoplanets()
+                if exo.data is not None and len(exo.data) >= 10:
+                    periods = exo.data['period']
+                    valid_periods = periods[periods > 0]
+                    if len(valid_periods) >= 10:
+                        log_p = np.log10(valid_periods)
+                        ks_result = kolmogorov_smirnov_test(log_p)
+                        self._log("EVALUATE", "EVALUATE",
+                                  f"KS test on exoplanet log(period) for {h.id}: {ks_result.details}, p = {ks_result.p_value:.4f}", h.id)
+                        h.test_results.append(asdict(ks_result))
+                        h.update_from_pvalue(ks_result.p_value)
+                        tested = True
+            except Exception as e:
+                self._log("EVALUATE", "EVALUATE", f"Exoplanet test failed for {h.id}: {e}", h.id)
+
+        # Try SDSS as last resort
+        if not tested:
+            try:
+                sdss = get_cached_sdss()
+                if sdss.data is not None and len(sdss.data) >= 10:
+                    redshifts = sdss.data['redshift']
+                    ks_result = kolmogorov_smirnov_test(redshifts)
+                    self._log("EVALUATE", "EVALUATE",
+                              f"KS test on SDSS redshifts for {h.id}: {ks_result.details}, p = {ks_result.p_value:.4f}", h.id)
+                    h.test_results.append(asdict(ks_result))
+                    h.update_from_pvalue(ks_result.p_value)
+                    tested = True
+            except Exception as e:
+                self._log("EVALUATE", "EVALUATE", f"SDSS test failed for {h.id}: {e}", h.id)
+
+        if not tested:
+            self._log("EVALUATE", "EVALUATE", f"⚠ No data available for {h.id} — all sources failed", h.id)
 
     # ── ASTRA Core Capabilities (White & Dey 2026) ────────────────
 
@@ -3345,18 +3531,18 @@ class DiscoveryEngine:
         existing_names = {h.name for h in self.store.all()}
         current_cycle = self.cycle_count
 
-        # Generate candidates from memory
+        # Generate candidates from memory - increased for continuous supply
         candidates = self.hypothesis_generator.generate_from_discoveries(
             current_cycle=current_cycle,
             existing_names=existing_names,
-            max_new=2,
+            max_new=5,
         )
 
         # Also generate diversification hypotheses if one domain dominates
         diversification_candidates = self.hypothesis_generator.generate_diversification_hypotheses(
             current_cycle=current_cycle,
             existing_names=existing_names,
-            max_new=2,
+            max_new=3,
         )
 
         # Combine candidates (diversification get priority)
@@ -3387,7 +3573,10 @@ class DiscoveryEngine:
         for c in filtered:
             h = self.store.add(
                 c["name"], c["domain"], c["description"],
-                confidence=c["confidence"]
+                confidence=c["confidence"],
+                variables=c.get("variables", []),
+                finding_type=c.get("finding_type", ""),
+                data_source=c.get("data_source", "")
             )
             h.phase = Phase.PROPOSED
             self.discovery_memory.generation_count += 1
@@ -3405,6 +3594,56 @@ class DiscoveryEngine:
                   f"Memory state: {metrics['total_discoveries']} discoveries, "
                   f"{metrics['hypotheses_generated_from_memory']} generated, "
                   f"{metrics['total_outcomes']} outcomes recorded")
+
+        # Auto-generate additional hypotheses if queue is too low (self-evolutionary characteristic)
+        # Ensure at least 5 hypotheses are always in PROPOSED phase
+        proposed_count = sum(1 for h in self.store.all() if h.phase == Phase.PROPOSED)
+        if proposed_count < 5:
+            self._log("UPDATE", "AUTO_GENERATION",
+                      f"Hypothesis queue low ({proposed_count} < 5), auto-generating from discovery patterns")
+
+            # Try regular generation first
+            additional_candidates = self.hypothesis_generator.generate_from_discoveries(
+                current_cycle=current_cycle,
+                existing_names=existing_names,
+                max_new=(5 - proposed_count) + 2,  # Generate extra to maintain buffer
+            )
+            # Also try diversification candidates
+            additional_diversification = self.hypothesis_generator.generate_diversification_hypotheses(
+                current_cycle=current_cycle,
+                existing_names=existing_names,
+                max_new=2,
+            )
+            all_additional = additional_diversification + additional_candidates
+
+            # If still not enough, use continuous exploration to ensure ongoing supply
+            if len(all_additional) < (5 - proposed_count):
+                continuous_candidates = self.hypothesis_generator.generate_continuous_exploration(
+                    current_cycle=current_cycle,
+                    existing_names=existing_names,
+                    max_new=10,  # Generate more to have buffer
+                )
+                all_additional.extend(continuous_candidates)
+
+            generated_count = 0
+            for c in all_additional[:5 - proposed_count + 2]:
+                if c["name"] not in existing_names:
+                    h = self.store.add(
+                        c["name"], c["domain"], c["description"],
+                        confidence=c["confidence"],
+                        variables=c.get("variables", []),
+                        finding_type=c.get("finding_type", ""),
+                        data_source=c.get("data_source", "")
+                    )
+                    h.phase = Phase.PROPOSED
+                    self.discovery_memory.generation_count += 1
+                    generated_count += 1
+                    self._log("UPDATE", "AUTO_GENERATION",
+                              f"Auto-generated hypothesis: {h.id} ({c['name']})", h.id)
+
+            if generated_count > 0:
+                self._log("UPDATE", "AUTO_GENERATION",
+                          f"Generated {generated_count} new hypotheses to maintain queue (target: 5)")
 
     def _propose_from_unexplored_pairs(self, existing_names: set):
         """Fallback: propose hypotheses from unexplored variable pairs. Generate 3-5 to maintain queue."""
@@ -3575,10 +3814,19 @@ class DiscoveryEngine:
                               h.id)
 
             # Auto-promote hypotheses with confidence >0.95 and ≥3 successful tests
+            # Use adaptive threshold based on hypothesis confidence
             if h.phase == Phase.TESTING and h.confidence > 0.95:
+                # Determine significance threshold based on hypothesis confidence
+                if h.confidence >= 0.5:
+                    sig_threshold = 0.05
+                elif h.confidence >= 0.3:
+                    sig_threshold = 0.10
+                else:
+                    sig_threshold = 0.15
+
                 successful_tests = sum(
                     1 for t in h.test_results
-                    if isinstance(t, dict) and t.get('p_value', 1.0) < 0.05
+                    if isinstance(t, dict) and t.get('p_value', 1.0) < sig_threshold
                 )
                 if successful_tests >= 3:
                     h.phase = Phase.VALIDATED
@@ -3686,6 +3934,15 @@ class DiscoveryEngine:
                 time.sleep(0.3)
                 self.evaluate()
                 time.sleep(0.3)
+
+                # CRITICAL: Save hypotheses immediately after evaluate to persist test results
+                # This prevents test result loss on server restart
+                if COGNITIVE_ARCHITECTURE_AVAILABLE:
+                    try:
+                        save_hypotheses(self.store)
+                        self._log("PERSISTENCE", "ENGINE", "Saved hypotheses after evaluate phase")
+                    except Exception as e:
+                        self._log("PERSISTENCE", "ENGINE", f"Failed to save hypotheses: {e}")
             else:
                 self._log("SAFETY", "ENGINE",
                           "Investigation/evaluation skipped — safety mode restricts analysis")

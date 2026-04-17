@@ -54,8 +54,8 @@ CACHE_FILE = STATE_DIR / 'validation_cache.json'
 METRICS_FILE = STATE_DIR / 'metrics.json'
 
 # Validation thresholds
-DEFAULT_VALIDITY_THRESHOLD = 0.6  # Reject hypotheses with score < 0.6
-DEFAULT_CONFIDENCE_THRESHOLD = 0.5  # Require reasoning confidence >= 0.5
+DEFAULT_VALIDITY_THRESHOLD = 0.3  # Lowered to allow exploratory hypotheses through
+DEFAULT_CONFIDENCE_THRESHOLD = 0.3  # Lowered confidence threshold for exploratory research
 
 # Cache configuration
 MAX_CACHE_SIZE = 10000

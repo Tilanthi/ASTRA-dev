@@ -112,12 +112,18 @@ def load_hypotheses(store):
     for h_dict in seen_names.values():
         try:
             from .hypotheses import Hypothesis, Phase
+            from dataclasses import fields
 
             # Convert phase string back to enum
             if isinstance(h_dict.get('phase'), str):
                 h_dict['phase'] = Phase(h_dict['phase'])
 
-            hypothesis = Hypothesis(**h_dict)
+            # Filter out fields that don't exist in Hypothesis class
+            # This prevents errors when loading hypotheses with old/extra fields
+            valid_fields = {f.name for f in fields(Hypothesis)}
+            filtered_h_dict = {k: v for k, v in h_dict.items() if k in valid_fields}
+
+            hypothesis = Hypothesis(**filtered_h_dict)
             store.hypotheses[hypothesis.id] = hypothesis
             loaded_count += 1
         except Exception as e:

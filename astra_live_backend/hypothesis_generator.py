@@ -108,6 +108,42 @@ _GENERIC_TEMPLATES = [
      "Test theoretical predictions against observational constraints."),
 ]
 
+# Continuous exploration templates for self-evolutionary hypothesis generation
+# These are used when the system needs to maintain a continuous stream of new hypotheses
+_CONTINUOUS_EXPLORATION_TEMPLATES = [
+    # Astrophysics exploratory hypotheses
+    ("{source} {v1}-{v2} Cross-Correlation Analysis", "Astrophysics",
+     "Explore potential cross-correlation between {v1} and {v2} in {source} data. "
+     "Novel relationship investigation with multi-scale analysis techniques."),
+    ("{source} {v1} Temporal Evolution Study", "Astrophysics",
+     "Investigate temporal evolution of {v1} properties in {source} dataset. "
+     "Time-series analysis + trend detection + correlation with external variables."),
+    ("{source} {v1} Phase-Space Analysis", "Astrophysics",
+     "Analyze {v1} distribution in multi-dimensional phase space using {source} data. "
+     "Clustering analysis + manifold learning + density estimation techniques."),
+    ("{source} {v1}-{v2} Non-Linear Relationship Test", "Astrophysics",
+     "Test for non-linear relationships between {v1} and {v2} in {source} data. "
+     "Polynomial regression + spline fitting + non-parametric correlation tests."),
+    ("{source} {v1} Subgroup Discovery", "Astrophysics",
+     "Discover meaningful subgroups within {v1} distribution using {source} data. "
+     "Unsupervised clustering + feature importance analysis + subgroup characterization."),
+    ("{source} Multi-Variable {v1} Model", "Astrophysics",
+     "Build multi-variable predictive model for {v1} using {source} dataset. "
+     "Feature selection + model comparison + validation with held-out data."),
+    ("{source} {v1} Outlier Detection", "Astrophysics",
+     "Identify and characterize outliers in {v1} distribution from {source} data. "
+     "Statistical outlier detection + follow-up investigation + physical interpretation."),
+    ("{source} {v1}-{v2} Conditional Analysis", "Astrophysics",
+     "Analyze {v1}-{v2} relationship conditional on other variables in {source} data. "
+     "Stratified analysis + interaction effects + confounder adjustment."),
+    ("{source} {v1} Distribution Fitting", "Astrophysics",
+     "Fit theoretical distributions to {v1} data from {source} dataset. "
+     "Goodness-of-fit tests + parameter estimation + model comparison."),
+    ("{source} {v1}-{v2} Causality Investigation", "Astrophysics",
+     "Investigate potential causal relationship between {v1} and {v2} in {source} data. "
+     "Causal inference algorithms + sensitivity analysis + robustness checks."),
+]
+
 
 class HypothesisGenerator:
     """
@@ -213,7 +249,7 @@ class HypothesisGenerator:
         # 1. Direct follow-ups from strong discoveries (60% weight)
         # But skip the dominant domain if forced to diversify
         strong = self.memory.get_strong_discoveries(
-            min_strength=0.4, max_age_cycles=100, current_cycle=current_cycle)
+            min_strength=0.4, limit=20)
         for disc in strong[:5]:
             if force_diversify and disc.domain == dominant_domain:
                 continue  # Skip dominant domain when diversifying
@@ -502,6 +538,199 @@ class HypothesisGenerator:
                 })
 
         # Sort and return top candidates
+        candidates.sort(key=lambda c: c.get("_weight", 0), reverse=True)
+        result = []
+        seen_names = set(existing_names)
+
+        for c in candidates[:max_new]:
+            if c["name"] in seen_names:
+                continue
+            c.pop("_weight", None)
+            result.append(c)
+            seen_names.add(c["name"])
+
+        return result
+
+    def generate_continuous_exploration(self, current_cycle: int,
+                                       existing_names: set,
+                                       max_new: int = 10) -> List[Dict]:
+        """
+        Generate hypotheses for continuous exploration - ensures ongoing hypothesis supply.
+
+        This method is designed to maintain a continuous stream of new hypotheses even when
+        discovery patterns are exhausted. It uses exploratory templates and creative combinations
+        to ensure the system always has new hypotheses to investigate.
+
+        Returns list of {name, domain, description, confidence, source_discovery_id}
+        """
+        candidates = []
+
+        # Get recent discoveries to inspire exploration
+        strong_discoveries = self.memory.get_strong_discoveries(min_strength=0.3, limit=10)
+
+        # Get all data sources with available variables
+        data_sources = ["sdss", "exoplanets", "gaia", "pantheon", "ligo", "cmb"]
+
+        import random
+
+        # Strategy 1: Generate from unexplored variable pairs
+        for source in data_sources:
+            if len(candidates) >= max_new:
+                break
+
+            # Get unexplored variable pairs for this source
+            untested = self.memory.get_unexplored_variable_pairs(source)
+            if not untested:
+                continue
+
+            # Use continuous exploration templates with variable pairs
+            for v1, v2 in untested[:5]:  # Take first 5 untested pairs
+                if len(candidates) >= max_new:
+                    break
+
+                # Select a template randomly
+                template_idx = random.randint(0, len(_CONTINUOUS_EXPLORATION_TEMPLATES) - 1)
+                name_t, domain_t, desc_t = _CONTINUOUS_EXPLORATION_TEMPLATES[template_idx]
+
+                # Format the template
+                source_labels = {
+                    "sdss": "SDSS", "exoplanets": "NASA Exoplanet", "gaia": "Gaia",
+                    "pantheon": "Pantheon+", "ligo": "LIGO", "cmb": "Planck CMB"
+                }
+                source_label = source_labels.get(source, source.upper())
+
+                name = name_t.format(source=source_label, v1=v1.title(), v2=v2.title())
+                desc = desc_t.format(source=source_label, v1=v1, v2=v2,
+                                    desc_context=f"{source_label} dataset")
+
+                # Check for exact name duplicates
+                if name in existing_names:
+                    # Try adding a version number
+                    for i in range(2, 5):
+                        versioned_name = f"{name} (v{i})"
+                        if versioned_name not in existing_names:
+                            name = versioned_name
+                            break
+                    else:
+                        continue  # Skip if all versions exist
+
+                candidates.append({
+                    "name": name,
+                    "domain": domain_t,
+                    "description": desc,
+                    "confidence": 0.15,  # Lower confidence for exploratory
+                    "finding_type": "exploration",
+                    "data_source": source,
+                    "variables": [v1, v2],
+                    "_weight": 0.5,  # Medium weight
+                    "source_discovery_id": None,
+                })
+
+        # Strategy 2: If still not enough, generate from existing discoveries with new angles
+        if len(candidates) < max_new and strong_discoveries:
+            for disc in strong_discoveries[:5]:
+                if len(candidates) >= max_new:
+                    break
+
+                # Generate creative follow-ups with new analysis angles
+                analysis_angles = [
+                    "Multi-Scale Analysis", "Cross-Correlation Study", "Phase-Space Exploration",
+                    "Non-Linear Dynamics Test", "Information-Theoretic Analysis",
+                    "Machine Learning Classification", "Causal Network Reconstruction",
+                    "Temporal Evolution Tracking", "Subgroup Discovery", "Ensemble Modeling"
+                ]
+
+                angle = random.choice(analysis_angles)
+                source_labels = {
+                    "hubble": "Pantheon+", "galaxy": "SDSS", "exoplanet": "NASA Exoplanet",
+                    "stellar": "Gaia", "star_formation": "SDSS", "sdss": "SDSS",
+                    "exoplanets": "NASA Exoplanet", "gaia": "Gaia", "pantheon": "Pantheon+",
+                }
+                source_label = source_labels.get(disc.data_source, disc.data_source.upper())
+
+                v1 = disc.variables[0] if disc.variables else "pattern"
+                v2 = disc.variables[1] if len(disc.variables) > 1 else "property"
+
+                name = f"{source_label} {v1.title()}-{v2.title()} {angle}"
+                desc = (f"Apply {angle.lower()} to investigate {v1}-{v2} relationship in {source_label} data. "
+                       f"Novel analytical approach to {disc.finding_type} pattern: {disc.description[:80]}...")
+
+                # Check for duplicates
+                if name in existing_names:
+                    continue
+
+                candidates.append({
+                    "name": name,
+                    "domain": disc.domain,
+                    "description": desc,
+                    "confidence": 0.12,  # Even lower for creative exploration
+                    "finding_type": "exploration",
+                    "data_source": disc.data_source,
+                    "variables": disc.variables,
+                    "_weight": 0.3,  # Lower weight for creative exploration
+                    "source_discovery_id": disc.id,
+                })
+
+        # Strategy 3: Generate domain-specific exploratory hypotheses
+        if len(candidates) < max_new:
+            exploratory_templates = [
+                ("{source} Deep Field Survey Analysis", "Astrophysics",
+                 "Conduct deep analysis of {source} survey data to detect faint, rare objects. "
+                 "Stacking analysis + sensitivity limits + completeness correction."),
+                ("{source} Variability Study", "Astrophysics",
+                 "Characterize variability properties in {source} time-domain data. "
+                 "Period detection + variability classification + physical interpretation."),
+                ("{source} Systematic Error Analysis", "Astrophysics",
+                 "Investigate systematic errors and biases in {source} measurements. "
+                 "Calibration analysis + uncertainty quantification + mitigation strategies."),
+                ("{source} Population Synthesis Modeling", "Astrophysics",
+                 "Build population synthesis models to explain {source} observations. "
+                 "Bayesian inference + model comparison + parameter estimation."),
+                ("{source} Machine Learning Classification", "Astrophysics",
+                 "Apply machine learning algorithms to classify objects in {source} dataset. "
+                 "Feature engineering + model training + validation + interpretation."),
+            ]
+
+            for source in data_sources[:3]:  # Limit to first 3 sources
+                if len(candidates) >= max_new:
+                    break
+
+                source_labels = {
+                    "sdss": "SDSS", "exoplanets": "NASA Exoplanet", "gaia": "Gaia",
+                    "pantheon": "Pantheon+", "ligo": "LIGO", "cmb": "Planck CMB"
+                }
+                source_label = source_labels.get(source, source.upper())
+
+                template_idx = random.randint(0, len(exploratory_templates) - 1)
+                name_t, domain_t, desc_t = exploratory_templates[template_idx]
+
+                name = name_t.format(source=source_label)
+                desc = desc_t.format(source=source_label)
+
+                # Check for duplicates
+                if name in existing_names:
+                    # Try adding a version number
+                    for i in range(2, 5):
+                        versioned_name = f"{name} (v{i})"
+                        if versioned_name not in existing_names:
+                            name = versioned_name
+                            break
+                    else:
+                        continue
+
+                candidates.append({
+                    "name": name,
+                    "domain": domain_t,
+                    "description": desc,
+                    "confidence": 0.10,  # Lowest for general exploration
+                    "finding_type": "exploration",
+                    "data_source": source,
+                    "variables": [],
+                    "_weight": 0.2,  # Lowest weight
+                    "source_discovery_id": None,
+                })
+
+        # Sort by weight and return top candidates
         candidates.sort(key=lambda c: c.get("_weight", 0), reverse=True)
         result = []
         seen_names = set(existing_names)

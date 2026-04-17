@@ -1095,17 +1095,39 @@ def api_exploration():
 @app.post("/api/discovery-memory/generate")
 def api_generate_hypotheses():
     """Force hypothesis generation from discovery memory."""
+    from astra_live_backend.hypotheses import Phase
     existing_names = {h.name for h in engine.store.all()}
     candidates = engine.hypothesis_generator.generate_from_discoveries(
         current_cycle=engine.cycle_count,
         existing_names=existing_names,
+        max_new=5,
+    )
+    # Also generate diversification hypotheses if one domain dominates
+    diversification_candidates = engine.hypothesis_generator.generate_diversification_hypotheses(
+        current_cycle=engine.cycle_count,
+        existing_names=existing_names,
         max_new=3,
     )
+    # Combine candidates (diversification get priority)
+    all_candidates = diversification_candidates + candidates
+
+    # If regular generation doesn't produce enough results, use continuous exploration
+    if len(all_candidates) < 3:
+        continuous_candidates = engine.hypothesis_generator.generate_continuous_exploration(
+            current_cycle=engine.cycle_count,
+            existing_names=existing_names,
+            max_new=10,
+        )
+        all_candidates.extend(continuous_candidates)
+
     generated = []
-    for c in candidates:
+    for c in all_candidates:
         h = engine.store.add(c["name"], c["domain"], c["description"],
-                             confidence=c["confidence"])
-        h.phase = engine.hypotheses.Phase.PROPOSED
+                             confidence=c["confidence"],
+                             variables=c.get("variables", []),
+                             finding_type=c.get("finding_type", ""),
+                             data_source=c.get("data_source", ""))
+        h.phase = Phase.PROPOSED
         engine.discovery_memory.generation_count += 1
         generated.append({"id": h.id, "name": c["name"], "source": c.get("source_discovery_id")})
     return {"generated": generated, "total_memory_discoveries": len(engine.discovery_memory.discoveries)}
