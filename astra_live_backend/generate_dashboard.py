@@ -26,7 +26,7 @@ import requests
 from pathlib import Path
 
 API_BASE = "http://localhost:8787"
-OUTPUT_PATH = "astra-live/index.html"
+OUTPUT_PATH = "astra_core/dashboard/index.html"
 
 
 def _ensure_output_dir():

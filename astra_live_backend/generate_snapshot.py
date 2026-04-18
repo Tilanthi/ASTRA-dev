@@ -22,8 +22,8 @@ import time
 import requests
 
 API_BASE = "http://localhost:8787"
-DASHBOARD_PATH = "astra-live/index.html"
-SNAPSHOT_PATH = "astra-live/index.html"
+DASHBOARD_PATH = "astra_core/dashboard/index.html"
+SNAPSHOT_PATH = "astra_core/dashboard/index.html"
 
 
 def fetch_all_data():

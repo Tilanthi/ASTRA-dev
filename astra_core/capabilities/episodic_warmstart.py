@@ -1246,5 +1246,3 @@ def update_confidence_based_on_feedback(current_confidence: float,
     new_confidence = max(0.0, min(1.0, new_confidence))
 
     return new_confidence
-                scores.append((var, 0))
-                continue

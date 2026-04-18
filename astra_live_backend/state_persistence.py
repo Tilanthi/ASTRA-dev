@@ -29,7 +29,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 from dataclasses import asdict
 
-STATE_DIR = Path(__file__).parent.parent / "astra_state"
+STATE_DIR = Path(__file__).parent.parent / "astra_core" / "data" / "state"
 STATE_FILE = STATE_DIR / "engine_state.json"
 HYPOTHESES_FILE = STATE_DIR / "hypotheses.json"
 COGNITIVE_STATE_FILE = STATE_DIR / "cognitive_state.json"

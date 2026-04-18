@@ -18,7 +18,7 @@ from pathlib import Path
 from typing import Dict, Any, List
 
 class AuditLogger:
-    def __init__(self, log_dir: str = "astra_state/logs/audit"):
+    def __init__(self, log_dir: str = "astra_core/data/logs/audit"):
         self.log_dir = Path(log_dir)
         self.log_dir.mkdir(parents=True, exist_ok=True)
         # One file per day to prevent massive logs

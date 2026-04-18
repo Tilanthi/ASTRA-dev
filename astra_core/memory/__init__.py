@@ -119,7 +119,7 @@ except ImportError:
 # Legacy Memory Components (V36-V39)
 try:
     from .mork_ontology import MORKOntology, OntologyNode, SemanticRelation, SemanticRelationType
-    from .memory_graph import MemoryGraph, NodeType, EdgeType
+    from .memory_graph import MemoryGraph, GraphNode, GraphEdge, NodeType, EdgeType
     from .milvus_store import MilvusVectorStore, VectorBackend
     from .mork_expanded import ExpandedMORK, MORKConcept, ScientificDomain
     from .rrf_fusion import ThreeWayRRF, RankingConfig
@@ -204,6 +204,8 @@ if _LEGACY_MEMORY_AVAILABLE:
         "SemanticRelation",
         "SemanticRelationType",
         "MemoryGraph",
+        "GraphNode",
+        "GraphEdge",
         "NodeType",
         "EdgeType",
         "MilvusVectorStore",

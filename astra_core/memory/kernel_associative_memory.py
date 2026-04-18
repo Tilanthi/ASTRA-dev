@@ -1482,5 +1482,3 @@ def gaussian_process_predict(X_train: np.ndarray,
         'std': np.sqrt(np.maximum(y_var, 0)),
         'covariance': K_ss - v.T @ v
     }
-                scores.append((var, 0))
-                continue

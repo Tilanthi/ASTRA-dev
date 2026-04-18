@@ -31,7 +31,7 @@ from pathlib import Path
 
 # Database path
 DB_PATH = "astra_discoveries.db"
-HTML_PATH = "astra-live/index.html"
+HTML_PATH = "astra_core/dashboard/index.html"
 
 
 def get_verified_discoveries():

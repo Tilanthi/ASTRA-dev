@@ -54,6 +54,7 @@ import threading
 import logging
 
 _snap_logger = logging.getLogger(__name__ + ".snapshot")
+_connections_logger = logging.getLogger(__name__ + ".connections")
 
 _snapshot_lock = threading.Lock()
 _snapshot_status = {
@@ -557,7 +558,7 @@ def _get_safety_action(name: str):
 
 # ── Serve the Dashboard ──────────────────────────────────────────
 
-DASHBOARD_DIR = Path("astra-live")
+DASHBOARD_DIR = Path("astra_core/dashboard")
 
 
 async def _ensure_dashboard_exists():
@@ -1135,7 +1136,7 @@ def api_generate_hypotheses():
 
 # ── Serve the Dashboard ──────────────────────────────────────────
 
-DASHBOARD_DIR = Path("astra-live")
+DASHBOARD_DIR = Path("astra_core/dashboard")
 
 
 async def _ensure_dashboard_exists():
@@ -3074,7 +3075,7 @@ async def get_connections_domains():
     Shows data sources as domains for better granularity.
 
     Returns:
-        - domains: List of domain statistics
+        - domains: List of domain statistics (all available)
     """
     try:
         if not hasattr(engine, 'discovery_memory'):
@@ -3117,7 +3118,7 @@ async def get_connections_domains():
                 except Exception:
                     pass
 
-            # Only include domains with at least 1 discovery
+            # Include all domains with discoveries
             if len(discoveries) > 0:
                 domains.append({
                     "name": domain,
@@ -3131,20 +3132,23 @@ async def get_connections_domains():
         # Sort by discovery count (most active first)
         domains.sort(key=lambda x: -x["discoveries"])
 
-        return {"domains": domains[:15]}  # Top 15 domains
+        # Log for debugging
+        _connections_logger.info(f"Domain statistics: returning {len(domains)} domains with {sum(d['discoveries'] for d in domains)} total discoveries")
+
+        return {"domains": domains}  # Return ALL domains, not limited
 
     except Exception as e:
-        logger.error(f"Error getting domain statistics: {e}")
+        _connections_logger.error(f"Error getting domain statistics: {e}")
         return {"domains": [], "error": str(e)}
 
 
 @app.get("/api/connections/cross-domain")
 async def get_cross_domain_discoveries():
     """
-    Get discoveries that span multiple domains with diversity filtering.
+    Get discoveries that span multiple domains with aggressive deduplication.
 
     Returns:
-        - discoveries: List of cross-domain discoveries with improved diversity
+        - discoveries: List of cross-domain discoveries with maximum diversity
     """
     try:
         if not hasattr(engine, 'discovery_memory'):
@@ -3154,7 +3158,9 @@ async def get_cross_domain_discoveries():
 
         # Find discoveries with cross-domain potential
         cross_discoveries = []
-        seen_discovery_types = {}  # Track discovery types to ensure diversity
+
+        # Track exact combinations to eliminate duplicates
+        seen_combinations = set()
 
         for disc in memory.discoveries:
             if disc.strength > 0.6:  # Only strong discoveries
@@ -3170,18 +3176,20 @@ async def get_cross_domain_discoveries():
                                 cross_domains.append(other_disc.domain)
 
                 if cross_domains:
-                    # Create discovery type key for diversity tracking
-                    # Combine finding type, description pattern, and variable count
-                    discovery_type = (
+                    # Create unique combination key for exact deduplication
+                    # Sort variables for consistent key
+                    vars_sorted = tuple(sorted(disc.variables))
+                    combo_key = (
+                        disc.data_source or disc.domain,
                         disc.finding_type,
-                        disc.description.split(':')[0] if ':' in disc.description else disc.description[:30],
-                        len(disc.variables)
+                        vars_sorted,
+                        # Use first 50 chars of description for similarity matching
+                        disc.description[:50] if len(disc.description) > 50 else disc.description
                     )
 
-                    # Limit number of discoveries per type to ensure diversity
-                    type_count = seen_discovery_types.get(discovery_type, 0)
-                    if type_count < 3:  # Max 3 per discovery type
-                        seen_discovery_types[discovery_type] = type_count + 1
+                    # Only add if we haven't seen this exact combination
+                    if combo_key not in seen_combinations:
+                        seen_combinations.add(combo_key)
 
                         cross_discoveries.append({
                             "id": disc.id,
@@ -3192,28 +3200,21 @@ async def get_cross_domain_discoveries():
                             "strength": disc.strength,
                             "variables": disc.variables,
                             "cross_domains": cross_domains[:3],  # Top 3
-                            "unique_id": f"{disc.id}_{disc.finding_type}_{len(disc.variables)}"  # For deduplication
+                            "timestamp": getattr(disc, 'timestamp', 0)
                         })
 
-        # Sort by strength and data source diversity
-        cross_discoveries.sort(key=lambda x: (
-            -x["strength"],  # Higher strength first
-            x["data_source"]  # Then by data source for diversity
-        ))
+        # Sort by strength (highest first) and limit
+        cross_discoveries.sort(key=lambda x: -x["strength"])
 
-        # Final deduplication - ensure unique entries only
-        seen_unique = set()
-        diverse_discoveries = []
-        for disc in cross_discoveries:
-            unique_key = disc["unique_id"]
-            if unique_key not in seen_unique:
-                seen_unique.add(unique_key)
-                diverse_discoveries.append(disc)
+        # Limit to 10 most diverse, highest-strength discoveries
+        diverse_discoveries = cross_discoveries[:10]
 
-        return {"discoveries": diverse_discoveries[:20]}
+        _connections_logger.info(f"Cross-domain discoveries: returning {len(diverse_discoveries)} out of {len(cross_discoveries)} total")
+
+        return {"discoveries": diverse_discoveries}
 
     except Exception as e:
-        logger.error(f"Error getting cross-domain discoveries: {e}")
+        _connections_logger.error(f"Error getting cross-domain discoveries: {e}")
         return {"discoveries": [], "error": str(e)}
 
 
