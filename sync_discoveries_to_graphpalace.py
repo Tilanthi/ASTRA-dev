@@ -56,10 +56,14 @@ def sync_discoveries():
     for discovery in discoveries:
         # Create discovery node
         discovery_id = discovery.get('id', f'discovery_{discovery["timestamp"]}')
+
+        # Use data_source as domain for better granularity, fallback to domain
+        domain = discovery.get('data_source') or discovery.get('domain', 'unknown')
+
         node = GraphNode(
             id=discovery_id,
             node_type='discovery',
-            domain=discovery.get('domain', 'unknown'),
+            domain=domain,
             category=discovery.get('finding_type', 'unknown'),
             metadata={
                 'hypothesis_id': discovery.get('hypothesis_id'),
@@ -126,22 +130,22 @@ def sync_discoveries():
 
     # Create edges between related discoveries
     cursor.execute("""
-        SELECT d1.id, d2.id, d1.domain, d1.finding_type
+        SELECT d1.id, d2.id, d1.data_source, d1.finding_type
         FROM discoveries d1
-        JOIN discoveries d2 ON d1.domain = d2.domain
+        JOIN discoveries d2 ON d1.data_source = d2.data_source
         WHERE d1.id < d2.id
         LIMIT 50
     """)
 
     related_pairs = cursor.fetchall()
 
-    for d1_id, d2_id, domain, finding_type in related_pairs:
+    for d1_id, d2_id, data_source, finding_type in related_pairs:
         edge = GraphEdge(
             source_id=d1_id,
             target_id=d2_id,
             edge_type='semantic',
             weight=0.8,
-            metadata={'domain': domain, 'category': finding_type}
+            metadata={'domain': data_source, 'category': finding_type}
         )
 
         if graph_palace.add_edge(edge):

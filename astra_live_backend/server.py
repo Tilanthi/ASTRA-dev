@@ -3071,6 +3071,8 @@ async def get_connections_domains():
     """
     Get domain statistics for cross-domain analysis.
 
+    Shows data sources as domains for better granularity.
+
     Returns:
         - domains: List of domain statistics
     """
@@ -3079,47 +3081,70 @@ async def get_connections_domains():
             return {"domains": []}
 
         memory = engine.discovery_memory
-        hot_domains = memory.get_hot_domains(top_n=10)
 
+        # Build domain statistics from data sources
+        domain_stats = {}
+
+        for disc in memory.discoveries:
+            # Use data_source as domain for better granularity
+            domain = getattr(disc, 'data_source', disc.domain)
+
+            if domain not in domain_stats:
+                domain_stats[domain] = {
+                    "discoveries": [],
+                    "types": set(),
+                    "momentum": 0
+                }
+
+            domain_stats[domain]["discoveries"].append(disc)
+            domain_stats[domain]["types"].add(disc.finding_type)
+            domain_stats[domain]["momentum"] += disc.strength
+
+        # Build domain list with statistics
         domains = []
-        for domain, momentum in hot_domains:
-            # Count discoveries per domain
-            domain_discoveries = [d for d in memory.discoveries if d.domain == domain]
+        for domain, stats in domain_stats.items():
+            discoveries = stats["discoveries"]
+            types = list(stats["types"])
 
-            # Count connections (simplified)
+            # Count connections to other domains
             connections = 0
             if hasattr(memory, 'palace') and memory.palace:
                 try:
-                    for other_domain in hot_domains:
-                        if other_domain[0] != domain:
-                            cross = memory.find_cross_domain_connections(domain, other_domain[0], k=1)
+                    for other_domain in domain_stats:
+                        if other_domain != domain:
+                            cross = memory.find_cross_domain_connections(domain, other_domain, k=1)
                             connections += len(cross)
                 except Exception:
                     pass
 
             # Only include domains with at least 1 discovery
-            if len(domain_discoveries) > 0:
+            if len(discoveries) > 0:
                 domains.append({
                     "name": domain,
-                    "discoveries": len(domain_discoveries),
+                    "discoveries": len(discoveries),
+                    "types": types,
                     "connections": connections,
-                    "momentum": momentum,
-                    "strength": sum(d.strength for d in domain_discoveries) / len(domain_discoveries) if domain_discoveries else 0
+                    "momentum": round(stats["momentum"], 2),
+                    "strength": round(sum(d.strength for d in discoveries) / len(discoveries), 3) if discoveries else 0
                 })
 
-        return {"domains": domains}
+        # Sort by discovery count (most active first)
+        domains.sort(key=lambda x: -x["discoveries"])
+
+        return {"domains": domains[:15]}  # Top 15 domains
 
     except Exception as e:
+        logger.error(f"Error getting domain statistics: {e}")
         return {"domains": [], "error": str(e)}
 
 
 @app.get("/api/connections/cross-domain")
 async def get_cross_domain_discoveries():
     """
-    Get discoveries that span multiple domains.
+    Get discoveries that span multiple domains with diversity filtering.
 
     Returns:
-        - discoveries: List of cross-domain discoveries
+        - discoveries: List of cross-domain discoveries with improved diversity
     """
     try:
         if not hasattr(engine, 'discovery_memory'):
@@ -3129,6 +3154,7 @@ async def get_cross_domain_discoveries():
 
         # Find discoveries with cross-domain potential
         cross_discoveries = []
+        seen_discovery_types = {}  # Track discovery types to ensure diversity
 
         for disc in memory.discoveries:
             if disc.strength > 0.6:  # Only strong discoveries
@@ -3144,22 +3170,50 @@ async def get_cross_domain_discoveries():
                                 cross_domains.append(other_disc.domain)
 
                 if cross_domains:
-                    cross_discoveries.append({
-                        "id": disc.id,
-                        "domain": disc.domain,
-                        "finding_type": disc.finding_type,
-                        "description": disc.description,
-                        "strength": disc.strength,
-                        "variables": disc.variables,
-                        "cross_domains": cross_domains[:3]  # Top 3
-                    })
+                    # Create discovery type key for diversity tracking
+                    # Combine finding type, description pattern, and variable count
+                    discovery_type = (
+                        disc.finding_type,
+                        disc.description.split(':')[0] if ':' in disc.description else disc.description[:30],
+                        len(disc.variables)
+                    )
 
-        # Sort by strength
-        cross_discoveries.sort(key=lambda x: x["strength"], reverse=True)
+                    # Limit number of discoveries per type to ensure diversity
+                    type_count = seen_discovery_types.get(discovery_type, 0)
+                    if type_count < 3:  # Max 3 per discovery type
+                        seen_discovery_types[discovery_type] = type_count + 1
 
-        return {"discoveries": cross_discoveries[:20]}
+                        cross_discoveries.append({
+                            "id": disc.id,
+                            "domain": disc.domain,
+                            "data_source": getattr(disc, 'data_source', disc.domain),
+                            "finding_type": disc.finding_type,
+                            "description": disc.description,
+                            "strength": disc.strength,
+                            "variables": disc.variables,
+                            "cross_domains": cross_domains[:3],  # Top 3
+                            "unique_id": f"{disc.id}_{disc.finding_type}_{len(disc.variables)}"  # For deduplication
+                        })
+
+        # Sort by strength and data source diversity
+        cross_discoveries.sort(key=lambda x: (
+            -x["strength"],  # Higher strength first
+            x["data_source"]  # Then by data source for diversity
+        ))
+
+        # Final deduplication - ensure unique entries only
+        seen_unique = set()
+        diverse_discoveries = []
+        for disc in cross_discoveries:
+            unique_key = disc["unique_id"]
+            if unique_key not in seen_unique:
+                seen_unique.add(unique_key)
+                diverse_discoveries.append(disc)
+
+        return {"discoveries": diverse_discoveries[:20]}
 
     except Exception as e:
+        logger.error(f"Error getting cross-domain discoveries: {e}")
         return {"discoveries": [], "error": str(e)}
 
 
