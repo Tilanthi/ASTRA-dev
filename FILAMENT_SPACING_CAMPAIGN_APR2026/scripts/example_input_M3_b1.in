@@ -1,0 +1,45 @@
+<job>
+problem_id = M030_b1000_e2_bt1
+
+<time>
+cfl_number  = 0.3
+tlim        = 2.0
+nlim        = -1
+
+<mesh>
+nx1    = 128
+x1min  = -2.00
+x1max  =  2.00
+ix1_bc = periodic
+ox1_bc = periodic
+nx2    = 128
+x2min  = -2.00
+x2max  =  2.00
+ix2_bc = periodic
+ox2_bc = periodic
+nx3    = 32
+x3min  = -0.50
+x3max  =  0.50
+ix3_bc = periodic
+ox3_bc = periodic
+
+<meshblock>
+nx1 = 32
+nx2 = 32
+nx3 = 32
+
+<hydro>
+iso_sound_speed = 1.0
+
+<problem>
+four_pi_G    = 39.478418
+mach_number  = 3.0000
+plasma_beta  = 1.0000
+wavelength   = 1.732051
+perturb_ampl = 1.000000e-02
+
+<output1>
+file_type = hdf5
+variable  = prim
+id        = out1
+dt        = 0.2
