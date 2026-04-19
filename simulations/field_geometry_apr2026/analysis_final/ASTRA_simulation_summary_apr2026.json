@@ -1,0 +1,33 @@
+{
+  "generated": "2026-04-19 03:30 UTC",
+  "option_b": {
+    "n_sims_total": 30,
+    "n_valid": 18,
+    "mean_ratio": 1.1071666020406676,
+    "std_ratio": 0.11748470483950445,
+    "range": [
+      0.8567017140825313,
+      1.3063945294843617
+    ]
+  },
+  "option_a_v1": {
+    "n_sims": 4,
+    "n_snaps_each": 5,
+    "key_finding": "lambda_dom=2.0 dominated by seed scale (L/n_modes), not lambda_MJ,fiber"
+  },
+  "option_a_v2": {
+    "n_sims": 2,
+    "n_snaps_each": 10,
+    "key_finding": "Radial collapse dominates; single core not fragmentation; FWHM->grid-scale in 1.8 t_ff",
+    "physical_conclusion": "For rho_c=4, sigma=0.6 lJ: fragmentation timescale >= collapse timescale"
+  },
+  "w3_prediction": {
+    "theta_deg": 50.0,
+    "beta": 0.85,
+    "lj_pc": 0.1,
+    "lmj_pc": 0.15429719900118388,
+    "lfrag_pc": 0.17083270552253346,
+    "lfrag_arcsec": 18.070157951079675,
+    "uncertainty_pc": 0.018127560882216367
+  }
+}
