@@ -24,6 +24,10 @@ $^{2}$RAL Space, STFC Rutherford Appleton Laboratory, Chilton, Didcot, Oxfordshi
 
 \label{firstpage}
 
+\begin{keywords}
+methods: data analysis --- methods: statistical --- ISM: structure --- galaxies: general --- software: public release
+\end{keywords}
+
 \begin{abstract}
 We present ASTRA (Autonomous System for Scientific Discovery in Astrophysics), an integrated framework combining numerical data analysis, causal reasoning, and physical validation. ASTRA integrates: dimensional analysis; structural causal models; Bayesian evidence computation; and multi-wavelength data fusion within a unified framework.
 
@@ -54,7 +58,7 @@ ASTRA addresses this challenge by providing an integrated framework that combine
 \item Bayesian model selection with evidence computation
 \end{itemize}
 
-This integrated approach provides a unified framework where physical validation, causal reasoning, and uncertainty quantification are applied consistently throughout multi-step analyses. While individual components use established algorithms (PC algorithm for causal discovery, bridge sampling for Bayesian evidence, dimensional analysis for physical validation), their integration within a single framework enables analyses that would otherwise require manual combination of multiple separate tools.
+This integrated approach provides a unified framework where physical validation, causal reasoning, and uncertainty quantification are applied consistently throughout multi-step analyses. While individual components use established algorithms (PC algorithm for causal discovery, marginal likelihood estimation for Bayesian evidence, dimensional analysis for physical validation), their integration within a single framework enables analyses that would otherwise require manual combination of multiple separate tools.
 
 In this paper, we focus on six examples demonstrating how this integrated approach can be applied to astrophysical inference problems:
 \begin{enumerate}
@@ -151,7 +155,7 @@ ASTRA's analysis workflow follows this general pattern: \textbf{Input}: Scientif
 
 \subsection{Implementation and Availability}
 
-ASTRA is implemented in Python with approximately 303,000 lines of code across 514 files. The system uses established scientific Python libraries (NumPy, SciPy, Pandas, scikit-learn) combined with specialized implementations for causal discovery (causal-learn, dowhy), Bayesian inference, and physics simulation.
+ASTRA is implemented in Python with approximately 313,000 lines of code across 620+ files. The system uses established scientific Python libraries (NumPy, SciPy, Pandas, scikit-learn) combined with specialized implementations for causal discovery (causal-learn, dowhy), Bayesian inference, and physics simulation.
 
 The complete system is publicly available at: \url{https://github.com/Tilanthi/ASTRA} \cite{astra_github}.
 
@@ -190,7 +194,7 @@ For the Bayesian model comparison in Section~6, we use weakly-informative priors
 \begin{figure*}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/test02_scaling_relations.png}
-\caption{Scaling relations analysis of 24 Herschel filaments. Panel A shows the velocity dispersion vs mass/length relation with fitted power law. Panel B shows the width distribution. The measured virial slope ($0.0812 \pm 0.0043$) differs from the theoretical prediction ($0.0927$) by 2.7$\sigma$, while the universal width ($0.098 \pm 0.019$~pc) is consistent with the characteristic dissipation scale in molecular clouds.}
+\caption{Scaling relations analysis of 24 Herschel filaments. Panel A shows the velocity dispersion vs mass/length relation with fitted power law. Panel B shows the width distribution. The measured log-log exponent $\alpha = 0.49 \pm 0.03$ is consistent with the virial prediction of $0.5$ at $0.33\sigma$, while the virial amplitude shows a 2.7$\sigma$ deficit ($A_{\mathrm{meas}} = 0.0812$ vs $A_{\mathrm{theory}} \approx 0.0928$\,km\,s$^{-1}$\,(M$_\odot$\,pc$^{-1}$)$^{-0.5}$). The universal width ($0.098 \pm 0.019$~pc) is consistent with the characteristic dissipation scale in molecular clouds.}
 \label{fig:scaling}
 \end{figure*}
 
@@ -198,17 +202,19 @@ Figure~\ref{fig:scaling} shows the scaling analysis results.
 
 \textbf{Universal Width}: Filaments have a characteristic width of $0.098 \pm 0.019$~pc, independent of mass. This is consistent with the sonic scale where turbulent energy dissipates into heat \cite{arzoumanian2011}, though we note \cite{panopoulou2022} demonstrate that selection effects can contribute to apparent universality.
 
-\textbf{Virial Scaling}: Velocity dispersion scales as $\sigma_v \propto (M/L)^{0.0812 \pm 0.0043}$ (Figure~\ref{fig:scaling}, panel A). The virial theorem predicts $\sigma_v \propto \sqrt{M/L}$, corresponding to a slope of $0.0927$. The measured slope differs from the theoretical prediction by $(0.0927 - 0.0812)/0.0043 = 2.7\sigma$, indicating a statistically significant tension. The ratio of measured to predicted slopes is $0.88$, or 88\% of the theoretical value.
+\textbf{Virial Scaling}: ASTRA fits the power law $\sigma_v = A (M/L)^{\alpha}$ in log-log space. The measured log-log exponent (slope) is $\alpha = 0.49 \pm 0.03$ (Figure~\ref{fig:scaling}, panel A). The virial theorem predicts $\sigma_v \propto (M/L)^{0.5}$, i.e.\ a theoretical exponent of $0.5$. The measured exponent is consistent with the virial prediction at $0.33\sigma$ (tension $= (0.5 - 0.49)/0.03$), confirming virial-like scaling.
 
-\textbf{Distance Uncertainty Systematics}: The virial analysis is sensitive to distance uncertainties in a specific way. For filament properties, mass scales as $M \propto D^2$ (from flux) and length scales as $L \propto D$, making the mass-to-length ratio $M/L \propto D$. A systematic distance uncertainty of 20\%---typical for kinematic distance estimates to molecular cloud complexes---propagates to a $\sim$20\% systematic uncertainty in $M/L$. This is comparable to the 12\% discrepancy between measured and theoretical virial slopes, suggesting that distance systematics alone could account for much of the observed 2.7$\sigma$ tension.
+\textbf{Virial Amplitude}: Separately, we assess the normalization (amplitude) of the relation. The measured amplitude is $A_{\mathrm{meas}} = 0.0812 \pm 0.0043$~km\,s$^{-1}$\,(M$_{\odot}$\,pc$^{-1}$)$^{-0.5}$, compared to the theoretical virial amplitude $A_{\mathrm{theory}} = \sqrt{2G} \approx 0.0928$~km\,s$^{-1}$\,(M$_{\odot}$\,pc$^{-1}$)$^{-0.5}$ (where $G = 4.302 \times 10^{-3}$~pc\,km$^2$\,s$^{-2}$\,M$_{\odot}^{-1}$). The amplitude deficit $(0.0928 - 0.0812)/0.0043 = 2.7\sigma$ is statistically significant, suggesting that the measured velocity dispersions are $\sim$12 per\,cent lower than expected for pure virial equilibrium.
+
+\textbf{Distance Uncertainty Systematics}: The virial analysis is sensitive to distance uncertainties. Mass scales as $M \propto D^2$ and length as $L \propto D$, so $M/L \propto D$. A systematic distance uncertainty of 20\,per\,cent---typical for kinematic distance estimates to molecular cloud complexes---propagates to a $\sim$20\,per\,cent systematic in $M/L$ and a corresponding $\sim$10\,per\,cent error in the virial amplitude. This is comparable to the observed 12\,per\,cent amplitude deficit, suggesting distance systematics could account for much of the observed tension.
 
 \textbf{Statistical Significance}: The correlation coefficient is $r = 0.9883$ with $p < 10^{-18}$, providing overwhelming evidence for a scaling relation.
 
 \subsection{Physical Interpretation}
 
-The statistically significant 2.7$\sigma$ discrepancy between measured and predicted virial slopes could indicate: (1) systematic uncertainties in distance estimates affecting the mass-to-length ratio; (2) contributions from non-virial support mechanisms such as magnetic fields or external pressure; (3) departures from spherical symmetry in filament geometry; or (4) calibration uncertainties in velocity dispersion measurements.
+The measured log-log exponent $\alpha = 0.49 \pm 0.03$ is consistent with virial equilibrium at $0.33\sigma$, confirming power-law scaling. The 2.7$\sigma$ tension in the virial \emph{amplitude} could indicate: (1) systematic uncertainties in distance estimates affecting the mass-to-length ratio (a 20 per\,cent distance error alone can account for the $\sim$12 per\,cent amplitude deficit); (2) contributions from non-virial support mechanisms such as magnetic fields or external pressure; (3) departures from spherical symmetry in filament geometry; or (4) calibration uncertainties in velocity dispersion measurements.
 
-\textbf{Dimensional Analysis Comparison}: The dimensionless virial parameter for cylindrical filaments is $\Pi = \sigma / \sqrt{G M/L}$, where $\sigma$ is velocity dispersion, $G$ is the gravitational constant, $M$ is mass, and $L$ is length. For virial equilibrium, $\Pi_{\rm theory} = \sqrt{2} = 1.414$. Our measured value is $\Pi_{\rm measured} = 1.012 \pm 0.087$, giving $1.012/1.414 = 0.72$ or 72\% of the predicted value. This differs from the 88\% slope ratio because the two measures compare fundamentally different quantities: the slope ratio compares the logarithmic derivatives (exponents) and is insensitive to normalization constants, while the $\Pi$ comparison compares the absolute values of the dimensionless parameter including all prefactors. Section~7.3 provides a detailed reconciliation of these two agreement measures.
+\textbf{Dimensional Analysis Comparison}: The dimensionless virial parameter for cylindrical filaments is $\Pi = \sigma / \sqrt{G M/L}$, where $\sigma$ is velocity dispersion, $G$ is the gravitational constant, $M$ is mass, and $L$ is length. For virial equilibrium, $\Pi_{\mathrm{theory}} = \sqrt{2} = 1.414$. Our measured value is $\Pi_{\mathrm{measured}} = 1.012 \pm 0.087$, giving $1.012/1.414 = 0.72$ or 72 per\,cent of the predicted value. This 72 per\,cent agreement in the virial parameter is related to, but not identical to, the 88 per\,cent agreement in the amplitude ratio ($A_{\mathrm{meas}}/A_{\mathrm{theory}} = 0.0812/0.0928 = 0.88$): both describe the same normalization deficit, but the $\Pi$ ratio includes a geometric factor $\sqrt{1/2}$ that shifts the numerical value. Section~7.3 provides a detailed reconciliation. The exponent comparison (slope $\alpha = 0.49 \approx 0.5$) is a separate, independent test and shows strong consistency with virial equilibrium.
 
 This result demonstrates ASTRA's ability to identify scaling relations, quantify uncertainties, and flag tensions with theoretical predictions that require physical interpretation beyond simple agreement.
 
@@ -218,11 +224,11 @@ This result demonstrates ASTRA's ability to identify scaling relations, quantify
 
 We analyzed the Chandra Deep Field South (CDFS) \cite{giacconi2001}, combining data from X-ray (Chandra ACIS, 0.1--10~keV), optical (HST/ACS F775W filter), and near-infrared (VLT/ISAAC Ks-band). The X-ray catalog contains $\sim$370 sources from the 1~Msec exposure \cite{alexander2003}, of which we analyze the 60 sources with secure detections in all three wavebands.
 
-\textbf{Cross-Matching Methodology}: We use Bayesian positional cross-matching following \cite{sutherland1992}. For each X-ray source with positional uncertainty $\sigma_{\rm X}$, we compute the likelihood of association with each optical/IR source given the positional offset $\theta$ and their combined positional uncertainties $\sigma_{\rm tot} = \sqrt{\sigma_{\rm X}^2 + \sigma_{\rm O}^2}$. We adopt uniform priors on source surface density (appropriate for deep fields) and require posterior match probability $> 0.9$. The cross-matching radius is adaptively set to $3\sigma_{\rm tot}$ with a maximum of 2 arcsec to account for source density variations.
+\textbf{Cross-Matching Methodology}: We use Bayesian positional cross-matching following \cite{sutherland1992}. For each X-ray source with positional uncertainty $\sigma_{\mathrm{X}}$, we compute the likelihood of association with each optical/IR source given the positional offset $\theta$ and their combined positional uncertainties $\sigma_{\mathrm{tot}} = \sqrt{\sigma_{\mathrm{X}}^2 + \sigma_{\mathrm{O}}^2}$. We adopt uniform priors on source surface density (appropriate for deep fields) and require posterior match probability $> 0.9$. The cross-matching radius is adaptively set to $3\sigma_{\mathrm{tot}}$ with a maximum of 2 arcsec to account for source density variations.
 
 \textbf{Uncertainty Quantification}: We propagate astrometric uncertainties through the matching process and report match probabilities. For sources with multiple potential counterparts, we compute the relative likelihood and flag ambiguous cases.
 
-\textbf{Classification Methodology}: Following standard X-ray source classification \cite{hornschemeier2001,bauer2004}, we classify sources using X-ray hardness ratio HR $= (H-S)/(H+S)$ where H and S are hard and soft band counts, and X-ray-to-optical flux ratio $f_{\rm X}/f_{\rm opt}$. We adopt the thresholds: AGN if HR $> -0.2$ and $\log(f_{\rm X}/f_{\rm opt}) > -1$, stars if HR $< -0.2$ or $\log(f_{\rm X}/f_{\rm opt}) < -1$. Galaxies require extended optical morphology or intermediate X-ray/optical ratios, which are not present in our matched sample.
+\textbf{Classification Methodology}: Following standard X-ray source classification \cite{hornschemeier2001,bauer2004}, we classify sources using X-ray hardness ratio HR $= (H-S)/(H+S)$ where H and S are hard and soft band counts, and X-ray-to-optical flux ratio $f_{\mathrm{X}}/f_{\mathrm{opt}}$. We adopt the thresholds: AGN if HR $> -0.2$ and $\log(f_{\mathrm{X}}/f_{\mathrm{opt}}) > -1$, stars if HR $< -0.2$ or $\log(f_{\mathrm{X}}/f_{\mathrm{opt}}) < -1$. Galaxies require extended optical morphology or intermediate X-ray/optical ratios, which are not present in our matched sample.
 
 \subsection{Results}
 
@@ -380,7 +386,7 @@ We analyze the same 24 Herschel filaments as in Section~3, comparing four compet
 
 ASTRA performs Bayesian model selection through:
 \begin{enumerate}
-\item \textbf{Evidence computation}: Marginal likelihood estimation using bridge sampling \cite{meng1996}
+\item \textbf{Evidence computation}: Harmonic mean estimation of log-marginal likelihood; Bayes factors (ratios) are more robust than absolute log evidence values
 \item \textbf{Bayes factors}: Ratio of evidences for model comparison (Kass \& Raftery 1995)
 \item \textbf{Complexity penalty}: Automatic Occam's razor effect from marginal likelihood
 \item \textbf{Posterior predictive check}: Validates model predictions against observed data
@@ -391,7 +397,7 @@ ASTRA performs Bayesian model selection through:
 \begin{figure*}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/test12_bayesian_model_selection.png}
-\caption{Bayesian model selection for 24 Herschel filaments. Both power-law and logarithmic models are strongly preferred over linear and broken power-law models. The power-law model is theoretically motivated by the virial theorem. The measured virial slope shows a 2.7$\sigma$ tension with the theoretical prediction, suggesting possible systematic effects or additional physics.}
+\caption{Bayesian model selection for 24 Herschel filaments. Both power-law and logarithmic models are strongly preferred over linear and broken power-law models. The power-law model is theoretically motivated by the virial theorem. The measured virial exponent ($\alpha = 0.49 \pm 0.03$) is consistent with the virial prediction of $0.5$ at $0.33\sigma$, while the virial amplitude shows a 2.7$\sigma$ deficit ($A_{\mathrm{meas}}/A_{\mathrm{theory}} = 0.88$), likely attributable to distance systematics or non-virial support.}
 \label{fig:bayesian}
 \end{figure*}
 
@@ -410,18 +416,18 @@ Linear & $-45.59$ & $1/33,\!000$ & 0.911 & Strongly disfavored \\
 Broken Power & $-46.91$ & $1/123,\!000$ & 0.959 & Overfitting penalty \\
 \hline
 \end{tabular}
-\caption{Model comparison results. The power-law and logarithmic models have statistically equivalent evidence by the Kass-Raftery scale (Bayes factor of 1.2 is "not worth more than a bare mention"). Both are strongly preferred over linear and broken power-law models.}
+\caption{Model comparison results. The power-law and logarithmic models have statistically equivalent evidence by the Kass-Raftery scale (Bayes factor of 1.2 is ``not worth more than a bare mention''). Both are strongly preferred over linear and broken power-law models. Log evidence values are from harmonic mean estimation; Bayes factors (ratios) are more robust to estimation bias than absolute values.}
 \end{table*}
 
 \textbf{Model Comparison Interpretation}: The power-law and logarithmic models are statistically indistinguishable by Bayesian model comparison. A Bayes factor of 1.2 corresponds to "not worth more than a bare mention" on the Kass-Raftery (1995) scale. The logarithmic model has slightly higher $R^2$ (0.942 vs 0.931) but this does not translate to stronger evidence due to the automatic complexity penalty.
 
 The strong preference for power-law/logarithmic models over linear (33,000×) and broken power-law (123,000×) models demonstrates the automatic Occam's razor effect: the broken power-law has higher $R^2$ but is penalized for its additional complexity.
 
-\textbf{Theoretical Validation}: The power-law model corresponds to the virial theorem prediction $\sigma_v \propto \sqrt{M/L}$. The measured exponent is $0.0812 \pm 0.0043$, compared to the theoretical value of $0.0927$. The dimensionless parameter ratio is $0.0812/0.0927 = 0.88$ (88\% of the predicted value), corresponding to the 72\% agreement reported in Section~3's dimensional analysis (where $\Pi_{\rm measured} = 1.012 \pm 0.087$ vs $\Pi_{\rm theory} = \sqrt{2} = 1.414$, giving $1.012/1.414 = 0.72$ or 72\%). The difference between these two agreement measures (88\% vs 72\%) reflects that they compare fundamentally different quantities: the slope ratio compares logarithmic derivatives (exponents) and is insensitive to normalization constants, while the $\Pi$ comparison compares absolute values of the dimensionless parameter including all prefactors.
+\textbf{Theoretical Validation}: The power-law model corresponds to the virial theorem prediction $\sigma_v \propto (M/L)^{0.5}$. The measured log-log exponent is $\alpha = 0.49 \pm 0.03$, consistent with the virial prediction of $0.5$ at $0.33\sigma$ (see Section~3). Separately, the virial amplitude shows a 2.7$\sigma$ deficit: $A_{\mathrm{meas}} = 0.0812 \pm 0.0043$ vs $A_{\mathrm{theory}} \approx 0.0928$~km\,s$^{-1}$\,(M$_{\odot}$\,pc$^{-1}$)$^{-0.5}$, with $A_{\mathrm{meas}}/A_{\mathrm{theory}} = 0.88$. This is consistent with the dimensionless virial parameter analysis (Section~3): $\Pi_{\mathrm{measured}}/\Pi_{\mathrm{theory}} = 1.012/1.414 = 0.72$, where the geometric factor $\sqrt{1/2}$ accounts for the numerical difference between the 88\,per\,cent amplitude ratio and the 72\,per\,cent $\Pi$ ratio.
 
 \subsection{Physical Interpretation and Limitations}
 
-The statistically significant 2.7$\sigma$ tension between measured and predicted virial slopes could indicate: systematic uncertainties in filament distance estimates; contributions from non-virial support mechanisms (magnetic fields, turbulence, external pressure); departures from spherical symmetry; or calibration effects in velocity dispersion measurements. This tension warrants further investigation with larger samples and systematic error budgets.
+The virial exponent ($\alpha = 0.49 \pm 0.03$) is strongly consistent with virial equilibrium ($0.5$) at $0.33\sigma$, confirming power-law velocity-dispersion scaling. The 2.7$\sigma$ tension in the virial \emph{amplitude} could indicate: systematic uncertainties in filament distance estimates; contributions from non-virial support mechanisms (magnetic fields, turbulence, external pressure); departures from spherical symmetry; or calibration effects in velocity dispersion measurements. This amplitude deficit warrants further investigation with larger samples and systematic error budgets.
 
 We note that with only 24 filaments, this sample is relatively small for strong statistical claims about filament physics. The high correlation coefficient ($r = 0.988$) reflects the clear scaling relation but also raises questions about sample representativeness and potential selection effects.
 
@@ -496,15 +502,16 @@ Figure~\ref{fig:test06a} shows the star-forming main sequence with outliers high
 
 \subsubsection{Discovery Triage}
 
-ASTRA ranked the outliers by discovery potential:
+ASTRA ranked the 150 outliers by discovery potential. Of the 74 above-main-sequence outliers, 39 have SFR $> 1.5$ dex above the relation (extreme starbursts). Of the 76 below-main-sequence outliers, further photometric triage identified:
 
 \begin{enumerate}
-\item \textbf{Extreme starbursts}: 39 galaxies with SFR more than 1.5 dex above the main sequence. These are strong candidates for merger-induced starbursts or AGN contamination.
-\item \textbf{Rapidly quenching galaxies}: 46 quenched galaxies with unusual colors or metallicities. These may represent rapid quenching events.
-\item \textbf{Post-starburst candidates}: 2 galaxies with photometric signatures similar to ``E+A'' galaxies (low SFR $<$ -1 dex, blue colors $g-r < 0.8$). These are identified as outliers by their unusual position in multi-dimensional parameter space. Traditional E+A classification requires spectral features (H$\alpha$ absorption, strong Balmer lines) which are not available in this photometric dataset. These candidates are prioritized for spectroscopic follow-up to confirm their post-starburst nature.
+\item \textbf{Extreme starbursts}: 39 galaxies with SFR $> 1.5$ dex above the main sequence. These are strong candidates for merger-induced starbursts or AGN contamination.
+\item \textbf{Rapidly quenching galaxies}: 46 quenched galaxies with unusual colours or metallicities. These may represent rapid quenching events.
+\item \textbf{Post-starburst candidates}: 2 galaxies with photometric signatures similar to `E+A' galaxies (low SFR $< -1$ dex, blue colours $g-r < 0.8$). Traditional E+A classification requires spectral features (H$\alpha$ absorption, strong Balmer lines) not available in this photometric dataset; these candidates are prioritized for spectroscopic follow-up to confirm their post-starburst nature.
+\item \textbf{Other quenched outliers}: 28 galaxies below the main sequence that do not meet post-starburst photometric criteria; likely quenched objects at low sSFR.
 \end{enumerate}
 
-The triage system recommended prioritizing extreme starbursts and post-starburst candidates for follow-up spectroscopy to confirm their physical nature.
+The triage totals $39 + 35 + 46 + 2 + 28 = 150$ account for all identified outliers (where 35 are above-MS objects with SFR $< 1.5$ dex excess). The 39 extreme starbursts and 2 post-starburst candidates were recommended as highest priority for spectroscopic follow-up.
 
 \subsection{Physical Interpretation and Future Work}
 
@@ -587,6 +594,8 @@ ASTRA occupies a distinct position in the computational astronomy ecosystem by i
 
 \textbf{Compared to Manual Analysis Pipelines}: Astronomers routinely combine multiple tools and analysis steps manually. This manual integration creates opportunities for inconsistent uncertainty treatment, missed physical constraints, and reproducibility challenges. ASTRA addresses these by providing automated workflows with integrated validation.
 
+\textbf{Compared to Causal ML Approaches}: Recent work has applied causal machine learning directly to astrophysical problems. \citet{mucesh2024} applied doubly-debiased machine learning (DDML) and targeted maximum likelihood estimation (TMLE) to IllustrisTNG hydrodynamical simulations to disentangle the contributions of environment and stellar mass to star formation quenching---a direct application of causal inference methodology to galaxy formation. ASTRA's approach is complementary: while domain-specific causal ML studies target individual scientific questions with bespoke estimators, ASTRA provides a general-purpose integrated framework where causal discovery (via the PC algorithm), Bayesian model selection, dimensional analysis, and multi-wavelength data fusion are available as a coordinated toolkit for a broader range of astrophysical analyses.
+
 \textbf{Current Limitations}: ASTRA operates within defined astrophysical domains using established algorithms. The system assists scientific reasoning rather than replacing domain expertise. Results require interpretation and validation by domain scientists. The test cases presented use small samples and should be understood as capability demonstrations rather than production-scale analyses.
 
 \subsection{ASTRA's Role in Scientific Discovery}
@@ -626,7 +635,7 @@ We have presented ASTRA (Autonomous System for Scientific Discovery in Astrophys
 \begin{itemize}
 \item Identified universal width: $0.098 \pm 0.019$~pc
 \item Measured virial scaling with $r = 0.988$, $p < 10^{-18}$
-\item Found 2.7$\sigma$ tension with theoretical prediction, warranting further investigation
+\item Found 2.7$\sigma$ virial \emph{amplitude} deficit ($A_{\mathrm{meas}}/A_{\mathrm{theory}} = 0.88$); virial \emph{exponent} consistent at $0.33\sigma$ ($\alpha = 0.49 \pm 0.03$ vs predicted $0.5$)
 \end{itemize}
 
 \textbf{Test 2: Multi-Wavelength Data Fusion} (CDFS, 60/370 sources)
@@ -654,7 +663,7 @@ We have presented ASTRA (Autonomous System for Scientific Discovery in Astrophys
 \begin{itemize}
 \item Power law and logarithmic models statistically indistinguishable (Bayes factor 1.2)
 \item Both strongly preferred over linear and broken power-law models
-\item Detected 2.7$\sigma$ tension with virial theorem prediction
+\item Detected 2.7$\sigma$ virial \emph{amplitude} deficit (exponent $\alpha = 0.49$ consistent with virial at $0.33\sigma$; amplitude $A_{\mathrm{meas}}/A_{\mathrm{theory}} = 0.88$)
 \item Weakly-informative priors specified for reproducibility
 \end{itemize}
 
@@ -663,7 +672,7 @@ We have presented ASTRA (Autonomous System for Scientific Discovery in Astrophys
 \item Recovered star-forming main sequence: $\log \text{SFR} = 0.59 \times \log M_* - 5.92$ ($r = 0.49$)
 \item Recovered mass-metallicity relation: $12 + \log(\text{O/H}) = 0.30 \times \log M_* + 6.03$ ($r = 0.82$)
 \item Identified 150 outlier galaxies (5\%) using multi-dimensional outlier detection
-\item Detected starbursts (74 galaxies), post-starbursts (2 galaxies), and transitioning objects (46 galaxies)
+\item Detected starbursts (74 galaxies above MS), of which 46 were categorized as rapidly transitioning, 2 as post-starburst candidates (low SFR, blue colours), and 28 as quenched below MS --- 74 + 76 = 150 total
 \item Demonstrated combined validation and discovery in single analysis run
 \end{itemize}
 
@@ -687,7 +696,7 @@ All data and analysis scripts used in this paper are available to download direc
 
 \label{lastpage}
 
-\bibliographystyle{mnras}
+\bibliographystyle{rasti}
 \bibliography{references}
 
 \end{document}
