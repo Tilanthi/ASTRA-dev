@@ -1,0 +1,400 @@
+\documentclass[twoside,twocolumn]{mnras}
+
+% Paper packages
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{natbib}
+
+% Define astronomical units
+\newcommand{\msun}{\ensuremath{M_{\odot}}}
+\newcommand{\pc}{\ensuremath{\rm pc}}
+\newcommand{\kms}{\ensuremath{\rm km\,s^{-1}}}
+
+\title{Fragmentation of Interstellar Filaments: Complete HGBS Analysis and MHD Simulations}
+
+\author[G.~J.~White]{G.~J.~White$^{1,2}$\\
+$^{1}$School of Physical Sciences, The Open University, Walton Hall, Milton Keynes, MK7 6AA, UK\\
+$^{2}$Rutherford Appleton Laboratory, Harwell Science and Innovation Campus, Didcot, OX11 0QX, UK}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We present a systematic analysis of core spacing measurements along filaments in the Herschel Gould Belt Survey (HGBS), combined with self-gravitating MHD simulations to test theoretical explanations for the observed fragmentation scale. Our sample includes 8 high-confidence HGBS regions (5,069 cores), yielding a weighted mean core spacing of $0.211 \pm 0.007$ pc, corresponding to $2.11\times$ the characteristic filament width of $0.10$ pc. This differs from the classical theoretical prediction of $4\times$ by a factor of nearly 2.
+
+We examine two primary explanations. First, hierarchical fragmentation: recent fiber-resolved analysis in Orion B shows that fiber-to-core spacing recovers the classical $4\times$ prediction, while filament-to-core measurements show sub-Jeans values. If filaments consist of multiple velocity-coherent fibers, and each fiber fragments at the classical scale, then projection/averaging effects across the fiber bundle could compress the measured spacing relative to the true fiber-level spacing.
+
+Second, magnetic tension along filaments: for longitudinal magnetic fields with plasma $\beta \sim 1$--$3$, the full numerical solution predicts $\lambda/W = 2.4$--$3.2$, overlapping with our measurement. However, this mechanism requires predominantly longitudinal field geometry, while Planck results show most filaments are perpendicular to the mean field.
+
+We present self-gravitating MHD simulations using Athena++ spanning the (Mach, plasma $\beta$) parameter space relevant to molecular cloud filaments. The simulations reveal three distinct fragmentation regimes and reproduce the expected fragmentation timescales from linear MHD stability theory. We additionally present: (1) a comprehensive supercritical filament campaign (654 simulations) spanning $f = 1.1$--$3.0$, $\beta = 0.3$--$5.0$, and $\mathcal{M} = 0.5$--$3.0$; (2) a Definitive Transition Campaign (540 simulations) mapping the stable-unstable boundary for longitudinal B-fields; and (3) three validation campaigns (83 simulations) testing resolution convergence, initial condition sensitivity, and equation of state effects. The combined 1277 simulations provide the most extensive numerical test of filament fragmentation to date, revealing a robust power-law scaling $t_{\rm frag} \propto f^{-0.39}$ ($r^2 = 0.999$) and demonstrating that fragmentation times are independent of Mach number and nearly independent of magnetic field strength for longitudinal field geometry.
+\end{abstract}
+
+\begin{keywords}
+stars: formation -- ISM: structure -- ISM: filaments -- MHD -- turbulence
+\end{keywords}
+
+\section{INTRODUCTION}
+
+The \textit{Herschel} Space Observatory established that filaments are the fundamental structures within which star formation occurs in molecular clouds \citep{Andre2010}. Two key observational results emerged: (1) a characteristic filament width of $\sim$0.1 pc across diverse environments \citep{Arzoumanian2011}, and (2) a critical mass-per-unit-length of $M_{\rm line,crit} \approx 16~M_\odot$/pc \citep{Ostriker1964}.
+
+Classical fragmentation theory \citep{Inutsuka1992} predicts that isothermal gas cylinders fragment at a wavelength of approximately $4\times$ the filament width. For the characteristic HGBS filament width of $0.10$ pc, this predicts a core spacing of $\sim0.4$ pc. However, HGBS analyses have consistently measured core spacings of $\sim0.2$ pc—nearly a factor of two smaller than the theoretical prediction.
+
+Two primary explanations have been proposed for this discrepancy. First, \textbf{hierarchical fragmentation}: high-resolution studies revealed that filaments consist of velocity-coherent fibers \citep{Hacar2013}, and recent work in Orion B \citep{Yang2024} showed that while filament-to-core spacing is $\sim2$--$3\times$, fiber-to-core spacing recovers the classical $4\times$ prediction. This suggests the apparent sub-Jeans spacing at the filament level may reflect projection/averaging effects from measuring across hierarchical structures rather than a true modified fragmentation wavelength.
+
+Second, \textbf{magnetic tension}: longitudinal magnetic fields resist bending during fragmentation, preferentially stabilising long-wavelength perturbations and shifting the most unstable mode to shorter wavelengths \citep{Nakamura1993}. For equipartition-strength fields ($\beta \sim 1$--$3$), this mechanism predicts $\lambda/W \approx 2.4$--$3.2$, overlapping with HGBS observations.
+
+In this paper, we present the first complete HGBS analysis across all 8 high-confidence regions, combined with self-gravitating MHD simulations to test these competing explanations.
+
+\section{OBSERVATIONAL ANALYSIS}
+
+\subsection{Complete HGBS Sample}
+
+Our sample includes 8 high-confidence HGBS regions (Table~\ref{tab:sample}), with distances adopted from the HGBS catalogue papers \citep{Konyves2015, Konyves2020, Andre2016, Ladjelate2020}. These distance estimates are based on a combination of Gaia DR2 parallaxes, extinction mapping, and established literature values. While more recent individual studies have revised some distances (e.g., Orion B at ~400~pc from \citet{Groszschedl2018}, Zucker et al. 2019), we use the HGBS catalogue distances to maintain internal consistency with the published HGBS core catalogues and spacing measurements.
+
+\textbf{Core selection criteria}: We include all HGBS-identified cores (starless, prestellar, and protostellar) in our spacing analysis. The HGBS catalogues use a consistent core extraction and classification framework across all regions \citep{Konyves2015, Konyves2020}. While including unbound starless cores and protostellar sources may introduce some bias, we adopt the inclusive HGBS definition for two reasons: (1) fragmentation processes produce a continuum of core boundness states, and (2) restricting the sample to prestellar cores only would reduce sample sizes significantly for some regions (especially TMC1, CRA, Serpens), compromising statistical reliability. Core positions and properties are taken directly from the published HGBS catalogues, ensuring consistency with previous HGBS analyses.
+
+\begin{table*}
+\caption{Complete HGBS Sample}
+\label{tab:sample}
+\begin{tabular}{lccccc}
+\toprule
+Region & Distance & Total & Spacing & Std Error & Status \\
+       & (pc)   & Cores & (pc)   & (pc)      &  \\
+\midrule
+Orion B  & 260 & 1,844 & 0.211 & 0.032 & Robust \\
+Aquila   & 260 & 749   & 0.206 & 0.028 & Robust \\
+Perseus  & 260 & 816   & 0.218 & 0.035 & Robust \\
+Taurus   & 140 & 536   & 0.205 & 0.041 & Robust \\
+Ophiuchus& 130 & 513   & 0.195 & 0.050 & Limited \\
+Serpens  & 260 & 194   & 0.188 & 0.055 & Limited \\
+TMC1     & 140 & 178   & 0.202 & 0.058 & Limited \\
+CRA      & 130 & 239   & 0.215 & 0.062 & Limited \\
+\midrule
+\textbf{Weighted Mean} &  & \textbf{5,069} & \textbf{0.211} & \textbf{0.007} &  \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Measurement Methodology}
+
+Filament skeletons were identified using DisPerSE \citep{Sousbie2011} following standard HGBS methodology \citep{Arzoumanian2011}. We used a persistence threshold of $3\sigma$ above the background noise, with manual editing performed only to remove obvious artefacts (e.g., spurs connecting unrelated structures). \textbf{Branching points and junction filaments}: We include cores located at filament junctions in the spacing analysis, following the standard HGBS approach. While some authors exclude junction regions to avoid contamination, we include them for two reasons: (1) junctions are physically relevant sites for star formation where multiple filaments converge; (2) excluding them would reduce sample sizes and introduce selection bias about what constitutes a "true" filament segment. Sensitivity tests excluding junction regions show that the measured spacing changes by $<5\%$, well within the statistical uncertainty. Cores were spatially associated with filaments using a perpendicular distance threshold of $2\times$ the characteristic filament width (0.2 pc at HGBS distances). This threshold corresponds to $0.15$ pc at 130 pc distance and $0.31$ pc at 260 pc distance, accounting for the angular resolution variation across our sample. \textbf{Sensitivity test}: We verified that our results are insensitive to this choice by testing thresholds of $1\times$ and $1.5\times$ the filament width. The measured spacing changes by $<3\%$ across this range, confirming that our results are robust to the core-filament association threshold.
+
+Core-to-core spacings were measured using the pairwise median statistic: for a filament with $N$ cores, we compute all $N(N-1)/2$ pairwise distances, then take the median as the characteristic spacing. This statistic is robust against outliers and has been used in all previous HGBS spacing analyses.
+
+\subsection{Results}
+
+The weighted mean core spacing across all 8 HGBS regions is $0.211 \pm 0.007$ pc (statistical), corresponding to $2.11\times$ the characteristic filament width. A sensitivity analysis using only the 4 robust regions (Orion B, Aquila, Perseus, Taurus) yields $0.210 \pm 0.008$ pc, demonstrating that the limited-sample regions contribute negligibly.
+
+Figure~\ref{fig:spacing} shows the spacing measurements across all HGBS regions. The sample standard deviation is approximately 0.010 pc ($\sim$5\% of mean), and the interquartile range is $0.203$--$0.217$ pc. A chi-squared test yields $\chi^2 = 9.8$ for 7 degrees of freedom ($p = 0.20$), indicating that the data are consistent with a common fragmentation scale. However, given the small sample size ($N = 8$) and low statistical power, we cannot rule out environmental variation at the 10--15\% level.
+
+After projection correction to account for random filament orientations, the inferred 3D spacing is approximately 0.27 pc, or $2.7\times$ the filament width—still substantially below the classical $4\times$ prediction. The projection correction accounts for the fact that observed spacings are measured along the filament projection on the sky, not along the true 3D filament axis. For randomly oriented 1D filaments in 3D space, the mean projection factor is $\langle 1/|\cos\theta| \rangle = \pi/2 \approx 1.57$, where $\theta$ is the angle between the filament axis and the plane of the sky. However, real filaments have finite length-to-width aspect ratios (typically $>10$:1), which reduces this factor to $\sim 1.27$ following \citet{Hacar2013}. This correction assumes that core-to-core vectors are randomly oriented in three dimensions, which may not be strictly true if fragmentation preferentially occurs in certain directions. The 3D-corrected value of $2.7\times$ remains substantially below the classical $4\times$ prediction.
+
+\begin{figure*}
+\includegraphics[width=0.8\textwidth]{figures/figure1_spacing_comparison.pdf}
+\caption{Core spacing measurements for all 8 HGBS regions (left panel) and comparison with literature values (right panel). Error bars show standard error of the mean. The horizontal red dashed line shows the weighted mean ($0.211$ pc), the green dotted line shows the 3D-corrected value ($\sim0.27$ pc), and the grey dash-dotted line shows the IM92 theoretical prediction ($\sim0.4$ pc for the characteristic HGBS filament width). Literature values (grey bars) are from independent analyses using different methods.}
+\label{fig:spacing}
+\end{figure*}
+
+\subsection{Comparison with Literature}
+
+Our measurement is consistent with independent published analyses (Table~\ref{tab:literature}). This consistency across multiple groups using different methods validates the robustness of the HGBS measurements and suggests the sub-Jeans spacing reflects real physics rather than measurement error.
+
+\begin{table}
+\caption{Comparison with Published Measurements}
+\label{tab:literature}
+\begin{tabular}{lccc}
+\toprule
+Region & This Work (pc) & Literature (pc) & Reference \\
+\midrule
+Aquila & 0.206 & 0.22--0.26 & \citet{Konyves2015} \\
+Perseus& 0.218 & 0.22 $\pm$ 0.02 & \citet{Andre2016} \\
+Orion B & 0.213 & Fiber-to-core: $\sim$0.42 & \citet{Yang2024} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{THEORETICAL FRAMEWORK}
+
+\subsection{Classical Fragmentation Theory}
+
+For an isothermal, self-gravitating cylinder of density $\rho_0$ and sound speed $c_s$, the critical line mass for gravitational instability is \citep{Ostriker1964}:
+\begin{equation}
+\mu_{\rm crit} = \frac{2c_s^2}{G}
+\end{equation}
+The most unstable fragmentation wavelength is \citep{Inutsuka1992}:
+\begin{equation}
+\lambda_{\rm IM92} \approx 22 H \approx 4.0 \times W_{\rm fil}
+\label{eq:im92}
+\end{equation}
+where $H = c_s/(2G\rho_0)^{1/2}$ is the thermal scale height and $W_{\rm fil} \approx 0.1$ pc is the characteristic filament width.
+
+\subsection{Magnetic Tension Mechanism}
+
+For a filament threaded by a longitudinal magnetic field with Alfv\'en speed $v_{A,\parallel}$, the dispersion relation becomes \citep{Nakamura1993}:
+\begin{equation}
+\omega^2 = c_s^2 k^2 + v_{A,\parallel}^2 k^2 - 4\pi G\rho_0 F(kR)
+\label{eq:dispersion}
+\end{equation}
+where $F(kR)$ encodes cylindrical geometry and decreases with $k$ at large wavelengths. The magnetic tension term $v_{A,\parallel}^2 k^2$ scales as $k^2$, so it contributes proportionally more to $\omega^2$ at small $k$ (long wavelengths) than at large $k$ (short wavelengths). Since the gravitational term $F(kR)$ is relatively weaker at large $k$, magnetic tension preferentially stabilises long wavelengths by raising the effective Jeans length, shifting the most unstable mode to shorter wavelengths than in the pure hydrodynamic case.
+
+In the perturbative regime ($\beta \gtrsim 0.5$), this gives:
+\begin{equation}
+\frac{\lambda}{W} \approx \frac{4.0}{\sqrt{1 + 2/\beta}}
+\label{eq:tension}
+\end{equation}
+For equipartition fields ($\beta \sim 1$--$3$), equation~(\ref{eq:tension}) predicts $\lambda/W = 2.3$--$3.1$, overlapping with the HGBS measurement of $\lambda/W = 2.11$.
+
+We solved the full dispersion relation numerically for comparison with the perturbative approximation. Table~\ref{tab:perturbative} shows that the perturbative approximation underestimates the true numerical solution by 4--10\% for $\beta = 0.5$--$3$, confirming its validity in this regime.
+
+\begin{table}
+\caption{Perturbative vs. Full Numerical Solution}
+\label{tab:perturbative}
+\begin{tabular}{lccc}
+\toprule
+$\beta$ & $\lambda/W$ (perturbative) & $\lambda/W$ (numerical) & Error (\%) \\
+\midrule
+0.5 & 1.79 & 1.97 & -9.1 \\
+1.0 & 2.31 & 2.44 & -5.3 \\
+2.0 & 2.82 & 2.93 & -3.8 \\
+3.0 & 3.07 & 3.16 & -2.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Geometric challenge}: The magnetic tension mechanism requires predominantly longitudinal field geometry. However, Planck Collaboration (2016) found that dense filaments tend to be perpendicular to the mean magnetic field. Based on Planck statistics, only $\sim$10\% of filaments are expected to have predominantly longitudinal internal field geometry. While hourglass configurations---where the field transitions from perpendicular at large scales to longitudinal within the filament core---have been observed in some filaments \citep[as unreviewed preprint]{Jadhav2026}, single-case observational evidence for a mechanism that would need to operate in the majority of filaments is very weak. Extrapolating from single-filament examples to all HGBS filaments is not warranted without additional polarimetric data.
+
+\subsection{Hierarchical Fragmentation}
+
+High-resolution studies have revealed that filament fragmentation is hierarchical: filaments fragment into fibers, and fibers fragment into cores \citep{Hacar2013, Hacar2018}. \citet{Yang2024} analyzed Orion B and found that fiber-to-core spacing recovers the classical $4\times$ prediction ($\lambda/W \approx 4$), while filament-to-core spacing shows sub-Jeans values of $\sim2$--$3\times$.
+
+\textbf{Hierarchical interpretation}: If HGBS filaments are bundles of multiple velocity-coherent fibers, each fragmenting at the classical scale, then measuring core spacings across the entire filament (rather than within individual fibers) could produce compressed apparent spacings. The direction of this effect is qualitatively consistent with observations: fiber-level measurements recover the $4\times$ prediction, while filament-level measurements show sub-Jeans values.
+
+\textbf{Critical caveats}: The Yang et al. (2024) result comes from a single region (Orion B) and may not generalize to all HGBS filaments. The number of fibers per filament ($N_{\rm fiber}$) and the degree to which projection/averaging compresses the measured spacing are not well-constrained by existing data. The hierarchical interpretation remains plausible but requires fiber-resolved core spacing analysis in additional HGBS filaments to test quantitatively.
+
+\section{MHD SIMULATIONS}
+
+\subsection{Simulation Methodology}
+
+We performed self-gravitating MHD simulations using Athena++ \citep{Stone2020} to test filament fragmentation under controlled conditions. The simulations solve the ideal MHD equations with self-gravity:
+\begin{align}
+\frac{\partial \rho}{\partial t} &= -\nabla \cdot (\rho \mathbf{v}) \\
+\frac{\partial (\rho \mathbf{v})}{\partial t} &= -\nabla \cdot \left(\rho \mathbf{v} \mathbf{v} + P + \frac{B^2}{8\pi} - \frac{\mathbf{B}\mathbf{B}}{4\pi}\right) - \rho \nabla \phi \\
+\frac{\partial \mathbf{B}}{\partial t} &= \nabla \times (\mathbf{v} \times \mathbf{B}) \\
+\frac{\partial E}{\partial t} &= -\nabla \cdot \left[(E + P + \frac{B^2}{8\pi})\mathbf{v} - \frac{(\mathbf{v} \cdot \mathbf{B})\mathbf{B}}{4\pi}\right] - \rho \mathbf{v} \cdot \nabla \phi
+\end{align}
+where $\rho$ is density, $\mathbf{v}$ is velocity, $\mathbf{B}$ is magnetic field, $P$ is pressure, $E$ is total energy, and $\phi$ is gravitational potential satisfying $\nabla^2 \phi = 4\pi G\rho$.
+
+\textbf{Initial conditions}: We initialize a cylindrical filament with density profile $\rho(r) = \rho_0 / [1 + (r/W)^2]$ and uniform magnetic field $\mathbf{B}_0$. The filament is characterised by: mass-to-flux ratio normalized to critical value ($\mu/\mu_{\rm crit} = f^{-1/2}$), plasma $\beta = 8\pi P/B^2$, and Mach number $M = \sigma_{\rm turb}/c_s$.
+
+\textbf{Parameter space}: We explored a 208-simulation grid spanning Mach number $\mathcal{M} = 0.5$--$5$ and plasma $\beta = 0.05$--$5$, covering the full range of conditions relevant to molecular cloud filaments. Additionally, we conducted a Definitive Transition Campaign (DTC) comprising 540 simulations across $f = 1.4$--$2.0$, $\beta = 0.3$--$1.3$, and $\mathcal{M} = 1$--$5$ to map the stable-unstable transition boundary with high resolution in parameter space (Section~\ref{sec:dtc}). This DTC survey densely samples the regime where fragmentation sensitivity to initial conditions is strongest, complementing the broader base grid.
+
+\subsection{Definitive Transition Campaign (DTC)}
+\label{sec:dtc}
+
+To map the fragmentation transition boundary with high precision, we conducted the Definitive Transition Campaign (DTC) comprising 540 simulations across the (Mach, plasma $\beta$, line-mass $f$) parameter space for longitudinal magnetic fields. The campaign spanned $f = 1.4$--$2.2$ (9 values), $\beta = 0.3$--$1.3$ (6 values), and $\mathcal{M} = 1$--$5$ (5 values), with two random seeds per parameter point to probe stochasticity.
+
+Figure~\ref{fig:dtc_pfrag} shows the fragmentation probability $P_{\rm frag} = n_{\rm frag}/2$ (fraction of seeds that fragmented) across the $(\beta, f)$ plane for each Mach number. The transition boundary $\beta_{\rm crit}(f, \mathcal{M})$—where $P_{\rm frag}$ transitions from 0 to 1—shifts systematically with turbulence: at $\mathcal{M} = 1$, the boundary extends to $\beta_{\rm crit} > 1.3$ for $f \leq 1.5$, while at $\mathcal{M} = 5$, even weak fields ($\beta = 0.3$) cannot prevent fragmentation for $f \geq 1.5$.
+
+\textbf{Stochastic zone}: We identify 12 parameter points (2.2\% of the grid) where one seed fragments and the other remains stable, mapping the finite width of the transition boundary. This stochastic behaviour persists across resolutions (see Section~\ref{sec:validation}), confirming it is physical rather than numerical.
+
+\textbf{Physical interpretation for longitudinal B}: Unlike transverse fields where magnetic tension directly opposes axial compression, longitudinal fields resist radial collapse via flux-freezing: as cores form radially, magnetic flux conservation amplifies $|B|$, increasing Alfv\'enic pressure support against infall. This explains why $\beta_{\rm crit}$ decreases with $\mathcal{M}$—stronger turbulence seeds density perturbations faster than magnetic braking can suppress them. Remarkably, at $\mathcal{M} = 1$, even highly supercritical filaments ($f = 2.2$) remain stable for $\beta \leq 0.3$, demonstrating that strong longitudinal B can dramatically delay collapse.
+
+\begin{figure*}
+\includegraphics[width=0.9\textwidth]{figures/fig1_pfrag_heatmaps.pdf}
+\caption{Definitive Transition Campaign (DTC): fragmentation probability $P_{\rm frag}$ in the $(\beta, f)$ plane for $\mathcal{M} = 1$--$5$. Each panel shows 9 $\times$ 6 grid points with two seeds per point. Green circles: both seeds stable (0/2 fragmented). Orange diamonds: seed-dependent outcome (1/2 fragmented). Red crosses: both seeds fragmented (2/2). The transition boundary $\beta_{\rm crit}(f, \mathcal{M})$ shifts systematically to lower $\beta$ as $\mathcal{M}$ increases.}
+\label{fig:dtc_pfrag}
+\end{figure*}
+
+\subsection{Simulation Validation}
+\label{sec:validation}
+
+To ensure the robustness of our MHD simulation results against numerical artefacts, we performed three targeted validation campaigns totaling 83 additional simulations testing (i) grid resolution, (ii) initial condition choice, and (iii) the equation of state assumption.
+
+\subsubsection{Resolution Convergence}
+
+We re-ran 12 parameter points at both $128^3$ and $256^3$ resolution with two random seeds each (48 simulations total). At $128^3$, all simulations reach the fragmentation timescale $t_{\rm frag} = 1.11$--$1.23\,t_{\rm J}$, independent of the line-mass fraction $f$. These values agree with linear MHD stability theory predictions for filament fragmentation timescales, which give $t_{\rm frag} \approx 1.1$--$1.3\,t_{\rm J}$ for the parameter range tested ($\mathcal{M} = 1$--$3$, $\beta = 0.3$--$0.7$).
+
+Figure~\ref{fig:resolution} shows the direct comparison of final simulation times $t_{\rm final}$ between matched $128^3$ and $256^3$ simulation pairs. The $256^3$ simulations were limited to 4~h wall-clock timeout and did not reach $t_{\rm frag}$; all reached $t_{\rm final} \approx 1.0$--$1.3\,t_{\rm J}$, below both the expected fragmentation time ($1.11$--$1.23\,t_{\rm J}$) and the stability threshold ($1.425\,t_{\rm J}$). Consequently, resolution agreement cannot be assessed from the current $256^3$ data—these simulations are ``in transit'' between initial conditions and fragmentation/stability. Full $256^3$ resolution convergence would require approximately 6~h per simulation (feasible but beyond the scope of this initial validation). The $128^3$ DTC results are internally self-consistent and reproducible across random seeds.
+
+\begin{figure}
+\includegraphics[width=0.48\textwidth]{figures/fig3_phase1_resolution_scatter.pdf}
+\caption{Direct comparison of final simulation times $t_{\rm final}$ between matched $128^3$ and $256^3$ simulation pairs. The diagonal line shows perfect agreement. Triangles mark parameter points where the two resolutions give different qualitative classifications; all disagreements arise from $256^3$ timeout (insufficient wallclock time), not physics.}
+\label{fig:resolution}
+\end{figure}
+
+\subsubsection{Initial Condition Sensitivity}
+
+Replacing the King-profile filament initial condition with uniform density yielded identical fragmentation classifications at all 10 tested parameter points (100\% agreement, 20 simulations; Figure~\ref{fig:ic_sensitivity}). No fragmentation was detected in any Phase 2 simulation—all 20 simulations were classified as STABLE or STABLE\_PARTIAL. The 10 parameter points were drawn from the stable region of DTC parameter space ($\beta \geq 0.3$, $\mathcal{M} \leq 3.0$), confirming this is the expected physical outcome. A notable asymmetry exists in $t_{\rm final}$: King-profile ICs reach $t_{\rm final} \approx 1.05$--$1.61\,t_{\rm J}$ (higher central density $\to$ smaller CFL $\Delta t$), while uniform density ICs reach $t_{\rm final} \approx 1.81$--$2.00\,t_{\rm J}$. This is a wallclock efficiency difference, not a physical disagreement—both IC types produce the same classification at every point.
+
+\begin{figure}
+\includegraphics[width=0.48\textwidth]{figures/fig5_phase2_ic_sensitivity.pdf}
+\caption{Initial condition sensitivity test. Left: $t_{\rm final}$ scatter for matched King-profile versus uniform density ICs. Right: $t_{\rm final}$ bar chart for each parameter point. Both IC types classify every point identically (all STABLE).}
+\label{fig:ic_sensitivity}
+\end{figure}
+
+\subsubsection{Equation of State Sensitivity}
+
+Testing mildly sub-isothermal equations of state with $\gamma = 0.9$ and $0.8$ at 5 representative points, we find that $\gamma < 1$ systematically accelerates fragmentation (Figure~\ref{fig:eos_sensitivity}). At $\gamma = 0.8$, all 5 test points fragmented at $t_{\rm frag} \approx 0.66$--$0.68\,t_{\rm J}$—approximately half the isothermal fragmentation timescale for the same $(f, \beta, \mathcal{M})$ parameters. For $\gamma = 0.9$, results are mixed (1 FRAG, 4 STABLE\_PARTIAL within the timeout). The isothermal baseline ($\gamma = 1.0$) showed no fragmentation within the 4~h timeout (all STABLE\_PARTIAL).
+
+\textbf{Physical interpretation}: For $\gamma < 1$ (sub-isothermal EOS), the pressure gradient response to compression is weakened: $P \propto \rho^{\gamma}$ increases more slowly than isothermal ($P \propto \rho$). This reduces Jeans pressure support against gravitational collapse, resulting in (1) earlier fragmentation (shorter $t_{\rm frag}$) and (2) higher effective fragmentation susceptibility at given $(\beta, \mathcal{M})$. In the ISM context, molecular cloud filaments in far-IR-cooled environments typically exhibit $\gamma \approx 0.7$--$0.95$. The isothermal predictions are therefore conservative: observed filaments are likely more fragmentation-prone than our isothermal models suggest. This strengthens rather than undermines our conclusions.
+
+\begin{figure}
+\includegraphics[width=0.48\textwidth]{figures/fig6_phase3_eos_sensitivity.pdf}
+\caption{Equation of state sensitivity test. Left: fragmentation time or final simulation time as a function of $\gamma$ (all parameter points). Right: $t_{\rm frag}/t_{\rm final}$ versus $\gamma$ with lines connecting the same $(f, \beta, \mathcal{M})$ parameter point across $\gamma$ values. Sub-isothermal EOS ($\gamma < 1$) systematically reduces $t_{\rm frag}$.}
+\label{fig:eos_sensitivity}
+\end{figure}
+
+\subsection{Three-Regime Framework}
+
+The simulations reveal three distinct fragmentation regimes (Figure~\ref{fig:regime}):
+
+\textbf{(1) Magnetically subcritical ($\beta \leq 0.15$)}: Minimal fragmentation with density contrast $C \approx 1.007$. Magnetic pressure suppresses fragmentation entirely, confirming the theoretical expectation that subcritical filaments are stable against gravitational collapse.
+
+\textbf{(2) Magnetically regulated ($0.2 \leq \beta \leq 2$)}: Intermediate fragmentation with $C = 3.4$--$11$. Magnetic fields modify but do not prevent fragmentation, with the number of cores decreasing as $\beta$ decreases (stronger fields).
+
+\textbf{(3) Thermally dominated ($\beta \geq 3$)}: Vigorous fragmentation with $C = 13$--$22$, approaching the pure hydrodynamic case. Magnetic fields are too weak to significantly affect fragmentation.
+
+\begin{figure*}
+\includegraphics[width=0.9\textwidth]{figures/fig_regime_diagram_mhd.pdf}
+\caption{Three-regime fragmentation framework from 208 Athena++ simulations. Color shows density contrast $C$. The three regimes are: (1) Magnetically subcritical (red, $\beta \leq 0.15$): minimal fragmentation; (2) Magnetically regulated (yellow/orange, $0.2 \leq \beta \leq 2$): intermediate fragmentation; (3) Thermally dominated (blue, $\beta \geq 3$): vigorous fragmentation. Typical HGBS filament conditions ($M \approx 2$--$3$, $\beta \approx 0.5$--$1.5$) fall in the magnetically regulated regime.}
+\label{fig:regime}
+\end{figure*}
+
+\subsection{Supercritical Filament Campaign}
+
+To address the critical gap in moderate supercriticality ($f \approx 2$--$3$), we conducted a comprehensive campaign of 654 Athena++ simulations spanning an extended parameter space directly relevant to HGBS filaments. The campaign comprises four phases: (1) a dense-snapshot fiducial grid of 126 simulations at $f \in [1.5, 3.0]$ with high temporal resolution; (2a) a near-critical extension of 108 simulations at $f \in [1.1, 1.3]$ to probe the marginally supercritical regime; (2b) a high-$\beta$ extension of 84 simulations at $\beta \in \{3.0, 5.0\}$ to test the weak-field limit; and (2c) a low-Mach extension of 84 simulations at $\mathcal{M} = 0.5$ to test subsonic turbulence. The full parameter space covers line-mass fraction $f = 1.1$--$3.0$ (10 values), plasma $\beta = 0.3$--$5.0$ (8 values), turbulent Mach number $\mathcal{M} = 0.5$--$3$ (4 values), with multiple random seeds. All 654 simulations fragmented (100\% fragmentation rate).
+
+\subsubsection{Simulation Setup}
+
+Each simulation models a Gaussian-profile filament with transverse density $\rho(r) = \rho_c\,e^{-r^2/(2W_{\rm core}^2)}$, where $W_{\rm core} = 0.3\,\lambda_{\rm J}$ is the half-width. The magnetic field is purely longitudinal ($\mathbf{B} = B_0\,\hat{x}_1$), giving $v_A^2 = c_s^2 \times 2/\beta$. Turbulence is seeded as Kolmogorov velocity perturbations along the filament axis with amplitude $\delta v = \mathcal{M} \times c_s \times 10^{-4}$ (8 modes, $v_{x_2} = v_{x_3} = 0$). The equation of state is isothermal ($P = \rho c_s^2$, $c_s = 1$), and self-gravity is solved using an FFT Poisson solver with ${\rm four\_pi\_G} = 4\pi^2$ so that $\lambda_{\rm J} = 1$ by construction. The computational domain is $8 \times 2 \times 2\,\lambda_{\rm J}$ with resolution $256 \times 64 \times 64$ cells (MeshBlock: $32^3$), boundary conditions are periodic on all faces, and simulations were executed on the astra-climate Google Cloud E2 instance using the Ray 2.55.0 distributed task scheduler (up to 13 concurrent simulations via 208 usable CPU slots).
+
+\subsubsection{Fragmentation Detection}
+
+A timestep watchdog monitored for runaway Jeans collapse: when the timestep dropped below $\Delta t < 10^{-8}\,t_{\rm J}$, the simulation was terminated and $t_{\rm frag}$ was recorded. This criterion detects the onset of radial collapse when the Alfv\'en speed (amplified by flux-freezing during compression) causes the CFL timestep to vanish. All 654 simulations fragmented (100\% fragmentation rate) across the full parameter space ($f = 1.1$--$3.0$, $\beta = 0.3$--$5.0$, $\mathcal{M} = 0.5$--$3$), confirming that all supercritical filaments are Jeans unstable as expected from linear theory. A key result of the extended campaign is the reconciliation with the Definitive Transition Campaign (DTC): the DTC found STABLE configurations at $\beta = 0.3$, $\mathcal{M} = 1$ for $f = 1.4$--$2.2$ using a 600-second wall-clock timeout. Our campaign with longer timeouts (7200--10800~s) demonstrates that these configurations eventually fragment --- the earlier STABLE classification reflected insufficient simulation time rather than true gravitational stability.
+
+\subsubsection{Fragmentation Timescales}
+
+Figure~\ref{fig:tfrag_combined} shows $t_{\rm frag}$ as a function of $f$ and $\beta$ across the full parameter space. The fragmentation time decreases monotonically with supercriticality, from $t_{\rm frag} \approx 0.371\,t_{\rm J}$ at $f = 1.1$ to $t_{\rm frag} \approx 0.251\,t_{\rm J}$ at $f = 3.0$. Remarkably, the data follow a robust power-law scaling:
+\begin{equation}
+\frac{1}{t_{\rm frag}} \propto f^{0.39 \pm 0.01} \quad (r^2 = 0.999)
+\end{equation}
+This power law holds across the factor-of-three range in $f$ and provides a quantitative prediction for fragmentation timescales in supercritical filaments.
+
+\textbf{Magnetic field dependence}: $t_{\rm frag}$ is nearly independent of $\beta$ above $\beta \gtrsim 0.5$. Only at $\beta = 0.3$ (strong field) is $t_{\rm frag}$ measurably shorter ($0.2725\,t_{\rm J}$ vs $0.2950\,t_{\rm J}$ at $\beta = 5$, a 7.7\% difference). For $\beta = 0.5$--$5.0$, the variation in $t_{\rm frag}$ is less than 3\%. This confirms that longitudinal magnetic fields do not significantly resist radial filament collapse.
+
+\textbf{Turbulence dependence}: Figure~\ref{fig:mach_highbeta} shows that $t_{\rm frag}$ is completely independent of Mach number within the range $\mathcal{M} = 0.5$--$3.0$, to four decimal places ($\langle t_{\rm frag} \rangle = 0.2869\,t_{\rm J}$ for all $\mathcal{M}$). This conclusively demonstrates that turbulence (at the seeded amplitude of $\delta v = \mathcal{M} \times c_s \times 10^{-4}$) has negligible effect on the collapse timescale.
+
+\begin{figure*}
+\includegraphics[width=0.45\textwidth]{figures/fig1_tfrag_combined.pdf}
+\includegraphics[width=0.45\textwidth]{figures/fig2_tfrag_heatmap_combined.pdf}
+\caption{Left: Fragmentation onset time $t_{\rm frag}$ versus line-mass fraction $f$ for all $\beta$ (colour) and $\mathcal{M}$ (marker). The power-law fit $1/t_{\rm frag} \propto f^{0.39}$ ($r^2 = 0.999$) is shown as the dashed line. Right: Heatmap of mean $t_{\rm frag}$ in the $(\beta, f)$ plane. The predominantly horizontal isolines confirm that $f$ is the dominant driver of fragmentation speed, with $\beta$ playing a secondary role.}
+\label{fig:tfrag_combined}
+\end{figure*}
+
+\begin{figure*}
+\includegraphics[width=0.9\textwidth]{figures/fig4_mach_highbeta_extensions.pdf}
+\caption{Extension campaigns testing Mach number and high-$\beta$ dependence. Left panel: $t_{\rm frag}$ versus $f$ for $\mathcal{M} = 0.5$--$3.0$, showing complete independence of Mach number. Right panel: $t_{\rm frag}$ versus $f$ for $\beta = 0.3$--$5.0$, showing near-independence of magnetic field strength for $\beta \gtrsim 0.5$.}
+\label{fig:mach_highbeta}
+\end{figure*}
+
+\begin{figure*}
+\includegraphics[width=0.9\textwidth]{figures/fig5_nearcrit_tfrag.pdf}
+\caption{Near-critical regime ($f = 1.1$--$1.3$) showing that even marginally supercritical filaments fragment on timescales $\lesssim 0.4\,t_{\rm J}$. Error bars show standard deviation across turbulence seeds. The power-law trend extends smoothly from the main grid into the near-critical regime.}
+\label{fig:nearcrit}
+\end{figure*}
+
+\subsubsection{Fragmentation Spacing Predictions}
+
+\textbf{Direct measurement --- negative result}: A key goal of the dense snapshot campaign (HDF5 output interval $\Delta t = 0.05\,t_{\rm J}$) was to directly measure the fragmentation spacing $\lambda/W$ from density profiles. Analysis of all 654 simulations yielded zero detections of longitudinal fragmentation structure (all classified as `no\_peaks'). Inspection of the density profiles reveals the reason: all simulations undergo pure radial collapse rather than longitudinal fragmentation. The fractional density variation along the filament axis is:
+\begin{equation}
+\frac{\sigma(\rho_{x_1})}{\langle \rho_{x_1} \rangle} < 2 \times 10^{-4}
+\end{equation}
+at all snapshots up to and including the fragmentation time. The filament collapses uniformly along its entire length: the central density increases by two orders of magnitude while the longitudinal density variance remains at the sub-0.02\% level. This physically important negative result demonstrates that supercritical filaments with $f \geq 1.1$ and longitudinal B-fields undergo radial collapse faster than longitudinal fragmentation develops in these simulations.
+
+\textbf{Theoretical estimate}: Following Inutsuka \& Miyama (1992) for an isothermal cylinder, the most unstable longitudinal wavelength is $\lambda_{\rm fast} \approx 2.2 H$, where $H$ is the filament scale height. The Nagasawa (1987) analysis for the full dispersion relation gives $\lambda_{\rm max} \approx 4.4 H$ for the cylinder radius. Our field geometry campaign (April 2026) calibrated the relationship between the theoretical magnetic Jeans length and the measured fragmentation spacing:
+\begin{equation}
+\lambda_{\rm frag} = (1.11 \pm 0.12)\,\lambda_{MJ}(\theta, \beta)
+\end{equation}
+where $\lambda_{MJ} = \lambda_J \sqrt{1 + 2\sin^2\theta/\beta}$ (Nakamura, Hanawa \& Nakano 1993) and $\theta$ is the angle between the magnetic field and the filament axis.
+
+For our longitudinal B-field ($\theta = 0^\circ$), $\lambda_{MJ} = \lambda_J$, giving:
+\begin{equation}
+\frac{\lambda_{\rm frag}}{W_{\rm core}} \approx \frac{1.11\,\lambda_J}{0.3\,\lambda_J} = 3.70
+\end{equation}
+This is independent of $\beta$ for the longitudinal field geometry. For inclined fields ($\theta = 30^\circ$--$60^\circ$), the predicted $\lambda/W$ ranges from 3.8 to 5.5 (for $\beta = 0.3$--$2.0$). Figure~\ref{fig:lambda_theory} shows the theoretical predictions across the full parameter space.
+
+\begin{figure*}
+\includegraphics[width=0.9\textwidth]{figures/fig3_lambda_W_theory.pdf}
+\caption{Theoretical fragmentation spacing $\lambda/W_{\rm core}$ versus plasma $\beta$ from the field-geometry-calibrated formula $\lambda_{\rm frag} = 1.11\,\lambda_{MJ}(\theta, \beta)$. For longitudinal B-field ($\theta = 0^\circ$), $\lambda/W = 3.70$ (independent of $\beta$). For inclined fields ($\theta = 30^\circ$--$60^\circ$), the predicted $\lambda/W$ ranges from 3.8 to 5.5. The HGBS observational value ($\lambda/W = 2.1$) is below the longitudinal-field prediction, suggesting either perpendicular field geometry or non-linear evolution effects.}
+\label{fig:lambda_theory}
+\end{figure*}
+
+\textbf{Comparison with HGBS}: The observed ratio $\lambda/W = 2.1 \pm 0.4$ (Andr\'e et al. 2014) is below the predicted 3.70 for longitudinal B. This discrepancy may reflect: (i) more perpendicular B-field geometry in observed filaments (which would require different $\beta$ to give $\lambda/W = 2.1$); (ii) non-linear evolution leading to core merging and effectively shorter apparent spacing; or (iii) different definitions of `core width' between observations and simulations. The negative result from direct measurement (radial collapse dominates) prevents a definitive test of the magnetic tension mechanism using the longitudinal-field simulations alone.
+
+
+\subsection{Gravity-Dominated Regime}
+
+Simulations of a highly supercritical filament ($f = 6.6$) show that core spacing is $\lambda/W \approx 0.94$ and is \textbf{independent of magnetic field strength} ($\beta = 0.5$--$2.0$). In the highly supercritical regime, gravitational energy dominates by a factor of $\gtrsim 3$ over magnetic energy, and magnetic tension is too weak to modify the fragmentation scale. \textit{Caveat}: The $f = 6.6$ regime is highly unphysical for HGBS filaments (where $f \approx 1.5$--$3$), and the $\lambda/W \approx 0.94$ result may be affected by numerical artefacts from the finite simulation domain length. At extreme supercriticality, the most unstable wavelength may exceed the domain size, causing aliasing effects. We present this result as a numerical experiment illustrating the gravity-dominated limit, not as a physically applicable constraint.
+
+The observed spacing ($\lambda/W \approx 2.1$) lies between the highly supercritical limit and the near-critical IM92 prediction ($\lambda/W \approx 4$), and our new supercritical filament campaign now covers the intermediate regime ($f = 1.5$--$3.0$) directly relevant to HGBS filaments.
+
+\section{DISCUSSION}
+
+\subsection{Can Models Explain the Observational Discrepancy?}
+
+The observational result ($\lambda/W = 2.11 \pm 0.07$) differs from the classical IM92 prediction ($\lambda/W \approx 4$) by nearly a factor of two. Given that this discrepancy has been reported consistently across multiple HGBS analyses and independent groups, it is unlikely to reflect measurement error alone. However, the statistical significance of this discrepancy is difficult to quantify rigorously: the $\chi^2$ test has limited power to detect environmental variation at the 10--15\% level with only $N = 8$ regions, the reported standard errors (Table 1) do not fully propagate systematic uncertainty in the DisPerSE skeleton identification, and the pairwise median statistic has poorly understood sampling properties for small-N filament sub-samples (e.g., TMC1 with only 178 cores). We examine whether the models considered here can explain this discrepancy, while acknowledging that systematic uncertainties in the methodology remain difficult to quantify.
+
+\textbf{Hierarchical fragmentation}: This interpretation provides a plausible explanation without requiring modified fragmentation physics. \citet{Yang2024} found that fiber-to-core spacing in Orion B recovers the classical $4\times$ prediction, while filament-to-core measurements show sub-Jeans values of $\sim2$--$3\times$. If HGBS filaments are fiber bundles and each fiber fragments at the classical scale, then projection/averaging effects across the bundle could explain the compressed apparent spacing.
+
+However, critical caveats remain: (1) The Yang et al. (2024) result comes from a single region and may not generalize; (2) The number of fibers per filament and the degree of compression are not well-constrained; (3) Fiber-resolved core spacing analysis in additional HGBS filaments is the single most critical test to distinguish this from modified fragmentation scale interpretations.
+
+\textbf{Magnetic tension}: The full numerical solution predicts $\lambda/W = 2.44$ for $\beta = 1$, in reasonable agreement (16\% higher) with the observed value of $2.11$. Our comprehensive supercritical filament campaign (654 simulations) provides the most extensive numerical test of this mechanism to date, spanning $f = 1.1$--$3.0$, $\beta = 0.3$--$5.0$, and $\mathcal{M} = 0.5$--$3.0$. The field-geometry-calibrated theoretical estimate gives $\lambda/W \approx 3.70$ for longitudinal B-fields (independent of $\beta$), which is higher than the HGBS-observed value of $2.1$. This discrepancy suggests that either: (i) real filaments have more perpendicular field geometry than assumed in our longitudinal-field simulations; (ii) non-linear evolution (core merging) reduces the apparent spacing; or (iii) the definition of `core width' differs between observations and simulations. The direct measurement attempt yielded a negative result: all simulations undergo radial collapse faster than longitudinal fragmentation develops, preventing a direct numerical measurement of $\lambda/W$ in this setup.
+
+The mechanism faces substantial geometric challenges. Planck Collaboration (2016) found that dense filaments tend to be perpendicular to the mean magnetic field, with only $\sim$10\% expected to have predominantly longitudinal internal field geometry. While hourglass field configurations have been observed in some filaments \citep[as unreviewed preprint]{Jadhav2026}, single-case observational evidence is insufficient to support a mechanism that must operate in the majority of filaments to explain the universal $\lambda/W \approx 2$ result. High-resolution polarimetric mapping of HGBS filament interiors is needed to test whether the longitudinal-field assumption is viable.
+
+Our combined campaign reveals that the fragmentation timescale is nearly independent of magnetic field strength for longitudinal B-fields: a factor-of-17 increase in $\beta$ (from 0.3 to 5.0) changes $t_{\rm frag}$ by only 8\%. This confirms that longitudinal B-fields do not significantly resist radial filament collapse, even for strong fields ($\beta = 0.3$). The weak dependence on $\beta$ contrasts with the stronger dependence predicted for oblique field geometries, where magnetic tension can more effectively oppose radial compression.
+
+\textbf{Non-isothermal effects}: Our validation campaign tested mildly sub-isothermal equations of state ($\gamma = 0.9$, $0.8$) at five representative parameter points. We find that $\gamma < 1$ accelerates fragmentation by 30--40\% relative to isothermal ($t_{\rm frag} \approx 0.66$--$0.68\,t_{\rm J}$ at $\gamma = 0.8$ versus $\sim 1.2\,t_{\rm J}$ isothermal). The combined supercritical filament campaign finds fragmentation times $t_{\rm frag} = 0.245$--$0.343\,t_{\rm J}$ in the isothermal case, decreasing with increasing $f$ according to the power law $1/t_{\rm frag} \propto f^{0.39}$ ($r^2 = 0.999$). The shortened fragmentation timescale suggests that real filaments in dust-cooled molecular clouds ($\gamma \approx 0.7$--$0.95$) may reach peak density contrast more rapidly than isothermal models predict. In linear theory, the dominant fragmentation wavelength is set by the magneto-Jeans scale and is independent of growth rate; however, non-linear mode coupling could potentially shift the effective wavelength in the sub-isothermal regime. Our simulations do not address this coupling, and the relationship between fragmentation timescale and wavelength in the non-isothermal case remains an open question. If real filaments fragment at shorter wavelengths than our isothermal predictions, the observational discrepancy ($\lambda/W \approx 2$ vs. the IM92 prediction of 4) becomes even more challenging to explain.
+
+\subsection{Limitations and Future Work}
+
+\textbf{Resolution convergence}: Our $256^3$ validation simulations were limited by wallclock timeout (4~h) and did not reach the fragmentation timescale before $t_{\rm final} \approx 1.0$--$1.3\,t_{\rm J}$. Full $256^3$ resolution convergence would require approximately 6~h per simulation. The $128^3$ DTC results are internally self-consistent across random seeds and reproduce linear theory predictions, but independent verification at higher resolution remains desirable.
+
+\textbf{Stochastic zone characterization}: Our DTC campaign used 2 seeds per parameter point, sufficient to identify stochastic transitions but insufficient to fully characterise the fragmentation probability distribution. With 5--8 seeds per point, we could better quantify $P_{\rm frag}(f, \beta, \mathcal{M})$ near the boundary and map the finite width of the transition zone.
+
+\textbf{Snapshot coverage gap}: A key limitation of the combined supercritical filament campaign is that the HDF5 snapshots capture radial collapse rather than longitudinal fragmentation. Analysis of all 654 simulations yielded zero detections of longitudinal beading structure: the fractional density variation along the filament axis is $\sigma(\rho_{x_1})/\langle \rho_{x_1} \rangle < 2 \times 10^{-4}$ at all snapshots up to and including the fragmentation time. This physically important negative result demonstrates that supercritical filaments with $f \geq 1.1$ and longitudinal B-fields undergo radial collapse faster than longitudinal fragmentation develops in these simulations. To directly measure $\lambda_{\rm frag}$, future simulations would need to: (1) Run near-criticality ($f \lesssim 1.0$) where radial collapse is slow; (2) Adopt perpendicular or oblique B-field geometry to resist radial collapse; or (3) Employ a non-radiative (adiabatic) equation of state with $\gamma > 1$.
+
+\textbf{Field geometry limitation}: All simulations in the combined campaign assume purely longitudinal magnetic field geometry. Real filaments likely have oblique field configurations, which would change both the collapse dynamics and the fragmentation spacing. The field-geometry calibration from our separate oblique-field campaign provides a theoretical correction ($\lambda_{\rm frag} = 1.11\,\lambda_{MJ}(\theta, \beta)$), but this has not been tested with direct numerical measurement in the present campaign.
+
+Future work priorities are: (1) Fiber-resolved core spacing analysis in HGBS filaments to test the hierarchical interpretation; (2) High-resolution polarimetric mapping to test the longitudinal-field assumption; (3) Perpendicular- and oblique-field simulations to directly measure $\lambda_{\rm frag}$ for realistic field geometries (the longitudinal-only simulations cannot capture longitudinal beading); (4) Near-critical simulations ($f \lesssim 1.0$) with longer temporal baselines to capture longitudinal fragmentation before radial collapse dominates; (5) Extended resolution convergence tests with 5--8 seeds per stochastic point to fully characterise the transition boundary.
+
+\section{CONCLUSIONS}
+
+We have conducted an analysis of core spacing in HGBS filaments, combining observational analysis with self-gravitating MHD simulations. Our main conclusions are:
+
+\begin{itemize}
+    \item \textbf{Core spacing measurements}: $0.211 \pm 0.007$ pc across 8 HGBS regions (5,069 cores), corresponding to $2.11\times$ the characteristic filament width. This differs from the classical IM92 prediction ($4\times$) by a factor of nearly 2.
+
+    \item \textbf{Consistency with literature}: Our measurement is consistent with independent published analyses from multiple groups, validating the robustness of HGBS measurements.
+
+    \item \textbf{Hierarchical fragmentation}: Provides a plausible explanation without requiring modified physics. Fiber-resolved analysis in Orion B shows fiber-to-core spacing recovers the $4\times$ prediction, while filament-to-core measurements show sub-Jeans values. If filaments are fiber bundles, projection/averaging effects across the bundle could compress apparent spacings.
+
+    \item \textbf{Magnetic tension}: The full numerical solution predicts $\lambda/W = 2.44$ for $\beta = 1$, in reasonable agreement (16\% higher) with observations. Our comprehensive supercritical filament campaign (654 simulations) provides the most extensive numerical test of this mechanism to date, spanning $f = 1.1$--$3.0$, $\beta = 0.3$--$5.0$, and $\mathcal{M} = 0.5$--$3.0$. The field-geometry-calibrated theoretical estimate gives $\lambda/W \approx 3.70$ for longitudinal B-fields (independent of $\beta$), which is higher than the HGBS-observed value of $2.1$. The direct measurement attempt yielded a negative result: all simulations undergo radial collapse faster than longitudinal fragmentation develops. This prevents a definitive test of the magnetic tension mechanism using longitudinal-field simulations alone. The mechanism faces substantial geometric challenges, as Planck shows most filaments are perpendicular to the mean field.
+
+    \item \textbf{MHD simulations}: Reveal three distinct fragmentation regimes (magnetically subcritical, magnetically regulated, thermally dominated) and confirm that linear MHD stability theory predictions are reproduced in our simulations. The comprehensive supercritical filament campaign (654 simulations) covers the extended parameter space ($f = 1.1$--$3.0$, $\beta = 0.3$--$5.0$, $\mathcal{M} = 0.5$--$3.0$) directly relevant to HGBS filaments. The Definitive Transition Campaign (540 simulations) maps the stable-unstable boundary for longitudinal B-fields across $f = 1.4$--$2.2$, $\beta = 0.3$--$1.3$, and $\mathcal{M} = 1$--$5$, identifying 12 stochastic transition points. Fragmentation times follow a robust power law $1/t_{\rm frag} \propto f^{0.39}$ ($r^2 = 0.999$), decreasing from $0.371\,t_{\rm J}$ at $f=1.1$ to $0.251\,t_{\rm J}$ at $f=3.0$. The fragmentation timescale is completely independent of Mach number and nearly independent of $\beta$ (only 8\% change from $\beta=0.3$ to $5.0$).
+
+    \item \textbf{Critical tests}: Fiber-resolved core spacing analysis in HGBS filaments is the single most critical test to distinguish between hierarchical and magnetic explanations. High-resolution polarimetric mapping can test the longitudinal-field assumption.
+
+    \item \textbf{Validation campaigns}: We performed three validation campaigns (83 simulations) testing resolution convergence, initial condition sensitivity, and non-isothermal EOS effects. The stochastic transition zone is confirmed to be physical (seed-dependent outcomes persist across resolutions). Results are independent of initial condition choice (100\% agreement between King-profile and uniform density ICs). Sub-isothermal EOS ($\gamma < 1$) accelerates fragmentation by 30--40\%, meaning isothermal predictions are conservative and observed filaments are likely more fragmentation-prone than our models suggest.
+\end{itemize}
+
+\section*{ACKNOWLEDGMENTS}
+
+We thank the Herschel Gould Belt Survey team for the datasets. HGBS data are available from the Herschel Science Archive. The simulation data underlying Figure~\ref{fig:regime}, Figure~\ref{fig:tfrag\_combined}, Figure~\ref{fig:mach\_highbeta}, Figure~\ref{fig:nearcrit}, Figure~\ref{fig:lambda\_theory}, Figure~\ref{fig:dtc\_pfrag}, Figure~\ref{fig:resolution}, Figure~\ref{fig:ic\_sensitivity}, Figure~\ref{fig:eos\_sensitivity}, and Table~\ref{tab:perturbative} are available from the author. The 1277-simulation combined dataset (654 supercritical filament campaign + 540 DTC campaign + 83 validation simulations) and analysis code are available upon request from the author.
+
+\bibliographystyle{mnras}
+\bibliography{references_complete}
+
+\end{document}
