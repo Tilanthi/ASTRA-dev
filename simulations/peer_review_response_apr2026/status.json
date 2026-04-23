@@ -1,0 +1,892 @@
+{
+  "nearcrit_f1.00_b0.5_M1_s2_king_iso": {
+    "sim_id": "nearcrit_f1.00_b0.5_M1_s2_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.2120547435081122,
+    "wall_min": 3.266248273849487,
+    "f": 1.0,
+    "beta": 0.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b0.7_M1_s2_king_iso": {
+    "sim_id": "nearcrit_f1.00_b0.7_M1_s2_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.098122674462344,
+    "wall_min": 3.5153932491938273,
+    "f": 1.0,
+    "beta": 0.7,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b0.7_M1_s1_king_iso": {
+    "sim_id": "nearcrit_f1.00_b0.7_M1_s1_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.070464566773253,
+    "wall_min": 3.5165208419164022,
+    "f": 1.0,
+    "beta": 0.7,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b1.5_M1_s1_king_iso": {
+    "sim_id": "nearcrit_f1.00_b1.5_M1_s1_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.9120727439806501,
+    "wall_min": 3.7673388481140138,
+    "f": 1.0,
+    "beta": 1.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b1.0_M1_s2_king_iso": {
+    "sim_id": "nearcrit_f1.00_b1.0_M1_s2_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.003330126951429,
+    "wall_min": 3.7675235509872436,
+    "f": 1.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b0.7_M1_s3_king_iso": {
+    "sim_id": "nearcrit_f1.00_b0.7_M1_s3_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.0944183591835341,
+    "wall_min": 3.7686583916346232,
+    "f": 1.0,
+    "beta": 0.7,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b0.3_M1_s2_king_iso": {
+    "sim_id": "nearcrit_f1.00_b0.3_M1_s2_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.5499464180239566,
+    "wall_min": 4.018612861633301,
+    "f": 1.0,
+    "beta": 0.3,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b0.3_M1_s1_king_iso": {
+    "sim_id": "nearcrit_f1.00_b0.3_M1_s1_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.632813399134479,
+    "wall_min": 4.269224921862285,
+    "f": 1.0,
+    "beta": 0.3,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b1.0_M1_s3_king_iso": {
+    "sim_id": "nearcrit_f1.00_b1.0_M1_s3_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.0093139634620054,
+    "wall_min": 4.270269457499186,
+    "f": 1.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b1.0_M1_s1_king_iso": {
+    "sim_id": "nearcrit_f1.00_b1.0_M1_s1_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.9873280414821316,
+    "wall_min": 4.270277472337087,
+    "f": 1.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b0.3_M1_s3_king_iso": {
+    "sim_id": "nearcrit_f1.00_b0.3_M1_s3_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.5870556180462325,
+    "wall_min": 4.522353390852611,
+    "f": 1.0,
+    "beta": 0.3,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b0.5_M1_s3_king_iso": {
+    "sim_id": "nearcrit_f1.00_b0.5_M1_s3_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.2371195882724362,
+    "wall_min": 4.773911317189534,
+    "f": 1.0,
+    "beta": 0.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b0.5_M1_s1_king_iso": {
+    "sim_id": "nearcrit_f1.00_b0.5_M1_s1_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.236649092167021,
+    "wall_min": 5.776638849576314,
+    "f": 1.0,
+    "beta": 0.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b1.5_M1_s3_king_iso": {
+    "sim_id": "nearcrit_f1.00_b1.5_M1_s3_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.9242638652508006,
+    "wall_min": 3.767887596289317,
+    "f": 1.0,
+    "beta": 1.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b2.0_M1_s3_king_iso": {
+    "sim_id": "nearcrit_f1.00_b2.0_M1_s3_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.8813586110918737,
+    "wall_min": 3.7690018971761066,
+    "f": 1.0,
+    "beta": 2.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b0.3_M1_s2_king_iso": {
+    "sim_id": "nearcrit_f1.05_b0.3_M1_s2_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.5100416193699662,
+    "wall_min": 3.768508617083232,
+    "f": 1.05,
+    "beta": 0.3,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b2.0_M1_s1_king_iso": {
+    "sim_id": "nearcrit_f1.00_b2.0_M1_s1_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.8762211858000837,
+    "wall_min": 4.270603716373444,
+    "f": 1.0,
+    "beta": 2.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b0.5_M1_s2_king_iso": {
+    "sim_id": "nearcrit_f1.05_b0.5_M1_s2_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.1925506126206336,
+    "wall_min": 3.5169565598169963,
+    "f": 1.05,
+    "beta": 0.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b1.5_M1_s2_king_iso": {
+    "sim_id": "nearcrit_f1.00_b1.5_M1_s2_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.9373610588574542,
+    "wall_min": 4.521696277459463,
+    "f": 1.0,
+    "beta": 1.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.00_b2.0_M1_s2_king_iso": {
+    "sim_id": "nearcrit_f1.00_b2.0_M1_s2_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.8910259965635791,
+    "wall_min": 4.26980896393458,
+    "f": 1.0,
+    "beta": 2.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b0.3_M1_s1_king_iso": {
+    "sim_id": "nearcrit_f1.05_b0.3_M1_s1_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.6108320858804872,
+    "wall_min": 4.270998605092367,
+    "f": 1.05,
+    "beta": 0.3,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b0.5_M1_s3_king_iso": {
+    "sim_id": "nearcrit_f1.05_b0.5_M1_s3_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.2037604027251283,
+    "wall_min": 4.268993373711904,
+    "f": 1.05,
+    "beta": 0.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b0.7_M1_s1_king_iso": {
+    "sim_id": "nearcrit_f1.05_b0.7_M1_s1_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.0575925698202586,
+    "wall_min": 4.018440206845601,
+    "f": 1.05,
+    "beta": 0.7,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b0.3_M1_s3_king_iso": {
+    "sim_id": "nearcrit_f1.05_b0.3_M1_s3_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.5709940736088068,
+    "wall_min": 5.274772536754608,
+    "f": 1.05,
+    "beta": 0.3,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b0.7_M1_s2_king_iso": {
+    "sim_id": "nearcrit_f1.05_b0.7_M1_s2_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.0891084310280592,
+    "wall_min": 4.772128788630168,
+    "f": 1.05,
+    "beta": 0.7,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b0.5_M1_s1_king_iso": {
+    "sim_id": "nearcrit_f1.05_b0.5_M1_s1_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.213351240062013,
+    "wall_min": 6.279665390650432,
+    "f": 1.05,
+    "beta": 0.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b1.5_M1_s1_king_iso": {
+    "sim_id": "nearcrit_f1.05_b1.5_M1_s1_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.8950585664662368,
+    "wall_min": 3.767969477176666,
+    "f": 1.05,
+    "beta": 1.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b0.7_M1_s3_king_iso": {
+    "sim_id": "nearcrit_f1.05_b0.7_M1_s3_king_iso",
+    "status": "ERR-9",
+    "t_frag": 1.0877453514561732,
+    "wall_min": 4.519915457566579,
+    "f": 1.05,
+    "beta": 0.7,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b1.0_M1_s1_king_iso": {
+    "sim_id": "nearcrit_f1.05_b1.0_M1_s1_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.9738126078921228,
+    "wall_min": 4.2694085240364075,
+    "f": 1.05,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b1.5_M1_s2_king_iso": {
+    "sim_id": "nearcrit_f1.05_b1.5_M1_s2_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.914421177815975,
+    "wall_min": 4.0197794755299885,
+    "f": 1.05,
+    "beta": 1.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b1.5_M1_s3_king_iso": {
+    "sim_id": "nearcrit_f1.05_b1.5_M1_s3_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.9158400056942473,
+    "wall_min": 4.019665022691091,
+    "f": 1.05,
+    "beta": 1.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b1.0_M1_s2_king_iso": {
+    "sim_id": "nearcrit_f1.05_b1.0_M1_s2_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.9902036824228294,
+    "wall_min": 4.271356209119161,
+    "f": 1.05,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b1.0_M1_s3_king_iso": {
+    "sim_id": "nearcrit_f1.05_b1.0_M1_s3_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.9943967059577231,
+    "wall_min": 4.520013670126597,
+    "f": 1.05,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b2.0_M1_s3_king_iso": {
+    "sim_id": "nearcrit_f1.05_b2.0_M1_s3_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.8730998546681619,
+    "wall_min": 4.019634453455607,
+    "f": 1.05,
+    "beta": 2.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b2.0_M1_s2_king_iso": {
+    "sim_id": "nearcrit_f1.05_b2.0_M1_s2_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.8728879847388147,
+    "wall_min": 4.270766568183899,
+    "f": 1.05,
+    "beta": 2.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "nearcrit_f1.05_b2.0_M1_s1_king_iso": {
+    "sim_id": "nearcrit_f1.05_b2.0_M1_s1_king_iso",
+    "status": "ERR-9",
+    "t_frag": 0.8665182269859611,
+    "wall_min": 5.0241082032521565,
+    "f": 1.05,
+    "beta": 2.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "perp_f1.5_b0.5_M1_s1": {
+    "sim_id": "perp_f1.5_b0.5_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.4128964802889939,
+    "wall_min": 3.0154423276583353,
+    "f": 1.5,
+    "beta": 0.5,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f1.5_b1.0_M1_s2": {
+    "sim_id": "perp_f1.5_b1.0_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.41590520257350855,
+    "wall_min": 2.0101738413174948,
+    "f": 1.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f1.5_b1.5_M1_s1": {
+    "sim_id": "perp_f1.5_b1.5_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.44916099030456397,
+    "wall_min": 2.010115381081899,
+    "f": 1.5,
+    "beta": 1.5,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f1.5_b0.5_M1_s2": {
+    "sim_id": "perp_f1.5_b0.5_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.4160175388348177,
+    "wall_min": 2.7632189830144247,
+    "f": 1.5,
+    "beta": 0.5,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f1.5_b1.5_M1_s2": {
+    "sim_id": "perp_f1.5_b1.5_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.44830578540679233,
+    "wall_min": 2.261416812737783,
+    "f": 1.5,
+    "beta": 1.5,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f1.5_b0.7_M1_s1": {
+    "sim_id": "perp_f1.5_b0.7_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.45163536191372833,
+    "wall_min": 4.019525905450185,
+    "f": 1.5,
+    "beta": 0.7,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f1.5_b2.0_M1_s2": {
+    "sim_id": "perp_f1.5_b2.0_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.48405124858133325,
+    "wall_min": 2.7641414086023968,
+    "f": 1.5,
+    "beta": 2.0,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f2.0_b0.3_M1_s2": {
+    "sim_id": "perp_f2.0_b0.3_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.355090492700457,
+    "wall_min": 2.260950517654419,
+    "f": 2.0,
+    "beta": 0.3,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f1.5_b1.0_M1_s1": {
+    "sim_id": "perp_f1.5_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.4185427820880925,
+    "wall_min": 4.020034348964691,
+    "f": 1.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f1.5_b0.3_M1_s1": {
+    "sim_id": "perp_f1.5_b0.3_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.5136232650594325,
+    "wall_min": 6.529991499582926,
+    "f": 1.5,
+    "beta": 0.3,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f1.5_b0.3_M1_s2": {
+    "sim_id": "perp_f1.5_b0.3_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.5020549912559431,
+    "wall_min": 5.525327980518341,
+    "f": 1.5,
+    "beta": 0.3,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f1.5_b2.0_M1_s1": {
+    "sim_id": "perp_f1.5_b2.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.48878865099949065,
+    "wall_min": 3.2655913988749186,
+    "f": 1.5,
+    "beta": 2.0,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f2.0_b0.7_M1_s1": {
+    "sim_id": "perp_f2.0_b0.7_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.36464298075521856,
+    "wall_min": 2.010161642233531,
+    "f": 2.0,
+    "beta": 0.7,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f1.5_b0.7_M1_s2": {
+    "sim_id": "perp_f1.5_b0.7_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.45845836380101485,
+    "wall_min": 4.771405263741811,
+    "f": 1.5,
+    "beta": 0.7,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f2.0_b0.7_M1_s2": {
+    "sim_id": "perp_f2.0_b0.7_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.36569605874829625,
+    "wall_min": 2.0099326848983763,
+    "f": 2.0,
+    "beta": 0.7,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f2.0_b0.5_M1_s2": {
+    "sim_id": "perp_f2.0_b0.5_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.3712238069126709,
+    "wall_min": 2.512173875172933,
+    "f": 2.0,
+    "beta": 0.5,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f2.0_b0.3_M1_s1": {
+    "sim_id": "perp_f2.0_b0.3_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.39163260324765703,
+    "wall_min": 3.7679266770680746,
+    "f": 2.0,
+    "beta": 0.3,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f2.0_b1.0_M1_s1": {
+    "sim_id": "perp_f2.0_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.3811980288535495,
+    "wall_min": 1.7590653022130331,
+    "f": 2.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f2.0_b1.0_M1_s2": {
+    "sim_id": "perp_f2.0_b1.0_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.3805693957960397,
+    "wall_min": 1.7590246280034383,
+    "f": 2.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "oblique_30deg_f1.5_b1.0_M1_s1": {
+    "sim_id": "oblique_30deg_f1.5_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.6675361669249128,
+    "wall_min": 3.265487798055013,
+    "f": 1.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "perp_f2.0_b1.5_M1_s1": {
+    "sim_id": "perp_f2.0_b1.5_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.43013183363161944,
+    "wall_min": 3.5175532261530558,
+    "f": 2.0,
+    "beta": 1.5,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "perp_f2.0_b1.5_M1_s2": {
+    "sim_id": "perp_f2.0_b1.5_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.42681265036861243,
+    "wall_min": 3.767224915822347,
+    "f": 2.0,
+    "beta": 1.5,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "oblique_30deg_f2.5_b1.0_M1_s1": {
+    "sim_id": "oblique_30deg_f2.5_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.5434431342511746,
+    "wall_min": 3.5156341950098673,
+    "f": 2.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "perp_f2.0_b0.5_M1_s1": {
+    "sim_id": "perp_f2.0_b0.5_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.41768394535359216,
+    "wall_min": 6.02949880361557,
+    "f": 2.0,
+    "beta": 0.5,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "oblique_30deg_f2.0_b1.0_M1_s1": {
+    "sim_id": "oblique_30deg_f2.0_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.5988226743806306,
+    "wall_min": 4.018585209051768,
+    "f": 2.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "oblique_30deg_f2.0_b1.0_M1_s2": {
+    "sim_id": "oblique_30deg_f2.0_b1.0_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.6004796755094749,
+    "wall_min": 4.019668245315552,
+    "f": 2.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "oblique_30deg_f1.5_b1.0_M1_s2": {
+    "sim_id": "oblique_30deg_f1.5_b1.0_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.6783932592500697,
+    "wall_min": 4.521518282095591,
+    "f": 1.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "oblique_45deg_f1.5_b1.0_M1_s1": {
+    "sim_id": "oblique_45deg_f1.5_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.563105332476423,
+    "wall_min": 3.517718168099721,
+    "f": 1.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "oblique_45deg_f1.5_b1.0_M1_s2": {
+    "sim_id": "oblique_45deg_f1.5_b1.0_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.5622800129861404,
+    "wall_min": 3.5165215611457823,
+    "f": 1.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "oblique_45deg_f2.0_b1.0_M1_s2": {
+    "sim_id": "oblique_45deg_f2.0_b1.0_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.4967583353365862,
+    "wall_min": 2.5129042585690815,
+    "f": 2.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "oblique_30deg_f2.5_b1.0_M1_s2": {
+    "sim_id": "oblique_30deg_f2.5_b1.0_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.5564895044753827,
+    "wall_min": 5.276415050029755,
+    "f": 2.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "oblique_45deg_f2.5_b1.0_M1_s2": {
+    "sim_id": "oblique_45deg_f2.5_b1.0_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.4554293245873823,
+    "wall_min": 2.5122976064682008,
+    "f": 2.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "oblique_60deg_f1.5_b1.0_M1_s2": {
+    "sim_id": "oblique_60deg_f1.5_b1.0_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.48770320156093216,
+    "wall_min": 3.2652573744455973,
+    "f": 1.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "oblique_60deg_f2.0_b1.0_M1_s1": {
+    "sim_id": "oblique_60deg_f2.0_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.43301325996270335,
+    "wall_min": 3.5176581025123594,
+    "f": 2.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "oblique_60deg_f1.5_b1.0_M1_s1": {
+    "sim_id": "oblique_60deg_f1.5_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.5020703698598205,
+    "wall_min": 4.270920395851135,
+    "f": 1.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "perp_f2.0_b2.0_M1_s2": {
+    "sim_id": "perp_f2.0_b2.0_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.4631719937963513,
+    "wall_min": 8.792894065380096,
+    "f": 2.0,
+    "beta": 2.0,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "domain_L12_f2.0_b0.5_M1_s1": {
+    "sim_id": "domain_L12_f2.0_b0.5_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.8512794764406828,
+    "wall_min": 3.7683752020200094,
+    "f": 2.0,
+    "beta": 0.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "turbreal_f1.5_b1.0_M1_s1": {
+    "sim_id": "turbreal_f1.5_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.5019368561163348,
+    "wall_min": 2.512781862417857,
+    "f": 1.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "oblique_60deg_f2.0_b1.0_M2_s2": {
+    "sim_id": "oblique_60deg_f2.0_b1.0_M2_s2",
+    "status": "ERR-9",
+    "t_frag": 0.43398257277026525,
+    "wall_min": 4.522378007570903,
+    "f": 2.0,
+    "beta": 1.0,
+    "mach": 2.0,
+    "bgeom": "oblique"
+  },
+  "domain_L12_f2.0_b1.0_M1_s1": {
+    "sim_id": "domain_L12_f2.0_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.7553686764057246,
+    "wall_min": 5.276439992586772,
+    "f": 2.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "domain_L12_f2.0_b1.0_M1_s2": {
+    "sim_id": "domain_L12_f2.0_b1.0_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.7590242135310108,
+    "wall_min": 4.521830058097839,
+    "f": 2.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "oblique_45deg_f2.5_b1.0_M1_s1": {
+    "sim_id": "oblique_45deg_f2.5_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.47461596283151447,
+    "wall_min": 6.78435982465744,
+    "f": 2.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "turbreal_f1.5_b1.0_M1_s2": {
+    "sim_id": "turbreal_f1.5_b1.0_M1_s2",
+    "status": "ERR-9",
+    "t_frag": 0.46533886277971626,
+    "wall_min": 2.7639330705006917,
+    "f": 1.5,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "turbreal_f1.5_b1.0_M2_s1": {
+    "sim_id": "turbreal_f1.5_b1.0_M2_s1",
+    "status": "ERR-9",
+    "t_frag": 0.4601003019146309,
+    "wall_min": 2.763008944193522,
+    "f": 1.5,
+    "beta": 1.0,
+    "mach": 2.0,
+    "bgeom": "longitudinal"
+  },
+  "turbreal_f2.0_b1.0_M2_s1": {
+    "sim_id": "turbreal_f2.0_b1.0_M2_s1",
+    "status": "ERR-9",
+    "t_frag": 0.4168075986280072,
+    "wall_min": 2.761879090468089,
+    "f": 2.0,
+    "beta": 1.0,
+    "mach": 2.0,
+    "bgeom": "longitudinal"
+  },
+  "perp_f2.0_b2.0_M1_s1": {
+    "sim_id": "perp_f2.0_b2.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.47005060937970466,
+    "wall_min": 11.806063306331634,
+    "f": 2.0,
+    "beta": 2.0,
+    "mach": 1.0,
+    "bgeom": "perpendicular"
+  },
+  "turbreal_f2.0_b1.0_M1_s1": {
+    "sim_id": "turbreal_f2.0_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.45491659972369064,
+    "wall_min": 3.0146974325180054,
+    "f": 2.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "turbreal_f1.5_b1.0_M2_s2": {
+    "sim_id": "turbreal_f1.5_b1.0_M2_s2",
+    "status": "ERR-9",
+    "t_frag": 0.4161620010646984,
+    "wall_min": 3.516492434342702,
+    "f": 1.5,
+    "beta": 1.0,
+    "mach": 2.0,
+    "bgeom": "longitudinal"
+  },
+  "domain_L12_f2.0_b2.0_M1_s1": {
+    "sim_id": "domain_L12_f2.0_b2.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.6802543161217091,
+    "wall_min": 5.777388183275859,
+    "f": 2.0,
+    "beta": 2.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "outflow_f2.0_b0.5_M1_s1": {
+    "sim_id": "outflow_f2.0_b0.5_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.8646026718771311,
+    "wall_min": 3.516890521844228,
+    "f": 2.0,
+    "beta": 0.5,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "outflow_f2.0_b1.0_M1_s1": {
+    "sim_id": "outflow_f2.0_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.7571053502319923,
+    "wall_min": 3.7665914217631022,
+    "f": 2.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  },
+  "oblique_45deg_f2.0_b1.0_M1_s1": {
+    "sim_id": "oblique_45deg_f2.0_b1.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.5419911089724455,
+    "wall_min": 10.296031733353933,
+    "f": 2.0,
+    "beta": 1.0,
+    "mach": 1.0,
+    "bgeom": "oblique"
+  },
+  "outflow_f2.0_b2.0_M1_s1": {
+    "sim_id": "outflow_f2.0_b2.0_M1_s1",
+    "status": "ERR-9",
+    "t_frag": 0.701213627043032,
+    "wall_min": 4.514720813433329,
+    "f": 2.0,
+    "beta": 2.0,
+    "mach": 1.0,
+    "bgeom": "longitudinal"
+  }
+}

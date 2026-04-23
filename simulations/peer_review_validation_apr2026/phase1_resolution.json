@@ -1,0 +1,220 @@
+{
+  "n_pairs": 24,
+  "n_agree": 15,
+  "agreement_fraction": 0.625,
+  "n_frag_frag_pairs": 0,
+  "t_frag_ratio_mean": null,
+  "t_frag_ratio_std": null,
+  "n_resolution_sensitive": 9,
+  "pairs": [
+    {
+      "key": "('R10', 0.5, 3.0, 137)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.22002,
+      "t256": 1.12006,
+      "status128": "STABLE_PARTIAL",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R10', 0.5, 3.0, 42)",
+      "outcome": "DIFFER_128F_256S",
+      "t128": 1.2,
+      "t256": 1.15023,
+      "status128": "APPROACHING_FRAG",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R11', 0.5, 2.0, 137)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.27,
+      "t256": 1.16007,
+      "status128": "STABLE_PARTIAL",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R11', 0.5, 2.0, 42)",
+      "outcome": "DIFFER_128F_256S",
+      "t128": 1.23015,
+      "t256": 1.19011,
+      "status128": "FRAG",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R12', 0.7, 3.0, 137)",
+      "outcome": "DIFFER_128F_256S",
+      "t128": 1.11,
+      "t256": 1.02005,
+      "status128": "APPROACHING_FRAG",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R12', 0.7, 3.0, 42)",
+      "outcome": "DIFFER_128F_256S",
+      "t128": 1.11001,
+      "t256": 1.04008,
+      "status128": "FRAG",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R1', 0.3, 1.0, 137)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.68001,
+      "t256": 1.17046,
+      "status128": "STABLE",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R1', 0.3, 1.0, 42)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.65007,
+      "t256": 1.1801,
+      "status128": "STABLE",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R2', 0.5, 1.0, 137)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.33002,
+      "t256": 1.1101,
+      "status128": "STABLE_PARTIAL",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R2', 0.5, 1.0, 42)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.31002,
+      "t256": 1.11019,
+      "status128": "STABLE_PARTIAL",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R3', 0.3, 1.0, 137)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.68001,
+      "t256": 1.13024,
+      "status128": "STABLE",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R3', 0.3, 1.0, 42)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.65007,
+      "t256": 1.15038,
+      "status128": "STABLE",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R4', 0.5, 2.0, 137)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.27,
+      "t256": 1.11037,
+      "status128": "STABLE_PARTIAL",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R4', 0.5, 2.0, 42)",
+      "outcome": "DIFFER_128F_256S",
+      "t128": 1.23015,
+      "t256": 1.1104,
+      "status128": "FRAG",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R5', 0.3, 2.0, 137)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.57002,
+      "t256": 1.16016,
+      "status128": "STABLE",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R5', 0.3, 2.0, 42)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.52035,
+      "t256": 1.14039,
+      "status128": "STABLE",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R6', 0.5, 2.0, 137)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.27,
+      "t256": 1.11037,
+      "status128": "STABLE_PARTIAL",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R6', 0.5, 2.0, 42)",
+      "outcome": "DIFFER_128F_256S",
+      "t128": 1.23015,
+      "t256": 1.10018,
+      "status128": "FRAG",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R7', 0.5, 2.0, 137)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.27,
+      "t256": 1.1401,
+      "status128": "STABLE_PARTIAL",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R7', 0.5, 2.0, 42)",
+      "outcome": "DIFFER_128F_256S",
+      "t128": 1.23015,
+      "t256": 1.10018,
+      "status128": "FRAG",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R8', 0.7, 3.0, 137)",
+      "outcome": "DIFFER_128F_256S",
+      "t128": 1.11,
+      "t256": 1.02005,
+      "status128": "APPROACHING_FRAG",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R8', 0.7, 3.0, 42)",
+      "outcome": "DIFFER_128F_256S",
+      "t128": 1.11001,
+      "t256": 1.01001,
+      "status128": "FRAG",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R9', 0.3, 2.0, 137)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.57002,
+      "t256": 1.31013,
+      "status128": "STABLE",
+      "status256": "STABLE_PARTIAL"
+    },
+    {
+      "key": "('R9', 0.3, 2.0, 42)",
+      "outcome": "AGREE_STABLE",
+      "t128": 1.52035,
+      "t256": 1.27018,
+      "status128": "STABLE",
+      "status256": "STABLE_PARTIAL"
+    }
+  ],
+  "frag_timescales": {
+    "(0.5, 3.0, 128)": {
+      "mean": 1.2,
+      "std": 0.0,
+      "n": 1
+    },
+    "(0.5, 2.0, 128)": {
+      "mean": 1.2302,
+      "std": 0.0,
+      "n": 4
+    },
+    "(0.7, 3.0, 128)": {
+      "mean": 1.11,
+      "std": 0.0,
+      "n": 4
+    }
+  }
+}
