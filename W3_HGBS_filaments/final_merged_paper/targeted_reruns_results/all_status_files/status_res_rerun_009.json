@@ -1,0 +1,17 @@
+{
+  "run_id": "res_rerun_009",
+  "priority": 2,
+  "f": 2.5,
+  "beta": 0.3,
+  "mach": 1.0,
+  "seed": 1,
+  "resolution": "256",
+  "status": "FRAG",
+  "t_frag": 0.8112,
+  "dt_min": 5.086780003867157e-22,
+  "t_final": 0.800156,
+  "wall_seconds": 1538.0,
+  "mpi_ranks": 16,
+  "ref_tfrag_128": 0.274,
+  "note": "FRAG from log (post-race-fix2)"
+}

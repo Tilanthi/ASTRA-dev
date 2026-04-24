@@ -1,0 +1,17 @@
+{
+  "run_id": "dtc_rerun_012",
+  "priority": 1,
+  "f": 2.0,
+  "beta": 0.3,
+  "mach": 1.0,
+  "seed": 1,
+  "resolution": "128",
+  "status": "FRAG",
+  "t_frag": 1.05,
+  "dt_min": 1.41575e-21,
+  "t_final": 1.05,
+  "wall_seconds": 1100.2,
+  "mpi_ranks": 16,
+  "ref_tfrag_128": null,
+  "note": ""
+}

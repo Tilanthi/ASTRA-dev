@@ -1,0 +1,17 @@
+{
+  "run_id": "res_rerun_002",
+  "priority": 2,
+  "f": 1.5,
+  "beta": 0.3,
+  "mach": 2.0,
+  "seed": 1,
+  "resolution": "256",
+  "status": "FRAG",
+  "t_frag": 1.1480047941539666,
+  "dt_min": 8.247097343844562e-23,
+  "t_final": 1.1480047941539666,
+  "wall_seconds": 8410.1,
+  "mpi_ranks": 16,
+  "ref_tfrag_128": 0.272,
+  "note": "FRAG from log (dt_min=8.25e-23 at t=1.1480; detected post-hoc)"
+}
