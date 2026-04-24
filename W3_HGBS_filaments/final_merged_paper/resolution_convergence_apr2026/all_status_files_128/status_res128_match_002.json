@@ -1,0 +1,15 @@
+{
+  "run_id": "res128_match_002",
+  "f": 1.5,
+  "beta": 1.0,
+  "mach": 2.0,
+  "seed": 1,
+  "resolution": "128",
+  "t_frag_256": 0.7684,
+  "status": "FRAG",
+  "t_frag": 0.8369,
+  "dt_min": 3.8308609887306787e-22,
+  "wall_seconds": 649.6,
+  "note": "FRAG from log (race-fix)",
+  "t_final": 0.800104
+}
