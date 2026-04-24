@@ -1,0 +1,17 @@
+{
+  "run_id": "res_ref_006",
+  "f": 2.0,
+  "beta": 0.3,
+  "mach": 1.0,
+  "seed": 1,
+  "resolution": "128",
+  "nx1": 256,
+  "nx2": 64,
+  "nx3": 64,
+  "status": "FRAG",
+  "t_frag": 1.026,
+  "dt_min": 8.091761804960823e-22,
+  "wall_seconds": 672.6,
+  "note": "FRAG from log (race-refix)",
+  "t_final": 1.00002
+}
