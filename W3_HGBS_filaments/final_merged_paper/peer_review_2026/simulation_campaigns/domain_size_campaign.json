@@ -1,0 +1,87 @@
+{
+  "campaign_name": "domain_size_convergence_test",
+  "priority": "MODERATE",
+  "purpose": "Verify that 8 λ_J domain length does not suppress or alias longitudinal fragmentation modes",
+  "concern_addressed": 3,
+
+  "simulation_parameters": {
+    "resolution": [128, 128, 128],
+    "domain_dimensions": [16.0, 2.0, 2.0],
+    "domain_units": "lambda_J",
+    "boundary_conditions": "periodic_all",
+    "equation_of_state": "isothermal",
+    "field_geometry": "longitudinal",
+    "turbulence_seeding": "synthetic",
+    "turbulence_amplitude_factor": 1e-4,
+    "note": "Double the longitudinal dimension from 8 to 16 λ_J"
+  },
+
+  "parameter_grid": {
+    "line_mass": {
+      "values": [1.05, 1.10, 1.15],
+      "symbol": "f",
+      "description": "Near-critical regime where longitudinal beading dominates"
+    },
+    "plasma_beta": {
+      "values": [0.3, 1.0],
+      "symbol": "β",
+      "description": "Plasma beta parameter"
+    },
+    "mach_number": {
+      "values": [1.0, 2.0],
+      "symbol": "M",
+      "description": "Mach number"
+    }
+  },
+
+  "random_seeds": {
+    "values": [42, 43],
+    "description": "Two different random seeds per parameter point"
+  },
+
+  "total_simulations": 24,
+
+  "runtime_requirements": {
+    "wallclock_timeout_hours": 6,
+    "snapshot_retention": "full_hdf5",
+    "snapshot_interval": "0.05_tff",
+    "diagnostic_output": true,
+    "fragmentation_detection": true
+  },
+
+  "analysis_requirements": {
+    "primary_metrics": ["lambda_W", "fragmentation_wavelength", "power_spectrum"],
+    "secondary_metrics": ["mode_amplitudes", "spatial_aliasing_test"],
+    "comparison": "Compare λ/W with existing 8 λ_J domain results",
+    "convergence_criterion": "Domain size adequate if λ/W difference < 5%"
+  },
+
+  "fourier_analysis": {
+    "longitudinal_modes": {
+      "compute": true,
+      "max_mode": 20,
+      "output": "power_spectrum_vs_time"
+    },
+    "wavelength_analysis": {
+      "dominant_wavelength": true,
+      "all_wavelengths": true
+    }
+  },
+
+  "output_specification": {
+    "hdf5_snapshots": {
+      "retain_all": true,
+      "variables": ["density", "velocity", "magnetic_field"]
+    },
+    "fourier_data": {
+      "save_power_spectra": true,
+      "save_mode_amplitudes": true
+    }
+  },
+
+  "success_criteria": {
+    "fragmentation_rate": ">95%",
+    "convergence_achieved": "λ/W difference < 5% between 8 and 16 λ_J domains",
+    "no_aliasing": "No evidence of spatial aliasing in power spectra"
+  }
+}

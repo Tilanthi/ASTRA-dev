@@ -1,0 +1,105 @@
+{
+  "campaign_name": "physical_turbulence_test",
+  "priority": "MODERATE",
+  "purpose": "Test physical (M × c_s) vs. synthetic (M × c_s × 10⁻⁴) turbulence seeding",
+  "concern_addressed": 5,
+
+  "simulation_parameters": {
+    "resolution": [128, 128, 128],
+    "domain_dimensions": [8.0, 2.0, 2.0],
+    "domain_units": "lambda_J",
+    "boundary_conditions": "periodic_all",
+    "equation_of_state": "isothermal",
+    "field_geometry": "longitudinal",
+    "turbulence_seeding": "both",
+    "note": "Two runs per parameter point: synthetic vs. physical seeding"
+  },
+
+  "parameter_grid": {
+    "line_mass": {
+      "values": [1.5, 2.0, 2.5],
+      "symbol": "f",
+      "description": "Near-critical to supercritical"
+    },
+    "plasma_beta": {
+      "values": [0.3, 1.0],
+      "symbol": "β",
+      "description": "Plasma beta parameter"
+    },
+    "mach_number": {
+      "values": [1.0, 2.0, 3.0],
+      "symbol": "M",
+      "description": "Mach number"
+    }
+  },
+
+  "turbulence_variants": {
+    "synthetic": {
+      "amplitude_factor": 1e-4,
+      "description": "Current method: M × c_s × 10⁻⁴"
+    },
+    "physical": {
+      "amplitude_factor": 1.0,
+      "description": "Physical method: M × c_s"
+    }
+  },
+
+  "random_seeds": {
+    "values": [42, 43],
+    "description": "Two different random seeds per parameter point per seeding method"
+  },
+
+  "total_simulations": 72,
+
+  "runtime_requirements": {
+    "wallclock_timeout_hours": 8,
+    "snapshot_retention": "full_hdf5",
+    "snapshot_interval": "0.05_tff",
+    "diagnostic_output": true,
+    "fragmentation_detection": true
+  },
+
+  "analysis_requirements": {
+    "primary_metrics": [
+      "t_frag_synthetic",
+      "t_frag_physical",
+      "lambda_W_synthetic",
+      "lambda_W_physical"
+    ],
+    "secondary_metrics": [
+      "turbulence_power_spectrum",
+      "density_structure_evolution",
+      "velocity_field_statistics"
+    ],
+    "comparison": "Compare t_frag and λ/W between synthetic and physical seeding"
+  },
+
+  "turbulence_analysis": {
+    "power_spectrum": {
+      "compute": true,
+      "output": "turbulence_spectrum_vs_time"
+    },
+    "structure_statistics": {
+      "density_variance": true,
+      "velocity_statistics": true,
+      "correlation_length": true
+    }
+  },
+
+  "output_specification": {
+    "hdf5_snapshots": {
+      "retain_all": true,
+      "variables": ["density", "velocity", "magnetic_field", "pressure"]
+    },
+    "turbulence_data": {
+      "save_power_spectra": true,
+      "save_statistics": true
+    }
+  },
+
+  "success_criteria": {
+    "fragmentation_rate": ">95%",
+    "comparison_complete": "t_frag and λ/W compared between seeding methods",
+    "quantified_impact": "Impact of physical turbulence quantified"
+  }
+}

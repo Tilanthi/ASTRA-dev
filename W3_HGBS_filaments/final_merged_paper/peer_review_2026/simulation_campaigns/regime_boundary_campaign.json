@@ -1,0 +1,102 @@
+{
+  "campaign_name": "regime_boundary_exploration",
+  "priority": "HIGH",
+  "purpose": "Distinguish between radial collapse and longitudinal fragmentation across the regime boundary f ≈ 1.2-1.5",
+  "concern_addressed": 2,
+
+  "simulation_parameters": {
+    "resolution": [128, 128, 128],
+    "domain_dimensions": [8.0, 2.0, 2.0],
+    "domain_units": "lambda_J",
+    "boundary_conditions": "periodic_all",
+    "equation_of_state": "isothermal",
+    "field_geometry": "longitudinal",
+    "turbulence_seeding": "synthetic",
+    "turbulence_amplitude_factor": 1e-4
+  },
+
+  "parameter_grid": {
+    "line_mass": {
+      "values": [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0],
+      "symbol": "f",
+      "description": "Line mass relative to critical - spans regime boundary"
+    },
+    "plasma_beta": {
+      "values": [0.3, 1.0],
+      "symbol": "β",
+      "description": "Plasma beta parameter"
+    },
+    "mach_number": {
+      "values": [1.0],
+      "symbol": "M",
+      "description": "Mach number"
+    }
+  },
+
+  "random_seeds": {
+    "values": [42, 43, 44],
+    "description": "Three different random seeds per parameter point"
+  },
+
+  "total_simulations": 60,
+
+  "runtime_requirements": {
+    "wallclock_timeout_hours": 8,
+    "snapshot_retention": "full_hdf5",
+    "snapshot_interval": "0.05_tff",
+    "diagnostic_output": true,
+    "fragmentation_detection": true
+  },
+
+  "analysis_requirements": {
+    "primary_metrics": [
+      "t_frag_radial",
+      "t_frag_longitudinal",
+      "lambda_W",
+      "regime_classification"
+    ],
+    "secondary_metrics": [
+      "radial_collapse_onset_time",
+      "longitudinal_beading_onset_time",
+      "density_profile_evolution",
+      "velocity_field_evolution"
+    ],
+    "regime_analysis": "Determine at which f value the transition from longitudinal to radial-dominated collapse occurs"
+  },
+
+  "enhanced_diagnostics": {
+    "track_radial_collapse": {
+      "method": "monitor_minimum_radial_distance",
+      "threshold": "r < 0.1 * lambda_J",
+      "output": "time_series"
+    },
+    "track_longitudinal_beading": {
+      "method": "fourier_analysis_along_axis",
+      "modes": [1, 2, 3, 4, 5],
+      "output": "time_series"
+    },
+    "track_timestep": {
+      "method": "monitor_minimum_timestep",
+      "threshold": "dt < 1e-8 * t_ff",
+      "output": "time_series"
+    }
+  },
+
+  "output_specification": {
+    "hdf5_snapshots": {
+      "retain_all": true,
+      "variables": ["density", "velocity", "magnetic_field", "pressure", "gravitational_potential"]
+    },
+    "time_series": {
+      "track_both_regimes": true,
+      "output_interval": "0.01_tff"
+    }
+  },
+
+  "success_criteria": {
+    "fragmentation_rate": "100%",
+    "regime_identification": "Clear transition identified between f = 1.2-1.5",
+    "separate_timescales": "Both t_frag_radial and t_frag_longitudinal measured",
+    "power_law_analysis": "Separate power laws for each regime if warranted"
+  }
+}

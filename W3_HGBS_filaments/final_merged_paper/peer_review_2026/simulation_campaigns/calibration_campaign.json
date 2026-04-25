@@ -1,0 +1,74 @@
+{
+  "campaign_name": "calibration_documentation",
+  "priority": "CRITICAL",
+  "purpose": "Extract λ/W measurements from near-critical simulations to document the λ_frag = 1.11 λ_MJ calibration",
+  "concern_addressed": 1,
+
+  "simulation_parameters": {
+    "resolution": [128, 128, 128],
+    "domain_dimensions": [8.0, 2.0, 2.0],
+    "domain_units": "lambda_J",
+    "boundary_conditions": "periodic_all",
+    "equation_of_state": "isothermal",
+    "field_geometry": "longitudinal",
+    "turbulence_seeding": "synthetic",
+    "turbulence_amplitude_factor": 1e-4
+  },
+
+  "parameter_grid": {
+    "line_mass": {
+      "values": [1.00, 1.05, 1.10, 1.15, 1.20],
+      "symbol": "f",
+      "description": "Line mass relative to critical"
+    },
+    "plasma_beta": {
+      "values": [0.3, 1.0],
+      "symbol": "β",
+      "description": "Plasma beta parameter"
+    },
+    "mach_number": {
+      "values": [1.0, 2.0],
+      "symbol": "M",
+      "description": "Mach number"
+    }
+  },
+
+  "random_seeds": {
+    "values": [42, 43],
+    "description": "Two different random seeds per parameter point"
+  },
+
+  "total_simulations": 40,
+
+  "runtime_requirements": {
+    "wallclock_timeout_hours": 6,
+    "snapshot_retention": "full_hdf5",
+    "snapshot_interval": "0.05_tff",
+    "diagnostic_output": true,
+    "fragmentation_detection": true
+  },
+
+  "analysis_requirements": {
+    "primary_metrics": ["lambda_W", "t_frag", "fragmentation_classification"],
+    "secondary_metrics": ["density_contrast", "longitudinal_profile", "radial_profile"],
+    "calibration_procedure": "Document how λ_frag = 1.11 λ_MJ is derived from these measurements"
+  },
+
+  "output_specification": {
+    "hdf5_snapshots": {
+      "retain_all": true,
+      "variables": ["density", "velocity", "magnetic_field", "pressure"]
+    },
+    "time_series": {
+      "track_radial_collapse": true,
+      "track_longitudinal_beading": true,
+      "track_timestep": true
+    }
+  },
+
+  "success_criteria": {
+    "fragmentation_rate": ">95%",
+    "lambda_W_measurement": "Successfully extracted for all runs",
+    "documentation": "Calibration procedure clearly documented"
+  }
+}
