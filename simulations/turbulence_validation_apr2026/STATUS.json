@@ -1,0 +1,24 @@
+{
+  "campaign": "turbulence_validation_apr2026",
+  "completed_utc": "2026-04-26T13:18:37.749319",
+  "total": 48,
+  "completed": 48,
+  "pending": 0,
+  "frag": 48,
+  "ok": 0,
+  "frag_rate_pct": 100.0,
+  "by_amplitude": {
+    "0.1": {
+      "n": 16,
+      "mean_tfrag_tJ": 0.4576
+    },
+    "0.5": {
+      "n": 16,
+      "mean_tfrag_tJ": 0.343
+    },
+    "1.0": {
+      "n": 16,
+      "mean_tfrag_tJ": 0.3021
+    }
+  }
+}
