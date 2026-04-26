@@ -1,0 +1,93 @@
+{
+  "generated": "2026-04-26T01:30:46.881022",
+  "campaigns": {
+    "DTC (Definitive Transition Campaign)": {
+      "n_sims": 540,
+      "n_frag": 474,
+      "n_ok": 66,
+      "n_failed": 0,
+      "frag_pct": 87.8,
+      "key_result": "\u03b2_crit: M=1\u21920.40-1.40, M=2\u21920.20-0.70, M\u22653\u2192\u22480.20; stochastic zone at 12 grid pts",
+      "date": "2026-04-20/21"
+    },
+    "fspace v3 (Filament Spacing)": {
+      "n_sims": 252,
+      "n_frag": 252,
+      "n_ok": 0,
+      "n_failed": 0,
+      "frag_pct": 100.0,
+      "key_result": "t_frag mean=0.287 tJ; radial collapse (not longitudinal) at t=0.25 tJ; \u03bb/W_core=3.04\u00b10.81",
+      "date": "2026-04-22"
+    },
+    "Peer Review Validation": {
+      "n_sims": 83,
+      "n_frag": 77,
+      "n_ok": 6,
+      "n_failed": 0,
+      "frag_pct": 92.8,
+      "key_result": "IC independence PASS; \u03b3<1 accelerates frag; stochastic zone physical; 256\u00b3 confirms FRAG",
+      "date": "2026-04-21/22"
+    },
+    "PR Campaign (Field Geometry)": {
+      "n_sims": 89,
+      "n_frag": 89,
+      "n_ok": 0,
+      "n_failed": 0,
+      "frag_pct": 100.0,
+      "key_result": "Near-crit frag confirmed (f=1.0); perp B \u2192 1.36\u00d7 faster frag; oblique peak at \u03b8=30\u00b0",
+      "date": "2026-04-22/23"
+    },
+    "TRR (Targeted Re-runs)": {
+      "n_sims": 25,
+      "n_frag": 25,
+      "n_ok": 0,
+      "n_failed": 0,
+      "frag_pct": 100.0,
+      "key_result": "DTC stable ridge RETRACTED \u2014 all \u03b2=0.3,M=1 sims fragment at 6h timeout (t_frag=1.02-1.43 tJ)",
+      "date": "2026-04-24"
+    },
+    "Resolution Reference (res_ref)": {
+      "n_sims": 16,
+      "n_frag": 16,
+      "n_ok": 0,
+      "n_failed": 0,
+      "frag_pct": 100.0,
+      "key_result": "100% IC discordance: King FRAG vs Gaussian STABLE; resolution confirmed (8.5%\u00b11.2% t_frag shift)",
+      "date": "2026-04-24"
+    },
+    "PR2026 Calibration": {
+      "n_sims": 40,
+      "n_frag": 38,
+      "n_ok": 1,
+      "n_failed": 1,
+      "frag_pct": 95.0,
+      "key_result": "PRR calibration: near-critical f=1.0-1.5 range covered with multiple seeds",
+      "date": "2026-04-25"
+    },
+    "PR2026 Regime Boundary": {
+      "n_sims": 60,
+      "n_frag": 56,
+      "n_ok": 0,
+      "n_failed": 4,
+      "frag_pct": 93.33333333333333,
+      "key_result": "PRR regime boundary: f=1.1-2.0, \u03b2={0.3,1.0}, M=1, 3 seeds per point (60 sims)",
+      "date": "2026-04-25"
+    },
+    "PR2026 Perpendicular Field": {
+      "n_sims": 24,
+      "n_frag": 17,
+      "n_ok": 0,
+      "n_failed": 7,
+      "frag_pct": 70.83333333333333,
+      "key_result": "Perpendicular B field: f\u2208{2.0,2.5,3.0}, \u03b2\u2208{0.3,1.0}, M\u2208{1,2}, 2 seeds",
+      "date": "2026-04-25/26"
+    }
+  },
+  "totals": {
+    "total_sims": 1129,
+    "total_frag": 1044,
+    "total_ok": 73,
+    "total_failed": 12,
+    "overall_frag_pct": 92.47121346324181
+  }
+}
