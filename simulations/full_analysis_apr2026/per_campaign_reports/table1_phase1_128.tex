@@ -1,0 +1,40 @@
+\begin{table}
+\centering
+\caption{Phase 1 resolution convergence test: 128³ results. Status codes:
+  \textsc{frag} = fragmented ($\Delta t < 10^{-8}\,t_J$);
+  \textsc{appr} = approaching fragmentation ($\Delta t < 10^{-5}\,t_J$);
+  \textsc{stable} = stable ($t_{\rm final} \geq 1.425\,t_J$);
+  \textsc{part} = stable partial ($t_{\rm final} \geq 1.2\,t_J$).}
+\label{tab:phase1_128}
+\begin{tabular}{lcccccccc}
+\hline
+Name & $f$ & $\beta$ & $\mathcal{M}$ & Seed & $t_{\rm final}$ & $\Delta t_{\rm final}$ & Status & $t_{\rm frag}$ \\
+ & & & & & [$t_J$] & & & [$t_J$] \\
+\hline
+  RES\_128cubed\_R1\_f1.4\_b0.3\_M1.0\_s42 & 1.4 & 0.3 & 1.0 & 42 & 1.650 & 7.27e-05 & \textsc{appr} & -- \\
+  RES\_128cubed\_R1\_f1.4\_b0.3\_M1.0\_s137 & 1.4 & 0.3 & 1.0 & 137 & 1.680 & 5.85e-05 & \textsc{stable} & -- \\
+  RES\_128cubed\_R2\_f1.4\_b0.5\_M1.0\_s42 & 1.4 & 0.5 & 1.0 & 42 & 1.310 & 1.07e-04 & \textsc{part} & -- \\
+  RES\_128cubed\_R2\_f1.4\_b0.5\_M1.0\_s137 & 1.4 & 0.5 & 1.0 & 137 & 1.330 & 2.32e-05 & \textsc{part} & -- \\
+  RES\_128cubed\_R3\_f1.5\_b0.3\_M1.0\_s42 & 1.5 & 0.3 & 1.0 & 42 & 1.650 & 7.27e-05 & \textsc{appr} & -- \\
+  RES\_128cubed\_R3\_f1.5\_b0.3\_M1.0\_s137 & 1.5 & 0.3 & 1.0 & 137 & 1.680 & 5.85e-05 & \textsc{stable} & -- \\
+  RES\_128cubed\_R4\_f1.5\_b0.5\_M2.0\_s42 & 1.5 & 0.5 & 2.0 & 42 & 1.230 & 5.20e-22 & \textsc{frag} & 1.230 \\
+  RES\_128cubed\_R4\_f1.5\_b0.5\_M2.0\_s137 & 1.5 & 0.5 & 2.0 & 137 & 1.270 & 4.63e-05 & \textsc{part} & -- \\
+  RES\_128cubed\_R5\_f1.6\_b0.3\_M2.0\_s42 & 1.6 & 0.3 & 2.0 & 42 & 1.520 & 4.52e-04 & \textsc{stable} & -- \\
+  RES\_128cubed\_R5\_f1.6\_b0.3\_M2.0\_s137 & 1.6 & 0.3 & 2.0 & 137 & 1.570 & 4.74e-05 & \textsc{stable} & -- \\
+  RES\_128cubed\_R6\_f1.6\_b0.5\_M2.0\_s42 & 1.6 & 0.5 & 2.0 & 42 & 1.230 & 5.20e-22 & \textsc{frag} & 1.230 \\
+  RES\_128cubed\_R6\_f1.6\_b0.5\_M2.0\_s137 & 1.6 & 0.5 & 2.0 & 137 & 1.270 & 4.63e-05 & \textsc{part} & -- \\
+  RES\_128cubed\_R7\_f1.7\_b0.5\_M2.0\_s42 & 1.7 & 0.5 & 2.0 & 42 & 1.230 & 5.20e-22 & \textsc{frag} & 1.230 \\
+  RES\_128cubed\_R7\_f1.7\_b0.5\_M2.0\_s137 & 1.7 & 0.5 & 2.0 & 137 & 1.270 & 4.63e-05 & \textsc{part} & -- \\
+  RES\_128cubed\_R8\_f1.7\_b0.7\_M3.0\_s42 & 1.7 & 0.7 & 3.0 & 42 & 1.110 & 2.68e-22 & \textsc{frag} & 1.110 \\
+  RES\_128cubed\_R8\_f1.7\_b0.7\_M3.0\_s137 & 1.7 & 0.7 & 3.0 & 137 & 1.110 & 9.77e-06 & \textsc{appr} & -- \\
+  RES\_128cubed\_R9\_f1.8\_b0.3\_M2.0\_s42 & 1.8 & 0.3 & 2.0 & 42 & 1.520 & 4.52e-04 & \textsc{stable} & -- \\
+  RES\_128cubed\_R9\_f1.8\_b0.3\_M2.0\_s137 & 1.8 & 0.3 & 2.0 & 137 & 1.570 & 4.74e-05 & \textsc{stable} & -- \\
+  RES\_128cubed\_R10\_f1.8\_b0.5\_M3.0\_s42 & 1.8 & 0.5 & 3.0 & 42 & 1.200 & 6.02e-06 & \textsc{appr} & -- \\
+  RES\_128cubed\_R10\_f1.8\_b0.5\_M3.0\_s137 & 1.8 & 0.5 & 3.0 & 137 & 1.220 & 2.56e-05 & \textsc{part} & -- \\
+  RES\_128cubed\_R11\_f1.9\_b0.5\_M2.0\_s42 & 1.9 & 0.5 & 2.0 & 42 & 1.230 & 5.20e-22 & \textsc{frag} & 1.230 \\
+  RES\_128cubed\_R11\_f1.9\_b0.5\_M2.0\_s137 & 1.9 & 0.5 & 2.0 & 137 & 1.270 & 4.63e-05 & \textsc{part} & -- \\
+  RES\_128cubed\_R12\_f2.0\_b0.7\_M3.0\_s42 & 2.0 & 0.7 & 3.0 & 42 & 1.110 & 2.68e-22 & \textsc{frag} & 1.110 \\
+  RES\_128cubed\_R12\_f2.0\_b0.7\_M3.0\_s137 & 2.0 & 0.7 & 3.0 & 137 & 1.110 & 9.77e-06 & \textsc{appr} & -- \\
+\hline
+\end{tabular}
+\end{table}

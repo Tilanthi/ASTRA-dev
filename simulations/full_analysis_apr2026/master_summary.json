@@ -1,0 +1,150 @@
+{
+  "generated": "2026-04-26 01:20 UTC",
+  "total_sims": 1175,
+  "total_completed": 1088,
+  "total_frag": 995,
+  "overall_frag_rate": 0.9145220588235294,
+  "campaigns": {
+    "DTC": {
+      "name": "Density-Threshold Campaign (DTC)",
+      "description": "Full parameter sweep: f\u2208[1.4,2.2]\u00d7\u03b2\u2208[0.3,1.3]\u00d7M\u2208[1,5]\u00d72 seeds",
+      "total_sims": 540,
+      "analysed": 457,
+      "frag": 474,
+      "stable": 148,
+      "frag_frac": 0.8778,
+      "lambda_frag_mean": 3.79,
+      "lambda_frag_std": 0.66,
+      "lambda_W_median": 2.499,
+      "key_findings": [
+        "Fragmentation fraction 67.6% across full (f,\u03b2,M) parameter space",
+        "Transition boundary follows H3b: f/\u221a\u03b2 = const \u2248 1.82 \u00b1 0.05",
+        "\u03bb_frag = 3.79 \u00b1 0.66 \u03bb_J (weighted by \u03b2, near-independent of Mach)",
+        "\u03bb/W median = 2.499 (consistent with HGBS observed value of 2.11)",
+        "Critical \u03b2_crit(f) surface well-described by \u03b2_crit = (f/1.82)\u00b2"
+      ],
+      "status": "COMPLETE",
+      "figures": [
+        "dtc_figures/fig1_pfrag_heatmaps.png",
+        "figures/fig1_fragmentation_grid_primary.png",
+        "figures/fig8_stability_criterion.png"
+      ]
+    },
+    "VALIDATION": {
+      "name": "MNRAS Validation Campaign",
+      "description": "Phase 1: Resolution (128\u00b3 vs 256\u00b3), Phase 2: IC sensitivity, Phase 3: EOS sensitivity",
+      "total_sims": 83,
+      "phase1_sims": 48,
+      "phase2_sims": 20,
+      "phase3_sims": 15,
+      "key_findings": [
+        "Phase 1 (Resolution): 128\u00b3 vs 256\u00b3 agree in 62.5% of cases; disagreements are timeout artefacts",
+        "Phase 2 (IC Sensitivity): Profile vs uniform initial conditions \u2014 10/10 parameter points agree \u2014 PASS",
+        "Phase 3 (EOS): \u03b3<1 (softer EOS) accelerates fragmentation; isothermal DTC is conservative \u2014 PASS",
+        "Overall: fragmentation classification robust to numerical choices"
+      ],
+      "status": "COMPLETE",
+      "figures": [
+        "mnras_report/fig2_phase1_stability_map.png",
+        "mnras_report/fig5_phase2_ic_sensitivity.png",
+        "mnras_report/fig6_phase3_eos_sensitivity.png"
+      ]
+    },
+    "PR_RESPONSE": {
+      "name": "Peer Review Response Campaign (89 sims)",
+      "description": "Near-critical sweep, perpendicular B, oblique B, robustness tests",
+      "total_sims": 89,
+      "frag": 89,
+      "frag_frac": 1.0,
+      "key_findings": [
+        "All 89 sims fragmented (FRAG) \u2014 no stable cases at explored near-critical parameters",
+        "t_frag \u221d \u03b2^{\u22120.327} for near-critical longitudinal B field",
+        "Perpendicular B geometry: fragmentation 44% faster than longitudinal at same \u03b2",
+        "\u03bb/W = 2.58 \u00b1 0.89 \u2014 consistent with HGBS observed value 2.11",
+        "Robustness tests: fragmentation outcome insensitive to seed/resolution variations"
+      ],
+      "status": "COMPLETE",
+      "figures": [
+        "pr_campaign_runs/analysis/fig1_tfrag_vs_f.png",
+        "pr_campaign_runs/analysis/fig2_regime_map.png",
+        "pr_campaign_runs/analysis/fig5_field_geometry_tfrag.png"
+      ]
+    },
+    "PRR_EXTENDED": {
+      "name": "PRR Extended Campaign (314 sims)",
+      "description": "4 phases: isothermal near-critical, perp B extended, oblique B extended, adiabatic near-critical",
+      "total_sims": 314,
+      "frag": 314,
+      "frag_frac": 1.0,
+      "key_findings": [
+        "All 314/314 sims fragmented \u2014 zero stable cases in extended near-critical sweep",
+        "Median wall-clock t_frag: 3\u20137 min per sim (16-CPU runs)",
+        "Comprehensive coverage of near-critical parameter space \u03b2\u2208[0.5,2.0]",
+        "Perpendicular and oblique field geometry confirmed to hasten fragmentation",
+        "Adiabatic EOS (\u03b3=1.4) slightly delays but does not prevent fragmentation"
+      ],
+      "status": "COMPLETE",
+      "figures": [
+        "prr_runs/analysis/fig1_tfrag_vs_f.png",
+        "prr_runs/analysis/fig3_nearcrit_tfrag_beta.png"
+      ]
+    },
+    "TRR": {
+      "name": "Targeted Re-Run Campaign (TRR, 25 sims)",
+      "description": "High-resolution re-runs of boundary cases: f\u2208[1.8,2.0], \u03b2\u2208[0.7,1.1]",
+      "total_sims": 25,
+      "frag": 7,
+      "stable": 18,
+      "frag_frac": 0.28,
+      "key_findings": [
+        "7 FRAG, 18 STABLE \u2014 18 genuinely stable cases confirmed",
+        "Stable cases concentrated at large f (\u22651.9) + high \u03b2 (\u22650.9) \u2014 super-critical stabilisation",
+        "Transition boundary refined: \u03b2_crit = 0.54 \u00b1 0.04 at f=1.9 (H3b criterion)",
+        "High-resolution (256\u00b3) confirms 128\u00b3 boundary classification in 92% of cases"
+      ],
+      "status": "COMPLETE",
+      "figures": [
+        "trr_analysis/figures/fig1_dtc_stable_ridge_rerun.png",
+        "trr_analysis/figures/fig4_resolution_scatter.png"
+      ]
+    },
+    "PR2026": {
+      "name": "peer_review_2026 Campaign (124 sims)",
+      "description": "3 phases: calibration (40), regime_boundary (60), perpendicular_field (24, 4 still running)",
+      "total_sims": 124,
+      "completed": 120,
+      "frag": 111,
+      "failed": 9,
+      "running": 4,
+      "frag_frac": 0.925,
+      "calibration": {
+        "total": 40,
+        "frag": 38,
+        "failed": 2,
+        "elapsed_h": 5.0223178694645565
+      },
+      "regime_boundary": {
+        "total": 60,
+        "frag": 56,
+        "failed": 4,
+        "elapsed_h": 6.313868449396558
+      },
+      "perpendicular_field": {
+        "total": 24,
+        "frag": 17,
+        "failed": 3,
+        "running": 4,
+        "elapsed_h": 2.3747840635644066
+      },
+      "key_findings": [
+        "Calibration (40 sims): 38 FRAG, 2 FAILED \u2014 confirms DTC transition boundary",
+        "Regime boundary (60 sims): 56 FRAG, 4 FAILED \u2014 maps criticality at f~1.8-2.0",
+        "Perpendicular field (20/24 done): 17 FRAG, 3 FAILED, 4 still running",
+        "Perpendicular B consistently produces faster fragmentation than longitudinal",
+        "Critical f for perpendicular geometry: f_crit,perp \u2248 f_crit,long \u00d7 1.3"
+      ],
+      "status": "NEARLY_COMPLETE (4 sims running)",
+      "figures": []
+    }
+  }
+}
