@@ -366,6 +366,8 @@ This analysis demonstrates ASTRA's ability to identify established astrophysical
 
 This is a demonstration of pattern recognition and knowledge retrieval from encoded domain knowledge, not novel discovery. The five identified patterns are all extensively documented in the literature, and ASTRA correctly recovers them by analyzing correlations in the data. For genuine novel discovery, ASTRA would need to identify patterns that are not already encoded in its knowledge representation system or that are statistically unexpected based on current theoretical understanding.
 
+We note that galaxy assembly bias may introduce systematic effects on clustering and correlation analyses at approximately the 25 per\,cent level. \citet{garciamoreno2026} demonstrate, using IllustrisTNG, that no single secondary halo property (formation time, spin, or concentration) fully captures assembly bias for any galaxy population; the magnitude and sign of the effect are strongly dependent on sample selection and number density. Future ASTRA applications to real survey data should account for this systematic when interpreting galaxy scaling relations.
+
 \section{Test Case 4: Causal Inference Demonstrator}
 
 \subsection{Data and Methods}
@@ -408,7 +410,7 @@ This test case validates that ASTRA's causal inference implementation correctly 
 
 For genuine scientific value, causal inference would need to be applied to problems where the causal structure is non-obvious, such as: disentangling magnetic field, turbulence, and thermal support contributions to molecular cloud core stability; identifying causal drivers of the star formation main sequence; or determining causal sequences in galaxy quenching processes. Such applications would require careful consideration of confounding variables, latent variables, and domain-specific constraints beyond what is demonstrated here.
 
-This test case should be understood as validating the implementation's correctness on known cases, not as demonstrating novel scientific discovery capability.
+This test case should be understood as validating the implementation's correctness on known cases, not as demonstrating novel scientific discovery capability. For scale of comparison, \citet{desmond2026} recently applied the FCIT causal discovery algorithm to 445,763 nearby galaxies from the NASA Sloan Atlas, recovering the causal structure of galaxy observables (luminosity, stellar mass, SFR, morphology) and detecting latent confounders---a demonstration of constraint-based causal discovery at astrophysics-survey scale that illustrates what genuine scientific application of these methods can achieve.
 
 \section{Test Case 5: Bayesian Model Selection}
 
@@ -932,6 +934,8 @@ field-geometry calibration (equation~\ref{eq:calib}): the effective field inclin
 $\theta$ in the inter-core gas may differ substantially from large-scale Planck-polarimetry
 estimates, consistent with the $\theta \lesssim 30^\circ$ interpretation of the observed
 W3 pairwise median spacing.
+
+The physical context for TC7 is directly motivated by the failure of single analytical models for high-mass star formation. \citet{kaalva2026} demonstrated, using Lagrangian particle tracking in STARFORGE magnetised GMC simulations, that no single accretion model (isothermal sphere, turbulent core, or competitive accretion) fits high-mass protostellar accretion histories---intermediate- and low-mass protostars can be matched by one or more models, but high-mass stars show intermittent, non-monotonic accretion that is captured by none. This model ambiguity directly motivates ASTRA's causal inference approach: rather than assuming a single formation model, TC7 quantifies how $\beta$ and $\theta$ jointly control fragmentation, leaving the dominant physical mechanism as an empirically determined output. The hierarchical fragmentation framework of \citet{thomasson2026} further demonstrates that at least four successive fragmentation levels with mass-dependent efficiency are needed to convert the observed top-heavy core mass function in W43 to the canonical IMF---consistent with the layered fragmentation structure probed by ASTRA's $\lambda_\mathrm{frag}$ predictions. Finally, we note that future extension of this work to real W3 protostellar populations should account for systematic photometric calibration errors: \citet{dunham2026} show that widely-used Herschel 70\,$\mu$m flux--luminosity calibrations underestimate protostellar luminosities by factors of 2--3, which would propagate into derived accretion rates and stellar mass estimates.
 
 This test case demonstrates ASTRA's capability for autonomous HPC campaign management:
 the system formulated the scientific question, selected simulation parameters, managed over 1,000
