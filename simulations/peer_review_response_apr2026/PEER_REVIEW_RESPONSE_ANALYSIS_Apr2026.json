@@ -1,0 +1,329 @@
+{
+  "generated_utc": "2026-04-29",
+  "total_sims": 260,
+  "total_frag": 256,
+  "total_timeout": 4,
+  "frag_rate_pct": 98.5,
+  "PERP_LAMBDA_V1": {
+    "n_total": 40,
+    "n_frag": 40,
+    "n_timeout": 0,
+    "overall": {
+      "n": 40,
+      "mean": 0.48863,
+      "std": 0.06734,
+      "min": 0.375,
+      "max": 0.64075
+    },
+    "by_f": {
+      "1.0": {
+        "n": 8,
+        "mean": 0.5678,
+        "std": 0.04049,
+        "min": 0.52234,
+        "max": 0.64075
+      },
+      "1.2": {
+        "n": 8,
+        "mean": 0.53535,
+        "std": 0.03889,
+        "min": 0.48855,
+        "max": 0.59707
+      },
+      "1.5": {
+        "n": 8,
+        "mean": 0.48803,
+        "std": 0.02674,
+        "min": 0.45,
+        "max": 0.53204
+      },
+      "1.8": {
+        "n": 8,
+        "mean": 0.43939,
+        "std": 0.03428,
+        "min": 0.4009,
+        "max": 0.497
+      },
+      "2.2": {
+        "n": 8,
+        "mean": 0.41258,
+        "std": 0.0312,
+        "min": 0.375,
+        "max": 0.4568
+      }
+    },
+    "by_beta": {
+      "0.5": {
+        "n": 10,
+        "mean": 0.51159,
+        "std": 0.09348,
+        "min": 0.3789,
+        "max": 0.64075
+      },
+      "1.0": {
+        "n": 10,
+        "mean": 0.45091,
+        "std": 0.05362,
+        "min": 0.375,
+        "max": 0.52584
+      },
+      "2.0": {
+        "n": 10,
+        "mean": 0.47818,
+        "std": 0.04448,
+        "min": 0.4146,
+        "max": 0.54211
+      },
+      "3.0": {
+        "n": 10,
+        "mean": 0.51383,
+        "std": 0.04307,
+        "min": 0.454,
+        "max": 0.57846
+      }
+    },
+    "key_result": "All FRAG; non-monotonic beta dependence (fastest at beta=1.0)"
+  },
+  "TURBULENT_LAMBDA_V1": {
+    "n_total": 30,
+    "n_frag": 26,
+    "n_timeout": 4,
+    "timeout_ids": [
+      "TURB_LAMBDA_f1.8_turb2p0_s42",
+      "TURB_LAMBDA_f3.0_turb2p0_s42",
+      "TURB_LAMBDA_f2.2_turb2p0_s42",
+      "TURB_LAMBDA_f2.6_turb2p0_s42"
+    ],
+    "overall_frag": {
+      "n": 26,
+      "mean": 0.3212,
+      "std": 0.04581,
+      "min": 0.2457,
+      "max": 0.42164
+    },
+    "by_amplitude": {
+      "0.3": {
+        "n": 10,
+        "mean": 0.35233,
+        "std": 0.02366,
+        "min": 0.30803,
+        "max": 0.38777
+      },
+      "1.0": {
+        "n": 10,
+        "mean": 0.29406,
+        "std": 0.04968,
+        "min": 0.2457,
+        "max": 0.42164
+      },
+      "2.0": {
+        "n": 6,
+        "mean": 0.31454,
+        "std": 0.03403,
+        "min": 0.28018,
+        "max": 0.36538
+      }
+    },
+    "key_result": "Non-monotonic: turb=1.0 fastest (0.294 tJ); turb=2.0/s42 show extended secular collapse (TIMEOUT)"
+  },
+  "POWERLAW_VALIDATION_V1": {
+    "n_total": 30,
+    "n_frag": 30,
+    "n_timeout": 0,
+    "overall": {
+      "n": 30,
+      "mean": 0.7167,
+      "std": 0.12983,
+      "min": 0.50641,
+      "max": 1.07435
+    },
+    "by_f": {
+      "1.2": {
+        "n": 3,
+        "mean": 0.91308,
+        "std": 0.12249,
+        "min": 0.77767,
+        "max": 1.07435
+      },
+      "1.4": {
+        "n": 3,
+        "mean": 0.84507,
+        "std": 0.10302,
+        "min": 0.73362,
+        "max": 0.98206
+      },
+      "1.6": {
+        "n": 3,
+        "mean": 0.79952,
+        "std": 0.08591,
+        "min": 0.70612,
+        "max": 0.91352
+      },
+      "1.8": {
+        "n": 3,
+        "mean": 0.75603,
+        "std": 0.07862,
+        "min": 0.66676,
+        "max": 0.85807
+      },
+      "2.0": {
+        "n": 3,
+        "mean": 0.7164,
+        "std": 0.07089,
+        "min": 0.63503,
+        "max": 0.80779
+      },
+      "2.2": {
+        "n": 3,
+        "mean": 0.68111,
+        "std": 0.06653,
+        "min": 0.60515,
+        "max": 0.76718
+      },
+      "2.4": {
+        "n": 3,
+        "mean": 0.65411,
+        "std": 0.05952,
+        "min": 0.58769,
+        "max": 0.7321
+      },
+      "2.6": {
+        "n": 3,
+        "mean": 0.61974,
+        "std": 0.04125,
+        "min": 0.57824,
+        "max": 0.67599
+      },
+      "2.8": {
+        "n": 3,
+        "mean": 0.6054,
+        "std": 0.03967,
+        "min": 0.55807,
+        "max": 0.65514
+      },
+      "3.0": {
+        "n": 3,
+        "mean": 0.57651,
+        "std": 0.05515,
+        "min": 0.50641,
+        "max": 0.64118
+      }
+    },
+    "by_beta": {
+      "0.5": {
+        "n": 10,
+        "mean": 0.81074,
+        "std": 0.13815,
+        "min": 0.64118,
+        "max": 1.07435
+      },
+      "1.0": {
+        "n": 10,
+        "mean": 0.70387,
+        "std": 0.09688,
+        "min": 0.58192,
+        "max": 0.88721
+      },
+      "2.0": {
+        "n": 10,
+        "mean": 0.63548,
+        "std": 0.08059,
+        "min": 0.50641,
+        "max": 0.77767
+      }
+    },
+    "power_law_exponent": -0.497,
+    "key_result": "t_frag ~ f^-0.497; all FRAG confirms resolution robustness"
+  },
+  "FINITE_LENGTH_V1": {
+    "n_total": 120,
+    "n_frag": 120,
+    "n_timeout": 0,
+    "overall": {
+      "n": 120,
+      "mean": 0.28259,
+      "std": 0.0358,
+      "min": 0.20802,
+      "max": 0.34945
+    },
+    "by_L": {
+      "2.0": {
+        "n": 30,
+        "mean": 0.24132,
+        "std": 0.02333,
+        "min": 0.20802,
+        "max": 0.27901
+      },
+      "4.0": {
+        "n": 30,
+        "mean": 0.26996,
+        "std": 0.01761,
+        "min": 0.24005,
+        "max": 0.29954
+      },
+      "6.0": {
+        "n": 30,
+        "mean": 0.29857,
+        "std": 0.01803,
+        "min": 0.27007,
+        "max": 0.32583
+      },
+      "8.0": {
+        "n": 30,
+        "mean": 0.32053,
+        "std": 0.0197,
+        "min": 0.28753,
+        "max": 0.34945
+      }
+    },
+    "linear_fit": {
+      "slope_tJ_per_lambdaJ": 0.01331,
+      "intercept_tJ": 0.21603
+    },
+    "key_result": "Linear t_frag(L); end-effects delay collapse ~13ms/\u03bb_J; all lengths fragment"
+  },
+  "REALISTIC_GAMMA_V1": {
+    "n_total": 40,
+    "n_frag": 40,
+    "n_timeout": 0,
+    "overall": {
+      "n": 40,
+      "mean": 0.82594,
+      "std": 0.1037,
+      "min": 0.64987,
+      "max": 1.00498
+    },
+    "by_gamma": {
+      "0.7": {
+        "n": 10,
+        "mean": 0.79476,
+        "std": 0.0981,
+        "min": 0.64987,
+        "max": 0.94139
+      },
+      "0.8": {
+        "n": 10,
+        "mean": 0.81509,
+        "std": 0.10274,
+        "min": 0.66884,
+        "max": 0.96201
+      },
+      "0.9": {
+        "n": 10,
+        "mean": 0.83985,
+        "std": 0.10088,
+        "min": 0.68961,
+        "max": 0.99083
+      },
+      "1.0": {
+        "n": 10,
+        "mean": 0.85404,
+        "std": 0.1029,
+        "min": 0.69437,
+        "max": 1.00498
+      }
+    },
+    "gamma_slope_tJ_per_unit": 0.1976,
+    "key_result": "Lower gamma (sub-isothermal) accelerates fragmentation; dt_frag/dgamma=0.1976 tJ"
+  }
+}

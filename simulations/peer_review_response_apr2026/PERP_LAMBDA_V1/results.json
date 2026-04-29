@@ -1,0 +1,362 @@
+[
+  {
+    "id": "PERP_LAMBDA_f1.0_beta0.5_s42",
+    "f": 1.0,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.6407481301596613,
+    "wall_s": 1004.9855229854584
+  },
+  {
+    "id": "PERP_LAMBDA_f1.0_beta0.5_s137",
+    "f": 1.0,
+    "beta": 0.5,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.6161125683733618,
+    "wall_s": 800.0994946956635
+  },
+  {
+    "id": "PERP_LAMBDA_f1.0_beta1.0_s42",
+    "f": 1.0,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.5258376363461965,
+    "wall_s": 399.8554537296295
+  },
+  {
+    "id": "PERP_LAMBDA_f1.0_beta1.0_s137",
+    "f": 1.0,
+    "beta": 1.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.5223406041636435,
+    "wall_s": 367.52943778038025
+  },
+  {
+    "id": "PERP_LAMBDA_f1.0_beta2.0_s42",
+    "f": 1.0,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.5421080813817332,
+    "wall_s": 328.41536235809326
+  },
+  {
+    "id": "PERP_LAMBDA_f1.0_beta2.0_s137",
+    "f": 1.0,
+    "beta": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.5399215410698438,
+    "wall_s": 318.5471532344818
+  },
+  {
+    "id": "PERP_LAMBDA_f1.0_beta3.0_s42",
+    "f": 1.0,
+    "beta": 3.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.5768596597991009,
+    "wall_s": 328.23347783088684
+  },
+  {
+    "id": "PERP_LAMBDA_f1.0_beta3.0_s137",
+    "f": 1.0,
+    "beta": 3.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.5784610243309989,
+    "wall_s": 331.44460248947144
+  },
+  {
+    "id": "PERP_LAMBDA_f1.2_beta0.5_s42",
+    "f": 1.2,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.5970732083590519,
+    "wall_s": 949.6115939617157
+  },
+  {
+    "id": "PERP_LAMBDA_f1.2_beta0.5_s137",
+    "f": 1.2,
+    "beta": 0.5,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.5901562178908479,
+    "wall_s": 763.3273906707764
+  },
+  {
+    "id": "PERP_LAMBDA_f1.2_beta1.0_s42",
+    "f": 1.2,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.4958818812028553,
+    "wall_s": 399.6247115135193
+  },
+  {
+    "id": "PERP_LAMBDA_f1.2_beta1.0_s137",
+    "f": 1.2,
+    "beta": 1.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.48854608792857757,
+    "wall_s": 362.2970449924469
+  },
+  {
+    "id": "PERP_LAMBDA_f1.2_beta2.0_s42",
+    "f": 1.2,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.5102355848212022,
+    "wall_s": 289.0947422981262
+  },
+  {
+    "id": "PERP_LAMBDA_f1.2_beta2.0_s137",
+    "f": 1.2,
+    "beta": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.5091755641778584,
+    "wall_s": 276.69424748420715
+  },
+  {
+    "id": "PERP_LAMBDA_f1.2_beta3.0_s42",
+    "f": 1.2,
+    "beta": 3.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.5453580180027636,
+    "wall_s": 297.4591951370239
+  },
+  {
+    "id": "PERP_LAMBDA_f1.2_beta3.0_s137",
+    "f": 1.2,
+    "beta": 3.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.5463745621621232,
+    "wall_s": 223.8371398448944
+  },
+  {
+    "id": "PERP_LAMBDA_f1.5_beta0.5_s42",
+    "f": 1.5,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.5320403122465538,
+    "wall_s": 670.8858642578125
+  },
+  {
+    "id": "PERP_LAMBDA_f1.5_beta0.5_s137",
+    "f": 1.5,
+    "beta": 0.5,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.515179558451815,
+    "wall_s": 523.6652755737305
+  },
+  {
+    "id": "PERP_LAMBDA_f1.5_beta1.0_s42",
+    "f": 1.5,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.4539,
+    "wall_s": 670.0
+  },
+  {
+    "id": "PERP_LAMBDA_f1.5_beta1.0_s137",
+    "f": 1.5,
+    "beta": 1.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.45,
+    "wall_s": 630.0
+  },
+  {
+    "id": "PERP_LAMBDA_f1.5_beta2.0_s42",
+    "f": 1.5,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.4774,
+    "wall_s": 478.0
+  },
+  {
+    "id": "PERP_LAMBDA_f1.5_beta2.0_s137",
+    "f": 1.5,
+    "beta": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.4783,
+    "wall_s": 480.0
+  },
+  {
+    "id": "PERP_LAMBDA_f1.5_beta3.0_s42",
+    "f": 1.5,
+    "beta": 3.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.4986,
+    "wall_s": 440.0
+  },
+  {
+    "id": "PERP_LAMBDA_f1.5_beta3.0_s137",
+    "f": 1.5,
+    "beta": 3.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.4988,
+    "wall_s": 449.0
+  },
+  {
+    "id": "PERP_LAMBDA_f1.8_beta0.5_s42",
+    "f": 1.8,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.4009,
+    "wall_s": 562.0
+  },
+  {
+    "id": "PERP_LAMBDA_f1.8_beta0.5_s137",
+    "f": 1.8,
+    "beta": 0.5,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.4156,
+    "wall_s": 799.0
+  },
+  {
+    "id": "PERP_LAMBDA_f1.8_beta1.0_s42",
+    "f": 1.8,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.4053,
+    "wall_s": 461.0
+  },
+  {
+    "id": "PERP_LAMBDA_f1.8_beta1.0_s137",
+    "f": 1.8,
+    "beta": 1.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.4155,
+    "wall_s": 494.0
+  },
+  {
+    "id": "PERP_LAMBDA_f1.8_beta2.0_s42",
+    "f": 1.8,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.4485,
+    "wall_s": 407.0
+  },
+  {
+    "id": "PERP_LAMBDA_f1.8_beta2.0_s137",
+    "f": 1.8,
+    "beta": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.4463,
+    "wall_s": 393.0
+  },
+  {
+    "id": "PERP_LAMBDA_f1.8_beta3.0_s42",
+    "f": 1.8,
+    "beta": 3.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.486,
+    "wall_s": 689.0
+  },
+  {
+    "id": "PERP_LAMBDA_f1.8_beta3.0_s137",
+    "f": 1.8,
+    "beta": 3.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.497,
+    "wall_s": 1174.0
+  },
+  {
+    "id": "PERP_LAMBDA_f2.2_beta0.5_s42",
+    "f": 2.2,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.3789,
+    "wall_s": 808.0
+  },
+  {
+    "id": "PERP_LAMBDA_f2.2_beta0.5_s137",
+    "f": 2.2,
+    "beta": 0.5,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.4292,
+    "wall_s": 1402.0
+  },
+  {
+    "id": "PERP_LAMBDA_f2.2_beta1.0_s42",
+    "f": 2.2,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.375,
+    "wall_s": 438.0
+  },
+  {
+    "id": "PERP_LAMBDA_f2.2_beta1.0_s137",
+    "f": 2.2,
+    "beta": 1.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3768,
+    "wall_s": 459.0
+  },
+  {
+    "id": "PERP_LAMBDA_f2.2_beta2.0_s42",
+    "f": 2.2,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.4146,
+    "wall_s": 425.0
+  },
+  {
+    "id": "PERP_LAMBDA_f2.2_beta2.0_s137",
+    "f": 2.2,
+    "beta": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.4153,
+    "wall_s": 424.0
+  },
+  {
+    "id": "PERP_LAMBDA_f2.2_beta3.0_s42",
+    "f": 2.2,
+    "beta": 3.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.4568,
+    "wall_s": 1388.0
+  },
+  {
+    "id": "PERP_LAMBDA_f2.2_beta3.0_s137",
+    "f": 2.2,
+    "beta": 3.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.454,
+    "wall_s": 1325.0
+  }
+]

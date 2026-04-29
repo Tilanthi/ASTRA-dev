@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "FINLEN_f2.2_beta2.0_L2_s137",
+    "f": 2.2,
+    "beta": 2.0,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.22085354061823595,
+    "wall_s": 316.1596620082855
+  },
+  {
+    "id": "FINLEN_f1.8_beta2.0_L2_s137",
+    "f": 1.8,
+    "beta": 2.0,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2373688071912171,
+    "wall_s": 318.4207088947296
+  },
+  {
+    "id": "FINLEN_f2.2_beta2.0_L2_s42",
+    "f": 2.2,
+    "beta": 2.0,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.22352453376903356,
+    "wall_s": 321.57058000564575
+  },
+  {
+    "id": "FINLEN_f1.5_beta2.0_L2_s137",
+    "f": 1.5,
+    "beta": 2.0,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2548010083198815,
+    "wall_s": 337.0750551223755
+  },
+  {
+    "id": "FINLEN_f1.8_beta2.0_L2_s42",
+    "f": 1.8,
+    "beta": 2.0,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2423336688954823,
+    "wall_s": 347.05145716667175
+  },
+  {
+    "id": "FINLEN_f1.2_beta2.0_L2_s42",
+    "f": 1.2,
+    "beta": 2.0,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2790131768345555,
+    "wall_s": 365.0499768257141
+  },
+  {
+    "id": "FINLEN_f1.5_beta2.0_L2_s42",
+    "f": 1.5,
+    "beta": 2.0,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.25891020906684425,
+    "wall_s": 367.93106174468994
+  },
+  {
+    "id": "FINLEN_f1.2_beta2.0_L2_s137",
+    "f": 1.2,
+    "beta": 2.0,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2736584041805937,
+    "wall_s": 392.91967606544495
+  },
+  {
+    "id": "FINLEN_f2.6_beta1.0_L2_s137",
+    "f": 2.6,
+    "beta": 1.0,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.20860190011052795,
+    "wall_s": 401.9071879386902
+  },
+  {
+    "id": "FINLEN_f2.2_beta1.0_L2_s42",
+    "f": 2.2,
+    "beta": 1.0,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.22442854915723162,
+    "wall_s": 403.74491453170776
+  },
+  {
+    "id": "FINLEN_f2.6_beta1.0_L2_s42",
+    "f": 2.6,
+    "beta": 1.0,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.21109655268109795,
+    "wall_s": 405.5809426307678
+  },
+  {
+    "id": "FINLEN_f2.2_beta1.0_L2_s137",
+    "f": 2.2,
+    "beta": 1.0,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.22147258545656878,
+    "wall_s": 408.8131453990936
+  },
+  {
+    "id": "FINLEN_f1.8_beta1.0_L2_s137",
+    "f": 1.8,
+    "beta": 1.0,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.23856070306492777,
+    "wall_s": 443.17061734199524
+  },
+  {
+    "id": "FINLEN_f1.8_beta1.0_L2_s42",
+    "f": 1.8,
+    "beta": 1.0,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.24362233308260592,
+    "wall_s": 453.9164490699768
+  },
+  {
+    "id": "FINLEN_f1.5_beta1.0_L2_s42",
+    "f": 1.5,
+    "beta": 1.0,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.25936020439317803,
+    "wall_s": 468.63503551483154
+  },
+  {
+    "id": "FINLEN_f1.5_beta1.0_L2_s137",
+    "f": 1.5,
+    "beta": 1.0,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.25206930706624686,
+    "wall_s": 481.7972731590271
+  },
+  {
+    "id": "FINLEN_f1.2_beta1.0_L2_s137",
+    "f": 1.2,
+    "beta": 1.0,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2718217386758419,
+    "wall_s": 503.01223397254944
+  },
+  {
+    "id": "FINLEN_f2.6_beta0.5_L2_s137",
+    "f": 2.6,
+    "beta": 0.5,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.20997011071926758,
+    "wall_s": 515.7617561817169
+  },
+  {
+    "id": "FINLEN_f1.2_beta1.0_L2_s42",
+    "f": 1.2,
+    "beta": 1.0,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2783589915429527,
+    "wall_s": 524.1341257095337
+  },
+  {
+    "id": "FINLEN_f2.6_beta0.5_L2_s42",
+    "f": 2.6,
+    "beta": 0.5,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.21244504156449712,
+    "wall_s": 527.8436071872711
+  },
+  {
+    "id": "FINLEN_f2.2_beta0.5_L2_s137",
+    "f": 2.2,
+    "beta": 0.5,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.22304914581431662,
+    "wall_s": 548.0172853469849
+  },
+  {
+    "id": "FINLEN_f2.2_beta0.5_L2_s42",
+    "f": 2.2,
+    "beta": 0.5,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.22721454489393345,
+    "wall_s": 552.3703334331512
+  },
+  {
+    "id": "FINLEN_f1.8_beta0.5_L2_s137",
+    "f": 1.8,
+    "beta": 0.5,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.23922966790104683,
+    "wall_s": 580.770176410675
+  },
+  {
+    "id": "FINLEN_f2.6_beta2.0_L2_s42",
+    "f": 2.6,
+    "beta": 2.0,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.21048613679851536,
+    "wall_s": 272.07421016693115
+  },
+  {
+    "id": "FINLEN_f1.8_beta0.5_L2_s42",
+    "f": 1.8,
+    "beta": 0.5,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.24538606308513344,
+    "wall_s": 593.4969732761383
+  },
+  {
+    "id": "FINLEN_f2.6_beta2.0_L2_s137",
+    "f": 2.6,
+    "beta": 2.0,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.20801514707874952,
+    "wall_s": 283.1479330062866
+  },
+  {
+    "id": "FINLEN_f1.5_beta0.5_L2_s137",
+    "f": 1.5,
+    "beta": 0.5,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2540170192978172,
+    "wall_s": 603.2809064388275
+  },
+  {
+    "id": "FINLEN_f1.5_beta0.5_L2_s42",
+    "f": 1.5,
+    "beta": 0.5,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.259887548504577,
+    "wall_s": 624.670117855072
+  },
+  {
+    "id": "FINLEN_f1.2_beta0.5_L2_s137",
+    "f": 1.2,
+    "beta": 0.5,
+    "L_fil": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2744091327881268,
+    "wall_s": 642.1055147647858
+  },
+  {
+    "id": "FINLEN_f1.2_beta0.5_L2_s42",
+    "f": 1.2,
+    "beta": 0.5,
+    "L_fil": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2755880809273077,
+    "wall_s": 670.8531239032745
+  },
+  {
+    "id": "FINLEN_f1.5_beta2.0_L4_s137",
+    "f": 1.5,
+    "beta": 2.0,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2789777588327529,
+    "wall_s": 539.4908754825592
+  },
+  {
+    "id": "FINLEN_f1.8_beta2.0_L4_s137",
+    "f": 1.8,
+    "beta": 2.0,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.26800403917257337,
+    "wall_s": 539.4654717445374
+  },
+  {
+    "id": "FINLEN_f1.5_beta2.0_L4_s42",
+    "f": 1.5,
+    "beta": 2.0,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2805195793910734,
+    "wall_s": 545.3853485584259
+  },
+  {
+    "id": "FINLEN_f1.8_beta2.0_L4_s42",
+    "f": 1.8,
+    "beta": 2.0,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2692959580073625,
+    "wall_s": 550.2078251838684
+  },
+  {
+    "id": "FINLEN_f1.2_beta2.0_L4_s137",
+    "f": 1.2,
+    "beta": 2.0,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.29241216990883967,
+    "wall_s": 573.0827322006226
+  },
+  {
+    "id": "FINLEN_f1.2_beta2.0_L4_s42",
+    "f": 1.2,
+    "beta": 2.0,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2948999252938638,
+    "wall_s": 582.1212937831879
+  },
+  {
+    "id": "FINLEN_f1.8_beta1.0_L4_s137",
+    "f": 1.8,
+    "beta": 1.0,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.26847926840308134,
+    "wall_s": 662.3355784416199
+  },
+  {
+    "id": "FINLEN_f1.5_beta1.0_L4_s137",
+    "f": 1.5,
+    "beta": 1.0,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.27961692685428136,
+    "wall_s": 699.242119550705
+  },
+  {
+    "id": "FINLEN_f1.8_beta1.0_L4_s42",
+    "f": 1.8,
+    "beta": 1.0,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.26967275970275684,
+    "wall_s": 704.7949960231781
+  },
+  {
+    "id": "FINLEN_f1.5_beta1.0_L4_s42",
+    "f": 1.5,
+    "beta": 1.0,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.28215368494161835,
+    "wall_s": 726.8514573574066
+  },
+  {
+    "id": "FINLEN_f1.2_beta1.0_L4_s137",
+    "f": 1.2,
+    "beta": 1.0,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.29435637838207906,
+    "wall_s": 732.4383120536804
+  },
+  {
+    "id": "FINLEN_f1.2_beta1.0_L4_s42",
+    "f": 1.2,
+    "beta": 1.0,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2968916352199824,
+    "wall_s": 744.1792843341827
+  },
+  {
+    "id": "FINLEN_f1.8_beta0.5_L4_s137",
+    "f": 1.8,
+    "beta": 0.5,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2693581069455399,
+    "wall_s": 866.0735650062561
+  },
+  {
+    "id": "FINLEN_f1.8_beta0.5_L4_s42",
+    "f": 1.8,
+    "beta": 0.5,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2722753511080355,
+    "wall_s": 906.861447095871
+  },
+  {
+    "id": "FINLEN_f1.5_beta0.5_L4_s137",
+    "f": 1.5,
+    "beta": 0.5,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2827697166503903,
+    "wall_s": 920.8641231060028
+  },
+  {
+    "id": "FINLEN_f1.5_beta0.5_L4_s42",
+    "f": 1.5,
+    "beta": 0.5,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2844796555683313,
+    "wall_s": 924.6432762145996
+  },
+  {
+    "id": "FINLEN_f1.2_beta0.5_L4_s137",
+    "f": 1.2,
+    "beta": 0.5,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2965973653841907,
+    "wall_s": 950.8316938877106
+  },
+  {
+    "id": "FINLEN_f1.2_beta0.5_L4_s42",
+    "f": 1.2,
+    "beta": 0.5,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2995387542432971,
+    "wall_s": 959.2369768619537
+  },
+  {
+    "id": "FINLEN_f2.2_beta2.0_L4_s42",
+    "f": 2.2,
+    "beta": 2.0,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2570350947842413,
+    "wall_s": 471.63370060920715
+  },
+  {
+    "id": "FINLEN_f2.2_beta2.0_L4_s137",
+    "f": 2.2,
+    "beta": 2.0,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.255503510137493,
+    "wall_s": 463.14860916137695
+  },
+  {
+    "id": "FINLEN_f2.2_beta1.0_L4_s42",
+    "f": 2.2,
+    "beta": 1.0,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.25728045904436436,
+    "wall_s": 590.0902724266052
+  },
+  {
+    "id": "FINLEN_f2.2_beta1.0_L4_s137",
+    "f": 2.2,
+    "beta": 1.0,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.25578885584893934,
+    "wall_s": 589.8554036617279
+  },
+  {
+    "id": "FINLEN_f2.6_beta2.0_L4_s42",
+    "f": 2.6,
+    "beta": 2.0,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.24735271351637433,
+    "wall_s": 469.2078900337219
+  },
+  {
+    "id": "FINLEN_f2.6_beta1.0_L4_s42",
+    "f": 2.6,
+    "beta": 1.0,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2476391860616922,
+    "wall_s": 519.560455083847
+  },
+  {
+    "id": "FINLEN_f2.2_beta0.5_L4_s137",
+    "f": 2.2,
+    "beta": 0.5,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2566167837812665,
+    "wall_s": 732.7916247844696
+  },
+  {
+    "id": "FINLEN_f2.2_beta0.5_L4_s42",
+    "f": 2.2,
+    "beta": 0.5,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2578731460165031,
+    "wall_s": 748.1017837524414
+  },
+  {
+    "id": "FINLEN_f2.6_beta0.5_L4_s42",
+    "f": 2.6,
+    "beta": 0.5,
+    "L_fil": 4.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.24744543501767438,
+    "wall_s": 668.5632174015045
+  },
+  {
+    "id": "FINLEN_f2.6_beta0.5_L4_s137",
+    "f": 2.6,
+    "beta": 0.5,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.24585776348148594,
+    "wall_s": 656.9868531227112
+  },
+  {
+    "id": "FINLEN_f2.6_beta1.0_L4_s137",
+    "f": 2.6,
+    "beta": 1.0,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.240052,
+    "wall_s": 1200.2128503322601
+  },
+  {
+    "id": "FINLEN_f2.6_beta2.0_L4_s137",
+    "f": 2.6,
+    "beta": 2.0,
+    "L_fil": 4.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.250001,
+    "wall_s": 1200.388892173767
+  },
+  {
+    "id": "FINLEN_f1.2_beta2.0_L6_s137",
+    "f": 1.2,
+    "beta": 2.0,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3216084385847705,
+    "wall_s": 432.9434127807617
+  },
+  {
+    "id": "FINLEN_f1.2_beta2.0_L6_s42",
+    "f": 1.2,
+    "beta": 2.0,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.32320700502295174,
+    "wall_s": 440.0555250644684
+  },
+  {
+    "id": "FINLEN_f1.5_beta2.0_L6_s137",
+    "f": 1.5,
+    "beta": 2.0,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3090144365390595,
+    "wall_s": 451.8180410861969
+  },
+  {
+    "id": "FINLEN_f1.5_beta2.0_L6_s42",
+    "f": 1.5,
+    "beta": 2.0,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.3121375194489508,
+    "wall_s": 451.8539912700653
+  },
+  {
+    "id": "FINLEN_f1.5_beta1.0_L6_s137",
+    "f": 1.5,
+    "beta": 1.0,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.30936876578009403,
+    "wall_s": 549.4854354858398
+  },
+  {
+    "id": "FINLEN_f1.5_beta1.0_L6_s42",
+    "f": 1.5,
+    "beta": 1.0,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.31170756517609083,
+    "wall_s": 553.9613695144653
+  },
+  {
+    "id": "FINLEN_f1.2_beta1.0_L6_s42",
+    "f": 1.2,
+    "beta": 1.0,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.32408048631492375,
+    "wall_s": 558.0347988605499
+  },
+  {
+    "id": "FINLEN_f1.2_beta1.0_L6_s137",
+    "f": 1.2,
+    "beta": 1.0,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3228885808774389,
+    "wall_s": 562.8444247245789
+  },
+  {
+    "id": "FINLEN_f1.8_beta0.5_L6_s42",
+    "f": 1.8,
+    "beta": 0.5,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.30191605388051473,
+    "wall_s": 662.3614273071289
+  },
+  {
+    "id": "FINLEN_f1.8_beta0.5_L6_s137",
+    "f": 1.8,
+    "beta": 0.5,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.299192633250754,
+    "wall_s": 681.9252490997314
+  },
+  {
+    "id": "FINLEN_f1.5_beta0.5_L6_s42",
+    "f": 1.5,
+    "beta": 0.5,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.3124604795308855,
+    "wall_s": 692.1860408782959
+  },
+  {
+    "id": "FINLEN_f1.5_beta0.5_L6_s137",
+    "f": 1.5,
+    "beta": 0.5,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.31132463408324146,
+    "wall_s": 696.6652488708496
+  },
+  {
+    "id": "FINLEN_f1.2_beta0.5_L6_s42",
+    "f": 1.2,
+    "beta": 0.5,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.32582569171547276,
+    "wall_s": 717.2002425193787
+  },
+  {
+    "id": "FINLEN_f1.2_beta0.5_L6_s137",
+    "f": 1.2,
+    "beta": 0.5,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3246065728859673,
+    "wall_s": 721.407546043396
+  },
+  {
+    "id": "FINLEN_f1.8_beta2.0_L6_s137",
+    "f": 1.8,
+    "beta": 2.0,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.29841423451786225,
+    "wall_s": 429.40414810180664
+  },
+  {
+    "id": "FINLEN_f1.8_beta2.0_L6_s42",
+    "f": 1.8,
+    "beta": 2.0,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2983982194421563,
+    "wall_s": 453.9857542514801
+  },
+  {
+    "id": "FINLEN_f1.8_beta1.0_L6_s42",
+    "f": 1.8,
+    "beta": 1.0,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2991685912129221,
+    "wall_s": 556.8275067806244
+  },
+  {
+    "id": "FINLEN_f1.8_beta1.0_L6_s137",
+    "f": 1.8,
+    "beta": 1.0,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2985919557786786,
+    "wall_s": 570.9453589916229
+  },
+  {
+    "id": "FINLEN_f2.2_beta1.0_L6_s137",
+    "f": 2.2,
+    "beta": 1.0,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.28702287931497245,
+    "wall_s": 600.375137090683
+  },
+  {
+    "id": "FINLEN_f2.2_beta1.0_L6_s42",
+    "f": 2.2,
+    "beta": 1.0,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.28582092048659063,
+    "wall_s": 605.978928565979
+  },
+  {
+    "id": "FINLEN_f2.2_beta2.0_L6_s137",
+    "f": 2.2,
+    "beta": 2.0,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.285748378915601,
+    "wall_s": 533.8603320121765
+  },
+  {
+    "id": "FINLEN_f2.2_beta2.0_L6_s42",
+    "f": 2.2,
+    "beta": 2.0,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2853079886750101,
+    "wall_s": 554.9004883766174
+  },
+  {
+    "id": "FINLEN_f2.2_beta0.5_L6_s42",
+    "f": 2.2,
+    "beta": 0.5,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2869798759350952,
+    "wall_s": 734.8059887886047
+  },
+  {
+    "id": "FINLEN_f2.2_beta0.5_L6_s137",
+    "f": 2.2,
+    "beta": 0.5,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2869475479717279,
+    "wall_s": 743.034420967102
+  },
+  {
+    "id": "FINLEN_f2.6_beta2.0_L6_s42",
+    "f": 2.6,
+    "beta": 2.0,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2726481594185383,
+    "wall_s": 466.6471993923187
+  },
+  {
+    "id": "FINLEN_f2.6_beta0.5_L6_s42",
+    "f": 2.6,
+    "beta": 0.5,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2759928464993,
+    "wall_s": 710.2930288314819
+  },
+  {
+    "id": "FINLEN_f2.6_beta0.5_L6_s137",
+    "f": 2.6,
+    "beta": 0.5,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2765514472290551,
+    "wall_s": 714.5361385345459
+  },
+  {
+    "id": "FINLEN_f2.6_beta1.0_L6_s42",
+    "f": 2.6,
+    "beta": 1.0,
+    "L_fil": 6.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.270097,
+    "wall_s": 1200.1229395866394
+  },
+  {
+    "id": "FINLEN_f2.6_beta1.0_L6_s137",
+    "f": 2.6,
+    "beta": 1.0,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.270092,
+    "wall_s": 1200.3654744625092
+  },
+  {
+    "id": "FINLEN_f2.6_beta2.0_L6_s137",
+    "f": 2.6,
+    "beta": 2.0,
+    "L_fil": 6.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.270068,
+    "wall_s": 1200.112685918808
+  },
+  {
+    "id": "FINLEN_f1.2_beta2.0_L8_s137",
+    "f": 1.2,
+    "beta": 2.0,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3462573411327043,
+    "wall_s": 561.6471757888794
+  },
+  {
+    "id": "FINLEN_f1.5_beta2.0_L8_s42",
+    "f": 1.5,
+    "beta": 2.0,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.3334960546147236,
+    "wall_s": 574.3248891830444
+  },
+  {
+    "id": "FINLEN_f1.2_beta2.0_L8_s42",
+    "f": 1.2,
+    "beta": 2.0,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.34841927889430185,
+    "wall_s": 577.5989768505096
+  },
+  {
+    "id": "FINLEN_f1.2_beta1.0_L8_s137",
+    "f": 1.2,
+    "beta": 1.0,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3471259123724272,
+    "wall_s": 742.9609982967377
+  },
+  {
+    "id": "FINLEN_f1.5_beta1.0_L8_s42",
+    "f": 1.5,
+    "beta": 1.0,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.3344709590468149,
+    "wall_s": 753.149729013443
+  },
+  {
+    "id": "FINLEN_f1.5_beta1.0_L8_s137",
+    "f": 1.5,
+    "beta": 1.0,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.33408438291206927,
+    "wall_s": 761.5518913269043
+  },
+  {
+    "id": "FINLEN_f1.2_beta1.0_L8_s42",
+    "f": 1.2,
+    "beta": 1.0,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.3483559797100953,
+    "wall_s": 762.7015545368195
+  },
+  {
+    "id": "FINLEN_f1.5_beta0.5_L8_s42",
+    "f": 1.5,
+    "beta": 0.5,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.3363017692487791,
+    "wall_s": 1027.9178166389465
+  },
+  {
+    "id": "FINLEN_f1.5_beta0.5_L8_s137",
+    "f": 1.5,
+    "beta": 0.5,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3353686201613291,
+    "wall_s": 1031.4065923690796
+  },
+  {
+    "id": "FINLEN_f1.2_beta0.5_L8_s42",
+    "f": 1.2,
+    "beta": 0.5,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.34945129560316385,
+    "wall_s": 1055.2152245044708
+  },
+  {
+    "id": "FINLEN_f1.2_beta0.5_L8_s137",
+    "f": 1.2,
+    "beta": 0.5,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3484402630915566,
+    "wall_s": 1070.8926649093628
+  },
+  {
+    "id": "FINLEN_f1.5_beta2.0_L8_s137",
+    "f": 1.5,
+    "beta": 2.0,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3342783700287165,
+    "wall_s": 800.6428916454315
+  },
+  {
+    "id": "FINLEN_f1.8_beta2.0_L8_s137",
+    "f": 1.8,
+    "beta": 2.0,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3219343554761962,
+    "wall_s": 843.6816036701202
+  },
+  {
+    "id": "FINLEN_f1.8_beta2.0_L8_s42",
+    "f": 1.8,
+    "beta": 2.0,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.3217403468900416,
+    "wall_s": 866.4425098896027
+  },
+  {
+    "id": "FINLEN_f1.8_beta1.0_L8_s137",
+    "f": 1.8,
+    "beta": 1.0,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3231011311692362,
+    "wall_s": 1005.2002403736115
+  },
+  {
+    "id": "FINLEN_f1.8_beta1.0_L8_s42",
+    "f": 1.8,
+    "beta": 1.0,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.32251537223301074,
+    "wall_s": 1027.7701025009155
+  },
+  {
+    "id": "FINLEN_f1.8_beta0.5_L8_s42",
+    "f": 1.8,
+    "beta": 0.5,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.310164,
+    "wall_s": 1200.6769285202026
+  },
+  {
+    "id": "FINLEN_f1.8_beta0.5_L8_s137",
+    "f": 1.8,
+    "beta": 0.5,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.32001,
+    "wall_s": 1200.8520855903625
+  },
+  {
+    "id": "FINLEN_f2.2_beta1.0_L8_s137",
+    "f": 2.2,
+    "beta": 1.0,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.30926251890259476,
+    "wall_s": 1022.934005022049
+  },
+  {
+    "id": "FINLEN_f2.2_beta0.5_L8_s42",
+    "f": 2.2,
+    "beta": 0.5,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.3104837381335204,
+    "wall_s": 1185.5183095932007
+  },
+  {
+    "id": "FINLEN_f2.2_beta0.5_L8_s137",
+    "f": 2.2,
+    "beta": 0.5,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.310019,
+    "wall_s": 1200.1206052303314
+  },
+  {
+    "id": "FINLEN_f2.2_beta1.0_L8_s42",
+    "f": 2.2,
+    "beta": 1.0,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.300025,
+    "wall_s": 1200.6855645179749
+  },
+  {
+    "id": "FINLEN_f2.6_beta2.0_L8_s42",
+    "f": 2.6,
+    "beta": 2.0,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2875300282739481,
+    "wall_s": 653.2263987064362
+  },
+  {
+    "id": "FINLEN_f2.2_beta2.0_L8_s42",
+    "f": 2.2,
+    "beta": 2.0,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.300106,
+    "wall_s": 1200.643042564392
+  },
+  {
+    "id": "FINLEN_f2.2_beta2.0_L8_s137",
+    "f": 2.2,
+    "beta": 2.0,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.30702455677303875,
+    "wall_s": 976.633348941803
+  },
+  {
+    "id": "FINLEN_f2.6_beta0.5_L8_s42",
+    "f": 2.6,
+    "beta": 0.5,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.29849747058628084,
+    "wall_s": 1086.5460240840912
+  },
+  {
+    "id": "FINLEN_f2.6_beta2.0_L8_s137",
+    "f": 2.6,
+    "beta": 2.0,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2883504034086671,
+    "wall_s": 668.3519055843353
+  },
+  {
+    "id": "FINLEN_f2.6_beta0.5_L8_s137",
+    "f": 2.6,
+    "beta": 0.5,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2989759890388941,
+    "wall_s": 1025.9290881156921
+  },
+  {
+    "id": "FINLEN_f2.6_beta1.0_L8_s137",
+    "f": 2.6,
+    "beta": 1.0,
+    "L_fil": 8.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2998840498804106,
+    "wall_s": 1011.7578859329224
+  },
+  {
+    "id": "FINLEN_f2.6_beta1.0_L8_s42",
+    "f": 2.6,
+    "beta": 1.0,
+    "L_fil": 8.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.290099,
+    "wall_s": 1200.4172568321228
+  }
+]
