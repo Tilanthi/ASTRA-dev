@@ -71,6 +71,11 @@ Chen Y.,  et~al., 2026, arXiv preprint
 Cranmer M.,  et~al., 2024, \mn@doi [Open J. Astrophys.]
   {10.21105/astro.2402.05137}, 7
 
+\bibitem[\protect\citeauthoryear{Crutcher, Wandelt, Heiles, Falgarone  \&
+  Troland}{Crutcher et~al.}{2010}]{crutcher2010}
+Crutcher R.~M.,  Wandelt B.,  Heiles C.,  Falgarone E.,   Troland T.~H.,  2010,
+  \mn@doi [ApJ] {10.1088/0004-637X/725/1/466}, 725, 466
+
 \bibitem[\protect\citeauthoryear{Desmond}{Desmond}{2026}]{desmond2026}
 Desmond H.,  2026, \mn@doi [Open J.\ Astrophys.] {10.33232/001c.159080}, 9
 
@@ -168,10 +173,16 @@ Mucesh S.,  Hartley W.~G.,  Palmese A.,   et~al., 2025, MNRAS
 \bibitem[\protect\citeauthoryear{Nagasawa}{Nagasawa}{1987}]{nagasawa1987}
 Nagasawa M.,  1987, \mn@doi [Prog. Theor. Phys.] {10.1143/PTP.77.635}, 77, 635
 
-\bibitem[\protect\citeauthoryear{Panopoulou, Psarouli, Taqi  \&
-  Andrews}{Panopoulou et~al.}{2022}]{panopoulou2022}
-Panopoulou G.~V.,  Psarouli I.,  Taqi N.,   Andrews J.~J.,  2022, \mn@doi
-  [A\&A] {10.1051/0004-6361/202141996}, 657, L13
+\bibitem[\protect\citeauthoryear{Pandya et~al.}{Pandya
+  et~al.}{2026}]{pandya2026sapphire}
+Pandya V.,  et~al., 2026, arXiv
+
+\bibitem[\protect\citeauthoryear{Panopoulou, Clark, Hacar, Heitsch,
+  Kainulainen, Ntormousi, Seifried  \& Smith}{Panopoulou
+  et~al.}{2022}]{panopoulou2022}
+Panopoulou G.~V.,  Clark S.~E.,  Hacar A.,  Heitsch F.,  Kainulainen J.,
+  Ntormousi E.,  Seifried D.,   Smith R.~J.,  2022, \mn@doi [A\&A]
+  {10.1051/0004-6361/202142281}, 657, L13
 
 \bibitem[\protect\citeauthoryear{Peng, Lilly, Kova{\v{c}}  et~al.}{Peng
   et~al.}{2010}]{peng2010}
@@ -188,6 +199,9 @@ Renzini A.,  Peng Y.-j.,  2015, \mn@doi [ApJL] {10.1088/2041-8205/801/2/L29},
 Rivera-Ingraham A.,  et~al., 2013, \mn@doi [ApJ] {10.1088/0004-637X/766/2/85},
   766, 85
 
+\bibitem[\protect\citeauthoryear{Rosen et~al.}{Rosen et~al.}{2026}]{rosen2026}
+Rosen A.~L.,  et~al., 2026, ApJ
+
 \bibitem[\protect\citeauthoryear{Skilling}{Skilling}{2004}]{skilling2004}
 Skilling J.,  2004, in AIP Conference Proceedings. pp 395--405,
   \mn@doi{10.1063/1.1835238}
@@ -197,6 +211,10 @@ Skilling J.,  2004, in AIP Conference Proceedings. pp 395--405,
 Spirtes P.,  Glymour C.,   Scheines R.,  2000, {Causation, Prediction, and
   Search}, 2nd edn.
 MIT Press, Cambridge, MA
+
+\bibitem[\protect\citeauthoryear{Steinhardt et~al.}{Steinhardt
+  et~al.}{2026}]{steinhardt2026}
+Steinhardt C.~L.,  et~al., 2026, arXiv
 
 \bibitem[\protect\citeauthoryear{Stone, Tomida, White  \& Felker}{Stone
   et~al.}{2020}]{stone2020}
@@ -224,6 +242,10 @@ Tomisaka K.,  2014, \mn@doi [ApJ] {10.1088/0004-637X/785/1/24}, 785, 24
 Tremonti C.~A.,  Heckman T.~M.,  Kauffmann G.,   et~al., 2004, \mn@doi [ApJ]
   {10.1086/423264}, 613, 898
 
+\bibitem[\protect\citeauthoryear{Tritsis et~al.}{Tritsis
+  et~al.}{2025}]{tritsis2025m2f}
+Tritsis A.,  et~al., 2025, A\&A
+
 \bibitem[\protect\citeauthoryear{Wang, Zhang, Li  et~al.}{Wang
   et~al.}{2025}]{wang2025starwhisper}
 Wang Y.,  Zhang H.,  Li X.,   et~al., 2025, \mn@doi [Commun.\ Eng.]
@@ -232,6 +254,10 @@ Wang Y.,  Zhang H.,  Li X.,   et~al., 2025, \mn@doi [Commun.\ Eng.]
 \bibitem[\protect\citeauthoryear{White}{White}{2026}]{astra_github}
 White G.~J.,  2026, {ASTRA: Autonomous System for Scientific Discovery in
   Astrophysics}, \url{https://github.com/web3guru888/ASTRA}
+
+\bibitem[\protect\citeauthoryear{Whitworth et~al.}{Whitworth
+  et~al.}{2026}]{whitworth2026bn}
+Whitworth D.~J.,  et~al., 2026, Open J. Astrophys.
 
 \bibitem[\protect\citeauthoryear{Zhang et~al.}{Zhang
   et~al.}{2026}]{zhang2026fldf}
