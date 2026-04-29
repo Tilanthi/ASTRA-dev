@@ -1,0 +1,25 @@
+# Python requirements for ASTRA Filament Simulation Analysis
+# For peer review response and critical gap resolution
+
+# Core scientific computing
+numpy>=1.21.0
+scipy>=1.7.0
+pandas>=1.3.0
+
+# HDF5 support
+h5py>=3.6.0
+
+# Visualization
+matplotlib>=3.5.0
+
+# Ray parallelization
+ray[default]>=2.0.0
+
+# Optional but recommended
+jupyter>=1.0.0
+ipywidgets>=7.6.0
+
+# For development (optional)
+pytest>=6.0.0
+black>=21.0.0
+flake8>=3.9.0
