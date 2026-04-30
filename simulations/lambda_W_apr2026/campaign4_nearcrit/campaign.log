@@ -1,0 +1,339 @@
+[21:43:53] Campaign 4 NEARCRIT-LW: 90 sims total (45 per resolution)
+[21:43:53] f=[1.0, 1.05, 1.1, 1.15, 1.2], β=[0.5, 1.0, 2.0], seeds=[42, 137, 314], res=[128, 256]
+[21:43:53] 
+============================================================
+[21:43:53] Phase 128³: 45 sims | np=16 | max_conc=7 | timeout=21600s
+[21:43:53] ============================================================
+[21:46:56] FRAG     C4_NCRIT_f1.0_b0.5_r128_s42  t_frag=1.1908  dt=8.28e-21  wall=183s
+[21:46:56]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s42.snap.00000.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:46:56]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s42.snap.00001.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:46:56]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s42.snap.00002.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:46:56]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s42.snap.00003.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:46:56]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s42.snap.00004.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:46:56]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s42.snap.00005.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:46:56]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s42.snap.00006.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:46:56]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s42.snap.00007.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:46:56]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s42.snap.00008.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:46:56]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s42.snap.00009.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:46:56]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s42.snap.00010.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:46:56]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s42.snap.00011.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:46:56]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 12 HDF5 files
+[21:47:12] FRAG     C4_NCRIT_f1.0_b2.0_r128_s42  t_frag=0.8646  dt=1.55e-20  wall=199s
+[21:47:12]   WARN: failed reading C4_NCRIT_f1.0_b2.0_r128_s42.snap.00000.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C4_NCRIT_f1.0_b2.0_r128_s42.snap.00001.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C4_NCRIT_f1.0_b2.0_r128_s42.snap.00002.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C4_NCRIT_f1.0_b2.0_r128_s42.snap.00003.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C4_NCRIT_f1.0_b2.0_r128_s42.snap.00004.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C4_NCRIT_f1.0_b2.0_r128_s42.snap.00005.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C4_NCRIT_f1.0_b2.0_r128_s42.snap.00006.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C4_NCRIT_f1.0_b2.0_r128_s42.snap.00007.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C4_NCRIT_f1.0_b2.0_r128_s42.snap.00008.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 9 HDF5 files
+[21:47:22] FRAG     C4_NCRIT_f1.0_b0.5_r128_s314  t_frag=1.2252  dt=1.67e-21  wall=209s
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s314.snap.00000.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s314.snap.00001.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s314.snap.00002.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s314.snap.00003.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s314.snap.00004.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s314.snap.00005.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22] FRAG     C4_NCRIT_f1.0_b1.0_r128_s42  t_frag=0.9882  dt=1.14e-20  wall=209s
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s314.snap.00006.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s314.snap.00007.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s42.snap.00000.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s42.snap.00001.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s314.snap.00008.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s42.snap.00002.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s42.snap.00003.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s314.snap.00009.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s42.snap.00004.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s314.snap.00010.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:22]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s42.snap.00005.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:23]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s314.snap.00011.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:23]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s42.snap.00006.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:23]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s314.snap.00012.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:23]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s42.snap.00007.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:23]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s42.snap.00008.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:23]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s42.snap.00009.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:23]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 13 HDF5 files
+[21:47:23]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 10 HDF5 files
+[21:47:30] FRAG     C4_NCRIT_f1.0_b1.0_r128_s314  t_frag=0.9997  dt=9.68e-21  wall=217s
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s314.snap.00000.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s314.snap.00001.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s314.snap.00002.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s314.snap.00003.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s314.snap.00004.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s314.snap.00005.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s314.snap.00006.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s314.snap.00007.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s314.snap.00008.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b1.0_r128_s314.snap.00009.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 10 HDF5 files
+[21:47:30] FRAG     C4_NCRIT_f1.0_b0.5_r128_s137  t_frag=1.2088  dt=1.54e-21  wall=217s
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s137.snap.00000.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s137.snap.00001.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s137.snap.00002.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s137.snap.00003.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s137.snap.00004.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s137.snap.00005.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s137.snap.00006.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s137.snap.00007.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s137.snap.00008.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s137.snap.00009.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s137.snap.00010.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s137.snap.00011.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:30]   WARN: failed reading C4_NCRIT_f1.0_b0.5_r128_s137.snap.00012.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:31]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 13 HDF5 files
+[21:50:54] Campaign 4 NEARCRIT-LW: 90 sims total (45 per resolution)
+[21:50:54] f=[1.0, 1.05, 1.1, 1.15, 1.2], β=[0.5, 1.0, 2.0], seeds=[42, 137, 314], res=[128, 256]
+[21:50:54] 
+============================================================
+[21:50:54] Phase 128³: 45 sims | np=16 | max_conc=7 | timeout=21600s
+[21:50:54] ============================================================
+[21:53:54] FRAG     C4_NCRIT_f1.0_b0.5_r128_s42  t_frag=1.1908  dt=8.28e-21  wall=180s
+[21:53:55]   λ/W=4.458 (GOOD, 6 peaks, t=1.1014070510864258) — deleted 12 HDF5 files
+[21:54:11] FRAG     C4_NCRIT_f1.0_b2.0_r128_s42  t_frag=0.8646  dt=1.55e-20  wall=197s
+[21:54:12]   λ/W=3.034 (GOOD, 9 peaks, t=0.8009270429611206) — deleted 9 HDF5 files
+[21:54:20] FRAG     C4_NCRIT_f1.0_b0.5_r128_s314  t_frag=1.2252  dt=1.67e-21  wall=207s
+[21:54:20] FRAG     C4_NCRIT_f1.0_b1.0_r128_s42  t_frag=0.9882  dt=1.14e-20  wall=207s
+[21:54:21]   λ/W=3.497 (GOOD, 8 peaks, t=0.9003562331199646) — deleted 10 HDF5 files
+[21:54:21]   λ/W=4.521 (GOOD, 6 peaks, t=1.2004021406173706) — deleted 13 HDF5 files
+[21:54:28] FRAG     C4_NCRIT_f1.0_b0.5_r128_s137  t_frag=1.2088  dt=1.54e-21  wall=214s
+[21:54:29]   λ/W=3.646 (GOOD, 7 peaks, t=1.2001781463623047) — deleted 13 HDF5 files
+[21:54:29] FRAG     C4_NCRIT_f1.0_b1.0_r128_s314  t_frag=0.9997  dt=9.68e-21  wall=216s
+[21:54:30]   λ/W=2.891 (GOOD, 9 peaks, t=0.9004841446876526) — deleted 10 HDF5 files
+[21:57:43] FRAG     C4_NCRIT_f1.05_b0.5_r128_s42  t_frag=1.1903  dt=6.46e-22  wall=202s
+[21:57:43]   λ/W=3.715 (GOOD, 7 peaks, t=1.1002358198165894) — deleted 12 HDF5 files
+[21:57:45] FRAG     C4_NCRIT_f1.05_b0.5_r128_s314  t_frag=1.1916  dt=2.65e-21  wall=197s
+[21:57:46]   λ/W=4.562 (GOOD, 6 peaks, t=1.1004458665847778) — deleted 12 HDF5 files
+[21:57:58] FRAG     C4_NCRIT_f1.05_b1.0_r128_s42  t_frag=0.9698  dt=4.13e-21  wall=208s
+[21:57:58]   λ/W=3.497 (GOOD, 8 peaks, t=0.9011566042900085) — deleted 10 HDF5 files
+[21:58:02] FRAG     C4_NCRIT_f1.05_b0.5_r128_s137  t_frag=1.1892  dt=5.24e-21  wall=220s
+[21:58:02]   λ/W=3.646 (GOOD, 7 peaks, t=1.1007648706436157) — deleted 12 HDF5 files
+[21:58:05] FRAG     C4_NCRIT_f1.0_b2.0_r128_s314  t_frag=0.8718  dt=2.67e-21  wall=233s
+[21:58:05]   λ/W=2.558 (GOOD, 10 peaks, t=0.8004778027534485) — deleted 9 HDF5 files
+[21:58:07] FRAG     C4_NCRIT_f1.0_b1.0_r128_s137  t_frag=1.0266  dt=1.19e-21  wall=433s
+[21:58:07]   λ/W=2.943 (GOOD, 9 peaks, t=1.0000392198562622) — deleted 11 HDF5 files
+[22:01:16] FRAG     C4_NCRIT_f1.1_b0.5_r128_s42  t_frag=1.1467  dt=3.50e-21  wall=188s
+[22:01:16]   λ/W=3.715 (GOOD, 7 peaks, t=1.100492238998413) — deleted 12 HDF5 files
+[22:01:53] FRAG     C4_NCRIT_f1.05_b2.0_r128_s137  t_frag=0.8612  dt=1.79e-21  wall=230s
+[22:01:53]   λ/W=2.650 (GOOD, 10 peaks, t=0.8001493811607361) — deleted 9 HDF5 files
+[22:02:06] FRAG     C4_NCRIT_f1.05_b2.0_r128_s314  t_frag=0.8594  dt=2.95e-21  wall=241s
+[22:02:06]   λ/W=2.558 (GOOD, 10 peaks, t=0.8000130653381348) — deleted 9 HDF5 files
+[22:02:06] FRAG     C4_NCRIT_f1.05_b1.0_r128_s137  t_frag=0.9865  dt=8.93e-21  wall=263s
+[22:02:07]   λ/W=2.969 (GOOD, 9 peaks, t=0.9000225067138672) — deleted 10 HDF5 files
+[22:02:10] FRAG     C4_NCRIT_f1.05_b1.0_r128_s314  t_frag=0.9888  dt=2.80e-21  wall=264s
+[22:02:10]   λ/W=2.878 (GOOD, 9 peaks, t=0.9011707305908203) — deleted 10 HDF5 files
+[22:02:25] FRAG     C4_NCRIT_f1.05_b2.0_r128_s42  t_frag=0.8649  dt=3.45e-22  wall=267s
+[22:02:26]   λ/W=3.034 (GOOD, 9 peaks, t=0.8006585240364075) — deleted 9 HDF5 files
+[22:04:45] FRAG     C4_NCRIT_f1.0_b2.0_r128_s137  t_frag=0.9121  dt=2.81e-22  wall=650s
+[22:04:45]   λ/W=2.639 (GOOD, 10 peaks, t=0.9000077843666077) — deleted 10 HDF5 files
+[22:04:52] FRAG     C4_NCRIT_f1.1_b0.5_r128_s137  t_frag=1.1611  dt=5.59e-20  wall=216s
+[22:04:53]   λ/W=3.646 (GOOD, 7 peaks, t=1.1000914573669434) — deleted 12 HDF5 files
+[22:04:55] FRAG     C4_NCRIT_f1.1_b0.5_r128_s314  t_frag=1.1574  dt=4.80e-21  wall=182s
+[22:04:56]   λ/W=4.562 (GOOD, 6 peaks, t=1.1011414527893066) — deleted 12 HDF5 files
+[22:05:39] FRAG     C4_NCRIT_f1.1_b1.0_r128_s42  t_frag=0.9539  dt=6.55e-21  wall=213s
+[22:05:40]   λ/W=3.497 (GOOD, 8 peaks, t=0.9003748297691345) — deleted 10 HDF5 files
+[22:05:52] FRAG     C4_NCRIT_f1.1_b1.0_r128_s314  t_frag=0.9629  dt=4.14e-21  wall=221s
+[22:05:52]   λ/W=2.878 (GOOD, 9 peaks, t=0.9006795287132263) — deleted 10 HDF5 files
+[22:06:24] FRAG     C4_NCRIT_f1.1_b2.0_r128_s42  t_frag=0.8474  dt=2.10e-21  wall=238s
+[22:06:24]   λ/W=2.697 (GOOD, 10 peaks, t=0.8001744151115417) — deleted 9 HDF5 files
+[22:06:28] FRAG     C4_NCRIT_f1.1_b1.0_r128_s137  t_frag=0.9736  dt=9.05e-22  wall=261s
+[22:06:29]   λ/W=2.969 (GOOD, 9 peaks, t=0.9001039266586304) — deleted 10 HDF5 files
+[22:09:18] FRAG     C4_NCRIT_f1.1_b2.0_r128_s314  t_frag=0.8493  dt=1.39e-21  wall=265s
+[22:09:18]   λ/W=2.558 (GOOD, 10 peaks, t=0.8002792000770569) — deleted 9 HDF5 files
+[22:09:24] FRAG     C4_NCRIT_f1.15_b0.5_r128_s42  t_frag=1.1573  dt=2.96e-22  wall=268s
+[22:09:25]   λ/W=3.571 (GOOD, 8 peaks, t=1.100229263305664) — deleted 12 HDF5 files
+[22:09:28] FRAG     C4_NCRIT_f1.15_b0.5_r128_s314  t_frag=1.1538  dt=1.67e-21  wall=216s
+[22:09:28]   λ/W=4.562 (GOOD, 6 peaks, t=1.1006886959075928) — deleted 12 HDF5 files
+[22:09:50] FRAG     C4_NCRIT_f1.15_b0.5_r128_s137  t_frag=1.1518  dt=6.99e-22  wall=250s
+[22:09:51]   λ/W=3.125 (GOOD, 8 peaks, t=1.1004244089126587) — deleted 12 HDF5 files
+[22:10:05] FRAG     C4_NCRIT_f1.15_b1.0_r128_s42  t_frag=0.9397  dt=6.88e-21  wall=220s
+[22:10:05]   λ/W=3.060 (GOOD, 9 peaks, t=0.9000608325004578) — deleted 10 HDF5 files
+[22:11:14] FRAG     C4_NCRIT_f1.1_b2.0_r128_s137  t_frag=0.8675  dt=3.70e-22  wall=389s
+[22:11:14]   λ/W=2.650 (GOOD, 10 peaks, t=0.8001377582550049) — deleted 9 HDF5 files
+[22:11:27] FRAG     C4_NCRIT_f1.15_b1.0_r128_s137  t_frag=0.9579  dt=4.04e-21  wall=299s
+[22:11:28]   λ/W=2.969 (GOOD, 9 peaks, t=0.9002702236175537) — deleted 10 HDF5 files
+[22:13:05] FRAG     C4_NCRIT_f1.2_b0.5_r128_s42  t_frag=1.0905  dt=5.03e-21  wall=180s
+[22:13:05]   λ/W=3.663 (GOOD, 7 peaks, t=1.0010007619857788) — deleted 11 HDF5 files
+[22:13:11] FRAG     C4_NCRIT_f1.15_b2.0_r128_s137  t_frag=0.8316  dt=2.10e-21  wall=222s
+[22:13:11]   λ/W=2.650 (GOOD, 10 peaks, t=0.8003401756286621) — deleted 9 HDF5 files
+[22:13:42] FRAG     C4_NCRIT_f1.15_b1.0_r128_s314  t_frag=0.9546  dt=9.77e-22  wall=263s
+[22:13:42]   λ/W=2.878 (GOOD, 9 peaks, t=0.900243878364563) — deleted 10 HDF5 files
+[22:13:58] FRAG     C4_NCRIT_f1.15_b2.0_r128_s314  t_frag=0.8346  dt=1.27e-21  wall=247s
+[22:13:58]   λ/W=2.558 (GOOD, 10 peaks, t=0.8000744581222534) — deleted 9 HDF5 files
+[22:14:29] FRAG     C4_NCRIT_f1.15_b2.0_r128_s42  t_frag=0.8489  dt=7.58e-22  wall=304s
+[22:14:29]   λ/W=2.697 (GOOD, 10 peaks, t=0.8001881241798401) — deleted 9 HDF5 files
+[22:14:39] FRAG     C4_NCRIT_f1.2_b0.5_r128_s314  t_frag=1.1240  dt=1.07e-20  wall=191s
+[22:14:39]   λ/W=3.802 (GOOD, 7 peaks, t=1.1000449657440186) — deleted 12 HDF5 files
+[22:15:14] FRAG     C4_NCRIT_f1.2_b0.5_r128_s137  t_frag=1.1289  dt=3.70e-21  wall=240s
+[22:15:15]   λ/W=3.125 (GOOD, 8 peaks, t=1.1000906229019165) — deleted 12 HDF5 files
+[22:16:31] FRAG     C4_NCRIT_f1.2_b1.0_r128_s42  t_frag=0.9185  dt=1.05e-20  wall=206s
+[22:16:31]   λ/W=3.060 (GOOD, 9 peaks, t=0.9001464247703552) — deleted 10 HDF5 files
+[22:17:07] FRAG     C4_NCRIT_f1.2_b1.0_r128_s314  t_frag=0.9239  dt=7.97e-21  wall=204s
+[22:17:07]   λ/W=2.558 (GOOD, 10 peaks, t=0.900336503982544) — deleted 10 HDF5 files
+[22:18:01] FRAG     C4_NCRIT_f1.2_b2.0_r128_s42  t_frag=0.8262  dt=4.59e-21  wall=243s
+[22:18:01]   λ/W=2.427 (GOOD, 11 peaks, t=0.8000124096870422) — deleted 9 HDF5 files
+[22:18:31] FRAG     C4_NCRIT_f1.2_b1.0_r128_s137  t_frag=0.9549  dt=1.14e-21  wall=320s
+[22:18:31]   λ/W=2.639 (GOOD, 10 peaks, t=0.9003110527992249) — deleted 10 HDF5 files
+[22:19:01] FRAG     C4_NCRIT_f1.2_b2.0_r128_s314  t_frag=0.8291  dt=3.90e-22  wall=262s
+[22:19:01]   λ/W=2.558 (GOOD, 10 peaks, t=0.8000646829605103) — deleted 9 HDF5 files
+[22:19:09] FRAG     C4_NCRIT_f1.2_b2.0_r128_s137  t_frag=0.8350  dt=3.41e-22  wall=280s
+[22:19:10]   λ/W=2.385 (GOOD, 11 peaks, t=0.8000513911247253) — deleted 9 HDF5 files
+[22:19:10] Phase 128³ DONE — FRAG=45/45 | λ/W n=45 mean=3.181±0.624 | wall=1696s
+[22:19:10] 
+============================================================
+[22:19:10] Phase 256³: 45 sims | np=64 | max_conc=3 | timeout=14400s
+[22:19:10] ============================================================
+[22:40:39] FRAG     C4_NCRIT_f1.0_b0.5_r256_s42  t_frag=1.1682  dt=6.38e-21  wall=1289s
+[22:40:41]   λ/W=4.458 (GOOD, 6 peaks, t=1.1002713441848755) — deleted 12 HDF5 files
+[22:40:42] FRAG     C4_NCRIT_f1.0_b0.5_r256_s314  t_frag=1.1926  dt=4.80e-22  wall=1293s
+[22:40:45]   λ/W=4.562 (GOOD, 6 peaks, t=1.100475788116455) — deleted 12 HDF5 files
+[22:40:54] FRAG     C4_NCRIT_f1.0_b0.5_r256_s137  t_frag=1.1605  dt=1.34e-21  wall=1304s
+[22:40:56]   λ/W=3.646 (GOOD, 7 peaks, t=1.1004256010055542) — deleted 12 HDF5 files
+[LAUNCH C4] Thu Apr 30 02:07:11 UTC 2026
+[02:07:13] Campaign 4 NEARCRIT-LW: 90 sims total (45 per resolution)
+[02:07:13] f=[1.0, 1.05, 1.1, 1.15, 1.2], β=[0.5, 1.0, 2.0], seeds=[42, 137, 314], res=[128, 256]
+[02:07:13] 
+============================================================
+[02:07:13] Phase 128³: 45 sims | np=16 | max_conc=7 | timeout=21600s
+[02:07:13] ============================================================
+[02:07:13] SKIP C4_NCRIT_f1.0_b0.5_r128_s314: already done, t_frag=1.2201
+[02:07:13] SKIP C4_NCRIT_f1.0_b0.5_r128_s137: already done, t_frag=1.2002
+[02:07:13] SKIP C4_NCRIT_f1.0_b1.0_r128_s42: already done, t_frag=0.9801
+[02:07:13] SKIP C4_NCRIT_f1.0_b0.5_r128_s42: already done, t_frag=1.1900
+[02:07:13] SKIP C4_NCRIT_f1.0_b1.0_r128_s137: already done, t_frag=1.0200
+[02:07:13] SKIP C4_NCRIT_f1.0_b1.0_r128_s314: already done, t_frag=0.9901
+[02:07:13] SKIP C4_NCRIT_f1.0_b2.0_r128_s42: already done, t_frag=0.8601
+[02:07:13] SKIP C4_NCRIT_f1.0_b2.0_r128_s137: already done, t_frag=0.9101
+[02:07:13] SKIP C4_NCRIT_f1.05_b0.5_r128_s42: already done, t_frag=1.1901
+[02:07:13] SKIP C4_NCRIT_f1.0_b2.0_r128_s314: already done, t_frag=0.8701
+[02:07:13] SKIP C4_NCRIT_f1.05_b0.5_r128_s137: already done, t_frag=1.1800
+[02:07:13] SKIP C4_NCRIT_f1.05_b0.5_r128_s314: already done, t_frag=1.1901
+[02:07:13] SKIP C4_NCRIT_f1.05_b1.0_r128_s42: already done, t_frag=0.9600
+[02:07:13] SKIP C4_NCRIT_f1.05_b1.0_r128_s137: already done, t_frag=0.9801
+[02:07:13] SKIP C4_NCRIT_f1.05_b2.0_r128_s42: already done, t_frag=0.8601
+[02:07:13] SKIP C4_NCRIT_f1.05_b2.0_r128_s137: already done, t_frag=0.8600
+[02:07:13] SKIP C4_NCRIT_f1.05_b1.0_r128_s314: already done, t_frag=0.9800
+[02:07:13] SKIP C4_NCRIT_f1.1_b0.5_r128_s42: already done, t_frag=1.1400
+[02:07:13] SKIP C4_NCRIT_f1.05_b2.0_r128_s314: already done, t_frag=0.8501
+[02:07:13] SKIP C4_NCRIT_f1.1_b0.5_r128_s137: already done, t_frag=1.1600
+[02:07:13] SKIP C4_NCRIT_f1.1_b0.5_r128_s314: already done, t_frag=1.1500
+[02:07:13] SKIP C4_NCRIT_f1.1_b1.0_r128_s42: already done, t_frag=0.9500
+[02:07:13] SKIP C4_NCRIT_f1.1_b1.0_r128_s137: already done, t_frag=0.9701
+[02:07:13] SKIP C4_NCRIT_f1.1_b1.0_r128_s314: already done, t_frag=0.9601
+[02:07:13] SKIP C4_NCRIT_f1.1_b2.0_r128_s314: already done, t_frag=0.8401
+[02:07:13] SKIP C4_NCRIT_f1.1_b2.0_r128_s42: already done, t_frag=0.8400
+[02:07:13] SKIP C4_NCRIT_f1.1_b2.0_r128_s137: already done, t_frag=0.8600
+[02:07:13] SKIP C4_NCRIT_f1.15_b0.5_r128_s137: already done, t_frag=1.1500
+[02:07:13] SKIP C4_NCRIT_f1.15_b0.5_r128_s314: already done, t_frag=1.1500
+[02:07:13] SKIP C4_NCRIT_f1.15_b1.0_r128_s42: already done, t_frag=0.9300
+[02:07:13] SKIP C4_NCRIT_f1.15_b1.0_r128_s314: already done, t_frag=0.9500
+[02:07:13] SKIP C4_NCRIT_f1.15_b1.0_r128_s137: already done, t_frag=0.9500
+[02:07:13] SKIP C4_NCRIT_f1.15_b2.0_r128_s42: already done, t_frag=0.8401
+[02:07:13] SKIP C4_NCRIT_f1.15_b2.0_r128_s137: already done, t_frag=0.8301
+[02:07:13] SKIP C4_NCRIT_f1.15_b2.0_r128_s314: already done, t_frag=0.8301
+[02:07:13] SKIP C4_NCRIT_f1.2_b1.0_r128_s42: already done, t_frag=0.9101
+[02:07:13] SKIP C4_NCRIT_f1.2_b1.0_r128_s137: already done, t_frag=0.9500
+[02:07:13] SKIP C4_NCRIT_f1.2_b0.5_r128_s137: already done, t_frag=1.1200
+[02:07:13] SKIP C4_NCRIT_f1.2_b0.5_r128_s42: already done, t_frag=1.0900
+[02:07:13] SKIP C4_NCRIT_f1.2_b0.5_r128_s314: already done, t_frag=1.1200
+[02:07:13] SKIP C4_NCRIT_f1.2_b1.0_r128_s314: already done, t_frag=0.9201
+[02:07:13] SKIP C4_NCRIT_f1.2_b2.0_r128_s42: already done, t_frag=0.8200
+[02:07:13] SKIP C4_NCRIT_f1.2_b2.0_r128_s314: already done, t_frag=0.8200
+[02:07:13] SKIP C4_NCRIT_f1.2_b2.0_r128_s137: already done, t_frag=0.8301
+[02:07:13] SKIP C4_NCRIT_f1.15_b0.5_r128_s42: already done, t_frag=1.1501
+[02:07:13] Phase 128³ DONE — FRAG=0/45 | λ/W n=0 mean=N/A | wall=0s
+[02:07:13] 
+============================================================
+[02:07:13] Phase 256³: 45 sims | np=64 | max_conc=3 | timeout=14400s
+[02:07:13] ============================================================
+[02:07:13] SKIP C4_NCRIT_f1.0_b0.5_r256_s42: already done, t_frag=1.1602
+[02:07:13] SKIP C4_NCRIT_f1.0_b0.5_r256_s137: already done, t_frag=1.1600
+[02:07:13] SKIP C4_NCRIT_f1.0_b0.5_r256_s314: already done, t_frag=1.1900
+[02:28:58] FRAG     C4_NCRIT_f1.0_b1.0_r256_s137  t_frag=0.9491  dt=2.93e-21  wall=1305s
+[02:29:00]   λ/W=2.975 (GOOD, 9 peaks, t=0.9000102877616882) — deleted 10 HDF5 files
+[02:29:02] FRAG     C4_NCRIT_f1.0_b1.0_r256_s314  t_frag=0.9489  dt=1.61e-21  wall=1309s
+[02:29:05]   λ/W=2.878 (GOOD, 9 peaks, t=0.9001085758209229) — deleted 10 HDF5 files
+[02:29:30] FRAG     C4_NCRIT_f1.0_b1.0_r256_s42  t_frag=0.9452  dt=8.83e-22  wall=1337s
+[02:29:33]   λ/W=3.490 (GOOD, 8 peaks, t=0.9006608724594116) — deleted 10 HDF5 files
+[02:52:16] FRAG     C4_NCRIT_f1.0_b2.0_r256_s314  t_frag=0.8312  dt=3.37e-22  wall=1363s
+[02:52:18]   λ/W=2.552 (GOOD, 10 peaks, t=0.8002515435218811) — deleted 9 HDF5 files
+[02:52:18] FRAG     C4_NCRIT_f1.0_b2.0_r256_s42  t_frag=0.8352  dt=1.74e-22  wall=1398s
+[02:52:21]   λ/W=3.040 (GOOD, 9 peaks, t=0.8002642393112183) — deleted 9 HDF5 files
+[02:53:03] FRAG     C4_NCRIT_f1.0_b2.0_r256_s137  t_frag=0.8393  dt=4.54e-22  wall=1439s
+[02:53:06]   λ/W=2.656 (GOOD, 10 peaks, t=0.8003590703010559) — deleted 9 HDF5 files
+[03:07:18] FRAG     C4_NCRIT_f1.05_b0.5_r256_s42  t_frag=1.1427  dt=1.13e-21  wall=900s
+[03:07:21]   λ/W=3.715 (GOOD, 7 peaks, t=1.1002103090286255) — deleted 12 HDF5 files
+[03:07:36] FRAG     C4_NCRIT_f1.05_b0.5_r256_s137  t_frag=1.1353  dt=9.75e-22  wall=915s
+[03:07:39]   λ/W=3.646 (GOOD, 7 peaks, t=1.1003369092941284) — deleted 12 HDF5 files
+[03:08:47] FRAG     C4_NCRIT_f1.05_b0.5_r256_s314  t_frag=1.1656  dt=1.05e-21  wall=941s
+[03:08:50]   λ/W=4.562 (GOOD, 6 peaks, t=1.100704312324524) — deleted 12 HDF5 files
+[03:20:52] FRAG     C4_NCRIT_f1.05_b1.0_r256_s137  t_frag=0.9349  dt=5.59e-22  wall=793s
+[03:20:54]   λ/W=2.975 (GOOD, 9 peaks, t=0.9000258445739746) — deleted 10 HDF5 files
+[03:21:01] FRAG     C4_NCRIT_f1.05_b1.0_r256_s42  t_frag=0.9302  dt=6.34e-22  wall=820s
+[03:21:04]   λ/W=3.490 (GOOD, 8 peaks, t=0.9001964926719666) — deleted 10 HDF5 files
+[03:23:27] FRAG     C4_NCRIT_f1.05_b1.0_r256_s314  t_frag=0.9368  dt=1.29e-21  wall=877s
+[03:23:29]   λ/W=2.878 (GOOD, 9 peaks, t=0.900385856628418) — deleted 10 HDF5 files
+[03:34:38] FRAG     C4_NCRIT_f1.05_b2.0_r256_s42  t_frag=0.8236  dt=1.11e-22  wall=824s
+[03:34:40]   λ/W=2.703 (GOOD, 10 peaks, t=0.8000822067260742) — deleted 9 HDF5 files
+[03:35:17] FRAG     C4_NCRIT_f1.05_b2.0_r256_s137  t_frag=0.8270  dt=3.57e-23  wall=853s
+[03:35:19]   λ/W=2.656 (GOOD, 10 peaks, t=0.8000769019126892) — deleted 9 HDF5 files
+[03:35:32] FRAG     C4_NCRIT_f1.05_b2.0_r256_s314  t_frag=0.8138  dt=8.10e-22  wall=723s
+[03:35:35]   λ/W=2.552 (GOOD, 10 peaks, t=0.8000295162200928) — deleted 9 HDF5 files
+[03:46:12] FRAG     C4_NCRIT_f1.1_b0.5_r256_s42  t_frag=1.1169  dt=1.34e-21  wall=692s
+[03:46:15]   λ/W=3.564 (GOOD, 8 peaks, t=1.1003586053848267) — deleted 12 HDF5 files
+[03:46:50] FRAG     C4_NCRIT_f1.1_b0.5_r256_s137  t_frag=1.1117  dt=9.85e-22  wall=691s
+[03:46:52]   λ/W=3.125 (GOOD, 8 peaks, t=1.1000880002975464) — deleted 12 HDF5 files
+[03:47:27] FRAG     C4_NCRIT_f1.1_b0.5_r256_s314  t_frag=1.1363  dt=1.30e-21  wall=712s
+[03:47:29]   λ/W=4.562 (GOOD, 6 peaks, t=1.1000186204910278) — deleted 12 HDF5 files
+[03:58:41] FRAG     C4_NCRIT_f1.1_b1.0_r256_s42  t_frag=0.9126  dt=1.60e-21  wall=746s
+[03:58:43]   λ/W=3.060 (GOOD, 9 peaks, t=0.9000935554504395) — deleted 10 HDF5 files
+[03:59:28] FRAG     C4_NCRIT_f1.1_b1.0_r256_s137  t_frag=0.9195  dt=4.17e-22  wall=755s
+[03:59:30]   λ/W=2.975 (GOOD, 9 peaks, t=0.9000046849250793) — deleted 10 HDF5 files
+[04:00:45] FRAG     C4_NCRIT_f1.1_b1.0_r256_s314  t_frag=0.9187  dt=4.46e-22  wall=795s
+[04:00:47]   λ/W=2.878 (GOOD, 9 peaks, t=0.9001570343971252) — deleted 10 HDF5 files
+[04:11:16] FRAG     C4_NCRIT_f1.1_b2.0_r256_s42  t_frag=0.8060  dt=1.34e-22  wall=753s
+[04:11:18]   λ/W=2.703 (GOOD, 10 peaks, t=0.8000030517578125) — deleted 9 HDF5 files
+[04:13:30] FRAG     C4_NCRIT_f1.1_b2.0_r256_s137  t_frag=0.8154  dt=5.69e-23  wall=840s
+[04:13:32]   λ/W=2.391 (GOOD, 11 peaks, t=0.8000436425209045) — deleted 9 HDF5 files
+[04:14:51] FRAG     C4_NCRIT_f1.1_b2.0_r256_s314  t_frag=0.8084  dt=5.26e-23  wall=844s
+[04:14:53]   λ/W=2.552 (GOOD, 10 peaks, t=0.8000026345252991) — deleted 9 HDF5 files
+[04:22:17] FRAG     C4_NCRIT_f1.15_b0.5_r256_s42  t_frag=1.0875  dt=1.35e-21  wall=659s
+[04:22:20]   λ/W=3.663 (GOOD, 7 peaks, t=1.0008928775787354) — deleted 11 HDF5 files
+[04:27:26] FRAG     C4_NCRIT_f1.15_b0.5_r256_s137  t_frag=1.0971  dt=4.94e-22  wall=834s
+[04:27:29]   λ/W=3.637 (GOOD, 7 peaks, t=1.000959873199463) — deleted 11 HDF5 files
+[04:28:22] FRAG     C4_NCRIT_f1.15_b0.5_r256_s314  t_frag=1.1132  dt=3.60e-21  wall=809s
+[04:28:25]   λ/W=4.552 (GOOD, 6 peaks, t=1.1001293659210205) — deleted 12 HDF5 files
+[04:35:40] FRAG     C4_NCRIT_f1.15_b1.0_r256_s42  t_frag=0.8990  dt=9.32e-22  wall=801s
+[04:35:43]   λ/W=3.475 (GOOD, 8 peaks, t=0.8004884719848633) — deleted 9 HDF5 files
+[04:41:44] FRAG     C4_NCRIT_f1.15_b1.0_r256_s314  t_frag=0.9016  dt=3.59e-22  wall=799s
+[04:41:46]   λ/W=2.878 (GOOD, 9 peaks, t=0.9000255465507507) — deleted 10 HDF5 files
+[04:43:22] FRAG     C4_NCRIT_f1.15_b1.0_r256_s137  t_frag=0.9105  dt=8.60e-24  wall=953s
+[04:43:24]   λ/W=2.645 (GOOD, 10 peaks, t=0.9000358581542969) — deleted 10 HDF5 files
+[04:49:42] FRAG     C4_NCRIT_f1.15_b2.0_r256_s42  t_frag=0.7986  dt=1.26e-22  wall=839s
+[04:49:44]   λ/W=3.467 (GOOD, 8 peaks, t=0.7002531886100769) — deleted 8 HDF5 files
+[04:54:24] FRAG     C4_NCRIT_f1.15_b2.0_r256_s137  t_frag=0.7966  dt=6.42e-22  wall=758s
+[04:54:26]   λ/W=2.995 (GOOD, 9 peaks, t=0.7002905011177063) — deleted 8 HDF5 files
+[04:59:49] FRAG     C4_NCRIT_f1.15_b2.0_r256_s314  t_frag=0.7971  dt=2.95e-22  wall=985s
+[04:59:51]   λ/W=2.858 (GOOD, 9 peaks, t=0.7004350423812866) — deleted 8 HDF5 files
+[05:01:40] FRAG     C4_NCRIT_f1.2_b0.5_r256_s42  t_frag=1.0743  dt=8.98e-22  wall=717s
+[05:01:43]   λ/W=3.519 (GOOD, 8 peaks, t=1.0003924369812012) — deleted 11 HDF5 files
+[05:05:57] FRAG     C4_NCRIT_f1.2_b0.5_r256_s137  t_frag=1.0700  dt=7.90e-22  wall=691s
+[05:05:59]   λ/W=3.118 (GOOD, 8 peaks, t=1.000428557395935) — deleted 11 HDF5 files
+[05:11:11] FRAG     C4_NCRIT_f1.2_b0.5_r256_s314  t_frag=1.0829  dt=1.55e-21  wall=680s
+[05:11:13]   λ/W=4.594 (GOOD, 6 peaks, t=1.000868797302246) — deleted 11 HDF5 files
+[05:15:56] FRAG     C4_NCRIT_f1.2_b1.0_r256_s42  t_frag=0.8866  dt=3.32e-22  wall=853s
+[05:15:58]   λ/W=3.475 (GOOD, 8 peaks, t=0.8005685210227966) — deleted 9 HDF5 files
+[05:17:55] FRAG     C4_NCRIT_f1.2_b1.0_r256_s137  t_frag=0.8840  dt=1.30e-21  wall=716s
+[05:17:57]   λ/W=2.982 (GOOD, 9 peaks, t=0.8003498315811157) — deleted 9 HDF5 files
+[05:25:18] FRAG     C4_NCRIT_f1.2_b1.0_r256_s314  t_frag=0.8881  dt=2.63e-22  wall=845s
+[05:25:20]   λ/W=2.878 (GOOD, 9 peaks, t=0.8006970882415771) — deleted 9 HDF5 files
+[05:29:04] FRAG     C4_NCRIT_f1.2_b2.0_r256_s42  t_frag=0.7809  dt=4.23e-23  wall=786s
+[05:29:06]   λ/W=3.467 (GOOD, 8 peaks, t=0.7004860639572144) — deleted 8 HDF5 files
+[05:33:09] FRAG     C4_NCRIT_f1.2_b2.0_r256_s137  t_frag=0.7934  dt=2.65e-23  wall=912s
+[05:33:11]   λ/W=2.662 (GOOD, 10 peaks, t=0.7002213001251221) — deleted 8 HDF5 files
+[05:34:52] FRAG     C4_NCRIT_f1.2_b2.0_r256_s314  t_frag=0.7810  dt=3.55e-23  wall=571s
+[05:34:53]   λ/W=2.541 (GOOD, 10 peaks, t=0.7003752589225769) — deleted 8 HDF5 files
+[05:34:53] Phase 256³ DONE — FRAG=42/45 | λ/W n=42 mean=3.190±0.578 | wall=12460s
+[05:34:53] 
+ALL DONE — FRAG=42/90 | TIMEOUT=0 | λ/W mean=3.190±0.578 | wall=12460s
