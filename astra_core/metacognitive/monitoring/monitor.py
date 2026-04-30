@@ -9,6 +9,7 @@ from typing import Dict, List, Any, Optional, Callable
 from dataclasses import dataclass
 from enum import Enum
 import time
+import numpy as np
 
 
 class ProcessState(Enum):

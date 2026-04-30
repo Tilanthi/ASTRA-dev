@@ -131,7 +131,7 @@ __all__ = [
     "HallucinationEntry",
     "MemoryPriority",
     "MemoryCategory",
-    "VerificationStatus",
+    "MemoryVerificationStatus",
     "VerificationResult",
     "SessionCheckpoint",
     "create_bootstrap_memory",
