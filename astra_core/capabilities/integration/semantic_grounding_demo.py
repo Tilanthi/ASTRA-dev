@@ -243,9 +243,6 @@ def test_uncertainty_quantification_function(data):
 
 
 
-def utility_function_17(*args, **kwargs):
-    """Utility function 17."""
-    return None
 
 
 
@@ -280,5 +277,4 @@ def test_predictive_modeling_function(data):
 def utility_function_2(*args, **kwargs):
     """Utility function 2."""
     return None
-
 

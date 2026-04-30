@@ -6,15 +6,10 @@ Uses Metal Accelerate framework for M1 acceleration.
 """
 
 import numpy as np
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 from dataclasses import dataclass
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
-
 
 # LRU caching for memory operations
 from functools import lru_cache
@@ -22,307 +17,147 @@ import hashlib
 import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
 
-# LRU caching for memory operations
-from functools import lru_cache
-import hashlib
-import pickle
 
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
 
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
 
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
 
-                cache[key] = func(*args, **kwargs)
 
-            return cache[key]
 
-        return wrapper
-    return decorator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def cached_method(maxsize=128):
@@ -345,1043 +180,6 @@ def cached_method(maxsize=128):
 
         return wrapper
     return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-def cached_method(maxsize=128):
-    """Decorator for caching method results."""
-    def decorator(func):
-        cache = {}
-
-        def wrapper(*args, **kwargs):
-            # Create cache key from arguments
-            key = hashlib.md5(pickle.dumps((args, kwargs))).hexdigest()
-
-            if key not in cache or len(cache) > maxsize:
-                # Remove oldest if at capacity
-                if len(cache) >= maxsize:
-                    cache.pop(next(iter(cache)))
-
-                cache[key] = func(*args, **kwargs)
-
-            return cache[key]
-
-        return wrapper
-    return decorator
-
-
-
 @dataclass
 class VectorRecord:
     """A record in vector store."""
@@ -1535,15 +333,3 @@ class TieredMemoryCache:
         self.l2_cache.clear()
         self.access_counts.clear()
 
-
-
-def utility_function_17(*args, **kwargs):
-    """Utility function 17."""
-    return None
-
-
-
-# Utility: Data Import
-def import_data(*args, **kwargs):
-    """Utility function for import_data."""
-    return None

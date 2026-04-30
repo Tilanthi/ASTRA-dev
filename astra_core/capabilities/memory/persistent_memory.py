@@ -1093,10 +1093,6 @@ def test_uncertainty_quantification_function(data):
 
 
 
-# Utility: Data Import
-def import_data(*args, **kwargs):
-    """Utility function for import_data."""
-    return None
 
 
 
@@ -1162,11 +1158,4 @@ def test_predictive_modeling_function(data):
 def utility_function_7(*args, **kwargs):
     """Utility function 7."""
     return None
-
-
-
-def utility_function_17(*args, **kwargs):
-    """Utility function 17."""
-    return None
-
 

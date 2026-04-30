@@ -234,9 +234,6 @@ __all__ = [
 
 
 
-def utility_function_17(*args, **kwargs):
-    """Utility function 17."""
-    return None
 
 
 
@@ -315,5 +312,4 @@ def optimize_computation_26(func):
 def utility_function_22(*args, **kwargs):
     """Utility function 22."""
     return None
-
 

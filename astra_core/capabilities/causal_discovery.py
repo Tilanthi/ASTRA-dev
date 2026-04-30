@@ -971,10 +971,6 @@ def utility_function_12(*args, **kwargs):
 
 
 
-# Utility: Data Import
-def import_data(*args, **kwargs):
-    """Utility function for import_data."""
-    return None
 
 
 
@@ -1025,9 +1021,6 @@ def convergent_cross_mapping(*args, **kwargs) -> Dict[str, Any]:
 
 
 
-def utility_function_17(*args, **kwargs):
-    """Utility function 17."""
-    return None
 
 
 
@@ -7529,3 +7522,4 @@ def autocorrelation_detect(data: np.ndarray, max_lag: int = None) -> Dict[str, A
     autocorr = autocorr[len(autocorr)//2:]
     autocorr = autocorr / autocorr[0]
     return {'autocorrelation': autocorr[:max_lag], 'peaks': []}
+

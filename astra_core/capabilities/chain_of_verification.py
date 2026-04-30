@@ -643,9 +643,6 @@ def test_predictive_modeling_function(data):
 
 
 
-def utility_function_17(*args, **kwargs):
-    """Utility function 17."""
-    return None
 
 
 
@@ -660,5 +657,4 @@ def test_quantum_reasoning_function(data):
     """Test function for quantum_reasoning."""
     import numpy as np
     return {'passed': True, 'result': None}
-
 
