@@ -1,4 +1,4 @@
-% ASTRA RASTI Paper V1.23 — 2026-04-29
+% ASTRA RASTI Paper V1.24 — 2026-04-30
 % Changes from V1.22:
 %   - P1 fix: Removed Π_meas = 1.012 "Dimensional Analysis Comparison" paragraph from §3
 %             (persistent inconsistency: Π_meas cannot be derived from A_meas = 0.0812 via
@@ -245,7 +245,7 @@ For the Bayesian model comparison in Section~6, we use weakly-informative priors
 
 \begin{figure*}
 \centering
-\includegraphics[width=0.9\textwidth]{figures/test02_scaling_relations.png}
+\includegraphics[width=0.9\textwidth]{figures/test02_scaling_relations.pdf}
 \caption{Scaling relations analysis of 24 Herschel filaments. Panel A shows the velocity dispersion vs mass/length relation with fitted power law. Panel B shows the width distribution. The measured log-log exponent $\alpha = 0.49 \pm 0.03$ is consistent with the virial prediction of $0.5$ at $0.33\sigma$, while the virial amplitude shows a 2.7$\sigma$ deficit ($A_{\mathrm{meas}} = 0.0812$ vs $A_{\mathrm{theory}} \approx 0.0928$\,km\,s$^{-1}$\,(M$_\odot$\,pc$^{-1}$)$^{-0.5}$). The universal width ($0.098 \pm 0.019$~pc) is consistent with the characteristic dissipation scale in molecular clouds.}
 \label{fig:scaling}
 \end{figure*}
@@ -285,7 +285,7 @@ We analyzed the Chandra Deep Field South (CDFS) \cite{giacconi2001}, combining d
 
 \begin{figure*}
 \centering
-\includegraphics[width=0.9\textwidth]{figures/test04_multiwavelength_fusion.png}
+\includegraphics[width=0.9\textwidth]{figures/test04_multiwavelength_fusion.pdf}
 \caption{Multi-wavelength data fusion in Chandra Deep Field South. Of $\sim$370 X-ray sources, 60 have secure detections in all three wavebands. These are classified as 41 AGN (68\%) and 19 stars (32\%). The lack of galaxies in this sample reflects the selection effect that extended galaxies are harder to match compactly across wavebands in deep fields.}
 \label{fig:multiwavelength}
 \end{figure*}
@@ -327,7 +327,7 @@ ASTRA performs pattern recognition through:
 
 \begin{figure*}
 \centering
-\includegraphics[width=0.9\textwidth]{figures/test5_hypothesis_generation.png}
+\includegraphics[width=0.9\textwidth]{figures/test5_hypothesis_generation.pdf}
 \caption{Pattern recognition analysis of 600 SDSS galaxies. ASTRA identifies correlations between galaxy properties that reflect established astrophysical relationships: the mass-metallicity relation, environmental quenching, and scaling relations between galaxy and halo properties.}
 \label{fig:hypothesis}
 \end{figure*}
@@ -401,7 +401,7 @@ This test case serves as a validation demonstration: the causal relationships in
 
 \begin{figure*}
 \centering
-\includegraphics[width=0.9\textwidth]{figures/test11_causal_inference.png}
+\includegraphics[width=0.9\textwidth]{figures/test11_causal_inference.pdf}
 \caption{Causal inference analysis of 1,000 Gaia DR2 stars. This is a validation demonstrator using well-understood textbook relationships. ASTRA correctly identifies: absolute magnitude $\to$ luminosity (definition); distance $\to$ apparent magnitude (inverse square law); and correctly excludes distance $\to$ absolute magnitude (selection bias/Malmquist bias).}
 \label{fig:causal}
 \end{figure*}
@@ -451,7 +451,7 @@ ASTRA performs Bayesian model selection through:
 
 \begin{figure*}
 \centering
-\includegraphics[width=0.9\textwidth]{figures/test12_bayesian_model_selection.png}
+\includegraphics[width=0.9\textwidth]{figures/test12_bayesian_model_selection.pdf}
 \caption{Bayesian model selection for 24 Herschel filaments. Both power-law and logarithmic models are strongly preferred over linear and broken power-law models. The power-law model is theoretically motivated by the virial theorem. The measured virial exponent ($\alpha = 0.49 \pm 0.03$) is consistent with the virial prediction of $0.5$ at $0.33\sigma$, while the virial amplitude shows a 2.7$\sigma$ deficit ($A_{\mathrm{meas}}/A_{\mathrm{theory}} = 0.88$), likely attributable to distance systematics or non-virial support.}
 \label{fig:bayesian}
 \end{figure*}
