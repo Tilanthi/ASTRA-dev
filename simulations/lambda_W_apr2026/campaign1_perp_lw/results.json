@@ -1,0 +1,178 @@
+[
+  {
+    "id": "C1_PERP_f2.5_b0.5_s42",
+    "f": 2.5,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.3255745186148281,
+    "wall_s": 337.0365881919861,
+    "lambda_over_W": null,
+    "lw_quality": "NO_PEAKS"
+  },
+  {
+    "id": "C1_PERP_f2.5_b0.5_s137",
+    "f": 2.5,
+    "beta": 0.5,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.333275643084508,
+    "wall_s": 426.50161576271057,
+    "lambda_over_W": null,
+    "lw_quality": "NO_PEAKS"
+  },
+  {
+    "id": "C1_PERP_f2.5_b0.5_s314",
+    "f": 2.5,
+    "beta": 0.5,
+    "seed": 314,
+    "outcome": "FRAG",
+    "t_frag": 0.33320281611539637,
+    "wall_s": 434.1202790737152,
+    "lambda_over_W": null,
+    "lw_quality": "NO_PEAKS"
+  },
+  {
+    "id": "C1_PERP_f2.5_b1.0_s42",
+    "f": 2.5,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.3538897860337459,
+    "wall_s": 281.8264470100403,
+    "lambda_over_W": null,
+    "lw_quality": "NO_PEAKS"
+  },
+  {
+    "id": "C1_PERP_f2.5_b1.0_s137",
+    "f": 2.5,
+    "beta": 1.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3553039994573989,
+    "wall_s": 301.15098309516907,
+    "lambda_over_W": null,
+    "lw_quality": "NO_PEAKS"
+  },
+  {
+    "id": "C1_PERP_f2.5_b1.0_s314",
+    "f": 2.5,
+    "beta": 1.0,
+    "seed": 314,
+    "outcome": "FRAG",
+    "t_frag": 0.3547694540994658,
+    "wall_s": 295.08471512794495,
+    "lambda_over_W": null,
+    "lw_quality": "NO_PEAKS"
+  },
+  {
+    "id": "C1_PERP_f2.0_b3.0_s42",
+    "f": 2.0,
+    "beta": 3.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.45017477951366447,
+    "wall_s": 1656.7464125156403,
+    "lambda_over_W": 0.5752314814814815,
+    "lw_quality": "GOOD"
+  },
+  {
+    "id": "C1_PERP_f2.0_b3.0_s314",
+    "f": 2.0,
+    "beta": 3.0,
+    "seed": 314,
+    "outcome": "FRAG",
+    "t_frag": 0.45329841716370606,
+    "wall_s": 1896.260330915451,
+    "lambda_over_W": 0.5618351063829787,
+    "lw_quality": "GOOD"
+  },
+  {
+    "id": "C1_PERP_f2.0_b3.0_s137",
+    "f": 2.0,
+    "beta": 3.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.45450614675608664,
+    "wall_s": 2000.3749740123749,
+    "lambda_over_W": 0.5810185185185185,
+    "lw_quality": "GOOD"
+  },
+  {
+    "id": "C1_PERP_f2.5_b2.0_s314",
+    "f": 2.5,
+    "beta": 2.0,
+    "seed": 314,
+    "outcome": "FRAG",
+    "t_frag": 0.4049838746564755,
+    "wall_s": 1598.0702157020569,
+    "lambda_over_W": 0.5512152777777778,
+    "lw_quality": "GOOD"
+  },
+  {
+    "id": "C1_PERP_f2.0_b2.0_s42",
+    "f": 2.0,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.458230386477656,
+    "wall_s": 2740.1101729869843,
+    "lambda_over_W": 0.6080426356589147,
+    "lw_quality": "GOOD"
+  },
+  {
+    "id": "C1_PERP_f2.5_b2.0_s42",
+    "f": 2.5,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.4165254701457168,
+    "wall_s": 2222.274264574051,
+    "lambda_over_W": 0.6022509578544062,
+    "lw_quality": "GOOD"
+  },
+  {
+    "id": "C1_PERP_f2.5_b2.0_s137",
+    "f": 2.5,
+    "beta": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.4138777178098217,
+    "wall_s": 2346.5845024585724,
+    "lambda_over_W": 0.6046455938697318,
+    "lw_quality": "GOOD"
+  },
+  {
+    "id": "C1_PERP_f2.5_b3.0_s137",
+    "f": 2.5,
+    "beta": 3.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.4056766192575401,
+    "wall_s": 1322.462089061737,
+    "lambda_over_W": 0.6013257575757576,
+    "lw_quality": "GOOD"
+  },
+  {
+    "id": "C1_PERP_f2.5_b3.0_s314",
+    "f": 2.5,
+    "beta": 3.0,
+    "seed": 314,
+    "outcome": "FRAG",
+    "t_frag": 0.42058843471884605,
+    "wall_s": 2121.1359202861786,
+    "lambda_over_W": 0.5596187943262412,
+    "lw_quality": "GOOD"
+  },
+  {
+    "id": "C1_PERP_f2.5_b3.0_s42",
+    "f": 2.5,
+    "beta": 3.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.4172124938029818,
+    "wall_s": 3455.498388528824,
+    "lambda_over_W": 0.5891203703703705,
+    "lw_quality": "GOOD"
+  }
+]
