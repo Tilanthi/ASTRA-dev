@@ -1,6 +1,7 @@
 """Literature Synthesis - Multi-paper hypothesis generation (stub)"""
 from typing import List, Dict, Any
 from dataclasses import dataclass, field
+import numpy as np
 
 @dataclass
 class LiteratureSynthesizer:

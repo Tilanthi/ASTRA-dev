@@ -18,6 +18,8 @@ Run with: python -m astra_core.capabilities.v95_semantic_grounding_demo
 """
 
 from astra_core.capabilities.v95_semantic_grounding import (
+import numpy as np
+from typing import Dict, List, Optional, Any, Tuple, Union
     SemanticGroundingLayer,
     GroundedOutputGenerator,
     VerificationLevel,

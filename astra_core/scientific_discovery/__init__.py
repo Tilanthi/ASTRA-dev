@@ -97,6 +97,8 @@ from .theoretical_physics import (
 # Discovery Orchestrator (Main Entry Point)
 # =============================================================================
 from .discovery_orchestrator import (
+import numpy as np
+from typing import Dict, List, Optional, Any, Tuple, Union
     ScientificDiscoveryOrchestrator,
     DiscoveryTask,
     DiscoveryResult,

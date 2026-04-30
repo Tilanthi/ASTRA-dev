@@ -58,6 +58,8 @@ from .iterative_refinement import (
 )
 
 from .enhanced_solver import EnhancedARCSolver, SolveResult
+import numpy as np
+from typing import Dict, List, Optional, Any, Tuple, Union
 
 __all__ = [
     # Grid DSL

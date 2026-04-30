@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: astra-rasti-v2.3.aux
+The style file: mnras.bst
+Database file #1: references-v2.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 37 entries,
+            2881 wiz_defined-function locations,
+            1005 strings with 13804 characters,
+and the built_in function-call counts, 17902 in all, are:
+= -- 1383
+> -- 1432
+< -- 105
++ -- 628
+- -- 232
+* -- 2122
+:= -- 2954
+add.period$ -- 0
+call.type$ -- 37
+change.case$ -- 76
+chr.to.int$ -- 37
+cite$ -- 37
+duplicate$ -- 842
+empty$ -- 851
+format.name$ -- 330
+if$ -- 3052
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 35
+newline$ -- 126
+num.names$ -- 264
+pop$ -- 212
+preamble$ -- 1
+purify$ -- 148
+quote$ -- 0
+skip$ -- 494
+stack$ -- 0
+substring$ -- 962
+swap$ -- 397
+text.length$ -- 149
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 327
+warning$ -- 0
+while$ -- 282
+width$ -- 0
+write$ -- 386

@@ -3,6 +3,8 @@ Scientific Discovery Package
 """
 
 from .engine import (
+import numpy as np
+from typing import Dict, List, Optional, Any, Tuple, Union
     Hypothesis,
     HypothesisType,
     HypothesisGenerator,

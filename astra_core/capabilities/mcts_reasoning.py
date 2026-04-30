@@ -24,6 +24,7 @@ import hashlib
 from dataclasses import dataclass, field
 from typing import List, Dict, Any, Optional, Callable, Tuple
 from enum import Enum
+import numpy as np
 
 
 class NodeType(Enum):

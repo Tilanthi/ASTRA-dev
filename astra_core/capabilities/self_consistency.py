@@ -13,6 +13,7 @@ Version: 38.0
 
 import re
 import math
+import numpy as np
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Any, Callable, Tuple, Union
 from enum import Enum

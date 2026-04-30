@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """
+import numpy as np
+from typing import Dict, List, Optional, Any, Tuple, Union
 Astronomical Paper Library - Comparison of Approaches
 ======================================================
 

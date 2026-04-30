@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from scipy.stats import pearsonr, spearmanr
-from typing import Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Type, Union
 from enum import Enum
 
 

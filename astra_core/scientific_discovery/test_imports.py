@@ -7,6 +7,8 @@ This verifies that the relative import fixes work correctly.
 import sys
 import logging
 from pathlib import Path
+import numpy as np
+from typing import Dict, List, Optional, Any, Tuple, Union
 
 # Set up logging to capture any warnings
 logging.basicConfig(level=logging.WARNING, format='%(levelname)s:%(name)s:%(message)s')

@@ -21,6 +21,8 @@ try:
 except ImportError:
     granger_causality_test = None
 from .independence import ConditionalIndependenceTest, TestType
+import numpy as np
+from typing import Dict, List, Optional, Any, Tuple, Union
 try:
     from .independence import correlation_test
 except ImportError:

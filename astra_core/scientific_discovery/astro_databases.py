@@ -1,6 +1,7 @@
 """Astronomical Database Access (stub)"""
 from typing import Dict, List, Any
 from dataclasses import dataclass
+import numpy as np
 
 @dataclass
 class VizierClient:

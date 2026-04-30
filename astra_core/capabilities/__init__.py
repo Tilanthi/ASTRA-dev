@@ -30,6 +30,8 @@ Version: 39.1
 """
 
 import logging
+import numpy as np
+from typing import Dict, List, Optional, Any, Tuple, Union
 logger = logging.getLogger(__name__)
 
 # V38 imports

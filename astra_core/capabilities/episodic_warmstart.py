@@ -18,6 +18,7 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Any, Tuple
 from enum import Enum
 import hashlib
+import numpy as np
 
 
 class ExemplarType(Enum):

@@ -25,6 +25,7 @@ from collections import defaultdict
 import random
 import math
 import time
+import numpy as np
 
 
 class AgentRole(Enum):

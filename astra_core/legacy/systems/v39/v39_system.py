@@ -179,6 +179,7 @@ from ...capabilities.llm_inference import (
 )
 
 from ...capabilities.external_knowledge import (
+import numpy as np
     UnifiedKnowledgeRetrieval,
     KnowledgeSource,
     KnowledgeResult,

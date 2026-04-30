@@ -13,7 +13,7 @@ import numpy as np
 import pandas as pd
 import networkx as nx
 from itertools import combinations
-from typing import Dict, Set, List, Optional, Tuple
+from typing import Dict, List, Optional, Set, Tuple, Type
 
 from .independence import ConditionalIndependenceTest, TestType
 from ..model.scm import StructuralCausalModel, Variable, VariableType, StructuralEquation

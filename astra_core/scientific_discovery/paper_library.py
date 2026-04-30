@@ -29,6 +29,7 @@ from dataclasses import dataclass, field, asdict
 from typing import Dict, List, Optional, Any, Tuple
 from datetime import datetime
 import re
+import numpy as np
 
 # PDF processing
 try:

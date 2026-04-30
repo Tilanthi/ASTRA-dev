@@ -24,6 +24,7 @@ from dataclasses import dataclass, field
 from typing import List, Dict, Any, Optional, Tuple
 from enum import Enum
 import time
+import numpy as np
 
 
 class V50Mode(Enum):
