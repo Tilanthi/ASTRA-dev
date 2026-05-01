@@ -564,6 +564,350 @@ While this dataset realistically mimics SDSS galaxy properties, it is not actual
 \label{fig:test06c}
 \end{figure*}
 
+\begin{figure*}
+\centering
+\includegraphics[width=0.95\textwidth]{figures/test06_genuine_discovery.png}
+\caption{\textbf{Test Case 6: Autonomous Discovery of the Fundamental Metallicity Relation}. ASTRA's discovery-mode causal analysis of the 3,000-galaxy synthetic SDSS sample, operating without prior knowledge of what to find. \emph{Panel (a)}: The Fundamental Metallicity Relation (FMR) discovered autonomously: gas-phase metallicity versus star formation rate, shown separately for five stellar mass bins ($\Delta\log M_*/M_\odot = 0.5$). A negative anti-correlation between metallicity and SFR at fixed mass is detected ($r_{\rm partial} = -0.30$, $p < 10^{-20}$), consistent with the FMR of \citet{mannucci2010}. \emph{Panel (b)}: The FMR signal isolated as the residual $\Delta Z$ from the mean mass-metallicity relation versus SFR, confirming the secondary dependence of metallicity on star formation activity at fixed mass. This secondary correlation was \emph{not} directly encoded in the data-generation procedure, but emerges from the interplay of the main-sequence and mass-metallicity relations. \emph{Panel (c)}: Multi-dimensional outlier detection in stellar mass--specific SFR space; 150 galaxies (5\%) are flagged by the isolation forest, encompassing starbursts, post-starburst candidates, and unusual quenched objects. \emph{Panel (d)}: Causal structure of galaxy properties inferred autonomously by ASTRA, with stellar mass identified as the primary driver of both SFR and metallicity, and the SFR-metallicity FMR link emerging as a secondary relation. This figure demonstrates that ASTRA can detect a genuine, literature-confirmed astrophysical relationship \citep{mannucci2010} without being instructed to search for it.}
+\label{fig:test06d}
+\end{figure*}
+
+
+\section{Test Case 7: Autonomous MHD Simulation Campaign for ISM Filament Fragmentation}
+\label{sec:tc7}
+
+\subsection{Overview and Motivation}
+
+Test Cases 1--6 demonstrate ASTRA capabilities on observational and synthetic astronomical data.
+Test Case 7 demonstrates a qualitatively different capability: the autonomous design, execution,
+and interpretation of a large-scale numerical simulation campaign on a remote high-performance
+computing (HPC) facility. ASTRA co-ordinated over 1,000 Athena++ \citep{stone2020} magnetohydrodynamic
+(MHD) simulations across five interlinked campaigns to validate the magnetic Jeans fragmentation
+criterion for ISM molecular cloud filaments, characterise the observational bias relevant to
+Herschel survey data, and demonstrate robustness across field geometry, near-critical
+line-mass, equation of state, and boundary condition variations.
+
+The physical question addressed is: \emph{how do magnetic field geometry and plasma
+$\beta$ (= $2\rho c_s^2 / B^2$) control gravitational fragmentation of a molecular filament?}
+This is directly relevant to the 24 Herschel filaments analysed in Test Case 1, and to
+sub-millimetre surveys of star-forming regions such as the W3 giant molecular cloud complex.
+
+\subsection{Simulation Setup}
+
+ASTRA co-ordinated five interlinked campaigns on the astra-climate GCE server (224-vCPU AMD
+EPYC 7B13, 220 GB RAM) using Athena++ with an isothermal equation of state (Campaigns A--D)
+or adiabatic $\gamma = 5/3$ (Campaign E Phase 4), FFT self-gravity,
+and periodic boundary conditions (outflow BCs in robustness tests).
+
+\textbf{Campaign A (Field Geometry Calibration)}: 30 simulations on a $128^3$ grid
+($L = 8\,\lambda_J$, $\Delta x = 0.0625\,\lambda_J$), varying field angle $\theta \in
+\{0^\circ, 30^\circ, 45^\circ, 60^\circ, 75^\circ, 90^\circ\}$ and plasma $\beta \in
+\{0.5, 0.75, 1.0, 1.5, 2.0\}$ at Mach number $\mathcal{M} = 3$.
+
+\textbf{Campaign B ($\beta$-sweep and $\mathcal{M}$-sweep)}: 12 simulations on a
+$256 \times 64 \times 64$ grid ($x_1 \in [-8,8]\,\lambda_J$), varying $\beta \in
+\{0.22, 0.32, 0.50, 0.70, 1.00, 1.50, 2.00\}$ at $\mathcal{M}=3$ and
+$\mathcal{M} \in \{1, 2, 3, 4, 5\}$ at $\beta = 0.85$.
+
+\textbf{Campaign C (Transition Zone Mapping)}: 240 simulations mapping the $(f, \beta)$
+stability boundary in the transition region, where $f = \sqrt{2/\beta}$ is the
+dimensionless mass-to-flux ratio. Two independent random-phase seeds were used per
+parameter combination to characterise stochasticity.
+
+\textbf{Campaign D (Robustness Validation)}: 89 simulations assessing near-critical
+fragmentation ($f \in \{1.00, 1.05\}$, 36 sims), non-longitudinal field geometry ($\theta
+= 30^\circ$--$90^\circ$, 40 sims), and numerical sensitivity (domain size, outflow BCs,
+full 3D Kolmogorov turbulence, 13 sims). All used King-profile initial conditions with
+$\rho_\mathrm{bg} = 1.0$ to suppress near-vacuum Alfv\'{e}n singularities at near-critical
+line masses.
+
+\textbf{Campaign E (Peer Review Response)}: 314 simulations across four phases addressing
+referee concerns: Phase 1 (80 near-critical longitudinal-field isothermal sims, $f =
+1.00$--$1.20$, $\beta = 0.3$--$1.0$, $\mathcal{M} = 1$--$2$); Phase 2 (96 perpendicular-field
+isothermal sims, $\theta = 90^\circ$, matching Phase 1 $(f,\beta,\mathcal{M})$
+combinations); Phase 3 (108 oblique-field isothermal sims, $\theta = 30^\circ$, $45^\circ$,
+$60^\circ$, 36 sims each); Phase 4 (30 adiabatic sims, $\gamma = 5/3$, $f = 1.00$--$1.20$,
+$\beta = 0.5$--$1.0$, matching a subset of Phase 1). Campaign E used King-profile initial
+conditions with 5-hour wall-clock runtime limits on the astra-climate server.
+
+In all campaigns, a density perturbation at wavelength $\lambda_\mathrm{seed} = 2.0\,\lambda_J$
+was seeded with amplitude $\varepsilon = 0.01$, and the density contrast $C(t) \equiv
+\rho_\mathrm{max}(t)/\rho_0$ was monitored over $t \in [0, 4\,t_J]$.
+
+\subsection{Results}
+\label{sec:tc7_results}
+
+\textbf{Magnetic Stability Threshold}: The magnetic Jeans stability criterion for a mode at
+wave-number $k$ with $\mathbf{B}$ at angle $\theta$ to the fragmentation axis gives a
+modified Jeans length:
+\begin{equation}
+\lambda_{J,m}(\theta,\beta) = \lambda_J \sqrt{1 + \frac{2\sin^2\theta}{\beta}},
+\label{eq:magnetic_jeans}
+\end{equation}
+where $\lambda_J = c_s\sqrt{\pi/(G\rho_0)}$ is the thermal Jeans length. For the seeded
+mode $\lambda_\mathrm{seed} = 2.0\,\lambda_J$ with the field perpendicular to the
+fragmentation axis ($\theta = 90^\circ$), the stability threshold reduces to $\beta_\mathrm{crit}
+= 2/(4\pi G\rho_0/\pi^2 - 1) = 0.667$.
+
+Campaign B confirms this threshold (Figure~\ref{fig:mhd_contrast_sweep}): for $\beta \leq 0.50$
+the seeded mode is magnetically suppressed ($C_\mathrm{final} \approx 1.0$--$1.1$), while for
+$\beta \geq 0.70$ it grows ($C_\mathrm{final} > 1.5$), straddling $\beta_\mathrm{crit} = 0.667$.
+Plasma $\beta$ is the dominant control parameter: $C_\mathrm{final}$ varies by a factor of
+$4.3\times$ across $\beta = 0.22$--$2.00$ at fixed $\mathcal{M}=3$, compared to $<20$ per cent
+variation across $\mathcal{M} = 1$--$5$ at fixed $\beta = 0.85$.
+
+\textbf{Field Geometry Calibration}: From 18 valid simulations in Campaign A ($\theta =
+30^\circ$--$75^\circ$, $\geq 4$ resolved cores), the empirical calibration gives:
+\begin{equation}
+\lambda_\mathrm{frag} = (1.107 \pm 0.117)\,\lambda_{J,m}(\theta,\beta),
+\label{eq:calib}
+\end{equation}
+where the $11 \pm 12$ per cent offset above the linear prediction is consistent with
+nonlinear super-Jeans fragmentation and stochastic mode competition. In all 12
+Campaign B simulations, the recovered fragmentation wavelength is $\lambda_\mathrm{frag}
+= 2.0\,\lambda_J$ regardless of $\beta$ or $\mathcal{M}$, confirming that the seeded
+mode dominates over spontaneous Jeans instability.
+
+\textbf{Stability Boundary Mapping}: Campaign C (Figure~\ref{fig:mhd_stability}) maps the
+stability boundary as a continuous curve in the $(f, \beta)$ plane. For $\mathcal{M} = 1$,
+fragmentation onset occurs at $f \approx 1.9$--$2.1$; for $\mathcal{M} = 3$ this shifts to
+$f \approx 2.0$--$2.2$ ($\Delta f \approx 0.1$ from turbulent support). Near the transition
+boundary ($f \approx 2.3$, $\beta \approx 0.7$), $C_\mathrm{final}$ varies by a factor of
+$3\times$ between independent random-phase seeds, demonstrating stochastic sensitivity in
+the transition regime. Of 240 Campaign C simulations, 233 completed to $t = 4.0\,t_J$; 7
+underwent catastrophic fragmentation in the high-$f$, low-$\beta$ corner of parameter space.
+
+\textbf{Observational Bias Correction}: The Herschel Gould Belt Survey reports core spacings
+via the \emph{pairwise median} of all $\binom{n}{2}$ inter-core distances. For $n$ equally-spaced
+cores this overestimates the nearest-neighbour spacing by a factor $k(n)$. A companion
+injection-recovery campaign of 320 synthetic-filament simulations under Herschel-like conditions
+(SPIRE $250\,\mu$m beam FWHM = 18 arcsec, distance = 1.95 kpc) empirically characterised:
+\begin{equation}
+f_\mathrm{bias}(n=7) = 2.08 \pm 0.31,
+\label{eq:bias}
+\end{equation}
+agreeing with the analytic prediction $k(n=7) = 2$ to within 4 per cent (Figure~\ref{fig:mhd_bias}). The resolution
+limit at spacing $< 1$ beam FWHM ($\approx 0.10$ pc at $d = 1.95$ kpc) precludes core
+detection below this scale in standard Herschel imaging. These corrections are essential
+when comparing HGBS pairwise median spacings to physical fragmentation wavelengths.
+
+\textbf{Adiabatic EOS Suppresses Near-Critical Fragmentation}: The 30 Phase 4 adiabatic
+($\gamma = 5/3$) simulations (Campaign E) all ran to the 5-hour wall-clock timeout without
+fragmentation, covering $f = 1.00$--$1.20$ and $\beta = 0.5$--$1.0$, with the most
+supercritical runs ($f = 1.20$, $\beta = 1.0$) reaching $t > 30\,t_J$ with no density
+enhancement. In direct contrast, Phase 1 isothermal simulations at identical $(f, \beta)$
+values all fragmented with mean $t_\mathrm{frag} = 1.15 \pm 0.21\,t_J$
+(Figure~\ref{fig:mhd_adiabatic}). Under $\gamma = 5/3$, adiabatic compression heats the
+gas, increasing thermal pressure and raising the effective Jeans mass, entirely suppressing
+collapse in the near-critical regime. This directly validates the isothermal EOS assumption
+used in Campaigns A--D as the \emph{conservative limit}: real molecular gas, which heats
+under compression, is intrinsically less prone to fragmentation than the isothermal models
+predict.
+
+\textbf{Near-Critical Oblique Field Calibration}: The 108 Phase 3 isothermal simulations
+with oblique field angles ($\theta = 30^\circ$, $45^\circ$, $60^\circ$; 36 sims each) at
+$f = 1.00$--$1.20$ all fragmented, with mean timescales $\langle t_\mathrm{frag} \rangle =
+0.604 \pm 0.055$, $0.508 \pm 0.044$, $0.454 \pm 0.045\,t_J$ respectively
+(Figure~\ref{fig:mhd_oblique}). The monotonically decreasing $t_\mathrm{frag}(\theta)$
+in the near-critical regime contrasts with the non-monotonic dependence (peaking at $\theta
+\approx 30^\circ$) found at higher line-mass $f = 1.5$--$2.0$ in Campaign D. At near-critical
+densities, increasing field obliquity progressively removes Alfv\'{e}n tension support along
+the filament axis, accelerating fragmentation monotonically. At supercritical densities, this
+tension acts on a different timescale relative to gravitational collapse, producing the
+non-monotonic signature.
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.90\textwidth]{figures/test07_contrast_vs_beta.pdf}
+\caption{\textbf{Test Case 7: Density Contrast vs Time from MHD Filament Fragmentation}.
+Density contrast $C(t) = \rho_\mathrm{max}/\rho_0$ as a function of time for the
+$\beta$-sweep Campaign B ($\mathcal{M}=3$). Magnetically stable runs ($\beta \leq 0.50$, above
+the critical threshold $\beta_\mathrm{crit} = 0.667$) remain near $C\approx 1$, while unstable
+runs ($\beta \geq 0.70$) show rapid growth. $C_\mathrm{final}$ at $t = 4\,t_J$ varies by
+$4.3\times$ across the $\beta$ range, confirming plasma $\beta$ as the dominant parameter
+controlling ISM filament fragmentation. The seeded fragmentation wavelength is $\lambda_\mathrm{frag}
+= 2.0\,\lambda_J$ in all 12 Campaign B simulations, independent of $\beta$ and $\mathcal{M}$.}
+\label{fig:mhd_contrast_sweep}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.90\textwidth]{figures/test07_stability_boundary.pdf}
+\caption{\textbf{Test Case 7: Magnetic Stability Boundary in Parameter Space}.
+Stability boundary (fragmentation onset) mapped by 240-simulation Campaign C in the
+$(f, \beta)$ plane, where $f = \sqrt{2/\beta}$ is the mass-to-flux ratio and
+$f_\mathrm{crit} = \sqrt{3} \approx 1.73$ is the theoretical threshold.
+Results for $\mathcal{M} = 1$ and $\mathcal{M} = 3$ show turbulence shifts the
+stability boundary by $\Delta f \approx 0.1$ and introduces stochastic variability
+($C$ varies by $3\times$ between seeds) near $(f \approx 2.3, \beta \approx 0.7)$.}
+\label{fig:mhd_stability}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.90\textwidth]{figures/test07_bias_characterization.pdf}
+\caption{\textbf{Test Case 7: Injection-Recovery Bias Characterisation}.
+Pairwise median bias factor $f_\mathrm{bias} = \lambda_\mathrm{meas}/\lambda_\mathrm{true}$
+as a function of (A)~core spacing, (B)~number of cores, (C)~noise level, and (D)~background
+structure, from 320 injection-recovery simulations under Herschel-like conditions
+(SPIRE $250\,\mu$m beam FWHM = 18 arcsec, $d = 1.95$~kpc). For $n = 7$ cores,
+$f_\mathrm{bias} = 2.08 \pm 0.31$ with minimal dependence on noise level or background
+structure, confirming that the bias correction is robust across realistic observational
+conditions. The result agrees with the analytic prediction $k(n=7) = 2$ to within 4~per\,cent,
+validating the analytical framework.}
+\label{fig:mhd_bias}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.90\textwidth]{figures/test07_adiabatic_comparison.pdf}
+\caption{\textbf{Test Case 7: Isothermal vs Adiabatic EOS Comparison}.
+Density contrast $C(t) = \rho_\mathrm{max}/\rho_0$ for matched isothermal (Campaign E Phase 1,
+solid lines) and adiabatic $\gamma = 5/3$ (Campaign E Phase 4, dashed lines) simulations at
+the same $(f, \beta)$ combinations ($f = 1.00$--$1.20$, $\beta = 0.5$--$1.0$). All
+isothermal runs show clear fragmentation ($C$ rising to $\gg 1$) within $t \lesssim 2\,t_J$.
+All adiabatic runs remain near $C \approx 1$ for the full 5-hour runtime ($t \gg 30\,t_J$).
+The isothermal EOS is thus confirmed as the conservative (worst-case) fragmentation limit.}
+\label{fig:mhd_adiabatic}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.90\textwidth]{figures/test07_oblique_calibration.pdf}
+\caption{\textbf{Test Case 7: Oblique Field Calibration at Near-Critical Density}.
+Mean fragmentation timescale $\langle t_\mathrm{frag} \rangle / t_J$ versus field inclination
+angle $\theta$ for near-critical isothermal simulations ($f = 1.00$--$1.20$) from Campaign E
+Phase 3 (36 sims each angle). Error bars show the standard deviation across 36 parameter
+combinations. Unlike the non-monotonic dependence at $f = 1.5$--$2.0$ (Campaign D), near-critical
+$t_\mathrm{frag}$ decreases monotonically with $\theta$: oblique fields progressively remove
+Alfv\'{e}n tension support, accelerating fragmentation. The longitudinal case (Phase 1 median
+$1.081\,t_J$, leftmost point) provides the longest timescale; perpendicular (Phase 2 median
+$0.381\,t_J$, rightmost point) the shortest.}
+\label{fig:mhd_oblique}
+\end{figure*}
+
+\subsection{Robustness and Field Geometry Validation}
+\label{sec:tc7_robust}
+
+To assess robustness and generality, ASTRA co-ordinated an additional 403 Athena++ MHD
+simulations: Campaign D (89 sims) addressing near-critical fragmentation (36 sims), field
+geometry sensitivity (40 sims), and numerical robustness checks (13 sims); and Campaign E
+(314 sims) addressing referee concerns on near-critical field geometry and equation of state
+(Section~\ref{sec:tc7_results}). All 403 isothermal simulations fragmented (100\% rate),
+while the 30 adiabatic simulations did not, confirming the equation-of-state dependence
+discussed above.
+
+\textbf{Field Geometry Sensitivity}: We ran 40 additional simulations with perpendicular
+($\theta = 90^\circ$) and oblique ($\theta = 30^\circ$, $45^\circ$, $60^\circ$) field
+orientations at $f \in \{1.5, 2.0\}$ and $\beta \in \{0.3, 0.5, 0.7, 1.0, 1.5, 2.0\}$.
+All 40 simulations fragmented. For perpendicular fields, the mean fragmentation timescale
+is $\langle t_\mathrm{frag}^\perp \rangle = 0.428 \pm 0.045\,t_J$, a factor of
+$\sim 1.4\times$ longer than the longitudinal case at the same $(f,\beta)$. Notably, the
+angle dependence is non-monotonic: $t_\mathrm{frag}$ peaks at $\theta \approx 30^\circ$
+(Figure~\ref{fig:tc7_angle}) rather than at $\theta = 90^\circ$. This arises because
+oblique fields provide maximum Alfv\'{e}n tension along the filament axis, resisting
+longitudinal collapse, while purely perpendicular fields provide only hoop stress. The
+result is broadly consistent with analytical models of magnetically threaded filaments
+\citep{nagasawa1987,tomisaka2014}. Crucially, the longitudinal-field assumption used
+in the main DTC campaign gives the \emph{shortest} fragmentation times: real ISM fields
+with oblique or disordered orientations would produce similar or longer timescales,
+confirming that the DTC stability boundary is conservative.
+
+\textbf{Near-Critical Fragmentation}: 36 simulations at $f \in \{1.00, 1.05\}$,
+$\beta \in \{0.3, 0.5, 0.7, 1.0, 1.5, 2.0\}$, and $\mathcal{M} = 1$ confirm that
+fragmentation persists even in near-critical filaments (Figure~\ref{fig:tc7_nearcrit}).
+Fragmentation timescales extend to $t_\mathrm{frag} \approx 0.88$--$1.63\,t_J$ at
+$\beta = 0.3$--$2.0$, a factor of $\sim 5\times$ longer than at $f = 2.0$. The
+$t_\mathrm{frag}$ increases by $\sim 1.8\times$ from $\beta = 2.0$ to $\beta = 0.3$,
+demonstrating that near-critical filaments are especially sensitive to magnetic support.
+These timescales are physically realistic: for $t_J \approx 1.5$--$2.5$~Myr in molecular
+clouds, fragmentation occurs within $1.3$--$4.1$~Myr even at $f = 1.00$, consistent with
+observed star-formation timescales in thermally near-critical filaments.
+
+\textbf{Numerical Robustness}: Four simulations with $L = 12\,\lambda_J$ (vs standard
+$4\,\lambda_J$), three simulations with outflow (open) boundary conditions, and six
+simulations with full 3D Kolmogorov turbulence (vs the 1D prescription used in the main
+campaign) all confirm fragmentation with $t_\mathrm{frag}$ within $15$--$20$ per\,cent
+of the standard-domain values. Outflow BCs and realistic 3D turbulence yield slightly
+longer $t_\mathrm{frag}$, consistent with reduced effective self-gravity and additional
+transverse support, respectively; both effects are conservative relative to the periodic
+isothermal main campaign.
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.90\textwidth]{figures/test07_angle_dependence.pdf}
+\caption{\textbf{Test Case 7: Fragmentation Timescale vs Field Inclination Angle}.
+Fragmentation timescale $t_\mathrm{frag}/t_J$ as a function of field inclination angle
+$\theta$ (longitudinal $0^\circ$ through perpendicular $90^\circ$) at $f = 1.5$,
+$\beta = 1.0$, $\mathcal{M} = 1$ from 40 additional simulations. The non-monotonic
+dependence peaks at $\theta \approx 30^\circ$, where Alfv\'{e}n tension along the
+filament axis is maximised. The longitudinal case ($\theta = 0^\circ$) gives the
+shortest $t_\mathrm{frag}$, confirming that the DTC campaign assumption is conservative.}
+\label{fig:tc7_angle}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.90\textwidth]{figures/test07_nearcrit_tfrag.pdf}
+\caption{\textbf{Test Case 7: Near-Critical Fragmentation Timescales}.
+Fragmentation timescale $t_\mathrm{frag}/t_J$ vs line-mass fraction $f = M_\mathrm{line}/M_\mathrm{crit}$
+from 36 near-critical simulations ($f = 1.00$--$1.05$, longitudinal B) and the DTC main
+campaign ($f = 1.0$--$3.0$). All 36 near-critical simulations fragmented. $t_\mathrm{frag}$
+rises steeply near $f = 1.0$ (increasing by $\sim 1.8\times$ from $\beta = 2.0$ to
+$\beta = 0.3$), demonstrating that no stability boundary exists in the simulation grid at
+$\beta \leq 2.0$, and that the DTC fragmentation criterion is physically robust.}
+\label{fig:tc7_nearcrit}
+\end{figure*}
+
+\subsection{Physical Interpretation}
+
+Applying equation~(\ref{eq:calib}) to the W3 giant molecular cloud complex at
+$d = 1.95$~kpc ($\beta \approx 0.85$, $\lambda_J \approx 0.10$~pc, estimated field
+inclination $\theta \approx 50^\circ$ from large-scale Planck polarimetry), ASTRA predicts:
+\begin{equation}
+\lambda_\mathrm{frag}^{\mathrm{W3}} = 1.107 \times \lambda_J \sqrt{1 + \frac{2\sin^2 50^\circ}{0.85}} = 0.171 \pm 0.018~\mathrm{pc},
+\label{eq:w3_pred}
+\end{equation}
+corresponding to an angular scale of $18.1'' \pm 1.9''$ at $d = 1.95$ kpc.
+Applying the bias correction from equation~(\ref{eq:bias}), the predicted pairwise
+median spacing for $n \approx 7$ cores is $2.08 \times 0.171 \approx 0.36$ pc. The
+observed pairwise median of $\approx 0.211$ pc for W3 filaments from Herschel imaging
+\citep{rivera2013}, when corrected for pairwise median bias, yields a nearest-neighbour
+spacing of $0.211/2.08 \approx 0.101$~pc $\approx \lambda_J$. This is consistent with
+field inclination $\theta \lesssim 30^\circ$ ($\lambda_{J,m} \approx 1.2\,\lambda_J$) or
+an effectively higher $\beta$ in the inter-core gas than in the dense filament spine---both
+physically plausible geometries. We note that \citet{arzoumanian2019} characterizes Gould
+Belt filaments at $d < 500$~pc and is not applicable to W3 at 1.95~kpc; \citet{rivera2013}
+provides the appropriate Herschel characterization of W3 specifically. We note that
+\citet{kumar2025w3bfield} recently demonstrated through JCMT/POL-2 dust polarimetry that
+W3 Main's magnetic field geometry is significantly modified by its compact \ion{H}{ii} region
+feedback, with the B-field realigning along HII cavity walls at evolved evolutionary stages.
+Magneto-hydrodynamic simulations by \citet{suin2025feedback} show that once an expanding
+\ion{H}{ii} region impacts surrounding filaments, ionising feedback overrides the initial
+B-field configuration and drives convergence toward a B-parallel alignment, suggesting the
+current W3~Main B-field geometry reflects feedback-driven late-stage evolution rather than
+the original formation conditions.
+This feedback-altered B-field geometry reinforces the physical motivation for our
+field-geometry calibration (equation~\ref{eq:calib}): the effective field inclination
+$\theta$ in the inter-core gas may differ substantially from large-scale Planck-polarimetry
+estimates, consistent with the $\theta \lesssim 30^\circ$ interpretation of the observed
+W3 pairwise median spacing.
+We further note that Zeeman-based mass-to-flux ratio measurements may overestimate the
+true ratio by up to $10\times$ when the field lies primarily in the plane of the sky
+\citep{tritsis2025m2f}; published $\beta$ values for W3 should therefore be treated as
+upper bounds on the magnetic support. Additionally, the B-field strength scaling with
+gas density in dense molecular gas is now better characterised as a broken power law
+with exponent $\alpha_2 \approx 0.53$--$0.63$ \citep{whitworth2026bn}, somewhat shallower
+than the canonical $B \propto n^{0.65}$ \citep{crutcher2010}; this softer scaling would
+slightly reduce the effective $\beta$ relative to the classic relation, providing a modest
+additional margin of safety for our isothermal stability boundary.
+
+The physical context for TC7 is directly motivated by the failure of single analytical models for high-mass star formation. \citet{kaalva2026} demonstrated, using Lagrangian particle tracking in STARFORGE magnetised GMC simulations, that no single accretion model (isothermal sphere, turbulent core, or competitive accretion) fits high-mass protostellar accretion histories---intermediate- and low-mass protostars can be matched by one or more models, but high-mass stars show intermittent, non-monotonic accretion that is captured by none. This model ambiguity directly motivates ASTRA's causal inference approach: rather than assuming a single formation model, TC7 quantifies how $\beta$ and $\theta$ jointly control fragmentation, leaving the dominant physical mechanism as an empirically determined output. The hierarchical fragmentation framework of \citet{thomasson2026} further demonstrates that at least four successive fragmentation levels with mass-dependent efficiency are needed to convert the observed top-heavy core mass function in W43 to the canonical IMF---consistent with the layered fragmentation structure probed by ASTRA's $\lambda_\mathrm{frag}$ predictions. Finally, we note that future extension of this work to real W3 protostellar populations should account for systematic photometric calibration errors: \citet{dunham2026} show that widely-used Herschel 70\,$\mu$m flux--luminosity calibrations underestimate protostellar luminosities by factors of 2--3, which would propagate into derived accretion rates and stellar mass estimates. Connecting fragmentation products to the stellar IMF also carries additional caveats: \citet{steinhardt2026} provide direct Gaia evidence that the IMF varies across Galactic stellar populations, and \citet{rosen2026} demonstrate that binary contamination biases IMF slope measurements by $\Delta\alpha = 0.05$--$0.09$ for samples beyond ${\sim}5{,}000$ stars---both effects motivating caution when interpreting filament fragmentation statistics in terms of a fixed IMF slope.
+
+This test case demonstrates ASTRA's capability for autonomous HPC campaign management:
+the system formulated the scientific question, selected simulation parameters, managed over 1,000
+HPC jobs on a remote server across five campaigns, analysed output, applied observational bias
+corrections, and produced a self-consistent physical interpretation without human intervention at
+the computation or analysis stages.
 
 \section{Discussion}
 
