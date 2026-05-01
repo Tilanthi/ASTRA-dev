@@ -1,0 +1,14 @@
+{
+  "run_id": "res128_match_003",
+  "f": 2.0,
+  "beta": 0.3,
+  "mach": 1.0,
+  "seed": 1,
+  "resolution": "128",
+  "t_frag_256": 0.9542,
+  "status": "FRAG",
+  "t_frag": 1.05,
+  "dt_min": null,
+  "wall_seconds": 550.1,
+  "note": "Match res_rerun_005/006"
+}

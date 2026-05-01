@@ -1,0 +1,105 @@
+# Ray Cluster Configuration for ASTRA Filament Simulations
+# For use with Ray parallelization framework
+#
+# Usage: ray up -y cluster_config.yaml
+
+cluster_name: astra_filament_sims
+
+max_workers: 64
+
+provider:
+  type: local
+  head_ip: 127.0.0.1
+
+# For Slurm clusters (if available), uncomment and configure:
+# provider:
+#   type: slurm
+#   account: your_account_name
+#   queue: normal
+#   num_nodes: 4
+#   workers_per_node: 16
+#   use_internal_ip: true
+
+# Head node setup
+head_setup_commands:
+  - pip install athena-read h5py numpy pandas matplotlib scipy
+  - conda install -c conda-forge h5py
+
+# Worker setup
+worker_setup_commands:
+  - pip install athena-read h5py numpy pandas matplotlib scipy
+  - conda install -c conda-forge h5py
+
+# Directory mappings
+file_mounts:
+  # Local paths will be mounted on cluster
+  /path/to/local/athena_sims:
+    mount_path /home/ray/athena_sims
+  /path/to/local/scripts:
+    mount_path /home/ray/scripts
+
+# Execution environment
+initialization_commands:
+  - export PYTHONPATH=/home/ray/scripts:$PYTHONPATH
+  - export ATHENA_SIM_DIR=/home/ray/athena_sims
+  - ulimit -n 65535
+
+# Resource configuration
+resources:
+  cpu: 8
+  memory: 16000000000  # 16 GB
+  gpu: 0
+
+# Logging
+logging:
+  log_dir: /home/ray/logs
+  redirections:
+    ray_out: /home/ray/logs/ray_out.log
+    ray_err: /home/ray/logs/ray_err.log
+
+# Autoscaling (optional)
+autoscaling_config:
+  idle_timeout_minutes: 10
+  upscaling_speed: 1.0
+  downscaling_speed: 1.0
+
+# Job configuration
+job:
+  # Runtime per simulation job
+  runtime: 28800  # 8 hours in seconds
+
+  # Output configuration
+  output:
+    location: /home/ray/athena_sims/output
+    compress: true
+
+  # Retry configuration
+  retry:
+    max_attempts: 3
+    delay: 60  # seconds
+
+# Specific campaign configurations (for reference)
+campaign_configs:
+  campaign1_perp_lambda:
+    n_simulations: 96
+    cores_per_sim: 8
+    estimated_time_hours: 6
+    priority: "HIGHEST"
+
+  campaign2_bundle:
+    n_simulations: 120
+    cores_per_sim: 8
+    estimated_time_hours: 8
+    priority: "SECONDARY"
+
+  campaign3_nonideal:
+    n_simulations: 80
+    cores_per_sim: 12
+    estimated_time_hours: 12
+    priority: "TERTIARY"
+
+  campaign4_nearcrit:
+    n_simulations: 90
+    cores_per_sim: 8
+    estimated_time_hours: 4
+    priority: "VALIDATION"

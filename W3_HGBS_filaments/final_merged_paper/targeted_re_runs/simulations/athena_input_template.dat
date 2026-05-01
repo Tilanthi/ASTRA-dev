@@ -1,0 +1,109 @@
+# Athena++ input file for filament spacing re-run campaign
+# Auto-generated from template for run: {{RUN_ID}}
+
+# ---------------------------------------------------------------------
+# Problem Generator
+# ---------------------------------------------------------------------
+<job>                    problem_id   = filament_spacing_re-run
+
+# ---------------------------------------------------------------------
+# Mesh Configuration
+# ---------------------------------------------------------------------
+<mesh>                   nx1          = {{NX1}}
+<mesh>                   nx2          = {{NX2}}
+<mesh>                   nx3          = {{NX3}}
+<mesh>                   x1min        = -4.0
+<mesh>                   x1max        = 4.0
+<mesh>                   x2min        = -1.0
+<mesh>                   x2max        = 1.0
+<mesh>                   x3min        = -1.0
+<mesh>                   x3max        = 1.0
+<meshblock>              nx1          = 32
+<meshblock>              nx2          = 32
+<meshblock>              nx3          = 32
+
+# ---------------------------------------------------------------------
+# Time Integrator
+# ---------------------------------------------------------------------
+<time>                   integrator   = vl2
+<time>                   tlim         = 100.0
+<time>                   nstages      = 2
+<time>                   cfl_number   = 0.3
+<time>                   dt           = 1.0e-4
+
+# ---------------------------------------------------------------------
+# Hydrodynamics
+# ---------------------------------------------------------------------
+<hydro>                  eos          = isothermal
+<hydro>                  iso_sound_speed = 1.0
+<hydro>                  R_gas        = 1.0
+<fluid>                  indirections = 3
+
+# ---------------------------------------------------------------------
+# MHD Configuration
+# ---------------------------------------------------------------------
+<mhd>                    bx           = 0.0
+<mhd>                    by           = 0.0
+<mhd>                    bz           = {{BETA_VALUE}}
+<mhd>                    b_field_initial = uniform
+
+# ---------------------------------------------------------------------
+# Self-Gravity
+# ---------------------------------------------------------------------
+<gravity>                gravity_type = fft
+<gravity>                four_pi_G   = 39.47841760435743
+<gravity>                fcorr       = true
+
+# ---------------------------------------------------------------------
+# Boundary Conditions
+# ---------------------------------------------------------------------
+<boundary>               ix1_bc      = periodic
+<boundary>               ox1_bc      = periodic
+<boundary>               ix2_bc      = periodic
+<boundary>               ox2_bc      = periodic
+<boundary>               ix3_bc      = periodic
+<boundary>               ox3_bc      = periodic
+
+# ---------------------------------------------------------------------
+# Refinement and Smoothing
+# ---------------------------------------------------------------------
+<refinement>             refinement   = none
+<hydro>                  cfl_number   = 0.3
+
+# ---------------------------------------------------------------------
+# Output Configuration
+# ---------------------------------------------------------------------
+<output>                 output_dir   = ./
+<output>                 file_type    = hst
+<output>                 dt           = 0.05
+<output>                 variable     = dt
+<output>                 variable     = time
+<output>                 variable     = mass
+<output>                 variable     = 1-momentum
+<output>                 variable     = 2-momentum
+<output>                 variable     = 3-momentum
+<output>                 variable     = total-energy
+<output>                 variable     = max-bet
+<output>                 variable     = min-bet
+
+# HDF5 output disabled for re-runs (not needed for t_frag measurement)
+# <output>               file_type    = hdf5
+# <output>               dt           = 1.0
+
+# ---------------------------------------------------------------------
+# Problem-Specific Parameters
+# ---------------------------------------------------------------------
+<problem>                f            = {{F}}
+<problem>                beta         = {{BETA}}
+<problem>                mach         = {{MACH}}
+<problem>                seed         = {{SEED}}
+<problem>                turb_ampl    = 1.0e-4
+<problem>                turb_modes   = 8
+<problem>                turb_type    = kolmogorov
+
+# ---------------------------------------------------------------------
+# Numerical Methods
+# ---------------------------------------------------------------------
+<hydro>                  rsolver      = hlld
+<hydro>                  recon       = ppm
+<hydro>                  riemann      = hlld

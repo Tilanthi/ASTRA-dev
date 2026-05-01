@@ -1,0 +1,105 @@
+{
+  "campaign_name": "eos_asymmetry_exploration",
+  "priority": "MODERATE",
+  "purpose": "Understand why γ < 1 accelerates fragmentation (supercritical) but γ > 1 suppresses it (near-critical)",
+  "concern_addressed": 6,
+
+  "simulation_parameters": {
+    "resolution": [128, 128, 128],
+    "domain_dimensions": [8.0, 2.0, 2.0],
+    "domain_units": "lambda_J",
+    "boundary_conditions": "periodic_all",
+    "field_geometry": "longitudinal",
+    "turbulence_seeding": "synthetic",
+    "turbulence_amplitude_factor": 1e-4
+  },
+
+  "parameter_grid": {
+    "line_mass": {
+      "values": [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0],
+      "symbol": "f",
+      "description": "Spans regime boundary from near-critical to supercritical"
+    },
+    "gamma": {
+      "values": [0.8, 0.9, 1.0, 1.2, 1.5, 1.667],
+      "symbol": "γ",
+      "description": "Adiabatic index: sub-isothermal (γ<1), isothermal (γ=1), super-isothermal (γ>1)"
+    },
+    "plasma_beta": {
+      "values": [1.0],
+      "symbol": "β",
+      "description": "Moderate field strength"
+    },
+    "mach_number": {
+      "values": [1.0],
+      "symbol": "M",
+      "description": "Mach number"
+    }
+  },
+
+  "random_seeds": {
+    "values": [42, 43],
+    "description": "Two different random seeds per parameter point"
+  },
+
+  "total_simulations": 120,
+
+  "runtime_requirements": {
+    "wallclock_timeout_hours": 10,
+    "snapshot_retention": "full_hdf5",
+    "snapshot_interval": "0.05_tff",
+    "diagnostic_output": true,
+    "fragmentation_detection": true,
+    "note": "Extended runtime for adiabatic cases (γ = 1.5, 1.667) which may fragment more slowly"
+  },
+
+  "analysis_requirements": {
+    "primary_metrics": [
+      "t_frag_vs_gamma",
+      "lambda_W_vs_gamma",
+      "fragmentation_rate_vs_gamma"
+    ],
+    "secondary_metrics": [
+      "pressure_support_evolution",
+      "thermal_to_gravitational_energy_ratio",
+      "equation_of_state_regime_mapping"
+    ],
+    "regime_analysis": "Map EOS dependence across f = 1.1-2.0 to identify asymmetry origin"
+  },
+
+  "eos_analysis": {
+    "pressure_tracking": {
+      "track_thermal_pressure": true,
+      "track_compression_heating": true,
+      "output": "pressure_evolution"
+    },
+    "energy_analysis": {
+      "thermal_energy": true,
+      "gravitational_energy": true,
+      "ratio": "E_thermal / E_gravitational"
+    },
+    "regime_identification": {
+      "sub_isothermal": "γ < 1.0",
+      "isothermal": "γ = 1.0",
+      "super_isothermal": "γ > 1.0"
+    }
+  },
+
+  "output_specification": {
+    "hdf5_snapshots": {
+      "retain_all": true,
+      "variables": ["density", "velocity", "magnetic_field", "pressure", "temperature", "gravitational_potential"]
+    },
+    "eos_data": {
+      "save_pressure_evolution": true,
+      "save_energy_ratios": true,
+      "save_regime_identification": true
+    }
+  },
+
+  "success_criteria": {
+    "fragmentation_rate": "Variable (expected to vary with γ)",
+    "eos_asymmetry_mapped": "Clear mapping of EOS behavior across regime boundary",
+    "physical_interpretation": "Physical explanation for asymmetry developed"
+  }
+}

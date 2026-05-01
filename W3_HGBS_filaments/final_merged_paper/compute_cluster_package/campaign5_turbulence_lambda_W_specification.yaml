@@ -1,0 +1,230 @@
+# ========================================================================
+# TURBULENCE WAVELENGTH MEASUREMENT CAMPAIGN SPECIFICATION
+# Target: Referee Moderate Concern 8 (Physical Turbulence λ/W Gap)
+# Purpose: Direct measurement of λ/W with realistic turbulence
+# ========================================================================
+#
+# Scientific Rationale:
+# ---------------------
+# The referee correctly identifies a CRITICAL GAP:
+# "The finding that realistic turbulence (δv/cs = 1.0) accelerates
+# collapse by a factor of 3-5× is potentially important, but the
+# interpretation requires care. [...] the fragmentation wavelength
+# λ/W was not measured in these runs, and rightly qualifies the
+# 10-15″ angular scale estimate as speculative. However, the
+# implications for the primary theoretical question — whether
+# turbulence modifies the fragmentation wavelength — are left
+# entirely open."
+#
+# "Either the wavelength should be measured in follow-up runs, or
+# this sub-campaign should be presented more explicitly as a
+# preliminary result motivating future work, with reduced prominence
+# in the abstract and conclusions."
+#
+# This campaign directly addresses this gap by measuring λ/W with
+# realistic turbulence in the near-critical regime where measurements
+# are feasible.
+#
+# ========================================================================
+
+campaign_name: TURBULENCE_LAMBDA_W
+campaign_id: C5_TURBULENCE_LW
+date: 2026-04-30
+referee_concern: "Moderate Concern 8: Turbulence λ/W measurements"
+
+# ========================================================================
+# SIMULATION PARAMETERS
+# ========================================================================
+
+# Field geometry: Longitudinal (θ=0°) for baseline comparison
+field_geometry: 0  # degrees, 0 = longitudinal
+
+# Domain: Standard 8λ_J × 2λ_J × 2λ_J with periodic BCs
+domain:
+  Lx: 8.0  # in units of λ_J
+  Ly: 2.0
+  Lz: 2.0
+  boundary_conditions: periodic
+
+# Resolution: Standard 128³ (32 cells/λ_J)
+resolution: 128
+
+# Equation of state: Isothermal (γ = 1)
+eos: isothermal
+gamma: 1.0
+
+# Output: High-cadence HDF5 snapshots for λ/W extraction
+output:
+  hdf5_dt: 0.05  # in units of t_J
+  tlim: 2.5      # in units of t_J
+  full_dump: true
+
+# ========================================================================
+# PARAMETER GRID
+# ========================================================================
+
+# Mass-to-flux ratio f: Near-critical regime where λ/W is measurable
+f_values: [1.0, 1.1, 1.2]
+
+# Plasma beta: Representative values covering weak to strong B-field
+beta_values: [0.5, 1.0, 2.0]
+
+# Turbulence amplitude: The KEY parameter
+# - turbphys (physical): δv/cs = 1.0 (realistic ISM turbulence)
+# - turbsynth (synthetic): δv/cs = 1e-4 (baseline perturbation for comparison)
+turbulence_amplitudes:
+  - type: turbphys
+    delta_v_over_cs: 1.0
+    power_spectrum: kolmogorov
+    driving_scale: 2.0  # in units of λ_J
+  - type: turbsynth
+    delta_v_over_cs: 1e-4
+    spectrum: single_mode
+
+# Random seeds: 3 per parameter point for statistics
+seeds: [42, 137, 314]
+
+# ========================================================================
+# TOTAL SIMULATIONS
+# ========================================================================
+# N_f = 3 values
+# N_beta = 3 values
+# N_turb = 2 types (turbphys, turbsynth)
+# N_seeds = 3
+# TOTAL = 3 × 3 × 2 × 3 = 54 simulations
+# ========================================================================
+
+# Key comparison: turbphys vs turbsynth λ/W at same (f, β)
+# This directly measures whether turbulence modifies the fragmentation
+# wavelength, not just the fragmentation timescale.
+
+# ========================================================================
+# COMPUTATIONAL REQUIREMENTS
+# ========================================================================
+
+# Per-simulation resources
+np_per_sim: 8
+walltime_per_sim_hours: 4
+memory_per_sim_gb: 16
+
+# Cluster deployment
+total_cores: 200
+parallel_sims: 25  # 200 cores / 8 cores per sim
+estimated_walltime_days: 1  # 54 sims / 25 parallel = 2.2 batches ≈ 9 hours
+
+# ========================================================================
+# ANALYSIS REQUIREMENTS
+# ========================================================================
+
+analysis_script: measure_lambda_W.py
+output_metrics:
+  - lambda_W: "Fragmentation wavelength in units of W"
+  - lambda_W_std: "Standard deviation of spacing"
+  - t_frag: "Fragmentation time in units of t_J"
+  - n_peaks: "Number of fragmentation peaks"
+  - quality_flag: "GOOD, FEW_PEAKS, SPURIOUS, or NO_PEAKS"
+
+# Key scientific products:
+# ------------------------
+# 1. λ/W_turbphys vs λ/W_turbsynth for each (f, β) combination (9 comparisons)
+# 2. Δλ/W = λ_W_turbphys - λ_W_turbsynth (turbulence-induced wavelength shift)
+# 3. Correlation between turbulence effect on t_frag and on λ/W
+# 4. Dependence of turbulence effect on f and β
+
+# Critical test:
+# --------------
+# H0: Turbulence does NOT modify λ/W (Δλ/W ≈ 0)
+# H1: Turbulence modifies λ/W (Δλ/W ≠ 0)
+# Rejection of H0 would establish turbulence as a key parameter for
+# the fragmentation wavelength, with direct implications for HGBS
+# comparison (since real filaments have turbulent velocity structure).
+
+# ========================================================================
+# ATHENA++ CONFIGURATION FILE TEMPLATE
+# ========================================================================
+
+athena_config:
+  job:
+    problem_id: "C5_turbulence_lambda_W"
+    tlim: 2.5
+    dt: 1.0e-3
+
+  mesh:
+    nx1: 128
+    nx2: 32
+    nx3: 32
+    mesh_block: [32, 32, 32]
+    bc_ix1: periodic
+    bc_ox1: periodic
+    bc_ix2: periodic
+    bc_ox2: periodic
+    bc_ix3: periodic
+    bc_ox3: periodic
+
+  hydro:
+    iso_sound_speed: 1.0
+    gamma: 1.0
+
+  magnetic:
+    beta: ${BETA}  # Will be set per simulation
+    bx1: 0.0
+    bx2: 0.0
+    bx3: ${B0}  # Will be set to achieve desired beta
+
+  gravity:
+    grav_axis_type: cylinder
+    cyl_axis: 1
+    cyl_radius: 0.0
+    cyl_mass_to_flux: ${F}  # Will be set per simulation
+
+  turbulence:
+    type: ${TURB_TYPE}  # "turbphys" or "turbsynth"
+    delta_v_over_cs: ${DVEL}  # 1.0 for turbphys, 1e-4 for turbsynth
+    power_spectrum: kolmogorov  # for turbphys
+    driving_scale: 2.0  # in units of λ_J
+    random_seed: ${SEED}
+
+  output:
+    filetype: hdf5
+    dt: 0.05
+    variables: [dens, mom1, mom2, mom3, B1, B2, B3]
+
+# ========================================================================
+# FILE NAMING CONVENTION
+# ========================================================================
+
+naming_pattern: "C5_TURB_f{F}_b{BETA}_{TURBTYPE}_s{SEED}"
+example: "C5_TURB_f1.1_b1.0_turbphys_s42"
+
+# ========================================================================
+# QUALITY CONTROL
+# ========================================================================
+
+validation_tests:
+  - timescale_verification: "Verify t_frag,turbphys ≈ 3-5 × faster than t_frag,turbsynth"
+  - wavelength_convergence: "Verify λ/W measurement is stable across snapshots"
+  - spurious_peak_detection: "Flag runs with n_peaks > 50 (radial collapse noise)"
+  - turbulent_power_spectrum: "Verify initial turbulence follows Kolmogorov spectrum"
+
+success_criteria:
+  min_fragmentation_rate: 0.90  # At least 90% of runs should fragment
+  max_failure_rate: 0.05        # Fewer than 5% numerical failures
+  wavelength_measurement_success: 0.75  # At least 75% of runs should yield GOOD λ/W
+
+# ========================================================================
+# EXPECTED OUTCOMES
+# ========================================================================
+
+# If turbulence DOES modify λ/W:
+# - Systematic Δλ/W between turbphys and turbsynth across (f, β) space
+# - λ/W_turbphys may differ by 10-30% from λ/W_turbsynth
+# - Would establish turbulence as a key parameter for fragmentation wavelength
+# - Would require turbulence-informed theoretical comparison with HGBS
+
+# If turbulence does NOT modify λ/W:
+# - Δλ/W consistent with zero across all (f, β) combinations
+# - Would confirm that λ/W is set by equilibrium properties, not perturbation amplitude
+# - Would validate the use of synthetic perturbations for λ/W measurement
+# - Would simplify theoretical comparison (turbulence affects t_frag but not λ/W)
+
+# Either outcome is scientifically valuable and addresses the referee's concern.

@@ -1,0 +1,272 @@
+[
+  {
+    "id": "TURB_LAMBDA_f1.5_turb0p3_s42",
+    "f": 1.5,
+    "perturb_ampl": 0.3,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.37873450110920215,
+    "wall_s": 282.4249691963196
+  },
+  {
+    "id": "TURB_LAMBDA_f1.8_turb0p3_s42",
+    "f": 1.8,
+    "perturb_ampl": 0.3,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.35814373117704384,
+    "wall_s": 294.8160970211029
+  },
+  {
+    "id": "TURB_LAMBDA_f2.2_turb0p3_s42",
+    "f": 2.2,
+    "perturb_ampl": 0.3,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.33916395955854656,
+    "wall_s": 402.00023555755615
+  },
+  {
+    "id": "TURB_LAMBDA_f1.8_turb1p0_s42",
+    "f": 1.8,
+    "perturb_ampl": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.27933995835304126,
+    "wall_s": 426.557359457016
+  },
+  {
+    "id": "TURB_LAMBDA_f1.5_turb1p0_s42",
+    "f": 1.5,
+    "perturb_ampl": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.29292872788320395,
+    "wall_s": 433.60279846191406
+  },
+  {
+    "id": "TURB_LAMBDA_f1.5_turb0p3_s137",
+    "f": 1.5,
+    "perturb_ampl": 0.3,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.38776856370493246,
+    "wall_s": 478.1059021949768
+  },
+  {
+    "id": "TURB_LAMBDA_f1.5_turb2p0_s137",
+    "f": 1.5,
+    "perturb_ampl": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2801764908034666,
+    "wall_s": 631.9496579170227
+  },
+  {
+    "id": "TURB_LAMBDA_f2.2_turb0p3_s137",
+    "f": 2.2,
+    "perturb_ampl": 0.3,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.35296924964978077,
+    "wall_s": 802.616578578949
+  },
+  {
+    "id": "TURB_LAMBDA_f2.2_turb1p0_s42",
+    "f": 2.2,
+    "perturb_ampl": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.27056555542923566,
+    "wall_s": 543.110408782959
+  },
+  {
+    "id": "TURB_LAMBDA_f1.8_turb0p3_s137",
+    "f": 1.8,
+    "perturb_ampl": 0.3,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.37955677321808734,
+    "wall_s": 844.1982667446136
+  },
+  {
+    "id": "TURB_LAMBDA_f2.2_turb1p0_s137",
+    "f": 2.2,
+    "perturb_ampl": 1.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.26618464523313223,
+    "wall_s": 589.9327278137207
+  },
+  {
+    "id": "TURB_LAMBDA_f2.6_turb0p3_s42",
+    "f": 2.6,
+    "perturb_ampl": 0.3,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.33431086535183635,
+    "wall_s": 539.8246695995331
+  },
+  {
+    "id": "TURB_LAMBDA_f1.8_turb1p0_s137",
+    "f": 1.8,
+    "perturb_ampl": 1.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3266319405749889,
+    "wall_s": 1227.111988067627
+  },
+  {
+    "id": "TURB_LAMBDA_f2.6_turb0p3_s137",
+    "f": 2.6,
+    "perturb_ampl": 0.3,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.33206470931383836,
+    "wall_s": 847.5070405006409
+  },
+  {
+    "id": "TURB_LAMBDA_f2.6_turb1p0_s42",
+    "f": 2.6,
+    "perturb_ampl": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.2616666642321195,
+    "wall_s": 709.1376202106476
+  },
+  {
+    "id": "TURB_LAMBDA_f3.0_turb0p3_s42",
+    "f": 3.0,
+    "perturb_ampl": 0.3,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.30803113548391275,
+    "wall_s": 548.8267259597778
+  },
+  {
+    "id": "TURB_LAMBDA_f2.6_turb1p0_s137",
+    "f": 2.6,
+    "perturb_ampl": 1.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2537937680136219,
+    "wall_s": 712.8996193408966
+  },
+  {
+    "id": "TURB_LAMBDA_f3.0_turb1p0_s137",
+    "f": 3.0,
+    "perturb_ampl": 1.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.2456967608382273,
+    "wall_s": 478.42906618118286
+  },
+  {
+    "id": "TURB_LAMBDA_f3.0_turb0p3_s137",
+    "f": 3.0,
+    "perturb_ampl": 0.3,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.3525782578826252,
+    "wall_s": 2245.930559396744
+  },
+  {
+    "id": "TURB_LAMBDA_f1.5_turb2p0_s42",
+    "f": 1.5,
+    "perturb_ampl": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.3569137021375865,
+    "wall_s": 3426.2064969539642
+  },
+  {
+    "id": "TURB_LAMBDA_f1.8_turb2p0_s137",
+    "f": 1.8,
+    "perturb_ampl": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.30525559630547666,
+    "wall_s": 5051.629313707352
+  },
+  {
+    "id": "TURB_LAMBDA_f2.2_turb2p0_s137",
+    "f": 2.2,
+    "perturb_ampl": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.29569574779642643,
+    "wall_s": 5366.3527817726135
+  },
+  {
+    "id": "TURB_LAMBDA_f3.0_turb2p0_s137",
+    "f": 3.0,
+    "perturb_ampl": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.28381421486409963,
+    "wall_s": 4513.048477172852
+  },
+  {
+    "id": "TURB_LAMBDA_f3.0_turb1p0_s42",
+    "f": 3.0,
+    "perturb_ampl": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.32214984393801976,
+    "wall_s": 4923.956160783768
+  },
+  {
+    "id": "TURB_LAMBDA_f1.5_turb1p0_s137",
+    "f": 1.5,
+    "perturb_ampl": 1.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.4216358812711774,
+    "wall_s": 8920.533237934113
+  },
+  {
+    "id": "TURB_LAMBDA_f2.6_turb2p0_s137",
+    "f": 2.6,
+    "perturb_ampl": 2.0,
+    "seed": 137,
+    "outcome": "FRAG",
+    "t_frag": 0.36537879643122756,
+    "wall_s": 8679.000438928604
+  },
+  {
+    "id": "TURB_LAMBDA_f1.8_turb2p0_s42",
+    "f": 1.8,
+    "perturb_ampl": 2.0,
+    "seed": 42,
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 13938.588144302368
+  },
+  {
+    "id": "TURB_LAMBDA_f3.0_turb2p0_s42",
+    "f": 3.0,
+    "perturb_ampl": 2.0,
+    "seed": 42,
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 12597.569342136383
+  },
+  {
+    "id": "TURB_LAMBDA_f2.2_turb2p0_s42",
+    "f": 2.2,
+    "perturb_ampl": 2.0,
+    "seed": 42,
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 13536.58949637413
+  },
+  {
+    "id": "TURB_LAMBDA_f2.6_turb2p0_s42",
+    "f": 2.6,
+    "perturb_ampl": 2.0,
+    "seed": 42,
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 13113.194128274918
+  }
+]

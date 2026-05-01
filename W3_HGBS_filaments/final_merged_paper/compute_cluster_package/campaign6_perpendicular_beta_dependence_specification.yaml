@@ -1,0 +1,256 @@
+# ========================================================================
+# PERPENDICULAR-FIELD BETA-DEPENDENCE CAMPAIGN SPECIFICATION
+# Target: Referee Moderate Concern 9 (β-dependence underexplored)
+# Purpose: Map λ/W(β) for perpendicular-field filaments + improve statistics
+# ========================================================================
+#
+# Scientific Rationale:
+# ---------------------
+# The referee notes: "Section 4.7.3 reports a clear β-dependence in the
+# near-critical longitudinal-field measurements: λ/W = 3.86 ± 0.54 at
+# β = 0.5, dropping to 2.79 ± 0.32 at β = 2.0. This range (2.79-3.86)
+# spans the observational result and is in principle a strong
+# discriminant between field strength regimes. Yet this is not developed
+# into a quantitative constraint on HGBS filament plasma beta."
+#
+# The Apr2026 Campaign 1 measured λ/W for perpendicular-B at β=0.5 only
+# (λ/W = 2.97 ± 0.86, N=3). The β-dependence for PERPENDICULAR fields
+# remains UNKNOWN. This is a critical gap because:
+# 1. Perpendicular B characterizes 90% of HGBS filaments (Planck)
+# 2. Perpendicular-B physics differs fundamentally (no axial magnetic tension)
+# 3. The small sample size (N=3) limits statistical reliability
+#
+# This campaign maps λ/W(β) for perpendicular-B filaments in the
+# narrow parameter window where measurements are feasible (f=1.2-1.5).
+#
+# ========================================================================
+
+campaign_name: PERPENDICULAR_BETA_DEPENDENCE
+campaign_id: C6_PERP_BETA
+date: 2026-04-30
+referee_concern: "Moderate Concern 9: β-dependence underexplored + Perpendicular-B statistics"
+
+# ========================================================================
+# SIMULATION PARAMETERS
+# ========================================================================
+
+# Field geometry: Perpendicular (θ=90°) - B in x2-x3 plane
+field_geometry: 90  # degrees, perpendicular to filament axis
+
+# Domain: Extended 16λ_J × 1λ_J × 1λ_J to capture axial structure
+# Note: Perpendicular-B requires longer axial domain for sufficient wavelength samples
+domain:
+  Lx: 16.0  # in units of λ_J (extended axial domain)
+  Ly: 1.0
+  Lz: 1.0
+  boundary_conditions: periodic
+
+# Resolution: 512 × 64 × 64 (32 cells/λ_J in axial direction)
+# Higher axial resolution for better wavelength measurement
+resolution: [512, 64, 64]
+
+# Equation of state: Isothermal (γ = 1)
+eos: isothermal
+gamma: 1.0
+
+# Output: High-cadence HDF5 snapshots for λ/W extraction
+output:
+  hdf5_dt: 0.05  # in units of t_J
+  tlim: 2.5      # in units of t_J (radial collapse dominates after ~1.5 t_J)
+  full_dump: true
+
+# ========================================================================
+# PARAMETER GRID
+# ========================================================================
+
+# Mass-to-flux ratio f: Near-critical window where perpendicular-B λ/W is measurable
+# Based on Apr2026 Campaign 1 results:
+# - f < 1.2: Often NO_PEAKS (insufficient collapse to develop structure)
+# - f = 1.2-1.5: Genuine axial beading (N=3 cases at β=0.5)
+# - f ≥ 2.0: NO_PEAKS (radial collapse dominates)
+f_values: [1.2, 1.3, 1.4, 1.5]
+
+# Plasma beta: Extended sampling to map λ/W(β) for perpendicular-B
+# Apr2026 Campaign 1 only tested β=0.5. This campaign tests:
+# - β = 0.3, 0.5: Strong B-field regime (magnetic pressure dominates)
+# - β = 1.0: Near-equipartition (thermal ~ magnetic pressure)
+# - β = 1.5, 2.0: Weak B-field regime (thermal pressure dominates)
+beta_values: [0.3, 0.5, 1.0, 1.5, 2.0]
+
+# Mach number: Quiescent (to isolate f and β dependence)
+mach: 1.0
+
+# Random seeds: 5 per parameter point for improved statistics
+# Apr2026 used 3 seeds; this campaign uses 5 for better statistics
+seeds: [42, 137, 314, 527, 816]
+
+# ========================================================================
+# TOTAL SIMULATIONS
+# ========================================================================
+# N_f = 4 values
+# N_beta = 5 values
+# N_seeds = 5
+# TOTAL = 4 × 5 × 5 = 100 simulations
+# ========================================================================
+
+# Expected outcomes by parameter space:
+# -------------------------------------
+# β = 0.3-0.5, f = 1.2-1.5: Expected GOOD λ/W measurements (magnetic suppression of radial collapse)
+# β = 1.0, f = 1.2-1.5: Expected GOOD λ/W measurements (transition regime)
+# β = 1.5-2.0, f = 1.2-1.3: Expected FEW_PEAKS or NO_PEAKS (thermal pressure allows faster radial collapse)
+# β = 1.5-2.0, f = 1.4-1.5: Expected SPURIOUS or NO_PEAKS (rapid radial collapse dominates)
+
+# Key question: Does λ/W decrease with increasing β for perpendicular-B?
+# Longitudinal-B: λ/W decreases from 3.86 (β=0.5) to 2.79 (β=2.0)
+# Perpendicular-B: UNKNOWN (this campaign will measure it)
+
+# ========================================================================
+# COMPUTATIONAL REQUIREMENTS
+# ========================================================================
+
+# Per-simulation resources (higher than standard due to extended domain)
+np_per_sim: 16  # Increased due to 512×64×64 resolution
+walltime_per_sim_hours: 6
+memory_per_sim_gb: 32
+
+# Cluster deployment
+total_cores: 200
+parallel_sims: 12  # 200 cores / 16 cores per sim
+estimated_walltime_days: 2  # 100 sims / 12 parallel = 8.3 batches ≈ 2 days
+
+# ========================================================================
+# ANALYSIS REQUIREMENTS
+# ========================================================================
+
+analysis_script: measure_lambda_W_perpendicular.py
+output_metrics:
+  - lambda_W: "Fragmentation wavelength in units of W"
+  - lambda_W_std: "Standard deviation of spacing"
+  - t_frag: "Fragmentation time in units of t_J"
+  - t_collapse: "Radial collapse time (if applicable)"
+  - n_peaks: "Number of fragmentation peaks"
+  - quality_flag: "GOOD, FEW_PEAKS, SPURIOUS, or NO_PEAKS"
+  - radial_dominance: "Binary flag: true if t_collapse < t_frag"
+
+# Specialized analysis for perpendicular-B:
+# ----------------------------------------
+# Distinguishing genuine axial beading from spurious radial collapse noise:
+# - GOOD: 3 < n_peaks < 30, well-defined periodic structure
+# - FEW_PEAKS: n_peaks = 1-2, insufficient for wavelength measurement
+# - SPURIOUS: n_peaks > 50, sub-Jeans scale (λ_peak < 0.2 λ_J), radial collapse noise
+# - NO_PEAKS: No detectable axial structure, radial collapse dominates
+
+# Key scientific products:
+# ------------------------
+# 1. λ/W(β) curve for perpendicular-B at f = 1.2, 1.3, 1.4, 1.5
+# 2. Comparison with longitudinal-B λ/W(β) curve
+# 3. Dependence of measurability (fraction GOOD) on (f, β)
+# 4. Critical β_c(f) where radial collapse begins to dominate
+# 5. Statistical reliability: N=5 seeds vs N=3 in Apr2026
+
+# ========================================================================
+# ATHENA++ CONFIGURATION FILE TEMPLATE
+# ========================================================================
+
+athena_config:
+  job:
+    problem_id: "C6_perp_beta"
+    tlim: 2.5
+    dt: 1.0e-3
+
+  mesh:
+    nx1: 512  # Extended axial domain
+    nx2: 64
+    nx3: 64
+    mesh_block: [64, 64, 32]  # Optimized for 200-core cluster
+    bc_ix1: periodic
+    bc_ox1: periodic
+    bc_ix2: periodic
+    bc_ox2: periodic
+    bc_ix3: periodic
+    bc_ox3: periodic
+
+  hydro:
+    iso_sound_speed: 1.0
+    gamma: 1.0
+
+  magnetic:
+    beta: ${BETA}  # Will be set per simulation
+    bx1: 0.0  # Perpendicular geometry: B in x2-x3 plane
+    bx2: ${B0}  # Set to achieve desired beta
+    bx3: 0.0
+
+  gravity:
+    grav_axis_type: cylinder
+    cyl_axis: 1  # Filament axis is x1
+    cyl_radius: 0.0
+    cyl_mass_to_flux: ${F}  # Will be set per simulation
+
+  output:
+    filetype: hdf5
+    dt: 0.05
+    variables: [dens, mom1, mom2, mom3, B1, B2, B3]
+
+# ========================================================================
+# FILE NAMING CONVENTION
+# ========================================================================
+
+naming_pattern: "C6_PERP_f{F}_b{BETA}_s{SEED}"
+example: "C6_PERP_f1.3_b1.0_s314"
+
+# ========================================================================
+# QUALITY CONTROL
+# ========================================================================
+
+validation_tests:
+  - axial_structure_check: "Verify density peaks are periodic along x1 axis"
+  - spurious_peak_filter: "Reject runs with λ_peak < 0.2 λ_J (sub-Jeans artifact)"
+  - radial_collapse_detection: "Monitor transverse width evolution for collapse signatures"
+  - wavelength_convergence: "Verify λ/W is stable across snapshots 0.1-0.3 t_J after fragmentation"
+  - statistical_reliability: "Require N ≥ 3 GOOD measurements per (f, β) for reported λ/W"
+
+success_criteria:
+  min_good_measurements: 0.50  # At least 50% of runs in the (f=1.2-1.5, β=0.3-1.0) space should be GOOD
+  max_failure_rate: 0.10        # Fewer than 10% numerical failures
+  wavelength_measurement_success: 0.60  # At least 60% of runs should yield measurable λ/W (GOOD or FEW_PEAKS)
+
+# ========================================================================
+# EXPECTED OUTCOMES AND SCIENTIFIC IMPACT
+# ========================================================================
+
+# Scenario A: Perpendicular-B λ/W shows STRONG β-dependence (similar to longitudinal-B)
+# - λ/W decreases from ~4.0 (β=0.3) to ~2.5 (β=2.0)
+# - Would confirm that magnetic pressure effects (even without magnetic tension)
+#   modify the fragmentation scale
+# - Would provide quantitative constraint: HGBS λ/W ≈ 2.8 implies β ≈ 1.5-2.0 for perpendicular-B
+
+# Scenario B: Perpendicular-B λ/W shows WEAK β-dependence (unlike longitudinal-B)
+# - λ/W ≈ 3.0 across all β values (consistent with Apr2026 β=0.5 measurement)
+# - Would suggest that perpendicular-B fragmentation is dominated by thermal Jeans physics,
+#   with magnetic pressure providing only radial support (not axial wavelength modification)
+# - Would imply that field GEOMETRY (not just strength) determines λ/W
+
+# Scenario C: Perpendicular-B λ/W measurements are only feasible at low β
+# - GOOD measurements only at β ≤ 1.0; higher β yields NO_PEAKS (radial collapse)
+# - Would explain the limited Apr2026 results as a physical constraint, not statistical limitation
+# - Would imply that perpendicular-B λ/W can only constrain low-β filaments
+
+# Any of these outcomes would significantly advance our understanding and
+# directly address the referee's concern about underexplored β-dependence.
+
+# ========================================================================
+# COMPARISON WITH APR2026 CAMPAIGN 1
+# ========================================================================
+
+# Apr2026 Campaign 1 (perpendicular-B λ/W):
+# - f = 1.2-2.5, β = 0.5-3.0, 3 seeds → 48 simulations
+# - Genuine λ/W measurements: N=3 at (f=1.2, β=0.5), λ/W = 2.97 ± 0.86
+# - Spurious measurements: N=17 at β ≥ 2.0, λ/W ≈ 0.58
+# - No measurements: N=28 at f ≥ 2.0 (radial collapse)
+
+# This Campaign 6 (perpendicular-B β-dependence):
+# - f = 1.2-1.5, β = 0.3-2.0, 5 seeds → 100 simulations
+# - Focused on the parameter window where genuine measurements are feasible
+# - Extended β sampling (0.3, 0.5, 1.0, 1.5, 2.0) vs single β=0.5
+# - Improved statistics: 5 seeds vs 3 seeds
+# - Directly addresses: (1) β-dependence gap, (2) statistical reliability concern

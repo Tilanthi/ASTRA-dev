@@ -1,0 +1,488 @@
+{
+  "completed": "2026-04-26T13:14:01.915258+00:00",
+  "elapsed_h": 4.3657090928819445e-07,
+  "n_total": 48,
+  "n_frag": 48,
+  "results": [
+    {
+      "status": "FRAG",
+      "t_frag": 0.5994841328657341,
+      "name": "tv_f1.5_b0.3_M1.0_a0p1_s42",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "amp": 0.1,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.6034106201446375,
+      "name": "tv_f1.5_b0.3_M1.0_a0p1_s137",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "amp": 0.1,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.3646686706720942,
+      "name": "tv_f1.5_b0.3_M1.0_a0p5_s42",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "amp": 0.5,
+      "seed": 42
+    },
+    {
+      "status": "FRAG_DC",
+      "t_frag": 0.4500673864247509,
+      "name": "tv_f1.5_b0.3_M1.0_a0p5_s137",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "amp": 0.5,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.4831161226829426,
+      "name": "tv_f1.5_b0.3_M1.0_a1p0_s42",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "amp": 1.0,
+      "seed": 42
+    },
+    {
+      "status": "FRAG_DC",
+      "t_frag": 0.38110900912372997,
+      "name": "tv_f1.5_b0.3_M1.0_a1p0_s137",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "amp": 1.0,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.46641125651148846,
+      "name": "tv_f1.5_b0.3_M2.0_a0p1_s42",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "amp": 0.1,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.46968728329920134,
+      "name": "tv_f1.5_b0.3_M2.0_a0p1_s137",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "amp": 0.1,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.4830245359291794,
+      "name": "tv_f1.5_b0.3_M2.0_a0p5_s42",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "amp": 0.5,
+      "seed": 42
+    },
+    {
+      "status": "FRAG_DC",
+      "t_frag": 0.38086503153207985,
+      "name": "tv_f1.5_b0.3_M2.0_a0p5_s137",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "amp": 0.5,
+      "seed": 137
+    },
+    {
+      "status": "FRAG_DC",
+      "t_frag": 0.25491502578191877,
+      "name": "tv_f1.5_b0.3_M2.0_a1p0_s42",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "amp": 1.0,
+      "seed": 42
+    },
+    {
+      "status": "FRAG_DC",
+      "t_frag": 0.37396926153825066,
+      "name": "tv_f1.5_b0.3_M2.0_a1p0_s137",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "amp": 1.0,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.4606571995227952,
+      "name": "tv_f1.5_b1.0_M1.0_a0p1_s42",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "amp": 0.1,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.47418792631722895,
+      "name": "tv_f1.5_b1.0_M1.0_a0p1_s137",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "amp": 0.1,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.3686967892910342,
+      "name": "tv_f1.5_b1.0_M1.0_a0p5_s42",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "amp": 0.5,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.36000097864343217,
+      "name": "tv_f1.5_b1.0_M1.0_a0p5_s137",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "amp": 0.5,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.2980872261742288,
+      "name": "tv_f1.5_b1.0_M1.0_a1p0_s42",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "amp": 1.0,
+      "seed": 42
+    },
+    {
+      "status": "FRAG_DC",
+      "t_frag": 0.3457822632817765,
+      "name": "tv_f1.5_b1.0_M1.0_a1p0_s137",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "amp": 1.0,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.4005514507167643,
+      "name": "tv_f1.5_b1.0_M2.0_a0p1_s42",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "amp": 0.1,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.43220120393041667,
+      "name": "tv_f1.5_b1.0_M2.0_a0p1_s137",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "amp": 0.1,
+      "seed": 137
+    },
+    {
+      "status": "FRAG_DC",
+      "t_frag": 0.29794169315050945,
+      "name": "tv_f1.5_b1.0_M2.0_a0p5_s42",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "amp": 0.5,
+      "seed": 42
+    },
+    {
+      "status": "FRAG_DC",
+      "t_frag": 0.345720720895852,
+      "name": "tv_f1.5_b1.0_M2.0_a0p5_s137",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "amp": 0.5,
+      "seed": 137
+    },
+    {
+      "status": "FRAG_DC",
+      "t_frag": 0.2700760273833595,
+      "name": "tv_f1.5_b1.0_M2.0_a1p0_s42",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "amp": 1.0,
+      "seed": 42
+    },
+    {
+      "status": "FRAG_DC",
+      "t_frag": 0.2789128340255217,
+      "name": "tv_f1.5_b1.0_M2.0_a1p0_s137",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "amp": 1.0,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.4688636283447877,
+      "name": "tv_f2.0_b0.3_M1.0_a0p1_s42",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "amp": 0.1,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.4855254923877997,
+      "name": "tv_f2.0_b0.3_M1.0_a0p1_s137",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "amp": 0.1,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.3321501461671637,
+      "name": "tv_f2.0_b0.3_M1.0_a0p5_s42",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "amp": 0.5,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.3422749888531326,
+      "name": "tv_f2.0_b0.3_M1.0_a0p5_s137",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "amp": 0.5,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.2735837332611841,
+      "name": "tv_f2.0_b0.3_M1.0_a1p0_s42",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "amp": 1.0,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.28080987371738875,
+      "name": "tv_f2.0_b0.3_M1.0_a1p0_s137",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "amp": 1.0,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.4067859477535604,
+      "name": "tv_f2.0_b0.3_M2.0_a0p1_s42",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "amp": 0.1,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.40888488132400586,
+      "name": "tv_f2.0_b0.3_M2.0_a0p1_s137",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "amp": 0.1,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.2733184107832173,
+      "name": "tv_f2.0_b0.3_M2.0_a0p5_s42",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "amp": 0.5,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.2808098737079499,
+      "name": "tv_f2.0_b0.3_M2.0_a0p5_s137",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "amp": 0.5,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.2250372618156035,
+      "name": "tv_f2.0_b0.3_M2.0_a1p0_s42",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "amp": 1.0,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.23354911562015765,
+      "name": "tv_f2.0_b0.3_M2.0_a1p0_s137",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "amp": 1.0,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.43539216939688186,
+      "name": "tv_f2.0_b1.0_M1.0_a0p1_s42",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "amp": 0.1,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.43153810512894086,
+      "name": "tv_f2.0_b1.0_M1.0_a0p1_s137",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "amp": 0.1,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.32985091780994974,
+      "name": "tv_f2.0_b1.0_M1.0_a0p5_s42",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "amp": 0.5,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.32935708436112304,
+      "name": "tv_f2.0_b1.0_M1.0_a0p5_s137",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "amp": 0.5,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.2756031298159317,
+      "name": "tv_f2.0_b1.0_M1.0_a1p0_s42",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "amp": 1.0,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.27411617289704776,
+      "name": "tv_f2.0_b1.0_M1.0_a1p0_s137",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "amp": 1.0,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.375444829869381,
+      "name": "tv_f2.0_b1.0_M2.0_a0p1_s42",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "amp": 0.1,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.40299731104818515,
+      "name": "tv_f2.0_b1.0_M2.0_a0p1_s137",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "amp": 0.1,
+      "seed": 137
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.27560312981593926,
+      "name": "tv_f2.0_b1.0_M2.0_a0p5_s42",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "amp": 0.5,
+      "seed": 42
+    },
+    {
+      "status": "FRAG",
+      "t_frag": 0.27361837839359376,
+      "name": "tv_f2.0_b1.0_M2.0_a0p5_s137",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "amp": 0.5,
+      "seed": 137
+    },
+    {
+      "status": "FRAG_DC",
+      "t_frag": 0.26815659006048903,
+      "name": "tv_f2.0_b1.0_M2.0_a1p0_s42",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "amp": 1.0,
+      "seed": 42
+    },
+    {
+      "status": "FRAG_DC",
+      "t_frag": 0.31709700282714015,
+      "name": "tv_f2.0_b1.0_M2.0_a1p0_s137",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "amp": 1.0,
+      "seed": 137
+    }
+  ]
+}

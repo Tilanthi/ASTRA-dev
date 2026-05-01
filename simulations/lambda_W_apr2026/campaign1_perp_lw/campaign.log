@@ -1,0 +1,187 @@
+[21:43:42] Campaign 1 PERP-LW: 48 sims | np=16 | max_conc=7
+[21:43:42] Domain: 512×64×64, x1=[0,16], tlim=2.5, HDF5 dt=0.05
+[21:43:42] f=[1.2, 1.5, 2.0, 2.5], β=[0.5, 1.0, 2.0, 3.0], seeds=[42, 137, 314]
+[21:47:10] FRAG     C1_PERP_f1.2_b1.0_s314  t_frag=0.4571  dt=7.71e-21  wall=209s
+[21:47:10]   WARN: failed reading C1_PERP_f1.2_b1.0_s314.snap.00000.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:10]   WARN: failed reading C1_PERP_f1.2_b1.0_s314.snap.00001.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:10]   WARN: failed reading C1_PERP_f1.2_b1.0_s314.snap.00002.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s314.snap.00003.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s314.snap.00004.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s314.snap.00005.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s314.snap.00006.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s314.snap.00007.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11] FRAG     C1_PERP_f1.2_b1.0_s137  t_frag=0.4572  dt=9.40e-21  wall=209s
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s314.snap.00008.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11] FRAG     C1_PERP_f1.2_b1.0_s42  t_frag=0.4569  dt=1.24e-20  wall=209s
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s137.snap.00000.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s314.snap.00009.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s42.snap.00000.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s137.snap.00001.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s42.snap.00001.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s137.snap.00002.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s42.snap.00002.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s42.snap.00003.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s137.snap.00003.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 10 HDF5 files
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s42.snap.00004.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s137.snap.00004.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s42.snap.00005.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s42.snap.00006.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s137.snap.00005.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:11]   WARN: failed reading C1_PERP_f1.2_b1.0_s42.snap.00007.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C1_PERP_f1.2_b1.0_s137.snap.00006.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C1_PERP_f1.2_b1.0_s42.snap.00008.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C1_PERP_f1.2_b1.0_s137.snap.00007.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C1_PERP_f1.2_b1.0_s42.snap.00009.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C1_PERP_f1.2_b1.0_s137.snap.00008.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   WARN: failed reading C1_PERP_f1.2_b1.0_s137.snap.00009.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:47:12]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 10 HDF5 files
+[21:47:12]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 10 HDF5 files
+[21:48:19] FRAG     C1_PERP_f1.2_b0.5_s42  t_frag=0.4585  dt=3.36e-21  wall=278s
+[21:48:19]   WARN: failed reading C1_PERP_f1.2_b0.5_s42.snap.00000.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:48:19]   WARN: failed reading C1_PERP_f1.2_b0.5_s42.snap.00001.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:48:20]   WARN: failed reading C1_PERP_f1.2_b0.5_s42.snap.00002.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:48:20]   WARN: failed reading C1_PERP_f1.2_b0.5_s42.snap.00003.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:48:20]   WARN: failed reading C1_PERP_f1.2_b0.5_s42.snap.00004.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:48:20]   WARN: failed reading C1_PERP_f1.2_b0.5_s42.snap.00005.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:48:20]   WARN: failed reading C1_PERP_f1.2_b0.5_s42.snap.00006.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:48:20]   WARN: failed reading C1_PERP_f1.2_b0.5_s42.snap.00007.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:48:20]   WARN: failed reading C1_PERP_f1.2_b0.5_s42.snap.00008.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:48:20]   WARN: failed reading C1_PERP_f1.2_b0.5_s42.snap.00009.athdf: "Unable to synchronously open object (object 'Time' doesn't exist)"
+[21:48:20]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 10 HDF5 files
+[21:50:46] Campaign 1 PERP-LW: 48 sims | np=16 | max_conc=7
+[21:50:46] Domain: 512×64×64, x1=[0,16], tlim=2.5, HDF5 dt=0.05
+[21:50:46] f=[1.2, 1.5, 2.0, 2.5], β=[0.5, 1.0, 2.0, 3.0], seeds=[42, 137, 314]
+[21:54:17] FRAG     C1_PERP_f1.2_b1.0_s314  t_frag=0.4571  dt=7.71e-21  wall=211s
+[21:54:17] FRAG     C1_PERP_f1.2_b1.0_s137  t_frag=0.4572  dt=9.40e-21  wall=212s
+[21:54:18]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 10 HDF5 files
+[21:54:18]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 10 HDF5 files
+[21:54:19] FRAG     C1_PERP_f1.2_b1.0_s42  t_frag=0.4569  dt=1.24e-20  wall=213s
+[21:54:20]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 10 HDF5 files
+[21:55:25] FRAG     C1_PERP_f1.2_b0.5_s42  t_frag=0.4585  dt=3.36e-21  wall=280s
+[21:55:26]   λ/W=2.169 (GOOD, 23 peaks, t=0.45004400610923767) — deleted 10 HDF5 files
+[21:56:40] FRAG     C1_PERP_f1.2_b2.0_s42  t_frag=0.5097  dt=7.67e-21  wall=354s
+[21:56:41]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 11 HDF5 files
+[21:56:44] FRAG     C1_PERP_f1.2_b0.5_s137  t_frag=0.4726  dt=1.06e-20  wall=358s
+[21:56:45]   λ/W=2.577 (GOOD, 20 peaks, t=0.45004698634147644) — deleted 10 HDF5 files
+[22:00:14] FRAG     C1_PERP_f1.2_b2.0_s137  t_frag=0.5082  dt=4.49e-21  wall=356s
+[22:00:15]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 11 HDF5 files
+[22:01:32] FRAG     C1_PERP_f1.2_b2.0_s314  t_frag=0.5115  dt=6.37e-21  wall=434s
+[22:01:33]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 11 HDF5 files
+[22:01:36] FRAG     C1_PERP_f1.2_b0.5_s314  t_frag=0.4999  dt=3.73e-21  wall=650s
+[22:01:36] FRAG     C1_PERP_f1.5_b0.5_s42  t_frag=0.4105  dt=3.19e-21  wall=291s
+[22:01:37]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 9 HDF5 files
+[22:01:37]   λ/W=4.156 (GOOD, 11 peaks, t=0.4501083493232727) — deleted 10 HDF5 files
+[22:03:44] FRAG     C1_PERP_f1.2_b3.0_s42  t_frag=0.5325  dt=3.06e-21  wall=564s
+[22:03:45]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 11 HDF5 files
+[22:04:48] FRAG     C1_PERP_f1.5_b1.0_s137  t_frag=0.4157  dt=1.44e-20  wall=191s
+[22:04:49]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 9 HDF5 files
+[22:04:52] FRAG     C1_PERP_f1.5_b1.0_s42  t_frag=0.4154  dt=8.94e-21  wall=195s
+[22:04:53]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 9 HDF5 files
+[22:05:17] FRAG     C1_PERP_f1.5_b0.5_s137  t_frag=0.4121  dt=3.28e-21  wall=301s
+[22:05:17]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 9 HDF5 files
+[22:06:08] FRAG     C1_PERP_f1.5_b0.5_s314  t_frag=0.4095  dt=2.78e-21  wall=274s
+[22:06:08]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 9 HDF5 files
+[22:07:02] FRAG     C1_PERP_f1.5_b1.0_s314  t_frag=0.4167  dt=2.50e-20  wall=197s
+[22:07:03]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 9 HDF5 files
+[22:10:36] FRAG     C1_PERP_f1.5_b2.0_s137  t_frag=0.4865  dt=8.49e-21  wall=343s
+[22:10:37]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 10 HDF5 files
+[22:11:19] FRAG     C1_PERP_f1.5_b2.0_s314  t_frag=0.4904  dt=3.01e-21  wall=361s
+[22:11:20]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 10 HDF5 files
+[22:14:56] FRAG     C1_PERP_f1.5_b2.0_s42  t_frag=0.5018  dt=3.80e-21  wall=607s
+[22:14:57]   λ/W=0.634 (GOOD, 84 peaks, t=0.5000026822090149) — deleted 11 HDF5 files
+[22:19:42] FRAG     C1_PERP_f1.2_b3.0_s137  t_frag=0.5610  dt=6.75e-21  wall=1456s
+[22:19:43]   λ/W=0.615 (GOOD, 87 peaks, t=0.5500845909118652) — deleted 12 HDF5 files
+[22:20:07] FRAG     C1_PERP_f2.0_b0.5_s42  t_frag=0.4022  dt=1.21e-20  wall=527s
+[22:20:07]   λ/W=0.629 (GOOD, 85 peaks, t=0.40005695819854736) — deleted 9 HDF5 files
+[22:24:01] FRAG     C1_PERP_f2.0_b0.5_s137  t_frag=0.4024  dt=2.67e-21  wall=544s
+[22:24:01]   λ/W=0.608 (GOOD, 88 peaks, t=0.40000784397125244) — deleted 9 HDF5 files
+[22:25:02] FRAG     C1_PERP_f2.0_b1.0_s42  t_frag=0.3807  dt=9.88e-21  wall=294s
+[22:25:02]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 8 HDF5 files
+[22:26:55] FRAG     C1_PERP_f2.0_b0.5_s314  t_frag=0.3664  dt=2.90e-21  wall=432s
+[22:26:56]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 8 HDF5 files
+[22:28:01] FRAG     C1_PERP_f1.2_b3.0_s314  t_frag=0.5665  dt=1.03e-20  wall=1880s
+[22:28:02]   λ/W=0.579 (GOOD, 92 peaks, t=0.5500051379203796) — deleted 12 HDF5 files
+[22:28:35] FRAG     C1_PERP_f1.5_b3.0_s314  t_frag=0.4887  dt=9.38e-09  wall=1078s
+[22:28:36]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 10 HDF5 files
+[22:28:53] FRAG     C1_PERP_f2.0_b1.0_s137  t_frag=0.3808  dt=1.39e-20  wall=292s
+[22:28:54]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 8 HDF5 files
+[22:30:01] FRAG     C1_PERP_f2.0_b1.0_s314  t_frag=0.3814  dt=7.41e-21  wall=299s
+[22:30:02]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 8 HDF5 files
+[22:45:27] FRAG     C1_PERP_f1.5_b3.0_s137  t_frag=0.5163  dt=3.60e-22  wall=2304s
+[22:45:27]   λ/W=0.583 (GOOD, 91 peaks, t=0.5000101923942566) — deleted 11 HDF5 files
+[22:45:53] FRAG     C1_PERP_f2.0_b2.0_s314  t_frag=0.4303  dt=3.59e-21  wall=1037s
+[22:45:53]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 9 HDF5 files
+[22:45:54] FRAG     C1_PERP_f1.5_b3.0_s42  t_frag=0.5148  dt=6.65e-21  wall=2385s
+[22:45:55]   λ/W=0.547 (GOOD, 97 peaks, t=0.5002214908599854) — deleted 11 HDF5 files
+[22:46:01] FRAG     C1_PERP_f2.0_b2.0_s137  t_frag=0.4285  dt=3.32e-21  wall=1079s
+[22:46:02]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 9 HDF5 files
+[LAUNCH C1] Thu Apr 30 02:07:11 UTC 2026
+[02:07:13] Campaign 1 PERP-LW: 48 sims | np=16 | max_conc=7
+[02:07:13] Domain: 512×64×64, x1=[0,16], tlim=2.5, HDF5 dt=0.05
+[02:07:13] f=[1.2, 1.5, 2.0, 2.5], β=[0.5, 1.0, 2.0, 3.0], seeds=[42, 137, 314]
+[02:07:13] SKIP C1_PERP_f1.2_b0.5_s42: already done, t_frag=0.4500
+[02:07:13] SKIP C1_PERP_f1.2_b0.5_s137: already done, t_frag=0.4701
+[02:07:13] SKIP C1_PERP_f1.2_b1.0_s314: already done, t_frag=0.4501
+[02:07:13] SKIP C1_PERP_f1.2_b1.0_s137: already done, t_frag=0.4502
+[02:07:13] SKIP C1_PERP_f1.2_b1.0_s42: already done, t_frag=0.4501
+[02:07:13] SKIP C1_PERP_f1.2_b0.5_s314: already done, t_frag=0.4902
+[02:07:13] SKIP C1_PERP_f1.2_b2.0_s42: already done, t_frag=0.5000
+[02:07:13] SKIP C1_PERP_f1.2_b2.0_s137: already done, t_frag=0.5000
+[02:07:13] SKIP C1_PERP_f1.2_b3.0_s137: already done, t_frag=0.5600
+[02:07:13] SKIP C1_PERP_f1.2_b2.0_s314: already done, t_frag=0.5100
+[02:07:13] SKIP C1_PERP_f1.2_b3.0_s42: already done, t_frag=0.5301
+[02:07:13] SKIP C1_PERP_f1.5_b0.5_s42: already done, t_frag=0.4100
+[02:07:13] SKIP C1_PERP_f1.5_b0.5_s137: already done, t_frag=0.4100
+[02:07:13] SKIP C1_PERP_f1.5_b1.0_s314: already done, t_frag=0.4101
+[02:07:13] SKIP C1_PERP_f1.5_b1.0_s137: already done, t_frag=0.4101
+[02:07:13] SKIP C1_PERP_f1.5_b1.0_s42: already done, t_frag=0.4100
+[02:07:13] SKIP C1_PERP_f1.5_b2.0_s42: already done, t_frag=0.5000
+[02:07:13] SKIP C1_PERP_f1.2_b3.0_s314: already done, t_frag=0.5601
+[02:07:13] SKIP C1_PERP_f1.5_b0.5_s314: already done, t_frag=0.4000
+[02:07:13] SKIP C1_PERP_f1.5_b2.0_s314: already done, t_frag=0.4800
+[02:07:13] SKIP C1_PERP_f1.5_b3.0_s314: already done, t_frag=0.4800
+[02:07:13] SKIP C1_PERP_f1.5_b3.0_s137: already done, t_frag=0.5100
+[02:07:13] SKIP C1_PERP_f1.5_b2.0_s137: already done, t_frag=0.4800
+[02:07:13] SKIP C1_PERP_f2.0_b0.5_s42: already done, t_frag=0.4001
+[02:07:13] SKIP C1_PERP_f2.0_b0.5_s137: already done, t_frag=0.4000
+[02:07:13] SKIP C1_PERP_f2.0_b0.5_s314: already done, t_frag=0.3600
+[02:07:13] SKIP C1_PERP_f2.0_b1.0_s42: already done, t_frag=0.3801
+[02:07:13] SKIP C1_PERP_f1.5_b3.0_s42: already done, t_frag=0.5100
+[02:07:13] SKIP C1_PERP_f2.0_b1.0_s137: already done, t_frag=0.3800
+[02:07:13] SKIP C1_PERP_f2.0_b2.0_s137: already done, t_frag=0.4200
+[02:07:13] SKIP C1_PERP_f2.0_b1.0_s314: already done, t_frag=0.3800
+[02:07:13] SKIP C1_PERP_f2.0_b2.0_s314: already done, t_frag=0.4200
+[02:12:50] FRAG     C1_PERP_f2.5_b0.5_s42  t_frag=0.3256  dt=1.20e-20  wall=337s
+[02:12:50]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 7 HDF5 files
+[02:14:19] FRAG     C1_PERP_f2.5_b0.5_s137  t_frag=0.3333  dt=3.32e-21  wall=427s
+[02:14:20]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 7 HDF5 files
+[02:14:27] FRAG     C1_PERP_f2.5_b0.5_s314  t_frag=0.3332  dt=8.27e-21  wall=434s
+[02:14:28]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 7 HDF5 files
+[02:17:32] FRAG     C1_PERP_f2.5_b1.0_s42  t_frag=0.3539  dt=9.45e-21  wall=282s
+[02:17:33]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 8 HDF5 files
+[02:19:21] FRAG     C1_PERP_f2.5_b1.0_s137  t_frag=0.3553  dt=8.63e-21  wall=301s
+[02:19:22]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 8 HDF5 files
+[02:19:23] FRAG     C1_PERP_f2.5_b1.0_s314  t_frag=0.3548  dt=8.51e-21  wall=295s
+[02:19:24]   λ/W=N/A (NO_PEAKS, 0 peaks, t=None) — deleted 8 HDF5 files
+[02:34:50] FRAG     C1_PERP_f2.0_b3.0_s42  t_frag=0.4502  dt=2.25e-20  wall=1657s
+[02:34:50]   λ/W=0.575 (GOOD, 91 peaks, t=0.4500143229961395) — deleted 10 HDF5 files
+[02:38:49] FRAG     C1_PERP_f2.0_b3.0_s314  t_frag=0.4533  dt=9.46e-09  wall=1896s
+[02:38:50]   λ/W=0.562 (GOOD, 95 peaks, t=0.45003679394721985) — deleted 10 HDF5 files
+[02:40:33] FRAG     C1_PERP_f2.0_b3.0_s137  t_frag=0.4545  dt=6.31e-21  wall=2000s
+[02:40:34]   λ/W=0.581 (GOOD, 91 peaks, t=0.4500010907649994) — deleted 10 HDF5 files
+[02:46:02] FRAG     C1_PERP_f2.5_b2.0_s314  t_frag=0.4050  dt=9.16e-09  wall=1598s
+[02:46:02]   λ/W=0.551 (GOOD, 97 peaks, t=0.40001118183135986) — deleted 9 HDF5 files
+[02:52:53] FRAG     C1_PERP_f2.0_b2.0_s42  t_frag=0.4582  dt=5.52e-21  wall=2740s
+[02:52:54]   λ/W=0.608 (GOOD, 87 peaks, t=0.4500048756599426) — deleted 10 HDF5 files
+[02:54:35] FRAG     C1_PERP_f2.5_b2.0_s42  t_frag=0.4165  dt=6.11e-21  wall=2222s
+[02:54:35]   λ/W=0.602 (GOOD, 88 peaks, t=0.400007963180542) — deleted 9 HDF5 files
+[02:58:29] FRAG     C1_PERP_f2.5_b2.0_s137  t_frag=0.4139  dt=3.95e-21  wall=2347s
+[02:58:29]   λ/W=0.605 (GOOD, 88 peaks, t=0.4000120759010315) — deleted 9 HDF5 files
+[03:00:52] FRAG     C1_PERP_f2.5_b3.0_s137  t_frag=0.4057  dt=9.84e-09  wall=1322s
+[03:00:53]   λ/W=0.601 (GOOD, 89 peaks, t=0.4000096321105957) — deleted 9 HDF5 files
+[03:15:55] FRAG     C1_PERP_f2.5_b3.0_s314  t_frag=0.4206  dt=6.49e-21  wall=2121s
+[03:15:56]   λ/W=0.560 (GOOD, 95 peaks, t=0.4000092148780823) — deleted 9 HDF5 files
+[03:32:26] FRAG     C1_PERP_f2.5_b3.0_s42  t_frag=0.4172  dt=9.71e-21  wall=3455s
+[03:32:26]   λ/W=0.589 (GOOD, 91 peaks, t=0.4000096619129181) — deleted 9 HDF5 files
+[03:32:26] DONE — FRAG=16/48 | TIMEOUT=0 | λ/W measured=10 | mean λ/W=0.583±0.020 | wall=5114s

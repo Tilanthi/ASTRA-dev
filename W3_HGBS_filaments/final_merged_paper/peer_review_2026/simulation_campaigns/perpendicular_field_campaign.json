@@ -1,0 +1,93 @@
+{
+  "campaign_name": "perpendicular_field_lambda_W",
+  "priority": "HIGH",
+  "purpose": "Direct λ/W measurements for perpendicular B-fields to test magnetic tension mechanism",
+  "concern_addressed": 4,
+
+  "simulation_parameters": {
+    "resolution": [128, 128, 128],
+    "domain_dimensions": [8.0, 2.0, 2.0],
+    "domain_units": "lambda_J",
+    "boundary_conditions": "periodic_all",
+    "equation_of_state": "isothermal",
+    "field_geometry": "perpendicular",
+    "turbulence_seeding": "synthetic",
+    "turbulence_amplitude_factor": 1e-4,
+    "note": "B-field perpendicular to filament axis"
+  },
+
+  "parameter_grid": {
+    "line_mass": {
+      "values": [2.0, 2.5, 3.0],
+      "symbol": "f",
+      "description": "Supercritical regime with robust fragmentation"
+    },
+    "plasma_beta": {
+      "values": [0.3, 1.0],
+      "symbol": "β",
+      "description": "Plasma beta parameter"
+    },
+    "mach_number": {
+      "values": [1.0, 2.0],
+      "symbol": "M",
+      "description": "Mach number"
+    }
+  },
+
+  "random_seeds": {
+    "values": [42, 43],
+    "description": "Two different random seeds per parameter point"
+  },
+
+  "total_simulations": 24,
+
+  "runtime_requirements": {
+    "wallclock_timeout_hours": 6,
+    "snapshot_retention": "full_hdf5",
+    "snapshot_interval": "0.05_tff",
+    "diagnostic_output": true,
+    "fragmentation_detection": true
+  },
+
+  "analysis_requirements": {
+    "primary_metrics": [
+      "lambda_W_perpendicular",
+      "t_frag_perpendicular",
+      "fragmentation_pattern"
+    ],
+    "secondary_metrics": [
+      "field_line_geometry",
+      "compression_ratio",
+      "fragment_orientation"
+    ],
+    "comparison": "Compare λ/W_perpendicular with λ/W_longitudinal from existing data"
+  },
+
+  "geometric_analysis": {
+    "fragmentation_orientation": {
+      "measure": true,
+      "method": "principal_component_analysis"
+    },
+    "field_line_analysis": {
+      "track": true,
+      "output": "field_line_geometry_evolution"
+    }
+  },
+
+  "output_specification": {
+    "hdf5_snapshots": {
+      "retain_all": true,
+      "variables": ["density", "velocity", "magnetic_field", "pressure"]
+    },
+    "geometric_data": {
+      "save_fragmentation_orientation": true,
+      "save_field_line_data": true
+    }
+  },
+
+  "success_criteria": {
+    "fragmentation_rate": "100%",
+    "lambda_W_measured": "Successfully extracted for all runs",
+    "comparison_complete": "λ/W_perpendicular vs λ/W_longitudinal analysis completed"
+  }
+}

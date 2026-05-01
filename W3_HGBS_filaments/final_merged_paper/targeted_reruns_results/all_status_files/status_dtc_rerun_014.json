@@ -1,0 +1,17 @@
+{
+  "run_id": "dtc_rerun_014",
+  "priority": 1,
+  "f": 2.1,
+  "beta": 0.3,
+  "mach": 1.0,
+  "seed": 1,
+  "resolution": "128",
+  "status": "FRAG",
+  "t_frag": 1.0521865804566133,
+  "dt_min": 1.9614823122346758e-22,
+  "t_final": 1.0521865804566133,
+  "wall_seconds": 12094.9,
+  "mpi_ranks": 16,
+  "ref_tfrag_128": null,
+  "note": "FRAG from log (dt_min=1.96e-22 at t=1.0522; detected post-hoc)"
+}
