@@ -5,44 +5,44 @@ The style file: rasti.bst
 Database file #1: references.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 54 entries,
+You've used 57 entries,
             2881 wiz_defined-function locations,
-            1056 strings with 16243 characters,
-and the built_in function-call counts, 25329 in all, are:
-= -- 1787
-> -- 2188
-< -- 157
-+ -- 978
-- -- 346
-* -- 2949
-:= -- 4239
+            1070 strings with 16955 characters,
+and the built_in function-call counts, 26536 in all, are:
+= -- 1856
+> -- 2303
+< -- 163
++ -- 1037
+- -- 360
+* -- 3096
+:= -- 4442
 add.period$ -- 0
-call.type$ -- 54
-change.case$ -- 109
-chr.to.int$ -- 54
-cite$ -- 54
-duplicate$ -- 1222
-empty$ -- 1203
-format.name$ -- 502
-if$ -- 4243
+call.type$ -- 57
+change.case$ -- 115
+chr.to.int$ -- 57
+cite$ -- 57
+duplicate$ -- 1286
+empty$ -- 1266
+format.name$ -- 526
+if$ -- 4431
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 53
-newline$ -- 176
-num.names$ -- 408
-pop$ -- 342
+missing$ -- 56
+newline$ -- 185
+num.names$ -- 428
+pop$ -- 368
 preamble$ -- 1
-purify$ -- 216
+purify$ -- 228
 quote$ -- 0
-skip$ -- 739
+skip$ -- 775
 stack$ -- 0
-substring$ -- 1050
-swap$ -- 629
-text.length$ -- 217
+substring$ -- 1074
+swap$ -- 657
+text.length$ -- 229
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 483
+type$ -- 510
 warning$ -- 0
-while$ -- 386
+while$ -- 402
 width$ -- 0
-write$ -- 543
+write$ -- 570
