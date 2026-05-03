@@ -60,6 +60,10 @@ Baker E.,  et~al., 2026, arXiv preprint
 Bauer F.~E.,  Alexander D.~M.,  Brandt W.~N.,  Hornschemeier A.~E.,  Garmire
   G.~P.,   Schneider D.~P.,  2004, \mn@doi [AJ] {10.1086/424859}, 128, 2048
 
+\bibitem[\protect\citeauthoryear{Bisht et~al.}{Bisht
+  et~al.}{2026}]{bisht2026mlcores}
+Bisht N.,  et~al., 2026, arXiv preprint
+
 \bibitem[\protect\citeauthoryear{Brinchmann, Charlot, White, Tremonti,
   Kauffmann, Heckman  \& Kennicutt}{Brinchmann et~al.}{2004}]{brinchmann2004}
 Brinchmann J.,  Charlot S.,  White S. D.~M.,  Tremonti C.,  Kauffmann G.,
@@ -69,6 +73,14 @@ Brinchmann J.,  Charlot S.,  White S. D.~M.,  Tremonti C.,  Kauffmann G.,
 \bibitem[\protect\citeauthoryear{Chen et~al.}{Chen
   et~al.}{2026}]{chen2026inferenceevolve}
 Chen Y.,  et~al., 2026, arXiv preprint
+
+\bibitem[\protect\citeauthoryear{Chopra et~al.}{Chopra
+  et~al.}{2026}]{chopra2026llmscientists}
+Chopra P.,  et~al., 2026, arXiv preprint
+
+\bibitem[\protect\citeauthoryear{Cohen et~al.}{Cohen
+  et~al.}{2026}]{cohen2026smc}
+Cohen R.,  et~al., 2026, ApJ
 
 \bibitem[\protect\citeauthoryear{Crutcher, Wandelt, Heiles, Falgarone  \&
   Troland}{Crutcher et~al.}{2010}]{crutcher2010}
@@ -270,6 +282,14 @@ White G.~J.,  2026, {ASTRA: Autonomous System for Scientific Discovery in
 \bibitem[\protect\citeauthoryear{Whitworth et~al.}{Whitworth
   et~al.}{2026}]{whitworth2026bn}
 Whitworth D.~J.,  et~al., 2026, Open J. Astrophys.
+
+\bibitem[\protect\citeauthoryear{Yamada et~al.}{Yamada
+  et~al.}{2025}]{yamada2025aiscientistv2}
+Yamada Y.,  et~al., 2025, arXiv preprint
+
+\bibitem[\protect\citeauthoryear{Ye et~al.,}{Ye
+  et~al.}{2025}]{ye2025replicationbench}
+Ye C.,  et~al., 2025, arXiv preprint
 
 \bibitem[\protect\citeauthoryear{Zhang et~al.}{Zhang
   et~al.}{2026}]{zhang2026fldf}
