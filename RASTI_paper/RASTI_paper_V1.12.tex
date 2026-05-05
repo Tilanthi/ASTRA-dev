@@ -1,3 +1,11 @@
+% ASTRA RASTI Paper V1.29 — 2026-05-05
+% Changes from V1.28:
+%   - Discussion §10.1 (TC7 paragraph): Added Campaign F power-law scalings
+%     (t_frag ∝ f^{-0.537}β^{-0.160} longitudinal; t_frag ∝ f^{-0.865}β^{-0.126} perpendicular;
+%     2.1–2.9× geometry speedup) and Campaign G λ/W_⊥=1.631±0.034 (universal, √3 Jeans limit)
+%   - Conclusion §11 (Test 7 bullets): Added 2 new bullets for Campaign F and Campaign G;
+%     W3 cross-validation note added (0.163 vs 0.171 pc, 4.7% agreement)
+%   - These results were in the abstract (V1.26) but absent from Discussion and Conclusion
 % ASTRA RASTI Paper V1.28 — 2026-05-04
 % Changes from V1.27:
 %   - New citation (1): borrett2026cmbagent (arXiv:2604.09621) — "Competing with AI Scientists"
@@ -1128,9 +1136,16 @@ to compare HGBS measurements to numerical predictions. Peer review robustness ca
 near-critical line-mass, domain size, boundary conditions, and turbulence prescription; and
 that adiabatic ($\gamma = 5/3$) simulations do not fragment in the near-critical regime,
 validating the isothermal EOS as the conservative lower bound on filament stability.
+Theoretician campaigns (Campaign~F, 149 simulations) subsequently established 2D power-law
+scalings for fragmentation timescale --- $t_\mathrm{frag} \propto f^{-0.537}\beta^{-0.160}$
+(longitudinal fields) and $t_\mathrm{frag} \propto f^{-0.865}\beta^{-0.126}$ (perpendicular
+fields) --- showing that perpendicular-field filaments fragment $2.1$--$2.9\times$ faster.
+Direct $\lambda/W$ measurement (Campaign~G, 66 simulations) established $\lambda/W_\perp =
+1.631 \pm 0.034$ as a universal ratio for perpendicular-field filaments, consistent with the
+$\sqrt{3}$ thermal Jeans prediction.
 These campaigns demonstrate that ASTRA can function as an autonomous simulation manager
-capable of designing and executing multi-campaign robustness validation without human
-intervention.
+capable of designing and executing multi-campaign robustness and parameter-survey validation
+without human intervention.
 
 The integration advantage is most concretely demonstrated in Test Case 5 (Bayesian Model Selection), where physical motivation (the virial theorem predicting a power law) and statistical evidence (Bayes factors strongly favoring power-law and logarithmic models over linear alternatives) jointly inform model interpretation. ASTRA's framework correctly identifies that the power-law and logarithmic models are statistically indistinguishable by Bayesian evidence, then uses the physical motivation of the virial theorem to prefer the power-law form. This joint consideration of statistical evidence and physical constraints---within a single automated workflow rather than requiring manual synthesis of separate analyses---represents the core value of the integrated approach.
 
@@ -1242,7 +1257,7 @@ We have presented ASTRA (Autonomous System for Scientific Discovery in Astrophys
 \item Demonstrated combined validation and discovery in single analysis run
 \end{description}
 
-\textbf{Test 7: Autonomous MHD Simulation Campaign} (over 1,200 Athena++ simulations)
+\textbf{Test 7: Autonomous MHD Simulation Campaign} (over 1,200 Athena++ simulations across seven campaigns)
 \begin{description}
 \item Confirmed magnetic Jeans stability threshold $\beta_\mathrm{crit} = 0.667$ for seeded $\lambda = 2\,\lambda_J$ mode
 \item Established $\beta$ dominance: $C_\mathrm{final}$ varies $4.3\times$ with $\beta$, $<$20 per cent with $\mathcal{M}$
@@ -1250,7 +1265,9 @@ We have presented ASTRA (Autonomous System for Scientific Discovery in Astrophys
 \item Mapped stability boundary in $(f, \beta)$ space with 240 transition-zone simulations
 \item Characterised pairwise median observational bias $f_\mathrm{bias}(n=7) = 2.08 \pm 0.31$ from 320 injection-recovery simulations
 \item Demonstrated isothermal EOS as the conservative limit: adiabatic ($\gamma=5/3$) simulations show 0 per cent fragmentation at $f=1.00$--$1.20$, while matched isothermal runs show 100 per cent fragmentation
-\item W3 application: predicted $\lambda_\mathrm{frag}^{\mathrm{W3}} = 0.171 \pm 0.018$ pc ($\approx 18''$) at $\theta=50^\circ$, $\beta=0.85$
+\item Established 2D power-law scalings for fragmentation timescale (Campaign~F, 149 simulations): $t_\mathrm{frag} \propto f^{-0.537}\beta^{-0.160}$ (longitudinal fields); $t_\mathrm{frag} \propto f^{-0.865}\beta^{-0.126}$ (perpendicular fields); perpendicular-field filaments fragment $2.1$--$2.9\times$ faster
+\item Measured $\lambda/W_\perp = 1.631 \pm 0.034$ as a universal fragmentation width-to-spacing ratio for perpendicular-field filaments (Campaign~G, 66 simulations), consistent with the $\sqrt{3}$ thermal Jeans limit
+\item W3 application: predicted $\lambda_\mathrm{frag}^{\mathrm{W3}} = 0.171 \pm 0.018$ pc ($\approx 18''$) at $\theta=50^\circ$, $\beta=0.85$; cross-validated via $\lambda/W$ ratio ($0.163$ pc, 4.7 per cent agreement)
 \end{description}
 
 \textbf{Three Modes of Operation}: Tests 1--5 validate ASTRA's ability to correctly recover known astrophysical results using real observational data. Test 6 demonstrates discovery-mode analysis on realistic galaxy survey data, showing both validation and discovery in a single run. Test 7 demonstrates autonomous HPC simulation campaign management, from experimental design through physical interpretation. Together, these tests establish ASTRA as an integrated tool spanning observational analysis, pattern discovery, and numerical simulation.
