@@ -113,6 +113,19 @@ try:
 except ImportError:
     _LEGACY_MEMORY_AVAILABLE = False
 
+# V5.0 NetworkX Integration (Graph Operations)
+try:
+    from .graph_operations import (
+        NetworkXMemoryGraph,
+        MORKOntologyGraph,
+        ContextGraphOperations,
+        create_memory_graph,
+        is_networkx_available,
+    )
+    _NETWORKX_AVAILABLE = True
+except ImportError:
+    _NETWORKX_AVAILABLE = False
+
 __all__ = [
     # V4.0 Memory Systems
     "EpisodicMemory",
@@ -199,6 +212,16 @@ if _LEGACY_MEMORY_AVAILABLE:
         "ScientificDomain",
         "ThreeWayRRF",
         "RankingConfig",
+    ])
+
+# Add NetworkX integration exports if available
+if _NETWORKX_AVAILABLE:
+    __all__.extend([
+        "NetworkXMemoryGraph",
+        "MORKOntologyGraph",
+        "ContextGraphOperations",
+        "create_memory_graph",
+        "is_networkx_available",
     ])
 
 

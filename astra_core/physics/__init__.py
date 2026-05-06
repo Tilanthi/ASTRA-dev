@@ -555,6 +555,23 @@ except ImportError:
     NuclearAstrophysics = None
     logger.warning("NuclearAstrophysics not available")
 
+# V5.0 SymPy Integration (Symbolic Physics)
+try:
+    from .symbolic_physics import (
+        SymbolicPhysicsEngine,
+        PerturbationTheory,
+        FilamentStabilityAnalyzer,
+        create_symbolic_physics_engine,
+        is_sympy_available,
+    )
+    _SYMPY_AVAILABLE = True
+except ImportError:
+    _SYMPY_AVAILABLE = False
+    SymbolicPhysicsEngine = None
+    PerturbationTheory = None
+    FilamentStabilityAnalyzer = None
+    logger.warning("SymPy symbolic physics not available")
+
 
 # Export all public classes
 __all__ = [
@@ -573,3 +590,13 @@ __all__ = [
     'QuantumMechanics',
     'NuclearAstrophysics',
 ]
+
+# Add SymPy exports if available
+if _SYMPY_AVAILABLE:
+    __all__.extend([
+        'SymbolicPhysicsEngine',
+        'PerturbationTheory',
+        'FilamentStabilityAnalyzer',
+        'create_symbolic_physics_engine',
+        'is_sympy_available',
+    ])
