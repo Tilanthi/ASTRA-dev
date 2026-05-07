@@ -31,6 +31,11 @@ Agrawal A.,  et~al., 2026, arXiv preprint, arXiv:2604.08196
 Alexander D.~M.,  Bauer F.~E.,  Brandt W.~N.,   et~al., 2003, \mn@doi [AJ]
   {10.1086/376473}, 126, 539
 
+\bibitem[\protect\citeauthoryear{Alexander, Bradley, Gouskos  \& Niu}{Alexander
+  et~al.}{2026}]{alexander2026albert}
+Alexander S.,  Bradley B.,  Gouskos L.,   Niu C.,  2026, \mn@doi [arXiv
+  preprint arXiv:2603.28935] {10.48550/arXiv.2603.28935}
+
 \bibitem[\protect\citeauthoryear{Andr{\'e}, Men'shchikov, Bontemps, Hennemann,
   Motte  \& Schneider}{Andr{\'e} et~al.}{2010}]{andre2010}
 Andr{\'e} P.,  Men'shchikov A.,  Bontemps S.,  Hennemann M.,  Motte F.,
@@ -278,6 +283,10 @@ Villaescusa-Navarro F.,  Bolliet B.,  Villanueva-Domingo P.,  Bayer A.~E.,
   et~al.}{2025}]{wang2025starwhisper}
 Wang C.,  Zhang Y.,  Li Y.,   et~al., 2025, \mn@doi [Commun.\ Eng.]
   {10.1038/s44172-025-00520-4}, 4, 184
+
+\bibitem[\protect\citeauthoryear{Wang, Han, Fan  \& Liu}{Wang
+  et~al.}{2026}]{wang2026climagent}
+Wang H.,  Han J.,  Fan W.,   Liu H.,  2026, arXiv preprint, arXiv:2604.16922
 
 \bibitem[\protect\citeauthoryear{White}{White}{2026}]{astra_github}
 White G.~J.,  2026, {ASTRA: Autonomous System for Scientific Discovery in
