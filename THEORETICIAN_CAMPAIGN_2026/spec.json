@@ -1,0 +1,120 @@
+{
+  "campaign_name": "THEORETICIAN_CAMPAIGN_2026",
+  "date": "2026-05-08",
+  "description": "Athena++ simulation campaign to resolve (1) perpendicular-field crisis and (2) supercritical extrapolation problem",
+  "total_simulations": 470,
+  "estimated_cpu_hours": 10000,
+  "estimated_wall_time_hours": 50,
+  "cluster_spec": {
+    "num_cpus": 220,
+    "orchestration": "ray",
+    "max_concurrent_sims": 13,
+    "cores_per_sim": 16
+  },
+  "campaigns": [
+    {
+      "name": "CAMPAIGN_A_MIXED_FIELD",
+      "purpose": "Quantitative mixing model for field geometry effects",
+      "n_sims": 280,
+      "parameter_space": {
+        "theta_deg": [0, 15, 30, 45, 60, 75, 90],
+        "mass_to_critical": [1.0, 1.5, 2.0, 2.5],
+        "beta": [0.3, 1.0],
+        "mach": [1.0],
+        "seeds": [42, 137, 251, 367, 499]
+      },
+      "domain": {
+        "L_lambdaJ": 16,
+        "Nx": 512,
+        "Ny": 64,
+        "Nz": 64
+      },
+      "physics": {
+        "gamma": 5.0/3.0,
+        "unit_mass_to_critical": 1.0
+      },
+      "output_cadence_tJ": 0.1,
+      "max_time_tJ": 3.0,
+      "timeout_seconds": 7200
+    },
+    {
+      "name": "CAMPAIGN_B_SUPERCRITICAL",
+      "purpose": "Direct λ/W measurements in supercritical regime (f ≥ 1.5)",
+      "n_sims": 180,
+      "parameter_space": {
+        "mass_to_critical": [1.3, 1.5, 1.8, 2.0, 2.5, 3.0],
+        "beta": [0.3, 1.0, 3.0],
+        "theta_deg": [0],
+        "mach": [1.0],
+        "seeds": [42, 137, 251, 367, 499]
+      },
+      "domain": {
+        "L_lambdaJ": 24,
+        "Nx": 768,
+        "Ny": 64,
+        "Nz": 64
+      },
+      "physics": {
+        "gamma": 5.0/3.0,
+        "unit_mass_to_critical": 1.0
+      },
+      "output_cadence_tJ": 0.1,
+      "max_time_tJ": 2.0,
+      "timeout_seconds": 10800
+    },
+    {
+      "name": "CAMPAIGN_C_PERPENDICULAR_EXTENDED",
+      "purpose": "Extended perpendicular-field analysis with domain size study",
+      "n_sims": 10,
+      "parameter_space": {
+        "mass_to_critical": [1.0, 1.5, 2.0],
+        "beta": [1.0],
+        "theta_deg": [90],
+        "mach": [1.0],
+        "L_lambdaJ": [12, 16, 20, 24],
+        "seeds": [42, 137, 251]
+      },
+      "resolution": {
+        "Nx": 512,
+        "Ny": 64,
+        "Nz": 64
+      },
+      "physics": {
+        "gamma": 5.0/3.0,
+        "unit_mass_to_critical": 1.0
+      },
+      "output_cadence_tJ": 0.1,
+      "max_time_tJ": 3.0,
+      "timeout_seconds": 7200
+    }
+  ],
+  "analysis_protocol": {
+    "beading_detection": {
+      "method": "longitudinal_profile_analysis",
+      "threshold_sigma": 0.15,
+      "min_peaks": 3
+    },
+    "lambda_W_measurement": {
+      "peak_spacing": "median_separation",
+      "wavelength_conversion": "multiply_by_unit_length",
+      "error_estimation": "bootstrap_across_seeds"
+    },
+    "mixed_field_model": {
+      "fit_function": "lambda_W(theta) = A * cos^n(theta) + B * sin^n(theta)",
+      "parameters": ["A", "B", "n"],
+      "uncertainty_propagation": "monte_carlo"
+    },
+    "supercritical_fit": {
+      "models": ["power_law", "exponential", "broken_power_law", "logistic"],
+      "fit_range": [1.0, 3.0],
+      "extrapolation_test": "hold_out_validation"
+    }
+  },
+  "expected_deliverables": [
+    "lambda_W_vs_theta.png: Mixed field geometry curve",
+    "lambda_W_vs_f_supercritical.png: Direct measurements in supercritical regime",
+    "mixing_model_parameters.json: Best-fit mixing model parameters",
+    "supercritical_calibration.json: Revised λ_frag calibration",
+    "field_geometry_analysis.pdf: 4-page scientific summary"
+  ]
+}
