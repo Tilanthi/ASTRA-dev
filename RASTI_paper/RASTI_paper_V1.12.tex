@@ -1,3 +1,6 @@
+% ASTRA RASTI Paper V1.33 — 2026-05-09
+% V1.33: NASA ASTRA footnote (caputo2026nasa); P1 style fixes (keywords sep, Acknowledgements, cite→citep/citet, manual et al.)
+%
 % ASTRA RASTI Paper V1.32 — 2026-05-08
 % Changes from V1.31:
 %   - TC7 Physical Interpretation: Added hirano2026popiii (arXiv:2602.20690)
@@ -145,7 +148,7 @@ $^{2}$RAL Space, STFC Rutherford Appleton Laboratory, Chilton, Didcot, Oxfordshi
 \label{firstpage}
 
 \begin{keywords}
-methods: data analysis --- methods: statistical --- ISM: structure --- galaxies: general --- software: public release
+methods: data analysis -- methods: statistical -- ISM: structure -- galaxies: general -- software: public release
 \end{keywords}
 
 \begin{abstract}
@@ -170,7 +173,7 @@ Modern astronomical surveys generate petabytes of data requiring automated analy
 
 \textbf{The Integration Challenge}: While individual tools exist for specific tasks, astronomers typically must manually combine separate pipelines for data processing, statistical analysis, causal inference, and physical validation. This manual integration creates opportunities for inconsistent treatment of uncertainties, missed physical constraints, and difficulty reproducing multi-step analyses.
 
-ASTRA addresses this challenge by providing an integrated framework that combines:
+ASTRA\footnote{Note: NASA operates a separate astrophysics programme also named ASTRA \citep{caputo2026nasa}. This paper describes a distinct AI-driven autonomous research system for astrophysical data analysis.} addresses this challenge by providing an integrated framework that combines:
 \begin{description}
 \item[] Numerical data processing and statistical analysis
 \item[] Causal reasoning with structural causal models
@@ -205,7 +208,7 @@ Section~10 discusses why these results demonstrate ASTRA's unique capabilities, 
 
 \textbf{ASTRA's Role in Scientific Discovery}: We should not expect to give ASTRA one of the big contemporary problems like ``What is the nature of Dark Matter and Dark Energy,'' or ``How does gravity connect to quantum physics,'' or ``What sets the stellar initial mass function (IMF),'' and expect to get definitive answers that may be the equivalent of a computational Eureka moment. But ASTRA's discovery architecture, used alongside and by an experienced astronomer, has capabilities in discovery and inference that go beyond those of straightforward AI (large language models) and/or machine learning. ASTRA's role in science is to work alongside the experienced astronomer to analyze data and facilitate genuine discovery. ASTRA is therefore a tool to assist the astronomer, rather than a replacement for domain expertise.
 
-\textbf{Validation Scope}: Tests 1--5 use real observational data to validate ASTRA's ability to correctly recover known astrophysical results. Test 6 uses realistic galaxy survey data based on published SDSS scaling relations to demonstrate both validation (recovering known relations) and discovery (identifying outliers). The data is generated using empirical relations from Kauffmann et al. (2003), Tremonti et al. (2004), and Brinchmann et al. (2004). The capabilities demonstrated are shown within specific astrophysical domains using particular datasets. Generalization to other domains or datasets requires further validation.
+\textbf{Validation Scope}: Tests 1--5 use real observational data to validate ASTRA's ability to correctly recover known astrophysical results. Test 6 uses realistic galaxy survey data based on published SDSS scaling relations to demonstrate both validation (recovering known relations) and discovery (identifying outliers). The data is generated using empirical relations from \citet{kauffmann2003}, \citet{tremonti2004}, and \citet{brinchmann2004}. The capabilities demonstrated are shown within specific astrophysical domains using particular datasets. Generalization to other domains or datasets requires further validation.
 
 \section{Methods: ASTRA System Architecture}
 
@@ -219,9 +222,9 @@ ASTRA implements a modular architecture designed for astrophysical data analysis
 
 \textbf{2. Physics Engine}: A unified physics engine implements fundamental physical laws and constraints including conservation laws (mass, energy, momentum), dimensional analysis using Buckingham $\pi$ theorem, equation solving and numerical simulation, and units consistency checking throughout calculations. This enables ASTRA to validate discoveries against first principles rather than treating correlations as sufficient explanations.
 
-\textbf{3. Causal Reasoning Module}: Implements causal discovery and inference using the PC algorithm \cite{spirtes2000} for discovering causal structures from observational data, conditional independence testing for continuous variables (Fisher's Z-test), V-structure detection for identifying colliders, do-calculus for predicting effects of interventions, and domain-specific adaptations for astrophysical contexts. This module enables ASTRA to distinguish causal relationships from correlations, addressing a fundamental limitation of both traditional ML and LLM approaches.
+\textbf{3. Causal Reasoning Module}: Implements causal discovery and inference using the PC algorithm \citep{spirtes2000} for discovering causal structures from observational data, conditional independence testing for continuous variables (Fisher's Z-test), V-structure detection for identifying colliders, do-calculus for predicting effects of interventions, and domain-specific adaptations for astrophysical contexts. This module enables ASTRA to distinguish causal relationships from correlations, addressing a fundamental limitation of both traditional ML and LLM approaches.
 
-\textbf{4. Bayesian Inference Engine}: Implements rigorous model comparison and uncertainty quantification through evidence computation via marginal likelihood estimation, Bayes factors for model comparison \cite{kass1995}, automatic complexity penalty (Occam's razor), posterior predictive checking, and Monte Carlo methods for uncertainty propagation.
+\textbf{4. Bayesian Inference Engine}: Implements rigorous model comparison and uncertainty quantification through evidence computation via marginal likelihood estimation, Bayes factors for model comparison \citep{kass1995}, automatic complexity penalty (Occam's razor), posterior predictive checking, and Monte Carlo methods for uncertainty propagation.
 
 \textbf{5. Domain Knowledge Systems}: Organized astrophysical knowledge through MORK ontology encoding taxonomic and causal relationships, knowledge graphs for semantic relationships, vector-based semantic memory for concept retrieval, and 75 specialized domain modules (ISM, star formation, exoplanets, etc.).
 
@@ -307,7 +310,7 @@ ASTRA occupies a distinct position in the landscape of AI for scientific discove
 
 \subsection{Data and Methods}
 
-We analyzed 24 molecular cloud filaments from the Herschel Gould Belt Survey (HGBS) \cite{andre2010}, drawn from the publicly released filament catalogue \cite{arzoumanian2019}. Each filament has measurements of mass $M$, length $L$, and velocity dispersion $\sigma_v$ with distance estimates based on nearby Galactic OB associations. We note that the universal width of $\sim$0.1~pc in Herschel filaments has been extensively debated, with \cite{panopoulou2022} arguing that apparent universality may partly reflect observational selection effects.
+We analyzed 24 molecular cloud filaments from the Herschel Gould Belt Survey (HGBS) \citep{andre2010}, drawn from the publicly released filament catalogue \citep{arzoumanian2019}. Each filament has measurements of mass $M$, length $L$, and velocity dispersion $\sigma_v$ with distance estimates based on nearby Galactic OB associations. We note that the universal width of $\sim$0.1~pc in Herschel filaments has been extensively debated, with \citet{panopoulou2022} arguing that apparent universality may partly reflect observational selection effects.
 
 ASTRA applies a multi-stage analysis process:
 \begin{enumerate}
@@ -332,7 +335,7 @@ For the Bayesian model comparison in Section~6, we use weakly-informative priors
 
 Figure~\ref{fig:scaling} shows the scaling analysis results.
 
-\textbf{Universal Width}: Filaments have a characteristic width of $0.098 \pm 0.019$~pc, independent of mass \citep[confirmed at 1.3~kpc resolution with JWST by][]{andre2026jwst}. This is consistent with the sonic scale where turbulent energy dissipates into heat \cite{arzoumanian2011}, though we note \cite{panopoulou2022} demonstrate that selection effects can contribute to apparent universality.
+\textbf{Universal Width}: Filaments have a characteristic width of $0.098 \pm 0.019$~pc, independent of mass \citep[confirmed at 1.3~kpc resolution with JWST by][]{andre2026jwst}. This is consistent with the sonic scale where turbulent energy dissipates into heat \citep{arzoumanian2011}, though we note \citet{panopoulou2022} demonstrate that selection effects can contribute to apparent universality.
 
 \textbf{Virial Scaling}: ASTRA fits the power law $\sigma_v = A (M/L)^{\alpha}$ in log-log space. The measured log-log exponent (slope) is $\alpha = 0.49 \pm 0.03$ (Figure~\ref{fig:scaling}, panel A). The virial theorem predicts $\sigma_v \propto (M/L)^{0.5}$, i.e.\ a theoretical exponent of $0.5$. The measured exponent is consistent with the virial prediction at $0.33\sigma$ (tension $= (0.5 - 0.49)/0.03$), confirming virial-like scaling.
 
@@ -353,13 +356,13 @@ This result demonstrates ASTRA's ability to identify scaling relations, quantify
 
 \subsection{Data and Methods}
 
-We analyzed the Chandra Deep Field South (CDFS) \cite{giacconi2001}, combining data from X-ray (Chandra ACIS, 0.1--10~keV), optical (HST/ACS F775W filter), and near-infrared (VLT/ISAAC Ks-band). The X-ray catalog contains $\sim$370 sources from the 1~Msec exposure \cite{alexander2003}, of which we analyze the 60 sources with secure detections in all three wavebands.
+We analyzed the Chandra Deep Field South (CDFS) \citep{giacconi2001}, combining data from X-ray (Chandra ACIS, 0.1--10~keV), optical (HST/ACS F775W filter), and near-infrared (VLT/ISAAC Ks-band). The X-ray catalog contains $\sim$370 sources from the 1~Msec exposure \citep{alexander2003}, of which we analyze the 60 sources with secure detections in all three wavebands.
 
-\textbf{Cross-Matching Methodology}: We use Bayesian positional cross-matching following \cite{sutherland1992}. For each X-ray source with positional uncertainty $\sigma_{\mathrm{X}}$, we compute the likelihood of association with each optical/IR source given the positional offset $\theta$ and their combined positional uncertainties $\sigma_{\mathrm{tot}} = \sqrt{\sigma_{\mathrm{X}}^2 + \sigma_{\mathrm{O}}^2}$. We adopt uniform priors on source surface density (appropriate for deep fields) and require posterior match probability $> 0.9$. The cross-matching radius is adaptively set to $3\sigma_{\mathrm{tot}}$ with a maximum of 2 arcsec to account for source density variations.
+\textbf{Cross-Matching Methodology}: We use Bayesian positional cross-matching following \citep{sutherland1992}. For each X-ray source with positional uncertainty $\sigma_{\mathrm{X}}$, we compute the likelihood of association with each optical/IR source given the positional offset $\theta$ and their combined positional uncertainties $\sigma_{\mathrm{tot}} = \sqrt{\sigma_{\mathrm{X}}^2 + \sigma_{\mathrm{O}}^2}$. We adopt uniform priors on source surface density (appropriate for deep fields) and require posterior match probability $> 0.9$. The cross-matching radius is adaptively set to $3\sigma_{\mathrm{tot}}$ with a maximum of 2 arcsec to account for source density variations.
 
 \textbf{Uncertainty Quantification}: We propagate astrometric uncertainties through the matching process and report match probabilities. For sources with multiple potential counterparts, we compute the relative likelihood and flag ambiguous cases.
 
-\textbf{Classification Methodology}: Following standard X-ray source classification \cite{hornschemeier2001,bauer2004}, we classify sources using X-ray hardness ratio HR $= (H-S)/(H+S)$ where H and S are hard and soft band counts, and X-ray-to-optical flux ratio $f_{\mathrm{X}}/f_{\mathrm{opt}}$. We adopt the thresholds: AGN if HR $> -0.2$ and $\log(f_{\mathrm{X}}/f_{\mathrm{opt}}) > -1$, stars if HR $< -0.2$ or $\log(f_{\mathrm{X}}/f_{\mathrm{opt}}) < -1$. Galaxies require extended optical morphology or intermediate X-ray/optical ratios, which are not present in our matched sample.
+\textbf{Classification Methodology}: Following standard X-ray source classification \citep{hornschemeier2001,bauer2004}, we classify sources using X-ray hardness ratio HR $= (H-S)/(H+S)$ where H and S are hard and soft band counts, and X-ray-to-optical flux ratio $f_{\mathrm{X}}/f_{\mathrm{opt}}$. We adopt the thresholds: AGN if HR $> -0.2$ and $\log(f_{\mathrm{X}}/f_{\mathrm{opt}}) > -1$, stars if HR $< -0.2$ or $\log(f_{\mathrm{X}}/f_{\mathrm{opt}}) < -1$. Galaxies require extended optical morphology or intermediate X-ray/optical ratios, which are not present in our matched sample.
 
 \subsection{Results}
 
@@ -370,7 +373,7 @@ We analyzed the Chandra Deep Field South (CDFS) \cite{giacconi2001}, combining d
 \label{fig:multiwavelength}
 \end{figure*}
 
-Figure~\ref{fig:multiwavelength} shows the multi-wavelength analysis. Of $\sim$370 X-ray sources in the full CDFS catalog \cite{alexander2003}, 60 sources have secure detections in all three wavebands. The remaining $\sim$84\% are primarily X-ray sources without optical/IR counterparts (likely high-redshift AGN), optical/IR sources without X-ray detection (star-forming galaxies below the X-ray flux limit), or sources with ambiguous cross-matching.
+Figure~\ref{fig:multiwavelength} shows the multi-wavelength analysis. Of $\sim$370 X-ray sources in the full CDFS catalog \citep{alexander2003}, 60 sources have secure detections in all three wavebands. The remaining $\sim$84\% are primarily X-ray sources without optical/IR counterparts (likely high-redshift AGN), optical/IR sources without X-ray detection (star-forming galaxies below the X-ray flux limit), or sources with ambiguous cross-matching.
 
 \textbf{Classification Results}:
 \begin{description}
@@ -379,13 +382,13 @@ Figure~\ref{fig:multiwavelength} shows the multi-wavelength analysis. Of $\sim$3
 \item Galaxies: 0 sources
 \end{description}
 
-The absence of galaxies in our matched sample reflects the selection effects noted by \cite{bauer2004}: extended galaxies have lower surface brightness in optical bands, making cross-matching with compact X-ray positions more challenging, and star-forming galaxies often fall below the X-ray flux limit of deep Chandra observations.
+The absence of galaxies in our matched sample reflects the selection effects noted by \citet{bauer2004}: extended galaxies have lower surface brightness in optical bands, making cross-matching with compact X-ray positions more challenging, and star-forming galaxies often fall below the X-ray flux limit of deep Chandra observations.
 
 \subsection{Physical Interpretation}
 
 This analysis demonstrates ASTRA's ability to: (1) propagate astrometric uncertainties through Bayesian cross-matching, providing probabilistic association estimates; (2) apply physics-based classification criteria using X-ray hardness and flux ratios; and (3) identify and interpret selection effects in multi-wavelength samples.
 
-The classification results are consistent with established CDFS source populations (Alexander et al.~2003; Bauer et al.~2004): the majority of X-ray sources with secure optical/IR counterparts are AGN, with a substantial stellar contribution from coronal emission in nearby stars. The lack of extended galaxies in the compact source-matched sample is a known selection effect requiring dedicated optical morphological classification.
+The classification results are consistent with established CDFS source populations \citep{alexander2003,bauer2004}: the majority of X-ray sources with secure optical/IR counterparts are AGN, with a substantial stellar contribution from coronal emission in nearby stars. The lack of extended galaxies in the compact source-matched sample is a known selection effect requiring dedicated optical morphological classification.
 
 We acknowledge that the 68\% AGN fraction in our 60-source matched sample is not representative of the full CDFS X-ray source population, which includes many optically faint high-redshift AGN. The tri-band secure detection requirement biases our sample toward the brightest, most compact, and lowest-redshift sources, and the reported AGN fraction should be understood as representative of this bright, compact subsample rather than the overall CDFS population.
 
@@ -393,7 +396,7 @@ We acknowledge that the 68\% AGN fraction in our 60-source matched sample is not
 
 \subsection{Data and Methods}
 
-We analyzed 600 galaxies drawn from the Sloan Digital Sky Survey (SDSS) Data Release 7 \cite{abazajian2009}, selected to have complete measurements of stellar mass, star formation rate, gas-phase metallicity, and local galaxy density. This sample represents typical star-forming galaxies in the main sequence at redshifts $z < 0.2$. The star formation rates and gas-phase metallicities are taken from the MPA-JHU value-added catalogue \cite{brinchmann2004}, which provides these derived quantities using standard emission-line analysis for SDSS spectra.
+We analyzed 600 galaxies drawn from the Sloan Digital Sky Survey (SDSS) Data Release 7 \citep{abazajian2009}, selected to have complete measurements of stellar mass, star formation rate, gas-phase metallicity, and local galaxy density. This sample represents typical star-forming galaxies in the main sequence at redshifts $z < 0.2$. The star formation rates and gas-phase metallicities are taken from the MPA-JHU value-added catalogue \citep{brinchmann2004}, which provides these derived quantities using standard emission-line analysis for SDSS spectra.
 
 ASTRA performs pattern recognition through:
 \begin{enumerate}
@@ -415,14 +418,14 @@ ASTRA performs pattern recognition through:
 Figure~\ref{fig:hypothesis} shows the pattern recognition analysis. ASTRA identified five correlations that correspond to well-established results in galaxy evolution:
 
 \begin{enumerate}
-\item \textbf{Mass-metallicity relation}: Stellar mass correlates with gas-phase metallicity, reflecting the well-established mass-metallicity relation \cite{tremonti2004}.
+\item \textbf{Mass-metallicity relation}: Stellar mass correlates with gas-phase metallicity, reflecting the well-established mass-metallicity relation \citep{tremonti2004}.
    \begin{description}
    \item ASTRA identified: Positive correlation between mass and metallicity
    \item Literature: Established relationship for star-forming galaxies
    \item Significance: Demonstrates pattern recognition capability
    \end{description}
 
-\item \textbf{Environmental quenching}: Local galaxy density correlates with star formation rate, consistent with environmental quenching \cite{dressler1980,peng2010}.
+\item \textbf{Environmental quenching}: Local galaxy density correlates with star formation rate, consistent with environmental quenching \citep{dressler1980,peng2010}.
    \begin{description}
    \item ASTRA identified: Anti-correlation between density and SFR in high-density regions
    \item Literature: Well-established environmental effects on star formation
@@ -439,14 +442,14 @@ Figure~\ref{fig:hypothesis} shows the pattern recognition analysis. ASTRA identi
 \item \textbf{Merger rate evolution}: Galaxy merger signatures correlate with redshift within the sample range.
    \begin{description}
    \item ASTRA identified: Merger indicators increase with redshift (within $z < 0.2$)
-   \item Literature: Merger rate evolution is well-established \cite{lotz2011}
+   \item Literature: Merger rate evolution is well-established \citep{lotz2011}
    \item Significance: Recovers known evolutionary trend from local data
    \end{description}
 
 \item \textbf{Halo mass correlations}: Galaxy stellar mass correlates with inferred dark matter halo mass.
    \begin{description}
    \item ASTRA identified: Stellar mass correlates with environmental metrics
-   \item Literature: Underpins the halo model framework \cite{mo1996}
+   \item Literature: Underpins the halo model framework \citep{mo1996}
    \item Significance: Identifies galaxy-halo connection
    \end{description}
 \end{enumerate}
@@ -465,11 +468,11 @@ We note that galaxy assembly bias may introduce systematic effects on clustering
 
 \subsection{Data and Methods}
 
-We analyzed 1,000 Gaia DR2 stars \cite{gaia2018} with measurements of parallax, apparent G-band magnitude, and derived distance and absolute magnitude. We use the inverse square law to compute distance from parallax and the distance modulus to compute absolute magnitude.
+We analyzed 1,000 Gaia DR2 stars \citep{gaia2018} with measurements of parallax, apparent G-band magnitude, and derived distance and absolute magnitude. We use the inverse square law to compute distance from parallax and the distance modulus to compute absolute magnitude.
 
 ASTRA performs causal inference using:
 \begin{enumerate}
-\item \textbf{PC Algorithm}: Peter-Spirtes causal discovery algorithm \cite{spirtes2000}
+\item \textbf{PC Algorithm}: Peter-Spirtes causal discovery algorithm \citep{spirtes2000}
 \item \textbf{Conditional independence testing}: Fisher's Z-test for continuous variables, with significance threshold $\alpha = 0.05$
 \item \textbf{V-structure detection}: Identifies colliders in causal graphs using unshielded triple patterns
 \item \textbf{Domain knowledge constraints}: Incorporates known physical relationships as constraints
@@ -587,7 +590,7 @@ Identifying these objects programmatically is challenging because they are rare 
 
 \subsection{Data and Methods}
 
-We analyzed a sample of 3,000 galaxies based on published SDSS scaling relations from Kauffmann et al. (2003), Tremonti et al. (2004), and Brinchmann et al. (2004). The sample includes galaxies in the redshift range $0.01 < z < 0.15$ with measurements of:
+We analyzed a sample of 3,000 galaxies based on published SDSS scaling relations from \citet{kauffmann2003}, \citet{tremonti2004}, and \citet{brinchmann2004}. The sample includes galaxies in the redshift range $0.01 < z < 0.15$ with measurements of:
 \begin{description}
 \item Stellar mass ($\log M_*/M_\odot$)
 \item Star formation rate (log SFR)
@@ -611,7 +614,7 @@ ASTRA discovered the star-forming main sequence: a correlation between stellar m
 \begin{equation}
 \log \text{SFR} = 0.59 \times \log M_* - 5.92
 \end{equation}
-with correlation coefficient $r = 0.49$ ($p < 10^{-158}$). The recovered slope of 0.59 is shallower than literature values of 0.7--0.8 from \cite{elbaz2007} and \cite{renzini2015}. This difference reflects the synthetic data generation procedure, which: (1) included quenched galaxies that dilute the main sequence correlation, (2) added intrinsic scatter of 0.4 dex in SFR at fixed mass, and (3) spanned a redshift range $0.01 < z < 0.15$ rather than the higher-redshift samples where \cite{elbaz2007} measured slopes near 0.8. The correlation strength $r = 0.49$ is also modest compared to observed SDSS samples (typically $r \sim 0.6$--0.7), reflecting the added scatter and sample composition. This limitation is noted as a property of the generated dataset rather than an issue with ASTRA's analysis capability.
+with correlation coefficient $r = 0.49$ ($p < 10^{-158}$). The recovered slope of 0.59 is shallower than literature values of 0.7--0.8 from \citep{elbaz2007} and \citep{renzini2015}. This difference reflects the synthetic data generation procedure, which: (1) included quenched galaxies that dilute the main sequence correlation, (2) added intrinsic scatter of 0.4 dex in SFR at fixed mass, and (3) spanned a redshift range $0.01 < z < 0.15$ rather than the higher-redshift samples where \citet{elbaz2007} measured slopes near 0.8. The correlation strength $r = 0.49$ is also modest compared to observed SDSS samples (typically $r \sim 0.6$--0.7), reflecting the added scatter and sample composition. This limitation is noted as a property of the generated dataset rather than an issue with ASTRA's analysis capability.
 
 \subsubsection{Mass-Metallicity Relation}
 
@@ -619,7 +622,7 @@ ASTRA also recovered the mass-metallicity relation:
 \begin{equation}
 12 + \log(\text{O/H}) = 0.30 \times \log M_* + 6.03
 \end{equation}
-with correlation coefficient $r = 0.82$ ($p < 10^{-300}$; machine precision limit). This matches the expected slope of $0.30 \pm 0.02$ from Tremonti et al. (2004), demonstrating that ASTRA correctly identifies this fundamental relation in galaxy evolution.
+with correlation coefficient $r = 0.82$ ($p < 10^{-300}$; machine precision limit). This matches the expected slope of $0.30 \pm 0.02$ from \citet{tremonti2004}, demonstrating that ASTRA correctly identifies this fundamental relation in galaxy evolution.
 
 \subsection{Results: Discovery Mode}
 
@@ -651,7 +654,7 @@ The triage totals $39 + 35 + 46 + 2 + 28 = 150$ account for all identified outli
 
 \subsection{Physical Interpretation and Future Work}
 
-Figure~\ref{fig:test06b} shows the mass-metallicity relation colored by SFR, revealing the secondary dependence of metallicity on star formation rate at fixed mass---the ``fundamental metallicity relation'' \cite{mannucci2010}. In the synthetic dataset, this effect emerges indirectly because both SFR and metallicity correlate with mass through the generation procedure: mass influences SFR (main sequence relation) and mass independently influences metallicity (mass-metallicity relation), creating a secondary correlation between SFR and metallicity when mass is not controlled. The partial correlation coefficient between metallicity and SFR at fixed mass is expected to be of order $r_{\text{partial}} \approx -0.3$ based on the generation parameters. This effect was not explicitly encoded in the data generation but emerges from the combination of two independent relations with mass.
+Figure~\ref{fig:test06b} shows the mass-metallicity relation colored by SFR, revealing the secondary dependence of metallicity on star formation rate at fixed mass---the ``fundamental metallicity relation'' \citep{mannucci2010}. In the synthetic dataset, this effect emerges indirectly because both SFR and metallicity correlate with mass through the generation procedure: mass influences SFR (main sequence relation) and mass independently influences metallicity (mass-metallicity relation), creating a secondary correlation between SFR and metallicity when mass is not controlled. The partial correlation coefficient between metallicity and SFR at fixed mass is expected to be of order $r_{\text{partial}} \approx -0.3$ based on the generation parameters. This effect was not explicitly encoded in the data generation but emerges from the combination of two independent relations with mass.
 
 The outlier galaxies identified by ASTRA require follow-up observations to confirm their physical nature:
 \begin{description}
@@ -664,7 +667,7 @@ The outlier galaxies identified by ASTRA require follow-up observations to confi
 
 \subsection{Limitations and Data Transparency}
 
-\textbf{Data source and generation procedure}: The galaxy dataset analyzed in this test case is generated using published SDSS scaling relations, not actual SDSS observations. The generation procedure \cite{kauffmann2003,brinchmann2004,tremonti2004} is fully documented and reproducible:
+\textbf{Data source and generation procedure}: The galaxy dataset analyzed in this test case is generated using published SDSS scaling relations, not actual SDSS observations. The generation procedure \citep{kauffmann2003,brinchmann2004,tremonti2004} is fully documented and reproducible:
 
 \begin{description}
 \item \textbf{Stellar mass}: Log-normal distribution with range $9.0 < \log M_*/M_\odot < 11.5$, centered at 10.2
@@ -689,7 +692,7 @@ While this dataset realistically mimics SDSS galaxy properties, it is not actual
 \begin{figure*}
 \centering
 \includegraphics[width=0.95\textwidth]{figures/test06_mass_metallicity.png}
-\caption{\textbf{Test Case 6: Mass-Metallicity Relation}. The relation between stellar mass and gas-phase metallicity for 3,000 galaxies, colored by star formation rate. ASTRA recovered the expected slope of 0.30 (Tremonti et al. 2004). The color gradient reveals the secondary dependence of metallicity on SFR at fixed mass---the ``fundamental metallicity relation.''}
+\caption{\textbf{Test Case 6: Mass-Metallicity Relation}. The relation between stellar mass and gas-phase metallicity for 3,000 galaxies, colored by star formation rate. ASTRA recovered the expected slope of 0.30 \citep{tremonti2004}. The color gradient reveals the secondary dependence of metallicity on SFR at fixed mass---the ``fundamental metallicity relation.''}
 \label{fig:test06b}
 \end{figure*}
 
@@ -1301,9 +1304,9 @@ ASTRA provides an integrated framework where physical validation, uncertainty qu
 
 The complete source code, documentation, and reproducible analysis notebooks are available in our public GitHub repository \citep{astra_github}. We encourage community feedback, contribution, and validation of these results on larger and more diverse datasets.
 
-\section*{Acknowledgments}
+\section*{Acknowledgements}
 
-This work uses data from Gaia DR2, Herschel Gould Belt Survey, HST ACS, Chandra Deep Field South, and SDSS. We acknowledge the use of community software tools, including causal-learn, dowhy, NumPy, SciPy, scikit-learn, and Athena++ \citep{stone2020}. MHD simulations were run on the astra-climate Google Cloud server (224-vCPU AMD EPYC 7B13, GCE). The development of ASTRA follows from work on stigmergy and autonomous intelligence by \cite{dey2025} at OpenHub, Thailand.
+This work uses data from Gaia DR2, Herschel Gould Belt Survey, HST ACS, Chandra Deep Field South, and SDSS. We acknowledge the use of community software tools, including causal-learn, dowhy, NumPy, SciPy, scikit-learn, and Athena++ \citep{stone2020}. MHD simulations were run on the astra-climate Google Cloud server (224-vCPU AMD EPYC 7B13, GCE). The development of ASTRA follows from work on stigmergy and autonomous intelligence by \citet{dey2025} at OpenHub, Thailand.
 
 \section*{Author Contributions}
 
