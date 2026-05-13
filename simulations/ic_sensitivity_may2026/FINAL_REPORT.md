@@ -4,7 +4,7 @@
 ## Campaign Summary
 - **Total sims**: 48 | **FRAG**: 46 (95.8%) | **TIMEOUT**: 2 (4.2%)
 - **Wall time**: 316 min (5h 16min) | **Infrastructure**: astra-climate 220 vCPU
-- **Binary**:  (new, compiled from )
+- **Binary**: athena_ic (new, compiled from filament_ic_sensitivity.cpp)
 - **Domain**: 256×64×64, L=8λ_J, 32 MPI ranks/sim, 6 concurrent
 
 ## Science Objective
