@@ -107,6 +107,10 @@ Desmond H.,  2026, \mn@doi [Open J.\ Astrophys.] {10.33232/001c.159080}, 9
 Dey R.,  2025, {STAN: Stigmergic Thinking and Autonomous Navigation},
   \url{https://github.com/web3guru888/STAN_X}
 
+\bibitem[\protect\citeauthoryear{Dong et~al.}{Dong
+  et~al.}{2026}]{dong2026gweyes}
+Dong Y.,  et~al., 2026, arXiv preprint
+
 \bibitem[\protect\citeauthoryear{Dressler}{Dressler}{1980}]{dressler1980}
 Dressler A.,  1980, \mn@doi [ApJ] {10.1086/157753}, 236, 351
 
@@ -179,6 +183,9 @@ Kumar M. S.~N.,  et~al., 2025, \mn@doi [A\&A] {10.1051/0004-6361/202554901},
 \bibitem[\protect\citeauthoryear{Liang et~al.}{Liang
   et~al.}{2026}]{liang2026fluxmc}
 Liang J.,  et~al., 2026, arXiv preprint
+
+\bibitem[\protect\citeauthoryear{Lin}{Lin}{2026}]{lin2026reconstructability}
+Lin H.-W.,  2026, arXiv preprint
 
 \bibitem[\protect\citeauthoryear{Lotz, Jonsson, Cox  \& Primack}{Lotz
   et~al.}{2011}]{lotz2011}
@@ -319,7 +326,7 @@ Ye C.,  et~al., 2025, arXiv preprint
 
 \bibitem[\protect\citeauthoryear{Zhang et~al.}{Zhang
   et~al.}{2026}]{zhang2026fldf}
-Zhang C.,  et~al., 2026, arXiv preprint, arXiv:2604.14093
+Zhang G.,  et~al., 2026, arXiv preprint, arXiv:2604.14093
 
 \makeatother
 \end{thebibliography}
