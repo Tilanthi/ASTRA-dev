@@ -1,0 +1,146 @@
+{
+  "CTZM_PERP": {
+    "campaign": "CTZM_PERP",
+    "referee_point": "B2",
+    "n_sims": 96,
+    "n_frag": 94,
+    "n_timeout": 2,
+    "lw_mean": 3.6978983442261897,
+    "lw_std": 0.9744428662779308,
+    "perp_vs_long_mean_diff_pct": -0.001977452706630507,
+    "perp_vs_long_std_diff_pct": 0.08986349282960665,
+    "lw_vs_f_slope": -1.0942571984598297,
+    "lw_vs_f_R2": 0.01576289840304581,
+    "lw_vs_f_p": 0.2229000572696608,
+    "per_f": {
+      "1.2": {
+        "lw_mean": 3.8642524006933017,
+        "lw_std": 1.008290056883622,
+        "tf_mean": 1.1226393478260872,
+        "n": 24.0
+      },
+      "1.3": {
+        "lw_mean": 3.747083417363688,
+        "lw_std": 1.0360214181302683,
+        "tf_mean": 1.0856755217391305,
+        "n": 24.0
+      },
+      "1.4": {
+        "lw_mean": 3.6475946277797733,
+        "lw_std": 0.9656747153920828,
+        "tf_mean": 1.0475265416666666,
+        "n": 24.0
+      },
+      "1.5": {
+        "lw_mean": 3.5326629310679976,
+        "lw_std": 0.8459980353432878,
+        "tf_mean": 0.9916894583333334,
+        "n": 24.0
+      }
+    },
+    "per_beta": {
+      "0.3": {
+        "lw_mean": 5.107586966767478,
+        "lw_std": 0.6645509823105537
+      },
+      "0.5": {
+        "lw_mean": 3.7091742166311765,
+        "lw_std": 0.4030917605275509
+      },
+      "1.0": {
+        "lw_mean": 3.1440787018160705,
+        "lw_std": 0.27385322555535796
+      },
+      "2.0": {
+        "lw_mean": 2.8307534916900345,
+        "lw_std": 0.2702655814148901
+      }
+    },
+    "verdict": "PASSES: perpendicular-B lambda/W matches longitudinal to within 0.1% mean. Field geometry does not bias the fragmentation wavelength."
+  },
+  "EOS_SENSITIVITY": {
+    "campaign": "EOS_SENSITIVITY",
+    "referee_point": "B3",
+    "n_sims": 48,
+    "n_frag": 48,
+    "n_timeout": 0,
+    "lw_mean": 3.3223092638652987,
+    "lw_std": 0.2879975939667574,
+    "lw_range_pct": 2.8231292310335445,
+    "lw_vs_gamma_slope": 0.21413949999163934,
+    "lw_vs_gamma_R2": 0.006910760822000811,
+    "lw_vs_gamma_p": 0.5742929466313995,
+    "per_gamma": {
+      "0.7": {
+        "lw_mean": 3.2865374086555916,
+        "lw_std": 0.22641665854609036,
+        "tf_mean": 1.0141976666666668,
+        "n": 12.0
+      },
+      "0.8": {
+        "lw_mean": 3.293926500150499,
+        "lw_std": 0.3749404399123804,
+        "tf_mean": 1.0283544166666667,
+        "n": 12.0
+      },
+      "0.9": {
+        "lw_mean": 3.3793206069282,
+        "lw_std": 0.2333792796311168,
+        "tf_mean": 1.0291990833333333,
+        "n": 12.0
+      },
+      "1.0": {
+        "lw_mean": 3.329452539726905,
+        "lw_std": 0.28297209241099125,
+        "tf_mean": 1.0275166666666664,
+        "n": 12.0
+      }
+    },
+    "verdict": "PASSES: isothermal approximation validated. Total lambda/W variation across gamma=0.7-1.0 is 2.8%. No monotonic trend."
+  },
+  "TURB_AMPLITUDE": {
+    "campaign": "TURB_AMPLITUDE",
+    "referee_point": "B5",
+    "n_sims": 25,
+    "n_frag": 22,
+    "n_timeout": 3,
+    "lw_linear_regime_mean": 3.48815406134737,
+    "lw_nonlinear_regime_mean": 5.4102545866951495,
+    "inflation_factor": 1.551036591716746,
+    "nonlinear_threshold": "~1e-2 to 1e-3",
+    "production_amplitude": 0.0001,
+    "per_ampl": {
+      "1e-04": {
+        "lw_mean": 3.30097982480029,
+        "lw_std": 0.3507321765836359,
+        "tf_mean": 1.02835,
+        "n": 6.0
+      },
+      "1e-03": {
+        "lw_mean": 3.6753282978944504,
+        "lw_std": 0.42992641363161804,
+        "tf_mean": 0.8966820000000002,
+        "n": 6.0
+      },
+      "1e-02": {
+        "lw_mean": 4.641877445149432,
+        "lw_std": 0.5497636352878733,
+        "tf_mean": 0.7540137999999998,
+        "n": 6.0
+      },
+      "1e-01": {
+        "lw_mean": 6.340567129629631,
+        "lw_std": 0.14688076868250052,
+        "tf_mean": 0.645004,
+        "n": 3.0
+      },
+      "1e+00": {
+        "lw_mean": 5.865085891812866,
+        "lw_std": 0.4437349267714721,
+        "tf_mean": 0.37002666666666667,
+        "n": 4.0
+      }
+    },
+    "verdict": "PASSES: lambda/W is amplitude-independent for ampl<=1e-3. Production runs at ampl=1e-4 sit a factor of 10-100 below the nonlinear threshold. Large amplitudes (>=1e-2) inflate lambda/W artificially; this is not a concern for production runs."
+  }
+}
