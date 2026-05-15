@@ -200,7 +200,7 @@ Mannucci F.,  Cresci G.,  Maiolino R.,  Marconi A.,   Gnerucci A.,  2010,
 \bibitem[\protect\citeauthoryear{Mitchener, Yiu, Chang, Bourdenx
   et~al.}{Mitchener et~al.}{2025}]{mitchener2025kosmos}
 Mitchener M.,  Yiu H. W.~H.,  Chang E.,  Bourdenx M.,   et~al., 2025, arXiv
-  preprint, arXiv:2511.02824
+  preprint
 
 \bibitem[\protect\citeauthoryear{Mo \& White}{Mo \& White}{1996}]{mo1996}
 Mo H.~J.,  White S. D.~M.,  1996, \mn@doi [MNRAS] {10.1093/mnras/282.2.347},
@@ -252,6 +252,12 @@ Rosen A.~L.,  et~al., 2026, ApJ
 \bibitem[\protect\citeauthoryear{Skilling}{Skilling}{2004}]{skilling2004}
 Skilling J.,  2004, in AIP Conference Proceedings. pp 395--405,
   \mn@doi{10.1063/1.1835238}
+
+\bibitem[\protect\citeauthoryear{Somasekharan, Pathak, Dhanakoti, Zhang, Yue,
+  Zhu  \& Pan}{Somasekharan et~al.}{2026}]{somasekharan2026cfdscientist}
+Somasekharan N.,  Pathak R.,  Dhanakoti M.,  Zhang T.,  Yue L.,  Zhu A.,   Pan
+  S.,  2026, \mn@doi [arXiv preprint arXiv:2605.06607]
+  {10.48550/arXiv.2605.06607}
 
 \bibitem[\protect\citeauthoryear{Spirtes, Glymour  \& Scheines}{Spirtes
   et~al.}{2000}]{spirtes2000}
