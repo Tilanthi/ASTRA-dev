@@ -1,0 +1,78 @@
+{
+  "campaign_id": "subiso_perp_campaign_may2026",
+  "date": "2026-05-16",
+  "n_sims": 72,
+  "n_frag": 72,
+  "n_timeout": 0,
+  "parameters": {
+    "f": [
+      1.5,
+      2.0,
+      2.5,
+      3.0
+    ],
+    "beta": [
+      0.5,
+      1.0,
+      2.0
+    ],
+    "gamma": [
+      0.7,
+      0.8,
+      0.9
+    ],
+    "theta": 90,
+    "seeds": [
+      0,
+      1
+    ],
+    "domain": "512x64x64 (16x2x2 lambda_J)",
+    "binary": "athena_pr (filament_spacing_pr pgen)"
+  },
+  "results": {
+    "t_frag_mean": 0.4071,
+    "t_frag_std": 0.0485,
+    "t_frag_min": 0.3101,
+    "t_frag_max": 0.508,
+    "t_frag_by_beta": {
+      "0.5": 0.3704,
+      "1.0": 0.4023,
+      "2.0": 0.4486
+    },
+    "t_frag_by_f": {
+      "1.5": 0.4442,
+      "2.0": 0.4215,
+      "2.5": 0.3882,
+      "3.0": 0.3744
+    },
+    "t_frag_by_gamma": {
+      "0.7": 0.4213,
+      "0.8": 0.4048,
+      "0.9": 0.3952
+    },
+    "ps_beading_detected": 31,
+    "ps_detection_fraction": 0.431,
+    "ps_detection_by_beta": {
+      "0.5": 0.25,
+      "1.0": 0.167,
+      "2.0": 0.875
+    },
+    "lambda_W_mean": 13.92,
+    "lambda_W_NOT_genuine": true
+  },
+  "key_conclusions": [
+    "Sub-isothermal EOS (gamma=0.7-0.9) has < 7% effect on perpendicular-field fragmentation",
+    "Beta dominates t_frag (21% range) with inverted sense: lower beta -> faster fragmentation",
+    "No genuine axial fragmentation produced at theta=90 degrees -- all detections are radial collapse",
+    "Power spectrum detection correlates with beta (weak B -> more compression), not gamma",
+    "Isothermal approximation validated for perpendicular geometry (< 7% systematic)"
+  ],
+  "parameter_hierarchy": "beta (21%) > f (19%) > gamma (6.6%)",
+  "comparison_c6_isothermal": {
+    "c6_tfrag_range": "0.578-0.716 t_J",
+    "this_tfrag_range": "0.370-0.449 t_J",
+    "speedup_vs_c6": "~40% faster (but different f range and mode)",
+    "c6_lambda_W": 1.25,
+    "this_lambda_W": "~14 (artefact)"
+  }
+}
