@@ -1,0 +1,33 @@
+# Ray cluster configuration for Sub-Isothermal Perpendicular Field Campaign
+# 220 vCPU cluster for running 72 Athena++ simulations
+
+cluster_id: subiso-perp-campaign
+
+# Resource allocation
+num_workers: 220
+cpus_per_worker: 1
+memory_per_worker_gb: 8
+object_store_memory_gb: 100
+
+# Ray settings
+ray_temp_dir: /tmp/ray
+dashboard_port: 8265
+
+# Athena++ configuration
+athena_executable: athena
+athena_container: null  # Set to docker image if using containerized Athena++
+output_base_dir: ./simulation_output
+
+# Campaign settings
+max_concurrent_jobs: 36  # Run 36 sims at once
+checkpoint_interval: 3600  # Checkpoint every hour (seconds)
+job_timeout: 36000  # 10 hour timeout per simulation (seconds)
+
+# Simulation parameters
+resolution: 256
+domain_size_multiplier: 1.0  # Multiplier on standard domain size
+t_final: 3.0  # Simulation end time (in code units)
+
+# Analysis settings
+analysis_output_dir: ./analysis_results
+plot_output_dir: ./plots

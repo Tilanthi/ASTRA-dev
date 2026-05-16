@@ -1,0 +1,127 @@
+# Athena++ input file for sub-isothermal perpendicular-field filament simulations
+# Magnetic field perpendicular to filament axis (theta = 90 degrees)
+# Polytropic EOS with gamma < 1 for sub-isothermal behavior
+
+# ---------------------------------------------------------------------
+# Problem generator
+# ---------------------------------------------------------------------
+<job>
+problem_id   = filament_x-1.571  # theta = 90 deg in radians
+
+# The following parameters can be overridden via command line:
+# -d <nx> <ny> <nz>         # Grid resolution
+# -t <t_final> <dt_out>     # Integration time and output interval
+# -i <input_file>           # Input file path
+
+# Filament parameters (set in problem generator)
+f            = 1.5           # Line mass fraction (f = M_line/M_line_crit)
+beta         = 0.5           # Plasma beta
+gamma_adi     = 0.8           # Polytropic index (gamma < 1 for sub-isothermal)
+theta        = 1.571         # B-field angle from filament axis (90 deg = perpendicular)
+mach         = 1.0           # Initial Mach number
+seed         = 0             # Random seed for perturbations
+
+# Domain parameters
+Lx           = 1.0           # Axial length (will be set automatically)
+Ly           = 2.0           # Transverse extent (will be set automatically)
+Lz           = 2.0           # Transverse extent (will be set automatically)
+</job>
+
+# ---------------------------------------------------------------------
+# Mesh
+# ---------------------------------------------------------------------
+<mesh>
+nx1          = 256           # Number of zones in X (axial)
+nx2          = 512           # Number of zones in Y (transverse)
+nx3          = 512           # Number of zones in Z (transverse)
+
+fgen         = uniform
+x1min        = -0.5
+x1max        = 0.5
+x2min        = -1.0
+x2max        = 1.0
+x3min        = -1.0
+x3max        = 1.0
+
+# Boundary conditions
+# x1 (axial): periodic - allows fragmentation along filament
+ix1_bc       = periodic
+ox1_bc       = periodic
+# x2, x3 (transverse): outflow - allows material to escape
+ix2_bc       = outflow
+ox2_bc       = outflow
+ix3_bc       = outflow
+ox3_bc       = outflow
+</mesh>
+
+# ---------------------------------------------------------------------
+# Hydrodynamics
+# ---------------------------------------------------------------------
+<hydro>
+hydro_type   = mhd
+reconstruction = weno5
+Riemann_solver      = hllc
+flipping       = true  # Allow magnetic field line flipping
+
+# Equation of state
+eos           = adiabatic
+gamma         = 0.8    # Polytropic index (set from gamma_adi parameter)
+</hydro>
+
+# ---------------------------------------------------------------------
+# MHD
+# ---------------------------------------------------------------------
+<mhd>
+b_flag       = true    # Enable magnetic fields
+</mhd>
+
+# ---------------------------------------------------------------------
+# Gravity
+# ---------------------------------------------------------------------
+<gravity>
+gravity_type = filament
+# Self-gravity will be computed using FFT-based solver
+</gravity>
+
+# ---------------------------------------------------------------------
+# Output
+# ---------------------------------------------------------------------
+<output>
+output_format = rst   # Restart files
+output_dir    = ./outputs/
+dt            = 0.1   # Time interval between outputs
+file_type     = tab   # Additional tabular output
+file_number   = 0
+variable      = d, M1, M2, M3, B1c, B2c, B3c, phi
+
+# History output for key diagnostics
+hst_type      = Std, HstOut
+hst_out       = mass, momentum, energy
+hst_dt        = 0.01
+</output>
+
+# ---------------------------------------------------------------------
+# Time
+# ---------------------------------------------------------------------
+<time>
+cfl_number    = 0.3
+nsm           = 0       # Number of SMR levels (uniform grid = 0)
+start_time    = 0.0
+tlim          = 3.0     # Final time (can override with -t flag)
+nlim          = -1      # Max cycles (negative = no limit)
+integrator    = vl2     # Van Leer integrator
+</time>
+
+# ---------------------------------------------------------------------
+# Mesh refinement (optional - not used for uniform grid runs)
+# ---------------------------------------------------------------------
+<refinement>
+disabled      = true
+</refinement>
+
+# ---------------------------------------------------------------------
+# AMR (optional - not used for uniform grid runs)
+# ---------------------------------------------------------------------
+<amr>
+disabled      = true
+</amr>
