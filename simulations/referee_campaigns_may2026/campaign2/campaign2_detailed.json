@@ -1,0 +1,383 @@
+{
+  "campaign": "Domain Convergence",
+  "simulations": [
+    {
+      "sim_id": "L8_f0.9_s0",
+      "parameters": {
+        "f": 0.9,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 8,
+        "resolution": "128x16x16",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 4.1524,
+        "lambda_W": 4.2,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": true
+      }
+    },
+    {
+      "sim_id": "L8_f0.9_s1",
+      "parameters": {
+        "f": 0.9,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 8,
+        "resolution": "128x16x16",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 4.3371,
+        "lambda_W": 3.93,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": true
+      }
+    },
+    {
+      "sim_id": "L16_f0.9_s0",
+      "parameters": {
+        "f": 0.9,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 16,
+        "resolution": "256x16x16",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 6.671,
+        "lambda_W": 4.1,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": true
+      }
+    },
+    {
+      "sim_id": "L16_f0.9_s1",
+      "parameters": {
+        "f": 0.9,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 16,
+        "resolution": "256x16x16",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 6.5928,
+        "lambda_W": 4.21,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": true
+      }
+    },
+    {
+      "sim_id": "L32_f0.9_s0",
+      "parameters": {
+        "f": 0.9,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 32,
+        "resolution": "512x32x32",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "TIMEOUT",
+        "t_frag_tJ": null,
+        "lambda_W": null,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L32_f0.9_s1",
+      "parameters": {
+        "f": 0.9,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 32,
+        "resolution": "512x32x32",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "TIMEOUT",
+        "t_frag_tJ": null,
+        "lambda_W": null,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L8_f1.0_s0",
+      "parameters": {
+        "f": 1.0,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 8,
+        "resolution": "128x16x16",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.8578,
+        "lambda_W": 4.35,
+        "omega_max": 0.15,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L8_f1.0_s1",
+      "parameters": {
+        "f": 1.0,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 8,
+        "resolution": "128x16x16",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.8454,
+        "lambda_W": 4.32,
+        "omega_max": 0.15,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L16_f1.0_s0",
+      "parameters": {
+        "f": 1.0,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 16,
+        "resolution": "256x16x16",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.9886,
+        "lambda_W": 4.82,
+        "omega_max": 0.15,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L16_f1.0_s1",
+      "parameters": {
+        "f": 1.0,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 16,
+        "resolution": "256x16x16",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.9764,
+        "lambda_W": 4.62,
+        "omega_max": 0.15,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L32_f1.0_s0",
+      "parameters": {
+        "f": 1.0,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 32,
+        "resolution": "512x32x32",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.4276,
+        "lambda_W": 5.24,
+        "omega_max": 0.15,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L32_f1.0_s1",
+      "parameters": {
+        "f": 1.0,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 32,
+        "resolution": "512x32x32",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "TIMEOUT",
+        "t_frag_tJ": null,
+        "lambda_W": null,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L8_f1.1_s0",
+      "parameters": {
+        "f": 1.1,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 8,
+        "resolution": "128x16x16",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.48,
+        "lambda_W": 5.62,
+        "omega_max": 4.3188,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L8_f1.1_s1",
+      "parameters": {
+        "f": 1.1,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 8,
+        "resolution": "128x16x16",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.5627,
+        "lambda_W": 5.65,
+        "omega_max": 4.3188,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L16_f1.1_s0",
+      "parameters": {
+        "f": 1.1,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 16,
+        "resolution": "256x16x16",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.5756,
+        "lambda_W": 5.67,
+        "omega_max": 4.3188,
+        "domain_converged": true,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L16_f1.1_s1",
+      "parameters": {
+        "f": 1.1,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 16,
+        "resolution": "256x16x16",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.5033,
+        "lambda_W": 5.5,
+        "omega_max": 4.3188,
+        "domain_converged": true,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L32_f1.1_s0",
+      "parameters": {
+        "f": 1.1,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 32,
+        "resolution": "512x32x32",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.5614,
+        "lambda_W": 5.74,
+        "omega_max": 4.3188,
+        "domain_converged": true,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L32_f1.1_s1",
+      "parameters": {
+        "f": 1.1,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 32,
+        "resolution": "512x32x32",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.6102,
+        "lambda_W": 6.01,
+        "omega_max": 4.3188,
+        "domain_converged": true,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    }
+  ]
+}
