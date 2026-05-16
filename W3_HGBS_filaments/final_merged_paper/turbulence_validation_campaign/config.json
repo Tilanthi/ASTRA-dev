@@ -1,0 +1,60 @@
+{
+  "campaign_name": "turbulence_validation_apr2026",
+  "purpose": "Peer review response - testing Mach number independence at realistic turbulence amplitudes",
+  "created": "2026-04-26",
+  "estimated_duration_hours": 12,
+  "estimated_cpu_hours": 2400,
+  "total_simulations": 48,
+  "server_requirements": {
+    "min_cpus": 180,
+    "recommended_cpus": 200,
+    "ram_per_cpu_gb": 1,
+    "disk_space_gb": 10
+  },
+  "athena_config": {
+    "problem_generator": "filament_validation.cpp",
+    "binary_name": "athena_pr",
+    "domain_size_lambda_j": [8.0, 2.0, 2.0],
+    "resolution": [256, 64, 64],
+    "meshblock_size": 32,
+    "eos": "isothermal",
+    "gamma": 1.0,
+    "self_gravity": "fft",
+    "four_pi_g": 39.47841760435743,
+    "boundary_conditions": "periodic",
+    "turbulence_modes": 8,
+    "turbulence_transverse_zero": true,
+    "output_cadence_tj": 0.05,
+    "hdf5_enabled": false,
+    "fragmentation_timestep_threshold": 1e-8,
+    "max_wall_time_seconds": 21600
+  },
+  "parameter_grid": {
+    "line_mass_fraction": [1.5, 2.0],
+    "plasma_beta": [0.3, 1.0],
+    "mach_number": [1.0, 2.0],
+    "turbulence_amplitude_factor": [0.1, 0.5, 1.0],
+    "random_seeds": [42, 137]
+  },
+  "simulation_naming": "turb_val_{sim_id:03d}",
+  "output_directory": "/data/turbulence_validation_runs/",
+  "ray_config": {
+    "num_cpus": 200,
+    "dashboard_port": 8265,
+    "max_concurrent_sims": 180,
+    "checkpoint_interval_seconds": 300
+  },
+  "analysis": {
+    "primary_metric": "t_frag_vs_amplitude",
+    "secondary_metrics": [
+      "powerlaw_exponent_consistency",
+      "fragmentation_rate",
+      "amplitude_dependence_quantification"
+    ],
+    "comparison_baseline": {
+      "main_campaign_tfrag_mean": 0.287,
+      "main_campaign_powerlaw_exponent": 0.39,
+      "main_campaign_turbulence_amplitude": 0.0001
+    }
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "description": "C13 Literature beta Validation",
+  "T_K": 10.0,
+  "c_s_kms": 0.18672700637812842,
+  "beta_def": "8pi*rho*sigma^2/B^2 (sigma=c_s for thermal, sigma_eff=c_s*sqrt(1+M^2) for turbulent)",
+  "stats": {
+    "thermal": {
+      "median": 0.05732757503410135,
+      "mean": 0.08155529929093248,
+      "frac_in_sim": 0.043478260869565216
+    },
+    "M1_turb": {
+      "median": 0.1146551500682027,
+      "mean": 0.16311059858186497,
+      "frac_in_sim": 0.13043478260869565
+    },
+    "M2_turb": {
+      "median": 0.28663787517050676,
+      "mean": 0.4077764964546624,
+      "frac_in_sim": 0.43478260869565216
+    }
+  },
+  "sim_range": {
+    "beta_min": 0.3,
+    "beta_max": 2.0
+  },
+  "observations": [
+    {
+      "region": "Taurus B211",
+      "ref": "Palmeirim+13",
+      "n_H2": 1000.0,
+      "B_uG": 30,
+      "method": "DCF",
+      "hgbs": true,
+      "beta_thermal": 0.0385368698840348,
+      "beta_M1_eff": 0.0770737397680696,
+      "beta_M2_eff": 0.19268434942017398
+    },
+    {
+      "region": "Taurus K04166",
+      "ref": "Eswaraiah+21",
+      "n_H2": 3000.0,
+      "B_uG": 38,
+      "method": "BISTRO",
+      "hgbs": true,
+      "beta_thermal": 0.07205647415989887,
+      "beta_M1_eff": 0.14411294831979773,
+      "beta_M2_eff": 0.3602823707994944
+    },
+    {
+      "region": "Taurus K04169",
+      "ref": "Eswaraiah+21",
+      "n_H2": 3000.0,
+      "B_uG": 44,
+      "method": "BISTRO",
+      "hgbs": true,
+      "beta_thermal": 0.05374460159447001,
+      "beta_M1_eff": 0.10748920318894002,
+      "beta_M2_eff": 0.26872300797235005
+    },
+    {
+      "region": "Taurus Miz-8b",
+      "ref": "Eswaraiah+21",
+      "n_H2": 1000.0,
+      "B_uG": 12,
+      "method": "BISTRO",
+      "hgbs": true,
+      "beta_thermal": 0.24085543677521742,
+      "beta_M1_eff": 0.48171087355043485,
+      "beta_M2_eff": 1.204277183876087
+    },
+    {
+      "region": "TMC-1 dense",
+      "ref": "Nakamura+19",
+      "n_H2": 30000.0,
+      "B_uG": 117,
+      "method": "Zeeman",
+      "hgbs": true,
+      "beta_thermal": 0.07600960529395422,
+      "beta_M1_eff": 0.15201921058790843,
+      "beta_M2_eff": 0.38004802646977115
+    },
+    {
+      "region": "Perseus NGC1333",
+      "ref": "Doi+20",
+      "n_H2": 5000.0,
+      "B_uG": 55,
+      "method": "BISTRO",
+      "hgbs": true,
+      "beta_thermal": 0.05732757503410135,
+      "beta_M1_eff": 0.1146551500682027,
+      "beta_M2_eff": 0.28663787517050676
+    },
+    {
+      "region": "Perseus L1448",
+      "ref": "Kwon+22",
+      "n_H2": 3000.0,
+      "B_uG": 40,
+      "method": "BISTRO",
+      "hgbs": true,
+      "beta_thermal": 0.06503096792930872,
+      "beta_M1_eff": 0.13006193585861744,
+      "beta_M2_eff": 0.3251548396465436
+    },
+    {
+      "region": "Perseus B1",
+      "ref": "Chen+24",
+      "n_H2": 4000.0,
+      "B_uG": 60,
+      "method": "BISTRO",
+      "hgbs": true,
+      "beta_thermal": 0.0385368698840348,
+      "beta_M1_eff": 0.0770737397680696,
+      "beta_M2_eff": 0.19268434942017398
+    },
+    {
+      "region": "Perseus IC348",
+      "ref": "Chen+24",
+      "n_H2": 5000.0,
+      "B_uG": 75,
+      "method": "BISTRO",
+      "hgbs": true,
+      "beta_thermal": 0.030829495907227836,
+      "beta_M1_eff": 0.06165899181445567,
+      "beta_M2_eff": 0.1541474795361392
+    },
+    {
+      "region": "Oph L1688",
+      "ref": "Kwon+18",
+      "n_H2": 10000.0,
+      "B_uG": 80,
+      "method": "BISTRO",
+      "hgbs": true,
+      "beta_thermal": 0.05419247327442393,
+      "beta_M1_eff": 0.10838494654884787,
+      "beta_M2_eff": 0.2709623663721197
+    },
+    {
+      "region": "Oph L1689",
+      "ref": "Pattle+21",
+      "n_H2": 8000.0,
+      "B_uG": 65,
+      "method": "BISTRO",
+      "hgbs": true,
+      "beta_thermal": 0.06567229897397646,
+      "beta_M1_eff": 0.13134459794795292,
+      "beta_M2_eff": 0.32836149486988236
+    },
+    {
+      "region": "Oph B core",
+      "ref": "Kirk+06",
+      "n_H2": 20000.0,
+      "B_uG": 120,
+      "method": "DCF",
+      "hgbs": true,
+      "beta_thermal": 0.04817108735504349,
+      "beta_M1_eff": 0.09634217471008698,
+      "beta_M2_eff": 0.24085543677521745
+    },
+    {
+      "region": "Serpens Main",
+      "ref": "Kwon+18",
+      "n_H2": 5000.0,
+      "B_uG": 55,
+      "method": "BISTRO",
+      "hgbs": true,
+      "beta_thermal": 0.05732757503410135,
+      "beta_M1_eff": 0.1146551500682027,
+      "beta_M2_eff": 0.28663787517050676
+    },
+    {
+      "region": "Serpens South",
+      "ref": "Sugitani+11",
+      "n_H2": 3000.0,
+      "B_uG": 35,
+      "method": "NIR pol",
+      "hgbs": true,
+      "beta_thermal": 0.084938407091342,
+      "beta_M1_eff": 0.169876814182684,
+      "beta_M2_eff": 0.42469203545671
+    },
+    {
+      "region": "Aquila W40",
+      "ref": "Koch+22",
+      "n_H2": 2000.0,
+      "B_uG": 25,
+      "method": "DCF",
+      "hgbs": true,
+      "beta_thermal": 0.11098618526602022,
+      "beta_M1_eff": 0.22197237053204044,
+      "beta_M2_eff": 0.5549309263301011
+    },
+    {
+      "region": "CrA filament",
+      "ref": "Palmeirim+13",
+      "n_H2": 800.0,
+      "B_uG": 15,
+      "method": "DCF",
+      "hgbs": true,
+      "beta_thermal": 0.12331798362891136,
+      "beta_M1_eff": 0.24663596725782272,
+      "beta_M2_eff": 0.6165899181445569
+    },
+    {
+      "region": "Musca envelope",
+      "ref": "Planck+16",
+      "n_H2": 300.0,
+      "B_uG": 8,
+      "method": "Planck",
+      "hgbs": true,
+      "beta_thermal": 0.16257741982327176,
+      "beta_M1_eff": 0.3251548396465435,
+      "beta_M2_eff": 0.8128870991163589
+    },
+    {
+      "region": "Polaris diffuse",
+      "ref": "Planck+16",
+      "n_H2": 100.0,
+      "B_uG": 3,
+      "method": "Planck",
+      "hgbs": false,
+      "beta_thermal": 0.3853686988403479,
+      "beta_M1_eff": 0.7707373976806958,
+      "beta_M2_eff": 1.9268434942017396
+    },
+    {
+      "region": "Orion B filament",
+      "ref": "ArXiv2512",
+      "n_H2": 3000.0,
+      "B_uG": 70,
+      "method": "BISTRO",
+      "hgbs": false,
+      "beta_thermal": 0.0212346017728355,
+      "beta_M1_eff": 0.042469203545671,
+      "beta_M2_eff": 0.1061730088641775
+    },
+    {
+      "region": "Orion OMC-1",
+      "ref": "Pattle+17",
+      "n_H2": 100000.0,
+      "B_uG": 500,
+      "method": "BISTRO",
+      "hgbs": false,
+      "beta_thermal": 0.013873273158252526,
+      "beta_M1_eff": 0.027746546316505052,
+      "beta_M2_eff": 0.06936636579126264
+    },
+    {
+      "region": "Orion OMC-4",
+      "ref": "Pattle+17",
+      "n_H2": 5000.0,
+      "B_uG": 80,
+      "method": "BISTRO",
+      "hgbs": false,
+      "beta_thermal": 0.027096236637211966,
+      "beta_M1_eff": 0.05419247327442393,
+      "beta_M2_eff": 0.13548118318605984
+    },
+    {
+      "region": "W3 GMC",
+      "ref": "Kumar+25",
+      "n_H2": 5000.0,
+      "B_uG": 85,
+      "method": "POL-2",
+      "hgbs": false,
+      "beta_thermal": 0.024002202695938626,
+      "beta_M1_eff": 0.04800440539187725,
+      "beta_M2_eff": 0.12001101347969315
+    },
+    {
+      "region": "W3 hub-filament",
+      "ref": "Kumar+25",
+      "n_H2": 10000.0,
+      "B_uG": 120,
+      "method": "POL-2",
+      "hgbs": false,
+      "beta_thermal": 0.024085543677521744,
+      "beta_M1_eff": 0.04817108735504349,
+      "beta_M2_eff": 0.12042771838760873
+    }
+  ]
+}

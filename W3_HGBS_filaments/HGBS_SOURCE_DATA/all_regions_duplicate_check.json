@@ -1,0 +1,58 @@
+{
+  "Orion B": {
+    "needs_correction": false,
+    "duplicates": 0,
+    "n_original": 1844,
+    "n_corrected": 1844,
+    "nn_original": 0.0905914003220514,
+    "nn_corrected": 0.0905914003220514
+  },
+  "Ophiuchus": {
+    "needs_correction": false,
+    "duplicates": 0,
+    "n_original": 513,
+    "n_corrected": 513,
+    "nn_original": 0.08871229274873021,
+    "nn_corrected": 0.08871229274873021
+  },
+  "Taurus": {
+    "needs_correction": false,
+    "duplicates": 0,
+    "n_original": 536,
+    "n_corrected": 536,
+    "nn_original": 0.10587502095564355,
+    "nn_corrected": 0.10587502095564355
+  },
+  "Serpens": {
+    "needs_correction": false,
+    "duplicates": 0,
+    "n_original": 833,
+    "n_corrected": 833,
+    "nn_original": 0.10755937708551004,
+    "nn_corrected": 0.10755937708551004
+  },
+  "CRA": {
+    "needs_correction": false,
+    "duplicates": 0,
+    "n_original": 239,
+    "n_corrected": 239,
+    "nn_original": 0.14809234120940953,
+    "nn_corrected": 0.14809234120940953
+  },
+  "TMC1": {
+    "needs_correction": false,
+    "duplicates": 0,
+    "n_original": 178,
+    "n_corrected": 178,
+    "nn_original": 0.1647030830619926,
+    "nn_corrected": 0.1647030830619926
+  },
+  "IC5146": {
+    "needs_correction": true,
+    "duplicates": 32,
+    "n_original": 174,
+    "n_corrected": 142,
+    "nn_original": 0.005577337083883252,
+    "nn_corrected": 0.027510260945142223
+  }
+}

@@ -1,0 +1,22 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{}%
+\contentsline {subsection}{\numberline {1.1}Filaments as the Sites of Star Formation}{2}{}%
+\contentsline {subsection}{\numberline {1.2}Environmental Dependence of Star Formation}{2}{}%
+\contentsline {subsection}{\numberline {1.3}This Work}{2}{}%
+\contentsline {section}{\numberline {2}Observational Data and Methods}{3}{}%
+\contentsline {subsection}{\numberline {2.1}Sample: 8 HGBS Regions}{3}{}%
+\contentsline {subsection}{\numberline {2.2}Standardized DisPerSE Processing}{3}{}%
+\contentsline {subsection}{\numberline {2.3}Core-Filament Association Analysis}{3}{}%
+\contentsline {section}{\numberline {3}Results}{4}{}%
+\contentsline {subsection}{\numberline {3.1}Environmental Progression}{4}{}%
+\contentsline {subsection}{\numberline {3.2}Core Spacing Along Filaments}{4}{}%
+\contentsline {subsection}{\numberline {3.3}Massive Core Formation at Filament Junctions}{5}{}%
+\contentsline {subsection}{\numberline {3.4}Massive Core Distribution}{7}{}%
+\contentsline {section}{\numberline {4}Discussion}{7}{}%
+\contentsline {subsection}{\numberline {4.1}The 2× vs. 4× Filament Spacing Question}{7}{}%
+\contentsline {subsection}{\numberline {4.2}Environmental Scaling of Star Formation}{8}{}%
+\contentsline {subsection}{\numberline {4.3}The Junction-Origin Mechanism}{8}{}%
+\contentsline {subsection}{\numberline {4.4}Limitations and Caveats}{8}{}%
+\contentsline {subsubsection}{\numberline {4.4.1}Resolution Effects}{8}{}%
+\contentsline {subsubsection}{\numberline {4.4.2}Serpens Region}{8}{}%
+\contentsline {subsection}{\numberline {4.5}Comparison with Previous Work}{8}{}%
+\contentsline {section}{\numberline {5}Conclusions}{8}{}%

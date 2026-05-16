@@ -1,0 +1,105 @@
+{
+  "_comment": "This is a template showing the expected format of analysed campaign results",
+
+  "campaign_type": "CTZM_PERP",
+  "version": "1.0",
+  "date": "2026-05-13",
+
+  "summary": {
+    "n_total": 96,
+    "n_frag": 94,
+    "n_timeout": 2,
+    "n_fail": 0,
+    "n_beading": 94,
+    "n_radial_collapse": 0,
+    "lw_mean_over_all": 3.15,
+    "lw_std_over_all": 0.87,
+    "n_with_lw_measurement": 94
+  },
+
+  "ctzm_stats": {
+    "f1.2_b0.3": {
+      "lw_mean": 5.37,
+      "lw_std": 0.40,
+      "lw_sem": 0.15,
+      "n": 6
+    },
+    "f1.2_b0.5": {
+      "lw_mean": 3.95,
+      "lw_std": 0.45,
+      "lw_sem": 0.18,
+      "n": 6
+    },
+    "f1.3_b1.0": {
+      "lw_mean": 3.17,
+      "lw_std": 0.28,
+      "lw_sem": 0.11,
+      "n": 6
+    }
+  },
+
+  "per_simulation_results": [
+    {
+      "campaign": "CTZM_PERP",
+      "run_id": "CTZMP_f1p2_b0p3_m1p0_s0",
+      "f": 1.2,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 0,
+      "theta_deg": 90.0,
+      "gamma": 1.0,
+      "perturb_ampl": 0.0001,
+
+      "outcome": "FRAG",
+      "t_frag": 1.475,
+      "dt_min": 1.9e-05,
+      "wall_s": 2845.3,
+      "output_dir": "/data/referee_response_may2026/ctzm_perp/CTZMP_f1p2_b0p3_m1p0_s0",
+
+      "analysis": {
+        "classification": "BEADING_STABLE",
+        "n_hdf5": 45,
+        "n_beading_snaps": 42,
+        "lw_mean": 5.42,
+        "lw_std": 0.12
+      },
+
+      "lw_mean": 5.42,
+      "lw_std": 0.12,
+      "classification": "BEADING_STABLE",
+
+      "lambda_W_series": [
+        {"t": 1.5, "n_peaks": 6, "lambda_W": 5.38, "filename": "file0.athdf"},
+        {"t": 1.52, "n_peaks": 6, "lambda_W": 5.45, "filename": "file1.athdf"},
+        {"t": 1.54, "n_peaks": 6, "lambda_W": 5.41, "filename": "file2.athdf"}
+      ]
+    }
+  ],
+
+  "figures": {
+    "classifications": "figures/ctzm_perp_classifications.png",
+    "lw_distribution": "figures/ctzm_perp_lw_distribution.png",
+    "lw_vs_f": "figures/ctzm_perp_lw_vs_f.png"
+  },
+
+  "_notes_for_claude": [
+    "When you receive these results, focus on:",
+    "1. summary.lw_mean_over_all — does it match expectations?",
+    "2. ctzm_stats — check R² values for linear fits (not shown here, but in figures)",
+    "3. n_beading — should be high (>90%) for smooth evolution confirmation",
+    "4. per_simulation_results — each has lw_mean and lw_std for individual sims",
+    "",
+    "Key questions to answer:",
+    "- CTZM_PERP: Is R² > 0.9 for smooth λ/W(f) evolution?",
+    "- EOS_SENSITIVITY: Does λ/W vary by <5% across γ?",
+    "- TURB_AMPLITUDE: Is λ/W constant across amplitudes?",
+    "",
+    "If results confirm smooth evolution (R² > 0.9):",
+    "  → Update paper Section 3.2.1 with geometry-independence claim",
+    "  → Strengthen extrapolation validation statement",
+    "",
+    "If results show discontinuity or geometry dependence:",
+    "  → Report this as a major finding",
+    "  → Discuss implications for HGBS comparison"
+  ]
+}

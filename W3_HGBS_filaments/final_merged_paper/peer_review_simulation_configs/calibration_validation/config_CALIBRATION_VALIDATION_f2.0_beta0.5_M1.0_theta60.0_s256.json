@@ -1,0 +1,67 @@
+{
+  "job": {
+    "problem_id": "filament_fragmentation",
+    "output_dir": "outputs/CALIBRATION_VALIDATION/"
+  },
+  "mesh": {
+    "nx1": 256,
+    "nx2": 64,
+    "nx3": 64,
+    "x1min": 0.0,
+    "x1max": 8.0,
+    "x2min": -1.0,
+    "x2max": 1.0,
+    "x3min": -1.0,
+    "x3max": 1.0
+  },
+  "hydro": {
+    "gamma": 1.0,
+    "cs0": 1.0
+  },
+  "field": {
+    "b1_initial": 0.7071067811865476,
+    "b2_initial": 1.224744871391589,
+    "b3_initial": 0.0
+  },
+  "gravity": {
+    "four_pi_G": 39.47841760435743
+  },
+  "filament": {
+    "line_mass_fraction": 2.0,
+    "W_core": 0.3,
+    "profile": "gaussian",
+    "perturbation_amplitude": 0.0001
+  },
+  "time": {
+    "tlim": 6.0,
+    "dt_initial": 0.0001,
+    "dt_min": 1e-12,
+    "cfl_number": 0.3
+  },
+  "output": {
+    "basename": "CALIBRATION_VALIDATION_f2.0_beta0.5_M1.0_theta60.0_s256",
+    "file_type": "hst",
+    "dt": 0.1,
+    "hst_dt": 0.01,
+    "variables": [
+      "rho",
+      "vx1",
+      "vx2",
+      "vx3",
+      "B1"
+    ]
+  },
+  "random_seed": 256,
+  "metadata": {
+    "campaign": "CALIBRATION_VALIDATION",
+    "domain_type": "standard",
+    "f": 2.0,
+    "beta": 0.5,
+    "M": 1.0,
+    "theta": 60.0,
+    "gamma": 1.0,
+    "seed": 256,
+    "Lx_lambdaJ": 8.0,
+    "resolution": "256x64x64"
+  }
+}

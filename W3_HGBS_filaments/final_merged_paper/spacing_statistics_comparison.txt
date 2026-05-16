@@ -1,0 +1,20 @@
+STATISTICAL ANALYSIS: PAIRWISE MEDIAN VS NEAREST-NEIGHBOUR SPACING
+================================================================================
+
+Weighted mean (pairwise): 0.279 ± 0.009 pc
+Weighted mean (NN est.):  0.208 ± 0.003 pc
+
+λ/W ratios:
+  Pairwise median: 2.79±0.09
+  Nearest-neighbor: 2.08±0.03
+
+
+   Region    N λ_pw (pc) σ_pw (pc)  Corr λ_nn (pc) σ_nn (pc) Ratio (λ/W)_pw (λ/W)_nn
+  Orion B 1844     0.313     0.047 1.235     0.253     0.016 1.235      3.1      2.5
+   Aquila  749     0.346     0.047 1.176     0.294     0.015 1.176      3.5      2.9
+  Perseus  816     0.248     0.040 1.182     0.210     0.011 1.182      2.5      2.1
+   Taurus  536     0.198     0.040 1.155     0.171     0.008 1.155      2.0      1.7
+Ophiuchus  513     0.206     0.053 1.152     0.179     0.008 1.152      2.1      1.8
+  Serpens  194     0.331     0.097 1.088     0.304     0.008 1.088      3.3      3.0
+     TMC1  178     0.195     0.056 1.083     0.180     0.005 1.083      1.9      1.8
+      CRA  239     0.248     0.072 1.102     0.225     0.007 1.102      2.5      2.3

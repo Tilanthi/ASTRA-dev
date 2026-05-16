@@ -1,0 +1,14 @@
+{
+  "sim_id": "RTV_f1p2_b0p5_a1e0_s42",
+  "campaign": "RTV",
+  "status": "TIMEOUT",
+  "t_frag": 0.320023,
+  "dt_min": 0.000101752,
+  "wall_s": 7202.6,
+  "f": 1.2,
+  "beta": 0.5,
+  "theta": 0.0,
+  "perturb": 1.0,
+  "seed": 42,
+  "Lx": 8.0
+}

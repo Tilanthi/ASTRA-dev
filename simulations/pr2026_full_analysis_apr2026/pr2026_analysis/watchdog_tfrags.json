@@ -1,0 +1,392 @@
+{
+  "turbphys_f1.5_b0.3_M1.0_s42": {
+    "t_frag_hst": 0.390004,
+    "t_frag_log": 0.39926724540664144,
+    "log_dt_at_kill": 1.3796064223029737e-09,
+    "killed_at": "2026-04-26T13:38:52Z"
+  },
+  "turbphys_f1.5_b0.3_M1.0_s43": {
+    "t_frag_hst": 0.350058,
+    "t_frag_log": 0.35279925356639885,
+    "log_dt_at_kill": 3.4062532700335066e-19,
+    "killed_at": "2026-04-26T13:38:52Z"
+  },
+  "turbphys_f1.5_b0.3_M2.0_s42": {
+    "t_frag_hst": 0.27,
+    "t_frag_log": 0.2779839098022307,
+    "log_dt_at_kill": 1.3511174783056941e-09,
+    "killed_at": "2026-04-26T13:38:52Z"
+  },
+  "turbphys_f1.5_b0.3_M3.0_s42": {
+    "t_frag_hst": 0.210002,
+    "t_frag_log": 0.21758707183566736,
+    "log_dt_at_kill": 1.120850303036026e-10,
+    "killed_at": "2026-04-26T13:38:52Z"
+  },
+  "turbphys_f1.5_b1.0_M1.0_s42": {
+    "t_frag_hst": 0.390005,
+    "t_frag_log": 0.3907614608864648,
+    "log_dt_at_kill": 9.094252298576267e-16,
+    "killed_at": "2026-04-26T13:38:52Z"
+  },
+  "turbphys_f1.5_b1.0_M1.0_s43": {
+    "t_frag_hst": 0.340005,
+    "t_frag_log": 0.34793251740779896,
+    "log_dt_at_kill": 8.949536709678425e-12,
+    "killed_at": "2026-04-26T13:38:52Z"
+  },
+  "turbphys_f1.5_b1.0_M2.0_s42": {
+    "t_frag_hst": 0.240101,
+    "t_frag_log": 0.24597224149230112,
+    "log_dt_at_kill": 1.9599848585976723e-12,
+    "killed_at": "2026-04-26T13:38:53Z"
+  },
+  "turbphys_f1.5_b1.0_M3.0_s42": {
+    "t_frag_hst": 0.210004,
+    "t_frag_log": 0.21548439846209586,
+    "log_dt_at_kill": 3.256153085525858e-10,
+    "killed_at": "2026-04-26T13:38:53Z"
+  },
+  "turbphys_f1.5_b1.0_M3.0_s43": {
+    "t_frag_hst": 0.230235,
+    "t_frag_log": 0.2325332459672852,
+    "log_dt_at_kill": 3.335996901909145e-12,
+    "killed_at": "2026-04-26T13:38:53Z"
+  },
+  "turbphys_f2.0_b0.3_M1.0_s42": {
+    "t_frag_hst": 0.27007,
+    "t_frag_log": 0.27297154439822713,
+    "log_dt_at_kill": 1.1504117140470953e-14,
+    "killed_at": "2026-04-26T13:38:53Z"
+  },
+  "turbphys_f2.0_b0.3_M1.0_s43": {
+    "t_frag_hst": 0.300151,
+    "t_frag_log": 0.3096800132710195,
+    "log_dt_at_kill": 3.9470706669319467e-13,
+    "killed_at": "2026-04-26T13:38:53Z"
+  },
+  "turbphys_f2.0_b0.3_M2.0_s42": {
+    "t_frag_hst": 0.220103,
+    "t_frag_log": 0.22308891917411344,
+    "log_dt_at_kill": 3.6195370081940495e-13,
+    "killed_at": "2026-04-26T13:38:53Z"
+  },
+  "turbphys_f2.0_b0.3_M2.0_s43": {
+    "t_frag_hst": 0.250027,
+    "t_frag_log": 0.25148630492772334,
+    "log_dt_at_kill": 1.1285111392155006e-15,
+    "killed_at": "2026-04-26T13:38:53Z"
+  },
+  "turbphys_f2.0_b1.0_M1.0_s42": {
+    "t_frag_hst": 0.270112,
+    "t_frag_log": 0.2730620090926665,
+    "log_dt_at_kill": 4.774790798250105e-15,
+    "killed_at": "2026-04-26T13:38:53Z"
+  },
+  "turbphys_f2.0_b1.0_M1.0_s43": {
+    "t_frag_hst": 0.330088,
+    "t_frag_log": 0.3300880828468089,
+    "log_dt_at_kill": 9.995697132432474e-19,
+    "killed_at": "2026-04-26T13:38:54Z"
+  },
+  "turbphys_f2.0_b1.0_M2.0_s43": {
+    "t_frag_hst": 0.34,
+    "t_frag_log": 0.34822816187963795,
+    "log_dt_at_kill": 2.343529230660161e-09,
+    "killed_at": "2026-04-26T13:38:54Z"
+  },
+  "turbphys_f2.0_b1.0_M3.0_s42": {
+    "t_frag_hst": 0.190011,
+    "t_frag_log": 0.1997940961956807,
+    "log_dt_at_kill": 9.730795816436774e-12,
+    "killed_at": "2026-04-26T13:38:54Z"
+  },
+  "turbphys_f2.0_b1.0_M3.0_s43": {
+    "t_frag_hst": 0.220055,
+    "t_frag_log": 0.22807431251276322,
+    "log_dt_at_kill": 2.792313415677949e-09,
+    "killed_at": "2026-04-26T13:38:54Z"
+  },
+  "turbphys_f2.5_b0.3_M1.0_s42": {
+    "t_frag_hst": 0.250112,
+    "t_frag_log": 0.2580491345551172,
+    "log_dt_at_kill": 9.666521576176624e-10,
+    "killed_at": "2026-04-26T13:38:54Z"
+  },
+  "turbphys_f2.5_b0.3_M1.0_s43": {
+    "t_frag_hst": 0.280045,
+    "t_frag_log": 0.28913905136583273,
+    "log_dt_at_kill": 3.863767190535776e-22,
+    "killed_at": "2026-04-26T13:38:54Z"
+  },
+  "turbphys_f2.5_b0.3_M2.0_s42": {
+    "t_frag_hst": 0.210004,
+    "t_frag_log": 0.21516156433408207,
+    "log_dt_at_kill": 5.94420717612057e-10,
+    "killed_at": "2026-04-26T13:38:54Z"
+  },
+  "turbphys_f2.5_b0.3_M2.0_s43": {
+    "t_frag_hst": 0.240013,
+    "t_frag_log": 0.24163678049815798,
+    "log_dt_at_kill": 1.0379484727313686e-21,
+    "killed_at": "2026-04-26T13:38:54Z"
+  },
+  "turbphys_f2.5_b0.3_M3.0_s42": {
+    "t_frag_hst": 0.170011,
+    "t_frag_log": 0.17636341713448409,
+    "log_dt_at_kill": 1.5966930260557288e-10,
+    "killed_at": "2026-04-26T13:38:55Z"
+  },
+  "turbphys_f2.5_b0.3_M3.0_s43": {
+    "t_frag_hst": 0.210001,
+    "t_frag_log": 0.2171455778964933,
+    "log_dt_at_kill": 8.122500021673422e-15,
+    "killed_at": "2026-04-26T13:38:55Z"
+  },
+  "turbphys_f2.5_b1.0_M1.0_s42": {
+    "t_frag_hst": 0.260174,
+    "t_frag_log": 0.2636734420032396,
+    "log_dt_at_kill": 5.942124544926455e-09,
+    "killed_at": "2026-04-26T13:38:55Z"
+  },
+  "turbphys_f2.5_b1.0_M1.0_s43": {
+    "t_frag_hst": 0.270002,
+    "t_frag_log": 0.2758188627663576,
+    "log_dt_at_kill": 5.3205039059927324e-11,
+    "killed_at": "2026-04-26T13:38:55Z"
+  },
+  "turbphys_f2.5_b1.0_M2.0_s43": {
+    "t_frag_hst": 0.39,
+    "t_frag_log": 0.39270757604787365,
+    "log_dt_at_kill": 1.8052695111318988e-11,
+    "killed_at": "2026-04-26T13:38:55Z"
+  },
+  "turbphys_f2.5_b1.0_M3.0_s43": {
+    "t_frag_hst": 0.210004,
+    "t_frag_log": 0.21222890908658407,
+    "log_dt_at_kill": 2.742120729502982e-10,
+    "killed_at": "2026-04-26T13:38:55Z"
+  },
+  "turbsynth_f1.5_b0.3_M1.0_s42": {
+    "t_frag_hst": 1.26011,
+    "t_frag_log": 1.2662641698489108,
+    "log_dt_at_kill": 2.0358907785187678e-19,
+    "killed_at": "2026-04-26T13:38:55Z"
+  },
+  "turbsynth_f1.5_b0.3_M1.0_s43": {
+    "t_frag_hst": 1.29001,
+    "t_frag_log": 1.293589224968683,
+    "log_dt_at_kill": 1.0089502676038381e-21,
+    "killed_at": "2026-04-26T13:38:55Z"
+  },
+  "turbsynth_f1.5_b0.3_M2.0_s43": {
+    "t_frag_hst": 1.21005,
+    "t_frag_log": 1.2174031979048012,
+    "log_dt_at_kill": 2.0849033071959625e-10,
+    "killed_at": "2026-04-26T13:38:55Z"
+  },
+  "turbsynth_f1.5_b0.3_M3.0_s43": {
+    "t_frag_hst": 1.15001,
+    "t_frag_log": 1.1570394031333446,
+    "log_dt_at_kill": 1.5611027915268016e-09,
+    "killed_at": "2026-04-26T13:38:56Z"
+  },
+  "turbsynth_f1.5_b1.0_M1.0_s42": {
+    "t_frag_hst": 0.850066,
+    "t_frag_log": 0.8538479792137391,
+    "log_dt_at_kill": 3.2319097300717206e-12,
+    "killed_at": "2026-04-26T13:38:56Z"
+  },
+  "turbsynth_f1.5_b1.0_M1.0_s43": {
+    "t_frag_hst": 0.850013,
+    "t_frag_log": 0.8508869997815895,
+    "log_dt_at_kill": 2.9104586501108714e-10,
+    "killed_at": "2026-04-26T13:38:56Z"
+  },
+  "turbsynth_f1.5_b1.0_M2.0_s43": {
+    "t_frag_hst": 0.800036,
+    "t_frag_log": 0.8078012955444668,
+    "log_dt_at_kill": 1.575819117734405e-19,
+    "killed_at": "2026-04-26T13:38:56Z"
+  },
+  "turbsynth_f1.5_b1.0_M3.0_s42": {
+    "t_frag_hst": 0.790041,
+    "t_frag_log": 0.7968265978921523,
+    "log_dt_at_kill": 2.2077833867736152e-15,
+    "killed_at": "2026-04-26T13:38:56Z"
+  },
+  "turbsynth_f1.5_b1.0_M3.0_s43": {
+    "t_frag_hst": 0.790019,
+    "t_frag_log": 0.7929346397892733,
+    "log_dt_at_kill": 8.619431598199377e-21,
+    "killed_at": "2026-04-26T13:38:56Z"
+  },
+  "turbsynth_f2.0_b0.3_M1.0_s42": {
+    "t_frag_hst": 1.04,
+    "t_frag_log": 1.048587093208982,
+    "log_dt_at_kill": 3.1922386733328055e-12,
+    "killed_at": "2026-04-26T13:38:56Z"
+  },
+  "turbsynth_f2.0_b0.3_M1.0_s43": {
+    "t_frag_hst": 1.05002,
+    "t_frag_log": 1.0531293208693355,
+    "log_dt_at_kill": 1.125967450039754e-20,
+    "killed_at": "2026-04-26T13:38:56Z"
+  },
+  "turbsynth_f2.0_b0.3_M2.0_s42": {
+    "t_frag_hst": 0.950051,
+    "t_frag_log": 0.959790285399966,
+    "log_dt_at_kill": 5.5196398278373163e-17,
+    "killed_at": "2026-04-26T13:38:57Z"
+  },
+  "turbsynth_f2.0_b0.3_M2.0_s43": {
+    "t_frag_hst": 0.980141,
+    "t_frag_log": 0.9843545299853127,
+    "log_dt_at_kill": 5.8087084704675016e-18,
+    "killed_at": "2026-04-26T13:38:57Z"
+  },
+  "turbsynth_f2.0_b0.3_M3.0_s42": {
+    "t_frag_hst": 0.910044,
+    "t_frag_log": 0.9117473885393534,
+    "log_dt_at_kill": 9.567784533062025e-18,
+    "killed_at": "2026-04-26T13:38:57Z"
+  },
+  "turbsynth_f2.0_b0.3_M3.0_s43": {
+    "t_frag_hst": 0.950088,
+    "t_frag_log": 0.9523097407113742,
+    "log_dt_at_kill": 4.619757670454104e-15,
+    "killed_at": "2026-04-26T13:38:57Z"
+  },
+  "turbsynth_f2.0_b1.0_M1.0_s42": {
+    "t_frag_hst": 0.750003,
+    "t_frag_log": 0.7548612176263562,
+    "log_dt_at_kill": 8.024529831618472e-18,
+    "killed_at": "2026-04-26T13:38:57Z"
+  },
+  "turbsynth_f2.0_b1.0_M1.0_s43": {
+    "t_frag_hst": 0.740027,
+    "t_frag_log": 0.7437846779572669,
+    "log_dt_at_kill": 2.943060201994874e-10,
+    "killed_at": "2026-04-26T13:38:57Z"
+  },
+  "turbsynth_f2.0_b1.0_M2.0_s42": {
+    "t_frag_hst": 0.710035,
+    "t_frag_log": 0.7192039997294102,
+    "log_dt_at_kill": 2.4718197200210542e-17,
+    "killed_at": "2026-04-26T13:38:57Z"
+  },
+  "turbsynth_f2.0_b1.0_M2.0_s43": {
+    "t_frag_hst": 0.740018,
+    "t_frag_log": 0.745928794132626,
+    "log_dt_at_kill": 7.713854357418329e-10,
+    "killed_at": "2026-04-26T13:38:57Z"
+  },
+  "turbsynth_f2.0_b1.0_M3.0_s42": {
+    "t_frag_hst": 0.700061,
+    "t_frag_log": 0.7074859816094116,
+    "log_dt_at_kill": 3.9395196907982333e-19,
+    "killed_at": "2026-04-26T13:38:58Z"
+  },
+  "turbsynth_f2.0_b1.0_M3.0_s43": {
+    "t_frag_hst": 0.710029,
+    "t_frag_log": 0.7104959051045611,
+    "log_dt_at_kill": 5.350610424193719e-14,
+    "killed_at": "2026-04-26T13:38:58Z"
+  },
+  "turbsynth_f2.5_b0.3_M1.0_s42": {
+    "t_frag_hst": 0.870002,
+    "t_frag_log": 0.8743252478563185,
+    "log_dt_at_kill": 2.2039414674072445e-16,
+    "killed_at": "2026-04-26T13:38:58Z"
+  },
+  "turbsynth_f2.5_b0.3_M1.0_s43": {
+    "t_frag_hst": 0.870129,
+    "t_frag_log": 0.8702188465996156,
+    "log_dt_at_kill": 5.6512480768657614e-11,
+    "killed_at": "2026-04-26T13:38:58Z"
+  },
+  "turbsynth_f2.5_b0.3_M2.0_s42": {
+    "t_frag_hst": 0.820036,
+    "t_frag_log": 0.8207743139109728,
+    "log_dt_at_kill": 9.978238738518471e-14,
+    "killed_at": "2026-04-26T13:38:58Z"
+  },
+  "turbsynth_f2.5_b0.3_M2.0_s43": {
+    "t_frag_hst": 0.83001,
+    "t_frag_log": 0.832103186078882,
+    "log_dt_at_kill": 6.388800226591529e-16,
+    "killed_at": "2026-04-26T13:38:58Z"
+  },
+  "turbsynth_f2.5_b0.3_M3.0_s42": {
+    "t_frag_hst": 0.790043,
+    "t_frag_log": 0.795861334724362,
+    "log_dt_at_kill": 2.1699739120693563e-11,
+    "killed_at": "2026-04-26T13:38:58Z"
+  },
+  "turbsynth_f2.5_b0.3_M3.0_s43": {
+    "t_frag_hst": 0.800065,
+    "t_frag_log": 0.807766888884555,
+    "log_dt_at_kill": 6.369526022408146e-15,
+    "killed_at": "2026-04-26T13:38:58Z"
+  },
+  "turbsynth_f2.5_b1.0_M1.0_s42": {
+    "t_frag_hst": 0.670016,
+    "t_frag_log": 0.6725340962129855,
+    "log_dt_at_kill": 2.4028213255140403e-12,
+    "killed_at": "2026-04-26T13:38:59Z"
+  },
+  "turbsynth_f2.5_b1.0_M1.0_s43": {
+    "t_frag_hst": 0.66001,
+    "t_frag_log": 0.6654233909603904,
+    "log_dt_at_kill": 1.628055128796322e-10,
+    "killed_at": "2026-04-26T13:38:59Z"
+  },
+  "turbsynth_f2.5_b1.0_M2.0_s42": {
+    "t_frag_hst": 0.64016,
+    "t_frag_log": 0.6475823332657897,
+    "log_dt_at_kill": 3.618844727276493e-12,
+    "killed_at": "2026-04-26T13:38:59Z"
+  },
+  "turbsynth_f2.5_b1.0_M2.0_s43": {
+    "t_frag_hst": 0.640048,
+    "t_frag_log": 0.645485651351569,
+    "log_dt_at_kill": 9.944492874506198e-18,
+    "killed_at": "2026-04-26T13:38:59Z"
+  },
+  "turbsynth_f2.5_b1.0_M3.0_s42": {
+    "t_frag_hst": 0.640039,
+    "t_frag_log": 0.6459706855612016,
+    "log_dt_at_kill": 1.233355870334527e-19,
+    "killed_at": "2026-04-26T13:38:59Z"
+  },
+  "turbsynth_f2.5_b1.0_M3.0_s43": {
+    "t_frag_hst": 0.63007,
+    "t_frag_log": 0.6358038544736265,
+    "log_dt_at_kill": 1.836513054777406e-11,
+    "killed_at": "2026-04-26T13:38:59Z"
+  },
+  "eos_f1.1_g1.0_s42": {
+    "t_frag_hst": 0.970006,
+    "t_frag_log": 0.979324929417868,
+    "log_dt_at_kill": 1.5478062202830308e-18,
+    "killed_at": "2026-04-26T13:38:59Z"
+  },
+  "eos_f1.1_g1.0_s43": {
+    "t_frag_hst": 0.980033,
+    "t_frag_log": 0.984738552779722,
+    "log_dt_at_kill": 5.008067137167303e-11,
+    "killed_at": "2026-04-26T13:38:59Z"
+  },
+  "eos_f1.2_g1.0_s42": {
+    "t_frag_hst": 0.920053,
+    "t_frag_log": 0.9265249894001113,
+    "log_dt_at_kill": 7.075430173675238e-15,
+    "killed_at": "2026-04-26T14:25:17Z"
+  },
+  "eos_f1.2_g1.0_s43": {
+    "t_frag_hst": 0.910038,
+    "t_frag_log": 0.9108315320343988,
+    "log_dt_at_kill": 1.7652417284086922e-12,
+    "killed_at": "2026-04-26T14:28:33Z"
+  }
+}

@@ -1,0 +1,74 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: filament_spacing_streamlined.aux
+The style file: mnras.bst
+Database file #1: references_complete.bib
+Repeated entry---line 463 of file references_complete.bib
+ : @article{Andre2010
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 472 of file references_complete.bib
+ : @article{Arzoumanian2011
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 634 of file references_complete.bib
+ : @article{Konyves2015
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 661 of file references_complete.bib
+ : @article{Inutsuka1992
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 715 of file references_complete.bib
+ : @article{Stone2020
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 796 of file references_complete.bib
+ : @article{Ostriker1964
+ :                      ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Arzouman2011"
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 15 entries,
+            2881 wiz_defined-function locations,
+            840 strings with 9881 characters,
+and the built_in function-call counts, 8042 in all, are:
+= -- 696
+> -- 573
+< -- 34
++ -- 249
+- -- 94
+* -- 904
+:= -- 1229
+add.period$ -- 0
+call.type$ -- 15
+change.case$ -- 30
+chr.to.int$ -- 15
+cite$ -- 15
+duplicate$ -- 401
+empty$ -- 367
+format.name$ -- 136
+if$ -- 1461
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 15
+newline$ -- 58
+num.names$ -- 104
+pop$ -- 78
+preamble$ -- 1
+purify$ -- 60
+quote$ -- 0
+skip$ -- 289
+stack$ -- 0
+substring$ -- 514
+swap$ -- 230
+text.length$ -- 62
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 135
+warning$ -- 0
+while$ -- 114
+width$ -- 0
+write$ -- 162
+(There were 6 error messages)

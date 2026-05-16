@@ -1,0 +1,61 @@
+{
+  "IC5146": {
+    "n_cores_total": 0,
+    "n_cores_associated": 0,
+    "n_cores_in_filaments": 0,
+    "n_spacings": 0,
+    "error": "No spacings computed"
+  },
+  "Orion B": {
+    "n_cores_total": 0,
+    "n_cores_associated": 0,
+    "n_cores_in_filaments": 0,
+    "n_spacings": 0,
+    "error": "No spacings computed"
+  },
+  "Aquila": {
+    "n_cores_total": 0,
+    "n_cores_associated": 0,
+    "n_cores_in_filaments": 0,
+    "n_spacings": 0,
+    "error": "No spacings computed"
+  },
+  "Perseus": {
+    "error": "[Errno 2] No such file or directory: '/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/W3_HGBS_filaments/HGBS_SOURCE_DATA/HGBS_PERSEUS/HGBS_perseus_observed_core_catalog.txt'"
+  },
+  "Taurus": {
+    "n_cores_total": 536,
+    "n_cores_associated": 0,
+    "n_cores_in_filaments": 0,
+    "n_spacings": 0,
+    "error": "No spacings computed"
+  },
+  "Ophiuchus": {
+    "n_cores_total": 0,
+    "n_cores_associated": 0,
+    "n_cores_in_filaments": 0,
+    "n_spacings": 0,
+    "error": "No spacings computed"
+  },
+  "CRA": {
+    "n_cores_total": 239,
+    "n_cores_associated": 0,
+    "n_cores_in_filaments": 0,
+    "n_spacings": 0,
+    "error": "No spacings computed"
+  },
+  "Serpens": {
+    "n_cores_total": 0,
+    "n_cores_associated": 0,
+    "n_cores_in_filaments": 0,
+    "n_spacings": 0,
+    "error": "No spacings computed"
+  },
+  "TMC1": {
+    "n_cores_total": 0,
+    "n_cores_associated": 0,
+    "n_cores_in_filaments": 0,
+    "n_spacings": 0,
+    "error": "No spacings computed"
+  }
+}

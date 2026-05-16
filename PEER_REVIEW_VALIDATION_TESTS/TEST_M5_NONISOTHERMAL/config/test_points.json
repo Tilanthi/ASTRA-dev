@@ -1,0 +1,69 @@
+{
+  "campaign": "TEST_M5_NONISOTHERMAL",
+  "purpose": "Non-isothermal equation of state effects",
+  "description": "Test isothermal vs. mildly polytropic EOS (gamma_eff = 0.8, 0.9) for 5 representative HGBS points to establish whether non-isothermal effects significantly affect fragmentation predictions.",
+  "test_points": [
+    {
+      "id": "N1",
+      "f": 1.5,
+      "beta": 0.5,
+      "mach": 2.0,
+      "regime": "Typical HGBS conditions"
+    },
+    {
+      "id": "N2",
+      "f": 1.6,
+      "beta": 0.7,
+      "mach": 2.0,
+      "regime": "Moderate plasma beta"
+    },
+    {
+      "id": "N3",
+      "f": 1.8,
+      "beta": 0.3,
+      "mach": 3.0,
+      "regime": "Higher Mach number"
+    },
+    {
+      "id": "N4",
+      "f": 1.7,
+      "beta": 0.5,
+      "mach": 2.0,
+      "regime": "Mid-range parameters"
+    },
+    {
+      "id": "N5",
+      "f": 1.9,
+      "beta": 0.7,
+      "mach": 2.0,
+      "regime": "Upper supercriticality range"
+    }
+  ],
+  "eos_types": [
+    {
+      "name": "isothermal",
+      "gamma": 1.0,
+      "description": "Standard isothermal EOS (baseline)"
+    },
+    {
+      "name": "gamma_0.9",
+      "gamma": 0.9,
+      "description": "Mildly cooling: represents realistic HGBS temperature gradient"
+    },
+    {
+      "name": "gamma_0.8",
+      "gamma": 0.8,
+      "description": "Moderately cooling: tests sensitivity to cooling strength"
+    }
+  ],
+  "n_sims_total": 15,
+  "resolution_config": {
+    "nx": 256,
+    "L1": 8.0,
+    "L2": 2.0,
+    "L3": 2.0,
+    "tlim": 4.0,
+    "four_pi_G": 39.478418,
+    "cfl_number": 0.3
+  }
+}

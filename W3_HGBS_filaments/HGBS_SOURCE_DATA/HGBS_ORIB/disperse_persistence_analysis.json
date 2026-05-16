@@ -1,0 +1,68 @@
+{
+  "persistence_statistics": {
+    "min": 1.0,
+    "max": 410.0,
+    "median": 129.0,
+    "mean": 153.2969808640909,
+    "std": 115.6188612496271,
+    "percentiles": {
+      "10": 16.0,
+      "25": 52.0,
+      "50": 129.0,
+      "75": 241.0,
+      "90": 332.0,
+      "95": 370.0,
+      "99": 402.0
+    }
+  },
+  "threshold_analysis": [
+    {
+      "threshold": 1,
+      "pixels": 52101,
+      "features": 24766
+    },
+    {
+      "threshold": 5,
+      "pixels": 50496,
+      "features": 23956
+    },
+    {
+      "threshold": 10,
+      "pixels": 48566,
+      "features": 23095
+    },
+    {
+      "threshold": 20,
+      "pixels": 46180,
+      "features": 21894
+    },
+    {
+      "threshold": 50,
+      "pixels": 39639,
+      "features": 18699
+    },
+    {
+      "threshold": 100,
+      "pixels": 30621,
+      "features": 14652
+    },
+    {
+      "threshold": 150,
+      "pixels": 23315,
+      "features": 11263
+    }
+  ],
+  "recommended_threshold": 20,
+  "calculated_parameters": {
+    "NH2_bg_min": 6.508123674015433e+20,
+    "rms_min": 2.6029451247876047e+20,
+    "persistence_threshold": 2.6029451247876047e+20,
+    "robustness_threshold": 9.762185511023149e+20,
+    "assembly_angle": 50.0,
+    "n_pix_smoothing": 12,
+    "min_feature_length": 60,
+    "hpbw_pixels": 6.00000000000024,
+    "pix_size_pc": 0.005817758708457334,
+    "hpbw_pc": 0.0349065522507454
+  }
+}

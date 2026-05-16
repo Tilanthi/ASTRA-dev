@@ -1,0 +1,50 @@
+{
+  "baseline": {
+    "pm_nn_ratio": 8.333333333333334,
+    "pm_over_L3": 1.0,
+    "pm_value": 1.6666666666666667,
+    "nn_value": 0.2,
+    "description": "Regular uniform beading (baseline)"
+  },
+  "irregular_beading": {
+    "pm_nn_ratio": 4.901960784313725,
+    "pm_over_L3": 0.5,
+    "pm_value": 0.8333333333333334,
+    "nn_value": 0.17,
+    "description": "Irregular beading (Poisson-distributed positions)"
+  },
+  "position_scatter": {
+    "pm_nn_ratio": 12.916666666666668,
+    "pm_over_L3": 0.9299999999999999,
+    "pm_value": 1.55,
+    "nn_value": 0.12,
+    "description": "Position scatter (\u03c3 = 0.05-0.10 pc from spine)"
+  },
+  "hierarchical": {
+    "pm_nn_ratio": 11.904761904761903,
+    "pm_over_L3": 1.5,
+    "pm_value": 2.5,
+    "nn_value": 0.21000000000000002,
+    "description": "Hierarchical structure (fiber bundles)"
+  },
+  "combined": {
+    "pm_nn_ratio": 10.854341736694677,
+    "pm_over_L3": 0.6975,
+    "pm_value": 1.1625,
+    "nn_value": 0.10710000000000001,
+    "description": "Combined: irregular + scatter + hierarchical"
+  },
+  "real_hgbs": {
+    "pm_nn_ratio": 1.272727272727273,
+    "pm_over_L3": 0.168,
+    "pm_value": 0.28,
+    "nn_value": 0.22,
+    "description": "Real HGBS filaments (observed)"
+  },
+  "summary": {
+    "baseline_pm_nn": 8.333333333333334,
+    "observed_pm_nn": 1.272727272727273,
+    "discrepancy_factor": 6.5476190476190474,
+    "primary_explanation": "PM/(L/3) = 0.17 (not 1.0) indicates irregular, clustered distributions"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "weighted_mean": 2.1838104118104122,
+  "unweighted_mean": 2.19725,
+  "median": 1.9969999999999999,
+  "min": 1.733,
+  "max": 3.062,
+  "range": 1.3289999999999997,
+  "std_dev": 0.5913061107976701,
+  "cv_percent": 26.911189477650254,
+  "max_loo_sensitivity": 0.183,
+  "loo_sensitivity": {
+    "exclude_Taurus": 0.013,
+    "exclude_OrionB": -0.161,
+    "exclude_Aquila": -0.047,
+    "exclude_Perseus": 0.183
+  }
+}

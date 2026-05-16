@@ -1,0 +1,72 @@
+\begin{thebibliography}{}
+\makeatletter
+\relax
+\def\mn@urlcharsother{\let\do\@makeother \do\$\do\&\do\#\do\^\do\_\do\%\do\~}
+\def\mn@doi{\begingroup\mn@urlcharsother \@ifnextchar [ {\mn@doi@}
+  {\mn@doi@[]}}
+\def\mn@doi@[#1]#2{\def\@tempa{#1}\ifx\@tempa\@empty \href
+  {http://dx.doi.org/#2} {doi:#2}\else \href {http://dx.doi.org/#2} {#1}\fi
+  \endgroup}
+\def\mn@eprint#1#2{\mn@eprint@#1:#2::\@nil}
+\def\mn@eprint@arXiv#1{\href {http://arxiv.org/abs/#1} {{\tt arXiv:#1}}}
+\def\mn@eprint@dblp#1{\href {http://dblp.uni-trier.de/rec/bibtex/#1.xml}
+  {dblp:#1}}
+\def\mn@eprint@#1:#2:#3:#4\@nil{\def\@tempa {#1}\def\@tempb {#2}\def\@tempc
+  {#3}\ifx \@tempc \@empty \let \@tempc \@tempb \let \@tempb \@tempa \fi \ifx
+  \@tempb \@empty \def\@tempb {arXiv}\fi \@ifundefined
+  {mn@eprint@\@tempb}{\@tempb:\@tempc}{\expandafter \expandafter \csname
+  mn@eprint@\@tempb\endcsname \expandafter{\@tempc}}}
+
+\bibitem[\protect\citeauthoryear{{Andr{\'e}}, {Men'shchikov}, {Bontemps},
+  {Motte}, {Schneider}  \& {Arzoumanian}}{{Andr{\'e}} et~al.}{2010}]{Andre2010}
+{Andr{\'e}} P.,  {Men'shchikov} A.,  {Bontemps} S.,  {Motte} F.,  {Schneider}
+  N.,   {Arzoumanian} D.,  2010, \mn@doi [Astronomy and Astrophysics]
+  {10.1051/0004-6361/201014666}, 518, L102
+
+\bibitem[\protect\citeauthoryear{{Andr{\'e}} et~al.,}{{Andr{\'e}}
+  et~al.}{2014}]{Andre2014}
+{Andr{\'e}} P.,  et~al., 2014, \mn@doi [Publications of the Astronomical
+  Society of the Pacific] {10.1086/677936}, 126, 721
+
+\bibitem[\protect\citeauthoryear{{Andr{\'e}} et~al.,}{{Andr{\'e}}
+  et~al.}{2016}]{Andre2016}
+{Andr{\'e}} P.,  et~al., 2016, \mn@doi [Astronomy and Astrophysics]
+  {10.1051/0004-6361/201527593}, 587, A44
+
+\bibitem[\protect\citeauthoryear{{Arzoumanian}, {Andr{\'e}}, {Men'shchikov},
+  {K{\"o}nyves}, {Schneider}, {Motte}  \& {Bontemps}}{{Arzoumanian}
+  et~al.}{2011}]{Arzoumanian2011}
+{Arzoumanian} D.,  {Andr{\'e}} P.,  {Men'shchikov} A.,  {K{\"o}nyves} V.,
+  {Schneider} N.,  {Motte} F.,   {Bontemps} S.,  2011, \mn@doi [Astronomy and
+  Astrophysics] {10.1051/0004-6361/201015777}, 529, L6
+
+\bibitem[\protect\citeauthoryear{{Arzoumanian} et~al.,}{{Arzoumanian}
+  et~al.}{2019}]{Arzoumanian2019}
+{Arzoumanian} D.,  et~al., 2019, \mn@doi [Astronomy and Astrophysics]
+  {10.1051/0004-6361/201834927}, 622, L12
+
+\bibitem[\protect\citeauthoryear{{Fischera} \& {Martin}}{{Fischera} \&
+  {Martin}}{2012}]{Fischera2012}
+{Fischera} J.,  {Martin} P.~G.,  2012, \mn@doi [Astronomy and Astrophysics]
+  {10.1051/0004-6361/201118243}, 542, A77
+
+\bibitem[\protect\citeauthoryear{{Hennebelle}}{{Hennebelle}}{2013}]{Hennebelle2013}
+{Hennebelle} P.,  2013, \mn@doi [Astronomy and Astrophysics]
+  {10.1051/0004-6361/201321203}, 556, A153
+
+\bibitem[\protect\citeauthoryear{{Inutsuka} \& {Miyama}}{{Inutsuka} \&
+  {Miyama}}{1992}]{Inutsuka1992}
+{Inutsuka} S.-I.,  {Miyama} S.~M.,  1992, \mn@doi [Astrophysical Journal]
+  {10.1086/171167}, 388, 392
+
+\bibitem[\protect\citeauthoryear{{Inutsuka} \& {Miyama}}{{Inutsuka} \&
+  {Miyama}}{1997}]{Inutsuka1997}
+{Inutsuka} S.-I.,  {Miyama} S.~M.,  1997, \mn@doi [Astrophysical Journal]
+  {10.1086/178049}, 480, 681
+
+\bibitem[\protect\citeauthoryear{{Ostriker}}{{Ostriker}}{1964}]{Ostriker1964}
+{Ostriker} J.,  1964, \mn@doi [Astrophysical Journal] {10.1086/148005}, 140,
+  1056
+
+\makeatother
+\end{thebibliography}

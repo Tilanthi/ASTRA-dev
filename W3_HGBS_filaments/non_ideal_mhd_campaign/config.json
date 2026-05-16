@@ -1,0 +1,74 @@
+{
+  "campaign_name": "non_ideal_mhd_ambipolar_diffusion",
+  "purpose": "Peer review response - direct measurement of fragmentation spacing in supercritical filaments using non-ideal MHD with ambipolar diffusion",
+  "created": "2026-04-26",
+  "estimated_duration_hours": 18,
+  "estimated_cpu_hours": 3600,
+  "total_simulations": 48,
+  "server_requirements": {
+    "min_cpus": 180,
+    "recommended_cpus": 200,
+    "ram_per_cpu_gb": 2,
+    "disk_space_gb": 50
+  },
+  "athena_config": {
+    "problem_generator": "filament_ambipolar",
+    "binary_name": "athena_pg",
+    "domain_size_lambda_j": [8.0, 2.0, 2.0],
+    "resolution": [256, 64, 64],
+    "meshblock_size": 32,
+    "eos": "isothermal",
+    "gamma": 1.0,
+    "self_gravity": "fft",
+    "four_pi_g": 39.47841760435743,
+    "boundary_conditions": "periodic",
+    "non_ideal_mhd": true,
+    "ambipolar_diffusion": true,
+    "ohmic_resistivity": false,
+    "hall_effect": false,
+    "turbulence_modes": 8,
+    "turbulence_transverse_zero": true,
+    "output_cadence_tj": 0.05,
+    "hdf5_enabled": true,
+    "hdf5_timestamps": [0.5, 1.0, 1.5, 2.0, 2.5],
+    "fragmentation_timestep_threshold": 1e-8,
+    "max_wall_time_seconds": 43200,
+    "cfl_number": 0.35
+  },
+  "parameter_grid": {
+    "line_mass_fraction": [1.5, 2.0, 2.5],
+    "plasma_beta": [0.3, 1.0],
+    "mach_number": [1.0],
+    "ambipolar_number_Am": [0.0, 0.5, 1.0, 2.0],
+    "random_seeds": [42, 137]
+  },
+  "simulation_naming": "nonideal_{sim_id:03d}",
+  "output_directory": "/data/non_ideal_mhd_runs/",
+  "ray_config": {
+    "num_cpus": 200,
+    "dashboard_port": 8265,
+    "max_concurrent_sims": 180,
+    "checkpoint_interval_seconds": 600,
+    "retry_attempts": 3,
+    "simulation_timeout_seconds": 43200
+  },
+  "analysis": {
+    "primary_metric": "lambda_W_detection",
+    "secondary_metrics": [
+      "radial_collapse_timescale",
+      "longitudinal_growth_timescale",
+      "Am_threshold_for_longitudinal",
+      "lambda_W_vs_f"
+    ],
+    "comparison_baseline": {
+      "ideal_mhd_result": "radial collapse only, no longitudinal structure",
+      "near_critical_calibration": "lambda_W = 3.70 ± 0.40",
+      "hgbs_observation": "lambda_W = 2.84 ± 0.12"
+    },
+    "success_criteria": {
+      "longitudinal_detection": "At least 50% of simulations with Am >= 1.0 show detectable peaks",
+      "lambda_W_measurement": "Direct measurement of lambda/W with uncertainty < 20%",
+      "timescale_separation": "t_longitudinal < t_radial for successful cases"
+    }
+  }
+}

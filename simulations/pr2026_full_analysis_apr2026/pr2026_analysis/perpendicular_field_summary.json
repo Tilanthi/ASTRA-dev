@@ -1,0 +1,495 @@
+{
+  "campaign": "perpendicular_field",
+  "total_sims": 24,
+  "n_frag": 17,
+  "n_ok": 0,
+  "n_failed": 7,
+  "frag_rate": 0.7083333333333334,
+  "t_frag_mean": 0.4023979411764706,
+  "t_frag_std": 0.045050809318930754,
+  "t_frag_min": 0.330017,
+  "t_frag_max": 0.500044,
+  "sim_results": [
+    {
+      "sim_id": "perp_f2.0_b1.0_M2.0_s43",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 107.4614188671112,
+      "t_frag": 0.380023,
+      "dt_min": 8.7469e-21,
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.0_b1.0_M2.0_s42",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 589.5740931034088,
+      "t_frag": 0.390061,
+      "dt_min": 7.85876e-21,
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.0_b0.3_M2.0_s43",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 740.4295790195465,
+      "t_frag": 0.420075,
+      "dt_min": 6.19994e-21,
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.5_b1.0_M1.0_s42",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 770.4884197711945,
+      "t_frag": 0.370056,
+      "dt_min": 1.20197e-20,
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.5_b1.0_M2.0_s42",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 288.3801181316376,
+      "t_frag": 0.360034,
+      "dt_min": 4.9435e-21,
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.5_b0.3_M2.0_s42",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 1192.6837787628174,
+      "t_frag": 0.390115,
+      "dt_min": 2.44227e-21,
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.0_b0.3_M1.0_s42",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 1252.6390810012817,
+      "t_frag": 0.430052,
+      "dt_min": 6.02412e-21,
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.5_b0.3_M1.0_s42",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 1780.0704064369202,
+      "t_frag": 0.430062,
+      "dt_min": 1.89409e-21,
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.0_b0.3_M2.0_s42",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 2156.893886089325,
+      "t_frag": 0.44008,
+      "dt_min": 3.3323e-21,
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f3.0_b1.0_M1.0_s42",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 92.44243121147156,
+      "t_frag": 0.330017,
+      "dt_min": 1.91998e-20,
+      "f": 3.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f3.0_b1.0_M1.0_s43",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 92.40600800514221,
+      "t_frag": 0.330105,
+      "dt_min": 7.94681e-21,
+      "f": 3.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f3.0_b0.3_M1.0_s42",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 1614.4193320274353,
+      "t_frag": 0.370003,
+      "dt_min": 3.32937e-21,
+      "f": 3.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.0_b1.0_M1.0_s42",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 2895.424495458603,
+      "t_frag": 0.470023,
+      "dt_min": 1.28879e-20,
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.5_b0.3_M2.0_s43",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 3407.664181947708,
+      "t_frag": 0.440003,
+      "dt_min": 1.61995e-20,
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f3.0_b0.3_M2.0_s42",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 2548.6906752586365,
+      "t_frag": 0.410004,
+      "dt_min": 1.57844e-20,
+      "f": 3.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f3.0_b0.3_M2.0_s43",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 2909.6942551136017,
+      "t_frag": 0.380008,
+      "dt_min": 5.3554e-21,
+      "f": 3.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.5_b0.3_M1.0_s43",
+      "campaign": "perpendicular_field",
+      "status": "FAILED",
+      "elapsed": 5785.424887418747,
+      "t_frag": null,
+      "dt_min": null,
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f3.0_b0.3_M1.0_s43",
+      "campaign": "perpendicular_field",
+      "status": "FAILED",
+      "elapsed": 4594.255384683609,
+      "t_frag": null,
+      "dt_min": null,
+      "f": 3.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f3.0_b1.0_M2.0_s43",
+      "campaign": "perpendicular_field",
+      "status": "FAILED",
+      "elapsed": 3147.378253698349,
+      "t_frag": null,
+      "dt_min": null,
+      "f": 3.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.0_b0.3_M1.0_s43",
+      "campaign": "perpendicular_field",
+      "status": "FRAG",
+      "elapsed": 6388.540006399155,
+      "t_frag": 0.500044,
+      "dt_min": 1.57161e-21,
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.0_b1.0_M1.0_s43",
+      "campaign": "perpendicular_field",
+      "status": "FAILED",
+      "elapsed": 11521.636227369308,
+      "t_frag": null,
+      "dt_min": null,
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.5_b1.0_M1.0_s43",
+      "campaign": "perpendicular_field",
+      "status": "FAILED",
+      "elapsed": 10933.805463314056,
+      "t_frag": null,
+      "dt_min": null,
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f2.5_b1.0_M2.0_s43",
+      "campaign": "perpendicular_field",
+      "status": "FAILED",
+      "elapsed": 10650.042783498764,
+      "t_frag": null,
+      "dt_min": null,
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "perp_f3.0_b1.0_M2.0_s42",
+      "campaign": "perpendicular_field",
+      "status": "FAILED",
+      "elapsed": 9187.397256851196,
+      "t_frag": null,
+      "dt_min": null,
+      "f": 3.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "perpendicular",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    }
+  ],
+  "analysis_time": "2026-04-26T02:09:27Z"
+}

@@ -1,0 +1,1 @@
+*/5 * * * * cd /Users/gjw255/astrodata/SWARM/ASTRA-dev-main && python3 auto_migrate_memory.py >> /tmp/auto_migrate.log 2>&1

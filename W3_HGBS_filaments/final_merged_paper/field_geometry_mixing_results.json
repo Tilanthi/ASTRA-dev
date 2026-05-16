@@ -1,0 +1,26 @@
+{
+  "lambda_perp": 1.25,
+  "lambda_long": 3.7,
+  "lambda_obs": 2.8,
+  "f_long_required": 0.6326530612244897,
+  "planck_long_fraction": 0.1,
+  "discrepancy_factor": 6.3265306122448965,
+  "confidence_interval_95": [
+    0.5358533201005442,
+    0.7294528023484352
+  ],
+  "sensitivity_tests": [
+    [
+      2.17,
+      "NN weighted mean"
+    ],
+    [
+      2.2,
+      "NN unweighted mean"
+    ],
+    [
+      2.0,
+      "NN median"
+    ]
+  ]
+}

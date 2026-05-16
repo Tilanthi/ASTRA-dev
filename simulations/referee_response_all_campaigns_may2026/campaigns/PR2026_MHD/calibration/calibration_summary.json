@@ -1,0 +1,815 @@
+{
+  "campaign": "calibration",
+  "total_sims": 40,
+  "n_frag": 38,
+  "n_ok": 0,
+  "n_failed": 2,
+  "frag_rate": 0.95,
+  "t_frag_mean": 1.2618716315789476,
+  "t_frag_std": 0.25943886454082526,
+  "t_frag_min": 0.93,
+  "t_frag_max": 1.66004,
+  "sim_results": [
+    {
+      "sim_id": "calib_f1.00_b1.0_M2.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 288.40739941596985,
+      "t_frag": 0.970021,
+      "dt_min": 2.28927e-21,
+      "f": 1.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.05_b0.3_M1.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 755.496217250824,
+      "t_frag": 1.57004,
+      "dt_min": 4.67867e-23,
+      "f": 1.05,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.05_b0.3_M2.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 800.5959718227386,
+      "t_frag": 1.47002,
+      "dt_min": 6.51046e-22,
+      "f": 1.05,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.05_b0.3_M2.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 1026.774739265442,
+      "t_frag": 1.51002,
+      "dt_min": 3.33357e-22,
+      "f": 1.05,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.00_b0.3_M2.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 1086.426173210144,
+      "t_frag": 1.5,
+      "dt_min": 4.45804e-21,
+      "f": 1.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.05_b0.3_M1.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 1358.2662601470947,
+      "t_frag": 1.57,
+      "dt_min": 1.56684e-20,
+      "f": 1.05,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.00_b0.3_M2.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 1478.7894668579102,
+      "t_frag": 1.54005,
+      "dt_min": 3.33977e-21,
+      "f": 1.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.10_b0.3_M1.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 469.10226917266846,
+      "t_frag": 1.54004,
+      "dt_min": 5.16451e-22,
+      "f": 1.1,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.10_b0.3_M1.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 604.7482075691223,
+      "t_frag": 1.51001,
+      "dt_min": 2.25335e-21,
+      "f": 1.1,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.10_b0.3_M2.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 499.162579536438,
+      "t_frag": 1.42004,
+      "dt_min": 1.73115e-22,
+      "f": 1.1,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.05_b1.0_M2.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 1960.6504576206207,
+      "t_frag": 0.980021,
+      "dt_min": 4.1951e-22,
+      "f": 1.05,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.00_b1.0_M1.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 3633.496301174164,
+      "t_frag": 1.05007,
+      "dt_min": 5.83184e-22,
+      "f": 1.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.00_b0.3_M1.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 3844.017655611038,
+      "t_frag": 1.66004,
+      "dt_min": 2.02128e-22,
+      "f": 1.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.10_b1.0_M1.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 2261.7729659080505,
+      "t_frag": 1.00004,
+      "dt_min": 7.94095e-22,
+      "f": 1.1,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.00_b1.0_M2.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 4627.688901424408,
+      "t_frag": 1.03006,
+      "dt_min": 1.05046e-21,
+      "f": 1.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.15_b0.3_M1.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 333.59317207336426,
+      "t_frag": 1.47007,
+      "dt_min": 2.58796e-21,
+      "f": 1.15,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.15_b0.3_M2.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 860.7124469280243,
+      "t_frag": 1.42001,
+      "dt_min": 9.20225e-22,
+      "f": 1.15,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.10_b1.0_M1.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 3724.034279823303,
+      "t_frag": 1.02008,
+      "dt_min": 4.63564e-22,
+      "f": 1.1,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.15_b1.0_M1.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 439.14341950416565,
+      "t_frag": 0.960007,
+      "dt_min": 2.29089e-21,
+      "f": 1.15,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.15_b0.3_M1.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 2517.9018647670746,
+      "t_frag": 1.54007,
+      "dt_min": 1.14713e-22,
+      "f": 1.15,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.10_b0.3_M2.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 5291.076816558838,
+      "t_frag": 1.54011,
+      "dt_min": 1.98944e-22,
+      "f": 1.1,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.15_b1.0_M2.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 845.6319751739502,
+      "t_frag": 0.940009,
+      "dt_min": 3.72918e-22,
+      "f": 1.15,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.05_b1.0_M2.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 6737.702841043472,
+      "t_frag": 1.03001,
+      "dt_min": 3.15992e-21,
+      "f": 1.05,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.20_b0.3_M1.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 740.3745079040527,
+      "t_frag": 1.48008,
+      "dt_min": 3.27785e-22,
+      "f": 1.2,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.15_b1.0_M1.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 4191.1829516887665,
+      "t_frag": 1.0,
+      "dt_min": 1.32215e-21,
+      "f": 1.15,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.00_b0.3_M1.0_s42",
+      "campaign": "calibration",
+      "status": "FAILED",
+      "elapsed": 10246.101514816284,
+      "t_frag": null,
+      "dt_min": null,
+      "f": 1.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.20_b0.3_M2.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 3151.0620863437653,
+      "t_frag": 1.47002,
+      "dt_min": 1.61171e-21,
+      "f": 1.2,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.20_b0.3_M2.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 3377.082013130188,
+      "t_frag": 1.44005,
+      "dt_min": 9.65133e-23,
+      "f": 1.2,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.10_b1.0_M2.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 8922.963564634323,
+      "t_frag": 1.01001,
+      "dt_min": 2.95538e-21,
+      "f": 1.1,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.20_b1.0_M2.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 1523.501790523529,
+      "t_frag": 0.93,
+      "dt_min": 3.89566e-23,
+      "f": 1.2,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.20_b1.0_M2.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 2246.268212556839,
+      "t_frag": 0.940011,
+      "dt_min": 7.07729e-22,
+      "f": 1.2,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.20_b1.0_M1.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 3317.0706148147583,
+      "t_frag": 0.980043,
+      "dt_min": 1.25655e-21,
+      "f": 1.2,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.15_b0.3_M2.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 9072.012076854706,
+      "t_frag": 1.55004,
+      "dt_min": 5.85825e-22,
+      "f": 1.15,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.20_b0.3_M1.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 7822.374303340912,
+      "t_frag": 1.59,
+      "dt_min": 8.81379e-22,
+      "f": 1.2,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.00_b1.0_M1.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 14692.489732503891,
+      "t_frag": 1.12,
+      "dt_min": 1.84712e-21,
+      "f": 1.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.15_b1.0_M2.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 8695.7070581913,
+      "t_frag": 1.00001,
+      "dt_min": 8.9281e-22,
+      "f": 1.15,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.05_b1.0_M1.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 15294.996659755707,
+      "t_frag": 1.11,
+      "dt_min": 2.68091e-20,
+      "f": 1.05,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.10_b1.0_M2.0_s43",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 12958.131463050842,
+      "t_frag": 1.05001,
+      "dt_min": 3.75838e-21,
+      "f": 1.1,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.20_b1.0_M1.0_s42",
+      "campaign": "calibration",
+      "status": "FRAG",
+      "elapsed": 8362.052922964096,
+      "t_frag": 1.04001,
+      "dt_min": 3.35585e-21,
+      "f": 1.2,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "calib_f1.05_b1.0_M1.0_s42",
+      "campaign": "calibration",
+      "status": "FAILED",
+      "elapsed": 17791.48034286499,
+      "t_frag": null,
+      "dt_min": null,
+      "f": 1.05,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "gamma": 1.0,
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    }
+  ],
+  "analysis_time": "2026-04-25T16:38:12Z"
+}

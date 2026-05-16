@@ -1,0 +1,7 @@
+{
+  "column_density": "HGBS_craNS_hires_column_density_map.fits",
+  "temperature": "HGBS_craNS_dust_temperature_map.fits",
+  "skeleton": "HGBS_craNS_skeleton_map_thresh30.fits",
+  "catalog_derived": "HGBS_craNS_derived_core_catalog.txt",
+  "catalog_observed": "HGBS_craNS_observed_core_catalog.txt"
+}

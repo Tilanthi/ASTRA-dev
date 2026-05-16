@@ -1,0 +1,97 @@
+{
+  "campaign": "TEST_M2_EQUILIBRIUM",
+  "purpose": "Equilibrium vs. non-equilibrium initial conditions test",
+  "description": "Compare profile-based IC (DTC standard) with uniform IC for 10 representative parameter points to establish whether DTC results are robust to initial condition choice.",
+  "test_points": [
+    {
+      "id": "E1",
+      "f": 1.4,
+      "beta": 0.3,
+      "mach": 1.0,
+      "regime": "Near-critical, M=1 stability ridge"
+    },
+    {
+      "id": "E2",
+      "f": 1.4,
+      "beta": 0.7,
+      "mach": 2.0,
+      "regime": "Low-f, M=2, higher beta"
+    },
+    {
+      "id": "E3",
+      "f": 1.6,
+      "beta": 0.5,
+      "mach": 2.0,
+      "regime": "Central transition zone"
+    },
+    {
+      "id": "E4",
+      "f": 1.8,
+      "beta": 0.5,
+      "mach": 2.0,
+      "regime": "Mid-f, M=2"
+    },
+    {
+      "id": "E5",
+      "f": 2.0,
+      "beta": 0.7,
+      "mach": 3.0,
+      "regime": "High-f, M=3"
+    },
+    {
+      "id": "E6",
+      "f": 1.5,
+      "beta": 0.5,
+      "mach": 1.0,
+      "regime": "Low-f edge, M=1"
+    },
+    {
+      "id": "E7",
+      "f": 1.7,
+      "beta": 0.7,
+      "mach": 3.0,
+      "regime": "Mid-f, higher M"
+    },
+    {
+      "id": "E8",
+      "f": 1.9,
+      "beta": 0.3,
+      "mach": 2.0,
+      "regime": "High-f, low-beta"
+    },
+    {
+      "id": "E9",
+      "f": 1.6,
+      "beta": 0.9,
+      "mach": 1.0,
+      "regime": "Higher beta, M=1"
+    },
+    {
+      "id": "E10",
+      "f": 1.8,
+      "beta": 0.5,
+      "mach": 1.0,
+      "regime": "Mid-f, M=1"
+    }
+  ],
+  "ic_types": [
+    {
+      "name": "profile",
+      "description": "DTC standard: rho(r) = rho_0 / [1 + (r/W)^2], uniform B_0"
+    },
+    {
+      "name": "uniform",
+      "description": "Uniform rho = rho_0, uniform B = B_0, with small random perturbations"
+    }
+  ],
+  "n_sims_total": 20,
+  "resolution_config": {
+    "nx": 256,
+    "L1": 8.0,
+    "L2": 2.0,
+    "L3": 2.0,
+    "tlim": 4.0,
+    "four_pi_G": 39.478418,
+    "cfl_number": 0.3
+  }
+}

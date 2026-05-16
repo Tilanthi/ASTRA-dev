@@ -1,0 +1,31 @@
+# O2: NN Migration Bias Analysis Results
+
+True NN spacing: 0.4006 pc
+Protostellar fraction: 0.3
+Migration amplitude: 0.1 pc
+
+random:
+  mean_bias: -6.081672729964324
+  std_bias: 1.1391336159809247
+  median_bias: -6.058842613450868
+  p16: -7.222010432261774
+  p84: -4.929878282938303
+  mean_nn_migrated: 0.3762153574013144
+
+inward:
+  mean_bias: -6.0847189226151865
+  std_bias: 1.145267328441267
+  median_bias: -6.064704460627144
+  p16: -7.206950804642919
+  p84: -4.9227859701427645
+  mean_nn_migrated: 0.3762031550496524
+
+outward:
+  mean_bias: -6.098319618253042
+  std_bias: 1.1537553326702628
+  median_bias: -6.057320638678981
+  p16: -7.244480329277141
+  p84: -4.953660858267893
+  mean_nn_migrated: 0.376148673770875
+
+Recommended systematic uncertainty: ±5%

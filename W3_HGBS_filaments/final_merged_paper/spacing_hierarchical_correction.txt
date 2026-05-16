@@ -1,0 +1,16 @@
+
+REVISED SPACING ANALYSIS - HIERARCHICAL CORRECTION
+=================================================
+
+Weighted mean (pairwise median): 0.279 ± 0.009 pc
+Weighted mean (hierarchical corr.): 0.240 ± 0.026 pc
+
+λ/W ratios:
+  Pairwise: 2.79
+  Corrected: 2.40 ± 0.26
+  Classical: 4.00
+
+Key findings:
+1. Pairwise median likely UNDERESTIMATES true spacing for fiber bundles
+2. Correction based on Orion B calibration reduces discrepancy
+3. Remaining 40% discrepancy may be explained by projection/physics

@@ -1,0 +1,14 @@
+{
+  "sim_id": "DLIT_L24_s137",
+  "campaign": "DLIT",
+  "status": "FRAG",
+  "t_frag": 0.690015,
+  "dt_min": 2.19049e-05,
+  "wall_s": 1051.2,
+  "f": 1.5,
+  "beta": 1.0,
+  "theta": 0.0,
+  "perturb": 0.0001,
+  "seed": 137,
+  "Lx": 24
+}

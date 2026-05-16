@@ -1,0 +1,1384 @@
+{
+  "campaign": "physical_turbulence",
+  "total_sims": 72,
+  "n_frag": 61,
+  "n_ok": 11,
+  "n_failed": 0,
+  "frag_rate": 0.8472222222222222,
+  "t_frag_mean": 0.5834901147540984,
+  "t_frag_std": 0.3216628334148896,
+  "t_frag_min": 0.170011,
+  "t_frag_max": 1.29001,
+  "sim_results": [
+    {
+      "sim_id": "turbsynth_f1.5_b0.3_M1.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 1.26011,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f1.5_b0.3_M1.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.390004,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f1.5_b0.3_M1.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 1.29001,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f1.5_b0.3_M1.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.350058,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f1.5_b0.3_M2.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": null,
+      "status": "OK",
+      "source": "reconstructed",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f1.5_b0.3_M2.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.27,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f1.5_b0.3_M2.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 1.21005,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f1.5_b0.3_M2.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": null,
+      "status": "OK",
+      "source": "reconstructed",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f1.5_b0.3_M3.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 3.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": null,
+      "status": "OK",
+      "source": "reconstructed",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f1.5_b0.3_M3.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 3.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.210002,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f1.5_b0.3_M3.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 3.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 1.15001,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f1.5_b0.3_M3.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 3.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": null,
+      "status": "OK",
+      "source": "reconstructed",
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f1.5_b1.0_M1.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.850066,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f1.5_b1.0_M1.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.390005,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f1.5_b1.0_M1.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.850013,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f1.5_b1.0_M1.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.340005,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f1.5_b1.0_M2.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": null,
+      "status": "OK",
+      "source": "reconstructed",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f1.5_b1.0_M2.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.240101,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f1.5_b1.0_M2.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.800036,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f1.5_b1.0_M2.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": null,
+      "status": "OK",
+      "source": "reconstructed",
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f1.5_b1.0_M3.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 3.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.790041,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f1.5_b1.0_M3.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 3.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.210004,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f1.5_b1.0_M3.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 3.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.790019,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f1.5_b1.0_M3.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 1.5,
+      "beta": 1.0,
+      "mach": 3.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.230235,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.0_b0.3_M1.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 1.04,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.0_b0.3_M1.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.27007,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.0_b0.3_M1.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 1.05002,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.0_b0.3_M1.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.300151,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.0_b0.3_M2.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.950051,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.0_b0.3_M2.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.220103,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.0_b0.3_M2.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.980141,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.0_b0.3_M2.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.250027,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.0_b0.3_M3.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 3.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.910044,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.0_b0.3_M3.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 3.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": null,
+      "status": "OK",
+      "source": "reconstructed",
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.0_b0.3_M3.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 3.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.950088,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.0_b0.3_M3.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 0.3,
+      "mach": 3.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": null,
+      "status": "OK",
+      "source": "reconstructed",
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.0_b1.0_M1.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.750003,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.0_b1.0_M1.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.270112,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.0_b1.0_M1.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.740027,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.0_b1.0_M1.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.330088,
+      "status": "FRAG",
+      "source": "hst_direct",
+      "dt_min": 4.17491e-23,
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.0_b1.0_M2.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.710035,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.0_b1.0_M2.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": null,
+      "status": "OK",
+      "source": "reconstructed",
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.0_b1.0_M2.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.740018,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.0_b1.0_M2.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.34,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.0_b1.0_M3.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 3.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.700061,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.0_b1.0_M3.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 3.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.190011,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.0_b1.0_M3.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 3.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.710029,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.0_b1.0_M3.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.0,
+      "beta": 1.0,
+      "mach": 3.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.220055,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.5_b0.3_M1.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.870002,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.5_b0.3_M1.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.250112,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.5_b0.3_M1.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.870129,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.5_b0.3_M1.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.280045,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.5_b0.3_M2.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.820036,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.5_b0.3_M2.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.210004,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.5_b0.3_M2.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.83001,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.5_b0.3_M2.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.240013,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.5_b0.3_M3.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 3.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.790043,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.5_b0.3_M3.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 3.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.170011,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.5_b0.3_M3.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 3.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.800065,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.5_b0.3_M3.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 0.3,
+      "mach": 3.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.210001,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.5_b1.0_M1.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.670016,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.5_b1.0_M1.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.260174,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.5_b1.0_M1.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.66001,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.5_b1.0_M1.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 1.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.270002,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.5_b1.0_M2.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.64016,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.5_b1.0_M2.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": null,
+      "status": "OK",
+      "source": "reconstructed",
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.5_b1.0_M2.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.640048,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.5_b1.0_M2.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 2.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.39,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.5_b1.0_M3.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 3.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.640039,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.5_b1.0_M3.0_s42",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 3.0,
+      "seed": 42,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": null,
+      "status": "OK",
+      "source": "reconstructed",
+      "lambda_W_result": {
+        "status": "error: `x` must be a 1-D array",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbsynth_f2.5_b1.0_M3.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 3.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 0.0001,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.63007,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    },
+    {
+      "sim_id": "turbphys_f2.5_b1.0_M3.0_s43",
+      "campaign": "physical_turbulence",
+      "f": 2.5,
+      "beta": 1.0,
+      "mach": 3.0,
+      "seed": 43,
+      "bfield": "longitudinal",
+      "perturb": 1.0,
+      "domain_x": 8.0,
+      "gamma": 1.0,
+      "t_frag": 0.210004,
+      "status": "FRAG",
+      "source": "watchdog",
+      "lambda_W_result": {
+        "status": "no_hdf5",
+        "lambda_W": null
+      }
+    }
+  ],
+  "analysis_time": "2026-04-26T13:27:00Z"
+}

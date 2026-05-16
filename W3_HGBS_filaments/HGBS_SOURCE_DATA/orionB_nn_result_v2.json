@@ -1,0 +1,15 @@
+{
+  "region": "Orion B",
+  "n_cores_total": 1870,
+  "n_cores_associated": 927,
+  "n_spacings": 700,
+  "nn_median_pc": 0.1835794989482077,
+  "nn_mean_pc": 0.2831861711028253,
+  "nn_std_pc": 0.32433995161350265,
+  "nn_min_pc": 0.034805947781950675,
+  "nn_max_pc": 2.6069432901524134,
+  "lambda_over_W": 1.8357949894820769,
+  "association_threshold_px": 20,
+  "clustering_threshold_px": 50,
+  "skeleton_threshold": 50
+}

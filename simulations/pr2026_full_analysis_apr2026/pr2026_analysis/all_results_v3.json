@@ -1,0 +1,2400 @@
+[
+  {
+    "sim_id": "BRIDGE_GRID_f1.1_beta0.3_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.7
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.1_beta0.3_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.1
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.1_beta1.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.1
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.1_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7201.0
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.1_beta5.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.2
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.1_beta5.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.8
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.2_beta0.3_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7201.0
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.2_beta0.3_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7201.0
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.2_beta1.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7201.8
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.2_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.8
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.2_beta5.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7201.1
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.2_beta5.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.1
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.3_beta0.3_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.3
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.3_beta0.3_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.9
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.3_beta1.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.2
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.3_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.2
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.3_beta5.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7203.0
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.3_beta5.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7201.1
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.4_beta0.3_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7203.6
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.4_beta0.3_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7203.5
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.4_beta1.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.5
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.4_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.7
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.4_beta5.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7203.4
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.4_beta5.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.8
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.5_beta0.3_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.7
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.5_beta0.3_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.8
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.5_beta1.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.7
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.5_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.7
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.5_beta5.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7201.1
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.5_beta5.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.8
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.6_beta0.3_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.8
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.6_beta0.3_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.7
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.6_beta1.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.8
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.6_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.7
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.6_beta5.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.6
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.6_beta5.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7201.0
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.8_beta0.3_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7203.4
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.8_beta0.3_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.7
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.8_beta1.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.5
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.8_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.0
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.8_beta5.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.1
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f1.8_beta5.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.5
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f2.0_beta0.3_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.3
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f2.0_beta0.3_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.5
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f2.0_beta1.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7203.0
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f2.0_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7201.0
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f2.0_beta5.0_M1.0_theta90.0_s137",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7200.1
+  },
+  {
+    "sim_id": "BRIDGE_GRID_f2.0_beta5.0_M1.0_theta90.0_s42",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 7202.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M1.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.700007,
+    "recovered": true,
+    "reason": "stale_hst",
+    "last_dt": 1.1625e-05,
+    "hst_age_s": 1476.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M1.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.690077,
+    "recovered": true,
+    "reason": "hst_dt_threshold"
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M1.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.710212,
+    "recovered": true,
+    "reason": "stale_hst",
+    "last_dt": 0.000191506,
+    "hst_age_s": 1517.4
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M1.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.500003,
+    "recovered": true,
+    "reason": "hst_dt_threshold"
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M1.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.510003,
+    "recovered": true,
+    "reason": "stale_hst",
+    "last_dt": 1.36115e-05,
+    "hst_age_s": 1393.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M1.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.510004,
+    "recovered": true,
+    "reason": "stale_hst",
+    "last_dt": 1.29731e-05,
+    "hst_age_s": 1098.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M1.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.53,
+    "recovered": true,
+    "reason": "stale_hst",
+    "last_dt": 1.38131e-05,
+    "hst_age_s": 573.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M1.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.460198,
+    "recovered": true,
+    "reason": "hst_dt_threshold"
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.450001,
+    "recovered": true,
+    "reason": "hst_dt_threshold"
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M2.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.720011,
+    "recovered": true,
+    "reason": "stale_hst",
+    "last_dt": 1.40253e-05,
+    "hst_age_s": 530.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M2.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.710002,
+    "recovered": true,
+    "reason": "stale_hst",
+    "last_dt": 9.82204e-06,
+    "hst_age_s": 670.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M2.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.710005,
+    "recovered": true,
+    "reason": "stale_hst",
+    "last_dt": 9.46306e-06,
+    "hst_age_s": 1097.8
+  },
+  {
+    "outcome": "FRAG",
+    "t_frag": 0.470022,
+    "wall_s": 664.7,
+    "campaign": "CALIBRATION_VALIDATION",
+    "domain_type": "standard",
+    "f": 1.5,
+    "beta": 0.5,
+    "M": 2.0,
+    "theta": 60.0,
+    "seed": 137,
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M2.0_theta60.0_s137"
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M2.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.51002,
+    "recovered": true,
+    "reason": "stale_hst",
+    "last_dt": 0.000101346,
+    "hst_age_s": 876.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M2.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.510124,
+    "recovered": true,
+    "reason": "stale_hst",
+    "last_dt": 5.40833e-05,
+    "hst_age_s": 1667.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M2.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.440061,
+    "wall_s": 320.4
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M2.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.410032,
+    "wall_s": 216.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta0.5_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.410018,
+    "wall_s": 216.3
+  },
+  {
+    "outcome": "FRAG",
+    "t_frag": 0.68,
+    "wall_s": 660.7,
+    "campaign": "CALIBRATION_VALIDATION",
+    "domain_type": "standard",
+    "f": 1.5,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 30.0,
+    "seed": 137,
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M1.0_theta30.0_s137"
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M1.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.670115,
+    "wall_s": 264.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M1.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.65008,
+    "wall_s": 216.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M1.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.490013,
+    "wall_s": 256.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M1.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.490013,
+    "wall_s": 248.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M1.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.500013,
+    "wall_s": 352.4
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M1.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.410168,
+    "wall_s": 168.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M1.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.410076,
+    "wall_s": 164.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.410169,
+    "wall_s": 168.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M2.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.660014,
+    "wall_s": 256.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M2.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.640273,
+    "wall_s": 1021.4
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M2.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.650094,
+    "wall_s": 380.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M2.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.490039,
+    "wall_s": 480.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M2.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.49002,
+    "wall_s": 488.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M2.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.490005,
+    "wall_s": 512.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M2.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.41007,
+    "wall_s": 272.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M2.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.390281,
+    "wall_s": 1395.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta1.0_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.410101,
+    "wall_s": 284.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M1.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.650115,
+    "wall_s": 2437.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M1.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.640004,
+    "wall_s": 2280.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M1.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.670056,
+    "wall_s": 528.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M1.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.500013,
+    "wall_s": 1823.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M1.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.500263,
+    "wall_s": 901.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M1.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.500159,
+    "wall_s": 985.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M1.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.470178,
+    "wall_s": 520.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M1.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.480032,
+    "wall_s": 436.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.47015,
+    "wall_s": 480.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M2.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.660071,
+    "wall_s": 740.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M2.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.630457,
+    "wall_s": 1859.1
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M2.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.640033,
+    "wall_s": 1261.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M2.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.510322,
+    "wall_s": 580.7
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M2.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.490183,
+    "wall_s": 981.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M2.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.500087,
+    "wall_s": 1005.4
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M2.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.460211,
+    "wall_s": 1827.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M2.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.460193,
+    "wall_s": 1936.7
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f1.5_beta2.0_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.460102,
+    "wall_s": 1875.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M1.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.550051,
+    "wall_s": 2365.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M1.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.580041,
+    "wall_s": 1426.1
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M1.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.580084,
+    "wall_s": 789.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M1.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.370256,
+    "wall_s": 1498.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M1.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.460001,
+    "recovered": true,
+    "reason": "stale_hst",
+    "last_dt": 1.48228e-05,
+    "hst_age_s": 1273.9
+  },
+  {
+    "outcome": "FRAG",
+    "t_frag": 0.420153,
+    "wall_s": 268.3,
+    "campaign": "CALIBRATION_VALIDATION",
+    "domain_type": "standard",
+    "f": 2.0,
+    "beta": 0.5,
+    "M": 1.0,
+    "theta": 60.0,
+    "seed": 42,
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M1.0_theta60.0_s42"
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M1.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.440032,
+    "recovered": true,
+    "reason": "stale_hst",
+    "last_dt": 3.25207e-05,
+    "hst_age_s": 1046.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M1.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.310156,
+    "wall_s": 789.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.310156,
+    "wall_s": 837.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M2.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.570043,
+    "wall_s": 853.1
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M2.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.540285,
+    "wall_s": 1775.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M2.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.560465,
+    "wall_s": 1422.1
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M2.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.370048,
+    "wall_s": 837.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M2.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.370186,
+    "wall_s": 1286.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M2.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.370174,
+    "wall_s": 1298.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M2.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.310139,
+    "wall_s": 1210.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M2.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.32021,
+    "wall_s": 713.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta0.5_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.310138,
+    "wall_s": 1122.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M1.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.580053,
+    "wall_s": 2951.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M1.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.570028,
+    "wall_s": 1562.4
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M1.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.590115,
+    "wall_s": 416.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M1.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.390403,
+    "wall_s": 1318.4
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M1.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.390261,
+    "wall_s": 953.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M1.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.39004,
+    "wall_s": 1559.7
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M1.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.380102,
+    "wall_s": 280.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M1.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.37001,
+    "wall_s": 680.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.360074,
+    "wall_s": 1515.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M2.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.570242,
+    "wall_s": 1065.4
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M2.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.590026,
+    "wall_s": 516.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M2.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.580048,
+    "wall_s": 464.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M2.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.390142,
+    "wall_s": 1354.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M2.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.410037,
+    "wall_s": 400.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M2.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.410108,
+    "wall_s": 416.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M2.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.360064,
+    "wall_s": 1357.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M2.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.38004,
+    "wall_s": 436.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta1.0_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.360063,
+    "wall_s": 969.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M1.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.580167,
+    "wall_s": 2404.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M1.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.580004,
+    "wall_s": 1229.7
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M1.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.590099,
+    "wall_s": 684.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M1.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.460178,
+    "wall_s": 592.7
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M1.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.460025,
+    "wall_s": 588.7
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M1.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.460062,
+    "wall_s": 608.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M1.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.400209,
+    "wall_s": 432.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M1.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.400357,
+    "wall_s": 448.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.400222,
+    "wall_s": 476.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M2.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.580212,
+    "wall_s": 716.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M2.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.590114,
+    "wall_s": 861.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M2.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.570276,
+    "wall_s": 1282.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M2.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.450337,
+    "wall_s": 728.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M2.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.450055,
+    "wall_s": 692.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M2.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.450018,
+    "wall_s": 680.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M2.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.400311,
+    "wall_s": 1804.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M2.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.400219,
+    "wall_s": 552.7
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.0_beta2.0_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.400194,
+    "wall_s": 548.7
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M1.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.520008,
+    "wall_s": 813.1
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M1.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.520228,
+    "wall_s": 817.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M1.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.520069,
+    "wall_s": 837.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M1.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.350028,
+    "wall_s": 624.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M1.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.350164,
+    "wall_s": 656.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M1.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.350171,
+    "wall_s": 676.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M1.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.310073,
+    "wall_s": 588.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M1.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.310018,
+    "wall_s": 596.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.290095,
+    "wall_s": 725.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M2.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.510018,
+    "wall_s": 989.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M2.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.510085,
+    "wall_s": 1009.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M2.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.520096,
+    "wall_s": 1109.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M2.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.350241,
+    "wall_s": 744.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M2.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.340241,
+    "wall_s": 973.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M2.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.350231,
+    "wall_s": 701.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M2.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.290089,
+    "wall_s": 745.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M2.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.29009,
+    "wall_s": 1033.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta0.5_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.310238,
+    "wall_s": 676.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M1.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.520205,
+    "wall_s": 1097.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M1.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.530055,
+    "wall_s": 1257.7
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M1.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.530007,
+    "wall_s": 1217.7
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M1.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.380127,
+    "wall_s": 829.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M1.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.380326,
+    "wall_s": 1233.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M1.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.380246,
+    "wall_s": 829.1
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M1.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.350091,
+    "wall_s": 833.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M1.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.340093,
+    "wall_s": 1411.1
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.340096,
+    "wall_s": 1383.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M2.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.520075,
+    "wall_s": 1222.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M2.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.490045,
+    "wall_s": 2008.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M2.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.480295,
+    "wall_s": 1860.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M2.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.380284,
+    "wall_s": 865.4
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M2.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.380288,
+    "wall_s": 877.4
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M2.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.380082,
+    "wall_s": 889.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M2.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.340085,
+    "wall_s": 1511.0
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M2.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.350182,
+    "wall_s": 849.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta1.0_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.340083,
+    "wall_s": 1526.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M1.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.530053,
+    "wall_s": 1337.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M1.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.530056,
+    "wall_s": 1374.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M1.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.530304,
+    "wall_s": 1402.2
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M1.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.400189,
+    "wall_s": 1057.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M1.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.400263,
+    "wall_s": 1053.4
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M1.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.370489,
+    "wall_s": 1161.9
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M1.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.36018,
+    "wall_s": 1346.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M1.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.360089,
+    "wall_s": 941.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.360055,
+    "wall_s": 941.4
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M2.0_theta30.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.520304,
+    "wall_s": 1289.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M2.0_theta30.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.520187,
+    "wall_s": 1462.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M2.0_theta30.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.52038,
+    "wall_s": 2885.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M2.0_theta60.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.370313,
+    "wall_s": 925.4
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M2.0_theta60.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.370039,
+    "wall_s": 1603.6
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M2.0_theta60.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.37006,
+    "wall_s": 1587.3
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M2.0_theta90.0_s137",
+    "outcome": "FRAG",
+    "t_frag": 0.360097,
+    "wall_s": 1053.5
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M2.0_theta90.0_s256",
+    "outcome": "FRAG",
+    "t_frag": 0.360151,
+    "wall_s": 1390.8
+  },
+  {
+    "sim_id": "CALIBRATION_VALIDATION_f2.5_beta2.0_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.360313,
+    "wall_s": 1025.5
+  },
+  {
+    "sim_id": "DOMAIN_CONVERGENCE_f2.0_beta1.0_M1.0_theta90.0_s137__extended",
+    "outcome": "FAILED",
+    "t_frag": null,
+    "wall_s": 308.3010675907135,
+    "campaign": "DOMAIN_CONVERGENCE",
+    "domain_type": "extended",
+    "f": 2.0,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "DOMAIN_CONVERGENCE_f2.0_beta1.0_M1.0_theta90.0_s137__long",
+    "outcome": "FRAG",
+    "t_frag": 0.370063,
+    "wall_s": 2376.7
+  },
+  {
+    "sim_id": "DOMAIN_CONVERGENCE_f2.0_beta1.0_M1.0_theta90.0_s137__standard",
+    "outcome": "FRAG",
+    "t_frag": 0.360074,
+    "wall_s": 1619.7
+  },
+  {
+    "sim_id": "DOMAIN_CONVERGENCE_f2.0_beta1.0_M1.0_theta90.0_s137__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.370069,
+    "wall_s": 2842.8
+  },
+  {
+    "sim_id": "DOMAIN_CONVERGENCE_f2.0_beta1.0_M1.0_theta90.0_s42__extended",
+    "outcome": "FAILED",
+    "t_frag": null,
+    "wall_s": 304.27753496170044,
+    "campaign": "DOMAIN_CONVERGENCE",
+    "domain_type": "extended",
+    "f": 2.0,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "DOMAIN_CONVERGENCE_f2.0_beta1.0_M1.0_theta90.0_s42__long",
+    "outcome": "FRAG",
+    "t_frag": 0.370064,
+    "wall_s": 2380.7
+  },
+  {
+    "sim_id": "DOMAIN_CONVERGENCE_f2.0_beta1.0_M1.0_theta90.0_s42__standard",
+    "outcome": "FRAG",
+    "t_frag": 0.360074,
+    "wall_s": 1635.9
+  },
+  {
+    "sim_id": "DOMAIN_CONVERGENCE_f2.0_beta1.0_M1.0_theta90.0_s42__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.370069,
+    "wall_s": 2938.8
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta0.3_M1.0_theta90.0_s137__extended",
+    "outcome": "FAILED",
+    "t_frag": null,
+    "wall_s": 304.1819078922272,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 1.5,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta0.3_M1.0_theta90.0_s137__long",
+    "outcome": "FRAG",
+    "t_frag": 0.54048,
+    "wall_s": 5418.2
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta0.3_M1.0_theta90.0_s137__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.53009,
+    "wall_s": 3781.405750989914,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "verylong",
+    "f": 1.5,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta0.3_M1.0_theta90.0_s256__extended",
+    "outcome": "FRAG",
+    "t_frag": 1.05002,
+    "wall_s": 4117.501861810684,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 1.5,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 256
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta0.3_M1.0_theta90.0_s256__long",
+    "outcome": "FRAG",
+    "t_frag": 0.540481,
+    "wall_s": 5292.7
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta0.3_M1.0_theta90.0_s256__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.530026,
+    "wall_s": 3785.4502341747284,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "verylong",
+    "f": 1.5,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 256
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta0.3_M1.0_theta90.0_s42__extended",
+    "outcome": "FRAG",
+    "t_frag": 1.05003,
+    "wall_s": 4132.233682632446,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 1.5,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta0.3_M1.0_theta90.0_s42__long",
+    "outcome": "FRAG",
+    "t_frag": 0.540479,
+    "wall_s": 5254.4
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta0.3_M1.0_theta90.0_s42__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.530038,
+    "wall_s": 3778.3978819847107,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "verylong",
+    "f": 1.5,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta1.0_M1.0_theta90.0_s137__extended",
+    "outcome": "FRAG",
+    "t_frag": 1.0501,
+    "wall_s": 4153.627538204193,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 1.5,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta1.0_M1.0_theta90.0_s137__long",
+    "outcome": "FRAG",
+    "t_frag": 0.470137,
+    "wall_s": 3030.6
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta1.0_M1.0_theta90.0_s137__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.470149,
+    "wall_s": 3935.2
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta1.0_M1.0_theta90.0_s256__extended",
+    "outcome": "FRAG",
+    "t_frag": 1.05002,
+    "wall_s": 4112.796356916428,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 1.5,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 256
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta1.0_M1.0_theta90.0_s256__long",
+    "outcome": "FRAG",
+    "t_frag": 0.470138,
+    "wall_s": 3111.4
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta1.0_M1.0_theta90.0_s256__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.470149,
+    "wall_s": 3940.7
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta1.0_M1.0_theta90.0_s42__extended",
+    "outcome": "FRAG",
+    "t_frag": 1.05003,
+    "wall_s": 4108.745269536972,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 1.5,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta1.0_M1.0_theta90.0_s42__long",
+    "outcome": "FRAG",
+    "t_frag": 0.470138,
+    "wall_s": 3051.3
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta1.0_M1.0_theta90.0_s42__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.470149,
+    "wall_s": 3844.2
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta5.0_M1.0_theta90.0_s137__extended",
+    "outcome": "FRAG",
+    "t_frag": 1.0501,
+    "wall_s": 4136.9300763607025,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 1.5,
+    "beta": 5.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta5.0_M1.0_theta90.0_s137__long",
+    "outcome": "FRAG",
+    "t_frag": 0.490293,
+    "wall_s": 3231.6
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta5.0_M1.0_theta90.0_s137__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.490306,
+    "wall_s": 4022.8
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta5.0_M1.0_theta90.0_s256__extended",
+    "outcome": "FRAG",
+    "t_frag": 1.05002,
+    "wall_s": 3801.4421730041504,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 1.5,
+    "beta": 5.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 256
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta5.0_M1.0_theta90.0_s256__long",
+    "outcome": "FRAG",
+    "t_frag": 0.490294,
+    "wall_s": 3231.8
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta5.0_M1.0_theta90.0_s256__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.490306,
+    "wall_s": 3881.3
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta5.0_M1.0_theta90.0_s42__extended",
+    "outcome": "FRAG",
+    "t_frag": 1.05003,
+    "wall_s": 3821.450739622116,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 1.5,
+    "beta": 5.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta5.0_M1.0_theta90.0_s42__long",
+    "outcome": "FRAG",
+    "t_frag": 0.490294,
+    "wall_s": 3215.8
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f1.5_beta5.0_M1.0_theta90.0_s42__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.490306,
+    "wall_s": 3904.1
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta0.3_M1.0_theta90.0_s137__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.690154,
+    "wall_s": 3411.5947465896606,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.0,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta0.3_M1.0_theta90.0_s137__long",
+    "outcome": "FRAG",
+    "t_frag": 0.400347,
+    "wall_s": 3821.5
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta0.3_M1.0_theta90.0_s137__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.410004,
+    "wall_s": 440.53876090049744,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "verylong",
+    "f": 2.0,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta0.3_M1.0_theta90.0_s256__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.690005,
+    "wall_s": 460.5590486526489,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.0,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 256
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta0.3_M1.0_theta90.0_s256__long",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 2344.8
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta0.3_M1.0_theta90.0_s256__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.400352,
+    "wall_s": 4361.0
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta0.3_M1.0_theta90.0_s42__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.690133,
+    "wall_s": 472.59318590164185,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.0,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta0.3_M1.0_theta90.0_s42__long",
+    "outcome": "FRAG",
+    "t_frag": 0.400347,
+    "wall_s": 3891.0
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta0.3_M1.0_theta90.0_s42__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.400352,
+    "wall_s": 4425.5
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta1.0_M1.0_theta90.0_s137__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.690154,
+    "wall_s": 468.5598096847534,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.0,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta1.0_M1.0_theta90.0_s137__long",
+    "outcome": "FRAG",
+    "t_frag": 0.370063,
+    "wall_s": 2630.7
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta1.0_M1.0_theta90.0_s137__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.370069,
+    "wall_s": 2925.5
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta1.0_M1.0_theta90.0_s256__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.690005,
+    "wall_s": 476.57014751434326,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.0,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 256
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta1.0_M1.0_theta90.0_s256__long",
+    "outcome": "FRAG",
+    "t_frag": 0.370064,
+    "wall_s": 2677.1
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta1.0_M1.0_theta90.0_s256__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.370069,
+    "wall_s": 2852.7
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta1.0_M1.0_theta90.0_s42__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.690133,
+    "wall_s": 472.57125425338745,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.0,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta1.0_M1.0_theta90.0_s42__long",
+    "outcome": "FRAG",
+    "t_frag": 0.370064,
+    "wall_s": 2576.7
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta1.0_M1.0_theta90.0_s42__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.370069,
+    "wall_s": 2787.2
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta5.0_M1.0_theta90.0_s137__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.690154,
+    "wall_s": 464.56482005119324,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.0,
+    "beta": 5.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta5.0_M1.0_theta90.0_s137__long",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 1822.8
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta5.0_M1.0_theta90.0_s137__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.410454,
+    "wall_s": 3431.7
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta5.0_M1.0_theta90.0_s256__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.690005,
+    "wall_s": 468.5760250091553,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.0,
+    "beta": 5.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 256
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta5.0_M1.0_theta90.0_s256__long",
+    "outcome": "FRAG",
+    "t_frag": 0.410448,
+    "wall_s": 3391.3
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta5.0_M1.0_theta90.0_s256__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.410454,
+    "wall_s": 3513.5
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta5.0_M1.0_theta90.0_s42__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.690133,
+    "wall_s": 472.5697772502899,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.0,
+    "beta": 5.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta5.0_M1.0_theta90.0_s42__long",
+    "outcome": "FRAG",
+    "t_frag": 0.410086,
+    "wall_s": 440.5148365497589,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "long",
+    "f": 2.0,
+    "beta": 5.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.0_beta5.0_M1.0_theta90.0_s42__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.410454,
+    "wall_s": 3519.0
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta0.3_M1.0_theta90.0_s137__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.510016,
+    "wall_s": 400.4845027923584,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.5,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta0.3_M1.0_theta90.0_s137__long",
+    "outcome": "FRAG",
+    "t_frag": 0.330347,
+    "wall_s": 4179.5
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta0.3_M1.0_theta90.0_s137__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.33035,
+    "wall_s": 3629.7
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta0.3_M1.0_theta90.0_s256__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.510085,
+    "wall_s": 400.50055599212646,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.5,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 256
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta0.3_M1.0_theta90.0_s256__long",
+    "outcome": "FRAG",
+    "t_frag": 0.330348,
+    "wall_s": 3283.9
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta0.3_M1.0_theta90.0_s256__verylong",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 909.4
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta0.3_M1.0_theta90.0_s42__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.530004,
+    "wall_s": 492.56693267822266,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.5,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta0.3_M1.0_theta90.0_s42__long",
+    "outcome": "FRAG",
+    "t_frag": 0.350068,
+    "wall_s": 396.4755003452301,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "long",
+    "f": 2.5,
+    "beta": 0.3,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta0.3_M1.0_theta90.0_s42__verylong",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 2122.3
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta1.0_M1.0_theta90.0_s137__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.520008,
+    "wall_s": 396.4624009132385,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.5,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta1.0_M1.0_theta90.0_s137__long",
+    "outcome": "FRAG",
+    "t_frag": 0.350112,
+    "wall_s": 380.4515953063965,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "long",
+    "f": 2.5,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta1.0_M1.0_theta90.0_s137__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.350086,
+    "wall_s": 424.50760650634766,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "verylong",
+    "f": 2.5,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta1.0_M1.0_theta90.0_s256__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.530023,
+    "wall_s": 476.54452300071716,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.5,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 256
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta1.0_M1.0_theta90.0_s256__long",
+    "outcome": "FRAG",
+    "t_frag": 0.320201,
+    "wall_s": 2891.1
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta1.0_M1.0_theta90.0_s256__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.320204,
+    "wall_s": 2760.8
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta1.0_M1.0_theta90.0_s42__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.530004,
+    "wall_s": 480.55887484550476,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.5,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta1.0_M1.0_theta90.0_s42__long",
+    "outcome": "FRAG",
+    "t_frag": 0.320201,
+    "wall_s": 3039.3
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta1.0_M1.0_theta90.0_s42__verylong",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 1974.6
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta5.0_M1.0_theta90.0_s137__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.520008,
+    "wall_s": 396.45817255973816,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.5,
+    "beta": 5.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta5.0_M1.0_theta90.0_s137__long",
+    "outcome": "FRAG",
+    "t_frag": 0.350112,
+    "wall_s": 396.4630789756775,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "long",
+    "f": 2.5,
+    "beta": 5.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 137
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta5.0_M1.0_theta90.0_s137__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.350248,
+    "wall_s": 3273.6
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta5.0_M1.0_theta90.0_s256__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.530023,
+    "wall_s": 472.5504231452942,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.5,
+    "beta": 5.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 256
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta5.0_M1.0_theta90.0_s256__long",
+    "outcome": "TIMEOUT",
+    "t_frag": null,
+    "wall_s": 733.7
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta5.0_M1.0_theta90.0_s256__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.350248,
+    "wall_s": 3181.1
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta5.0_M1.0_theta90.0_s42__extended",
+    "outcome": "FRAG",
+    "t_frag": 0.530004,
+    "wall_s": 476.54602694511414,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "extended",
+    "f": 2.5,
+    "beta": 5.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta5.0_M1.0_theta90.0_s42__long",
+    "outcome": "FRAG",
+    "t_frag": 0.360004,
+    "wall_s": 376.43248200416565,
+    "campaign": "SUPERCRITICAL_LONG",
+    "domain_type": "long",
+    "f": 2.5,
+    "beta": 5.0,
+    "M": 1.0,
+    "theta": 90.0,
+    "seed": 42
+  },
+  {
+    "sim_id": "SUPERCRITICAL_LONG_f2.5_beta5.0_M1.0_theta90.0_s42__verylong",
+    "outcome": "FRAG",
+    "t_frag": 0.350248,
+    "wall_s": 3100.4
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.4_beta0.3_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.410124,
+    "wall_s": 1137.8
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.4_beta0.3_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.390123,
+    "wall_s": 1266.3
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.4_beta0.3_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.400044,
+    "wall_s": 1129.7
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.4_beta0.5_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.37008,
+    "wall_s": 1017.6
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.4_beta0.5_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.370072,
+    "wall_s": 809.2
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.4_beta0.5_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.370064,
+    "wall_s": 829.3
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.4_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.400201,
+    "wall_s": 945.5
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.4_beta1.0_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.400186,
+    "wall_s": 913.5
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.4_beta1.0_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.400173,
+    "wall_s": 941.6
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.6_beta0.3_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.370104,
+    "wall_s": 1117.8
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.6_beta0.3_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.350152,
+    "wall_s": 1225.6
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.6_beta0.3_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.350145,
+    "wall_s": 1213.7
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.6_beta0.5_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.35011,
+    "wall_s": 845.5
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.6_beta0.5_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.350147,
+    "wall_s": 845.3
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.6_beta0.5_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.350151,
+    "wall_s": 833.4
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.6_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.380172,
+    "wall_s": 1246.8
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.6_beta1.0_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.380161,
+    "wall_s": 965.5
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.6_beta1.0_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.380149,
+    "wall_s": 945.7
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.8_beta0.3_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.33006,
+    "wall_s": 953.8
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.8_beta0.3_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.310332,
+    "wall_s": 809.6
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.8_beta0.3_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.310326,
+    "wall_s": 781.3
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.8_beta0.5_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.330126,
+    "wall_s": 861.4
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.8_beta0.5_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.330116,
+    "wall_s": 845.3
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.8_beta0.5_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.330105,
+    "wall_s": 905.4
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.8_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.370414,
+    "wall_s": 1097.8
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.8_beta1.0_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.370403,
+    "wall_s": 1414.6
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f1.8_beta1.0_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.370392,
+    "wall_s": 1446.8
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.0_beta0.3_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.300412,
+    "wall_s": 809.2
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.0_beta0.3_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.300404,
+    "wall_s": 1146.4
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.0_beta0.3_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.300397,
+    "wall_s": 1166.3
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.0_beta0.5_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.310156,
+    "wall_s": 1118.3
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.0_beta0.5_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.310138,
+    "wall_s": 1098.4
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.0_beta0.5_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.310132,
+    "wall_s": 1110.2
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.0_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.360074,
+    "wall_s": 1114.0
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.0_beta1.0_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.360063,
+    "wall_s": 1217.9
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.0_beta1.0_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.360052,
+    "wall_s": 1189.8
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.2_beta0.3_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.290189,
+    "wall_s": 941.6
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.2_beta0.3_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.29009,
+    "wall_s": 949.7
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.2_beta0.3_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.290041,
+    "wall_s": 933.6
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.2_beta0.5_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.300023,
+    "wall_s": 1130.4
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.2_beta0.5_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.300018,
+    "wall_s": 1138.7
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.2_beta0.5_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.300012,
+    "wall_s": 981.8
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.2_beta1.0_M1.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.350391,
+    "wall_s": 1334.8
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.2_beta1.0_M2.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.35038,
+    "wall_s": 1511.0
+  },
+  {
+    "sim_id": "TIMEOUT_CONVERGENCE_f2.2_beta1.0_M3.0_theta90.0_s42",
+    "outcome": "FRAG",
+    "t_frag": 0.350369,
+    "wall_s": 1242.3
+  }
+]

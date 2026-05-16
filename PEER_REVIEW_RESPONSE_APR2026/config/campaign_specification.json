@@ -1,0 +1,168 @@
+{
+  "campaign_name": "Peer Review Response Campaign - April 2026",
+  "campaign_date": "2026-04-23",
+  "version": "1.0",
+
+  "scientific_objectives": {
+    "primary": [
+      "Address T3: Test perpendicular B-field geometry (90% of filaments)",
+      "Address T1/T2: Detect longitudinal fragmentation beading in near-critical regime",
+      "Address T9: Validate oblique field calibration λ_frag = 1.11 λ_MJ"
+    ],
+    "secondary": [
+      "Compare isothermal vs adiabatic EOS for beading emergence",
+      "Characterize the fragmentation threshold f_crit",
+      "Measure λ_frag across all field geometries"
+    ]
+  },
+
+  "peer_review_concerns": {
+    "T1": {
+      "title": "Negative result under-analyzed",
+      "description": "Radial collapse dominates before longitudinal fragmentation develops",
+      "remedy": "Test near-critical conditions (f≈1.0) where longitudinal structure should emerge",
+      "sims_required": 80
+    },
+    "T2": {
+      "title": "Fragmentation detection criterion conflates radial collapse with fragmentation",
+      "description": "CFL watchdog detects radial collapse, not longitudinal beading",
+      "remedy": "Add explicit longitudinal peak detection from HDF5 snapshots",
+      "sims_required": 0
+    },
+    "T3": {
+      "title": "Longitudinal B-field geometry unrealistic",
+      "description": "90% of filaments have perpendicular fields per Planck data",
+      "remedy": "Run perpendicular field campaign to test realistic geometry",
+      "sims_required": 96
+    },
+    "T9": {
+      "title": "Field-geometry calibration inadequately described",
+      "description": "λ_frag = 1.11 λ_MJ from undocumented campaign",
+      "remedy": "Run oblique field calibration campaign",
+      "sims_required": 90
+    }
+  },
+
+  "simulation_specifications": {
+    "total_sims": 320,
+    "resolution": "256³",
+    "domain": "8×2×2 λJ",
+    "boundary_conditions": "Periodic all faces",
+    "duration": "Until fragmentation (dt<1e-8) or timeout (14400s)",
+    "hdf5_output": "Every 0.05 tJ, minimum 15 snapshots",
+    "equation_of_state": ["isothermal (gamma=1.0)", "adiabatic (gamma=1.67)"],
+    "magnetic_geometries": ["longitudinal (theta=0)", "perpendicular (theta=90)", "oblique (theta=30,45,60)"],
+    "density_profiles": ["King (default)"],
+    "turbulence_amplitudes": ["weak (1e-4 cs)"]
+  },
+
+  "parameter_space": {
+    "line_mass_fraction": [0.9, 1.0, 1.05, 1.1, 1.15, 1.2, 1.5, 2.0, 2.5, 3.0],
+    "plasma_beta": [0.3, 0.5, 0.7, 1.0, 1.5, 2.0],
+    "mach_number": [1.0, 2.0],
+    "random_seeds": [1, 2, 3],
+    "oblique_angles": [30, 45, 60]
+  },
+
+  "computational_requirements": {
+    "platform": "200 CPU system (AMD EPYC 7B13 recommended)",
+    "ray_cpus": 200,
+    "concurrent_sims": 12,
+    "mpi_ranks_per_sim": 16,
+    "wall_time_per_sim": "2-4 hours (adiabatic longer)",
+    "estimated_total_wall_time": "85 hours (3.5 days)",
+    "disk_space": "~320 GB for all HDF5 outputs"
+  },
+
+  "phases": {
+    "phase1_near_critical": {
+      "name": "Near-Critical Campaign",
+      "objective": "Detect longitudinal beading in f≈1 regime",
+      "sims": 80,
+      "parameters": {
+        "f": [1.0, 1.05, 1.1, 1.15, 1.2],
+        "beta": [0.3, 0.5, 0.7, 1.0],
+        "M": [1.0, 2.0],
+        "seeds": [1, 2],
+        "bfield": "longitudinal",
+        "eos": "isothermal"
+      }
+    },
+    "phase2_perpendicular": {
+      "name": "Perpendicular Field Campaign",
+      "objective": "Test realistic field geometry (90% of filaments)",
+      "sims": 96,
+      "parameters": {
+        "f": [1.5, 2.0, 2.5, 3.0],
+        "beta": [0.3, 0.5, 0.7, 1.0, 1.5, 2.0],
+        "M": [1.0, 2.0],
+        "seeds": [1, 2],
+        "bfield": "perpendicular",
+        "eos": "isothermal"
+      }
+    },
+    "phase3_oblique": {
+      "name": "Oblique Field Calibration",
+      "objective": "Validate λ_frag = 1.11 λ_MJ across field geometries",
+      "sims": 90,
+      "parameters": {
+        "f": [1.5, 2.0, 2.5],
+        "beta": [0.5, 1.0, 2.0],
+        "M": [1.0, 2.0],
+        "seeds": [1, 2],
+        "bfield": "oblique",
+        "theta": [30, 45, 60],
+        "eos": "isothermal"
+      }
+    },
+    "phase4_adiabatic": {
+      "name": "Near-Critical Adiabatic Extension",
+      "objective": "Test if adiabatic EOS allows beading by slowing radial collapse",
+      "sims": 54,
+      "parameters": {
+        "f": [1.0, 1.05, 1.1, 1.15, 1.2],
+        "beta": [0.5, 1.0],
+        "M": [1.0],
+        "seeds": [1, 2, 3],
+        "bfield": "longitudinal",
+        "eos": "adiabatic"
+      }
+    }
+  },
+
+  "output_requirements": {
+    "status_files": "JSON file per simulation with: status, t_frag, n_peaks, lambda_frag, quality",
+    "hdf5_snapshots": "Minimum 15 snapshots at Δt=0.05 tJ intervals",
+    "analysis_outputs": [
+      "CSV catalog of all simulation results",
+      "Regime map showing where beading emerges (fig1)",
+      "λ/W comparison across field geometries (fig2)",
+      "Oblique calibration validation (fig3)",
+      "Isothermal vs adiabatic comparison (fig4)",
+      "Summary markdown report addressing each concern"
+    ]
+  },
+
+  "integration_requirements": {
+    "for_paper_revision": [
+      "Evidence of longitudinal beading detection",
+      "Perpendicular field fragmentation spacing measurements",
+      "Oblique field calibration validation",
+      "Comparison of isothermal vs adiabatic fragmentation",
+      "Assessment of which field geometry best matches HGBS observations"
+    ]
+  },
+
+  "success_criteria": {
+    "critical": [
+      "At least one regime shows ≥2 longitudinal peaks (beading)",
+      "Perpendicular fields produce measurable λ/W",
+      "Oblique field calibration validated across θ = 30°, 45°, 60°"
+    ],
+    "important": [
+      "Fragmentation threshold f characterized",
+      "Isothermal vs adiabatic comparison completed",
+      "Field geometry preference for HGBS conditions identified"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "sim_id": "DLIT_L32_s137",
+  "campaign": "DLIT",
+  "status": "TIMEOUT",
+  "t_frag": null,
+  "dt_min": 3.31597e-07,
+  "wall_s": 3100.0,
+  "f": 1.5,
+  "beta": 1.0,
+  "theta": 0.0,
+  "perturb": 0.0001,
+  "seed": 137,
+  "Lx": 32,
+  "_note": "Reached tlim=1.5 t_J. dt_min=3.32e-07 << 1e-4 \u2014 deeply in physical collapse. Estimated t_frag~1.504 t_J (just 4 milli-t_J beyond tlim). Extend tlim to 1.52-2.0 t_J to capture actual fragmentation."
+}

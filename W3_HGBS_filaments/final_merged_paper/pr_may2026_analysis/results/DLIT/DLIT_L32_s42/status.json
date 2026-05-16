@@ -1,0 +1,15 @@
+{
+  "sim_id": "DLIT_L32_s42",
+  "campaign": "DLIT",
+  "status": "TIMEOUT",
+  "t_frag": null,
+  "dt_min": 0.000131041,
+  "wall_s": 1051.2,
+  "f": 1.5,
+  "beta": 1.0,
+  "theta": 0.0,
+  "perturb": 0.0001,
+  "seed": 42,
+  "Lx": 32,
+  "_note": "Reached tlim=1.5 t_J without fragmentation. dt_min=1.31e-04 >> DT_FRAG=1e-8. Runner misclassified as FRAG."
+}

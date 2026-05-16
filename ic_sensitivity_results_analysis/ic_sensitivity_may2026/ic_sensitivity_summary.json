@@ -1,0 +1,27 @@
+{
+  "campaign": "IC Sensitivity Test \u2014 Referee Response May 2026",
+  "total_sims": 48,
+  "frag": 46,
+  "timeout": 2,
+  "king_mean_tfrag": 1.2577712727272727,
+  "uniform_mean_tfrag": 1.0891980833333335,
+  "king_uniform_ratio": 1.1800199375618865,
+  "ratio_range": [
+    1.1191127945680261,
+    1.2840982479531675
+  ],
+  "per_ic_f_beta": {
+    "king_f1.0_b0.3": 1.695045,
+    "king_f1.0_b0.5": 1.2775675000000002,
+    "king_f1.0_b1.0": 1.03001875,
+    "king_f1.1_b0.3": 1.547565,
+    "king_f1.1_b0.5": 1.20506,
+    "king_f1.1_b1.0": 1.01000825,
+    "uniform_f1.0_b0.3": 1.3200275000000001,
+    "uniform_f1.0_b0.5": 1.08754,
+    "uniform_f1.0_b1.0": 0.9075305,
+    "uniform_f1.1_b0.3": 1.2550325,
+    "uniform_f1.1_b0.5": 1.06255,
+    "uniform_f1.1_b1.0": 0.902508
+  }
+}

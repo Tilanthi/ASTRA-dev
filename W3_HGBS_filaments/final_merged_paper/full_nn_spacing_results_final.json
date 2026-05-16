@@ -1,0 +1,80 @@
+{
+  "analysis_date": "2026-05-01",
+  "method": "2D nearest-neighbor spacing",
+  "successful_regions": [
+    "Perseus",
+    "Ophiuchus",
+    "Serpens",
+    "TMC1"
+  ],
+  "failed_regions": [
+    "Taurus",
+    "OrionB",
+    "Aquila",
+    "CRA"
+  ],
+  "results": [
+    {
+      "region": "Perseus",
+      "distance": 296,
+      "n_cores": 816,
+      "nn_median_spacing": 0.18167837113995805,
+      "nn_sem": 0.01034174572074272,
+      "nn_lambda_over_W": 1.8167837113995804,
+      "nn_p16": 0.09327959181684617,
+      "nn_p50": 0.18167837113995805,
+      "nn_p84": 0.38447277494991955,
+      "pairwise_median": 0.248,
+      "pairwise_lambda_W": 2.48,
+      "bias_factor": 1.3650496668585295
+    },
+    {
+      "region": "Ophiuchus",
+      "distance": 137,
+      "n_cores": 513,
+      "nn_median_spacing": 0.05136151955488928,
+      "nn_sem": 0.007000331778147495,
+      "nn_lambda_over_W": 0.5136151955488928,
+      "nn_p16": 0.027057771489137194,
+      "nn_p50": 0.05136151955488928,
+      "nn_p84": 0.10895548896671256,
+      "pairwise_median": 0.206,
+      "pairwise_lambda_W": 2.06,
+      "bias_factor": 4.010784762313173
+    },
+    {
+      "region": "Serpens",
+      "distance": 458,
+      "n_cores": 833,
+      "nn_median_spacing": 0.1810191164753766,
+      "nn_sem": 0.010524470664433107,
+      "nn_lambda_over_W": 1.810191164753766,
+      "nn_p16": 0.08267739984735252,
+      "nn_p50": 0.1810191164753766,
+      "nn_p84": 0.4084231761851079,
+      "pairwise_median": 0.308,
+      "pairwise_lambda_W": 3.08,
+      "bias_factor": 1.7014777554827816
+    },
+    {
+      "region": "TMC1",
+      "distance": 135,
+      "n_cores": 178,
+      "nn_median_spacing": 0.09517177353435072,
+      "nn_sem": 0.014008720852621505,
+      "nn_lambda_over_W": 0.9517177353435071,
+      "nn_p16": 0.04923131805435993,
+      "nn_p50": 0.09517177353435072,
+      "nn_p84": 0.23154835082408345,
+      "pairwise_median": 0.233,
+      "pairwise_lambda_W": 2.33,
+      "bias_factor": 2.4482048757439876
+    }
+  ],
+  "robust_weighted_nn_pc": 0.18167837113995805,
+  "robust_weighted_lambda_W": 1.8167837113995804,
+  "robust_uncertainty_pc": 0.01034174572074272,
+  "full_weighted_nn_pc": 0.11089370353949493,
+  "full_weighted_lambda_W": 1.108937035394949,
+  "full_uncertainty_pc": 0.004773821788905561
+}

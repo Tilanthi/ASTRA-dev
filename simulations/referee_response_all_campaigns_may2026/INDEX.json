@@ -1,0 +1,242 @@
+{
+  "package": "referee_response_all_campaigns_may2026",
+  "created": "2026-05-01",
+  "description": "Complete referee response simulation package for ASTRA RASTI paper submission",
+  "authors": [
+    "Glenn J. White (Open University)",
+    "Robin Dey (VBRL Holdings Inc)"
+  ],
+  "paper": "ASTRA: An Integrated Analysis Framework for Physics-Aware Astrophysical Discovery",
+  "target_journal": "RASTI (RAS Techniques & Instruments)",
+  "github": "https://github.com/Tilanthi/ASTRA-dev",
+  "summary_stats": {
+    "total_campaigns": 18,
+    "total_sims": 1940,
+    "total_frag": 1817,
+    "total_timeout": 100,
+    "frag_fraction": 0.9366,
+    "date_range": "2026-04-20 to 2026-05-01"
+  },
+  "campaigns": {
+    "C5": {
+      "title": "Turbulence \u03bb/W Characterisation",
+      "date": "2026-04-30",
+      "n_sims": 54,
+      "n_frag": 48,
+      "n_timeout": 6,
+      "domain": "256\u00d764\u00d764",
+      "bfield": "longitudinal",
+      "key_result": "\u03bb/W=3.441\u00b10.764; turbulence does not change \u03bb/W (only 5% diff), but accelerates fragmentation 3\u00d7",
+      "params": "f=[1.0,1.1,1.2], \u03b2=[0.5,1.0,2.0], turb=[turbphys,turbsynth], seeds=[42,137,314]"
+    },
+    "C6": {
+      "title": "Perpendicular-B \u03b2-dependence",
+      "date": "2026-04-30",
+      "n_sims": 100,
+      "n_frag": 100,
+      "n_timeout": 0,
+      "domain": "512\u00d764\u00d764",
+      "bfield": "perpendicular (\u03b8=90\u00b0)",
+      "key_result": "\u03b2\u22640.5: FLAT_PROFILE (no axial fragmentation); \u03b2\u22651.0: \u03bb/W=1.252\u00b10.092 \u2014 2.75\u00d7 shorter than longitudinal",
+      "params": "f=[1.2,1.3,1.4,1.5], \u03b2=[0.3,0.5,1.0,1.5,2.0], seeds=[42,137,314,527,816]"
+    },
+    "C7": {
+      "title": "Critical Transition Mapping",
+      "date": "2026-04-30",
+      "n_sims": 135,
+      "n_frag": 135,
+      "n_timeout": 0,
+      "domain": "256\u00d764\u00d764",
+      "bfield": "longitudinal",
+      "key_result": "\u03bb/W=3.382\u00b10.792 (consistent with C5); \u03bb/W increases with B: \u03b2=0.3\u21924.74, \u03b2=2.0\u21922.80; f=1.0 is NOT a stability threshold",
+      "params": "f=[0.9..1.3 in 0.05], \u03b2=[0.3,0.5,1.0,1.5,2.0], seeds=[42,137,314]"
+    },
+    "C8": {
+      "title": "Field Angle Dependence (\u03b8 sweep)",
+      "date": "2026-05-01",
+      "n_sims": 175,
+      "n_frag": 169,
+      "n_timeout": 6,
+      "domain": "512\u00d764\u00d764",
+      "bfield": "variable \u03b8=0\u00b0..90\u00b0",
+      "key_result": "t_frag(\u03b8\u226415\u00b0)\u22481.3\u20131.4 t_J (axial beading); t_frag(\u03b8\u226530\u00b0)\u22480.58\u20130.87 t_J (radial collapse); two regimes",
+      "params": "\u03b8=[0,15,30,45,60,75,90], \u03b2=[0.3,0.5,1.0,1.5,2.0], f=[1.2,1.5,2.0,2.5,3.0], seeds=[42,137]"
+    },
+    "C8_lw": {
+      "title": "\u03bb/W vs Field Angle",
+      "date": "2026-05-01",
+      "n_sims": 35,
+      "n_frag": 35,
+      "n_timeout": 0,
+      "domain": "512\u00d764\u00d764",
+      "bfield": "variable \u03b8",
+      "key_result": "FLAT profile for \u03b8\u226545\u00b0; measurable \u03bb/W=2.1\u20132.6 for \u03b8\u226430\u00b0; \u03bb/W=1.248 at \u03b8=90\u00b0 \u03b2=2.0 only",
+      "params": "\u03b8=[0,15,30,45,60,75,90], \u03b2=[0.3,1.0,2.0], f=1.5, seeds=[42]"
+    },
+    "C10": {
+      "title": "Pairwise vs NN Spacing Bias \u2014 HGBS Observational Bias Correction",
+      "date": "2026-05-01",
+      "n_sims": 8,
+      "n_frag": 8,
+      "n_timeout": 0,
+      "domain": "analytical + HGBS obs",
+      "bfield": "N/A",
+      "key_result": "Pairwise estimator overestimates by factor 7.0\u00d7; NN is unbiased (-0.005\u00d7); L/3 pairwise bias confirmed",
+      "params": "8 HGBS regions, pairwise vs nearest-neighbour analysis"
+    },
+    "C11_deferred": {
+      "title": "Temporal Evolution (DEFERRED)",
+      "date": "N/A",
+      "n_sims": 0,
+      "n_frag": 0,
+      "n_timeout": 0,
+      "domain": "N/A",
+      "bfield": "N/A",
+      "key_result": "Deferred \u2014 requires time-varying f(t) C++ pgen",
+      "params": "N/A"
+    },
+    "C12": {
+      "title": "DTC Stable Ridge Re-examination (\u03b2=0.3 Artifact Confirmation)",
+      "date": "2026-05-01",
+      "n_sims": 300,
+      "n_frag": 299,
+      "n_timeout": 1,
+      "domain": "256\u00d764\u00d764",
+      "bfield": "longitudinal",
+      "key_result": "DTC \u03b2=0.3 stable ridge CONFIRMED ARTIFACT: all fragment at t_frag=1.20\u20131.45 t_J, just beyond DTC tlim=1.5 t_J",
+      "params": "f=[1.4..2.2], \u03b2=0.3, M=[1,2,3,4,5], seeds=[42,137,314], tlim=2.0 t_J"
+    },
+    "C13": {
+      "title": "Observational \u03b2 Validation \u2014 HGBS Literature Comparison",
+      "date": "2026-05-01",
+      "n_sims": 23,
+      "n_frag": 0,
+      "n_timeout": 0,
+      "domain": "observational (JCMT, Planck, VLA, IRAM, Zeeman)",
+      "bfield": "measured",
+      "key_result": "Thermal \u03b2 median=0.057 (mostly below sim range 0.3\u20132.0); M=2 turbulent-effective \u03b2 median=0.287 (43% within sim range); sim \u03b2=0.3\u20132.0 physically justified",
+      "params": "23 published observations, 15 HGBS regions"
+    },
+    "C9_deferred": {
+      "title": "Staged Fragmentation (DEFERRED)",
+      "date": "N/A",
+      "n_sims": 0,
+      "n_frag": 0,
+      "n_timeout": 0,
+      "domain": "N/A",
+      "bfield": "N/A",
+      "key_result": "Deferred \u2014 requires time-varying f(t) C++ pgen",
+      "params": "N/A"
+    },
+    "PERP_LAMBDA_V1": {
+      "title": "Perpendicular \u03bb/W Full Grid (Apr 29)",
+      "date": "2026-04-29",
+      "n_sims": 40,
+      "n_frag": 40,
+      "n_timeout": 0,
+      "domain": "384\u00d748\u00d748",
+      "bfield": "perpendicular (\u03b8=90\u00b0)",
+      "key_result": "ALL 40 FRAG; t_frag by f: f=1.0\u21920.568, f=2.2\u21920.413 t_J; near-critical to supercritical all fragment at \u03b8=90\u00b0",
+      "params": "\u03b8=90\u00b0, f=[1.0,1.2,1.5,1.8,2.2], \u03b2=[0.5,1.0,2.0,3.0], seeds=[42,137]"
+    },
+    "REALISTIC_GAMMA_V1": {
+      "title": "Realistic Adiabatic Index \u03b3<1 (Apr 29)",
+      "date": "2026-04-29",
+      "n_sims": 40,
+      "n_frag": 40,
+      "n_timeout": 0,
+      "domain": "384\u00d748\u00d748",
+      "bfield": "longitudinal",
+      "key_result": "t_frag decreases ~7% per 0.1 decrease in \u03b3; sub-isothermal EOS accelerates collapse; \u03b3 sensitivity confirmed",
+      "params": "\u03b3=[0.7,0.8,0.9,1.0], f=[1.0,1.2,1.5,1.8,2.2], \u03b2=1.0, seeds=[42,137]"
+    },
+    "FINITE_LENGTH_V1": {
+      "title": "Finite Filament Length Effects (Apr 29)",
+      "date": "2026-04-29",
+      "n_sims": 120,
+      "n_frag": 120,
+      "n_timeout": 0,
+      "domain": "variable (L=2\u20138 \u03bb_J)",
+      "bfield": "longitudinal",
+      "key_result": "t_frag increases with L (+0.027 t_J per 2\u03bb_J); longer filaments fragment more slowly; linear trend",
+      "params": "L=[2,4,6,8] \u03bb_J, f=[1.2,1.5,1.8,2.2,2.6], \u03b2=[0.5,1.0,2.0], seeds=[42,137]"
+    },
+    "TURBULENT_LAMBDA_V1": {
+      "title": "Turbulent \u03bb/W vs Amplitude (Apr 29)",
+      "date": "2026-04-29",
+      "n_sims": 30,
+      "n_frag": 26,
+      "n_timeout": 4,
+      "domain": "384\u00d748\u00d748",
+      "bfield": "longitudinal",
+      "key_result": "Non-monotonic: turb=1.0 fastest (0.275 t_J), turb=2.0 shows resistance; high turbulence resists collapse",
+      "params": "turb=[0.3,1.0,2.0], f=[1.5,1.8,2.2,2.6,3.0], \u03b2=1.0, seeds=[42,137]"
+    },
+    "POWERLAW_VALIDATION_V1": {
+      "title": "High-Resolution Power-Law Validation (Apr 29)",
+      "date": "2026-04-29",
+      "n_sims": 30,
+      "n_frag": 30,
+      "n_timeout": 0,
+      "domain": "512\u00d7128\u00d7128",
+      "bfield": "longitudinal",
+      "key_result": "~3\u00d7 longer t_frag at 2\u00d7 linear resolution (0.90 vs 0.30 t_J); near-critical filaments most resolution-sensitive",
+      "params": "f=[1.2..3.0 in 0.3], \u03b2=[0.5,1.0,2.0], seed=42, 64 cells/\u03bb_J"
+    },
+    "PR2026_MHD": {
+      "title": "PR2026 MHD Validation Campaigns (Apr 25\u201326)",
+      "date": "2026-04-25",
+      "n_sims": 220,
+      "n_frag": 202,
+      "n_timeout": 18,
+      "domain": "variable",
+      "bfield": "variable",
+      "key_result": "calibration mean t_frag=1.262; regime_boundary mean=1.123; perpendicular_field mean=0.402; domain_size mean=1.389",
+      "params": "6 sub-campaigns: calibration, regime_boundary, perpendicular_field, domain_size, physical_turbulence, partial"
+    },
+    "BRIDGE_GRID": {
+      "title": "Bridge Grid \u03b8=90\u00b0 Definitive Test (Apr 28)",
+      "date": "2026-04-28",
+      "n_sims": 48,
+      "n_frag": 48,
+      "n_timeout": 0,
+      "domain": "variable",
+      "bfield": "perpendicular (\u03b8=90\u00b0)",
+      "key_result": "48/48 FRAG \u2014 perpendicular B provides NO longitudinal stability; np=24 FFT fix essential",
+      "params": "f=[1.1,1.4,1.8,2.0], \u03b2=[0.3,1.0,5.0], M=1.0, \u03b8=90\u00b0, seeds=[42,137]"
+    },
+    "CALIB_EXT": {
+      "title": "Calibration Extension (Apr 28)",
+      "date": "2026-04-28",
+      "n_sims": 36,
+      "n_frag": 36,
+      "n_timeout": 0,
+      "domain": "8\u00d72\u00d72 \u03bb_J",
+      "bfield": "longitudinal",
+      "key_result": "36/36 FRAG; mean t_frag=0.319\u00b10.022 t_J; inverted \u03b2 (lower \u03b2 faster at \u03b8=0\u00b0); radial collapse dominates",
+      "params": "f=[1.3..2.0], \u03b2=[0.3,0.5,1.0], \u03b8=0\u00b0, M=1, seeds=[42,137]"
+    },
+    "DTC_EXT": {
+      "title": "DTC Extended Verification (Apr 28)",
+      "date": "2026-04-28",
+      "n_sims": 7,
+      "n_frag": 7,
+      "n_timeout": 0,
+      "domain": "4\u00d74\u00d72 \u03bb_J (same as DTC)",
+      "bfield": "longitudinal",
+      "key_result": "7/7 FRAG at tlim=4.0 t_J \u2014 DTC \u03b2=0.3 stable ridge CONFIRMED ARTIFACT from gravity misconfiguration",
+      "params": "f=[1.4,1.6,2.0], \u03b2=[0.3,1.0], M=1, seeds=[42,137], tlim=4.0 t_J"
+    },
+    "DTC_MAIN": {
+      "title": "Definitive Transition Campaign \u2014 Primary (Apr 20\u201321)",
+      "date": "2026-04-20",
+      "n_sims": 539,
+      "n_frag": 474,
+      "n_timeout": 65,
+      "domain": "128\u00b3, 32\u00b3 meshblocks, 4\u00d74\u00d72",
+      "bfield": "longitudinal",
+      "key_result": "\u03b2=0.3,M=1 stable ridge across f=1.4\u20132.2 (LATER CONFIRMED ARTIFACT by DTC_EXT); \u03b2_crit(M=2)\u22480.5\u20130.7; \u03b2_crit(M=3)\u22480.3\u20130.5",
+      "params": "f=[1.4..2.2], \u03b2=[0.3..1.3], M=[1..5], seeds=[42,137], tlim=1.5 t_J"
+    }
+  }
+}

@@ -1,0 +1,83 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: filament_spacing_final_corrected.aux
+The style file: plainnat.bst
+Database file #1: references_complete.bib
+Repeated entry---line 473 of file references_complete.bib
+ : @article{Andre2010
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 482 of file references_complete.bib
+ : @article{Arzoumanian2011
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 644 of file references_complete.bib
+ : @article{Konyves2015
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 662 of file references_complete.bib
+ : @article{Inutsuka1992
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 698 of file references_complete.bib
+ : @article{Fischera2012
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 707 of file references_complete.bib
+ : @article{Planck2016
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 716 of file references_complete.bib
+ : @article{Stone2020
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 725 of file references_complete.bib
+ : @article{Crutcher2012
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 797 of file references_complete.bib
+ : @article{Ostriker1964
+ :                      ,
+I'm skipping whatever remains of this entry
+You've used 25 entries,
+            2773 wiz_defined-function locations,
+            780 strings with 10002 characters,
+and the built_in function-call counts, 12740 in all, are:
+= -- 1072
+> -- 975
+< -- 19
++ -- 331
+- -- 306
+* -- 1121
+:= -- 2091
+add.period$ -- 95
+call.type$ -- 25
+change.case$ -- 174
+chr.to.int$ -- 25
+cite$ -- 50
+duplicate$ -- 513
+empty$ -- 870
+format.name$ -- 341
+if$ -- 2575
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 24
+newline$ -- 153
+num.names$ -- 100
+pop$ -- 300
+preamble$ -- 1
+purify$ -- 150
+quote$ -- 0
+skip$ -- 403
+stack$ -- 0
+substring$ -- 241
+swap$ -- 36
+text.length$ -- 5
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 275
+warning$ -- 0
+while$ -- 96
+width$ -- 0
+write$ -- 371
+(There were 9 error messages)

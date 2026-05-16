@@ -1,0 +1,157 @@
+{
+  "region": "..",
+  "distance_pc": 296,
+  "has_wcs": true,
+  "n_filaments_analyzed": 14,
+  "n_filaments_valid": 14,
+  "pm_ratio_mean": 1.2439634870524152,
+  "pm_ratio_std": 0.12372790842318528,
+  "pm_ratio_sem": 0.03306767446440721,
+  "pm_ratio_median": 1.1998249835729629,
+  "pm_ratio_p25": 1.1763112063575698,
+  "pm_ratio_p75": 1.2614931672229015,
+  "pm_nn_ratio_mean": 1.2730578994985051,
+  "interpretation": "\u2717 No support: PM does not equal L/3 for HGBS filaments",
+  "individual_filaments": [
+    {
+      "filament_id": 177,
+      "n_cores": 11,
+      "length_pc": 1.4672532175963733,
+      "L_over_3_pc": 0.48908440586545776,
+      "pm_median_pc": 0.5189208795786815,
+      "nn_median_pc": 0.28018361998770064,
+      "pm_ratio": 1.0610047536895533,
+      "pm_nn_ratio": 1.8520742918571071
+    },
+    {
+      "filament_id": 443,
+      "n_cores": 9,
+      "length_pc": 1.1181200225834058,
+      "L_over_3_pc": 0.3727066741944686,
+      "pm_median_pc": 0.4827011611488703,
+      "nn_median_pc": 0.4158375719947487,
+      "pm_ratio": 1.2951234699301613,
+      "pm_nn_ratio": 1.1607925633881058
+    },
+    {
+      "filament_id": 386,
+      "n_cores": 23,
+      "length_pc": 1.395852722492423,
+      "L_over_3_pc": 0.4652842408308077,
+      "pm_median_pc": 0.5579751563113834,
+      "nn_median_pc": 0.3388135007888547,
+      "pm_ratio": 1.1992135287347527,
+      "pm_nn_ratio": 1.6468504206953316
+    },
+    {
+      "filament_id": 34,
+      "n_cores": 10,
+      "length_pc": 1.3557442718619264,
+      "L_over_3_pc": 0.4519147572873088,
+      "pm_median_pc": 0.5245241463467791,
+      "nn_median_pc": 0.4729232870037109,
+      "pm_ratio": 1.160670542151179,
+      "pm_nn_ratio": 1.1091104218402832
+    },
+    {
+      "filament_id": 79,
+      "n_cores": 13,
+      "length_pc": 1.2645847910852384,
+      "L_over_3_pc": 0.42152826369507945,
+      "pm_median_pc": 0.5031966040506375,
+      "nn_median_pc": 0.3817638062270229,
+      "pm_ratio": 1.1937434506518272,
+      "pm_nn_ratio": 1.3180835790163994
+    },
+    {
+      "filament_id": 428,
+      "n_cores": 12,
+      "length_pc": 1.3529820490581508,
+      "L_over_3_pc": 0.4509940163527169,
+      "pm_median_pc": 0.5602900338320627,
+      "nn_median_pc": 0.39084055219210284,
+      "pm_ratio": 1.2423447174826077,
+      "pm_nn_ratio": 1.43355143341593
+    },
+    {
+      "filament_id": 24,
+      "n_cores": 8,
+      "length_pc": 1.3552353260866556,
+      "L_over_3_pc": 0.4517451086955519,
+      "pm_median_pc": 0.5422912893521565,
+      "nn_median_pc": 0.4724143412284402,
+      "pm_ratio": 1.200436438411173,
+      "pm_nn_ratio": 1.1479145360871394
+    },
+    {
+      "filament_id": 87,
+      "n_cores": 17,
+      "length_pc": 1.3371569527838223,
+      "L_over_3_pc": 0.4457189842612741,
+      "pm_median_pc": 0.5230198033861474,
+      "nn_median_pc": 0.45433596792560704,
+      "pm_ratio": 1.1734294967332166,
+      "pm_nn_ratio": 1.1511741097103425
+    },
+    {
+      "filament_id": 64,
+      "n_cores": 12,
+      "length_pc": 1.4073451312049945,
+      "L_over_3_pc": 0.4691150437349982,
+      "pm_median_pc": 0.5422912893521565,
+      "nn_median_pc": 0.5245241463467791,
+      "pm_ratio": 1.1559878468926172,
+      "pm_nn_ratio": 1.0338728791212426
+    },
+    {
+      "filament_id": 173,
+      "n_cores": 2,
+      "length_pc": 0.8160473320991943,
+      "L_over_3_pc": 0.2720157773663981,
+      "pm_median_pc": 0.40802366604959717,
+      "nn_median_pc": 0.40802366604959717,
+      "pm_ratio": 1.5,
+      "pm_nn_ratio": 1.0
+    },
+    {
+      "filament_id": 81,
+      "n_cores": 14,
+      "length_pc": 1.2976542567772,
+      "L_over_3_pc": 0.43255141892573334,
+      "pm_median_pc": 0.5125545441690457,
+      "nn_median_pc": 0.41483327191898467,
+      "pm_ratio": 1.1849563352306294,
+      "pm_nn_ratio": 1.2355675854976877
+    },
+    {
+      "filament_id": 254,
+      "n_cores": 3,
+      "length_pc": 1.3274563774453951,
+      "L_over_3_pc": 0.44248545914846504,
+      "pm_median_pc": 0.6776247293796845,
+      "nn_median_pc": 0.5428241977146409,
+      "pm_ratio": 1.5314056436650596,
+      "pm_nn_ratio": 1.2483318397237468
+    },
+    {
+      "filament_id": 7,
+      "n_cores": 5,
+      "length_pc": 1.0868661319784934,
+      "L_over_3_pc": 0.3622887106594978,
+      "pm_median_pc": 0.45807785911374643,
+      "nn_median_pc": 0.41864421809770297,
+      "pm_ratio": 1.2644000368652872,
+      "pm_nn_ratio": 1.09419368358944
+    },
+    {
+      "filament_id": 236,
+      "n_cores": 17,
+      "length_pc": 1.2162725294416121,
+      "L_over_3_pc": 0.40542417648053736,
+      "pm_median_pc": 0.5079042827644682,
+      "nn_median_pc": 0.3650591154066689,
+      "pm_ratio": 1.2527725582957445,
+      "pm_nn_ratio": 1.391293249036317
+    }
+  ]
+}

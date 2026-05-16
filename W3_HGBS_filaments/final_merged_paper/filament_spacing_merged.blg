@@ -1,0 +1,83 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: filament_spacing_merged.aux
+The style file: plainnat.bst
+Database file #1: references_complete.bib
+Repeated entry---line 473 of file references_complete.bib
+ : @article{Andre2010
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 482 of file references_complete.bib
+ : @article{Arzoumanian2011
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 644 of file references_complete.bib
+ : @article{Konyves2015
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 662 of file references_complete.bib
+ : @article{Inutsuka1992
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 698 of file references_complete.bib
+ : @article{Fischera2012
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 707 of file references_complete.bib
+ : @article{Planck2016
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 716 of file references_complete.bib
+ : @article{Stone2020
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 725 of file references_complete.bib
+ : @article{Crutcher2012
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 797 of file references_complete.bib
+ : @article{Ostriker1964
+ :                      ,
+I'm skipping whatever remains of this entry
+You've used 25 entries,
+            2773 wiz_defined-function locations,
+            773 strings with 11406 characters,
+and the built_in function-call counts, 16196 in all, are:
+= -- 1279
+> -- 1593
+< -- 20
++ -- 535
+- -- 510
+* -- 1565
+:= -- 2701
+add.period$ -- 98
+call.type$ -- 25
+change.case$ -- 245
+chr.to.int$ -- 25
+cite$ -- 50
+duplicate$ -- 525
+empty$ -- 870
+format.name$ -- 543
+if$ -- 3198
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 25
+newline$ -- 156
+num.names$ -- 100
+pop$ -- 443
+preamble$ -- 1
+purify$ -- 220
+quote$ -- 0
+skip$ -- 459
+stack$ -- 0
+substring$ -- 208
+swap$ -- 45
+text.length$ -- 10
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 275
+warning$ -- 0
+while$ -- 92
+width$ -- 0
+write$ -- 378
+(There were 9 error messages)

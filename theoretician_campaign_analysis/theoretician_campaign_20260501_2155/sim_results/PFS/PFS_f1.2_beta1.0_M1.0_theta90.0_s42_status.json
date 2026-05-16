@@ -1,0 +1,12 @@
+{
+  "sim_id": "PFS_f1.2_beta1.0_M1.0_theta90.0_s42",
+  "campaign": "PFS",
+  "f": 1.2,
+  "beta": 1.0,
+  "theta": 90.0,
+  "seed": 42,
+  "status": "FRAG",
+  "t_frag": 0.650112,
+  "wall_time_s": 350.44575357437134,
+  "timestamp": "2026-05-01T20:24:12.131951+00:00"
+}

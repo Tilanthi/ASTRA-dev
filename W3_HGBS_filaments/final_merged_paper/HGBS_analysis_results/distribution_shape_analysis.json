@@ -1,0 +1,10 @@
+[
+  {
+    "region": "Ophiuchus",
+    "n_cores": 513,
+    "n_spacings": 512,
+    "median_arcmin": 11.34041005070133,
+    "std_arcmin": 20.880952141895147,
+    "cv": 1.8412872240544598,
+    "n_peaks": 33,
+    "single_filament_signature": 

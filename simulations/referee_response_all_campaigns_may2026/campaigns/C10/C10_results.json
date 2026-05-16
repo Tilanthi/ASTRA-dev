@@ -1,0 +1,492 @@
+{
+  "periodic_beading": [
+    {
+      "region": "Taurus",
+      "seed": 42,
+      "L": 8.5,
+      "N_cores": 28,
+      "true_spacing": 0.3,
+      "pairwise_median": 2.6757,
+      "nn_median": 0.3,
+      "bias_pairwise": 7.9188,
+      "bias_nn": -0.0
+    },
+    {
+      "region": "Taurus",
+      "seed": 137,
+      "L": 8.5,
+      "N_cores": 28,
+      "true_spacing": 0.3,
+      "pairwise_median": 2.6779,
+      "nn_median": 0.2984,
+      "bias_pairwise": 7.9263,
+      "bias_nn": -0.0054
+    },
+    {
+      "region": "Taurus",
+      "seed": 314,
+      "L": 8.5,
+      "N_cores": 28,
+      "true_spacing": 0.3,
+      "pairwise_median": 2.6802,
+      "nn_median": 0.2985,
+      "bias_pairwise": 7.9341,
+      "bias_nn": -0.0048
+    },
+    {
+      "region": "OrionB",
+      "seed": 42,
+      "L": 12.0,
+      "N_cores": 40,
+      "true_spacing": 0.3,
+      "pairwise_median": 3.6049,
+      "nn_median": 0.2991,
+      "bias_pairwise": 11.0162,
+      "bias_nn": -0.0031
+    },
+    {
+      "region": "OrionB",
+      "seed": 137,
+      "L": 12.0,
+      "N_cores": 40,
+      "true_spacing": 0.3,
+      "pairwise_median": 3.6009,
+      "nn_median": 0.2984,
+      "bias_pairwise": 11.0032,
+      "bias_nn": -0.0054
+    },
+    {
+      "region": "OrionB",
+      "seed": 314,
+      "L": 12.0,
+      "N_cores": 40,
+      "true_spacing": 0.3,
+      "pairwise_median": 3.5994,
+      "nn_median": 0.2986,
+      "bias_pairwise": 10.9981,
+      "bias_nn": -0.0045
+    },
+    {
+      "region": "Aquila",
+      "seed": 42,
+      "L": 10.0,
+      "N_cores": 33,
+      "true_spacing": 0.3,
+      "pairwise_median": 3.0002,
+      "nn_median": 0.2995,
+      "bias_pairwise": 9.0007,
+      "bias_nn": -0.0015
+    },
+    {
+      "region": "Aquila",
+      "seed": 137,
+      "L": 10.0,
+      "N_cores": 33,
+      "true_spacing": 0.3,
+      "pairwise_median": 2.9996,
+      "nn_median": 0.2991,
+      "bias_pairwise": 8.9986,
+      "bias_nn": -0.003
+    },
+    {
+      "region": "Aquila",
+      "seed": 314,
+      "L": 10.0,
+      "N_cores": 33,
+      "true_spacing": 0.3,
+      "pairwise_median": 2.9975,
+      "nn_median": 0.2986,
+      "bias_pairwise": 8.9915,
+      "bias_nn": -0.0047
+    },
+    {
+      "region": "Perseus",
+      "seed": 42,
+      "L": 9.0,
+      "N_cores": 30,
+      "true_spacing": 0.3,
+      "pairwise_median": 2.7055,
+      "nn_median": 0.3,
+      "bias_pairwise": 8.0185,
+      "bias_nn": -0.0
+    },
+    {
+      "region": "Perseus",
+      "seed": 137,
+      "L": 9.0,
+      "N_cores": 30,
+      "true_spacing": 0.3,
+      "pairwise_median": 2.7037,
+      "nn_median": 0.2984,
+      "bias_pairwise": 8.0125,
+      "bias_nn": -0.0054
+    },
+    {
+      "region": "Perseus",
+      "seed": 314,
+      "L": 9.0,
+      "N_cores": 30,
+      "true_spacing": 0.3,
+      "pairwise_median": 2.7053,
+      "nn_median": 0.2985,
+      "bias_pairwise": 8.0178,
+      "bias_nn": -0.0048
+    },
+    {
+      "region": "Ophiuchus",
+      "seed": 42,
+      "L": 6.0,
+      "N_cores": 20,
+      "true_spacing": 0.3,
+      "pairwise_median": 1.8028,
+      "nn_median": 0.2972,
+      "bias_pairwise": 5.0094,
+      "bias_nn": -0.0093
+    },
+    {
+      "region": "Ophiuchus",
+      "seed": 137,
+      "L": 6.0,
+      "N_cores": 20,
+      "true_spacing": 0.3,
+      "pairwise_median": 1.8023,
+      "nn_median": 0.2998,
+      "bias_pairwise": 5.0076,
+      "bias_nn": -0.0006
+    },
+    {
+      "region": "Ophiuchus",
+      "seed": 314,
+      "L": 6.0,
+      "N_cores": 20,
+      "true_spacing": 0.3,
+      "pairwise_median": 1.8048,
+      "nn_median": 0.2973,
+      "bias_pairwise": 5.016,
+      "bias_nn": -0.0091
+    },
+    {
+      "region": "Serpens",
+      "seed": 42,
+      "L": 7.0,
+      "N_cores": 23,
+      "true_spacing": 0.3,
+      "pairwise_median": 2.1033,
+      "nn_median": 0.2982,
+      "bias_pairwise": 6.0109,
+      "bias_nn": -0.0062
+    },
+    {
+      "region": "Serpens",
+      "seed": 137,
+      "L": 7.0,
+      "N_cores": 23,
+      "true_spacing": 0.3,
+      "pairwise_median": 2.1077,
+      "nn_median": 0.2999,
+      "bias_pairwise": 6.0255,
+      "bias_nn": -0.0002
+    },
+    {
+      "region": "Serpens",
+      "seed": 314,
+      "L": 7.0,
+      "N_cores": 23,
+      "true_spacing": 0.3,
+      "pairwise_median": 2.0999,
+      "nn_median": 0.2979,
+      "bias_pairwise": 5.9996,
+      "bias_nn": -0.0069
+    },
+    {
+      "region": "TMC1",
+      "seed": 42,
+      "L": 5.0,
+      "N_cores": 16,
+      "true_spacing": 0.3,
+      "pairwise_median": 1.4995,
+      "nn_median": 0.2971,
+      "bias_pairwise": 3.9984,
+      "bias_nn": -0.0098
+    },
+    {
+      "region": "TMC1",
+      "seed": 137,
+      "L": 5.0,
+      "N_cores": 16,
+      "true_spacing": 0.3,
+      "pairwise_median": 1.5003,
+      "nn_median": 0.2998,
+      "bias_pairwise": 4.001,
+      "bias_nn": -0.0006
+    },
+    {
+      "region": "TMC1",
+      "seed": 314,
+      "L": 5.0,
+      "N_cores": 16,
+      "true_spacing": 0.3,
+      "pairwise_median": 1.4977,
+      "nn_median": 0.297,
+      "bias_pairwise": 3.9925,
+      "bias_nn": -0.0099
+    },
+    {
+      "region": "CRA",
+      "seed": 42,
+      "L": 6.0,
+      "N_cores": 20,
+      "true_spacing": 0.3,
+      "pairwise_median": 1.8028,
+      "nn_median": 0.2972,
+      "bias_pairwise": 5.0094,
+      "bias_nn": -0.0093
+    },
+    {
+      "region": "CRA",
+      "seed": 137,
+      "L": 6.0,
+      "N_cores": 20,
+      "true_spacing": 0.3,
+      "pairwise_median": 1.8023,
+      "nn_median": 0.2998,
+      "bias_pairwise": 5.0076,
+      "bias_nn": -0.0006
+    },
+    {
+      "region": "CRA",
+      "seed": 314,
+      "L": 6.0,
+      "N_cores": 20,
+      "true_spacing": 0.3,
+      "pairwise_median": 1.8048,
+      "nn_median": 0.2973,
+      "bias_pairwise": 5.016,
+      "bias_nn": -0.0091
+    }
+  ],
+  "random_uniform": [
+    {
+      "region": "Taurus",
+      "seed": 42,
+      "L": 8.5,
+      "N_cores": 536,
+      "pairwise_median": 0.8678,
+      "nn_median": 0.0109,
+      "L_over_3": 2.8333
+    },
+    {
+      "region": "Taurus",
+      "seed": 137,
+      "L": 8.5,
+      "N_cores": 536,
+      "pairwise_median": 0.8872,
+      "nn_median": 0.0109,
+      "L_over_3": 2.8333
+    },
+    {
+      "region": "Taurus",
+      "seed": 314,
+      "L": 8.5,
+      "N_cores": 536,
+      "pairwise_median": 0.902,
+      "nn_median": 0.0117,
+      "L_over_3": 2.8333
+    },
+    {
+      "region": "OrionB",
+      "seed": 42,
+      "L": 12.0,
+      "N_cores": 1844,
+      "pairwise_median": 0.3861,
+      "nn_median": 0.0044,
+      "L_over_3": 4.0
+    },
+    {
+      "region": "OrionB",
+      "seed": 137,
+      "L": 12.0,
+      "N_cores": 1844,
+      "pairwise_median": 0.3907,
+      "nn_median": 0.0046,
+      "L_over_3": 4.0
+    },
+    {
+      "region": "OrionB",
+      "seed": 314,
+      "L": 12.0,
+      "N_cores": 1844,
+      "pairwise_median": 0.4361,
+      "nn_median": 0.0044,
+      "L_over_3": 4.0
+    },
+    {
+      "region": "Aquila",
+      "seed": 42,
+      "L": 10.0,
+      "N_cores": 749,
+      "pairwise_median": 0.7417,
+      "nn_median": 0.009,
+      "L_over_3": 3.3333
+    },
+    {
+      "region": "Aquila",
+      "seed": 137,
+      "L": 10.0,
+      "N_cores": 749,
+      "pairwise_median": 0.7463,
+      "nn_median": 0.0091,
+      "L_over_3": 3.3333
+    },
+    {
+      "region": "Aquila",
+      "seed": 314,
+      "L": 10.0,
+      "N_cores": 749,
+      "pairwise_median": 0.798,
+      "nn_median": 0.0096,
+      "L_over_3": 3.3333
+    },
+    {
+      "region": "Perseus",
+      "seed": 42,
+      "L": 9.0,
+      "N_cores": 816,
+      "pairwise_median": 0.6042,
+      "nn_median": 0.0075,
+      "L_over_3": 3.0
+    },
+    {
+      "region": "Perseus",
+      "seed": 137,
+      "L": 9.0,
+      "N_cores": 816,
+      "pairwise_median": 0.6178,
+      "nn_median": 0.0074,
+      "L_over_3": 3.0
+    },
+    {
+      "region": "Perseus",
+      "seed": 314,
+      "L": 9.0,
+      "N_cores": 816,
+      "pairwise_median": 0.6604,
+      "nn_median": 0.0079,
+      "L_over_3": 3.0
+    },
+    {
+      "region": "Ophiuchus",
+      "seed": 42,
+      "L": 6.0,
+      "N_cores": 513,
+      "pairwise_median": 0.6311,
+      "nn_median": 0.0082,
+      "L_over_3": 2.0
+    },
+    {
+      "region": "Ophiuchus",
+      "seed": 137,
+      "L": 6.0,
+      "N_cores": 513,
+      "pairwise_median": 0.6482,
+      "nn_median": 0.0082,
+      "L_over_3": 2.0
+    },
+    {
+      "region": "Ophiuchus",
+      "seed": 314,
+      "L": 6.0,
+      "N_cores": 513,
+      "pairwise_median": 0.6643,
+      "nn_median": 0.0086,
+      "L_over_3": 2.0
+    },
+    {
+      "region": "Serpens",
+      "seed": 42,
+      "L": 7.0,
+      "N_cores": 194,
+      "pairwise_median": 1.935,
+      "nn_median": 0.0238,
+      "L_over_3": 2.3333
+    },
+    {
+      "region": "Serpens",
+      "seed": 137,
+      "L": 7.0,
+      "N_cores": 194,
+      "pairwise_median": 2.1861,
+      "nn_median": 0.0255,
+      "L_over_3": 2.3333
+    },
+    {
+      "region": "Serpens",
+      "seed": 314,
+      "L": 7.0,
+      "N_cores": 194,
+      "pairwise_median": 2.0179,
+      "nn_median": 0.0236,
+      "L_over_3": 2.3333
+    },
+    {
+      "region": "TMC1",
+      "seed": 42,
+      "L": 5.0,
+      "N_cores": 178,
+      "pairwise_median": 1.3908,
+      "nn_median": 0.02,
+      "L_over_3": 1.6667
+    },
+    {
+      "region": "TMC1",
+      "seed": 137,
+      "L": 5.0,
+      "N_cores": 178,
+      "pairwise_median": 1.5414,
+      "nn_median": 0.0198,
+      "L_over_3": 1.6667
+    },
+    {
+      "region": "TMC1",
+      "seed": 314,
+      "L": 5.0,
+      "N_cores": 178,
+      "pairwise_median": 1.4427,
+      "nn_median": 0.0194,
+      "L_over_3": 1.6667
+    },
+    {
+      "region": "CRA",
+      "seed": 42,
+      "L": 6.0,
+      "N_cores": 239,
+      "pairwise_median": 1.3252,
+      "nn_median": 0.0163,
+      "L_over_3": 2.0
+    },
+    {
+      "region": "CRA",
+      "seed": 137,
+      "L": 6.0,
+      "N_cores": 239,
+      "pairwise_median": 1.5959,
+      "nn_median": 0.0176,
+      "L_over_3": 2.0
+    },
+    {
+      "region": "CRA",
+      "seed": 314,
+      "L": 6.0,
+      "N_cores": 239,
+      "pairwise_median": 1.4256,
+      "nn_median": 0.0175,
+      "L_over_3": 2.0
+    }
+  ],
+  "bias_stats": {
+    "pairwise_mean": 6.9971,
+    "pairwise_std": 2.2313,
+    "nn_mean": -0.0048,
+    "nn_std": 0.0034
+  }
+}

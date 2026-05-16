@@ -1,0 +1,14 @@
+# Placeholder for Athena++ binary
+#
+# Instructions:
+# 1. Either symlink your existing Athena++ binary:
+#    ln -s /path/to/your/athena/bin/athena athena
+# 2. Or copy the binary here:
+#    cp /path/to/your/athena/bin/athena athena
+# 3. Ensure the binary is executable: chmod +x athena
+#
+# Required Athena++ configuration:
+# - Problem generator: film_fragmentation (or compatible)
+# - Self-gravity: FFT-based Poisson solver
+# - MPI parallelization: Enabled
+# - HDF5 output: Enabled

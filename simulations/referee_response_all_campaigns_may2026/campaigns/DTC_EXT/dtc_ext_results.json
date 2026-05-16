@@ -1,0 +1,96 @@
+{
+  "completed": "2026-04-28T20:01:47.269932",
+  "results": [
+    {
+      "sim_id": "dtcext_f1.6_beta0.3_s42",
+      "f": 1.6,
+      "beta": 0.3,
+      "seed": 42,
+      "label": "DTC_STABLE",
+      "outcome": "FRAG",
+      "t_frag": 0.285347,
+      "dt_min": 3.11170457988347e-11,
+      "t_final": 0.285346979621097,
+      "wall_s": 163.2,
+      "exit_code": 1
+    },
+    {
+      "sim_id": "dtcext_f1.4_beta0.3_s137",
+      "f": 1.4,
+      "beta": 0.3,
+      "seed": 137,
+      "label": "DTC_STABLE",
+      "outcome": "FRAG",
+      "t_frag": 0.294453,
+      "dt_min": 9.069784032211514e-10,
+      "t_final": 0.29445321232811106,
+      "wall_s": 163.2,
+      "exit_code": 1
+    },
+    {
+      "sim_id": "dtcext_f1.4_beta1.0_s42",
+      "f": 1.4,
+      "beta": 1.0,
+      "seed": 42,
+      "label": "DTC_FRAG_CONTROL",
+      "outcome": "FRAG",
+      "t_frag": 0.339876,
+      "dt_min": 8.087612059550047e-09,
+      "t_final": 0.33987863442230387,
+      "wall_s": 163.2,
+      "exit_code": 1
+    },
+    {
+      "sim_id": "dtcext_f2.0_beta0.3_s137",
+      "f": 2.0,
+      "beta": 0.3,
+      "seed": 137,
+      "label": "DTC_STABLE",
+      "outcome": "FRAG",
+      "t_frag": 0.27293,
+      "dt_min": 5.980933837529857e-12,
+      "t_final": 0.2729304584625115,
+      "wall_s": 163.2,
+      "exit_code": 1
+    },
+    {
+      "sim_id": "dtcext_f2.0_beta0.3_s42",
+      "f": 2.0,
+      "beta": 0.3,
+      "seed": 42,
+      "label": "DTC_STABLE",
+      "outcome": "FRAG",
+      "t_frag": 0.272929,
+      "dt_min": 2.7159242478969996e-12,
+      "t_final": 0.2729302543675743,
+      "wall_s": 163.2,
+      "exit_code": 1
+    },
+    {
+      "sim_id": "dtcext_f1.6_beta0.3_s137",
+      "f": 1.6,
+      "beta": 0.3,
+      "seed": 137,
+      "label": "DTC_STABLE",
+      "outcome": "FRAG",
+      "t_frag": 0.285343,
+      "dt_min": 3.1309510408734236e-10,
+      "t_final": 0.2853438652391519,
+      "wall_s": 163.2,
+      "exit_code": 1
+    },
+    {
+      "sim_id": "dtcext_f1.4_beta0.3_s42",
+      "f": 1.4,
+      "beta": 0.3,
+      "seed": 42,
+      "label": "DTC_STABLE",
+      "outcome": "FRAG",
+      "t_frag": 0.294419,
+      "dt_min": 1.2002195088951745e-10,
+      "t_final": 0.29441954809396775,
+      "wall_s": 163.2,
+      "exit_code": 1
+    }
+  ]
+}

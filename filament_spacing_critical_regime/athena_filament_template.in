@@ -1,0 +1,216 @@
+# Athena++ configuration for filament spacing simulation
+# f = {F_VALUE}, beta = {BETA_VALUE}, M = {M_VALUE}, seed = {SEED_VALUE}
+
+<problem>
+  currentTime            = 0.0        # Start time
+  tstop                  = 2.0        # End time (in free-fall time units)
+  dt                     = 1.0e-4     # Initial timestep
+  cfl_number             = 0.3        # Courant number
+
+  # Output frequency
+  dt pavedOut1            = 0.01       # Time between outputs
+  output1 filetype       = hst        # History dump format
+  output1 dt             = 0.1        # Full dump frequency
+
+  # Restart
+  restart               = file       # Restart from file if available
+  restart file           = {RESTART_FILE}
+</problem>
+
+<hydro>
+  # Isothermal equation of state
+  iso_sound_speed        = 1.894e4    # cs = 0.189 km/s for T=10 K
+  gamma                  = 1.0        # Isothermal
+  Rgas                   = 8.314e7    # Gas constant (cgs)
+  mean_mol_weight        = 2.33       # Mean molecular weight
+</hydro>
+
+<gravity>
+  # Self-gravity with FFT Poisson solver
+  grav_field_type        = fft
+  # Gravitational constant in code units
+  # We'll set this via scaling to physical units
+  fourier_gravity        = true
+  gravity               = true
+</gravity>
+
+<rotation>
+  # Rotating frame (disabled for filament simulations)
+  rotate                 = false
+  Omega                 = 0.0
+</rotation>
+
+<mesh>
+  # 512³ grid covering cylindrical filament domain
+  # Domain size: Lx = Ly = 32H, Lz = 64H (periodic along filament)
+  x1min                  = -16.0
+  x1max                  = 16.0
+  x2min                  = -16.0
+  x2max                  = 16.0
+  x3min                  = -32.0
+  x3max                  = 32.0
+
+  # Number of grid cells
+  nx1                    = 512
+  nx2                    = 512
+  nx3                    = 1024
+
+  # Boundary conditions
+  ix1_bc                 = outflow
+  ox1_bc                 = outflow
+  ix2_bc                 = outflow
+  ox2_bc                 = outflow
+  ix3_bc                 = periodic
+  ox3_bc                 = periodic
+
+  # Coordinate system
+  x1rat                   = 1.0
+  x2rat                   = 1.0
+  x3rat                   = 1.0
+</mesh>
+
+<ambience>
+  # No ambient medium
+  density                 = 0.0
+  pressure               = 0.0
+  B1c                    = {B0_VALUE}
+  B2c                    = 0.0
+  B3c                    = 0.0
+</ambience>
+
+<problem>
+  # Time integrator
+  integrator              = vl2        # van Leer integrator
+  order                   = 2
+
+  # Reconstruction
+  xorder                  = 2
+
+  # Riemann solver
+  rsolver                 = hlld       # HLLD Riemann solver
+
+  # Longitudinal magnetic field along z-axis
+  B1c                     = 0.0
+  B2c                     = 0.0
+  B3c                     = {B0_VALUE}
+</problem>
+
+<fluid>
+  # Initial condition: cylindrical filament
+  # King-profile density: ρ(r) = ρ₀ / [1 + (r/R)²]
+  # where r = sqrt(x² + y²) and R = 2H
+
+  # Scale height
+  H                       = 0.05       # H = cs²/2πGρ₀ (in code units)
+  R_fil                   = 2.0 * H
+
+  # Critical line mass: M_line,crit = 2cs²/G
+  # We'll set ρ₀ to achieve desired f = M_line/M_line,crit
+
+  # For f = {F_VALUE}, we need M_line = f * M_line,crit
+  # This translates to specific ρ₀ value
+  rho0                    = {RHO0_VALUE}
+
+  # Initial pressure: P = cs²ρ for isothermal gas
+  P0                      = {CS_VALUE}² * rho0
+
+  # Magnetic field strength for desired beta
+  # beta = 8πP/B² = 8πcs²ρ/B² → B = sqrt(8πcs²ρ/beta)
+  B0                      = {B0_VALUE}
+
+  # Turbulent driving
+  turb_driving            = false
+  # Random initial velocities for Mach M
+  turb_intensity           = {TURB_INTENSITY}
+</fluid>
+
+<output>
+  # Output files
+  dt                        = 0.01       # Time between outputs
+  output1                   = hst        # History data
+  output2                   = vtk        # VTK snapshots
+
+  # Variables to output
+  output1 variables = rho, vel1, vel2, vel3, B1c, B2c, B3c, phi
+
+  # Movie dumps
+  movie dir                 = ./movie
+  movie restart             = false
+  movie def vars = rho
+  movie start time          = 0.0
+  movie stop time           = 2.0
+  movie dt                  = 0.05
+  movie number              = 0
+</output>
+
+<time>
+  # Time control
+  start_time              = 0.0
+  tlim                    = 2.0
+  nlim                    = 10000000
+  cycle_stop              = 10000000
+
+  # Performance
+  max_force_increment     = 0.01
+  mesh_dt                 = 0.5
+  dt                      = 1.0e-4
+</time>
+
+<magnetic>
+  # Magnetic field parameters
+  # Resistivity disabled for ideal MHD
+  eta                     = 0.0
+
+  # Div B cleaning
+  divb_cleaning           = powell     # Powell's method
+  divb_tolerance          = 1.0e-10
+</magnetic>
+
+<fft>
+  # FFT gravity parameters
+  gravity                   = true
+  fbc                       = fft
+
+  # Normalization
+  fourier_gravity          = true
+
+  # Boundary conditions for FFT
+  fft_GRAITY_fbc          = periodic
+  fft_GRAITY_gb_x1       = periodic
+  fft_GRAITY_gb_x2       = periodic
+  fft_GRAITY_gb_x3       = periodic
+</fft>
+
+<random>
+  # Random number seed
+  seed                    = {SEED_VALUE}
+</random>
+
+<units>
+  # Unit conversion from physical to code units
+  # Physical reference values for HGBS filaments
+  # n(H₂) = 10⁴ cm⁻³ → ρ₀ = 2.3 × 10⁻²⁰ g cm⁻³
+  # T = 10 K → cs = 0.189 km s⁻³
+  # B = 3-30 μG → β = 0.1-10
+  # L = 2 pc (typical filament length)
+
+  # Code units
+  length_cgs              = 3.086e18   # 1 pc in cm
+  velocity_cgs            = 1.894e4    # cs in cm/s
+  density_cgs             = 2.3e-20    # ρ₀ in g/cm³
+
+  # Derived units
+  time_cgs                = length_cgs / velocity_cgs
+  mass_cgs                = density_cgs * length_cgs³
+
+  # In code units:
+  # H = 0.05 (scale height)
+  # R_fil = 0.1 (filament radius)
+  # Lx, Ly = 1.6 (±0.8 from center)
+  # Lz = 3.2 (periodic length)
+</units>
+
+<block>
+  # No static mesh refinement for this campaign
+  # Fixed 512³ resolution throughout
+</block>

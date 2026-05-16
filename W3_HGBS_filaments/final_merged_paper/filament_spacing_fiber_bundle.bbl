@@ -1,0 +1,186 @@
+\begin{thebibliography}{}
+\makeatletter
+\relax
+\def\mn@urlcharsother{\let\do\@makeother \do\$\do\&\do\#\do\^\do\_\do\%\do\~}
+\def\mn@doi{\begingroup\mn@urlcharsother \@ifnextchar [ {\mn@doi@}
+  {\mn@doi@[]}}
+\def\mn@doi@[#1]#2{\def\@tempa{#1}\ifx\@tempa\@empty \href
+  {http://dx.doi.org/#2} {doi:#2}\else \href {http://dx.doi.org/#2} {#1}\fi
+  \endgroup}
+\def\mn@eprint#1#2{\mn@eprint@#1:#2::\@nil}
+\def\mn@eprint@arXiv#1{\href {http://arxiv.org/abs/#1} {{\tt arXiv:#1}}}
+\def\mn@eprint@dblp#1{\href {http://dblp.uni-trier.de/rec/bibtex/#1.xml}
+  {dblp:#1}}
+\def\mn@eprint@#1:#2:#3:#4\@nil{\def\@tempa {#1}\def\@tempb {#2}\def\@tempc
+  {#3}\ifx \@tempc \@empty \let \@tempc \@tempb \let \@tempb \@tempa \fi \ifx
+  \@tempb \@empty \def\@tempb {arXiv}\fi \@ifundefined
+  {mn@eprint@\@tempb}{\@tempb:\@tempc}{\expandafter \expandafter \csname
+  mn@eprint@\@tempb\endcsname \expandafter{\@tempc}}}
+
+\bibitem[\protect\citeauthoryear{{Andr{\'e}}, {Men'shchikov}, {Bontemps},
+  {Motte}, {Schneider}  \& {Arzoumanian}}{{Andr{\'e}} et~al.}{2010}]{Andre2010}
+{Andr{\'e}} P.,  {Men'shchikov} A.,  {Bontemps} S.,  {Motte} F.,  {Schneider}
+  N.,   {Arzoumanian} D.,  2010, \mn@doi [Astronomy and Astrophysics]
+  {10.1051/0004-6361/201014666}, 518, L102
+
+\bibitem[\protect\citeauthoryear{{Andr{\'e}} et~al.,}{{Andr{\'e}}
+  et~al.}{2016}]{Andre2016}
+{Andr{\'e}} P.,  et~al., 2016, \mn@doi [Astronomy and Astrophysics]
+  {10.1051/0004-6361/201527593}, 587, A44
+
+\bibitem[\protect\citeauthoryear{{Arzoumanian}, {Andr{\'e}}, {Men'shchikov},
+  {K{\"o}nyves}, {Schneider}, {Motte}  \& {Bontemps}}{{Arzoumanian}
+  et~al.}{2011}]{Arzoumanian2011}
+{Arzoumanian} D.,  {Andr{\'e}} P.,  {Men'shchikov} A.,  {K{\"o}nyves} V.,
+  {Schneider} N.,  {Motte} F.,   {Bontemps} S.,  2011, \mn@doi [Astronomy and
+  Astrophysics] {10.1051/0004-6361/201015777}, 529, L6
+
+\bibitem[\protect\citeauthoryear{{Arzoumanian} et~al.,}{{Arzoumanian}
+  et~al.}{2019}]{Arzoumanian2019}
+{Arzoumanian} D.,  et~al., 2019, \mn@doi [Astronomy and Astrophysics]
+  {10.1051/0004-6361/201834927}, 622, L12
+
+\bibitem[\protect\citeauthoryear{{Green}, {Zucker}, {Speagle}  \&
+  {Schlafly}}{{Green} et~al.}{2024}]{Green2024}
+{Green} G.~M.,  {Zucker} C.,  {Speagle} J.~S.,   {Schlafly} E.,  2024, \mn@doi
+  [The Astrophysical Journal] {10.3847/1538-4357/ad1613}, 963, 142
+
+\bibitem[\protect\citeauthoryear{{Hacar}, Tafalla, Kauffmann  \&
+  Kov{\'a}cs}{{Hacar} et~al.}{2013}]{Hacar2013}
+{Hacar} A.,  Tafalla M.,  Kauffmann J.,   Kov{\'a}cs A.,  2013, \mn@doi
+  [Astronomy \& Astrophysics] {10.1051/0004-6361/201220630}, 554, A55
+
+\bibitem[\protect\citeauthoryear{{Hacar}, Tafalla  \& Hsu}{{Hacar}
+  et~al.}{2018}]{Hacar2018}
+{Hacar} A.,  Tafalla M.,   Hsu W.,  2018, \mn@doi [Astrophysical Journal
+  Supplement] {10.3847/1538-4365/aaadf8}, 236, 22
+
+\bibitem[\protect\citeauthoryear{{Inutsuka} \& {Miyama}}{{Inutsuka} \&
+  {Miyama}}{1992}]{Inutsuka1992}
+{Inutsuka} S.-I.,  {Miyama} S.~M.,  1992, \mn@doi [Astrophysical Journal]
+  {10.1086/171167}, 388, 392
+
+\bibitem[\protect\citeauthoryear{{Jadhav}, {Dewangan}, {Zinchenko}, {Pillai},
+  {Sanhueza}, {Maity}, {Yadav}  \& {Sharma}}{{Jadhav}
+  et~al.}{2026}]{Jadhav2026}
+{Jadhav} O.~R.,  {Dewangan} L.~K.,  {Zinchenko} I.~I.,  {Pillai} T.~G.~S.,
+  {Sanhueza} P.,  {Maity} A.~K.,  {Yadav} R.~K.,   {Sharma} S.,  2026, \mn@doi
+  [Monthly Notices of the Royal Astronomical Society] {10.1093/mnras/stag536},
+  548, stag536
+
+\bibitem[\protect\citeauthoryear{{Kirk} et~al.,}{{Kirk}
+  et~al.}{2016}]{Kirk2016}
+{Kirk} J.~M.,  et~al., 2016, \mn@doi [Monthly Notices of the Royal Astronomical
+  Society] {10.1093/mnras/stw2232}, 463, 3265
+
+\bibitem[\protect\citeauthoryear{{K{\"o}nyves} et~al.,}{{K{\"o}nyves}
+  et~al.}{2015}]{Konyves2015}
+{K{\"o}nyves} V.,  et~al., 2015, \mn@doi [Astronomy and Astrophysics]
+  {10.1051/0004-6361/201525861}, 584, A91
+
+\bibitem[\protect\citeauthoryear{{K{\"o}nyves} et~al.,}{{K{\"o}nyves}
+  et~al.}{2020}]{Konyves2020}
+{K{\"o}nyves} V.,  et~al., 2020, Astronomy and Astrophysics, 643, A134
+
+\bibitem[\protect\citeauthoryear{{Kounkel} et~al.,}{{Kounkel}
+  et~al.}{2018}]{Kounkel2018}
+{Kounkel} M.,  et~al., 2018, \mn@doi [The Astrophysical Journal Supplement]
+  {10.3847/1538-4365/aab5c4}, 236, 18
+
+\bibitem[\protect\citeauthoryear{{Ladjelate} et~al.,}{{Ladjelate}
+  et~al.}{2020}]{Ladjelate2020}
+{Ladjelate} B.,  et~al., 2020, Astronomy and Astrophysics, 643, A166
+
+\bibitem[\protect\citeauthoryear{{Mattern} et~al.,}{{Mattern}
+  et~al.}{2018}]{Mattern2018}
+{Mattern} M.,  et~al., 2018, \mn@doi [Astronomy and Astrophysics]
+  {10.1051/0004-6361/201832881}, 620, A158
+
+\bibitem[\protect\citeauthoryear{{Nakamura}, {Hanawa}  \& {Nakano}}{{Nakamura}
+  et~al.}{1993}]{Nakamura1993}
+{Nakamura} M.,  {Hanawa} T.,   {Nakano} T.,  1993, Publications of the
+  Astronomical Society of Japan, 45, 585
+
+\bibitem[\protect\citeauthoryear{{Ortiz-Le{\'o}n}, {Loinard}, {Dzib},
+  {Mioduszewski}, {Gonz{\'a}lez-L{\'o}pez}, {Gonz{\'a}lez}  \&
+  {Pech}}{{Ortiz-Le{\'o}n} et~al.}{2017}]{OrtizLeon2017}
+{Ortiz-Le{\'o}n} G.~N.,  {Loinard} L.,  {Dzib} S.~A.,  {Mioduszewski} A.~J.,
+  {Gonz{\'a}lez-L{\'o}pez} J.~F.,  {Gonz{\'a}lez} O.~A.,   {Pech} G.,  2017,
+  \mn@doi [The Astrophysical Journal] {10.3847/1538-4357/834/2/141}, 834, 141
+
+\bibitem[\protect\citeauthoryear{{Ortiz-Le{\'o}n} et~al.,}{{Ortiz-Le{\'o}n}
+  et~al.}{2018}]{OrtizLeon2018}
+{Ortiz-Le{\'o}n} G.~N.,  et~al., 2018, \mn@doi [The Astrophysical Journal]
+  {10.3847/1538-4357/aad8fa}, 865, 65
+
+\bibitem[\protect\citeauthoryear{{Ostriker}}{{Ostriker}}{1964}]{Ostriker1964}
+{Ostriker} J.,  1964, \mn@doi [Astrophysical Journal] {10.1086/148005}, 140,
+  1056
+
+\bibitem[\protect\citeauthoryear{{Pattle} et~al.,}{{Pattle}
+  et~al.}{2018}]{Pattle2018}
+{Pattle} K.,  et~al., 2018, \mn@doi [Monthly Notices of the Royal Astronomical
+  Society] {10.1093/mnras/sty2159}, 480, 3756
+
+\bibitem[\protect\citeauthoryear{{Planck Collaboration}}{{Planck
+  Collaboration}}{2016}]{Planck2016}
+{Planck Collaboration} 2016, \mn@doi [Astronomy and Astrophysics]
+  {10.1051/0004-6361/201527853}, 586, A138
+
+\bibitem[\protect\citeauthoryear{{Reid} \& {Dame}}{{Reid} \&
+  {Dame}}{2019}]{Reid2019}
+{Reid} M.~J.,  {Dame} T.~M.,  2019, \mn@doi [Galaxies]
+  {10.3390/galaxies7030068}, 7, 68
+
+\bibitem[\protect\citeauthoryear{{Schmiedeke} et~al.,}{{Schmiedeke}
+  et~al.}{2021}]{Schmiedeke2021}
+{Schmiedeke} A.,  et~al., 2021, \mn@doi [\aap] {10.1051/0004-6361/202039009},
+  649, A56
+
+\bibitem[\protect\citeauthoryear{{Smith}, {Glover}, {Clark}, {Klessen}  \&
+  {M{\'e}sz{\'a}ros}}{{Smith} et~al.}{2016}]{Smith2016}
+{Smith} R.~J.,  {Glover} S.~C.~O.,  {Clark} S.~J.,  {Klessen} R.~S.,
+  {M{\'e}sz{\'a}ros} P.,  2016, \mn@doi [Monthly Notices of the Royal
+  Astronomical Society] {10.1093/mnras/stv2594}, 455, 3640
+
+\bibitem[\protect\citeauthoryear{{Sousbie}}{{Sousbie}}{2011}]{Sousbie2011}
+{Sousbie} T.,  2011, \mn@doi [Monthly Notices of the Royal Astronomical
+  Society] {10.1111/j.1365-2966.2011.18185.x}, 414, 350
+
+\bibitem[\protect\citeauthoryear{{Stone}, {Tomida}, {White}  \&
+  {Fragile}}{{Stone} et~al.}{2020}]{Stone2020}
+{Stone} J.~M.,  {Tomida} K.,  {White} C.~J.,   {Fragile} P.~C.,  2020, \mn@doi
+  [The Astrophysical Journal Supplement Series] {10.3847/1538-4365/ab4298},
+  249, 4
+
+\bibitem[\protect\citeauthoryear{{Xu}, {Zhang}, {Beuther}, {Henning},
+  {Schuller}, {Battersby}, {Menten}  \& {Wyrowski}}{{Xu} et~al.}{2021}]{Xu2021}
+{Xu} J.,  {Zhang} C.-P.,  {Beuther} H.,  {Henning} T.,  {Schuller} F.,
+  {Battersby} C.,  {Menten} K.~M.,   {Wyrowski} F.,  2021, \mn@doi [Astronomy
+  and Astrophysics] {10.1051/0004-6361/202039663}, 650
+
+\bibitem[\protect\citeauthoryear{{Yan}, {Davenport}, {Finkbeiner}, {Schlafly}
+  \& {Green}}{{Yan} et~al.}{2022}]{Yan2022}
+{Yan} B.,  {Davenport} J.~R.~A.,  {Finkbeiner} D.,  {Schlafly} E.,   {Green}
+  G.~M.,  2022, \mn@doi [The Astrophysical Journal] {10.3847/1538-4357/ac7d1f},
+  935, 63
+
+\bibitem[\protect\citeauthoryear{{Yang}, {Pineda}, {Hernandez}, {Caselli},
+  {Goodman}  \& {Andr{\'e}}}{{Yang} et~al.}{2024}]{Yang2024}
+{Yang} Y.,  {Pineda} J.~E.,  {Hernandez} A.~K.,  {Caselli} P.,  {Goodman}
+  A.~A.,   {Andr{\'e}} P.,  2024, \mn@doi [\apj] {10.3847/1538-4357/ad8919},
+  976, 117
+
+\bibitem[\protect\citeauthoryear{{Zhang} et~al.,}{{Zhang}
+  et~al.}{2023}]{Zhang2023}
+{Zhang} Y.,  et~al., 2023, \mn@doi [Astronomy and Astrophysics]
+  {10.1051/0004-6361/202347018}, 677, A123
+
+\bibitem[\protect\citeauthoryear{{Zucker}, {Speagle}, {Schlafly}, {Green},
+  {Finkbeiner}, {Goodman}  \& {Alves}}{{Zucker} et~al.}{2020}]{Zucker2020}
+{Zucker} C.,  {Speagle} J.~S.,  {Schlafly} E.~F.,  {Green} G.~M.,  {Finkbeiner}
+  D.~P.,  {Goodman} A.~A.,   {Alves} J.,  2020, \mn@doi [The Astrophysical
+  Journal] {10.3847/1538-4357/ab9754}, 897, 148
+
+\makeatother
+\end{thebibliography}

@@ -1,0 +1,884 @@
+{
+  "orionb_sensitivity": [
+    {
+      "association_radius": 10,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.004158382634077862,
+      "n_associated": 1368,
+      "n_total": 1870,
+      "association_rate": 0.7315508021390374,
+      "n_groups": 38,
+      "n_spacings": 41
+    },
+    {
+      "association_radius": 10,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.006408452749685267,
+      "n_associated": 1368,
+      "n_total": 1870,
+      "association_rate": 0.7315508021390374,
+      "n_groups": 62,
+      "n_spacings": 67
+    },
+    {
+      "association_radius": 10,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.008135139688077844,
+      "n_associated": 1368,
+      "n_total": 1870,
+      "association_rate": 0.7315508021390374,
+      "n_groups": 95,
+      "n_spacings": 104
+    },
+    {
+      "association_radius": 10,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.010096399701712888,
+      "n_associated": 1368,
+      "n_total": 1870,
+      "association_rate": 0.7315508021390374,
+      "n_groups": 130,
+      "n_spacings": 148
+    },
+    {
+      "association_radius": 10,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.011749102290190105,
+      "n_associated": 1368,
+      "n_total": 1870,
+      "association_rate": 0.7315508021390374,
+      "n_groups": 168,
+      "n_spacings": 206
+    },
+    {
+      "association_radius": 10,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.012891928524637747,
+      "n_associated": 1368,
+      "n_total": 1870,
+      "association_rate": 0.7315508021390374,
+      "n_groups": 199,
+      "n_spacings": 258
+    },
+    {
+      "association_radius": 15,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.004049250621148026,
+      "n_associated": 1675,
+      "n_total": 1870,
+      "association_rate": 0.8957219251336899,
+      "n_groups": 38,
+      "n_spacings": 41
+    },
+    {
+      "association_radius": 15,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.006228392392443438,
+      "n_associated": 1675,
+      "n_total": 1870,
+      "association_rate": 0.8957219251336899,
+      "n_groups": 66,
+      "n_spacings": 70
+    },
+    {
+      "association_radius": 15,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.007480806485596014,
+      "n_associated": 1675,
+      "n_total": 1870,
+      "association_rate": 0.8957219251336899,
+      "n_groups": 90,
+      "n_spacings": 98
+    },
+    {
+      "association_radius": 15,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.00940534242445501,
+      "n_associated": 1675,
+      "n_total": 1870,
+      "association_rate": 0.8957219251336899,
+      "n_groups": 129,
+      "n_spacings": 145
+    },
+    {
+      "association_radius": 15,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.011016191612150728,
+      "n_associated": 1675,
+      "n_total": 1870,
+      "association_rate": 0.8957219251336899,
+      "n_groups": 173,
+      "n_spacings": 202
+    },
+    {
+      "association_radius": 15,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.012622901010526544,
+      "n_associated": 1675,
+      "n_total": 1870,
+      "association_rate": 0.8957219251336899,
+      "n_groups": 208,
+      "n_spacings": 261
+    },
+    {
+      "association_radius": 20,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.003925779131637386,
+      "n_associated": 1824,
+      "n_total": 1870,
+      "association_rate": 0.9754010695187165,
+      "n_groups": 35,
+      "n_spacings": 38
+    },
+    {
+      "association_radius": 20,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.005940442142212454,
+      "n_associated": 1824,
+      "n_total": 1870,
+      "association_rate": 0.9754010695187165,
+      "n_groups": 63,
+      "n_spacings": 67
+    },
+    {
+      "association_radius": 20,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.006857882188764375,
+      "n_associated": 1824,
+      "n_total": 1870,
+      "association_rate": 0.9754010695187165,
+      "n_groups": 84,
+      "n_spacings": 90
+    },
+    {
+      "association_radius": 20,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.008580040429700314,
+      "n_associated": 1824,
+      "n_total": 1870,
+      "association_rate": 0.9754010695187165,
+      "n_groups": 121,
+      "n_spacings": 134
+    },
+    {
+      "association_radius": 20,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.010504115475091225,
+      "n_associated": 1824,
+      "n_total": 1870,
+      "association_rate": 0.9754010695187165,
+      "n_groups": 162,
+      "n_spacings": 185
+    },
+    {
+      "association_radius": 20,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.012210171765528077,
+      "n_associated": 1824,
+      "n_total": 1870,
+      "association_rate": 0.9754010695187165,
+      "n_groups": 202,
+      "n_spacings": 242
+    },
+    {
+      "association_radius": 25,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.003808494433969134,
+      "n_associated": 1857,
+      "n_total": 1870,
+      "association_rate": 0.993048128342246,
+      "n_groups": 35,
+      "n_spacings": 37
+    },
+    {
+      "association_radius": 25,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.005940442142212454,
+      "n_associated": 1857,
+      "n_total": 1870,
+      "association_rate": 0.993048128342246,
+      "n_groups": 63,
+      "n_spacings": 67
+    },
+    {
+      "association_radius": 25,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.006828200933520545,
+      "n_associated": 1857,
+      "n_total": 1870,
+      "association_rate": 0.993048128342246,
+      "n_groups": 83,
+      "n_spacings": 89
+    },
+    {
+      "association_radius": 25,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.008498209549616553,
+      "n_associated": 1857,
+      "n_total": 1870,
+      "association_rate": 0.993048128342246,
+      "n_groups": 119,
+      "n_spacings": 132
+    },
+    {
+      "association_radius": 25,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.010491234116819126,
+      "n_associated": 1857,
+      "n_total": 1870,
+      "association_rate": 0.993048128342246,
+      "n_groups": 161,
+      "n_spacings": 182
+    },
+    {
+      "association_radius": 25,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.012210171765528077,
+      "n_associated": 1857,
+      "n_total": 1870,
+      "association_rate": 0.993048128342246,
+      "n_groups": 200,
+      "n_spacings": 240
+    },
+    {
+      "association_radius": 30,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.003808494433969134,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 35,
+      "n_spacings": 37
+    },
+    {
+      "association_radius": 30,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.005940442142212454,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 63,
+      "n_spacings": 67
+    },
+    {
+      "association_radius": 30,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.006770071993971616,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 82,
+      "n_spacings": 87
+    },
+    {
+      "association_radius": 30,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.008498209549616553,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 119,
+      "n_spacings": 132
+    },
+    {
+      "association_radius": 30,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.010504115475091225,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 160,
+      "n_spacings": 181
+    },
+    {
+      "association_radius": 30,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.012188602866032738,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 199,
+      "n_spacings": 239
+    },
+    {
+      "association_radius": 40,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.003808494433969134,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 35,
+      "n_spacings": 37
+    },
+    {
+      "association_radius": 40,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.005940442142212454,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 63,
+      "n_spacings": 67
+    },
+    {
+      "association_radius": 40,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.006770071993971616,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 82,
+      "n_spacings": 87
+    },
+    {
+      "association_radius": 40,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.008498209549616553,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 119,
+      "n_spacings": 132
+    },
+    {
+      "association_radius": 40,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.010504115475091225,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 160,
+      "n_spacings": 181
+    },
+    {
+      "association_radius": 40,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.012188602866032738,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 199,
+      "n_spacings": 239
+    },
+    {
+      "association_radius": 50,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.003808494433969134,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 35,
+      "n_spacings": 37
+    },
+    {
+      "association_radius": 50,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.005940442142212454,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 63,
+      "n_spacings": 67
+    },
+    {
+      "association_radius": 50,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.006770071993971616,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 82,
+      "n_spacings": 87
+    },
+    {
+      "association_radius": 50,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.008498209549616553,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 119,
+      "n_spacings": 132
+    },
+    {
+      "association_radius": 50,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.010504115475091225,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 160,
+      "n_spacings": 181
+    },
+    {
+      "association_radius": 50,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.012188602866032738,
+      "n_associated": 1870,
+      "n_total": 1870,
+      "association_rate": 1.0,
+      "n_groups": 199,
+      "n_spacings": 239
+    }
+  ],
+  "aquila_sensitivity": [
+    {
+      "association_radius": 10,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.011233147063792082,
+      "n_associated": 596,
+      "n_total": 745,
+      "association_rate": 0.8,
+      "n_groups": 17,
+      "n_spacings": 17
+    },
+    {
+      "association_radius": 10,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.013403193264317492,
+      "n_associated": 596,
+      "n_total": 745,
+      "association_rate": 0.8,
+      "n_groups": 28,
+      "n_spacings": 31
+    },
+    {
+      "association_radius": 10,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.015825072328410572,
+      "n_associated": 596,
+      "n_total": 745,
+      "association_rate": 0.8,
+      "n_groups": 38,
+      "n_spacings": 42
+    },
+    {
+      "association_radius": 10,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.01997948869720878,
+      "n_associated": 596,
+      "n_total": 745,
+      "association_rate": 0.8,
+      "n_groups": 60,
+      "n_spacings": 66
+    },
+    {
+      "association_radius": 10,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.02083257603197719,
+      "n_associated": 596,
+      "n_total": 745,
+      "association_rate": 0.8,
+      "n_groups": 71,
+      "n_spacings": 88
+    },
+    {
+      "association_radius": 10,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.022644373286075492,
+      "n_associated": 596,
+      "n_total": 745,
+      "association_rate": 0.8,
+      "n_groups": 83,
+      "n_spacings": 113
+    },
+    {
+      "association_radius": 15,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.009293766523309821,
+      "n_associated": 715,
+      "n_total": 745,
+      "association_rate": 0.959731543624161,
+      "n_groups": 9,
+      "n_spacings": 9
+    },
+    {
+      "association_radius": 15,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.01356885357025206,
+      "n_associated": 715,
+      "n_total": 745,
+      "association_rate": 0.959731543624161,
+      "n_groups": 27,
+      "n_spacings": 29
+    },
+    {
+      "association_radius": 15,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.015720178794994766,
+      "n_associated": 715,
+      "n_total": 745,
+      "association_rate": 0.959731543624161,
+      "n_groups": 40,
+      "n_spacings": 45
+    },
+    {
+      "association_radius": 15,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.018983722427241556,
+      "n_associated": 715,
+      "n_total": 745,
+      "association_rate": 0.959731543624161,
+      "n_groups": 59,
+      "n_spacings": 65
+    },
+    {
+      "association_radius": 15,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.02083257603197719,
+      "n_associated": 715,
+      "n_total": 745,
+      "association_rate": 0.959731543624161,
+      "n_groups": 76,
+      "n_spacings": 88
+    },
+    {
+      "association_radius": 15,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.02255659337610605,
+      "n_associated": 715,
+      "n_total": 745,
+      "association_rate": 0.959731543624161,
+      "n_groups": 90,
+      "n_spacings": 117
+    },
+    {
+      "association_radius": 20,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.00912424652615157,
+      "n_associated": 737,
+      "n_total": 745,
+      "association_rate": 0.9892617449664429,
+      "n_groups": 8,
+      "n_spacings": 8
+    },
+    {
+      "association_radius": 20,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.01356885357025206,
+      "n_associated": 737,
+      "n_total": 745,
+      "association_rate": 0.9892617449664429,
+      "n_groups": 27,
+      "n_spacings": 29
+    },
+    {
+      "association_radius": 20,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.015720178794994766,
+      "n_associated": 737,
+      "n_total": 745,
+      "association_rate": 0.9892617449664429,
+      "n_groups": 41,
+      "n_spacings": 45
+    },
+    {
+      "association_radius": 20,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.018622627664967917,
+      "n_associated": 737,
+      "n_total": 745,
+      "association_rate": 0.9892617449664429,
+      "n_groups": 58,
+      "n_spacings": 64
+    },
+    {
+      "association_radius": 20,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.02183778473300385,
+      "n_associated": 737,
+      "n_total": 745,
+      "association_rate": 0.9892617449664429,
+      "n_groups": 77,
+      "n_spacings": 88
+    },
+    {
+      "association_radius": 20,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.02299066024575047,
+      "n_associated": 737,
+      "n_total": 745,
+      "association_rate": 0.9892617449664429,
+      "n_groups": 90,
+      "n_spacings": 114
+    },
+    {
+      "association_radius": 25,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.00912424652615157,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 8,
+      "n_spacings": 8
+    },
+    {
+      "association_radius": 25,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.01356885357025206,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 27,
+      "n_spacings": 29
+    },
+    {
+      "association_radius": 25,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.015521000617018554,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 40,
+      "n_spacings": 44
+    },
+    {
+      "association_radius": 25,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.018622627664967917,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 58,
+      "n_spacings": 64
+    },
+    {
+      "association_radius": 25,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.02183778473300385,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 75,
+      "n_spacings": 84
+    },
+    {
+      "association_radius": 25,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.02299066024575047,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 90,
+      "n_spacings": 114
+    },
+    {
+      "association_radius": 30,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.00912424652615157,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 8,
+      "n_spacings": 8
+    },
+    {
+      "association_radius": 30,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.01356885357025206,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 27,
+      "n_spacings": 29
+    },
+    {
+      "association_radius": 30,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.015521000617018554,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 40,
+      "n_spacings": 44
+    },
+    {
+      "association_radius": 30,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.018622627664967917,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 58,
+      "n_spacings": 64
+    },
+    {
+      "association_radius": 30,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.02183778473300385,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 75,
+      "n_spacings": 84
+    },
+    {
+      "association_radius": 30,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.02299066024575047,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 90,
+      "n_spacings": 114
+    },
+    {
+      "association_radius": 40,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.00912424652615157,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 8,
+      "n_spacings": 8
+    },
+    {
+      "association_radius": 40,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.01356885357025206,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 27,
+      "n_spacings": 29
+    },
+    {
+      "association_radius": 40,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.015521000617018554,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 40,
+      "n_spacings": 44
+    },
+    {
+      "association_radius": 40,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.018622627664967917,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 58,
+      "n_spacings": 64
+    },
+    {
+      "association_radius": 40,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.02183778473300385,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 75,
+      "n_spacings": 84
+    },
+    {
+      "association_radius": 40,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.02299066024575047,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 90,
+      "n_spacings": 114
+    },
+    {
+      "association_radius": 50,
+      "clustering_cutoff": 30,
+      "nn_spacing": 0.00912424652615157,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 8,
+      "n_spacings": 8
+    },
+    {
+      "association_radius": 50,
+      "clustering_cutoff": 40,
+      "nn_spacing": 0.01356885357025206,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 27,
+      "n_spacings": 29
+    },
+    {
+      "association_radius": 50,
+      "clustering_cutoff": 50,
+      "nn_spacing": 0.015521000617018554,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 40,
+      "n_spacings": 44
+    },
+    {
+      "association_radius": 50,
+      "clustering_cutoff": 60,
+      "nn_spacing": 0.018622627664967917,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 58,
+      "n_spacings": 64
+    },
+    {
+      "association_radius": 50,
+      "clustering_cutoff": 70,
+      "nn_spacing": 0.02183778473300385,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 75,
+      "n_spacings": 84
+    },
+    {
+      "association_radius": 50,
+      "clustering_cutoff": 80,
+      "nn_spacing": 0.02299066024575047,
+      "n_associated": 745,
+      "n_total": 745,
+      "association_rate": 1.0,
+      "n_groups": 90,
+      "n_spacings": 114
+    }
+  ],
+  "orionb_bias": {
+    "n_associated": 1824,
+    "n_unassociated": 46,
+    "association_rate": 0.9754010695187165,
+    "mass_ks_statistic": 0.1358695652173913,
+    "mass_ks_pvalue": 0.34655695032901573,
+    "coldens_ks_statistic": 0.11312929061784897,
+    "coldens_ks_pvalue": 0.5742512138675566,
+    "bound_chi2": 0.8122448590135309,
+    "bound_chi2_pvalue": 0.6662285963931882,
+    "mass_mean_assoc": 0.4942487180842232,
+    "mass_mean_unassoc": 0.45480066771913924,
+    "mass_median_assoc": 0.354890337304522,
+    "mass_median_unassoc": 0.34700287162275273,
+    "coldens_mean_assoc": 2449357576.1288114,
+    "coldens_mean_unassoc": 2622831999.804858,
+    "prestellar_fraction_assoc": 0.5153508771929824,
+    "prestellar_fraction_unassoc": 0.5
+  },
+  "aquila_bias": {
+    "n_associated": 737,
+    "n_unassociated": 8,
+    "association_rate": 0.9892617449664429,
+    "mass_ks_statistic": 0.37720488466757124,
+    "mass_ks_pvalue": 0.16043208132032302,
+    "coldens_ks_statistic": 0.3739823609226594,
+    "coldens_ks_pvalue": 0.16815321005567738,
+    "bound_chi2": 0.15260965207159774,
+    "bound_chi2_pvalue": 0.9265337319042245,
+    "mass_mean_assoc": 0.4934280330637862,
+    "mass_mean_unassoc": 0.281123398649736,
+    "mass_median_assoc": 0.36990635645133985,
+    "mass_median_unassoc": 0.29695174507249367,
+    "coldens_mean_assoc": 2443068200.1800137,
+    "coldens_mean_unassoc": 2739588286.1750803,
+    "prestellar_fraction_assoc": 0.5278154681139756,
+    "prestellar_fraction_unassoc": 0.5
+  }
+}

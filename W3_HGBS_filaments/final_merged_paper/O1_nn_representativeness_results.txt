@@ -1,0 +1,12 @@
+current_nn_weighted: 1.67
+scenario1_weighted: 1.6700000000000002
+scenario2_weighted: 1.634027496745694
+scenario3_weighted: 2.0552309782608695
+nn_min: 1.634027496745694
+nn_max: 2.0552309782608695
+nn_mean: 1.7864194916688545
+nn_std: 0.1906448998189252
+systematic_uncertainty: 0.21060174075758775
+relative_uncertainty_percent: 12.610882680095076
+missing_cores: 727
+missing_fraction_percent: 32.92572463768116

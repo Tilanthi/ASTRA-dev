@@ -1,0 +1,35 @@
+[
+  {
+    "region": "ORIB",
+    "distance_pc": 386,
+    "width_2w_pixels": 35.62431886823785,
+    "n_cores": 1844,
+    "n_filaments": 72,
+    "n_associated": 1187,
+    "association_rate": 64.3709327548807,
+    "median_spacing_pc": 0.48247754843757357,
+    "lambda_W_ratio": 4.824775484375736
+  },
+  {
+    "region": "SERPENS",
+    "distance_pc": 458,
+    "width_2w_pixels": 30.023989264497406,
+    "n_cores": 969,
+    "n_filaments": 78,
+    "n_associated": 534,
+    "association_rate": 55.10835913312693,
+    "median_spacing_pc": 0.18490701410644958,
+    "lambda_W_ratio": 1.8490701410644956
+  },
+  {
+    "region": "TMC1",
+    "distance_pc": 135,
+    "width_2w_pixels": 50.92958178939632,
+    "n_cores": 178,
+    "n_filaments": 7,
+    "n_associated": 160,
+    "association_rate": 89.88764044943821,
+    "median_spacing_pc": 0.4596263577377289,
+    "lambda_W_ratio": 4.596263577377289
+  }
+]

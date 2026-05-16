@@ -1,0 +1,28 @@
+{
+  "modeled_effects": {
+    "Taurus": {
+      "20": 0.0,
+      "30": -0.02,
+      "40": -0.05,
+      "50": -0.08
+    },
+    "OrionB": {
+      "20": 0.06,
+      "30": 0.03,
+      "40": 0.01,
+      "50": 0.0
+    },
+    "Aquila": {
+      "uncertainty": 0.1
+    },
+    "Perseus": {
+      "uncertainty": 0.1
+    }
+  },
+  "summary": {
+    "sensitivity_taurus": 0.08,
+    "sensitivity_orionb": 0.06,
+    "uncertainty_single_threshold": 0.1,
+    "adopted_systematic_uncertainty": 0.1
+  }
+}

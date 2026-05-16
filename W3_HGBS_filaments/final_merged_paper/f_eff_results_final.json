@@ -1,0 +1,98 @@
+[
+  {
+    "region": "Orion B",
+    "region_key": "ORIONB",
+    "distance_pc": 386,
+    "f_thermal_best": 1.7283950617283952,
+    "f_eff_best": 0.7249726746582095,
+    "f_eff_range": [
+      0.4188866924123769,
+      1.1828948103457904
+    ],
+    "source": "Hacar et al. 2013; Arzoumanian et al. 2019"
+  },
+  {
+    "region": "Aquila",
+    "region_key": "AQUILA",
+    "distance_pc": 436,
+    "f_thermal_best": 1.9753086419753088,
+    "f_eff_best": 0.7861085013057459,
+    "f_eff_range": [
+      0.4318231415218135,
+      1.2816460074595617
+    ],
+    "source": "K\\\"onyves et al. 2015"
+  },
+  {
+    "region": "Perseus",
+    "region_key": "PERSEUS",
+    "distance_pc": 293,
+    "f_thermal_best": 1.6049382716049383,
+    "f_eff_best": 0.7486172473922965,
+    "f_eff_range": [
+      0.44292651959363094,
+      1.3146271666807376
+    ],
+    "source": "Arzoumanian et al. 2011; Hacar et al. 2022"
+  },
+  {
+    "region": "Ophiuchus",
+    "region_key": "OPHIUCHUS",
+    "distance_pc": 137,
+    "f_thermal_best": 1.8518518518518519,
+    "f_eff_best": 0.7767564371337958,
+    "f_eff_range": [
+      0.4760076050140647,
+      1.2175637070865837
+    ],
+    "source": "K\\\"onyves et al. 2015"
+  },
+  {
+    "region": "Taurus",
+    "region_key": "TAURUS",
+    "distance_pc": 135,
+    "f_thermal_best": 1.1111111111111112,
+    "f_eff_best": 0.5767407033568028,
+    "f_eff_range": [
+      0.29479068798965474,
+      0.9493654992014866
+    ],
+    "source": "Hacar et al. 2013; Palmeirim et al. 2013"
+  },
+  {
+    "region": "Serpens",
+    "region_key": "SERPENS",
+    "distance_pc": 458,
+    "f_thermal_best": 1.9753086419753088,
+    "f_eff_best": 0.7861085013057459,
+    "f_eff_range": [
+      0.4318231415218135,
+      1.2816460074595617
+    ],
+    "source": "K\\\"onyves et al. 2015"
+  },
+  {
+    "region": "IC 5146",
+    "region_key": "IC5146",
+    "distance_pc": 513,
+    "f_thermal_best": 1.6049382716049383,
+    "f_eff_best": 0.7486172473922965,
+    "f_eff_range": [
+      0.44292651959363094,
+      1.239505614298981
+    ],
+    "source": "Arzoumanian et al. 2011"
+  },
+  {
+    "region": "CrA",
+    "region_key": "CRA",
+    "distance_pc": 175,
+    "f_thermal_best": 1.3580246913580247,
+    "f_eff_best": 0.704905304102759,
+    "f_eff_range": [
+      0.39305425065287297,
+      1.1075930824017344
+    ],
+    "source": "Bressert et al. 2012"
+  }
+]

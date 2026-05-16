@@ -1,0 +1,272 @@
+[
+  {
+    "id": "POWERLAW_f1.2_beta0.5_s42",
+    "f": 1.2,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 1.0743463451437956,
+    "wall_s": 2879.351892232895
+  },
+  {
+    "id": "POWERLAW_f1.2_beta2.0_s42",
+    "f": 1.2,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.777670122168355,
+    "wall_s": 2885.010277032852
+  },
+  {
+    "id": "POWERLAW_f1.2_beta1.0_s42",
+    "f": 1.2,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.8872101641593141,
+    "wall_s": 3271.8384687900543
+  },
+  {
+    "id": "POWERLAW_f1.4_beta0.5_s42",
+    "f": 1.4,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.9820648134248191,
+    "wall_s": 1597.2274017333984
+  },
+  {
+    "id": "POWERLAW_f1.4_beta1.0_s42",
+    "f": 1.4,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.8195231398111881,
+    "wall_s": 1682.0962245464325
+  },
+  {
+    "id": "POWERLAW_f1.4_beta2.0_s42",
+    "f": 1.4,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.7336224428646179,
+    "wall_s": 1626.1811554431915
+  },
+  {
+    "id": "POWERLAW_f1.6_beta0.5_s42",
+    "f": 1.6,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.9135156081434378,
+    "wall_s": 1710.1345992088318
+  },
+  {
+    "id": "POWERLAW_f1.6_beta1.0_s42",
+    "f": 1.6,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.7789339935085631,
+    "wall_s": 2341.541328430176
+  },
+  {
+    "id": "POWERLAW_f1.8_beta0.5_s42",
+    "f": 1.8,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.8580712451787915,
+    "wall_s": 1977.849845647812
+  },
+  {
+    "id": "POWERLAW_f1.6_beta2.0_s42",
+    "f": 1.6,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.706123543537606,
+    "wall_s": 3831.541836977005
+  },
+  {
+    "id": "POWERLAW_f1.8_beta1.0_s42",
+    "f": 1.8,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.7432657605828981,
+    "wall_s": 2155.87136220932
+  },
+  {
+    "id": "POWERLAW_f2.0_beta0.5_s42",
+    "f": 2.0,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.8077948853283379,
+    "wall_s": 1496.7937417030334
+  },
+  {
+    "id": "POWERLAW_f1.8_beta2.0_s42",
+    "f": 1.8,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.6667588584596286,
+    "wall_s": 2397.525237560272
+  },
+  {
+    "id": "POWERLAW_f2.0_beta1.0_s42",
+    "f": 2.0,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.7063695478112055,
+    "wall_s": 1981.303052186966
+  },
+  {
+    "id": "POWERLAW_f2.2_beta0.5_s42",
+    "f": 2.2,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.7671809212895502,
+    "wall_s": 1272.1758170127869
+  },
+  {
+    "id": "POWERLAW_f2.0_beta2.0_s42",
+    "f": 2.0,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.6350264560345724,
+    "wall_s": 1795.9125669002533
+  },
+  {
+    "id": "POWERLAW_f2.2_beta1.0_s42",
+    "f": 2.2,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.6709877569884707,
+    "wall_s": 1504.5499849319458
+  },
+  {
+    "id": "POWERLAW_f2.4_beta0.5_s42",
+    "f": 2.4,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.7320994426215273,
+    "wall_s": 1308.863159418106
+  },
+  {
+    "id": "POWERLAW_f2.2_beta2.0_s42",
+    "f": 2.2,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.6051544142080406,
+    "wall_s": 1549.9884796142578
+  },
+  {
+    "id": "POWERLAW_f2.4_beta1.0_s42",
+    "f": 2.4,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.6425431690436302,
+    "wall_s": 1645.5798857212067
+  },
+  {
+    "id": "POWERLAW_f2.6_beta0.5_s42",
+    "f": 2.6,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.675986932083305,
+    "wall_s": 932.878630399704
+  },
+  {
+    "id": "POWERLAW_f2.6_beta1.0_s42",
+    "f": 2.6,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.6049865978492245,
+    "wall_s": 1119.108614206314
+  },
+  {
+    "id": "POWERLAW_f2.4_beta2.0_s42",
+    "f": 2.4,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.5876949731269968,
+    "wall_s": 2463.353214263916
+  },
+  {
+    "id": "POWERLAW_f2.8_beta0.5_s42",
+    "f": 2.8,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.6551382537475674,
+    "wall_s": 948.1944854259491
+  },
+  {
+    "id": "POWERLAW_f2.6_beta2.0_s42",
+    "f": 2.6,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.5782368743235031,
+    "wall_s": 3573.6511685848236
+  },
+  {
+    "id": "POWERLAW_f2.8_beta1.0_s42",
+    "f": 2.8,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.6029927510116876,
+    "wall_s": 2421.5615372657776
+  },
+  {
+    "id": "POWERLAW_f3.0_beta0.5_s42",
+    "f": 3.0,
+    "beta": 0.5,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.6411841986489516,
+    "wall_s": 1250.3322248458862
+  },
+  {
+    "id": "POWERLAW_f2.8_beta2.0_s42",
+    "f": 2.8,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.5580665960791409,
+    "wall_s": 3454.1046323776245
+  },
+  {
+    "id": "POWERLAW_f3.0_beta2.0_s42",
+    "f": 3.0,
+    "beta": 2.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.506410229154508,
+    "wall_s": 1036.3877201080322
+  },
+  {
+    "id": "POWERLAW_f3.0_beta1.0_s42",
+    "f": 3.0,
+    "beta": 1.0,
+    "seed": 42,
+    "outcome": "FRAG",
+    "t_frag": 0.5819221436922948,
+    "wall_s": 2118.293331384659
+  }
+]

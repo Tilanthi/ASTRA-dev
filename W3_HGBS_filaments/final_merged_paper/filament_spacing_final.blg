@@ -1,0 +1,88 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: filament_spacing_final.aux
+The style file: plainnat.bst
+Database file #1: references_complete.bib
+Repeated entry---line 473 of file references_complete.bib
+ : @article{Andre2010
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 482 of file references_complete.bib
+ : @article{Arzoumanian2011
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 644 of file references_complete.bib
+ : @article{Konyves2015
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 662 of file references_complete.bib
+ : @article{Inutsuka1992
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 698 of file references_complete.bib
+ : @article{Fischera2012
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 707 of file references_complete.bib
+ : @article{Planck2016
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 716 of file references_complete.bib
+ : @article{Stone2020
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 725 of file references_complete.bib
+ : @article{Crutcher2012
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 797 of file references_complete.bib
+ : @article{Ostriker1964
+ :                      ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Arzouman2011"
+Warning--I didn't find a database entry for "Python2023"
+Warning--I didn't find a database entry for "Harris2020"
+Warning--I didn't find a database entry for "Virtanen2020"
+Warning--I didn't find a database entry for "Hunter2007"
+You've used 21 entries,
+            2773 wiz_defined-function locations,
+            763 strings with 9652 characters,
+and the built_in function-call counts, 11351 in all, are:
+= -- 947
+> -- 915
+< -- 15
++ -- 309
+- -- 288
+* -- 1032
+:= -- 1866
+add.period$ -- 83
+call.type$ -- 21
+change.case$ -- 159
+chr.to.int$ -- 21
+cite$ -- 42
+duplicate$ -- 436
+empty$ -- 741
+format.name$ -- 317
+if$ -- 2284
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 21
+newline$ -- 133
+num.names$ -- 84
+pop$ -- 272
+preamble$ -- 1
+purify$ -- 138
+quote$ -- 0
+skip$ -- 347
+stack$ -- 0
+substring$ -- 209
+swap$ -- 31
+text.length$ -- 5
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 231
+warning$ -- 0
+while$ -- 81
+width$ -- 0
+write$ -- 320
+(There were 9 error messages)

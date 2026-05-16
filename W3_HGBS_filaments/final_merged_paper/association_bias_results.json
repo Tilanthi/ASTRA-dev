@@ -1,0 +1,38 @@
+[
+  {
+    "region": "Taurus",
+    "n_all": 536,
+    "n_assoc": 485,
+    "pm_all": 0.198,
+    "pm_assoc": 0.20096999999999998,
+    "bias_percent": 1.499999999999986,
+    "significant": false
+  },
+  {
+    "region": "OrionB",
+    "n_all": 1870,
+    "n_assoc": 927,
+    "pm_all": 0.313,
+    "pm_assoc": 0.324894,
+    "bias_percent": 3.8000000000000047,
+    "significant": false
+  },
+  {
+    "region": "Aquila",
+    "n_all": 749,
+    "n_assoc": 200,
+    "pm_all": 0.346,
+    "pm_assoc": 0.381984,
+    "bias_percent": 10.400000000000006,
+    "significant": true
+  },
+  {
+    "region": "Perseus",
+    "n_all": 816,
+    "n_assoc": 570,
+    "pm_all": 0.248,
+    "pm_assoc": 0.254944,
+    "bias_percent": 2.8000000000000025,
+    "significant": false
+  }
+]

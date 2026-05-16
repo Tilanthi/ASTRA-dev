@@ -1,0 +1,48 @@
+{
+  "total_filament_groups": 67,
+  "linearity_distribution": {
+    "linear": 40,
+    "moderate": 19,
+    "curved": 8
+  },
+  "pca_valid_fraction": 0.8805970149253731,
+  "systematic_uncertainty_pca": 0.03,
+  "by_region": {
+    "Taurus": {
+      "n_filament_groups": 14,
+      "linearity_distribution": {
+        "linear": 8,
+        "moderate": 5,
+        "curved": 1
+      },
+      "n_spacings": 471
+    },
+    "OrionB": {
+      "n_filament_groups": 25,
+      "linearity_distribution": {
+        "linear": 15,
+        "moderate": 7,
+        "curved": 3
+      },
+      "n_spacings": 1135
+    },
+    "Aquila": {
+      "n_filament_groups": 10,
+      "linearity_distribution": {
+        "linear": 5,
+        "moderate": 3,
+        "curved": 2
+      },
+      "n_spacings": 362
+    },
+    "Perseus": {
+      "n_filament_groups": 18,
+      "linearity_distribution": {
+        "linear": 12,
+        "moderate": 4,
+        "curved": 2
+      },
+      "n_spacings": 606
+    }
+  }
+}

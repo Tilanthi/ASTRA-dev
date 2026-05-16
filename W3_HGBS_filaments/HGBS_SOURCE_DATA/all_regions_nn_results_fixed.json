@@ -1,0 +1,48 @@
+[
+  {
+    "region": "Orion B",
+    "distance_pc": 386,
+    "n_cores_total": 1870,
+    "n_cores_associated": 927,
+    "n_filament_groups": 227,
+    "n_spacings": 700,
+    "nn_median_pc": 0.1835794989482077,
+    "nn_mean_pc": 0.2831861711028253,
+    "nn_std_pc": 0.32433995161350265,
+    "nn_min_pc": 0.034805947781950675,
+    "nn_max_pc": 2.6069432901524134,
+    "lambda_over_W": 1.8357949894820769
+  },
+  {
+    "region": "Aquila",
+    "distance_pc": 436,
+    "n_cores_total": 749,
+    "n_cores_associated": 200,
+    "n_filament_groups": 68,
+    "n_spacings": 132,
+    "nn_median_pc": 0.14858036747109493,
+    "nn_mean_pc": 0.1710557484926579,
+    "nn_std_pc": 0.09464036180685882,
+    "nn_min_pc": 0.0442229978049826,
+    "nn_max_pc": 0.6468192437716489,
+    "lambda_over_W": 1.4858036747109493
+  },
+  {
+    "region": "Perseus",
+    "distance_pc": 296,
+    "n_cores_total": 816,
+    "n_cores_associated": 44,
+    "n_filament_groups": 11,
+    "n_spacings": 33,
+    "nn_median_pc": 0.06871274548027759,
+    "nn_mean_pc": 0.0847877904440753,
+    "nn_std_pc": 0.050335376428995125,
+    "nn_min_pc": 0.020059253017337197,
+    "nn_max_pc": 0.2482441408105897,
+    "lambda_over_W": 0.6871274548027758
+  },
+  {
+    "region": "Taurus",
+    "error": "No skeleton pixels found"
+  }
+]

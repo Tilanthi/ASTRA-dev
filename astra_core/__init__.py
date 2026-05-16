@@ -460,3 +460,95 @@ except ImportError:
     PublicationEngine = None
     PaperStructure = None
     FigureType = None
+# =============================================================================
+# V8.0 Orchestrated System (NEW)
+# =============================================================================
+# Kubernetes-inspired orchestration architecture for autonomous systems
+# Implements declarative API, control/data plane separation, service mesh, CRDs
+try:
+    from .orchestration import (
+        # Main orchestrated system
+        OrchestratedASTRASystem,
+        OrchestratedASTRAConfig,
+        create_orchestrated_astra_system,
+
+        # Declarative API
+        DeclarativeResource,
+        ResourceSpec,
+        ResourceStatus,
+        ReconciliationLoop,
+        DeclarativeAPI,
+        TaskSpec,
+        TaskResource,
+
+        # Controllers
+        Controller,
+        ControllerManager,
+        EventType,
+        WatchEvent,
+
+        # Operators
+        Operator,
+        DomainOperator,
+        FilamentAnalysisOperator,
+        DiscoveryOperator,
+
+        # Control plane
+        ControlPlane,
+        DataPlane,
+        OrchestratedSystem as BaseOrchestratedSystem,
+        ControlPolicy,
+        ExecutionPolicy,
+
+        # Service mesh
+        ServiceMesh,
+        MindServiceMesh,
+        SidecarProxy,
+        MindSidecar,
+
+        # Observability
+        MetricsCollector,
+        ObservabilityStack,
+        HealthCheck,
+        SystemState,
+
+        # CRD system
+        CustomResourceDefinition,
+        CRDRegistry,
+        CapabilityCRD,
+    )
+except ImportError:
+    OrchestratedASTRASystem = None
+    OrchestratedASTRAConfig = None
+    create_orchestrated_astra_system = None
+    DeclarativeResource = None
+    ResourceSpec = None
+    ResourceStatus = None
+    ReconciliationLoop = None
+    DeclarativeAPI = None
+    TaskSpec = None
+    TaskResource = None
+    Controller = None
+    ControllerManager = None
+    EventType = None
+    WatchEvent = None
+    Operator = None
+    DomainOperator = None
+    FilamentAnalysisOperator = None
+    DiscoveryOperator = None
+    ControlPlane = None
+    DataPlane = None
+    BaseOrchestratedSystem = None
+    ControlPolicy = None
+    ExecutionPolicy = None
+    ServiceMesh = None
+    MindServiceMesh = None
+    SidecarProxy = None
+    MindSidecar = None
+    MetricsCollector = None
+    ObservabilityStack = None
+    HealthCheck = None
+    SystemState = None
+    CustomResourceDefinition = None
+    CRDRegistry = None
+    CapabilityCRD = None

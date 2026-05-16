@@ -1,0 +1,72 @@
+[
+  {
+    "region": "Taurus",
+    "n_cores": 536,
+    "nn_pc": 0.062323783566012786,
+    "nn_sem": 0.004573401818882817,
+    "nn_lambda_W": 0.6232378356601278,
+    "pairwise_pc": 0.198,
+    "pairwise_lambda_W": 1.98,
+    "ratio": 3.1769573134192055
+  },
+  {
+    "region": "Aquila",
+    "n_cores": 710,
+    "nn_pc": 0.16060198602290832,
+    "nn_sem": 0.013125539018610471,
+    "nn_lambda_W": 1.6060198602290832,
+    "pairwise_pc": 0.346,
+    "pairwise_lambda_W": 3.4599999999999995,
+    "ratio": 2.1543942797235798
+  },
+  {
+    "region": "Perseus",
+    "n_cores": 816,
+    "nn_pc": 0.18167837113995805,
+    "nn_sem": 0.01034174572074272,
+    "nn_lambda_W": 1.8167837113995804,
+    "pairwise_pc": 0.248,
+    "pairwise_lambda_W": 2.48,
+    "ratio": 1.3650496668585295
+  },
+  {
+    "region": "Ophiuchus",
+    "n_cores": 513,
+    "nn_pc": 0.05136151955488928,
+    "nn_sem": 0.007000331778147495,
+    "nn_lambda_W": 0.5136151955488928,
+    "pairwise_pc": 0.206,
+    "pairwise_lambda_W": 2.0599999999999996,
+    "ratio": 4.010784762313173
+  },
+  {
+    "region": "Serpens",
+    "n_cores": 833,
+    "nn_pc": 0.1810191164753766,
+    "nn_sem": 0.010524470664433107,
+    "nn_lambda_W": 1.810191164753766,
+    "pairwise_pc": 0.308,
+    "pairwise_lambda_W": 3.0799999999999996,
+    "ratio": 1.7014777554827816
+  },
+  {
+    "region": "TMC1",
+    "n_cores": 178,
+    "nn_pc": 0.09517177353435072,
+    "nn_sem": 0.014008720852621505,
+    "nn_lambda_W": 0.9517177353435071,
+    "pairwise_pc": 0.233,
+    "pairwise_lambda_W": 2.33,
+    "ratio": 2.4482048757439876
+  },
+  {
+    "region": "CRA",
+    "n_cores": 239,
+    "nn_pc": 0.10729125600555135,
+    "nn_sem": 0.018801601873263532,
+    "nn_lambda_W": 1.0729125600555134,
+    "pairwise_pc": 0.204,
+    "pairwise_lambda_W": 2.0399999999999996,
+    "ratio": 1.9013665008213234
+  }
+]

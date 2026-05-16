@@ -1,0 +1,105 @@
+{
+  "campaign": "TEST_M3_RESOLUTION",
+  "purpose": "Resolution convergence test for stochastic zone",
+  "description": "Re-run 12 parameter points from DTC transition region at 128^3 and 256^3 resolution to determine whether apparent stochastic behavior is physical or resolution-dependent.",
+  "test_points": [
+    {
+      "id": "R1",
+      "f": 1.4,
+      "beta": 0.3,
+      "mach": 1.0,
+      "rationale": "Near M=1 stability ridge at low supercriticality"
+    },
+    {
+      "id": "R2",
+      "f": 1.4,
+      "beta": 0.5,
+      "mach": 1.0,
+      "rationale": "M=1, near transition boundary"
+    },
+    {
+      "id": "R3",
+      "f": 1.5,
+      "beta": 0.3,
+      "mach": 1.0,
+      "rationale": "Low-f, low-beta edge of transition zone"
+    },
+    {
+      "id": "R4",
+      "f": 1.5,
+      "beta": 0.5,
+      "mach": 2.0,
+      "rationale": "Central transition zone, typical HGBS conditions"
+    },
+    {
+      "id": "R5",
+      "f": 1.6,
+      "beta": 0.3,
+      "mach": 2.0,
+      "rationale": "Higher supercriticality at M=2"
+    },
+    {
+      "id": "R6",
+      "f": 1.6,
+      "beta": 0.5,
+      "mach": 2.0,
+      "rationale": "M=2 transition zone"
+    },
+    {
+      "id": "R7",
+      "f": 1.7,
+      "beta": 0.5,
+      "mach": 2.0,
+      "rationale": "Mid-range supercriticality"
+    },
+    {
+      "id": "R8",
+      "f": 1.7,
+      "beta": 0.7,
+      "mach": 3.0,
+      "rationale": "Higher Mach number, higher beta"
+    },
+    {
+      "id": "R9",
+      "f": 1.8,
+      "beta": 0.3,
+      "mach": 2.0,
+      "rationale": "High-f, low-beta at M=2"
+    },
+    {
+      "id": "R10",
+      "f": 1.8,
+      "beta": 0.5,
+      "mach": 3.0,
+      "rationale": "High-f, higher Mach number"
+    },
+    {
+      "id": "R11",
+      "f": 1.9,
+      "beta": 0.5,
+      "mach": 2.0,
+      "rationale": "Upper f range, M=2"
+    },
+    {
+      "id": "R12",
+      "f": 2.0,
+      "beta": 0.7,
+      "mach": 3.0,
+      "rationale": "Highest f in test, higher M"
+    }
+  ],
+  "resolutions": [
+    {"nx": 128, "name": "128cubed", "cells_per_lambda_j": 16},
+    {"nx": 256, "name": "256cubed", "cells_per_lambda_j": 32}
+  ],
+  "seeds": [42, 137],
+  "n_sims_total": 48,
+  "resolution_config": {
+    "L1": 8.0,
+    "L2": 2.0,
+    "L3": 2.0,
+    "tlim": 4.0,
+    "four_pi_G": 39.478418,
+    "cfl_number": 0.3
+  }
+}

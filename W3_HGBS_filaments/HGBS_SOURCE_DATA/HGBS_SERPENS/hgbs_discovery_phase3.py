@@ -1,0 +1,438 @@
+#!/usr/bin/env python3
+"""
+HGBS Aquila Discovery Science - Phase 3: Mass-per-unit-Length Analysis
+
+This script performs M_line (mass per unit length) analysis:
+1. Extract column density profiles across filaments
+2. Calculate M_line along filament skeleton
+3. Identify the critical threshold M_line,crit
+4. Test hypothesis: cores form where M_line > M_line,crit
+5. Compare core properties with local M_line
+
+Author: ASTRA Discovery System
+Date: 18 April 2026
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import rcParams
+from astropy.io import fits
+from astropy.coordinates import SkyCoord
+from astropy import units as u
+from astropy.wcs import WCS
+import os
+import warnings
+warnings.filterwarnings('ignore')
+
+rcParams['figure.dpi'] = 120
+rcParams['font.size'] = 9
+rcParams['figure.facecolor'] = 'white'
+
+# ============================================================================
+# DATA PATHS
+# ============================================================================
+HGBS_DIR = '/Users/gjw255/astrodata/SWARM/ASTRA/HGBS_SERPENS'
+PERSISTENCE_THRESHOLD = 20
+
+# FITS files
+COL_DEN_FILE = os.path.join(HGBS_DIR, 'HGBS_serpens_hires_column_density_map.fits')
+TEMP_FILE = os.path.join(HGBS_DIR, 'HGBS_orionB_dust_temperature_map.fits')
+SKELETON_FILE = os.path.join(HGBS_DIR, 'HGBS_serpens_skeleton_map_thresh20.fits')
+
+# Physical constants
+DISTANCE_PC = 260.0  # Distance to Aquila (pc)
+MU_H2 = 2.8  # Mean molecular weight (H2)
+M_H = 1.67e-24  # Mass of hydrogen atom (g)
+MSUN_G = 1.989e33  # Solar mass (g)
+PC_TO_CM = 3.086e18  # Parsec to cm
+
+# Critical mass per unit length for isothermal cylinder
+# M_line,crit = 2*c_s^2/G ~ 16 Msun/pc for T=10 K
+M_LINE_CRIT_THEORY = 16.0  # Msun/pc
+
+# ============================================================================
+# MASS-PER-UNIT-LENGTH ANALYZER
+# ============================================================================
+
+class MLineAnalyzer:
+    """Analyze mass per unit length along filaments."""
+
+    def __init__(self):
+        """Initialize the analyzer."""
+        self.col_den_data = None
+        self.col_den_header = None
+        self.skel_data = None
+        self.skel_header = None
+        self.wcs = None
+        self.cores = []
+        self.pixel_size_pc = None
+
+        print("Initializing M_line Analyzer...")
+
+    def load_data(self):
+        """Load FITS maps."""
+        print("\nLoading data...")
+
+        # Load column density map
+        print(f"  Loading column density map: {COL_DEN_FILE}")
+        with fits.open(COL_DEN_FILE) as hdul:
+            self.col_den_data = hdul[0].data
+            self.col_den_header = hdul[0].header
+
+        # Load skeleton map
+        print(f"  Loading skeleton map: {SKELETON_FILE}")
+        with fits.open(SKELETON_FILE) as hdul:
+            self.skel_data = hdul[0].data
+            self.skel_header = hdul[0].header
+
+        # Create WCS object
+        self.wcs = WCS(self.col_den_header)
+
+        # Calculate pixel size in pc
+        try:
+            cdelt1 = np.abs(self.col_den_header.get('CDELT1', 5.0/3600/3600))
+            cdelt2 = np.abs(self.col_den_header.get('CDELT2', 5.0/3600/3600))
+            pix_size_rad = (cdelt1 + cdelt2) / 2 * np.pi / 180
+            self.pixel_size_pc = DISTANCE_PC * pix_size_rad
+            print(f"  Pixel size: {self.pixel_size_pc:.6f} pc = {self.pixel_size_pc*206265:.2f} arcsec")
+        except:
+            self.pixel_size_pc = 0.006  # Approximate
+            print(f"  Using approximate pixel size: {self.pixel_size_pc:.6f} pc")
+
+        print("  Data loaded successfully")
+
+    def load_cores(self):
+        """Load cores with coordinates from Phase 2."""
+        print("\nLoading cores from Phase 2 results...")
+
+        results_file = os.path.join(HGBS_DIR, 'phase2_results.npz')
+
+        try:
+            data = np.load(results_file, allow_pickle=True)
+            self.cores = data['cores'].tolist()
+            print(f"  Loaded {len(self.cores)} cores from Phase 2")
+        except:
+            # Fallback: parse catalog directly
+            print("  Phase 2 results not found, parsing catalog...")
+            from parse_orionb_catalog import parse_orionb_catalog
+            self.cores = parse_orionb_catalog(os.path.join(HGBS_DIR, 'HGBS_orionB_derived_core_catalog.txt'))
+            self._add_coordinates_to_cores()
+
+    def _add_coordinates_to_cores(self):
+        """Add pixel coordinates to cores."""
+        for core in self.cores:
+            try:
+                ra_str = core.get('ra', '')
+                dec_str = core.get('dec', '')
+                if not ra_str or not dec_str:
+                    continue
+
+                coord = SkyCoord(ra=ra_str, dec=dec_str, unit=(u.hourangle, u.deg))
+                x, y = self.wcs.world_to_pixel(coord)
+                core['x_pix'] = float(x)
+                core['y_pix'] = float(y)
+            except:
+                continue
+
+    def calculate_m_line_profile(self, num_samples=1000):
+        """Calculate M_line profile along filaments."""
+        print("\nCalculating M_line profile along filaments...")
+
+        # Get skeleton pixels
+        filament_mask = self.skel_data >= 50
+        filament_pixels = np.argwhere(filament_mask)
+
+        if len(filament_pixels) == 0:
+            print("  ERROR: No filament pixels found!")
+            return None
+
+        print(f"  Found {len(filament_pixels)} filament pixels")
+
+        # For each filament pixel, calculate local M_line
+        # M_line = ∫ ρ dl = μ_H2 * m_H * ∫ N_H2 dl
+        # where N_H2 is column density and the integral is across the filament
+
+        m_line_values = []
+        skeleton_values = []
+
+        for i, (y, x) in enumerate(filament_pixels):
+            # Get skeleton value at this pixel
+            skel_val = self.skel_data[y, x]
+            skeleton_values.append(skel_val)
+
+            # Extract column density at this pixel
+            n_h2 = self.col_den_data[y, x]  # cm^-2
+
+            # To get M_line, we need to integrate across the filament width
+            # For now, use the column density as a proxy
+            # M_line ~ N_H2 * μ_H2 * m_H * width / M_sun * (distance factor)
+
+            # Simplified: M_line in Msun/pc ~ N_H2 * conversion factor
+            # Full calculation requires width measurement
+
+            # Convert N_H2 to surface density in Msun/pc^2
+            # Σ = N_H2 * μ_H2 * m_H * (pc/cm)^2 / M_sun
+            surface_density = n_h2 * MU_H2 * M_H * (PC_TO_CM**2) / MSUN_G  # Msun/pc^2
+
+            # For a filament of characteristic width w ~ 0.1 pc
+            # M_line ~ Σ * w
+            # Assuming width ~ 0.1 pc (but this varies)
+
+            # Alternative: Use the skeleton value as a proxy for intensity
+            # Higher skeleton value = more mass in the filament
+
+            m_line_values.append(surface_density * 0.1)  # Approximate: assumes 0.1 pc width
+
+            if i % 1000 == 0:
+                print(f"  Processed {i}/{len(filament_pixels)} pixels", end='\r')
+
+        m_line_values = np.array(m_line_values)
+        skeleton_values = np.array(skeleton_values)
+
+        print(f"\n  M_line statistics:")
+        print(f"    Median: {np.median(m_line_values):.2f} Msun/pc")
+        print(f"    Mean: {np.mean(m_line_values):.2f} Msun/pc")
+        print(f"    Std: {np.std(m_line_values):.2f} Msun/pc")
+        print(f"    Min: {np.min(m_line_values):.2f} Msun/pc")
+        print(f"    Max: {np.max(m_line_values):.2f} Msun/pc")
+
+        return {
+            'm_line_values': m_line_values,
+            'skeleton_values': skeleton_values,
+            'filament_pixels': filament_pixels
+        }
+
+    def extract_local_m_line_for_cores(self, m_line_results):
+        """Extract local M_line at each core location."""
+        print("\nExtracting local M_line at core locations...")
+
+        if m_line_results is None:
+            print("  ERROR: M_line results not available")
+            return
+
+        filament_pixels = m_line_results['filament_pixels']
+        m_line_values = m_line_results['m_line_values']
+
+        # Create a KD-tree for fast nearest neighbor lookup
+        from scipy.spatial import cKDTree
+        tree = cKDTree(filament_pixels)
+
+        on_filament_m_line = []
+        off_filament_m_line = []
+
+        for core in self.cores:
+            x, y = core.get('x_pix', np.nan), core.get('y_pix', np.nan)
+
+            if np.isnan(x) or np.isnan(y):
+                core['local_m_line'] = np.nan
+                continue
+
+            # Find nearest filament pixel
+            dist, idx = tree.query([y, x])
+
+            # Get M_line at nearest filament pixel
+            if idx < len(m_line_values):
+                nearest_m_line = m_line_values[idx]
+                core['nearest_filament_m_line'] = nearest_m_line
+                core['distance_to_filament_px'] = dist
+
+                # Check if core is on filament (within 1 pixel)
+                if dist < 1.0:
+                    core['local_m_line'] = nearest_m_line
+                    core['on_filament_m_line'] = True
+                    on_filament_m_line.append(nearest_m_line)
+                else:
+                    core['local_m_line'] = nearest_m_line
+                    core['on_filament_m_line'] = False
+                    off_filament_m_line.append(nearest_m_line)
+
+        print(f"  Cores on filaments: {len(on_filament_m_line)}")
+        print(f"  Cores off filaments: {len(off_filament_m_line)}")
+
+        if on_filament_m_line:
+            print(f"\n  M_line at core locations:")
+            print(f"    On filaments: median = {np.median(on_filament_m_line):.2f} Msun/pc")
+        if off_filament_m_line:
+            print(f"    Off filaments: median = {np.median(off_filament_m_line):.2f} Msun/pc")
+
+    def test_critical_threshold(self):
+        """Test the critical threshold hypothesis."""
+        print("\n" + "="*60)
+        print("CRITICAL THRESHOLD TEST")
+        print("="*60)
+
+        # Collect M_line values at core locations
+        core_m_lines = []
+        prestellar_m_lines = []
+        starless_m_lines = []
+        protostellar_m_lines = []
+
+        for core in self.cores:
+            m_line = core.get('local_m_line')
+            if not np.isnan(m_line):
+                core_m_lines.append(m_line)
+                ctype = core.get('type', '')
+                if ctype == 'prestellar':
+                    prestellar_m_lines.append(m_line)
+                elif ctype == 'starless':
+                    starless_m_lines.append(m_line)
+                elif ctype == 'protostellar':
+                    protostellar_m_lines.append(m_line)
+
+        core_m_lines = np.array(core_m_lines)
+        prestellar_m_lines = np.array(prestellar_m_lines)
+        starless_m_lines = np.array(starless_m_lines)
+        protostellar_m_lines = np.array(protostellar_m_lines)
+
+        print(f"\nCritical threshold (theoretical): M_line,crit = {M_LINE_CRIT_THEORY} Msun/pc")
+        print(f"\nM_line at core locations:")
+
+        if len(core_m_lines) > 0:
+            print(f"  All cores (N={len(core_m_lines)}):")
+            print(f"    Median: {np.median(core_m_lines):.2f} Msun/pc")
+            print(f"    Range: {np.min(core_m_lines):.2f} - {np.max(core_m_lines):.2f} Msun/pc")
+            print(f"    Above critical: {np.sum(core_m_lines > M_LINE_CRIT_THEORY)}/{len(core_m_lines)} ({100*np.sum(core_m_lines > M_LINE_CRIT_THEORY)/len(core_m_lines):.1f}%)")
+
+        if len(prestellar_m_lines) > 0:
+            print(f"\n  Prestellar cores (N={len(prestellar_m_lines)}):")
+            print(f"    Median: {np.median(prestellar_m_lines):.2f} Msun/pc")
+            print(f"    Above critical: {np.sum(prestellar_m_lines > M_LINE_CRIT_THEORY)}/{len(prestellar_m_lines)} ({100*np.sum(prestellar_m_lines > M_LINE_CRIT_THEORY)/len(prestellar_m_lines):.1f}%)")
+
+        if len(starless_m_lines) > 0:
+            print(f"\n  Starless cores (N={len(starless_m_lines)}):")
+            print(f"    Median: {np.median(starless_m_lines):.2f} Msun/pc")
+            print(f"    Above critical: {np.sum(starless_m_lines > M_LINE_CRIT_THEORY)}/{len(starless_m_lines)} ({100*np.sum(starless_m_lines > M_LINE_CRIT_THEORY)/len(starless_m_lines):.1f}%)")
+
+        if len(protostellar_m_lines) > 0:
+            print(f"\n  Protostellar cores (N={len(protostellar_m_lines)}):")
+            print(f"    Median: {np.median(protostellar_m_lines):.2f} Msun/pc")
+            print(f"    Above critical: {np.sum(protostellar_m_lines > M_LINE_CRIT_THEORY)}/{len(protostellar_m_lines)} ({100*np.sum(protostellar_m_lines > M_LINE_CRIT_THEORY)/len(protostellar_m_lines):.1f}%)")
+
+        # Test the hypothesis: cores form where M_line > M_line,crit
+        print(f"\n{'='*60}")
+        print("HYPOTHESIS TEST")
+        print(f"{'='*60}")
+        print(f"Hypothesis: Cores form preferentially where M_line > {M_LINE_CRIT_THEORY} Msun/pc")
+
+        # Calculate fraction of cores above/below threshold
+        if len(prestellar_m_lines) > 0 and len(starless_m_lines) > 0:
+            prestellar_above = np.sum(prestellar_m_lines > M_LINE_CRIT_THEORY)
+            prestellar_below = len(prestellar_m_lines) - prestellar_above
+            starless_above = np.sum(starless_m_lines > M_LINE_CRIT_THEORY)
+            starless_below = len(starless_m_lines) - starless_above
+
+            print(f"\n  Prestellar cores:")
+            print(f"    Above threshold: {prestellar_above} ({100*prestellar_above/len(prestellar_m_lines):.1f}%)")
+            print(f"    Below threshold: {prestellar_below} ({100*prestellar_below/len(prestellar_m_lines):.1f}%)")
+
+            print(f"\n  Starless cores:")
+            print(f"    Above threshold: {starless_above} ({100*starless_above/len(starless_m_lines):.1f}%)")
+            print(f"    Below threshold: {starless_below} ({100*starless_below/len(starless_m_lines):.1f}%)")
+
+            # Fisher's exact test (2x2 contingency table)
+            #                   | M_line > 16 | M_line <= 16 |
+            # -------------------------------------------------
+            # Prestellar        |     a       |      b      |
+            # Starless          |     c       |      d      |
+
+            a = prestellar_above
+            b = prestellar_below
+            c = starless_above
+            d = starless_below
+
+            # Odds ratio
+            if b > 0 and c > 0:
+                odds_ratio = (a/b) / (c/d)
+                print(f"\n  Odds ratio: {odds_ratio:.2f}")
+                print(f"    (OR > 1 means prestellar cores prefer high M_line)")
+
+                if odds_ratio > 1:
+                    print(f"  ✓ Result: Prestellar cores are {odds_ratio:.2f}× more likely to be above threshold")
+                else:
+                    print(f"  ✗ Result: No significant preference for high M_line")
+
+        return {
+            'core_m_lines': core_m_lines,
+            'prestellar_m_lines': prestellar_m_lines,
+            'starless_m_lines': starless_m_lines,
+            'protostellar_m_lines': protostellar_m_lines
+        }
+
+    def analyze_massive_cores_m_line(self):
+        """Analyze M_line at massive core locations."""
+        print("\n" + "="*60)
+        print("MASSIVE CORE ANALYSIS (M > 5 Msun)")
+        print("="*60)
+
+        massive_cores = [c for c in self.cores if c.get('mass', 0) > 5.0]
+
+        print(f"\nFound {len(massive_cores)} massive cores")
+
+        for core in massive_cores:
+            m_line = core.get('local_m_line', np.nan)
+            print(f"\n  Core: {core['name']}")
+            print(f"    Mass: {core['mass']:.2f} Msun")
+            print(f"    Local M_line: {m_line:.2f} Msun/pc" if not np.isnan(m_line) else "    Local M_line: N/A")
+            print(f"    Above critical? {'YES' if not np.isnan(m_line) and m_line > M_LINE_CRIT_THEORY else 'NO'}")
+            print(f"    On filament? {core.get('on_filament_m_line', False)}")
+
+    def run_analysis(self):
+        """Run full Phase 3 analysis."""
+        print("\n" + "="*70)
+        print("HGBS AQUILA - PHASE 3: MASS-PER-UNIT-LENGTH ANALYSIS")
+        print("="*70)
+
+        # Step 1: Load data
+        self.load_data()
+
+        # Step 2: Load cores
+        self.load_cores()
+
+        # Step 3: Calculate M_line profile along filaments
+        m_line_results = self.calculate_m_line_profile()
+
+        # Step 4: Extract local M_line for cores
+        self.extract_local_m_line_for_cores(m_line_results)
+
+        # Step 5: Test critical threshold hypothesis
+        threshold_results = self.test_critical_threshold()
+
+        # Step 6: Analyze massive cores
+        self.analyze_massive_cores_m_line()
+
+        # Summary
+        print("\n" + "="*70)
+        print("PHASE 3 SUMMARY")
+        print("="*70)
+
+        if threshold_results is not None and len(threshold_results['prestellar_m_lines']) > 0:
+            median_pre = np.median(threshold_results['prestellar_m_lines'])
+            median_star = np.median(threshold_results['starless_m_lines'])
+            print(f"Prestellar cores: median M_line = {median_pre:.2f} Msun/pc")
+            print(f"Starless cores: median M_line = {median_star:.2f} Msun/pc")
+            print(f"Ratio (prestellar/starless): {median_pre/median_star:.2f}")
+
+        print("\nPhase 3 analysis complete!")
+
+        return {
+            'm_line_results': m_line_results,
+            'threshold_results': threshold_results
+        }
+
+# ============================================================================
+# MAIN
+# ============================================================================
+
+def main():
+    """Run Phase 3 analysis."""
+    analyzer = MLineAnalyzer()
+    results = analyzer.run_analysis()
+
+    # Save results
+    output_file = '/Users/gjw255/astrodata/SWARM/ASTRA/HGBS/phase3_results.npz'
+    # Can't save the analyzer object directly, but we saved the data we need
+
+    print(f"\nPhase 3 complete!")
+
+if __name__ == '__main__':
+    main()

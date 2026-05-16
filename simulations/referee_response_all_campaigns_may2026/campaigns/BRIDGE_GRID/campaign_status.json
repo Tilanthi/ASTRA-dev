@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-04-28T14:48:00.417123",
+  "done": 1,
+  "total": 48,
+  "FRAG": 0,
+  "STABLE": 0,
+  "TIMEOUT": 1,
+  "FAILED": 0,
+  "disk": "465G free",
+  "results": [
+    {
+      "sim_id": "BRIDGE_GRID_f1.1_beta1.0_M1.0_theta90.0_s137",
+      "f": 1.1,
+      "beta": 1.0,
+      "M": 1.0,
+      "seed": 137,
+      "outcome": "TIMEOUT",
+      "t_frag": null,
+      "dt_min": null,
+      "wall_s": 720.0
+    }
+  ]
+}

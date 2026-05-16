@@ -1,0 +1,101 @@
+{
+  "analysis_date": "2026-05-01",
+  "method": "Campaign 10 bias correction (7.0\u00d7 factor)",
+  "bias_factor": 7.0,
+  "robust_regions": {
+    "n_regions": 4,
+    "weighted_nn_pc": 0.04145652724968314,
+    "weighted_nn_uncertainty_pc": 0.003653907542218087,
+    "weighted_lambda_W": 0.41456527249683145,
+    "weighted_lambda_W_uncertainty": 0.036539075422180864
+  },
+  "all_regions": {
+    "n_regions": 8,
+    "weighted_nn_pc": 0.039469097877857004,
+    "weighted_nn_uncertainty_pc": 0.00290227069980231,
+    "weighted_lambda_W": 0.39469097877856996,
+    "weighted_lambda_W_uncertainty": 0.0290227069980231
+  },
+  "individual_results": [
+    {
+      "region": "Taurus",
+      "n_cores": 536,
+      "pairwise_median": 0.198,
+      "nn_corrected": 0.028285714285714286,
+      "nn_uncertainty": 0.004242857142857143,
+      "nn_lambda_W": 0.28285714285714286,
+      "nn_lambda_W_uncertainty": 0.04242857142857143,
+      "robust": true
+    },
+    {
+      "region": "OrionB",
+      "n_cores": 1844,
+      "pairwise_median": 0.313,
+      "nn_corrected": 0.04471428571428571,
+      "nn_uncertainty": 0.006707142857142857,
+      "nn_lambda_W": 0.4471428571428571,
+      "nn_lambda_W_uncertainty": 0.06707142857142856,
+      "robust": true
+    },
+    {
+      "region": "Aquila",
+      "n_cores": 749,
+      "pairwise_median": 0.346,
+      "nn_corrected": 0.049428571428571426,
+      "nn_uncertainty": 0.0074142857142857135,
+      "nn_lambda_W": 0.4942857142857142,
+      "nn_lambda_W_uncertainty": 0.07414285714285714,
+      "robust": true
+    },
+    {
+      "region": "Perseus",
+      "n_cores": 816,
+      "pairwise_median": 0.248,
+      "nn_corrected": 0.03542857142857143,
+      "nn_uncertainty": 0.005314285714285714,
+      "nn_lambda_W": 0.35428571428571426,
+      "nn_lambda_W_uncertainty": 0.05314285714285714,
+      "robust": true
+    },
+    {
+      "region": "Ophiuchus",
+      "n_cores": 513,
+      "pairwise_median": 0.206,
+      "nn_corrected": 0.029428571428571425,
+      "nn_uncertainty": 0.0044142857142857135,
+      "nn_lambda_W": 0.29428571428571426,
+      "nn_lambda_W_uncertainty": 0.04414285714285713,
+      "robust": false
+    },
+    {
+      "region": "Serpens",
+      "n_cores": 194,
+      "pairwise_median": 0.308,
+      "nn_corrected": 0.044,
+      "nn_uncertainty": 0.006599999999999999,
+      "nn_lambda_W": 0.43999999999999995,
+      "nn_lambda_W_uncertainty": 0.06599999999999999,
+      "robust": false
+    },
+    {
+      "region": "TMC1",
+      "n_cores": 178,
+      "pairwise_median": 0.233,
+      "nn_corrected": 0.03328571428571429,
+      "nn_uncertainty": 0.004992857142857143,
+      "nn_lambda_W": 0.33285714285714285,
+      "nn_lambda_W_uncertainty": 0.049928571428571426,
+      "robust": false
+    },
+    {
+      "region": "CRA",
+      "n_cores": 239,
+      "pairwise_median": 0.204,
+      "nn_corrected": 0.02914285714285714,
+      "nn_uncertainty": 0.004371428571428571,
+      "nn_lambda_W": 0.29142857142857137,
+      "nn_lambda_W_uncertainty": 0.04371428571428571,
+      "robust": false
+    }
+  ]
+}

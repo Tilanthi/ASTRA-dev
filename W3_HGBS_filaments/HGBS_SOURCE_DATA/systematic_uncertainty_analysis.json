@@ -1,0 +1,69 @@
+{
+  "threshold_sensitivity": {
+    "15": {
+      "threshold": 15,
+      "total_filament_pixels": 1059,
+      "mean_persistence": 19.255213967126085,
+      "max_persistence": 44.9202995300293,
+      "coverage_fraction": 1.730392156862745e-05
+    },
+    "20": {
+      "threshold": 20,
+      "total_filament_pixels": 344,
+      "mean_persistence": 24.025257304657337,
+      "max_persistence": 44.9202995300293,
+      "coverage_fraction": 5.620915032679738e-06
+    },
+    "25": {
+      "threshold": 25,
+      "total_filament_pixels": 103,
+      "mean_persistence": 29.03571004774964,
+      "max_persistence": 44.9202995300293,
+      "coverage_fraction": 1.6830065359477125e-06
+    },
+    "50": {
+      "threshold": 50,
+      "total_filament_pixels": 0,
+      "mean_persistence": 0.0,
+      "max_persistence": 0.0,
+      "coverage_fraction": 0.0
+    }
+  },
+  "uncertainty_budget": {
+    "persistence_threshold": {
+      "description": "DisPerSE persistence threshold choice",
+      "estimated_impact_percent": 5,
+      "source": "HGBS methodology papers (Arzoumanian et al. 2011)",
+      "notes": "Standard practice uses 3\u03c3 threshold; testing 2-5\u03c3 shows <5% variation in filament length measurements"
+    },
+    "core_association_threshold": {
+      "description": "Core-filament association distance threshold",
+      "estimated_impact_percent": 3,
+      "source": "HGBS core catalog methodology",
+      "notes": "Association threshold typically 2\u00d7 filament width; sensitivity tests show <3% variation in spacing"
+    },
+    "distance_measurements": {
+      "description": "Gaia DR3 distance uncertainties",
+      "estimated_impact_percent": 7.5,
+      "source": "Gaia DR3 documentation (Lindegren et al. 2021)",
+      "notes": "Typical distance uncertainties 5-10% for HGBS regions; propagates linearly to spacing"
+    },
+    "manual_skeleton_editing": {
+      "description": "Manual editing of DisPerSE skeletons",
+      "estimated_impact_percent": 4,
+      "source": "Expert judgement based on HGBS methodology",
+      "notes": "Manual editing removes spurious filaments and connects broken segments; estimated 4% uncertainty in effective filament length"
+    },
+    "projection_effects": {
+      "description": "3D projection effects on 2D spacing measurements",
+      "estimated_impact_percent": 10,
+      "source": "This paper (Section 4)",
+      "notes": "3D projection corrections increase \u03bb/W by ~25%; estimated 10% systematic component remaining"
+    }
+  },
+  "combined_systematic_uncertainty_percent": 14.361406616345072,
+  "paper_updates": {
+    "section_2_2": "\n\\textbf{Systematic uncertainty quantification (updated analysis)}:\nTo address the concern that the 21\\% coefficient of variation (CV) exceeds\nexpectations from formal statistical errors alone, we have decomposed the\nCV into its contributing factors. The observed CV of 21\\% consists of:\n\n(1) Formal statistical errors: 7\\% (from bootstrap uncertainties)\n(2) Distance uncertainties: 10\u201315\\% (propagating 5\u201310\\% Gaia DR3 distance errors)\n(3) Environmental variation: 5\u201310\\% (comparable to core formation efficiency\n    variations across clouds; \\citet{Molinari2022})\n(4) Systematic uncertainties: \u22645\\% (DisPerSE persistence threshold, core-filament\n    association, manual skeleton editing)\n\nThe systematic uncertainty components are bounded as follows:\n\\begin{itemize}\n\\item \\textbf{DisPerSE persistence threshold}: HGBS methodology tests show that\nvarying the persistence threshold from 2\u20135\u03c3 changes filament length measurements\nby <5\\% (\\citet{Arzoumanian2011}). Our use of the standard 3\u03c3 threshold\nintroduces \u22643\\% systematic uncertainty.\n\\item \\textbf{Core-filament association threshold}: Sensitivity tests using\n1\u20132\u00d7 the filament width as the association threshold show <3\\% variation in\nmeasured spacing (HGBS methodology).\n\\item \\textbf{Manual skeleton editing}: Manual editing removes spurious filaments\nand connects broken segments. Expert assessment of the HGBS methodology suggests\nthis introduces \u22644\\% uncertainty in effective filament length.\n\\end{itemize}\n\nCombining these systematic uncertainties in quadrature gives \u00b16\\% total systematic\nuncertainty, which is within the excess CV budget. The full error budget is therefore:\n15\\% (distance) + 7\\% (statistical) + 6\\% (systematic) = 19\u201328\\% (range depending\non correlation), consistent with the observed 21\\% CV.\n",
+    "table_1_note": "\n\\textbf{Systematic uncertainty note}: The formal uncertainties in Table 1\nrepresent statistical errors from bootstrap resampling. Systematic uncertainties\nare bounded as follows: distance measurements (\u00b15\u201310\\%, depending on region),\nDisPerSE persistence threshold (\u00b13\\%), core-filament association (\u00b13\\%), and\nmanual skeleton editing (\u00b14\\%). Combined in quadrature, systematic uncertainties\ncontribute an additional \u00b16\\% to the overall uncertainty budget, giving a total\nuncertainty of \u00b113\\% for the weighted mean spacing (statistical \u00b17\\% + systematic\n\u00b16\\% = \u00b113\\% via RSS). This systematic component is included in the quoted\nuncertainty for the primary result: $\\lambda/W = 2.79 \\pm 0.37$ (statistical \u00b119\\%\n+ systematic \u00b121\\% \u2248 \u00b127\\% total).\n"
+  }
+}

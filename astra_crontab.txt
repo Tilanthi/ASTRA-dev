@@ -1,0 +1,15 @@
+# ASTRA Autonomous Discovery - Cron Configuration
+# Add to crontab with: crontab -e
+# Or install with: crontab /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_crontab.txt
+
+# Start ASTRA autonomous discovery on boot (5 minutes after boot)
+@reboot sleep 300 && /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/start_astra_continuous.sh
+
+# Check if ASTRA is running every 15 minutes, restart if needed
+*/15 * * * * /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/start_astra_continuous.sh
+
+# Backup discoveries every hour
+0 * * * * cp /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/astra_discoveries.db /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/backups/astra_discoveries_$(date +\%Y\%m\%d_\%H\%M).db
+
+# Daily discovery report at midnight
+0 0 * * * /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/monitor_discoveries.py > /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/reports/daily_$(date +\%Y\%m\%d).txt

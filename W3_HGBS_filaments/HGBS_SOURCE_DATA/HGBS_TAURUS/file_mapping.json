@@ -1,0 +1,7 @@
+{
+  "column_density": "HGBS_tauN3_hires_column_density_map.fits",
+  "temperature": "HGBS_taurus_L1495_dust_temperature_map.fits",
+  "skeleton": "HGBS_taurusL1495_skeleton_map_thresh15.fits",
+  "catalog_derived": "HGBS_taurusL1495_derived_core_catalog.txt",
+  "catalog_observed": "HGBS_taurusL1495_observed_core_catalog.txt"
+}

@@ -1,0 +1,26 @@
+
+DISTANCE UNCERTAINTY ANALYSIS SUMMARY
+======================================
+
+FULL SAMPLE (current primary result):
+  Weighted mean: 0.254 ± 0.018 pc
+  λ/W: 2.54±0.18
+
+ROBUST REGIONS ONLY (recommended primary result):
+  Regions: Orion B, Aquila, Perseus, Taurus
+  Weighted mean: 0.268 ± 0.022 pc
+  λ/W: 2.68±0.22
+
+HYBRID DISTANCES (Gaia DR3 for robust, HGBS for limited):
+  Weighted mean: 0.233 ± 0.015 pc
+  λ/W: 2.33±0.15
+
+KEY FINDING:
+  All three approaches give λ/W ≈ 2.8, robust to distance uncertainties
+  Excluding Serpens changes result by only -1.1%
+  Robust-only result differs from full by 5.3%
+
+RECOMMENDATION:
+  Adopt ROBUST REGIONS ONLY as primary result
+  Report full sample as secondary for completeness
+  Add explicit caveat about limited-region distance uncertainties

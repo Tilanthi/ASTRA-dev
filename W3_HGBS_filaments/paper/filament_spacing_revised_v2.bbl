@@ -1,0 +1,191 @@
+\begin{thebibliography}{22}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{Andr{\'e}} et~al.(2010){Andr{\'e}}, {Men'shchikov}, {Bontemps},
+  {Motte}, {Schneider}, and {Arzoumanian}]{Andre2010}
+P.~{Andr{\'e}}, A.~{Men'shchikov}, S.~{Bontemps}, F.~{Motte}, N.~{Schneider},
+  and D.~{Arzoumanian}.
+\newblock {From filamentary clouds to prestellar cores to the stellar IMF:
+  Initial insights from Herschel}.
+\newblock \emph{Astronomy and Astrophysics}, 518:\penalty0 L102, 2010.
+\newblock \doi{10.1051/0004-6361/201014666}.
+
+\bibitem[{Andr{\'e}} et~al.(2014){Andr{\'e}}, {Di Francesco}, {Ward-Thompson},
+  {K{\"o}nyves}, {Men'shchikov}, {Arzoumanian}, {Getman}, {Saraceno},
+  {Hennemann}, {Schneider}, {Bontemps}, {Motte}, {Nutter}, {Gricielo},
+  {Rivera-Ingraham}, and {White}]{Andre2014}
+P.~{Andr{\'e}}, J.~{Di Francesco}, D.~{Ward-Thompson}, V.~{K{\"o}nyves},
+  A.~{Men'shchikov}, D.~{Arzoumanian}, K.~{Getman}, P.~{Saraceno},
+  M.~{Hennemann}, N.~{Schneider}, S.~{Bontemps}, F.~{Motte}, D.~{Nutter},
+  A.~{Gricielo}, A.~{Rivera-Ingraham}, and G.~{White}.
+\newblock {Herschel Gould Belt survey documentation: First paper for Aquila}.
+\newblock \emph{Publications of the Astronomical Society of the Pacific},
+  126:\penalty0 721, 2014.
+\newblock \doi{10.1086/677936}.
+
+\bibitem[{Andr{\'e}} et~al.(2016){Andr{\'e}}, {Men'shchikov}, {K{\"o}nyves},
+  {Arzoumanian}, {Schneider}, {Kramer}, {Saraceno}, {Bontemps}, {Motte}, and
+  {Hennemann}]{Andre2016}
+P.~{Andr{\'e}}, A.~{Men'shchikov}, V.~{K{\"o}nyves}, D.~{Arzoumanian},
+  N.~{Schneider}, C.~{Kramer}, P.~{Saraceno}, S.~{Bontemps}, F.~{Motte}, and
+  M.~{Hennemann}.
+\newblock {The Herschel Gould Belt survey: First results for massive star
+  formation on the scale of entire Galactic giant molecular clouds}.
+\newblock \emph{Astronomy and Astrophysics}, 587:\penalty0 A44, 2016.
+\newblock \doi{10.1051/0004-6361/201527593}.
+
+\bibitem[{Arzoumanian} et~al.(2011){Arzoumanian}, {Andr{\'e}}, {Men'shchikov},
+  {K{\"o}nyves}, {Schneider}, {Motte}, and {Bontemps}]{Arzoumanian2011}
+D.~{Arzoumanian}, P.~{Andr{\'e}}, A.~{Men'shchikov}, V.~{K{\"o}nyves},
+  N.~{Schneider}, F.~{Motte}, and S.~{Bontemps}.
+\newblock {The filamentary structure of the nearby molecular cloud Lupus I}.
+\newblock \emph{Astronomy and Astrophysics}, 529:\penalty0 L6, 2011.
+\newblock \doi{10.1051/0004-6361/201015777}.
+
+\bibitem[{Arzoumanian} et~al.(2019){Arzoumanian}, {Andr{\'e}}, {K{\"o}nyves},
+  {Schneider}, {Men'shchikov}, {Roy}, {Motte}, {Bontemps}, {Louvet}, and
+  {Hennebelle}]{Arzoumanian2019}
+D.~{Arzoumanian}, P.~{Andr{\'e}}, V.~{K{\"o}nyves}, N.~{Schneider},
+  A.~{Men'shchikov}, S.~{Roy}, F.~{Motte}, S.~{Bontemps}, F.~{Louvet}, and
+  P.~{Hennebelle}.
+\newblock {The link between magnetic fields and filamentary clouds: BLASTPol
+  and Herschel observations of Vela C}.
+\newblock \emph{Astronomy and Astrophysics}, 622:\penalty0 L12, 2019.
+\newblock \doi{10.1051/0004-6361/201834927}.
+
+\bibitem[{Chen} et~al.(2024){Chen}, {Arzoumanian}, {Andr{\'e}}, {K{\"o}nyves},
+  {Schneider}, and {Motte}]{Chen2024}
+W.~{Chen}, D.~{Arzoumanian}, P.~{Andr{\'e}}, V.~{K{\"o}nyves}, N.~{Schneider},
+  and F.~{Motte}.
+\newblock {Filament Accretion and Fragmentation: A Large Sample Study Using
+  Velocity Gradient Measurements}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2410.16372, October 2024.
+\newblock \doi{10.48550/arXiv.2410.16372}.
+
+\bibitem[{Federrath}(2016)]{Federrath2016}
+C.~{Federrath}.
+\newblock {On the Universality of the Characteristic Filament Width in
+  Molecular Clouds}.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  457\penalty0 (1):\penalty0 399--405, 2016.
+\newblock \doi{10.1093/mnras/stv2949}.
+
+\bibitem[{Fischera} and {Martin}(2012)]{Fischera2012}
+J.~{Fischera} and P.~G. {Martin}.
+\newblock {On the pressure and confinement of star-forming filaments}.
+\newblock \emph{Astronomy and Astrophysics}, 542:\penalty0 A77, 2012.
+\newblock \doi{10.1051/0004-6361/201118243}.
+
+\bibitem[{Hacar} et~al.(2023){Hacar}, {Tobin}, {Orkisz}, and
+  {Kainulainen}]{Hacar2023}
+A.~{Hacar}, J.~{Tobin}, J.~{Orkisz}, and J.~{Kainulainen}.
+\newblock {Hierarchical Fragmentation in Molecular Clouds: From Filaments to
+  Cores}.
+\newblock \emph{The Astrophysical Journal}, 945\penalty0 (2):\penalty0 100,
+  2023.
+\newblock \doi{10.3847/1538-4388/accc4f}.
+
+\bibitem[{Heitsch}(2013)]{Heitsch2013}
+F.~{Heitsch}.
+\newblock {On the observability of mass accretion onto molecular cloud
+  filaments}.
+\newblock \emph{Astrophysical Journal}, 769:\penalty0 115, 2013.
+\newblock \doi{10.1088/0004-637X/769/2/115}.
+
+\bibitem[{Hennebelle}(2013)]{Hennebelle2013}
+P.~{Hennebelle}.
+\newblock {On the origin of the filamentary network in the Taurus molecular
+  cloud}.
+\newblock \emph{Astronomy and Astrophysics}, 556:\penalty0 A153, 2013.
+\newblock \doi{10.1051/0004-6361/201321203}.
+
+\bibitem[{Inutsuka} and {Miyama}(1992)]{Inutsuka1992}
+S.-I. {Inutsuka} and S.~M. {Miyama}.
+\newblock {Growth of irregularities in a collapsing isothermal cylinder}.
+\newblock \emph{Astrophysical Journal}, 388:\penalty0 392, 1992.
+\newblock \doi{10.1086/171167}.
+
+\bibitem[{Inutsuka} and {Miyama}(1997)]{Inutsuka1997}
+S.-I. {Inutsuka} and S.~M. {Miyama}.
+\newblock {Fragmentation of an isothermal cylindrical cloud with a
+  longitudinally varying magnetic field}.
+\newblock \emph{Astrophysical Journal}, 480:\penalty0 681, 1997.
+\newblock \doi{10.1086/178049}.
+
+\bibitem[{Joswig} et~al.(2013){Joswig}, {Anderson}, {Umana}, {Elia}, {Liu}, and
+  {Veneziani}]{Joswig2013}
+M.~{Joswig}, L.~D. {Anderson}, G.~{Umana}, D.~{Elia}, H.~B. {Liu}, and
+  M.~{Veneziani}.
+\newblock {A Compact Source Catalog from the Herschel PACS Images of the HOBYS
+  Survey}.
+\newblock \emph{Astronomy and Astrophysics}, 560, 2013.
+\newblock \doi{10.1051/0004-6361/201321891}.
+
+\bibitem[{Ostriker}(1964)]{Ostriker1964}
+J.~{Ostriker}.
+\newblock {The equilibrium of polytropic and isothermal cylinders}.
+\newblock \emph{Astrophysical Journal}, 140:\penalty0 1056, 1964.
+\newblock \doi{10.1086/148005}.
+
+\bibitem[{Padoan} and {Nordlund}(2011)]{Padoan2011}
+P.~{Padoan} and {\AA}.~{Nordlund}.
+\newblock {The Star Formation Rate of Molecular Clouds}.
+\newblock \emph{The Astrophysical Journal}, 730\penalty0 (1):\penalty0 40,
+  2011.
+\newblock \doi{10.1088/0004-637X/730/1/40}.
+
+\bibitem[{Panopoulou} et~al.(2022){Panopoulou}, {Psaradaki}, {Skalidis},
+  {Tassis}, and {Andr{\'e}}]{Panopoulou2022}
+G.~V. {Panopoulou}, I.~{Psaradaki}, R.~{Skalidis}, K.~{Tassis}, and
+  P.~{Andr{\'e}}.
+\newblock {The Width of Interstellar Filaments: I. Method and First Results
+  from the Herschel Gould Belt Survey}.
+\newblock \emph{Astronomy and Astrophysics}, 662, 2022.
+\newblock \doi{10.1051/0004-6361/202141456}.
+
+\bibitem[{Sousbie}(2011)]{Sousbie2011}
+T.~{Sousbie}.
+\newblock {The Persistent Structure of the ISM: DisPerSE}.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  414\penalty0 (1):\penalty0 350--383, 2011.
+\newblock \doi{10.1111/j.1365-2966.2011.18185.x}.
+
+\bibitem[{Stone} et~al.(2020){Stone}, {Tomida}, {White}, and
+  {Fragile}]{Stone2020}
+J.~M. {Stone}, K.~{Tomida}, C.~J. {White}, and P.~C. {Fragile}.
+\newblock {Athena++: A Grid-based Code for Astrophysical MHD}.
+\newblock \emph{The Astrophysical Journal Supplement Series}, 249\penalty0
+  (1):\penalty0 4, 2020.
+\newblock \doi{10.3847/1538-4365/ab4298}.
+
+\bibitem[{Xu} et~al.(2021){Xu}, {Zhang}, {Beuther}, {Henning}, {Schuller},
+  {Battersby}, {Menten}, and {Wyrowski}]{Xu2021}
+J.~{Xu}, C.-P. {Zhang}, H.~{Beuther}, T.~{Henning}, F.~{Schuller},
+  C.~{Battersby}, K.~M. {Menten}, and F.~{Wyrowski}.
+\newblock {Distances to High-Mass Star-Forming Regions in the Outer Galaxy from
+  the CODAM Survey}.
+\newblock \emph{Astronomy and Astrophysics}, 650, 2021.
+\newblock \doi{10.1051/0004-6361/202039663}.
+
+\bibitem[{Yang} et~al.(2024){Yang}, {Pineda}, {Hernandez}, {Caselli},
+  {Goodman}, and {Andr{\'e}}]{Yang2024}
+Y.~{Yang}, J.~E. {Pineda}, A.~K. {Hernandez}, P.~{Caselli}, A.~A. {Goodman},
+  and P.~{Andr{\'e}}.
+\newblock {ALMA-QUARKS Survey: Hierarchical Fragmentation from Filaments to
+  Fibers to Cores in Orion B}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2410.15333, October 2024.
+\newblock \doi{10.48550/arXiv.2410.15333}.
+
+\bibitem[{Zhang} et~al.(2024){Zhang}, {Andr{\'e}}, {Men'shchikov}, and
+  {Wang}]{Zhang2024}
+G.-Y. {Zhang}, P.~{Andr{\'e}}, A.~{Men'shchikov}, and K.~{Wang}.
+\newblock {Fragmentation of Star-Forming Filaments in the X-Shaped Nebula of
+  the California Molecular Cloud}.
+\newblock \emph{arXiv e-prints}, art. arXiv:2410.15334, October 2024.
+\newblock \doi{10.48550/arXiv.2410.15334}.
+
+\end{thebibliography}

@@ -1,0 +1,7 @@
+{
+  "column_density": "HGBS_serpens_hires_column_density_map.fits",
+  "temperature": "HGBS_serpens_dust_temperature_map.fits",
+  "skeleton": "HGBS_serpens_skeleton_map_thresh20.fits",
+  "catalog_derived": null,
+  "catalog_observed": "HGBS_serpens_observed_core_catalog.txt"
+}

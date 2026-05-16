@@ -1,0 +1,58 @@
+<job>
+problem_id   filament_spacing_pr
+
+<time>
+tlim         = 4.0
+n_out        = 15
+dt           = 1e-4
+
+<mesh>
+nx1          = 256
+nx2          = 64
+nx3          = 64
+x1min        = 0.0
+x1max        = 8.0
+x2min        = -2.0
+x2max        = 2.0
+x3min        = -2.0
+x3max        = 2.0
+bc_ix1       = periodic
+bc_ox1       = periodic
+bc_ix2       = periodic
+bc_ox2       = periodic
+bc_ix3       = periodic
+bc_ox3       = periodic
+
+<hydro>
+iso_sound_speed = 1.0
+
+<field>
+b_flag       = true
+<eos>
+eos_type     = <EOS>
+gamma        = <GAMMA>
+
+<gravity>
+gravity_flag = true
+grav_mean_rho = <F>
+
+<problem>
+f            = <F>
+beta         = <BETA>
+mach_number  = <MACH>
+seed         = <SEED>
+bfield       = <BFIELD>
+theta        = <THETA>
+profile      = <PROFILE>
+
+<output>
+output_dir   = ./output/
+file_type    = 1
+dt_athdf     = 0.05
+variable     = prim
+dump_history = true
+dt_hst       = 0.01
+
+<mesh>
+refinement   = none
+num_threads  = 1

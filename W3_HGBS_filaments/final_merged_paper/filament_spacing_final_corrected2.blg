@@ -1,0 +1,84 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: filament_spacing_final_corrected2.aux
+The style file: plainnat.bst
+Database file #1: references_complete.bib
+Repeated entry---line 463 of file references_complete.bib
+ : @article{Andre2010
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 472 of file references_complete.bib
+ : @article{Arzoumanian2011
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 634 of file references_complete.bib
+ : @article{Konyves2015
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 661 of file references_complete.bib
+ : @article{Inutsuka1992
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 697 of file references_complete.bib
+ : @article{Fischera2012
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 725 of file references_complete.bib
+ : @article{Stone2020
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 734 of file references_complete.bib
+ : @article{Crutcher2012
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 806 of file references_complete.bib
+ : @article{Ostriker1964
+ :                      ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Arzoumanian2013"
+Warning--I didn't find a database entry for "Motte2019"
+Warning--I didn't find a database entry for "Nakamura2011"
+Warning--I didn't find a database entry for "Tafalla2015"
+Warning--I didn't find a database entry for "Nakano1979"
+You've used 33 entries,
+            2773 wiz_defined-function locations,
+            848 strings with 12120 characters,
+and the built_in function-call counts, 17720 in all, are:
+= -- 1469
+> -- 1449
+< -- 20
++ -- 489
+- -- 456
+* -- 1596
+:= -- 2914
+add.period$ -- 122
+call.type$ -- 33
+change.case$ -- 246
+chr.to.int$ -- 33
+cite$ -- 66
+duplicate$ -- 678
+empty$ -- 1161
+format.name$ -- 503
+if$ -- 3572
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 32
+newline$ -- 196
+num.names$ -- 132
+pop$ -- 423
+preamble$ -- 1
+purify$ -- 214
+quote$ -- 0
+skip$ -- 556
+stack$ -- 0
+substring$ -- 338
+swap$ -- 42
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 363
+warning$ -- 0
+while$ -- 129
+width$ -- 0
+write$ -- 481
+(There were 8 error messages)

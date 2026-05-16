@@ -1,0 +1,12 @@
+{
+  "NH2_bg_min": 6.508123674015433e+20,
+  "rms_min": 2.6029451247876047e+20,
+  "persistence_threshold": 2.6029451247876047e+20,
+  "robustness_threshold": 9.762185511023149e+20,
+  "assembly_angle": 50.0,
+  "n_pix_smoothing": 12,
+  "min_feature_length": 60,
+  "hpbw_pixels": 6.00000000000024,
+  "pix_size_pc": 0.005817758708457334,
+  "hpbw_pc": 0.0349065522507454
+}

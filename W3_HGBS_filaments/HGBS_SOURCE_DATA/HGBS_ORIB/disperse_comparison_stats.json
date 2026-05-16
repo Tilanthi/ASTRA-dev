@@ -1,0 +1,11 @@
+{
+  "existing_pixels": 52101,
+  "new_pixels": 0,
+  "pixel_difference": -52101,
+  "pixel_difference_percent": -100.0,
+  "existing_filaments": 24766,
+  "new_filaments": 0,
+  "overlap_pixels": 0,
+  "dice_coefficient": 0.0,
+  "iou": 0.0
+}

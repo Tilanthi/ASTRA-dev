@@ -1,0 +1,14 @@
+{
+  "sim_id": "PFPI_b1p2_s367",
+  "campaign": "PFPI",
+  "status": "FRAG",
+  "t_frag": 0.620105,
+  "dt_min": 1.39771e-20,
+  "wall_s": 795.9,
+  "f": 1.2,
+  "beta": 1.2,
+  "theta": 90.0,
+  "perturb": 0.0001,
+  "seed": 367,
+  "Lx": 16.0
+}

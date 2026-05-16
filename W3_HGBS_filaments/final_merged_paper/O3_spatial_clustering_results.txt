@@ -1,0 +1,11 @@
+# O3: Spatial Clustering Analysis Results
+
+permutation_p_value: 0.019
+observed_mean_revision_complex: 64.0
+mean_complex_separation_deg: 111.28323606391272
+pm_nominal: 2.3242346014492754
+pm_plus_20pct: 2.0586873490338164
+pm_minus_20pct: 2.722555480072464
+discrepancy_nominal_pct: 18.160753470095933
+discrepancy_plus_pct: 27.511008836837448
+discrepancy_minus_pct: 4.135370419983662

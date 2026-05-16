@@ -1,0 +1,74 @@
+# O4: Filament Length Sensitivity Analysis Results
+
+# Weighted mean PM/(L/3) for robust regions
+weighted_min: 0.1646839144551101
+weighted_std: 0.11252681968167702
+weighted_max: 0.07730677730331262
+all_below_one: True
+mean_relative_uncertainty_pct: 37.906994047619044
+
+# Per-filament results
+Aquila Rift:
+  L_min: 5.5 pc
+  L_std: 8.0 pc
+  L_max: 12.0 pc
+  pm_over_L3_min: 0.13145454545454546
+  pm_over_L3_std: 0.090375
+  pm_over_L3_max: 0.06025
+
+Orion B:
+  L_min: 5.0 pc
+  L_std: 7.0 pc
+  L_max: 10.0 pc
+  pm_over_L3_min: 0.1404
+  pm_over_L3_std: 0.10028571428571428
+  pm_over_L3_max: 0.0702
+
+Taurus:
+  L_min: 3.5 pc
+  L_std: 5.0 pc
+  L_max: 7.0 pc
+  pm_over_L3_min: 0.19028571428571428
+  pm_over_L3_std: 0.13319999999999999
+  pm_over_L3_max: 0.09514285714285714
+
+Perseus:
+  L_min: 2.5 pc
+  L_std: 4.0 pc
+  L_max: 6.0 pc
+  pm_over_L3_min: 0.26639999999999997
+  pm_over_L3_std: 0.1665
+  pm_over_L3_max: 0.111
+
+Ophiuchus:
+  L_min: 2.0 pc
+  L_std: 3.0 pc
+  L_max: 4.5 pc
+  pm_over_L3_min: 0.3435
+  pm_over_L3_std: 0.229
+  pm_over_L3_max: 0.15266666666666667
+
+Serpens:
+  L_min: 1.8 pc
+  L_std: 2.5 pc
+  L_max: 3.5 pc
+  pm_over_L3_min: 0.5283333333333333
+  pm_over_L3_std: 0.38039999999999996
+  pm_over_L3_max: 0.2717142857142857
+
+TMC1:
+  L_min: 1.5 pc
+  L_std: 2.0 pc
+  L_max: 2.8 pc
+  pm_over_L3_min: 0.492
+  pm_over_L3_std: 0.369
+  pm_over_L3_max: 0.26357142857142857
+
+CRA:
+  L_min: 1.0 pc
+  L_std: 1.5 pc
+  L_max: 2.2 pc
+  pm_over_L3_min: 0.6900000000000001
+  pm_over_L3_std: 0.46
+  pm_over_L3_max: 0.3136363636363636
+

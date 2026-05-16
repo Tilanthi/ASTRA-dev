@@ -1,0 +1,7 @@
+{
+  "column_density": "HGBS_aquilaM2_hires_column_density_map.fits",
+  "temperature": "HGBS_aquilaM2_dust_temperature_map.fits",
+  "skeleton": "HGBS_aquilaM2_skeleton_map_thresh50.fits",
+  "catalog_derived": "HGBS_aquilaM2_derived_core_catalog.txt",
+  "catalog_observed": "HGBS_aquilaM2_observed_core_catalog.txt"
+}

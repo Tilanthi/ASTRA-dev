@@ -1,0 +1,18 @@
+{
+  "region": "IC5146",
+  "n_cores": 142,
+  "n_duplicates_removed": 32,
+  "nn_median_pc": 0.027510260945142223,
+  "nn_mean_pc": 0.06269607349464669,
+  "nn_std_pc": 0.12669116783377077,
+  "nn_sem_pc": 0.010631686630693755,
+  "nn_min_pc": 0.005563635450755647,
+  "nn_max_pc": 1.2328805690290279,
+  "nn_q25_pc": 0.005599809982329368,
+  "nn_q75_pc": 0.08061144310473357,
+  "distance_pc": 260,
+  "paper_pairwise_pc": 0.27,
+  "paper_lambda_over_W": 2.7,
+  "nn_lambda_over_W": 0.2166162279145057,
+  "nn_over_pairwise": 0.1018898553523786
+}

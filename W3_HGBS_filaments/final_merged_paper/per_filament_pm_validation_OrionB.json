@@ -1,0 +1,77 @@
+{
+  "region": "HGBS_ORIB",
+  "distance_pc": 386,
+  "has_wcs": true,
+  "n_filaments_analyzed": 6,
+  "n_filaments_valid": 6,
+  "pm_ratio_mean": 1.3488777751709387,
+  "pm_ratio_std": 0.3099905619582981,
+  "pm_ratio_sem": 0.1265531169794074,
+  "pm_ratio_median": 1.277424042186793,
+  "pm_ratio_p25": 1.2217883043358957,
+  "pm_ratio_p75": 1.4139200230017634,
+  "pm_nn_ratio_mean": 2.286309472523848,
+  "interpretation": "\u2717 No support: PM does not equal L/3 for HGBS filaments",
+  "individual_filaments": [
+    {
+      "filament_id": 299,
+      "n_cores": 16,
+      "length_pc": 1.5568047656642825,
+      "L_over_3_pc": 0.5189349218880942,
+      "pm_median_pc": 0.691771272826019,
+      "nn_median_pc": 0.29759423656973333,
+      "pm_ratio": 1.3330597800376907,
+      "pm_nn_ratio": 2.324545262703435
+    },
+    {
+      "filament_id": 97,
+      "n_cores": 11,
+      "length_pc": 1.5807354351280245,
+      "L_over_3_pc": 0.5269118117093415,
+      "pm_median_pc": 0.7592132333037921,
+      "nn_median_pc": 0.2509324965403436,
+      "pm_ratio": 1.4408734373231211,
+      "pm_nn_ratio": 3.0255676079073712
+    },
+    {
+      "filament_id": 185,
+      "n_cores": 9,
+      "length_pc": 1.1867486248688228,
+      "L_over_3_pc": 0.39558287495627426,
+      "pm_median_pc": 0.7704514851242481,
+      "nn_median_pc": 0.20308445991138852,
+      "pm_ratio": 1.9476360932191767,
+      "pm_nn_ratio": 3.7937490907005778
+    },
+    {
+      "filament_id": 244,
+      "n_cores": 13,
+      "length_pc": 1.4613244261724179,
+      "L_over_3_pc": 0.4871081420574726,
+      "pm_median_pc": 0.595143030912608,
+      "nn_median_pc": 0.31056504858601847,
+      "pm_ratio": 1.2217883043358957,
+      "pm_nn_ratio": 1.916323274696408
+    },
+    {
+      "filament_id": 251,
+      "n_cores": 13,
+      "length_pc": 1.4613244261724179,
+      "L_over_3_pc": 0.4871081420574726,
+      "pm_median_pc": 0.595143030912608,
+      "nn_median_pc": 0.31056504858601847,
+      "pm_ratio": 1.2217883043358957,
+      "pm_nn_ratio": 1.916323274696408
+    },
+    {
+      "filament_id": 408,
+      "n_cores": 6,
+      "length_pc": 1.6342435684078256,
+      "L_over_3_pc": 0.5447478561359419,
+      "pm_median_pc": 0.5055917788691279,
+      "nn_median_pc": 0.6819895077685655,
+      "pm_ratio": 0.9281207317738528,
+      "pm_nn_ratio": 0.7413483244388878
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "sim_id": "RTV_f2p5_b1p0_a1e0_s137",
+  "campaign": "RTV",
+  "status": "FRAG",
+  "t_frag": 0.270003,
+  "dt_min": 7.36177e-06,
+  "wall_s": 650.7,
+  "f": 2.5,
+  "beta": 1.0,
+  "theta": 0.0,
+  "perturb": 1.0,
+  "seed": 137,
+  "Lx": 8.0
+}

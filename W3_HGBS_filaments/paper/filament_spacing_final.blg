@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: filament_spacing_final.aux
+The style file: plainnat.bst
+Database file #1: references.bib
+You've used 30 entries,
+            2773 wiz_defined-function locations,
+            820 strings with 11283 characters,
+and the built_in function-call counts, 15735 in all, are:
+= -- 1337
+> -- 1208
+< -- 18
++ -- 408
+- -- 378
+* -- 1420
+:= -- 2575
+add.period$ -- 120
+call.type$ -- 30
+change.case$ -- 216
+chr.to.int$ -- 30
+cite$ -- 60
+duplicate$ -- 618
+empty$ -- 1065
+format.name$ -- 420
+if$ -- 3182
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 30
+newline$ -- 188
+num.names$ -- 120
+pop$ -- 358
+preamble$ -- 1
+purify$ -- 186
+quote$ -- 0
+skip$ -- 493
+stack$ -- 0
+substring$ -- 325
+swap$ -- 38
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 330
+warning$ -- 0
+while$ -- 118
+width$ -- 0
+write$ -- 457

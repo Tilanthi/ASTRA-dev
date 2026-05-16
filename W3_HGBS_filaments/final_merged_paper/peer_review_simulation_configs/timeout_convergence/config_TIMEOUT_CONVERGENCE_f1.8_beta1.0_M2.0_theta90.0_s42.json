@@ -1,0 +1,67 @@
+{
+  "job": {
+    "problem_id": "filament_fragmentation",
+    "output_dir": "outputs/TIMEOUT_CONVERGENCE/"
+  },
+  "mesh": {
+    "nx1": 256,
+    "nx2": 64,
+    "nx3": 64,
+    "x1min": 0.0,
+    "x1max": 8.0,
+    "x2min": -1.0,
+    "x2max": 1.0,
+    "x3min": -1.0,
+    "x3max": 1.0
+  },
+  "hydro": {
+    "gamma": 1.0,
+    "cs0": 1.0
+  },
+  "field": {
+    "b1_initial": 6.123233995736766e-17,
+    "b2_initial": 1.0,
+    "b3_initial": 0.0
+  },
+  "gravity": {
+    "four_pi_G": 39.47841760435743
+  },
+  "filament": {
+    "line_mass_fraction": 1.8,
+    "W_core": 0.3,
+    "profile": "gaussian",
+    "perturbation_amplitude": 0.0002
+  },
+  "time": {
+    "tlim": 6.0,
+    "dt_initial": 0.0001,
+    "dt_min": 1e-12,
+    "cfl_number": 0.3
+  },
+  "output": {
+    "basename": "TIMEOUT_CONVERGENCE_f1.8_beta1.0_M2.0_theta90.0_s42",
+    "file_type": "hst",
+    "dt": 0.1,
+    "hst_dt": 0.01,
+    "variables": [
+      "rho",
+      "vx1",
+      "vx2",
+      "vx3",
+      "B1"
+    ]
+  },
+  "random_seed": 42,
+  "metadata": {
+    "campaign": "TIMEOUT_CONVERGENCE",
+    "domain_type": "standard",
+    "f": 1.8,
+    "beta": 1.0,
+    "M": 2.0,
+    "theta": 90.0,
+    "gamma": 1.0,
+    "seed": 42,
+    "Lx_lambdaJ": 8.0,
+    "resolution": "256x64x64"
+  }
+}

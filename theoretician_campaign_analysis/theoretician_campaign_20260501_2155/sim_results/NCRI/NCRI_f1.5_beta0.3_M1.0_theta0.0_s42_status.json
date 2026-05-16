@@ -1,0 +1,12 @@
+{
+  "sim_id": "NCRI_f1.5_beta0.3_M1.0_theta0.0_s42",
+  "campaign": "NCRI",
+  "f": 1.5,
+  "beta": 0.3,
+  "theta": 0.0,
+  "seed": 42,
+  "status": "FRAG",
+  "t_frag": 1.4601,
+  "wall_time_s": 330.4468536376953,
+  "timestamp": "2026-05-01T21:02:44.481671+00:00"
+}

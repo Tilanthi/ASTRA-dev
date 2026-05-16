@@ -1,0 +1,46 @@
+{
+  "generation_date": "2026-04-27",
+  "total_configs": 344,
+  "campaigns": {
+    "SUPERCRITICAL_LONG": {
+      "count": 81,
+      "domain_types": [
+        "long",
+        "extended",
+        "verylong"
+      ],
+      "purpose": "Direct \u03bb/W measurement in supercritical regime"
+    },
+    "BRIDGE_GRID": {
+      "count": 48,
+      "domain_type": "bridge",
+      "purpose": "Validate extrapolation from near-critical to supercritical"
+    },
+    "TIMEOUT_CONVERGENCE": {
+      "count": 45,
+      "domain_type": "standard",
+      "purpose": "Validate timeout adequacy across parameter space"
+    },
+    "CALIBRATION_VALIDATION": {
+      "count": 162,
+      "domain_type": "standard",
+      "purpose": "Re-derive calibration factor with uncertainty breakdown"
+    },
+    "DOMAIN_CONVERGENCE": {
+      "count": 8,
+      "domain_types": [
+        "standard",
+        "long",
+        "extended",
+        "verylong"
+      ],
+      "purpose": "Test domain size convergence of \u03bb measurement"
+    }
+  },
+  "parameter_space": {
+    "f_range": "[1.1, 2.5]",
+    "beta_range": "[0.3, 5.0]",
+    "M_range": "[1.0, 3.0]",
+    "theta_values": "[30, 60, 90] degrees"
+  }
+}

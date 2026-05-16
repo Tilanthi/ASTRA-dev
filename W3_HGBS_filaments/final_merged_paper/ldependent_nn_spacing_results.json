@@ -1,0 +1,116 @@
+{
+  "analysis_date": "2026-05-01",
+  "method": "L-dependent bias correction from Campaign 10 periodic beading tests",
+  "robust_regions": {
+    "n_regions": 4,
+    "weighted_nn_pc": 0.03037602882526636,
+    "weighted_nn_uncertainty_pc": 0.0033602165219794597,
+    "weighted_lambda_W": 0.3037602882526636,
+    "weighted_lambda_W_uncertainty": 0.033602165219794596
+  },
+  "all_regions": {
+    "n_regions": 8,
+    "weighted_nn_pc": 0.03342748293399163,
+    "weighted_nn_uncertainty_pc": 0.0028029291521281183,
+    "weighted_lambda_W": 0.3342748293399162,
+    "weighted_lambda_W_uncertainty": 0.028029291521281183
+  },
+  "individual_results": [
+    {
+      "region": "Taurus",
+      "n_cores": 536,
+      "L": 8.5,
+      "bias_factor": 7.93,
+      "pairwise_median": 0.198,
+      "nn_corrected": 0.02496847414880202,
+      "nn_uncertainty": 0.004993694829760404,
+      "nn_lambda_W": 0.2496847414880202,
+      "nn_lambda_W_uncertainty": 0.04993694829760404,
+      "robust": true
+    },
+    {
+      "region": "OrionB",
+      "n_cores": 1844,
+      "L": 12.0,
+      "bias_factor": 11.01,
+      "pairwise_median": 0.313,
+      "nn_corrected": 0.028428701180744777,
+      "nn_uncertainty": 0.005685740236148956,
+      "nn_lambda_W": 0.28428701180744775,
+      "nn_lambda_W_uncertainty": 0.05685740236148956,
+      "robust": true
+    },
+    {
+      "region": "Aquila",
+      "n_cores": 749,
+      "L": 10.0,
+      "bias_factor": 9.0,
+      "pairwise_median": 0.346,
+      "nn_corrected": 0.03844444444444444,
+      "nn_uncertainty": 0.007688888888888888,
+      "nn_lambda_W": 0.38444444444444437,
+      "nn_lambda_W_uncertainty": 0.07688888888888888,
+      "robust": true
+    },
+    {
+      "region": "Perseus",
+      "n_cores": 816,
+      "L": 9.0,
+      "bias_factor": 8.02,
+      "pairwise_median": 0.248,
+      "nn_corrected": 0.030922693266832918,
+      "nn_uncertainty": 0.006184538653366584,
+      "nn_lambda_W": 0.3092269326683292,
+      "nn_lambda_W_uncertainty": 0.061845386533665836,
+      "robust": true
+    },
+    {
+      "region": "Ophiuchus",
+      "n_cores": 513,
+      "L": 7.0,
+      "bias_factor": 6.01,
+      "pairwise_median": 0.206,
+      "nn_corrected": 0.03427620632279534,
+      "nn_uncertainty": 0.006855241264559069,
+      "nn_lambda_W": 0.3427620632279534,
+      "nn_lambda_W_uncertainty": 0.06855241264559069,
+      "robust": false
+    },
+    {
+      "region": "Serpens",
+      "n_cores": 194,
+      "L": 6.0,
+      "bias_factor": 5.01,
+      "pairwise_median": 0.308,
+      "nn_corrected": 0.06147704590818363,
+      "nn_uncertainty": 0.012295409181636727,
+      "nn_lambda_W": 0.6147704590818363,
+      "nn_lambda_W_uncertainty": 0.12295409181636727,
+      "robust": false
+    },
+    {
+      "region": "TMC1",
+      "n_cores": 178,
+      "L": 5.0,
+      "bias_factor": 4.0,
+      "pairwise_median": 0.233,
+      "nn_corrected": 0.05825,
+      "nn_uncertainty": 0.01165,
+      "nn_lambda_W": 0.5825,
+      "nn_lambda_W_uncertainty": 0.1165,
+      "robust": false
+    },
+    {
+      "region": "CRA",
+      "n_cores": 239,
+      "L": 6.0,
+      "bias_factor": 5.01,
+      "pairwise_median": 0.204,
+      "nn_corrected": 0.0407185628742515,
+      "nn_uncertainty": 0.0081437125748503,
+      "nn_lambda_W": 0.40718562874251496,
+      "nn_lambda_W_uncertainty": 0.081437125748503,
+      "robust": false
+    }
+  ]
+}
