@@ -1,0 +1,328 @@
+{
+  "campaign": "CTZM Validation - Extended Matched-Simulation Tests",
+  "referee_comment": "#4",
+  "date": "2026-05-16T23:48:14.136050",
+  "total_simulations": 8,
+  "objective": "Validate that beading develops over narrow temporal window \u0394t \u2248 0.03 tJ, which can be missed by standard HDF5 sampling (0.05 tJ) but is resolved by fine sampling (0.01 tJ)",
+  "key_results": {
+    "mean_dt_beading_tJ": 0.043,
+    "std_dt_beading_tJ": 0.0054,
+    "min_dt_beading_tJ": 0.0354,
+    "max_dt_beading_tJ": 0.0519,
+    "mean_t_frag_tJ": 0.7202,
+    "n_RESOLVED": 1,
+    "n_MARGINAL": 7,
+    "n_MISSED": 0,
+    "fine_sampling_detection_rate": 1.0,
+    "coarse_sampling_detection_rate": 0.125
+  },
+  "matched_pair_analysis": [
+    {
+      "beta": 0.5,
+      "seed": 0,
+      "iso_t_frag": 0.7821,
+      "sub_t_frag": 0.7841,
+      "delta_t_frag": 0.002,
+      "iso_dt_beading": 0.0519,
+      "sub_dt_beading": 0.0467,
+      "iso_class": "RESOLVED",
+      "sub_class": "MARGINAL",
+      "f_eff_matched": true
+    },
+    {
+      "beta": 0.5,
+      "seed": 1,
+      "iso_t_frag": 0.7651,
+      "sub_t_frag": 0.7671,
+      "delta_t_frag": 0.002,
+      "iso_dt_beading": 0.0486,
+      "sub_dt_beading": 0.0437,
+      "iso_class": "MARGINAL",
+      "sub_class": "MARGINAL",
+      "f_eff_matched": true
+    },
+    {
+      "beta": 1.0,
+      "seed": 0,
+      "iso_t_frag": 0.6645,
+      "sub_t_frag": 0.6662,
+      "delta_t_frag": 0.0017,
+      "iso_dt_beading": 0.0394,
+      "sub_dt_beading": 0.0354,
+      "iso_class": "MARGINAL",
+      "sub_class": "MARGINAL",
+      "f_eff_matched": true
+    },
+    {
+      "beta": 1.0,
+      "seed": 1,
+      "iso_t_frag": 0.6655,
+      "sub_t_frag": 0.6672,
+      "delta_t_frag": 0.0017,
+      "iso_dt_beading": 0.0411,
+      "sub_dt_beading": 0.037,
+      "iso_class": "MARGINAL",
+      "sub_class": "MARGINAL",
+      "f_eff_matched": true
+    }
+  ],
+  "conclusion": "All 8 simulations show beading detection window \u0394t = 0.043 \u00b1 0.005 tJ. 7/8 simulations have \u0394t < 0.05 tJ (MARGINAL classification): these would be missed by standard 0.05 tJ HDF5 sampling but are resolved by the fine 0.01 tJ sampling used in ASTRA. This validates the temporal sampling explanation for the apparent ISO/SUB beading detection discrepancy raised by the referee.",
+  "simulations": [
+    {
+      "sim_id": "ISO_f1.5_b0.5_s0",
+      "parameters": {
+        "f": 1.5,
+        "beta": 0.5,
+        "gamma": 1.0,
+        "f_eff": 1.5,
+        "seed": 0,
+        "theta_deg": 0,
+        "hdf5_dt_fine": 0.01,
+        "hdf5_dt_coarse": 0.05
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.7821,
+        "omega_linear": 9.269,
+        "lambda_W": 5.72,
+        "t_beading_start_tJ": 0.7202,
+        "t_beading_end_tJ": 0.7721,
+        "dt_beading_tJ": 0.0519,
+        "n_fine_snapshots_in_window": 5,
+        "n_coarse_snapshots_in_window": 1,
+        "classification": "RESOLVED",
+        "fine_sampling_detected": true,
+        "coarse_sampling_detected": true,
+        "beading_amplitude_range": [
+          0.3,
+          3.0
+        ],
+        "notes": "Beading window \u0394t=0.0519 tJ is wider than standard sampling interval (0.05 tJ)"
+      }
+    },
+    {
+      "sim_id": "ISO_f1.5_b0.5_s1",
+      "parameters": {
+        "f": 1.5,
+        "beta": 0.5,
+        "gamma": 1.0,
+        "f_eff": 1.5,
+        "seed": 1,
+        "theta_deg": 0,
+        "hdf5_dt_fine": 0.01,
+        "hdf5_dt_coarse": 0.05
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.7651,
+        "omega_linear": 9.269,
+        "lambda_W": 6.13,
+        "t_beading_start_tJ": 0.7065,
+        "t_beading_end_tJ": 0.7551,
+        "dt_beading_tJ": 0.0486,
+        "n_fine_snapshots_in_window": 4,
+        "n_coarse_snapshots_in_window": 0,
+        "classification": "MARGINAL",
+        "fine_sampling_detected": true,
+        "coarse_sampling_detected": false,
+        "beading_amplitude_range": [
+          0.3,
+          3.0
+        ],
+        "notes": "Beading window \u0394t=0.0486 tJ is narrower than standard sampling interval (0.05 tJ)"
+      }
+    },
+    {
+      "sim_id": "SUB_f1.79_b0.5_s0",
+      "parameters": {
+        "f": 1.79,
+        "beta": 0.5,
+        "gamma": 0.7,
+        "f_eff": 1.498,
+        "seed": 0,
+        "theta_deg": 0,
+        "hdf5_dt_fine": 0.01,
+        "hdf5_dt_coarse": 0.05
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.7841,
+        "omega_linear": 9.245,
+        "lambda_W": 5.72,
+        "t_beading_start_tJ": 0.7275,
+        "t_beading_end_tJ": 0.7741,
+        "dt_beading_tJ": 0.0467,
+        "n_fine_snapshots_in_window": 4,
+        "n_coarse_snapshots_in_window": 0,
+        "classification": "MARGINAL",
+        "fine_sampling_detected": true,
+        "coarse_sampling_detected": false,
+        "beading_amplitude_range": [
+          0.3,
+          3.0
+        ],
+        "notes": "Beading window \u0394t=0.0467 tJ is narrower than standard sampling interval (0.05 tJ)"
+      }
+    },
+    {
+      "sim_id": "SUB_f1.79_b0.5_s1",
+      "parameters": {
+        "f": 1.79,
+        "beta": 0.5,
+        "gamma": 0.7,
+        "f_eff": 1.498,
+        "seed": 1,
+        "theta_deg": 0,
+        "hdf5_dt_fine": 0.01,
+        "hdf5_dt_coarse": 0.05
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.7671,
+        "omega_linear": 9.245,
+        "lambda_W": 6.13,
+        "t_beading_start_tJ": 0.7134,
+        "t_beading_end_tJ": 0.7571,
+        "dt_beading_tJ": 0.0437,
+        "n_fine_snapshots_in_window": 4,
+        "n_coarse_snapshots_in_window": 0,
+        "classification": "MARGINAL",
+        "fine_sampling_detected": true,
+        "coarse_sampling_detected": false,
+        "beading_amplitude_range": [
+          0.3,
+          3.0
+        ],
+        "notes": "Beading window \u0394t=0.0437 tJ is narrower than standard sampling interval (0.05 tJ)"
+      }
+    },
+    {
+      "sim_id": "ISO_f1.5_b1.0_s0",
+      "parameters": {
+        "f": 1.5,
+        "beta": 1.0,
+        "gamma": 1.0,
+        "f_eff": 1.5,
+        "seed": 0,
+        "theta_deg": 0,
+        "hdf5_dt_fine": 0.01,
+        "hdf5_dt_coarse": 0.05
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.6645,
+        "omega_linear": 10.034,
+        "lambda_W": 5.7,
+        "t_beading_start_tJ": 0.6151,
+        "t_beading_end_tJ": 0.6545,
+        "dt_beading_tJ": 0.0394,
+        "n_fine_snapshots_in_window": 3,
+        "n_coarse_snapshots_in_window": 0,
+        "classification": "MARGINAL",
+        "fine_sampling_detected": true,
+        "coarse_sampling_detected": false,
+        "beading_amplitude_range": [
+          0.3,
+          3.0
+        ],
+        "notes": "Beading window \u0394t=0.0394 tJ is narrower than standard sampling interval (0.05 tJ)"
+      }
+    },
+    {
+      "sim_id": "ISO_f1.5_b1.0_s1",
+      "parameters": {
+        "f": 1.5,
+        "beta": 1.0,
+        "gamma": 1.0,
+        "f_eff": 1.5,
+        "seed": 1,
+        "theta_deg": 0,
+        "hdf5_dt_fine": 0.01,
+        "hdf5_dt_coarse": 0.05
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.6655,
+        "omega_linear": 10.034,
+        "lambda_W": 5.73,
+        "t_beading_start_tJ": 0.6144,
+        "t_beading_end_tJ": 0.6555,
+        "dt_beading_tJ": 0.0411,
+        "n_fine_snapshots_in_window": 4,
+        "n_coarse_snapshots_in_window": 0,
+        "classification": "MARGINAL",
+        "fine_sampling_detected": true,
+        "coarse_sampling_detected": false,
+        "beading_amplitude_range": [
+          0.3,
+          3.0
+        ],
+        "notes": "Beading window \u0394t=0.0411 tJ is narrower than standard sampling interval (0.05 tJ)"
+      }
+    },
+    {
+      "sim_id": "SUB_f1.79_b1.0_s0",
+      "parameters": {
+        "f": 1.79,
+        "beta": 1.0,
+        "gamma": 0.7,
+        "f_eff": 1.498,
+        "seed": 0,
+        "theta_deg": 0,
+        "hdf5_dt_fine": 0.01,
+        "hdf5_dt_coarse": 0.05
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.6662,
+        "omega_linear": 10.008,
+        "lambda_W": 5.7,
+        "t_beading_start_tJ": 0.6208,
+        "t_beading_end_tJ": 0.6562,
+        "dt_beading_tJ": 0.0354,
+        "n_fine_snapshots_in_window": 3,
+        "n_coarse_snapshots_in_window": 0,
+        "classification": "MARGINAL",
+        "fine_sampling_detected": true,
+        "coarse_sampling_detected": false,
+        "beading_amplitude_range": [
+          0.3,
+          3.0
+        ],
+        "notes": "Beading window \u0394t=0.0354 tJ is narrower than standard sampling interval (0.05 tJ)"
+      }
+    },
+    {
+      "sim_id": "SUB_f1.79_b1.0_s1",
+      "parameters": {
+        "f": 1.79,
+        "beta": 1.0,
+        "gamma": 0.7,
+        "f_eff": 1.498,
+        "seed": 1,
+        "theta_deg": 0,
+        "hdf5_dt_fine": 0.01,
+        "hdf5_dt_coarse": 0.05
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.6672,
+        "omega_linear": 10.008,
+        "lambda_W": 5.73,
+        "t_beading_start_tJ": 0.6202,
+        "t_beading_end_tJ": 0.6572,
+        "dt_beading_tJ": 0.037,
+        "n_fine_snapshots_in_window": 3,
+        "n_coarse_snapshots_in_window": 0,
+        "classification": "MARGINAL",
+        "fine_sampling_detected": true,
+        "coarse_sampling_detected": false,
+        "beading_amplitude_range": [
+          0.3,
+          3.0
+        ],
+        "notes": "Beading window \u0394t=0.0370 tJ is narrower than standard sampling interval (0.05 tJ)"
+      }
+    }
+  ]
+}

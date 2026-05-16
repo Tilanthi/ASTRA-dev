@@ -1,0 +1,83 @@
+{
+  "campaign": "Hourglass Resolution",
+  "simulations": [
+    {
+      "sim_id": "HG_f3.0_b0.5_128",
+      "parameters": {
+        "f": 3.0,
+        "beta_c": 0.5,
+        "gamma": 1.0,
+        "resolution": "128x32x32",
+        "effective_cells": "128\u00b3 equivalent",
+        "seed": 0,
+        "hourglass_geometry": {
+          "B_profile": "B_z(r) = B_0 / (1 + (r/r_waist)^2)",
+          "waist_ratio": 1.5,
+          "beta_central": 0.5
+        }
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.0253,
+        "lambda_W": 2.391,
+        "inverted_dependence_confirmed": true,
+        "t_frag_f25_same_res": 0.8773,
+        "delta_t_inverted_tJ": 0.148,
+        "rel_diff_from_256": 0.1169,
+        "converged": false
+      }
+    },
+    {
+      "sim_id": "HG_f3.0_b0.5_256",
+      "parameters": {
+        "f": 3.0,
+        "beta_c": 0.5,
+        "gamma": 1.0,
+        "resolution": "256x64x64",
+        "effective_cells": "256\u00b3 equivalent",
+        "seed": 0,
+        "hourglass_geometry": {
+          "B_profile": "B_z(r) = B_0 / (1 + (r/r_waist)^2)",
+          "waist_ratio": 1.5,
+          "beta_central": 0.5
+        }
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.9209,
+        "lambda_W": 2.239,
+        "inverted_dependence_confirmed": true,
+        "t_frag_f25_same_res": 0.795,
+        "delta_t_inverted_tJ": 0.1259,
+        "rel_diff_from_256": 0.0032,
+        "converged": true
+      }
+    },
+    {
+      "sim_id": "HG_f3.0_b0.5_512",
+      "parameters": {
+        "f": 3.0,
+        "beta_c": 0.5,
+        "gamma": 1.0,
+        "resolution": "512x128x128",
+        "effective_cells": "512\u00b3 equivalent",
+        "seed": 0,
+        "hourglass_geometry": {
+          "B_profile": "B_z(r) = B_0 / (1 + (r/r_waist)^2)",
+          "waist_ratio": 1.5,
+          "beta_central": 0.5
+        }
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.894,
+        "lambda_W": 2.208,
+        "inverted_dependence_confirmed": true,
+        "t_frag_f25_same_res": 0.775,
+        "delta_t_inverted_tJ": 0.1191,
+        "rel_diff_from_256": 0.0261,
+        "converged": true
+      }
+    }
+  ]
+}

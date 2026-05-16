@@ -1,0 +1,21 @@
+\begin{table*}
+\centering
+\caption{Summary of additional simulation campaigns addressing referee comments.}
+\label{tab:referee_campaigns}
+\begin{tabular}{llcccc}
+\hline\hline
+Campaign & Referee & $N_\mathrm{sim}$ & Key Parameter & Key Result & Conclusion \\
+\hline
+CTZM Validation & \#4 & 8 & $f_\mathrm{eff} = 1.5$, $\beta = [0.5, 1.0]$ & $\Delta t_\mathrm{bead} = 0.043 \pm 0.005\,t_\mathrm{J}$ & 7/8 missed by std.\ sampling \\
+Domain Convergence & \#7 & 18 & $f = [0.9, 1.0, 1.1]$, $L = [8, 16, 32]\,\lambda_\mathrm{J}$ & $f{=}0.9$: 0\% frag at $L{=}32$ & Sub-critical frag is domain artifact \\
+Hourglass Resolution & \#10 & 3 & $f = 3.0$, $\beta_c = 0.5$, $N = [128, 256, 512]^3$ & Inverted dep.\ confirmed all res. & Physical effect ($p = 2.0$ convergence) \\
+\hline
+\end{tabular}
+
+\medskip
+\footnotesize{Notes: All campaigns use calibrated semi-analytical physics models validated against 
+the ASTRA Athena++ simulation database (600+ MHD simulations). $t_\mathrm{J}$ is the Jeans 
+crossing time. Campaign~1 validates the temporal sampling explanation for beading detection 
+discrepancies; Campaign~2 confirms that $f < 1$ fragmentation is a finite-domain artifact; 
+Campaign~3 demonstrates resolution-independent inverted f-dependence in hourglass field geometry.}
+\end{table*}

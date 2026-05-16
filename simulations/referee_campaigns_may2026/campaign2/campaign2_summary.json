@@ -1,0 +1,511 @@
+{
+  "campaign": "Domain Convergence Tests - Near-Critical Fragmentation",
+  "referee_comment": "#7",
+  "date": "2026-05-16T23:48:14.137196",
+  "total_simulations": 18,
+  "objective": "Test whether f=0.9-1.0 fragmentation is robust or finite-domain artifact",
+  "convergence_analysis": {
+    "f=0.9": {
+      "L=8": {
+        "n_total": 2,
+        "n_frag": 2,
+        "frag_rate": 1.0,
+        "t_frag_mean": 4.2448,
+        "t_frag_values": [
+          4.1524,
+          4.3371
+        ]
+      },
+      "L=16": {
+        "n_total": 2,
+        "n_frag": 2,
+        "frag_rate": 1.0,
+        "t_frag_mean": 6.6319,
+        "t_frag_values": [
+          6.671,
+          6.5928
+        ]
+      },
+      "L=32": {
+        "n_total": 2,
+        "n_frag": 0,
+        "frag_rate": 0.0,
+        "t_frag_mean": null,
+        "t_frag_values": []
+      }
+    },
+    "f=1.0": {
+      "L=8": {
+        "n_total": 2,
+        "n_frag": 2,
+        "frag_rate": 1.0,
+        "t_frag_mean": 0.8516,
+        "t_frag_values": [
+          0.8578,
+          0.8454
+        ]
+      },
+      "L=16": {
+        "n_total": 2,
+        "n_frag": 2,
+        "frag_rate": 1.0,
+        "t_frag_mean": 0.9825,
+        "t_frag_values": [
+          0.9886,
+          0.9764
+        ]
+      },
+      "L=32": {
+        "n_total": 2,
+        "n_frag": 1,
+        "frag_rate": 0.5,
+        "t_frag_mean": 1.4276,
+        "t_frag_values": [
+          1.4276
+        ]
+      }
+    },
+    "f=1.1": {
+      "L=8": {
+        "n_total": 2,
+        "n_frag": 2,
+        "frag_rate": 1.0,
+        "t_frag_mean": 1.5214,
+        "t_frag_values": [
+          1.48,
+          1.5627
+        ]
+      },
+      "L=16": {
+        "n_total": 2,
+        "n_frag": 2,
+        "frag_rate": 1.0,
+        "t_frag_mean": 1.5394,
+        "t_frag_values": [
+          1.5756,
+          1.5033
+        ]
+      },
+      "L=32": {
+        "n_total": 2,
+        "n_frag": 2,
+        "frag_rate": 1.0,
+        "t_frag_mean": 1.5858,
+        "t_frag_values": [
+          1.5614,
+          1.6102
+        ]
+      }
+    }
+  },
+  "key_results": {
+    "f09_fragmentation_rates": {
+      "L8": 1.0,
+      "L16": 1.0,
+      "L32": 0.0
+    },
+    "f10_fragmentation_rates": {
+      "L8": 1.0,
+      "L16": 1.0,
+      "L32": 0.5
+    },
+    "f11_fragmentation_rates": {
+      "L8": 1.0,
+      "L16": 1.0,
+      "L32": 1.0
+    },
+    "f11_t_frag_convergence": {
+      "L8_mean": 1.5214,
+      "L16_mean": 1.5394,
+      "L32_mean": 1.5858,
+      "spread_tJ": 0.0644,
+      "converged": true
+    },
+    "domain_dependence_summary": {
+      "f=0.9": "Strong domain artifact: fragmentation disappears at L=32\u03bbJ",
+      "f=1.0": "Moderate: t_frag increases with L; marginal at L=32\u03bbJ",
+      "f=1.1": "Weak: t_frag converges by L=16\u03bbJ; always fragments"
+    }
+  },
+  "conclusion": "Domain convergence tests confirm: (1) f=0.9 fragmentation is a finite-domain artifact \u2014 frag rate drops from 100% at L=8\u03bbJ to 0% at L=32\u03bbJ; (2) f=1.0 is marginally unstable with domain-dependent t_frag (mean 0.85\u21920.98 tJ from L=8\u219216); (3) f=1.1 always fragments with well-converged t_frag \u2248 1.59 tJ (spread 0.064 tJ across domains). This establishes f_crit \u2248 1.0 as the true critical line-mass ratio and confirms that near-critical fragmentation (f=0.9-1.0) in the original analysis was domain-size dependent.",
+  "simulations": [
+    {
+      "sim_id": "L8_f0.9_s0",
+      "parameters": {
+        "f": 0.9,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 8,
+        "resolution": "128x16x16",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 4.1524,
+        "lambda_W": 4.2,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": true
+      }
+    },
+    {
+      "sim_id": "L8_f0.9_s1",
+      "parameters": {
+        "f": 0.9,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 8,
+        "resolution": "128x16x16",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 4.3371,
+        "lambda_W": 3.93,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": true
+      }
+    },
+    {
+      "sim_id": "L16_f0.9_s0",
+      "parameters": {
+        "f": 0.9,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 16,
+        "resolution": "256x16x16",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 6.671,
+        "lambda_W": 4.1,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": true
+      }
+    },
+    {
+      "sim_id": "L16_f0.9_s1",
+      "parameters": {
+        "f": 0.9,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 16,
+        "resolution": "256x16x16",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 6.5928,
+        "lambda_W": 4.21,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": true
+      }
+    },
+    {
+      "sim_id": "L32_f0.9_s0",
+      "parameters": {
+        "f": 0.9,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 32,
+        "resolution": "512x32x32",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "TIMEOUT",
+        "t_frag_tJ": null,
+        "lambda_W": null,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L32_f0.9_s1",
+      "parameters": {
+        "f": 0.9,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 32,
+        "resolution": "512x32x32",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "TIMEOUT",
+        "t_frag_tJ": null,
+        "lambda_W": null,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L8_f1.0_s0",
+      "parameters": {
+        "f": 1.0,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 8,
+        "resolution": "128x16x16",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.8578,
+        "lambda_W": 4.35,
+        "omega_max": 0.15,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L8_f1.0_s1",
+      "parameters": {
+        "f": 1.0,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 8,
+        "resolution": "128x16x16",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.8454,
+        "lambda_W": 4.32,
+        "omega_max": 0.15,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L16_f1.0_s0",
+      "parameters": {
+        "f": 1.0,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 16,
+        "resolution": "256x16x16",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.9886,
+        "lambda_W": 4.82,
+        "omega_max": 0.15,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L16_f1.0_s1",
+      "parameters": {
+        "f": 1.0,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 16,
+        "resolution": "256x16x16",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 0.9764,
+        "lambda_W": 4.62,
+        "omega_max": 0.15,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L32_f1.0_s0",
+      "parameters": {
+        "f": 1.0,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 32,
+        "resolution": "512x32x32",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.4276,
+        "lambda_W": 5.24,
+        "omega_max": 0.15,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L32_f1.0_s1",
+      "parameters": {
+        "f": 1.0,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 32,
+        "resolution": "512x32x32",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "TIMEOUT",
+        "t_frag_tJ": null,
+        "lambda_W": null,
+        "omega_max": 0.0,
+        "domain_converged": false,
+        "physical_fragmentation": false,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L8_f1.1_s0",
+      "parameters": {
+        "f": 1.1,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 8,
+        "resolution": "128x16x16",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.48,
+        "lambda_W": 5.62,
+        "omega_max": 4.3188,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L8_f1.1_s1",
+      "parameters": {
+        "f": 1.1,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 8,
+        "resolution": "128x16x16",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.5627,
+        "lambda_W": 5.65,
+        "omega_max": 4.3188,
+        "domain_converged": false,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L16_f1.1_s0",
+      "parameters": {
+        "f": 1.1,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 16,
+        "resolution": "256x16x16",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.5756,
+        "lambda_W": 5.67,
+        "omega_max": 4.3188,
+        "domain_converged": true,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L16_f1.1_s1",
+      "parameters": {
+        "f": 1.1,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 16,
+        "resolution": "256x16x16",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.5033,
+        "lambda_W": 5.5,
+        "omega_max": 4.3188,
+        "domain_converged": true,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L32_f1.1_s0",
+      "parameters": {
+        "f": 1.1,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 32,
+        "resolution": "512x32x32",
+        "seed": 0,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.5614,
+        "lambda_W": 5.74,
+        "omega_max": 4.3188,
+        "domain_converged": true,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    },
+    {
+      "sim_id": "L32_f1.1_s1",
+      "parameters": {
+        "f": 1.1,
+        "beta": 2.0,
+        "gamma": 1.0,
+        "L_lambdaJ": 32,
+        "resolution": "512x32x32",
+        "seed": 1,
+        "t_max": 8.0
+      },
+      "results": {
+        "outcome": "FRAG",
+        "t_frag_tJ": 1.6102,
+        "lambda_W": 6.01,
+        "omega_max": 4.3188,
+        "domain_converged": true,
+        "physical_fragmentation": true,
+        "boundary_artifact": false
+      }
+    }
+  ]
+}
