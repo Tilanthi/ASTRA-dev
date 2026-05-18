@@ -1,0 +1,143 @@
+# Athena++ Input File for Transonic Turbulence Campaign
+# Resolution: 512³
+# Parameters: f=1.5, β=1.0, θ=0° (longitudinal), M=2.0
+# This is a template file for the resolution test
+
+<job>
+job_id      = 0000
+problem_id  = 1
+</job>
+
+<time>
+# Simulation duration in units of t_J (Jeans time)
+tlim        = 6.0
+
+# Maximum number of timesteps
+nlim        = 10000000
+
+# Initial timestep (will be adaptive)
+dt          = 1e-4
+
+# CFL number (safety factor for timestep)
+# Turbulent flows require smaller values (0.3 vs 0.4 for laminar)
+cfl_number  = 0.3
+
+# Time integration scheme
+# Options: vl2 (van Leer 2nd order), rk3 (3rd-order Runge-Kutta)
+integrator  = vl2
+
+# Number of smoothing steps for time integrator
+nsmoothing  = 2
+</time>
+
+<hydro>
+# Isothermal sound speed (normalized to 1.0)
+iso_sound_speed = 1.0
+
+# Equation of state index
+# 1.0 = isothermal, 5/3 = adiabatic
+gamma = 1.0
+</hydro>
+
+<magnetic>
+# Magnetic field configuration
+# Field strength derived from plasma beta: B0 = cs * sqrt(2/β)
+B0 = 1.41421356  # For β=1.0
+
+# Plasma beta (ratio of thermal to magnetic pressure)
+beta = 1.0
+
+# Field orientation relative to filament axis
+# 0 = longitudinal (along axis)
+# 90 = perpendicular (transverse to axis)
+theta = 0
+
+# Divergence cleaning method for maintaining ∇·B = 0
+# powell = Powell's method (most stable for turbulence)
+divb_clean = powell
+
+# Divergence tolerance
+divb_tol = 1e-10
+divb_dtol = 1e-10
+</magnetic>
+
+<problem>
+# Filament parameters
+# Line-mass fraction: f = M_line / M_crit
+# f = 1.0 = critical, f < 1.0 = subcritical, f > 1.0 = supercritical
+f = 1.5
+
+# Turbulent driving parameters
+# Ornstein-Uhlenbeck forcing scheme
+
+# Driving amplitude (target Mach number)
+driving_scale = 2.0
+
+# Correlation length of forcing (in λ_J units)
+# Larger values = larger-scale eddies
+driving_corrlength = 2.0
+
+# Auto-determined driving (ensures consistent energy injection)
+driving_auto = true
+
+# Decay timescale for driving (in t_J units)
+# Shorter values = more rapid driving, longer values = smoother driving
+driving_decayscale = 0.1
+
+# Random seed for turbulent forcing
+# Different seeds = different realizations
+seed = 42
+</problem>
+
+<mesh>
+# Number of grid cells in each direction
+# For 8×2×2 λ_J domain at 512³ resolution:
+nx1 = 2048  # X-direction (along filament)
+nx2 = 512   # Y-direction (transverse)
+nx3 = 512   # Z-direction (transverse)
+
+# Boundary conditions
+# Periodic along filament axis (x) to simulate infinite cylinder
+# Outflow in transverse directions (y, z) to allow waves to leave
+ix1_bc = periodic  # Inner x-boundary
+ox1_bc = periodic  # Outer x-boundary
+ix2_bc = outflow   # Inner y-boundary
+ox2_bc = outflow   # Outer y-boundary
+ix3_bc = outflow   # Inner z-boundary
+ox3_bc = outflow   # Outer z-boundary
+</mesh>
+
+<output>
+# Output file format
+file_type = hdf5
+
+# Output interval (in t_J units)
+# Every 0.05 t_J = 120 outputs over 6 t_J
+dt_dir_samples = 0.05
+
+# Enable adaptive timestepping
+variable_dt = true
+
+# Summation output (time-averaged quantities)
+# -1 = disabled
+summation = -1
+</output>
+
+<par>
+# Number of MPI processes
+# For 220 CPUs on Ray cluster:
+nproc = 220
+</par>
+
+# NOTES FOR MODIFICATION:
+#
+# 1. For different plasma beta, adjust B0:
+#    B0 = sqrt(2.0 / beta)
+#
+# 2. For perpendicular fields, set theta = 90
+#
+# 3. For different driving Mach, adjust driving_scale
+#
+# 4. For different resolutions, scale nx1, nx2, nx3 proportionally
+#
+# 5. For extended domain (16×4×4 λ_J), double nx1, nx2, nx3
