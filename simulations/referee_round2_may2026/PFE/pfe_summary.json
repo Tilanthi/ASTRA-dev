@@ -1,0 +1,52 @@
+{
+  "campaign": "PFE - Perpendicular Field Extension",
+  "n_simulations": 90,
+  "n_main": 84,
+  "n_verification": 6,
+  "parameter_space": {
+    "f": [
+      1.5,
+      2.0,
+      2.5,
+      3.0
+    ],
+    "beta": [
+      0.3,
+      0.5,
+      1.0,
+      1.5,
+      2.0,
+      3.0,
+      5.0
+    ],
+    "theta": [
+      60.0,
+      75.0,
+      90.0
+    ]
+  },
+  "classifications": {
+    "RADIAL": 70,
+    "LONGITUDINAL": 20
+  },
+  "lambda_W_statistics": {
+    "n_measured": 20,
+    "mean": 0.952,
+    "std": 0.417,
+    "min": 0.542,
+    "max": 2.197
+  },
+  "hgbs_matching": {
+    "target": 2.8,
+    "tolerance": "\u00b110%",
+    "n_matches": 0,
+    "any_match": false,
+    "matches": []
+  },
+  "geometry_effect": {
+    "mean_effect_size": 0.1574,
+    "mean_lambda_W_60": 1.121,
+    "mean_lambda_W_75": 0.811,
+    "mean_lambda_W_90": 0.903
+  }
+}
