@@ -65,9 +65,13 @@ Baker E.,  et~al., 2026, arXiv preprint
 Bauer F.~E.,  Alexander D.~M.,  Brandt W.~N.,  Hornschemeier A.~E.,  Garmire
   G.~P.,   Schneider D.~P.,  2004, \mn@doi [AJ] {10.1086/424859}, 128, 2048
 
+\bibitem[\protect\citeauthoryear{Bisht, Gupta, Dey  \& Koner}{Bisht
+  et~al.}{2026b}]{bisht2026notbuilt}
+Bisht H.,  Gupta N.,  Dey S.,   Koner R.,  2026b, arXiv e-prints
+
 \bibitem[\protect\citeauthoryear{Bisht et~al.}{Bisht
-  et~al.}{2026}]{bisht2026mlcores}
-Bisht N.,  et~al., 2026, arXiv preprint
+  et~al.}{2026a}]{bisht2026mlcores}
+Bisht N.,  et~al., 2026a, arXiv preprint
 
 \bibitem[\protect\citeauthoryear{Borrett et~al.}{Borrett
   et~al.}{2026}]{borrett2026cmbagent}
@@ -121,6 +125,10 @@ Dunham M.~M.,  et~al., 2026, Mon.\ Not.\ R.\ Astron.\ Soc.
 \bibitem[\protect\citeauthoryear{Elbaz et~al.,}{Elbaz et~al.}{2007}]{elbaz2007}
 Elbaz D.,  et~al., 2007, \mn@doi [A\&A] {10.1051/0004-6361:20077525}, 468, 33
 
+\bibitem[\protect\citeauthoryear{Faroughy et~al.}{Faroughy
+  et~al.}{2026}]{faroughy2026colliderbench}
+Faroughy D.,  et~al., 2026, arXiv e-prints
+
 \bibitem[\protect\citeauthoryear{Feng, Wang  et~al.}{Feng
   et~al.}{2026}]{feng2026lensagent}
 Feng X.,  Wang Z.,   et~al., 2026, arXiv preprint
@@ -154,6 +162,11 @@ Ho M.,  et~al., 2024, \mn@doi [Open J. Astrophys.] {10.33232/001c.120559}, 7
   Feigelson  \& Garmire}{Hornschemeier et~al.}{2001}]{hornschemeier2001}
 Hornschemeier A.~E.,  Brandt W.~N.,  Alexander D.~M.,  Bauer F.~E.,  Feigelson
   E.~D.,   Garmire G.~P.,  2001, \mn@doi [ApJ] {10.1086/321450}, 554, 742
+
+\bibitem[\protect\citeauthoryear{Islam, Wadekar, Venumadhav, Zaldarriaga,
+  Mehta, Roulet  \& Zackay}{Islam et~al.}{2026}]{islam2026gwagent}
+Islam T.,  Wadekar D.,  Venumadhav T.,  Zaldarriaga M.,  Mehta A.~K.,  Roulet
+  J.,   Zackay B.,  2026, arXiv e-prints
 
 \bibitem[\protect\citeauthoryear{Jin, Pasquato, Davis  et~al.}{Jin
   et~al.}{2025}]{jin2025}
