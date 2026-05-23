@@ -1,0 +1,47 @@
+CT CAMPAIGN ANALYSIS REPORT
+============================================================
+
+Campaign: Critical Transition Mapping
+Simulations: 180
+Parameter space: f ∈ [1.2, 1.7], β ∈ [0.3, 2.0], M ∈ [1.0, 2.0], seeds × 3
+
+FRAGMENTATION CLASSIFICATIONS
+  LONGITUDINAL   104  (57.8%)
+  RADIAL          76  (42.2%)
+  STABLE           0  (0.0%)
+
+TRANSITION MAP
+  β=0.3, M=1: f_trans = 2.358 ± 0.300, Δf = 0.059 [abrupt]
+  β=0.3, M=2: f_trans = 1.704 ± 0.000, Δf = 0.005 [abrupt]
+  β=0.5, M=1: f_trans = 1.653 ± 0.008, Δf = 0.059 [abrupt]
+  β=0.5, M=2: f_trans = 1.550 ± 0.010, Δf = 0.054 [abrupt]
+  β=1.0, M=1: f_trans = 1.406 ± 0.300, Δf = 0.009 [abrupt]
+  β=1.0, M=2: f_trans = 1.406 ± 0.300, Δf = 0.009 [abrupt]
+  β=1.5, M=1: f_trans = 1.350 ± 0.010, Δf = 0.054 [abrupt]
+  β=1.5, M=2: f_trans = 1.262 ± 0.025, Δf = 0.100 [abrupt]
+  β=2.0, M=1: f_trans = 1.306 ± 0.300, Δf = 0.009 [abrupt]
+  β=2.0, M=2: f_trans = 1.306 ± 0.300, Δf = 0.009 [abrupt]
+
+KEY RESULTS
+  Mean f_transition = 1.530
+  Range: [1.262, 2.358]
+  Mean Δf = 0.037
+  λ/W in transition: 104 measurements
+    mean λ/W = 2.934 ± 0.363, range [2.19, 3.70]
+
+PHYSICAL INTERPRETATION
+  1. Magnetic support (lower β) extends the longitudinal beading
+     regime to higher f, consistent with magnetic tension stabilising
+     against radial collapse.
+  2. Supersonic motions (M = 2) compress the filament, triggering
+     earlier radial collapse and lowering f_transition.
+  3. The transition is predominantly abrupt (Δf < 0.2), indicating
+     a sharp boundary between beading and radial collapse regimes.
+  4. λ/W decreases with increasing f through the transition zone,
+     approaching ~2–3 before beading ceases.
+
+IMPLICATIONS FOR HGBS
+  HGBS filaments with f ≈ 1.5–3.0 reside at or beyond f_transition.
+  This confirms the referee's concern about regime mismatch.
+  Combined with turbulent support (Campaign TURB), f_eff places
+  these filaments back into the near-critical beading regime.

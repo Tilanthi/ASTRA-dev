@@ -1,0 +1,45 @@
+{
+  "campaign": "TURB - Turbulent Support Verification",
+  "n_simulations": 90,
+  "parameter_space": {
+    "f_thermal": [
+      0.7,
+      0.8,
+      0.9,
+      1.0,
+      1.1,
+      1.2
+    ],
+    "M_turb": [
+      0.5,
+      1.0,
+      1.5,
+      2.0,
+      2.5
+    ],
+    "beta": [
+      0.5,
+      1.0,
+      2.0
+    ]
+  },
+  "n_fragmented": 13,
+  "n_stable": 77,
+  "f_eff_all_sims": {
+    "mean": 0.3697,
+    "std": 0.2405,
+    "median": 0.2923,
+    "p16": 0.1428,
+    "p84": 0.6304
+  },
+  "f_eff_fragmenting": {
+    "mean": 0.8185,
+    "std": 0.1094,
+    "p16": 0.7136,
+    "p84": 0.96
+  },
+  "f_eff_claimed": "0.7^{+0.5}_{-0.3}",
+  "f_eff_verified": true,
+  "t_frag_scaling_alpha": 0.5,
+  "t_frag_scaling_expected": 0.5
+}

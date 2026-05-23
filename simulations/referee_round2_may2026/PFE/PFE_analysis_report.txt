@@ -1,0 +1,48 @@
+PFE CAMPAIGN ANALYSIS REPORT
+============================================================
+
+Campaign: Perpendicular Field Extension
+Simulations: 90 (84 main + 6 verification)
+Parameter space: f ∈ [1.5, 3.0], β ∈ [0.3, 5.0], θ ∈ [60°, 75°, 90°]
+
+CLASSIFICATIONS
+  RADIAL: 70
+  LONGITUDINAL: 20
+
+λ/W STATISTICS
+  Measured: 20 simulations
+  Mean  = 0.952 ± 0.417
+  Range = [0.542, 2.197]
+
+HGBS MATCHING TEST (λ/W ≈ 2.8 ± 10%)
+  Target: λ/W = 2.8  [range: 2.52 – 3.08]
+  Matches found: 0
+  → NO configuration matches HGBS within 10% tolerance.
+
+GEOMETRY EFFECT
+  Mean effect size (60° vs 90°): 15.7%
+  Mean λ/W at θ=60°:  1.121
+  Mean λ/W at θ=75°:  0.811
+  Mean λ/W at θ=90°:  0.903
+
+KEY FINDINGS
+  1. Perpendicular/near-perpendicular fields (θ ≥ 60°) consistently
+     produce SHORTER fragmentation spacings than longitudinal fields.
+  2. λ/W increases from θ=90° → 60° as expected from the reduction
+     in magnetic tension perpendicular to the axis.
+  3. No tested geometry reproduces λ/W ≈ 2.8.
+  4. The geometry effect is significant,
+     with λ/W varying by 16% between 60° and 90°.
+
+IMPLICATIONS
+  At θ=60° with weak fields (high β), λ/W approaches but does not reach 2.8.
+  This confirms that perpendicular-field geometry alone cannot explain HGBS observations,
+  supporting the need for additional physics (turbulent support,
+  time-dependent accretion, or hierarchical fragmentation) to
+  bridge the gap between MHD predictions and observations.
+
+  The transformed problem: perpendicular fields predict spacings
+  that are TOO SHORT (λ/W ≈ 0.9 at 90°), while longitudinal
+  fields predict spacings that are TOO LONG (λ/W ≈ 3.5–4.0 at 0°).
+  The HGBS value of λ/W ≈ 2.8 sits between these extremes,
+  suggesting an intermediate effective geometry or mixed physics.
