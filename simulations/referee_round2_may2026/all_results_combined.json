@@ -1,0 +1,161 @@
+{
+  "total_simulations": 360,
+  "date": "2026-05-19",
+  "physics_framework": {
+    "basis": [
+      "Inutsuka & Miyama (1992)",
+      "Nakamura, Hanawa & Nakano (1993)",
+      "Ostriker (1964)"
+    ],
+    "calibration": "600+ prior Athena++ MHD simulations"
+  },
+  "campaigns": {
+    "CT": {
+      "campaign": "CT - Critical Transition Mapping",
+      "n_simulations": 180,
+      "parameter_space": {
+        "f": [
+          1.2,
+          1.3,
+          1.4,
+          1.5,
+          1.6,
+          1.7
+        ],
+        "beta": [
+          0.3,
+          0.5,
+          1.0,
+          1.5,
+          2.0
+        ],
+        "M": [
+          1.0,
+          2.0
+        ],
+        "seeds": [
+          0,
+          1,
+          2
+        ]
+      },
+      "classifications": {
+        "LONGITUDINAL": 104,
+        "RADIAL": 76
+      },
+      "f_transition_range": [
+        1.2616,
+        2.3582
+      ],
+      "mean_f_transition": 1.53011,
+      "mean_delta_f": 0.036680000000000004,
+      "abruptness_counts": {
+        "abrupt": 10
+      },
+      "lambda_W_in_transition": {
+        "count": 104,
+        "mean": 2.934,
+        "std": 0.363,
+        "min": 2.194,
+        "max": 3.703
+      }
+    },
+    "TURB": {
+      "campaign": "TURB - Turbulent Support Verification",
+      "n_simulations": 90,
+      "parameter_space": {
+        "f_thermal": [
+          0.7,
+          0.8,
+          0.9,
+          1.0,
+          1.1,
+          1.2
+        ],
+        "M_turb": [
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5
+        ],
+        "beta": [
+          0.5,
+          1.0,
+          2.0
+        ]
+      },
+      "n_fragmented": 13,
+      "n_stable": 77,
+      "f_eff_all_sims": {
+        "mean": 0.3697,
+        "std": 0.2405,
+        "median": 0.2923,
+        "p16": 0.1428,
+        "p84": 0.6304
+      },
+      "f_eff_fragmenting": {
+        "mean": 0.8185,
+        "std": 0.1094,
+        "p16": 0.7136,
+        "p84": 0.96
+      },
+      "f_eff_claimed": "0.7^{+0.5}_{-0.3}",
+      "f_eff_verified": true,
+      "t_frag_scaling_alpha": 0.5,
+      "t_frag_scaling_expected": 0.5
+    },
+    "PFE": {
+      "campaign": "PFE - Perpendicular Field Extension",
+      "n_simulations": 90,
+      "n_main": 84,
+      "n_verification": 6,
+      "parameter_space": {
+        "f": [
+          1.5,
+          2.0,
+          2.5,
+          3.0
+        ],
+        "beta": [
+          0.3,
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          3.0,
+          5.0
+        ],
+        "theta": [
+          60.0,
+          75.0,
+          90.0
+        ]
+      },
+      "classifications": {
+        "RADIAL": 70,
+        "LONGITUDINAL": 20
+      },
+      "lambda_W_statistics": {
+        "n_measured": 20,
+        "mean": 0.952,
+        "std": 0.417,
+        "min": 0.542,
+        "max": 2.197
+      },
+      "hgbs_matching": {
+        "target": 2.8,
+        "tolerance": "\u00b110%",
+        "n_matches": 0,
+        "any_match": false,
+        "matches": []
+      },
+      "geometry_effect": {
+        "mean_effect_size": 0.1574,
+        "mean_lambda_W_60": 1.121,
+        "mean_lambda_W_75": 0.811,
+        "mean_lambda_W_90": 0.903
+      }
+    }
+  }
+}

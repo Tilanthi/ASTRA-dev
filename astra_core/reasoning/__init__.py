@@ -111,6 +111,24 @@ from .causal_discovery import (
 CausalDiscoveryEngine = None
 StructureLearner = None
 
+# V5.0 DoWhy Integration (Robust Causal Inference)
+try:
+    from .dowhy_causal_engine import (
+        DoWhyCausalEngine,
+        AstrophysicalCausalInference,
+        create_dowhy_engine,
+        create_astrophysical_causal_engine,
+        is_dowhy_available,
+    )
+    _DOWHY_AVAILABLE = True
+except ImportError:
+    _DOWHY_AVAILABLE = False
+    DoWhyCausalEngine = None
+    AstrophysicalCausalInference = None
+    create_dowhy_engine = None
+    create_astrophysical_causal_engine = None
+    is_dowhy_available = lambda: False
+
 from .meta_learning import (
     MetaLearner,
     Strategy,
@@ -542,6 +560,13 @@ __all__ = [
     'CausalGraph',
     'IndependenceTest',
     'StructureLearner',
+
+    # V5.0 DoWhy Causal Inference
+    'DoWhyCausalEngine',
+    'AstrophysicalCausalInference',
+    'create_dowhy_engine',
+    'create_astrophysical_causal_engine',
+    'is_dowhy_available',
 
     # Meta-Learning
     'MetaLearner',

@@ -1,0 +1,258 @@
+{
+  "campaign": "Peer Review Campaigns May 2026",
+  "date": "2026-05-04",
+  "authors": [
+    "G.J. White (Open University)",
+    "R. Dey (VBRL Holdings Inc)"
+  ],
+  "total_sims": 195,
+  "frag_sims": 192,
+  "DLIT": {
+    "n_sims": 15,
+    "n_frag": 12,
+    "n_timeout": 3,
+    "lambda_W_mean": 3.3,
+    "lambda_W_std": 0.1,
+    "lambda_W_source": "prior campaigns C5/C7/C8",
+    "conclusion": "lambda/W=3.300+/-0.100; L=32 TIMEOUT confirms t_frag > 1.5 tJ for physical (Nx=2^11) domain",
+    "by_L": {
+      "16": {
+        "mean_tfrag": 1.3900366666666664,
+        "std_tfrag": 0.029427894174669646,
+        "n": 3,
+        "Nx": 1024,
+        "power_of_2_Nx": true
+      },
+      "20": {
+        "mean_tfrag": 0.7833736666666667,
+        "std_tfrag": 0.004714516683134706,
+        "n": 3,
+        "Nx": 1280,
+        "power_of_2_Nx": false
+      },
+      "24": {
+        "mean_tfrag": 0.6900226666666667,
+        "std_tfrag": 0.008148229432759566,
+        "n": 3,
+        "Nx": 1536,
+        "power_of_2_Nx": false
+      },
+      "28": {
+        "mean_tfrag": 0.723348,
+        "std_tfrag": 0.0047192377209318865,
+        "n": 3,
+        "Nx": 1792,
+        "power_of_2_Nx": false
+      }
+    }
+  },
+  "PFPI": {
+    "n_sims": 60,
+    "n_frag": 60,
+    "theta": 90.0,
+    "f": 1.2,
+    "key_result": "Non-monotonic beta dependence with four regimes: slow (beta<=0.4), fast channel / bimodal (beta=0.5-0.7), reversal (beta=0.8-0.9), axial beading monotonic decrease (beta>=1.0)",
+    "bimodal_betas": [
+      0.5,
+      0.7
+    ],
+    "global_minimum_beta": 0.6,
+    "global_minimum_tfrag": 0.4285726,
+    "by_beta": {
+      "0.3": {
+        "mean_tfrag": 0.808025,
+        "std_tfrag": 0.0039575006759317195,
+        "n": 5,
+        "vals": [
+          0.80011,
+          0.810001,
+          0.810003,
+          0.810003,
+          0.810008
+        ]
+      },
+      "0.4": {
+        "mean_tfrag": 0.7500129999999999,
+        "std_tfrag": 9.46572765296416e-06,
+        "n": 5,
+        "vals": [
+          0.750004,
+          0.750006,
+          0.750006,
+          0.750023,
+          0.750026
+        ]
+      },
+      "0.5": {
+        "mean_tfrag": 0.5243108000000001,
+        "std_tfrag": 0.14352903055814178,
+        "n": 5,
+        "vals": [
+          0.400471,
+          0.410501,
+          0.410502,
+          0.700039,
+          0.700041
+        ]
+      },
+      "0.6": {
+        "mean_tfrag": 0.4285726,
+        "std_tfrag": 0.003949300069632592,
+        "n": 5,
+        "vals": [
+          0.420674,
+          0.430546,
+          0.430547,
+          0.430548,
+          0.430548
+        ]
+      },
+      "0.7": {
+        "mean_tfrag": 0.4986342,
+        "std_tfrag": 0.11568640000518642,
+        "n": 5,
+        "vals": [
+          0.440789,
+          0.440791,
+          0.440792,
+          0.440792,
+          0.730007
+        ]
+      },
+      "0.8": {
+        "mean_tfrag": 0.7400065999999998,
+        "std_tfrag": 5.817215828917245e-06,
+        "n": 5,
+        "vals": [
+          0.74,
+          0.74,
+          0.740007,
+          0.740013,
+          0.740013
+        ]
+      },
+      "0.9": {
+        "mean_tfrag": 0.6980776,
+        "std_tfrag": 0.00399708676913572,
+        "n": 5,
+        "vals": [
+          0.690084,
+          0.700001,
+          0.70005,
+          0.700121,
+          0.700132
+        ]
+      },
+      "1.0": {
+        "mean_tfrag": 0.6680227999999999,
+        "std_tfrag": 0.004009925355913748,
+        "n": 5,
+        "vals": [
+          0.660003,
+          0.670012,
+          0.670015,
+          0.670032,
+          0.670052
+        ]
+      },
+      "1.1": {
+        "mean_tfrag": 0.6300326,
+        "std_tfrag": 3.042761903269741e-05,
+        "n": 5,
+        "vals": [
+          0.630001,
+          0.630002,
+          0.630032,
+          0.630045,
+          0.630083
+        ]
+      },
+      "1.2": {
+        "mean_tfrag": 0.6280558,
+        "std_tfrag": 0.007430153871892531,
+        "n": 5,
+        "vals": [
+          0.620105,
+          0.620156,
+          0.630002,
+          0.63001,
+          0.640006
+        ]
+      },
+      "1.5": {
+        "mean_tfrag": 0.6360246,
+        "std_tfrag": 0.019582373651832914,
+        "n": 5,
+        "vals": [
+          0.620004,
+          0.620038,
+          0.620065,
+          0.660007,
+          0.660009
+        ]
+      },
+      "2.0": {
+        "mean_tfrag": 0.6020268,
+        "std_tfrag": 0.00399261069477102,
+        "n": 5,
+        "vals": [
+          0.600022,
+          0.600024,
+          0.600028,
+          0.600048,
+          0.610012
+        ]
+      }
+    }
+  },
+  "RTV": {
+    "n_sims": 120,
+    "n_frag": 120,
+    "theta": 0.0,
+    "f_range": [
+      1.2,
+      2.5
+    ],
+    "beta_range": [
+      0.5,
+      2.0
+    ],
+    "key_result": "Monotonic power-law acceleration t_frag~amp^(-0.186); 3.74x speedup at delta_v/c_s=1.0",
+    "power_law_alpha": 0.18628713940520913,
+    "power_law_R2": 0.9882021163515254,
+    "linear_baseline_tfrag": 1.1271268333333333,
+    "acceleration_at_amp1": 3.7361096321475893,
+    "by_amplitude": {
+      "0.0001": {
+        "mean_tfrag": 1.1271268333333333,
+        "std_tfrag": 0.2595917807142377,
+        "n": 24,
+        "acceleration_factor": 1.0
+      },
+      "0.01": {
+        "mean_tfrag": 0.7162815,
+        "std_tfrag": 0.128240096223841,
+        "n": 24,
+        "acceleration_factor": 1.5735808244849732
+      },
+      "0.1": {
+        "mean_tfrag": 0.5071208333333334,
+        "std_tfrag": 0.06516482850604476,
+        "n": 24,
+        "acceleration_factor": 2.2226001363908994
+      },
+      "0.5": {
+        "mean_tfrag": 0.35920825,
+        "std_tfrag": 0.0371949548833015,
+        "n": 24,
+        "acceleration_factor": 3.1378088708523073
+      },
+      "1.0": {
+        "mean_tfrag": 0.301684625,
+        "std_tfrag": 0.037266171123880906,
+        "n": 24,
+        "acceleration_factor": 3.7361096321475893
+      }
+    }
+  }
+}

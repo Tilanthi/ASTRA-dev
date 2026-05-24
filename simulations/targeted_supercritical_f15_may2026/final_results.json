@@ -1,0 +1,52 @@
+{
+  "campaign": "targeted_supercritical_f15",
+  "physics": {
+    "f": 1.5,
+    "beta": 1.0,
+    "M": 1.0,
+    "theta_deg": 0.0,
+    "domain_lJ": 24,
+    "nx1": 1536,
+    "nx2": 64,
+    "nx3": 64
+  },
+  "simulations": [
+    {
+      "seed": 42,
+      "status": "FRAG",
+      "t_frag": 0.7267,
+      "wall_s": 6354
+    },
+    {
+      "seed": 137,
+      "status": "FRAG",
+      "t_frag": 0.71,
+      "wall_s": 2825
+    },
+    {
+      "seed": 251,
+      "status": "FRAG",
+      "t_frag": 0.7,
+      "wall_s": 1864
+    },
+    {
+      "seed": 367,
+      "status": "FRAG",
+      "t_frag": 0.69,
+      "wall_s": 843
+    },
+    {
+      "seed": 499,
+      "status": "FRAG",
+      "t_frag": 0.71,
+      "wall_s": 2915
+    }
+  ],
+  "t_frag_mean": 0.7073,
+  "t_frag_std": 0.0122,
+  "lambda_W_mean": 3.333,
+  "lambda_W_std": 0.0,
+  "n_cores_per_sim": 24,
+  "fragmentation_lambda_lJ": 1.0,
+  "W_core_lJ": 0.3
+}

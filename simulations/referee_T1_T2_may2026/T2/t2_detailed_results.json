@@ -1,0 +1,1442 @@
+[
+  {
+    "sim_id": 0,
+    "type": "hydro",
+    "f_crit": 1.1,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.70685,
+    "inv_t_frag": 0.58588
+  },
+  {
+    "sim_id": 1,
+    "type": "hydro",
+    "f_crit": 1.1,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.94048,
+    "inv_t_frag": 0.51534
+  },
+  {
+    "sim_id": 2,
+    "type": "hydro",
+    "f_crit": 1.1,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.69816,
+    "inv_t_frag": 0.58887
+  },
+  {
+    "sim_id": 3,
+    "type": "hydro",
+    "f_crit": 1.1,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 2.10603,
+    "inv_t_frag": 0.47483
+  },
+  {
+    "sim_id": 4,
+    "type": "hydro",
+    "f_crit": 1.1,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 1.97131,
+    "inv_t_frag": 0.50728
+  },
+  {
+    "sim_id": 5,
+    "type": "hydro",
+    "f_crit": 1.1,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 2.02936,
+    "inv_t_frag": 0.49277
+  },
+  {
+    "sim_id": 6,
+    "type": "hydro",
+    "f_crit": 1.3,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.54785,
+    "inv_t_frag": 0.64606
+  },
+  {
+    "sim_id": 7,
+    "type": "hydro",
+    "f_crit": 1.3,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.59413,
+    "inv_t_frag": 0.6273
+  },
+  {
+    "sim_id": 8,
+    "type": "hydro",
+    "f_crit": 1.3,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.67802,
+    "inv_t_frag": 0.59594
+  },
+  {
+    "sim_id": 9,
+    "type": "hydro",
+    "f_crit": 1.3,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 1.93917,
+    "inv_t_frag": 0.51568
+  },
+  {
+    "sim_id": 10,
+    "type": "hydro",
+    "f_crit": 1.3,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 2.08495,
+    "inv_t_frag": 0.47963
+  },
+  {
+    "sim_id": 11,
+    "type": "hydro",
+    "f_crit": 1.3,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 2.04649,
+    "inv_t_frag": 0.48864
+  },
+  {
+    "sim_id": 12,
+    "type": "hydro",
+    "f_crit": 1.5,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.53253,
+    "inv_t_frag": 0.65252
+  },
+  {
+    "sim_id": 13,
+    "type": "hydro",
+    "f_crit": 1.5,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.40011,
+    "inv_t_frag": 0.71423
+  },
+  {
+    "sim_id": 14,
+    "type": "hydro",
+    "f_crit": 1.5,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.38337,
+    "inv_t_frag": 0.72287
+  },
+  {
+    "sim_id": 15,
+    "type": "hydro",
+    "f_crit": 1.5,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 1.69615,
+    "inv_t_frag": 0.58957
+  },
+  {
+    "sim_id": 16,
+    "type": "hydro",
+    "f_crit": 1.5,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 1.75382,
+    "inv_t_frag": 0.57018
+  },
+  {
+    "sim_id": 17,
+    "type": "hydro",
+    "f_crit": 1.5,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 1.94294,
+    "inv_t_frag": 0.51468
+  },
+  {
+    "sim_id": 18,
+    "type": "hydro",
+    "f_crit": 2.0,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.44535,
+    "inv_t_frag": 0.69187
+  },
+  {
+    "sim_id": 19,
+    "type": "hydro",
+    "f_crit": 2.0,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.41007,
+    "inv_t_frag": 0.70918
+  },
+  {
+    "sim_id": 20,
+    "type": "hydro",
+    "f_crit": 2.0,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.2261,
+    "inv_t_frag": 0.81559
+  },
+  {
+    "sim_id": 21,
+    "type": "hydro",
+    "f_crit": 2.0,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 1.59216,
+    "inv_t_frag": 0.62808
+  },
+  {
+    "sim_id": 22,
+    "type": "hydro",
+    "f_crit": 2.0,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 1.46968,
+    "inv_t_frag": 0.68042
+  },
+  {
+    "sim_id": 23,
+    "type": "hydro",
+    "f_crit": 2.0,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 1.50233,
+    "inv_t_frag": 0.66563
+  },
+  {
+    "sim_id": 24,
+    "type": "hydro",
+    "f_crit": 2.5,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.1716,
+    "inv_t_frag": 0.85353
+  },
+  {
+    "sim_id": 25,
+    "type": "hydro",
+    "f_crit": 2.5,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.29986,
+    "inv_t_frag": 0.76931
+  },
+  {
+    "sim_id": 26,
+    "type": "hydro",
+    "f_crit": 2.5,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.27696,
+    "inv_t_frag": 0.78311
+  },
+  {
+    "sim_id": 27,
+    "type": "hydro",
+    "f_crit": 2.5,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 1.47875,
+    "inv_t_frag": 0.67625
+  },
+  {
+    "sim_id": 28,
+    "type": "hydro",
+    "f_crit": 2.5,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 1.34728,
+    "inv_t_frag": 0.74223
+  },
+  {
+    "sim_id": 29,
+    "type": "hydro",
+    "f_crit": 2.5,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 1.49482,
+    "inv_t_frag": 0.66898
+  },
+  {
+    "sim_id": 30,
+    "type": "hydro",
+    "f_crit": 3.0,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.21112,
+    "inv_t_frag": 0.82568
+  },
+  {
+    "sim_id": 31,
+    "type": "hydro",
+    "f_crit": 3.0,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.12722,
+    "inv_t_frag": 0.88714
+  },
+  {
+    "sim_id": 32,
+    "type": "hydro",
+    "f_crit": 3.0,
+    "beta": null,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 0.97828,
+    "inv_t_frag": 1.0222
+  },
+  {
+    "sim_id": 33,
+    "type": "hydro",
+    "f_crit": 3.0,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 1.40885,
+    "inv_t_frag": 0.7098
+  },
+  {
+    "sim_id": 34,
+    "type": "hydro",
+    "f_crit": 3.0,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 1.26307,
+    "inv_t_frag": 0.79172
+  },
+  {
+    "sim_id": 35,
+    "type": "hydro",
+    "f_crit": 3.0,
+    "beta": null,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 1.25075,
+    "inv_t_frag": 0.79952
+  },
+  {
+    "sim_id": 36,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 2.90189,
+    "inv_t_frag": 0.3446
+  },
+  {
+    "sim_id": 37,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 2.46361,
+    "inv_t_frag": 0.40591
+  },
+  {
+    "sim_id": 38,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 2.3258,
+    "inv_t_frag": 0.42996
+  },
+  {
+    "sim_id": 39,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 3.14356,
+    "inv_t_frag": 0.31811
+  },
+  {
+    "sim_id": 40,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 3.00181,
+    "inv_t_frag": 0.33313
+  },
+  {
+    "sim_id": 41,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 3.22585,
+    "inv_t_frag": 0.31
+  },
+  {
+    "sim_id": 42,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 2.29263,
+    "inv_t_frag": 0.43618
+  },
+  {
+    "sim_id": 43,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 2.27735,
+    "inv_t_frag": 0.43911
+  },
+  {
+    "sim_id": 44,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 2.39659,
+    "inv_t_frag": 0.41726
+  },
+  {
+    "sim_id": 45,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 2.8794,
+    "inv_t_frag": 0.34729
+  },
+  {
+    "sim_id": 46,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 3.20122,
+    "inv_t_frag": 0.31238
+  },
+  {
+    "sim_id": 47,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 2.70578,
+    "inv_t_frag": 0.36958
+  },
+  {
+    "sim_id": 48,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 2.05951,
+    "inv_t_frag": 0.48555
+  },
+  {
+    "sim_id": 49,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.92569,
+    "inv_t_frag": 0.51929
+  },
+  {
+    "sim_id": 50,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 2.39995,
+    "inv_t_frag": 0.41668
+  },
+  {
+    "sim_id": 51,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 2.67103,
+    "inv_t_frag": 0.37439
+  },
+  {
+    "sim_id": 52,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 2.51476,
+    "inv_t_frag": 0.39765
+  },
+  {
+    "sim_id": 53,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 2.93917,
+    "inv_t_frag": 0.34023
+  },
+  {
+    "sim_id": 54,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 2.08483,
+    "inv_t_frag": 0.47966
+  },
+  {
+    "sim_id": 55,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 2.0312,
+    "inv_t_frag": 0.49232
+  },
+  {
+    "sim_id": 56,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.88363,
+    "inv_t_frag": 0.53089
+  },
+  {
+    "sim_id": 57,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 2.44186,
+    "inv_t_frag": 0.40952
+  },
+  {
+    "sim_id": 58,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 2.43647,
+    "inv_t_frag": 0.41043
+  },
+  {
+    "sim_id": 59,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 2.4315,
+    "inv_t_frag": 0.41127
+  },
+  {
+    "sim_id": 60,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.89046,
+    "inv_t_frag": 0.52897
+  },
+  {
+    "sim_id": 61,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.92508,
+    "inv_t_frag": 0.51946
+  },
+  {
+    "sim_id": 62,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.91668,
+    "inv_t_frag": 0.52173
+  },
+  {
+    "sim_id": 63,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 2.23901,
+    "inv_t_frag": 0.44663
+  },
+  {
+    "sim_id": 64,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 2.28096,
+    "inv_t_frag": 0.43841
+  },
+  {
+    "sim_id": 65,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 2.20795,
+    "inv_t_frag": 0.45291
+  },
+  {
+    "sim_id": 66,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.69075,
+    "inv_t_frag": 0.59145
+  },
+  {
+    "sim_id": 67,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.63984,
+    "inv_t_frag": 0.60982
+  },
+  {
+    "sim_id": 68,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 0.3,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.80251,
+    "inv_t_frag": 0.55478
+  },
+  {
+    "sim_id": 69,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 2.38216,
+    "inv_t_frag": 0.41979
+  },
+  {
+    "sim_id": 70,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 1.84994,
+    "inv_t_frag": 0.54056
+  },
+  {
+    "sim_id": 71,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 0.3,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 1.89478,
+    "inv_t_frag": 0.52777
+  },
+  {
+    "sim_id": 72,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.9016,
+    "inv_t_frag": 0.52587
+  },
+  {
+    "sim_id": 73,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 2.09617,
+    "inv_t_frag": 0.47706
+  },
+  {
+    "sim_id": 74,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 2.19598,
+    "inv_t_frag": 0.45538
+  },
+  {
+    "sim_id": 75,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 2.36648,
+    "inv_t_frag": 0.42257
+  },
+  {
+    "sim_id": 76,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 2.26116,
+    "inv_t_frag": 0.44225
+  },
+  {
+    "sim_id": 77,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 2.21926,
+    "inv_t_frag": 0.4506
+  },
+  {
+    "sim_id": 78,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.90146,
+    "inv_t_frag": 0.52591
+  },
+  {
+    "sim_id": 79,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.75948,
+    "inv_t_frag": 0.56835
+  },
+  {
+    "sim_id": 80,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.92774,
+    "inv_t_frag": 0.51874
+  },
+  {
+    "sim_id": 81,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 2.49683,
+    "inv_t_frag": 0.40051
+  },
+  {
+    "sim_id": 82,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 2.34224,
+    "inv_t_frag": 0.42694
+  },
+  {
+    "sim_id": 83,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 2.34274,
+    "inv_t_frag": 0.42685
+  },
+  {
+    "sim_id": 84,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.63909,
+    "inv_t_frag": 0.61009
+  },
+  {
+    "sim_id": 85,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.77672,
+    "inv_t_frag": 0.56283
+  },
+  {
+    "sim_id": 86,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.44327,
+    "inv_t_frag": 0.69287
+  },
+  {
+    "sim_id": 87,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 2.06673,
+    "inv_t_frag": 0.48386
+  },
+  {
+    "sim_id": 88,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 2.12979,
+    "inv_t_frag": 0.46953
+  },
+  {
+    "sim_id": 89,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 2.35531,
+    "inv_t_frag": 0.42457
+  },
+  {
+    "sim_id": 90,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.30357,
+    "inv_t_frag": 0.76712
+  },
+  {
+    "sim_id": 91,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.63794,
+    "inv_t_frag": 0.61052
+  },
+  {
+    "sim_id": 92,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.47828,
+    "inv_t_frag": 0.67646
+  },
+  {
+    "sim_id": 93,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 2.06774,
+    "inv_t_frag": 0.48362
+  },
+  {
+    "sim_id": 94,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 1.65531,
+    "inv_t_frag": 0.60412
+  },
+  {
+    "sim_id": 95,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 1.88017,
+    "inv_t_frag": 0.53187
+  },
+  {
+    "sim_id": 96,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.46243,
+    "inv_t_frag": 0.6838
+  },
+  {
+    "sim_id": 97,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.52497,
+    "inv_t_frag": 0.65575
+  },
+  {
+    "sim_id": 98,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.31259,
+    "inv_t_frag": 0.76185
+  },
+  {
+    "sim_id": 99,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 1.61708,
+    "inv_t_frag": 0.6184
+  },
+  {
+    "sim_id": 100,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 1.59572,
+    "inv_t_frag": 0.62667
+  },
+  {
+    "sim_id": 101,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 1.71618,
+    "inv_t_frag": 0.58269
+  },
+  {
+    "sim_id": 102,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.22221,
+    "inv_t_frag": 0.81819
+  },
+  {
+    "sim_id": 103,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.41686,
+    "inv_t_frag": 0.70579
+  },
+  {
+    "sim_id": 104,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 1.0,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.34065,
+    "inv_t_frag": 0.74591
+  },
+  {
+    "sim_id": 105,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 1.60291,
+    "inv_t_frag": 0.62386
+  },
+  {
+    "sim_id": 106,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 1.65234,
+    "inv_t_frag": 0.6052
+  },
+  {
+    "sim_id": 107,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 1.0,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 1.6084,
+    "inv_t_frag": 0.62173
+  },
+  {
+    "sim_id": 108,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.80145,
+    "inv_t_frag": 0.55511
+  },
+  {
+    "sim_id": 109,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.82444,
+    "inv_t_frag": 0.54811
+  },
+  {
+    "sim_id": 110,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.78203,
+    "inv_t_frag": 0.56116
+  },
+  {
+    "sim_id": 111,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 2.10751,
+    "inv_t_frag": 0.47449
+  },
+  {
+    "sim_id": 112,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 2.19405,
+    "inv_t_frag": 0.45578
+  },
+  {
+    "sim_id": 113,
+    "type": "MHD",
+    "f_crit": 1.1,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 2.15088,
+    "inv_t_frag": 0.46493
+  },
+  {
+    "sim_id": 114,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.67386,
+    "inv_t_frag": 0.59742
+  },
+  {
+    "sim_id": 115,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.59787,
+    "inv_t_frag": 0.62583
+  },
+  {
+    "sim_id": 116,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.91902,
+    "inv_t_frag": 0.5211
+  },
+  {
+    "sim_id": 117,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 1.96412,
+    "inv_t_frag": 0.50913
+  },
+  {
+    "sim_id": 118,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 2.09193,
+    "inv_t_frag": 0.47803
+  },
+  {
+    "sim_id": 119,
+    "type": "MHD",
+    "f_crit": 1.3,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 2.0058,
+    "inv_t_frag": 0.49856
+  },
+  {
+    "sim_id": 120,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.49109,
+    "inv_t_frag": 0.67065
+  },
+  {
+    "sim_id": 121,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.38861,
+    "inv_t_frag": 0.72014
+  },
+  {
+    "sim_id": 122,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.63915,
+    "inv_t_frag": 0.61007
+  },
+  {
+    "sim_id": 123,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 1.96139,
+    "inv_t_frag": 0.50984
+  },
+  {
+    "sim_id": 124,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 1.7295,
+    "inv_t_frag": 0.5782
+  },
+  {
+    "sim_id": 125,
+    "type": "MHD",
+    "f_crit": 1.5,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 1.9519,
+    "inv_t_frag": 0.51232
+  },
+  {
+    "sim_id": 126,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.28118,
+    "inv_t_frag": 0.78053
+  },
+  {
+    "sim_id": 127,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.27337,
+    "inv_t_frag": 0.78532
+  },
+  {
+    "sim_id": 128,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.34968,
+    "inv_t_frag": 0.74092
+  },
+  {
+    "sim_id": 129,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 1.76351,
+    "inv_t_frag": 0.56705
+  },
+  {
+    "sim_id": 130,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 1.66754,
+    "inv_t_frag": 0.59968
+  },
+  {
+    "sim_id": 131,
+    "type": "MHD",
+    "f_crit": 2.0,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 1.69363,
+    "inv_t_frag": 0.59045
+  },
+  {
+    "sim_id": 132,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.13097,
+    "inv_t_frag": 0.8842
+  },
+  {
+    "sim_id": 133,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.11351,
+    "inv_t_frag": 0.89806
+  },
+  {
+    "sim_id": 134,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.23358,
+    "inv_t_frag": 0.81065
+  },
+  {
+    "sim_id": 135,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 1.68935,
+    "inv_t_frag": 0.59194
+  },
+  {
+    "sim_id": 136,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 1.51714,
+    "inv_t_frag": 0.65914
+  },
+  {
+    "sim_id": 137,
+    "type": "MHD",
+    "f_crit": 2.5,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 1.51957,
+    "inv_t_frag": 0.65808
+  },
+  {
+    "sim_id": 138,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 0,
+    "t_frag": 1.11522,
+    "inv_t_frag": 0.89668
+  },
+  {
+    "sim_id": 139,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 1,
+    "t_frag": 1.07793,
+    "inv_t_frag": 0.9277
+  },
+  {
+    "sim_id": 140,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 5.0,
+    "Mach": 1.0,
+    "seed": 2,
+    "t_frag": 1.22174,
+    "inv_t_frag": 0.8185
+  },
+  {
+    "sim_id": 141,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 0,
+    "t_frag": 1.38562,
+    "inv_t_frag": 0.7217
+  },
+  {
+    "sim_id": 142,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 1,
+    "t_frag": 1.52516,
+    "inv_t_frag": 0.65567
+  },
+  {
+    "sim_id": 143,
+    "type": "MHD",
+    "f_crit": 3.0,
+    "beta": 5.0,
+    "Mach": 2.0,
+    "seed": 2,
+    "t_frag": 1.44398,
+    "inv_t_frag": 0.69253
+  }
+]

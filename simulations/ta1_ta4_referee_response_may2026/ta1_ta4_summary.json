@@ -1,0 +1,78 @@
+{
+  "campaign": "TA-1 + TA-4 Combined Referee Response Campaigns",
+  "date": "2026-05-12",
+  "wall_time_minutes": 52,
+  "ta1": {
+    "n_sims": 4,
+    "n_frag": 4,
+    "seeds": [
+      42,
+      137,
+      314,
+      527
+    ],
+    "t_frag_mean": 1.4641,
+    "t_frag_std": 0.0105,
+    "first_detection_frac_mean": 0.8,
+    "first_detection_frac_min": 0.791,
+    "lw_all_n": 60,
+    "lw_range": [
+      2.708,
+      49.792
+    ],
+    "lw_mean": 10.531,
+    "lw_std": 7.784,
+    "key_finding": "lambda/W only detectable in final 20-25% of sim (first valid snap at t > 0.79 t_frag). Range across all seeds/times: 2.7-49.8 (factor 18x scatter). Measurement dominated by instantaneous peak-detection, not physical spacing. Late-time sampling bias: snapshots near t_frag show 3-5 dominant cores giving inflated lambda/W. Bias seed-dependent (factor 0.5-2x between seeds)."
+  },
+  "ta4": {
+    "n_sims": 60,
+    "n_frag": 60,
+    "n_timeout": 0,
+    "t_frag_mean": 1.4323,
+    "t_frag_std": 0.0594,
+    "t_frag_range": [
+      1.3056,
+      1.5445
+    ],
+    "dtc_comparison": "All t_frag well exceeds 600s DTC wall limit (~0.4-0.65 tJ at 128^3)",
+    "key_unverified_points": [
+      {
+        "f": 1.4,
+        "beta": 0.7,
+        "n_frag": 5,
+        "t_frag_mean": 1.483
+      },
+      {
+        "f": 1.5,
+        "beta": 0.5,
+        "n_frag": 5,
+        "t_frag_mean": 1.4607
+      },
+      {
+        "f": 1.5,
+        "beta": 1.1,
+        "n_frag": 5,
+        "t_frag_mean": 1.3389
+      },
+      {
+        "f": 1.6,
+        "beta": 0.5,
+        "n_frag": 5,
+        "t_frag_mean": 1.4375
+      },
+      {
+        "f": 1.6,
+        "beta": 0.9,
+        "n_frag": 5,
+        "t_frag_mean": 1.3902
+      },
+      {
+        "f": 1.4,
+        "beta": 1.3,
+        "n_frag": 5,
+        "t_frag_mean": 1.3228
+      }
+    ],
+    "key_finding": "60/60 FRAG at 6h wall time. All 12 DTC stochastic zone parameter points fragment, including 6 key beta!=0.3 cells not covered by prior campaigns. Mean t_frag = 1.432 tJ >> DTC 600s threshold. Universal fragmentation confirmed across all tested (f,beta) space at theta=0."
+  }
+}

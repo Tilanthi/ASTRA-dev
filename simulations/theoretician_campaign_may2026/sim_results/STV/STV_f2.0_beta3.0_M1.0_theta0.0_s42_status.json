@@ -1,0 +1,12 @@
+{
+  "sim_id": "STV_f2.0_beta3.0_M1.0_theta0.0_s42",
+  "campaign": "STV",
+  "f": 2.0,
+  "beta": 3.0,
+  "theta": 0.0,
+  "seed": 42,
+  "status": "FRAG",
+  "t_frag": 0.930014,
+  "wall_time_s": 820.8689885139465,
+  "timestamp": "2026-05-01T18:46:05.301601+00:00"
+}

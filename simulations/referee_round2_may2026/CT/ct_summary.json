@@ -1,0 +1,50 @@
+{
+  "campaign": "CT - Critical Transition Mapping",
+  "n_simulations": 180,
+  "parameter_space": {
+    "f": [
+      1.2,
+      1.3,
+      1.4,
+      1.5,
+      1.6,
+      1.7
+    ],
+    "beta": [
+      0.3,
+      0.5,
+      1.0,
+      1.5,
+      2.0
+    ],
+    "M": [
+      1.0,
+      2.0
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "classifications": {
+    "LONGITUDINAL": 104,
+    "RADIAL": 76
+  },
+  "f_transition_range": [
+    1.2616,
+    2.3582
+  ],
+  "mean_f_transition": 1.53011,
+  "mean_delta_f": 0.036680000000000004,
+  "abruptness_counts": {
+    "abrupt": 10
+  },
+  "lambda_W_in_transition": {
+    "count": 104,
+    "mean": 2.934,
+    "std": 0.363,
+    "min": 2.194,
+    "max": 3.703
+  }
+}

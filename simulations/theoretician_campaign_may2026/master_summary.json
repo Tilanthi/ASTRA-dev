@@ -1,0 +1,31 @@
+{
+  "campaign": "Theoretician Campaign 2026",
+  "total_sims": 406,
+  "FRAG": 360,
+  "TIMEOUT": 46,
+  "FAILED": 0,
+  "campaigns": {
+    "A": 280,
+    "B": 90,
+    "C": 36
+  },
+  "key_results": {
+    "mixing_model": "t_frag(theta) = 1.416 + -0.931*sin^0.79(theta)",
+    "critical_angle_deg": 22.5,
+    "supercritical_powerlaw": "t_frag(f) = 1.712 * f^-0.536 [theta=0]",
+    "domain_independent_t90": 0.6008912089448821,
+    "campaign_A_theta0_mean": 1.3993555555560913,
+    "campaign_A_theta90_mean": 0.5951540918620261
+  },
+  "figures": [
+    "fig1_tfrag_vs_theta.pdf/png",
+    "fig2_supercritical_calib.pdf/png",
+    "fig3_domain_convergence.pdf/png",
+    "fig4_combined_summary.pdf/png"
+  ],
+  "json_files": [
+    "mixing_model_params.json",
+    "supercritical_calibration.json",
+    "domain_convergence.json"
+  ]
+}

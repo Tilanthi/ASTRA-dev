@@ -113,6 +113,19 @@ try:
 except ImportError:
     _LEGACY_MEMORY_AVAILABLE = False
 
+# V5.0 NetworkX Integration (Graph Operations)
+try:
+    from .graph_operations import (
+        NetworkXMemoryGraph,
+        MORKOntologyGraph,
+        ContextGraphOperations,
+        create_memory_graph,
+        is_networkx_available,
+    )
+    _NETWORKX_AVAILABLE = True
+except ImportError:
+    _NETWORKX_AVAILABLE = False
+
 __all__ = [
     # V4.0 Memory Systems
     "EpisodicMemory",
@@ -131,7 +144,7 @@ __all__ = [
     "HallucinationEntry",
     "MemoryPriority",
     "MemoryCategory",
-    "MemoryVerificationStatus",
+    "VerificationStatus",
     "VerificationResult",
     "SessionCheckpoint",
     "create_bootstrap_memory",
@@ -201,3 +214,25 @@ if _LEGACY_MEMORY_AVAILABLE:
         "RankingConfig",
     ])
 
+# Add NetworkX integration exports if available
+if _NETWORKX_AVAILABLE:
+    __all__.extend([
+        "NetworkXMemoryGraph",
+        "MORKOntologyGraph",
+        "ContextGraphOperations",
+        "create_memory_graph",
+        "is_networkx_available",
+    ])
+
+
+
+def utility_function_17(*args, **kwargs):
+    """Utility function 17."""
+    return None
+
+
+
+# Utility: Data Import
+def import_data(*args, **kwargs):
+    """Utility function for import_data."""
+    return None
