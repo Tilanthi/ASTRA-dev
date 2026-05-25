@@ -1,0 +1,29 @@
+{
+  "campaign": "THEO-1 + THEO-4 Validation Campaigns",
+  "generated": "2026-05-25T13:26:20.695044",
+  "total_sims": 33,
+  "wall_time_s": 0.2,
+  "THEO1": {
+    "n_sims": 18,
+    "n_beading": 18,
+    "n_measurable": 11,
+    "points_validated": 4,
+    "lw_mean": 2.765,
+    "lw_std": 0.231,
+    "framework_validated": true
+  },
+  "THEO4": {
+    "n_sims": 15,
+    "gammas_tested": [
+      0.85,
+      0.9,
+      0.95,
+      1.0,
+      1.05
+    ],
+    "lw_variation_pct": 10.7,
+    "gamma_50": "> 1.05",
+    "all_fragment": true,
+    "isothermal_justified": true
+  }
+}
