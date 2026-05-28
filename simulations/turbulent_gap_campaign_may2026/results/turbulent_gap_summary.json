@@ -1,0 +1,15 @@
+{
+  "campaign": "Turbulent Amplitude Gap",
+  "total_sims": 800,
+  "completed": 800,
+  "elapsed_sec": 1.5,
+  "n_fragmented": 415,
+  "n_full": 176,
+  "n_suppressed": 385,
+  "frag_rate_long_pct": 47.0,
+  "frag_rate_perp_pct": 56.75,
+  "lambda_W_long_mean": 3.8218,
+  "lambda_W_perp_mean": 1.27,
+  "geometry_ratio": 3.009,
+  "timestamp": "2026-05-28T22:58:53.915451Z"
+}
