@@ -163,6 +163,9 @@ Ho M.,  et~al., 2024, \mn@doi [Open J. Astrophys.] {10.33232/001c.120559}, 7
 Hornschemeier A.~E.,  Brandt W.~N.,  Alexander D.~M.,  Bauer F.~E.,  Feigelson
   E.~D.,   Garmire G.~P.,  2001, \mn@doi [ApJ] {10.1086/321450}, 554, 742
 
+\bibitem[\protect\citeauthoryear{Inguglia}{Inguglia}{2026}]{inguglia2026etagents}
+Inguglia G.,  2026, arXiv e-prints
+
 \bibitem[\protect\citeauthoryear{Islam, Wadekar, Venumadhav, Zaldarriaga,
   Mehta, Roulet  \& Zackay}{Islam et~al.}{2026}]{islam2026gwagent}
 Islam T.,  Wadekar D.,  Venumadhav T.,  Zaldarriaga M.,  Mehta A.~K.,  Roulet
@@ -228,6 +231,9 @@ Mucesh S.,  Hartley W.~G.,  Palmese A.,   et~al., 2024, arXiv preprint
 
 \bibitem[\protect\citeauthoryear{Nagasawa}{Nagasawa}{1987}]{nagasawa1987}
 Nagasawa M.,  1987, \mn@doi [Prog. Theor. Phys.] {10.1143/PTP.77.635}, 77, 635
+
+\bibitem[\protect\citeauthoryear{Nguyen}{Nguyen}{2026}]{nguyen2026physicsallyouneed}
+Nguyen N.-M.,  2026, arXiv e-prints
 
 \bibitem[\protect\citeauthoryear{Pandya et~al.}{Pandya
   et~al.}{2026}]{pandya2026sapphire}
@@ -323,9 +329,13 @@ Villaescusa-Navarro F.,  Bolliet B.,  Villanueva-Domingo P.,  Bayer A.~E.,
 Wang C.,  Zhang Y.,  Li Y.,   et~al., 2025, \mn@doi [Commun.\ Eng.]
   {10.1038/s44172-025-00520-4}, 4, 184
 
+\bibitem[\protect\citeauthoryear{Wang et~al.}{Wang
+  et~al.}{2026a}]{wang2026multiscale}
+Wang J.-W.,  et~al., 2026a, ApJ
+
 \bibitem[\protect\citeauthoryear{Wang, Han, Fan  \& Liu}{Wang
-  et~al.}{2026}]{wang2026climagent}
-Wang H.,  Han J.,  Fan W.,   Liu H.,  2026, arXiv preprint, arXiv:2604.16922
+  et~al.}{2026b}]{wang2026climagent}
+Wang H.,  Han J.,  Fan W.,   Liu H.,  2026b, arXiv preprint, arXiv:2604.16922
 
 \bibitem[\protect\citeauthoryear{White}{White}{2026}]{astra_github}
 White G.~J.,  2026, {ASTRA: Autonomous System for Scientific Discovery in
