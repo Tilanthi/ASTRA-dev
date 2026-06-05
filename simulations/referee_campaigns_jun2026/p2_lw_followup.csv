@@ -1,0 +1,10 @@
+sim_id,campaign,f,beta,mach,theta,seed,gamma,morphology,fragmented,t_frag,grav_ratio,lW,n_peaks,frag_flag,wall_s,hgbs_match
+P2LW_g0.95_b2.0_M3.0_s2,P2_LW,1.1,2.0,3.0,0,2,0.95,FULL,True,0.25,,,1,EARLY_FRAG@t=0.250,93,False
+P2LW_g0.9_b2.0_M3.0_s0,P2_LW,1.1,2.0,3.0,0,0,0.9,FULL,True,0.265,,26.178,2,EARLY_FRAG@t=0.265,93,False
+P2LW_g0.95_b2.0_M3.0_s1,P2_LW,1.1,2.0,3.0,0,1,0.95,FULL,True,0.26,,12.089,4,EARLY_FRAG@t=0.260,93,False
+P2LW_g0.9_b2.0_M3.0_s2,P2_LW,1.1,2.0,3.0,0,2,0.9,FULL,True,0.25,,,1,EARLY_FRAG@t=0.250,93,False
+P2LW_g0.95_b2.0_M3.0_s0,P2_LW,1.1,2.0,3.0,0,0,0.95,FULL,True,0.26,,26.087,2,EARLY_FRAG@t=0.260,93,False
+P2LW_g1.0_b2.0_M3.0_s0,P2_LW,1.1,2.0,3.0,0,0,1.0,FULL,True,0.255,,25.905,2,EARLY_FRAG@t=0.255,93,False
+P2LW_g0.9_b2.0_M3.0_s1,P2_LW,1.1,2.0,3.0,0,1,0.9,FULL,True,0.255,,10.309,4,EARLY_FRAG@t=0.255,93,False
+P2LW_g1.0_b2.0_M3.0_s1,P2_LW,1.1,2.0,3.0,0,1,1.0,FULL,True,0.25,,,0,EARLY_FRAG@t=0.250,600,False
+P2LW_g1.0_b2.0_M3.0_s2,P2_LW,1.1,2.0,3.0,0,2,1.0,FULL,True,0.25,,,0,EARLY_FRAG@t=0.250,600,False
