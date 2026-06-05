@@ -1,0 +1,33 @@
+{
+  "campaign": "referee_response_jun2026_v2",
+  "timestamp": "2026-06-05T01:10:56.203981",
+  "total_sims": 143,
+  "wall_time_hours": 1.42,
+  "results_csv": "/data/referee_campaign_jun2026/results/referee_campaigns_all143_v2.csv",
+  "by_campaign": {
+    "P1": {
+      "n": 60,
+      "n_fragmented": 60,
+      "n_hgbs_match": 5,
+      "n_error": 0
+    },
+    "P2": {
+      "n": 35,
+      "n_fragmented": 34,
+      "n_hgbs_match": 0,
+      "n_error": 0
+    },
+    "P3": {
+      "n": 40,
+      "n_fragmented": 16,
+      "n_hgbs_match": 0,
+      "n_error": 0
+    },
+    "P4": {
+      "n": 8,
+      "n_fragmented": 6,
+      "n_hgbs_match": 0,
+      "n_error": 0
+    }
+  }
+}
