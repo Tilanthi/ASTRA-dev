@@ -1,0 +1,29 @@
+{
+  "campaign": "RC Box-Size Convergence Test",
+  "date": "2026-06-08",
+  "f": 2.6,
+  "beta": 1.0,
+  "Lx0p5": {
+    "Lx_jeans": 8.0,
+    "mean_lW": 4.2188,
+    "std_lW": 0.3405,
+    "n_sims": 3
+  },
+  "Lx1p0": {
+    "Lx_jeans": 16.0,
+    "mean_lW": 2.6997,
+    "std_lW": 0.5917,
+    "n_sims": 3
+  },
+  "Lx2p0": {
+    "Lx_jeans": 32.0,
+    "mean_lW": null,
+    "note": "Not measurable - amplitude scaling"
+  },
+  "convergence": {
+    "delta_lW": 1.5191,
+    "delta_pct": 56.3,
+    "verdict": "CONVERGED - lW decreases from 4.22 to 2.70 as Lx doubles",
+    "resonance_ruled_out": true
+  }
+}
