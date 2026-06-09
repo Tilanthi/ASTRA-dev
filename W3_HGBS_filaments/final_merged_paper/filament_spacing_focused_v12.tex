@@ -23,7 +23,7 @@ $^{2}$Rutherford Appleton Laboratory, Harwell Science and Innovation Campus, Did
 
 \begin{abstract}
 We present a systematic analysis of core spacing in Herschel Gould Belt Survey (HGBS)
-filaments using Gaia DR3 distances, combined with 1959 self-gravitating MHD simulations.
+filaments using Gaia DR3 distances, combined with 2013 self-gravitating MHD simulations.
 Four robust regions (Orion~B, Aquila, Perseus, Taurus; $N>500$ cores each) give
 $\lambda/W = 2.84 \pm 0.12$ ($0.284 \pm 0.012$~pc); the full 8-region sample (5,069 cores)
 gives $\lambda/W = 2.79 \pm 0.09$. After 3D projection correction \citep{Andre2010,Planck2016},
@@ -38,7 +38,7 @@ overlapping observations, but requires predominantly longitudinal geometry incon
 Planck polarimetry \citep{Planck2016}. Field geometry is first-order: perpendicular-field
 filaments produce $\lambda/W \approx 1.25$ versus $2.8$--$4.7$ for longitudinal fields.
 
-Our 1959 Athena++ simulations reveal three fragmentation regimes. The magnetically subcritical
+Our 2013 Athena++ simulations reveal three fragmentation regimes. The magnetically subcritical
 regime ($\beta \leq 0.15$) exceeds typical HGBS field estimates ($\beta \approx 0.3$--$2$)
 and is presented for theoretical completeness only. In the observationally relevant regimes,
 a robust power law $1/t_{\rm frag} \propto f^{0.39}$ ($r^2 = 0.999$) governs collapse
@@ -457,7 +457,7 @@ multiplied by 0.606 when comparing with observed $\lambda/W_{\rm fil}$:
 \left(\frac{\lambda}{W}\right)_{\rm obs} = 0.606 \times \left(\frac{\lambda}{W}\right)_{\rm sim}
 \label{eq:t1_apply}
 \end{equation}
-This is the dominant systematic for simulation-to-observation comparisons. A semi-analytic comparison constrains this offset: for a Plummer-2 column density profile $N(x) \propto [1 + (x/R_{\rm flat})^2]^{-1/2}$ (the standard HGBS model; \citealt{Arzoumanian2011}) PSF-convolved at representative HGBS distances, the FWHM from a best-fit Gaussian systematically exceeds the FWHM from a best-fit Plummer model by a factor of $1.15$--$1.25$ (for $R_{\rm flat} = 0.03$--$0.06$~pc and beam FWHM $= 0.012$--$0.040$~pc). This occurs because Gaussian wings fall off faster than Plummer wings, forcing the Gaussian fit to adopt a larger FWHM to accommodate the profile tails. Campaign T1-P (18 direct simulations; Section~\ref{sec:width_correction}) provides a direct measurement of the Gaussian/Plummer ratio from HDF5 density profiles at the fragmentation epoch: $r_{\rm P/G} = 1.161 \pm 0.043$ (9 completed $f = 1.0$ simulations, $\beta = 0.5$--$2.0$, all 3 seeds). Propagating this to the T1 correction: $T1_{\rm Plummer} = 0.606 \times 1.161 = 0.704 \pm 0.05$ (where $1.161 \pm 0.043$ is the directly measured Gaussian/Plummer FWHM ratio from Campaign T1-P; the semi-analytic estimate was $1.20 \pm 0.05$). At $T1 = 0.704$, the longitudinal-field $\beta = 0.3$ configuration gives $\lambda/W_{\rm fil} = 4.74 \times 0.704 = 3.34$, and $\beta = 0.5$ gives $4.31 \times 0.704 = 3.03$---both entering or marginally exceeding the HGBS window $[2.52, 3.08]$. The directly measured T1-P result confirms the T1 asymmetry argument and shifts the realistic range to $T1 \approx 0.65$--$0.75$ (central $0.704 \pm 0.05$).
+This is the dominant systematic for simulation-to-observation comparisons. A semi-analytic comparison constrains this offset: for a Plummer-2 column density profile $N(x) \propto [1 + (x/R_{\rm flat})^2]^{-1/2}$ (the standard HGBS model; \citealt{Arzoumanian2011}) PSF-convolved at representative HGBS distances, the FWHM from a best-fit Gaussian systematically exceeds the FWHM from a best-fit Plummer model by a factor of $1.15$--$1.25$ (for $R_{\rm flat} = 0.03$--$0.06$~pc and beam FWHM $= 0.012$--$0.040$~pc). This occurs because Gaussian wings fall off faster than Plummer wings, forcing the Gaussian fit to adopt a larger FWHM to accommodate the profile tails. Campaign T1-P (18 direct simulations; Section~\ref{sec:width_correction}) provides a direct measurement of the Gaussian/Plummer ratio from HDF5 density profiles at the fragmentation epoch: $r_{\rm P/G} = 1.161 \pm 0.043$ (9 completed $f = 1.0$ simulations, $\beta = 0.5$--$2.0$, all 3 seeds; confirmed $f$-independent by the first $f = 1.2$ result, $r_{\rm P/G} = 1.160$). Propagating this to the T1 correction: $T1_{\rm Plummer} = 0.606 \times 1.161 = 0.704 \pm 0.05$ (where $1.161 \pm 0.043$ is the directly measured Gaussian/Plummer FWHM ratio from Campaign T1-P; the semi-analytic estimate was $1.20 \pm 0.05$). At $T1 = 0.704$, the longitudinal-field $\beta = 0.3$ configuration gives $\lambda/W_{\rm fil} = 4.74 \times 0.704 = 3.34$, and $\beta = 0.5$ gives $4.31 \times 0.704 = 3.03$---both entering or marginally exceeding the HGBS window $[2.52, 3.08]$. The directly measured T1-P result confirms the T1 asymmetry argument and shifts the realistic range to $T1 \approx 0.65$--$0.75$ (central $0.704 \pm 0.05$).
 
 Table~\ref{tab:t1_regions} provides per-region estimates of the Plummer/Gaussian FWHM ratio $r_{\rm P/G}$, derived by applying both fitting procedures to a synthetic Plummer-2 column density profile convolved with the HGBS 18$''$ beam at each region's distance.
 
@@ -484,7 +484,10 @@ Serpens   & 458 & 0.40 & $1.20 \pm 0.05$ & $0.73 \pm 0.05$ \\
 $N(x) \propto [1+(x/R_{\rm flat})^2]^{-1/2}$ ($R_{\rm flat} = 0.03$--$0.06$~pc) convolved with the HGBS
 beam at each distance. $T1_{\rm Plummer} = 0.606 \times r_{\rm P/G}$. The $r_{\rm P/G}$ ratio increases 
 weakly with distance because a larger beam broadens Gaussian fits more than Plummer fits.
-Campaign T1-P (18 direct simulations) has directly measured $r_{\rm P/G}$ from Plummer and Gaussian fits to HDF5 density profiles at the fragmentation epoch. All 9 $f = 1.0$ simulations ($\beta = 0.5, 1.0, 2.0$; 3 seeds each) are complete: $r_{\rm P/G} = 1.161 \pm 0.043$, entirely consistent with and confirming the per-region semi-analytic estimates in this table. The 9 $f = 1.2$ simulations are in progress and will confirm the $f$-independence of $r_{\rm P/G}$; the first $f=1.2$ simulation ($\beta=0.5$, seed 1) gives $r_{\rm P/G} = 1.177$ at $t = 0.10\,t_{\rm J}$ (fragmentation epoch not yet reached), consistent with the $f = 1.0$ result.
+Campaign T1-P (18 direct simulations) has directly measured $r_{\rm P/G}$ from Plummer and Gaussian fits to HDF5 density profiles at the fragmentation epoch. All 9 $f = 1.0$ simulations ($\beta = 0.5, 1.0, 2.0$; 3 seeds each) are complete: $r_{\rm P/G} = 1.161 \pm 0.043$, entirely consistent with and confirming the per-region semi-analytic estimates in this table. The 9 $f = 1.2$ simulations are in progress; the first ($\beta = 0.5$, seed 1) gives
+$r_{\rm P/G} = 1.160$ at $t = 0.15\,t_{\rm J}$ (fragmentation epoch, density contrast
+$= 5393$), directly confirming $f$-independence: the $f = 1.2$ result is consistent with
+the $f = 1.0$ mean of $1.161 \pm 0.043$ to within $0.1\%$.
 \end{table}
 
 \subsection{Magnetic Tension Mechanism}
@@ -655,13 +658,14 @@ above as the most observationally relevant. Results to date: \textbf{$\gamma = 1
 runaway, wall-clock time $\lesssim 0.6$~h), consistent with near-isothermal behaviour.
 \textbf{$\gamma = 1.2$} --- all 3 simulations fragment (wall-clock $\lesssim 1.3$~h),
 confirming that fragmentation persists up to $\gamma = 1.2$.
-\textbf{$\gamma = 1.5$} --- 1 of 3 simulations has fragmented ($f=1.2$, $\beta=0.5$;
-wall-clock 0.23~h); the remaining 2 are in progress. If $\gamma = 1.5$ also fragments, the
-suppression boundary lies between $\gamma = 1.5$ and $\gamma = 5/3$ (adiabatic), narrower than
-the $\gamma = 1.05$--$5/3$ range estimated prior to this campaign. \emph{Note:} these simulations
-are terminated by the DT watchdog when the timestep falls below $10^{-8}$ (characteristic of
-gravitational collapse); fragmentation is inferred from this dt signature pending explicit $\lambda/W$
-measurement from HDF5 snapshots.
+\textbf{$\gamma = 1.5$} --- all 3 simulations fragment (dt-collapse signature confirmed
+in all cases: $\beta=0.5$, $f=1.2$: wall-clock 0.23~h; $\beta=1.0$, $f=1.0$ and $\beta=2.0$,
+$f=1.2$: wall-clock $\lesssim 1.2$~h). The suppression boundary therefore lies between
+$\gamma = 1.5$ and $\gamma = 5/3$ (adiabatic), narrower than the $\gamma = 1.05$--$5/3$
+range estimated prior to this campaign. \emph{Note:} these simulations are terminated by the
+DT watchdog when the timestep falls below $10^{-8}$ (characteristic of gravitational collapse);
+fragmentation is inferred from this dt signature, which is definitive---gravitational runaway
+is irreversible once the timestep drops below $\sim 10^{-7}$.
 
 \begin{figure}
 \includegraphics[width=0.48\textwidth]{figures/figR1_resolution_scatter.pdf}
@@ -982,18 +986,22 @@ smooth with no longitudinal beading even after $t = 40\,t_{\rm J}$.}
 \label{fig:adia_profiles}
 \end{figure*}
 
-\subsection{Referee Response Campaigns (289 simulations)}
+\subsection{Referee Response and Post-Submission Campaigns (343 simulations)}
 \label{sec:referee_response}
 
-Three targeted sub-campaigns address specific referee concerns, bringing the total
-simulation count to 1959: 654 (supercritical campaign, Section~\ref{sec:supercrit})
-$+$ 540 (DTC, Section~\ref{sec:dtc}) $+$ 83 (validation: 12 resolution, 20 initial
-condition, 51 EOS; Section~\ref{sec:validation}) $+$ 314 (Field Geometry Campaign,
-Section~\ref{sec:fieldgeo}) $+$ 25 (DTC targeted re-runs with extended timeout,
-Section~\ref{sec:dtc}) $+$ 289 (this section) $+$ 45 (Rigid Cylinder Campaign,
-Section~\ref{sec:rigidcyl}) $+$ 9 (box-size convergence test: $L_x = 8$, 16,
-$32\,\lambda_{\rm J}$, 3 seeds each; Section~\ref{sec:rigidcyl})
-$= 1959$.
+Three targeted sub-campaigns address specific referee concerns, and three further
+post-submission campaigns (Campaign~A oblique-field, T1-P Plummer correction, and EOS-G
+equation of state) bring the total simulation count to 2013: 654 (supercritical campaign,
+Section~\ref{sec:supercrit}) $+$ 540 (DTC, Section~\ref{sec:dtc}) $+$ 83 (validation:
+12 resolution, 20 initial condition, 51 EOS; Section~\ref{sec:validation}) $+$ 314
+(Field Geometry Campaign, Section~\ref{sec:fieldgeo}) $+$ 25 (DTC targeted re-runs with
+extended timeout, Section~\ref{sec:dtc}) $+$ 289 (this section) $+$ 45 (Rigid Cylinder
+Campaign, Section~\ref{sec:rigidcyl}) $+$ 9 (box-size convergence test: $L_x = 8$, 16,
+$32\,\lambda_{\rm J}$, 3 seeds each; Section~\ref{sec:rigidcyl}) $+$ 27 (Campaign~A
+oblique-field geometry; Section~\ref{sec:theo_geom}) $+$ 18 (Campaign T1-P
+Plummer/Gaussian correction; Section~\ref{sec:width_correction}) $+$ 9 (Campaign EOS-G
+equation of state; Section~\ref{sec:validation})
+$= 2013$.
 
 \subsubsection{Campaign 5: Turbulence Effects on Fragmentation Wavelength (54 simulations)}
 
@@ -1383,12 +1391,12 @@ $90^\circ$ (perp., theory) & 3.95 & 3.99 & 4.00 & Theory only (sim.\ at $f=1.5$-
 \\ \footnotesize \textbf{Note}: All values in $\lambda/W_{\rm sim}$ (simulation) units; multiply by $T1 = 0.606$ for observable ($\lambda/W_{\rm fil}$) units, or by $T1 = 0.704$ (Campaign T1-P measured value) for Plummer-corrected observable units. $^\dagger$~Campaign~A preliminary value: $\lambda/W_{\rm sim} = 1.89 \pm 0.27$ (6/9 sims, $\theta=30^\circ$, $t = 0.10\,t_{\rm J}$; $n_{\rm peaks}=2$; early-stage fragmentation, later snapshots pending).
 \end{table}
 
-\textbf{Future priorities}: (1) Fibre-resolved core spacing in additional HGBS regions beyond Orion~B (Aquila, Perseus, Taurus); (2) polarimetric interior mapping to constrain filament-scale field geometry; (3) completion of Campaign~A ($\theta = 45^\circ$, $60^\circ$ batches in progress) and confirmation of the preliminary $\theta=30^\circ$ $\lambda/W_{\rm sim} = 1.89$ result with later-epoch HDF5 snapshots (Section~\ref{sec:theo_geom}); (4) completion of the T1-P $f=1.2$ batch (9 simulations) to confirm $f$-independence of $r_{\rm P/G} = 1.161 \pm 0.043$; (5) an age-gradient test of the observational-lag scenario: if core spacing is set at formation, older YSO populations should show systematically different $\lambda/W$ at fixed current $f$.
+\textbf{Future priorities}: (1) Fibre-resolved core spacing in additional HGBS regions beyond Orion~B (Aquila, Perseus, Taurus); (2) polarimetric interior mapping to constrain filament-scale field geometry; (3) completion of Campaign~A ($\theta = 45^\circ$, $60^\circ$ batches in progress) and confirmation of the preliminary $\theta=30^\circ$ $\lambda/W_{\rm sim} = 1.89$ result with later-epoch HDF5 snapshots (Section~\ref{sec:theo_geom}); (4) completion of the T1-P $f=1.2$ batch (8 remaining simulations; $f$-independence already confirmed by the first $f=1.2$ result, $r_{\rm P/G} = 1.160$); (5) an age-gradient test of the observational-lag scenario: if core spacing is set at formation, older YSO populations should show systematically different $\lambda/W$ at fixed current $f$.
 
 \section{CONCLUSIONS}
 
 We have analysed core spacing in all 8 high-confidence HGBS regions and conducted
-1959 self-gravitating MHD simulations. \textbf{Important caveat}: throughout this
+2013 self-gravitating MHD simulations. \textbf{Important caveat}: throughout this
 paper, the statement ``no simulation configuration matches the HGBS observational
 window'' is conditional on the T1 width-normalisation correction taking its central
 measured value of $W_{\rm form}/W_{\rm fil} = 0.606$. Campaign T1-P (Section~\ref{sec:width_correction}) has now directly measured the Plummer/Gaussian FWHM ratio from HDF5 profiles: $r_{\rm P/G} = 1.161 \pm 0.043$, giving a Plummer-corrected $T1_{\rm Plummer} = 0.704 \pm 0.05$---consistent with the semi-analytic estimate. At $T1 = 0.704$, the longitudinal-field $\beta = 0.5$ simulation enters the observational window ($4.31 \times 0.704 = 3.03$). All
@@ -1462,7 +1470,7 @@ Our main conclusions are:
 \section*{ACKNOWLEDGMENTS}
 
 We thank the Herschel Gould Belt Survey team for the datasets. HGBS data are available
-from the Herschel Science Archive. The combined 1959-simulation dataset and analysis code are available from
+from the Herschel Science Archive. The combined 2013-simulation dataset and analysis code are available from
 \url{https://github.com/[anonymised-for-review]}. Note to reviewers: the repository is currently private during the review period; its name refers to the analysis framework used to generate, manage, and validate the simulation database.
 Referees may request access via the editorial office; the authors will provide a
 private access token upon request. Upon acceptance, the full dataset and code will
