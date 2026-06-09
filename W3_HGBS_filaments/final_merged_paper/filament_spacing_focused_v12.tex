@@ -26,27 +26,28 @@ We present a systematic analysis of core spacing in Herschel Gould Belt Survey (
 filaments using Gaia DR3 distances, combined with 2013 self-gravitating MHD simulations.
 Four robust regions (Orion~B, Aquila, Perseus, Taurus; $N>500$ cores each) give
 $\lambda/W = 2.84 \pm 0.12$ ($0.284 \pm 0.012$~pc); the full 8-region sample (5,069 cores)
-gives $\lambda/W = 2.79 \pm 0.09$. After 3D projection correction \citep{Andre2010,Planck2016},
-the inferred spacing is ${\sim}3.1$--$3.5\times W$, within 15\% of the classical $4\times$
-prediction \citep{Inutsuka1992}. Gaia DR3 increased the mean by 32\% over original catalogues.
+gives $\lambda/W = 2.79 \pm 0.09$. After 3D projection correction, the inferred spacing
+is ${\sim}3.5\times W$, within 15\% of the classical $4\times$
+prediction \citep{Inutsuka1992}. Gaia DR3 distances increased the mean by 32\%.
 
-Hierarchical fragmentation is the most plausible explanation: fibre-to-core spacing in
+Hierarchical fragmentation is the most plausible explanation: fibre-level spacing in
 Orion~B recovers the $4\times$ prediction \citep{Yang2024}, while filament-level measurements
-show sub-Jeans values consistent with projection across velocity-coherent fibre bundles.
+show sub-Jeans values consistent with projection across fibre bundles.
 Magnetic tension for longitudinal fields ($\beta = 1$--$3$) predicts $\lambda/W = 2.44$--$3.16$,
 overlapping observations, but requires predominantly longitudinal geometry inconsistent with
 Planck polarimetry \citep{Planck2016}. Field geometry is first-order: perpendicular-field
-filaments produce $\lambda/W \approx 1.25$ versus $2.8$--$4.7$ for longitudinal fields.
+filaments give $\lambda/W \approx 1.25$ versus $2.8$--$4.7$ for longitudinal fields.
 
-Our 2013 Athena++ simulations reveal three fragmentation regimes. The magnetically subcritical
-regime ($\beta \leq 0.15$) exceeds typical HGBS field estimates ($\beta \approx 0.3$--$2$)
-and is presented for theoretical completeness only. In the observationally relevant regimes,
-a robust power law $1/t_{\rm frag} \propto f^{0.39}$ ($r^2 = 0.999$) governs collapse
-timescales. Supercritical filaments ($f \geq 1.5$) undergo pure radial collapse
-\citep{Nagasawa1987}; near-critical ($f \lesssim 1.2$) filaments produce measurable
-longitudinal beading. After applying a width-normalisation correction
-($W_{\rm form}/W_{\rm fil} = 0.606 \pm 0.072$), no configuration matches the HGBS window
-$[2.52, 3.08]$; Campaign T1-P directly measures the Plummer-function correction ($T1_{\rm Plummer} = 0.704 \pm 0.05$, from $r_{\rm P/G} = 1.161 \pm 0.043$), allowing the low-$\beta$ ($\beta \leq 0.5$) longitudinal configuration to enter the window and making systematic width
+Our 2013 Athena++ simulations reveal three regimes. The magnetically subcritical
+regime ($\beta \leq 0.15$) lies outside the typical HGBS range and is of theoretical
+interest only. In the observationally relevant regimes, a robust power law
+$1/t_{\rm frag} \propto f^{0.39}$ ($r^2 = 0.999$) governs collapse timescales.
+Supercritical filaments ($f \geq 1.5$) undergo pure radial collapse \citep{Nagasawa1987};
+near-critical ($f \lesssim 1.2$) filaments produce measurable longitudinal beading. After
+applying a width-normalisation correction ($W_{\rm form}/W_{\rm fil} = 0.606 \pm 0.072$),
+no configuration matches the HGBS window $[2.52, 3.08]$; Campaign T1-P directly measures
+the Plummer-function correction ($T1_{\rm Plummer} = 0.704 \pm 0.05$), allowing the
+low-$\beta$ longitudinal configuration to enter the window and making systematic width
 normalisation the critical uncertainty.
 \end{abstract}
 
@@ -648,12 +649,12 @@ gave identical fragmentation classifications at all 10 tested points (100\% agre
 \textbf{Equation of state}: Sub-isothermal EOS ($\gamma = 0.8$--$0.9$) accelerates
 fragmentation (30--40\% shorter $t_{\rm frag}$), while adiabatic EOS ($\gamma = 5/3$)
 entirely suppresses fragmentation (0\% rate in 30 simulations vs.\ 100\% for matched
-isothermal; Figure~\ref{fig:eos_sensitivity}). The isothermal assumption is therefore conservative relative to the adiabatic limit: real dust-cooled molecular gas at filament densities has an effective $\gamma_{\rm eff} \approx 0.97$--$1.02$ \citep{Glover2012}, in the range of our isothermal ($\gamma = 1$) runs. The strong sensitivity to EOS near the isothermal point---the transition from 100\% to 0\% fragmentation must occur somewhere between $\gamma = 1.05$ and $\gamma = 5/3$ since our EOS grid does not sample this critical range---motivates a targeted study at $\gamma = 1.05$--$1.2$ for future work; in particular, whether fragmentation persists at $\gamma = 1.05$--$1.10$ is directly relevant to whether the isothermal assumption is conservative at the density contrasts $C \sim 3$--$10$ reached in the magnetically regulated regime.
+isothermal; Figure~\ref{fig:eos_sensitivity}). The isothermal assumption is therefore conservative relative to the adiabatic limit: real dust-cooled molecular gas at filament densities has an effective $\gamma_{\rm eff} \approx 0.97$--$1.02$ \citep{Glover2012}, in the range of our isothermal ($\gamma = 1$) runs. The strong sensitivity to EOS near the isothermal point motivates the targeted Campaign EOS-G below; the key question is whether fragmentation persists for $\gamma > 1$, directly relevant to whether the isothermal assumption is conservative at the density contrasts $C \sim 3$--$10$ reached in the magnetically regulated regime.
 
 \textbf{Campaign EOS-G} (9 simulations) tests $\gamma = 1.1, 1.2, 1.5$ at three
 representative parameter points ($f = 1.0, \beta = 1.0$; $f = 1.2, \beta = 0.5$;
 $f = 1.2, \beta = 2.0$). These probe the critical $\gamma = 1.1$--$1.2$ range identified
-above as the most observationally relevant. Results to date: \textbf{$\gamma = 1.1$} --- all
+above as the most observationally relevant. Results: \textbf{$\gamma = 1.1$} --- all
 3 simulations fragment (identified by rapid timestep collapse characteristic of gravitational
 runaway, wall-clock time $\lesssim 0.6$~h), consistent with near-isothermal behaviour.
 \textbf{$\gamma = 1.2$} --- all 3 simulations fragment (wall-clock $\lesssim 1.3$~h),
@@ -937,9 +938,8 @@ cylinder with $W_{\rm core} \approx 5\,H$ (characteristic of our initial conditi
 this gives $\lambda_{\rm frag}/W_{\rm core} \approx 4.4$, implying a calibration constant
 $\approx 4.4/\lambda_{MJ}$. Using $\lambda_{MJ} \approx 3.7\,W_{\rm core}$ from
 equation~(\ref{eq:tension}) at $\beta = 1$, the theoretical prediction is $\approx 1.2$---within
-$1\sigma$ of our fitted value of $1.11 \pm 0.12$.
-and confirms the smooth transition from longitudinal to perpendicular behaviour
-(Figure~\ref{fig:oblique_calibration}).
+$1\sigma$ of our fitted value of $1.11 \pm 0.12$---and confirms the smooth transition from
+longitudinal to perpendicular behaviour (Figure~\ref{fig:oblique_calibration}).
 
 \textbf{Campaign A: Near-critical oblique $\lambda/W$ measurements} (27 simulations):
 Campaign~3 measured fragmentation \textit{timescales} at oblique angles but did not
@@ -1463,7 +1463,7 @@ Our main conclusions are:
     filaments is the single most decisive test to distinguish hierarchical from magnetic
     tension explanations.
 
-    \item \textbf{Synthesis}: The combination of Gaia DR3 distance corrections (32\% increase in spacing) and 3D projection correction ($\times$1.10--1.27) reduces the apparent discrepancy from IM92 to ${\sim}1\sigma$. Hierarchical fibre fragmentation is the most physically consistent explanation; the magnetic tension mechanism requires T1 $\approx 0.701$ (now directly measured by Campaign T1-P) and predominantly longitudinal fields to match observations.
+    \item \textbf{Synthesis}: The combination of Gaia DR3 distance corrections (32\% increase in spacing) and 3D projection correction ($\times$1.10--1.27) reduces the apparent discrepancy from IM92 to ${\sim}1\sigma$. Hierarchical fibre fragmentation is the most physically consistent explanation; the magnetic tension mechanism requires T1 $\approx 0.704$ (directly measured by Campaign T1-P: $r_{\rm P/G} = 1.161 \pm 0.043$) and predominantly longitudinal fields to match observations.
 
 \end{itemize}
 
