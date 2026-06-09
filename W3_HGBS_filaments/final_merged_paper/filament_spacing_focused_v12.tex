@@ -46,7 +46,7 @@ timescales. Supercritical filaments ($f \geq 1.5$) undergo pure radial collapse
 \citep{Nagasawa1987}; near-critical ($f \lesssim 1.2$) filaments produce measurable
 longitudinal beading. After applying a width-normalisation correction
 ($W_{\rm form}/W_{\rm fil} = 0.606 \pm 0.072$), no configuration matches the HGBS window
-$[2.52, 3.08]$; Campaign T1-P directly measures the Plummer-function correction ($T1_{\rm Plummer} = 0.701 \pm 0.05$, from $r_{\rm P/G} = 1.156 \pm 0.041$), allowing the low-$\beta$ ($\beta \leq 0.5$) longitudinal configuration to enter the window and making systematic width
+$[2.52, 3.08]$; Campaign T1-P directly measures the Plummer-function correction ($T1_{\rm Plummer} = 0.704 \pm 0.05$, from $r_{\rm P/G} = 1.161 \pm 0.043$), allowing the low-$\beta$ ($\beta \leq 0.5$) longitudinal configuration to enter the window and making systematic width
 normalisation the critical uncertainty.
 \end{abstract}
 
@@ -457,7 +457,7 @@ multiplied by 0.606 when comparing with observed $\lambda/W_{\rm fil}$:
 \left(\frac{\lambda}{W}\right)_{\rm obs} = 0.606 \times \left(\frac{\lambda}{W}\right)_{\rm sim}
 \label{eq:t1_apply}
 \end{equation}
-This is the dominant systematic for simulation-to-observation comparisons. A semi-analytic comparison constrains this offset: for a Plummer-2 column density profile $N(x) \propto [1 + (x/R_{\rm flat})^2]^{-1/2}$ (the standard HGBS model; \citealt{Arzoumanian2011}) PSF-convolved at representative HGBS distances, the FWHM from a best-fit Gaussian systematically exceeds the FWHM from a best-fit Plummer model by a factor of $1.15$--$1.25$ (for $R_{\rm flat} = 0.03$--$0.06$~pc and beam FWHM $= 0.012$--$0.040$~pc). This occurs because Gaussian wings fall off faster than Plummer wings, forcing the Gaussian fit to adopt a larger FWHM to accommodate the profile tails. Campaign T1-P (18 direct simulations; Section~\ref{sec:width_correction}) provides a direct measurement of the Gaussian/Plummer ratio from HDF5 density profiles at the fragmentation epoch: $r_{\rm P/G} = 1.156 \pm 0.041$ (8 completed simulations at $f = 1.0$, $\beta = 0.5$--$2.0$). Propagating this to the T1 correction: $T1_{\rm Plummer} = 0.606 \times 1.156 = 0.701 \pm 0.05$ (where $1.156 \pm 0.041$ is the directly measured Gaussian/Plummer FWHM ratio from Campaign T1-P; the semi-analytic estimate was $1.20 \pm 0.05$). At $T1 = 0.701$, the longitudinal-field $\beta = 0.3$ configuration gives $\lambda/W_{\rm fil} = 4.74 \times 0.701 = 3.32$, and $\beta = 0.5$ gives $4.31 \times 0.701 = 3.02$---both entering or marginally exceeding the HGBS window $[2.52, 3.08]$. The directly measured T1-P result confirms the T1 asymmetry argument and shifts the realistic range to $T1 \approx 0.65$--$0.75$ (central $0.701 \pm 0.05$).
+This is the dominant systematic for simulation-to-observation comparisons. A semi-analytic comparison constrains this offset: for a Plummer-2 column density profile $N(x) \propto [1 + (x/R_{\rm flat})^2]^{-1/2}$ (the standard HGBS model; \citealt{Arzoumanian2011}) PSF-convolved at representative HGBS distances, the FWHM from a best-fit Gaussian systematically exceeds the FWHM from a best-fit Plummer model by a factor of $1.15$--$1.25$ (for $R_{\rm flat} = 0.03$--$0.06$~pc and beam FWHM $= 0.012$--$0.040$~pc). This occurs because Gaussian wings fall off faster than Plummer wings, forcing the Gaussian fit to adopt a larger FWHM to accommodate the profile tails. Campaign T1-P (18 direct simulations; Section~\ref{sec:width_correction}) provides a direct measurement of the Gaussian/Plummer ratio from HDF5 density profiles at the fragmentation epoch: $r_{\rm P/G} = 1.161 \pm 0.043$ (9 completed $f = 1.0$ simulations, $\beta = 0.5$--$2.0$, all 3 seeds). Propagating this to the T1 correction: $T1_{\rm Plummer} = 0.606 \times 1.161 = 0.704 \pm 0.05$ (where $1.161 \pm 0.043$ is the directly measured Gaussian/Plummer FWHM ratio from Campaign T1-P; the semi-analytic estimate was $1.20 \pm 0.05$). At $T1 = 0.704$, the longitudinal-field $\beta = 0.3$ configuration gives $\lambda/W_{\rm fil} = 4.74 \times 0.704 = 3.34$, and $\beta = 0.5$ gives $4.31 \times 0.704 = 3.03$---both entering or marginally exceeding the HGBS window $[2.52, 3.08]$. The directly measured T1-P result confirms the T1 asymmetry argument and shifts the realistic range to $T1 \approx 0.65$--$0.75$ (central $0.704 \pm 0.05$).
 
 Table~\ref{tab:t1_regions} provides per-region estimates of the Plummer/Gaussian FWHM ratio $r_{\rm P/G}$, derived by applying both fitting procedures to a synthetic Plummer-2 column density profile convolved with the HGBS 18$''$ beam at each region's distance.
 
@@ -484,7 +484,7 @@ Serpens   & 458 & 0.40 & $1.20 \pm 0.05$ & $0.73 \pm 0.05$ \\
 $N(x) \propto [1+(x/R_{\rm flat})^2]^{-1/2}$ ($R_{\rm flat} = 0.03$--$0.06$~pc) convolved with the HGBS
 beam at each distance. $T1_{\rm Plummer} = 0.606 \times r_{\rm P/G}$. The $r_{\rm P/G}$ ratio increases 
 weakly with distance because a larger beam broadens Gaussian fits more than Plummer fits.
-Campaign T1-P (18 direct simulations) has directly measured $r_{\rm P/G}$ from Plummer and Gaussian fits to HDF5 density profiles at the fragmentation epoch. From 8 completed simulations ($f = 1.0$; $\beta = 0.5, 1.0, 2.0$; 3 seeds each), we obtain $r_{\rm P/G} = 1.156 \pm 0.041$, entirely consistent with and confirming the per-region semi-analytic estimates in this table. The remaining 9 simulations ($f = 1.2$) are completing and will confirm the $f$-independence of $r_{\rm P/G}$.
+Campaign T1-P (18 direct simulations) has directly measured $r_{\rm P/G}$ from Plummer and Gaussian fits to HDF5 density profiles at the fragmentation epoch. All 9 $f = 1.0$ simulations ($\beta = 0.5, 1.0, 2.0$; 3 seeds each) are complete: $r_{\rm P/G} = 1.161 \pm 0.043$, entirely consistent with and confirming the per-region semi-analytic estimates in this table. The 9 $f = 1.2$ simulations are in progress and will confirm the $f$-independence of $r_{\rm P/G}$; the first $f=1.2$ simulation ($\beta=0.5$, seed 1) gives $r_{\rm P/G} = 1.177$ at $t = 0.10\,t_{\rm J}$ (fragmentation epoch not yet reached), consistent with the $f = 1.0$ result.
 \end{table}
 
 \subsection{Magnetic Tension Mechanism}
@@ -946,7 +946,7 @@ profiles. Table~\ref{tab:oblique_theory} shows the Nakamura (1993) analytic pred
 configurations. \textbf{Preliminary results} from the $\theta = 30^\circ$ batch (9 simulations,
 6 with valid $\lambda/W$ measurements from the $t = 0.10\,t_{\rm J}$ HDF5 snapshot): $\lambda/W_{\rm sim} = 1.89 \pm 0.27$
 (mean $\pm$ standard deviation; $\beta = 0.5, 1.0, 2.0$). Applied T1 correction:
-$(\lambda/W)_{\rm obs} = 0.701 \times 1.89 = 1.32 \pm 0.19$ (below the HGBS window $[2.52,
+$(\lambda/W)_{\rm obs} = 0.704 \times 1.89 = 1.32 \pm 0.19$ (below the HGBS window $[2.52,
 3.08]$). The $\theta = 45^\circ$ and $\theta = 60^\circ$ batches are in progress; all three angles
 are expected to lie below the HGBS window. \emph{Caveat}: the $t = 0.10\,t_{\rm J}$ measurements
 show $n_{\rm peaks} = 2$ in all cases (early-stage fragmentation); later snapshots are needed to
@@ -1055,7 +1055,7 @@ measuring whether a discontinuity exists at $f = 1.0$.
     $\lambda/W_{\rm core} = 4.74 \pm 0.73$ ($\beta = 0.3$), $4.38 \pm 0.59$ ($\beta = 0.5$),
     $3.19 \pm 0.29$ ($\beta = 1.0$), $2.86 \pm 0.18$ ($\beta = 1.5$),
     $2.80 \pm 0.14$ ($\beta = 2.0$).
-    \item At T1$=0.606$: no match (even $\beta=2.0$ gives $\lambda/W_{\rm fil}=1.70$). At T1$=0.701$ (Campaign T1-P directly measured value): $\beta \leq 0.5$ enters the HGBS window $[2.52, 3.08]$ ($\beta=0.3$: 3.32; $\beta=0.5$: 3.02; Table~\ref{tab:t1_budget}).
+    \item At T1$=0.606$: no match (even $\beta=2.0$ gives $\lambda/W_{\rm fil}=1.70$). At T1$=0.704$ (Campaign T1-P directly measured value): $\beta \leq 0.5$ enters the HGBS window $[2.52, 3.08]$ ($\beta=0.3$: 3.34; $\beta=0.5$: 3.03; Table~\ref{tab:t1_budget}).
 \end{itemize}
 
 \begin{figure*}
@@ -1095,7 +1095,7 @@ HGBS observational window ($\lambda/W_{\rm fil}$) & \multicolumn{5}{c}{$[2.52, 3
 \\[2pt]
 \footnotesize
 \textsuperscript{a}FLAT = no axial fragmentation, pure radial collapse. \hspace{1em}
-\textsuperscript{b}T1-corrected observable value using central T1 = 0.606. \textbf{No configuration matches the HGBS window at T1 = 0.606; at the Campaign T1-P measured value T1 $= 0.701$, the longitudinal-field $\beta \leq 0.5$ configurations enter the window (see Table~\ref{tab:t1_budget}).}
+\textsuperscript{b}T1-corrected observable value using central T1 = 0.606. \textbf{No configuration matches the HGBS window at T1 = 0.606; at the Campaign T1-P measured value T1 $= 0.704$, the longitudinal-field $\beta \leq 0.5$ configurations enter the window (see Table~\ref{tab:t1_budget}).}
 \end{table*}
 
 \begin{table}
@@ -1295,8 +1295,8 @@ uncertainty in this paper: it determines whether any simulation configuration ma
 the HGBS window. Table~\ref{tab:t1_budget} shows the predicted $\lambda/W_{\rm fil}$
 for three T1 values spanning the plausible range, for key simulation configurations.
 The statement that ``no simulation configuration matches the HGBS window'' is
-\textbf{conditional on T1 = 0.606}. With T1 = 0.701 (the Campaign T1-P directly measured Plummer-corrected value, Section~\ref{sec:width_correction}), the longitudinal-field $\beta = 0.5$ configuration enters the HGBS window.
-With T1 = 0.50 (lower plausible limit), no configuration matches. As argued in Section~\ref{sec:width_correction}, the expected direction of the T1 correction is \textit{upward}: Plummer-function fitting (used by HGBS) systematically recovers narrower widths than Gaussian fitting, implying T1 $> 0.606$. Campaign T1-P has directly measured the Gaussian/Plummer FWHM ratio from HDF5 density profiles: $r_{\rm P/G} = 1.156 \pm 0.041$, giving $T1_{\rm Plummer} = 0.701 \pm 0.05$ (Table~\ref{tab:t1_regions}). This allows the longitudinal-field $\beta = 0.5$ configuration to enter the HGBS window (Table~\ref{tab:t1_budget}). The ``no match'' conclusion at T1$=0.606$ is therefore \textit{conditionally conservative}. Further validation with the full HGBS Plummer-function pipeline would strengthen this result.
+\textbf{conditional on T1 = 0.606}. With T1 = 0.704 (the Campaign T1-P directly measured Plummer-corrected value, Section~\ref{sec:width_correction}), the longitudinal-field $\beta = 0.5$ configuration enters the HGBS window.
+With T1 = 0.50 (lower plausible limit), no configuration matches. As argued in Section~\ref{sec:width_correction}, the expected direction of the T1 correction is \textit{upward}: Plummer-function fitting (used by HGBS) systematically recovers narrower widths than Gaussian fitting, implying T1 $> 0.606$. Campaign T1-P has directly measured the Gaussian/Plummer FWHM ratio from HDF5 density profiles: $r_{\rm P/G} = 1.161 \pm 0.043$, giving $T1_{\rm Plummer} = 0.704 \pm 0.05$ (Table~\ref{tab:t1_regions}). This allows the longitudinal-field $\beta = 0.5$ configuration to enter the HGBS window (Table~\ref{tab:t1_budget}). The ``no match'' conclusion at T1$=0.606$ is therefore \textit{conditionally conservative}. Further validation with the full HGBS Plummer-function pipeline would strengthen this result.
 
 \begin{table}
 \caption{T1 Sensitivity: $\lambda/W_{\rm fil}$ predictions for three T1 correction values}
@@ -1304,11 +1304,11 @@ With T1 = 0.50 (lower plausible limit), no configuration matches. As argued in S
 \small
 \begin{tabular}{lcccc}
 \toprule
-Configuration & $\lambda/W_{\rm core}$ & T1=0.65 & T1=0.606 & T1=0.701 \\
+Configuration & $\lambda/W_{\rm core}$ & T1=0.65 & T1=0.606 & T1=0.704 \\
               &                       & (phys.\ lower) & (central) & (T1-P meas.) \\
 \midrule
-Long.\ B, $\beta=0.3$ (C7) & 4.74 & \textbf{3.08} & 2.87 & \textbf{3.32} \\
-Long.\ B, $\beta=0.5$ (C7) & 4.31 & 2.80 & 2.61 & \textbf{3.02} \\
+Long.\ B, $\beta=0.3$ (C7) & 4.74 & \textbf{3.08} & 2.87 & \textbf{3.34} \\
+Long.\ B, $\beta=0.5$ (C7) & 4.31 & 2.80 & 2.61 & \textbf{3.03} \\
 Long.\ B, $\beta=1.0$ (C7) & 3.19 & 2.07 & 1.93 & 2.24 \\
 Long.\ B, $\beta=2.0$ (C7) & 2.80 & 1.82 & 1.70 & 1.96 \\
 Long.\ B (calibrated, $\theta=0^\circ$) & 3.70 & 2.41 & 2.24 & 2.59 \\
@@ -1320,14 +1320,14 @@ RC Campaign ($f=2.6$) & 2.65 & 1.72 & 1.61 & 1.86 \\
 \end{tabular}
 \vspace{2pt}
 \footnotesize
-\textbf{Notes}: Bold entries overlap the HGBS window $[2.52, 3.08]$. The T1=0.65 column is the physically motivated lower bound; T1=0.701 is the Campaign T1-P directly measured Plummer-corrected value (Section~\ref{sec:width_correction}; $r_{\rm P/G} = 1.156 \pm 0.041$). At T1=0.701, the $\beta=0.3$ and $\beta=0.5$ longitudinal-field configurations enter the HGBS window. Whether simulations match depends primarily on whether T1 lies near 0.606 (no match) or near 0.701 (match at $\beta \leq 0.5$, longitudinal B).
+\textbf{Notes}: Bold entries overlap the HGBS window $[2.52, 3.08]$. The T1=0.65 column is the physically motivated lower bound; T1=0.704 is the Campaign T1-P directly measured Plummer-corrected value (Section~\ref{sec:width_correction}; $r_{\rm P/G} = 1.161 \pm 0.043$). At T1=0.704, the $\beta=0.3$ and $\beta=0.5$ longitudinal-field configurations enter the HGBS window. Whether simulations match depends primarily on whether T1 lies near 0.606 (no match) or near 0.704 (match at $\beta \leq 0.5$, longitudinal B).
 \end{table}
 
 For longitudinal fields, Campaign~7 gives $\lambda/W_{\rm core} = 2.80 \pm 0.14$
 ($\beta = 2.0$) to $4.74 \pm 0.73$ ($\beta = 0.3$). After T1 correction (central
 value 0.606), these become $\lambda/W_{\rm fil} = 1.70$--$2.87$---none within the
-HGBS window. At the Campaign T1-P measured value $T1 = 0.701$, $\lambda/W_{\rm fil} =
-1.96$--$3.32$, bringing $\beta \leq 0.5$ into the HGBS window. Perpendicular-field results ($\lambda/W_{\rm core} \approx 1.25$; $\lambda/W_{\rm fil} \approx 0.76$ at T1$=0.606$; $0.88$ at T1$=0.701$) are far below observations regardless of T1.
+HGBS window. At the Campaign T1-P measured value $T1 = 0.704$, $\lambda/W_{\rm fil} =
+$1.96$--$3.34$, bringing $\beta \leq 0.5$ into the HGBS window. Perpendicular-field results ($\lambda/W_{\rm core} \approx 1.25$; $\lambda/W_{\rm fil} \approx 0.76$ at T1$=0.606$; $0.88$ at T1$=0.704$) are far below observations regardless of T1.
 The field geometry dependence transforms the question from ``why are observed spacings
 shorter than theory?'' to a multi-parameter problem requiring simultaneous constraints
 on $\beta$, field geometry, and T1.
@@ -1360,10 +1360,10 @@ collapsing cores. At the densities and field strengths characteristic of HGBS fi
 10^{-3}$~pc (two orders of magnitude below $W_{\rm fil}$), so Hall drift does not affect
 the large-scale $\lambda/W$ ratio studied here \citep{Nakamura2008}.
 
-\textbf{T1 correction}: Campaign T1-P (Section~\ref{sec:width_correction}) has now directly measured the Plummer/Gaussian FWHM ratio from HDF5 density profiles: $r_{\rm P/G} = 1.156 \pm 0.041$ (8 simulations at $f=1.0$, $\beta = 0.5$--$2.0$), giving $T1_{\rm Plummer} = 0.701 \pm 0.05$. This quantifies the previously unquantified systematic and confirms that the Plummer-corrected T1 is 16\% above the central value $0.606$. The T1 correction ($0.606 \pm 0.072$) still needs validation with the full HGBS Plummer-fitting pipeline, but Campaign T1-P narrows the uncertainty on the correction factor from the semi-analytic range $1.15$--$1.25$ to $1.156 \pm 0.041$ (a factor of $3\times$ improvement in precision).
+\textbf{T1 correction}: Campaign T1-P (Section~\ref{sec:width_correction}) has now directly measured the Plummer/Gaussian FWHM ratio from HDF5 density profiles: $r_{\rm P/G} = 1.161 \pm 0.043$ (all 9 $f = 1.0$ simulations, $\beta = 0.5$--$2.0$), giving $T1_{\rm Plummer} = 0.704 \pm 0.05$. This quantifies the previously unquantified systematic and confirms that the Plummer-corrected T1 is 16\% above the central value $0.606$. The T1 correction ($0.606 \pm 0.072$) still needs validation with the full HGBS Plummer-fitting pipeline, but Campaign T1-P narrows the uncertainty on the correction factor from the semi-analytic range $1.15$--$1.25$ to $1.161 \pm 0.043$ (a factor of $3\times$ improvement in precision).
 
 \textbf{$\lambda/W$ for oblique fields --- Campaign~A preliminary results}: Campaign~3 (108 simulations at $\theta = 30^\circ$, $45^\circ$, $60^\circ$) measured fragmentation
-\textit{timescales} but not spacings, because HDF5 snapshots were not retained. Table~\ref{tab:oblique_theory} provides theoretical predictions from the full numerical solution of the \citet{Nakamura1993} dispersion relation for representative $(\theta, \beta)$ combinations. The theoretical $\lambda/W(\theta)$ is monotonically decreasing from $\theta=0^\circ$ to $\theta=90^\circ$; for Planck-typical inclinations ($\theta \approx 60^\circ$--$80^\circ$), the predicted $\lambda/W$ lies in the range $1.8$--$2.5$ (at $\beta=1$), intermediate between the longitudinal and perpendicular limits. Campaign~A (27 near-critical oblique simulations at $f = 1.0$, described in Section~\ref{sec:theo_geom}) has provided the first direct simulation measurements of $\lambda/W(\theta)$: for $\theta = 30^\circ$, $\lambda/W_{\rm sim} = 1.89 \pm 0.27$ (6 sims with valid measurements), corresponding to observable $(\lambda/W)_{\rm obs} = 1.32 \pm 0.19$ (with $T1 = 0.701$)---below the HGBS window $[2.52, 3.08]$. The $\theta = 45^\circ$ and $\theta = 60^\circ$ batches are in progress; all oblique-field configurations tested so far fall below the HGBS window, consistent with the expectation that near-critical oblique fields cannot produce the observed core spacing without additional physics.
+\textit{timescales} but not spacings, because HDF5 snapshots were not retained. Table~\ref{tab:oblique_theory} provides theoretical predictions from the full numerical solution of the \citet{Nakamura1993} dispersion relation for representative $(\theta, \beta)$ combinations. The theoretical $\lambda/W(\theta)$ is monotonically decreasing from $\theta=0^\circ$ to $\theta=90^\circ$; for Planck-typical inclinations ($\theta \approx 60^\circ$--$80^\circ$), the predicted $\lambda/W$ lies in the range $1.8$--$2.5$ (at $\beta=1$), intermediate between the longitudinal and perpendicular limits. Campaign~A (27 near-critical oblique simulations at $f = 1.0$, described in Section~\ref{sec:theo_geom}) has provided the first direct simulation measurements of $\lambda/W(\theta)$: for $\theta = 30^\circ$, $\lambda/W_{\rm sim} = 1.89 \pm 0.27$ (6 sims with valid measurements), corresponding to observable $(\lambda/W)_{\rm obs} = 1.32 \pm 0.19$ (with $T1 = 0.704$)---below the HGBS window $[2.52, 3.08]$. The $\theta = 45^\circ$ and $\theta = 60^\circ$ batches are in progress; all oblique-field configurations tested so far fall below the HGBS window, consistent with the expectation that near-critical oblique fields cannot produce the observed core spacing without additional physics.
 
 \begin{table}
 \caption{Theoretical $\lambda/W$ for oblique fields from the \citet{Nakamura1993} dispersion relation (full numerical solution), with Campaign~A preliminary simulation results at $\theta=30^\circ$. The $\theta=90^\circ$ theoretical value approaches $4\times W$ (weak axial tension), while the Campaign~6 simulation gives $\lambda/W=1.25$ because those simulations were run at $f=1.5$--$3.0$ (supercritical regime, radial collapse dominant), not at near-critical conditions. The correct comparison for field-geometry effects at fixed $f\approx 1$ is with the theoretical values shown here.}
@@ -1380,10 +1380,10 @@ $60^\circ$ & 1.47 & 1.90 & 2.46 & Theoretical & in progress \\
 $90^\circ$ (perp., theory) & 3.95 & 3.99 & 4.00 & Theory only (sim.\ at $f=1.5$--$3.0$ gives 1.25) & --- \\
 \bottomrule
 \end{tabular}
-\\ \footnotesize \textbf{Note}: All values in $\lambda/W_{\rm sim}$ (simulation) units; multiply by $T1 = 0.606$ for observable ($\lambda/W_{\rm fil}$) units, or by $T1 = 0.701$ (Campaign T1-P measured value) for Plummer-corrected observable units. $^\dagger$~Campaign~A preliminary value: $\lambda/W_{\rm sim} = 1.89 \pm 0.27$ (6/9 sims, $\theta=30^\circ$, $t = 0.10\,t_{\rm J}$; $n_{\rm peaks}=2$; early-stage fragmentation, later snapshots pending).
+\\ \footnotesize \textbf{Note}: All values in $\lambda/W_{\rm sim}$ (simulation) units; multiply by $T1 = 0.606$ for observable ($\lambda/W_{\rm fil}$) units, or by $T1 = 0.704$ (Campaign T1-P measured value) for Plummer-corrected observable units. $^\dagger$~Campaign~A preliminary value: $\lambda/W_{\rm sim} = 1.89 \pm 0.27$ (6/9 sims, $\theta=30^\circ$, $t = 0.10\,t_{\rm J}$; $n_{\rm peaks}=2$; early-stage fragmentation, later snapshots pending).
 \end{table}
 
-\textbf{Future priorities}: (1) Fibre-resolved core spacing in additional HGBS regions beyond Orion~B (Aquila, Perseus, Taurus); (2) polarimetric interior mapping to constrain filament-scale field geometry; (3) completion of Campaign~A ($\theta = 45^\circ$, $60^\circ$ batches in progress) and confirmation of the preliminary $\theta=30^\circ$ $\lambda/W_{\rm sim} = 1.89$ result with later-epoch HDF5 snapshots (Section~\ref{sec:theo_geom}); (4) completion of the T1-P $f=1.2$ batch (9 simulations) to confirm $f$-independence of $r_{\rm P/G} = 1.156 \pm 0.041$; (5) an age-gradient test of the observational-lag scenario: if core spacing is set at formation, older YSO populations should show systematically different $\lambda/W$ at fixed current $f$.
+\textbf{Future priorities}: (1) Fibre-resolved core spacing in additional HGBS regions beyond Orion~B (Aquila, Perseus, Taurus); (2) polarimetric interior mapping to constrain filament-scale field geometry; (3) completion of Campaign~A ($\theta = 45^\circ$, $60^\circ$ batches in progress) and confirmation of the preliminary $\theta=30^\circ$ $\lambda/W_{\rm sim} = 1.89$ result with later-epoch HDF5 snapshots (Section~\ref{sec:theo_geom}); (4) completion of the T1-P $f=1.2$ batch (9 simulations) to confirm $f$-independence of $r_{\rm P/G} = 1.161 \pm 0.043$; (5) an age-gradient test of the observational-lag scenario: if core spacing is set at formation, older YSO populations should show systematically different $\lambda/W$ at fixed current $f$.
 
 \section{CONCLUSIONS}
 
@@ -1391,7 +1391,7 @@ We have analysed core spacing in all 8 high-confidence HGBS regions and conducte
 1959 self-gravitating MHD simulations. \textbf{Important caveat}: throughout this
 paper, the statement ``no simulation configuration matches the HGBS observational
 window'' is conditional on the T1 width-normalisation correction taking its central
-measured value of $W_{\rm form}/W_{\rm fil} = 0.606$. Campaign T1-P (Section~\ref{sec:width_correction}) has now directly measured the Plummer/Gaussian FWHM ratio from HDF5 profiles: $r_{\rm P/G} = 1.156 \pm 0.041$, giving a Plummer-corrected $T1_{\rm Plummer} = 0.701 \pm 0.05$---consistent with the semi-analytic estimate. At $T1 = 0.701$, the longitudinal-field $\beta = 0.5$ simulation enters the observational window ($4.31 \times 0.701 = 3.02$). All
+measured value of $W_{\rm form}/W_{\rm fil} = 0.606$. Campaign T1-P (Section~\ref{sec:width_correction}) has now directly measured the Plummer/Gaussian FWHM ratio from HDF5 profiles: $r_{\rm P/G} = 1.161 \pm 0.043$, giving a Plummer-corrected $T1_{\rm Plummer} = 0.704 \pm 0.05$---consistent with the semi-analytic estimate. At $T1 = 0.704$, the longitudinal-field $\beta = 0.5$ simulation enters the observational window ($4.31 \times 0.704 = 3.03$). All
 simulation-to-observation comparisons should be read with this conditionality in mind.
 Our main conclusions are:
 
@@ -1422,8 +1422,8 @@ Our main conclusions are:
     field geometry, inconsistent with Planck polarimetry ($\sim$90\% of filaments
     are perpendicular to the mean field). At the central T1 $= 0.606$, no simulation
     configuration matches the HGBS window in observable units; at the Campaign T1-P measured
-    value T1 $= 0.701 \pm 0.05$, the longitudinal-field $\beta = 0.5$ configuration
-    enters the window ($\lambda/W_{\rm obs} = 3.02$; see Table~\ref{tab:t1_budget}).
+    value T1 $= 0.704 \pm 0.05$, the longitudinal-field $\beta = 0.5$ configuration
+    enters the window ($\lambda/W_{\rm obs} = 3.03$; see Table~\ref{tab:t1_budget}).
 
     \item \textbf{Field geometry}: A first-order parameter. Perpendicular-field
     filaments produce $\lambda/W \approx 1.25$; longitudinal-field filaments give
