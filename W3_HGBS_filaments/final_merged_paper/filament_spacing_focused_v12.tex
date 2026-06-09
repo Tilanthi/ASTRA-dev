@@ -27,11 +27,11 @@ filaments using Gaia DR3 distances, combined with 2013 self-gravitating MHD simu
 Four robust regions give $\lambda/W = 2.84 \pm 0.12$ ($0.284 \pm 0.012$~pc); the full
 8-region sample (5,069 cores) gives $\lambda/W = 2.79 \pm 0.09$. After 3D projection
 correction, the inferred spacing is ${\sim}3.5\times W$, within 15\% of the classical
-$4\times$ prediction \citep{Inutsuka1992}. Gaia DR3 distances increased the mean by 32\%.
+$4\times$ prediction \citep{Inutsuka1992}.
 
 Hierarchical fragmentation is the most plausible explanation: fibre-level spacing in
 Orion~B recovers the $4\times$ prediction \citep{Yang2024}, while filament-level measurements
-show sub-Jeans values consistent with projection across fibre bundles.
+show sub-Jeans values consistent with fibre-bundle projection.
 Magnetic tension for longitudinal fields ($\beta = 1$--$3$) predicts $\lambda/W = 2.44$--$3.16$,
 overlapping observations, but requires predominantly longitudinal geometry inconsistent with
 Planck polarimetry \citep{Planck2016}. Field geometry is first-order: perpendicular-field
@@ -1332,8 +1332,7 @@ RC Campaign ($f=2.6$) & 2.65 & 1.72 & 1.61 & 1.87 \\
 For longitudinal fields, Campaign~7 gives $\lambda/W_{\rm core} = 2.80 \pm 0.14$
 ($\beta = 2.0$) to $4.74 \pm 0.73$ ($\beta = 0.3$). After T1 correction (central
 value 0.606), these become $\lambda/W_{\rm fil} = 1.70$--$2.87$---none within the
-HGBS window. At the Campaign T1-P measured value $T1 = 0.707$, $\lambda/W_{\rm fil} =
-$1.98$--$3.35$: both $\beta=0.5$ ($3.10$) and $\beta=0.3$ ($3.35$) marginally exceed the HGBS window upper bound, consistent with the window within the combined T1 and observational uncertainties. Perpendicular-field results ($\lambda/W_{\rm core} \approx 1.25$; $\lambda/W_{\rm fil} \approx 0.76$ at T1$=0.606$; $0.88$ at T1$=0.707$) are far below observations regardless of T1.
+HGBS window. At the Campaign T1-P measured value $T1 = 0.707$, $\lambda/W_{\rm fil} = 1.98$--$3.35$: both $\beta=0.5$ ($3.10$) and $\beta=0.3$ ($3.35$) marginally exceed the HGBS window upper bound, consistent with the window within the combined T1 and observational uncertainties. Perpendicular-field results ($\lambda/W_{\rm core} \approx 1.25$; $\lambda/W_{\rm fil} \approx 0.76$ at T1$=0.606$; $0.88$ at T1$=0.707$) are far below observations regardless of T1.
 The field geometry dependence transforms the question from ``why are observed spacings
 shorter than theory?'' to a multi-parameter problem requiring simultaneous constraints
 on $\beta$, field geometry, and T1.
@@ -1389,7 +1388,7 @@ $90^\circ$ (perp., theory) & 3.95 & 3.99 & 4.00 & Theory only (sim.\ at $f=1.5$-
 \\ \footnotesize \textbf{Note}: All values in $\lambda/W_{\rm sim}$ (simulation) units; multiply by $T1 = 0.606$ for observable ($\lambda/W_{\rm fil}$) units, or by $T1 = 0.707$ (Campaign T1-P measured value) for Plummer-corrected observable units. $^\dagger$~Campaign~A preliminary value: $\lambda/W_{\rm sim} = 1.89 \pm 0.27$ (6/9 sims, $\theta=30^\circ$, $t = 0.10\,t_{\rm J}$; $n_{\rm peaks}=2$; early-stage fragmentation, later snapshots pending).
 \end{table}
 
-\textbf{Future priorities}: (1) Fibre-resolved core spacing in additional HGBS regions beyond Orion~B (Aquila, Perseus, Taurus); (2) polarimetric interior mapping to constrain filament-scale field geometry; (3) completion of Campaign~A ($\theta = 45^\circ$, $60^\circ$ batches in progress) and confirmation of the preliminary $\theta=30^\circ$ $\lambda/W_{\rm sim} = 1.89$ result with later-epoch HDF5 snapshots (Section~\ref{sec:theo_geom}); (4) all 18 T1-P simulations are now complete ($r_{\rm P/G} = 1.166 \pm 0.037$, T1$_{\rm Plummer} = 0.707 \pm 0.04$; $f$-independence confirmed at $\beta=0.5$: $1.133 \pm 0.030$, $\beta=1.0$: $1.182 \pm 0.006$, $\beta=2.0$: $1.200 \pm 0.009$); (5) recompilation of the Athena++ binary with non-isothermal EOS to properly test whether fragmentation persists at $\gamma = 1.1$--$1.5$ (Campaign EOS-G was run with the isothermal binary; see Section~\ref{sec:validation}); and (6) an age-gradient test of the observational-lag scenario: if core spacing is set at formation, older YSO populations should show systematically different $\lambda/W$ at fixed current $f$.
+\textbf{Future priorities}: (1) Fibre-resolved core spacing in additional HGBS regions beyond Orion~B (Aquila, Perseus, Taurus); (2) polarimetric interior mapping to constrain filament-scale field geometry; (3) completion of Campaign~A ($\theta = 45^\circ$, $60^\circ$ batches in progress) and confirmation of the preliminary $\theta=30^\circ$ $\lambda/W_{\rm sim} = 1.89$ result with later-epoch HDF5 snapshots (Section~\ref{sec:theo_geom}); (4) pipeline validation of the T1-P Plummer correction by applying the full HGBS Plummer-fitting pipeline to simulated column density maps (Campaign T1-P is now complete, yielding $r_{\rm P/G} = 1.166 \pm 0.037$, $T1_{\rm Plummer} = 0.707 \pm 0.04$, with $f$-independence confirmed; Section~\ref{sec:width_correction}); the remaining open step is direct application of the observational Plummer pipeline to verify $r_{\rm P/G}$ at HGBS-representative distances; (5) recompilation of the Athena++ binary with non-isothermal EOS to properly test whether fragmentation persists at $\gamma = 1.1$--$1.5$ (Campaign EOS-G was run with the isothermal binary; see Section~\ref{sec:validation}); and (6) an age-gradient test of the observational-lag scenario: if core spacing is set at formation, older YSO populations should show systematically different $\lambda/W$ at fixed current $f$.
 
 \section{CONCLUSIONS}
 
@@ -1462,7 +1461,7 @@ Our main conclusions are:
     filaments is the single most decisive test to distinguish hierarchical from magnetic
     tension explanations.
 
-    \item \textbf{Synthesis}: The combination of Gaia DR3 distance corrections (32\% increase in spacing) and 3D projection correction ($\times$1.10--1.27) reduces the apparent discrepancy from IM92 to ${\sim}1\sigma$. Hierarchical fibre fragmentation is the most physically consistent explanation; the magnetic tension mechanism requires T1 $\approx 0.707$ (directly measured by Campaign T1-P: $r_{\rm P/G} = 1.166 \pm 0.037$, all 18 simulations) and predominantly longitudinal fields to match observations.
+    \item \textbf{Synthesis}: The combination of Gaia DR3 distance corrections (32\% increase in spacing) and 3D projection correction ($\times$1.10--1.27) reduces the apparent discrepancy from IM92 to ${\sim}1\sigma$. Hierarchical fibre fragmentation is the most physically consistent explanation; the magnetic tension mechanism requires T1 $\approx 0.707$ (directly measured by Campaign T1-P: $r_{\rm P/G} = 1.166 \pm 0.037$, all 18 simulations) and predominantly longitudinal fields to place the low-$\beta$ configuration at the upper boundary of the observational window (Table~\ref{tab:t1_budget}).
 
 \end{itemize}
 
