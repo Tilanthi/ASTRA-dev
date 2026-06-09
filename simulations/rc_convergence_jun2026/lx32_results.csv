@@ -1,0 +1,4 @@
+sim_id,Lx,seed,lW,n_peaks,hgbs_match,kill,wall_s,max_contrast_t0.05
+Lx32p_f2.6_b1.0_s1,32.0,1,,0,False,DT_COLLAPSE@t=0.056,1761,3.01
+Lx32p_f2.6_b1.0_s2,32.0,2,,0,False,DT_COLLAPSE@t=0.056,1822,3.05
+Lx32p_f2.6_b1.0_s3,32.0,3,,0,False,DT_COLLAPSE@t=0.056,2402,3.10
