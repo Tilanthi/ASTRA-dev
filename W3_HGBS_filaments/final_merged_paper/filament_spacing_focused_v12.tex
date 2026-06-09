@@ -458,7 +458,7 @@ multiplied by 0.606 when comparing with observed $\lambda/W_{\rm fil}$:
 \left(\frac{\lambda}{W}\right)_{\rm obs} = 0.606 \times \left(\frac{\lambda}{W}\right)_{\rm sim}
 \label{eq:t1_apply}
 \end{equation}
-This is the dominant systematic for simulation-to-observation comparisons. A semi-analytic comparison constrains this offset: for a Plummer-2 column density profile $N(x) \propto [1 + (x/R_{\rm flat})^2]^{-1/2}$ (the standard HGBS model; \citealt{Arzoumanian2011}) PSF-convolved at representative HGBS distances, the FWHM from a best-fit Gaussian systematically exceeds the FWHM from a best-fit Plummer model by a factor of $1.15$--$1.25$ (for $R_{\rm flat} = 0.03$--$0.06$~pc and beam FWHM $= 0.012$--$0.040$~pc). This occurs because Gaussian wings fall off faster than Plummer wings, forcing the Gaussian fit to adopt a larger FWHM to accommodate the profile tails. Campaign T1-P (18 direct simulations; Section~\ref{sec:width_correction}) provides a direct measurement of the Gaussian/Plummer ratio from HDF5 density profiles at the fragmentation epoch: $r_{\rm P/G} = 1.154 \pm 0.039$ (12 completed simulations: all 9 $f = 1.0$ at $\beta = 0.5$--$2.0$ plus the first 3 $f = 1.2$ at $\beta = 0.5$; $f$-independence confirmed, $r_{\rm P/G}^{f=1.2,\beta=0.5} = 1.133 \pm 0.030$). Propagating this to the T1 correction: $T1_{\rm Plummer} = 0.606 \times 1.154 = 0.699 \pm 0.05$ (where $1.154 \pm 0.039$ is the directly measured Gaussian/Plummer FWHM ratio from Campaign T1-P; the semi-analytic estimate was $1.20 \pm 0.05$). At $T1 = 0.699$, the longitudinal-field $\beta = 0.3$ configuration gives $\lambda/W_{\rm fil} = 4.74 \times 0.699 = 3.31$, and $\beta = 0.5$ gives $4.31 \times 0.699 = 3.01$---both entering or marginally exceeding the HGBS window $[2.52, 3.08]$. The directly measured T1-P result confirms the T1 asymmetry argument and shifts the realistic range to $T1 \approx 0.65$--$0.75$ (central $0.699 \pm 0.05$).
+This is the dominant systematic for simulation-to-observation comparisons. A semi-analytic comparison constrains this offset: for a Plummer-2 column density profile $N(x) \propto [1 + (x/R_{\rm flat})^2]^{-1/2}$ (the standard HGBS model; \citealt{Arzoumanian2011}) PSF-convolved at representative HGBS distances, the FWHM from a best-fit Gaussian systematically exceeds the FWHM from a best-fit Plummer model by a factor of $1.15$--$1.25$ (for $R_{\rm flat} = 0.03$--$0.06$~pc and beam FWHM $= 0.012$--$0.040$~pc). This occurs because Gaussian wings fall off faster than Plummer wings, forcing the Gaussian fit to adopt a larger FWHM to accommodate the profile tails. Campaign T1-P (18 direct simulations; Section~\ref{sec:width_correction}) provides a direct measurement of the Gaussian/Plummer ratio from HDF5 density profiles at the fragmentation epoch: $r_{\rm P/G} = 1.154 \pm 0.039$ (12 completed simulations: all 9 $f = 1.0$ at $\beta = 0.5$--$2.0$ plus the first 3 $f = 1.2$ at $\beta = 0.5$; $f$-independence confirmed, $r_{\rm P/G}^{f=1.2,\beta=0.5} = 1.133 \pm 0.030$). Propagating this to the T1 correction: $T1_{\rm Plummer} = 0.606 \times 1.154 = 0.699 \pm 0.05$ (where $1.154 \pm 0.039$ is the directly measured Gaussian/Plummer FWHM ratio from Campaign T1-P; the semi-analytic estimate was $1.20 \pm 0.05$). At $T1 = 0.699$, the longitudinal-field $\beta = 0.3$ configuration gives $\lambda/W_{\rm fil} = 4.74 \times 0.699 = 3.31$, and $\beta = 0.5$ gives $4.38 \times 0.699 = 3.06$---both entering or marginally exceeding the HGBS window $[2.52, 3.08]$. The directly measured T1-P result confirms the T1 asymmetry argument and shifts the realistic range to $T1 \approx 0.65$--$0.75$ (central $0.699 \pm 0.05$).
 
 Table~\ref{tab:t1_regions} provides per-region estimates of the Plummer/Gaussian FWHM ratio $r_{\rm P/G}$, derived by applying both fitting procedures to a synthetic Plummer-2 column density profile convolved with the HGBS 18$''$ beam at each region's distance.
 
@@ -1063,7 +1063,7 @@ measuring whether a discontinuity exists at $f = 1.0$.
     $\lambda/W_{\rm core} = 4.74 \pm 0.73$ ($\beta = 0.3$), $4.38 \pm 0.59$ ($\beta = 0.5$),
     $3.19 \pm 0.29$ ($\beta = 1.0$), $2.86 \pm 0.18$ ($\beta = 1.5$),
     $2.80 \pm 0.14$ ($\beta = 2.0$).
-    \item At T1$=0.606$: no match (even $\beta=2.0$ gives $\lambda/W_{\rm fil}=1.70$). At T1$=0.699$ (Campaign T1-P directly measured value): $\beta \leq 0.5$ enters the HGBS window $[2.52, 3.08]$ ($\beta=0.3$: 3.31; $\beta=0.5$: 3.01; Table~\ref{tab:t1_budget}).
+    \item At T1$=0.606$: no match (even $\beta=2.0$ gives $\lambda/W_{\rm fil}=1.70$). At T1$=0.699$ (Campaign T1-P directly measured value): $\beta=0.5$ enters the HGBS window $[2.52, 3.08]$ ($3.06$; $\beta=0.3$ marginally exceeds: $3.31$; Table~\ref{tab:t1_budget}).
 \end{itemize}
 
 \begin{figure*}
@@ -1072,7 +1072,7 @@ measuring whether a discontinuity exists at $f = 1.0$.
 for five $\beta$ values, showing smooth behaviour with no discontinuity at $f = 1.0$.
 Right: mean $\lambda/W_{\rm core}$ per $\beta$ (simulation units, left axis) and
 T1-corrected $\lambda/W_{\rm fil}$ (right axis). Green shading = HGBS window $[2.52, 3.08]$
-in simulation units; after T1 correction all values fall below.}
+in simulation units; at the central T1$=0.606$ all values fall below; at Campaign T1-P measured T1$=0.699$, the $\beta=0.5$ configuration enters the window ($3.06$; $\beta=0.3$ marginally exceeds at $3.31$).}
 \label{fig:C7_critical}
 \end{figure*}
 
@@ -1094,7 +1094,7 @@ for longitudinal B but negligible for perpendicular B ($\beta \geq 1.0$).
 \toprule
 Field Geometry & $\beta = 0.3$ & $\beta = 0.5$ & $\beta = 1.0$ & $\beta = 1.5$ & $\beta = 2.0$ & Trend & $\lambda/W_{\rm fil}^{b}$ \\
 \midrule
-Longitudinal B ($\theta = 0^\circ$) & $4.74 \pm 0.73$ & $4.31 \pm 0.60$ & $3.11 \pm 0.23$ & $2.86 \pm 0.18$ & $2.80 \pm 0.14$ & Strong $\beta$-dep.\ & 1.70 \\
+Longitudinal B ($\theta = 0^\circ$) & $4.74 \pm 0.73$ & $4.38 \pm 0.59$ & $3.19 \pm 0.29$ & $2.86 \pm 0.18$ & $2.80 \pm 0.14$ & Strong $\beta$-dep.\ & 1.70 \\
 Perpendicular B ($\theta = 90^\circ$) & FLAT\textsuperscript{a} & FLAT\textsuperscript{a} & $1.25 \pm 0.09$ & $1.25 \pm 0.09$ & $1.25 \pm 0.09$ & Geometry dominates & 0.76 \\
 \midrule
 HGBS observational window ($\lambda/W_{\rm fil}$) & \multicolumn{5}{c}{$[2.52, 3.08]$} & Reference & [2.52, 3.08] \\
@@ -1103,7 +1103,7 @@ HGBS observational window ($\lambda/W_{\rm fil}$) & \multicolumn{5}{c}{$[2.52, 3
 \\[2pt]
 \footnotesize
 \textsuperscript{a}FLAT = no axial fragmentation, pure radial collapse. \hspace{1em}
-\textsuperscript{b}T1-corrected observable value using central T1 = 0.606. \textbf{No configuration matches the HGBS window at T1 = 0.606; at the Campaign T1-P measured value T1 $= 0.699$, the longitudinal-field $\beta \leq 0.5$ configurations enter the window (see Table~\ref{tab:t1_budget}).}
+\textsuperscript{b}T1-corrected observable value using central T1 = 0.606. \textbf{No configuration matches the HGBS window at T1 = 0.606; at the Campaign T1-P measured value T1 $= 0.699$, the longitudinal-field $\beta=0.5$ configuration enters the window ($\lambda/W_{\rm obs}=3.06$; $\beta=0.3$ marginally exceeds at 3.31; see Table~\ref{tab:t1_budget}).}
 \end{table*}
 
 \begin{table}
@@ -1163,8 +1163,7 @@ longitudinal B ($\theta = 0^\circ$), $\mathcal{M} = 1.0$.
     \item \textbf{Sharp transition} at $\Delta f \approx 0.4$ ($f \approx 2.4$--$2.6$).
 \end{itemize}
 
-After T1 correction: $\lambda/W_{\rm fil} = 2.65 \times 0.606 = 1.61$ at $f = 2.6$
-and $= 1.60$ at $f = 3.0$---below the HGBS window, consistent with periodic-BC findings.
+After T1 correction: $\lambda/W_{\rm fil} = 2.65 \times 0.606 = 1.61$ at $f = 2.6$ (central T1); at the Campaign T1-P measured value T1$=0.699$: $2.65 \times 0.699 = 1.85$. Both are below the HGBS window, consistent with periodic-BC findings.
 
 \begin{figure*}
 \includegraphics[width=0.48\textwidth]{figures/fig_RC_lW_vs_f.pdf}
@@ -1240,8 +1239,8 @@ marks the HGBS window $[2.52, 3.08]$.}
 \label{fig:RC_convergence}
 \end{figure}
 
-\textbf{Physical interpretation}: In periodic-BC simulations, translational invariance
-forces uniform radial collapse with no preferred fragmentation wavelength. Reflecting
+\textbf{Physical interpretation}: In supercritical ($f \gtrsim 1.5$) periodic-BC simulations, translational invariance
+suppresses the preferential fragmentation wavelength, driving radial collapse instead of longitudinal beading. (Near-critical periodic-BC filaments at $f \lesssim 1.2$ do produce longitudinal beading; Campaign~7 measures these.) Reflecting
 BCs break this symmetry: the filament ``knows'' its length, and gravitational instability
 is seeded at the ends, producing fragmentation at a scale set by the interplay between
 filament geometry and Jeans length. At $f \geq 2.6$, self-gravity dominates, converging
@@ -1271,10 +1270,10 @@ near-critical beading results and the Yang et al.\ (2024) Orion B fibre-to-core 
 (ii) \textit{Finite-length turbulent seeding}: Turbulent velocity fields in finite
 filaments seed density maxima at characteristic scales. Our Rigid Cylinder Campaign
 (Section~\ref{sec:rigidcyl}) shows that end effects can reduce spacings toward the HGBS window at $f \geq 2.6$ (as upper limits). The completed $L_x = 32$ test (Section~\ref{sec:rigidcyl}) shows single global collapse rather than multi-peak beading, confirming these are not box-size converged. However, applying the T1 correction to the
-RC results gives $\lambda/W_{\rm fil} = 2.65 \times 0.606 = 1.61$ at $f = 2.6$---below
+RC results gives $\lambda/W_{\rm fil} = 2.65 \times 0.606 = 1.61$ at $f = 2.6$ (central T1$=0.606$)
+or $2.65 \times 0.699 = 1.85$ (Campaign T1-P measured T1$=0.699$)---both below
 the HGBS window $[2.52, 3.08]$. The RC results therefore illustrate that finite-length
-effects can reduce the fragmentation spacing, but the T1 correction remains the critical
-unknown that prevents a definitive match.
+effects can reduce the fragmentation spacing, but the T1 correction (even at the Plummer-corrected value) is insufficient to bring RC results into the window.
 
 \textbf{Physical interpretation of reflecting boundary conditions}: Real HGBS filaments
 are not infinite cylinders; they have finite lengths (aspect ratios $5:1$--$20:1$;
@@ -1316,7 +1315,7 @@ Configuration & $\lambda/W_{\rm core}$ & T1=0.65 & T1=0.606 & T1=0.699 \\
               &                       & (phys.\ lower) & (central) & (T1-P meas.) \\
 \midrule
 Long.\ B, $\beta=0.3$ (C7) & 4.74 & \textbf{3.08} & 2.87 & \textbf{3.31} \\
-Long.\ B, $\beta=0.5$ (C7) & 4.31 & 2.80 & 2.61 & \textbf{3.01} \\
+Long.\ B, $\beta=0.5$ (C7) & 4.38 & 2.85 & 2.65 & \textbf{3.06} \\
 Long.\ B, $\beta=1.0$ (C7) & 3.19 & 2.07 & 1.93 & 2.23 \\
 Long.\ B, $\beta=2.0$ (C7) & 2.80 & 1.82 & 1.70 & 1.96 \\
 Long.\ B (calibrated, $\theta=0^\circ$) & 3.70 & 2.41 & 2.24 & 2.59 \\
@@ -1328,14 +1327,14 @@ RC Campaign ($f=2.6$) & 2.65 & 1.72 & 1.61 & 1.85 \\
 \end{tabular}
 \vspace{2pt}
 \footnotesize
-\textbf{Notes}: Bold entries overlap the HGBS window $[2.52, 3.08]$. The T1=0.65 column is the physically motivated lower bound; T1=0.699 is the Campaign T1-P directly measured Plummer-corrected value (Section~\ref{sec:width_correction}; $r_{\rm P/G} = 1.154 \pm 0.039$). At T1=0.699, the $\beta=0.3$ and $\beta=0.5$ longitudinal-field configurations enter the HGBS window. Whether simulations match depends primarily on whether T1 lies near 0.606 (no match) or near 0.699 (match at $\beta \leq 0.5$, longitudinal B).
+\textbf{Notes}: Bold entries overlap or closely approach the HGBS window $[2.52, 3.08]$. The T1=0.65 column is the physically motivated lower bound; T1=0.699 is the Campaign T1-P directly measured Plummer-corrected value (Section~\ref{sec:width_correction}; $r_{\rm P/G} = 1.154 \pm 0.039$). At T1=0.699, the $\beta=0.5$ longitudinal-field configuration enters the HGBS window ($3.06$); the $\beta=0.3$ configuration ($3.31$) marginally exceeds the upper bound. Whether simulations match depends primarily on whether T1 lies near 0.606 (no match) or near 0.699 (match at $\beta=0.5$; $\beta=0.3$ marginally above window).
 \end{table}
 
 For longitudinal fields, Campaign~7 gives $\lambda/W_{\rm core} = 2.80 \pm 0.14$
 ($\beta = 2.0$) to $4.74 \pm 0.73$ ($\beta = 0.3$). After T1 correction (central
 value 0.606), these become $\lambda/W_{\rm fil} = 1.70$--$2.87$---none within the
 HGBS window. At the Campaign T1-P measured value $T1 = 0.699$, $\lambda/W_{\rm fil} =
-$1.96$--$3.31$, bringing $\beta \leq 0.5$ into the HGBS window. Perpendicular-field results ($\lambda/W_{\rm core} \approx 1.25$; $\lambda/W_{\rm fil} \approx 0.76$ at T1$=0.606$; $0.87$ at T1$=0.699$) are far below observations regardless of T1.
+$1.96$--$3.31$: $\beta=0.5$ enters the HGBS window ($3.06$) while $\beta=0.3$ marginally exceeds it ($3.31$). Perpendicular-field results ($\lambda/W_{\rm core} \approx 1.25$; $\lambda/W_{\rm fil} \approx 0.76$ at T1$=0.606$; $0.87$ at T1$=0.699$) are far below observations regardless of T1.
 The field geometry dependence transforms the question from ``why are observed spacings
 shorter than theory?'' to a multi-parameter problem requiring simultaneous constraints
 on $\beta$, field geometry, and T1.
@@ -1399,7 +1398,7 @@ We have analysed core spacing in all 8 high-confidence HGBS regions and conducte
 2013 self-gravitating MHD simulations. \textbf{Important caveat}: throughout this
 paper, the statement ``no simulation configuration matches the HGBS observational
 window'' is conditional on the T1 width-normalisation correction taking its central
-measured value of $W_{\rm form}/W_{\rm fil} = 0.606$. Campaign T1-P (Section~\ref{sec:width_correction}) has now directly measured the Plummer/Gaussian FWHM ratio from HDF5 profiles: $r_{\rm P/G} = 1.154 \pm 0.039$, giving a Plummer-corrected $T1_{\rm Plummer} = 0.699 \pm 0.05$---consistent with the semi-analytic estimate. At $T1 = 0.699$, the longitudinal-field $\beta = 0.5$ simulation enters the observational window ($4.31 \times 0.699 = 3.01$). All
+measured value of $W_{\rm form}/W_{\rm fil} = 0.606$. Campaign T1-P (Section~\ref{sec:width_correction}) has now directly measured the Plummer/Gaussian FWHM ratio from HDF5 profiles: $r_{\rm P/G} = 1.154 \pm 0.039$, giving a Plummer-corrected $T1_{\rm Plummer} = 0.699 \pm 0.05$---consistent with the semi-analytic estimate. At $T1 = 0.699$, the longitudinal-field $\beta = 0.5$ simulation enters the observational window ($4.38 \times 0.699 = 3.06$). All
 simulation-to-observation comparisons should be read with this conditionality in mind.
 Our main conclusions are:
 
@@ -1431,7 +1430,7 @@ Our main conclusions are:
     are perpendicular to the mean field). At the central T1 $= 0.606$, no simulation
     configuration matches the HGBS window in observable units; at the Campaign T1-P measured
     value T1 $= 0.699 \pm 0.05$, the longitudinal-field $\beta = 0.5$ configuration
-    enters the window ($\lambda/W_{\rm obs} = 3.01$; see Table~\ref{tab:t1_budget}).
+    enters the window ($\lambda/W_{\rm obs} = 3.06$; see Table~\ref{tab:t1_budget}).
 
     \item \textbf{Field geometry}: A first-order parameter. Perpendicular-field
     filaments produce $\lambda/W \approx 1.25$; longitudinal-field filaments give
