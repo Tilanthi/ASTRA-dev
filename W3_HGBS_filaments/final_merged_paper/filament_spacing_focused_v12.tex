@@ -318,15 +318,12 @@ gives the Plummer/Gaussian ratio $r_{\rm P/G} = 1.166 \pm 0.037$ ($f$-independen
 hence $T1_{\rm Plummer} = 0.707 \pm 0.04$; at this value, $\beta=0.5$ gives
 $\lambda/W_{\rm fil}=3.10$ (upper HGBS window boundary).
 
-A second independent T1-P run (18 sims, June 2026; identical grid: $f=\{1.0,1.2\}$,
-$\beta=\{0.5,1.0,2.0\}$, 3 seeds) confirms the $<0.5\%$ insensitivity of the width
-ratio to $f$ and $\beta$.  However, these simulations reached rapid radial collapse
-($t \approx 0.15\,t_{\rm J}$, density contrast $\sim$24) before the longitudinal
-fragmentation epoch relevant for T1 measurement; the moment-based widths at that epoch
-reflect the broad infalling envelope rather than the fragmentation-epoch core width.
-T1$_{\rm Plummer} = 0.707 \pm 0.04$ therefore remains the best available estimate.
-HGBS pipeline validation on simulated column density maps (Section~\ref{sec:discussion})
-is the definitive test.
+A second independent T1-P run (18 sims, June 2026; identical grid) confirmed
+$<0.5\%$ insensitivity to $f$ and $\beta$, but rapid radial collapse
+($t \approx 0.15\,t_{\rm J}$, density contrast $\sim$24) occurred before the
+fragmentation epoch, preventing core-width measurement.
+T1$_{\rm Plummer} = 0.707 \pm 0.04$ therefore remains the best available estimate;
+HGBS pipeline validation on simulated column density maps is the definitive test.
 
 \subsection{Magnetic Tension Mechanism}
 
@@ -612,12 +609,11 @@ but the control Campaign~OBL2 ($\delta_0=0.01$) found 27/27 single-core collapse
 confirming a large-amplitude artifact. Campaign~A is withdrawn; \citet{Nakamura1993}
 theoretical predictions (Table~\ref{tab:oblique_theory}) are the best available estimates.
 
-The OBL2 single-core collapses are a domain-size artifact: at $\delta_0=0.01$ only the
-fundamental ($n=1$) mode is seeded, but $\lambda_{\rm frag}/L_x \approx 0.07$--$0.11$
-means the instability scale is $\sim$10$\times$ shorter than the domain, so the filament
-collapses as a single entity before oblique modes grow from noise. Correctly sampling
-oblique fragmentation at this amplitude requires $L_x \lesssim 2$--$3\,\lambda_{\rm J}$,
-which is computationally prohibitive at 512-cell resolution.
+The OBL2 single-core collapses are a domain-size artefact: at $\delta_0=0.01$ the
+instability scale ($\lambda_{\rm frag}/L_x \approx 0.07$--$0.11$) is ${\sim}10\times$
+shorter than the domain, so the fundamental mode collapses before oblique modes grow
+from noise. Correct sampling requires $L_x \lesssim 2$--$3\,\lambda_{\rm J}$,
+computationally prohibitive at 512-cell resolution.
 
 \begin{figure}
 \includegraphics[width=0.5\textwidth]{peer_review_analysis/fig3_oblique_calibration.pdf}
