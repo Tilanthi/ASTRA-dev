@@ -310,7 +310,10 @@ Magnetic tension in a longitudinal field \citep{Nakamura1993} preferentially sta
 \frac{\lambda}{W} \approx \frac{4.0}{\sqrt{1 + 2/\beta}}
 \label{eq:tension}
 \end{equation}
-The perturbative formula (Eq.~\ref{eq:tension}) underestimates the full numerical solution by 2.9--9.1\% (largest at low $\beta$); we use the full numerical solutions tabulated in \citet{Nakamura1993} (their Table~1) throughout. For equipartition fields ($\beta \sim 1$--$3$), the full solution gives $\lambda/W = 2.44$--$3.16$, overlapping the HGBS measurement.
+The approximation underestimates the \citet{Nakamura1993} full numerical solution by
+2.9--9.1\% (largest at low $\beta$); we use the full solution throughout. For equipartition
+fields ($\beta \sim 1$--$3$), this gives $\lambda/W = 2.44$--$3.16$, overlapping the
+HGBS measurement.
 
 \textbf{Geometric challenge}: Magnetic tension requires predominantly longitudinal field
 geometry. However, Planck Collaboration (2016) found that dense filaments tend to be
@@ -325,8 +328,8 @@ fragment into fibres, fibres fragment into cores \citep{Hacar2013, Hacar2018}.
 \citet{Yang2024} analysed Orion~B and found that fibre-to-core spacing recovers the
 classical $4\times$ prediction, while filament-to-core spacing shows sub-Jeans values
 of ${\sim}2$--$3\times$. If HGBS filaments are bundles of multiple velocity-coherent
-fibres each fragmenting at the classical scale, projection and averaging effects across
-the bundle could compress apparent spacings. A simple geometric model illustrates the projection effect quantitatively. If a filament
+fibres each fragmenting at the classical scale, projection effects across the bundle
+compress apparent spacings. If a filament
 of observed width $W_{\rm fil}$ comprises $N_f$ velocity-coherent fibres
 packed side-by-side (each of width $W_{\rm fibre} \approx W_{\rm fil}/N_f$), each fibre
 fragments at the classical scale $\lambda_{\rm fibre} = 4W_{\rm fibre} = 4W_{\rm fil}/N_f$.
@@ -335,8 +338,8 @@ giving $\lambda_{\rm app}/W_{\rm fil} = 4/N_f$. For $N_f = 1.5$: $\lambda/W_{\rm
 for $N_f = 1.4$: $\lambda/W_{\rm fil} = 2.86$---both within the HGBS window $[2.52, 3.08]$.
 The inferred $N_f \approx 1.3$--$1.6$ is consistent with the \citet{Hacar2018} observation
 that Orion~B filaments typically contain 1--3 velocity-coherent fibres.
-This is the most physically consistent interpretation
-but requires fibre-resolved analysis in additional HGBS regions to test quantitatively.
+Fibre-resolved analysis in additional HGBS regions is required to test this
+interpretation quantitatively.
 
 \section{MHD SIMULATIONS}
 
@@ -462,10 +465,9 @@ a robust power law (Figure~\ref{fig:tfrag_combined}):
 \label{eq:powerlaw}
 \end{equation}
 from $t_{\rm frag} \approx 0.371\,t_{\rm J}$ at $f = 1.1$ to $0.251\,t_{\rm J}$ at
-$f = 3.0$ (free-fall predicts $0.50$; we measure $0.39$, 22\% below). Plausibly, flux-frozen
-field amplification ($|B| \propto \rho^{1/2}$) and cylindrical potential deepening each slow
-the collapse by $\Delta\alpha \approx 0.07$ and $0.04$ respectively, summing to the
-observed deviation $0.11$; both effects are $f$-independent and absorbed into the global fit.
+$f = 3.0$ (free-fall predicts exponent $0.50$; we measure $0.39$, 22\% below). The
+reduced exponent likely reflects competing flux-frozen field amplification and cylindrical
+potential deepening, both $f$-independent and absorbed into the global fit.
 
 \textbf{Magnetic field}: Nearly independent of $\beta$ for $\beta \gtrsim 0.5$ ($t_{\rm frag}$ varies by only 7.7\% from $\beta=0.3$ to $\beta=5$). Per-$\beta$ power-law fits give exponents $0.38$--$0.40 \pm 0.01$, consistent with the global $0.39 \pm 0.01$.
 
@@ -476,20 +478,14 @@ profiles yielded zero detections of longitudinal structure in all 654 simulation
 The fractional longitudinal density variation $\sigma(\rho_{x_1})/\langle\rho_{x_1}\rangle
 < 2\times 10^{-4}$ throughout, confirming pure radial collapse.
 
-\textbf{Physical interpretation of the negative result}: The absence of longitudinal
-beading in supercritical filaments is a competition between radial collapse and
-longitudinal Jeans instability. For an infinitely long isothermal cylinder, the
-longitudinal Jeans growth rate is $\omega_J \sim (G\rho_0)^{1/2}$ (timescale
-$\sim t_J$), comparable to the radial free-fall timescale $t_{\rm ff} \sim (G\rho_0)^{-1/2}$.
-For near-critical filaments ($f \approx 1$), the radial collapse is quenched by
-magnetic support, allowing $\sim t_J$ for longitudinal modes to grow. For supercritical
-filaments ($f \geq 1.5$), the measured radial collapse time $t_{\rm frag} \approx
-0.25$--$0.34\,t_J$ is shorter than the longitudinal e-folding time ($\sim 0.4$--$0.6\,t_J$
-for small-amplitude perturbations; \citealt{Nagasawa1987}). Radial collapse
-therefore preempts longitudinal mode growth, and the filament collapses to a
-quasi-uniform cylinder before beading can develop. This is the physical reason
-for the $f \approx 1.2$--$1.5$ critical transition: it is the line-mass above which
-radial collapse is fast enough to suppress longitudinal fragmentation.
+\textbf{Physical interpretation}: The absence of longitudinal beading reflects a competition
+between radial collapse and longitudinal Jeans instability, both with growth timescales
+$\sim t_J = (G\rho_0)^{-1/2}$. For near-critical filaments ($f \approx 1$), magnetic support
+quenches radial collapse, allowing $\sim t_J$ for longitudinal modes to grow. For
+supercritical filaments ($f \geq 1.5$), the measured collapse time $t_{\rm frag} \approx
+0.25$--$0.34\,t_J$ is shorter than the longitudinal e-folding time
+($\sim 0.4$--$0.6\,t_J$; \citealt{Nagasawa1987}), preempting beading. This is why the
+critical transition occurs at $f \approx 1.2$--$1.5$.
 
 \textbf{Theoretical estimate}: From the field-geometry calibration:
 \begin{equation}
