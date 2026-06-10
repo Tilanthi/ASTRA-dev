@@ -242,7 +242,12 @@ CRA      & 0.248 $\pm$ 0.072 & 0.212 & $\sim$0.21 & \citet{Konyves2020} \\
 
 \begin{figure*}
 \includegraphics[width=0.8\textwidth]{figures/figure1_spacing_comparison.pdf}
-\caption{\textbf{Left}: Region-by-region Gaia~DR3 spacing measurements (bootstrap 95\% CI). Horizontal lines: red dashed = weighted mean (0.279~pc); green dotted = 3D-corrected (0.35~pc); grey = IM92 prediction (0.4~pc). \textbf{Right}: Qualitative schematic comparison with literature values (Table~\ref{tab:literature}). \textbf{Warning}: literature values use heterogeneous methods (different statistics, distance assumptions, and pipeline versions) and \emph{should not be compared numerically} with the left panel; the right panel is for orientation only.}
+\caption{\textbf{Left}: Region-by-region Gaia~DR3 spacing measurements (error bars: bootstrap
+95\% CI). Horizontal lines: red dashed = weighted mean ($0.279$~pc); green dotted =
+3D-corrected ($0.35$~pc); grey = IM92 prediction ($0.4$~pc). \textbf{Right}: Qualitative
+comparison with literature values (Table~\ref{tab:literature}). \textbf{Note}: literature
+values use heterogeneous methods (different statistics, distance assumptions, pipeline
+versions) and should not be compared numerically with the left panel.}
 \label{fig:spacing}
 \end{figure*}
 
@@ -373,9 +378,9 @@ by Campaigns 1 and 7) or $\beta > 1.3$.
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig1_pfrag_heatmaps.pdf}
-\caption{DTC: $P_{\rm frag}$ in the $(\beta, f)$ plane for $\mathcal{M} = 1$--$5$.
-All STABLE points at $\beta = 0.3$, $\mathcal{M} = 1$ are timeout artifacts
-(see Figure~\ref{fig:dtc_rerun}).}
+\caption{DTC: fragmentation fraction $P_{\rm frag}$ in the $(\beta, f)$ plane at
+$\mathcal{M} = 1$--$5$. All stable points at $\beta = 0.3$, $\mathcal{M} = 1$ are
+timeout artefacts confirmed by 6~h re-runs (Figure~\ref{fig:dtc_rerun}).}
 \label{fig:dtc_pfrag}
 \end{figure*}
 
@@ -561,9 +566,10 @@ filaments are effectively hydrodynamic.
 
 \begin{figure*}
 \includegraphics[width=0.7\textwidth]{peer_review_analysis/fig2_lambda_W_comparison.pdf}
-\caption{$\lambda/W_{\rm core}$ for perpendicular-field (Phase~2; $\approx 1.25$, geometry-dominated)
-vs.\ longitudinal-field (Phase~1; $2.8$--$4.7$, strong $\beta$-dependence). Values in simulation
-units; multiply by T1 for observable $\lambda/W_{\rm fil}$ (Table~\ref{tab:t1_budget}).}
+\caption{$\lambda/W_{\rm core}$ for perpendicular-field (Phase~2; $\approx 1.25$,
+geometry-dominated) vs.\ longitudinal-field (Phase~1; $2.8$--$4.7$, strong
+$\beta$-dependence). All values in simulation units; multiply by T1$=0.606$ (or $0.707$
+for the T1-P Plummer value) to convert to observable $\lambda/W_{\rm fil}$.}
 \label{fig:perp_comparison}
 \end{figure*}
 
@@ -719,10 +725,12 @@ are centrally concentrated. All three effects likely contribute.
 
 \begin{figure*}
 \includegraphics[width=0.8\textwidth]{referee_response_apr2026/figures/cross_campaign_lambdaW.pdf}
-\caption{Cross-campaign $\lambda/W$ comparison. Longitudinal-field (blue) shows strong
-$\beta$-dependence: $\lambda/W$ from ${\sim}4.7$ at $\beta=0.3$ to ${\sim}2.8$ at $\beta=2.0$.
-Perpendicular-field (red): $\lambda/W \approx 1.25$ ($\beta \geq 1.0$) or FLAT
-($\beta \leq 0.5$). Horizontal dashed line = HGBS observational result ($\lambda/W = 2.84 \pm 0.12$).}
+\caption{Cross-campaign $\lambda/W$ comparison in simulation units. Longitudinal-field (blue):
+strong $\beta$-dependence from ${\sim}4.7$ ($\beta=0.3$) to ${\sim}2.8$ ($\beta=2.0$).
+Perpendicular-field (red): $\lambda/W \approx 1.25$ ($\beta \geq 1.0$) or flat profile
+($\beta \leq 0.5$). Horizontal dashed line = full-sample HGBS mean
+($\lambda/W_{\rm fil} = 2.79 \pm 0.09$; multiply $\lambda/W_{\rm core}$ by T1$=0.606$ to
+compare directly).}
 \label{fig:cross_campaign_lambdaW}
 \end{figure*}
 
@@ -766,9 +774,10 @@ $L_x = 8\,\lambda_{\rm J}$ and $L_x = 16\,\lambda_{\rm J}$ (3 seeds each).
 \begin{figure}
 \includegraphics[width=0.48\textwidth]{figures/fig_RC_convergence.pdf}
 \caption{Box-size convergence at $f=2.6$, $\beta=1.0$: $\lambda/W_{\rm core}$ decreases
-monotonically from $4.22 \pm 0.34$ ($L_x=8$) to $2.70 \pm 0.59$ ($L_x=16$), ruling out
-box resonance. Green band = HGBS window; $L_x=32$ (grey cross) was computationally infeasible.
-$L_x=16$ values are upper limits.}
+from $4.22 \pm 0.34$ ($L_x=8$, 3 seeds) to $2.70 \pm 0.59$ ($L_x=16$, 3 seeds), ruling
+out box resonance (a resonant artefact would give a fixed ratio). Green band = HGBS window
+$[2.52, 3.08]$. $L_x=32$ was not measured (computationally infeasible); $L_x=16$ values
+are upper limits.}
 \label{fig:RC_convergence}
 \end{figure}
 
