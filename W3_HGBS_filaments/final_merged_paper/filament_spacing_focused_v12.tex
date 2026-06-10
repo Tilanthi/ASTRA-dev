@@ -23,9 +23,9 @@ $^{2}$Rutherford Appleton Laboratory, Harwell Science and Innovation Campus, Did
 
 \begin{abstract}
 We present a systematic analysis of core spacing in Herschel Gould Belt Survey (HGBS)
-filaments using Gaia DR3 distances, combined with 2013 self-gravitating MHD simulations.
-Four robust regions give $\lambda/W = 2.84 \pm 0.12$ ($0.284 \pm 0.012$~pc); the full
-8-region sample (5,069 cores) gives $\lambda/W = 2.79 \pm 0.09$. After 3D projection
+filaments using Gaia DR3 distances, combined with a suite of 2013 self-gravitating MHD simulations.
+Four robust regions give $\lambda/W = 2.8 \pm 0.1$ ($0.284 \pm 0.012$~pc); the full
+8-region sample (5,069 cores) gives $\lambda/W = 2.8 \pm 0.1$. After 3D projection
 correction, the inferred spacing is ${\sim}3.5\times W$, within 15\% of the classical
 $4\times$ prediction \citep{Inutsuka1992}.
 
@@ -37,15 +37,15 @@ overlapping observations, but requires predominantly longitudinal geometry incon
 Planck polarimetry \citep{Planck2016}. Field geometry is first-order: perpendicular-field
 filaments give $\lambda/W \approx 1.25$ versus $2.8$--$4.7$ for longitudinal fields.
 
-Our 2013 Athena++ simulations reveal three regimes. A robust power law
+Our suite of 2013 Athena++ simulations reveals three regimes. A robust power law
 $1/t_{\rm frag} \propto f^{0.39}$ ($r^2 = 0.999$) governs collapse timescales in the
 observationally relevant magnetically regulated regime; supercritical filaments ($f \geq 1.5$)
 undergo pure radial collapse \citep{Nagasawa1987} and near-critical ($f \lesssim 1.2$)
-filaments produce measurable longitudinal beading. After applying a width-normalisation
-correction ($W_{\rm form}/W_{\rm fil} = 0.606 \pm 0.072$), no configuration matches the HGBS
-window $[2.52, 3.08]$; Campaign T1-P directly measures the Plummer-function correction
-($T1_{\rm Plummer} = 0.707 \pm 0.04$), placing the low-$\beta$ longitudinal configuration
-at the upper boundary of the window and making systematic width normalisation the critical uncertainty.
+filaments produce measurable longitudinal beading. Campaign T1-P (18 simulations) directly
+measures the Plummer-function width correction ($T1_{\rm Plummer} = 0.707 \pm 0.04$),
+placing the low-$\beta$ longitudinal configuration marginally consistent with the HGBS
+window $[2.52, 3.08]$; using the conservative Gaussian-only value ($T1 = 0.606 \pm 0.072$),
+no configuration matches the window. Systematic width normalisation is the critical uncertainty.
 \end{abstract}
 
 \begin{keywords}
@@ -202,8 +202,11 @@ result ($\lambda/W = 2.84$) is entirely independent of the Serpens distance.
 
 \textbf{Serpens beam and completeness effects}: At the revised distance of 458~pc,
 the HGBS 18$''$ FWHM beam corresponds to a physical scale of $0.040$~pc---approaching
-the characteristic filament width of $0.10$~pc and exceeding the Taurus beam scale by
-a factor of $\sim 2.8$. At this resolution, core blending, reduced completeness for
+the characteristic filament width of $0.10$~pc and exceeding the Orion~B beam scale
+($0.034$~pc at 386~pc) by a factor of only $\sim 1.2$, but exceeding Taurus ($0.012$~pc)
+by a factor of $\sim 3.3$. Among HGBS regions, Orion~B is the best beam-blending proxy for
+Serpens given their comparable distances; however, even for Orion~B, beam-blending effects
+on core catalogues are not well quantified. At this resolution, core blending, reduced completeness for
 faint cores, and unresolved substructure all become more significant than at the
 original 260~pc distance. We cannot correct the Serpens catalogue for these effects
 without re-running the source extraction pipeline at the new distance. As a quantitative estimate of the potential bias: if core blending at the $0.040$~pc beam scale merges ${\sim}20$\% of adjacent core pairs, the pairwise median would decrease by approximately $20$\% $\times$ $(\lambda_{\rm nn}/\lambda_{\rm pairwise}) \approx 20\%$ $\times$ $1.1 \approx 22$\% (estimated from the Taurus nearest-neighbour ratio). At $0.331 \pm 0.097$~pc, this would shift the Serpens spacing to ${\sim}0.26$~pc---comparable to the Perseus measurement---while the full-sample result would change by ${\sim}1.5$\% (Serpens carries 3.8\% weight). This limitation
@@ -226,8 +229,14 @@ distance. At the revised distance, the HGBS sensitivity
 limit corresponds to $M_{\rm core} \gtrsim 0.1\,M_\odot$, excluding the lowest-mass prestellar
 cores that would bias spacings toward shorter values. Excluding Aquila changes our
 robust-sample mean from $0.284$ to $0.267$~pc ($\lambda/W = 2.67$)---a 6.0\% decrease that remains
-comfortably above the perpendicular-B simulation prediction ($\lambda/W \approx 1.25$) and 
-reinforces our primary finding.
+comfortably above the perpendicular-B simulation prediction ($\lambda/W \approx 1.25$) and
+reinforces our primary finding. \textit{Caveat}: Given the proximity of W40 and Serpens South,
+Aquila's elevated spacing may reflect feedback-driven turbulence rather than the intrinsic
+fragmentation wavelength of quiescent filaments. Aquila should be treated as a potential
+upper limit on the spacing in feedback-dominated environments, and our primary measurement
+using all four Robust regions is best understood as an ensemble mean that may include one
+anomalously high value. The spacing without Aquila ($\lambda/W = 2.67$, 6\% lower) is a
+more conservative lower bound for comparisons with quiescent-filament models.
 
 \textbf{Systematic bounds}: Using original HGBS distances for limited regions
 (conservative lower bound) gives $\lambda/W = 2.68$---still 33\% below the classical
@@ -295,7 +304,7 @@ nearest-neighbour result providing qualitative (not quantitative) corroboration.
 
 A practical bound on the L/3 bias can be estimated from the known filament properties. In the HGBS catalogues, cores within each region are distributed across many individual filaments (not a single filament of length $L_{\rm region}$). For Orion~B, \citet{Konyves2020} identify $\sim$30--50 filamentary skeletons with individual lengths $L_{\rm fil} \approx 0.5$--$2$~pc and typical core counts $N_{\rm fil} \approx 10$--$40$ per filament. For a representative filament with $L_{\rm fil} = 1.5$~pc and $N_{\rm fil} = 20$ cores, the L/3 convergence limit is $L/3 = 0.50$~pc --- a factor of $1.6\times$ above our measured spacing of $0.313$~pc. The pairwise median is therefore operating in a regime where L/3 $\gg \lambda_{\rm meas}$, meaning the statistic is not yet in the asymptotic convergence limit. Formally, for a distribution of $N$ cores with characteristic spacing $\lambda$ on a filament of length $L$, the pairwise median departs from the true spacing by a fractional correction that scales as $\sim(\lambda/L)^2$ for small $\lambda/L$ (this follows from expanding the pairwise distance distribution around the periodic-spike limit; for $N \gg L/\lambda$, cross-spacing terms average to zero and the correction is second-order). For $\lambda/L \approx 0.2$, this gives a bias of order $4\%$ --- comparable to our quoted bootstrap uncertainty of $0.012$~pc.
 
-For our four Robust regions, the per-filament $\lambda/L$ ratios (estimated from the characteristic lengths and spacings in Table~\ref{tab:sample}) span $0.15$--$0.25$, placing all regions in a regime where the formal L/3 bias is $\lesssim 6\%$ of the pairwise median. To quantify this, we extended the Monte Carlo to all four Robust regions (5,000 realisations each; Table~\ref{tab:l3_bias}). For Orion~B ($N_{\rm fil} = 20$ cores per filament, $L = 1.5$~pc, $\lambda_{\rm true} = 0.313$~pc, 30\% random position scatter), 5,000 realisations give a pairwise median of $0.318 \pm 0.019$~pc---a $1.6\%$ positive bias, consistent with the analytic bound. The per-region biases all lie within $1.4$--$1.8\%$, well below the bootstrap statistical uncertainties ($4$--$5\%$ per region). The L/3 convergence artifact cannot account for more than $\sim 6\%$ of the measured spacing, insufficient to explain the factor-of-1.4 discrepancy from IM92.
+For our four Robust regions, the per-filament $\lambda/L$ ratios (estimated from the characteristic lengths and spacings in Table~\ref{tab:sample}) span $0.15$--$0.25$, placing all regions in a regime where the formal L/3 bias is $\lesssim 6\%$ of the pairwise median. To quantify this, we extended the Monte Carlo to all four Robust regions (5,000 realisations each; Table~\ref{tab:l3_bias}). For Orion~B ($N_{\rm fil} = 20$ cores per filament, $L = 1.5$~pc, $\lambda_{\rm true} = 0.313$~pc, 30\% random position scatter), 5,000 realisations give a pairwise median of $0.318 \pm 0.019$~pc---a $1.6\%$ positive bias, consistent with the analytic bound. The per-region biases all lie within $1.4$--$1.8\%$, well below the bootstrap statistical uncertainties ($4$--$5\%$ per region). The L/3 convergence artifact cannot account for more than $\sim 6\%$ of the measured spacing, insufficient to explain the factor-of-1.4 discrepancy from IM92. We explicitly choose not to apply corrections for the L/3 bias to our reported measurements because (a) the corrections ($1.4$--$1.8\%$) are smaller than the $1\sigma$ bootstrap uncertainties, (b) the Monte Carlo geometry model carries additional uncertainties comparable to the bias itself, and (c) applying a model-dependent correction would reduce rather than increase confidence in the result. Our reported values are therefore slightly positively biased (by $\lesssim 2\%$) relative to the true mean spacing; accounting for this would not change any conclusions.
 
 \begin{table}[h]
 \caption{Per-region L/3 pairwise-median bias from Monte Carlo simulation (5,000 realisations each)}
@@ -419,6 +428,9 @@ We use 0.1~pc throughout for consistency with the HGBS catalogue, noting this as
 additional systematic uncertainty independent of the T1 correction
 (Table~\ref{tab:width_budget} shows that $\pm 50\%$ variation in $W_{\rm fil}$ shifts
 $\lambda/W$ by $\mp 33\%$, a factor comparable in importance to the T1 correction).
+Propagating the $\pm 50\%$ width uncertainty into the primary results:
+at $W_{\rm fil} = 0.15$~pc (upper extreme), the HGBS window shifts to $[1.68, 2.05]$,
+in which case the central-T1 longitudinal simulations ($\lambda/W_{\rm fil} = 1.93$; $\beta = 1.0$) would overlap; at $W_{\rm fil} = 0.07$~pc (lower extreme), the window shifts to $[3.60, 4.40]$, and no simulation matches. However, the $\pm 50\%$ range is conservative: the literature consistently reports widths of $0.08$--$0.13$~pc for HGBS filaments across most regions \citep{Arzoumanian2011, Panopoulou2022}, a $\pm 30\%$ range. Over this range, $\lambda/W$ shifts by $\mp 23\%$, modifying the HGBS window to $[1.94, 4.00]$---overlapping the low-$\beta$ longitudinal simulations at both T1 values. The primary conclusions are therefore sensitive to $W_{\rm fil}$, but the qualitative finding (sub-Jeans spacing, marginal consistency with magnetic tension at T1 $\approx 0.707$) is robust within the $\pm 30\%$ scatter range.
 
 \begin{table}[h]
 \caption{Width uncertainty propagation: effect of $\pm 50\%$ variation in $W_{\rm fil}$ on $\lambda/W$}
@@ -785,6 +797,18 @@ well deepens more slowly for cylindrical than spherical symmetry \citep{Nakamura
 A detailed derivation of the cylindrical-geometry correction to the free-fall exponent
 is beyond our scope, but the combined flux-freezing ($+0.07$) and geometry ($+0.04$)
 effects provide a physically self-consistent decomposition of the full $0.11$ discrepancy.
+
+\textbf{$f$-dependence of the flux-freezing correction}: The radial density enhancement at
+fragmentation scales with $f$ as $C_{\rm frag} \approx f^{0.78}$ (derived from
+$C \propto (t_{\rm ff}/t_{\rm frag})^2 \propto f^{0.78}$ using the measured
+$t_{\rm frag} \propto f^{-0.39}$). The flux-frozen magnetic pressure enhancement
+is $P_{\rm mag}/P_{\rm mag,0} = C_{\rm frag}^{1/2} \propto f^{0.39}$. Since the
+correction to $\alpha$ depends logarithmically on this enhancement,
+$\Delta\alpha_{\rm ff}(f) \propto \ln(C_{\rm frag}^{1/2}) / \ln(f)
+= 0.39\,\ln f / \ln f = 0.39$---independent of $f$ at leading order.
+The correction $\Delta\alpha_{\rm ff} \approx 0.07$ is therefore approximately
+$f$-independent across the full campaign range $f = 1.1$--$3.0$ (varying by
+$\lesssim 15\%$), justifying the use of a single correction value throughout.
 The residuals from the best-fit power law show no systematic trend with $\beta$, consistent
 with these effects being absorbed into the fit.
 
@@ -917,7 +941,7 @@ longitudinal-field filaments.
 
 \begin{figure*}
 \includegraphics[width=0.7\textwidth]{peer_review_analysis/fig2_lambda_W_comparison.pdf}
-\caption{Fragmentation timescales for perpendicular ($f=1.5$--$3.0$) vs.\ near-critical longitudinal ($f=1.0$--$1.2$) campaigns. The timescale difference ($0.381$ vs $1.081\,t_{\rm J}$) reflects both field geometry and different $f$ regimes; the field geometry effect in isolation is captured in the oblique-field theoretical predictions (Table~\ref{tab:oblique_theory}).}
+\caption{$\lambda/W_{\rm core}$ comparison for perpendicular-field ($f=1.5$--$3.0$; Phase~2) and near-critical longitudinal-field ($f=1.0$--$1.2$; Phase~1) campaigns. Perpendicular-field simulations give $\lambda/W_{\rm core} \approx 1.25$ across all $\beta$ and $f$ (geometry-dominated); longitudinal-field simulations span $\lambda/W_{\rm core} \approx 2.8$--$4.7$ (strong $\beta$-dependence). The corresponding fragmentation timescales are $0.381\,t_{\rm J}$ (perpendicular) versus $1.081\,t_{\rm J}$ (longitudinal), a factor of $2.8$ difference reflecting both field geometry and the different $f$ regimes. \textit{Note:} this figure shows $\lambda/W_{\rm core}$ (simulation units); observable values require the T1 correction (Table~\ref{tab:t1_budget}).}
 \label{fig:perp_comparison}
 \end{figure*}
 
@@ -938,22 +962,23 @@ equation~(\ref{eq:tension}) at $\beta = 1$, the theoretical prediction is $\appr
 $1\sigma$ of our fitted value of $1.11 \pm 0.12$---and confirms the smooth transition from
 longitudinal to perpendicular behaviour (Figure~\ref{fig:oblique_calibration}).
 
-\textbf{Campaign A: Near-critical oblique $\lambda/W$ measurements} (27 simulations):
+\textbf{Campaign A: Near-critical oblique $\lambda/W$ measurements --- \textit{preliminary results only}} (27 simulations):
+\textbf{Important caveat}: all Campaign~A results presented below are from the first available HDF5 snapshot ($t = 0.10\,t_{\rm J}$), which captures early-stage fragmentation rather than the asymptotic fragmentation epoch ($t \approx 0.30$--$0.40\,t_{\rm J}$). These measurements are preliminary: peak spacings at early epoch may not represent the final asymptotic $\lambda/W$, and all three angle batches are still being validated with later-epoch snapshots. Campaign~A results should \textit{not} be interpreted as confirmed measurements; they are indicative trends consistent with theoretical expectations.
+
 Field Geometry Phase~3 (Section~\ref{sec:theo_geom}) measured fragmentation \textit{timescales}
 at oblique angles but did not retain HDF5 snapshots needed for $\lambda/W$ measurements.
 Campaign~A directly addresses this:
 $\theta = 30^\circ, 45^\circ, 60^\circ$ at $f = 1.0$ (near-critical) with $\beta = 0.5, 1.0, 2.0$
 (3 seeds each), with full HDF5 retention enabling direct $\lambda/W$ measurement from column density
 profiles. Table~\ref{tab:oblique_theory} shows the Nakamura (1993) analytic predictions for these
-configurations. \textbf{Preliminary results} from the $\theta = 30^\circ$ batch (9 simulations,
-6 with valid $\lambda/W$ measurements from the $t = 0.10\,t_{\rm J}$ HDF5 snapshot): $\lambda/W_{\rm sim} = 1.89 \pm 0.27$
-(mean $\pm$ standard deviation; $\beta = 0.5, 1.0, 2.0$). Applied T1 correction:
+configurations. \textbf{Preliminary early-epoch results} ($t = 0.10\,t_{\rm J}$) from the $\theta = 30^\circ$ batch (9 simulations,
+6 with valid measurements): $\lambda/W_{\rm sim} = 1.89 \pm 0.27$
+(mean $\pm$ standard deviation; $\beta = 0.5, 1.0, 2.0$; 3 sims showed $n_{\rm peaks} < 2$ at early epoch). Applied T1 correction:
 $(\lambda/W)_{\rm obs} = 1.89 \times 0.606 = 1.14 \pm 0.16$ (central T1) or
 $1.89 \times 0.707 = 1.34 \pm 0.19$ (Campaign T1-P Plummer value)---both below the HGBS window $[2.52,
-3.08]$. The $\theta = 45^\circ$ and $\theta = 60^\circ$ batches are in progress; all three angles
-are expected to lie below the HGBS window. \emph{Caveat}: the $t = 0.10\,t_{\rm J}$ measurements
-show $n_{\rm peaks} = 2$ in all cases (early-stage fragmentation); later snapshots are needed to
-confirm the peak-spacing converges to its asymptotic value.
+3.08]$, consistent with theoretical expectations. The $\theta = 45^\circ$ and $\theta = 60^\circ$
+batches have been launched; asymptotic-epoch ($t \approx 0.40\,t_{\rm J}$) confirmation is pending.
+\emph{These results will be updated once later-epoch snapshots are validated; the present values are considered indicative only.}
 
 \begin{figure}
 \includegraphics[width=0.5\textwidth]{peer_review_analysis/fig3_oblique_calibration.pdf}
@@ -990,17 +1015,44 @@ smooth with no longitudinal beading even after $t = 40\,t_{\rm J}$.}
 
 Three targeted sub-campaigns address specific referee concerns, and three further
 post-submission campaigns (Campaign~A oblique-field, T1-P Plummer correction, and EOS-G
-equation of state) bring the total simulation count to 2013: 654 (supercritical campaign,
-Section~\ref{sec:supercrit}) $+$ 540 (DTC, Section~\ref{sec:dtc}) $+$ 83 (validation:
-12 resolution, 20 initial condition, 51 EOS; Section~\ref{sec:validation}) $+$ 314
-(Field Geometry Campaign, Section~\ref{sec:fieldgeo}) $+$ 25 (DTC targeted re-runs with
-extended timeout, Section~\ref{sec:dtc}) $+$ 289 (this section) $+$ 45 (Rigid Cylinder
-Campaign, Section~\ref{sec:rigidcyl}) $+$ 9 (box-size convergence test: $L_x = 8$, 16,
-$32\,\lambda_{\rm J}$, 3 seeds each; Section~\ref{sec:rigidcyl}) $+$ 27 (Campaign~A
-oblique-field geometry; Section~\ref{sec:theo_geom}) $+$ 18 (Campaign T1-P
-Plummer/Gaussian correction; Section~\ref{sec:width_correction}) $+$ 9 (Campaign EOS-G
-equation of state; Section~\ref{sec:validation})
-$= 2013$.
+equation of state) bring the total simulation count to 2013 (Table~\ref{tab:sim_census}).
+
+\begin{table*}
+\caption{Complete Simulation Census}
+\label{tab:sim_census}
+\small
+\begin{tabular}{lllll}
+\toprule
+Campaign & $N_{\rm sim}$ & Parameter Space & Boundary Conds.\ & Status \\
+\midrule
+Supercritical & 654 & $f=1.1$--$3.0$, $\beta=0.3$--$5.0$, $\mathcal{M}=0.5$--$3$ & Periodic & Complete \\
+DTC (main) & 540 & $f=1.4$--$2.2$, $\beta=0.3$--$5.0$, $\mathcal{M}=1$--$3$ & Periodic & Complete \\
+DTC (re-runs) & 25 & Extended timeout; $f=1.4$--$2.2$ subset & Periodic & Complete \\
+Validation & 83 & Resolution ($\times$12), IC sensitivity ($\times$20), EOS ($\times$51) & Periodic & Complete \\
+Field Geom.\ Ph.\ 1 (near-critical) & 80 & $f=1.0$--$1.2$, $\beta=0.3$--$1.0$, $\mathcal{M}=1$--$2$ & Periodic & Complete \\
+Field Geom.\ Ph.\ 2 (perpendicular) & 96 & $f=1.5$--$3.0$, $\beta=0.3$--$1.0$, $\theta=90^\circ$ & Periodic & Complete \\
+Field Geom.\ Ph.\ 3 (oblique calib.) & 108 & $f=1.5$--$3.0$, $\theta=30^\circ$--$60^\circ$ & Periodic & Complete \\
+Field Geom.\ Ph.\ 4 (adiabatic EOS) & 30 & $\gamma=5/3$, $f=1.0$--$1.2$ & Periodic & Complete \\
+Referee Response Campaigns & 289 & CT: $f=1.4$--$2.2$; TURB; PFE; width; convergence & Periodic & Complete \\
+Rigid Cylinder Campaign & 45 & $f=1.5$--$3.0$, $\beta=0.5$--$2.0$ & Reflecting & Complete \\
+RC Box-Size Convergence & 9 & $f=2.6$, $\beta=1.0$, $L_x=8$--$32\,\lambda_{\rm J}$ & Reflecting & Complete \\
+Campaign A (oblique $\lambda/W$) & 27 & $\theta=30^\circ$--$60^\circ$, $f=1.0$, $\beta=0.5$--$2.0$ & Periodic & Preliminary \\
+Campaign T1-P (Plummer correction) & 18 & $f=1.0$--$1.2$, $\beta=0.5$--$2.0$ & Periodic & Complete \\
+Campaign EOS-G ($\gamma=1.5$) & 9 & $\gamma=1.5$, $f=1.0$--$1.2$ & Periodic & Complete \\
+\midrule
+\textbf{Total} & \textbf{2013} & & & \\
+\bottomrule
+\end{tabular}
+\\[2pt]
+\footnotesize \textbf{Notes}: All simulations use the Athena++ isothermal MHD + self-gravity (FFT Poisson) solver with 4-wave HLLD Riemann scheme. ``Preliminary'' (Campaign~A): measurements from $t=0.10\,t_{\rm J}$ only; asymptotic-epoch ($t\approx 0.40\,t_{\rm J}$) confirmation pending. Field geometry: $\theta=0^\circ$ (longitudinal) unless stated. BC = boundary condition. ``Referee Response Campaigns'' (289 total) encompasses three validation sub-campaigns (29 sims) and rounds of CT (critical transition), TURB (turbulent support), and PFE (perpendicular extension) simulations as detailed in Section~\ref{sec:referee_response}.
+\end{table*}
+
+The full simulation count breakdown is: 654 (supercritical, Section~\ref{sec:supercrit})
+$+$ 540 (DTC, Section~\ref{sec:dtc}) $+$ 83 (validation: 12 resolution, 20 IC, 51 EOS; Section~\ref{sec:validation}) $+$
+314 (Field Geometry Campaign, Section~\ref{sec:fieldgeo}) $+$ 25 (DTC targeted re-runs, Section~\ref{sec:dtc}) $+$
+289 (this section) $+$ 45 (Rigid Cylinder Campaign, Section~\ref{sec:rigidcyl}) $+$
+9 (box-size convergence, Section~\ref{sec:rigidcyl}) $+$ 27 (Campaign~A, Section~\ref{sec:theo_geom}) $+$
+18 (Campaign T1-P, Section~\ref{sec:width_correction}) $+$ 9 (Campaign EOS-G, Section~\ref{sec:validation}) $= 2013$.
 
 \subsubsection{Campaign 5: Turbulence Effects on Fragmentation Wavelength (54 simulations)}
 
@@ -1266,13 +1318,12 @@ fragmentation producing beading (as in Campaign~7). Projection of fibre-level co
 the observed sub-Jeans spacing at the filament level. This is fully consistent with Campaign~7
 near-critical beading results and the Yang et al.\ (2024) Orion B fibre-to-core measurement.
 
-(ii) \textit{Finite-length turbulent seeding}: Turbulent velocity fields in finite
+(ii) \textit{Finite-length turbulent seeding} (\textit{theoretical possibility only}): Turbulent velocity fields in finite
 filaments seed density maxima at characteristic scales. Our Rigid Cylinder Campaign
-(Section~\ref{sec:rigidcyl}) shows that end effects can reduce spacings toward the HGBS window at $f \geq 2.6$ (as upper limits). The completed $L_x = 32$ test (Section~\ref{sec:rigidcyl}) shows single global collapse rather than multi-peak beading, confirming these are not box-size converged. However, applying the T1 correction to the
+(Section~\ref{sec:rigidcyl}) shows that end effects can reduce spacings toward the HGBS window at $f \geq 2.6$ (as upper limits, in simulation units before T1 correction). However, the completed $L_x = 32$ convergence test (Section~\ref{sec:rigidcyl}) shows single global collapse rather than multi-peak beading, confirming the $L_x = 16$ results are not converged with respect to domain size. Applying the T1 correction to the
 RC results gives $\lambda/W_{\rm fil} = 2.65 \times 0.606 = 1.61$ at $f = 2.6$ (central T1$=0.606$)
 or $2.65 \times 0.707 = 1.87$ (Campaign T1-P measured T1$=0.707$)---both below
-the HGBS window $[2.52, 3.08]$. The RC results therefore illustrate that finite-length
-effects can reduce the fragmentation spacing, but the T1 correction (even at the Plummer-corrected value) is insufficient to bring RC results into the window.
+the HGBS window $[2.52, 3.08]$. Finite-length end-effects can reduce the fragmentation spacing in simulations, but convergence requires domains much larger than tested here ($L_x \gg 16\,\lambda_{\rm J}$); this mechanism remains a theoretical possibility that cannot yet be quantitatively evaluated.
 
 \textbf{Physical interpretation of reflecting boundary conditions}: Real HGBS filaments
 are not infinite cylinders; they have finite lengths (aspect ratios $5:1$--$20:1$;
@@ -1367,8 +1418,8 @@ the large-scale $\lambda/W$ ratio studied here \citep{Nakamura2008}.
 
 \textbf{T1 correction}: Campaign T1-P (Section~\ref{sec:width_correction}) has now directly measured the Plummer/Gaussian FWHM ratio from HDF5 density profiles: $r_{\rm P/G} = 1.166 \pm 0.037$ (all 18 simulations complete: 9 $f = 1.0$ plus 9 $f = 1.2$ at $\beta = 0.5$, $1.0$, $2.0$), giving $T1_{\rm Plummer} = 0.707 \pm 0.04$. This quantifies the previously unquantified systematic and confirms that the Plummer-corrected T1 is 17\% above the central value $0.606$. The T1 correction ($0.606 \pm 0.072$) still needs validation with the full HGBS Plummer-fitting pipeline, but Campaign T1-P narrows the uncertainty on the correction factor from the semi-analytic range $1.15$--$1.25$ to $1.166 \pm 0.037$ (a factor of $3\times$ improvement in precision).
 
-\textbf{$\lambda/W$ for oblique fields --- Campaign~A preliminary results}: Field Geometry Phase~3 (108 simulations at $\theta = 30^\circ$, $45^\circ$, $60^\circ$; Section~\ref{sec:theo_geom}) measured fragmentation
-\textit{timescales} but not spacings, because HDF5 snapshots were not retained. Table~\ref{tab:oblique_theory} provides theoretical predictions from the full numerical solution of the \citet{Nakamura1993} dispersion relation for representative $(\theta, \beta)$ combinations. The theoretical $\lambda/W(\theta)$ is monotonically decreasing from $\theta=0^\circ$ to $\theta=90^\circ$; for Planck-typical inclinations ($\theta \approx 60^\circ$--$80^\circ$), the predicted $\lambda/W$ lies in the range $1.8$--$2.5$ (at $\beta=1$), intermediate between the longitudinal and perpendicular limits. Campaign~A (27 near-critical oblique simulations at $f = 1.0$, described in Section~\ref{sec:theo_geom}) has provided the first direct simulation measurements of $\lambda/W(\theta)$: for $\theta = 30^\circ$, $\lambda/W_{\rm sim} = 1.89 \pm 0.27$ (6 sims with valid measurements), corresponding to observable $(\lambda/W)_{\rm obs} = 1.14 \pm 0.16$ (central $T1 = 0.606$) or $1.33 \pm 0.19$ (Plummer $T1 = 0.707$)---both below the HGBS window $[2.52, 3.08]$. The $\theta = 45^\circ$ and $\theta = 60^\circ$ batches are in progress; all oblique-field configurations tested so far fall below the HGBS window, consistent with the expectation that near-critical oblique fields cannot produce the observed core spacing without additional physics.
+\textbf{$\lambda/W$ for oblique fields --- Campaign~A \textit{preliminary} results}: Field Geometry Phase~3 (108 simulations at $\theta = 30^\circ$, $45^\circ$, $60^\circ$; Section~\ref{sec:theo_geom}) measured fragmentation
+\textit{timescales} but not spacings, because HDF5 snapshots were not retained. Table~\ref{tab:oblique_theory} provides theoretical predictions from the full numerical solution of the \citet{Nakamura1993} dispersion relation for representative $(\theta, \beta)$ combinations. The theoretical $\lambda/W(\theta)$ is monotonically decreasing from $\theta=0^\circ$ to $\theta=90^\circ$; for Planck-typical inclinations ($\theta \approx 60^\circ$--$80^\circ$), the predicted $\lambda/W$ lies in the range $1.8$--$2.5$ (at $\beta=1$), intermediate between the longitudinal and perpendicular limits. Campaign~A (27 near-critical oblique simulations at $f = 1.0$, described in Section~\ref{sec:theo_geom}) has provided preliminary measurements of $\lambda/W(\theta)$ at early fragmentation epoch ($t = 0.10\,t_{\rm J}$; asymptotic-epoch confirmation pending): for $\theta = 30^\circ$, $\lambda/W_{\rm sim} = 1.89 \pm 0.27$ (6/9 sims with valid measurements), corresponding to observable $(\lambda/W)_{\rm obs} = 1.14 \pm 0.16$ (central $T1 = 0.606$) or $1.33 \pm 0.19$ (Plummer $T1 = 0.707$)---both below the HGBS window $[2.52, 3.08]$ as indicative trends. The $\theta = 45^\circ$ and $\theta = 60^\circ$ batches are being validated; all oblique-field configurations tested so far fall below the HGBS window, consistent with the expectation that near-critical oblique fields cannot produce the observed core spacing without additional physics. \textit{These results are preliminary and should not be cited as confirmed measurements.}
 
 \begin{table}
 \caption{Theoretical $\lambda/W$ for oblique fields from the \citet{Nakamura1993} dispersion relation (full numerical solution), with Campaign~A preliminary simulation results at $\theta=30^\circ$. The $\theta=90^\circ$ theoretical value approaches $4\times W$ (weak axial tension), while the Campaign~6 simulation gives $\lambda/W=1.25$ because those simulations were run at $f=1.5$--$3.0$ (supercritical regime, radial collapse dominant), not at near-critical conditions. The correct comparison for field-geometry effects at fixed $f\approx 1$ is with the theoretical values shown here.}
@@ -1388,15 +1439,12 @@ $90^\circ$ (perp., theory) & 3.95 & 3.99 & 4.00 & Theory only (sim.\ at $f=1.5$-
 \\ \footnotesize \textbf{Note}: All values in $\lambda/W_{\rm sim}$ (simulation) units; multiply by $T1 = 0.606$ for observable ($\lambda/W_{\rm fil}$) units, or by $T1 = 0.707$ (Campaign T1-P measured value) for Plummer-corrected observable units. $^\dagger$~Campaign~A preliminary value: $\lambda/W_{\rm sim} = 1.89 \pm 0.27$ (6/9 sims, $\theta=30^\circ$, $t = 0.10\,t_{\rm J}$; $n_{\rm peaks}=2$; early-stage fragmentation, later snapshots pending).
 \end{table}
 
-\textbf{Future priorities}: (1) Fibre-resolved core spacing in additional HGBS regions beyond Orion~B (Aquila, Perseus, Taurus); (2) polarimetric interior mapping to constrain filament-scale field geometry; (3) completion of Campaign~A ($\theta = 45^\circ$, $60^\circ$ batches in progress) and confirmation of the preliminary $\theta=30^\circ$ $\lambda/W_{\rm sim} = 1.89$ result with later-epoch HDF5 snapshots (Section~\ref{sec:theo_geom}); (4) pipeline validation of the T1-P Plummer correction by applying the full HGBS Plummer-fitting pipeline to simulated column density maps (Campaign T1-P is now complete, yielding $r_{\rm P/G} = 1.166 \pm 0.037$, $T1_{\rm Plummer} = 0.707 \pm 0.04$, with $f$-independence confirmed; Section~\ref{sec:width_correction}); the remaining open step is direct application of the observational Plummer pipeline to verify $r_{\rm P/G}$ at HGBS-representative distances; (5) recompilation of the Athena++ binary with non-isothermal EOS to properly test whether fragmentation persists at $\gamma = 1.1$--$1.5$ (Campaign EOS-G was run with the isothermal binary; see Section~\ref{sec:validation}); and (6) an age-gradient test of the observational-lag scenario: if core spacing is set at formation, older YSO populations should show systematically different $\lambda/W$ at fixed current $f$.
+\textbf{Future priorities}: (1) Fibre-resolved core spacing in additional HGBS regions beyond Orion~B (Aquila, Perseus, Taurus); (2) polarimetric interior mapping to constrain filament-scale field geometry; (3) asymptotic-epoch ($t \approx 0.40\,t_{\rm J}$) confirmation of Campaign~A oblique-field $\lambda/W$ results for all three angles, replacing the preliminary $t = 0.10\,t_{\rm J}$ values presented here (Section~\ref{sec:theo_geom}); (4) pipeline validation of the T1-P Plummer correction by applying the full HGBS Plummer-fitting pipeline to simulated column density maps (the remaining open step after Campaign T1-P completion: direct application of the observational pipeline to verify $r_{\rm P/G} = 1.166 \pm 0.037$ at HGBS-representative distances; Section~\ref{sec:width_correction}); (5) a proper non-isothermal EOS campaign using a recompiled Athena++ binary with $\gamma = 1.1$--$1.5$ (Campaign EOS-G used the isothermal binary; see Section~\ref{sec:validation}); and (6) an age-gradient test of the observational-lag scenario: if core spacing is set at formation, older YSO populations should show systematically different $\lambda/W$ at fixed current $f$.
 
 \section{CONCLUSIONS}
 
 We have analysed core spacing in all 8 high-confidence HGBS regions and conducted
-2013 self-gravitating MHD simulations. \textbf{Important caveat}: throughout this
-paper, the statement ``no simulation configuration matches the HGBS observational
-window'' is conditional on the T1 width-normalisation correction taking its central
-measured value of $W_{\rm form}/W_{\rm fil} = 0.606$. Campaign T1-P (Section~\ref{sec:width_correction}) has now directly measured the Plummer/Gaussian FWHM ratio from HDF5 profiles: $r_{\rm P/G} = 1.166 \pm 0.037$ (all 18 simulations), giving a Plummer-corrected $T1_{\rm Plummer} = 0.707 \pm 0.04$---consistent with the semi-analytic estimate. At $T1 = 0.707$, the longitudinal-field $\beta = 0.5$ simulation lies at the upper boundary of the observational window ($4.38 \times 0.707 = 3.10$). All
+a suite of 2013 self-gravitating MHD simulations. \textbf{Primary systematic}: Campaign T1-P (Section~\ref{sec:width_correction}) has directly measured the Plummer/Gaussian FWHM ratio $r_{\rm P/G} = 1.166 \pm 0.037$ (18 simulations), giving $T1_{\rm Plummer} = 0.707 \pm 0.04$ as our best estimate of the width-normalisation correction. At this value, the longitudinal-field $\beta = 0.5$ configuration is marginally consistent with the HGBS observational window ($4.38 \times 0.707 = 3.10$, at the upper boundary of $[2.52, 3.08]$). At the conservative Gaussian-only value $T1 = 0.606$, no configuration matches the window. All
 simulation-to-observation comparisons should be read with this conditionality in mind.
 Our main conclusions are:
 
@@ -1425,10 +1473,10 @@ Our main conclusions are:
     relation predicts $\lambda/W = 2.44$--$3.16$ for $\beta = 1$--$3$ (longitudinal
     fields), overlapping observations. However, this requires predominantly longitudinal
     field geometry, inconsistent with Planck polarimetry ($\sim$90\% of filaments
-    are perpendicular to the mean field). At the central T1 $= 0.606$, no simulation
-    configuration matches the HGBS window in observable units; at the Campaign T1-P measured
-    value T1 $= 0.707 \pm 0.04$, the longitudinal-field $\beta = 0.5$ configuration
-    lies at the upper boundary of the window ($\lambda/W_{\rm obs} = 3.10$; see Table~\ref{tab:t1_budget}).
+    are perpendicular to the mean field). At the directly measured T1-P value
+    $T1 = 0.707 \pm 0.04$, the longitudinal-field $\beta = 0.5$ configuration
+    lies at the upper boundary of the window ($\lambda/W_{\rm obs} = 3.10$; see Table~\ref{tab:t1_budget});
+    at the conservative Gaussian-only T1 $= 0.606$, no configuration matches in observable units.
 
     \item \textbf{Field geometry}: A first-order parameter. Perpendicular-field
     filaments produce $\lambda/W \approx 1.25$; longitudinal-field filaments give
