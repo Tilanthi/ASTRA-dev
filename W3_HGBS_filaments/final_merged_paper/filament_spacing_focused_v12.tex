@@ -175,14 +175,7 @@ We classify regions as \textbf{Robust} (Orion~B, Aquila, Perseus, Taurus: $N>500
 well-established Gaia distances, $<15\%$ or validated revision) or \textbf{Limited}
 (Ophiuchus, Serpens, TMC1, CRA (Corona Australis): smaller YSO samples and/or $>50\%$ revision).
 
-\textbf{Serpens}: The +76\% distance revision ($260 \to 458$~pc) raises justified
-concern. Direct VLBI maser parallaxes are unavailable for Serpens; however, independent
-extinction-based distances \citep{Yan2022, Green2024} give $440 \pm 40$~pc and
-$460 \pm 30$~pc respectively, consistent with \citealt{Zhang2023}. The Aquila/Serpens
-co-association in the Aquila Rift at ${\sim}440$~pc \citep{Zucker2020} provides
-additional support. Critically, excluding Serpens changes the full-sample
-result by only $1.1\%$ ($\lambda/W = 2.79 \to 2.76$); our primary robust-only
-result ($\lambda/W = 2.84$) is entirely independent of the Serpens distance.
+\textbf{Serpens}: The +76\% distance revision ($260 \to 458$~pc) raises concern, but is independently confirmed at $440$--$460$~pc \citep{Yan2022, Green2024, Zucker2020}. Excluding Serpens changes the full-sample result by only 1.1\% (Table~\ref{tab:leave_one_out}).
 
 \textbf{Serpens beam/completeness}: At 458~pc the HGBS beam ($0.040$~pc) approaches $W_{\rm fil}$, raising blending concerns; even a 20\% correction shifts the full-sample result by only $\sim$1.5\% (Serpens carries 3.8\% weight). Serpens data are included but classified as Limited (see Table~\ref{tab:sample} footnote).
 
@@ -274,9 +267,7 @@ is \citep{Inutsuka1992}:
 where $H = c_s/(2G\rho_0)^{1/2}$ is the thermal scale height and $W_{\rm fil} \approx 0.1$~pc.
 The critical line mass for gravitational instability is $\mu_{\rm crit} = 2c_s^2/G$.
 
-\textbf{Width terminology}: $W_{\rm fil} = 0.1$~pc is the HGBS FWHM; $W_{\rm core} = 0.3\,\lambda_{\rm J}$ is the simulation half-width, constrained by $0.1/0.30 \approx 0.33$. A $\pm 10\%$ shift in $W_{\rm core}$ propagates to $\mp 10\%$ in $\lambda/W_{\rm core}$; T1 and $W_{\rm core}$ are coupled systematics best disentangled by running the HGBS pipeline on simulated column density maps.
-
-\textbf{Width systematic}: The canonical 0.1~pc has scatter $0.05$--$0.20$~pc across environments with $\sim$15--30\% fitting-method dependence \citep{Panopoulou2022}. We use 0.1~pc throughout; $\pm 30\%$ propagates to $\mp 23\%$ in $\lambda/W$ (primary finding robust across literature range $0.08$--$0.13$~pc).
+\textbf{Width notation}: $W_{\rm fil} = 0.1$~pc (HGBS FWHM; scatter $0.05$--$0.20$~pc, $\sim$30\% fitting-method dependence; \citealt{Panopoulou2022}); $W_{\rm core} = 0.3\,\lambda_{\rm J}$ (simulation half-width). The T1 correction and $W_{\rm core}$ are coupled systematics best separated by running the full HGBS pipeline on simulated maps.
 
 \textbf{Width normalisation correction (T1 campaign)}.
 \label{sec:width_correction}
@@ -287,14 +278,7 @@ fragmentation time) to $W_{\rm fil}$ (same profile convolved with the HGBS 18$''
 \frac{W_{\rm form}}{W_{\rm fil}} = 0.606 \pm 0.072 \quad (11.9\% \text{ systematic uncertainty})
 \label{eq:t1_correction}
 \end{equation}
-This ratio is insensitive to $(f, \beta, \mathcal{M})$ over factors of 6 and 7
-respectively (variation $<3\%$). Simulation $\lambda/W_{\rm core}$ values must be
-multiplied by 0.606 when comparing with observed $\lambda/W_{\rm fil}$:
-\begin{equation}
-\left(\frac{\lambda}{W}\right)_{\rm obs} = 0.606 \times \left(\frac{\lambda}{W}\right)_{\rm sim}
-\label{eq:t1_apply}
-\end{equation}
-This is the dominant systematic. Campaign T1-P (18 sims) measures $r_{\rm P/G} = 1.166 \pm 0.037$
+This ratio is insensitive to $(f, \beta, \mathcal{M})$ (variation $<3\%$); simulation $\lambda/W_{\rm core}$ values are multiplied by 0.606 to compare with observed $\lambda/W_{\rm fil}$ (the dominant systematic). Campaign T1-P (18 sims) measures $r_{\rm P/G} = 1.166 \pm 0.037$
 (Plummer/Gaussian ratio, $f$-independent), giving $T1_{\rm Plummer} = 0.707 \pm 0.04$;
 at this value $\beta=0.5$ gives $\lambda/W_{\rm fil}=3.10$ (upper HGBS window boundary).
 
@@ -458,8 +442,7 @@ the magnetically regulated regime.}
 The supercritical campaign (654 Athena++ simulations) spans $f = 1.1$--$3.0$ (10 values),
 $\beta = 0.3$--$5.0$ (8 values), $\mathcal{M} = 0.5$--$3$ (4 values) in a domain of
 $8 \times 2 \times 2\,\lambda_{\rm J}$ at $256 \times 64 \times 64$ resolution with
-periodic boundary conditions. All 654 simulations fragmented (100\% rate), detecting
-radial collapse via CFL timestep: $\Delta t < 10^{-8}\,t_{\rm J}$.
+periodic boundary conditions. All 654 simulations fragmented via radial collapse (100\%).
 
 \textbf{Fragmentation timescales} decrease monotonically with supercriticality following
 a robust power law (Figure~\ref{fig:tfrag_combined}):
@@ -475,9 +458,7 @@ observed deviation $0.11$; both effects are $f$-independent and absorbed into th
 
 \textbf{Magnetic field}: Nearly independent of $\beta$ for $\beta \gtrsim 0.5$ ($t_{\rm frag}$ varies by only 7.7\% from $\beta=0.3$ to $\beta=5$). Per-$\beta$ power-law fits give exponents $0.38$--$0.40 \pm 0.01$, consistent with the global $0.39 \pm 0.01$.
 
-\textbf{Turbulence}: Completely independent of Mach number across $\mathcal{M} = 0.5$--$3.0$,
-to four decimal places ($\langle t_{\rm frag} \rangle = 0.2869\,t_{\rm J}$ for all $\mathcal{M}$;
-Figure~\ref{fig:mach_highbeta}).
+\textbf{Turbulence}: Independent of Mach number to within 0.5\% across $\mathcal{M} = 0.5$--$3.0$ (Figure~\ref{fig:mach_highbeta}).
 
 \textbf{Fragmentation spacing---negative result}: Direct measurement from HDF5 density
 profiles yielded zero detections of longitudinal structure in all 654 simulations.
@@ -809,7 +790,7 @@ RC Campaign ($f=2.6$) & 2.65 & 1.72 & 1.61 & 1.87 \\
 \end{tabular}
 \vspace{2pt}
 \footnotesize
-\textbf{Notes}: Bold entries overlap or closely approach the HGBS window $[2.52, 3.08]$. The T1=0.65 column is the physically motivated lower bound; T1=0.707 is the Campaign T1-P directly measured Plummer-corrected value (Section~\ref{sec:width_correction}; $r_{\rm P/G} = 1.166 \pm 0.037$, all 18 simulations). At T1=0.707, the $\beta=0.5$ longitudinal-field configuration gives $3.10$ (marginally above the window upper bound $3.08$) and $\beta=0.3$ gives $3.35$; both are within the combined T1 and observational uncertainties of the window. Whether simulations match depends primarily on whether T1 lies near 0.606 (no match) or near 0.707 (at window boundary for $\beta=0.5$; $\beta=0.3$ marginally above).
+\textbf{Notes}: Bold = entries overlapping or closely approaching $[2.52, 3.08]$. T1$=0.707$ is the Campaign T1-P Plummer-corrected value ($r_{\rm P/G} = 1.166 \pm 0.037$; Section~\ref{sec:width_correction}). At T1$=0.606$: no match; at T1$=0.707$: $\beta=0.5$ gives $3.10$ and $\beta=0.3$ gives $3.35$, both within combined uncertainties of the window.
 \end{table}
 
 The field geometry dependence transforms the question from ``why are observed spacings
