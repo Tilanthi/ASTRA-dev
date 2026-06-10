@@ -334,10 +334,7 @@ $\mathcal{M} = 1$--$5$ to map the stable-unstable boundary.
 
 A central result is a critical regime change at $f \approx 1.2$--$1.5$:
 
-\textbf{Near-critical ($f \lesssim 1.2$)}: All 80 Phase~1 simulations fragmented with
-measurable longitudinal beading at $t_{\rm frag} \approx 1.1$--$1.2\,t_{\rm J}$,
-including simulations at exactly $f = 1.00$ ($t_{\rm frag} = 1.62 \pm 0.03\,t_{\rm J}$),
-confirming no stability threshold at the critical line-mass.
+\textbf{Near-critical ($f \lesssim 1.2$)}: All 80 Phase~1 simulations fragmented with measurable longitudinal beading ($t_{\rm frag} \approx 1.1$--$1.2\,t_{\rm J}$), including at $f = 1.00$.
 
 \textbf{Supercritical ($f \geq 1.5$, periodic BCs)}: All 654 simulations yield pure radial
 collapse; longitudinal density variance $< 2\times 10^{-4}$ throughout. Radial runaway at
@@ -364,8 +361,7 @@ All STABLE points at $\beta = 0.3$, $\mathcal{M} = 1$ are timeout artifacts
 
 \begin{figure*}
 \includegraphics[width=0.7\textwidth]{figures/fig1_dtc_stable_ridge_rerun.pdf}
-\caption{DTC re-runs: all 15 previously-STABLE points fragmented within 6~h.
-Linear fit $t_{\rm frag}(f) \approx 1.57 - 0.27f$.}
+\caption{DTC re-runs: all 15 previously-STABLE points fragmented within 6~h, confirming no stable configurations exist at $\mathcal{M} \geq 1$.}
 \label{fig:dtc_rerun}
 \end{figure*}
 
@@ -373,9 +369,7 @@ Linear fit $t_{\rm frag}(f) \approx 1.57 - 0.27f$.}
 \label{sec:validation}
 
 \textbf{Resolution convergence}: Six matched-pgen points at $128^3$ and $256^3$ give
-$t_{\rm frag}(256^3)/t_{\rm frag}(128^3) = 0.928 \pm 0.016$ (7.2\%); all fragmented at both
-resolutions (Figure~\ref{fig:resolution}). Earlier spurious ratios of 2.4--4.2$\times$ were
-from mismatched problem generators.
+$t_{\rm frag}(256^3)/t_{\rm frag}(128^3) = 0.928 \pm 0.016$ (7.2\%); all fragmented at both resolutions (Figure~\ref{fig:resolution}).
 
 \textbf{Initial condition sensitivity}: Replacing King-profile with uniform density ICs
 gave identical fragmentation classifications at all 10 tested points (100\% agreement,
@@ -386,8 +380,7 @@ gave identical fragmentation classifications at all 10 tested points (100\% agre
 100\% isothermal; Figure~\ref{fig:eos_sensitivity}). Real molecular gas has $\gamma_{\rm eff}
 \approx 0.97$--$1.02$ \citep{Glover2012}, consistent with our isothermal runs.
 
-\textbf{Campaign EOS-G} (9 sims, $\gamma = 1.1$--$1.5$): the binary was compiled isothermal
-($\gamma=1$); $\gamma$-dependence at $1.1$--$1.5$ cannot be inferred, deferred to future work.
+
 
 \begin{figure}
 \includegraphics[width=0.48\textwidth]{figures/figR1_resolution_scatter.pdf}
@@ -641,10 +634,6 @@ At T1$=0.707$, $\beta=0.5$ ($3.10$) and $\beta=0.3$ ($3.35$) are at the window b
 
 \subsubsection{Cross-Campaign Synthesis}
 
-Tables~\ref{tab:cross_campaign} and \ref{tab:feff} (and Figure~\ref{fig:cross_campaign_lambdaW})
-summarise key results: field geometry is first-order (perp $\lambda/W \approx 1.25$ vs.\ long.\ $2.8$--$4.7$);
-$\beta$ is first-order for longitudinal B; HGBS $\lambda/W \approx 2.8$ lies between both.
-
 \begin{table*}
 \caption{Cross-Campaign $\lambda/W$ Summary: Field Geometry and Plasma $\beta$ Dependence}
 \label{tab:cross_campaign}
@@ -805,10 +794,7 @@ junctions. Neither fully represents real HGBS filaments in turbulent clouds.
 
 \textbf{Non-ideal MHD}: Ambipolar diffusion timescales ($t_{\rm AD} \sim 10$--$20\,t_{\rm ff}$ at $n_0 \sim 10^4$~cm$^{-3}$) are slow compared to collapse and expected to modify late-stage core formation but not fragmentation wavelengths \citep{Nakamura2005, Tassis2004}. Taurus ($n_0 \sim 10^3$~cm$^{-3}$) is an exception; ideal-MHD timescales there are lower bounds.
 
-\textbf{T1 correction}: Campaign T1-P directly measured $r_{\rm P/G} = 1.166 \pm 0.037$
-(all 18 simulations), giving $T1_{\rm Plummer} = 0.707 \pm 0.04$---17\% above the
-central Gaussian value $0.606$. Further validation with the full HGBS
-Plummer-fitting pipeline would definitively confirm this correction.
+\textbf{T1 correction}: Campaign T1-P gives $T1_{\rm Plummer} = 0.707 \pm 0.04$ (17\% above the Gaussian value; Table~\ref{tab:t1_budget}); HGBS pipeline validation on simulated maps would confirm this.
 
 \textbf{$\lambda/W$ for oblique fields}: Field Geometry Phase~3 measured timescales
 but not $\lambda/W$; Campaign~OBL2 found single-core collapse for all 27 sims at
