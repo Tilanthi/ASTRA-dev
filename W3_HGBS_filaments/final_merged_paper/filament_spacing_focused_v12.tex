@@ -962,23 +962,38 @@ equation~(\ref{eq:tension}) at $\beta = 1$, the theoretical prediction is $\appr
 $1\sigma$ of our fitted value of $1.11 \pm 0.12$---and confirms the smooth transition from
 longitudinal to perpendicular behaviour (Figure~\ref{fig:oblique_calibration}).
 
-\textbf{Campaign A: Near-critical oblique $\lambda/W$ measurements --- \textit{preliminary results only}} (27 simulations):
-\textbf{Important caveat}: all Campaign~A results presented below are from the first available HDF5 snapshot ($t = 0.10\,t_{\rm J}$), which captures early-stage fragmentation rather than the asymptotic fragmentation epoch ($t \approx 0.30$--$0.40\,t_{\rm J}$). These measurements are preliminary: peak spacings at early epoch may not represent the final asymptotic $\lambda/W$, and all three angle batches are still being validated with later-epoch snapshots. Campaign~A results should \textit{not} be interpreted as confirmed measurements; they are indicative trends consistent with theoretical expectations.
+\textbf{Campaigns A and OBL2: Near-critical oblique $\lambda/W$ measurements}
 
+\textit{Campaign A} (27 simulations, large initial perturbation $\delta_0 = 1.0$):
 Field Geometry Phase~3 (Section~\ref{sec:theo_geom}) measured fragmentation \textit{timescales}
 at oblique angles but did not retain HDF5 snapshots needed for $\lambda/W$ measurements.
 Campaign~A directly addresses this:
 $\theta = 30^\circ, 45^\circ, 60^\circ$ at $f = 1.0$ (near-critical) with $\beta = 0.5, 1.0, 2.0$
-(3 seeds each), with full HDF5 retention enabling direct $\lambda/W$ measurement from column density
-profiles. Table~\ref{tab:oblique_theory} shows the Nakamura (1993) analytic predictions for these
-configurations. \textbf{Preliminary early-epoch results} ($t = 0.10\,t_{\rm J}$) from the $\theta = 30^\circ$ batch (9 simulations,
-6 with valid measurements): $\lambda/W_{\rm sim} = 1.89 \pm 0.27$
-(mean $\pm$ standard deviation; $\beta = 0.5, 1.0, 2.0$; 3 sims showed $n_{\rm peaks} < 2$ at early epoch). Applied T1 correction:
-$(\lambda/W)_{\rm obs} = 1.89 \times 0.606 = 1.14 \pm 0.16$ (central T1) or
-$1.89 \times 0.707 = 1.34 \pm 0.19$ (Campaign T1-P Plummer value)---both below the HGBS window $[2.52,
-3.08]$, consistent with theoretical expectations. The $\theta = 45^\circ$ and $\theta = 60^\circ$
-batches have been launched; asymptotic-epoch ($t \approx 0.40\,t_{\rm J}$) confirmation is pending.
-\emph{These results will be updated once later-epoch snapshots are validated; the present values are considered indicative only.}
+(3 seeds each), with HDF5 retention. Table~\ref{tab:oblique_theory} shows the Nakamura (1993) analytic predictions.
+Early-epoch results at $t = 0.10\,t_{\rm J}$ from the $\theta = 30^\circ$ batch (9 simulations,
+6 with $n_{\rm peaks} \geq 2$): $\lambda/W_{\rm sim} = 1.89 \pm 0.27$.
+Applied T1 correction: $(\lambda/W)_{\rm obs} = 1.14 \pm 0.16$ (central T1) or
+$1.34 \pm 0.19$ (T1-P value)---both below the HGBS window.
+
+\textit{Campaign OBL2} (27 simulations, reduced perturbation $\delta_0 = 0.01$):
+To test whether the Campaign~A results reflect the intrinsic Jeans instability rather than
+the large initial perturbation, we ran a matched campaign with $\delta_0 = 0.01$
+(100$\times$ smaller). \textbf{Result}: 27/27 simulations collapsed to a single peak
+($n_{\rm peaks} = 1$), with no measurable $\lambda/W$ at any angle. The single-peak
+collapse occurred at $t_{\rm collapse} \approx 0.39$--$0.53\,t_{\rm J}$ with modest
+density contrasts ($C \approx 1.8$), consistent with the $n = 1$ global collapse mode
+dominating at physical perturbation levels.
+
+\textbf{Interpretation}: The 2-peak pattern in Campaign~A was driven by the
+large initial perturbation amplitude seeding artificial multi-peak modes; at reduced
+amplitude, oblique near-critical filaments preferentially undergo single-core collapse
+rather than regular multi-peak beading. This is physically consistent with near-critical
+oblique fields approaching the perpendicular limit at large $\theta$, where axial
+fragmentation is suppressed. We therefore withdraw the Campaign~A preliminary
+$\lambda/W$ measurement and conclude that \textit{no reliable simulation measurement of
+$\lambda/W$ for oblique near-critical filaments is available} from the current campaign set.
+The Nakamura (1993) theoretical predictions in Table~\ref{tab:oblique_theory} remain
+the best available estimates for oblique-field spacings.
 
 \begin{figure}
 \includegraphics[width=0.5\textwidth]{peer_review_analysis/fig3_oblique_calibration.pdf}
@@ -1418,8 +1433,7 @@ the large-scale $\lambda/W$ ratio studied here \citep{Nakamura2008}.
 
 \textbf{T1 correction}: Campaign T1-P (Section~\ref{sec:width_correction}) has now directly measured the Plummer/Gaussian FWHM ratio from HDF5 density profiles: $r_{\rm P/G} = 1.166 \pm 0.037$ (all 18 simulations complete: 9 $f = 1.0$ plus 9 $f = 1.2$ at $\beta = 0.5$, $1.0$, $2.0$), giving $T1_{\rm Plummer} = 0.707 \pm 0.04$. This quantifies the previously unquantified systematic and confirms that the Plummer-corrected T1 is 17\% above the central value $0.606$. The T1 correction ($0.606 \pm 0.072$) still needs validation with the full HGBS Plummer-fitting pipeline, but Campaign T1-P narrows the uncertainty on the correction factor from the semi-analytic range $1.15$--$1.25$ to $1.166 \pm 0.037$ (a factor of $3\times$ improvement in precision).
 
-\textbf{$\lambda/W$ for oblique fields --- Campaign~A \textit{preliminary} results}: Field Geometry Phase~3 (108 simulations at $\theta = 30^\circ$, $45^\circ$, $60^\circ$; Section~\ref{sec:theo_geom}) measured fragmentation
-\textit{timescales} but not spacings, because HDF5 snapshots were not retained. Table~\ref{tab:oblique_theory} provides theoretical predictions from the full numerical solution of the \citet{Nakamura1993} dispersion relation for representative $(\theta, \beta)$ combinations. The theoretical $\lambda/W(\theta)$ is monotonically decreasing from $\theta=0^\circ$ to $\theta=90^\circ$; for Planck-typical inclinations ($\theta \approx 60^\circ$--$80^\circ$), the predicted $\lambda/W$ lies in the range $1.8$--$2.5$ (at $\beta=1$), intermediate between the longitudinal and perpendicular limits. Campaign~A (27 near-critical oblique simulations at $f = 1.0$, described in Section~\ref{sec:theo_geom}) has provided preliminary measurements of $\lambda/W(\theta)$ at early fragmentation epoch ($t = 0.10\,t_{\rm J}$; asymptotic-epoch confirmation pending): for $\theta = 30^\circ$, $\lambda/W_{\rm sim} = 1.89 \pm 0.27$ (6/9 sims with valid measurements), corresponding to observable $(\lambda/W)_{\rm obs} = 1.14 \pm 0.16$ (central $T1 = 0.606$) or $1.33 \pm 0.19$ (Plummer $T1 = 0.707$)---both below the HGBS window $[2.52, 3.08]$ as indicative trends. The $\theta = 45^\circ$ and $\theta = 60^\circ$ batches are being validated; all oblique-field configurations tested so far fall below the HGBS window, consistent with the expectation that near-critical oblique fields cannot produce the observed core spacing without additional physics. \textit{These results are preliminary and should not be cited as confirmed measurements.}
+\textbf{$\lambda/W$ for oblique fields}: Field Geometry Phase~3 (108 simulations at $\theta = 30^\circ$, $45^\circ$, $60^\circ$; Section~\ref{sec:theo_geom}) measured fragmentation \textit{timescales} but not spacings. Table~\ref{tab:oblique_theory} provides theoretical predictions from the full numerical solution of the \citet{Nakamura1993} dispersion relation. The theoretical $\lambda/W(\theta)$ is monotonically decreasing from $\theta=0^\circ$ to $\theta=90^\circ$; for Planck-typical inclinations ($\theta \approx 60^\circ$--$80^\circ$), the predicted $\lambda/W$ lies in the range $1.8$--$2.5$ (at $\beta=1$), all below the HGBS window. Campaign~OBL2 (27 simulations at $\delta_0 = 0.01$, covering all $\theta$ and $\beta$ values; Section~\ref{sec:theo_geom}) found 27/27 sims collapse to a single core with no measurable $\lambda/W$, confirming that near-critical oblique filaments at physical perturbation levels do not produce regular multi-peak fragmentation in our domain size. The Nakamura (1993) theoretical predictions are the best available estimates; all predicted values are below the HGBS window $[2.52, 3.08]$, consistent with the conclusion that oblique fields cannot explain HGBS spacings at near-critical conditions.
 
 \begin{table}
 \caption{Theoretical $\lambda/W$ for oblique fields from the \citet{Nakamura1993} dispersion relation (full numerical solution), with Campaign~A preliminary simulation results at $\theta=30^\circ$. The $\theta=90^\circ$ theoretical value approaches $4\times W$ (weak axial tension), while the Campaign~6 simulation gives $\lambda/W=1.25$ because those simulations were run at $f=1.5$--$3.0$ (supercritical regime, radial collapse dominant), not at near-critical conditions. The correct comparison for field-geometry effects at fixed $f\approx 1$ is with the theoretical values shown here.}
@@ -1430,16 +1444,16 @@ the large-scale $\lambda/W$ ratio studied here \citep{Nakamura2008}.
 $\theta$ & $\beta=0.5$ & $\beta=1.0$ & $\beta=2.0$ & Notes & Simulation \\
 \midrule
 $0^\circ$ (longitudinal) & 1.97 & 2.44 & 2.93 & Eq.~(\ref{eq:tension}); Table~\ref{tab:perturbative} & --- \\
-$30^\circ$ & 1.87 & 2.37 & 2.89 & Theoretical & $1.89 \pm 0.27^\dagger$ \\
-$45^\circ$ & 1.69 & 2.17 & 2.72 & Theoretical & in progress \\
-$60^\circ$ & 1.47 & 1.90 & 2.46 & Theoretical & in progress \\
+$30^\circ$ & 1.87 & 2.37 & 2.89 & Theoretical & ---$^\dagger$ \\
+$45^\circ$ & 1.69 & 2.17 & 2.72 & Theoretical & --- \\
+$60^\circ$ & 1.47 & 1.90 & 2.46 & Theoretical & --- \\
 $90^\circ$ (perp., theory) & 3.95 & 3.99 & 4.00 & Theory only (sim.\ at $f=1.5$--$3.0$ gives 1.25) & --- \\
 \bottomrule
 \end{tabular}
-\\ \footnotesize \textbf{Note}: All values in $\lambda/W_{\rm sim}$ (simulation) units; multiply by $T1 = 0.606$ for observable ($\lambda/W_{\rm fil}$) units, or by $T1 = 0.707$ (Campaign T1-P measured value) for Plummer-corrected observable units. $^\dagger$~Campaign~A preliminary value: $\lambda/W_{\rm sim} = 1.89 \pm 0.27$ (6/9 sims, $\theta=30^\circ$, $t = 0.10\,t_{\rm J}$; $n_{\rm peaks}=2$; early-stage fragmentation, later snapshots pending).
+\\ \footnotesize \textbf{Note}: All values in $\lambda/W_{\rm sim}$ (simulation) units; multiply by $T1 = 0.606$ for observable ($\lambda/W_{\rm fil}$) units, or by $T1 = 0.707$ (Campaign T1-P) for Plummer-corrected units. $^\dagger$~Campaign~A gave $1.89 \pm 0.27$ (6/9 sims, $\theta=30^\circ$, $t=0.10\,t_{\rm J}$) using $\delta_0=1.0$; Campaign~OBL2 ($\delta_0=0.01$, 27 sims) gave single-core collapse only (no measurable $\lambda/W$). The Campaign~A value is withdrawn as amplitude-dependent; the theoretical prediction is the best available estimate for all three angles.
 \end{table}
 
-\textbf{Future priorities}: (1) Fibre-resolved core spacing in additional HGBS regions beyond Orion~B (Aquila, Perseus, Taurus); (2) polarimetric interior mapping to constrain filament-scale field geometry; (3) asymptotic-epoch ($t \approx 0.40\,t_{\rm J}$) confirmation of Campaign~A oblique-field $\lambda/W$ results for all three angles, replacing the preliminary $t = 0.10\,t_{\rm J}$ values presented here (Section~\ref{sec:theo_geom}); (4) pipeline validation of the T1-P Plummer correction by applying the full HGBS Plummer-fitting pipeline to simulated column density maps (the remaining open step after Campaign T1-P completion: direct application of the observational pipeline to verify $r_{\rm P/G} = 1.166 \pm 0.037$ at HGBS-representative distances; Section~\ref{sec:width_correction}); (5) a proper non-isothermal EOS campaign using a recompiled Athena++ binary with $\gamma = 1.1$--$1.5$ (Campaign EOS-G used the isothermal binary; see Section~\ref{sec:validation}); and (6) an age-gradient test of the observational-lag scenario: if core spacing is set at formation, older YSO populations should show systematically different $\lambda/W$ at fixed current $f$.
+\textbf{Future priorities}: (1) Fibre-resolved core spacing in additional HGBS regions beyond Orion~B (Aquila, Perseus, Taurus); (2) polarimetric interior mapping to constrain filament-scale field geometry; (3) domain-convergence study for oblique near-critical filaments: Campaign~OBL2 found single-core collapse at $f = 1.0$ for all $\theta$; larger domains ($L_x \gg 8\,\lambda_{\rm J}$) may be needed to accommodate the theoretically predicted multi-peak fragmentation wavelength (Section~\ref{sec:theo_geom}); (4) pipeline validation of the T1-P Plummer correction by applying the full HGBS Plummer-fitting pipeline to simulated column density maps (the remaining open step after Campaign T1-P completion: direct application of the observational pipeline to verify $r_{\rm P/G} = 1.166 \pm 0.037$ at HGBS-representative distances; Section~\ref{sec:width_correction}); (5) a proper non-isothermal EOS campaign using a recompiled Athena++ binary with $\gamma = 1.1$--$1.5$ (Campaign EOS-G used the isothermal binary; see Section~\ref{sec:validation}); and (6) an age-gradient test of the observational-lag scenario: if core spacing is set at formation, older YSO populations should show systematically different $\lambda/W$ at fixed current $f$.
 
 \section{CONCLUSIONS}
 
