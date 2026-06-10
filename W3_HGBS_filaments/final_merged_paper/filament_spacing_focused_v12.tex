@@ -129,11 +129,9 @@ by $<3\%$ across threshold choices of $1$--$2\times W$.
 \subsection{Results}
 \label{sec:results}
 
-\textbf{Width systematic}: All $\lambda/W$ values carry a $\sim$30\% systematic
-uncertainty from filament width scatter ($0.05$--$0.20$~pc; \citealt{Panopoulou2022})
-and fitting-method dependence. This systematic is \textit{not} included in the bootstrap
-error bars; it propagates directly into $\lambda/W$ and is the dominant uncertainty
-when comparing across regions or with theoretical predictions.
+\textbf{Width systematic}: A $\sim$30\% systematic uncertainty from filament width
+scatter ($0.05$--$0.20$~pc; \citealt{Panopoulou2022}) affects all $\lambda/W$ values
+and is not included in bootstrap error bars; it dominates when comparing with theory.
 
 \textbf{Primary result}: The four robust regions (Orion~B, Aquila, Perseus, Taurus;
 $N > 500$ each) give a weighted mean spacing of $0.284 \pm 0.012$~pc (standard error of
@@ -190,11 +188,9 @@ well-established Gaia distances, $<15\%$ or validated revision) or \textbf{Limit
 
 \textbf{Serpens}: The +76\% distance revision ($260 \to 458$~pc) raises concern, but is independently confirmed at $440$--$460$~pc \citep{Yan2022, Green2024, Zucker2020}. Excluding Serpens changes the full-sample result by only 1.1\% (Table~\ref{tab:leave_one_out}).
 
-\textbf{Serpens beam/completeness}: At 458~pc the 18$''$ beam ($0.040$~pc) corresponds to
-40\% of $W_{\rm fil}$; beam blending may overestimate the spacing by up to $\sim$8\%
-($0.305$~pc corrected vs $0.331$~pc measured). Since Serpens carries only 3.8\% weight in
-the full-sample mean, the impact on the mean is $<0.2\%$ and is negligible. Serpens is
-classified as Limited.
+\textbf{Serpens beam/completeness}: The $0.040$~pc beam (40\% of $W_{\rm fil}$) may
+overestimate spacing by ${\sim}8\%$; at 3.8\% sample weight, impact on the mean is
+$<0.2\%$. Serpens is classified as Limited.
 
 \textbf{Aquila anomaly}: Aquila has the largest Robust spacing ($\lambda/W = 3.46$),
 possibly from W40 H\,{\sc ii} feedback \citep{Bontemps2010} or the $+68\%$ distance
@@ -340,10 +336,9 @@ fields ($\beta \sim 1$--$3$), this gives $\lambda/W = 2.44$--$3.16$, overlapping
 HGBS measurement.
 
 \textbf{Geometric challenge}: Magnetic tension requires predominantly longitudinal field
-geometry. However, Planck Collaboration (2016) found that dense filaments tend to be
-perpendicular to the mean field; only ${\sim}10\%$ are expected to have predominantly
-longitudinal internal field geometry. The mechanism therefore cannot account for the
-observed spacing in the majority of HGBS filaments.
+geometry, yet Planck Collaboration (2016) found dense filaments tend to be perpendicular
+to the mean field; ${\sim}10\%$ have predominantly longitudinal geometry. Magnetic tension
+alone cannot account for the observed spacing in the majority of HGBS filaments.
 
 \subsection{Hierarchical Fragmentation}
 
@@ -486,9 +481,10 @@ $f = 3.0$ (free-fall predicts exponent $0.50$; we measure $0.39$, 22\% below). T
 reduced exponent likely reflects competing flux-frozen field amplification and cylindrical
 potential deepening, both $f$-independent and absorbed into the global fit.
 
-\textbf{Magnetic field}: Nearly independent of $\beta$ for $\beta \gtrsim 0.5$ ($t_{\rm frag}$ varies by only 7.7\% from $\beta=0.3$ to $\beta=5$). Per-$\beta$ power-law fits give exponents $0.38$--$0.40 \pm 0.01$, consistent with the global $0.39 \pm 0.01$. Near-critical fragmentation ($f=1.1$--$1.3$) is continuous with the supercritical power law (Figure~\ref{fig:nearcrit}).
-
-\textbf{Turbulence}: Independent of Mach number to within 0.5\% across $\mathcal{M} = 0.5$--$3.0$ (Figure~\ref{fig:mach_highbeta}).
+\textbf{Magnetic field and turbulence}: $t_{\rm frag}$ varies by only 7.7\% across
+$\beta=0.3$--$5$ (per-$\beta$ exponents $0.38$--$0.40$, consistent with global $0.39$)
+and by $<0.5\%$ across $\mathcal{M}=0.5$--$3.0$ (Figures~\ref{fig:mach_highbeta},~\ref{fig:nearcrit}).
+Near-critical fragmentation ($f=1.1$--$1.3$) is continuous with the supercritical power law.
 
 \textbf{Fragmentation spacing---negative result}: Direct measurement from HDF5 density
 profiles yielded zero detections of longitudinal structure in all 654 simulations.
@@ -510,11 +506,9 @@ the critical transition at $f \approx 1.2$--$1.5$.
 where $\lambda_{MJ} = \lambda_J \sqrt{1 + 2\sin^2\theta/\beta}$ \citep{Nakamura1993}.
 For longitudinal B ($\theta = 0^\circ$): $\lambda_{\rm frag}/W_{\rm core} \approx 3.70$
 (Figure~\ref{fig:lambda_theory}).
-\textbf{Important}: Equation~(\ref{eq:calib}) is calibrated at near-critical
-$f = 0.9$--$1.3$ only; it represents a factor-of-$\sim$2 \emph{upper bound} for
-supercritical filaments (which undergo radial collapse before fragmenting) and
-\emph{should not be used as a precise prediction outside the calibration range}.
-Figure~\ref{fig:lambda_theory} distinguishes the calibrated range from the extrapolation region.
+\textbf{Note}: Eq.~(\ref{eq:calib}) is valid at $f = 0.9$--$1.3$ only; it is a
+factor-$\sim$2 \emph{upper bound} for supercritical filaments and should not be
+extrapolated (Figure~\ref{fig:lambda_theory}).
 
 \begin{figure*}
 \includegraphics[width=0.45\textwidth]{figures/fig1_tfrag_combined.pdf}
@@ -762,15 +756,12 @@ boundary conditions to model finite-length filaments with rigid ends.
 seeds $\{1, 2, 3\}$; $512\times64\times64$, $8\,\lambda_{\rm J}$ domain, isothermal,
 longitudinal B ($\theta = 0^\circ$), $\mathcal{M} = 1.0$.
 
-\textbf{Key results} (Figure~\ref{fig:RC_lW}): For $f \leq 2.2$, $\lambda/W_{\rm core} > 3.5$
-(10 genuine non-fragmentations at $\beta \leq 1.0$). At $f = 2.6$--$3.0$,
-$\lambda/W_{\rm core} = 2.65 \pm 0.60$ and $2.64 \pm 0.43$ in simulation units;
-$\beta$-insensitive (self-gravity dominates); sharp transition at $f \approx 2.4$--$2.6$.
-\textbf{These are upper limits}: box-size convergence tests show $\lambda/W_{\rm core}$
-decreases by 36\% as $L_x$ doubles (Section~\ref{sec:rigidcyl}), so the converged values
-at $L_x \to \infty$ could be substantially lower.
-
-After T1 correction at $f=2.6$: $\lambda/W_{\rm fil} = 1.61$ (T1$=0.606$) or $1.87$ (T1$=0.707$)---both below the HGBS window.
+\textbf{Key results} (Figure~\ref{fig:RC_lW}): For $f \leq 2.2$, 10 genuine non-fragmentations
+at $\beta \leq 1.0$ ($\lambda/W_{\rm core} > 3.5$). At $f = 2.6$--$3.0$,
+$\lambda/W_{\rm core} = 2.65 \pm 0.60$; $\beta$-insensitive; sharp transition at $f \approx 2.4$--$2.6$.
+These are upper limits (36\% decrease as $L_x$ doubles; Section~\ref{sec:rigidcyl}).
+After T1 correction: $\lambda/W_{\rm fil} = 1.61$ (T1$=0.606$) or $1.87$ (T1$=0.707$)---both
+below the HGBS window.
 
 \begin{figure*}
 \includegraphics[width=0.48\textwidth]{figures/fig_RC_lW_vs_f.pdf}
