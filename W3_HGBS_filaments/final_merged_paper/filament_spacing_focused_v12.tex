@@ -75,8 +75,7 @@ show sub-Jeans values. Second, \textbf{magnetic tension}: longitudinal fields sh
 most unstable mode to shorter wavelengths \citep{Nakamura1993}, predicting
 $\lambda/W \approx 2.44$--$3.16$ for equipartition fields ($\beta \sim 1$--$3$).
 
-In this paper, we present the first systematic analysis of all 8 high-confidence HGBS regions using Gaia DR3 distances and a uniform pairwise-median methodology, combined with self-gravitating MHD simulations to test these competing
-explanations.
+Here we present a systematic analysis of all 8 high-confidence HGBS regions using Gaia DR3 distances and a uniform pairwise-median methodology, combined with 2013 self-gravitating MHD simulations. We find hierarchical fibre fragmentation to be the most physically consistent explanation, with magnetic tension marginally consistent only at the directly measured Plummer-function correction T1$=0.707$.
 
 \section{OBSERVATIONAL ANALYSIS}
 
@@ -284,16 +283,7 @@ at this value $\beta=0.5$ gives $\lambda/W_{\rm fil}=3.10$ (upper HGBS window bo
 
 \subsection{Magnetic Tension Mechanism}
 
-For a filament threaded by a longitudinal magnetic field, the dispersion relation
-becomes \citep{Nakamura1993}:
-\begin{equation}
-\omega^2 = c_s^2 k^2 + v_{A,\parallel}^2 k^2 - 4\pi G\rho_0 F(kR)
-\label{eq:dispersion}
-\end{equation}
-Magnetic tension preferentially stabilises long wavelengths, shifting the most unstable
-mode to shorter wavelengths than the hydrodynamic case.
-
-In the perturbative regime the dispersion relation gives:
+Magnetic tension in a longitudinal field \citep{Nakamura1993} preferentially stabilises long wavelengths, shifting the most unstable mode to shorter wavelengths. In the perturbative limit:
 \begin{equation}
 \frac{\lambda}{W} \approx \frac{4.0}{\sqrt{1 + 2/\beta}}
 \label{eq:tension}
@@ -371,9 +361,7 @@ All STABLE points at $\beta = 0.3$, $\mathcal{M} = 1$ are timeout artifacts
 \textbf{Resolution convergence}: Six matched-pgen points at $128^3$ and $256^3$ give
 $t_{\rm frag}(256^3)/t_{\rm frag}(128^3) = 0.928 \pm 0.016$ (7.2\%); all fragmented at both resolutions (Figure~\ref{fig:resolution}).
 
-\textbf{Initial condition sensitivity}: Replacing King-profile with uniform density ICs
-gave identical fragmentation classifications at all 10 tested points (100\% agreement,
-20 simulations; Figure~\ref{fig:ic_sensitivity}).
+\textbf{Initial condition sensitivity}: King-profile vs.\ uniform density ICs give identical classifications at all 10 tested points (Figure~\ref{fig:ic_sensitivity}).
 
 \textbf{Equation of state}: Sub-isothermal ($\gamma = 0.8$--$0.9$) accelerates fragmentation
 (30--40\% shorter $t_{\rm frag}$); adiabatic ($\gamma = 5/3$) suppresses it entirely (0\% vs.\
@@ -600,10 +588,7 @@ Campaign EOS-G ($\gamma=1.5$) & 9 & $\gamma=1.5$, $f=1.0$--$1.2$ & Periodic & Co
 
 \textbf{Campaign 5} (54 sims; longitudinal field, $f = 1.0$--$1.2$, $\beta = 0.5$--$2.0$):
 Physical turbulence ($\delta v/c_s = 1.0$) does \textit{not} modify $\lambda/W$:
-$3.44 \pm 0.76$ (physical) vs.\ $3.30 \pm 0.85$ (synthetic; KS test $p = 0.43$; Figure~\ref{fig:C5_turbulence}).
-$\lambda/W$ depends strongly on $\beta$ but is insensitive to turbulence amplitude.
-Physical turbulence accelerates collapse $3.2\times$ relative to synthetic perturbations;
-this is an amplitude effect, not a Mach number effect.
+$3.44 \pm 0.76$ (physical) vs.\ $3.30 \pm 0.85$ (synthetic; KS test $p = 0.43$; Figure~\ref{fig:C5_turbulence}). $\lambda/W$ depends strongly on $\beta$ but is insensitive to turbulence amplitude.
 
 \textbf{Campaign 6} (100 sims; $\theta = 90^\circ$, $f = 1.2$--$1.5$, $\beta = 0.3$--$2.0$):
 Strong perpendicular B ($\beta \leq 0.5$) → radial collapse (FLAT\_PROFILE); weak
@@ -612,11 +597,7 @@ $2.2$--$2.5\times$ shorter than longitudinal-field values. Field geometry, not $
 dominates for perpendicular-field filaments.
 
 \textbf{Campaign 7} (135 sims; $f = 0.9$--$1.3$, $\beta = 0.3$--$2.0$, 3 seeds):
-No discontinuity at $f = 1.0$ (variation $<5\%$). Strong $\beta$-dependence
-(Figure~\ref{fig:C7_critical}): $\lambda/W_{\rm core} = 4.74 \pm 0.73$ ($\beta = 0.3$),
-$4.38 \pm 0.59$ ($\beta = 0.5$), $3.19 \pm 0.29$ ($\beta = 1.0$),
-$2.86 \pm 0.18$ ($\beta = 1.5$), $2.80 \pm 0.14$ ($\beta = 2.0$).
-At T1$=0.606$: no match. At T1$=0.707$: $\beta=0.5$ gives $3.10$, $\beta=0.3$ gives $3.35$---both at the upper boundary of the HGBS window $[2.52, 3.08]$ within combined uncertainties (Table~\ref{tab:t1_budget}).
+No discontinuity at $f = 1.0$ (variation $<5\%$). $\lambda/W_{\rm core}$ shows strong $\beta$-dependence from $4.74$ ($\beta=0.3$) to $2.80$ ($\beta=2.0$; Table~\ref{tab:cross_campaign}, Figure~\ref{fig:C7_critical}); at T1$=0.707$ the low-$\beta$ configurations approach the HGBS window (Table~\ref{tab:t1_budget}).
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig_C5_turbulence_lambdaW.pdf}
