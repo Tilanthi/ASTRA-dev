@@ -90,18 +90,7 @@ distances updated to Gaia DR3-based measurements from \citet{Zhang2023}.
 ($260 \to 458$~pc, $+76\%$), Aquila ($260 \to 436$~pc, $+68\%$), and Orion~B
 ($260 \to 386$~pc, $+48\%$). Taurus shows a small decrease ($140 \to 135$~pc, $-4\%$).
 
-\textbf{Core selection}: We include starless, prestellar, and protostellar cores
-following the standard HGBS framework \citep{Konyves2015, Konyves2020}. Across the
-8 HGBS regions, approximately 60--75\% of catalogued cores are starless (bound and
-unbound), with 25--40\% classified as protostellar (Class 0/I) depending on region
-and evolutionary maturity (e.g.\ $\sim$88\% starless in Aquila, Konyves et al.\ 2015;
-$\sim$62\% in Orion~B, Konyves et al.\ 2020). Unbound starless cores are retained
-because the observational distinction between bound and unbound is uncertain at the
-HGBS sensitivity limit, and because the spacing measurement is dominated by the
-dominant (prestellar) population. As a cross-check, we computed the pairwise median for Taurus using only the 331 starless cores (excluding the 205 protostellar cores classified as Class~0/I). The starless-only result is $0.203 \pm 0.044$~pc ($\lambda/W = 2.03$), within 2.5\% of the all-core value ($0.198$~pc), confirming that the inclusion of protostellar cores does not bias the pairwise median at a level exceeding the statistical uncertainty.
-Protostellar cores can migrate from their formation
-sites; our Monte Carlo simulations show this introduces $<0.01\%$ bias in the pairwise
-median for typical migration distances $0.01$--$0.05$~pc.
+\textbf{Core selection}: We include starless, prestellar, and protostellar cores following the standard HGBS framework \citep{Konyves2015, Konyves2020}. As a cross-check, using only the 331 Taurus starless cores gives $\lambda/W = 2.03$---within 2.5\% of the all-core value---confirming that protostellar inclusion does not bias the result.
 
 
 \begin{table*}
@@ -153,8 +142,7 @@ catalogues) to $0.279$~pc. A leave-one-out analysis (Table~\ref{tab:leave_one_ou
 confirms the result is not dominated by any single region; excluding any region changes
 the weighted mean by $<6\%$.
 
-Figure~\ref{fig:spacing} shows the spacing measurements across all regions.
-After 3D projection correction (factor $4/\pi \approx 1.27$, the statistical mean projection factor for isotropically oriented cylinders; \citealt{Andre2010}), the inferred spacing is ${\sim}3.1$--$3.5\times W$ (depending on the assumed filament inclination distribution; see Section~\ref{sec:statistics}), within 15\% of the classical $4\times$ prediction. However, HGBS filaments are not isotropically oriented: Planck polarimetry shows dense filaments preferentially project close to the plane of sky \citep{Planck2016}, which biases the effective projection factor below $4/\pi$. For a distribution of inclination angles $i$ (where $i=90^\circ$ is plane-of-sky) skewed toward $i=70^\circ$--$90^\circ$, the effective mean projection factor is ${\sim}1.10$--$1.20$ rather than $1.27$, reducing the 3D-corrected spacing to ${\sim}3.1$--$3.3\times W$. This remains consistent with the classical $4\times$ prediction at the $\sim 2$--$3\sigma$ level, strengthening rather than weakening the residual discrepancy. A precise constraint requires an inclination distribution derived from polarimetric mapping of the specific HGBS regions studied here; in the absence of this, we use $4/\pi$ as the standard isotropic correction and note the $\lesssim 10\%$ systematic uncertainty.
+Figure~\ref{fig:spacing} shows the spacing measurements. After 3D projection correction ($4/\pi \approx 1.27$; \citealt{Andre2010}), the inferred spacing is ${\sim}3.5\times W$, within 15\% of the classical $4\times$ prediction. Planck polarimetry indicates dense filaments preferentially lie close to the plane of sky \citep{Planck2016}, reducing the effective projection factor to ${\sim}1.10$--$1.20$ and the 3D-corrected spacing to ${\sim}3.1$--$3.3\times W$; this note strengthens rather than weakens the residual discrepancy. We adopt $4/\pi$ as the standard isotropic correction with $\lesssim 10\%$ systematic uncertainty.
 
 \begin{table}[h]
 \caption{Leave-One-Out Sensitivity Analysis}
@@ -200,13 +188,7 @@ additional support. Critically, excluding Serpens changes the full-sample
 result by only $1.1\%$ ($\lambda/W = 2.79 \to 2.76$); our primary robust-only
 result ($\lambda/W = 2.84$) is entirely independent of the Serpens distance.
 
-\textbf{Serpens beam and completeness effects}: At the revised distance of 458~pc, the
-HGBS 18$''$ beam corresponds to $0.040$~pc---approaching $W_{\rm fil}$ and raising
-concerns about core blending and reduced completeness relative to the original 260~pc
-distance. A ${\sim}20\%$ blending correction would shift the Serpens spacing from
-$0.331$ to ${\sim}0.26$~pc, changing the full-sample result by only ${\sim}1.5\%$ (Serpens
-carries 3.8\% weight). This is the primary reason Serpens is classified as Limited; the
-Serpens data are included for completeness but should be interpreted with caution.
+\textbf{Serpens beam/completeness}: At 458~pc the HGBS beam ($0.040$~pc) approaches $W_{\rm fil}$, raising blending concerns; even a 20\% correction shifts the full-sample result by only $\sim$1.5\% (Serpens carries 3.8\% weight). Serpens data are included but classified as Limited (see Table~\ref{tab:sample} footnote).
 
 \textbf{Aquila anomaly}: Aquila shows the largest spacing in the Robust sample
 ($0.346 \pm 0.047$~pc, $\lambda/W = 3.46$). Its elevated value may reflect feedback from
@@ -425,14 +407,7 @@ but requires fibre-resolved analysis in additional HGBS regions to test quantita
 
 \subsection{Simulation Methodology}
 
-We performed self-gravitating MHD simulations using Athena++ \citep{Stone2020}:
-\begin{align}
-\frac{\partial \rho}{\partial t} &= -\nabla \cdot (\rho \mathbf{v}) \\
-\frac{\partial (\rho \mathbf{v})}{\partial t} &= -\nabla \cdot \left(\rho \mathbf{v} \mathbf{v} + P + \frac{B^2}{8\pi} - \frac{\mathbf{B}\mathbf{B}}{4\pi}\right) - \rho \nabla \phi \\
-\frac{\partial \mathbf{B}}{\partial t} &= \nabla \times (\mathbf{v} \times \mathbf{B}) \\
-\frac{\partial E}{\partial t} &= -\nabla \cdot \left[\left(E + P + \frac{B^2}{8\pi}\right)\mathbf{v} - \frac{(\mathbf{v} \cdot \mathbf{B})\mathbf{B}}{4\pi}\right] - \rho \mathbf{v} \cdot \nabla \phi
-\end{align}
-with $\nabla^2 \phi = 4\pi G\rho$. Initial conditions: cylindrical filament with
+We performed self-gravitating isothermal MHD simulations using the Athena++ framework \citep{Stone2020}, solving the standard ideal-MHD equations with self-gravity ($\nabla^2\phi = 4\pi G\rho$) using the 4-wave HLLD Riemann scheme. Initial conditions: cylindrical filament with
 $\rho(r) = \rho_0 / [1 + (r/W)^2]$, uniform $\mathbf{B}_0$, characterised by
 mass-to-flux ratio $f = \mu_{\rm line}/\mu_{\rm crit}$, plasma $\beta$, and
 Mach number $\mathcal{M}$. The parameter space spans $f = 0.9$--$3.0$,
@@ -575,15 +550,10 @@ a robust power law (Figure~\ref{fig:tfrag_combined}):
 \label{eq:powerlaw}
 \end{equation}
 from $t_{\rm frag} \approx 0.371\,t_{\rm J}$ at $f = 1.1$ to $0.251\,t_{\rm J}$ at
-$f = 3.0$ (free-fall predicts $1/t_{\rm frag} \propto f^{0.5}$; we measure $0.39$, 22\% below).
-Two physical effects explain the observed exponent $0.39$ versus the free-fall prediction
-$0.50$: (i) flux-frozen field amplification ($|B| \propto \rho^{1/2}$ in cylindrical
-geometry) increases the effective sound speed during collapse, slowing the collapse rate
-by $\sim\sqrt{2}$ (correction $\Delta\alpha \approx 0.07$); (ii) cylindrical geometry
-slows the gravitational potential deepening compared to spherical free-fall (correction
-$\Delta\alpha \approx 0.04$). Combined, these give $0.07 + 0.04 = 0.11$, consistent with
-the measured deviation $0.50 - 0.39 = 0.11$. Both effects are $f$-independent to leading
-order and absorbed into the global power-law fit.
+$f = 3.0$ (free-fall predicts $0.50$; we measure $0.39$, 22\% below). Plausibly, flux-frozen
+field amplification ($|B| \propto \rho^{1/2}$) and cylindrical potential deepening each slow
+the collapse by $\Delta\alpha \approx 0.07$ and $0.04$ respectively, summing to the
+observed deviation $0.11$; both effects are $f$-independent and absorbed into the global fit.
 
 \textbf{Magnetic field}: Nearly independent of $\beta$ for $\beta \gtrsim 0.5$; only
 at $\beta = 0.3$ is $t_{\rm frag}$ measurably shorter ($0.2725$ vs $0.2950\,t_{\rm J}$
@@ -909,11 +879,6 @@ box resonance. Green band = HGBS window; $L_x=32$ (grey cross) was computational
 $L_x=16$ values are upper limits.}
 \label{fig:RC_convergence}
 \end{figure}
-
-\textbf{Physical interpretation}: Periodic-BC translational invariance suppresses longitudinal
-fragmentation in supercritical filaments; reflecting BCs break this symmetry, seeding
-fragmentation at the ends. At $f \geq 2.6$, self-gravity dominates, converging to
-$\lambda/W_{\rm core} \approx 2.6$--$2.7$ across all $\beta$.
 
 \section{DISCUSSION}
 \label{sec:discussion}
