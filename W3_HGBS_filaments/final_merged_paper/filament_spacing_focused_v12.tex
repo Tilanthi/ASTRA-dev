@@ -402,9 +402,11 @@ by Campaigns 1 and 7) or $\beta > 1.3$.
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig1_pfrag_heatmaps.pdf}
-\caption{DTC: fragmentation fraction $P_{\rm frag}$ in the $(\beta, f)$ plane at
-$\mathcal{M} = 1$--$5$. All stable points at $\beta = 0.3$, $\mathcal{M} = 1$ are
-timeout artefacts confirmed by 6~h re-runs (Figure~\ref{fig:dtc_rerun}).}
+\caption{DTC: fragmentation fraction $P_{\rm frag}$ in the $(\beta, f)$ plane for
+$\mathcal{M} = 1$--$5$. Apparent stable points at $\beta = 0.3$, $\mathcal{M} = 1$
+are timeout artefacts; 6-h re-runs (Figure~\ref{fig:dtc_rerun}) confirmed all
+subsequently fragmented. No stable configurations exist within $f=1.4$--$2.2$,
+$\beta=0.3$--$1.3$, $\mathcal{M} \geq 1$.}
 \label{fig:dtc_pfrag}
 \end{figure*}
 
@@ -546,15 +548,13 @@ continuous with the supercritical power law.}
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig3_lambda_W_theory.pdf}
-\caption{\textbf{Theoretical} $\lambda/W_{\rm core}$ vs.\ $\beta$
-from the calibrated formula $\lambda_{\rm frag} = 1.11\,\lambda_{MJ}(\theta,\beta)$ (lines),
-\emph{without} overplotted simulation points. For $\theta = 0^\circ$, $\lambda/W_{\rm core} = 3.70$
-(perturbative formula; full numerical solution $3.55$--$3.80$ at low-$\beta$).
-Green band = HGBS window $[2.52, 3.08]$ in $\lambda/W_{\rm fil}$ units
-(i.e., $[4.16, 5.08]$ in $\lambda/W_{\rm core}$ units at T1$=0.606$);
-reference line at $\lambda/W_{\rm fil} = 2.79$. Calibrated at $f = 0.9$--$1.3$;
-\emph{upper bound only} for supercritical filaments. Contrast with Figure~\ref{fig:C7_critical}
-which shows direct simulation measurements.
+\caption{\textbf{Theoretical} $\lambda/W_{\rm core}$ vs.\ $\beta$ from calibrated formula
+$\lambda_{\rm frag} = 1.11\,\lambda_{MJ}(\theta,\beta)$; no simulation points shown.
+At $\theta=0^\circ$, $\lambda/W_{\rm core}=3.70$ (full numerical solution $3.55$--$3.80$).
+Green band: HGBS window $[2.52, 3.08]$ in observable $\lambda/W_{\rm fil}$
+($=[4.16, 5.08]$ in $\lambda/W_{\rm core}$ at T1$=0.606$); dashed line at $2.79$.
+Valid at $f = 0.9$--$1.3$ only; \emph{upper bound} for supercritical filaments
+(see Figure~\ref{fig:C7_critical} for direct simulation measurements).
 \label{fig:lambda_theory}
 \end{figure*}
 
@@ -588,10 +588,11 @@ filaments are effectively hydrodynamic.
 
 \begin{figure*}
 \includegraphics[width=0.7\textwidth]{peer_review_analysis/fig2_lambda_W_comparison.pdf}
-\caption{$\lambda/W_{\rm core}$ for perpendicular-field (Phase~2; $\approx 1.25$,
-geometry-dominated) vs.\ longitudinal-field (Phase~1; $2.8$--$4.7$, strong
-$\beta$-dependence). All values in simulation units; multiply by T1$=0.606$ (or $0.707$
-for the T1-P Plummer value) to convert to observable $\lambda/W_{\rm fil}$.}
+\caption{$\lambda/W_{\rm core}$ comparing perpendicular-field (Phase~2; $\approx 1.25$,
+geometry-dominated) and longitudinal-field (Phase~1; $2.8$--$4.7$, strong $\beta$-dependence)
+fragmentation. Simulation units: multiply by T1$=0.606$--$0.707$ to obtain observable
+$\lambda/W_{\rm fil}$; HGBS window $[2.52, 3.08]$ in observable units. No perpendicular-field
+configuration approaches the HGBS window.}
 \label{fig:perp_comparison}
 \end{figure*}
 
@@ -683,7 +684,7 @@ Figure~\ref{fig:cross_campaign_lambdaW}.
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig_C5_turbulence_lambdaW.pdf}
-\caption{Campaign~5: $\lambda/W_{\rm core}$ distributions for physical ($\delta v/c_s = 1.0$, blue) vs.\ synthetic ($10^{-4}$, orange) turbulence are statistically indistinguishable ($p = 0.43$; right: $\beta$-dependence preserved).}
+\caption{Campaign~5: $\lambda/W_{\rm core}$ distributions for physical ($\delta v/c_s = 1.0$, blue) vs.\ synthetic ($10^{-4}$, orange) turbulence; KS test $p = 0.43$ (statistically indistinguishable). Right panel shows $\beta$-dependence is preserved at both amplitudes. HGBS window (observable $[2.52, 3.08]$; equivalent to $[4.16, 5.08]$ at T1$=0.606$) shown for reference.}
 \label{fig:C5_turbulence}
 \end{figure*}
 
