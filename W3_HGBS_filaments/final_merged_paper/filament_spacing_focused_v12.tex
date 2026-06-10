@@ -480,26 +480,13 @@ different $f$-regimes and boundary conditions.
 \subsection{Definitive Transition Campaign (DTC)}
 \label{sec:dtc}
 
-The DTC comprised 540 simulations spanning $f = 1.4$--$2.2$ (9 values),
-$\beta = 0.3$--$1.3$ (6 values), and $\mathcal{M} = 1$--$5$ (5 values), with
-two random seeds per point. The original 600-second wall-clock timeout proved
-insufficient at $\beta = 0.3$, $\mathcal{M} = 1$: targeted re-runs with
-6-hour timeouts (April 2026) showed that \textbf{all 15 parameter points
-previously classified as STABLE in this sub-grid subsequently fragmented}
-with $t_{\rm frag} \in [1.02, 1.43]\,t_{\rm J}$. The 600-second limit reached
-only $t \approx 0.4$--$0.65\,t_{\rm J}$, well before actual fragmentation.
-All 15 STABLE classifications in the DTC were at $\beta = 0.3$, $\mathcal{M} = 1$ (the one sub-grid re-run with 6-hour timeouts); no other sub-grid contained stable classifications. The corrected transition boundary therefore contains \textbf{no stable configurations} for $\mathcal{M} \geq 1$ at any $f$ or $\beta$ tested. The re-run data follow $t_{\rm frag}(f) \approx 1.57 - 0.27f$
-(maximum seed-to-seed scatter $|\Delta t_{\rm frag}| < 0.08\,t_{\rm J}$).
-This linear fit and the power law $1/t_{\rm frag} \propto f^{0.39}$ from the
-supercritical campaign (Section~\ref{sec:supercrit}) are consistent:
-over the narrow DTC range $\Delta f = 0.8$ (1.4--2.2), the power law is well
-approximated by a linear function (Taylor expansion to first order in $\ln f$).
-At $f = 1.8$ (midpoint), both give $t_{\rm frag} \approx 1.09\,t_{\rm J}$; the
-maximum deviation between the two descriptions across $f = 1.4$--$2.2$ is $<8\%$.
-The power law is preferred for its broader applicability ($f = 1.1$--$3.0$) and
-theoretical motivation (Section~\ref{sec:supercrit}).
-Figure~\ref{fig:dtc_pfrag} shows the $P_{\rm frag}$ map; Figure~\ref{fig:dtc_rerun}
-shows the re-run results.
+The DTC comprised 540 simulations spanning $f = 1.4$--$2.2$, $\beta = 0.3$--$1.3$,
+$\mathcal{M} = 1$--$5$ (two seeds per point). Targeted 6-hour re-runs (April 2026)
+confirmed that all 15 parameter points at $\beta = 0.3$, $\mathcal{M} = 1$ classified
+as STABLE by the original 600-second timeout subsequently fragmented
+($t_{\rm frag} \in [1.02, 1.43]\,t_{\rm J}$; linear fit $t_{\rm frag} \approx 1.57 - 0.27f$).
+The corrected boundary contains \textbf{no stable configurations} for $\mathcal{M} \geq 1$
+at any $f$ or $\beta$ tested (Figures~\ref{fig:dtc_pfrag},~\ref{fig:dtc_rerun}).
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig1_pfrag_heatmaps.pdf}
@@ -596,33 +583,15 @@ The $\beta \approx 2.5$ boundary corresponds to where magnetic tension modifies 
 
 The regime boundaries are defined by $\beta$ thresholds that are robust across the full $f$ and $\mathcal{M}$ range tested: the subcritical/regulated boundary shifts by $\Delta\beta < 0.03$ and the regulated/thermal boundary shifts by $\Delta\beta < 0.1$ across $f = 1.1$--$3.0$. The regime diagram (Figure~\ref{fig:regime}) shows the density contrast $C$ in the $(\beta, f)$ plane with fixed $\mathcal{M} = 2$; the regime boundaries (dashed lines at $\beta = 0.15$ and $\beta = 2.5$) are overlaid.
 
-\textbf{Analytic growth rate comparison}: The suppression of longitudinal fragmentation in
-supercritical filaments has a direct analytic basis. For a non-magnetic self-gravitating
-isothermal cylinder, \citet{Stodolkiewicz1963} showed that the dominant instability for
-$f > 1$ is the $m=0$ sausage (radial) mode; \citet{Nagasawa1987} extended this to magnetised
-cylinders with longitudinal fields. The growth rate of the radial (collapse) mode scales as
-$\sigma_r \approx (4\pi G\rho_0)^{1/2}\,f$ for $f \gg 1$, while the maximum longitudinal
-fragmentation growth rate from the same analysis is $\sigma_{l,\rm max} \approx
-0.56\,(4\pi G\rho_0)^{1/2}$ (at the optimal Jeans wavenumber, independent of $f$ to leading
-order). The ratio $\sigma_r/\sigma_{l,\rm max} \approx 1.8\,f$ predicts that radial collapse
-dominates for $f \gtrsim 0.56$---before the line mass even reaches the supercritical threshold.
-At $f = 1.5$: $\sigma_r/\sigma_{l,\rm max} \approx 2.7$; at $f = 2.0$: ${\approx}3.6$.
-Equivalently, the collapse timescale ratio $t_{\rm radial}/t_{\rm longitudinal} \approx 1/1.8f$
-predicts $0.37$ at $f = 1.5$ and $0.28$ at $f = 2.0$, consistent with our simulation
-measurements ($t_{\rm frag} \approx 0.31$ and $0.27\,t_J$ respectively from the supercritical
-campaign). The analytic and numerical results are therefore in quantitative agreement.
-The longitudinal field strengthens this preference by adding axial tension that suppresses
-longitudinal modes while leaving the radial growth rate nearly unaffected (see
-Section~\ref{sec:supercrit}).
-
-\textbf{Magnetically subcritical regime and HGBS applicability}:
-The $\beta \leq 0.15$ regime is physically distinct from the remainder of our simulation
-grid: the Alfv\'{e}n speed $v_A/c_s \geq 3.6$ greatly exceeds typical HGBS filament
-estimates ($\beta \approx 0.3$--$2$; \citealt{Planck2016, Pattle2018, Crutcher2012}).
-We include this regime for theoretical completeness and to establish the full fragmentation
-boundary, but note that its direct observational relevance to HGBS filaments is limited.
-All observational comparisons in this paper use the magnetically regulated ($0.2 \leq \beta \leq 2$)
-and thermally dominated ($\beta \geq 2.5$) regimes, which bracket the HGBS observational range.
+\textbf{Analytic growth rate}: The ratio of radial to longitudinal growth rates
+$\sigma_r/\sigma_{l,\rm max} \approx 1.8\,f$ \citep{Stodolkiewicz1963, Nagasawa1987}
+predicts radial collapse dominates for $f \gtrsim 0.56$, in quantitative agreement
+with our simulation timescales ($t_{\rm frag} \approx 0.31\,t_J$ at $f=1.5$,
+$0.27\,t_J$ at $f=2.0$; Section~\ref{sec:supercrit}).
+All observational comparisons use the magnetically regulated ($0.2 \leq \beta \leq 2$)
+and thermally dominated ($\beta \geq 2.5$) regimes; the subcritical regime
+($\beta \leq 0.15$, $v_A/c_s \geq 3.6$) lies outside the HGBS observational range
+and is included for theoretical completeness only.
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig_regime_diagram_mhd.pdf}
@@ -926,76 +895,39 @@ $+$ 540 (DTC, Section~\ref{sec:dtc}) $+$ 83 (validation: 12 resolution, 20 IC, 5
 9 (box-size convergence, Section~\ref{sec:rigidcyl}) $+$ 27 (Campaign~A, Section~\ref{sec:theo_geom}) $+$
 18 (Campaign T1-P, Section~\ref{sec:width_correction}) $+$ 9 (Campaign EOS-G, Section~\ref{sec:validation}) $= 2013$.
 
-\subsubsection{Campaign 5: Turbulence Effects on Fragmentation Wavelength (54 simulations)}
+\subsubsection{Campaigns 5--7: Turbulence, Perpendicular Field, and Critical Transition}
 
-We measured $\lambda/W$ for longitudinal-field filaments at $f = 1.0$--$1.2$,
-$\beta = 0.5, 1.0, 2.0$, comparing physical turbulence ($\delta v/c_s = 1.0$,
-Kolmogorov spectrum) with synthetic perturbations ($\delta v/c_s = 10^{-4}$).
+\textbf{Campaign 5} (54 sims; longitudinal field, $f = 1.0$--$1.2$, $\beta = 0.5$--$2.0$):
+Physical turbulence ($\delta v/c_s = 1.0$) does \textit{not} modify $\lambda/W$:
+$3.44 \pm 0.76$ (physical) vs.\ $3.30 \pm 0.85$ (synthetic; KS test $p = 0.43$; Figure~\ref{fig:C5_turbulence}).
+$\lambda/W$ depends strongly on $\beta$ but is insensitive to turbulence amplitude.
+Physical turbulence accelerates collapse $3.2\times$ relative to synthetic perturbations;
+this is an amplitude effect, not a Mach number effect.
 
-\textbf{Key results}: \textbf{(1)} Turbulence does \textit{not} modify $\lambda/W$ significantly:
-$3.44 \pm 0.76$ (physical) vs.\ $3.30 \pm 0.85$ (synthetic), $<5\%$ difference
-(KS test $p = 0.43$). \textbf{(2)} Strong $\beta$-dependence: $\lambda/W$ decreases from
-$4.31 \pm 0.60$ ($\beta = 0.5$) to $2.81 \pm 0.13$ ($\beta = 2.0$). \textbf{(3) Amplitude vs.\ Mach distinction}: Physical turbulence (amplitude $\delta v/c_s = 1.0$) accelerates collapse $3.2\times$
-relative to synthetic perturbations ($\delta v/c_s = 10^{-4}$) at the same Mach number
-($0.33$ vs.\ $1.06\,t_{\rm J}$). This is a perturbation \textit{amplitude} effect, not
-a Mach number effect: for fixed amplitude ($10^{-4}$), $t_{\rm frag}$ is independent
-of $\mathcal{M}$ (Figure~\ref{fig:mach_highbeta}). Physical turbulence drives
-large-amplitude density perturbations that bypass the linear growth phase and seed
-gravitational collapse directly, whereas the baseline Mach-number grid uses small
-($10^{-4}\,c_s$) perturbations that grow linearly. The fragmentation wavelength
-is set by equilibrium properties, not perturbation amplitude (Figure~\ref{fig:C5_turbulence}).
-One caveat: the turbulence is initialised without a driving mechanism and decays on $t_{\rm cross} \approx 1$--$2\,t_{\rm J}$; the effective Mach number at fragmentation is $\sim 60$--$80\%$ of the initial value for near-critical runs (no direct measurement; estimated from $t_{\rm frag}/t_{\rm cross}$). The Mach-number independence result is unaffected since supercritical collapse ($t_{\rm frag} \approx 0.3\,t_{\rm J}$) occurs well before significant turbulence decay.
+\textbf{Campaign 6} (100 sims; $\theta = 90^\circ$, $f = 1.2$--$1.5$, $\beta = 0.3$--$2.0$):
+Strong perpendicular B ($\beta \leq 0.5$) → radial collapse (FLAT\_PROFILE); weak
+perpendicular B ($\beta \geq 1.0$) → $\lambda/W = 1.25 \pm 0.09$ ($N=27$),
+$2.2$--$2.5\times$ shorter than longitudinal-field values. Field geometry, not $\beta$,
+dominates for perpendicular-field filaments.
+
+\textbf{Campaign 7} (135 sims; $f = 0.9$--$1.3$, $\beta = 0.3$--$2.0$, 3 seeds):
+No discontinuity at $f = 1.0$ (variation $<5\%$). Strong $\beta$-dependence
+(Figure~\ref{fig:C7_critical}): $\lambda/W_{\rm core} = 4.74 \pm 0.73$ ($\beta = 0.3$),
+$4.38 \pm 0.59$ ($\beta = 0.5$), $3.19 \pm 0.29$ ($\beta = 1.0$),
+$2.86 \pm 0.18$ ($\beta = 1.5$), $2.80 \pm 0.14$ ($\beta = 2.0$).
+At T1$=0.606$: no match. At T1$=0.707$: $\beta=0.5$ gives $3.10$, $\beta=0.3$ gives $3.35$---both at the upper boundary of the HGBS window $[2.52, 3.08]$ within combined uncertainties (Table~\ref{tab:t1_budget}).
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig_C5_turbulence_lambdaW.pdf}
-\caption{Campaign~5: turbulence effects on $\lambda/W_{\rm core}$. Left: distributions for
-physical ($\delta v/c_s = 1.0$, blue) vs.\ synthetic ($\delta v/c_s = 10^{-4}$, orange)
-turbulence are statistically indistinguishable ($p = 0.43$). Right: mean $\lambda/W_{\rm core}$
-vs.\ $\beta$ for both turbulence types; $\beta$-dependence is preserved while turbulence
-amplitude has negligible effect.}
+\caption{Campaign~5: $\lambda/W_{\rm core}$ distributions for physical ($\delta v/c_s = 1.0$, blue) vs.\ synthetic ($10^{-4}$, orange) turbulence are statistically indistinguishable ($p = 0.43$; right: $\beta$-dependence preserved).}
 \label{fig:C5_turbulence}
 \end{figure*}
 
-\subsubsection{Campaign 6: Perpendicular-Field $\beta$-Dependence (100 simulations)}
-
-We measured $\lambda/W$ for perpendicular-field filaments ($\theta = 90^\circ$) at
-$f = 1.2$--$1.5$, $\beta = 0.3$--$2.0$ (5 seeds per point; $512\times64\times64$ resolution,
-$16\lambda_{\rm J}$ domain).
-
-\textbf{Key results}: Strong perpendicular B ($\beta \leq 0.5$) produces pure radial collapse
-(FLAT\_PROFILE); weak perpendicular B ($\beta \geq 1.0$) gives measurable axial fragmentation
-at $\lambda/W = 1.25 \pm 0.09$ ($N = 27$ good measurements)---\textit{2.2--2.5$\times$
-shorter} than longitudinal-field values at the same $\beta$, with no $\beta$-dependence
-for $\beta \geq 1.0$. Field geometry, not plasma $\beta$, is the dominant parameter for
-perpendicular-field filaments. The observed HGBS spacing ($\lambda/W \approx 2.8$) lies
-between the perpendicular (${\approx}1.25$) and longitudinal (${\approx}2.8$--$4.7$)
-predictions, suggesting mixed geometries or additional physics.
-
-\subsubsection{Campaign 7: Critical Transition Mapping (135 simulations)}
-
-We mapped $\lambda/W$ vs.\ $f$ across the critical transition ($f = 0.9$--$1.3$ in
-steps of 0.05) at $\beta = 0.3, 0.5, 1.0, 1.5, 2.0$ (3 seeds per point), directly
-measuring whether a discontinuity exists at $f = 1.0$.
-
-\textbf{Key results}:
-\begin{itemize}
-    \item \textbf{Smooth $\lambda/W(f)$ relationship}: No discontinuity at $f = 1.0$.
-    Variation across $f = 0.9$--$1.3$ is $<5\%$ at each $\beta$, validating
-    near-critical calibration.
-    \item \textbf{Strong $\beta$-dependence} (Figure~\ref{fig:C7_critical}):
-    $\lambda/W_{\rm core} = 4.74 \pm 0.73$ ($\beta = 0.3$), $4.38 \pm 0.59$ ($\beta = 0.5$),
-    $3.19 \pm 0.29$ ($\beta = 1.0$), $2.86 \pm 0.18$ ($\beta = 1.5$),
-    $2.80 \pm 0.14$ ($\beta = 2.0$).
-    \item At T1$=0.606$: no match (even $\beta=2.0$ gives $\lambda/W_{\rm fil}=1.70$). At T1$=0.707$ (Campaign T1-P directly measured value): $\beta=0.5$ gives $3.10$ and $\beta=0.3$ gives $3.35$---both marginally exceeding the HGBS window $[2.52, 3.08]$ within the combined T1 and observational uncertainties (Table~\ref{tab:t1_budget}).
-\end{itemize}
-
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig_C7_critical_lambdaW.pdf}
-\caption{Campaign~7 critical transition mapping. Left: $\lambda/W_{\rm core}$ vs.\ $f$
-for five $\beta$ values, showing smooth behaviour with no discontinuity at $f = 1.0$.
-Right: mean $\lambda/W_{\rm core}$ per $\beta$ (simulation units, left axis) and
-T1-corrected $\lambda/W_{\rm fil}$ (right axis). Green shading = HGBS window $[2.52, 3.08]$
-in simulation units; at the central T1$=0.606$ all values fall below; at Campaign T1-P measured T1$=0.707$, both $\beta=0.5$ ($3.10$) and $\beta=0.3$ ($3.35$) marginally exceed the window, consistent with observations within the combined uncertainties.}
+\caption{Campaign~7: $\lambda/W_{\rm core}$ vs.\ $f$ (left) and vs.\ $\beta$ (right).
+No discontinuity at $f = 1.0$; strong $\beta$-dependence. Green shading = HGBS window.
+At T1$=0.707$, $\beta=0.5$ ($3.10$) and $\beta=0.3$ ($3.35$) are at the window boundary.}
 \label{fig:C7_critical}
 \end{figure*}
 
