@@ -165,11 +165,7 @@ Robust only & --- & 0.284 & 2.84 & +1.8 \\
 \bottomrule
 \end{tabular}
 \vspace{2pt}
-\footnotesize \textbf{Notes}: ``Excl.\ spacing'' is the pairwise median spacing of the
-excluded region (bootstrap $1\sigma$). The 6.1\% decrease when Aquila is excluded
-reflects Aquila's anomalously large spacing ($0.346$~pc), which lies 1.1$\sigma$ above
-the weighted mean. The Serpens exclusion effect (1.1\%) is negligible in comparison.
-\footnotesize \textbf{Statistical uncertainties}: spacing uncertainties are bootstrap standard deviations ($1\sigma$) from 10,000 resampling iterations of all pairwise distances within each region.
+\footnotesize Spacing uncertainties: bootstrap $1\sigma$ (10,000 iterations). All $\Delta$ values $< 6\%$; the Serpens exclusion effect (1.1\%) is negligible.
 \end{table}
 
 \subsection{Distance Uncertainties and Sample Heterogeneity}
@@ -190,12 +186,7 @@ result ($\lambda/W = 2.84$) is entirely independent of the Serpens distance.
 
 \textbf{Serpens beam/completeness}: At 458~pc the HGBS beam ($0.040$~pc) approaches $W_{\rm fil}$, raising blending concerns; even a 20\% correction shifts the full-sample result by only $\sim$1.5\% (Serpens carries 3.8\% weight). Serpens data are included but classified as Limited (see Table~\ref{tab:sample} footnote).
 
-\textbf{Aquila anomaly}: Aquila shows the largest spacing in the Robust sample
-($0.346 \pm 0.047$~pc, $\lambda/W = 3.46$). Its elevated value may reflect feedback from
-the nearby W40 H\,{\sc ii} region and Serpens South proto-cluster \citep{Andre2010,Bontemps2010},
-increasing the effective Jeans mass, or completeness bias from the $+68\%$ distance
-revision ($260 \to 436$~pc). Excluding Aquila reduces the robust mean by 6.0\% to
-$\lambda/W = 2.67$---still well above the perpendicular-B simulation prediction ($\approx 1.25$).
+\textbf{Aquila anomaly}: Aquila has the largest Robust-sample spacing ($\lambda/W = 3.46$), possibly reflecting feedback from the W40 H\,{\sc ii} region \citep{Bontemps2010} or the $+68\%$ distance revision. Excluding Aquila reduces the robust mean by 6\%; Table~\ref{tab:leave_one_out}.
 
 
 
@@ -451,11 +442,6 @@ not prevent fragmentation; typical HGBS conditions ($\beta \approx 0.3$--$2$) fa
 
 Boundaries are robust: subcritical/regulated shifts by $\Delta\beta < 0.03$; regulated/thermal
 by $\Delta\beta < 0.1$ across the full $f$ and $\mathcal{M}$ range (Figure~\ref{fig:regime}).
-
-\textbf{Analytic growth rate}: $\sigma_r/\sigma_{l,\rm max} \approx 1.8\,f$
-\citep{Stodolkiewicz1963} predicts radial dominance for $f \gtrsim 0.56$, consistent
-with our timescales. HGBS comparisons use regimes (2) and (3) only; regime (1) ($\beta \leq 0.15$)
-is for theoretical completeness.
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig_regime_diagram_mhd.pdf}
@@ -716,10 +702,7 @@ HGBS ensemble range & $0.7$--$1.9$ & Propagated uncertainty \\
 \bottomrule
 \end{tabular}
 \vspace{0.05in}
-\footnotesize
-\textbf{Notes}: Turbulent effective support ($f_{\rm eff}/f = 0.82 \pm 0.11$) from the
-TURB campaign (90 simulations). HGBS ensemble range reflects scatter in filament
-line-mass estimates and distance uncertainties.
+\footnotesize $f_{\rm eff}/f = 0.82 \pm 0.11$ from the TURB campaign (90 simulations).
 \end{table}
 
 \begin{figure*}
@@ -770,10 +753,7 @@ $\lambda/W$ at a given $L_x/\lambda$ ratio. The monotonic decrease indicates phy
 Jeans fragmentation: larger domains accommodate additional Jeans-unstable wavelengths,
 selecting shorter fragments. Box resonance is therefore ruled out.
 
-\textbf{Convergence}: $L_x = 32$ was attempted but proved computationally infeasible
-($\delta t \approx 1.5\times10^{-5}$, ${\sim}100$~h required). Kolmogorov scaling predicts
-the $n=1$ mode carries $13\times$ more power at $L_x=32$ vs.\ $16$, treating $L_x=16$
-values as upper limits. Box resonance is ruled out by the monotonic $L_x$ dependence.
+\textbf{Convergence}: $L_x = 32$ was computationally infeasible ($\sim$100~h required); $L_x=16$ values are upper limits. Box resonance is ruled out by the monotonic $L_x$ dependence.
 
 \begin{figure}
 \includegraphics[width=0.48\textwidth]{figures/fig_RC_convergence.pdf}
@@ -885,12 +865,7 @@ We have analysed core spacing in 8 HGBS regions using 2013 MHD simulations. Our 
 
 \begin{itemize}
 
-    \item \textbf{HGBS spacing}: Four robust regions give $\lambda/W = 2.84 \pm 0.12$
-    ($0.284 \pm 0.012$~pc); the full 8-region sample gives $2.79 \pm 0.09$.
-    Gaia DR3 revisions increased the mean by 32\%, and 3D projection correction brings
-    the inferred spacing to ${\sim}3.5\times W$---within 15\% of the IM92 prediction.
-    Excluding Serpens ($+76\%$ revision) changes the result by 1.1\%; the conservative
-    lower bound gives $\lambda/W = 2.68$, 33\% below $4\times$.
+    \item \textbf{HGBS spacing}: Four robust regions give $\lambda/W = 2.84 \pm 0.12$; the full 8-region sample (5,069 cores) gives $2.79 \pm 0.09$. Gaia DR3 revisions raised the mean by 32\%, and 3D projection correction places the inferred spacing within 15\% of the IM92 $4\times$ prediction.
 
     \item \textbf{Hierarchical fragmentation}: The most plausible explanation.
     Fibre-to-core spacing in Orion~B recovers the $4\times$ prediction \citep{Yang2024},
