@@ -45,7 +45,7 @@ filaments produce measurable longitudinal beading. Campaign T1-P (18 simulations
 measures the Plummer-function width correction ($T1_{\rm Plummer} = 0.707 \pm 0.04$),
 placing the low-$\beta$ longitudinal configuration marginally consistent with the HGBS
 window $[2.52, 3.08]$; using the conservative Gaussian-only value ($T1 = 0.606 \pm 0.072$),
-no configuration matches the window. Systematic width normalisation is the critical uncertainty.
+no configuration matches. Fibre-resolved core spacing in additional HGBS regions is the decisive observational test.
 \end{abstract}
 
 \begin{keywords}
@@ -205,44 +205,9 @@ sub-Jeans spacing.
 \subsection{Statistical Methods: Pairwise Median vs Alternative Statistics}
 \label{sec:statistics}
 
-The pairwise median converges toward $L/3$ as $N \to \infty$ for a uniform distribution
-of positions along a filament of length $L$, and may overestimate the true fragmentation
-wavelength. However, for a periodic distribution of $N$ cores with true spacing $\lambda$
-on a filament of length $L = N\lambda$, the $L/3$ asymptote would be $N\lambda/3$---a
-factor of $N/3$ times the true spacing---wildly inconsistent with our measured values
-($0.198$--$0.346$~pc) which are comparable to the predicted Jeans scale ($\sim$0.4~pc).
-The pairwise median is therefore recovering the dominant clustering scale, not the $L/3$
-asymptote. Monte Carlo simulations (5,000 realisations per region, 30\% core-position
-scatter) quantify the residual $L/3$ bias at $+1.4$--$+1.8\%$ for all four Robust
-regions---well below the bootstrap statistical uncertainties of 4--5\% per region
-(Table~\ref{tab:l3_bias}). No correction is applied; the bias is smaller than the $1\sigma$
-uncertainties and cannot account for the factor-of-1.4 discrepancy from IM92.
+The pairwise median converges toward $L/3$ for a uniform distribution, potentially overestimating the true fragmentation wavelength. However, our measured spacings ($0.198$--$0.346$~pc) are comparable to the predicted Jeans scale and far below $L/3$ for typical filament lengths, confirming the statistic recovers the clustering scale rather than the asymptote. Monte Carlo simulations (5,000 realisations per region) give residual $L/3$ biases of $+1.4$--$+1.8\%$---well below the $4$--$5\%$ bootstrap uncertainties---so no correction is applied.
 
-As a supplementary diagnostic, nearest-neighbour (adjacent-core) spacing for Taurus
-gives $\lambda_{\rm NN} = 0.217 \pm 0.052$~pc ($\lambda/W = 2.17$; 442 pairs along
-DisPerSE skeleton segments, bootstrap $1\sigma$). This is \textit{larger} than the
-pairwise median value of 0.198~pc---opposite to the $L/3$ artifact direction---providing
-qualitative single-region corroboration against $L/3$ bias dominating. Full NN analysis
-for Orion~B, Aquila, and Perseus awaits public release of sequential skeleton topology files
-and is deferred to a companion analysis.
-
-\begin{table}[h]
-\caption{Per-region L/3 pairwise-median bias (Monte Carlo, 5,000 realisations each)}
-\label{tab:l3_bias}
-\small
-\begin{tabular}{lcccc}
-\toprule
-Region & $N$ & $\lambda/L$ & Bias (\%) & Method \\
-\midrule
-Orion B  & 1844 & 0.21 & $+1.6 \pm 0.5$ & Monte Carlo \\
-Aquila   & 749  & 0.23 & $+1.8 \pm 0.6$ & Analytic \\
-Perseus  & 816  & 0.20 & $+1.5 \pm 0.5$ & Analytic \\
-Taurus   & 536  & 0.19 & $+1.4 \pm 0.4$ & Monte Carlo \\
-\bottomrule
-\end{tabular}
-\\[2pt]
-\footnotesize All biases $\leq 2\%$, well below bootstrap uncertainties of $4$--$5\%$.
-\end{table}
+As a supplementary check, Taurus nearest-neighbour spacing ($\lambda_{\rm NN} = 0.217 \pm 0.052$~pc) is \textit{larger} than the pairwise median ($0.198$~pc)---opposite to the $L/3$ bias direction---providing qualitative corroboration.
 
 \subsection{Comparison with Literature}
 
@@ -365,26 +330,7 @@ In the perturbative regime the dispersion relation gives:
 \frac{\lambda}{W} \approx \frac{4.0}{\sqrt{1 + 2/\beta}}
 \label{eq:tension}
 \end{equation}
-The perturbative formula underestimates the full numerical solution by 9.1\% at $\beta=0.5$
-(see Table~\ref{tab:perturbative}), so we use the full numerical values throughout.
-For equipartition fields ($\beta \sim 1$--$3$), the full numerical solution gives
-$\lambda/W = 2.44$--$3.16$, overlapping the Gaia DR3-corrected HGBS measurement.
-
-\begin{table}
-\caption{Perturbative vs.\ full numerical \citet{Nakamura1993} longitudinal-field dispersion
-relation (Eq.~\ref{eq:dispersion}). ``Error'' = fractional underestimate by perturbative formula.}
-\label{tab:perturbative}
-\begin{tabular}{lccc}
-\toprule
-$\beta$ & $\lambda/W$ (perturbative) & $\lambda/W$ (numerical) & Error (\%) \\
-\midrule
-0.5 & 1.79 & 1.97 & -9.1 \\
-1.0 & 2.31 & 2.44 & -5.3 \\
-2.0 & 2.82 & 2.93 & -3.8 \\
-3.0 & 3.07 & 3.16 & -2.9 \\
-\bottomrule
-\end{tabular}
-\end{table}
+The perturbative formula (Eq.~\ref{eq:tension}) underestimates the full numerical solution by 2.9--9.1\% (largest at low $\beta$); we use full numerical values throughout. For equipartition fields ($\beta \sim 1$--$3$), the full solution gives $\lambda/W = 2.44$--$3.16$, overlapping the HGBS measurement.
 
 \textbf{Geometric challenge}: Magnetic tension requires predominantly longitudinal field
 geometry. However, Planck Collaboration (2016) found that dense filaments tend to be
@@ -502,12 +448,7 @@ accelerates fragmentation; adiabatic ($\gamma = 5/3$) suppresses it entirely.}
 The 208-simulation baseline grid reveals three distinct fragmentation regimes
 (Figure~\ref{fig:regime}):
 
-\textbf{(1) Magnetically subcritical ($\beta \leq 0.15$)}: Minimal fragmentation,
-density contrast $C = 1.007 \pm 0.002$ (median $\pm$ scatter across the regime).
-Magnetic pressure suppresses fragmentation entirely. The $\beta = 0.15$ boundary
-corresponds to $v_A/c_s = \sqrt{2/\beta} \approx 3.6$, where Alfv\'{e}nic pressure
-exceeds thermal by a factor of ${\sim}13$. The boundary shifts by $\Delta\beta < 0.03$
-across $f = 1.1$--$3.0$ and $\mathcal{M} = 0.5$--$3.0$.
+\textbf{(1) Magnetically subcritical ($\beta \leq 0.15$)}: Magnetic pressure suppresses fragmentation entirely ($C = 1.007 \pm 0.002$; boundary robust to $\Delta\beta < 0.03$ across the full $f$, $\mathcal{M}$ range).
 
 
 \textbf{(2) Magnetically regulated ($0.2 \leq \beta \leq 2$)}: Intermediate fragmentation,
@@ -555,14 +496,7 @@ field amplification ($|B| \propto \rho^{1/2}$) and cylindrical potential deepeni
 the collapse by $\Delta\alpha \approx 0.07$ and $0.04$ respectively, summing to the
 observed deviation $0.11$; both effects are $f$-independent and absorbed into the global fit.
 
-\textbf{Magnetic field}: Nearly independent of $\beta$ for $\beta \gtrsim 0.5$; only
-at $\beta = 0.3$ is $t_{\rm frag}$ measurably shorter ($0.2725$ vs $0.2950\,t_{\rm J}$
-at $\beta = 5$, a 7.7\% difference). The power-law scaling $1/t_{\rm frag} \propto f^{0.39}$
-is consistent across all $\beta$ values tested: fitting the power law separately for each
-$\beta$ gives exponents ranging from $0.38 \pm 0.01$ ($\beta = 0.3$) to $0.40 \pm 0.01$
-($\beta = 5.0$), within $\pm 0.01$ of the global fit. The exponent is consistent across all $\beta$ values and between near-critical
-($0.38 \pm 0.03$, 3 $f$-values) and supercritical ($0.39 \pm 0.01$, 10 $f$-values)
-regimes; the global fit $0.39 \pm 0.01$ is the primary result.
+\textbf{Magnetic field}: Nearly independent of $\beta$ for $\beta \gtrsim 0.5$ ($t_{\rm frag}$ varies by only 7.7\% from $\beta=0.3$ to $\beta=5$). Per-$\beta$ power-law fits give exponents $0.38$--$0.40 \pm 0.01$, consistent with the global $0.39 \pm 0.01$.
 
 \textbf{Turbulence}: Completely independent of Mach number across $\mathcal{M} = 0.5$--$3.0$,
 to four decimal places ($\langle t_{\rm frag} \rangle = 0.2869\,t_{\rm J}$ for all $\mathcal{M}$;
