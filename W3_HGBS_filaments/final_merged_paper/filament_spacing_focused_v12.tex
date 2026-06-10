@@ -92,7 +92,6 @@ distances updated to Gaia DR3-based measurements from \citet{Zhang2023}.
 
 \textbf{Core selection}: We include starless, prestellar, and protostellar cores following the standard HGBS framework \citep{Konyves2015, Konyves2020}. As a cross-check, using only the 331 Taurus starless cores gives $\lambda/W = 2.03$---within 2.5\% of the all-core value---confirming that protostellar inclusion does not bias the result.
 
-
 \begin{table*}
 \caption{Complete HGBS Sample with Gaia DR3 Distances}
 \label{tab:sample}
@@ -201,8 +200,6 @@ mapping \citep{Zucker2020} and Gaia-parallax YSOs at $430 \pm 20$~pc \citep{Kony
 we retain Aquila as Robust but note that excluding it reduces the robust mean by 6\%
 (Table~\ref{tab:leave_one_out}). The highest protostellar fraction in the sample is a
 flagged unquantified systematic; a starless-only cross-check would be needed for confirmation.
-
-
 
 \subsection{Statistical Methods: Pairwise Median vs Alternative Statistics}
 \label{sec:statistics}
@@ -401,8 +398,6 @@ $t_{\rm frag}(256^3)/t_{\rm frag}(128^3) = 0.928 \pm 0.016$ (7.2\%); all fragmen
 100\% isothermal; Figure~\ref{fig:eos_sensitivity}). Real molecular gas has $\gamma_{\rm eff}
 \approx 0.97$--$1.02$ \citep{Glover2012}, consistent with our isothermal runs.
 
-
-
 \begin{figure}
 \includegraphics[width=0.48\textwidth]{figures/figR1_resolution_scatter.pdf}
 \caption{Resolution convergence ($128^3$ vs $256^3$, matched pgen): mean ratio $0.928 \pm 0.016$; all within $\pm10\%$ band.}
@@ -429,7 +424,6 @@ The 208-simulation baseline grid reveals three distinct fragmentation regimes
 (Figure~\ref{fig:regime}):
 
 \textbf{(1) Magnetically subcritical ($\beta \leq 0.15$)}: Magnetic pressure suppresses fragmentation entirely ($C = 1.007 \pm 0.002$; boundary robust to $\Delta\beta < 0.03$ across the full $f$, $\mathcal{M}$ range).
-
 
 \textbf{(2) Magnetically regulated ($0.2 \leq \beta \leq 2$)}: Intermediate fragmentation,
 $C = 3.4$--$11$ (median 6.5, $\pm$50\% scatter across the regime). Fields modify but do
@@ -584,7 +578,17 @@ empirically validating $\lambda_{\rm frag} = 1.11\,\lambda_{MJ}(\theta,\beta)$
 
 \textbf{Campaigns A and OBL2: Oblique $\lambda/W$ (withdrawn)}
 
-Campaign~A ($\delta_0=1.0$) gave $\lambda/W_{\rm sim}=1.89\pm0.27$ at $\theta=30^\circ$, but the matched Campaign~OBL2 ($\delta_0=0.01$) found 27/27 single-core collapses---confirming the multi-peak pattern was a large-amplitude artifact. Campaign~A is withdrawn; \citet{Nakamura1993} theoretical predictions (Table~\ref{tab:oblique_theory}) are the best available estimates.\par\textbf{OBL2 single-core collapse}: The theoretical prediction for $\theta=30^\circ$, $f=1.0$ is $\lambda/W \approx 1.87$--$2.89$ (Table~\ref{tab:oblique_theory}), corresponding to $\lambda \approx 0.56$--$0.87\,\lambda_{\rm J}$ in the domain ($L_x = 8\,\lambda_{\rm J}$). At small perturbation amplitude ($\delta_0 = 0.01$), only the lowest-order mode (n=1, $\lambda = L_x$) is effectively seeded; with $\lambda_{\rm frag}/L_x \approx 0.07$--$0.11$, the fundamental mode is $\sim$10$\times$ longer than the instability scale, and the filament collapses as a single entity before shorter modes grow from the noise level. This is a domain-size artifact: for $\delta_0 = 0.01$ to correctly sample oblique fragmentation, $L_x \lesssim 3\lambda_{\rm frag}$ is required, demanding $L_x \lesssim 2$--$3\,\lambda_{\rm J}$---computationally prohibitive at 512-cell resolution. This interpretation is consistent with the known sensitivity of MHD fragmentation simulations to the ratio $L_x/\lambda_{\rm frag}$ at small perturbation amplitudes.
+Campaign~A ($\delta_0=1.0$) gave $\lambda/W_{\rm sim}=1.89\pm0.27$ at $\theta=30^\circ$,
+but the control Campaign~OBL2 ($\delta_0=0.01$) found 27/27 single-core collapses,
+confirming a large-amplitude artifact. Campaign~A is withdrawn; \citet{Nakamura1993}
+theoretical predictions (Table~\ref{tab:oblique_theory}) are the best available estimates.
+
+The OBL2 single-core collapses are a domain-size artifact: at $\delta_0=0.01$ only the
+fundamental ($n=1$) mode is seeded, but $\lambda_{\rm frag}/L_x \approx 0.07$--$0.11$
+means the instability scale is $\sim$10$\times$ shorter than the domain, so the filament
+collapses as a single entity before oblique modes grow from noise. Correctly sampling
+oblique fragmentation at this amplitude requires $L_x \lesssim 2$--$3\,\lambda_{\rm J}$,
+which is computationally prohibitive at 512-cell resolution.
 
 \begin{figure}
 \includegraphics[width=0.5\textwidth]{peer_review_analysis/fig3_oblique_calibration.pdf}
@@ -593,8 +597,6 @@ decrease from $0.604\,t_{\rm J}$ ($30^\circ$) to $0.454\,t_{\rm J}$ ($60^\circ$)
 the field-geometry calibration formula.}
 \label{fig:oblique_calibration}
 \end{figure}
-
-
 
 \subsection{Referee Response and Post-Submission Campaigns (343 simulations)}
 \label{sec:referee_response}
@@ -631,8 +633,6 @@ Campaign EOS-G ($\gamma=1.5$) & 9 & $\gamma=1.5$, $f=1.0$--$1.2$ & Periodic & Co
 \\[2pt]
 \footnotesize \textbf{Notes}: All sims use Athena++ isothermal MHD + self-gravity (FFT Poisson), 4-wave HLLD scheme. $\theta=0^\circ$ (longitudinal) unless stated. BC = boundary condition. Campaign~A withdrawn: large-amplitude artifact (Section~\ref{sec:theo_geom}).
 \end{table*}
-
-
 
 \subsubsection{Campaigns 5--7: Turbulence, Perpendicular Field, and Critical Transition}
 
@@ -777,7 +777,10 @@ $L_x=16$ values are upper limits.}
 
 \subsection{Can Models Explain the Observational Discrepancy?}
 
-The 3D-corrected HGBS spacing (${\sim}3.5\times W$) is within 15\% of the IM92 $4\times$ prediction, yet the residual 1.4$\times$ discrepancy requires explanation. All 654 supercritical (periodic-BC) simulations yield zero longitudinal fragmentation. Two scenarios are consistent with this negative result and the observed spacings:
+The 3D-corrected HGBS spacing (${\sim}3.5\times W$) is within 15\% of the IM92
+$4\times$ prediction. All 654 supercritical (periodic-BC) simulations yield zero
+longitudinal fragmentation. Two scenarios are consistent with both the simulations
+and the observed spacings:
 
 (i) \textit{Hierarchical fibre fragmentation}: If HGBS filaments are bundles of fibres each near-critical ($f_{\rm eff} \lesssim 1.3$), each fibre undergoes longitudinal fragmentation (Campaign~7). Projection of fibre-level cores creates the sub-Jeans spacing at the filament level, consistent with the \citet{Yang2024} Orion~B fibre-to-core measurement.
 
