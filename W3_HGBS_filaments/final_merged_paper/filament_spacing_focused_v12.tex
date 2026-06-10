@@ -138,18 +138,26 @@ error bars; it propagates directly into $\lambda/W$ and is the dominant uncertai
 when comparing across regions or with theoretical predictions.
 
 \textbf{Primary result}: The four robust regions (Orion~B, Aquila, Perseus, Taurus;
-$N > 500$ each) give a weighted mean spacing of $0.284 \pm 0.012$~pc,
-corresponding to $\lambda/W = 2.84 \pm 0.12$. Bootstrap resampling (10,000 iterations,
-95\% CI) yields $0.261$--$0.298$~pc. The \textbf{full sample} of 8 regions gives
-$0.279 \pm 0.009$~pc ($\lambda/W = 2.79$), differing from the robust result by
-only 1.8\%.
+$N > 500$ each) give a weighted mean spacing of $0.284 \pm 0.012$~pc (standard error of
+weighted mean), corresponding to $\lambda/W = 2.84 \pm 0.12$. Bootstrap resampling
+(10,000 iterations) gives a 95\% CI of $0.261$--$0.298$~pc for the full-sample mean.
+The \textbf{full sample} of 8 regions gives $0.279 \pm 0.009$~pc ($\lambda/W = 2.79$),
+differing from the robust result by only 1.8\%.
 
 Gaia DR3 revisions have increased the mean spacing by 32\% from $0.211$~pc (original
 catalogues) to $0.279$~pc. A leave-one-out analysis (Table~\ref{tab:leave_one_out})
 confirms the result is not dominated by any single region; excluding any region changes
 the weighted mean by $<6\%$.
 
-Figure~\ref{fig:spacing} shows the spacing measurements. After 3D projection correction ($4/\pi \approx 1.27$; \citealt{Andre2010}), the inferred spacing is ${\sim}3.5\times W$, within 15\% of the classical $4\times$ prediction. Planck polarimetry indicates dense filaments preferentially lie close to the plane of sky \citep{Planck2016}, reducing the effective projection factor to ${\sim}1.10$--$1.20$ and the 3D-corrected spacing to ${\sim}3.1$--$3.3\times W$; this note strengthens rather than weakens the residual discrepancy. We adopt $4/\pi$ as the standard isotropic correction with $\lesssim 10\%$ systematic uncertainty.
+Figure~\ref{fig:spacing} shows the spacing measurements. After the standard 3D projection
+correction ($4/\pi \approx 1.27$; \citealt{Andre2010}), the inferred spacing is
+${\sim}3.5\times W$, within 15\% of the classical $4\times$ prediction.
+
+Planck polarimetry indicates dense filaments preferentially lie close to the plane of
+sky \citep{Planck2016}, which would reduce the effective projection factor to
+${\sim}1.10$--$1.20$ and the corrected spacing to ${\sim}3.1$--$3.3\times W$. This
+strengthens rather than weakens the residual discrepancy; we adopt $4/\pi$ as the
+standard isotropic correction with $\lesssim10\%$ systematic uncertainty.
 
 \begin{table}[h]
 \caption{Leave-One-Out Sensitivity Analysis}
@@ -172,7 +180,7 @@ Robust only & --- & 0.284 & 2.84 & +1.8 \\
 \bottomrule
 \end{tabular}
 \vspace{2pt}
-\footnotesize Spacing uncertainties: bootstrap $1\sigma$ (10,000 iterations). All $\Delta$ values $< 6\%$; the Serpens exclusion effect (1.1\%) is negligible.
+\footnotesize Spacing uncertainties: bootstrap $1\sigma$ standard errors (10,000 iterations) for individual regions; full-sample 95\% bootstrap CI is $[0.261, 0.298]$~pc (see text). All $\Delta$ values $< 6\%$; the Serpens exclusion effect (1.1\%) is negligible.
 \end{table}
 
 \subsection{Distance Uncertainties and Sample Heterogeneity}
@@ -186,7 +194,13 @@ well-established Gaia distances, $<15\%$ or validated revision) or \textbf{Limit
 
 \textbf{Serpens beam/completeness}: At 458~pc the HGBS beam ($0.040$~pc) is 40\% of $W_{\rm fil} = 0.1$~pc. Gaussian deconvolution gives a beam-corrected intrinsic width of $(W_{\rm fil}^2 - \theta_{\rm beam}^2)^{1/2} = (0.10^2 - 0.04^2)^{1/2} = 0.092$~pc, an 8\% reduction. Beam blending broadens apparent core separations by roughly the same factor, so the Serpens spacing measurement ($0.331$~pc) may be overestimated by up to $\sim$8\% ($\sim$0.026~pc), shifting it to $0.305$~pc. Since Serpens carries only 3.8\% weight in the full-sample mean, this correction shifts the mean by $<0.2\%$ and is entirely negligible. Serpens is classified as Limited.
 
-\textbf{Aquila anomaly}: Aquila has the largest Robust-sample spacing ($\lambda/W = 3.46$), possibly reflecting feedback from the W40 H\,{\sc ii} region \citep{Bontemps2010} or the $+68\%$ distance revision. The Zhang et al.\ (2023) distance of 436~pc is independently supported by 3D dust mapping from \citet{Zucker2020}, who find the Aquila Rift at $420$--$450$~pc, and by individual Gaia-parallax YSO distances in \citet{Konyves2020}, consistent at $430 \pm 20$~pc. We therefore retain Aquila as Robust, but note that excluding it reduces the robust mean by 6\% (Table~\ref{tab:leave_one_out}). Additionally, Aquila has the highest protostellar fraction in the sample; a starless-only cross-check (as performed for Taurus) has not been done for Aquila, which we flag as an unquantified systematic for active star-forming regions.
+\textbf{Aquila anomaly}: Aquila has the largest Robust-sample spacing ($\lambda/W = 3.46$),
+possibly reflecting feedback from the W40 H\,{\sc ii} region \citep{Bontemps2010} or the
+$+68\%$ distance revision. The 436~pc distance is independently confirmed by 3D dust
+mapping \citep{Zucker2020} and Gaia-parallax YSOs at $430 \pm 20$~pc \citep{Konyves2020};
+we retain Aquila as Robust but note that excluding it reduces the robust mean by 6\%
+(Table~\ref{tab:leave_one_out}). The highest protostellar fraction in the sample is a
+flagged unquantified systematic; a starless-only cross-check would be needed for confirmation.
 
 
 
