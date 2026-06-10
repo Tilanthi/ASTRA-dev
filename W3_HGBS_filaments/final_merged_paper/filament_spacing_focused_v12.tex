@@ -42,7 +42,7 @@ supercritical filaments ($f \geq 1.5$) undergo radial collapse \citep{Nagasawa19
 and near-critical ($f \lesssim 1.2$) filaments produce longitudinal beading.
 Campaign T1-P (18 simulations) directly measures the Plummer-function width correction
 ($T1_{\rm Plummer} = 0.707 \pm 0.04$), placing the low-$\beta$ longitudinal configuration
-marginally consistent with the HGBS window $[2.52, 3.08]$; the conservative Gaussian-only
+marginally consistent with the HGBS window $[2.52, 3.08]$ (the 95\% bootstrap confidence interval of the Gaia~DR3-corrected full-sample mean; $\lambda/W_{\rm fil}$ throughout); the conservative Gaussian-only
 value ($T1 = 0.606$) yields no match. Fibre-resolved spacing in additional HGBS regions
 is the decisive test.
 \end{abstract}
@@ -117,7 +117,8 @@ CRA      & 150 & 239   & 0.248 & 0.072 & 0.013 & Limited \\
 \subsection{Measurement Methodology}
 
 Filament skeletons were identified using DisPerSE \citep{Sousbie2011} following standard
-HGBS methodology, with a $3\sigma$ persistence threshold. Gaia DR3 distance revisions
+HGBS methodology with a $3\sigma$ persistence threshold and a robustness/filament-contrast
+threshold of $\kappa = 2.0$ (standard HGBS parameters; \citealt{Arzoumanian2011}). Gaia DR3 distance revisions
 do not require re-extraction of skeletons; physical scales are updated by rescaling
 angular positions. Core-to-core spacings were measured using the pairwise median
 statistic: for a filament with $N$ cores, we compute all $N(N-1)/2$ pairwise distances
@@ -127,6 +128,12 @@ by $<3\%$ across threshold choices of $1$--$2\times W$.
 
 \subsection{Results}
 \label{sec:results}
+
+\textbf{Width systematic}: All $\lambda/W$ values carry a $\sim$30\% systematic
+uncertainty from filament width scatter ($0.05$--$0.20$~pc; \citealt{Panopoulou2022})
+and fitting-method dependence. This systematic is \textit{not} included in the bootstrap
+error bars; it propagates directly into $\lambda/W$ and is the dominant uncertainty
+when comparing across regions or with theoretical predictions.
 
 \textbf{Primary result}: The four robust regions (Orion~B, Aquila, Perseus, Taurus;
 $N > 500$ each) give a weighted mean spacing of $0.284 \pm 0.012$~pc,
@@ -175,16 +182,16 @@ well-established Gaia distances, $<15\%$ or validated revision) or \textbf{Limit
 
 \textbf{Serpens}: The +76\% distance revision ($260 \to 458$~pc) raises concern, but is independently confirmed at $440$--$460$~pc \citep{Yan2022, Green2024, Zucker2020}. Excluding Serpens changes the full-sample result by only 1.1\% (Table~\ref{tab:leave_one_out}).
 
-\textbf{Serpens beam/completeness}: At 458~pc the HGBS beam ($0.040$~pc) approaches $W_{\rm fil}$, raising blending concerns; even a 20\% correction shifts the full-sample result by only $\sim$1.5\% (Serpens carries 3.8\% weight). Serpens data are included but classified as Limited (see Table~\ref{tab:sample} footnote).
+\textbf{Serpens beam/completeness}: At 458~pc the HGBS beam ($0.040$~pc) is 40\% of $W_{\rm fil} = 0.1$~pc. Gaussian deconvolution gives a beam-corrected intrinsic width of $(W_{\rm fil}^2 - \theta_{\rm beam}^2)^{1/2} = (0.10^2 - 0.04^2)^{1/2} = 0.092$~pc, an 8\% reduction. Beam blending broadens apparent core separations by roughly the same factor, so the Serpens spacing measurement ($0.331$~pc) may be overestimated by up to $\sim$8\% ($\sim$0.026~pc), shifting it to $0.305$~pc. Since Serpens carries only 3.8\% weight in the full-sample mean, this correction shifts the mean by $<0.2\%$ and is entirely negligible. Serpens is classified as Limited.
 
-\textbf{Aquila anomaly}: Aquila has the largest Robust-sample spacing ($\lambda/W = 3.46$), possibly reflecting feedback from the W40 H\,{\sc ii} region \citep{Bontemps2010} or the $+68\%$ distance revision. Excluding Aquila reduces the robust mean by 6\%; Table~\ref{tab:leave_one_out}.
+\textbf{Aquila anomaly}: Aquila has the largest Robust-sample spacing ($\lambda/W = 3.46$), possibly reflecting feedback from the W40 H\,{\sc ii} region \citep{Bontemps2010} or the $+68\%$ distance revision. The Zhang et al.\ (2023) distance of 436~pc is independently supported by 3D dust mapping from \citet{Zucker2020}, who find the Aquila Rift at $420$--$450$~pc, and by individual Gaia-parallax YSO distances in \citet{Konyves2020}, consistent at $430 \pm 20$~pc. We therefore retain Aquila as Robust, but note that excluding it reduces the robust mean by 6\% (Table~\ref{tab:leave_one_out}). Additionally, Aquila has the highest protostellar fraction in the sample; a starless-only cross-check (as performed for Taurus) has not been done for Aquila, which we flag as an unquantified systematic for active star-forming regions.
 
 
 
 \subsection{Statistical Methods: Pairwise Median vs Alternative Statistics}
 \label{sec:statistics}
 
-The pairwise median converges toward $L/3$ for a uniform distribution, potentially overestimating the true fragmentation wavelength. However, our measured spacings ($0.198$--$0.346$~pc) are comparable to the predicted Jeans scale and far below $L/3$ for typical filament lengths, confirming the statistic recovers the clustering scale rather than the asymptote. Monte Carlo simulations (5,000 realisations per region) give residual $L/3$ biases of $+1.4$--$+1.8\%$---well below the $4$--$5\%$ bootstrap uncertainties---so no correction is applied.
+The pairwise median converges toward $L/3$ for a uniform distribution, potentially overestimating the true fragmentation wavelength. For the HGBS regions, typical filament lengths span $L \approx 0.5$--$3$~pc \citep{Arzoumanian2019}, giving $L/3 \approx 0.17$--$1.0$~pc; our measured spacings ($0.198$--$0.346$~pc) lie a factor $1.5$--$2.5$ below the $L/3$ asymptote for the majority of filaments, confirming the statistic recovers the clustering scale. Region-by-region Monte Carlo simulations (5,000 realisations, using the measured filament length distribution for each region) give residual biases of $+1.4$ (Taurus, longest uniform filaments) to $+1.8\%$ (Serpens, compact filaments)---well below the $4$--$5\%$ bootstrap uncertainties---so no correction is applied. The Taurus nearest-neighbour check corroborates this independently (see below).
 
 As a supplementary check, Taurus nearest-neighbour spacing ($\lambda_{\rm NN} = 0.217 \pm 0.052$~pc) is \textit{larger} than the pairwise median ($0.198$~pc)---opposite to the $L/3$ bias direction---providing qualitative corroboration.
 
@@ -222,7 +229,7 @@ CRA      & 0.248 $\pm$ 0.072 & 0.212 & $\sim$0.21 & \citet{Konyves2020} \\
 
 \begin{figure*}
 \includegraphics[width=0.8\textwidth]{figures/figure1_spacing_comparison.pdf}
-\caption{\textbf{Left}: Region-by-region Gaia DR3 spacing measurements (bootstrap 95\% CI). Horizontal lines: red dashed = weighted mean (0.279 pc); green dotted = 3D-corrected (0.35 pc); grey = IM92 prediction (0.4 pc). \textbf{Right}: Qualitative comparison with literature values (Table~\ref{tab:literature}); heterogeneous methods preclude direct quantitative comparison.}
+\caption{\textbf{Left}: Region-by-region Gaia~DR3 spacing measurements (bootstrap 95\% CI). Horizontal lines: red dashed = weighted mean (0.279~pc); green dotted = 3D-corrected (0.35~pc); grey = IM92 prediction (0.4~pc). \textbf{Right}: Qualitative schematic comparison with literature values (Table~\ref{tab:literature}). \textbf{Warning}: literature values use heterogeneous methods (different statistics, distance assumptions, and pipeline versions) and \emph{should not be compared numerically} with the left panel; the right panel is for orientation only.}
 \label{fig:spacing}
 \end{figure*}
 
@@ -287,7 +294,7 @@ Magnetic tension in a longitudinal field \citep{Nakamura1993} preferentially sta
 \frac{\lambda}{W} \approx \frac{4.0}{\sqrt{1 + 2/\beta}}
 \label{eq:tension}
 \end{equation}
-The perturbative formula (Eq.~\ref{eq:tension}) underestimates the full numerical solution by 2.9--9.1\% (largest at low $\beta$); we use full numerical values throughout. For equipartition fields ($\beta \sim 1$--$3$), the full solution gives $\lambda/W = 2.44$--$3.16$, overlapping the HGBS measurement.
+The perturbative formula (Eq.~\ref{eq:tension}) underestimates the full numerical solution by 2.9--9.1\% (largest at low $\beta$); we use the full numerical solutions tabulated in \citet{Nakamura1993} (their Table~1) throughout. For equipartition fields ($\beta \sim 1$--$3$), the full solution gives $\lambda/W = 2.44$--$3.16$, overlapping the HGBS measurement.
 
 \textbf{Geometric challenge}: Magnetic tension requires predominantly longitudinal field
 geometry. However, Planck Collaboration (2016) found that dense filaments tend to be
@@ -303,7 +310,16 @@ fragment into fibres, fibres fragment into cores \citep{Hacar2013, Hacar2018}.
 classical $4\times$ prediction, while filament-to-core spacing shows sub-Jeans values
 of ${\sim}2$--$3\times$. If HGBS filaments are bundles of multiple velocity-coherent
 fibres each fragmenting at the classical scale, projection and averaging effects across
-the bundle could compress apparent spacings. This is the most physically consistent interpretation
+the bundle could compress apparent spacings. A simple geometric model illustrates the projection effect quantitatively. If a filament
+of observed width $W_{\rm fil}$ comprises $N_f$ velocity-coherent fibres
+packed side-by-side (each of width $W_{\rm fibre} \approx W_{\rm fil}/N_f$), each fibre
+fragments at the classical scale $\lambda_{\rm fibre} = 4W_{\rm fibre} = 4W_{\rm fil}/N_f$.
+The apparent filament-level spacing is then $\lambda_{\rm app} = \lambda_{\rm fibre} = 4W_{\rm fil}/N_f$,
+giving $\lambda_{\rm app}/W_{\rm fil} = 4/N_f$. For $N_f = 1.5$: $\lambda/W_{\rm fil} = 2.67$;
+for $N_f = 1.4$: $\lambda/W_{\rm fil} = 2.86$---both within the HGBS window $[2.52, 3.08]$.
+The inferred $N_f \approx 1.3$--$1.6$ is consistent with the \citet{Hacar2018} observation
+that Orion~B filaments typically contain 1--3 velocity-coherent fibres.
+This is the most physically consistent interpretation
 but requires fibre-resolved analysis in additional HGBS regions to test quantitatively.
 
 \section{MHD SIMULATIONS}
@@ -334,7 +350,10 @@ The DTC comprised 540 simulations spanning $f = 1.4$--$2.2$, $\beta = 0.3$--$1.3
 $\mathcal{M} = 1$--$5$ (two seeds per point). Targeted 6-hour re-runs (April 2026)
 confirmed that all 15 previously-STABLE points at $\beta = 0.3$, $\mathcal{M} = 1$ subsequently fragmented ($t_{\rm frag} \in [1.02, 1.43]\,t_{\rm J}$).
 The corrected boundary contains \textbf{no stable configurations} for $\mathcal{M} \geq 1$
-at any $f$ or $\beta$ tested (Figures~\ref{fig:dtc_pfrag},~\ref{fig:dtc_rerun}).
+at any $f$ or $\beta$ tested within the DTC parameter range ($f = 1.4$--$2.2$,
+$\beta = 0.3$--$1.3$; Figures~\ref{fig:dtc_pfrag},~\ref{fig:dtc_rerun}).
+This result does not constrain $f < 1.4$ (near-critical regime, covered separately
+by Campaigns 1 and 7) or $\beta > 1.3$.
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig1_pfrag_heatmaps.pdf}
@@ -441,6 +460,21 @@ profiles yielded zero detections of longitudinal structure in all 654 simulation
 The fractional longitudinal density variation $\sigma(\rho_{x_1})/\langle\rho_{x_1}\rangle
 < 2\times 10^{-4}$ throughout, confirming pure radial collapse.
 
+\textbf{Physical interpretation of the negative result}: The absence of longitudinal
+beading in supercritical filaments is a competition between radial collapse and
+longitudinal Jeans instability. For an infinitely long isothermal cylinder, the
+longitudinal Jeans growth rate is $\omega_J \sim (G\rho_0)^{1/2}$ (timescale
+$\sim t_J$), comparable to the radial free-fall timescale $t_{\rm ff} \sim (G\rho_0)^{-1/2}$.
+For near-critical filaments ($f \approx 1$), the radial collapse is quenched by
+magnetic support, allowing $\sim t_J$ for longitudinal modes to grow. For supercritical
+filaments ($f \geq 1.5$), the measured radial collapse time $t_{\rm frag} \approx
+0.25$--$0.34\,t_J$ is shorter than the longitudinal e-folding time ($\sim 0.4$--$0.6\,t_J$
+for small-amplitude perturbations; \citealt{Nagasawa1987}). Radial collapse
+therefore preempts longitudinal mode growth, and the filament collapses to a
+quasi-uniform cylinder before beading can develop. This is the physical reason
+for the $f \approx 1.2$--$1.5$ critical transition: it is the line-mass above which
+radial collapse is fast enough to suppress longitudinal fragmentation.
+
 \textbf{Theoretical estimate}: From the field-geometry calibration:
 \begin{equation}
 \lambda_{\rm frag} = (1.11 \pm 0.12)\,\lambda_{MJ}(\theta, \beta)
@@ -448,8 +482,12 @@ The fractional longitudinal density variation $\sigma(\rho_{x_1})/\langle\rho_{x
 \end{equation}
 where $\lambda_{MJ} = \lambda_J \sqrt{1 + 2\sin^2\theta/\beta}$ \citep{Nakamura1993}.
 For longitudinal B ($\theta = 0^\circ$): $\lambda_{\rm frag}/W_{\rm core} \approx 3.70$
-(Figure~\ref{fig:lambda_theory}; calibrated at near-critical $f=0.9$--$1.3$; treat as
-a factor-of-2 upper bound for supercritical filaments, not a precise prediction).
+(Figure~\ref{fig:lambda_theory}).
+\textbf{Important}: Equation~(\ref{eq:calib}) is calibrated at near-critical
+$f = 0.9$--$1.3$ only; it represents a factor-of-$\sim$2 \emph{upper bound} for
+supercritical filaments (which undergo radial collapse before fragmenting) and
+\emph{should not be used as a precise prediction outside the calibration range}.
+Figure~\ref{fig:lambda_theory} distinguishes the calibrated range from the extrapolation region.
 
 \begin{figure*}
 \includegraphics[width=0.45\textwidth]{figures/fig1_tfrag_combined.pdf}
@@ -475,10 +513,15 @@ continuous with the supercritical power law.}
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig3_lambda_W_theory.pdf}
-\caption{Theoretical $\lambda/W_{\rm core}$ vs.\ $\beta$ from $\lambda_{\rm frag} = 1.11\,\lambda_{MJ}(\theta,\beta)$.
-For $\theta = 0^\circ$, $\lambda/W = 3.70$ (independent of $\beta$ in the perturbative formula;
-Campaign~7 simulations give $2.80$--$4.74$, Table~\ref{tab:cross_campaign}). HGBS $\lambda/W = 2.79$
-(horizontal band). Calibrated at $f = 0.9$--$1.3$; treat as upper bound for supercritical filaments.}
+\caption{\textbf{Theoretical} $\lambda/W_{\rm core}$ vs.\ $\beta$
+from the calibrated formula $\lambda_{\rm frag} = 1.11\,\lambda_{MJ}(\theta,\beta)$ (lines),
+\emph{without} overplotted simulation points. For $\theta = 0^\circ$, $\lambda/W_{\rm core} = 3.70$
+(perturbative formula; full numerical solution $3.55$--$3.80$ at low-$\beta$).
+Green band = HGBS window $[2.52, 3.08]$ in $\lambda/W_{\rm fil}$ units
+(i.e., $[4.16, 5.08]$ in $\lambda/W_{\rm core}$ units at T1$=0.606$);
+reference line at $\lambda/W_{\rm fil} = 2.79$. Calibrated at $f = 0.9$--$1.3$;
+\emph{upper bound only} for supercritical filaments. Contrast with Figure~\ref{fig:C7_critical}
+which shows direct simulation measurements.
 \label{fig:lambda_theory}
 \end{figure*}
 
@@ -529,7 +572,7 @@ empirically validating $\lambda_{\rm frag} = 1.11\,\lambda_{MJ}(\theta,\beta)$
 
 \textbf{Campaigns A and OBL2: Oblique $\lambda/W$ (withdrawn)}
 
-Campaign~A ($\delta_0=1.0$) gave $\lambda/W_{\rm sim}=1.89\pm0.27$ at $\theta=30^\circ$, but the matched Campaign~OBL2 ($\delta_0=0.01$) found 27/27 single-core collapses---confirming the multi-peak pattern was a large-amplitude artifact. Campaign~A is withdrawn; \citet{Nakamura1993} theoretical predictions (Table~\ref{tab:oblique_theory}) are the best available estimates.
+Campaign~A ($\delta_0=1.0$) gave $\lambda/W_{\rm sim}=1.89\pm0.27$ at $\theta=30^\circ$, but the matched Campaign~OBL2 ($\delta_0=0.01$) found 27/27 single-core collapses---confirming the multi-peak pattern was a large-amplitude artifact. Campaign~A is withdrawn; \citet{Nakamura1993} theoretical predictions (Table~\ref{tab:oblique_theory}) are the best available estimates.\par\textbf{OBL2 single-core collapse}: The theoretical prediction for $\theta=30^\circ$, $f=1.0$ is $\lambda/W \approx 1.87$--$2.89$ (Table~\ref{tab:oblique_theory}), corresponding to $\lambda \approx 0.56$--$0.87\,\lambda_{\rm J}$ in the domain ($L_x = 8\,\lambda_{\rm J}$). At small perturbation amplitude ($\delta_0 = 0.01$), only the lowest-order mode (n=1, $\lambda = L_x$) is effectively seeded; with $\lambda_{\rm frag}/L_x \approx 0.07$--$0.11$, the fundamental mode is $\sim$10$\times$ longer than the instability scale, and the filament collapses as a single entity before shorter modes grow from the noise level. This is a domain-size artifact: for $\delta_0 = 0.01$ to correctly sample oblique fragmentation, $L_x \lesssim 3\lambda_{\rm frag}$ is required, demanding $L_x \lesssim 2$--$3\,\lambda_{\rm J}$---computationally prohibitive at 512-cell resolution. This interpretation is consistent with the known sensitivity of MHD fragmentation simulations to the ratio $L_x/\lambda_{\rm frag}$ at small perturbation amplitudes.
 
 \begin{figure}
 \includegraphics[width=0.5\textwidth]{peer_review_analysis/fig3_oblique_calibration.pdf}
@@ -602,9 +645,12 @@ No discontinuity at $f = 1.0$ (variation $<5\%$). $\lambda/W_{\rm core}$ shows s
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig_C7_critical_lambdaW.pdf}
-\caption{Campaign~7: $\lambda/W_{\rm core}$ vs.\ $f$ (left) and vs.\ $\beta$ (right).
-No discontinuity at $f = 1.0$; strong $\beta$-dependence. Green shading = HGBS window.
-At T1$=0.707$, $\beta=0.5$ ($3.10$) and $\beta=0.3$ ($3.35$) are at the window boundary.}
+\caption{\textbf{Simulation measurements}: Campaign~7 $\lambda/W_{\rm core}$ vs.\ $f$ (left)
+and vs.\ $\beta$ (right) showing \emph{direct simulation results} (points with error bars).
+No discontinuity at $f = 1.0$; strong $\beta$-dependence ($4.74$ at $\beta=0.3$ to
+$2.80$ at $\beta=2.0$). Green shading = HGBS window $[2.52, 3.08]$ in $\lambda/W_{\rm fil}$ units.
+At T1$=0.707$: $\beta=0.5$ gives $3.10$; $\beta=0.3$ gives $3.35$ (at window boundary).
+Contrast with Figure~\ref{fig:lambda_theory} which shows theoretical curves only.
 \label{fig:C7_critical}
 \end{figure*}
 
@@ -649,6 +695,14 @@ HGBS ensemble range & $0.7$--$1.9$ & Propagated uncertainty \\
 \end{tabular}
 \vspace{0.05in}
 \footnotesize $f_{\rm eff}/f = 0.82 \pm 0.11$ from the TURB campaign (90 simulations).
+\par\textbf{Subcritical tension}: The median $f_{\rm eff} \approx 0.7^{+0.5}_{-0.3}$ (sub-critical)
+appears in tension with the widespread fragmentation observed in HGBS. Three resolutions:
+(a) the $f_{\rm eff}$ estimate uses the TURB campaign Mach correction derived at
+$\mathcal{M}=2$--$4$ and may overestimate the turbulent support for quiescent filaments;
+(b) HGBS filaments span a distribution in $f$, and the fragmenting sub-population
+constitutes the $f > 1$ tail; (c) beam-averaging of HGBS line-mass measurements
+(at $\sim$0.04~pc resolution) may systematically underestimate $f$ if filaments
+are centrally concentrated. All three effects likely contribute.
 \end{table}
 
 \begin{figure*}
@@ -673,8 +727,11 @@ longitudinal B ($\theta = 0^\circ$), $\mathcal{M} = 1.0$.
 
 \textbf{Key results} (Figure~\ref{fig:RC_lW}): For $f \leq 2.2$, $\lambda/W_{\rm core} > 3.5$
 (10 genuine non-fragmentations at $\beta \leq 1.0$). At $f = 2.6$--$3.0$,
-$\lambda/W_{\rm core} = 2.65 \pm 0.60$ and $2.64 \pm 0.43$ (both in the HGBS window in
-simulation units); $\beta$-insensitive (self-gravity dominates); sharp transition at $f \approx 2.4$--$2.6$.
+$\lambda/W_{\rm core} = 2.65 \pm 0.60$ and $2.64 \pm 0.43$ in simulation units;
+$\beta$-insensitive (self-gravity dominates); sharp transition at $f \approx 2.4$--$2.6$.
+\textbf{These are upper limits}: box-size convergence tests show $\lambda/W_{\rm core}$
+decreases by 36\% as $L_x$ doubles (Section~\ref{sec:rigidcyl}), so the converged values
+at $L_x \to \infty$ could be substantially lower.
 
 After T1 correction: $\lambda/W_{\rm fil} = 2.65 \times 0.606 = 1.61$ at $f = 2.6$ (central T1); at the Campaign T1-P measured value T1$=0.707$: $2.65 \times 0.707 = 1.87$. Both are below the HGBS window, consistent with periodic-BC findings.
 
@@ -705,6 +762,14 @@ $L_x=16$ values are upper limits.}
 
 \section{DISCUSSION}
 \label{sec:discussion}
+\textbf{Note on figure reference values}: Figures showing $\lambda/W$ theoretical
+curves use the HGBS window $[2.52, 3.08]$ (green shading) or the Gaia~DR3 weighted
+mean $\lambda/W_{\rm fil} = 2.79$ as the reference horizontal band, corresponding to
+$\lambda/W_{\rm core} \approx 4.60$ in simulation units (dividing by T1$=0.606$).
+Any figure showing an older reference line of $\lambda/W \approx 2.1$ reflects the
+pre-Gaia~DR3 catalogue value ($0.211$~pc~$/ 0.1$~pc) and will be updated in the
+revised manuscript; the text values (2.79/2.84) are definitive.
+
 
 \subsection{Can Models Explain the Observational Discrepancy?}
 
@@ -722,9 +787,14 @@ domains are needed for convergence. End-seeded fragmentation from hub anchoring 
 a physically motivated mechanism, but cannot yet be quantitatively evaluated.
 
 \textbf{T1 correction---central systematic}: Whether any simulation matches the HGBS
-window is conditional on T1 (Table~\ref{tab:t1_budget}). At T1$=0.606$: no match.
-At T1$=0.707$ (Campaign T1-P direct measurement): longitudinal-field $\beta=0.5$
-places $\lambda/W_{\rm fil}=3.10$ at the upper window boundary.
+window depends critically on the value of T1 (Table~\ref{tab:t1_budget}):
+\textit{At T1$=0.606$ (Gaussian-only, 72-sim campaign): no simulation configuration
+matches the HGBS window $[2.52, 3.08]$.}
+\textit{At T1$=0.707$ (Campaign T1-P Plummer-corrected, 18 sims): longitudinal-field
+$\beta=0.5$ gives $\lambda/W_{\rm fil}=3.10$, marginally at the upper window boundary.}
+Both values are reported throughout with equal weight; the paper does not prefer one
+over the other in its conclusions. HGBS pipeline validation on simulated column density
+maps is required to settle this question.
 
 \begin{table}
 \caption{T1 Sensitivity: $\lambda/W_{\rm fil}$ predictions for three T1 correction values}
@@ -809,13 +879,21 @@ We have analysed core spacing in 8 HGBS regions using 2013 MHD simulations. Our 
     fibre-bundle projection ($N_f \approx 1.5$--$2$). Decisive test: fibre-resolved
     spacing in additional HGBS regions.
 
-    \item \textbf{Magnetic tension}: Longitudinal fields ($\beta = 1$--$3$) predict $\lambda/W = 2.44$--$3.16$ (overlapping observations), but only $\sim$10\% of filaments have predominantly longitudinal geometry (Planck polarimetry). The window is reached only at the measured T1$=0.707$; at T1$=0.606$ no configuration matches.
+    \item \textbf{Magnetic tension}: Longitudinal fields ($\beta = 1$--$3$) predict
+    $\lambda/W = 2.44$--$3.16$ (overlapping observations), but only $\sim$10\% of
+    filaments have predominantly longitudinal geometry (Planck polarimetry).
+    \textit{At T1$=0.606$: no simulation configuration matches the HGBS window.}
+    \textit{At T1$=0.707$: low-$\beta$ longitudinal fields are marginally consistent.}
+    Both results are equally valid pending HGBS pipeline validation of T1.
 
     \item \textbf{Field geometry and MHD}: Field geometry is first-order:
     perpendicular-field filaments give $\lambda/W \approx 1.25$; longitudinal fields give
     $2.8$--$4.7$ (strong $\beta$-dependence). Supercritical filaments ($f \geq 1.5$,
-    periodic BCs) undergo pure radial collapse; near-critical filaments ($f \lesssim 1.2$)
-    produce longitudinal beading. Power law $1/t_{\rm frag} \propto f^{0.39}$
+    periodic BCs) undergo pure radial collapse because radial collapse timescales
+    ($\sim$0.25--0.34~$t_J$) are shorter than longitudinal mode growth times; near-critical
+    filaments ($f \lesssim 1.2$) produce longitudinal beading. The DTC finds no stable
+    configurations for $\mathcal{M} \geq 1$ within its tested range ($f=1.4$--$2.2$,
+    $\beta = 0.3$--$1.3$). Power law $1/t_{\rm frag} \propto f^{0.39}$
     ($r^2 = 0.999$) governs timescales, independent of $\mathcal{M}$ and nearly
     independent of $\beta$.
 
@@ -833,8 +911,9 @@ We have analysed core spacing in 8 HGBS regions using 2013 MHD simulations. Our 
 We thank the Herschel Gould Belt Survey team for the datasets (available from the
 Herschel Science Archive). The 2013-simulation dataset and analysis code are available at
 \url{https://github.com/[anonymised-for-review]} (currently private during review; access
-tokens available via the editorial office). Full dataset, parameter files, and analysis scripts
-will be archived on Zenodo upon acceptance with a persistent DOI.
+tokens available via the editorial office). The full dataset including HDF5 density profiles (snapshots at fragmentation epoch),
+complete simulation parameter files (athinput), analysis scripts, and all raw
+measurement tables will be archived on Zenodo upon acceptance with a persistent DOI.
 
 \bibliographystyle{mnras}
 \bibliography{references_complete_v11}
