@@ -206,14 +206,13 @@ is an unquantified systematic requiring a starless-only cross-check.
 \subsection{Statistical Methods: Pairwise Median vs Alternative Statistics}
 \label{sec:statistics}
 
-The pairwise median converges toward $L/3$ for a uniform distribution. For the HGBS
-filament length range $L \approx 0.5$--$3$~pc \citep{Arzoumanian2019}, our measured
-spacings ($0.198$--$0.346$~pc) lie a factor $1.5$--$2.5$ below the $L/3$ asymptote,
-confirming the statistic recovers the clustering scale. Region-by-region Monte Carlo
-(5,000 realisations) gives residual biases of $+1.4$--$+1.8\%$, well below bootstrap
-uncertainties; no correction is applied. Taurus nearest-neighbour spacing
-($\lambda_{\rm NN} = 0.217 \pm 0.052$~pc) is \textit{larger} than the pairwise median
-($0.198$~pc)---opposite to the $L/3$ bias direction---providing qualitative corroboration.
+The pairwise median converges toward $L/3$ for a uniform distribution. Measured spacings
+($0.198$--$0.346$~pc) lie a factor $1.5$--$2.5$ below the $L/3$ asymptote for
+$L \approx 0.5$--$3$~pc \citep{Arzoumanian2019}, confirming the statistic recovers the
+clustering scale. Monte Carlo (5,000 realisations) gives residual biases of $+1.4$--$+1.8\%$,
+below bootstrap uncertainties; no correction is applied. The Taurus nearest-neighbour
+spacing ($0.217 \pm 0.052$~pc) exceeds the pairwise median ($0.198$~pc), opposite to
+the $L/3$ bias direction, providing qualitative corroboration.
 
 \subsection{Comparison with Literature}
 
@@ -350,22 +349,15 @@ observed spacing in the majority of HGBS filaments.
 
 High-resolution studies reveal that filament fragmentation is hierarchical: filaments
 fragment into fibres, fibres fragment into cores \citep{Hacar2013, Hacar2018}.
-\citet{Yang2024} analysed Orion~B and found that fibre-to-core spacing recovers the
-classical $4\times$ prediction, while filament-to-core spacing shows sub-Jeans values
-of ${\sim}2$--$3\times$. If HGBS filaments are bundles of multiple velocity-coherent
-fibres each fragmenting at the classical scale, projection effects across the bundle
-compress apparent spacings. If a filament
-of observed width $W_{\rm fil}$ comprises $N_f$ velocity-coherent fibres
-packed side-by-side (each of width $W_{\rm fibre} \approx W_{\rm fil}/N_f$), each fibre
-fragments at the classical scale $\lambda_{\rm fibre} = 4W_{\rm fibre} = 4W_{\rm fil}/N_f$.
-The apparent filament-level spacing is then $\lambda_{\rm app} = \lambda_{\rm fibre} = 4W_{\rm fil}/N_f$,
-giving $\lambda_{\rm app}/W_{\rm fil} = 4/N_f$. For $N_f = 1.5$: $\lambda/W_{\rm fil} = 2.67$;
-for $N_f = 1.4$: $\lambda/W_{\rm fil} = 2.86$---both within the HGBS window $[2.52, 3.08]$.
-The inferred $N_f \approx 1.3$--$1.6$ is consistent with the \citet{Hacar2018} observation
-that Orion~B filaments typically contain 1--3 velocity-coherent fibres.
-Fibre-resolved analysis in additional HGBS regions is required to test this
-interpretation quantitatively. We turn now to MHD simulations, which quantify the
-role of $f$, $\beta$, field geometry, and turbulence in setting fragmentation outcomes.
+\citet{Yang2024} found that fibre-to-core spacing in Orion~B recovers the $4\times$
+prediction while filament-level measurements yield ${\sim}2$--$3\times$. If HGBS
+filaments contain $N_f$ velocity-coherent fibres each fragmenting classically, then
+$\lambda_{\rm app}/W_{\rm fil} = 4/N_f$. For $N_f = 1.4$--$1.5$:
+$\lambda/W_{\rm fil} = 2.67$--$2.86$ (within $[2.52, 3.08]$), consistent with
+$N_f \approx 1$--$3$ observed in Orion~B \citep{Hacar2018}.
+Fibre-resolved analysis in additional HGBS regions is required to test this quantitatively.
+We turn now to MHD simulations quantifying the role of $f$, $\beta$, field geometry,
+and turbulence in fragmentation outcomes.
 
 \section{MHD SIMULATIONS}
 
@@ -690,12 +682,11 @@ Figure~\ref{fig:cross_campaign_lambdaW}.
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig_C7_critical_lambdaW.pdf}
-\caption{\textbf{Simulation measurements}: Campaign~7 $\lambda/W_{\rm core}$ vs.\ $f$ (left)
-and vs.\ $\beta$ (right) showing \emph{direct simulation results} (points with error bars).
-No discontinuity at $f = 1.0$; strong $\beta$-dependence ($4.74$ at $\beta=0.3$ to
-$2.80$ at $\beta=2.0$). Green shading = HGBS window $[2.52, 3.08]$ in $\lambda/W_{\rm fil}$ units.
-At T1$=0.707$: $\beta=0.5$ gives $3.10$; $\beta=0.3$ gives $3.35$ (at window boundary).
-Contrast with Figure~\ref{fig:lambda_theory} which shows theoretical curves only.
+\caption{Campaign~7 direct simulation measurements: $\lambda/W_{\rm core}$ vs.\ $f$ (left)
+and vs.\ $\beta$ (right). No discontinuity at $f=1.0$; strong $\beta$-dependence from
+$4.74$ ($\beta=0.3$) to $2.80$ ($\beta=2.0$). Green shading: HGBS window $[2.52, 3.08]$
+in observable $\lambda/W_{\rm fil}$ units (T1$=0.606$: $\beta \leq 0.5$ enters window;
+T1$=0.707$: approaches upper boundary). Contrast: Figure~\ref{fig:lambda_theory} (theory).
 \label{fig:C7_critical}
 \end{figure*}
 
@@ -792,10 +783,10 @@ standard deviation per $f$-value, showing the sharp transition near $f \approx 2
 
 \subsubsection{Box-Size Convergence Test}
 
-To rule out box resonance, we ran a matched test at $f = 2.6$, $\beta = 1.0$ with
-$L_x = 8\,\lambda_{\rm J}$ and $L_x = 16\,\lambda_{\rm J}$ (3 seeds each).
-
-\textbf{Results} (Figure~\ref{fig:RC_convergence}): $\lambda/W_{\rm core}$ decreases from $4.22 \pm 0.34$ ($L_x=8$) to $2.70 \pm 0.59$ ($L_x=16$), a 36\% decrease inconsistent with box resonance (which would predict a fixed ratio at fixed $L_x/\lambda$). Box resonance is ruled out. $L_x = 32$ was computationally infeasible; $L_x=16$ values are upper limits.
+A matched test at $f=2.6$, $\beta=1.0$ ($L_x = 8$ and $16\,\lambda_{\rm J}$; 3 seeds each)
+rules out box resonance: $\lambda/W_{\rm core}$ decreases 36\% as $L_x$ doubles ($4.22 \pm 0.34$
+to $2.70 \pm 0.59$; Figure~\ref{fig:RC_convergence}), incompatible with a resonant artefact.
+$L_x=16$ values are upper limits; $L_x=32$ was computationally infeasible.
 
 \begin{figure}
 \includegraphics[width=0.48\textwidth]{figures/fig_RC_convergence.pdf}
@@ -879,7 +870,10 @@ on $\beta$, field geometry, and T1 (Table~\ref{tab:cross_campaign}, Table~\ref{t
 finite-filament terminal boundaries but lack the inflow structure of real filament-hub
 junctions. Neither fully represents real HGBS filaments in turbulent clouds.
 
-\textbf{Non-ideal MHD}: Ambipolar diffusion timescales ($t_{\rm AD} \sim 10$--$20\,t_{\rm ff}$ at $n_0 \sim 10^4$~cm$^{-3}$) are slow compared to collapse and expected to modify late-stage core formation but not fragmentation wavelengths \citep{Nakamura2005, Tassis2004}. Taurus ($n_0 \sim 10^3$~cm$^{-3}$) is an exception; ideal-MHD timescales there are lower bounds.
+\textbf{Non-ideal MHD}: Ambipolar diffusion ($t_{\rm AD} \sim 10$--$20\,t_{\rm ff}$ at
+$n_0 \sim 10^4$~cm$^{-3}$) is slow relative to collapse and is not expected to alter
+fragmentation wavelengths \citep{Nakamura2005, Tassis2004}, except in low-density regions
+such as Taurus ($n_0 \sim 10^3$~cm$^{-3}$) where ideal-MHD timescales are lower bounds.
 
 \textbf{T1 correction}: Campaign T1-P gives $T1_{\rm Plummer} = 0.707 \pm 0.04$ (17\% above the Gaussian value; Table~\ref{tab:t1_budget}); HGBS pipeline validation on simulated maps would confirm this.
 
@@ -891,7 +885,9 @@ are all below the HGBS window; oblique fields cannot explain HGBS spacings in th
 near-critical regime.
 
 \begin{table}
-\caption{Theoretical $\lambda/W$ for oblique fields \citep{Nakamura1993} (full numerical solution). Campaign~6 simulation gives $\lambda/W=1.25$ because those runs were supercritical ($f=1.5$--$3.0$); theoretical values (near-critical) are the relevant comparison.}
+\caption{Theoretical $\lambda/W$ for oblique fields \citep{Nakamura1993}, full numerical
+solution. Campaign~6 gives $\lambda/W=1.25$ (supercritical regime, $f=1.5$--$3.0$); the
+near-critical theoretical values here are the physically relevant comparison for HGBS.}
 \label{tab:oblique_theory}
 \small
 \begin{tabular}{lccccc}
