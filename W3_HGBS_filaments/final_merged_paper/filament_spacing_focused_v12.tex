@@ -588,13 +588,10 @@ units; multiply by T1 for observable $\lambda/W_{\rm fil}$ (Table~\ref{tab:t1_bu
 \label{sec:theo_geom}
 
 Phase~3 tests $\theta = 30^\circ, 45^\circ, 60^\circ$ (36 simulations per angle;
-$f = 1.5$--$3.0$, $\beta = 0.5$--$2.0$, $\mathcal{M} = 1$--$2$). Mean fragmentation
-times decrease smoothly: $0.604\,t_{\rm J}$ ($30^\circ$), $0.508\,t_{\rm J}$ ($45^\circ$),
-$0.454\,t_{\rm J}$ ($60^\circ$), with $dt_{\rm frag}/d\theta = -0.0050\,t_{\rm J}/{\rm deg}$.
-This empirically validates the calibration $\lambda_{\rm frag} = 1.11\,\lambda_{MJ}(\theta,\beta)$
-(constant from least-squares fit to 80 near-critical simulations; exceeds unity because
-$W_{\rm core} = 0.3\,\lambda_{\rm J}$ is narrower than the Ostriker scale height; theoretical
-prediction $\approx 1.2$ within $1\sigma$; Figure~\ref{fig:oblique_calibration}).
+$f = 1.5$--$3.0$, $\beta = 0.5$--$2.0$, $\mathcal{M} = 1$--$2$). Fragmentation times
+decrease smoothly from $0.604\,t_{\rm J}$ ($30^\circ$) to $0.454\,t_{\rm J}$ ($60^\circ$),
+empirically validating $\lambda_{\rm frag} = 1.11\,\lambda_{MJ}(\theta,\beta)$
+(Figure~\ref{fig:oblique_calibration}).
 
 \textbf{Campaigns A and OBL2: Oblique $\lambda/W$ (withdrawn)}
 
@@ -822,10 +819,6 @@ HGBS window. The $L_x = 16$ values are upper limits (Section~\ref{sec:rigidcyl})
 domains are needed for convergence. End-seeded fragmentation from hub anchoring represents
 a physically motivated mechanism, but cannot yet be quantitatively evaluated.
 
-(iii) \textit{Observational lag}: Observed cores may have fragmented when the filament
-was near-critical ($f \lesssim 1.2$) and subsequently accreted to its current state.
-The spacing is then set by the initial Jeans scale; testable via age gradients at fixed $\lambda/W$.
-
 \textbf{T1 correction---central systematic}: Whether any simulation matches the HGBS
 window is conditional on T1 (Table~\ref{tab:t1_budget}). At T1$=0.606$: no match.
 At T1$=0.707$ (Campaign T1-P direct measurement): longitudinal-field $\beta=0.5$
@@ -881,39 +874,31 @@ are all below the HGBS window; oblique fields cannot explain HGBS spacings in th
 near-critical regime.
 
 \begin{table}
-\caption{Theoretical $\lambda/W$ for oblique fields from the \citet{Nakamura1993} dispersion relation (full numerical solution), with Campaign~A preliminary simulation results at $\theta=30^\circ$. The $\theta=90^\circ$ theoretical value approaches $4\times W$ (weak axial tension), while the Campaign~6 simulation gives $\lambda/W=1.25$ because those simulations were run at $f=1.5$--$3.0$ (supercritical regime, radial collapse dominant), not at near-critical conditions. The correct comparison for field-geometry effects at fixed $f\approx 1$ is with the theoretical values shown here.}
+\caption{Theoretical $\lambda/W$ for oblique fields \citep{Nakamura1993} (full numerical solution). Campaign~6 simulation gives $\lambda/W=1.25$ because those runs were supercritical ($f=1.5$--$3.0$); theoretical values (near-critical) are the relevant comparison.}
 \label{tab:oblique_theory}
 \small
 \begin{tabular}{lccccc}
 \toprule
 $\theta$ & $\beta=0.5$ & $\beta=1.0$ & $\beta=2.0$ & Notes & Simulation \\
 \midrule
-$0^\circ$ (longitudinal) & 1.97 & 2.44 & 2.93 & Eq.~(\ref{eq:tension}); Table~\ref{tab:perturbative} & --- \\
+$0^\circ$ (longitudinal) & 1.97 & 2.44 & 2.93 & Eq.~(\ref{eq:tension}) & --- \\
 $30^\circ$ & 1.87 & 2.37 & 2.89 & Theoretical & ---$^\dagger$ \\
 $45^\circ$ & 1.69 & 2.17 & 2.72 & Theoretical & --- \\
 $60^\circ$ & 1.47 & 1.90 & 2.46 & Theoretical & --- \\
 $90^\circ$ (perp., theory) & 3.95 & 3.99 & 4.00 & Theory only (sim.\ at $f=1.5$--$3.0$ gives 1.25) & --- \\
 \bottomrule
 \end{tabular}
-\\ \footnotesize \textbf{Note}: All values in $\lambda/W_{\rm sim}$ (simulation) units; multiply by $T1 = 0.606$ for observable ($\lambda/W_{\rm fil}$) units, or by $T1 = 0.707$ (Campaign T1-P) for Plummer-corrected units. $^\dagger$~Campaign~A gave $1.89 \pm 0.27$ (6/9 sims, $\theta=30^\circ$, $t=0.10\,t_{\rm J}$) using $\delta_0=1.0$; Campaign~OBL2 ($\delta_0=0.01$, 27 sims) gave single-core collapse only (no measurable $\lambda/W$). The Campaign~A value is withdrawn as amplitude-dependent; the theoretical prediction is the best available estimate for all three angles.
+\\ \footnotesize \textbf{Note}: Values in simulation units; multiply by T1$=0.606$ (or $0.707$) for observable $\lambda/W_{\rm fil}$. $^\dagger$Campaign~A ($\delta_0=1.0$) withdrawn (amplitude artifact; Section~\ref{sec:theo_geom}).
 \end{table}
 
 \textbf{Future priorities}:
 (1) Fibre-resolved core spacing in additional HGBS regions (Aquila, Perseus, Taurus);
 (2) polarimetric interior mapping to constrain filament-scale field geometry;
-(3) domain-convergence study for oblique near-critical filaments in larger domains
-($L_x \gg 8\,\lambda_{\rm J}$);
-(4) HGBS pipeline validation of the T1-P Plummer correction on simulated column density maps;
-(5) non-isothermal EOS campaign with a recompiled Athena++ binary ($\gamma = 1.1$--$1.5$);
-(6) age-gradient test: if spacing is set at formation, older regions should show larger
-$f_{\rm eff}$ at fixed $\lambda/W$.
+(3) HGBS pipeline validation of the T1-P Plummer correction on simulated column density maps.
 
 \section{CONCLUSIONS}
 
-We have analysed core spacing in 8 high-confidence HGBS regions using 2013
-self-gravitating MHD simulations. The T1-P campaign directly measures
-$T1_{\rm Plummer} = 0.707 \pm 0.04$; at this value the low-$\beta$ longitudinal
-configuration marginally reaches the HGBS window. Our main conclusions are:
+We have analysed core spacing in 8 HGBS regions using 2013 MHD simulations. Our main conclusions are:
 
 \begin{itemize}
 
@@ -944,16 +929,12 @@ configuration marginally reaches the HGBS window. Our main conclusions are:
     ($r^2 = 0.999$) governs timescales, independent of $\mathcal{M}$ and nearly
     independent of $\beta$.
 
-    \item \textbf{Rigid Cylinder Campaign}: Reflecting-BC simulations at $f \geq 2.6$
-    give $\lambda/W_{\rm core} = 2.70 \pm 0.59$ (upper limit; $L_x=16$ unconverged).
-    Box resonance is ruled out. After T1 correction: $\lambda/W_{\rm fil} \approx 1.61$--$1.87$
-    (T1$=0.606$--$0.707$), both below the HGBS window.
-
     \item \textbf{Synthesis}: Gaia DR3 + 3D projection reduces the IM92 discrepancy to
     ${\sim}1\sigma$. Hierarchical fibre fragmentation is most physically consistent;
-    magnetic tension is marginally consistent at the directly measured T1$=0.707$
-    with longitudinal fields. Fibre-resolved spacing analysis in additional HGBS regions
-    is the decisive observational test.
+    magnetic tension is marginally consistent at T1$=0.707$ with longitudinal fields.
+    Reflecting-BC (Rigid Cylinder) simulations at $f \geq 2.6$ give $\lambda/W_{\rm core} = 2.70 \pm 0.59$
+    (upper limit, box resonance ruled out), but after T1 correction fall below the HGBS window.
+    Fibre-resolved spacing in additional HGBS regions is the decisive observational test.
 
 \end{itemize}
 
