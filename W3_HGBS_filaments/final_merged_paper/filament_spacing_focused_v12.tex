@@ -292,7 +292,7 @@ The critical line mass for gravitational instability is $\mu_{\rm crit} = 2c_s^2
 
 \textbf{Width notation}: $W_{\rm fil} = 0.1$~pc (HGBS FWHM; scatter $0.05$--$0.20$~pc, $\sim$30\% fitting-method dependence; \citealt{Panopoulou2022}); $W_{\rm core} = 0.3\,\lambda_{\rm J}$ (simulation half-width). The T1 correction and $W_{\rm core}$ are coupled systematics best separated by running the full HGBS pipeline on simulated maps.
 
-\textbf{Width normalisation correction (T1 campaign)}.
+\textbf{Width normalisation correction (T1 campaign)}.%
 \label{sec:width_correction}
 A 72-simulation T1 campaign (May 2026) measured the ratio of the formation-epoch width
 to the observationally-measured width by comparing $W_{\rm form}$ (Gaussian fit at
@@ -633,7 +633,7 @@ Campaign A (oblique $\lambda/W$) & 27 & $\theta=30^\circ$--$60^\circ$, $f=1.0$, 
 Campaign T1-P (Plummer correction) & 18 & $f=1.0$--$1.2$, $\beta=0.5$--$2.0$ & Periodic & Complete \\
 Campaign EOS-G ($\gamma=1.5$) & 9 & $\gamma=1.5$, $f=1.0$--$1.2$ & Periodic & Complete \\
 \midrule
-\textbf{Total} & \textbf{2013} & & & \\
+\textbf{Total} & \textbf{2,013} & & & \\
 \bottomrule
 \end{tabular}
 \\[2pt]
@@ -681,17 +681,18 @@ Contrast with Figure~\ref{fig:lambda_theory} which shows theoretical curves only
 \begin{tabular}{lccccccc}
 \toprule
 Field Geometry & $\beta = 0.3$ & $\beta = 0.5$ & $\beta = 1.0$ & $\beta = 1.5$ & $\beta = 2.0$ & Trend & $\lambda/W_{\rm fil}^{b}$ \\
+ & & & & & & & (at $\beta=2.0$) \\
 \midrule
 Longitudinal B ($\theta = 0^\circ$) & $4.74 \pm 0.73$ & $4.38 \pm 0.59$ & $3.19 \pm 0.29$ & $2.86 \pm 0.18$ & $2.80 \pm 0.14$ & Strong $\beta$-dep.\ & 1.70 \\
 Perpendicular B ($\theta = 90^\circ$) & FLAT\textsuperscript{a} & FLAT\textsuperscript{a} & $1.25 \pm 0.09$ & $1.25 \pm 0.09$ & $1.25 \pm 0.09$ & Geometry dominates & 0.76 \\
 \midrule
-HGBS observational window ($\lambda/W_{\rm fil}$) & \multicolumn{5}{c}{$[2.52, 3.08]$} & Reference & [2.52, 3.08] \\
+HGBS window ($\lambda/W_{\rm fil}$) & \multicolumn{5}{c}{$[2.52, 3.08]$} & Reference & [2.52, 3.08] \\
 \bottomrule
 \end{tabular}
 \\[2pt]
 \footnotesize
 \textsuperscript{a}FLAT = pure radial collapse (no axial fragmentation). \hspace{1em}
-\textsuperscript{b}T1-corrected ($\times$0.606). At T1$=0.707$, $\beta=0.5$ gives $3.10$ and $\beta=0.3$ gives $3.35$ (see Table~\ref{tab:t1_budget}).
+\textsuperscript{b}T1-corrected ($\times$0.606) at $\beta=2.0$. At T1$=0.707$, $\beta=0.5$ gives $3.10$ and $\beta=0.3$ gives $3.35$ (see Table~\ref{tab:t1_budget}).
 \end{table*}
 
 \begin{table}
@@ -711,17 +712,14 @@ HGBS ensemble range & $0.7$--$1.9$ & Propagated uncertainty \\
 \multicolumn{3}{l}{\footnotesize Mach-number correction for observed ISM conditions}\\
 \bottomrule
 \end{tabular}
-\vspace{0.05in}
-\footnotesize $f_{\rm eff}/f = 0.82 \pm 0.11$ from the TURB campaign (90 simulations).
-\par\textbf{Subcritical tension}: The median $f_{\rm eff} \approx 0.7^{+0.5}_{-0.3}$ (sub-critical)
-appears in tension with the widespread fragmentation observed in HGBS. Three resolutions:
-(a) the $f_{\rm eff}$ estimate uses the TURB campaign Mach correction derived at
-$\mathcal{M}=2$--$4$ and may overestimate the turbulent support for quiescent filaments;
-(b) HGBS filaments span a distribution in $f$, and the fragmenting sub-population
-constitutes the $f > 1$ tail; (c) beam-averaging of HGBS line-mass measurements
-(at $\sim$0.04~pc resolution) may systematically underestimate $f$ if filaments
-are centrally concentrated. All three effects likely contribute.
 \end{table}
+
+The median $f_{\rm eff} \approx 0.7^{+0.5}_{-0.3}$ appears subcritical, in tension with
+widespread HGBS fragmentation. Three resolutions: (a) the Mach correction is derived at
+$\mathcal{M}=2$--$4$ and may overestimate support in quiescent filaments; (b) HGBS filaments
+span a distribution in $f$ and the fragmenting sub-population constitutes the $f > 1$ tail;
+(c) beam-averaged line-mass measurements at ${\sim}0.04$~pc resolution systematically
+underestimate $f$ in centrally concentrated filaments. All three effects likely contribute.
 
 \begin{figure*}
 \includegraphics[width=0.8\textwidth]{referee_response_apr2026/figures/cross_campaign_lambdaW.pdf}
