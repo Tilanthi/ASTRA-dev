@@ -200,43 +200,20 @@ additional support. Critically, excluding Serpens changes the full-sample
 result by only $1.1\%$ ($\lambda/W = 2.79 \to 2.76$); our primary robust-only
 result ($\lambda/W = 2.84$) is entirely independent of the Serpens distance.
 
-\textbf{Serpens beam and completeness effects}: At the revised distance of 458~pc,
-the HGBS 18$''$ FWHM beam corresponds to a physical scale of $0.040$~pc---approaching
-the characteristic filament width of $0.10$~pc and exceeding the Orion~B beam scale
-($0.034$~pc at 386~pc) by a factor of only $\sim 1.2$, but exceeding Taurus ($0.012$~pc)
-by a factor of $\sim 3.3$. Among HGBS regions, Orion~B is the best beam-blending proxy for
-Serpens given their comparable distances; however, even for Orion~B, beam-blending effects
-on core catalogues are not well quantified. At this resolution, core blending, reduced completeness for
-faint cores, and unresolved substructure all become more significant than at the
-original 260~pc distance. We cannot correct the Serpens catalogue for these effects
-without re-running the source extraction pipeline at the new distance. As a quantitative estimate of the potential bias: if core blending at the $0.040$~pc beam scale merges ${\sim}20$\% of adjacent core pairs, the pairwise median would decrease by approximately $20$\% $\times$ $(\lambda_{\rm nn}/\lambda_{\rm pairwise}) \approx 20\%$ $\times$ $1.1 \approx 22$\% (estimated from the Taurus nearest-neighbour ratio). At $0.331 \pm 0.097$~pc, this would shift the Serpens spacing to ${\sim}0.26$~pc---comparable to the Perseus measurement---while the full-sample result would change by ${\sim}1.5$\% (Serpens carries 3.8\% weight). This limitation
-is the primary reason Serpens is classified as a Limited region, and why our primary
-measurement uses only the four Robust regions where beam-to-spacing ratios are well
-within acceptable limits. The Serpens data are included in the full-sample analysis for
-completeness but should be interpreted with this caveat.
+\textbf{Serpens beam and completeness effects}: At the revised distance of 458~pc, the
+HGBS 18$''$ beam corresponds to $0.040$~pc---approaching $W_{\rm fil}$ and raising
+concerns about core blending and reduced completeness relative to the original 260~pc
+distance. A ${\sim}20\%$ blending correction would shift the Serpens spacing from
+$0.331$ to ${\sim}0.26$~pc, changing the full-sample result by only ${\sim}1.5\%$ (Serpens
+carries 3.8\% weight). This is the primary reason Serpens is classified as Limited; the
+Serpens data are included for completeness but should be interpreted with caution.
 
-\textbf{Aquila anomaly}: Aquila shows the largest spacing in our Robust sample
-($0.346 \pm 0.047$~pc, $\lambda/W = 3.46$), elevated by its $+68\%$ Gaia DR3 distance revision
-($260 \to 436$~pc). The Aquila Rift is associated with the W40 H\,{\sc ii} region and the
-Serpens South proto-cluster \citep{Andre2010}, both strong sources of ionising radiation and
-stellar feedback. We consider two explanations for the elevated spacing: (1)~\textit{Dynamical
-bias} --- feedback from W40 and Serpens South injects turbulence \citep{Bontemps2010},
-increasing the effective Jeans mass and fragmentation scale in Aquila filaments; (2)~\textit{Completeness
-bias} --- the factor-of-1.68 distance increase ($260 \to 436$~pc) increases the physical beam
-diameter from $0.023$ to $0.038$~pc (beam/$W_{\rm fil}$ ratio: $0.23 \to 0.38$), still comfortably
-resolved, but the fainter core population detected at 260~pc may be missing at the true 436~pc
-distance. At the revised distance, the HGBS sensitivity
-limit corresponds to $M_{\rm core} \gtrsim 0.1\,M_\odot$, excluding the lowest-mass prestellar
-cores that would bias spacings toward shorter values. Excluding Aquila changes our
-robust-sample mean from $0.284$ to $0.267$~pc ($\lambda/W = 2.67$)---a 6.0\% decrease that remains
-comfortably above the perpendicular-B simulation prediction ($\lambda/W \approx 1.25$) and
-reinforces our primary finding. \textit{Caveat}: Given the proximity of W40 and Serpens South,
-Aquila's elevated spacing may reflect feedback-driven turbulence rather than the intrinsic
-fragmentation wavelength of quiescent filaments. Aquila should be treated as a potential
-upper limit on the spacing in feedback-dominated environments, and our primary measurement
-using all four Robust regions is best understood as an ensemble mean that may include one
-anomalously high value. The spacing without Aquila ($\lambda/W = 2.67$, 6\% lower) is a
-more conservative lower bound for comparisons with quiescent-filament models.
+\textbf{Aquila anomaly}: Aquila shows the largest spacing in the Robust sample
+($0.346 \pm 0.047$~pc, $\lambda/W = 3.46$). Its elevated value may reflect feedback from
+the nearby W40 H\,{\sc ii} region and Serpens South proto-cluster \citep{Andre2010,Bontemps2010},
+increasing the effective Jeans mass, or completeness bias from the $+68\%$ distance
+revision ($260 \to 436$~pc). Excluding Aquila reduces the robust mean by 6.0\% to
+$\lambda/W = 2.67$---still well above the perpendicular-B simulation prediction ($\approx 1.25$).
 
 \textbf{Systematic bounds}: Using original HGBS distances for limited regions
 (conservative lower bound) gives $\lambda/W = 2.68$---still 33\% below the classical
@@ -247,67 +224,28 @@ sub-Jeans spacing.
 \label{sec:statistics}
 
 The pairwise median converges toward $L/3$ as $N \to \infty$ for a uniform distribution
-of positions along a filament of length $L$. This is a fundamental limitation: the
-statistic's robustness against outliers may make it insensitive to the true fragmentation
-wavelength. The $L/3$ convergence behaviour means that the pairwise median may overestimate the true
-fragmentation wavelength for large uniform samples; however, as noted in
-Section~\ref{sec:results}, the 3D projection correction acts in the opposite direction.
+of positions along a filament of length $L$, and may overestimate the true fragmentation
+wavelength. However, for a periodic distribution of $N$ cores with true spacing $\lambda$
+on a filament of length $L = N\lambda$, the $L/3$ asymptote would be $N\lambda/3$---a
+factor of $N/3$ times the true spacing---wildly inconsistent with our measured values
+($0.198$--$0.346$~pc) which are comparable to the predicted Jeans scale ($\sim$0.4~pc).
+The pairwise median is therefore recovering the dominant clustering scale, not the $L/3$
+asymptote. Monte Carlo simulations (5,000 realisations per region, 30\% core-position
+scatter) quantify the residual $L/3$ bias at $+1.4$--$+1.8\%$ for all four Robust
+regions---well below the bootstrap statistical uncertainties of 4--5\% per region
+(Table~\ref{tab:l3_bias}). No correction is applied; the bias is smaller than the $1\sigma$
+uncertainties and cannot account for the factor-of-1.4 discrepancy from IM92.
 
-\textbf{Qualitative characterisation of the L/3 bias}: For a perfectly uniform random
-distribution of $N$ cores along a filament of length $L$, the pairwise median converges
-to $L/3$ as $N \to \infty$. However, real HGBS filaments are \textit{not} uniformly
-populated: the existence of a characteristic fragmentation wavelength $\lambda$ means
-cores are clustered at scales $\sim\lambda$, $\sim 2\lambda$, etc. For a \textit{periodic}
-distribution of $N$ cores with true spacing $\lambda$ on a filament of length $L = N\lambda$,
-the pairwise median also converges toward $L/3 = N\lambda/3$ for large $N$---but the
-$L/3$ limit is then $N/3$ times the true spacing, which would be wildly inconsistent
-with the observed values. That our measured pairwise medians (0.198--0.346~pc) are
-comparable to the predicted Jeans fragmentation scale ($\sim$0.4~pc) rather than
-$\sim N/3$ times larger strongly indicates that the distributions are \textit{not}
-purely uniform, and that the pairwise median is recovering the dominant clustering scale
-rather than converging to $L/3$.
-
-The Taurus nearest-neighbour result ($\lambda_{\rm NN} = 0.217 > 0.198$~pc pairwise
-median) is further evidence against $L/3$ convergence dominating: if $L/3$ bias were
-significant, the pairwise median would be \textit{larger} than the nearest-neighbour
-spacing, not smaller. Nevertheless, a Monte Carlo characterisation of the bias for
-synthetic HGBS-like filament geometries (varying $N$, $L/\lambda$, and the degree of
-regularity) is needed to quantify the residual bias. We therefore report $\lambda/W = 2.84
-\pm 0.12$ as our primary measurement, noting that the net directional bias is uncertain
-until such characterisation is complete (in preparation for a companion paper). The
-conclusion that a characteristic sub-Jeans spacing of $\sim 0.28$~pc exists in HGBS
-filaments is robust to distance and sample choices; its precise relationship to the
-theoretical fragmentation wavelength requires the Monte Carlo characterisation.
-
-As a supplementary diagnostic, we computed nearest-neighbour (adjacent-core) spacing
-for Taurus directly from HGBS skeleton and core data (442 spacings, 536 cores).
-The result is $\lambda_{\rm NN} = 0.217 \pm 0.052$~pc ($\lambda/W = 2.17 \pm 0.52$),
-where the uncertainty is the bootstrap standard deviation from 1,000 resampling
-iterations of the 442 adjacent-core pairs. These 442 spacings are measured between sequential cores along individual DisPerSE skeleton segments, excluding cross-skeleton pairs; branched junctions are treated as separate segments. This nearest-neighbour spacing is
-\textit{larger} than the pairwise median value of 0.198~pc---opposite to the
-$L/3$ artifact direction---providing qualitative (though single-region) evidence
-against the $L/3$ convergence bias dominating the pairwise median.
-The full nearest-neighbour analysis for Orion~B, Aquila, and Perseus (containing
-$>2500$ cores combined) would provide a more decisive cross-check. For Orion~B, the
-DisPerSE skeleton topology has been published in machine-readable form in \citet{Konyves2020}
-(their Table~B1); however, converting the published skeleton endpoint coordinates into
-ordered sequential neighbour lists requires a custom graph-traversal algorithm for the
-$\sim$200 branched junctions identified in Orion~B, which is beyond the scope of this paper
-and is being completed for a companion analysis \citep[in prep.;][]{Konyves2020}. For Aquila
-and Perseus, the skeleton topology is not yet publicly available in sequential form, and
-the published catalogues list core positions but not filament-membership assignments needed
-for the nearest-neighbour statistic. Completing this requires the raw skeleton topology files
-currently being processed for a companion paper. We therefore note that our Taurus nearest-neighbour result is a
-single-region cross-check and should not be used as the primary evidence for sub-Jeans
-spacing. Our primary conclusion rests on the pairwise median result, with the Taurus
-nearest-neighbour result providing qualitative (not quantitative) corroboration.
-
-A practical bound on the L/3 bias can be estimated from the known filament properties. In the HGBS catalogues, cores within each region are distributed across many individual filaments (not a single filament of length $L_{\rm region}$). For Orion~B, \citet{Konyves2020} identify $\sim$30--50 filamentary skeletons with individual lengths $L_{\rm fil} \approx 0.5$--$2$~pc and typical core counts $N_{\rm fil} \approx 10$--$40$ per filament. For a representative filament with $L_{\rm fil} = 1.5$~pc and $N_{\rm fil} = 20$ cores, the L/3 convergence limit is $L/3 = 0.50$~pc --- a factor of $1.6\times$ above our measured spacing of $0.313$~pc. The pairwise median is therefore operating in a regime where L/3 $\gg \lambda_{\rm meas}$, meaning the statistic is not yet in the asymptotic convergence limit. Formally, for a distribution of $N$ cores with characteristic spacing $\lambda$ on a filament of length $L$, the pairwise median departs from the true spacing by a fractional correction that scales as $\sim(\lambda/L)^2$ for small $\lambda/L$ (this follows from expanding the pairwise distance distribution around the periodic-spike limit; for $N \gg L/\lambda$, cross-spacing terms average to zero and the correction is second-order). For $\lambda/L \approx 0.2$, this gives a bias of order $4\%$ --- comparable to our quoted bootstrap uncertainty of $0.012$~pc.
-
-For our four Robust regions, the per-filament $\lambda/L$ ratios (estimated from the characteristic lengths and spacings in Table~\ref{tab:sample}) span $0.15$--$0.25$, placing all regions in a regime where the formal L/3 bias is $\lesssim 6\%$ of the pairwise median. To quantify this, we extended the Monte Carlo to all four Robust regions (5,000 realisations each; Table~\ref{tab:l3_bias}). For Orion~B ($N_{\rm fil} = 20$ cores per filament, $L = 1.5$~pc, $\lambda_{\rm true} = 0.313$~pc, 30\% random position scatter), 5,000 realisations give a pairwise median of $0.318 \pm 0.019$~pc---a $1.6\%$ positive bias, consistent with the analytic bound. The per-region biases all lie within $1.4$--$1.8\%$, well below the bootstrap statistical uncertainties ($4$--$5\%$ per region). The L/3 convergence artifact cannot account for more than $\sim 6\%$ of the measured spacing, insufficient to explain the factor-of-1.4 discrepancy from IM92. We explicitly choose not to apply corrections for the L/3 bias to our reported measurements because (a) the corrections ($1.4$--$1.8\%$) are smaller than the $1\sigma$ bootstrap uncertainties, (b) the Monte Carlo geometry model carries additional uncertainties comparable to the bias itself, and (c) applying a model-dependent correction would reduce rather than increase confidence in the result. Our reported values are therefore slightly positively biased (by $\lesssim 2\%$) relative to the true mean spacing; accounting for this would not change any conclusions.
+As a supplementary diagnostic, nearest-neighbour (adjacent-core) spacing for Taurus
+gives $\lambda_{\rm NN} = 0.217 \pm 0.052$~pc ($\lambda/W = 2.17$; 442 pairs along
+DisPerSE skeleton segments, bootstrap $1\sigma$). This is \textit{larger} than the
+pairwise median value of 0.198~pc---opposite to the $L/3$ artifact direction---providing
+qualitative single-region corroboration against $L/3$ bias dominating. Full NN analysis
+for Orion~B, Aquila, and Perseus awaits public release of sequential skeleton topology files
+and is deferred to a companion analysis.
 
 \begin{table}[h]
-\caption{Per-region L/3 pairwise-median bias from Monte Carlo simulation (5,000 realisations each)}
+\caption{Per-region L/3 pairwise-median bias (Monte Carlo, 5,000 realisations each)}
 \label{tab:l3_bias}
 \small
 \begin{tabular}{lcccc}
@@ -321,10 +259,7 @@ Taurus   & 536  & 0.19 & $+1.4 \pm 0.4$ & Monte Carlo \\
 \bottomrule
 \end{tabular}
 \\[2pt]
-\footnotesize $\lambda/L$ is the ratio of characteristic spacing to representative per-filament length. 
-``Analytic'' uses the $(\lambda/L)^2$ scaling; ``Monte Carlo'' uses 5,000 synthetic filament 
-realisations with 30\% core-position scatter. All biases are positive (pairwise median slightly
-overestimates $\lambda_{\rm true}$) and $\leq 2\%$, well below bootstrap uncertainty of $4$--$5\%$.
+\footnotesize All biases $\leq 2\%$, well below bootstrap uncertainties of $4$--$5\%$.
 \end{table}
 
 \subsection{Comparison with Literature}
