@@ -823,10 +823,12 @@ a physically motivated mechanism, but cannot yet be quantitatively evaluated.
 
 \textbf{T1 correction---central systematic}: Whether any simulation matches the HGBS
 window depends critically on the value of T1 (Table~\ref{tab:t1_budget}):
-\textit{At T1$=0.606$ (Gaussian-only, 72-sim campaign): no simulation configuration
-matches the HGBS window $[2.52, 3.08]$.}
-\textit{At T1$=0.707$ (Campaign T1-P Plummer-corrected, 18 sims): longitudinal-field
-$\beta=0.5$ gives $\lambda/W_{\rm fil}=3.10$, marginally at the upper window boundary.}
+\textit{At T1$=0.606$ (Gaussian-only, 72-sim campaign): low-$\beta$ configurations
+($\beta=0.3$: $\lambda/W_{\rm fil}=2.87$; $\beta=0.5$: $2.65$) fall within $[2.52, 3.08]$,
+but require strictly longitudinal, strongly magnetised geometry (${\sim}10\%$ of filaments).
+At T1$=0.707$ (Campaign T1-P Plummer-corrected, 18 sims): these same configurations
+approach the upper window boundary from above ($\beta=0.5$: $3.10$; $\beta=0.3$: $3.35$),
+within combined uncertainties.}
 Both values are reported throughout with equal weight; the paper does not prefer one
 over the other in its conclusions. HGBS pipeline validation on simulated column density
 maps is required to settle this question.
@@ -840,8 +842,8 @@ maps is required to settle this question.
 Configuration & $\lambda/W_{\rm core}$ & T1=0.65 & T1=0.606 & T1=0.707 \\
               &                       & (phys.\ lower) & (central) & (T1-P meas.) \\
 \midrule
-Long.\ B, $\beta=0.3$ (C7) & 4.74 & \textbf{3.08} & 2.87 & \textbf{3.35} \\
-Long.\ B, $\beta=0.5$ (C7) & 4.38 & 2.85 & 2.65 & \textbf{3.10} \\
+Long.\ B, $\beta=0.3$ (C7) & 4.74 & \textbf{3.08} & \textbf{2.87} & \textbf{3.35} \\
+Long.\ B, $\beta=0.5$ (C7) & 4.38 & \textbf{2.85} & \textbf{2.65} & \textbf{3.10} \\
 Long.\ B, $\beta=1.0$ (C7) & 3.19 & 2.07 & 1.93 & 2.26 \\
 Long.\ B, $\beta=2.0$ (C7) & 2.80 & 1.82 & 1.70 & 1.98 \\
 Long.\ B (calibrated, $\theta=0^\circ$) & 3.70 & 2.41 & 2.24 & 2.62 \\
@@ -853,7 +855,7 @@ RC Campaign ($f=2.6$) & 2.65 & 1.72 & 1.61 & 1.87 \\
 \end{tabular}
 \vspace{2pt}
 \footnotesize
-\textbf{Notes}: Bold = entries overlapping or closely approaching $[2.52, 3.08]$. T1$=0.707$ is the Campaign T1-P Plummer-corrected value ($r_{\rm P/G} = 1.166 \pm 0.037$; Section~\ref{sec:width_correction}). At T1$=0.606$: no match; at T1$=0.707$: $\beta=0.5$ gives $3.10$ and $\beta=0.3$ gives $3.35$, both within combined uncertainties of the window.
+\textbf{Notes}: Bold = entries within or closely approaching $[2.52, 3.08]$. T1$=0.707$ is the Campaign T1-P Plummer-corrected value ($r_{\rm P/G} = 1.166 \pm 0.037$; Section~\ref{sec:width_correction}). At T1$=0.606$: $\beta \leq 0.5$ configurations ($2.87$; $2.65$) fall within $[2.52, 3.08]$. At T1$=0.707$: $\beta=0.5$ ($3.10$) and $\beta=0.3$ ($3.35$) exceed the upper boundary within combined simulation uncertainties.
 \end{table}
 
 The field geometry dependence transforms the question from ``why are observed spacings
@@ -916,10 +918,9 @@ We have analysed core spacing in 8 HGBS regions using 2,013 MHD simulations. Our
     \item \textbf{Magnetic tension}: Longitudinal fields ($\beta = 1$--$3$) predict
     $\lambda/W = 2.44$--$3.16$ (overlapping observations), but only $\sim$10\% of
     filaments have predominantly longitudinal geometry (Planck polarimetry).
-    At T1$=0.606$ (Gaussian-only): no configuration matches the HGBS window.
-    At T1$=0.707$ (Campaign T1-P Plummer value): low-$\beta$ longitudinal fields are
-    marginally consistent. HGBS pipeline validation of T1 is required to distinguish
-    these cases.
+    At T1$=0.606$: only $\beta \leq 0.5$ configurations match ($2.87$; $2.65$).
+    At T1$=0.707$: those same configurations approach the upper window boundary
+    ($3.10$; $3.35$) within uncertainties. HGBS pipeline validation of T1 is required.
 
     \item \textbf{Field geometry and MHD}: Field geometry dominates: perpendicular-field
     filaments give $\lambda/W \approx 1.25$; longitudinal fields give $2.8$--$4.7$
@@ -931,7 +932,7 @@ We have analysed core spacing in 8 HGBS regions using 2,013 MHD simulations. Our
 
     \item \textbf{Synthesis}: Gaia DR3 + 3D projection reduces the IM92 discrepancy to
     ${\sim}1\sigma$. Hierarchical fibre fragmentation is most physically consistent;
-    magnetic tension is marginally consistent at T1$=0.707$ with longitudinal fields.
+    magnetic tension is consistent only for strictly longitudinal, low-$\beta$ ($\beta \leq 0.5$) geometry.
     Reflecting-BC (Rigid Cylinder) simulations at $f \geq 2.6$ give $\lambda/W_{\rm core} = 2.70 \pm 0.59$
     (upper limit, box resonance ruled out), but after T1 correction fall below the HGBS window.
     Fibre-resolved spacing in additional HGBS regions is the decisive observational test.
