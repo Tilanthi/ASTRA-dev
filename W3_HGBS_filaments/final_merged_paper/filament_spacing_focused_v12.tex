@@ -761,9 +761,10 @@ compare directly).}
 \subsection{Finite-Length Filament Simulations: Rigid Cylinder Campaign}
 \label{sec:rigidcyl}
 
-HGBS filaments have finite lengths (aspect ratios 5:1 to 20:1; \citealt{Arzoumanian2019}).
-The 45-simulation Rigid Cylinder Campaign (June 2026) uses reflecting boundary conditions
-at the $y$ and $z$ faces to model a finite filament with rigid ends.
+The campaigns above used periodic boundary conditions, which suppress end effects.
+HGBS filaments have finite lengths (aspect ratios 5:1 to 20:1; \citealt{Arzoumanian2019}),
+so the Rigid Cylinder Campaign (45 simulations, June 2026) instead uses reflecting
+boundary conditions to model finite-length filaments with rigid ends.
 
 \textbf{Configuration}: $f = \{1.5, 1.8, 2.2, 2.6, 3.0\}$, $\beta = \{0.5, 1.0, 2.0\}$,
 seeds $\{1, 2, 3\}$; $512\times64\times64$, $8\,\lambda_{\rm J}$ domain, isothermal,
@@ -777,7 +778,7 @@ $\beta$-insensitive (self-gravity dominates); sharp transition at $f \approx 2.4
 decreases by 36\% as $L_x$ doubles (Section~\ref{sec:rigidcyl}), so the converged values
 at $L_x \to \infty$ could be substantially lower.
 
-After T1 correction: $\lambda/W_{\rm fil} = 2.65 \times 0.606 = 1.61$ at $f = 2.6$ (central T1); at the Campaign T1-P measured value T1$=0.707$: $2.65 \times 0.707 = 1.87$. Both are below the HGBS window, consistent with periodic-BC findings.
+After T1 correction at $f=2.6$: $\lambda/W_{\rm fil} = 1.61$ (T1$=0.606$) or $1.87$ (T1$=0.707$)---both below the HGBS window.
 
 \begin{figure*}
 \includegraphics[width=0.48\textwidth]{figures/fig_RC_lW_vs_f.pdf}
@@ -807,6 +808,10 @@ are upper limits.}
 
 \section{DISCUSSION}
 \label{sec:discussion}
+
+The 2,013 simulations establish a clear hierarchy of physical effects: field geometry
+dominates, followed by $f$, with $\beta$ and $\mathcal{M}$ as secondary parameters.
+We now assess which scenario best explains the observed $\lambda/W = 2.79 \pm 0.09$.
 
 \subsection{Can Models Explain the Observational Discrepancy?}
 
