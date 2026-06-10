@@ -151,11 +151,11 @@ Figure~\ref{fig:spacing} shows the spacing measurements. After the standard 3D p
 correction ($4/\pi \approx 1.27$; \citealt{Andre2010}), the inferred spacing is
 ${\sim}3.5\times W$, within 15\% of the classical $4\times$ prediction.
 
-Planck polarimetry indicates dense filaments preferentially lie close to the plane of
-sky \citep{Planck2016}, which would reduce the effective projection factor to
-${\sim}1.10$--$1.20$ and the corrected spacing to ${\sim}3.1$--$3.3\times W$. This
-strengthens rather than weakens the residual discrepancy; we adopt $4/\pi$ as the
-standard isotropic correction with $\lesssim10\%$ systematic uncertainty.
+Planck polarimetry indicates dense filaments lie preferentially close to the plane of
+sky \citep{Planck2016}, which would reduce the projection factor to ${\sim}1.10$--$1.20$
+and the corrected spacing to ${\sim}3.1$--$3.3\times W$---strengthening rather than
+removing the residual discrepancy. We adopt $4/\pi$ as the standard correction
+with $\lesssim10\%$ systematic uncertainty.
 
 \begin{table}[h]
 \caption{Leave-One-Out Sensitivity Analysis}
@@ -196,13 +196,12 @@ well-established Gaia distances, $<15\%$ or validated revision) or \textbf{Limit
 the full-sample mean, the impact on the mean is $<0.2\%$ and is negligible. Serpens is
 classified as Limited.
 
-\textbf{Aquila anomaly}: Aquila has the largest Robust-sample spacing ($\lambda/W = 3.46$),
-possibly reflecting feedback from the W40 H\,{\sc ii} region \citep{Bontemps2010} or the
-$+68\%$ distance revision. The 436~pc distance is independently confirmed by 3D dust
-mapping \citep{Zucker2020} and Gaia-parallax YSOs at $430 \pm 20$~pc \citep{Konyves2020};
-we retain Aquila as Robust but note that excluding it reduces the robust mean by 6\%
-(Table~\ref{tab:leave_one_out}). The highest protostellar fraction in the sample is a
-flagged unquantified systematic; a starless-only cross-check would be needed for confirmation.
+\textbf{Aquila anomaly}: Aquila has the largest Robust spacing ($\lambda/W = 3.46$),
+possibly from W40 H\,{\sc ii} feedback \citep{Bontemps2010} or the $+68\%$ distance
+revision. The 436~pc distance is confirmed by 3D dust mapping \citep{Zucker2020} and
+Gaia-parallax YSOs at $430 \pm 20$~pc \citep{Konyves2020}. We retain it as Robust,
+noting exclusion reduces the robust mean by 6\% and the highest protostellar fraction
+is an unquantified systematic requiring a starless-only cross-check.
 
 \subsection{Statistical Methods: Pairwise Median vs Alternative Statistics}
 \label{sec:statistics}
@@ -497,14 +496,12 @@ profiles yielded zero detections of longitudinal structure in all 654 simulation
 The fractional longitudinal density variation $\sigma(\rho_{x_1})/\langle\rho_{x_1}\rangle
 < 2\times 10^{-4}$ throughout, confirming pure radial collapse.
 
-\textbf{Physical interpretation}: The absence of longitudinal beading reflects a competition
-between radial collapse and longitudinal Jeans instability, both with growth timescales
-$\sim t_J = (G\rho_0)^{-1/2}$. For near-critical filaments ($f \approx 1$), magnetic support
-quenches radial collapse, allowing $\sim t_J$ for longitudinal modes to grow. For
-supercritical filaments ($f \geq 1.5$), the measured collapse time $t_{\rm frag} \approx
-0.25$--$0.34\,t_J$ is shorter than the longitudinal e-folding time
-($\sim 0.4$--$0.6\,t_J$; \citealt{Nagasawa1987}), preempting beading. This is why the
-critical transition occurs at $f \approx 1.2$--$1.5$.
+\textbf{Physical interpretation}: Longitudinal beading requires growth on the Jeans
+timescale $\sim t_J$. Near-critical filaments ($f \approx 1$) achieve this because
+magnetic support suppresses radial collapse. Supercritical filaments collapse radially
+in $0.25$--$0.34\,t_J$---shorter than the longitudinal e-folding time
+(${\sim}0.4$--$0.6\,t_J$; \citealt{Nagasawa1987})---preempting beading and setting
+the critical transition at $f \approx 1.2$--$1.5$.
 
 \textbf{Theoretical estimate}: From the field-geometry calibration:
 \begin{equation}
@@ -740,11 +737,10 @@ HGBS ensemble range & $0.7$--$1.9$ & Propagated uncertainty \\
 \end{table}
 
 The median $f_{\rm eff} \approx 0.7^{+0.5}_{-0.3}$ appears subcritical, in tension with
-widespread HGBS fragmentation. Three resolutions: (a) the Mach correction is derived at
-$\mathcal{M}=2$--$4$ and may overestimate support in quiescent filaments; (b) HGBS filaments
-span a distribution in $f$ and the fragmenting sub-population constitutes the $f > 1$ tail;
-(c) beam-averaged line-mass measurements at ${\sim}0.04$~pc resolution systematically
-underestimate $f$ in centrally concentrated filaments. All three effects likely contribute.
+widespread HGBS fragmentation. Likely resolutions include: the Mach correction
+overestimates support in quiescent filaments ($\mathcal{M} < 2$); only the high-$f$ tail
+of the filament distribution fragments; and beam-averaged line-mass measurements
+(${\sim}0.04$~pc) underestimate $f$ in centrally concentrated filaments.
 
 \begin{figure*}
 \includegraphics[width=0.8\textwidth]{referee_response_apr2026/figures/cross_campaign_lambdaW.pdf}
