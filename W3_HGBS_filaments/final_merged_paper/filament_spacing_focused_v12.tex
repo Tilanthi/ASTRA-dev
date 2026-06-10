@@ -193,7 +193,11 @@ well-established Gaia distances, $<15\%$ or validated revision) or \textbf{Limit
 
 \textbf{Serpens}: The +76\% distance revision ($260 \to 458$~pc) raises concern, but is independently confirmed at $440$--$460$~pc \citep{Yan2022, Green2024, Zucker2020}. Excluding Serpens changes the full-sample result by only 1.1\% (Table~\ref{tab:leave_one_out}).
 
-\textbf{Serpens beam/completeness}: At 458~pc the HGBS beam ($0.040$~pc) is 40\% of $W_{\rm fil} = 0.1$~pc. Gaussian deconvolution gives a beam-corrected intrinsic width of $(W_{\rm fil}^2 - \theta_{\rm beam}^2)^{1/2} = (0.10^2 - 0.04^2)^{1/2} = 0.092$~pc, an 8\% reduction. Beam blending broadens apparent core separations by roughly the same factor, so the Serpens spacing measurement ($0.331$~pc) may be overestimated by up to $\sim$8\% ($\sim$0.026~pc), shifting it to $0.305$~pc. Since Serpens carries only 3.8\% weight in the full-sample mean, this correction shifts the mean by $<0.2\%$ and is entirely negligible. Serpens is classified as Limited.
+\textbf{Serpens beam/completeness}: At 458~pc the 18$''$ beam ($0.040$~pc) corresponds to
+40\% of $W_{\rm fil}$; beam blending may overestimate the spacing by up to $\sim$8\%
+($0.305$~pc corrected vs $0.331$~pc measured). Since Serpens carries only 3.8\% weight in
+the full-sample mean, the impact on the mean is $<0.2\%$ and is negligible. Serpens is
+classified as Limited.
 
 \textbf{Aquila anomaly}: Aquila has the largest Robust-sample spacing ($\lambda/W = 3.46$),
 possibly reflecting feedback from the W40 H\,{\sc ii} region \citep{Bontemps2010} or the
@@ -206,9 +210,14 @@ flagged unquantified systematic; a starless-only cross-check would be needed for
 \subsection{Statistical Methods: Pairwise Median vs Alternative Statistics}
 \label{sec:statistics}
 
-The pairwise median converges toward $L/3$ for a uniform distribution, potentially overestimating the true fragmentation wavelength. For the HGBS regions, typical filament lengths span $L \approx 0.5$--$3$~pc \citep{Arzoumanian2019}, giving $L/3 \approx 0.17$--$1.0$~pc; our measured spacings ($0.198$--$0.346$~pc) lie a factor $1.5$--$2.5$ below the $L/3$ asymptote for the majority of filaments, confirming the statistic recovers the clustering scale. Region-by-region Monte Carlo simulations (5,000 realisations, using the measured filament length distribution for each region) give residual biases of $+1.4$ (Taurus, longest uniform filaments) to $+1.8\%$ (Serpens, compact filaments)---well below the $4$--$5\%$ bootstrap uncertainties---so no correction is applied. The Taurus nearest-neighbour check corroborates this independently (see below).
-
-As a supplementary check, Taurus nearest-neighbour spacing ($\lambda_{\rm NN} = 0.217 \pm 0.052$~pc) is \textit{larger} than the pairwise median ($0.198$~pc)---opposite to the $L/3$ bias direction---providing qualitative corroboration.
+The pairwise median converges toward $L/3$ for a uniform distribution. For the HGBS
+filament length range $L \approx 0.5$--$3$~pc \citep{Arzoumanian2019}, our measured
+spacings ($0.198$--$0.346$~pc) lie a factor $1.5$--$2.5$ below the $L/3$ asymptote,
+confirming the statistic recovers the clustering scale. Region-by-region Monte Carlo
+(5,000 realisations) gives residual biases of $+1.4$--$+1.8\%$, well below bootstrap
+uncertainties; no correction is applied. Taurus nearest-neighbour spacing
+($\lambda_{\rm NN} = 0.217 \pm 0.052$~pc) is \textit{larger} than the pairwise median
+($0.198$~pc)---opposite to the $L/3$ bias direction---providing qualitative corroboration.
 
 \subsection{Comparison with Literature}
 
@@ -292,7 +301,10 @@ is \citep{Inutsuka1992}:
 where $H = c_s/(2G\rho_0)^{1/2}$ is the thermal scale height and $W_{\rm fil} \approx 0.1$~pc.
 The critical line mass for gravitational instability is $\mu_{\rm crit} = 2c_s^2/G$.
 
-\textbf{Width notation}: $W_{\rm fil} = 0.1$~pc (HGBS FWHM; scatter $0.05$--$0.20$~pc, $\sim$30\% fitting-method dependence; \citealt{Panopoulou2022}); $W_{\rm core} = 0.3\,\lambda_{\rm J}$ (simulation half-width). The T1 correction and $W_{\rm core}$ are coupled systematics best separated by running the full HGBS pipeline on simulated maps.
+\textbf{Width notation}: $W_{\rm fil} = 0.1$~pc (HGBS FWHM; scatter $0.05$--$0.20$~pc,
+$\sim$30\% fitting-method dependence; \citealt{Panopoulou2022});
+$W_{\rm core} = 0.3\,\lambda_{\rm J}$ (simulation half-width).
+The T1 correction separates these two definitions of width.
 
 \textbf{Width normalisation correction (T1 campaign)}.%
 \label{sec:width_correction}
@@ -303,9 +315,11 @@ fragmentation time) to $W_{\rm fil}$ (same profile convolved with the HGBS 18$''
 \frac{W_{\rm form}}{W_{\rm fil}} = 0.606 \pm 0.072 \quad (11.9\% \text{ systematic uncertainty})
 \label{eq:t1_correction}
 \end{equation}
-This ratio is insensitive to $(f, \beta, \mathcal{M})$ (variation $<3\%$); simulation $\lambda/W_{\rm core}$ values are multiplied by 0.606 to compare with observed $\lambda/W_{\rm fil}$ (the dominant systematic). Campaign T1-P (18 sims) measures $r_{\rm P/G} = 1.166 \pm 0.037$
-(Plummer/Gaussian ratio, $f$-independent), giving $T1_{\rm Plummer} = 0.707 \pm 0.04$;
-at this value $\beta=0.5$ gives $\lambda/W_{\rm fil}=3.10$ (upper HGBS window boundary).
+This ratio is insensitive to $f$, $\beta$, $\mathcal{M}$ (variation $<3\%$) and is
+applied to convert simulation to observable $\lambda/W$. Campaign T1-P (18 sims)
+gives the Plummer/Gaussian ratio $r_{\rm P/G} = 1.166 \pm 0.037$ ($f$-independent),
+hence $T1_{\rm Plummer} = 0.707 \pm 0.04$; at this value, $\beta=0.5$ gives
+$\lambda/W_{\rm fil}=3.10$ (upper HGBS window boundary).
 
 \subsection{Magnetic Tension Mechanism}
 
@@ -649,10 +663,9 @@ Physical turbulence ($\delta v/c_s = 1.0$) does \textit{not} modify $\lambda/W$:
 $3.44 \pm 0.76$ (physical) vs.\ $3.30 \pm 0.85$ (synthetic; KS test $p = 0.43$; Figure~\ref{fig:C5_turbulence}). $\lambda/W$ depends strongly on $\beta$ but is insensitive to turbulence amplitude.
 
 \textbf{Campaign 6} (100 sims; $\theta = 90^\circ$, $f = 1.2$--$1.5$, $\beta = 0.3$--$2.0$):
-Strong perpendicular B ($\beta \leq 0.5$) → radial collapse (FLAT\_PROFILE); weak
-perpendicular B ($\beta \geq 1.0$) → $\lambda/W = 1.25 \pm 0.09$ ($N=27$),
-$2.2$--$2.5\times$ shorter than longitudinal-field values. Field geometry, not $\beta$,
-dominates for perpendicular-field filaments.
+Strong perpendicular B ($\beta \leq 0.5$) gives radial collapse; weak perpendicular B
+($\beta \geq 1.0$) gives $\lambda/W = 1.25 \pm 0.09$ ($N=27$), $2.2$--$2.5\times$
+shorter than longitudinal-field values. Field geometry, not $\beta$, dominates.
 
 \textbf{Campaign 7} (135 sims; $f = 0.9$--$1.3$, $\beta = 0.3$--$2.0$, 3 seeds):
 No discontinuity at $f = 1.0$ (variation $<5\%$). $\lambda/W_{\rm core}$ shows strong
