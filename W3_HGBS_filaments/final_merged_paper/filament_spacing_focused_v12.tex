@@ -388,7 +388,7 @@ timeout artefacts confirmed by 6~h re-runs (Figure~\ref{fig:dtc_rerun}).}
 
 \begin{figure*}
 \includegraphics[width=0.7\textwidth]{figures/fig1_dtc_stable_ridge_rerun.pdf}
-\caption{DTC re-runs: all 15 previously-STABLE points fragmented within 6~h, confirming no stable configurations exist at $\mathcal{M} \geq 1$.}
+\caption{DTC re-runs: all 15 previously timeout-classified (apparently stable) points fragmented within 6~h, confirming no stable configurations exist at $\mathcal{M} \geq 1$.}
 \label{fig:dtc_rerun}
 \end{figure*}
 
@@ -470,7 +470,7 @@ $f = 3.0$ (free-fall predicts exponent $0.50$; we measure $0.39$, 22\% below). T
 reduced exponent likely reflects competing flux-frozen field amplification and cylindrical
 potential deepening, both $f$-independent and absorbed into the global fit.
 
-\textbf{Magnetic field}: Nearly independent of $\beta$ for $\beta \gtrsim 0.5$ ($t_{\rm frag}$ varies by only 7.7\% from $\beta=0.3$ to $\beta=5$). Per-$\beta$ power-law fits give exponents $0.38$--$0.40 \pm 0.01$, consistent with the global $0.39 \pm 0.01$.
+\textbf{Magnetic field}: Nearly independent of $\beta$ for $\beta \gtrsim 0.5$ ($t_{\rm frag}$ varies by only 7.7\% from $\beta=0.3$ to $\beta=5$). Per-$\beta$ power-law fits give exponents $0.38$--$0.40 \pm 0.01$, consistent with the global $0.39 \pm 0.01$. Near-critical fragmentation ($f=1.1$--$1.3$) is continuous with the supercritical power law (Figure~\ref{fig:nearcrit}).
 
 \textbf{Turbulence}: Independent of Mach number to within 0.5\% across $\mathcal{M} = 0.5$--$3.0$ (Figure~\ref{fig:mach_highbeta}).
 
@@ -655,7 +655,13 @@ $2.2$--$2.5\times$ shorter than longitudinal-field values. Field geometry, not $
 dominates for perpendicular-field filaments.
 
 \textbf{Campaign 7} (135 sims; $f = 0.9$--$1.3$, $\beta = 0.3$--$2.0$, 3 seeds):
-No discontinuity at $f = 1.0$ (variation $<5\%$). $\lambda/W_{\rm core}$ shows strong $\beta$-dependence from $4.74$ ($\beta=0.3$) to $2.80$ ($\beta=2.0$; Table~\ref{tab:cross_campaign}, Figure~\ref{fig:C7_critical}); at T1$=0.707$ the low-$\beta$ configurations approach the HGBS window (Table~\ref{tab:t1_budget}).
+No discontinuity at $f = 1.0$ (variation $<5\%$). $\lambda/W_{\rm core}$ shows strong
+$\beta$-dependence from $4.74$ ($\beta=0.3$) to $2.80$ ($\beta=2.0$;
+Table~\ref{tab:cross_campaign}, Figure~\ref{fig:C7_critical}); at T1$=0.707$ the low-$\beta$
+configurations approach the HGBS window (Table~\ref{tab:t1_budget}).
+The effective line-mass fraction accounting for turbulent support is summarised in
+Table~\ref{tab:feff}; cross-campaign $\lambda/W$ comparison is shown in
+Figure~\ref{fig:cross_campaign_lambdaW}.
 
 \begin{figure*}
 \includegraphics[width=0.9\textwidth]{figures/fig_C5_turbulence_lambdaW.pdf}
@@ -675,6 +681,7 @@ Contrast with Figure~\ref{fig:lambda_theory} which shows theoretical curves only
 \end{figure*}
 
 \subsubsection{Cross-Campaign Synthesis}
+\label{sec:cross_campaign_synthesis}
 
 \begin{table*}
 \caption{Cross-Campaign $\lambda/W$ Summary: Field Geometry and Plasma $\beta$ Dependence}
