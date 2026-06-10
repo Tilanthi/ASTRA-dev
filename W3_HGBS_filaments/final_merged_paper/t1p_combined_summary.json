@@ -1,0 +1,22 @@
+{
+  "new_campaign": {
+    "N_valid": 18,
+    "N_total": 18,
+    "T1_gaussian_mean": 0.97231,
+    "T1_gaussian_se": 0.00103,
+    "T1_plummer": 1.1337,
+    "T1_plummer_err": 0.036,
+    "T1_f10_mean": 0.9703,
+    "T1_f12_mean": 0.9743,
+    "variation_pct": 0.45
+  },
+  "combined_result": {
+    "N_total": 36,
+    "T1_plummer": 0.9428,
+    "T1_plummer_err": 0.0268
+  },
+  "prior_18sim": {
+    "T1_plummer": 0.707,
+    "T1_plummer_err": 0.04
+  }
+}
