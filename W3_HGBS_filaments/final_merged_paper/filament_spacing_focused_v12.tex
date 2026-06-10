@@ -113,7 +113,7 @@ CRA      & 150 & 239   & 0.248 & 0.072 & 0.013 & Limited \\
 \textbf{Weighted Mean} &  & \textbf{5,069} & \textbf{0.279} & \textbf{0.009} & --- &  \\
 \bottomrule
 \end{tabular}
-\\ \footnotesize \textbf{Note}: Beam scale = 18$''$ FWHM at quoted distance. For reference, the canonical filament width is $W_{\rm fil} = 0.10$~pc; beam/width ratios $> 0.35$ indicate potential resolution concerns for width and core-size measurements. Ophiuchus ($N = 513$) marginally exceeds the Robust threshold of $N > 500$ by 2.6\%; its classification as Limited reflects the larger distance uncertainty ($137 \pm 5$~pc, $\lesssim 4\%$ revision) and slightly lower completeness compared to the four Robust regions, not the core count alone.
+\\ \footnotesize \textbf{Note}: Beam scale = 18$''$ FWHM. Ophiuchus is classified as Limited (not Robust) despite $N>500$ because of larger distance uncertainty and slightly lower completeness.
 \end{table*}
 
 \subsection{Measurement Methodology}
@@ -197,10 +197,7 @@ increasing the effective Jeans mass, or completeness bias from the $+68\%$ dista
 revision ($260 \to 436$~pc). Excluding Aquila reduces the robust mean by 6.0\% to
 $\lambda/W = 2.67$---still well above the perpendicular-B simulation prediction ($\approx 1.25$).
 
-\textbf{Systematic bounds}: Using original HGBS distances for limited regions
-(conservative lower bound) gives $\lambda/W = 2.68$---still 33\% below the classical
-$4\times$ prediction, confirming that distance uncertainties cannot explain the
-sub-Jeans spacing.
+
 
 \subsection{Statistical Methods: Pairwise Median vs Alternative Statistics}
 \label{sec:statistics}
@@ -216,7 +213,7 @@ Our Gaia DR3 measurements are systematically larger than original HGBS values by
 fibre-to-core spacing of ${\sim}0.42$~pc \citep{Yang2024} is 1.34$\times$ our
 filament-level measurement ($0.313$~pc)---the correct direction for hierarchical
 projection, implying $N_f \approx 1.5$--$1.8$ dominant fibres, consistent with
-\citet{Hacar2018}. This is discussed quantitatively in Section~\ref{sec:discussion}.
+\citet{Hacar2018}. 
 
 \begin{table*}
 \caption{Comparison with Published HGBS Spacing Measurements}
@@ -243,11 +240,7 @@ CRA      & 0.248 $\pm$ 0.072 & 0.212 & $\sim$0.21 & \citet{Konyves2020} \\
 
 \begin{figure*}
 \includegraphics[width=0.8\textwidth]{figures/figure1_spacing_comparison.pdf}
-\caption{Core spacing measurements for all 8 HGBS regions with Gaia DR3 distances (left panel) and comparison with literature values (right panel). \textbf{Left panel}: Region-by-region spacing measurements with error bars showing
-bootstrap 95\% confidence intervals for the pairwise median (10,000 resampling
-iterations). For Orion~B ($N = 1844$ core pairs), the formal statistical uncertainty
-is small; the dominant uncertainty is systematic, arising from the convergence
-properties of the pairwise median (see Section~\ref{sec:statistics}). Horizontal reference lines: red dashed = weighted mean (0.279 pc), green dotted = 3D-corrected value (0.35 pc), grey dash-dotted = IM92 theoretical prediction (0.4 pc). \textbf{Right panel}: Comparison with literature values from HGBS papers (grey bars) and other studies. Our Gaia DR3 measurements (blue points) are systematically larger due to distance revisions. \textit{Caution}: literature values use heterogeneous methods --- different statistics (nearest-neighbour, peak-to-peak, pairwise median), different pipeline versions, and pre-Gaia distances. Direct quantitative comparison is not appropriate; the right panel illustrates qualitative trends only (see also Table~\ref{tab:literature}).}
+\caption{\textbf{Left}: Region-by-region Gaia DR3 spacing measurements (bootstrap 95\% CI). Horizontal lines: red dashed = weighted mean (0.279 pc); green dotted = 3D-corrected (0.35 pc); grey = IM92 prediction (0.4 pc). \textbf{Right}: Qualitative comparison with literature values (Table~\ref{tab:literature}); heterogeneous methods preclude direct quantitative comparison.}
 \label{fig:spacing}
 \end{figure*}
 
@@ -382,9 +375,7 @@ HGBS-compatible spacings from near-critical and reflecting-BC simulations
 
 The DTC comprised 540 simulations spanning $f = 1.4$--$2.2$, $\beta = 0.3$--$1.3$,
 $\mathcal{M} = 1$--$5$ (two seeds per point). Targeted 6-hour re-runs (April 2026)
-confirmed that all 15 parameter points at $\beta = 0.3$, $\mathcal{M} = 1$ classified
-as STABLE by the original 600-second timeout subsequently fragmented
-($t_{\rm frag} \in [1.02, 1.43]\,t_{\rm J}$; linear fit $t_{\rm frag} \approx 1.57 - 0.27f$).
+confirmed that all 15 previously-STABLE points at $\beta = 0.3$, $\mathcal{M} = 1$ subsequently fragmented ($t_{\rm frag} \in [1.02, 1.43]\,t_{\rm J}$).
 The corrected boundary contains \textbf{no stable configurations} for $\mathcal{M} \geq 1$
 at any $f$ or $\beta$ tested (Figures~\ref{fig:dtc_pfrag},~\ref{fig:dtc_rerun}).
 
@@ -703,8 +694,8 @@ HGBS observational window ($\lambda/W_{\rm fil}$) & \multicolumn{5}{c}{$[2.52, 3
 \end{tabular}
 \\[2pt]
 \footnotesize
-\textsuperscript{a}FLAT = no axial fragmentation, pure radial collapse. \hspace{1em}
-\textsuperscript{b}T1-corrected observable value using central T1 = 0.606. \textbf{No configuration matches the HGBS window at T1 = 0.606; at the Campaign T1-P measured value T1 $= 0.707$, the longitudinal-field $\beta=0.5$ configuration gives $\lambda/W_{\rm obs}=3.10$ (marginally above window) and $\beta=0.3$ gives $3.35$; see Table~\ref{tab:t1_budget}.}
+\textsuperscript{a}FLAT = pure radial collapse (no axial fragmentation). \hspace{1em}
+\textsuperscript{b}T1-corrected ($\times$0.606). At T1$=0.707$, $\beta=0.5$ gives $3.10$ and $\beta=0.3$ gives $3.35$ (see Table~\ref{tab:t1_budget}).
 \end{table*}
 
 \begin{table}
@@ -798,15 +789,7 @@ $L_x=16$ values are upper limits.}
 
 \subsection{Can Models Explain the Observational Discrepancy?}
 
-The observational result ($\lambda/W = 2.79$--$2.84$, Gaia DR3) differs from the classical
-IM92 prediction ($4\times$) by a factor of 1.4. The 3D-corrected value (${\sim}3.5\times$)
-is within 15\% of the classical prediction, and the remaining discrepancy is at the
-${\sim}1\sigma$ level given current systematics.
-
-\textbf{What creates the observed periodic spacing?} All 654 supercritical periodic-BC
-simulations yield zero longitudinal fragmentation, raising the question of how real HGBS
-filaments maintain periodic core spacings. Three non-exclusive scenarios are physically
-consistent with both our negative simulation result and the observed spacings:
+The 3D-corrected HGBS spacing (${\sim}3.5\times W$) is within 15\% of the IM92 $4\times$ prediction, yet the residual 1.4$\times$ discrepancy requires explanation. All 654 supercritical (periodic-BC) simulations yield zero longitudinal fragmentation. Two scenarios are consistent with this negative result and the observed spacings:
 
 (i) \textit{Hierarchical fibre fragmentation}: If HGBS filaments are bundles of fibres each near-critical ($f_{\rm eff} \lesssim 1.3$), each fibre undergoes longitudinal fragmentation (Campaign~7). Projection of fibre-level cores creates the sub-Jeans spacing at the filament level, consistent with the \citet{Yang2024} Orion~B fibre-to-core measurement.
 
