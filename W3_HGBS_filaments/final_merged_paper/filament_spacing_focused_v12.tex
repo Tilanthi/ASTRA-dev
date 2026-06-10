@@ -22,8 +22,10 @@ $^{2}$Rutherford Appleton Laboratory, Harwell Science and Innovation Campus, Did
 \maketitle
 
 \begin{abstract}
+Classical fragmentation theory predicts core spacing of ${\sim}4\times$ the filament
+width, yet Herschel observations consistently report $\lambda/W \approx 2$--$3$.
 We analyse core spacing in Herschel Gould Belt Survey (HGBS) filaments using Gaia DR3
-distances and 2013 self-gravitating MHD simulations. Four robust regions give
+distances and 2,013 self-gravitating MHD simulations. Four robust regions give
 $\lambda/W = 2.8 \pm 0.1$ ($0.284 \pm 0.012$~pc); the full 8-region sample (5,069 cores)
 gives the same value. After 3D projection correction, the inferred spacing is
 ${\sim}3.5\times W$, within 15\% of the classical $4\times$ prediction \citep{Inutsuka1992}.
@@ -33,18 +35,18 @@ Orion~B recovers the $4\times$ prediction \citep{Yang2024}, while filament-level
 show sub-Jeans values consistent with fibre-bundle projection.
 Magnetic tension for longitudinal fields ($\beta = 1$--$3$) predicts $\lambda/W = 2.44$--$3.16$,
 overlapping observations, but requires predominantly longitudinal geometry inconsistent with
-Planck polarimetry \citep{Planck2016}. Field geometry is first-order: perpendicular-field
+Planck polarimetry \citep{Planck2016}. Field geometry dominates: perpendicular-field
 filaments give $\lambda/W \approx 1.25$ versus $2.8$--$4.7$ for longitudinal fields.
 
 Our simulations reveal three regimes. A robust power law
 $1/t_{\rm frag} \propto f^{0.39}$ ($r^2 = 0.999$) governs collapse timescales;
 supercritical filaments ($f \geq 1.5$) undergo radial collapse \citep{Nagasawa1987}
 and near-critical ($f \lesssim 1.2$) filaments produce longitudinal beading.
-Campaign T1-P (18 simulations) directly measures the Plummer-function width correction
-($T1_{\rm Plummer} = 0.707 \pm 0.04$), placing the low-$\beta$ longitudinal configuration
-marginally consistent with the HGBS window $[2.52, 3.08]$ (the 95\% bootstrap confidence interval of the Gaia~DR3-corrected full-sample mean; $\lambda/W_{\rm fil}$ throughout); the conservative Gaussian-only
-value ($T1 = 0.606$) yields no match. Fibre-resolved spacing in additional HGBS regions
-is the decisive test.
+Campaign T1-P (18 simulations) measures the Plummer-function width correction
+($T1_{\rm Plummer} = 0.707 \pm 0.04$); at this value, low-$\beta$ longitudinal fields
+marginally match the HGBS window $[2.52, 3.08]$. The conservative Gaussian-only
+correction ($T1 = 0.606$) yields no match. Fibre-resolved spacing in additional HGBS
+regions is the decisive test.
 \end{abstract}
 
 \begin{keywords}
@@ -74,7 +76,7 @@ show sub-Jeans values. Second, \textbf{magnetic tension}: longitudinal fields sh
 most unstable mode to shorter wavelengths \citep{Nakamura1993}, predicting
 $\lambda/W \approx 2.44$--$3.16$ for equipartition fields ($\beta \sim 1$--$3$).
 
-Here we present a systematic analysis of all 8 high-confidence HGBS regions using Gaia DR3 distances and a uniform pairwise-median methodology, combined with 2013 self-gravitating MHD simulations. We find hierarchical fibre fragmentation to be the most physically consistent explanation, with magnetic tension marginally consistent only at the directly measured Plummer-function correction T1$=0.707$.
+Here we present a systematic analysis of all 8 high-confidence HGBS regions using Gaia DR3 distances and a uniform pairwise-median methodology, combined with 2,013 self-gravitating MHD simulations. We find hierarchical fibre fragmentation to be the most physically consistent explanation, with magnetic tension marginally consistent only at the Plummer-function corrected T1$=0.707$.
 
 \section{OBSERVATIONAL ANALYSIS}
 
@@ -587,7 +589,7 @@ the field-geometry calibration formula.}
 \subsection{Referee Response and Post-Submission Campaigns (343 simulations)}
 \label{sec:referee_response}
 
-Targeted referee-response and post-submission campaigns bring the total to 2013 simulations
+Targeted referee-response and post-submission campaigns bring the total to 2,013 simulations
 (Table~\ref{tab:sim_census}).
 
 \begin{table*}
@@ -762,14 +764,6 @@ $L_x=16$ values are upper limits.}
 
 \section{DISCUSSION}
 \label{sec:discussion}
-\textbf{Note on figure reference values}: Figures showing $\lambda/W$ theoretical
-curves use the HGBS window $[2.52, 3.08]$ (green shading) or the Gaia~DR3 weighted
-mean $\lambda/W_{\rm fil} = 2.79$ as the reference horizontal band, corresponding to
-$\lambda/W_{\rm core} \approx 4.60$ in simulation units (dividing by T1$=0.606$).
-Any figure showing an older reference line of $\lambda/W \approx 2.1$ reflects the
-pre-Gaia~DR3 catalogue value ($0.211$~pc~$/ 0.1$~pc) and will be updated in the
-revised manuscript; the text values (2.79/2.84) are definitive.
-
 
 \subsection{Can Models Explain the Observational Discrepancy?}
 
@@ -867,7 +861,7 @@ $90^\circ$ (perp., theory) & 3.95 & 3.99 & 4.00 & Theory only (sim.\ at $f=1.5$-
 
 \section{CONCLUSIONS}
 
-We have analysed core spacing in 8 HGBS regions using 2013 MHD simulations. Our main conclusions are:
+We have analysed core spacing in 8 HGBS regions using 2,013 MHD simulations. Our main conclusions are:
 
 \begin{itemize}
 
@@ -909,7 +903,7 @@ We have analysed core spacing in 8 HGBS regions using 2013 MHD simulations. Our 
 \section*{ACKNOWLEDGMENTS}
 
 We thank the Herschel Gould Belt Survey team for the datasets (available from the
-Herschel Science Archive). The 2013-simulation dataset and analysis code are available at
+Herschel Science Archive). The 2,013-simulation dataset and analysis code are available at
 \url{https://github.com/[anonymised-for-review]} (currently private during review; access
 tokens available via the editorial office). The full dataset including HDF5 density profiles (snapshots at fragmentation epoch),
 complete simulation parameter files (athinput), analysis scripts, and all raw
