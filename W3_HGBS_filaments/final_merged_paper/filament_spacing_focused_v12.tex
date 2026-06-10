@@ -1050,7 +1050,7 @@ Field Geom.\ Ph.\ 3 (oblique calib.) & 108 & $f=1.5$--$3.0$, $\theta=30^\circ$--
 Field Geom.\ Ph.\ 4 (adiabatic EOS) & 30 & $\gamma=5/3$, $f=1.0$--$1.2$ & Periodic & Complete \\
 Referee Response Campaigns & 289 & CT: $f=1.4$--$2.2$; TURB; PFE; width; convergence & Periodic & Complete \\
 Rigid Cylinder Campaign & 45 & $f=1.5$--$3.0$, $\beta=0.5$--$2.0$ & Reflecting & Complete \\
-RC Box-Size Convergence & 9 & $f=2.6$, $\beta=1.0$, $L_x=8$--$32\,\lambda_{\rm J}$ & Reflecting & Complete \\
+RC Box-Size Convergence & 9 & $f=2.6$, $\beta=1.0$, $L_x=8,16,32\,\lambda_{\rm J}$ & Reflecting & Complete ($L_x=32$: not measured) \\
 Campaign A (oblique $\lambda/W$) & 27 & $\theta=30^\circ$--$60^\circ$, $f=1.0$, $\beta=0.5$--$2.0$ & Periodic & Preliminary \\
 Campaign T1-P (Plummer correction) & 18 & $f=1.0$--$1.2$, $\beta=0.5$--$2.0$ & Periodic & Complete \\
 Campaign EOS-G ($\gamma=1.5$) & 9 & $\gamma=1.5$, $f=1.0$--$1.2$ & Periodic & Complete \\
@@ -1254,16 +1254,17 @@ selecting shorter fragments. Box resonance is therefore ruled out.
 
 \textbf{Convergence concern}: The 36\% change from $L_x = 8$ to $L_x = 16$
 raises the question of whether $L_x = 16$ is itself converged.
-\textbf{Update (June 2026): $L_x = 32$ test completed.}
+\textbf{Update (June 2026): $L_x = 32$ test attempted.}
 We ran the matched $L_x = 32\,\lambda_{\rm J}$ test at $f = 2.6$, $\beta = 1.0$
-(3 seeds, \texttt{perturb\_ampl}=1.0, same parameters as the RC campaign).
-\textit{All three seeds collapsed at $t \approx 0.056\,t_{\rm J}$} with a single dominant
-density peak (maximum contrast ${\approx}3.0$; $\lambda/W_{\rm core}$ unmeasurable).
-The collapse is $6.6\times$ faster than the $L_x = 16$ sims ($t_{\rm collapse}\approx 0.37\,t_{\rm J}$),
-and the fragmentation mode changes qualitatively from multi-peak beading
-(4--7 peaks at $L_x = 16$) to single global collapse ($L_x = 32$).
+(3 seeds, 2048 cells, \texttt{perturb\_ampl}=1.0, same parameters as the RC campaign).
+The gravitational timestep constraint ($\delta t \propto (G\rho_{\rm max})^{-1/2}$) reduced
+$\delta t$ to ${\approx}1.5\times10^{-5}\,t_{\rm J}$ at the 2048-cell resolution,
+requiring an estimated ${\sim}10^5$ cycles (${\approx}100\,\text{h}$ wall time) to reach the
+fragmentation epoch ($t \sim 0.4\,t_{\rm J}$). The test was terminated after $t \approx 0.03\,t_{\rm J}$
+before any fragmentation structure had developed; no measurable $\lambda/W_{\rm core}$ was obtained.
+The theoretical expectation for this domain size is described below.
 
-\textbf{Physical explanation}: In a periodic box of length $L_x = 32\,W$ with a
+\textbf{Theoretical expectation for $L_x = 32$}: In a reflecting-BC box of length $L_x = 32\,W$ with a
 Kolmogorov-like turbulent power spectrum ($P(k) \propto k^{-11/3}$), the $n=1$ global
 mode (wavelength $\lambda = L_x = 32\,W$) carries far more initial power than the
 Jeans-scale fragmentation mode ($\lambda \approx 2.86\,W$, $n \approx 11$). For a Kolmogorov power spectrum, the power in the $n=1$ mode
@@ -1276,32 +1277,33 @@ This ratio increases between the two tested domain sizes as $(L_{x,32}/L_{x,16})
 = 2^{11/3} \approx 13$, independent of the fragmentation wavelength value.
 The factor-of-13 increase in the power ratio when doubling $L_x$ represents a qualitative
 threshold: at $L_x = 16\,\lambda_{\rm J}$ the Jeans-scale modes retain sufficient relative
-amplitude to drive multi-peak beading, while at $L_x = 32\,\lambda_{\rm J}$ the $n=1$ global
-mode amplitude dominates and drives single-clump collapse before multi-peak patterns develop.
-This order-of-magnitude amplification explains the qualitative transition
-at $L_x = 32$: the $n=1$ mode overwhelms Jeans-scale fragmentation before multi-peak beading
-can develop, while at $L_x = 16$ the smaller ratio allows regular beading to dominate.
+amplitude to drive multi-peak beading; at $L_x = 32\,\lambda_{\rm J}$ one would theoretically
+expect the $n=1$ global mode to dominate and suppress Jeans-scale fragmentation.
+This theoretical argument predicts that the $L_x = 16$ values are not yet converged;
+a direct computational test at $L_x = 32$ was not achievable within the scope of this work.
 
 \textbf{Conclusion}: The $L_x = 16$ RC-campaign values are \textit{not box-size converged}
-and the in-window results at $f \geq 2.6$ should be treated as upper limits only.
-However, the $L_x = 32$ result also carries physical content: in realistic long filaments
-($L/W \gg 16$) with turbulent perturbations following a steep power spectrum, global
-collapse modes may dominate over regular Jeans-scale fragmentation. HGBS-observed uniform
-beading therefore requires special physical conditions---short filament segments between
-hubs, weak turbulence, or magnetically suppressed large-scale modes---that suppress the
-global collapse channel.
+and the in-window results at $f \geq 2.6$ should be treated as upper limits. Box resonance
+is nonetheless ruled out empirically by the monotonic decrease from $L_x = 8$ to $16$: no
+single resonant mode can produce both $\lambda/W = 4.22$ at $L_x = 8$ and $\lambda/W = 2.70$
+at $L_x = 16$. The Kolmogorov analysis (Eq.~\ref{eq:kolm_ratio}) provides a theoretical
+expectation that the $L_x = 16$ values over-estimate the fragmentation wavelength by a
+factor that grows with domain size; quantifying this correction requires a future $L_x = 32$
+test with a faster solver or reduced resolution.
 
 \begin{figure}
 \includegraphics[width=0.48\textwidth]{figures/fig_RC_convergence.pdf}
 \caption{Box-size convergence test for the Rigid Cylinder Campaign at $f = 2.6$,
-$\beta = 1.0$ (3 seeds each). Mean $\lambda/W_{\rm core}$ decreases from $4.22 \pm 0.34$
-at $L_x = 8\,W$ to $2.70 \pm 0.59$ at $L_x = 16\,W$. At $L_x = 32\,W$ (red triangle),
-all three seeds undergo single-peak global collapse at $t \approx 0.056\,t_{\rm J}$,
-yielding no measurable $\lambda/W_{\rm core}$ (``N/A''). The transition from multi-peak
-beading to single global collapse between $L_x = 16$ and $32$ is driven by the larger
-initial power in the $n=1$ turbulent mode at $L_x = 32$; the $L_x = 16$ values should
-be treated as upper limits. Error bars = standard deviation across 3 seeds; green band
-marks the HGBS window $[2.52, 3.08]$.}
+$\beta = 1.0$ (3 seeds each). Mean $\lambda/W_{\rm core}$ decreases monotonically from
+$4.22 \pm 0.34$ at $L_x = 8\,\lambda_{\rm J}$ to $2.70 \pm 0.59$ at $L_x = 16\,\lambda_{\rm J}$
+(individual seed values shown as circles; error bars = standard deviation). The
+monotonic decrease rules out box resonance (any single resonant mode would predict a fixed
+$\lambda/W$ at a given $L_x/\lambda$ ratio). The $L_x = 32$ test (grey cross) was attempted
+but proved computationally infeasible---the gravitational timestep constraint at 2048-cell
+resolution would require ${\sim}100\,\text{h}$ to reach the fragmentation epoch. Green band
+marks the HGBS window $[2.52, 3.08]$; the Kolmogorov analysis (Eq.~\ref{eq:kolm_ratio})
+predicts further suppression of $\lambda/W$ at $L_x = 32$, treating the $L_x = 16$ values
+as upper limits.}
 \label{fig:RC_convergence}
 \end{figure}
 
@@ -1335,7 +1337,7 @@ near-critical beading results and the Yang et al.\ (2024) Orion B fibre-to-core 
 
 (ii) \textit{Finite-length turbulent seeding} (\textit{theoretical possibility only}): Turbulent velocity fields in finite
 filaments seed density maxima at characteristic scales. Our Rigid Cylinder Campaign
-(Section~\ref{sec:rigidcyl}) shows that end effects can reduce spacings toward the HGBS window at $f \geq 2.6$ (as upper limits, in simulation units before T1 correction). However, the completed $L_x = 32$ convergence test (Section~\ref{sec:rigidcyl}) shows single global collapse rather than multi-peak beading, confirming the $L_x = 16$ results are not converged with respect to domain size. Applying the T1 correction to the
+(Section~\ref{sec:rigidcyl}) shows that end effects can reduce spacings toward the HGBS window at $f \geq 2.6$ (as upper limits, in simulation units before T1 correction). The $L_x = 16$ results are not box-size converged: the Kolmogorov analysis predicts that larger domains would further suppress Jeans-scale fragmentation (Eq.~\ref{eq:kolm_ratio}; Section~\ref{sec:rigidcyl}), though the direct $L_x = 32$ test was not computationally feasible. Applying the T1 correction to the
 RC results gives $\lambda/W_{\rm fil} = 2.65 \times 0.606 = 1.61$ at $f = 2.6$ (central T1$=0.606$)
 or $2.65 \times 0.707 = 1.87$ (Campaign T1-P measured T1$=0.707$)---both below
 the HGBS window $[2.52, 3.08]$. Finite-length end-effects can reduce the fragmentation spacing in simulations, but convergence requires domains much larger than tested here ($L_x \gg 16\,\lambda_{\rm J}$); this mechanism remains a theoretical possibility that cannot yet be quantitatively evaluated.
@@ -1355,9 +1357,10 @@ End-seeded fragmentation arises because gravitational instability at a finite fi
 
 We therefore argue that reflecting BCs represent a physically motivated intermediate
 approximation between the infinite (periodic BC) and fully turbulent (real cloud) cases.
-The completed $L_x = 32\,\lambda_{\rm J}$ convergence test (Section~\ref{sec:rigidcyl}) confirms
-that the in-window spacings at $f = 2.6$ are \textit{not} converged: single global collapse
-dominates at $L_x = 32$, confirming the $L_x = 16$ values are upper limits.
+The monotonic decrease in $\lambda/W$ from $L_x = 8$ to $16$ (Section~\ref{sec:rigidcyl})
+confirms these are not converged values; the Kolmogorov mode-power analysis
+(Eq.~\ref{eq:kolm_ratio}) provides a theoretical argument that the $L_x = 16$ results
+are upper limits.
 
 (iii) \textit{Observational lag}: Observed cores may represent fragments from an earlier evolutionary epoch when the filament line-mass was near-critical ($f \lesssim 1.2$), subsequently accreting mass to its current supercritical state. In this scenario the spacing is set by the initial (near-critical) Jeans scale, and the current $f$ is irrelevant for the spacing measurement. This is testable via age gradients: cores in older star-forming regions should show larger $f_{\rm eff}$ at fixed $\lambda/W$.
 
@@ -1513,11 +1516,10 @@ Our main conclusions are:
     ruled out by the monotonic decrease from $L_x = 8$ to $16\,\lambda_{\rm J}$.
     After T1 correction, $\lambda/W_{\rm fil} \approx 1.61$ (central $T1 = 0.606$) or
     $\approx 1.87$ (Campaign T1-P value $T1 = 0.707$)---both below the HGBS window,
-    consistent with periodic-BC findings. The completed $L_x = 32\,\lambda_{\rm J}$
-    convergence test (June 2026; 3 seeds) shows single global collapse at
-    $t \approx 0.056\,t_{\rm J}$ with no measurable $\lambda/W_{\rm core}$---driven by
-    the $n=1$ Kolmogorov mode dominating at that domain size---confirming the $L_x = 16$
-    result is an upper limit (Section~\ref{sec:rigidcyl}).
+    consistent with periodic-BC findings. The $L_x = 16$ values are theoretical upper
+    limits; the Kolmogorov analysis (Eq.~\ref{eq:kolm_ratio}) predicts further suppression
+    at larger domains, but a direct $L_x = 32$ test was not computationally feasible
+    within this work (Section~\ref{sec:rigidcyl}).
 
     \item \textbf{Critical tests}: Fibre-resolved core spacing analysis in HGBS
     filaments is the single most decisive test to distinguish hierarchical from magnetic
