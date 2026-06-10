@@ -598,13 +598,7 @@ prediction $\approx 1.2$ within $1\sigma$; Figure~\ref{fig:oblique_calibration})
 
 \textbf{Campaigns A and OBL2: Oblique $\lambda/W$ (withdrawn)}
 
-Campaign~A (27 sims, $\delta_0 = 1.0$; $\theta = 30^\circ$--$60^\circ$, $f=1.0$,
-$\beta=0.5$--$2.0$) yielded $\lambda/W_{\rm sim} = 1.89 \pm 0.27$ at $\theta=30^\circ$.
-However, Campaign~OBL2 (27 matched sims, $\delta_0 = 0.01$) gave 27/27 single-core
-collapses with no measurable $\lambda/W$ at any angle, showing the Campaign~A multi-peak
-pattern was an artifact of the large seed amplitude. The Campaign~A measurement is
-withdrawn. The Nakamura (1993) theoretical predictions (Table~\ref{tab:oblique_theory})
-remain the best available estimates for oblique-field spacings.
+Campaign~A ($\delta_0=1.0$) gave $\lambda/W_{\rm sim}=1.89\pm0.27$ at $\theta=30^\circ$, but the matched Campaign~OBL2 ($\delta_0=0.01$) found 27/27 single-core collapses---confirming the multi-peak pattern was a large-amplitude artifact. Campaign~A is withdrawn; \citet{Nakamura1993} theoretical predictions (Table~\ref{tab:oblique_theory}) are the best available estimates.
 
 \begin{figure}
 \includegraphics[width=0.5\textwidth]{peer_review_analysis/fig3_oblique_calibration.pdf}
@@ -614,19 +608,7 @@ the field-geometry calibration formula.}
 \label{fig:oblique_calibration}
 \end{figure}
 
-\subsubsection{Phase 4: Adiabatic EOS Validation (30 simulations)}
 
-All 30 adiabatic ($\gamma = 5/3$) simulations at $f = 1.00$--$1.20$ ran to timeout
-(0\% fragmentation) versus 100\% at $t_{\rm frag} \approx 1.08\,t_{\rm J}$ for matched
-isothermal runs (Figure~\ref{fig:adia_comparison}), confirming the isothermal assumption
-represents the conservative (most-unstable) limit.
-
-\begin{figure}
-\includegraphics[width=0.48\textwidth]{peer_review_analysis/fig4_adia_comparison.pdf}
-\caption{Isothermal ($\gamma = 1$; 100\% fragmentation) vs.\ adiabatic ($\gamma = 5/3$;
-0\%) at $f = 1.0$--$1.2$.}
-\label{fig:adia_comparison}
-\end{figure}
 
 \subsection{Referee Response and Post-Submission Campaigns (343 simulations)}
 \label{sec:referee_response}
@@ -661,10 +643,10 @@ Campaign EOS-G ($\gamma=1.5$) & 9 & $\gamma=1.5$, $f=1.0$--$1.2$ & Periodic & Co
 \bottomrule
 \end{tabular}
 \\[2pt]
-\footnotesize \textbf{Notes}: All simulations use the Athena++ isothermal MHD + self-gravity (FFT Poisson) solver with 4-wave HLLD Riemann scheme. ``Withdrawn'' (Campaign~A): preliminary $\lambda/W$ measurement at $\theta=30^\circ$ ($1.89\pm0.27$, $t=0.10\,t_{\rm J}$, $\delta_0=1.0$) was found to be an amplitude-dependent artifact; Campaign~OBL2 ($\delta_0=0.01$, 27 sims) found single-core collapse for all 27 sims confirming suppression of multi-peak fragmentation (Section~\ref{sec:theo_geom}). Field geometry: $\theta=0^\circ$ (longitudinal) unless stated. BC = boundary condition. ``Referee Response Campaigns'' (289 total) encompasses three validation sub-campaigns (29 sims) and rounds of CT (critical transition), TURB (turbulent support), and PFE (perpendicular extension) simulations as detailed in Section~\ref{sec:referee_response}.
+\footnotesize \textbf{Notes}: All sims use Athena++ isothermal MHD + self-gravity (FFT Poisson), 4-wave HLLD scheme. $\theta=0^\circ$ (longitudinal) unless stated. BC = boundary condition. Campaign~A withdrawn: large-amplitude artifact (Section~\ref{sec:theo_geom}).
 \end{table*}
 
-The full count breakdown is given in Table~\ref{tab:sim_census}.
+
 
 \subsubsection{Campaigns 5--7: Turbulence, Perpendicular Field, and Critical Transition}
 
@@ -829,11 +811,7 @@ simulations yield zero longitudinal fragmentation, raising the question of how r
 filaments maintain periodic core spacings. Three non-exclusive scenarios are physically
 consistent with both our negative simulation result and the observed spacings:
 
-(i) \textit{Hierarchical fibre fragmentation}: If HGBS filaments are bundles of multiple
-fibres each near-critical ($f_{\rm eff} \lesssim 1.3$), each fibre undergoes longitudinal
-fragmentation producing beading (as in Campaign~7). Projection of fibre-level cores creates
-the observed sub-Jeans spacing at the filament level. This is fully consistent with Campaign~7
-near-critical beading results and the Yang et al.\ (2024) Orion B fibre-to-core measurement.
+(i) \textit{Hierarchical fibre fragmentation}: If HGBS filaments are bundles of fibres each near-critical ($f_{\rm eff} \lesssim 1.3$), each fibre undergoes longitudinal fragmentation (Campaign~7). Projection of fibre-level cores creates the sub-Jeans spacing at the filament level, consistent with the \citet{Yang2024} Orion~B fibre-to-core measurement.
 
 (ii) \textit{Finite-length turbulent seeding} (\textit{theoretical possibility only}):
 Real HGBS filaments have finite lengths (aspect ratios $5:1$--$20:1$) and terminate
@@ -888,13 +866,7 @@ on $\beta$, field geometry, and T1 (Table~\ref{tab:cross_campaign}, Table~\ref{t
 finite-filament terminal boundaries but lack the inflow structure of real filament-hub
 junctions. Neither fully represents real HGBS filaments in turbulent clouds.
 
-\textbf{Non-ideal MHD}: Our simulations assume ideal MHD. At the densities probed
-($n_0 \sim 10^4$~cm$^{-3}$), ambipolar diffusion timescales are $t_{\rm AD} \sim 10$--$20\,t_{\rm ff}$
----slow compared to gravitational collapse---and are expected to modify late-stage core
-formation but not early-stage fragmentation wavelengths \citep{Nakamura2005, Tassis2004}.
-Taurus ($n_0 \sim 10^3$~cm$^{-3}$) is an exception where ideal-MHD timescales are lower
-bounds. Hall drift operates at length scales $\ell_H \lesssim 10^{-3}$~pc, two orders of
-magnitude below $W_{\rm fil}$, and does not affect the large-scale $\lambda/W$ ratio.
+\textbf{Non-ideal MHD}: Ambipolar diffusion timescales ($t_{\rm AD} \sim 10$--$20\,t_{\rm ff}$ at $n_0 \sim 10^4$~cm$^{-3}$) are slow compared to collapse and expected to modify late-stage core formation but not fragmentation wavelengths \citep{Nakamura2005, Tassis2004}. Taurus ($n_0 \sim 10^3$~cm$^{-3}$) is an exception; ideal-MHD timescales there are lower bounds.
 
 \textbf{T1 correction}: Campaign T1-P directly measured $r_{\rm P/G} = 1.166 \pm 0.037$
 (all 18 simulations), giving $T1_{\rm Plummer} = 0.707 \pm 0.04$---17\% above the
