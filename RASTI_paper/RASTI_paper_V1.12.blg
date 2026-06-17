@@ -1,48 +1,48 @@
-This is BibTeX, Version 0.99d (TeX Live 2022)
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: RASTI_paper_V1.12.aux
-The style file: mnras.bst
+The style file: rasti.bst
 Database file #1: references.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 57 entries,
+You've used 82 entries,
             2881 wiz_defined-function locations,
-            1070 strings with 16955 characters,
-and the built_in function-call counts, 26536 in all, are:
-= -- 1856
-> -- 2303
-< -- 163
-+ -- 1037
-- -- 360
-* -- 3096
-:= -- 4442
+            1187 strings with 22486 characters,
+and the built_in function-call counts, 37125 in all, are:
+= -- 2441
+> -- 3350
+< -- 235
++ -- 1561
+- -- 504
+* -- 4327
+:= -- 6279
 add.period$ -- 0
-call.type$ -- 57
-change.case$ -- 115
-chr.to.int$ -- 57
-cite$ -- 57
-duplicate$ -- 1286
-empty$ -- 1266
-format.name$ -- 526
-if$ -- 4431
-int.to.chr$ -- 1
+call.type$ -- 82
+change.case$ -- 165
+chr.to.int$ -- 80
+cite$ -- 82
+duplicate$ -- 1826
+empty$ -- 1791
+format.name$ -- 746
+if$ -- 6085
+int.to.chr$ -- 3
 int.to.str$ -- 0
-missing$ -- 56
-newline$ -- 185
-num.names$ -- 428
-pop$ -- 368
+missing$ -- 81
+newline$ -- 260
+num.names$ -- 614
+pop$ -- 570
 preamble$ -- 1
-purify$ -- 228
+purify$ -- 328
 quote$ -- 0
-skip$ -- 775
+skip$ -- 1089
 stack$ -- 0
-substring$ -- 1074
-swap$ -- 657
-text.length$ -- 229
+substring$ -- 1277
+swap$ -- 941
+text.length$ -- 329
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 510
+type$ -- 735
 warning$ -- 0
-while$ -- 402
+while$ -- 548
 width$ -- 0
-write$ -- 570
+write$ -- 795
