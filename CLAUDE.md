@@ -6,8 +6,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **ASTRA** (Autonomous Scientific Discovery in Astrophysics) is a unified AGI-inspired framework for autonomous hypothesis generation and validation in astronomy and astrophysics. The system integrates ~303,000 lines of clean, functional code across modular cognitive capabilities.
 
-**Version**: 4.7
+**Version**: 4.8
 **AGI Capability Estimate**: 70-75%
+
+### 🔥 NEW: Automatic Startup Discovery
+
+**ASTRA now automatically starts autonomous discovery mode on system initialization!**
+
+When ASTRA starts up, it automatically launches continuous autonomous discovery that:
+- **Runs automatically** in the background whenever ASTRA is initialized
+- **Intelligent pause/resume** - automatically throttles during user tasks
+- **Continuous scientific discovery** - generates hypotheses, analyzes literature, discovers causal relationships
+- **State persistence** - maintains discovery state across sessions
+- **Resource-aware** - throttles based on system load and user activity
+
+**No manual activation required** - discovery starts automatically with the system!
 
 ### IMPORTANT: Naming Convention
 
@@ -81,17 +94,24 @@ integrator.create_session_checkpoint({"current_task": "your task description"})
 
 ## Quick Start
 
-### Basic System Usage
+### Basic System Usage (🔥 Automatic Discovery Active)
 
 ```python
 from astra_core import create_stan_system
 
-# Create system with auto-optimized capabilities
+# Create system - autonomous discovery starts AUTOMATICALLY!
 system = create_stan_system()
+# 🔥 Background discovery already running - no setup needed!
 
-# Answer queries with automatic capability selection
+# Answer queries - discovery automatically pauses during processing
 result = system.answer("What causes filament width variations?")
 print(result['answer'])
+# Discovery automatically resumes after query completes
+
+# Check discovery status anytime
+status = system.get_discovery_status()
+print(f"Discovery state: {status['state']}")
+print(f"Discoveries made: {status['discoveries_made']}")
 ```
 
 ### V4.0 Revolutionary Capabilities
@@ -128,6 +148,48 @@ result = physics.compute("blackbody", {"temperature": 5778, "wavelength": 500e-7
 # MAML optimizer
 from astra_core.reasoning.maml_optimizer import create_maml_optimizer
 optimizer = create_maml_optimizer(model_fn, loss_fn, n_inner_steps=5)
+```
+
+### Automatic Startup Discovery
+
+```python
+from astra_core import create_stan_system
+
+# Create system - AUTOMATIC discovery starts!
+system = create_stan_system()
+
+# Discovery runs in background automatically
+# No manual activation required
+
+# Check discovery status
+status = system.get_discovery_status()
+print(f"Discovery state: {status['state']}")
+print(f"Cycles completed: {status['cycles_completed']}")
+
+# Discovery automatically pauses during user queries
+result = system.answer("What is the star formation rate in molecular clouds?")
+# Discovery throttles while processing, then resumes
+
+# Answer() interface handles pause/resume automatically
+for query in ["Query 1", "Query 2", "Query 3"]:
+    result = system.answer(query)
+    # Discovery intelligently manages itself
+```
+
+**Discovery Modes:**
+- **CONTINUOUS**: Always running, minimal throttling
+- **INTELLIGENT** (default): Adapts behavior based on user activity
+- **IDLE**: Only runs during idle periods (5+ minutes no activity)
+- **OFF**: Discovery disabled
+
+**To disable automatic discovery:**
+```python
+from astra_core import create_stan_system
+from astra_core.autonomous_startup_discovery import StartupDiscoveryMode, StartupDiscoveryConfig
+
+config = StartupDiscoveryConfig(mode=StartupDiscoveryMode.OFF)
+system = create_stan_system()  # Create system first
+# Then manually stop discovery if it started
 ```
 
 ---
@@ -180,7 +242,14 @@ python -c "from astra_core.reasoning.maml_optimizer import MAMLOptimizer; print(
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Entry Points (Top Layer)                     │
-│  create_stan_system() | create_v4_system() | process_query()   │
+│  create_stan_system() | answer() | process_query()              │
+│  🔥 Automatic Discovery Startup on Initialization              │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+┌─────────────────────────────────────────────────────────────────┐
+│           🔥 Autonomous Startup Discovery Layer (NEW)           │
+│  Continuous Discovery | Intelligent Pause/Resume | State        │
+│  Background Processing | Activity Detection | Resource Mgmt    │
 └─────────────────────────────────────────────────────────────────┘
                               │
 ┌─────────────────────────────────────────────────────────────────┐
@@ -192,8 +261,8 @@ python -c "from astra_core.reasoning.maml_optimizer import MAMLOptimizer; print(
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Domain Architecture                          │
 │  BaseDomainModule → DomainRegistry → Specialized Domains        │
-│  (9 domains: ISM, Star Formation, Exoplanets, GW, Cosmology,   │
-│   Solar System, Time Domain, High-Energy, Galactic Archaeology) │
+│  (75+ domains: ISM, Star Formation, Exoplanets, GW, Cosmology, │
+│   Solar System, Time Domain, High-Energy, Galactic Archaeology)  │
 └─────────────────────────────────────────────────────────────────┘
                               │
 ┌─────────────────────────────────────────────────────────────────┐
@@ -279,6 +348,36 @@ optimizer = create_maml_optimizer(model_fn, loss_fn)
 
 Physics capabilities develop through staged curriculum (`ComplexityLevel.BASIC` → `EXPERT`). Do not skip stages. Use `PhysicsCurriculum.get_next_stage()` for progression.
 
+### 5. 🔥 Autonomous Startup Discovery (NEW)
+
+**Discovery starts automatically** - no manual activation required. The system:
+
+- **Launches on init**: When `create_stan_system()` is called, discovery starts automatically
+- **Intelligent throttling**: Automatically pauses/throttles during user queries
+- **Resumes on idle**: Continues discovery when user is not active
+- **State persistence**: Discovery state maintained across sessions
+- **Resource awareness**: Throttles based on CPU/memory usage
+
+**User Query Processing:**
+```python
+# Automatic pause/resume handling
+result = system.answer("Your query here")
+# 1. Discovery throttles/pauses
+# 2. Query processes
+# 3. Discovery resumes
+```
+
+**Direct Discovery Control (Advanced):**
+```python
+# Manual control if needed
+from astra_core.autonomous_startup_discovery import get_autonomous_startup_discovery
+
+discovery = get_autonomous_startup_discovery()
+discovery.pause("Manual pause")
+discovery.resume()
+status = discovery.get_status()
+```
+
 ---
 
 ## File Organization Conventions
@@ -337,6 +436,15 @@ PREDICTIVE, ANALYTICAL, EMOTIONAL, CREATIVE, CRITICAL, SYNTHETIC, NARRATIVE, CON
 4. **Skipping Initialization**: Domain modules must call `.initialize(global_config)` after creation before `.process_query()`.
 
 5. **Backup File Accumulation**: Run `cleanup_astra_core.py` if directory exceeds expected size. Backup files (`*.backup`) from `cleanup_bloat.py` can accumulate to GBs.
+
+6. **🔥 Discovery Interference** (NEW): Discovery automatically throttles during queries, but high-priority real-time tasks may need manual pausing:
+   ```python
+   from astra_core.autonomous_startup_discovery import get_autonomous_startup_discovery
+   discovery = get_autonomous_startup_discovery()
+   discovery.pause("High-priority real-time task")
+   # ... perform task ...
+   discovery.resume()
+   ```
 
 ---
 
@@ -458,9 +566,49 @@ The report should document:
 
 ## Code Statistics
 
-- **Total Lines**: 280,808
-- **Python Files**: 514
+- **Total Lines**: 280,808+
+- **Python Files**: 514+
 - **Directory Size**: ~9 MB (after cleanup from 3.6 GB of backups)
 - **Specialist Capabilities**: 66 (V45 baseline)
 - **Domain Modules**: 75 (23 core + 48 astrophysics)
 - **Physics Stages**: 15 learning stages (relativistic, quantum, nuclear)
+- **🔥 NEW: Autonomous Startup Discovery**: Automatic background discovery on system initialization
+
+### Recent Changes (Version 4.8)
+
+**🔥 Major Enhancement: Automatic Discovery Startup**
+- **AutonomousStartupDiscovery module**: Background discovery with intelligent pause/resume
+- **Integrated into core system**: Automatic initialization in `EnhancedUnifiedSTANSystem.__init__()`
+- **Intelligent throttling**: Pauses during user queries, resumes on idle
+- **State persistence**: Discovery state maintained across sessions in `~/.astra_persistent/`
+- **User interface**: `answer()` method handles pause/resume automatically
+- **Status monitoring**: `get_discovery_status()` for real-time discovery status
+
+**Usage Changes:**
+- `create_stan_system()` now automatically starts discovery
+- `answer()` method automatically manages discovery pause/resume
+- No manual discovery activation required
+- Discovery can be manually controlled if needed via `get_autonomous_startup_discovery()`
+
+### Verifying Autonomous Discovery is Working
+
+```python
+from astra_core import create_stan_system
+
+# Create system
+system = create_stan_system()
+
+# Check discovery is running
+status = system.get_discovery_status()
+assert status['state'] in ['running', 'starting'], f"Discovery not active: {status['state']}"
+print(f"✓ Discovery is {status['state']}")
+
+# Check after queries
+result = system.answer("Test query")
+status = system.get_discovery_status()
+print(f"✓ After query, discovery state: {status['state']}")
+
+# Check discovery activity
+if status['cycles_completed'] > 0:
+    print(f"✓ Discovery has completed {status['cycles_completed']} cycles")
+```

@@ -203,6 +203,10 @@ class EnhancedUnifiedSTANSystem:
             'counterfactual_queries': 0
         }
 
+        # Initialize autonomous startup discovery
+        self.autonomous_discovery = None
+        self._initialize_autonomous_discovery()
+
         logger.info("EnhancedUnifiedSTANSystem initialized")
 
     def _initialize_domains(self):
@@ -315,6 +319,65 @@ class EnhancedUnifiedSTANSystem:
                 except Exception as e:
                     logger.warning(f"Failed to register features for {domain_name}: {e}")
 
+    def _initialize_autonomous_discovery(self):
+        """Initialize autonomous startup discovery - runs automatically on system startup"""
+        try:
+            from ..autonomous_startup_discovery import (
+                initialize_autonomous_startup_discovery,
+                StartupDiscoveryConfig,
+                StartupDiscoveryMode
+            )
+
+            # Create configuration for intelligent discovery
+            discovery_config = StartupDiscoveryConfig(
+                mode=StartupDiscoveryMode.INTELLIGENT,
+                startup_delay_seconds=5,  # Start discovery 5 seconds after system init
+                idle_threshold_seconds=300,  # 5 minutes idle threshold
+                discovery_interval_seconds=1800,  # 30 minutes between cycles
+                enable_literature_monitoring=True,
+                enable_hypothesis_generation=True,
+                enable_data_analysis=True,
+                enable_theoretical_discovery=True,
+                enable_causal_discovery=True,
+                primary_domains=['astrophysics', 'astronomy', 'cosmology', 'star_formation', 'ism'],
+                report_discoveries=True
+            )
+
+            # Initialize autonomous discovery with this system
+            self.autonomous_discovery = initialize_autonomous_startup_discovery(
+                astra_system=self,
+                config=discovery_config
+            )
+
+            logger.info("[ASTRA] Autonomous startup discovery initialized and running")
+
+        except ImportError as e:
+            logger.warning(f"[ASTRA] Could not initialize autonomous startup discovery: {e}")
+            self.autonomous_discovery = None
+        except Exception as e:
+            logger.error(f"[ASTRA] Error initializing autonomous discovery: {e}")
+            self.autonomous_discovery = None
+
+    def _handle_user_task_start(self):
+        """Handle start of user task - pauses intelligent discovery"""
+        if self.autonomous_discovery:
+            try:
+                from ..autonomous_startup_discovery import register_user_task_start
+                register_user_task_start()
+                logger.debug("[ASTRA] User task started - discovery paused/intelligent mode")
+            except Exception as e:
+                logger.warning(f"Could not register user task start: {e}")
+
+    def _handle_user_task_complete(self):
+        """Handle completion of user task - resumes discovery"""
+        if self.autonomous_discovery:
+            try:
+                from ..autonomous_startup_discovery import register_user_task_complete
+                register_user_task_complete()
+                logger.debug("[ASTRA] User task completed - discovery resumed")
+            except Exception as e:
+                logger.warning(f"Could not register user task complete: {e}")
+
     def process_query(
         self,
         query: str,
@@ -347,6 +410,9 @@ class EnhancedUnifiedSTANSystem:
             'data_sufficient': True
         }
 
+        # Register user task start (pauses intelligent discovery)
+        self._handle_user_task_start()
+
         # META-COGNITIVE CHECK: Evaluate data sufficiency BEFORE processing
         # This is critical for scientific reasoning - recognize when data are insufficient
         if self.base_system and hasattr(self.base_system, '_check_data_sufficiency'):
@@ -363,6 +429,8 @@ class EnhancedUnifiedSTANSystem:
                     'assessment': 'data_insufficient',
                     'action': 'refusal'
                 })
+                # Register user task complete
+                self._handle_user_task_complete()
                 return result
 
         # Determine processing mode
@@ -519,6 +587,9 @@ class EnhancedUnifiedSTANSystem:
 
             result['domain_used'] = relevant_domain.config.domain_name
             self.performance_stats['domains_used'].add(relevant_domain.config.domain_name)
+
+        # Register user task complete (resumes discovery)
+        self._handle_user_task_complete()
 
         return result
 
@@ -860,6 +931,50 @@ class EnhancedUnifiedSTANSystem:
             if domain:
                 return domain.get_status()
         return None
+
+    def answer(self, query: str, context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """
+        Simplified interface for answering queries with automatic discovery pause/resume
+
+        This is the primary user-facing interface that automatically handles:
+        - Pausing intelligent discovery during user queries
+        - Processing the query with optimal capabilities
+        - Resuming discovery after query completion
+
+        Args:
+            query: User query
+            context: Optional context parameters
+
+        Returns:
+            Processing result with answer and metadata
+        """
+        # Process query with automatic pause/resume handling
+        result = self.process_query(query, context=context)
+
+        # Add discovery status to result
+        if self.autonomous_discovery:
+            try:
+                from ..autonomous_startup_discovery import get_discovery_status
+                result['discovery_status'] = get_discovery_status()
+            except Exception:
+                result['discovery_status'] = 'unknown'
+
+        return result
+
+    def get_discovery_status(self) -> Dict[str, Any]:
+        """
+        Get current autonomous discovery status
+
+        Returns:
+            Discovery status information
+        """
+        if self.autonomous_discovery:
+            try:
+                from ..autonomous_startup_discovery import get_discovery_status
+                return get_discovery_status()
+            except Exception as e:
+                return {'error': f'Could not get discovery status: {e}'}
+        return {'status': 'not_initialized'}
 
     def list_domains(self) -> List[str]:
         """List all available domains"""
