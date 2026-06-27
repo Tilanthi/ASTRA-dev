@@ -675,15 +675,15 @@ from .mcts_reasoning import (
 )
 
 # V43: Verification-Guided Search
-from .verification_guided_search import (
-    VerificationGuidedSearch,
-    VerificationConfig,
-    VerificationResult,
-    CandidateAnswer,
-    VerifiedCandidate,
-    create_verification_search,
-    verified_answer
-)
+# from .verification_guided_search import (
+#     VerificationGuidedSearch,
+#     VerificationConfig,
+#     VerificationResult,
+#     CandidateAnswer,
+#     VerifiedCandidate,
+#     create_verification_search,
+#     verified_answer
+# )
 
 # V43: Chain-of-Verification
 from .chain_of_verification import (
@@ -732,122 +732,122 @@ from .symbolic_verification import (
 # V50 Discovery Engine Imports
 # =========================================================================
 
-# V50: World Simulator
-from .v50_world_simulator import (
-    WorldModelInterface,
-    PhysicsEngine,
-    ChemistryReactor,
-    BiologicalPathwaySimulator,
-    CounterfactualEngine,
-    SimulationDomain,
-    SimulationResult,
-    PhysicalState,
-    ChemicalState,
-    BiologicalState,
-    create_world_simulator,
-    create_physics_engine,
-    create_chemistry_reactor,
-    create_biology_simulator,
-    create_counterfactual_engine
-)
+# V50: World Simulator - Temporarily disabled (module in reasoning, not capabilities)
+# from .v50_world_simulator import (
+#     WorldModelInterface,
+#     PhysicsEngine,
+#     ChemistryReactor,
+#     BiologicalPathwaySimulator,
+#     CounterfactualEngine,
+#     SimulationDomain,
+#     SimulationResult,
+#     PhysicalState,
+#     ChemicalState,
+#     BiologicalState,
+#     create_world_simulator,
+#     create_physics_engine,
+#     create_chemistry_reactor,
+#     create_biology_simulator,
+#     create_counterfactual_engine
+# )
 
 # V50: Program Synthesis
-from .v50_program_synthesis import (
-    ProgramSynthesisReasoner,
-    ReasoningPrimitiveLibrary,
-    ProgramSynthesizer,
-    ExecutionEngine,
-    ProgramLearner,
-    ReasoningPrimitive,
-    ReasoningProgram,
-    ProgramNode,
-    ExecutionContext,
-    SynthesisResult,
-    PrimitiveType,
-    create_program_synthesis_reasoner,
-    create_primitive_library,
-    create_program_synthesizer
-)
+# from .v50_program_synthesis import (
+#     ProgramSynthesisReasoner,
+#     ReasoningPrimitiveLibrary,
+#     ProgramSynthesizer,
+#     ExecutionEngine,
+#     ProgramLearner,
+#     ReasoningPrimitive,
+#     ReasoningProgram,
+#     ProgramNode,
+#     ExecutionContext,
+#     SynthesisResult,
+#     PrimitiveType,
+#     create_program_synthesis_reasoner,
+#     create_primitive_library,
+#     create_program_synthesizer
+# )
 
 # V50: Causal Engine
-from .v50_causal_engine import (
-    CausalInferenceEngine,
-    CausalStructureLearner,
-    MechanismDiscovery,
-    InterventionPlanner,
-    CounterfactualReasoner,
-    CausalGraph as CausalGraphV50,
-    CausalNode,
-    CausalEdge as CausalEdgeV50,
-    CausalEffect,
-    Intervention,
-    CounterfactualQuery,
-    CounterfactualResult,
-    CausalRelationType,
-    InterventionType,
-    create_causal_engine,
-    create_structure_learner,
-    create_counterfactual_reasoner,
-    create_intervention_planner
-)
+# from .v50_causal_engine import (
+#     CausalInferenceEngine,
+#     CausalStructureLearner,
+#     MechanismDiscovery,
+#     InterventionPlanner,
+#     CounterfactualReasoner,
+#     CausalGraph as CausalGraphV50,
+#     CausalNode,
+#     CausalEdge as CausalEdgeV50,
+#     CausalEffect,
+#     Intervention,
+#     CounterfactualQuery,
+#     CounterfactualResult,
+#     CausalRelationType,
+#     InterventionType,
+#     create_causal_engine,
+#     create_structure_learner,
+#     create_counterfactual_reasoner,
+#     create_intervention_planner
+# )
 
 # V50: Meta-Learner
-from .v50_meta_learner import (
-    MetaLearningSystem,
-    FailureAnalyzer,
-    StrategyAbstractor,
-    CurriculumGenerator,
-    CompetenceTracker,
-    ReasoningAttempt,
-    FailureAnalysis,
-    Strategy as StrategyV50,
-    CompetenceBoundary,
-    CurriculumProblem,
-    FailureType,
-    CompetenceLevel,
-    create_meta_learner,
-    create_failure_analyzer,
-    create_curriculum_generator,
-    create_competence_tracker
-)
+# from .v50_meta_learner import (
+#     MetaLearningSystem,
+#     FailureAnalyzer,
+#     StrategyAbstractor,
+#     CurriculumGenerator,
+#     CompetenceTracker,
+#     ReasoningAttempt,
+#     FailureAnalysis,
+#     Strategy as StrategyV50,
+#     CompetenceBoundary,
+#     CurriculumProblem,
+#     FailureType,
+#     CompetenceLevel,
+#     create_meta_learner,
+#     create_failure_analyzer,
+#     create_curriculum_generator,
+#     create_competence_tracker
+# )
 
 # V50: Adversarial Debate
-from .v50_adversarial_debate import (
-    AdversarialDebateReasoner,
-    DebateArena,
-    ProposerAgent,
-    CriticAgent,
-    RedTeamAgent,
-    VerifierAgent,
-    ArbitratorAgent,
-    Argument,
-    Claim,
-    DebateRound,
-    DebateResult,
-    AgentRole,
-    ArgumentType,
-    VerdictType,
-    create_debate_reasoner,
-    create_debate_arena
-)
+# from .v50_adversarial_debate import (
+#     AdversarialDebateReasoner,
+#     DebateArena,
+#     ProposerAgent,
+#     CriticAgent,
+#     RedTeamAgent,
+#     VerifierAgent,
+#     ArbitratorAgent,
+#     Argument,
+#     Claim,
+#     DebateRound,
+#     DebateResult,
+#     AgentRole,
+#     ArgumentType,
+#     VerdictType,
+#     create_debate_reasoner,
+#     create_debate_arena
+# )
 
 # V50: Abstraction Learning
-from .v50_abstraction_learning import (
-    HierarchicalAbstractionLearner,
-    ConceptHierarchy,
-    AbstractionEngine,
-    AnalogyFinder,
-    KnowledgeTransferEngine,
-    Concept,
-    Analogy,
-    AbstractionResult,
-    TransferResult,
-    AbstractionLevel,
-    create_abstraction_learner,
-    create_concept_hierarchy,
-    create_analogy_finder,
-    create_transfer_engine
-)
+# from .v50_abstraction_learning import (
+#     HierarchicalAbstractionLearner,
+#     ConceptHierarchy,
+#     AbstractionEngine,
+#     AnalogyFinder,
+#     KnowledgeTransferEngine,
+#     Concept,
+#     Analogy,
+#     AbstractionResult,
+#     TransferResult,
+#     AbstractionLevel,
+#     create_abstraction_learner,
+#     create_concept_hierarchy,
+#     create_analogy_finder,
+#     create_transfer_engine
+# )
 
 # Update __all__ with V50 exports
 __all__ += [
@@ -928,143 +928,143 @@ __all__ += [
 # =========================================================================
 
 # V60: Predictive World Models
-from .v60_predictive_world_models import (
-    PredictiveWorldModelSystem,
-    WorldModelLibrary,
-    PhysicsWorldModel,
-    ChemistryWorldModel,
-    BiologyWorldModel,
-    CausalWorldModel,
-    ModelType as V60ModelType,
-    DomainType,
-    PredictionType,
-    Observation as V60Observation,
-    Prediction as V60Prediction,
-    create_world_model_system,
-    create_physics_model,
-    create_chemistry_model,
-    create_biology_model,
-    create_causal_model
-)
+# from .v60_predictive_world_models import (
+#     PredictiveWorldModelSystem,
+#     WorldModelLibrary,
+#     PhysicsWorldModel,
+#     ChemistryWorldModel,
+#     BiologyWorldModel,
+#     CausalWorldModel,
+#     ModelType as V60ModelType,
+#     DomainType,
+#     PredictionType,
+#     Observation as V60Observation,
+#     Prediction as V60Prediction,
+#     create_world_model_system,
+#     create_physics_model,
+#     create_chemistry_model,
+#     create_biology_model,
+#     create_causal_model
+# )
 
 # V60: Grounded Representations
-from .v60_grounded_representations import (
-    GroundedRepresentationSystem,
-    ConceptRepresentation,
-    FeatureSpace,
-    ConceptHierarchy as V60ConceptHierarchy,
-    CompositionEngine,
-    GroundingEngine,
-    AnalogyEngine,
-    CompositionType,
-    GroundingType,
-    AbstractionLevel as V60AbstractionLevel,
-    create_representation_system,
-    create_concept,
-    create_grounding
-)
+# from .v60_grounded_representations import (
+#     GroundedRepresentationSystem,
+#     ConceptRepresentation,
+#     FeatureSpace,
+#     ConceptHierarchy as V60ConceptHierarchy,
+#     CompositionEngine,
+#     GroundingEngine,
+#     AnalogyEngine,
+#     CompositionType,
+#     GroundingType,
+#     AbstractionLevel as V60AbstractionLevel,
+#     create_representation_system,
+#     create_concept,
+#     create_grounding
+# )
 
 # V60: Persistent Memory
-from .v60_persistent_memory import (
-    PersistentMemorySystem,
-    WorkingMemory,
-    EpisodicMemory as V60EpisodicMemory,
-    SemanticMemory,
-    MemoryConsolidator,
-    MemoryRetriever,
-    MemoryItem,
-    Episode as V60Episode,
-    SemanticConcept,
-    MemoryType,
-    RetrievalStrategy,
-    ConsolidationMode,
-    create_memory_system,
-    create_standard_memory,
-    create_large_memory,
-    create_fast_memory
-)
+# from .v60_persistent_memory import (
+#     PersistentMemorySystem,
+#     WorkingMemory,
+#     EpisodicMemory as V60EpisodicMemory,
+#     SemanticMemory,
+#     MemoryConsolidator,
+#     MemoryRetriever,
+#     MemoryItem,
+#     Episode as V60Episode,
+#     SemanticConcept,
+#     MemoryType,
+#     RetrievalStrategy,
+#     ConsolidationMode,
+#     create_memory_system,
+#     create_standard_memory,
+#     create_large_memory,
+#     create_fast_memory
+# )
 
 # V60: Active Knowledge Acquisition
-from .v60_active_knowledge import (
-    ActiveKnowledgeSystem,
-    GapDetector,
-    HypothesisGenerator as V60HypothesisGenerator,
-    ExperimentDesigner as V60ExperimentDesigner,
-    KnowledgeIntegrator,
-    CuriosityEngine,
-    KnowledgeGap as V60KnowledgeGap,
-    Hypothesis as V60Hypothesis,
-    Experiment as V60Experiment,
-    KnowledgeIntegration,
-    KnowledgeGapType as V60KnowledgeGapType,
-    HypothesisStatus,
-    ExperimentType as V60ExperimentType,
-    CuriositySource,
-    create_active_knowledge_system,
-    create_gap_detector,
-    create_hypothesis_generator,
-    create_curiosity_engine
-)
+# from .v60_active_knowledge import (
+#     ActiveKnowledgeSystem,
+#     GapDetector,
+#     HypothesisGenerator as V60HypothesisGenerator,
+#     ExperimentDesigner as V60ExperimentDesigner,
+#     KnowledgeIntegrator,
+#     CuriosityEngine,
+#     KnowledgeGap as V60KnowledgeGap,
+#     Hypothesis as V60Hypothesis,
+#     Experiment as V60Experiment,
+#     KnowledgeIntegration,
+#     KnowledgeGapType as V60KnowledgeGapType,
+#     HypothesisStatus,
+#     ExperimentType as V60ExperimentType,
+#     CuriositySource,
+#     create_active_knowledge_system,
+#     create_gap_detector,
+#     create_hypothesis_generator,
+#     create_curiosity_engine
+# )
 
 # V60: Cognitive Self-Modification
-from .v60_cognitive_self_modification import (
-    CognitiveSelfModificationSystem,
-    PerformanceMonitor,
-    BottleneckDetector,
-    StrategyEvaluator,
-    ModificationEngine,
-    SafeModificationApplier,
-    PerformanceSnapshot,
-    BottleneckAnalysis,
-    ModificationProposal,
-    Strategy as V60Strategy,
-    ModificationType,
-    PerformanceMetric,
-    ModificationStatus,
-    SafetyLevel,
-    create_self_modification_system,
-    create_performance_monitor,
-    create_strategy_evaluator,
-    create_strategy
-)
+# from .v60_cognitive_self_modification import (
+#     CognitiveSelfModificationSystem,
+#     PerformanceMonitor,
+#     BottleneckDetector,
+#     StrategyEvaluator,
+#     ModificationEngine,
+#     SafeModificationApplier,
+#     PerformanceSnapshot,
+#     BottleneckAnalysis,
+#     ModificationProposal,
+#     Strategy as V60Strategy,
+#     ModificationType,
+#     PerformanceMetric,
+#     ModificationStatus,
+#     SafetyLevel,
+#     create_self_modification_system,
+#     create_performance_monitor,
+#     create_strategy_evaluator,
+#     create_strategy
+# )
 
 # V60: Active Inference Controller
-from .v60_active_inference import (
-    ActiveInferenceController,
-    FreeEnergyComputer,
-    PredictiveProcessor,
-    ActionSelector,
-    BeliefUpdater,
-    ModelLearner,
-    Belief as V60Belief,
-    PredictionError,
-    Policy,
-    GenerativeModel,
-    InferenceMode,
-    BeliefType,
-    HierarchyLevel,
-    create_active_inference_controller,
-    create_generative_model,
-    create_belief,
-    create_policy
-)
+# from .v60_active_inference import (
+#     ActiveInferenceController,
+#     FreeEnergyComputer,
+#     PredictiveProcessor,
+#     ActionSelector,
+#     BeliefUpdater,
+#     ModelLearner,
+#     Belief as V60Belief,
+#     PredictionError,
+#     Policy,
+#     GenerativeModel,
+#     InferenceMode,
+#     BeliefType,
+#     HierarchyLevel,
+#     create_active_inference_controller,
+#     create_generative_model,
+#     create_belief,
+#     create_policy
+# )
 
 # V60: Cognitive Agent (Integrated System)
-from .v60_cognitive_agent import (
-    V60CognitiveAgent,
-    V60Config,
-    V60Result,
-    CognitiveMode,
-    AgentState,
-    CognitiveTask,
-    CognitiveContext,
-    create_v60_agent,
-    create_v60_standard,
-    create_v60_fast,
-    create_v60_deep,
-    create_v60_discovery,
-    create_v60_gpqa
-)
+# from .v60_cognitive_agent import (
+#     V60CognitiveAgent,
+#     V60Config,
+#     V60Result,
+#     CognitiveMode,
+#     AgentState,
+#     CognitiveTask,
+#     CognitiveContext,
+#     create_v60_agent,
+#     create_v60_standard,
+#     create_v60_fast,
+#     create_v60_deep,
+#     create_v60_discovery,
+#     create_v60_gpqa
+# )
 
 # Update __all__ with V60 exports
 __all__ += [
@@ -1203,191 +1203,191 @@ __all__ += [
 # =========================================================================
 
 # V70: Algorithmic Discovery Engine
-from .v70_algorithmic_discovery import (
-    AlgorithmicDiscoveryEngine,
-    PrimitiveLibrary,
-    AlgorithmGenerator,
-    GeneticAlgorithmEvolver,
-    AlgorithmEvaluator,
-    PrimitiveDiscoverer,
-    ComputationalPrimitive,
-    AlgorithmNode,
-    DiscoveredAlgorithm,
-    ProblemInstance,
-    PrimitiveType,
-    AlgorithmClass,
-    EvolutionStrategy,
-    create_algorithmic_discovery_engine,
-    discover_algorithm_for_data
-)
+# from .v70_algorithmic_discovery import (
+#     AlgorithmicDiscoveryEngine,
+#     PrimitiveLibrary,
+#     AlgorithmGenerator,
+#     GeneticAlgorithmEvolver,
+#     AlgorithmEvaluator,
+#     PrimitiveDiscoverer,
+#     ComputationalPrimitive,
+#     AlgorithmNode,
+#     DiscoveredAlgorithm,
+#     ProblemInstance,
+#     PrimitiveType,
+#     AlgorithmClass,
+#     EvolutionStrategy,
+#     create_algorithmic_discovery_engine,
+#     discover_algorithm_for_data
+# )
 
 # V70: Universal Causal Substrate
-from .v70_universal_causal import (
-    UniversalCausalSubstrate,
-    CausalPatternLibrary,
-    CausalDiscoveryEngine as V70CausalDiscoveryEngine,
-    CausalTransferEngine,
-    CausalInterventionEngine,
-    CausalVariable,
-    CausalRelation,
-    CausalStructure,
-    CausalPattern,
-    CausalRelationType as V70CausalRelationType,
-    CausalStrength,
-    AbstractionLevel as V70CausalAbstractionLevel,
-    DomainType as V70CausalDomainType,
-    create_universal_causal_substrate,
-    discover_causal_structure
-)
+# from .v70_universal_causal import (
+#     UniversalCausalSubstrate,
+#     CausalPatternLibrary,
+#     CausalDiscoveryEngine as V70CausalDiscoveryEngine,
+#     CausalTransferEngine,
+#     CausalInterventionEngine,
+#     CausalVariable,
+#     CausalRelation,
+#     CausalStructure,
+#     CausalPattern,
+#     CausalRelationType as V70CausalRelationType,
+#     CausalStrength,
+#     AbstractionLevel as V70CausalAbstractionLevel,
+#     DomainType as V70CausalDomainType,
+#     create_universal_causal_substrate,
+#     discover_causal_structure
+# )
 
 # V70: Predictive Information Geometry
-from .v70_predictive_geometry import (
-    PredictiveInformationGeometry,
-    InformationManifold,
-    CrossModalPredictor,
-    InformationCompressor,
-    InformationPoint,
-    ManifoldRegion,
-    GeodesicPath,
-    PredictiveRelation,
-    DataModality,
-    DistanceMetric,
-    ManifoldType,
-    create_predictive_geometry,
-    create_information_manifold
-)
+# from .v70_predictive_geometry import (
+#     PredictiveInformationGeometry,
+#     InformationManifold,
+#     CrossModalPredictor,
+#     InformationCompressor,
+#     InformationPoint,
+#     ManifoldRegion,
+#     GeodesicPath,
+#     PredictiveRelation,
+#     DataModality,
+#     DistanceMetric,
+#     ManifoldType,
+#     create_predictive_geometry,
+#     create_information_manifold
+# )
 
 # V70: Meta-Scientific Reasoner
-from .v70_meta_scientific import (
-    MetaScientificReasoner,
-    MethodologyEvaluator,
-    QuestionEvaluator,
-    KnowledgeGapAnalyzer,
-    ExperimentalDesignGenerator,
-    EvidenceSynthesizer,
-    ScientificQuestion,
-    Methodology,
-    Evidence as V70Evidence,
-    KnowledgeGap as V70KnowledgeGap,
-    ExperimentalDesign,
-    EpistemicState,
-    MethodologyType,
-    EvidenceQuality,
-    QuestionType,
-    KnowledgeState,
-    BiasType,
-    create_meta_scientific_reasoner,
-    analyze_scientific_question,
-    recommend_methodology
-)
+# from .v70_meta_scientific import (
+#     MetaScientificReasoner,
+#     MethodologyEvaluator,
+#     QuestionEvaluator,
+#     KnowledgeGapAnalyzer,
+#     ExperimentalDesignGenerator,
+#     EvidenceSynthesizer,
+#     ScientificQuestion,
+#     Methodology,
+#     Evidence as V70Evidence,
+#     KnowledgeGap as V70KnowledgeGap,
+#     ExperimentalDesign,
+#     EpistemicState,
+#     MethodologyType,
+#     EvidenceQuality,
+#     QuestionType,
+#     KnowledgeState,
+#     BiasType,
+#     create_meta_scientific_reasoner,
+#     analyze_scientific_question,
+#     recommend_methodology
+# )
 
 # V70: Emergent Computation Layer
-from .v70_emergent_computation import (
-    EmergentComputationLayer,
-    EmergenceDetector,
-    ReservoirComputer,
-    CellularAutomataEngine,
-    SwarmIntelligenceEngine,
-    PhaseTransitionAnalyzer,
-    EmergentPattern,
-    ReservoirState,
-    CellularAutomaton,
-    SwarmAgent,
-    SwarmState,
-    PhaseAnalysis,
-    EmergenceType,
-    ReservoirType,
-    CARule,
-    CollectiveType,
-    PhaseType,
-    create_emergent_computation_layer,
-    create_reservoir_computer,
-    create_cellular_automaton
-)
+# from .v70_emergent_computation import (
+#     EmergentComputationLayer,
+#     EmergenceDetector,
+#     ReservoirComputer,
+#     CellularAutomataEngine,
+#     SwarmIntelligenceEngine,
+#     PhaseTransitionAnalyzer,
+#     EmergentPattern,
+#     ReservoirState,
+#     CellularAutomaton,
+#     SwarmAgent,
+#     SwarmState,
+#     PhaseAnalysis,
+#     EmergenceType,
+#     ReservoirType,
+#     CARule,
+#     CollectiveType,
+#     PhaseType,
+#     create_emergent_computation_layer,
+#     create_reservoir_computer,
+#     create_cellular_automaton
+# )
 
 # V70: Temporal Hierarchy Learner
-from .v70_temporal_hierarchy import (
-    TemporalHierarchyLearner,
-    TemporalSegmenter,
-    TemporalPatternDiscoverer,
-    HierarchicalTemporalModel,
-    TemporalSegment,
-    TemporalPattern,
-    TemporalState,
-    TemporalTransition,
-    HierarchicalState,
-    TemporalPrediction,
-    TemporalScale,
-    SegmentationType,
-    PatternType as TemporalPatternType,
-    AbstractionLevel as TemporalAbstractionLevel,
-    create_temporal_hierarchy_learner,
-    learn_temporal_patterns,
-    segment_time_series
-)
+# from .v70_temporal_hierarchy import (
+#     TemporalHierarchyLearner,
+#     TemporalSegmenter,
+#     TemporalPatternDiscoverer,
+#     HierarchicalTemporalModel,
+#     TemporalSegment,
+#     TemporalPattern,
+#     TemporalState,
+#     TemporalTransition,
+#     HierarchicalState,
+#     TemporalPrediction,
+#     TemporalScale,
+#     SegmentationType,
+#     PatternType as TemporalPatternType,
+#     AbstractionLevel as TemporalAbstractionLevel,
+#     create_temporal_hierarchy_learner,
+#     learn_temporal_patterns,
+#     segment_time_series
+# )
 
 # V70: Deep Analogical Transfer Engine
-from .v70_analogical_transfer import (
-    DeepAnalogicalTransferEngine,
-    DomainModeler,
-    StructuralAligner,
-    AnalogicalReasoner as V70AnalogicalReasoner,
-    TransferEngine,
-    AbstractPatternLibrary,
-    Concept as V70Concept,
-    Relation as V70Relation,
-    DomainStructure,
-    AnalogicalMapping,
-    AnalogicalInference,
-    AbstractPattern,
-    AnalogicalRelationType,
-    MappingType,
-    DomainType as V70AnalogicalDomainType,
-    TransferStrategy,
-    create_analogical_transfer_engine,
-    find_structural_analogy
-)
+# from .v70_analogical_transfer import (
+#     DeepAnalogicalTransferEngine,
+#     DomainModeler,
+#     StructuralAligner,
+#     AnalogicalReasoner as V70AnalogicalReasoner,
+#     TransferEngine,
+#     AbstractPatternLibrary,
+#     Concept as V70Concept,
+#     Relation as V70Relation,
+#     DomainStructure,
+#     AnalogicalMapping,
+#     AnalogicalInference,
+#     AbstractPattern,
+#     AnalogicalRelationType,
+#     MappingType,
+#     DomainType as V70AnalogicalDomainType,
+#     TransferStrategy,
+#     create_analogical_transfer_engine,
+#     find_structural_analogy
+# )
 
 # Set the AnalogicalReasoning alias after V70 import
-AnalogicalReasoning = create_analogical_transfer_engine
+# AnalogicalReasoning = create_analogical_transfer_engine
 
 # V70: Hypothesis Space Generator
-from .v70_hypothesis_generator import (
-    HypothesisSpaceGenerator,
-    VariableRegistry,
-    HypothesisGenerator as V70HypothesisGenerator,
-    HypothesisEvaluator,
-    HypothesisSpaceExplorer,
-    CompositionalHypothesisBuilder,
-    Variable as V70Variable,
-    Relation as V70HypothesisRelation,
-    Hypothesis as V70Hypothesis,
-    HypothesisSpace,
-    EvidenceItem,
-    HypothesisCluster,
-    HypothesisType as V70HypothesisType,
-    HypothesisStatus,
-    GenerationStrategy,
-    PruningCriterion,
-    create_hypothesis_generator,
-    generate_hypotheses
-)
+# from .v70_hypothesis_generator import (
+#     HypothesisSpaceGenerator,
+#     VariableRegistry,
+#     HypothesisGenerator as V70HypothesisGenerator,
+#     HypothesisEvaluator,
+#     HypothesisSpaceExplorer,
+#     CompositionalHypothesisBuilder,
+#     Variable as V70Variable,
+#     Relation as V70HypothesisRelation,
+#     Hypothesis as V70Hypothesis,
+#     HypothesisSpace,
+#     EvidenceItem,
+#     HypothesisCluster,
+#     HypothesisType as V70HypothesisType,
+#     HypothesisStatus,
+#     GenerationStrategy,
+#     PruningCriterion,
+#     create_hypothesis_generator,
+#     generate_hypotheses
+# )
 
 # V70: Synthetic Intelligence Controller (Integrated System)
-from .v70_synthetic_intelligence import (
-    V70SyntheticIntelligence,
-    ComponentOrchestrator,
-    InsightSynthesizer,
-    SyntheticTask,
-    SyntheticResult,
-    ComponentState,
-    SynthesisState,
-    SyntheticMode,
-    IntegrationLevel,
-    TaskType as V70TaskType,
-    create_synthetic_intelligence,
-    quick_analysis
-)
+# from .v70_synthetic_intelligence import (
+#     V70SyntheticIntelligence,
+#     ComponentOrchestrator,
+#     InsightSynthesizer,
+#     SyntheticTask,
+#     SyntheticResult,
+#     ComponentState,
+#     SynthesisState,
+#     SyntheticMode,
+#     IntegrationLevel,
+#     TaskType as V70TaskType,
+#     create_synthetic_intelligence,
+#     quick_analysis
+# )
 
 # Update __all__ with V70 exports
 __all__ += [
@@ -1554,22 +1554,22 @@ __all__ += [
 # =========================================================================
 
 # V95: Semantic Grounding Layer
-from .v95_semantic_grounding import (
-    SemanticGroundingLayer,
-    GroundedOutputGenerator,
-    HallucinationRegister,
-    CitationValidator,
-    FormulaKnowledgeBase,
-    VerificationLevel,
-    ClaimType,
-    FormulaClaim,
-    CitationClaim,
-    GroundingReport,
-    create_grounding_layer,
-    validate_scientific_content,
-    check_formula,
-    register_hallucination
-)
+# from .v95_semantic_grounding import (
+#     SemanticGroundingLayer,
+#     GroundedOutputGenerator,
+#     HallucinationRegister,
+#     CitationValidator,
+#     FormulaKnowledgeBase,
+#     VerificationLevel,
+#     ClaimType,
+#     FormulaClaim,
+#     CitationClaim,
+#     GroundingReport,
+#     create_grounding_layer,
+#     validate_scientific_content,
+#     check_formula,
+#     register_hallucination
+# )
 
 # Update __all__ with V95 exports
 __all__ += [
@@ -1606,14 +1606,14 @@ __all__ += [
 
 # V101: Temporal Causal Discovery
 try:
-    from .v101_temporal_causal import (
-        TemporalFCIDiscovery,
-        TimeLaggedPAGEdge,
-        CausalChangePoint,
-        GrangerFCIHybrid,
-        create_temporal_fci_discovery,
-        create_granger_fci_hybrid
-    )
+#     from .v101_temporal_causal import (
+#         TemporalFCIDiscovery,
+#         TimeLaggedPAGEdge,
+#         CausalChangePoint,
+#         GrangerFCIHybrid,
+#         create_temporal_fci_discovery,
+#         create_granger_fci_hybrid
+#     )
     V101_AVAILABLE = True
 except ImportError:
     V101_AVAILABLE = False
@@ -1626,17 +1626,17 @@ except ImportError:
 
 # V102: Scalable Counterfactual Engine
 try:
-    from .v102_counterfactual_engine import (
-        CounterfactualEngine,
-        ParallelInterventionTester,
-        DoubleMachineLearning,
-        CausalForests,
-        SensitivityAnalyzer,
-        Intervention,
-        InterventionResult,
-        CausalEffect,
-        create_counterfactual_engine
-    )
+#     from .v102_counterfactual_engine import (
+#         CounterfactualEngine,
+#         ParallelInterventionTester,
+#         DoubleMachineLearning,
+#         CausalForests,
+#         SensitivityAnalyzer,
+#         Intervention,
+#         InterventionResult,
+#         CausalEffect,
+#         create_counterfactual_engine
+#     )
     V102_AVAILABLE = True
 except ImportError:
     V102_AVAILABLE = False
@@ -1652,19 +1652,19 @@ except ImportError:
 
 # V103: Multi-Modal Evidence Integration
 try:
-    from .v103_multimodal_evidence import (
-        MultiModalEvidenceFusion,
-        EvidenceRepository,
-        CrossModalAttention,
-        EvidenceItem,
-        CrossModalLink,
-        EvidenceFusionResult,
-        EvidenceType,
-        EvidenceQuality,
-        create_multimodal_evidence_fusion,
-        create_cross_modal_attention,
-        evaluate_hypothesis_with_multimodal_evidence
-    )
+#     from .v103_multimodal_evidence import (
+#         MultiModalEvidenceFusion,
+#         EvidenceRepository,
+#         CrossModalAttention,
+#         EvidenceItem,
+#         CrossModalLink,
+#         EvidenceFusionResult,
+#         EvidenceType,
+#         EvidenceQuality,
+#         create_multimodal_evidence_fusion,
+#         create_cross_modal_attention,
+#         evaluate_hypothesis_with_multimodal_evidence
+#     )
     V103_AVAILABLE = True
 except ImportError:
     V103_AVAILABLE = False
@@ -1682,19 +1682,19 @@ except ImportError:
 
 # V104: Adversarial Hypothesis Framework
 try:
-    from .v104_adversarial_discovery import (
-        AdversarialDiscoverySystem,
-        DevilsAdvocateAgent,
-        RedTeamDiscovery,
-        HypothesisRefinementLoop,
-        AdversarialChallenge,
-        RefinedHypothesis,
-        ChallengeType,
-        create_adversarial_discovery_system,
-        create_devils_advocate,
-        create_red_team_discovery,
-        adversarially_validate_discovery
-    )
+#     from .v104_adversarial_discovery import (
+#         AdversarialDiscoverySystem,
+#         DevilsAdvocateAgent,
+#         RedTeamDiscovery,
+#         HypothesisRefinementLoop,
+#         AdversarialChallenge,
+#         RefinedHypothesis,
+#         ChallengeType,
+#         create_adversarial_discovery_system,
+#         create_devils_advocate,
+#         create_red_team_discovery,
+#         adversarially_validate_discovery
+#     )
     V104_AVAILABLE = True
 except ImportError:
     V104_AVAILABLE = False
@@ -1712,18 +1712,18 @@ except ImportError:
 
 # V105: Meta-Discovery Transfer Learning
 try:
-    from .v105_meta_discovery import (
-        MetaDiscoveryTransferEngine,
-        DiscoveryPatternLibrary,
-        CrossDomainAnalogy,
-        FewShotDiscoveryLearner,
-        DiscoveryPattern,
-        MetaLearnerResult,
-        DiscoveryStrategy,
-        create_meta_discovery_transfer_engine,
-        create_discovery_pattern_library,
-        meta_discovery_across_domains
-    )
+#     from .v105_meta_discovery import (
+#         MetaDiscoveryTransferEngine,
+#         DiscoveryPatternLibrary,
+#         CrossDomainAnalogy,
+#         FewShotDiscoveryLearner,
+#         DiscoveryPattern,
+#         MetaLearnerResult,
+#         DiscoveryStrategy,
+#         create_meta_discovery_transfer_engine,
+#         create_discovery_pattern_library,
+#         meta_discovery_across_domains
+#     )
     V105_AVAILABLE = True
 except ImportError:
     V105_AVAILABLE = False
@@ -1740,15 +1740,15 @@ except ImportError:
 
 # V106: Explainable Causal Reasoning
 try:
-    from .v106_explainable_causal import (
-        ExplainableCausalReasoner,
-        CausalStoryGenerator,
-        CausalExplanation,
-        CausalRelationshipType,
-        create_explainable_causal_reasoner,
-        explain_causal_discovery_to_astronomer,
-        create_visualization_for_paper
-    )
+#     from .v106_explainable_causal import (
+#         ExplainableCausalReasoner,
+#         CausalStoryGenerator,
+#         CausalExplanation,
+#         CausalRelationshipType,
+#         create_explainable_causal_reasoner,
+#         explain_causal_discovery_to_astronomer,
+#         create_visualization_for_paper
+#     )
     V106_AVAILABLE = True
 except ImportError:
     V106_AVAILABLE = False
@@ -1762,19 +1762,19 @@ except ImportError:
 
 # V107: Discovery Triage and Prioritization
 try:
-    from .v107_discovery_triage import (
-        DiscoveryTriageSystem,
-        ImpactScoringEngine,
-        ImpactScore,
-        DiscoveryTriageResult,
-        TriageQueue,
-        TriageCategory,
-        ValidationStrategy,
-        ImpactDimension,
-        create_discovery_triage_system,
-        create_impact_scoring_engine,
-        triage_discoveries
-    )
+#     from .v107_discovery_triage import (
+#         DiscoveryTriageSystem,
+#         ImpactScoringEngine,
+#         ImpactScore,
+#         DiscoveryTriageResult,
+#         TriageQueue,
+#         TriageCategory,
+#         ValidationStrategy,
+#         ImpactDimension,
+#         create_discovery_triage_system,
+#         create_impact_scoring_engine,
+#         triage_discoveries
+#     )
     V107_AVAILABLE = True
 except ImportError:
     V107_AVAILABLE = False
@@ -1792,22 +1792,22 @@ except ImportError:
 
 # V108: Real-Time Streaming Discovery
 try:
-    from .v108_streaming_discovery import (
-        StreamingDiscoveryEngine,
-        OnlineCausalDiscovery,
-        ConceptDriftDetector,
-        StreamingAlertSystem,
-        StreamingDiscoveryAlert,
-        ConceptDriftEvent,
-        StreamingDiscoveryState,
-        StreamingState,
-        AlertPriority,
-        ConceptDriftType,
-        create_streaming_discovery_engine,
-        create_online_causal_discovery,
-        create_streaming_alert_system,
-        monitor_streaming_data
-    )
+#     from .v108_streaming_discovery import (
+#         StreamingDiscoveryEngine,
+#         OnlineCausalDiscovery,
+#         ConceptDriftDetector,
+#         StreamingAlertSystem,
+#         StreamingDiscoveryAlert,
+#         ConceptDriftEvent,
+#         StreamingDiscoveryState,
+#         StreamingState,
+#         AlertPriority,
+#         ConceptDriftType,
+#         create_streaming_discovery_engine,
+#         create_online_causal_discovery,
+#         create_streaming_alert_system,
+#         monitor_streaming_data
+#     )
     V108_AVAILABLE = True
 except ImportError:
     V108_AVAILABLE = False

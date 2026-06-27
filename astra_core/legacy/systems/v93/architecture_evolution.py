@@ -27,6 +27,29 @@ from abc import ABC, abstractmethod
 import copy
 
 
+@dataclass
+class CognitiveArchitecture:
+    """Represents the current cognitive architecture"""
+    reasoning_modules: Dict[str, Callable] = field(default_factory=dict)
+    knowledge_integrators: Dict[str, Callable] = field(default_factory=dict)
+    meta_cognitive_controllers: Dict[str, Callable] = field(default_factory=dict)
+    consciousness_simulators: Dict[str, Callable] = field(default_factory=dict)
+    adaptation_mechanisms: Dict[str, Callable] = field(default_factory=dict)
+    performance_metrics: Dict[str, float] = field(default_factory=dict)
+    evolution_history: List[Dict[str, Any]] = field(default_factory=list)
+
+
+class CreativityEngine:
+    """Stub for CreativityEngine to avoid import errors"""
+    def __init__(self):
+        self.creative_ideas = []
+        self.innovation_capacity = 0.0
+
+    def generate_idea(self, context: Dict[str, Any]) -> Optional[str]:
+        """Generate a creative idea based on context"""
+        return None
+
+
 class ArchitectureType(Enum):
     """Types of cognitive architectures"""
     SEQUENTIAL = "sequential"                  # Linear processing

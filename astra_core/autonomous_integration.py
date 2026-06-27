@@ -26,6 +26,28 @@ from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
+# Import autonomous components at module level
+try:
+    from .autonomy import (
+        create_autonomy_orchestrator,
+        create_genuine_discovery_generator,
+        create_adaptive_decision_engine,
+        start_continuous_autonomous_mode
+    )
+    AUTONOMY_AVAILABLE = True
+except ImportError as e:
+    logger.warning(f"[AutonomousASTRA] Autonomy components not available: {e}")
+    AUTONOMY_AVAILABLE = False
+    # Create stub functions for graceful fallback
+    def create_autonomy_orchestrator(*args, **kwargs):
+        raise ImportError("Autonomy components not available")
+    def create_genuine_discovery_generator(*args, **kwargs):
+        raise ImportError("Autonomy components not available")
+    def create_adaptive_decision_engine(*args, **kwargs):
+        raise ImportError("Autonomy components not available")
+    def start_continuous_autonomous_mode(*args, **kwargs):
+        raise ImportError("Autonomy components not available")
+
 
 class AutonomousMode(Enum):
     """Modes of autonomous operation"""
@@ -83,18 +105,10 @@ class AutonomousASTRASystem:
         logger.info(f"[AutonomousASTRA] Mode: {self.config.mode.value}")
         logger.info(f"[AutonomousASTRA] Autonomy level: {self.config.autonomy_level}")
 
-        # Import autonomous components
-        try:
-            from .autonomy import (
-                create_autonomy_orchestrator,
-                create_genuine_discovery_generator,
-                create_adaptive_decision_engine,
-                start_continuous_autonomous_mode
-            )
-            self.autonomy_available = True
-        except ImportError as e:
-            logger.warning(f"[AutonomousASTRA] Autonomy components not available: {e}")
-            self.autonomy_available = False
+        # Check if autonomy components are available
+        self.autonomy_available = AUTONOMY_AVAILABLE
+        if not AUTONOMY_AVAILABLE:
+            logger.warning("[AutonomousASTRA] Autonomy components not available - running in degraded mode")
             return
 
         # Initialize autonomous components
@@ -218,7 +232,7 @@ class AutonomousASTRASystem:
         Returns:
             Processing result with autonomous enhancements
         """
-        if not self.autonomy_initialized:
+        if not self.autonomous_initialized:
             logger.warning("[AutonomousASTRA] Autonomous capabilities not initialized")
             return {
                 'answer': "Autonomous capabilities not available",

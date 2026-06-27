@@ -39,11 +39,16 @@ from .data_sufficiency_evaluator import (
 
 # Try to import advanced capabilities
 try:
-    from ..capabilities.v50_causal_engine import CausalDiscovery, PCAlgorithm
+    from ..capabilities.causal_discovery import PCAlgorithm, CausalDiscoveryEngine
     CAUSAL_AVAILABLE = True
 except ImportError:
-    CAUSAL_AVAILABLE = False
-    print("WARNING: V50 causal engine not available")
+    try:
+        # Try direct import if capabilities import fails
+        from astra_core.capabilities.causal_discovery import PCAlgorithm, CausalDiscoveryEngine
+        CAUSAL_AVAILABLE = True
+    except ImportError:
+        CAUSAL_AVAILABLE = False
+        print("WARNING: V50 causal engine not available")
 
 try:
     from ..capabilities.bayesian_inference import BayesianInference
@@ -60,7 +65,7 @@ except ImportError:
     print("WARNING: Multi-expert ensemble not available")
 
 try:
-    from ..capabilities.v60_persistent_memory import EpisodicMemory
+    from ..reasoning.v60_persistent_memory import EpisodicMemory
     MEMORY_AVAILABLE = True
 except ImportError:
     MEMORY_AVAILABLE = False

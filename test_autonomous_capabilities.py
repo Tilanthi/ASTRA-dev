@@ -68,8 +68,10 @@ def test_autonomy_orchestrator():
         # Get status
         status = orchestrator.get_status()
         logger.info(f"✓ Orchestrator status: {status['autonomy_level']} autonomy level")
-        logger.info(f"  - Sub-agents spawned: {status['sub_agents_spawned']}")
+        logger.info(f"  - Active sub-agents: {status['active_sub_agents']}")
         logger.info(f"  - Capabilities initialized: {sum(status['capabilities_initialized'].values())}/4")
+        logger.info(f"  - Discoveries made: {status['discoveries_made']}")
+        logger.info(f"  - Idle explorations: {status['idle_explorations']}")
 
         return True
 

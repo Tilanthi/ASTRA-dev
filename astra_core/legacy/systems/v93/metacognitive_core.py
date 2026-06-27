@@ -25,6 +25,10 @@ from collections import defaultdict
 import networkx as nx
 from abc import ABC, abstractmethod
 
+# Import V93 components
+from .consciousness_simulator import ConsciousnessSimulator, SelfAwarenessTracker
+from .architecture_evolution import ArchitectureEvolutionEngine
+
 
 class CognitiveState(Enum):
     """Different cognitive states for self-awareness"""
@@ -119,13 +123,34 @@ class MetacognitiveCore:
         self.self_awareness_level = 0.0
         self.metacognitive_depth = 1
         self.consciousness_model = ConsciousnessSimulator()
-        self.architecture_evolver = ArchitectureEvolver()
-        self.performance_tracker = PerformanceTracker()
+        self.architecture_evolver = ArchitectureEvolutionEngine()
+        self.performance_tracker = SelfAwarenessTracker()
 
         # Initialize metacognitive capabilities
+        # Note: These methods are stub implementations for autonomous capabilities testing
         self._initialize_strategies()
         self._initialize_bias_detectors()
         self._initialize_self_improvement_systems()
+
+    def _initialize_strategies(self):
+        """Initialize reasoning strategies"""
+        self.reasoning_strategies = {
+            'deductive': lambda x: x,
+            'inductive': lambda x: x,
+            'abductive': lambda x: x
+        }
+
+    def _initialize_bias_detectors(self):
+        """Initialize cognitive bias detectors"""
+        self.cognitive_biases = {
+            'confirmation_bias': 0.0,
+            'availability_heuristic': 0.0,
+            'anchoring_bias': 0.0
+        }
+
+    def _initialize_self_improvement_systems(self):
+        """Initialize self-improvement mechanisms"""
+        self.metacognitive_insights = []
 
     def think_metacognitively(self, question: str, context: Dict[str, Any]) -> ThoughtProcess:
         """
