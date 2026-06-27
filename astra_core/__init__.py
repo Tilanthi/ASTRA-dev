@@ -460,3 +460,71 @@ except ImportError:
     PublicationEngine = None
     PaperStructure = None
     FigureType = None
+
+# =============================================================================
+# AUTONOMOUS CAPABILITIES (Phase 1-4 Enhancement)
+# =============================================================================
+# Major enhancement: True autonomous operation with integrated capabilities
+try:
+    from .autonomous_integration import (
+        AutonomousASTRASystem,
+        AutonomousMode,
+        AutonomousSystemConfig,
+        create_autonomous_astra,
+        initialize_astra_with_autonomy
+    )
+    AUTONOMOUS_AVAILABLE = True
+except ImportError:
+    AutonomousASTRASystem = None
+    AutonomousMode = None
+    AutonomousSystemConfig = None
+    create_autonomous_astra = None
+    initialize_astra_with_autonomy = None
+    AUTONOMOUS_AVAILABLE = False
+    logging.warning("Autonomous capabilities not available")
+
+# Autonomous components
+try:
+    from .autonomy import (
+        # AutonomyOrchestrator
+        AutonomyOrchestrator,
+        AutonomyLevel,
+        AutonomyConfig,
+        create_autonomy_orchestrator,
+        create_autonomy_config,
+
+        # GenuineDiscoveryGenerator
+        GenuineDiscoveryGenerator,
+        GenuineHypothesis,
+        DiscoveryType,
+        create_genuine_discovery_generator,
+        generate_contemporary_discovery,
+
+        # AdaptiveDecisionEngine
+        AdaptiveDecisionEngine,
+        DecisionStrategy,
+        create_adaptive_decision_engine,
+        make_autonomous_decision,
+
+        # ContinuousAutonomousProcess
+        ContinuousAutonomousProcess,
+        ProcessState,
+        create_continuous_autonomous_process,
+        start_continuous_autonomous_mode
+    )
+except ImportError:
+    # Autonomous components optional
+    AutonomyOrchestrator = None
+    AutonomyLevel = None
+    AutonomyConfig = None
+    create_autonomy_orchestrator = None
+    GenuineDiscoveryGenerator = None
+    GenuineHypothesis = None
+    DiscoveryType = None
+    create_genuine_discovery_generator = None
+    AdaptiveDecisionEngine = None
+    DecisionStrategy = None
+    create_adaptive_decision_engine = None
+    ContinuousAutonomousProcess = None
+    ProcessState = None
+    create_continuous_autonomous_process = None
