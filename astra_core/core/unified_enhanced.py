@@ -320,63 +320,127 @@ class EnhancedUnifiedSTANSystem:
                     logger.warning(f"Failed to register features for {domain_name}: {e}")
 
     def _initialize_autonomous_discovery(self):
-        """Initialize autonomous startup discovery - runs automatically on system startup"""
+        """Initialize genuine autonomous discovery - runs automatically on system startup"""
         try:
-            from ..autonomous_startup_discovery import (
-                initialize_autonomous_startup_discovery,
-                StartupDiscoveryConfig,
-                StartupDiscoveryMode
+            # Try to use the new genuine discovery system first
+            from ..autonomous_startup_discovery_v2 import (
+                initialize_genuine_discovery_with_astra,
+                GenuineDiscoveryConfig
             )
 
-            # Create configuration for intelligent discovery
-            discovery_config = StartupDiscoveryConfig(
-                mode=StartupDiscoveryMode.INTELLIGENT,
-                startup_delay_seconds=5,  # Start discovery 5 seconds after system init
-                idle_threshold_seconds=300,  # 5 minutes idle threshold
+            logger.info("[ASTRA] Initializing GENUINE discovery system v2.0")
+
+            # Create configuration for genuine discovery
+            discovery_config = GenuineDiscoveryConfig(
+                # Timing
+                startup_delay_seconds=10,  # 10 seconds startup delay
                 discovery_interval_seconds=1800,  # 30 minutes between cycles
-                enable_literature_monitoring=True,
-                enable_hypothesis_generation=True,
-                enable_data_analysis=True,
-                enable_theoretical_discovery=True,
-                enable_causal_discovery=True,
+                research_cycle_duration=300,  # 5 minutes per discovery attempt
+
+                # Enable all genuine discovery types
+                enable_pattern_discovery=True,
+                enable_theoretical_synthesis=True,
+                enable_gap_identification=True,
+                enable_predictive_hypothesis=True,
+                enable_computational_reanalysis=True,
+
+                # Rigorous validation standards
+                minimum_novelty_score=0.3,  # Require genuine novelty
+                minimum_probability=0.4,  # Require reasonable confidence
+                require_testability=True,
+                require_literature_consistency_check=True,
+
+                # Research domains
                 primary_domains=['astrophysics', 'astronomy', 'cosmology', 'star_formation', 'ism'],
-                report_discoveries=True
+
+                # Data sources
+                enable_data_archive_analysis=True,
+                enable_literature_mining=True,
+                enable_observation_database_analysis=True,
+
+                # Output
+                max_discoveries_per_cycle=3  # Focus on quality over quantity
             )
 
-            # Initialize autonomous discovery with this system
-            self.autonomous_discovery = initialize_autonomous_startup_discovery(
+            # Initialize genuine discovery with this system
+            self.autonomous_discovery = initialize_genuine_discovery_with_astra(
                 astra_system=self,
                 config=discovery_config
             )
 
-            logger.info("[ASTRA] Autonomous startup discovery initialized and running")
+            # Start the discovery system
+            self.autonomous_discovery.start()
+
+            logger.info("[ASTRA] ✅ GENUINE autonomous discovery v2.0 initialized and running")
 
         except ImportError as e:
-            logger.warning(f"[ASTRA] Could not initialize autonomous startup discovery: {e}")
-            self.autonomous_discovery = None
+            logger.warning(f"[ASTRA] Could not import genuine discovery v2.0: {e}")
+            # Fall back to old discovery system
+            try:
+                from ..autonomous_startup_discovery import (
+                    initialize_autonomous_startup_discovery,
+                    StartupDiscoveryConfig,
+                    StartupDiscoveryMode
+                )
+
+                logger.info("[ASTRA] Falling back to discovery v1.0")
+
+                discovery_config = StartupDiscoveryConfig(
+                    mode=StartupDiscoveryMode.INTELLIGENT,
+                    startup_delay_seconds=5,
+                    idle_threshold_seconds=300,
+                    discovery_interval_seconds=1800,
+                    primary_domains=['astrophysics', 'astronomy', 'cosmology', 'star_formation', 'ism'],
+                )
+
+                self.autonomous_discovery = initialize_autonomous_startup_discovery(
+                    astra_system=self,
+                    config=discovery_config
+                )
+
+                logger.info("[ASTRA] ✅ Autonomous discovery v1.0 initialized (fallback mode)")
+
+            except Exception as e2:
+                logger.error(f"[ASTRA] Could not initialize any discovery system: {e2}")
+                self.autonomous_discovery = None
+
         except Exception as e:
-            logger.error(f"[ASTRA] Error initializing autonomous discovery: {e}")
+            logger.error(f"[ASTRA] Error initializing genuine discovery: {e}")
             self.autonomous_discovery = None
 
     def _handle_user_task_start(self):
         """Handle start of user task - pauses intelligent discovery"""
         if self.autonomous_discovery:
             try:
-                from ..autonomous_startup_discovery import register_user_task_start
-                register_user_task_start()
-                logger.debug("[ASTRA] User task started - discovery paused/intelligent mode")
+                # Try v2 genuine discovery system first
+                from ..autonomous_startup_discovery_v2 import register_user_task_start as register_v2_task_start
+                register_v2_task_start()
+                logger.debug("[ASTRA] User task started - v2 discovery paused")
             except Exception as e:
-                logger.warning(f"Could not register user task start: {e}")
+                try:
+                    # Fall back to v1 discovery system
+                    from ..autonomous_startup_discovery import register_user_task_start
+                    register_user_task_start()
+                    logger.debug("[ASTRA] User task started - v1 discovery paused/intelligent mode")
+                except Exception as e2:
+                    logger.warning(f"Could not register user task start: {e}")
 
     def _handle_user_task_complete(self):
         """Handle completion of user task - resumes discovery"""
         if self.autonomous_discovery:
             try:
-                from ..autonomous_startup_discovery import register_user_task_complete
-                register_user_task_complete()
-                logger.debug("[ASTRA] User task completed - discovery resumed")
+                # Try v2 genuine discovery system first
+                from ..autonomous_startup_discovery_v2 import register_user_task_complete as register_v2_task_complete
+                register_v2_task_complete()
+                logger.debug("[ASTRA] User task completed - v2 discovery resumed")
             except Exception as e:
-                logger.warning(f"Could not register user task complete: {e}")
+                try:
+                    # Fall back to v1 discovery system
+                    from ..autonomous_startup_discovery import register_user_task_complete
+                    register_user_task_complete()
+                    logger.debug("[ASTRA] User task completed - v1 discovery resumed")
+                except Exception as e2:
+                    logger.warning(f"Could not register user task complete: {e}")
 
     def process_query(
         self,
@@ -970,10 +1034,16 @@ class EnhancedUnifiedSTANSystem:
         """
         if self.autonomous_discovery:
             try:
-                from ..autonomous_startup_discovery import get_discovery_status
-                return get_discovery_status()
+                # Try v2 genuine discovery system first
+                from ..autonomous_startup_discovery_v2 import get_discovery_status as get_v2_discovery_status
+                return get_v2_discovery_status()
             except Exception as e:
-                return {'error': f'Could not get discovery status: {e}'}
+                try:
+                    # Fall back to v1 discovery system
+                    from ..autonomous_startup_discovery import get_discovery_status
+                    return get_discovery_status()
+                except Exception as e2:
+                    return {'error': f'Could not get discovery status: {e}'}
         return {'status': 'not_initialized'}
 
     def list_domains(self) -> List[str]:

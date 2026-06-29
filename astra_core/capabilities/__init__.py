@@ -1571,10 +1571,23 @@ __all__ += [
 #     register_hallucination
 # )
 
+# V95: Enhanced Astrophysical Causal Discovery
+from .v95_enhanced_astrophysical_causal_discovery import (
+    OptimizedAstrophysicalCausalDiscovery,
+    AstrophysicalPerformanceConfig,
+    AstrophysicalCausalCache,
+    IndependenceTestResult,
+    discover_astrophysical_causal_structure,
+    create_optimized_astrophysical_discovery,
+    CacheStrategy,
+    EarlyStoppingStrategy,
+    AstrophysicalCacheStrategy
+)
+
 # Update __all__ with V95 exports
 __all__ += [
     # =========================================================================
-    # V95 Semantic Grounding Layer
+    # V95 Semantic Grounding Layer & Enhanced Astrophysical Causal Discovery
     # =========================================================================
 
     # Main classes
@@ -1584,6 +1597,12 @@ __all__ += [
     'CitationValidator',
     'FormulaKnowledgeBase',
 
+    # Enhanced Astrophysical Causal Discovery
+    'OptimizedAstrophysicalCausalDiscovery',
+    'AstrophysicalPerformanceConfig',
+    'AstrophysicalCausalCache',
+    'IndependenceTestResult',
+
     # Data structures
     'VerificationLevel',
     'ClaimType',
@@ -1591,11 +1610,18 @@ __all__ += [
     'CitationClaim',
     'GroundingReport',
 
+    # Enums
+    'CacheStrategy',
+    'EarlyStoppingStrategy',
+    'AstrophysicalCacheStrategy',
+
     # Convenience functions
     'create_grounding_layer',
     'validate_scientific_content',
     'check_formula',
     'register_hallucination',
+    'discover_astrophysical_causal_structure',
+    'create_optimized_astrophysical_discovery',
 ]
 
 
