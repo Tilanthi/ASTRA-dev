@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: filament_spacing_focused_v15.aux
+The style file: mnras.bst
+Database file #1: references_complete.bib
+Warning--I didn't find a database entry for "Bontemps2010"
+Warning--I didn't find a database entry for "Glover2012"
+Warning--I didn't find a database entry for "Nakamura2005"
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 28 entries,
+            2881 wiz_defined-function locations,
+            942 strings with 13382 characters,
+and the built_in function-call counts, 12976 in all, are:
+= -- 1040
+> -- 982
+< -- 55
++ -- 429
+- -- 150
+* -- 1610
+:= -- 2082
+add.period$ -- 0
+call.type$ -- 28
+change.case$ -- 56
+chr.to.int$ -- 28
+cite$ -- 28
+duplicate$ -- 624
+empty$ -- 627
+format.name$ -- 230
+if$ -- 2217
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 28
+newline$ -- 97
+num.names$ -- 182
+pop$ -- 128
+preamble$ -- 1
+purify$ -- 112
+quote$ -- 0
+skip$ -- 373
+stack$ -- 0
+substring$ -- 724
+swap$ -- 279
+text.length$ -- 113
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 252
+warning$ -- 0
+while$ -- 208
+width$ -- 0
+write$ -- 292
+(There were 3 warnings)

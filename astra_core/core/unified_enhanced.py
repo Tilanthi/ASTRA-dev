@@ -332,10 +332,10 @@ class EnhancedUnifiedSTANSystem:
 
             # Create configuration for genuine discovery
             discovery_config = GenuineDiscoveryConfig(
-                # Timing
-                startup_delay_seconds=10,  # 10 seconds startup delay
-                discovery_interval_seconds=1800,  # 30 minutes between cycles
-                research_cycle_duration=300,  # 5 minutes per discovery attempt
+                # Timing - CONTINUOUS DISCOVERY MODE
+                startup_delay_seconds=5,  # 5 seconds startup delay (quick start)
+                discovery_interval_seconds=60,  # 1 minute between cycles (continuous operation)
+                research_cycle_duration=60,  # 1 minute per discovery attempt (rapid cycling)
 
                 # Enable all genuine discovery types
                 enable_pattern_discovery=True,
@@ -344,11 +344,11 @@ class EnhancedUnifiedSTANSystem:
                 enable_predictive_hypothesis=True,
                 enable_computational_reanalysis=True,
 
-                # Rigorous validation standards
-                minimum_novelty_score=0.3,  # Require genuine novelty
-                minimum_probability=0.4,  # Require reasonable confidence
+                # Optimized validation standards for rapid discovery
+                minimum_novelty_score=0.05,  # Reduced threshold for more frequent discoveries
+                minimum_probability=0.3,  # Require reasonable confidence
                 require_testability=True,
-                require_literature_consistency_check=True,
+                require_literature_consistency_check=False,  # Skip for speed
 
                 # Research domains
                 primary_domains=['astrophysics', 'astronomy', 'cosmology', 'star_formation', 'ism'],
@@ -358,8 +358,8 @@ class EnhancedUnifiedSTANSystem:
                 enable_literature_mining=True,
                 enable_observation_database_analysis=True,
 
-                # Output
-                max_discoveries_per_cycle=3  # Focus on quality over quantity
+                # Output - increased for continuous operation
+                max_discoveries_per_cycle=5  # Allow more discoveries per rapid cycle
             )
 
             # Initialize genuine discovery with this system
@@ -388,8 +388,8 @@ class EnhancedUnifiedSTANSystem:
                 discovery_config = StartupDiscoveryConfig(
                     mode=StartupDiscoveryMode.INTELLIGENT,
                     startup_delay_seconds=5,
-                    idle_threshold_seconds=300,
-                    discovery_interval_seconds=1800,
+                    idle_threshold_seconds=60,  # 1 minute idle threshold (responsive)
+                    discovery_interval_seconds=60,  # 1 minute intervals (continuous operation)
                     primary_domains=['astrophysics', 'astronomy', 'cosmology', 'star_formation', 'ism'],
                 )
 

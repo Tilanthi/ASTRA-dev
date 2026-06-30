@@ -1,0 +1,90 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: filament_spacing_streamlined_mnras.aux
+The style file: mnras.bst
+Database file #1: references_complete.bib
+I was expecting a `,' or a `}'---line 580 of file references_complete.bib
+ : 
+ : @article{Xu2021,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 580 of file references_complete.bib
+ : @article{Xu2021
+ :                ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Kirk2016"
+Warning--I didn't find a database entry for "Mattern2018"
+Warning--I didn't find a database entry for "Molinari2022"
+Warning--I didn't find a database entry for "Schmiedeke2021"
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Too many commas in name 8 of "{Kounkel}, M. and {Hartmann}, L. and {Loinard}, L. and {Burkhardt}, A. and {Ortiz-Le{\'o}n}, G.~N. and {Foster}, J.~B. and {Calvet}, N. and {D{\'Alessio}, P. and {Rom{\'a}n-Z{\'u}{\~n}iga}, C. and {Caratti o Garatti}, A. and {Mendoza}, E. and {Megevand}, M. and {Allen}, L. and {Brice{\~n}o}, C. and {Kim}, J.~S. and {Zucker}, C. and {Forbrich}, J.}, title = "{The Orion Complex: A Cloud Scale View of the Star Formation Environment}", journal = {The Astrophysical Journal Supplement}, year = {2018}, volume = {236}, number = {1}, pages = {18}, doi = {10.3847/1538-4365/aab5c4}" for entry Kounkel2018
+while executing---line 1706 of file mnras.bst
+Too many commas in name 8 of "{Kounkel}, M. and {Hartmann}, L. and {Loinard}, L. and {Burkhardt}, A. and {Ortiz-Le{\'o}n}, G.~N. and {Foster}, J.~B. and {Calvet}, N. and {D{\'Alessio}, P. and {Rom{\'a}n-Z{\'u}{\~n}iga}, C. and {Caratti o Garatti}, A. and {Mendoza}, E. and {Megevand}, M. and {Allen}, L. and {Brice{\~n}o}, C. and {Kim}, J.~S. and {Zucker}, C. and {Forbrich}, J.}, title = "{The Orion Complex: A Cloud Scale View of the Star Formation Environment}", journal = {The Astrophysical Journal Supplement}, year = {2018}, volume = {236}, number = {1}, pages = {18}, doi = {10.3847/1538-4365/aab5c4}" for entry Kounkel2018
+while executing---line 1706 of file mnras.bst
+Too many commas in name 8 of "{Kounkel}, M. and {Hartmann}, L. and {Loinard}, L. and {Burkhardt}, A. and {Ortiz-Le{\'o}n}, G.~N. and {Foster}, J.~B. and {Calvet}, N. and {D{\'Alessio}, P. and {Rom{\'a}n-Z{\'u}{\~n}iga}, C. and {Caratti o Garatti}, A. and {Mendoza}, E. and {Megevand}, M. and {Allen}, L. and {Brice{\~n}o}, C. and {Kim}, J.~S. and {Zucker}, C. and {Forbrich}, J.}, title = "{The Orion Complex: A Cloud Scale View of the Star Formation Environment}", journal = {The Astrophysical Journal Supplement}, year = {2018}, volume = {236}, number = {1}, pages = {18}, doi = {10.3847/1538-4365/aab5c4}" for entry Kounkel2018
+while executing---line 1706 of file mnras.bst
+Too many commas in name 8 of "{Kounkel}, M. and {Hartmann}, L. and {Loinard}, L. and {Burkhardt}, A. and {Ortiz-Le{\'o}n}, G.~N. and {Foster}, J.~B. and {Calvet}, N. and {D{\'Alessio}, P. and {Rom{\'a}n-Z{\'u}{\~n}iga}, C. and {Caratti o Garatti}, A. and {Mendoza}, E. and {Megevand}, M. and {Allen}, L. and {Brice{\~n}o}, C. and {Kim}, J.~S. and {Zucker}, C. and {Forbrich}, J.}, title = "{The Orion Complex: A Cloud Scale View of the Star Formation Environment}", journal = {The Astrophysical Journal Supplement}, year = {2018}, volume = {236}, number = {1}, pages = {18}, doi = {10.3847/1538-4365/aab5c4}" for entry Kounkel2018
+while executing---line 1706 of file mnras.bst
+Too many commas in name 8 of "{Kounkel}, M. and {Hartmann}, L. and {Loinard}, L. and {Burkhardt}, A. and {Ortiz-Le{\'o}n}, G.~N. and {Foster}, J.~B. and {Calvet}, N. and {D{\'Alessio}, P. and {Rom{\'a}n-Z{\'u}{\~n}iga}, C. and {Caratti o Garatti}, A. and {Mendoza}, E. and {Megevand}, M. and {Allen}, L. and {Brice{\~n}o}, C. and {Kim}, J.~S. and {Zucker}, C. and {Forbrich}, J.}, title = "{The Orion Complex: A Cloud Scale View of the Star Formation Environment}", journal = {The Astrophysical Journal Supplement}, year = {2018}, volume = {236}, number = {1}, pages = {18}, doi = {10.3847/1538-4365/aab5c4}" for entry Kounkel2018
+while executing---line 1706 of file mnras.bst
+Too many commas in name 8 of "{Kounkel}, M. and {Hartmann}, L. and {Loinard}, L. and {Burkhardt}, A. and {Ortiz-Le{\'o}n}, G.~N. and {Foster}, J.~B. and {Calvet}, N. and {D{\'Alessio}, P. and {Rom{\'a}n-Z{\'u}{\~n}iga}, C. and {Caratti o Garatti}, A. and {Mendoza}, E. and {Megevand}, M. and {Allen}, L. and {Brice{\~n}o}, C. and {Kim}, J.~S. and {Zucker}, C. and {Forbrich}, J.}, title = "{The Orion Complex: A Cloud Scale View of the Star Formation Environment}", journal = {The Astrophysical Journal Supplement}, year = {2018}, volume = {236}, number = {1}, pages = {18}, doi = {10.3847/1538-4365/aab5c4}" for entry Kounkel2018
+while executing---line 1822 of file mnras.bst
+Too many commas in name 8 of "{Kounkel}, M. and {Hartmann}, L. and {Loinard}, L. and {Burkhardt}, A. and {Ortiz-Le{\'o}n}, G.~N. and {Foster}, J.~B. and {Calvet}, N. and {D{\'Alessio}, P. and {Rom{\'a}n-Z{\'u}{\~n}iga}, C. and {Caratti o Garatti}, A. and {Mendoza}, E. and {Megevand}, M. and {Allen}, L. and {Brice{\~n}o}, C. and {Kim}, J.~S. and {Zucker}, C. and {Forbrich}, J.}, title = "{The Orion Complex: A Cloud Scale View of the Star Formation Environment}", journal = {The Astrophysical Journal Supplement}, year = {2018}, volume = {236}, number = {1}, pages = {18}, doi = {10.3847/1538-4365/aab5c4}" for entry Kounkel2018
+while executing---line 1822 of file mnras.bst
+Too many commas in name 8 of "{Kounkel}, M. and {Hartmann}, L. and {Loinard}, L. and {Burkhardt}, A. and {Ortiz-Le{\'o}n}, G.~N. and {Foster}, J.~B. and {Calvet}, N. and {D{\'Alessio}, P. and {Rom{\'a}n-Z{\'u}{\~n}iga}, C. and {Caratti o Garatti}, A. and {Mendoza}, E. and {Megevand}, M. and {Allen}, L. and {Brice{\~n}o}, C. and {Kim}, J.~S. and {Zucker}, C. and {Forbrich}, J.}, title = "{The Orion Complex: A Cloud Scale View of the Star Formation Environment}", journal = {The Astrophysical Journal Supplement}, year = {2018}, volume = {236}, number = {1}, pages = {18}, doi = {10.3847/1538-4365/aab5c4}" for entry Kounkel2018
+while executing---line 1822 of file mnras.bst
+Too many commas in name 8 of "{Kounkel}, M. and {Hartmann}, L. and {Loinard}, L. and {Burkhardt}, A. and {Ortiz-Le{\'o}n}, G.~N. and {Foster}, J.~B. and {Calvet}, N. and {D{\'Alessio}, P. and {Rom{\'a}n-Z{\'u}{\~n}iga}, C. and {Caratti o Garatti}, A. and {Mendoza}, E. and {Megevand}, M. and {Allen}, L. and {Brice{\~n}o}, C. and {Kim}, J.~S. and {Zucker}, C. and {Forbrich}, J.}, title = "{The Orion Complex: A Cloud Scale View of the Star Formation Environment}", journal = {The Astrophysical Journal Supplement}, year = {2018}, volume = {236}, number = {1}, pages = {18}, doi = {10.3847/1538-4365/aab5c4}" for entry Kounkel2018
+while executing---line 1822 of file mnras.bst
+Too many commas in name 8 of "{Kounkel}, M. and {Hartmann}, L. and {Loinard}, L. and {Burkhardt}, A. and {Ortiz-Le{\'o}n}, G.~N. and {Foster}, J.~B. and {Calvet}, N. and {D{\'Alessio}, P. and {Rom{\'a}n-Z{\'u}{\~n}iga}, C. and {Caratti o Garatti}, A. and {Mendoza}, E. and {Megevand}, M. and {Allen}, L. and {Brice{\~n}o}, C. and {Kim}, J.~S. and {Zucker}, C. and {Forbrich}, J.}, title = "{The Orion Complex: A Cloud Scale View of the Star Formation Environment}", journal = {The Astrophysical Journal Supplement}, year = {2018}, volume = {236}, number = {1}, pages = {18}, doi = {10.3847/1538-4365/aab5c4}" for entry Kounkel2018
+while executing---line 1822 of file mnras.bst
+Warning--empty year in Kounkel2018
+"ArXiv e-prints" is a string literal, `journal' is a missing field
+---they aren't the same literal types for entry Kounkel2018
+while executing---line 1822 of file mnras.bst
+Warning--empty journal in Kounkel2018
+"ArXiv e-prints" is a string literal, `journal' is a missing field
+---they aren't the same literal types for entry Kounkel2018
+while executing---line 1822 of file mnras.bst
+You've used 27 entries,
+            2881 wiz_defined-function locations,
+            929 strings with 13854 characters,
+and the built_in function-call counts, 12838 in all, are:
+= -- 996
+> -- 1041
+< -- 48
++ -- 446
+- -- 174
+* -- 1614
+:= -- 2088
+add.period$ -- 0
+call.type$ -- 27
+change.case$ -- 54
+chr.to.int$ -- 27
+cite$ -- 29
+duplicate$ -- 597
+empty$ -- 593
+format.name$ -- 252
+if$ -- 2173
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 27
+newline$ -- 94
+num.names$ -- 178
+pop$ -- 128
+preamble$ -- 1
+purify$ -- 108
+quote$ -- 0
+skip$ -- 347
+stack$ -- 0
+substring$ -- 693
+swap$ -- 274
+text.length$ -- 108
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 243
+warning$ -- 2
+while$ -- 196
+width$ -- 0
+write$ -- 279
+(There were 14 error messages)

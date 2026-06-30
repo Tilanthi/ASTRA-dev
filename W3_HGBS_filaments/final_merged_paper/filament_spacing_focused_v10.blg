@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: filament_spacing_focused_v10.aux
+The style file: mnras.bst
+Database file #1: references_complete.bib
+I was expecting a `,' or a `}'---line 580 of file references_complete.bib
+ : 
+ : @article{Xu2021,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 26 entries,
+            2881 wiz_defined-function locations,
+            918 strings with 12331 characters,
+and the built_in function-call counts, 12105 in all, are:
+= -- 970
+> -- 922
+< -- 56
++ -- 398
+- -- 142
+* -- 1494
+:= -- 1945
+add.period$ -- 0
+call.type$ -- 26
+change.case$ -- 52
+chr.to.int$ -- 26
+cite$ -- 26
+duplicate$ -- 579
+empty$ -- 572
+format.name$ -- 226
+if$ -- 2066
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 26
+newline$ -- 91
+num.names$ -- 178
+pop$ -- 110
+preamble$ -- 1
+purify$ -- 104
+quote$ -- 0
+skip$ -- 348
+stack$ -- 0
+substring$ -- 662
+swap$ -- 280
+text.length$ -- 104
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 234
+warning$ -- 0
+while$ -- 194
+width$ -- 0
+write$ -- 272
+(There was 1 error message)

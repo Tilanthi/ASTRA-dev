@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: filament_spacing_streamlined_mnras_v3.aux
+The style file: mnras.bst
+Database file #1: references_complete.bib
+Repeated entry---line 719 of file references_complete.bib
+ : @article{Hacar2013
+ :                   ,
+I'm skipping whatever remains of this entry
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 23 entries,
+            2881 wiz_defined-function locations,
+            894 strings with 12284 characters,
+and the built_in function-call counts, 10458 in all, are:
+= -- 850
+> -- 782
+< -- 38
++ -- 347
+- -- 114
+* -- 1305
+:= -- 1670
+add.period$ -- 0
+call.type$ -- 23
+change.case$ -- 46
+chr.to.int$ -- 23
+cite$ -- 23
+duplicate$ -- 505
+empty$ -- 505
+format.name$ -- 180
+if$ -- 1777
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 23
+newline$ -- 82
+num.names$ -- 146
+pop$ -- 114
+preamble$ -- 1
+purify$ -- 92
+quote$ -- 0
+skip$ -- 289
+stack$ -- 0
+substring$ -- 601
+swap$ -- 218
+text.length$ -- 92
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 207
+warning$ -- 0
+while$ -- 164
+width$ -- 0
+write$ -- 240
+(There was 1 error message)
