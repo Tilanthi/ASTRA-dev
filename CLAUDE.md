@@ -36,6 +36,19 @@ print(f"Genuine discoveries: {status['genuine_discoveries']}")
 - **AGI Capability**: 70-75%
 - **Name**: Use "ASTRA" exclusively (not "STAN" or "STAN-XI-ASTRO")
 
+### 🎯 GitHub Repository Targeting
+**CRITICAL**: When the user asks to push code to GitHub, **ALWAYS target only the ASTRA repository**:
+- **Target Repository**: https://github.com/Tilanthi/ASTRA-dev
+- **Repository Name**: ASTRA-dev
+- **Purpose**: Autonomous Scientific Discovery in Astrophysics
+- **Content**: Only ASTRA-specific files (astronomical research, discovery system, astrophysics tools)
+
+**Instructions**:
+- Never push to BIODISC or any other repository when working on ASTRA
+- Verify the remote URL matches: `https://github.com/Tilanthi/ASTRA-dev.git`
+- Ensure all pushed content is ASTRA-related (astrophysics, astronomy, scientific discovery)
+- Use `git remote -v` to verify correct repository before pushing
+
 ### 🔥 Automatic Startup Discovery (v2.0)
 - Discovery starts **automatically** on `create_stan_system()`
 - **🚀 CONTINUOUS MODE**: 1-minute intervals (30x faster than previous 30-min intervals)
