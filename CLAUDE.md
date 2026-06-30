@@ -38,16 +38,41 @@ print(f"Genuine discoveries: {status['genuine_discoveries']}")
 
 ### 🔥 Automatic Startup Discovery (v2.0)
 - Discovery starts **automatically** on `create_stan_system()`
+- **🚀 CONTINUOUS MODE**: 1-minute intervals (30x faster than previous 30-min intervals)
 - **GENUINE discovery v2.0** with rigorous validation standards
 - Intelligent pause/resume during user queries
 - State persistence across sessions
 - No manual activation required
+- **Always-on operation** when system is idle
 - Focus on novel discoveries with high scientific standards
+- Up to 1,440 discovery cycles per day (vs. 48 previously)
 
-### 🎯 Recent System Updates (2026-06-29)
+### 🎯 Recent System Updates (2026-06-30)
+- **🚀 CONTINUOUS DISCOVERY MODE**: Transformed from 30-minute to 1-minute intervals (30x improvement)
+- **✅ DISCOVERY CYCLE FIX**: Fixed legacy process issue - system now correctly runs 1-minute cycles (2026-06-30 18:14)
 - **✅ Fixed v2.0 Discovery Status Reporting**: Updated unified_enhanced.py to properly report GENUINE discovery v2.0 status
+- **🔄 Always-on Discovery**: System now runs continuously when idle, pausing only for user queries
 - **🚀 GENUINE Discovery v2.0**: Enhanced autonomous discovery with rigorous validation standards and focus on novel scientific insights
 - **📊 Improved Status Monitoring**: Now correctly shows `is_running`, `discovery_cycle`, `genuine_discoveries`, and `discovery_rate`
+- **🎯 IMMEDIATE RESULTS**: New system discovered promising candidate in first minute: "Counterfactual Analysis: Arzoumanian et al. (2011) Filament Width Result"
+
+### 🛠️ Discovery System Maintenance
+**Important**: If discovery cycles appear to be running on 30-minute intervals instead of 1-minute intervals:
+```bash
+# Check for old discovery process
+ps aux | grep "run_24_7" | grep -v grep
+
+# Kill old process if found (replace PID)
+kill <old_process_pid>
+
+# Start new discovery system with correct 1-minute configuration
+nohup python3 run_24_7_genuine_discovery.py > /dev/null 2>&1 &
+```
+
+**Current Status** (2026-06-30 18:14):
+- ✅ Discovery process PID 45295 running with 1-minute intervals
+- ✅ System verified to be working correctly with rapid cycling
+- ✅ Intelligent pause/resume during user interaction confirmed
 
 ### Persistent Memory (Required at Session Start)
 ```python
