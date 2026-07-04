@@ -168,3 +168,5 @@ class PDFProcessor:
             pdf_path: Path to PDF file
 
         Returns:
+            str: Extracted text content
+        """

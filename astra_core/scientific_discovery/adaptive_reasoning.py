@@ -185,9 +185,76 @@ class UncertaintyTracker:
 
 
 # =============================================================================
+# Adaptive Reasoning Controller
+# =============================================================================
+
+class AdaptiveReasoningController:
+    """
+    Main controller for adaptive reasoning in scientific discovery.
+
+    Manages reasoning mode selection based on discovery phase, confidence
+    levels, and metacognitive assessment.
+    """
+
+    def __init__(self):
+        self.current_phase = DiscoveryPhase.LITERATURE_REVIEW
+        self.current_mode = ReasoningMode.ANALYTICAL
+        self.uncertainty_tracker = UncertaintyTracker()
+        self.metacognitive_monitor = MetacognitiveMonitor() if V41_AVAILABLE else None
+        self.reasoning_history = []
+
+    def select_reasoning_mode(self, phase: DiscoveryPhase,
+                             confidence: float = 0.5) -> ReasoningMode:
+        """Select appropriate reasoning mode for current phase and confidence"""
+        # Use default phase-to-mode mapping
+        mode = PHASE_TO_MODE_MAP.get(phase, ReasoningMode.ANALYTICAL)
+
+        # Adjust based on confidence
+        if confidence < 0.3:
+            # Low confidence: switch to more analytical mode
+            mode = ReasoningMode.ANALYTICAL
+        elif confidence > 0.8:
+            # High confidence: can be more creative
+            if mode == ReasoningMode.ANALYTICAL:
+                mode = ReasoningMode.CREATIVE
+
+        self.current_mode = mode
+        return mode
+
+    def update_phase(self, new_phase: DiscoveryPhase):
+        """Update current discovery phase"""
+        self.current_phase = new_phase
+        self.uncertainty_tracker.track_phase_transition(new_phase)
+
+    def assess_reasoning_quality(self, reasoning_trace: Dict[str, Any]) -> float:
+        """Assess quality of recent reasoning"""
+        if self.metacognitive_monitor:
+            return self.metacognitive_monitor.assess_quality(reasoning_trace)
+        return 0.5  # Default assessment if V41 not available
+
+    def get_reasoning_state(self) -> ReasoningState:
+        """Get current reasoning state"""
+        return ReasoningState(
+            phase=self.current_phase,
+            mode=self.current_mode,
+            confidence=self.uncertainty_tracker.current_confidence,
+            uncertainty_level=self.uncertainty_tracker.current_uncertainty
+        )
+
+
+def get_adaptive_reasoning_controller() -> AdaptiveReasoningController:
+    """Factory function to create adaptive reasoning controller"""
+    return AdaptiveReasoningController()
+
+
+# =============================================================================
 # Metacognitive Monitor
 # =============================================================================
 
 class MetacognitiveMonitor:
     """
     Monitor reasoning quality using V41 metacognition.
+
+    Tracks reasoning patterns, confidence calibration, and discovery quality
+    to improve future discovery cycles.
+    """

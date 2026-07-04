@@ -44,6 +44,39 @@ import random
 
 logger = logging.getLogger(__name__)
 
+# Genuine discovery with EUREKA-ENHANCED validation for genuine scientific insight detection
+try:
+    from astra_core.scientific_discovery.literature_validator import (
+        LiteratureValidator,
+        NoveltyReport,
+        ConfidenceLevel,
+        create_literature_validator
+    )
+    from astra_core.scientific_discovery.validation_pipeline import (
+        ValidationPipeline,
+        create_validation_pipeline,
+        PipelineReport,
+        ValidationStatus
+    )
+    # NEW: Eureka-enhanced validation for genuine insight detection
+    from astra_core.scientific_discovery.eureka_validator import (
+        EurekaEnhancedValidator,
+        EurekaValidationReport,
+        create_eureka_enhanced_validator
+    )
+    from astra_core.scientific_discovery.eureka_detector import (
+        EurekaDetector,
+        EurekaAssessment,
+        ScientificClaim
+    )
+    LITERATURE_VALIDATION_AVAILABLE = True
+    EUREKA_VALIDATION_AVAILABLE = True
+except ImportError as e:
+    LITERATURE_VALIDATION_AVAILABLE = False
+    EUREKA_VALIDATION_AVAILABLE = False
+    logger.warning(f"Literature validation not available: {e}")
+    logger.warning("System will use degraded novelty assessment")
+
 
 class DiscoveryType(Enum):
     """Types of genuine discoveries"""
@@ -63,8 +96,53 @@ class NoveltyLevel(Enum):
 
 
 @dataclass
+class LiteratureSimilarityInfo:
+    """Information about similar papers in literature"""
+    most_similar_paper: str  # Title of most similar paper
+    similarity_percentage: float  # 0-100, how similar
+    similar_papers: List[Dict[str, Any]]  # Top similar papers with metadata
+    total_papers_searched: int  # How many papers were checked
+    search_time_seconds: float  # How long validation took
+
+
+@dataclass
+class CitationValidation:
+    """Results of citation validation"""
+    total_citations: int  # How many citations found
+    verified_citations: int  # How many verified to exist
+    hallucinated_citations: int  # How many were invented
+    unverifiable_citations: int  # How many couldn't be checked
+    citation_details: List[Dict[str, Any]]  # Per-citation details
+
+
+@dataclass
+class FormulaValidation:
+    """Results of formula/equation validation"""
+    total_formulas: int  # How many formulas found
+    verified_formulas: int  # Match known physics
+    derivable_formulas: int  # Can be derived from known physics
+    inconsistent_formulas: int  # Contradict known physics
+    unverifiable_formulas: int  # Can't be checked
+    formula_details: List[Dict[str, Any]]  # Per-formula details
+
+
+@dataclass
+class StatisticalValidation:
+    """Results of statistical validation"""
+    statistical_claims: int  # How many statistical claims
+    validated_claims: int  # Proper statistics
+    questionable_claims: int  # Statistical issues detected
+    claim_details: List[Dict[str, Any]]  # Per-claim details
+
+
+@dataclass
 class DiscoveryValidation:
-    """Rigorous validation framework for discoveries"""
+    """
+    Rigorous validation framework for discoveries
+
+    ENHANCED with transparent validation metadata for genuine discovery
+    """
+    # Core validation metrics
     novelty_score: float  # 0-1, how novel is this finding
     novelty_justification: str  # Why is this novel?
     probability_correct: float  # 0-1, confidence in correctness
@@ -74,6 +152,23 @@ class DiscoveryValidation:
     limitations: List[str]  # What are the limitations?
     consistency_with_literature: str  # How consistent with existing work?
     potential_impact: str  # What would change if this is true?
+
+    # NEW: Transparent validation metadata
+    confidence_level: str = "CANDIDATE"  # CANDIDATE, VALIDATED, PUBLISHED
+    validation_timestamp: str = ""  # When validation was performed
+    validation_method: str = "literature_similarity"  # How was novelty assessed?
+
+    # NEW: Literature similarity information
+    literature_similarity: Optional[LiteratureSimilarityInfo] = None
+
+    # NEW: Multi-stage validation results
+    citation_validation: Optional[CitationValidation] = None
+    formula_validation: Optional[FormulaValidation] = None
+    statistical_validation: Optional[StatisticalValidation] = None
+
+    # Validation provenance
+    validation_sources: List[str] = field(default_factory=list)  # arXiv, ADS, etc.
+    validation_version: str = "2.0"  # Version of validation pipeline
 
 
 @dataclass
@@ -149,6 +244,7 @@ class GenuineDiscoverySystem:
         self.is_running = False
         self.discovery_thread: Optional[threading.Thread] = None
         self.stop_event = threading.Event()
+        self.pause_event = threading.Event()  # Separate pause mechanism for user tasks
 
         # Discovery tracking
         self.discovery_cycle = 0
@@ -163,6 +259,52 @@ class GenuineDiscoverySystem:
 
         # ASTRA integration
         self.astra_system = None
+
+        # Literature validation system (NEW v3.0: EUREKA-ENHANCED validation for genuine insight detection)
+        self.literature_validator: Optional[LiteratureValidator] = None
+        self.validation_pipeline: Optional[ValidationPipeline] = None
+        self.current_novelty_report: Optional[NoveltyReport] = None
+        self.current_pipeline_report: Optional[PipelineReport] = None
+
+        # NEW: Eureka-enhanced validator for genuine scientific insight detection
+        self.eureka_validator: Optional[EurekaEnhancedValidator] = None
+        self.current_eureka_report: Optional[EurekaValidationReport] = None
+
+        if LITERATURE_VALIDATION_AVAILABLE:
+            try:
+                # Initialize EUREKA-ENHANCED validator (primary validator for genuine insights)
+                if EUREKA_VALIDATION_AVAILABLE:
+                    self.eureka_validator = create_eureka_enhanced_validator(
+                        cache_ttl_seconds=86400,  # 24 hour cache
+                        enable_arxiv=True,
+                        enable_ads=True
+                    )
+                    logger.info("[GenuineDiscovery] EUREKA-ENHANCED validator initialized - genuine insight detection enabled")
+                    logger.info("[GenuineDiscovery] Distinguishes between field activity and true novelty")
+                else:
+                    logger.warning("[GenuineDiscovery] Eureka validator not available, using standard validation")
+
+                # Initialize standard literature validator (fallback and supplementary)
+                self.literature_validator = create_literature_validator(
+                    cache_ttl_seconds=86400,  # 24 hour cache
+                    enable_arxiv=True,
+                    enable_ads=True,
+                    similarity_threshold=0.5
+                )
+
+                # Initialize multi-stage validation pipeline (fallback)
+                self.validation_pipeline = create_validation_pipeline(
+                    literature_validator=self.literature_validator,
+                    enable_citation_validation=True,
+                    enable_formula_validation=True,
+                    enable_statistical_validation=True,
+                    parallel_stages=True
+                )
+
+                logger.info("[GenuineDiscovery] Validation system ready: Eureka-enhanced + multi-stage fallback")
+            except Exception as e:
+                logger.error(f"[GenuineDiscovery] Failed to initialize validation system: {e}")
+                logger.warning("[GenuineDiscovery] Falling back to degraded novelty assessment")
 
         # Load previous discoveries
         self._load_discovery_store()
@@ -183,6 +325,7 @@ class GenuineDiscoverySystem:
         logger.info("[GenuineDiscovery] Starting genuine autonomous discovery...")
         self.is_running = True
         self.stop_event.clear()
+        self.pause_event.clear()  # Clear pause event on start
 
         # Start discovery thread
         self.discovery_thread = threading.Thread(
@@ -209,6 +352,23 @@ class GenuineDiscoverySystem:
         self._save_discovery_store()
         logger.info("[GenuineDiscovery] Discovery stopped")
 
+    def get_discovery_status(self) -> Dict[str, Any]:
+        """Get current discovery status and statistics"""
+        discovery_rate = 0.0
+        if self.discovery_cycle > 0:
+            discovery_rate = len(self.genuine_discoveries) / self.discovery_cycle
+
+        return {
+            'is_running': self.is_running,
+            'discovery_cycle': self.discovery_cycle,
+            'genuine_discoveries': len(self.genuine_discoveries),
+            'discovery_rate': discovery_rate,
+            'analyzing_promising_candidate': self.analyzing_promising_candidate,
+            'validation_available': LITERATURE_VALIDATION_AVAILABLE and self.validation_pipeline is not None,
+            'eureka_validation_available': EUREKA_VALIDATION_AVAILABLE and self.eureka_validator is not None,
+            'validation_method': 'eureka_enhanced' if self.eureka_validator else 'standard'
+        }
+
     def _discovery_loop(self):
         """Main discovery loop - genuine research methodology with smart candidate focusing"""
         logger.info("[GenuineDiscovery] Discovery loop starting")
@@ -216,8 +376,18 @@ class GenuineDiscoverySystem:
 
         while not self.stop_event.is_set():
             try:
+                # Check if paused for user task
+                if self.pause_event.is_set():
+                    logger.info("[GenuineDiscovery] Paused for user task - waiting to resume...")
+                    self.pause_event.wait()  # Wait until pause_event is cleared
+                    logger.info("[GenuineDiscovery] Resumed from user task")
+
                 # Check if we're currently analyzing a promising candidate
                 if self.analyzing_promising_candidate:
+                    # Check for pause_event before continuing analysis
+                    if self.pause_event.is_set():
+                        self.pause_event.wait()  # Wait for pause to clear
+                        logger.info("[GenuineDiscovery] Resumed analysis during pause")
                     if self._should_continue_analysis():
                         logger.info(f"[GenuineDiscovery] Continuing analysis of promising candidate: {self.promising_candidate.title}")
                         time.sleep(60)  # Check again in 1 minute
@@ -231,8 +401,8 @@ class GenuineDiscoverySystem:
                 self.discovery_cycle += 1
                 logger.info(f"[GenuineDiscovery] Starting discovery cycle {self.discovery_cycle}")
 
-                # Run genuine discovery methodology
-                discoveries = self._run_genuine_discovery_cycle()
+                # Run genuine discovery methodology (async for literature validation)
+                discoveries = asyncio.run(self._run_genuine_discovery_cycle())
 
                 # Process discoveries and check for promising candidates
                 promising_found = False
@@ -258,9 +428,15 @@ class GenuineDiscoverySystem:
                 # Wait for next cycle only if not analyzing a promising candidate
                 if promising_found:
                     logger.info("[GenuineDiscovery] Promising candidate found - waiting 1 minute before next check")
+                    # Check for pause_event before waiting
+                    if self.pause_event.is_set():
+                        self.pause_event.wait()  # Wait for pause to clear
                     self.stop_event.wait(60)  # Wait 1 minute before checking analysis status
                 else:
                     logger.info(f"[GenuineDiscovery] Cycle {self.discovery_cycle} complete, {len(discoveries)} candidates")
+                    # Check for pause_event before waiting
+                    if self.pause_event.is_set():
+                        self.pause_event.wait()  # Wait for pause to clear
                     self.stop_event.wait(self.config.discovery_interval_seconds)  # 1 minute for next cycle
 
             except Exception as e:
@@ -269,8 +445,8 @@ class GenuineDiscoverySystem:
 
         logger.info("[GenuineDiscovery] Discovery loop ended")
 
-    def _run_genuine_discovery_cycle(self) -> List[GenuineDiscovery]:
-        """Run one cycle of genuine discovery attempts"""
+    async def _run_genuine_discovery_cycle(self) -> List[GenuineDiscovery]:
+        """Run one cycle of genuine discovery attempts (async for literature validation)"""
         discoveries = []
         max_attempts = self.config.max_discoveries_per_cycle * 3  # Try 3x more than we expect
 
@@ -282,7 +458,8 @@ class GenuineDiscoverySystem:
             discovery_type = self._choose_discovery_type()
 
             try:
-                discovery = self._attempt_genuine_discovery(discovery_type)
+                # Await the discovery attempt (includes literature search)
+                discovery = await self._attempt_genuine_discovery(discovery_type)
                 if discovery:
                     discoveries.append(discovery)
 
@@ -321,8 +498,8 @@ class GenuineDiscoverySystem:
 
         return random.choice(enabled_types)
 
-    def _attempt_genuine_discovery(self, discovery_type: DiscoveryType) -> Optional[GenuineDiscovery]:
-        """Attempt a genuine discovery based on type"""
+    async def _attempt_genuine_discovery(self, discovery_type: DiscoveryType) -> Optional[GenuineDiscovery]:
+        """Attempt a genuine discovery based on type (async for literature validation)"""
         logger.info(f"[GenuineDiscovery] Attempting {discovery_type.value} discovery")
 
         if not self.astra_system:
@@ -339,8 +516,8 @@ class GenuineDiscoverySystem:
             if not result or 'answer' not in result:
                 return None
 
-            # Process result into genuine discovery
-            return self._process_discovery_result(result['answer'], discovery_type)
+            # Process result into genuine discovery (async for literature search)
+            return await self._process_discovery_result(result['answer'], discovery_type)
 
         except Exception as e:
             logger.error(f"[GenuineDiscovery] Error conducting discovery: {e}")
@@ -363,195 +540,170 @@ class GenuineDiscoverySystem:
             return self._generate_theoretical_synthesis_query()
 
     def _generate_pattern_discovery_query(self) -> str:
-        """Generate query for discovering new patterns in existing data"""
-        # Select diverse domains to avoid repetition
+        """Generate focused query for discovering new patterns"""
+        # Select MORE diverse domains to avoid repetition
         domains = self.config.primary_domains
         selected_domains = random.sample(domains, min(4, len(domains)))
 
-        return f"""Conduct a genuine pattern discovery analysis in astrophysics using enhanced causal discovery methods.
+        # Add random specific focus areas to increase diversity
+        focus_areas = [
+            "magnetic field correlations", "velocity structure functions",
+            "chemical gradients", "turbulent cascading", "density fluctuations",
+            "temporal evolution", "spatial correlations", "scaling relationships",
+            "phase transitions", "transport coefficients"
+        ]
+        selected_focus = random.choice(focus_areas)
 
-FOCUS: Find novel patterns, correlations, or causal relationships that have NOT been extensively documented.
+        # Add random constraint to vary queries
+        constraints = [
+            "using high-resolution datasets", "focusing on nearby regions",
+            "considering edge-on systems", "analyzing face-on observations",
+            "with multi-wavelength data", "across different environments"
+        ]
+        selected_constraint = random.choice(constraints)
 
-METHODOLOGY:
-1. Choose a specific astrophysical domain from: {', '.join(selected_domains)}
-2. Use enhanced causal discovery algorithms with:
-   - Parallel independence testing for multi-wavelength data
-   - Intelligent caching optimized for sky regions and spectral bands
-   - Early stopping with astronomical confidence thresholds
-   - Adaptive parameter tuning for different astronomical phenomena
-3. Identify relevant published datasets or observational databases
-4. Look for unexpected causal relationships, not just correlations
-5. Focus on cross-domain connections (e.g., how ISM properties causally affect star formation)
-6. Consider temporal evolution patterns, spatial causal structures, or multi-scale causal relationships
+        timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+        cycle_id = f"pattern-{self.discovery_cycle}-{timestamp}"
 
-ENHANCED CAUSAL DISCOVERY APPROACH:
-- Use OptimizedAstrophysicalCausalDiscovery for 5-10x performance improvement
-- Leverage astronomical caching: sky regions, wavelength bands, instruments
-- Apply adaptive significance levels for different sample sizes and noise characteristics
-- Implement early stopping when strong causal patterns emerge
-- Utilize parallel processing for multi-wavelength or multi-region analyses
+        return f"""Generate ONE novel pattern discovery in: {', '.join(selected_domains)}
 
-REQUIREMENTS:
-- Do NOT just summarize known relationships
-- Look for CAUSAL relationships, not just correlations
-- Use enhanced causal discovery to identify genuine causal mechanisms
-- Consider non-obvious causal connections between different physical regimes
-- Quantify causal relationships with mathematical expressions where possible
-- Focus on patterns that challenge existing theoretical understanding
-
-OUTPUT FORMAT:
-- Causal pattern discovered (with mathematical description if applicable)
-- Why this causal pattern is novel or unexpected
-- Data sources analyzed with enhanced causal discovery
-- Statistical significance and causal strength of the pattern
-- Potential physical causal mechanism
-- Testable causal predictions arising from this pattern
-- How this causal pattern challenges or extends current understanding
-- Performance metrics from enhanced causal discovery (speedup, cache hit rate)"""
+Specific focus: {selected_focus} {selected_constraint}
+Cycle ID: {cycle_id} - Find unexpected causal relationship.
+Requirements: Be specific (50-100 words), quantitative, testable.
+Output: Single pattern with mechanism, statistical significance, prediction."""
 
     def _generate_theoretical_synthesis_query(self) -> str:
-        """Generate query for theoretical synthesis discovery"""
-        # Select diverse domains to avoid repetition
+        """Generate focused query for theoretical synthesis"""
+        # Select MORE diverse domains to avoid repetition
         domains = self.config.primary_domains
-        selected_domains = random.sample(domains, min(5, len(domains)))
+        selected_domains = random.sample(domains, min(4, len(domains)))
 
-        return f"""Conduct genuine theoretical synthesis in astrophysics.
+        # Add random connection types to increase diversity
+        connection_types = [
+            "quantum-classical bridge", "micro-macro connection",
+            "temporal-causal link", "geometric-physical relationship",
+            "statistical-deterministic bridge", "local-nonlocal connection"
+        ]
+        selected_connection = random.choice(connection_types)
 
-FOCUS: Connect seemingly unrelated astrophysical phenomena in a novel way that provides new insight.
+        # Add random theoretical framework
+        frameworks = [
+            "using information theory", "applying network analysis",
+            "through symmetry principles", "via thermodynamic limits",
+            "using complexity metrics", "through emergence concepts"
+        ]
+        selected_framework = random.choice(frameworks)
 
-METHODOLOGY:
-1. Identify two or more seemingly unrelated astrophysical phenomena from: {', '.join(selected_domains)}
-2. Find a unifying principle, mechanism, or mathematical framework that connects them
-3. The connection must be NON-OBVIOUS and not extensively documented in literature
-4. The synthesis should provide new understanding or predictive power
-5. Consider connections across different scales, regimes, or fundamental physics
+        timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+        cycle_id = f"synthesis-{self.discovery_cycle}-{timestamp}"
 
-REQUIREMENTS:
-- Do NOT connect phenomena that are already known to be related
-- Look for cross-scale connections (e.g., how microphysical processes affect galactic evolution)
-- Consider fundamental physics connections (e.g., how quantum effects manifest in astrophysical contexts)
-- The synthesis must be genuinely novel, not just a review of known connections
-- Challenge conventional wisdom with unexpected connections
+        return f"""Generate ONE theoretical synthesis in: {', '.join(selected_domains)}
 
-OUTPUT FORMAT:
-- Phenomena being connected (specific and unexpected pairing)
-- Novel unifying principle/mechanism
-- Why this connection is unexpected or novel
-- Mathematical framework if applicable
-- New insights or predictions from this synthesis
-- How this synthesis changes our understanding
-- Testable predictions that distinguish this synthesis from conventional approaches"""
+Connection type: {selected_connection} {selected_framework}
+Cycle ID: {cycle_id} - Connect unrelated phenomena unexpectedly.
+Requirements: Be specific (50-100 words), fundamental, cross-domain.
+Output: Novel connection with mechanism, implications, testable prediction."""
 
     def _generate_gap_identification_query(self) -> str:
-        """Generate query for identifying gaps in current understanding"""
-        # Select diverse domains to avoid repetition
+        """Generate focused query for gap identification"""
+        # Select MORE diverse domains to avoid repetition
         domains = self.config.primary_domains
         selected_domains = random.sample(domains, min(4, len(domains)))
 
-        return f"""Conduct genuine gap identification in astrophysical understanding.
+        # Add random gap types to increase diversity
+        gap_types = [
+            "theoretical-observational discrepancy", "missing mechanism",
+            "unexplained parameter correlation", "contradiction between frameworks",
+            "missing intermediate scale", "inconsistent boundary conditions"
+        ]
+        selected_gap = random.choice(gap_types)
 
-FOCUS: Find specific contradictions, missing pieces, or inconsistencies in current astrophysical knowledge.
+        # Add random analysis approach
+        approaches = [
+            "using high-precision data", "considering extreme regimes",
+            "across different redshifts", "in low-metallicity environments",
+            "using multi-messenger data", "across cosmic time"
+        ]
+        selected_approach = random.choice(approaches)
 
-METHODOLOGY:
-1. Examine current understanding in: {', '.join(selected_domains)}
-2. Look for:
-   - Contradictions between theoretical predictions and observations
-   - Missing physical mechanisms in widely accepted models
-   - Inconsistencies between different theoretical frameworks
-   - Unexplained parameter values or relationships
-   - Discrepancies between different observational methods
-3. Focus on gaps that are specific and addressable
+        timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+        cycle_id = f"gap-{self.discovery_cycle}-{timestamp}"
 
-REQUIREMENTS:
-- Do NOT just list open problems in general
-- Identify specific, quantifiable gaps or contradictions
-- Explain why current explanations are insufficient
-- Consider whether the gap represents a fundamental misunderstanding vs. missing complexity
-- Look for gaps that have been overlooked or underestimated
+        return f"""Generate ONE gap identification in: {', '.join(selected_domains)}
 
-OUTPUT FORMAT:
-- Specific gap or contradiction identified
-- Why current understanding is insufficient
-- Evidence for the gap (observational or theoretical)
-- Proposed resolution direction (if any)
-- Impact if this gap were resolved
-- Testable predictions that would distinguish between possible resolutions
-- How this gap has been overlooked or underestimated"""
+Gap type: {selected_gap} {selected_approach}
+Cycle ID: {cycle_id} - Find specific contradiction or missing piece.
+Requirements: Be specific (50-100 words), quantifiable, fundamental.
+Output: Single gap with evidence, impact, resolution direction."""
 
     def _generate_predictive_hypothesis_query(self) -> str:
-        """Generate query for predictive hypothesis generation"""
-        # Select diverse domains to avoid repetition
+        """Generate focused query for predictive hypothesis generation"""
+        # Select MORE diverse domains to avoid repetition
         domains = self.config.primary_domains
         selected_domains = random.sample(domains, min(4, len(domains)))
 
-        return f"""Generate genuinely novel predictive hypotheses in astrophysics.
+        # Add random prediction areas to increase diversity
+        prediction_areas = [
+            "unobserved particle signature", "unexpected scaling law",
+            "novel oscillation mode", "counter-intuitive correlation",
+            "missing spectral line", "unexpected phase transition",
+            "novel instability regime", "unexplained energy transport"
+        ]
+        selected_prediction = random.choice(prediction_areas)
 
-FOCUS: Create specific, testable predictions that go beyond current theoretical expectations.
+        # Add random observational method
+        methods = [
+            "using gravitational lensing", "via spectral line analysis",
+            "through timing measurements", "using polarization signatures",
+            "via gravitational waves", "through neutrino observations"
+        ]
+        selected_method = random.choice(methods)
 
-METHODOLOGY:
-1. Start from established physics in: {', '.join(selected_domains)}
-2. Extend or combine theories in a novel direction
-3. Generate specific, quantitative predictions
-4. Predict something unexpected or counter-intuitive
-5. Ensure predictions are testable with current or near-future observations
+        timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+        cycle_id = f"hypothesis-{self.discovery_cycle}-{timestamp}"
 
-REQUIREMENTS:
-- Predictions must be genuinely novel, not just expected outcomes
-- Must be specific and quantifiable (not "we might see something interesting")
-- Should be surprising or counter-intuitive
-- Must be testable/falsifiable
-- Should arise from rigorous reasoning, not speculation
-- Challenge conventional wisdom or extend theories in unexpected directions
+        return f"""Generate ONE predictive hypothesis in: {', '.join(selected_domains)}
 
-OUTPUT FORMAT:
-- Novel prediction (specific and quantitative)
-- Theoretical basis for the prediction
-- Why this prediction is unexpected
-- How to test/observe the predicted effect
-- Timeline for testability (current tech vs. future)
-- Implications if prediction is confirmed vs. falsified
-- How this prediction could distinguish between competing theories"""
+Prediction target: {selected_prediction} {selected_method}
+Cycle ID: {cycle_id} - Single testable prediction beyond current theory.
+Requirements: Be specific (50-100 words), quantitative, unexpected.
+Output: Novel prediction with test method, timeline, implications."""
 
     def _generate_computational_reanalysis_query(self) -> str:
-        """Generate query for computational reanalysis"""
-        # Select diverse domains to avoid repetition
+        """Generate focused query for computational reanalysis"""
+        # Select MORE diverse domains to avoid repetition
         domains = self.config.primary_domains
         selected_domains = random.sample(domains, min(4, len(domains)))
 
-        return f"""Conduct novel computational reanalysis of existing astrophysical data.
+        # Add random analysis methods to increase diversity
+        analysis_methods = [
+            "machine learning classification", "topological data analysis",
+            "wavelet decomposition", "causal inference algorithms",
+            "information-theoretic approach", "network analysis methods",
+            "multiresolution analysis", "symbolic regression"
+        ]
+        selected_method = random.choice(analysis_methods)
 
-FOCUS: Apply new analytical methods or perspectives to existing datasets to discover what was missed.
+        # Add random data types
+        data_types = [
+            "time-series observations", "spectral line surveys",
+            "multi-wavelength images", "gravitational wave signals",
+            "polarization measurements", "velocity field data"
+        ]
+        selected_data = random.choice(data_types)
 
-METHODOLOGY:
-1. Choose a well-studied astrophysical phenomenon from: {', '.join(selected_domains)}
-2. Identify relevant existing datasets (observations, simulations, surveys)
-3. Apply a NON-STANDARD analytical approach:
-   - New statistical methods
-   - Alternative parameterizations
-   - Cross-domain analysis techniques
-   - Machine learning or pattern recognition approaches
-   - Time-series analysis or signal processing methods
-   - Topological or network analysis approaches
-4. Look for what previous analyses might have missed
+        timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+        cycle_id = f"reanalysis-{self.discovery_cycle}-{timestamp}"
 
-REQUIREMENTS:
-- Do NOT just reconfirm known results with standard methods
-- The analytical approach must be genuinely different from what's typically done
-- Focus on finding subtle patterns or relationships that standard approaches miss
-- Quantify confidence in any new findings
-- Consider systematic effects or biases that previous analyses might have missed
+        return f"""Generate ONE computational reanalysis in: {', '.join(selected_domains)}
 
-OUTPUT FORMAT:
-- Dataset reanalyzed
-- Novel analytical method applied
-- New findings (if any)
-- Why standard methods missed this
-- Statistical confidence in new findings
-- Cross-validation with other datasets/methods
-- Potential systematic effects or biases uncovered"""
+Method: {selected_method} applied to {selected_data}
+Cycle ID: {cycle_id} - Apply new analytical approach to existing data.
+Requirements: Be specific (50-100 words), novel technique, quantitative.
+Output: New finding with method, statistical significance, validation."""
 
-    def _process_discovery_result(self, result_text: str, discovery_type: DiscoveryType) -> Optional[GenuineDiscovery]:
-        """Process ASTRA result into genuine discovery with validation"""
+    async def _process_discovery_result(self, result_text: str, discovery_type: DiscoveryType) -> Optional[GenuineDiscovery]:
+        """Process ASTRA result into genuine discovery with validation (async for literature search)"""
 
         # Check if result is too short or looks like a standard analysis rejection
         if len(result_text) < 100:
@@ -569,14 +721,14 @@ OUTPUT FORMAT:
         abstract = self._extract_abstract(result_text)
         detailed_description = result_text
 
-        # Perform rigorous validation
-        validation = self._validate_discovery(result_text, discovery_type)
+        # Extract domains FIRST (needed for validation)
+        domains = self._extract_domains(result_text)
+
+        # Perform rigorous validation (async for literature search)
+        validation = await self._validate_discovery(result_text, discovery_type, domains)
 
         # Determine novelty level
         novelty_level = self._assess_novelty_level(validation.novelty_score)
-
-        # Extract domains
-        domains = self._extract_domains(result_text)
 
         # Generate methodology
         methodology = f"{discovery_type.value} using ASTRA's integrated capabilities across {', '.join(domains)}"
@@ -600,21 +752,300 @@ OUTPUT FORMAT:
 
         return discovery
 
-    def _validate_discovery(self, result_text: str, discovery_type: DiscoveryType) -> DiscoveryValidation:
-        """Perform rigorous validation of discovery"""
+    async def _validate_discovery(
+        self,
+        result_text: str,
+        discovery_type: DiscoveryType,
+        domains: List[str]
+    ) -> DiscoveryValidation:
+        """
+        Perform rigorous validation of discovery using EUREKA-ENHANCED validator
 
-        # This is where we implement the validation framework
-        # In a real system, this would involve:
-        # 1. Literature comparison to assess novelty
-        # 2. Internal consistency checking
-        # 3. Probability assessment based on evidence strength
-        # 4. Testability analysis
-        # 5. Assumption extraction
+        ENHANCED v3.0: Now uses EurekaEnhancedValidator for genuine insight detection:
+        - Extracts specific scientific claims from discovery text
+        - Searches literature for similar CLAIMS (not just topics)
+        - Identifies Eureka moments - genuine advances vs field activity
+        - Provides detailed reasoning about true novelty
+        - Falls back to standard validation if Eureka unavailable
+        """
 
-        # For now, implement a basic version
-        novelty_score = self._assess_novelty_score(result_text, discovery_type)
+        # Use EUREKA-ENHANCED validator if available (primary method)
+        if self.eureka_validator:
+            try:
+                logger.info(f"[GenuineDiscovery] Running EUREKA-ENHANCED validation for genuine insight detection...")
+                eureka_report = await self.eureka_validator.validate_genuine_advance(
+                    discovery_claim=result_text,
+                    domains=domains,
+                    discovery_type=discovery_type.value,
+                    max_results_per_source=50
+                )
+
+                # Store Eureka report for reference
+                self.current_eureka_report = eureka_report
+                self.current_novelty_report = eureka_report.novelty_report if hasattr(eureka_report, 'novelty_report') else None
+
+                # Extract validation metrics from EUREKA assessment
+                novelty_score = eureka_report.eureka_assessment.claim_novelty
+                novelty_justification = f"Eureka detection: {eureka_report.eureka_assessment.reasoning}"
+
+                # Get probability from Eureka assessment
+                if eureka_report.represents_genuine_advance:
+                    probability_correct = 0.8  # High confidence if genuine advance detected
+                    probability_justification = "EUREKA MOMENT: Represents genuine new scientific insight"
+                else:
+                    probability_correct = 0.4  # Lower confidence if not genuine advance
+                    probability_justification = "Does not represent genuine advance - similar claims exist"
+
+                # Extract testability from suggested validation methods
+                testability = ", ".join(eureka_report.eureka_assessment.suggested_validation) if eureka_report.eureka_assessment.suggested_validation else "Standard validation"
+                assumptions = self._extract_assumptions(result_text)
+                limitations = eureka_report.limitations if eureka_report.limitations else []
+                limitations.extend(self._identify_limitations(result_text, discovery_type))
+
+                # Literature consistency from Eureka assessment
+                literature_consistency = eureka_report.explanation
+
+                # Potential impact from Eureka assessment
+                potential_impact = eureka_report.eureka_assessment.potential_impact
+
+                # Build literature similarity info from Eureka report
+                literature_similarity = None
+                validation_timestamp = datetime.now().isoformat()
+                validation_sources = []
+                confidence_level = eureka_report.eureka_assessment.confidence
+
+                if eureka_report.similar_papers:
+                    # Populate literature similarity from Eureka report
+                    similar_papers_data = []
+                    for paper in eureka_report.similar_papers[:10]:
+                        similar_papers_data.append({
+                            "title": paper.title,
+                            "authors": paper.authors,
+                            "year": paper.year,
+                            "similarity": round(paper.similarity_score * 100, 2),
+                            "reasoning": paper.relevance_reasoning
+                        })
+
+                    literature_similarity = LiteratureSimilarityInfo(
+                        most_similar_paper=(
+                            eureka_report.similar_papers[0].title
+                            if eureka_report.similar_papers
+                            else "None found"
+                        ),
+                        similarity_percentage=round(
+                            (1.0 - eureka_report.novelty_score) * 100, 2
+                        ),
+                        similar_papers=similar_papers_data,
+                        total_papers_searched=eureka_report.total_papers_searched,
+                        search_time_seconds=round(eureka_report.validation_time_seconds, 2)
+                    )
+
+                    # Track validation sources
+                    if self.eureka_validator and self.eureka_validator.literature_validator:
+                        if self.eureka_validator.literature_validator.arxiv_client:
+                            validation_sources.append("arXiv")
+                        if self.eureka_validator.literature_validator.ads_client:
+                            validation_sources.append("ADS")
+
+                logger.info(
+                    f"[GenuineDiscovery] EUREKA validation complete: "
+                    f"genuine_advance={eureka_report.represents_genuine_advance}, "
+                    f"eureka_score={eureka_report.eureka_assessment.eureka_score:.3f}, "
+                    f"claim_novelty={eureka_report.eureka_assessment.claim_novelty:.3f}, "
+                    f"field_activity={eureka_report.field_activity_level:.3f}"
+                )
+
+                return DiscoveryValidation(
+                    novelty_score=novelty_score,
+                    novelty_justification=novelty_justification,
+                    probability_correct=probability_correct,
+                    probability_justification=probability_justification,
+                    testability=testability,
+                    assumptions=assumptions,
+                    limitations=limitations,
+                    consistency_with_literature=literature_consistency,
+                    potential_impact=potential_impact,
+                    confidence_level=confidence_level,
+                    validation_timestamp=validation_timestamp,
+                    validation_method="eureka_enhanced",
+                    literature_similarity=literature_similarity,
+                    validation_sources=validation_sources,
+                    validation_version="3.0"
+                )
+
+            except Exception as e:
+                logger.error(f"[GenuineDiscovery] Eureka validation failed: {e}")
+                logger.warning("[GenuineDiscovery] Falling back to standard validation")
+
+        # Fallback: Use standard ValidationPipeline if available
+        if self.validation_pipeline:
+            try:
+                logger.info(f"[GenuineDiscovery] Running standard multi-stage validation pipeline...")
+                pipeline_report = await self.validation_pipeline.validate(
+                    discovery_claim=result_text,
+                    domains=domains,
+                    discovery_type=discovery_type.value
+                )
+
+                # Store pipeline report for reference
+                self.current_pipeline_report = pipeline_report
+                self.current_novelty_report = pipeline_report.novelty_report
+
+                # Extract validation metrics from pipeline report
+                novelty_score = pipeline_report.novelty_report.novelty_score if pipeline_report.novelty_report else 0.5
+                novelty_justification = f"Validated against {pipeline_report.novelty_report.total_papers_searched if pipeline_report.novelty_report else 0} scientific papers using semantic similarity analysis"
+
+                # Get probability from overall validation success
+                probability_correct = 0.7 if pipeline_report.overall_status == ValidationStatus.VALIDATED else 0.5
+                if pipeline_report.overall_status == ValidationStatus.CANDIDATE:
+                    probability_correct = 0.6
+                probability_justification = f"Based on multi-stage validation: {pipeline_report.overall_status.value}"
+
+                # Extract testability from limitations
+                testability = self._assess_testability(result_text, discovery_type)
+                assumptions = self._extract_assumptions(result_text)
+                limitations = pipeline_report.limitations if pipeline_report.limitations else []
+                limitations.extend(self._identify_limitations(result_text, discovery_type))
+
+                # Literature consistency from semantic similarity
+                if pipeline_report.novelty_report and pipeline_report.novelty_report.similar_papers:
+                    max_sim = max([p.similarity_score for p in pipeline_report.novelty_report.similar_papers])
+                    if max_sim > 0.7:
+                        literature_consistency = "High similarity to existing literature suggests limited novelty"
+                    elif max_sim > 0.4:
+                        literature_consistency = "Moderate similarity to existing work - some novelty possible"
+                    else:
+                        literature_consistency = "Low similarity to existing literature - high novelty potential"
+                else:
+                    literature_consistency = "Unable to assess literature consistency"
+
+                # Potential impact from novelty and confidence
+                potential_impact = self._assess_potential_impact(result_text, discovery_type)
+                if novelty_score > 0.7:
+                    potential_impact = "High potential impact if validated - novel finding with limited similar work"
+                elif novelty_score > 0.4:
+                    potential_impact = "Moderate potential impact - extends existing understanding"
+                else:
+                    potential_impact = "Lower potential impact - similar to existing findings"
+
+                # Build literature similarity info from pipeline report
+                literature_similarity = None
+                validation_timestamp = datetime.now().isoformat()
+                validation_sources = []
+                confidence_level = pipeline_report.confidence_level.value
+
+                if pipeline_report.novelty_report:
+                    # Populate literature similarity from validation report
+                    similar_papers_data = []
+                    for paper in pipeline_report.novelty_report.similar_papers[:10]:
+                        similar_papers_data.append({
+                            "title": paper.title,
+                            "authors": paper.authors,
+                            "year": paper.year,
+                            "similarity": round(paper.similarity_score * 100, 2),
+                            "reasoning": paper.relevance_reasoning
+                        })
+
+                    literature_similarity = LiteratureSimilarityInfo(
+                        most_similar_paper=(
+                            pipeline_report.novelty_report.similar_papers[0].title
+                            if pipeline_report.novelty_report.similar_papers
+                            else "None found"
+                        ),
+                        similarity_percentage=round(
+                            (1.0 - pipeline_report.novelty_report.novelty_score) * 100, 2
+                        ),
+                        similar_papers=similar_papers_data,
+                        total_papers_searched=pipeline_report.novelty_report.total_papers_searched,
+                        search_time_seconds=round(pipeline_report.novelty_report.validation_time_seconds, 2)
+                    )
+
+                    # Track validation sources
+                    if self.literature_validator:
+                        if self.literature_validator.arxiv_client:
+                            validation_sources.append("arXiv")
+                        if self.literature_validator.ads_client:
+                            validation_sources.append("ADS")
+
+                # Build citation validation if available
+                citation_validation = None
+                if pipeline_report.citation_report:
+                    citation_validation = CitationValidation(
+                        total_citations=pipeline_report.citation_report.total_citations,
+                        verified_citations=pipeline_report.citation_report.verified_citations,
+                        hallucinated_citations=pipeline_report.citation_report.hallucinated_citations,
+                        unverifiable_citations=pipeline_report.citation_report.unverifiable_citations,
+                        citation_details=pipeline_report.citation_report.citation_details
+                    )
+
+                # Build formula validation if available
+                formula_validation = None
+                if pipeline_report.formula_report:
+                    formula_validation = FormulaValidation(
+                        total_formulas=pipeline_report.formula_report.total_formulas,
+                        verified_formulas=pipeline_report.formula_report.verified_formulas,
+                        derivable_formulas=pipeline_report.formula_report.derivable_formulas,
+                        inconsistent_formulas=pipeline_report.formula_report.inconsistent_formulas,
+                        unverifiable_formulas=pipeline_report.formula_report.unverifiable_formulas,
+                        formula_details=pipeline_report.formula_report.formula_details
+                    )
+
+                # Build statistical validation if available
+                statistical_validation = None
+                if pipeline_report.statistical_report:
+                    statistical_validation = StatisticalValidation(
+                        statistical_claims=pipeline_report.statistical_report.get("statistical_claims", 0),
+                        validated_claims=pipeline_report.statistical_report.get("validated_claims", 0),
+                        questionable_claims=pipeline_report.statistical_report.get("questionable_claims", 0),
+                        claim_details=pipeline_report.statistical_report.get("claim_details", [])
+                    )
+
+                logger.info(
+                    f"[GenuineDiscovery] Pipeline validation complete: "
+                    f"status={pipeline_report.overall_status.value}, "
+                    f"confidence={confidence_level}, "
+                    f"novelty={novelty_score:.3f}, "
+                    f"time={pipeline_report.total_validation_time:.2f}s"
+                )
+
+                return DiscoveryValidation(
+                    novelty_score=novelty_score,
+                    novelty_justification=novelty_justification,
+                    probability_correct=probability_correct,
+                    probability_justification=probability_justification,
+                    testability=testability,
+                    assumptions=assumptions,
+                    limitations=limitations,
+                    consistency_with_literature=literature_consistency,
+                    potential_impact=potential_impact,
+
+                    # NEW: Transparent validation metadata
+                    confidence_level=confidence_level,
+                    validation_timestamp=validation_timestamp,
+                    validation_method="multi_stage_pipeline",
+                    literature_similarity=literature_similarity,
+                    validation_sources=validation_sources,
+                    validation_version="2.0",
+
+                    # NEW: Multi-stage validation results
+                    citation_validation=citation_validation,
+                    formula_validation=formula_validation,
+                    statistical_validation=statistical_validation
+                )
+
+            except Exception as e:
+                logger.error(f"[GenuineDiscovery] Validation pipeline failed: {e}")
+                logger.warning("[GenuineDiscovery] Falling back to basic validation")
+                # Fall through to basic validation
+
+        # Fallback to basic validation if pipeline not available
+        logger.info("[GenuineDiscovery] Using basic validation (pipeline unavailable)")
+
+        # ASSESS NOVELTY via real literature search (async)
+        novelty_score = await self._assess_novelty_score(result_text, discovery_type, domains)
         novelty_justification = self._explain_novelty_assessment(result_text, discovery_type)
 
+        # Other validation metrics
         probability_correct = self._assess_probability(result_text, discovery_type)
         probability_justification = self._explain_probability_assessment(result_text)
 
@@ -623,6 +1054,53 @@ OUTPUT FORMAT:
         limitations = self._identify_limitations(result_text, discovery_type)
         literature_consistency = self._check_literature_consistency(result_text)
         potential_impact = self._assess_potential_impact(result_text, discovery_type)
+
+        # Build literature similarity info if available
+        literature_similarity = None
+        confidence_level = "CANDIDATE"
+        validation_timestamp = datetime.now().isoformat()
+        validation_sources = []
+
+        if self.current_novelty_report:
+            # Populate literature similarity from validation report
+            similar_papers_data = []
+            for paper in self.current_novelty_report.similar_papers[:10]:
+                similar_papers_data.append({
+                    "title": paper.title,
+                    "authors": paper.authors,
+                    "year": paper.year,
+                    "similarity": round(paper.similarity_score * 100, 2),
+                    "reasoning": paper.relevance_reasoning
+                })
+
+            literature_similarity = LiteratureSimilarityInfo(
+                most_similar_paper=(
+                    self.current_novelty_report.similar_papers[0].title
+                    if self.current_novelty_report.similar_papers
+                    else "None found"
+                ),
+                similarity_percentage=round(
+                    (1.0 - self.current_novelty_report.novelty_score) * 100, 2
+                ),
+                similar_papers=similar_papers_data,
+                total_papers_searched=self.current_novelty_report.total_papers_searched,
+                search_time_seconds=round(self.current_novelty_report.validation_time_seconds, 2)
+            )
+
+            # Determine confidence level
+            if self.current_novelty_report.novelty_score >= 0.7:
+                confidence_level = "CANDIDATE"  # High novelty, needs validation
+            elif self.current_novelty_report.novelty_score >= 0.5:
+                confidence_level = "CANDIDATE"
+            else:
+                confidence_level = "CANDIDATE"  # Even low novelty starts as candidate
+
+            # Track validation sources
+            if self.literature_validator:
+                if self.literature_validator.arxiv_client:
+                    validation_sources.append("arXiv")
+                if self.literature_validator.ads_client:
+                    validation_sources.append("ADS")
 
         return DiscoveryValidation(
             novelty_score=novelty_score,
@@ -633,11 +1111,24 @@ OUTPUT FORMAT:
             assumptions=assumptions,
             limitations=limitations,
             consistency_with_literature=literature_consistency,
-            potential_impact=potential_impact
+            potential_impact=potential_impact,
+
+            # NEW: Transparent validation metadata
+            confidence_level=confidence_level,
+            validation_timestamp=validation_timestamp,
+            validation_method="literature_similarity" if self.literature_validator else "keyword_fallback",
+            literature_similarity=literature_similarity,
+            validation_sources=validation_sources,
+            validation_version="2.0"
         )
 
     def _meets_genuine_discovery_standards(self, discovery: GenuineDiscovery) -> bool:
         """Check if discovery meets rigorous standards"""
+
+        # Check for duplicates FIRST to prevent repetitive discoveries
+        if self._is_duplicate_discovery(discovery):
+            logger.info(f"[GenuineDiscovery] ❌ Duplicate discovery rejected: {discovery.title[:50]}...")
+            return False
 
         # Check novelty threshold
         if discovery.validation.novelty_score < self.config.minimum_novelty_score:
@@ -661,6 +1152,32 @@ OUTPUT FORMAT:
                 return False
 
         return True
+
+    def _is_duplicate_discovery(self, discovery: GenuineDiscovery) -> bool:
+        """Check if discovery is a duplicate of existing discoveries"""
+        # Check for exact title match
+        for existing in self.genuine_discoveries:
+            if existing.title == discovery.title:
+                return True
+            # Check for high content similarity (first 300 chars)
+            if len(existing.detailed_description) > 300 and len(discovery.detailed_description) > 300:
+                if existing.detailed_description[:300] == discovery.detailed_description[:300]:
+                    return True
+            # Check for title similarity (80% match)
+            if self._title_similarity(existing.title, discovery.title) > 0.8:
+                return True
+        return False
+
+    def _title_similarity(self, title1: str, title2: str) -> float:
+        """Calculate similarity between two titles"""
+        # Simple word-based similarity
+        words1 = set(title1.lower().split())
+        words2 = set(title2.lower().split())
+        if not words1 or not words2:
+            return 0.0
+        intersection = words1.intersection(words2)
+        union = words1.union(words2)
+        return len(intersection) / len(union)
 
     # Helper methods for discovery processing
 
@@ -702,52 +1219,93 @@ OUTPUT FORMAT:
 
         return domains if domains else ["astrophysics"]
 
-    def _assess_novelty_score(self, text: str, discovery_type: DiscoveryType) -> float:
-        """Assess novelty score (0-1) - how different from existing knowledge?"""
-        # Expanded and more permissive novelty indicators
+    async def _assess_novelty_score(
+        self,
+        text: str,
+        discovery_type: DiscoveryType,
+        domains: Optional[List[str]] = None
+    ) -> float:
+        """
+        Assess novelty score (0-1) using REAL literature validation
+
+        REPLACES previous keyword-based scoring with semantic similarity
+        to actual scientific papers from arXiv and ADS.
+
+        Returns:
+            Novelty score from 0.0 (identical to existing) to 1.0 (completely novel)
+        """
+        # Use literature validator if available
+        if self.literature_validator:
+            try:
+                # Extract domains if not provided
+                if domains is None:
+                    domains = self._extract_domains(text)
+
+                # Run real literature validation
+                novelty_report = await self.literature_validator.validate_novelty(
+                    discovery_claim=text,
+                    domains=domains,
+                    discovery_type=discovery_type.value,
+                    max_results_per_source=50
+                )
+
+                # Store report for transparency
+                self.current_novelty_report = novelty_report
+
+                # Log validation results
+                logger.info(
+                    f"[GenuineDiscovery] Literature validation: "
+                    f"novelty={novelty_report.novelty_score:.3f}, "
+                    f"papers_searched={novelty_report.total_papers_searched}, "
+                    f"similar_papers={len(novelty_report.similar_papers)}, "
+                    f"time={novelty_report.validation_time_seconds:.2f}s"
+                )
+
+                # Log top similar paper for transparency
+                if novelty_report.similar_papers:
+                    top_paper = novelty_report.similar_papers[0]
+                    logger.info(
+                        f"[GenuineDiscovery] Most similar paper: "
+                        f"'{top_paper.title}' (similarity={top_paper.similarity_score:.3f})"
+                    )
+
+                return novelty_report.novelty_score
+
+            except Exception as e:
+                logger.error(f"[GenuineDiscovery] Literature validation failed: {e}")
+                logger.warning("[GenuineDiscovery] Falling back to degraded novelty assessment")
+
+        # Fallback: Degraded novelty assessment (keyword-based, deprecated)
+        logger.warning("[GenuineDiscovery] Using DEGRADED keyword-based novelty assessment")
+        return self._degraded_novelty_assessment(text, discovery_type)
+
+    def _degraded_novelty_assessment(self, text: str, discovery_type: DiscoveryType) -> float:
+        """
+        DEGRADED: Keyword-based novelty assessment (fallback only)
+
+        This method should only be used when literature validation is unavailable.
+        It provides a crude approximation of novelty based on text patterns.
+        """
+        # Very conservative scoring for fallback mode
         novelty_indicators = [
             "unexpected", "surprising", "counter-intuitive", "novel", "new connection",
             "previously unnoticed", "unexplained", "contradicts", "challenges",
-            "for the first time", "not previously", "genuinely new", "unconventional",
-            "alternative", "departure from", "beyond", "extends", "suggests",
-            "indicates", "reveals", "shows", "demonstrates", "proposes", "hypothesizes",
-            "speculates", "predicts", "correlation", "relationship", "pattern",
-            "trend", "scaling", "dependence", "connection", "mechanism", "framework",
-            "approach", "method", "analysis", "result", "finding", "discovery",
-            "insight", "understanding", "explanation", "interpretation", "implication"
-        ]
-
-        # Anti-patterns that reduce novelty (but don't eliminate it)
-        standard_analysis_indicators = [
-            "well-known", "established", "standard", "typical", "conventional",
-            "widely accepted", "commonly understood", "textbook", "basic"
+            "for the first time", "not previously", "genuinely new", "unconventional"
         ]
 
         text_lower = text.lower()
         indicator_count = sum(1 for indicator in novelty_indicators if indicator in text_lower)
 
-        # Base score from indicators (more generous)
-        base_score = min(0.7, indicator_count * 0.08)
+        # Very conservative base score
+        base_score = min(0.3, indicator_count * 0.05)
 
-        # Adjust based on specificity and content length
-        if len(text) > 300:  # Substantial content
-            base_score += 0.15
-        if len(text) > 800:  # Very detailed
-            base_score += 0.1
+        # Penalize heavily for standard analysis
+        standard_indicators = ["well-known", "established", "standard", "typical"]
+        standard_count = sum(1 for indicator in standard_indicators if indicator in text_lower)
+        base_score -= standard_count * 0.15
 
-        # Adjust based on quantitative content
-        if any(char.isdigit() for char in text):  # Has numbers/quantitative content
-            base_score += 0.15
-
-        # Reduce score for standard analysis indicators (but not to zero)
-        standard_count = sum(1 for indicator in standard_analysis_indicators if indicator in text_lower)
-        base_score -= standard_count * 0.05
-
-        # Ensure minimum threshold for any substantive response
-        if len(text) > 200 and base_score < 0.08:
-            base_score = 0.08
-
-        return max(0.05, min(0.95, base_score))  # Range 0.05-0.95
+        # Low default score in degraded mode
+        return max(0.1, min(0.4, base_score))
 
     def _explain_novelty_assessment(self, text: str, discovery_type: DiscoveryType) -> str:
         """Explain why this novelty score was given"""
@@ -863,7 +1421,40 @@ OUTPUT FORMAT:
                             'assumptions': d.validation.assumptions,
                             'limitations': d.validation.limitations,
                             'literature_consistency': d.validation.consistency_with_literature,
-                            'potential_impact': d.validation.potential_impact
+                            'potential_impact': d.validation.potential_impact,
+                            'confidence_level': d.validation.confidence_level,
+                            'validation_timestamp': d.validation.validation_timestamp,
+                            'validation_method': d.validation.validation_method,
+                            'validation_sources': d.validation.validation_sources,
+                            'validation_version': d.validation.validation_version,
+                            'literature_similarity': {
+                                'most_similar_paper': d.validation.literature_similarity.most_similar_paper if d.validation.literature_similarity else None,
+                                'similarity_percentage': d.validation.literature_similarity.similarity_percentage if d.validation.literature_similarity else None,
+                                'similar_papers': d.validation.literature_similarity.similar_papers if d.validation.literature_similarity else [],
+                                'total_papers_searched': d.validation.literature_similarity.total_papers_searched if d.validation.literature_similarity else 0,
+                                'search_time_seconds': d.validation.literature_similarity.search_time_seconds if d.validation.literature_similarity else 0
+                            } if d.validation.literature_similarity else None,
+                            'citation_validation': {
+                                'total_citations': d.validation.citation_validation.total_citations if d.validation.citation_validation else 0,
+                                'verified_citations': d.validation.citation_validation.verified_citations if d.validation.citation_validation else 0,
+                                'hallucinated_citations': d.validation.citation_validation.hallucinated_citations if d.validation.citation_validation else 0,
+                                'unverifiable_citations': d.validation.citation_validation.unverifiable_citations if d.validation.citation_validation else 0,
+                                'citation_details': d.validation.citation_validation.citation_details if d.validation.citation_validation else []
+                            } if d.validation.citation_validation else None,
+                            'formula_validation': {
+                                'total_formulas': d.validation.formula_validation.total_formulas if d.validation.formula_validation else 0,
+                                'verified_formulas': d.validation.formula_validation.verified_formulas if d.validation.formula_validation else 0,
+                                'derivable_formulas': d.validation.formula_validation.derivable_formulas if d.validation.formula_validation else 0,
+                                'inconsistent_formulas': d.validation.formula_validation.inconsistent_formulas if d.validation.formula_validation else 0,
+                                'unverifiable_formulas': d.validation.formula_validation.unverifiable_formulas if d.validation.formula_validation else 0,
+                                'formula_details': d.validation.formula_validation.formula_details if d.validation.formula_validation else []
+                            } if d.validation.formula_validation else None,
+                            'statistical_validation': {
+                                'statistical_claims': d.validation.statistical_validation.statistical_claims if d.validation.statistical_validation else 0,
+                                'validated_claims': d.validation.statistical_validation.validated_claims if d.validation.statistical_validation else 0,
+                                'questionable_claims': d.validation.statistical_validation.questionable_claims if d.validation.statistical_validation else 0,
+                                'claim_details': d.validation.statistical_validation.claim_details if d.validation.statistical_validation else []
+                            } if d.validation.statistical_validation else None
                         },
                         'timestamp': d.timestamp,
                         'cycle': d.cycle,
@@ -898,33 +1489,98 @@ OUTPUT FORMAT:
 
                 # Reconstruct discovery objects
                 for d_data in store_data.get('discoveries', []):
-                    validation = DiscoveryValidation(
-                        novelty_score=d_data['validation']['novelty_score'],
-                        novelty_justification=d_data['validation']['novelty_justification'],
-                        probability_correct=d_data['validation']['probability_correct'],
-                        probability_justification=d_data['validation']['probability_justification'],
-                        testability=d_data['validation']['testability'],
-                        assumptions=d_data['validation']['assumptions'],
-                        limitations=d_data['validation']['limitations'],
-                        consistency_with_literature=d_data['validation']['literature_consistency'],
-                        potential_impact=d_data['validation']['potential_impact']
-                    )
+                    try:
+                        # Handle backwards compatibility for old discovery format
+                        validation_data = d_data['validation']
 
-                    discovery = GenuineDiscovery(
-                        discovery_type=DiscoveryType(d_data['type']),
-                        novelty_level=NoveltyLevel(d_data['novelty_level']),
-                        title=d_data['title'],
-                        abstract=d_data['abstract'],
-                        detailed_description=d_data['detailed_description'],
-                        validation=validation,
-                        timestamp=d_data['timestamp'],
-                        cycle=d_data['cycle'],
-                        domains_involved=d_data['domains'],
-                        methodology=d_data['methodology'],
-                        next_steps=d_data['next_steps']
-                    )
+                        # Reconstruct literature similarity if available
+                        literature_similarity = None
+                        if validation_data.get('literature_similarity'):
+                            lit_sim = validation_data['literature_similarity']
+                            literature_similarity = LiteratureSimilarityInfo(
+                                most_similar_paper=lit_sim.get('most_similar_paper'),
+                                similarity_percentage=lit_sim.get('similarity_percentage', 0),
+                                similar_papers=lit_sim.get('similar_papers', []),
+                                total_papers_searched=lit_sim.get('total_papers_searched', 0),
+                                search_time_seconds=lit_sim.get('search_time_seconds', 0)
+                            )
 
-                    self.genuine_discoveries.append(discovery)
+                        # Reconstruct citation validation if available
+                        citation_validation = None
+                        if validation_data.get('citation_validation'):
+                            cit_val = validation_data['citation_validation']
+                            citation_validation = CitationValidation(
+                                total_citations=cit_val.get('total_citations', 0),
+                                verified_citations=cit_val.get('verified_citations', 0),
+                                hallucinated_citations=cit_val.get('hallucinated_citations', 0),
+                                unverifiable_citations=cit_val.get('unverifiable_citations', 0),
+                                citation_details=cit_val.get('citation_details', [])
+                            )
+
+                        # Reconstruct formula validation if available
+                        formula_validation = None
+                        if validation_data.get('formula_validation'):
+                            form_val = validation_data['formula_validation']
+                            formula_validation = FormulaValidation(
+                                total_formulas=form_val.get('total_formulas', 0),
+                                verified_formulas=form_val.get('verified_formulas', 0),
+                                derivable_formulas=form_val.get('derivable_formulas', 0),
+                                inconsistent_formulas=form_val.get('inconsistent_formulas', 0),
+                                unverifiable_formulas=form_val.get('unverifiable_formulas', 0),
+                                formula_details=form_val.get('formula_details', [])
+                            )
+
+                        # Reconstruct statistical validation if available
+                        statistical_validation = None
+                        if validation_data.get('statistical_validation'):
+                            stat_val = validation_data['statistical_validation']
+                            statistical_validation = StatisticalValidation(
+                                statistical_claims=stat_val.get('statistical_claims', 0),
+                                validated_claims=stat_val.get('validated_claims', 0),
+                                questionable_claims=stat_val.get('questionable_claims', 0),
+                                claim_details=stat_val.get('claim_details', [])
+                            )
+
+                        validation = DiscoveryValidation(
+                            novelty_score=validation_data['novelty_score'],
+                            novelty_justification=validation_data['novelty_justification'],
+                            probability_correct=validation_data['probability_correct'],
+                            probability_justification=validation_data['probability_justification'],
+                            testability=validation_data['testability'],
+                            assumptions=validation_data['assumptions'],
+                            limitations=validation_data['limitations'],
+                            consistency_with_literature=validation_data['literature_consistency'],
+                            potential_impact=validation_data['potential_impact'],
+                            confidence_level=validation_data.get('confidence_level', 'CANDIDATE'),
+                            validation_timestamp=validation_data.get('validation_timestamp', ''),
+                            validation_method=validation_data.get('validation_method', 'literature_similarity'),
+                            validation_sources=validation_data.get('validation_sources', []),
+                            validation_version=validation_data.get('validation_version', '2.0'),
+                            literature_similarity=literature_similarity,
+                            citation_validation=citation_validation,
+                            formula_validation=formula_validation,
+                            statistical_validation=statistical_validation
+                        )
+
+                        discovery = GenuineDiscovery(
+                            discovery_type=DiscoveryType(d_data['type']),
+                            novelty_level=NoveltyLevel(d_data['novelty_level']),
+                            title=d_data['title'],
+                            abstract=d_data['abstract'],
+                            detailed_description=d_data['detailed_description'],
+                            validation=validation,
+                            timestamp=d_data['timestamp'],
+                            cycle=d_data['cycle'],
+                            domains_involved=d_data['domains'],
+                            methodology=d_data['methodology'],
+                            next_steps=d_data['next_steps']
+                        )
+
+                        self.genuine_discoveries.append(discovery)
+
+                    except Exception as e:
+                        logger.warning(f"[GenuineDiscovery] Error loading discovery {d_data.get('title', 'unknown')}: {e}")
+                        continue  # Skip this discovery and continue with others
 
                 self.failed_discovery_attempts = store_data.get('failed_attempts', [])
                 self.discovery_cycle = store_data.get('statistics', {}).get('total_cycles', 0)
@@ -972,13 +1628,19 @@ OUTPUT FORMAT:
     def pause_for_user_task(self, reason: str = "User request"):
         """Pause discovery for user task (takes priority over all discovery activities)"""
         logger.info(f"[GenuineDiscovery] Pausing for user task: {reason}")
-        self.stop_event.set()
-        self.is_running = False
+        self.pause_event.set()  # Use pause_event instead of stop_event
+        # Note: Don't set is_running = False, we want to resume after user task
+
+    def resume_from_user_task(self):
+        """Resume discovery after user task completion"""
+        logger.info("[GenuineDiscovery] Resuming from user task")
+        self.pause_event.clear()
 
     def resume_after_user_task(self):
         """Resume discovery after user task completes"""
         logger.info("[GenuineDiscovery] Resuming after user task")
         self.stop_event.clear()
+        self.pause_event.clear()  # Also clear pause event in case it was set
         self.is_running = True
 
         # Restart discovery thread if needed

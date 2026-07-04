@@ -177,6 +177,12 @@ class EnhancedUnifiedSTANSystem:
                 config=self.config.physics_config
             )
 
+        # 🚀 AUTO-START DISCOVERY SYSTEM - Always runs when ASTRA is active
+        self._auto_start_discovery_enabled = True
+        self._auto_start_discovery_initialized = False
+        # Note: Auto-start initialization deferred to avoid startup delays
+        # Will be initialized on first use or can be manually triggered
+
         # Initialize intuition systems
         self.physics_curriculum: Optional[PhysicsCurriculum] = None
         self.analogical_reasoner: Optional[PhysicalAnalogicalReasoner] = None
@@ -425,6 +431,15 @@ class EnhancedUnifiedSTANSystem:
                 except Exception as e2:
                     logger.warning(f"Could not register user task start: {e}")
 
+        # Pause auto-start discovery if enabled
+        if self._auto_start_discovery_enabled:
+            try:
+                from .auto_start_discovery import auto_pause_discovery
+                auto_pause_discovery()
+                logger.debug("[ASTRA] Auto-start discovery paused for user query")
+            except Exception as e:
+                logger.warning(f"Could not pause auto-start discovery: {e}")
+
     def _handle_user_task_complete(self):
         """Handle completion of user task - resumes discovery"""
         if self.autonomous_discovery:
@@ -441,6 +456,73 @@ class EnhancedUnifiedSTANSystem:
                     logger.debug("[ASTRA] User task completed - v1 discovery resumed")
                 except Exception as e2:
                     logger.warning(f"Could not register user task complete: {e}")
+
+        # Resume auto-start discovery if enabled
+        if self._auto_start_discovery_enabled:
+            try:
+                from .auto_start_discovery import auto_resume_discovery
+                auto_resume_discovery()
+                logger.debug("[ASTRA] Auto-start discovery resumed")
+            except Exception as e:
+                logger.warning(f"Could not resume auto-start discovery: {e}")
+
+    def _initialize_auto_start_discovery(self):
+        """Initialize auto-start discovery system - runs continuously when ASTRA is active"""
+        if not self._auto_start_discovery_enabled:
+            return
+
+        try:
+            from .auto_start_discovery import auto_start_discovery
+            logger.info("[ASTRA] 🚀 Initializing auto-start discovery system...")
+            success = auto_start_discovery()
+            if success:
+                self._auto_start_discovery_initialized = True
+                logger.info("[ASTRA] ✅ Auto-start discovery system initialized successfully")
+                logger.info("[ASTRA] 💡 Discovery will run continuously in the background")
+                logger.info("[ASTRA] 💡 It will automatically pause during user queries")
+            else:
+                logger.warning("[ASTRA] ⚠️ Auto-start discovery initialization failed")
+        except Exception as e:
+            logger.error(f"[ASTRA] Error initializing auto-start discovery: {e}")
+            self._auto_start_discovery_initialized = False
+
+    def get_auto_start_discovery_status(self) -> Dict[str, Any]:
+        """Get status of auto-start discovery system"""
+        if not self._auto_start_discovery_initialized:
+            return {
+                'enabled': self._auto_start_discovery_enabled,
+                'initialized': False,
+                'status': 'not_initialized'
+            }
+
+        try:
+            from .auto_start_discovery import get_auto_start_status
+            status = get_auto_start_status()
+            status['enabled'] = self._auto_start_discovery_enabled
+            status['initialized'] = True
+            return status
+        except Exception as e:
+            logger.error(f"Error getting auto-start status: {e}")
+            return {
+                'enabled': self._auto_start_discovery_enabled,
+                'initialized': True,
+                'status': 'error',
+                'error': str(e)
+            }
+
+    def stop_auto_start_discovery(self):
+        """Stop auto-start discovery system"""
+        if not self._auto_start_discovery_initialized:
+            return
+
+        try:
+            from .auto_start_discovery import auto_stop_discovery
+            logger.info("[ASTRA] 🛑 Stopping auto-start discovery system...")
+            auto_stop_discovery()
+            self._auto_start_discovery_initialized = False
+            logger.info("[ASTRA] ✅ Auto-start discovery stopped")
+        except Exception as e:
+            logger.error(f"Error stopping auto-start discovery: {e}")
 
     def process_query(
         self,

@@ -246,6 +246,295 @@ class SimulatedArxivAPI:
 
 
 # =============================================================================
+# Real arXiv API Implementation (Production)
+# =============================================================================
+try:
+    import arxiv
+    ARXIV_AVAILABLE = True
+except ImportError:
+    ARXIV_AVAILABLE = False
+    print("Warning: arxiv package not available. Install with: pip install arxiv")
+
+
+class RealArxivAPI:
+    """
+    Real arXiv API client with rate limiting, caching, and retry logic.
+
+    Replaces SimulatedArxivAPI for production use.
+    """
+
+    def __init__(
+        self,
+        delay_seconds: float = 3.0,
+        page_size: int = 100,
+        max_retries: int = 3,
+        enable_cache: bool = True,
+        cache_ttl_seconds: int = 86400  # 24 hours
+    ):
+        """
+        Initialize real arXiv API client.
+
+        Args:
+            delay_seconds: Delay between requests (arXiv rate limit: 3 seconds)
+            page_size: Number of results per page
+            max_retries: Maximum retry attempts for failed requests
+            enable_cache: Enable request caching
+            cache_ttl_seconds: Cache time-to-live in seconds
+        """
+        if not ARXIV_AVAILABLE:
+            raise ImportError("arxiv package not available. Install with: pip install arxiv")
+
+        self.client = arxiv.Client(
+            page_size=page_size,
+            delay_seconds=delay_seconds,
+            num_retries=max_retries
+        )
+
+        self.enable_cache = enable_cache
+        self.cache_ttl = cache_ttl_seconds
+        self._cache = {}  # Simple in-memory cache
+        self._cache_timestamps = {}
+
+        self.last_request_time = 0
+        self.min_request_interval = delay_seconds
+
+        # Statistics
+        self.stats = {
+            'total_requests': 0,
+            'cache_hits': 0,
+            'cache_misses': 0,
+            'failed_requests': 0
+        }
+
+    def _cache_key(self, query: str, max_results: int, categories: List[str] = None) -> str:
+        """Generate cache key from request parameters."""
+        import hashlib
+        key_data = f"{query}:{max_results}:{':'.join(categories or [])}"
+        return hashlib.sha256(key_data.encode()).hexdigest()
+
+    def _get_from_cache(self, cache_key: str) -> Optional[List[ArxivPaper]]:
+        """Get results from cache if available and not expired."""
+        if not self.enable_cache:
+            return None
+
+        if cache_key in self._cache:
+            # Check if expired
+            import time
+            if time.time() - self._cache_timestamps[cache_key] < self.cache_ttl:
+                self.stats['cache_hits'] += 1
+                return self._cache[cache_key]
+            else:
+                # Expired, remove from cache
+                del self._cache[cache_key]
+                del self._cache_timestamps[cache_key]
+
+        self.stats['cache_misses'] += 1
+        return None
+
+    def _store_in_cache(self, cache_key: str, results: List[ArxivPaper]):
+        """Store results in cache."""
+        if not self.enable_cache:
+            return
+
+        import time
+        self._cache[cache_key] = results
+        self._cache_timestamps[cache_key] = time.time()
+
+    def _arxiv_result_to_paper(self, result) -> ArxivPaper:
+        """Convert arXiv API result to ArxivPaper object."""
+        return ArxivPaper(
+            arxiv_id=result.entry_id.split('/')[-1],
+            title=result.title,
+            authors=[author.name for author in result.authors],
+            abstract=result.summary.replace('\n', ' '),
+            categories=[cat for cat in result.categories],
+            published=result.published.strftime('%Y-%m-%d') if result.published else '2024-01-01',
+            updated=result.updated.strftime('%Y-%m-%d') if result.updated else '2024-01-01',
+            pdf_url=result.pdf_url,
+            summary=result.summary.replace('\n', ' ')[:500]  # First 500 chars as summary
+        )
+
+    def search(
+        self,
+        query: str,
+        max_results: int = 50,
+        categories: Optional[List[str]] = None,
+        sort_by: str = 'relevance'
+    ) -> List[ArxivPaper]:
+        """
+        Search arXiv for papers matching query.
+
+        Args:
+            query: Search query string
+            max_results: Maximum number of results to return
+            categories: Optional list of arXiv categories to filter by
+            sort_by: Sort order ('relevance', 'lastUpdatedDate', 'submittedDate')
+
+        Returns:
+            List of ArxivPaper objects matching the query
+        """
+        import time
+
+        self.stats['total_requests'] += 1
+
+        # Check cache
+        cache_key = self._cache_key(query, max_results, categories)
+        cached_results = self._get_from_cache(cache_key)
+        if cached_results is not None:
+            return cached_results
+
+        # Rate limiting
+        time_since_last = time.time() - self.last_request_time
+        if time_since_last < self.min_request_interval:
+            time.sleep(self.min_request_interval - time_since_last)
+
+        # Build search query
+        search_query = query
+        if categories:
+            cat_query = " OR ".join([f"cat:{cat}" for cat in categories])
+            search_query = f"({query}) AND ({cat_query})"
+
+        try:
+            # Determine sort criterion
+            sort_criterion = arxiv.SortCriterion.Relevance
+            if sort_by == 'lastUpdatedDate':
+                sort_criterion = arxiv.SortCriterion.LastUpdatedDate
+            elif sort_by == 'submittedDate':
+                sort_criterion = arxiv.SortCriterion.SubmittedDate
+
+            # Create and execute search
+            search = arxiv.Search(
+                query=search_query,
+                max_results=max_results,
+                sort_by=sort_criterion
+            )
+
+            results = []
+            for result in self.client.results(search):
+                paper = self._arxiv_result_to_paper(result)
+                results.append(paper)
+
+            self.last_request_time = time.time()
+
+            # Cache results
+            self._store_in_cache(cache_key, results)
+
+            return results
+
+        except Exception as e:
+            self.stats['failed_requests'] += 1
+            print(f"arXiv search failed: {e}")
+            return []
+
+    def get_recent(
+        self,
+        category: Optional[str] = None,
+        days: int = 30,
+        max_results: int = 100
+    ) -> List[ArxivPaper]:
+        """
+        Get recent papers from the last N days.
+
+        Args:
+            category: arXiv category filter (e.g., 'astro-ph')
+            days: Number of days to look back
+            max_results: Maximum results to return
+
+        Returns:
+            List of recent ArxivPaper objects
+        """
+        from datetime import datetime, timedelta
+
+        cutoff = datetime.now() - timedelta(days=days)
+        cutoff_date = cutoff.strftime('%Y%m%d')
+
+        # Build date-filtered query
+        query = f"submittedDate:[{cutoff_date}0000 TO *]"
+        if category:
+            query = f"cat:{category} AND {query}"
+
+        return self.search(query=query, max_results=max_results)
+
+    def get_paper(self, arxiv_id: str) -> Optional[ArxivPaper]:
+        """
+        Get a specific paper by arXiv ID.
+
+        Args:
+            arxiv_id: arXiv ID (e.g., '2301.00001')
+
+        Returns:
+            ArxivPaper object or None if not found
+        """
+        # Search for specific ID
+        query = f"id:{arxiv_id}"
+        results = self.search(query=query, max_results=1)
+
+        return results[0] if results else None
+
+    def get_citations(self, arxiv_id: str, max_results: int = 50) -> List[ArxivPaper]:
+        """
+        Get papers that cite the given paper.
+
+        Note: arXiv API doesn't directly support citation search.
+        This is a placeholder that uses title-based search.
+
+        For real citation data, use ADS or Semantic Scholar APIs.
+
+        Args:
+            arxiv_id: arXiv ID of the paper
+            max_results: Maximum results to return
+
+        Returns:
+            List of citing papers (placeholder implementation)
+        """
+        # Get the original paper to extract title
+        paper = self.get_paper(arxiv_id)
+        if not paper:
+            return []
+
+        # Search for papers citing this title (approximate)
+        # This is not accurate - use ADS/ Semantic Scholar for real citation data
+        query = f'cit BibTeX {arxiv_id.replace("v1", "")}'
+        return self.search(query=query, max_results=max_results)
+
+    def get_by_category(
+        self,
+        category: str,
+        max_results: int = 100,
+        days: int = 30
+    ) -> List[ArxivPaper]:
+        """
+        Get recent papers from a specific category.
+
+        Args:
+            category: arXiv category (e.g., 'astro-ph.GA')
+            max_results: Maximum results to return
+            days: Number of days to look back
+
+        Returns:
+            List of papers in the category
+        """
+        return self.get_recent(category=category, days=days, max_results=max_results)
+
+    def get_statistics(self) -> Dict[str, Any]:
+        """Get API usage statistics."""
+        cache_stats = {
+            'cache_size': len(self._cache),
+            'cache_hit_rate': (
+                self.stats['cache_hits'] / self.stats['total_requests']
+                if self.stats['total_requests'] > 0 else 0
+            )
+        }
+
+        return {**self.stats, **cache_stats}
+
+    def clear_cache(self):
+        """Clear the request cache."""
+        self._cache.clear()
+        self._cache_timestamps.clear()
+
+
+# =============================================================================
 # Paper Analysis and Knowledge Extraction
 # =============================================================================
 class PaperAnalyzer:
@@ -648,11 +937,72 @@ def get_literature_learning_reward(
 # =============================================================================
 # Factory Functions
 # =============================================================================
-def create_arxiv_integration() -> ContinuousLearningSystem:
-    """Create an arXiv integration system."""
-    return ContinuousLearningSystem()
+def create_arxiv_api(
+    use_real_api: bool = True,
+    enable_cache: bool = True,
+    cache_ttl_seconds: int = 86400
+):
+    """
+    Create an arXiv API client (real or simulated).
+
+    Args:
+        use_real_api: If True, use real arXiv API. Falls back to simulated if unavailable.
+        enable_cache: Enable request caching
+        cache_ttl_seconds: Cache time-to-live in seconds
+
+    Returns:
+        Either RealArxivAPI or SimulatedArxivAPI instance
+    """
+    if use_real_api and ARXIV_AVAILABLE:
+        try:
+            return RealArxivAPI(
+                enable_cache=enable_cache,
+                cache_ttl_seconds=cache_ttl_seconds
+            )
+        except Exception as e:
+            print(f"Failed to create real arXiv API: {e}")
+            print("Falling back to simulated API")
+
+    # Fallback to simulated API
+    return SimulatedArxivAPI()
+
+
+def create_arxiv_integration(
+    use_real_api: bool = True,
+    enable_cache: bool = True,
+    cache_ttl_seconds: int = 86400
+) -> ContinuousLearningSystem:
+    """
+    Create an arXiv integration system.
+
+    Args:
+        use_real_api: If True, use real arXiv API. Falls back to simulated if unavailable.
+        enable_cache: Enable request caching
+        cache_ttl_seconds: Cache time-to-live in seconds
+
+    Returns:
+        ContinuousLearningSystem with configured API
+    """
+    api_client = create_arxiv_api(use_real_api, enable_cache, cache_ttl_seconds)
+    analyzer = PaperAnalyzer()
+    return ContinuousLearningSystem(api=api_client, analyzer=analyzer)
 
 
 def create_paper_analyzer() -> PaperAnalyzer:
     """Create a paper analyzer."""
     return PaperAnalyzer()
+
+
+def get_arxiv_availability() -> Dict[str, bool]:
+    """
+    Check availability of arXiv integration components.
+
+    Returns:
+        Dict with availability status of different components
+    """
+    return {
+        'arxiv_package': ARXIV_AVAILABLE,
+        'real_api_available': ARXIV_AVAILABLE,
+        'simulated_api_available': True,  # Always available
+        'paper_analyzer_available': True
+    }

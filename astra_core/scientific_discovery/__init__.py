@@ -1,6 +1,6 @@
 """
-STAN Scientific Discovery Module
-================================
+ASTRA Scientific Discovery Module
+===================================
 
 Comprehensive scientific discovery system for autonomous research in astronomy
 and astrophysics. Integrates literature mining, data analysis, theoretical
@@ -8,6 +8,11 @@ modeling, and autonomous experiment design.
 
 Modules:
 --------
+- literature_validator: Real literature validation and novelty assessment
+- eureka_detector: Genuine scientific insight detection (NEW v3.0)
+- eureka_validator: Eureka-enhanced literature validation (NEW v3.0)
+- query_optimizer: Intelligent literature search query optimization
+- validation_pipeline: Multi-stage discovery validation
 - research_papers: PDF processing, citation networks, literature mining
 - astro_databases: Access to Vizier, SIMBAD, ADS, and other catalogs
 - data_repositories: Access to ALMA, NASA, ESO, CADC, arXiv datasets
@@ -15,169 +20,146 @@ Modules:
 - theoretical_physics: MHD solvers, plasma physics, radiation-hydro
 - discovery_orchestrator: Central autonomous discovery coordinator
 
-Version: 1.0.0-Discovery
-Date: 2025-12-27
+Version: 3.0.0-Eureka
+Date: 2026-07-03
 """
+
+# =============================================================================
+# Literature Validation (v2.0)
+# =============================================================================
+from .literature_validator import (
+    LiteratureValidator,
+    NoveltyReport,
+    ConfidenceLevel,
+    SimilarPaper,
+    CitationReport,
+    FormulaReport,
+    create_literature_validator,
+)
+
+# =============================================================================
+# Eureka Detector (NEW v3.0 - 2026-07-03)
+# =============================================================================
+try:
+    from .eureka_detector import (
+        EurekaDetector,
+        EurekaAssessment,
+        ScientificClaim,
+        ClaimType,
+        create_eureka_detector,
+    )
+except ImportError as e:
+    import logging
+    logging.warning(f"Could not import eureka_detector: {e}")
+
+# =============================================================================
+# Eureka Validator (NEW v3.0 - 2026-07-03)
+# =============================================================================
+try:
+    from .eureka_validator import (
+        EurekaEnhancedValidator,
+        EurekaValidationReport,
+        create_eureka_enhanced_validator,
+    )
+except ImportError as e:
+    import logging
+    logging.warning(f"Could not import eureka_validator: {e}")
+
+# =============================================================================
+# Query Optimizer (NEW v2.0 - 2026-07-01)
+# =============================================================================
+try:
+    from .query_optimizer import (
+        LiteratureQueryOptimizer,
+        OptimizedQuery,
+        ScientificTermExtractor,
+        QueryBuilder,
+        optimize_discovery_query,
+    )
+except ImportError as e:
+    import logging
+    logging.warning(f"Could not import query_optimizer: {e}")
+
+# =============================================================================
+# Validation Pipeline (NEW v2.0)
+# =============================================================================
+from .validation_pipeline import (
+    ValidationPipeline,
+    PipelineReport,
+    ValidationResult,
+    ValidationStage,
+    ValidationStatus,
+    create_validation_pipeline,
+)
 
 # =============================================================================
 # Research Paper Processing
 # =============================================================================
-from .research_papers import (
-    PDFProcessor,
-    CitationNetwork,
-    LiteratureMiner,
-    PaperAnalyzer,
-    Paper,
-    CitationGraph,
-    extract_paper_metadata,
-    build_citation_network,
-)
-
-# =============================================================================
-# Astronomical Database Access
-# =============================================================================
-from .astro_databases import (
-    AstroDatabaseConnector,
-    VizierClient,
-    SIMBADClient,
-    ADSClient,
-    CatalogQuery,
-    SourceInfo,
-    query_catalog,
-    cross_match_catalogs,
-)
-
-# =============================================================================
-# Data Repository Access
-# =============================================================================
-from .data_repositories import (
-    DataRepositoryManager,
-    ALMAArchive,
-    NASAArchive,
-    ESOArchive,
-    CADCArchive,
-    ArxivClient,
-    DatasetDownloader,
-    download_observation,
-    query_archive,
-)
-
-# =============================================================================
-# Advanced Data Analysis
-# =============================================================================
-from .advanced_analysis import (
-    AdvancedAnalyzer,
-    GalaxyClassifier,
-    PhotometricRedshiftEstimator,
-    SEDFitter,
-    SourceExtractor,
-    LineIdentifier,
-    classify_galaxy,
-    estimate_photoz,
-    fit_sed,
-    identify_lines,
-)
-
-# =============================================================================
-# Theoretical Physics
-# =============================================================================
-from .theoretical_physics import (
-    TheoreticalPhysicsEngine,
-    MHDSolver,
-    PlasmaPhysicsModule,
-    RadiationHydrodynamics,
-    GRMHDModule,
-    CosmicRayTransport,
-    MagneticReconnection,
-    solve_mhd,
-    run_radiation_hydro,
-)
+try:
+    from .research_papers import (
+        PDFProcessor,
+        Paper,
+        CitationGraph,
+    )
+except ImportError as e:
+    import logging
+    logging.warning(f"Could not import research_papers: {e}")
 
 # =============================================================================
 # Discovery Orchestrator (Main Entry Point)
 # =============================================================================
-from .discovery_orchestrator import (
-    ScientificDiscoveryOrchestrator,
-    DiscoveryTask,
-    DiscoveryResult,
-    Hypothesis,
-    ExperimentProposal,
-    LiteratureReview,
-    create_discovery_system,
-    autonomous_discovery,
-    review_literature,
-    propose_experiment,
-)
+try:
+    from .discovery_orchestrator import (
+        ScientificDiscoveryOrchestrator,
+        DiscoveryTask,
+        DiscoveryResult,
+        Hypothesis,
+        ExperimentProposal,
+        LiteratureReview,
+    )
+except ImportError as e:
+    import logging
+    logging.warning(f"Could not import discovery_orchestrator: {e}")
 
 __all__ = [
-    # Research Papers
-    'PDFProcessor',
-    'CitationNetwork',
-    'LiteratureMiner',
-    'PaperAnalyzer',
-    'Paper',
-    'CitationGraph',
-    'extract_paper_metadata',
-    'build_citation_network',
+    # Literature Validation (v2.0)
+    'LiteratureValidator',
+    'NoveltyReport',
+    'ConfidenceLevel',
+    'SimilarPaper',
+    'CitationReport',
+    'FormulaReport',
+    'create_literature_validator',
 
-    # Astro Databases
-    'AstroDatabaseConnector',
-    'VizierClient',
-    'SIMBADClient',
-    'ADSClient',
-    'CatalogQuery',
-    'SourceInfo',
-    'query_catalog',
-    'cross_match_catalogs',
+    # Eureka Detector (v3.0 - 2026-07-03)
+    'EurekaDetector',
+    'EurekaAssessment',
+    'ScientificClaim',
+    'ClaimType',
+    'create_eureka_detector',
 
-    # Data Repositories
-    'DataRepositoryManager',
-    'ALMAArchive',
-    'NASAArchive',
-    'ESOArchive',
-    'CADCArchive',
-    'ArxivClient',
-    'DatasetDownloader',
-    'download_observation',
-    'query_archive',
+    # Eureka Validator (v3.0 - 2026-07-03)
+    'EurekaEnhancedValidator',
+    'EurekaValidationReport',
+    'create_eureka_enhanced_validator',
 
-    # Advanced Analysis
-    'AdvancedAnalyzer',
-    'GalaxyClassifier',
-    'PhotometricRedshiftEstimator',
-    'SEDFitter',
-    'SourceExtractor',
-    'LineIdentifier',
-    'classify_galaxy',
-    'estimate_photoz',
-    'fit_sed',
-    'identify_lines',
+    # Query Optimizer (v2.0 - 2026-07-01)
+    'LiteratureQueryOptimizer',
+    'OptimizedQuery',
+    'ScientificTermExtractor',
+    'QueryBuilder',
+    'optimize_discovery_query',
 
-    # Theoretical Physics
-    'TheoreticalPhysicsEngine',
-    'MHDSolver',
-    'PlasmaPhysicsModule',
-    'RadiationHydrodynamics',
-    'GRMHDModule',
-    'CosmicRayTransport',
-    'MagneticReconnection',
-    'solve_mhd',
-    'run_radiation_hydro',
-
-    # Discovery Orchestrator
-    'ScientificDiscoveryOrchestrator',
-    'DiscoveryTask',
-    'DiscoveryResult',
-    'Hypothesis',
-    'ExperimentProposal',
-    'LiteratureReview',
-    'create_discovery_system',
-    'autonomous_discovery',
-    'review_literature',
-    'propose_experiment',
+    # Validation Pipeline (v2.0)
+    'ValidationPipeline',
+    'PipelineReport',
+    'ValidationResult',
+    'ValidationStage',
+    'ValidationStatus',
+    'create_validation_pipeline',
 ]
 
-__version__ = '1.0.0-Discovery'
+__version__ = '3.0.0-Eureka'
 
 
 
