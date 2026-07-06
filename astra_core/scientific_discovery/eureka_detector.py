@@ -23,6 +23,7 @@ from datetime import datetime
 from enum import Enum
 import hashlib
 import json
+import time
 
 try:
     import numpy as np
@@ -352,18 +353,78 @@ class EurekaDetector:
     3. Assessing whether the claim represents genuine advance
     """
 
+    # Timeout constants for model loading
+    MODEL_LOAD_TIMEOUT = 60  # 1 minute timeout for loading models
+    FALLBACK_MODEL = 'all-MiniLM-L6-v2'  # Smaller, faster fallback model
+
     def __init__(self):
         self.claim_extractor = ClaimExtractor()
         self.model = None
+        self.model_loaded = False
+        self.model_loading = False
         self.claim_embeddings_cache: Dict[str, Any] = {}
 
+        # Don't load model during initialization - use lazy loading instead
         if NLP_AVAILABLE:
+            logger.info("Eureka detector initialized - model will load on first use")
+
+    def _load_model_with_timeout(self, timeout_seconds: int = MODEL_LOAD_TIMEOUT) -> bool:
+        """
+        Load sentence transformer model with timeout to prevent blocking
+
+        Args:
+            timeout_seconds: Maximum time to wait for model loading (default: 60 seconds)
+
+        Returns:
+            True if model loaded successfully, False otherwise
+        """
+        if self.model_loaded or self.model_loading:
+            return self.model_loaded
+
+        self.model_loading = True
+        start_time = time.time()
+
+        try:
+            import signal
+
+            def timeout_handler(signum, frame):
+                raise TimeoutError(f"Model loading timed out after {timeout_seconds} seconds")
+
+            # Set alarm for timeout
+            signal.signal(signal.SIGALRM, timeout_handler)
+            signal.alarm(timeout_seconds)
+
             try:
-                # Use SPECTER for scientific claim comparison
+                logger.info(f"Loading semantic similarity model (with {timeout_seconds}s timeout)...")
                 self.model = SentenceTransformer('allenai-specter')
-                logger.info("Loaded SPECTER model for claim comparison")
+                self.model_loaded = True
+                load_time = time.time() - start_time
+                logger.info(f"✅ Loaded SPECTER model for claim comparison in {load_time:.1f}s")
+                return True
+
+            except TimeoutError as e:
+                logger.warning(f"⏱️ Model loading timeout: {e}")
+                return False
             except Exception as e:
-                logger.warning(f"Failed to load SPECTER model: {e}")
+                logger.warning(f"Failed to load allenai-specter: {e}")
+                # Try fallback model
+                try:
+                    logger.info("Trying fallback model...")
+                    self.model = SentenceTransformer(self.FALLBACK_MODEL)
+                    self.model_loaded = True
+                    load_time = time.time() - start_time
+                    logger.info(f"✅ Loaded fallback model {self.FALLBACK_MODEL} in {load_time:.1f}s")
+                    return True
+                except Exception as e2:
+                    logger.error(f"❌ Failed to load any semantic similarity model: {e2}")
+                    return False
+            finally:
+                # Cancel alarm
+                signal.alarm(0)
+
+        except Exception as e:
+            logger.error(f"Error in model loading mechanism: {e}")
+            return False
 
     def detect_eureka_moment(
         self,
@@ -463,7 +524,17 @@ class EurekaDetector:
 
         Key: This searches for similar CLAIMS, not similar topics
         """
-        if not literature_papers or not self.model:
+        if not literature_papers:
+            return []
+
+        # Lazy load model on first use
+        if not self.model_loaded and NLP_AVAILABLE:
+            logger.info("Loading semantic similarity model for literature comparison...")
+            if not self._load_model_with_timeout():
+                logger.warning("Failed to load model - skipping semantic literature comparison")
+                return []
+
+        if not self.model:
             return []
 
         similar_claims = []
