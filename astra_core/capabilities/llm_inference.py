@@ -234,6 +234,136 @@ class LLMInferenceEngine:
             'total_latency_ms': 0
         }
 
+    def _call_api(self, formatted_prompt: str, request: LLMRequest) -> LLMResponse:
+        """
+        Make API call with timeout protection.
+
+        Args:
+            formatted_prompt: The formatted prompt to send
+            request: The LLM request with parameters
+
+        Returns:
+            LLMResponse with the model's answer
+        """
+        timeout = 60  # Default 60 second timeout
+
+        try:
+            if not self.client:
+                raise ValueError("Anthropic client not initialized")
+
+            # Call the API with timeout
+            import signal
+
+            def timeout_handler(signum, frame):
+                raise TimeoutError(f"API call timed out after {timeout}s")
+
+            # Set alarm for timeout
+            signal.signal(signal.SIGALRM, timeout_handler)
+            signal.alarm(timeout)
+
+            try:
+                response = self.client.messages.create(
+                    model=request.model.value,
+                    max_tokens=request.max_tokens,
+                    temperature=request.temperature,
+                    system=request.system_prompt or "",
+                    messages=[{"role": "user", "content": formatted_prompt}]
+                )
+
+                # Cancel alarm
+                signal.alarm(0)
+
+                # Extract response content
+                content = response.content[0].text if response.content else ""
+
+                return LLMResponse(
+                    content=content,
+                    model_used=request.model.value,
+                    tokens_used=response.usage.input_tokens + response.usage.output_tokens,
+                    confidence=0.8
+                )
+
+            except TimeoutError:
+                signal.alarm(0)  # Cancel alarm
+                return LLMResponse(
+                    content="",
+                    error=f"API call timed out after {timeout}s",
+                    confidence=0.0
+                )
+
+        except Exception as e:
+            signal.alarm(0)  # Ensure alarm is cancelled
+            return LLMResponse(
+                content="",
+                error=f"API call failed: {str(e)}",
+                confidence=0.0
+            )
+
+    def _call_api_messages(self, messages: List[Dict], system_prompt: str) -> LLMResponse:
+        """
+        Make API call with messages and timeout protection.
+
+        Args:
+            messages: List of message dicts with 'role' and 'content'
+            system_prompt: System prompt for the conversation
+
+        Returns:
+            LLMResponse with the model's answer
+        """
+        timeout = 60  # Default 60 second timeout
+
+        try:
+            if not self.client:
+                raise ValueError("Anthropic client not initialized")
+
+            # Call the API with timeout
+            import signal
+
+            def timeout_handler(signum, frame):
+                raise TimeoutError(f"API call timed out after {timeout}s")
+
+            # Set alarm for timeout
+            signal.signal(signal.SIGALRM, timeout_handler)
+            signal.alarm(timeout)
+
+            try:
+                response = self.client.messages.create(
+                    model="claude-3-5-sonnet-20241022",  # Use default model
+                    max_tokens=4096,
+                    temperature=0.7,
+                    system=system_prompt or "",
+                    messages=messages
+                )
+
+                # Cancel alarm
+                signal.alarm(0)
+
+                # Extract response content
+                content = response.content[0].text if response.content else ""
+
+                return LLMResponse(
+                    content=content,
+                    model_used="claude-3-5-sonnet-20241022",
+                    tokens_used=response.usage.input_tokens + response.usage.output_tokens,
+                    confidence=0.8
+                )
+
+            except TimeoutError:
+                signal.alarm(0)  # Cancel alarm
+                return LLMResponse(
+                    content="",
+                    error=f"API call timed out after {timeout}s",
+                    confidence=0.0
+                )
+
+        except Exception as e:
+            signal.alarm(0)  # Ensure alarm is cancelled
+            return LLMResponse(
+                content="",
+                error=f"API call failed: {str(e)}",
+                confidence=0.0
+            )
+
     def query(self, request: LLMRequest) -> LLMResponse:
         """
         Send a query to the LLM.

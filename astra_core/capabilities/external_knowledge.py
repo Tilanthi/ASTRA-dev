@@ -213,7 +213,8 @@ class UnifiedKnowledgeRetrieval:
             if source == KnowledgeSource.WIKIPEDIA:
                 result = self.wikipedia.query(query)
             elif source == KnowledgeSource.ARXIV:
-                result = self.arxiv.query(query)
+                # ✅ FIX: Add timeout protection for arXiv API calls
+                result = self._query_arxiv_with_timeout(query, timeout=120)
                 results.extend(result if isinstance(result, list) else [result])
             elif source == KnowledgeSource.WOLFRAM:
                 result = self.wolfram.query(query)
@@ -230,6 +231,40 @@ class UnifiedKnowledgeRetrieval:
                 results.append(result)
 
         return results
+
+    def _query_arxiv_with_timeout(self, query: str, timeout: int = 120) -> Any:
+        """
+        Query arXiv API with timeout protection.
+
+        Args:
+            query: Search query for arXiv
+            timeout: Maximum time to wait for response (default 120 seconds)
+
+        Returns:
+            arXiv query results or error result if timeout occurs
+        """
+        import signal
+
+        def timeout_handler(signum, frame):
+            raise TimeoutError(f"arXiv API call timed out after {timeout}s")
+
+        # Set alarm for timeout
+        signal.signal(signal.SIGALRM, timeout_handler)
+        signal.alarm(timeout)
+
+        try:
+            result = self.arxiv.query(query)
+            signal.alarm(0)  # Cancel alarm
+            return result
+        except TimeoutError:
+            signal.alarm(0)  # Cancel alarm
+            print(f"Warning: arXiv API call timed out after {timeout}s")
+            # Return empty result on timeout
+            return []
+        except Exception as e:
+            signal.alarm(0)  # Ensure alarm is cancelled
+            print(f"Warning: arXiv API call failed: {e}")
+            return []
 
 
 # Override ExternalKnowledge to be the actual class, not an alias

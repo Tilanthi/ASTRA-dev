@@ -862,82 +862,87 @@ class EnhancedUnifiedSTANSystem:
         # Register user task start (pauses intelligent discovery)
         self._handle_user_task_start()
 
-        # META-COGNITIVE CHECK: Evaluate data sufficiency BEFORE processing
-        # This is critical for scientific reasoning - recognize when data are insufficient
-        if self.base_system and hasattr(self.base_system, '_check_data_sufficiency'):
-            meta_cognitive_response = self.base_system._check_data_sufficiency(query)
-            if meta_cognitive_response is not None:
-                # Data insufficient - return meta-cognitive response immediately
-                result['answer'] = meta_cognitive_response
-                result['confidence'] = 0.95  # High confidence in refusal
-                result['meta_cognitive'] = True
-                result['data_sufficient'] = False
-                result['capabilities_used'] = ['meta_cognitive_evaluation']
-                result['reasoning_trace'].append({
-                    'step': 'meta_cognitive_evaluation',
-                    'assessment': 'data_insufficient',
-                    'action': 'refusal'
-                })
-                # Register user task complete
-                self._handle_user_task_complete()
-                return result
-
-        # Determine processing mode
-        # Default to 'auto' if no mode specified
-        if not mode:
-            mode = 'auto'
-        if mode == 'auto':
-            mode = self._determine_optimal_mode(query, context)
-            result['mode'] = mode
-
-        # Route to appropriate processing
         try:
-            if mode == 'counterfactual' and self.counterfactual_system:
-                result = self._process_with_counterfactual(query, context, result)
-            elif mode == 'domain' and self.domain_registry:
-                result = self._process_with_domains(query, context, result)
-            elif mode == 'physics' and self.physics_engine:
-                result = self._process_with_physics(query, context, result)
-            elif mode == 'meta' and self.meta_learner:
-                result = self._process_with_meta_learning(query, context, result)
-            else:
-                # Use base system
-                if self.base_system:
-                    base_result = self.base_system.process_query(query, context)
-                    result.update(base_result)
-                    result['mode'] = 'base'
-                    # Ensure confidence is set from base system
-                    if 'confidence' not in result or result['confidence'] == 0:
-                        result['confidence'] = 0.6  # Default confidence for base system
+            # META-COGNITIVE CHECK: Evaluate data sufficiency BEFORE processing
+            # This is critical for scientific reasoning - recognize when data are insufficient
+            if self.base_system and hasattr(self.base_system, '_check_data_sufficiency'):
+                meta_cognitive_response = self.base_system._check_data_sufficiency(query)
+                if meta_cognitive_response is not None:
+                    # Data insufficient - return meta-cognitive response immediately
+                    result['answer'] = meta_cognitive_response
+                    result['confidence'] = 0.95  # High confidence in refusal
+                    result['meta_cognitive'] = True
+                    result['data_sufficient'] = False
+                    result['capabilities_used'] = ['meta_cognitive_evaluation']
+                    result['reasoning_trace'].append({
+                        'step': 'meta_cognitive_evaluation',
+                        'assessment': 'data_insufficient',
+                        'action': 'refusal'
+                    })
+                    return result
+
+            # Determine processing mode
+            # Default to 'auto' if no mode specified
+            if not mode:
+                mode = 'auto'
+            if mode == 'auto':
+                mode = self._determine_optimal_mode(query, context)
+                result['mode'] = mode
+
+            # Route to appropriate processing
+            try:
+                if mode == 'counterfactual' and self.counterfactual_system:
+                    result = self._process_with_counterfactual(query, context, result)
+                elif mode == 'domain' and self.domain_registry:
+                    result = self._process_with_domains(query, context, result)
+                elif mode == 'physics' and self.physics_engine:
+                    result = self._process_with_physics(query, context, result)
+                elif mode == 'meta' and self.meta_learner:
+                    result = self._process_with_meta_learning(query, context, result)
                 else:
-                    result['answer'] = "STAN-XI-ASTRO is ready to assist with your query."
-                    result['confidence'] = 0.5
-        except Exception as e:
-            logger.error(f"Query processing failed: {e}")
-            result['error'] = str(e)
-            result['success'] = False
-            result['confidence'] = 0.0  # Zero confidence on error
+                    # Use base system
+                    if self.base_system:
+                        base_result = self.base_system.process_query(query, context)
+                        result.update(base_result)
+                        result['mode'] = 'base'
+                        # Ensure confidence is set from base system
+                        if 'confidence' not in result or result['confidence'] == 0:
+                            result['confidence'] = 0.6  # Default confidence for base system
+                    else:
+                        result['answer'] = "STAN-XI-ASTRO is ready to assist with your query."
+                        result['confidence'] = 0.5
+            except Exception as e:
+                logger.error(f"Query processing failed: {e}")
+                result['error'] = str(e)
+                result['success'] = False
+                result['confidence'] = 0.0  # Zero confidence on error
 
-        # Ensure confidence is always set and > 0 (unless error)
-        if result.get('confidence', 0) == 0 and not result.get('error'):
-            result['confidence'] = 0.7  # Default confidence if not set
+            # Ensure confidence is always set and > 0 (unless error)
+            if result.get('confidence', 0) == 0 and not result.get('error'):
+                result['confidence'] = 0.7  # Default confidence if not set
 
-        # Ensure capabilities_used is populated
-        if not result.get('capabilities_used'):
-            # Add default capability based on mode
-            mode_capability_map = {
-                'domain': ['domain_expertise'],
-                'physics': ['unified_physics'],
-                'counterfactual': ['counterfactual_reasoning'],
-                'meta': ['meta_learning'],
-                'base': ['base_system']
-            }
-            result['capabilities_used'] = mode_capability_map.get(mode, ['base_system'])
+            # Ensure capabilities_used is populated
+            if not result.get('capabilities_used'):
+                # Add default capability based on mode
+                mode_capability_map = {
+                    'domain': ['domain_expertise'],
+                    'physics': ['unified_physics'],
+                    'counterfactual': ['counterfactual_reasoning'],
+                    'meta': ['meta_learning'],
+                    'base': ['base_system']
+                }
+                result['capabilities_used'] = mode_capability_map.get(mode, ['base_system'])
 
-        # Update performance stats
-        self.performance_stats['queries_processed'] += 1
+            # Update performance stats
+            self.performance_stats['queries_processed'] += 1
 
-        return result
+            return result
+        finally:
+            # ✅ CRITICAL FIX: Always resume discovery, even on error or early return
+            # This ensures discovery resumes for ALL query types, not just domain-mode
+            # Previously: Only domain-mode queries called _handle_user_task_complete()
+            # Now: ALL query paths properly resume discovery
+            self._handle_user_task_complete()
 
     def answer(self, query: str, context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
@@ -1037,8 +1042,8 @@ class EnhancedUnifiedSTANSystem:
             result['domain_used'] = relevant_domain.config.domain_name
             self.performance_stats['domains_used'].add(relevant_domain.config.domain_name)
 
-        # Register user task complete (resumes discovery)
-        self._handle_user_task_complete()
+        # Note: Discovery resume is now handled by finally block in process_query()
+        # This ensures ALL query types properly resume discovery, not just domain-mode
 
         return result
 

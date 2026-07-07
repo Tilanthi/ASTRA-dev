@@ -503,7 +503,8 @@ class ToolIntegration:
         if tool == ToolType.WIKIPEDIA and self.wikipedia:
             return self.wikipedia.query(query)
         elif tool == ToolType.ARXIV and self.arxiv:
-            return self.arxiv.query(query)
+            # ✅ FIX: Add timeout protection for arXiv API calls
+            return self._query_arxiv_with_timeout(query, timeout=120)
         elif tool == ToolType.MATH and self.math:
             return self.math.compute(query)
         elif tool == ToolType.PYTHON and self.python:
@@ -533,6 +534,51 @@ class ToolIntegration:
 
         # Default to Wikipedia for factual questions
         return ToolType.WIKIPEDIA
+
+    def _query_arxiv_with_timeout(self, query: str, timeout: int = 120) -> ToolResult:
+        """
+        Query arXiv API with timeout protection.
+
+        Args:
+            query: Search query for arXiv
+            timeout: Maximum time to wait for response (default 120 seconds)
+
+        Returns:
+            ToolResult with arXiv query results or error if timeout occurs
+        """
+        import signal
+
+        def timeout_handler(signum, frame):
+            raise TimeoutError(f"arXiv API call timed out after {timeout}s")
+
+        # Set alarm for timeout
+        signal.signal(signal.SIGALRM, timeout_handler)
+        signal.alarm(timeout)
+
+        try:
+            result = self.arxiv.query(query)
+            signal.alarm(0)  # Cancel alarm
+            return result
+        except TimeoutError:
+            signal.alarm(0)  # Cancel alarm
+            return ToolResult(
+                tool=ToolType.ARXIV,
+                query=query,
+                success=False,
+                result=None,
+                confidence=0.0,
+                error_message=f"arXiv API call timed out after {timeout}s"
+            )
+        except Exception as e:
+            signal.alarm(0)  # Ensure alarm is cancelled
+            return ToolResult(
+                tool=ToolType.ARXIV,
+                query=query,
+                success=False,
+                result=None,
+                confidence=0.0,
+                error_message=f"arXiv API call failed: {str(e)}"
+            )
 
 
 # Convenience functions

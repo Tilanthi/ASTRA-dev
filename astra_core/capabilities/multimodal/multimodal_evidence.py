@@ -191,15 +191,63 @@ class MultiModalEvidenceFusion:
         """Initialize multi-modal evidence fusion"""
         self.repository = EvidenceRepository()
 
-        # Try to import NLP capabilities for text analysis
+        # ✅ FIX: Don't load model during initialization - use lazy loading with timeout
+        self.embedder = None
+        self.nlp_available = False
+        self.model_loading = False
+
+        # Model will be loaded on first use with timeout protection
+        # This prevents blocking during system initialization
+
+    def _load_model_with_timeout(self, timeout_seconds=60) -> bool:
+        """
+        Load model with timeout to prevent blocking.
+
+        Args:
+            timeout_seconds: Maximum time to wait for model loading
+
+        Returns:
+            True if model loaded successfully, False otherwise
+        """
+        if self.model_loading:
+            return False  # Already loading
+
+        if self.nlp_available and self.embedder is not None:
+            return True  # Already loaded
+
+        self.model_loading = True
+
         try:
-            from sentence_transformers import SentenceTransformer
-            self.embedder = SentenceTransformer('all-MiniLM-L6-v2')
-            self.nlp_available = True
-        except ImportError:
-            # Sentence transformer is optional, silently fallback
-            self.nlp_available = False
-            self.embedder = None
+            import signal
+
+            def timeout_handler(signum, frame):
+                raise TimeoutError(f"Model loading timed out after {timeout_seconds}s")
+
+            # Set alarm for timeout
+            signal.signal(signal.SIGALRM, timeout_handler)
+            signal.alarm(timeout_seconds)
+
+            try:
+                from sentence_transformers import SentenceTransformer
+                self.embedder = SentenceTransformer('all-MiniLM-L6-v2')
+                self.nlp_available = True
+
+                # Cancel alarm
+                signal.alarm(0)
+                return True
+
+            except TimeoutError:
+                signal.alarm(0)  # Cancel alarm
+                print(f"Warning: Model loading timed out after {timeout_seconds}s")
+                return False
+
+        except Exception as e:
+            signal.alarm(0)  # Ensure alarm is cancelled
+            print(f"Warning: Model loading failed: {e}")
+            return False
+
+        finally:
+            self.model_loading = False
 
     def add_numerical_evidence(
         self,
@@ -341,6 +389,10 @@ class MultiModalEvidenceFusion:
         contradictory = []
 
         # Textual analysis if available
+        # ✅ FIX: Lazy load model on first use with timeout protection
+        if not self.nlp_available or not self.embedder:
+            self._load_model_with_timeout(timeout_seconds=60)
+
         if self.nlp_available and self.embedder:
             claim_embedding = self.embedder.encode(claim)
 
@@ -532,6 +584,10 @@ class CrossModalAttention:
             Dictionary mapping evidence_id to attention weight
         """
         weights = {}
+
+        # ✅ FIX: Lazy load model on first use with timeout protection
+        if not self.nlp_available or not self.embedder:
+            self._load_model_with_timeout(timeout_seconds=60)
 
         if not self.nlp_available or not self.embedder:
             # Fallback: random weights
