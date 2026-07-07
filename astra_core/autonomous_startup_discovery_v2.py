@@ -415,7 +415,8 @@ class GenuineDiscoverySystem:
         base_novelty = discovery.validation.novelty_score
 
         # Literature similarity component (inverse of similarity)
-        if hasattr(discovery.validation, 'literature_similarity'):
+        # ✅ FIX: Check both existence AND not None to prevent AttributeError
+        if hasattr(discovery.validation, 'literature_similarity') and discovery.validation.literature_similarity is not None:
             sim_percentage = discovery.validation.literature_similarity.similarity_percentage / 100.0
             # Convert similarity to novelty: 93% similarity = 7% novelty
             literature_novelty = max(0.0, 1.0 - sim_percentage)
