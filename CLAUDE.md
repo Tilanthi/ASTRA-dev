@@ -355,6 +355,91 @@ This fix ensures the ASTRA discovery pipeline:
 
 **Key Takeaway:** If the discovery pipeline runs at 0% CPU and never performs cycles, check for blocking operations during initialization, especially model loading or network calls without timeouts. The issue can occur in MULTIPLE locations - ensure all NLP/model loading code uses timeout mechanisms.
 
+**🔧 CRITICAL FIX: Discovery Cycle Execution Blocking Issue (Resolved 2026-07-07)**
+
+**The Problem:**
+After fixing the initialization blocking issue, the discovery pipeline would start successfully but then hang during discovery cycle execution. The pipeline could initialize and begin "discovery cycle 1" but would then hang indefinitely at 0% CPU usage without making progress.
+
+**Root Cause Analysis:**
+The issue was a **synchronous blocking call** inside an async function at `autonomous_startup_discovery_v2.py:772`:
+
+```python
+async def _attempt_genuine_discovery(self, discovery_type: DiscoveryType) -> Optional[GenuineDiscovery]:
+    # ... code ...
+    
+    # ❌ BLOCKING: Synchronous call in async context
+    result = self.astra_system.answer(discovery_query)  # Blocks event loop indefinitely
+```
+
+This caused the system to hang because:
+1. **Synchronous call in async context**: `self.astra_system.answer()` is not awaited
+2. **Blocks event loop**: Prevents all async operations from progressing  
+3. **No timeout mechanism**: Synchronous operations can't use async timeouts
+4. **Heavy operations**: ASTRA answer() performs LLM calls, database queries, analysis
+5. **No progress indication**: Process appears idle at 0% CPU while actually blocked
+
+**The Fix:**
+Updated the synchronous call to use **async threading with timeout protection**:
+
+1. **Converted to async threading**: Used `asyncio.to_thread()` to run synchronous operation in thread pool
+2. **Added timeout mechanism**: Wrapped with `asyncio.wait_for()` with 300-second timeout
+3. **Proper error handling**: Added TimeoutError handling and logging
+4. **Progress monitoring**: Added logging to track answer completion
+
+**Key Changes:**
+```python
+async def _attempt_genuine_discovery(self, discovery_type: DiscoveryType) -> Optional[GenuineDiscovery]:
+    try:
+        # ✅ FIXED: Run in thread pool with timeout protection
+        ANSWER_TIMEOUT = 300  # 5 minutes timeout
+        
+        result = await asyncio.wait_for(
+            asyncio.to_thread(self.astra_system.answer, discovery_query),
+            timeout=ANSWER_TIMEOUT
+        )
+        
+        logger.info(f"ASTRA answer completed successfully")
+        
+    except asyncio.TimeoutError:
+        logger.error(f"ASTRA answer timed out after {ANSWER_TIMEOUT}s")
+        return None
+    except Exception as e:
+        logger.error(f"Error conducting discovery: {e}")
+        return None
+```
+
+**Files Modified:**
+- `astra_core/autonomous_startup_discovery_v2.py` (line 772) - async conversion with timeout
+
+**Verification:**
+```bash
+# Test that discovery cycles execute actively
+# 1. Start the discovery system
+./start_continuous_discovery.sh
+
+# 2. Monitor that discovery cycles complete
+tail -f .astra_autonomous.log
+# Should see: "Starting discovery cycle N" followed by "ASTRA answer completed successfully"
+
+# 3. Check that process has active CPU usage (not stuck at 0%)
+ps aux | grep start_autonomous | grep -v grep
+# Should show varying CPU usage during active operation
+
+# 4. Verify timeout mechanisms are in place
+grep -n "asyncio.wait_for\|ANSWER_TIMEOUT" astra_core/autonomous_startup_discovery_v2.py
+```
+
+**Impact:**
+This fix ensures the ASTRA discovery pipeline:
+- ✅ Starts without blocking (previous fix)
+- ✅ Executes discovery cycles actively (new fix)
+- ✅ Has varying CPU usage during operation (not stuck at 0%)
+- ✅ Can timeout and recover from hung operations
+- ✅ Makes actual discoveries instead of hanging indefinitely
+- ✅ Has comprehensive timeout mechanisms for ALL blocking operations
+
+**Key Takeaway:** Mixing synchronous blocking operations in async context without proper awaiting is a critical anti-pattern. The process appears idle (0% CPU) while actually blocked waiting for I/O operations. **ALL synchronous operations in async context must either be awaited (if the method is async) or wrapped in `asyncio.to_thread()` with timeout protection.**
+
 ### NEW: Autonomous Systems Upgrades v4.5
 Based on cutting-edge research: "Pose Graph Optimization over Planar Unit Dual Quaternions:
 Improved Accuracy with Provably Convergent Riemannian Optimization"

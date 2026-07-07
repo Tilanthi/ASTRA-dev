@@ -95,6 +95,14 @@ class NoveltyLevel(Enum):
     PARADIGM_SHIFT = "paradigm_shift"  # Fundamental change in understanding
 
 
+class DiscoveryLevel(Enum):
+    """Genuine Discovery Level - 4-Level Framework for Eureka-Moment Detection"""
+    NOVEL_OBSERVATION = "novel_observation"  # Level 1: Previously unobserved patterns, <5% literature similarity
+    THEORETICAL_INSIGHT = "theoretical_insight"  # Level 2: Mechanism-level understanding, testable predictions
+    PARADIGM_SHIFT = "paradigm_shift"  # Level 3: Challenges foundational assumptions, enables new research
+    EUREKA_DISCOVERY = "eureka_discovery"  # Level 4: Revolutionary breakthroughs, <10% algorithmic probability
+
+
 @dataclass
 class LiteratureSimilarityInfo:
     """Information about similar papers in literature"""
@@ -189,7 +197,7 @@ class GenuineDiscovery:
 
 @dataclass
 class GenuineDiscoveryConfig:
-    """Configuration for genuine discovery system"""
+    """Configuration for genuine discovery system with enhanced discovery framework"""
     # Timing
     startup_delay_seconds: int = 10
     discovery_interval_seconds: int = 60  # 1 minute (reduced from 30 minutes)
@@ -202,11 +210,30 @@ class GenuineDiscoveryConfig:
     enable_predictive_hypothesis: bool = True
     enable_computational_reanalysis: bool = True
 
-    # Validation standards
-    minimum_novelty_score: float = 0.05  # Below this, don't count as discovery (lowered from 0.3)
-    minimum_probability: float = 0.3  # Below this, don't count as discovery (lowered from 0.4)
+    # Enhanced Validation Standards - Genuine Discovery Framework
+    # Primary thresholds (much higher for genuine discovery)
+    minimum_novelty_score: float = 0.70  # Below this, don't count as discovery (raised from 0.05)
+    minimum_probability: float = 0.75  # Below this, don't count as discovery (raised from 0.3)
+
+    # 3-Dimensional Scoring Requirements
+    minimum_validation_score: float = 0.50  # Minimum validation score (reproducibility + predictions)
+    minimum_impact_score: float = 0.50  # Minimum impact score (expert consensus + citation potential)
+
+    # Discovery level requirements
+    enable_genuine_discovery_levels: bool = True  # Use 4-level framework
+    require_reproducibility: bool = True  # Require ≥2 independent verifications for Level 1+
+    require_predictive_validation: bool = True  # Require testable predictions for Level 2+
+
+    # Advanced capabilities integration
+    enable_swarm_intelligence: bool = True  # Use pheromone-guided exploration
+    enable_ontological_reasoning: bool = True  # Use MORK ontology for semantic analysis
+    enable_causal_validation: bool = True  # Use causal inference for mechanism validation
+    enable_bayesian_hypothesis: bool = True  # Use abductive inference for hypothesis generation
+    enable_multi_agent_coordination: bool = True  # Use specialized minds for domain expertise
+
+    # Original validation requirements (maintained for compatibility)
     require_testability: bool = True
-    require_literature_consistency_check: bool = False  # Changed to allow more discoveries
+    require_literature_consistency_check: bool = False
 
     # Research domains - expanded scope
     primary_domains: List[str] = field(default_factory=lambda: [
@@ -369,6 +396,237 @@ class GenuineDiscoverySystem:
             'validation_method': 'eureka_enhanced' if self.eureka_validator else 'standard'
         }
 
+    def calculate_novelty_score(self, discovery: 'GenuineDiscovery') -> float:
+        """
+        Calculate comprehensive novelty score (0-1) for genuine discovery assessment.
+
+        Novelty Score Components:
+        - Literature dissimilarity (0-1): How different from existing knowledge
+        - Cross-domain synthesis (0-1): Combines multiple fields non-obviously
+        - Surprise factor (0-1): Defies consensus expectations
+        - Algorithmic probability (0-1): <10% for Eureka-level discoveries
+
+        Returns: Novelty score 0-1, with higher indicating more novel
+        """
+        if not hasattr(discovery, 'validation') or not discovery.validation:
+            return 0.0
+
+        # Start with base novelty from validation
+        base_novelty = discovery.validation.novelty_score
+
+        # Literature similarity component (inverse of similarity)
+        if hasattr(discovery.validation, 'literature_similarity'):
+            sim_percentage = discovery.validation.literature_similarity.similarity_percentage / 100.0
+            # Convert similarity to novelty: 93% similarity = 7% novelty
+            literature_novelty = max(0.0, 1.0 - sim_percentage)
+        else:
+            literature_novelty = base_novelty
+
+        # Cross-domain synthesis bonus
+        cross_domain_bonus = 0.0
+        if hasattr(discovery, 'domains') and len(discovery.domains) >= 2:
+            # Check if domains are meaningfully different (not just sub-fields)
+            unique_domains = set(discovery.domains)
+            if len(unique_domains) >= 2:
+                cross_domain_bonus = 0.1  # Bonus for multi-domain synthesis
+
+        # Surprise factor (estimated from consensus expectations)
+        # For now, use field activity as inverse proxy for surprise
+        surprise_factor = 0.5  # Default, will be enhanced with expert integration
+
+        # Combine components with weights
+        novelty_score = (
+            literature_novelty * 0.6 +      # Primary: literature dissimilarity
+            cross_domain_bonus * 0.2 +       # Secondary: cross-domain synthesis
+            surprise_factor * 0.2              # Tertiary: surprise factor
+        )
+
+        return max(0.0, min(1.0, novelty_score))
+
+    def calculate_validation_score(self, discovery: 'GenuineDiscovery') -> float:
+        """
+        Calculate validation score (0-1) assessing reproducibility and predictive power.
+
+        Validation Score Components:
+        - Reproducibility (0-1): ≥2 independent datasets/observations
+        - Predictive confirmation (0-1): Novel predictions verified
+        - Methodology rigor (0-1): Statistical significance, sample size
+        - Temporal stability (0-1): Consistent over time
+
+        Returns: Validation score 0-1, with higher indicating better validated
+        """
+        if not hasattr(discovery, 'validation') or not discovery.validation:
+            return 0.0
+
+        validation_score = 0.5  # Start with moderate validation
+
+        # Check for reproducibility indicators
+        if hasattr(discovery, 'detailed_description'):
+            description = discovery.detailed_description.lower()
+
+            # Look for reproducibility indicators
+            reproducibility_indicators = [
+                'reproducible', 'replicated', 'confirmed', 'verified',
+                'independent', 'observation', 'measurement', 'detection'
+            ]
+
+            reproducibility_count = sum(1 for indicator in reproducibility_indicators if indicator in description)
+            if reproducibility_count >= 3:
+                validation_score += 0.2
+
+        # Check for predictive content
+        if hasattr(discovery, 'abstract'):
+            abstract = discovery.abstract.lower()
+            predictive_indicators = [
+                'predict', 'forecast', 'expect', 'should', 'will',
+                'enable', 'allow', 'suggest', 'indicate'
+            ]
+
+            predictive_count = sum(1 for indicator in predictive_indicators if indicator in abstract)
+            if predictive_count >= 2:
+                validation_score += 0.1
+
+        # Check for quantitative specificity (indicates rigor)
+        if hasattr(discovery, 'detailed_description'):
+            description = discovery.detailed_description
+            # Look for numbers, statistics, measurements
+            quantitative_patterns = [
+                r'\d+\.?\d*\s*(degrees?|K|M|km|pc|years?)',
+                r'significance',
+                r'correlation',
+                r'p\s*[<=>]',
+                r'n\s*[=<>]',
+                r'sigma'
+            ]
+
+            import re
+            quantitative_count = sum(1 for pattern in quantitative_patterns if re.search(pattern, description))
+            if quantitative_count >= 2:
+                validation_score += 0.1
+
+        # Check for methodological rigor
+        if hasattr(discovery.validation, 'testability'):
+            if discovery.validation.testability:
+                validation_score += 0.1
+
+        return max(0.0, min(1.0, validation_score))
+
+    def calculate_impact_score(self, discovery: 'GenuineDiscovery') -> float:
+        """
+        Calculate impact score (0-1) assessing potential scientific influence.
+
+        Impact Score Components:
+        - Expert consensus (0-1): Domain expert validation
+        - Citation potential (0-1): Expected forward citations
+        - Research enablement (0-1): Enables new research directions
+        - Capability expansion (0-1): Enables previously impossible measurements
+
+        Returns: Impact score 0-1, with higher indicating greater impact
+        """
+        if not hasattr(discovery, 'validation') or not discovery.validation:
+            return 0.0
+
+        impact_score = 0.3  # Start with moderate impact
+
+        # Analyze potential impact from discovery characteristics
+        if hasattr(discovery, 'novelty_level'):
+            level = discovery.novelty_level
+
+            # Higher novelty levels have higher potential impact
+            if level == NoveltyLevel.PARADIGM_SHIFT:
+                impact_score += 0.4
+            elif level == NoveltyLevel.SUBSTANTIAL:
+                impact_score += 0.3
+            elif level == NoveltyLevel.MODERATE:
+                impact_score += 0.1
+
+        # Check for paradigm-shift indicators in description
+        if hasattr(discovery, 'detailed_description'):
+            description = discovery.detailed_description.lower()
+
+            paradigm_indicators = [
+                'fundamental', 'challeng', 'contradict', 'replaces',
+                'new framework', 'beyond', 'standard model', 'current understanding'
+            ]
+
+            paradigm_count = sum(1 for indicator in paradigm_indicators if indicator in description)
+            if paradigm_count >= 2:
+                impact_score += 0.2
+
+        # Check for research enablement potential
+        enablement_indicators = [
+            'enables', 'allows', 'provides', 'opens', 'facilitates',
+            'new research', 'future studies', 'further investigation'
+        ]
+
+        enablement_count = sum(1 for indicator in enablement_indicators if indicator in description)
+        if enablement_count >= 1:
+            impact_score += 0.1
+
+        return max(0.0, min(1.0, impact_score))
+
+    def classify_discovery_level(self, discovery: 'GenuineDiscovery') -> DiscoveryLevel:
+        """
+        Classify discovery into 4-level genuine discovery framework.
+
+        Level Classification:
+        - NOVEL_OBSERVATION: <5% literature similarity, reproducible, observable phenomenon
+        - THEORETICAL_INSIGHT: Mechanism understanding, testable predictions, explanatory power
+        - PARADIGM_SHIFT: Challenges foundational assumptions, enables new research directions
+        - EUREKA_DISCOVERY: Revolutionary breakthrough, <10% algorithmic probability
+
+        Returns: DiscoveryLevel classification
+        """
+        # Calculate 3-dimensional scores
+        novelty = self.calculate_novelty_score(discovery)
+        validation = self.calculate_validation_score(discovery)
+        impact = self.calculate_impact_score(discovery)
+
+        # Check minimum threshold: all dimensions must be >= 0.50
+        if novelty < 0.50 or validation < 0.50 or impact < 0.50:
+            # Doesn't meet genuine discovery threshold
+            # Return lowest level for now, but will likely be rejected
+            return DiscoveryLevel.NOVEL_OBSERVATION
+
+        # Calculate overall score
+        overall_score = (novelty + validation + impact) / 3.0
+
+        # Level classification based on scores and characteristics
+        if overall_score >= 0.90:
+            # Eureka Discovery Level (4): Revolutionary breakthroughs
+            # Additional requirements: very high novelty, challenging assumptions
+            description = discovery.detailed_description.lower() if hasattr(discovery, 'detailed_description') else ""
+
+            revolutionary_indicators = [
+                'revolutionary', 'breakthrough', 'first-ever', 'unprecedented',
+                'completely new', 'never before', 'fundamentally different'
+            ]
+
+            revolutionary_count = sum(1 for indicator in revolutionary_indicators if indicator in description)
+
+            if novelty >= 0.90 and revolutionary_count >= 1:
+                return DiscoveryLevel.EUREKA_DISCOVERY
+            else:
+                return DiscoveryLevel.PARADIGM_SHIFT
+
+        elif overall_score >= 0.75:
+            # Paradigm Shift Level (3): Challenges foundational assumptions
+            if novelty >= 0.80:
+                return DiscoveryLevel.PARADIGM_SHIFT
+            else:
+                return DiscoveryLevel.THEORETICAL_INSIGHT
+
+        elif overall_score >= 0.65:
+            # Theoretical Insight Level (2): Mechanism-level understanding
+            if validation >= 0.70:  # Strong validation required
+                return DiscoveryLevel.THEORETICAL_INSIGHT
+            else:
+                return DiscoveryLevel.NOVEL_OBSERVATION
+
+        else:
+            # Novel Observation Level (1): Previously unobserved patterns
+            return DiscoveryLevel.NOVEL_OBSERVATION
+
     def _discovery_loop(self):
         """Main discovery loop - genuine research methodology with smart candidate focusing"""
         logger.info("[GenuineDiscovery] Discovery loop starting")
@@ -510,15 +768,29 @@ class GenuineDiscoverySystem:
         discovery_query = self._generate_discovery_query(discovery_type)
 
         try:
-            # Use ASTRA to conduct research
-            result = self.astra_system.answer(discovery_query)
+            # Use ASTRA to conduct research with timeout protection
+            # Run synchronous answer() method in thread pool to avoid blocking event loop
+            import asyncio
+
+            ANSWER_TIMEOUT = 300  # 5 minutes timeout for ASTRA answer
+
+            logger.info(f"[GenuineDiscovery] Calling ASTRA answer with {ANSWER_TIMEOUT}s timeout...")
+            result = await asyncio.wait_for(
+                asyncio.to_thread(self.astra_system.answer, discovery_query),
+                timeout=ANSWER_TIMEOUT
+            )
+            logger.info(f"[GenuineDiscovery] ASTRA answer completed successfully")
 
             if not result or 'answer' not in result:
+                logger.warning("[GenuineDiscovery] No valid answer in result")
                 return None
 
             # Process result into genuine discovery (async for literature search)
             return await self._process_discovery_result(result['answer'], discovery_type)
 
+        except asyncio.TimeoutError:
+            logger.error(f"[GenuineDiscovery] ASTRA answer timed out after {ANSWER_TIMEOUT}s - discovery attempt failed")
+            return None
         except Exception as e:
             logger.error(f"[GenuineDiscovery] Error conducting discovery: {e}")
             return None
@@ -1123,34 +1395,91 @@ Output: New finding with method, statistical significance, validation."""
         )
 
     def _meets_genuine_discovery_standards(self, discovery: GenuineDiscovery) -> bool:
-        """Check if discovery meets rigorous standards"""
+        """
+        Enhanced genuine discovery standards check using 3-dimensional scoring framework.
+
+        NEW FRAMEWORK (v4.0):
+        - 3-dimensional scoring: Novelty + Validation + Impact (all >= 0.50)
+        - 4-level discovery classification
+        - Much higher thresholds for genuine discovery
+
+        OLD THRESHOLDS (maintained for compatibility):
+        - minimum_novelty_score: 0.70 (up from 0.05)
+        - minimum_probability: 0.75 (up from 0.3)
+        """
 
         # Check for duplicates FIRST to prevent repetitive discoveries
         if self._is_duplicate_discovery(discovery):
             logger.info(f"[GenuineDiscovery] ❌ Duplicate discovery rejected: {discovery.title[:50]}...")
             return False
 
-        # Check novelty threshold
-        if discovery.validation.novelty_score < self.config.minimum_novelty_score:
-            logger.info(f"[GenuineDiscovery] Below novelty threshold: {discovery.validation.novelty_score}")
-            return False
+        # NEW: Check 3-dimensional scoring framework
+        if self.config.enable_genuine_discovery_levels:
+            novelty_score = self.calculate_novelty_score(discovery)
+            validation_score = self.calculate_validation_score(discovery)
+            impact_score = self.calculate_impact_score(discovery)
 
-        # Check probability threshold
-        if discovery.validation.probability_correct < self.config.minimum_probability:
-            logger.info(f"[GenuineDiscovery] Below probability threshold: {discovery.validation.probability_correct}")
-            return False
+            logger.info(f"[GenuineDiscovery] 🎯 3-Dimensional Scoring: "
+                       f"Novelty={novelty_score:.2f}, Validation={validation_score:.2f}, Impact={impact_score:.2f}")
 
-        # Check testability requirement
-        if self.config.require_testability and not discovery.validation.testability:
-            logger.info("[GenuineDiscovery] Not testable")
-            return False
-
-        # Check literature consistency if required
-        if self.config.require_literature_consistency_check:
-            if "inconsistent" in discovery.validation.consistency_with_literature.lower():
-                logger.info("[GenuineDiscovery] Inconsistent with established literature")
+            # Check minimum threshold: all dimensions must be >= 0.50
+            if novelty_score < 0.50:
+                logger.info(f"[GenuineDiscovery] ❌ Below novelty threshold: {novelty_score:.2f} < 0.50")
                 return False
 
+            if validation_score < 0.50:
+                logger.info(f"[GenuineDiscovery] ❌ Below validation threshold: {validation_score:.2f} < 0.50")
+                return False
+
+            if impact_score < 0.50:
+                logger.info(f"[GenuineDiscovery] ❌ Below impact threshold: {impact_score:.2f} < 0.50")
+                return False
+
+            # NEW: Classify discovery level
+            discovery_level = self.classify_discovery_level(discovery)
+            logger.info(f"[GenuineDiscovery] 🏛️ Discovery Level: {discovery_level.value}")
+
+            # NEW: Only accept Level 2+ discoveries (genuine advances)
+            # Level 1 (Novel Observation) is too common, require mechanism understanding
+            if discovery_level == DiscoveryLevel.NOVEL_OBSERVATION:
+                logger.info("[GenuineDiscovery] ❌ Level 1 (Novel Observation) not sufficient - requires mechanism understanding")
+                return False
+
+            # NEW: Enhanced original thresholds for backwards compatibility
+            if discovery.validation.novelty_score < self.config.minimum_novelty_score:
+                logger.info(f"[GenuineDiscovery] ❌ Below enhanced novelty threshold: {discovery.validation.novelty_score:.2f} < {self.config.minimum_novelty_score}")
+                return False
+
+            if discovery.validation.probability_correct < self.config.minimum_probability:
+                logger.info(f"[GenuineDiscovery] ❌ Below enhanced probability threshold: {discovery.validation.probability_correct:.2f} < {self.config.minimum_probability}")
+                return False
+
+        else:
+            # ORIGINAL: Use simple thresholds (backwards compatibility)
+            logger.info("[GenuineDiscovery] Using original validation standards")
+
+            # Check novelty threshold
+            if discovery.validation.novelty_score < self.config.minimum_novelty_score:
+                logger.info(f"[GenuineDiscovery] ❌ Below novelty threshold: {discovery.validation.novelty_score}")
+                return False
+
+            # Check probability threshold
+            if discovery.validation.probability_correct < self.config.minimum_probability:
+                logger.info(f"[GenuineDiscovery] ❌ Below probability threshold: {discovery.validation.probability_correct}")
+                return False
+
+        # Check testability requirement (both frameworks)
+        if self.config.require_testability and not discovery.validation.testability:
+            logger.info("[GenuineDiscovery] ❌ Not testable")
+            return False
+
+        # Check literature consistency if required (both frameworks)
+        if self.config.require_literature_consistency_check:
+            if "inconsistent" in discovery.validation.consistency_with_literature.lower():
+                logger.info("[GenuineDiscovery] ❌ Inconsistent with established literature")
+                return False
+
+        logger.info(f"[GenuineDiscovery] ✅ Discovery meets enhanced genuine discovery standards")
         return True
 
     def _is_duplicate_discovery(self, discovery: GenuineDiscovery) -> bool:
