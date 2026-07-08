@@ -660,8 +660,49 @@ class GenuineDiscoverySystem:
                 self.discovery_cycle += 1
                 logger.info(f"[GenuineDiscovery] Starting discovery cycle {self.discovery_cycle}")
 
+                # DEBUG: Check we reach this point
+                logger.info(f"[GenuineDiscovery] 🔄 DEBUG: Passed cycle increment, current cycle: {self.discovery_cycle}")
+
                 # Run genuine discovery methodology (async for literature validation)
-                discoveries = asyncio.run(self._run_genuine_discovery_cycle())
+                logger.info(f"[GenuineDiscovery] 🔄 SYNC: About to run discovery cycle with fresh event loop")
+
+                # CRITICAL FIX: Use explicit event loop management with thread-safe timeout
+                # Issue: signal.alarm() doesn't work in threads, causing "signal only works in main thread" error
+                # Solution: Use asyncio.wait_for() instead of signal-based timeout
+
+                logger.info(f"[GenuineDiscovery] 🔄 DEBUG: Creating new event loop")
+                loop = asyncio.new_event_loop()
+                logger.info(f"[GenuineDiscovery] 🔄 DEBUG: Event loop created: {loop}")
+                asyncio.set_event_loop(loop)
+                logger.info(f"[GenuineDiscovery] 🔄 DEBUG: Event loop set as current")
+
+                try:
+                    # Create a coroutine that includes timeout logic
+                    async def run_with_timeout():
+                        CYCLE_TIMEOUT = 300  # 5 minutes
+                        try:
+                            discoveries = await asyncio.wait_for(
+                                self._run_genuine_discovery_cycle(),
+                                timeout=CYCLE_TIMEOUT
+                            )
+                            return discoveries
+                        except asyncio.TimeoutError:
+                            logger.error(f"[GenuineDiscovery] 🔄 TIMEOUT: Discovery cycle timed out after {CYCLE_TIMEOUT}s")
+                            return []
+
+                    # Run the timeout-wrapped coroutine
+                    discoveries = loop.run_until_complete(run_with_timeout())
+                    logger.info(f"[GenuineDiscovery] 🔄 SYNC: Discovery cycle completed, got {len(discoveries)} discoveries")
+                except Exception as e:
+                    logger.error(f"[GenuineDiscovery] 🔄 ERROR in discovery cycle: {e}")
+                    import traceback
+                    traceback.print_exc()
+                    discoveries = []
+                finally:
+                    # Clean up the event loop
+                    logger.info(f"[GenuineDiscovery] 🔄 DEBUG: About to close event loop")
+                    loop.close()
+                    logger.info(f"[GenuineDiscovery] 🔄 SYNC: Event loop closed")
 
                 # Process discoveries and check for promising candidates
                 promising_found = False
@@ -700,21 +741,27 @@ class GenuineDiscoverySystem:
 
             except Exception as e:
                 logger.error(f"[GenuineDiscovery] Error in discovery cycle: {e}")
+                import traceback
+                traceback.print_exc()
+                logger.error(f"[GenuineDiscovery] Stack trace printed above")
                 time.sleep(60)
 
         logger.info("[GenuineDiscovery] Discovery loop ended")
 
     async def _run_genuine_discovery_cycle(self) -> List[GenuineDiscovery]:
         """Run one cycle of genuine discovery attempts (async for literature validation)"""
+        logger.info(f"[GenuineDiscovery] 🔄 ASYNC: Starting discovery cycle async execution")
         discoveries = []
         max_attempts = self.config.max_discoveries_per_cycle * 3  # Try 3x more than we expect
 
         for attempt in range(max_attempts):
             if self.stop_event.is_set():
+                logger.info(f"[GenuineDiscovery] Stop event set, breaking cycle")
                 break
 
             # Choose discovery type based on enabled capabilities
             discovery_type = self._choose_discovery_type()
+            logger.info(f"[GenuineDiscovery] 🔄 ASYNC: Attempt {attempt+1}/{max_attempts}, type: {discovery_type.value}")
 
             try:
                 # Await the discovery attempt (includes literature search)

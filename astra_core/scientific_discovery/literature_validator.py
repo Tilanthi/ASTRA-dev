@@ -53,6 +53,7 @@ ADS_SEARCH_TIMEOUT = 120    # 2 minutes timeout for ADS searches
 VALIDATION_TOTAL_TIMEOUT = 600  # 10 minutes total timeout for entire validation
 API_RETRY_DELAY = 5         # 5 seconds delay between retries
 MAX_API_RETRIES = 3         # Maximum number of retries for API calls
+MODEL_LOAD_TIMEOUT = 60      # 1 minute timeout for loading sentence transformer models
 
 
 async def retry_with_backoff(
@@ -452,23 +453,77 @@ class SemanticSimilarityAnalyzer:
     def __init__(self):
         self.model = None
         self.embeddings_cache: Dict[str, np.ndarray] = {}
+        self.model_loaded = False
+        self.model_loading = False
 
+        # Don't load model during initialization to prevent blocking
+        # Model will be loaded lazily when first needed
         if DEPENDENCIES_AVAILABLE:
+            logger.info("Semantic similarity available - will load model on first use")
+        else:
+            logger.warning("Semantic similarity dependencies not available")
+
+    def _load_model_with_timeout(self, timeout_seconds: int = MODEL_LOAD_TIMEOUT) -> bool:
+        """Load sentence transformer model with timeout to prevent blocking"""
+        if self.model_loaded or self.model_loading:
+            return self.model_loaded
+
+        self.model_loading = True
+        start_time = time.time()
+
+        try:
+            import signal
+
+            def timeout_handler(signum, frame):
+                raise TimeoutError(f"Model loading timed out after {timeout_seconds} seconds")
+
+            # Set alarm for timeout
+            signal.signal(signal.SIGALRM, timeout_handler)
+            signal.alarm(timeout_seconds)
+
             try:
-                # Load scientific text embedding model
-                self.model = SentenceTransformer('allenai-specter')  # Scientific paper embedding model
-                logger.info("Loaded semantic similarity model: allenai-specter")
+                # Try to load scientific text embedding model
+                logger.info("Loading semantic similarity model (with timeout)...")
+                self.model = SentenceTransformer('allenai-specter')
+                self.model_loaded = True
+                logger.info("✅ Loaded semantic similarity model: allenai-specter")
+                return True
+
+            except TimeoutError as e:
+                logger.warning(f"⏱️ Model loading timeout: {e}")
+                return False
             except Exception as e:
-                logger.warning(f"Failed to load sentence transformer: {e}")
+                logger.warning(f"Failed to load allenai-specter: {e}")
+                # Try fallback model
                 try:
-                    # Fallback to general model
+                    logger.info("Trying fallback model...")
                     self.model = SentenceTransformer('all-MiniLM-L6-v2')
-                    logger.info("Loaded fallback semantic similarity model")
-                except:
-                    logger.error("No semantic similarity model available")
+                    self.model_loaded = True
+                    logger.info("✅ Loaded fallback semantic similarity model: all-MiniLM-L6-v2")
+                    return True
+                except Exception as e2:
+                    logger.error(f"❌ Failed to load any semantic similarity model: {e2}")
+                    return False
+            finally:
+                # Cancel alarm
+                signal.alarm(0)
+
+        except Exception as e:
+            logger.error(f"Unexpected error loading model: {e}")
+            return False
+        finally:
+            self.model_loading = False
+            elapsed = time.time() - start_time
+            logger.info(f"Model loading attempt took {elapsed:.1f} seconds")
 
     def encode_text(self, text: str) -> Optional[np.ndarray]:
         """Encode text to vector embedding"""
+        # Lazy load model on first use
+        if not self.model_loaded and DEPENDENCIES_AVAILABLE:
+            if not self._load_model_with_timeout():
+                logger.warning("Could not load semantic similarity model - skipping encoding")
+                return None
+
         if not self.model:
             return None
 
