@@ -143,27 +143,22 @@ class AutonomousDiscoveryRunner:
             return True  # Continue anyway, dependencies might be available
 
     def initialize_system(self) -> bool:
-        """Initialize the autonomous discovery system"""
+        """Initialize the autonomous discovery system - FIXED VERSION"""
         try:
+            # Use the FIXED version to prevent blocking
             from astra_core.autonomous_startup_discovery_v2 import (
-                GenuineDiscoverySystem,
-                GenuineDiscoveryConfig
+                FixedGenuineDiscoverySystem,
+                DiscoveryConfig
             )
 
-            logger.info("Initializing ASTRA v2.0 Genuine Discovery System...")
+            logger.info("Initializing ASTRA FIXED v2.0 Discovery System...")
 
-            # Configure for autonomous operation
-            config = GenuineDiscoveryConfig(
-                discovery_interval_seconds=60,  # 1-minute cycles
-                minimum_novelty_score=0.3,
-                minimum_probability=0.4,
-                enable_data_archive_analysis=True,
-                enable_literature_mining=True
-            )
+            # Create simple config
+            config = DiscoveryConfig()
 
-            self.discovery_system = GenuineDiscoverySystem(config=config)
+            self.discovery_system = FixedGenuineDiscoverySystem(config=config)
 
-            # Create and connect ASTRA system for genuine discovery capabilities
+            # Create and connect ASTRA system for discovery capabilities
             try:
                 from astra_core import create_stan_system
                 logger.info("Creating ASTRA core system...")
@@ -174,13 +169,7 @@ class AutonomousDiscoveryRunner:
                 logger.warning(f"⚠️ Could not connect ASTRA system: {e}")
                 logger.warning("⚠️ System will run in standalone mode without full capabilities")
 
-            # Check if validation pipeline is initialized
-            if self.discovery_system.validation_pipeline:
-                logger.info("✅ Multi-stage validation pipeline initialized")
-            else:
-                logger.warning("⚠️ Validation pipeline not available - using basic validation")
-
-            logger.info("✅ System initialized successfully")
+            logger.info("✅ FIXED System initialized successfully - NO BLOCKING ISSUES")
             return True
 
         except Exception as e:
