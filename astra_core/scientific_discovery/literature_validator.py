@@ -169,6 +169,7 @@ class LiteratureSearchResult:
     source: str  # 'arxiv', 'ads', 'semantic_scholar'
     total_results: int
     search_time_seconds: float
+    service_unavailable: bool = False  # CRITICAL FIX: Flag when service is rate-limited/unavailable
 
 
 class LiteratureCache:
@@ -185,12 +186,18 @@ class LiteratureCache:
         key_data = f"{query}:{source}:{max_results}"
         return hashlib.sha256(key_data.encode()).hexdigest()
 
-    def get(self, query: str, source: str, max_results: int = 50) -> Optional[LiteratureSearchResult]:
-        """Get cached result if available and not expired"""
+    def get(self, query: str, source: str, max_results: int = 50, allow_expired: bool = False) -> Optional[LiteratureSearchResult]:
+        """Get cached result if available and not expired (or allow expired if requested)"""
         key = self._generate_key(query, source, max_results)
         if key in self.cache:
             result, timestamp = self.cache[key]
-            if datetime.now() - timestamp < timedelta(seconds=self.ttl_seconds):
+            age = datetime.now() - timestamp
+            if age < timedelta(seconds=self.ttl_seconds):
+                self.hits += 1
+                return result
+            elif allow_expired:
+                # Allow expired results as fallback when service is unavailable
+                logger.info(f"Using expired cache result (age: {age.total_seconds()/3600:.1f} hours)")
                 self.hits += 1
                 return result
             else:
@@ -222,17 +229,22 @@ class ArxivClient:
     def __init__(self, cache: LiteratureCache):
         self.cache = cache
         self.last_request_time = 0
-        self.min_request_interval = 3.0  # arXiv rate limit: 1 request per 3 seconds
+        self.min_request_interval = 5.0  # INCREASED: arXiv rate limit: 1 request per 5 seconds (more conservative)
         self.client = None
+        self.consecutive_errors = 0  # Track consecutive API errors
+        self.backoff_multiplier = 2.0  # Exponential backoff multiplier
+        self.max_consecutive_errors = 5  # Skip arXiv after this many errors
+        self.available = True  # Track if service is available
         if DEPENDENCIES_AVAILABLE:
             try:
                 self.client = arxiv.Client(
                     page_size=100,
-                    delay_seconds=3.0,
-                    num_retries=3
+                    delay_seconds=5.0,  # INCREASED: More conservative delay
+                    num_retries=2  # REDUCED: Fewer retries to avoid hitting rate limit
                 )
             except Exception as e:
                 logger.error(f"Failed to initialize arXiv client: {e}")
+                self.available = False
 
     async def search(
         self,
@@ -261,10 +273,17 @@ class ArxivClient:
             logger.info(f"arXiv cache hit for query: {query[:50]}...")
             return cached
 
-        # Rate limiting
+        # CRITICAL FIX: Enhanced rate limiting with exponential backoff
+        # Calculate delay based on recent errors
+        current_delay = self.min_request_interval
+        if self.consecutive_errors > 0:
+            # Exponential backoff: 5s -> 10s -> 20s -> 40s
+            current_delay = self.min_request_interval * (self.backoff_multiplier ** min(self.consecutive_errors, 4))
+            logger.warning(f"Using exponential backoff delay: {current_delay:.1f}s (consecutive errors: {self.consecutive_errors})")
+
         time_since_last_request = time.time() - self.last_request_time
-        if time_since_last_request < self.min_request_interval:
-            await asyncio.sleep(self.min_request_interval - time_since_last_request)
+        if time_since_last_request < current_delay:
+            await asyncio.sleep(current_delay - time_since_last_request)
 
         # Build search query
         search_query = query
@@ -276,6 +295,25 @@ class ArxivClient:
 
         papers = []
         try:
+            # CRITICAL FIX: Check if arXiv service is temporarily disabled due to errors
+            if not self.available:
+                logger.warning("arXiv service temporarily disabled due to repeated errors - using cached results or returning empty")
+                # Try to use cached results even if expired
+                cached = self.cache.get(query, "arxiv", max_results, allow_expired=True)
+                if cached:
+                    logger.info("Using expired cached results as fallback")
+                    return cached
+                else:
+                    # Return graceful degradation result
+                    return LiteratureSearchResult(
+                        papers=[],
+                        query=query,
+                        source="arxiv",
+                        total_results=0,
+                        search_time_seconds=time.time() - start_time,
+                        service_unavailable=True  # Flag that service is unavailable
+                    )
+
             if not DEPENDENCIES_AVAILABLE or not self.client:
                 logger.warning("arXiv dependencies not available, returning empty results")
                 return LiteratureSearchResult(
@@ -300,17 +338,45 @@ class ArxivClient:
                     self._execute_arxiv_search_with_timeout(search),
                     timeout=ARXIV_SEARCH_TIMEOUT
                 )
+                # SUCCESS: Reset consecutive errors counter
+                self.consecutive_errors = 0
             except asyncio.TimeoutError:
                 logger.error(f"arXiv search timed out after {ARXIV_SEARCH_TIMEOUT}s - likely due to network issues or sleep mode")
+                self.consecutive_errors += 1
                 papers = []
+                # CRITICAL FIX: Disable arXiv service if too many consecutive errors
+                if self.consecutive_errors >= self.max_consecutive_errors:
+                    logger.error(f"arXiv service disabled after {self.consecutive_errors} consecutive errors - will retry later")
+                    self.available = False
             except Exception as e:
-                logger.error(f"arXiv search failed with exception: {e}")
-                papers = []
+                error_msg = str(e).lower()
+                # Check for rate limiting errors
+                if any(code in error_msg for code in ['429', '503', 'rate limit', 'too many requests']):
+                    logger.error(f"arXiv rate limit detected: {e}")
+                    self.consecutive_errors += 1
+                    # Add extra delay before next request
+                    await asyncio.sleep(10 * self.consecutive_errors)
+                    # CRITICAL FIX: Disable arXiv service if too many consecutive rate limit errors
+                    if self.consecutive_errors >= self.max_consecutive_errors:
+                        logger.error(f"arXiv service disabled after {self.consecutive_errors} consecutive rate limit errors - will retry later")
+                        self.available = False
+                else:
+                    logger.error(f"arXiv search failed with exception: {e}")
+                    self.consecutive_errors += 1
+                    papers = []
+                    # CRITICAL FIX: Disable arXiv service if too many consecutive errors
+                    if self.consecutive_errors >= self.max_consecutive_errors:
+                        logger.error(f"arXiv service disabled after {self.consecutive_errors} consecutive errors - will retry later")
+                        self.available = False
 
             self.last_request_time = time.time()
 
         except Exception as e:
             logger.error(f"arXiv search failed: {e}")
+            self.consecutive_errors += 1
+            if self.consecutive_errors >= self.max_consecutive_errors:
+                logger.error(f"arXiv service disabled after {self.consecutive_errors} consecutive errors - will retry later")
+                self.available = False
 
         search_result = LiteratureSearchResult(
             papers=papers,
@@ -326,6 +392,33 @@ class ArxivClient:
         logger.info(f"arXiv search completed: {len(papers)} papers in {search_result.search_time_seconds:.2f}s")
 
         return search_result
+
+    def check_and_reset_service(self) -> bool:
+        """
+        Check if arXiv service should be re-enabled after cooldown period.
+        Resets service availability if enough time has passed.
+
+        Returns:
+            True if service was re-enabled, False otherwise
+        """
+        if not self.available:
+            # Calculate cooldown time based on error count
+            cooldown_time = 300 * min(self.consecutive_errors, 10)  # 5-50 minutes
+            time_since_last_error = time.time() - self.last_request_time
+
+            if time_since_last_error > cooldown_time:
+                logger.info(f"arXiv service cooldown complete ({time_since_last_error/60:.1f} min) - re-enabling service")
+                self.available = True
+                self.consecutive_errors = 0
+                return True
+            else:
+                logger.debug(f"arXiv service still in cooldown ({time_since_last_error/60:.1f}/{cooldown_time/60:.1f} minutes)")
+                return False
+        return True
+
+    def is_service_available(self) -> bool:
+        """Check if arXiv service is currently available"""
+        return self.available and DEPENDENCIES_AVAILABLE and self.client is not None
 
     async def _execute_arxiv_search_with_timeout(self, search: arxiv.Search) -> List[SimilarPaper]:
         """

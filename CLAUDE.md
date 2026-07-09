@@ -1387,6 +1387,182 @@ grep "heartbeat\|STALL DETECTED" .astra_autonomous.log
 
 ---
 
+## 🔧 CRITICAL FIX: API Rate Limiting & Literature Validation Blocking (Resolved 2026-07-09)
+
+### **🚨 Issue Discovered**
+After implementing pause/resume fixes, discovery cycles were still getting stuck during the literature validation phase, with HTTP 429/503 errors from arXiv API.
+
+### **🔍 Root Cause Analysis**
+
+**The Problem:**
+The discovery system was **getting stuck during literature validation** due to API abuse:
+
+1. **API Rate Limiting**: arXiv API was blocking requests with HTTP 429 (Too Many Requests) and HTTP 503 (Service Unavailable)
+2. **Aggressive Request Patterns**: Multiple rapid API calls without sufficient delays
+3. **No Graceful Degradation**: System would hang indefinitely when APIs failed
+4. **Synchronous Blocking**: Literature validation calls were blocking async execution
+
+**Evidence from Logs:**
+```bash
+# Rate limiting errors:
+2026-07-09 13:40:52 - ERROR - Error in arXiv search execution: Page request resulted in HTTP 429
+2026-07-09 13:41:51 - ERROR - Error in arXiv search execution: Page request resulted in HTTP 503
+
+# Missing ADS implementation:
+2026-07-09 13:40:59 - ERROR - ADS search failed: name 'AdsQuery' is not defined
+
+# Watchdog detecting stuck processes:
+2026-07-09 13:29:42 - WARNING - Discovery appears stuck (no log activity for 620.9s)
+2026-07-09 13:41:52 - WARNING - Discovery process stuck - restarting...
+```
+
+### **🔧 The Fix**
+
+**1. Enhanced Rate Limiting with Exponential Backoff**
+Implemented intelligent rate limiting that adapts to API responses:
+
+```python
+# BEFORE (fixed rate limiting):
+self.min_request_interval = 3.0  # Constant 3-second delay
+
+# AFTER (adaptive rate limiting):
+self.min_request_interval = 5.0  # More conservative base delay
+self.consecutive_errors = 0  # Track error patterns
+self.backoff_multiplier = 2.0  # Exponential backoff
+
+# Adaptive delay calculation:
+if self.consecutive_errors > 0:
+    current_delay = 5.0 * (2.0 ** min(self.consecutive_errors, 4))
+    # 5s → 10s → 20s → 40s → 80s delays
+```
+
+**2. Service Health Management**
+Automatic service disabling and recovery:
+
+```python
+# Track consecutive errors and disable service when needed:
+self.max_consecutive_errors = 5
+
+# After too many errors:
+if self.consecutive_errors >= self.max_consecutive_errors:
+    logger.error("arXiv service disabled - will retry later")
+    self.available = False
+
+# Periodic service recovery check:
+def check_and_reset_service(self) -> bool:
+    cooldown_time = 300 * min(self.consecutive_errors, 10)  # 5-50 minutes
+    if time_since_last_error > cooldown_time:
+        logger.info("arXiv service cooldown complete - re-enabling")
+        self.available = True
+        self.consecutive_errors = 0
+        return True
+```
+
+**3. Graceful Degradation with Fallback Caching**
+System continues operation even when APIs are unavailable:
+
+```python
+# BEFORE (blocking on API failure):
+papers = await self._execute_arxiv_search_with_timeout(search)
+# Would hang or crash on API errors
+
+# AFTER (graceful degradation):
+if not self.available:
+    # Use expired cache results as fallback
+    cached = self.cache.get(query, "arxiv", max_results, allow_expired=True)
+    if cached:
+        return cached  # Continue with stale data
+    else:
+        return LiteratureSearchResult(
+            papers=[],
+            service_unavailable=True  # Flag for logging
+        )  # Continue without blocking
+```
+
+**4. Enhanced Error Detection**
+Better detection and handling of specific API errors:
+
+```python
+# Detect rate limiting specifically:
+error_msg = str(e).lower()
+if any(code in error_msg for code in ['429', '503', 'rate limit', 'too many requests']):
+    logger.error(f"arXiv rate limit detected: {e}")
+    self.consecutive_errors += 1
+    await asyncio.sleep(10 * self.consecutive_errors)  # Extra penalty delay
+```
+
+**5. Improved Client Configuration**
+More conservative API client settings:
+
+```python
+# BEFORE (aggressive settings):
+self.client = arxiv.Client(
+    page_size=100,
+    delay_seconds=3.0,  # Too aggressive
+    num_retries=3  # Too many retries
+)
+
+# AFTER (conservative settings):
+self.client = arxiv.Client(
+    page_size=100,
+    delay_seconds=5.0,  # More respectful delay
+    num_retries=2  # Fewer retries to avoid rate limit
+)
+```
+
+### **📊 Files Modified**
+
+**Literature Validation System:**
+- `astra_core/scientific_discovery/literature_validator.py`
+  - Enhanced `ArxivClient` class with adaptive rate limiting
+  - Added service health management and automatic recovery
+  - Implemented graceful degradation with fallback caching
+  - Enhanced error detection for HTTP 429/503 responses
+  - Added `service_unavailable` flag to `LiteratureSearchResult`
+
+### **✅ Verification**
+
+**Test the API rate limiting fixes:**
+```bash
+# 1. Monitor for graceful degradation under rate limiting:
+tail -f .astra_autonomous.log
+# Should see: "arXiv service temporarily disabled - using cached results"
+# Should NOT see: System hanging or crashing
+
+# 2. Check for adaptive rate limiting:
+grep "exponential backoff\|consecutive errors\|service disabled" .astra_autonomous.log
+
+# 3. Verify service recovery:
+grep "service cooldown complete\|re-enabling" .astra_autonomous.log
+
+# 4. Confirm cycles complete despite API issues:
+grep "Discovery cycle completed" .astra_autonomous.log
+# Should see cycle completions even during API issues
+```
+
+### **🎯 Impact**
+
+**Before Fix:**
+- ❌ **API Abuse**: System overwhelmed arXiv API with rapid requests
+- ❌ **Indefinite Blocking**: Cycles got stuck during literature validation
+- ❌ **No Recovery**: Required manual intervention to recover
+- ❌ **HTTP 429/503 Errors**: Constant rate limiting and service unavailable errors
+- ❌ **Watchdog Restarts**: System detected stuck processes but couldn't prevent the issue
+
+**After Fix:**
+- ✅ **Adaptive Rate Limiting**: Automatically adjusts request patterns based on API responses
+- ✅ **Graceful Degradation**: Continues operation even when APIs are unavailable
+- ✅ **Service Health Management**: Automatic disabling and recovery of problematic services
+- ✅ **Fallback Caching**: Uses stale data when fresh data unavailable
+- ✅ **No Blocking**: Discovery cycles complete regardless of API status
+- ✅ ** exponential Backoff**: Intelligent delay adjustment prevents API abuse
+
+### **🔑 Key Takeaway**
+
+**The combination of adaptive rate limiting, service health management, and graceful degradation creates a robust literature validation system that can handle API failures, rate limiting, and network issues without blocking discovery cycles.** The system now respects external API limits while maintaining continuous operation through intelligent fallback mechanisms.
+
+---
+
 ## GitHub Repository Targeting
 
 **CRITICAL**: When pushing code to GitHub, **ALWAYS target only the ASTRA repository**:
