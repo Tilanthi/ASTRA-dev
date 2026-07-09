@@ -284,6 +284,11 @@ class GenuineDiscoverySystem:
         self.analysis_start_time: Optional[datetime] = None
         self.max_analysis_time = 600  # 10 minutes max analysis time
 
+        # CRITICAL FIX: Add heartbeat monitoring to detect stuck cycles
+        self.last_heartbeat = time.time()
+        self.heartbeat_timeout = 600  # 10 minutes without heartbeat = stuck
+        self.stall_detection_count = 0  # Track how many times we've detected stalls
+
         # ASTRA integration
         self.astra_system = None
 
@@ -395,6 +400,30 @@ class GenuineDiscoverySystem:
             'eureka_validation_available': EUREKA_VALIDATION_AVAILABLE and self.eureka_validator is not None,
             'validation_method': 'eureka_enhanced' if self.eureka_validator else 'standard'
         }
+
+    def _update_heartbeat(self):
+        """Update heartbeat timestamp to indicate system is alive"""
+        self.last_heartbeat = time.time()
+
+    def _check_for_stall(self) -> bool:
+        """
+        Check if discovery system has stalled (no heartbeat for too long)
+        Returns True if stalled, False otherwise
+        """
+        time_since_heartbeat = time.time() - self.last_heartbeat
+        if time_since_heartbeat > self.heartbeat_timeout:
+            logger.warning(f"[GenuineDiscovery] ⚠️ STALL DETECTED: No heartbeat for {time_since_heartbeat:.1f}s")
+            self.stall_detection_count += 1
+            return True
+        return False
+
+    def _force_resume_from_stall(self):
+        """Force resume from stalled state"""
+        logger.warning(f"[GenuineDiscovery) 🔧 FORCE RESUME: Clearing pause event and resuming operation")
+        self.pause_event.clear()
+        self.analyzing_promising_candidate = False
+        self.promising_candidate = None
+        self._update_heartbeat()
 
     def calculate_novelty_score(self, discovery: 'GenuineDiscovery') -> float:
         """
@@ -635,17 +664,41 @@ class GenuineDiscoverySystem:
 
         while not self.stop_event.is_set():
             try:
+                # CRITICAL FIX: Check for system stall before processing
+                if self._check_for_stall():
+                    logger.warning("[GenuineDiscovery] ⚠️ Stall detected - forcing resume")
+                    self._force_resume_from_stall()
+
+                # Update heartbeat to show system is alive
+                self._update_heartbeat()
+
                 # Check if paused for user task
                 if self.pause_event.is_set():
                     logger.info("[GenuineDiscovery] Paused for user task - waiting to resume...")
-                    self.pause_event.wait()  # Wait until pause_event is cleared
+                    # CRITICAL FIX: Timeout-based pause to prevent indefinite blocking
+                    PAUSE_TIMEOUT = 300  # 5 minutes maximum pause
+                    start_time = time.time()
+                    while self.pause_event.is_set():
+                        self.pause_event.wait(timeout=30)  # Wait for 30 seconds at a time
+                        if time.time() - start_time > PAUSE_TIMEOUT:
+                            logger.warning(f"[GenuineDiscovery] Pause timeout exceeded ({PAUSE_TIMEOUT}s) - auto-resuming")
+                            self.pause_event.clear()  # Force resume
+                            break
                     logger.info("[GenuineDiscovery] Resumed from user task")
 
                 # Check if we're currently analyzing a promising candidate
                 if self.analyzing_promising_candidate:
                     # Check for pause_event before continuing analysis
                     if self.pause_event.is_set():
-                        self.pause_event.wait()  # Wait for pause to clear
+                        # CRITICAL FIX: Timeout-based pause to prevent indefinite blocking
+                        PAUSE_TIMEOUT = 300  # 5 minutes maximum pause
+                        start_time = time.time()
+                        while self.pause_event.is_set():
+                            self.pause_event.wait(timeout=30)  # Wait for 30 seconds at a time
+                            if time.time() - start_time > PAUSE_TIMEOUT:
+                                logger.warning(f"[GenuineDiscovery] Analysis pause timeout exceeded ({PAUSE_TIMEOUT}s) - auto-resuming")
+                                self.pause_event.clear()  # Force resume
+                                break
                         logger.info("[GenuineDiscovery] Resumed analysis during pause")
                     if self._should_continue_analysis():
                         logger.info(f"[GenuineDiscovery] Continuing analysis of promising candidate: {self.promising_candidate.title}")
@@ -656,6 +709,9 @@ class GenuineDiscoverySystem:
                         self.analyzing_promising_candidate = False
                         self.promising_candidate = None
                         self.analysis_start_time = None
+
+                # CRITICAL FIX: Update heartbeat before starting discovery cycle
+                self._update_heartbeat()
 
                 self.discovery_cycle += 1
                 logger.info(f"[GenuineDiscovery] Starting discovery cycle {self.discovery_cycle}")
@@ -703,6 +759,9 @@ class GenuineDiscoverySystem:
                     logger.info(f"[GenuineDiscovery] 🔄 DEBUG: About to close event loop")
                     loop.close()
                     logger.info(f"[GenuineDiscovery] 🔄 SYNC: Event loop closed")
+
+                    # CRITICAL FIX: Update heartbeat after cycle completion
+                    self._update_heartbeat()
 
                 # Process discoveries and check for promising candidates
                 promising_found = False

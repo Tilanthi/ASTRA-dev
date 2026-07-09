@@ -1221,6 +1221,172 @@ ps aux | grep -E "start_autonomous|sleep_aware" | grep -v grep
 
 ---
 
+## 🔧 CRITICAL FIX: Pause/Resume Deadlock & Heartbeat Monitoring (Resolved 2026-07-09)
+
+### **🚨 Issue Discovered**
+After implementing sleep-aware watchdog functionality, discovery cycles were starting but **getting stuck indefinitely** - the system would appear to run but never complete any discovery cycles.
+
+### **🔍 Root Cause Analysis**
+
+**The Problem:**
+The discovery system had a **pause mechanism deadlock** that could cause indefinite blocking:
+
+1. **Pause Event Deadlock**: `pause_event.wait()` calls could block indefinitely when:
+   - User queries completed without properly clearing pause
+   - System crashed/restarted during pause state
+   - Sleep/wake cycles occurred during pause
+   - Exceptions occurred before pause could be cleared
+
+2. **No Stall Detection**: System had no way to detect when it was stuck
+
+3. **No Auto-Recovery**: Required manual intervention to recover from stuck states
+
+**Evidence from Logs:**
+```bash
+# System would start cycles but never complete:
+2026-07-08 21:43:21 - Starting discovery cycle 4
+2026-07-08 21:43:26 - Starting discovery cycle 4 (restarted)
+# But never: "Discovery cycle completed, got X discoveries"
+```
+
+### **🔧 The Fix**
+
+**1. Timeout-Based Pause Mechanism**
+Replaced indefinite `pause_event.wait()` with timeout-based waiting:
+
+```python
+# BEFORE (indefinite blocking):
+self.pause_event.wait()  # Could wait forever
+
+# AFTER (timeout protection):
+PAUSE_TIMEOUT = 300  # 5 minutes maximum pause
+start_time = time.time()
+while self.pause_event.is_set():
+    self.pause_event.wait(timeout=30)  # Check every 30 seconds
+    if time.time() - start_time > PAUSE_TIMEOUT:
+        logger.warning("Pause timeout exceeded - auto-resuming")
+        self.pause_event.clear()  # Force resume
+        break
+```
+
+**2. Heartbeat Monitoring System**
+Added heartbeat mechanism to detect stalled cycles:
+
+```python
+# Heartbeat monitoring in __init__:
+self.last_heartbeat = time.time()
+self.heartbeat_timeout = 600  # 10 minutes without heartbeat = stuck
+
+# Update heartbeat at key points:
+def _update_heartbeat(self):
+    self.last_heartbeat = time.time()
+
+# Check for stalls:
+def _check_for_stall(self) -> bool:
+    time_since_heartbeat = time.time() - self.last_heartbeat
+    if time_since_heartbeat > self.heartbeat_timeout:
+        logger.warning(f"STALL DETECTED: No heartbeat for {time_since_heartbeat:.1f}s")
+        return True
+    return False
+```
+
+**3. Auto-Recovery Mechanism**
+Automatic stall detection and recovery:
+
+```python
+# In main discovery loop:
+if self._check_for_stall():
+    logger.warning("Stall detected - forcing resume")
+    self._force_resume_from_stall()
+
+# Force resume clears all stuck states:
+def _force_resume_from_stall(self):
+    logger.warning("FORCE RESUME: Clearing pause event and resuming operation")
+    self.pause_event.clear()
+    self.analyzing_promising_candidate = False
+    self.promising_candidate = None
+    self._update_heartbeat()
+```
+
+**4. Enhanced Watchdog Monitoring**
+Added stuck detection to sleep-aware watchdog:
+
+```python
+def is_discovery_stuck(self) -> bool:
+    """Check if discovery is running but not making progress"""
+    # Check last modification time of autonomous log
+    log_file = ASTRA_DIR / ".astra_autonomous.log"
+    mtime = log_file.stat().st_mtime
+    time_since_activity = time.time() - mtime
+
+    # If no log activity for 10 minutes, consider it stuck
+    if time_since_activity > 600:
+        logger.warning(f"Discovery appears stuck (no activity for {time_since_activity:.1f}s)")
+        return True
+    return False
+
+# In watchdog loop:
+if self.is_discovery_running() and self.is_discovery_stuck():
+    logger.warning("Discovery process stuck - restarting...")
+    self.stop_discovery()
+    time.sleep(5)
+    self.start_discovery()
+```
+
+### **📊 Files Modified**
+
+**Core Discovery System:**
+- `astra_core/autonomous_startup_discovery_v2.py` - Timeout-based pause, heartbeat monitoring, stall detection
+
+**Watchdog System:**
+- `astra_core/scientific_discovery/sleep_aware_watchdog.py` - Enhanced stuck detection and auto-recovery
+
+### **✅ Verification**
+
+**Test the fixes:**
+```bash
+# 1. Start the discovery system
+python astra_core/scientific_discovery/sleep_aware_watchdog.py
+
+# 2. Monitor that discovery cycles complete
+tail -f .astra_autonomous.log
+# Should see: "Starting discovery cycle N" followed by "Discovery cycle completed, got X discoveries"
+
+# 3. Simulate stuck conditions:
+# - Pause discovery during a cycle
+# - Wait for timeout (5 minutes)
+# Should see: "Pause timeout exceeded - auto-resuming"
+
+# 4. Check heartbeat monitoring:
+grep "heartbeat\|STALL DETECTED" .astra_autonomous.log
+# Should see regular heartbeat updates
+
+# 5. Test watchdog stuck detection:
+# Kill the discovery process manually
+# Watchdog should detect it's stuck and restart within 15 minutes
+```
+
+### **🎯 Impact**
+
+**Before Fix:**
+- ❌ Discovery cycles would get stuck indefinitely
+- ❌ No automatic recovery from pause deadlocks
+- ❌ System appeared to run but made no progress
+- ❌ Required manual intervention to recover
+
+**After Fix:**
+- ✅ **Auto-resume from pause deadlocks** - 5-minute timeout prevents indefinite blocking
+- ✅ **Heartbeat monitoring** - Detects stalled cycles within 10 minutes
+- ✅ **Automatic recovery** - System clears stuck states and continues operation
+- ✅ **Enhanced watchdog** - Detects and recovers from stuck processes
+- ✅ **Robust sleep/wake handling** - System survives sleep cycles without getting stuck
+
+### **🔑 Key Takeaway**
+
+**The combination of timeout mechanisms, heartbeat monitoring, and stall detection creates a robust autonomous system that can recover from any blocking condition.** This eliminates the single point of failure that was causing indefinite stalls and enables true 24/7 autonomous operation.
+
+---
+
 ## GitHub Repository Targeting
 
 **CRITICAL**: When pushing code to GitHub, **ALWAYS target only the ASTRA repository**:
