@@ -14,8 +14,8 @@ Key fixes:
 import time
 import threading
 import random
-import signal
 import logging
+from astra_core.core.thread_safe_timeout import call_with_timeout
 from pathlib import Path
 from datetime import datetime
 from typing import Optional, Dict, Any, List
@@ -255,25 +255,18 @@ class FixedGenuineDiscoverySystem:
 
     def _call_astra_with_timeout(self, query: str):
         """
-        Call ASTRA system with signal-based timeout protection
+        Call ASTRA system with thread-safe timeout protection
 
-        This prevents indefinite blocking on ASTRA calls.
+        This replaces the signal-based timeout (which only works in main thread)
+        with a thread-safe implementation using concurrent.futures.
         """
-        def timeout_handler(signum, frame):
-            raise TimeoutError("ASTRA call timed out")
-
-        # Set signal handler
-        old_handler = signal.signal(signal.SIGALRM, timeout_handler)
-
         try:
-            # Set 20-second timeout (conservative)
-            signal.alarm(20)
-
-            # Call ASTRA
-            result = self.astra_system.answer(query)
-
-            # Cancel alarm
-            signal.alarm(0)
+            # Use thread-safe timeout (20 seconds)
+            result = call_with_timeout(
+                self.astra_system.answer,
+                20,
+                query
+            )
 
             if result and 'answer' in result:
                 return self._create_discovery_from_result(result['answer'])
@@ -283,11 +276,9 @@ class FixedGenuineDiscoverySystem:
 
         except TimeoutError:
             logger.error("[GenuineDiscovery] ⏰ ASTRA call timed out after 20s")
-            signal.signal(signal.SIGALRM, old_handler)
             return None
         except Exception as e:
             logger.error(f"[GenuineDiscovery] ASTRA call failed: {e}")
-            signal.signal(signal.SIGALRM, old_handler)
             return None
 
     def _create_discovery_from_result(self, answer_text: str):
