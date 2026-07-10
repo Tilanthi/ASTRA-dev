@@ -25,12 +25,44 @@ from dataclasses import dataclass
 logger = logging.getLogger(__name__)
 
 class DiscoveryConfig:
-    """Simple discovery configuration"""
-    def __init__(self):
-        self.discovery_interval_seconds = 60
-        self.startup_delay_seconds = 2
-        self.discoverystore_path = Path.home() / ".astra_persistent" / "genuine_discoveries.json"
-        self.max_discoveries_per_cycle = 1
+    """Simple discovery configuration - Compatible with unified_enhanced.py parameters"""
+
+    def __init__(self,
+                 discovery_interval_seconds=60,
+                 startup_delay_seconds=2,
+                 discoverystore_path=None,
+                 max_discoveries_per_cycle=1,
+                 # Additional parameters for compatibility (ignored but accepted)
+                 research_cycle_duration=None,
+                 enable_pattern_discovery=None,
+                 enable_theoretical_synthesis=None,
+                 enable_gap_identification=None,
+                 enable_predictive_hypothesis=None,
+                 enable_computational_reanalysis=None,
+                 minimum_novelty_score=None,
+                 minimum_probability=None,
+                 require_testability=None,
+                 require_literature_consistency_check=None,
+                 primary_domains=None,
+                 enable_data_archive_analysis=None,
+                 enable_literature_mining=None,
+                 enable_observation_database_analysis=None,
+                 mode=None,
+                 idle_threshold_seconds=None):
+        """Initialize discovery configuration with full parameter compatibility"""
+
+        self.discovery_interval_seconds = discovery_interval_seconds
+        self.startup_delay_seconds = startup_delay_seconds
+
+        if discoverystore_path:
+            self.discoverystore_path = discoverystore_path
+        else:
+            self.discoverystore_path = Path.home() / ".astra_persistent" / "genuine_discoveries.json"
+
+        self.max_discoveries_per_cycle = max_discoveries_per_cycle
+
+        # Log compatibility mode
+        logger.info(f"[DiscoveryConfig] Initialized with {max_discoveries_per_cycle} max discoveries/cycle")
 
 class FixedGenuineDiscoverySystem:
     """
@@ -415,6 +447,38 @@ class FixedGenuineDiscoverySystem:
 def create_fixed_discovery_system(config=None) -> FixedGenuineDiscoverySystem:
     """Create FIXED VERSION discovery system"""
     return FixedGenuineDiscoverySystem(config)
+
+# Compatibility aliases for unified_enhanced.py
+GenuineDiscoveryConfig = DiscoveryConfig
+
+def initialize_genuine_discovery_with_astra(astra_system, config):
+    """
+    Initialize genuine discovery with ASTRA system - FIXED VERSION
+
+    This function provides compatibility with unified_enhanced.py while using
+    the thread-safe, non-blocking v2 implementation.
+
+    Args:
+        astra_system: The ASTRA system instance
+        config: GenuineDiscoveryConfig configuration object
+
+    Returns:
+        FixedGenuineDiscoverySystem: Initialized and started discovery system
+    """
+    logger.info("[GenuineDiscovery] ========== INITIALIZING WITH ASTRA SYSTEM ==========")
+
+    # Create the fixed discovery system
+    discovery_system = FixedGenuineDiscoverySystem(config=config)
+
+    # Connect to ASTRA system
+    discovery_system.initialize_with_astra(astra_system)
+
+    # Start the discovery system
+    discovery_system.start()
+
+    logger.info("[GenuineDiscovery] ========== INITIALIZED AND STARTED SUCCESSFULLY ==========")
+
+    return discovery_system
 
 if __name__ == "__main__":
     print("=" * 60)

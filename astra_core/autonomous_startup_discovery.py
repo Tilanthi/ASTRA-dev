@@ -12,6 +12,7 @@ KEY FEATURES:
 - Automatic pause/resume based on user activity
 - Integration with all ASTRA capabilities
 - Discovery state persistence across sessions
+- Thread-safe timeout protection (v7.0 FIX)
 
 OPERATION MODES:
 - CONTINUOUS: Discovery runs continuously, throttled during user activity
@@ -19,8 +20,14 @@ OPERATION MODES:
 - PAUSED: Discovery paused (user actively working)
 - OFF: Discovery disabled
 
-Version: 1.0.0
-Date: 2026-06-27
+Version: 1.1.0 (v7.0 - Thread-Safe Timeout Fix)
+Date: 2026-07-10
+
+IMPORTANT FIXES v7.0:
+- Added thread-safe timeout wrapper to prevent blocking
+- Replaced signal-based timeout with concurrent.futures implementation
+- Fixed blocking issue in _run_discovery_with_astra method
+- Now compatible with multi-threaded execution
 """
 
 import asyncio
@@ -350,7 +357,7 @@ class AutonomousStartupDiscovery:
             logger.error(f"[AutonomousStartupDiscovery] Discovery cycle error: {e}")
 
     def _run_discovery_with_astra(self):
-        """Run discovery using main ASTRA system"""
+        """Run discovery using main ASTRA system - FIXED with thread-safe timeout"""
         if not self.astra_system:
             return
 
@@ -358,13 +365,22 @@ class AutonomousStartupDiscovery:
         discovery_query = self._generate_discovery_query()
 
         try:
-            # Use ASTRA to process discovery
-            result = self.astra_system.answer(discovery_query)
+            # Import thread-safe timeout wrapper
+            from .core.thread_safe_timeout import call_with_timeout
+
+            # Use ASTRA to process discovery with thread-safe timeout (30 seconds)
+            result = call_with_timeout(
+                self.astra_system.answer,
+                30,  # 30 second timeout
+                discovery_query
+            )
 
             # Extract and store discoveries
             if result and 'answer' in result:
                 self._process_discovery_result(result['answer'])
 
+        except TimeoutError as e:
+            logger.warning(f"ASTRA call timed out after 30s: {e}")
         except Exception as e:
             logger.error(f"Error running discovery with ASTRA: {e}")
 

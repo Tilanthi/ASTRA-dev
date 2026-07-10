@@ -420,7 +420,7 @@ class EnhancedUnifiedSTANSystem:
                 GenuineDiscoveryConfig
             )
 
-            logger.info("[ASTRA] Initializing GENUINE discovery system v2.0")
+            logger.info("[ASTRA] Initializing GENUINE discovery system v2.0 (FIXED with thread-safe timeout)")
 
             # Create configuration for genuine discovery
             discovery_config = GenuineDiscoveryConfig(
@@ -455,15 +455,14 @@ class EnhancedUnifiedSTANSystem:
             )
 
             # Initialize genuine discovery with this system
+            # Note: initialize_genuine_discovery_with_astra now handles the start() call internally
             self.autonomous_discovery = initialize_genuine_discovery_with_astra(
                 astra_system=self,
                 config=discovery_config
             )
 
-            # Start the discovery system
-            self.autonomous_discovery.start()
-
-            logger.info("[ASTRA] ✅ GENUINE autonomous discovery v2.0 initialized and running")
+            logger.info("[ASTRA] ✅ GENUINE autonomous discovery v2.0 initialized and running (FIXED)")
+            logger.info("[ASTRA] 💡 Thread-safe timeout protection prevents blocking issues")
 
         except ImportError as e:
             logger.warning(f"[ASTRA] Could not import genuine discovery v2.0: {e}")
@@ -475,7 +474,7 @@ class EnhancedUnifiedSTANSystem:
                     StartupDiscoveryMode
                 )
 
-                logger.info("[ASTRA] Falling back to discovery v1.0")
+                logger.info("[ASTRA] Falling back to discovery v1.1 (FIXED with thread-safe timeout)")
 
                 discovery_config = StartupDiscoveryConfig(
                     mode=StartupDiscoveryMode.INTELLIGENT,
@@ -490,7 +489,7 @@ class EnhancedUnifiedSTANSystem:
                     config=discovery_config
                 )
 
-                logger.info("[ASTRA] ✅ Autonomous discovery v1.0 initialized (fallback mode)")
+                logger.info("[ASTRA] ✅ Autonomous discovery v1.1 initialized (fallback mode with thread-safe timeout)")
 
             except Exception as e2:
                 logger.error(f"[ASTRA] Could not initialize any discovery system: {e2}")
