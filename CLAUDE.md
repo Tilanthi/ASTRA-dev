@@ -77,12 +77,18 @@ system = create_stan_system()  # Auto-starts discovery!
 
 ### Project Overview
 - **ASTRA**: Autonomous Scientific Discovery in Astrophysics
-- **Version**: 11.0 + v5.0 BLOCKING FIX + v4.5 Autonomous Systems Upgrades + v4.0 Genuine Discovery Framework
+- **Version**: 12.0 + v6.0 VALIDATION GATES + v5.0 BLOCKING FIX + v4.5 Autonomous Systems Upgrades + v4.0 Genuine Discovery Framework
 - **Code Size**: ~265,000 lines
 - **AGI Capability**: 75-80%
 - **GitHub**: https://github.com/Tilanthi/ASTRA-dev
 
-### System Status (2026-07-09 - MAJOR UPDATE)
+### System Status (2026-07-10 - CRITICAL VALIDATION UPDATE)
+- 🛡️ **CRITICAL FIX DEPLOYED (v6.0)**: Pipeline validation gates implemented - prevents false discoveries
+- ✅ **Citation Resolution Gate**: Blocks output if citations don't resolve to bibliography entries
+- ✅ **Derivation Trace Gate**: Requires formula + substitution for every numeric result
+- ✅ **Non-Trivial Validation Gate**: Requires non-calibration test cases
+- ✅ **Explicit Tolerances Gate**: Quantitative agreement criteria (not subjective)
+- ✅ **Metric Specification Gate**: Retires unfalsifiable self-generated scores
 - 🛡️ **CRITICAL FIX DEPLOYED (v5.0)**: Discovery pipeline blocking issue PERMANENTLY RESOLVED
 - ✅ **Automatic Service Setup v4.5**: macOS LaunchAgent for immediate startup and auto-recovery
 - ✅ **Autonomous Systems Upgrades v4.5**: Correlated noise + Riemannian optimization + Convergence monitoring
@@ -100,6 +106,46 @@ system = create_stan_system()  # Auto-starts discovery!
 - **Advanced Capabilities**: Swarm intelligence + Ontology + Causal inference
 - **Auto-Start Architecture**: Zero-configuration deployment
 - **Continuous Operation**: Intelligent pause/resume during queries
+
+### Pipeline Validation Gates (NEW v6.0)
+**Based on peer review feedback - ensures genuine scientific rigor:**
+
+**CRITICAL Gates (Block output completely):**
+- ✅ **Citation Resolution**: All `\cite{}` commands must resolve to bibliography entries
+- ✅ **Derivation Traces**: Every numeric result requires formula + substitution shown
+
+**MAJOR Gates (Should block output):**
+- ✅ **Non-Trivial Validation**: Requires non-calibration test cases (M ≠ 1.0 M☉)
+- ✅ **Explicit Tolerances**: Quantitative agreement criteria (not subjective "match")
+- ✅ **Metric Specification**: Self-generated scores must be retired OR fully specified
+
+**Implementation Files:**
+- `astra_core/pipeline_validation.py` - Validation gate implementations
+- `astra_core/scientific_discovery/validated_discovery_pipeline.py` - Integrated pipeline
+- `ASTRA_PIPELINE_RIGOR_FIXES.md` - Detailed analysis and rationale
+- `ASTRA_PIPELINE_FIXES_IMPLEMENTATION.md` - Implementation guide
+
+**Usage:**
+```python
+from astra_core.pipeline_validation import validate_discovery_pipeline
+
+# After generating discovery paper
+passed, report = validate_discovery_pipeline(
+    tex_content=paper_latex,
+    bib_content=bibliography,
+    results_section=results_section,
+    validation_cases=validation_test_cases,
+    predicted_values=system_results,
+    expected_values=literature_values
+)
+
+if not passed:
+    # BLOCK OUTPUT - validation failed
+    print(f"Validation failed: {report}")
+else:
+    # Approval for distribution
+    print(f"Validation passed: {report}")
+```
 
 ---
 
