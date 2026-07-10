@@ -84,6 +84,18 @@ class FixedGenuineDiscoverySystem:
         self.start_time = datetime.now()
         self.last_activity_time = time.time()
 
+        # CRITICAL: Initialize with real ASTRA system - NO MOCK DATA ALLOWED
+        logger.info("[GenuineDiscovery] ========== INITIALIZING REAL ASTRA SYSTEM ==========")
+        try:
+            from astra_core import create_stan_system
+            self.astra_system = create_stan_system()
+            logger.info("[GenuineDiscovery] ✓ REAL ASTRA SYSTEM CONNECTED")
+            logger.info("[GenuineDiscovery] ✓ Using EnhancedUnifiedSTANSystem - GENUINE DISCOVERIES ONLY")
+        except Exception as e:
+            logger.error(f"[GenuineDiscovery] ❌ FAILED TO INITIALIZE REAL ASTRA SYSTEM: {e}")
+            logger.error("[GenuineDiscovery] ❌ CANNOT PROCEED WITHOUT REAL ASTRA - STOPPING SYSTEM")
+            raise RuntimeError("REAL ASTRA SYSTEM REQUIRED - NO MOCK DATA ALLOWED")
+
         # Start discovery thread
         self.discovery_thread = threading.Thread(
             target=self._robust_discovery_loop,
@@ -93,7 +105,7 @@ class FixedGenuineDiscoverySystem:
         self.discovery_thread.start()
 
         logger.info("[GenuineDiscovery] ✓ FIXED discovery system started")
-        logger.info("[GenuineDiscovery] ========== BEGINNING DISCOVERY CYCLES ==========")
+        logger.info("[GenuineDiscovery] ========== BEGINNING GENUINE DISCOVERY CYCLES ==========")
 
     def stop(self):
         """Stop discovery system"""
@@ -228,20 +240,20 @@ class FixedGenuineDiscoverySystem:
                 logger.info(f"[GenuineDiscovery] Query: {discovery_query[:80]}...")
 
                 # Process with timeout protection
-                if self.astra_system:
-                    discovery = self._call_astra_with_timeout(discovery_query)
-                    if discovery:
-                        discoveries.append(discovery)
-                        logger.info(f"[GenuineDiscovery] ✓ Discovery created")
+                # CRITICAL: REAL ASTRA SYSTEM IS REQUIRED - NO MOCK DATA ALLOWED
+                if not self.astra_system:
+                    logger.error("[GenuineDiscovery] ❌ NO ASTRA SYSTEM AVAILABLE")
+                    logger.error("[GenuineDiscovery] ❌ CANNOT CREATE DISCOVERIES WITHOUT REAL ASTRA")
+                    raise RuntimeError("REAL ASTRA SYSTEM REQUIRED - NO MOCK DATA ALLOWED")
 
-                        # Success - exit early
-                        if len(discoveries) >= 1:
-                            break
-                else:
-                    logger.warning("[GenuineDiscovery] No ASTRA system - creating mock discovery")
-                    # Create mock discovery for testing
-                    discovery = self._create_mock_discovery()
+                discovery = self._call_astra_with_timeout(discovery_query)
+                if discovery:
                     discoveries.append(discovery)
+                    logger.info(f"[GenuineDiscovery] ✓ GENUINE DISCOVERY CREATED")
+
+                    # Success - exit early
+                    if len(discoveries) >= 1:
+                        break
 
             except TimeoutError:
                 logger.warning(f"[GenuineDiscovery] Attempt {attempt + 1} timed out")
@@ -300,14 +312,8 @@ class FixedGenuineDiscoverySystem:
             'timestamp': datetime.now().isoformat()
         }
 
-    def _create_mock_discovery(self):
-        """Create mock discovery for testing when ASTRA unavailable"""
-        return {
-            'title': 'Test Discovery - ASTRA System Check',
-            'abstract': 'Mock discovery created to test fixed discovery pipeline functionality',
-            'discovery_type': 'test',
-            'timestamp': datetime.now().isoformat()
-        }
+    # REMOVED: _create_mock_discovery() - MOCK DATA IS NEVER ALLOWED
+    # REAL ASTRA SYSTEM IS REQUIRED FOR ALL DISCOVERIES
 
     def _get_random_discovery_type(self) -> str:
         """Get random discovery type"""

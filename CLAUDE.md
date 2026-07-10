@@ -13,9 +13,12 @@
 
 ### Critical Rules
 - ❌ **NO FICTIONAL/SYNTHETIC DISCOVERIES** - Only report genuine, verified astronomical discoveries
+- ❌ **NO MOCK DATA OR MOCKASTRA** - NEVER use MockASTRA, test data, or mock discoveries under ANY circumstances
+- ✅ **ALWAYS use real ASTRA system** - Only genuine EnhancedUnifiedSTANSystem with real astronomical queries allowed
 - ✅ **ALWAYS verify discovery authenticity** before presenting to user
 - 🔍 **Check for**: real data sources, telescope/instrument references, coordinates, observation dates
 - ⚠️ **If discovery lacks real-world verification details**, assume it's example data and DO NOT present it
+- 🚨 **SYSTEM FAILURE IF MOCK DATA DETECTED** - If mock discoveries are found, system has critical bug requiring immediate fix
 
 ### Project Detection
 - **ASTRA**: `/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/`
