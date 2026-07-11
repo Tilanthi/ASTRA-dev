@@ -125,8 +125,11 @@ class AstraWatchdog:
             # Start the discovery process
             self.discovery_process = subprocess.Popen(
                 [sys.executable, str(self.DISCOVERY_SCRIPT)],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
+                # DEVNULL (not PIPE): see sleep_aware_watchdog.py — the parent never
+                # drains these pipes, so PIPE deadlocks the child's flush. The child
+                # self-logs to .astra_autonomous.log via FileHandler.
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
                 start_new_session=True  # Create new process group
             )
 

@@ -271,9 +271,14 @@ class LEAPCoreEvolution:
     """
 
     def __init__(self, config: EvolutionConfig = None,
-                 fitness_evaluator: FitnessEvaluator = None):
+                 fitness_evaluator: FitnessEvaluator = None,
+                 rng: Any = None):
         self.config = config or EvolutionConfig()
         self.fitness_evaluator = fitness_evaluator or V36FitnessEvaluator()
+        # Injectable RNG (default: legacy global np.random -> fully backward
+        # compatible). Passing a numpy Generator makes selection deterministic
+        # and thread-safe, decoupling the engine from global RNG state.
+        self.rng = rng if rng is not None else np.random
 
         self.population: List[Chromosome] = []
         self.generation = 0
@@ -408,7 +413,7 @@ class LEAPCoreEvolution:
 
     def _tournament_select(self) -> Chromosome:
         """Select chromosome via tournament selection"""
-        tournament = np.random.choice(
+        tournament = self.rng.choice(
             self.population,
             size=min(self.config.tournament_size, len(self.population)),
             replace=False

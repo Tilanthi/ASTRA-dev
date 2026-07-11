@@ -11,8 +11,13 @@ The key innovation: Uses sleep detection to distinguish between:
 
 Auto-resumes after sleep but respects intentional shutdowns.
 
-Version: 1.0.0
-Date: 2026-07-08
+Version: 1.1.0
+Date: 2026-07-10
+
+v7.2 - Domain Initialization Timeout Fix:
+- Increased stuck threshold from 10 minutes to 60 minutes
+- Allows for slow ASTRA system initialization (77 domains + multiple components)
+- Prevents watchdog from killing processes during normal initialization
 """
 
 import os
@@ -124,8 +129,10 @@ class SleepAwareWatchdog:
             mtime = log_file.stat().st_mtime
             time_since_activity = time.time() - mtime
 
-            # If no log activity for 10 minutes, consider it stuck
-            STUCK_THRESHOLD = 600  # 10 minutes
+            # If no log activity for 60 minutes, consider it stuck
+            # INCREASED from 10 minutes to allow for slow ASTRA system initialization
+            # which loads 77 domains and multiple complex components
+            STUCK_THRESHOLD = 3600  # 60 minutes (was 10 minutes)
             if time_since_activity > STUCK_THRESHOLD:
                 logger.warning(f"Discovery appears stuck (no log activity for {time_since_activity:.1f}s)")
                 return True
@@ -156,8 +163,13 @@ class SleepAwareWatchdog:
             self.discovery_process = subprocess.Popen(
                 [PYTHON_BIN, str(DISCOVERY_SCRIPT)],
                 cwd=ASTRA_DIR,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE
+                # DEVNULL (not PIPE): the parent never drains these pipes, so PIPE
+                # fills the 16/64KB buffer and the child's next log/print flush
+                # blocks forever in _bufferedwriter_flush_unlocked (the init hang).
+                # The child self-logs to .astra_autonomous.log via FileHandler, so
+                # no diagnostic data is lost by discarding the piped stdout/stderr.
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
             )
             logger.info(f"Discovery process started with PID: {self.discovery_process.pid}")
         except Exception as e:

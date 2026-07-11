@@ -70,3 +70,21 @@ Thumbs.db
 # Environment variables
 .env
 .env.local
+
+# --- Folders NOT to push (paper/research folders + nested clone) per user ---
+ASTRA-dev/
+RASTI_paper/
+RASTI_PAPER/
+W3_HGBS_filaments/
+# local runtime state / machine-specific / temp / backups (not portable)
+*.db
+*.plist
+*.log
+.astra_active
+.astra_state.json
+*.backup2
+*.backup_before_validation
+*_broken_backup*.py
+*_backup*.py
+temp_astra_clone/
+tmp*.py

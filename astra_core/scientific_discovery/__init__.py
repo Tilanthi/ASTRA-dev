@@ -198,3 +198,22 @@ def utility_function_7(*args, **kwargs):
     return None
 
 
+# ---------------------------------------------------------------------------
+# Lazy access to the AlphaEvolve-style evolved_analysis subpackage (PEP 562).
+# Accessing `astra_core.scientific_discovery.evolved_analysis` imports it on
+# demand, so the heavy evolved_analysis load (and its leapcore-by-path wiring)
+# is NOT paid when scientific_discovery itself is imported — only when something
+# actually asks for it. Available to ASTRA without growing import-time cost.
+# ---------------------------------------------------------------------------
+def __getattr__(name):
+    if name == "evolved_analysis":
+        # Resolve by full dotted path via importlib — NOT `from . import evolved_analysis`,
+        # which would re-trigger this __getattr__ and recurse.
+        import importlib
+        _ea = importlib.import_module(
+            "astra_core.scientific_discovery.evolved_analysis")
+        globals()["evolved_analysis"] = _ea   # cache; __getattr__ won't fire again
+        return _ea
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
+

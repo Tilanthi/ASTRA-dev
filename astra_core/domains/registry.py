@@ -285,11 +285,16 @@ class DomainRegistry:
 
             domain_class = getattr(module, class_name)
 
-            # Create domain instance
+            # Create domain instance (minimal logging to avoid blocking)
             domain_instance = domain_class(**config.get('params', {}))
 
-            # Initialize domain
-            domain_instance.initialize(self._global_config)
+            # Initialize domain with timeout protection (minimal logging)
+            try:
+                from astra_core.core.thread_safe_timeout import call_with_timeout
+                call_with_timeout(domain_instance.initialize, 5, self._global_config)
+            except TimeoutError:
+                logger.warning(f"⚠️ {domain_name} initialization timed out - continuing anyway")
+                # Continue without initialization - domain may still work with defaults
 
             # Register domain
             self.register_domain(domain_instance)

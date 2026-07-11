@@ -1,9 +1,20 @@
 #!/usr/bin/env python3
 """
-FIXED VERSION - ASTRA Discovery System with Permanent Blocking Fix
+FIXED VERSION - ASTRA Discovery System with Comprehensive Fixes
 
-This version addresses the critical blocking issue that prevented discovery cycles from completing.
-Key fixes:
+This version addresses multiple critical issues:
+
+v7.1 - Persistence Fix (2026-07-10):
+1. Fixed discovery dictionary vs object attribute access issue
+2. Discoveries now properly saved and logged with correct data types
+3. Prevents AttributeError when processing discovery results
+
+v7.0 - Comprehensive Discovery Pipeline Fix (2026-07-10):
+1. Added missing initialize_genuine_discovery_with_astra function
+2. Applied thread-safe timeout to old autonomous_startup_discovery.py
+3. Fixed import logic in unified_enhanced.py for graceful fallback
+
+v5.0 - Permanent Blocking Fix (2026-07-09):
 1. Removed all pause/resume complexity that could cause deadlocks
 2. Eliminated heartbeat checking that could block execution
 3. Simplified discovery loop to basic synchronous execution
@@ -20,6 +31,13 @@ from pathlib import Path
 from datetime import datetime
 from typing import Optional, Dict, Any, List
 from dataclasses import dataclass
+
+# Import peer review validation system
+from astra_core.scientific_discovery.genuine_discovery_validator import (
+    GenuineDiscoveryValidator,
+    DiscoveryQuality,
+    validate_discovery_pipeline
+)
 
 # Setup logging
 logger = logging.getLogger(__name__)
@@ -95,7 +113,30 @@ class FixedGenuineDiscoverySystem:
         self.start_time = None
         self.last_activity_time = None
 
-        logger.info("[GenuineDiscovery] ========== FIXED VERSION INITIALIZED ==========")
+        # NEW: Peer Review Validation System
+        self.validator = GenuineDiscoveryValidator()
+
+        # NEW: Separate storage for different quality levels
+        storage_base = Path.home() / ".astra_persistent"
+        self.storage_paths = {
+            'textbook': storage_base / "textbook_knowledge.json",
+            'synthesis': storage_base / "literature_synthesis.json",
+            'incremental': storage_base / "incremental_advances.json",
+            'genuine': storage_base / "genuine_discoveries.json"
+        }
+
+        # NEW: Track statistics by quality level
+        self.discovery_stats = {
+            'textbook': 0,
+            'synthesis': 0,
+            'incremental': 0,
+            'genuine': 0,
+            'total_processed': 0
+        }
+
+        logger.info("[GenuineDiscovery] ========== FIXED VERSION INITIALIZED WITH VALIDATION ==========")
+        logger.info("[GenuineDiscovery] ✓ Peer review validation system enabled")
+        logger.info("[GenuineDiscovery] ✓ Separate storage for different quality levels")
 
     def initialize_with_astra(self, astra_system):
         """Connect to ASTRA system"""
@@ -176,6 +217,17 @@ class FixedGenuineDiscoverySystem:
                 cycle_start_time = time.time()
                 self.discovery_cycle += 1
 
+                # Consume any new machine-verified discoveries produced by the
+                # evolved_analysis subpackage (lazy import; the function never
+                # raises and does one small non-blocking file read; idempotent).
+                try:
+                    from astra_core.scientific_discovery.evolved_discovery_consumer import (
+                        consume_evolved_discoveries)
+                    consume_evolved_discoveries(self)
+                except Exception as _evolve_e:
+                    logger.warning("[GenuineDiscovery] evolved-discovery consume skipped: %s",
+                                   _evolve_e)
+
                 logger.info(f"[GenuineDiscovery] ")
                 logger.info(f"[GenuineDiscovery] ========== DISCOVERY CYCLE {self.discovery_cycle} ==========")
 
@@ -186,14 +238,39 @@ class FixedGenuineDiscoverySystem:
                 try:
                     discoveries = self._execute_timeout_protected_cycle()
 
+                    # Process discoveries with quality logging
+                    genuine_count = 0
+                    for discovery in discoveries:
+                        quality = discovery.get('validation', {}).get('quality', 'UNKNOWN')
+                        is_genuine = discovery.get('validation', {}).get('is_genuine', False)
+                        confidence = discovery.get('validation', {}).get('confidence', 0.0)
+
+                        # Quality emoji for logging
+                        quality_emoji = {
+                            'TEXTBOOK': '❌',
+                            'SYNTHESIS': '📚',
+                            'INCREMENTAL': '⚠️',
+                            'GENUINE': '✅',
+                            'BREAKTHROUGH': '🚀',
+                            'UNKNOWN': '❓'
+                        }
+                        emoji = quality_emoji.get(quality, '❓')
+
+                        # Always add to storage tracking (for quality-segregated storage)
+                        self.genuine_discoveries.append(discovery)
+
+                        # Only count as "genuine" for statistics if validation passed
+                        if is_genuine:
+                            genuine_count += 1
+                            logger.info(f"[GenuineDiscovery] {emoji} DISCOVERY SAVED: {discovery.get('title', 'Unknown')[:60]} [{quality}, {confidence:.1%} confidence]")
+                        else:
+                            logger.info(f"[GenuineDiscovery] {emoji} FILTERED: {discovery.get('title', 'Unknown')[:60]} [{quality}, {confidence:.1%} confidence]")
+
+                    # Log cycle completion with quality statistics
                     cycle_time = time.time() - cycle_start_time
                     logger.info(f"[GenuineDiscovery] ========== CYCLE {self.discovery_cycle} COMPLETE ==========")
-                    logger.info(f"[GenuineDiscovery] Cycle time: {cycle_time:.1f}s | Discoveries: {len(discoveries)}")
-
-                    # Process discoveries
-                    for discovery in discoveries:
-                        self.genuine_discoveries.append(discovery)
-                        logger.info(f"[GenuineDiscovery] ✓ DISCOVERY SAVED: {discovery.title[:60]}")
+                    logger.info(f"[GenuineDiscovery] Cycle time: {cycle_time:.1f}s | Total: {len(discoveries)} | Genuine: {genuine_count}")
+                    logger.info(f"[GenuineDiscovery] 📊 Quality Stats: {self.discovery_stats}")
 
                     # Save discoveries
                     self._save_discovery_store()
@@ -326,7 +403,7 @@ class FixedGenuineDiscoverySystem:
             return None
 
     def _create_discovery_from_result(self, answer_text: str):
-        """Create discovery from ASTRA answer"""
+        """Create discovery from ASTRA answer with peer review validation"""
         # Extract title
         lines = answer_text.split('\n')
         title = "Astronomical Discovery"
@@ -336,13 +413,55 @@ class FixedGenuineDiscoverySystem:
                 title = line
                 break
 
-        # Create discovery
-        return {
+        # Create discovery object
+        discovery = {
             'title': title,
             'abstract': answer_text[:300] + "..." if len(answer_text) > 300 else answer_text,
             'discovery_type': 'theoretical_synthesis',
             'timestamp': datetime.now().isoformat()
         }
+
+        # NEW: Apply peer review validation
+        try:
+            validation_result = self.validator.validate_discovery(discovery)
+
+            # Add validation results to discovery
+            discovery['validation'] = {
+                'is_genuine': validation_result.is_genuine,
+                'quality': validation_result.quality.value,
+                'confidence': validation_result.confidence,
+                'reasons': validation_result.reasons,
+                'suggested_improvements': validation_result.suggested_improvements
+            }
+
+            # Log validation outcome
+            quality_emoji = {
+                'TEXTBOOK': '❌',
+                'SYNTHESIS': '📚',
+                'INCREMENTAL': '⚠️',
+                'GENUINE': '✅',
+                'BREAKTHROUGH': '🚀'
+            }
+
+            emoji = quality_emoji.get(validation_result.quality.value, '❓')
+            logger.info(f"[GenuineDiscovery] {emoji} VALIDATION: {validation_result.quality.value} ({validation_result.confidence:.1%} confidence)")
+
+            # Update statistics
+            self.discovery_stats['total_processed'] += 1
+            if validation_result.quality.value in self.discovery_stats:
+                self.discovery_stats[validation_result.quality.value] += 1
+
+        except Exception as e:
+            logger.error(f"[GenuineDiscovery] Validation failed: {e}")
+            discovery['validation'] = {
+                'is_genuine': False,
+                'quality': 'UNKNOWN',
+                'confidence': 0.0,
+                'reasons': [f'Validation error: {str(e)}'],
+                'suggested_improvements': []
+            }
+
+        return discovery
 
     # REMOVED: _create_mock_discovery() - MOCK DATA IS NEVER ALLOWED
     # REAL ASTRA SYSTEM IS REQUIRED FOR ALL DISCOVERIES
@@ -369,35 +488,105 @@ class FixedGenuineDiscoverySystem:
         return random.choice(queries)
 
     def _save_discovery_store(self):
-        """Save discoveries to persistent storage"""
+        """Save discoveries to quality-segregated persistent storage"""
         try:
-            self.discoverystore_path.parent.mkdir(parents=True, exist_ok=True)
-
             import json
-            store_data = {
-                'discoveries': self.genuine_discoveries,
-                'failed_attempts': self.failed_attempts,
-                'statistics': {
+
+            # Separate discoveries by quality level
+            quality_buckets = {
+                'TEXTBOOK': [],
+                'SYNTHESIS': [],
+                'INCREMENTAL': [],
+                'GENUINE': [],
+                'BREAKTHROUGH': [],
+                'UNKNOWN': []
+            }
+
+            # Categorize all discoveries
+            for discovery in self.genuine_discoveries:
+                quality = discovery.get('validation', {}).get('quality', 'UNKNOWN')
+                if quality in quality_buckets:
+                    quality_buckets[quality].append(discovery)
+
+            # Save each quality bucket to its own file
+            saved_counts = {}
+            for quality, discoveries in quality_buckets.items():
+                if discoveries:
+                    storage_path = self._get_storage_path_for_quality(quality)
+                    storage_path.parent.mkdir(parents=True, exist_ok=True)
+
+                    # Load existing data for this quality
+                    existing_data = []
+                    if storage_path.exists():
+                        try:
+                            with open(storage_path, 'r') as f:
+                                existing_data = json.load(f).get('discoveries', [])
+                        except:
+                            existing_data = []
+
+                    # Append new discoveries
+                    all_discoveries = existing_data + discoveries
+
+                    # Save updated data
+                    store_data = {
+                        'discoveries': all_discoveries,
+                        'statistics': {
+                            'total_count': len(all_discoveries),
+                            'quality_level': quality,
+                            'last_updated': datetime.now().isoformat()
+                        }
+                    }
+
+                    with open(storage_path, 'w') as f:
+                        json.dump(store_data, f, indent=2)
+
+                    saved_counts[quality] = len(discoveries)
+
+            # Save overall statistics
+            stats_path = Path.home() / ".astra_persistent" / "discovery_statistics.json"
+            stats_data = {
+                'by_quality': self.discovery_stats,
+                'overall': {
                     'total_cycles': self.discovery_cycle,
-                    'total_discoveries': len(self.genuine_discoveries),
-                    'discovery_rate': len(self.genuine_discoveries) / max(1, self.discovery_cycle),
+                    'total_processed': self.discovery_stats['total_processed'],
+                    'genuine_discovery_rate': self.discovery_stats['genuine'] / max(1, self.discovery_stats['total_processed']),
                     'last_updated': datetime.now().isoformat()
                 }
             }
 
-            with open(self.discoverystore_path, 'w') as f:
-                json.dump(store_data, f, indent=2)
+            with open(stats_path, 'w') as f:
+                json.dump(stats_data, f, indent=2)
 
-            logger.info(f"[GenuineDiscovery] ✓ Saved {len(self.genuine_discoveries)} discoveries to storage")
+            # Log summary
+            if saved_counts:
+                summary = ", ".join([f"{qty} {qual.lower()}" for qual, qty in saved_counts.items()])
+                logger.info(f"[GenuineDiscovery] ✓ Saved discoveries by quality: {summary}")
+                logger.info(f"[GenuineDiscovery] 📊 Stats: {self.discovery_stats}")
 
         except Exception as e:
             logger.error(f"[GenuineDiscovery] Failed to save discoveries: {e}")
 
+    def _get_storage_path_for_quality(self, quality: str) -> Path:
+        """Get storage path for a specific quality level"""
+        quality_mapping = {
+            'TEXTBOOK': self.storage_paths['textbook'],
+            'SYNTHESIS': self.storage_paths['synthesis'],
+            'INCREMENTAL': self.storage_paths['incremental'],
+            'GENUINE': self.storage_paths['genuine'],
+            'BREAKTHROUGH': self.storage_paths['genuine'],  # Breakthroughs go in genuine file
+            'UNKNOWN': Path.home() / ".astra_persistent" / "unknown_quality.json"
+        }
+        return quality_mapping.get(quality, quality_mapping['UNKNOWN'])
+
     def get_discovery_status(self) -> Dict[str, Any]:
-        """Get current discovery status"""
+        """Get current discovery status with quality breakdown"""
         discovery_rate = 0.0
         if self.discovery_cycle > 0:
             discovery_rate = len(self.genuine_discoveries) / self.discovery_cycle
+
+        genuine_rate = 0.0
+        if self.discovery_stats['total_processed'] > 0:
+            genuine_rate = self.discovery_stats['genuine'] / self.discovery_stats['total_processed']
 
         uptime = None
         if self.start_time:
@@ -406,12 +595,15 @@ class FixedGenuineDiscoverySystem:
         return {
             'is_running': self.is_running,
             'discovery_cycle': self.discovery_cycle,
-            'genuine_discoveries': len(self.genuine_discoveries),
+            'total_discoveries': len(self.genuine_discoveries),
             'discovery_rate': discovery_rate,
             'failed_attempts': len(self.failed_attempts),
             'uptime_seconds': uptime,
             'last_activity': self.last_activity_time,
-            'system_type': 'FIXED_VERSION'
+            'system_type': 'FIXED_VERSION_WITH_VALIDATION',
+            'quality_statistics': self.discovery_stats.copy(),
+            'genuine_discovery_rate': genuine_rate,
+            'validation_status': 'ENABLED'
         }
 
     def run_discovery_cycle(self, timeout=300):
