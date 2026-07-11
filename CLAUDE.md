@@ -77,32 +77,62 @@ system = create_stan_system()  # Auto-starts discovery!
 
 ### Project Overview
 - **ASTRA**: Autonomous Scientific Discovery in Astrophysics
-- **Version**: 13.0 + v7.0 COMPREHENSIVE FIX + v6.0 VALIDATION GATES + v5.0 BLOCKING FIX + v4.5 Autonomous Systems Upgrades + v4.0 Genuine Discovery Framework
+- **Version**: 14.0 — 2026-07-11 Autonomous-Discovery Re-architecture (fiction-free, two-gate EVALUATE). *Supersedes* the v5–v7 "fixes" below, which did NOT make the pipeline operational (see System Status).
 - **Code Size**: ~265,000 lines
 - **AGI Capability**: 75-80%
 - **GitHub**: https://github.com/Tilanthi/ASTRA-dev
 
-### System Status (2026-07-10 - COMPREHENSIVE FIX v7.0)
-- 🛡️ **COMPREHENSIVE FIX DEPLOYED (v7.0)**: All three discovery pipeline solutions applied - FULLY OPERATIONAL
-- ✅ **Solution 1**: Added missing `initialize_genuine_discovery_with_astra` to v2
-- ✅ **Solution 2**: Applied thread-safe timeout to old `autonomous_startup_discovery.py`
-- ✅ **Solution 3**: Fixed import logic in `unified_enhanced.py` for graceful fallback
-- ✅ **Discovery Pipeline**: FULLY OPERATIONAL - both v2 and fallback paths working
-- ✅ **Active Discovery Rate**: Multiple cycles per minute, producing genuine discoveries
-- ✅ **System Stability**: Continuous 24/7 operation with no blocking issues
-- 🛡️ **CRITICAL FIX DEPLOYED (v6.0)**: Pipeline validation gates implemented - prevents false discoveries
-- ✅ **Citation Resolution Gate**: Blocks output if citations don't resolve to bibliography entries
-- ✅ **Derivation Trace Gate**: Requires formula + substitution for every numeric result
-- ✅ **Non-Trivial Validation Gate**: Requires non-calibration test cases
-- ✅ **Explicit Tolerances Gate**: Quantitative agreement criteria (not subjective)
-- ✅ **Metric Specification Gate**: Retires unfalsifiable self-generated scores
-- 🛡️ **CRITICAL FIX DEPLOYED (v5.0)**: Discovery pipeline blocking issue PERMANENTLY RESOLVED
-- ✅ **Automatic Service Setup v4.5**: macOS LaunchAgent for immediate startup and auto-recovery
-- ✅ **Autonomous Systems Upgrades v4.5**: Correlated noise + Riemannian optimization + Convergence monitoring
-- ✅ **Genuine Discovery Framework v4.0**: Fully operational with advanced capabilities
-- ✅ **Auto-Start Discovery v4.0**: Automatic startup with intelligent pause/resume
-- ✅ **Continuous Operation v3.0**: Watchdog monitoring with auto-restart
-- ✅ **EUREKA Detection v3.0**: Genuine scientific insight detection
+### System Status (2026-07-11 — Autonomous-Discovery Re-architecture, v14.0)
+
+> ⚠️ **Correction of the prior status (v5–v7).** The earlier "FULLY OPERATIONAL /
+> producing genuine discoveries / multiple cycles per minute" claims were **not
+> true**. A code-level audit found the always-on service was *violating the prime
+> directive*: `FixedGenuineDiscoverySystem` → STAN `answer()` returned a hardcoded
+> string that was written to the genuine store as a "discovery" (~60/hour, with a
+> hardcoded 0.6 confidence). 209 fictional + 8 duplicate records had accumulated.
+> The v5–v7 changes below addressed thread/init mechanics but never fixed this —
+> the live path kept emitting fiction. This is now fixed structurally.
+
+**Current architecture (verified by execution, 11 regression tests pass):**
+- ✅ **Fiction is structurally impossible.** A single write chokepoint
+  (`astra_core/scientific_discovery/discovery_store.py`) rejects any record
+  without a machine `verification` block. No code path can write a discovery that
+  hasn't passed an objective, machine-checkable test on real data.
+- ✅ **Fiction emitter retired.** Replaced by `astra_core/autonomous_discovery_supervisor.py`:
+  an always-on, user-yielding supervisor (lock-free heartbeat yield — no
+  pause/resume deadlock surface). It autostarts via the `com.astra.discovery`
+  LaunchAgent, ingests machine-verified records, and (when idle + an LLM token is
+  available) runs the evolutionary engine. It **never falls back to fiction**.
+- ✅ **Two-gate EVALUATE (AlphaEvolve core).** Phase 1: proven narrow-task
+  evolution (photo-z σ_NMAD 0.049→0.021; star/gal/qso 0.33→0.91 on real SDSS).
+  Phase 2: open-ended (CLAIM, test) search with **Gate 1** (real-data
+  significance, sandboxed) + **Gate 2** (literature novelty vs arXiv). Only
+  both-gate survivors are stored.
+- ✅ **Generated code sandboxed.** AST import allowlist + `resource` rlimits +
+  `sandbox-exec` profile (no network, temp-writes-only).
+- ✅ **Canonical LLM gateway** (`astra_core/intelligence/llm_gateway.py`); STAN
+  stays a symbolic component (its hardcoded `answer()` is no longer a discovery
+  source).
+- ✅ **Store cleaned:** 218 → 1 verified record.
+
+**Honest limitations:** Phase-2 novelty gate is best-effort (catches explicit
+literature restatements + foundational textbook results; not a perfect oracle).
+No genuinely-novel Eureka claim has been emitted yet — real novelty is rare; the
+plumbing is trustworthy, finding Eureka needs scale + richer data.
+
+**Enabling autonomous evolution:** the supervisor runs ingest-only until
+`~/.astra_persistent/llm_env` (chmod 600) contains `ANTHROPIC_AUTH_TOKEN` (+ base
+URL) and `ASTRA_EVOLUTION_MODULE` (e.g. `evolved_analysis.run_claim_search` for
+Phase-2 open-ended search, or `evolved_analysis.run_engine` for the Phase-1
+photo-z engine).
+
+**Full design + implementation status:**
+`docs/superpowers/specs/2026-07-11-astra-autonomous-discovery-rearchitecture-design.md`.
+**Regression tests:** `astra_core/tests/test_discovery_chokepoint.py`.
+
+> The detailed v5.0 / v5.1 / v7.0 sections below are retained as **historical
+> record** of the thread/init debugging journey. They did *not* fix the fiction
+> problem; the v14.0 re-architecture above is the current truth.
 
 ### Key Features
 - **4-Level Discovery Classification**: Novel Observation → Theoretical Insight → Paradigm Shift → Eureka Discovery

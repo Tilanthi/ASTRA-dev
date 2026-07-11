@@ -38,6 +38,16 @@ from astra_core.scientific_discovery.genuine_discovery_validator import (
     DiscoveryQuality,
     validate_discovery_pipeline
 )
+# Single trust boundary for the discovery store (anti-fiction chokepoint).
+# A record can only reach disk if it carries a machine `verification` block.
+from astra_core.scientific_discovery.discovery_store import (
+    has_machine_verification,
+    load_verified,
+    dedup_verified,
+    save_bucket,
+    GENUINE_FILE,
+    PERSIST_DIR,
+)
 
 # Setup logging
 logger = logging.getLogger(__name__)
@@ -133,6 +143,24 @@ class FixedGenuineDiscoverySystem:
             'genuine': 0,
             'total_processed': 0
         }
+
+        # Hydrate the in-memory store from disk so (a) dedup has real prior
+        # state and history survives restarts, and (b) the legacy
+        # "load-existing + append in-memory" merge in _save_discovery_store no
+        # longer re-adds every record each cycle (the duplicate-on-each-cycle
+        # bug that turned 1 evolved discovery into 9 copies).
+        try:
+            _verified, _dropped = dedup_verified(
+                load_verified(Path(self.discoverystore_path)))
+            if _dropped:
+                logger.info("[GenuineDiscovery] dropped %d duplicate(s) on hydrate",
+                            _dropped)
+            self.genuine_discoveries = _verified
+            logger.info("[GenuineDiscovery] hydrated %d machine-verified "
+                        "discovery(ies) from disk", len(self.genuine_discoveries))
+        except Exception as _e:
+            logger.warning("[GenuineDiscovery] hydration failed (starting empty): %s", _e)
+            self.genuine_discoveries = []
 
         logger.info("[GenuineDiscovery] ========== FIXED VERSION INITIALIZED WITH VALIDATION ==========")
         logger.info("[GenuineDiscovery] ✓ Peer review validation system enabled")
@@ -256,7 +284,13 @@ class FixedGenuineDiscoverySystem:
                         }
                         emoji = quality_emoji.get(quality, '❓')
 
-                        # Always add to storage tracking (for quality-segregated storage)
+                        # Defense in depth: only machine-verified records may
+                        # enter the in-memory store (and thus reach disk).
+                        if not has_machine_verification(discovery):
+                            logger.warning("[GenuineDiscovery] refused in-memory "
+                                           "append of unverified record: %s",
+                                           str(discovery.get('title', ''))[:60])
+                            continue
                         self.genuine_discoveries.append(discovery)
 
                         # Only count as "genuine" for statistics if validation passed
@@ -375,32 +409,25 @@ class FixedGenuineDiscoverySystem:
         return discoveries
 
     def _call_astra_with_timeout(self, query: str):
+        """Return ``None``.
+
+        Historically this called ``self.astra_system.answer(query)`` and turned
+        the response into a 'discovery'. That path is **structurally incapable
+        of machine verification** — STAN's ``answer()`` returns a hardcoded
+        string (``astra_core/core/unified.py``), so every record it produced
+        was fiction that violated the prime directive ("NO FICTIONAL/
+        SYNTHETIC DISCOVERIES"). It is disabled.
+
+        The only discoveries this loop can now acquire are machine-verified ones
+        ingested via ``consume_evolved_discoveries`` (each carries a
+        ``verification`` block — an objective metric from executing code on real
+        data). See ``discovery_store.has_machine_verification`` /
+        ``append_verified``. This makes "cannot emit fiction" a structural
+        property rather than a hope.
         """
-        Call ASTRA system with thread-safe timeout protection
-
-        This replaces the signal-based timeout (which only works in main thread)
-        with a thread-safe implementation using concurrent.futures.
-        """
-        try:
-            # Use thread-safe timeout (20 seconds)
-            result = call_with_timeout(
-                self.astra_system.answer,
-                20,
-                query
-            )
-
-            if result and 'answer' in result:
-                return self._create_discovery_from_result(result['answer'])
-            else:
-                logger.warning("[GenuineDiscovery] No valid ASTRA result")
-                return None
-
-        except TimeoutError:
-            logger.error("[GenuineDiscovery] ⏰ ASTRA call timed out after 20s")
-            return None
-        except Exception as e:
-            logger.error(f"[GenuineDiscovery] ASTRA call failed: {e}")
-            return None
+        logger.debug("[GenuineDiscovery] fiction generation path disabled "
+                     "(STAN answer() cannot produce machine verification)")
+        return None
 
     def _create_discovery_from_result(self, answer_text: str):
         """Create discovery from ASTRA answer with peer review validation"""
@@ -488,80 +515,55 @@ class FixedGenuineDiscoverySystem:
         return random.choice(queries)
 
     def _save_discovery_store(self):
-        """Save discoveries to quality-segregated persistent storage"""
+        """Persist ONLY machine-verified, de-duplicated discoveries.
+
+        This replaces two legacy bugs at once:
+          1. The unconditional append + quality-bucket write that let fictional
+             records (no ``verification`` block) reach disk.
+          2. The "load existing from disk + append full in-memory list" merge
+             that re-added every record on each cycle, duplicating endlessly
+             (1 evolved discovery became 9 copies).
+
+        The in-memory verified store is now authoritative; disk is a verbatim,
+        deduped image of it, written through the discovery_store chokepoint.
+        """
         try:
             import json
 
-            # Separate discoveries by quality level
-            quality_buckets = {
-                'TEXTBOOK': [],
-                'SYNTHESIS': [],
-                'INCREMENTAL': [],
-                'GENUINE': [],
-                'BREAKTHROUGH': [],
-                'UNKNOWN': []
-            }
+            # Keep only machine-verified records, dedup by verification key.
+            verified, dropped = dedup_verified(
+                [d for d in self.genuine_discoveries
+                 if has_machine_verification(d)])
+            if dropped:
+                logger.info("[GenuineDiscovery] dropped %d duplicate/in-memory "
+                            "copy(ies) before persisting", dropped)
 
-            # Categorize all discoveries
-            for discovery in self.genuine_discoveries:
-                quality = discovery.get('validation', {}).get('quality', 'UNKNOWN')
-                if quality in quality_buckets:
-                    quality_buckets[quality].append(discovery)
+            # All machine-verified records are genuinely GENUINE — write them
+            # to the genuine store via the chokepoint's writer. The legacy
+            # fiction-only buckets (incremental/textbook) are no longer written
+            # to; they are emptied by the one-time purge.
+            genuine_path = Path(self.discoverystore_path)
+            save_bucket(genuine_path, verified)
 
-            # Save each quality bucket to its own file
-            saved_counts = {}
-            for quality, discoveries in quality_buckets.items():
-                if discoveries:
-                    storage_path = self._get_storage_path_for_quality(quality)
-                    storage_path.parent.mkdir(parents=True, exist_ok=True)
-
-                    # Load existing data for this quality
-                    existing_data = []
-                    if storage_path.exists():
-                        try:
-                            with open(storage_path, 'r') as f:
-                                existing_data = json.load(f).get('discoveries', [])
-                        except:
-                            existing_data = []
-
-                    # Append new discoveries
-                    all_discoveries = existing_data + discoveries
-
-                    # Save updated data
-                    store_data = {
-                        'discoveries': all_discoveries,
-                        'statistics': {
-                            'total_count': len(all_discoveries),
-                            'quality_level': quality,
-                            'last_updated': datetime.now().isoformat()
-                        }
-                    }
-
-                    with open(storage_path, 'w') as f:
-                        json.dump(store_data, f, indent=2)
-
-                    saved_counts[quality] = len(discoveries)
-
-            # Save overall statistics
+            # Save overall statistics (honest: counts only verified records).
             stats_path = Path.home() / ".astra_persistent" / "discovery_statistics.json"
             stats_data = {
                 'by_quality': self.discovery_stats,
                 'overall': {
                     'total_cycles': self.discovery_cycle,
                     'total_processed': self.discovery_stats['total_processed'],
+                    'verified_discoveries': len(verified),
                     'genuine_discovery_rate': self.discovery_stats['genuine'] / max(1, self.discovery_stats['total_processed']),
                     'last_updated': datetime.now().isoformat()
                 }
             }
-
             with open(stats_path, 'w') as f:
                 json.dump(stats_data, f, indent=2)
 
-            # Log summary
-            if saved_counts:
-                summary = ", ".join([f"{qty} {qual.lower()}" for qual, qty in saved_counts.items()])
-                logger.info(f"[GenuineDiscovery] ✓ Saved discoveries by quality: {summary}")
-                logger.info(f"[GenuineDiscovery] 📊 Stats: {self.discovery_stats}")
+            if verified:
+                logger.info(f"[GenuineDiscovery] ✓ persisted {len(verified)} "
+                            f"machine-verified discovery(ies) to {GENUINE_FILE}")
+            logger.info(f"[GenuineDiscovery] 📊 Stats: {self.discovery_stats}")
 
         except Exception as e:
             logger.error(f"[GenuineDiscovery] Failed to save discoveries: {e}")

@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -24,6 +25,14 @@ from .leapcore import FitnessEvaluator
 REPO_ROOT = Path(__file__).resolve().parents[3]
 WORKER = "evolved_analysis.eval_worker"   # run as: python -m <WORKER> ...
 NEG_INF = -1e9
+
+# Defence-in-depth layer 3: macOS sandbox-exec. When available, the worker is
+# launched under this profile so candidate code cannot reach the network or
+# write outside /tmp — on top of the AST gate (safety.py) and rlimits
+# (eval_worker.py). Detected once at import; None / missing-profile => fall back
+# to the plain subprocess (AST gate + rlimits still apply).
+SANDBOX_EXEC = shutil.which("sandbox-exec")
+PROFILE_PATH = Path(__file__).resolve().parent / "astra_worker.sb"
 
 
 class RealDataProgramEvaluator(FitnessEvaluator):
@@ -65,8 +74,17 @@ class RealDataProgramEvaluator(FitnessEvaluator):
             src_path = tf.name
         try:
             env = {**os.environ, "PYTHONPATH": str(Path(__file__).resolve().parents[1])}
+            cmd = [self.python, "-m", WORKER, src_path, str(self.seed), split]
+            # If sandbox-exec and the profile are available, wrap the worker so
+            # untrusted candidate code is confined to no-network / temp-writes-
+            # only. Otherwise fall back to the plain command; the AST gate and
+            # rlimit caps still apply either way. NOTE: -f (profile file) is used
+            # rather than -p (profile text) since PROFILE_PATH is a file path.
+            if SANDBOX_EXEC and PROFILE_PATH.is_file():
+                cmd = [SANDBOX_EXEC, "-f", str(PROFILE_PATH),
+                       self.python, "-m", WORKER, src_path, str(self.seed), split]
             proc = subprocess.run(
-                [self.python, "-m", WORKER, src_path, str(self.seed), split],
+                cmd,
                 capture_output=True, text=True, timeout=self.timeout,
                 cwd=str(REPO_ROOT), env=env)
         except subprocess.TimeoutExpired:

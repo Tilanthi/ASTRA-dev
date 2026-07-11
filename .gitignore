@@ -82,6 +82,7 @@ W3_HGBS_filaments/
 *.log
 .astra_active
 .astra_state.json
+.astra_intentional_shutdown
 *.backup2
 *.backup_before_validation
 *_broken_backup*.py

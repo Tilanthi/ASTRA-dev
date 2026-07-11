@@ -99,6 +99,27 @@ def metrics(pred: np.ndarray, z_true: np.ndarray) -> dict:
 
 
 def main():
+    # Defence-in-depth layer 2: resource caps. Applied before ANY candidate work
+    # so that a runaway loop / fork-bomb / giant-file write is bounded by the OS
+    # even if the AST gate and sandbox somehow miss it. Each is best-effort:
+    # macOS rlimits differ subtly from Linux, so failures are swallowed rather
+    # than aborting the worker. RLIMIT_AS is intentionally NOT set — on macOS it
+    # can kill the process prematurely during normal numpy/sklearn operation.
+    import resource
+    try:
+        resource.setrlimit(resource.RLIMIT_CPU, (60, 60))            # 60s CPU
+    except Exception:
+        pass
+    try:
+        resource.setrlimit(resource.RLIMIT_FSIZE,
+                           (512 * 1024 * 1024, 512 * 1024 * 1024))   # 512MB files
+    except Exception:
+        pass
+    try:
+        resource.setrlimit(resource.RLIMIT_NPROC, (64, 64))          # cap forks/threads
+    except Exception:
+        pass
+
     src_path = sys.argv[1]
     seed = int(sys.argv[2]) if len(sys.argv) > 2 else 42
     split = sys.argv[3] if len(sys.argv) > 3 else "eval"
@@ -106,6 +127,14 @@ def main():
     try:
         splits = load_split(seed=seed)
         src = Path(src_path).read_text()
+        # Defence-in-depth layer 1: static AST gate. Run BEFORE exec so a blocked
+        # candidate is rejected as a structured -inf metric instead of executing.
+        from .safety import check_source
+        ok, reason = check_source(src)
+        if not ok:
+            print(json.dumps({"sigma_nmad": 9.99, "eta": 1.0,
+                              "error": f"blocked:{reason}"}))
+            return
         ns: dict = {}
         exec(compile(src, src_path, "exec"), ns)   # trusted-libs sandbox
         fn = ns.get("estimate_redshift")

@@ -89,15 +89,16 @@ class LLMProposer(Proposer):
                  context_level: str = "rich",
                  task_system: Optional[str] = None,
                  entry_point: str = "estimate_redshift"):
-        import anthropic  # local import; only needed when this backend runs
-        token = (os.environ.get("ANTHROPIC_AUTH_TOKEN")
-                 or os.environ.get("ANTHROPIC_API_KEY"))
-        base = os.environ.get("ANTHROPIC_BASE_URL")
-        if not token:
-            raise RuntimeError("No ANTHROPIC_AUTH_TOKEN / ANTHROPIC_API_KEY set")
-        self.client = anthropic.Anthropic(base_url=base, auth_token=token)
-        self.model = model or os.environ.get("ASTRA_PROPOSER_MODEL",
-                                             "claude-sonnet-4-5-20250929")
+        # Load the canonical gateway decoupled from astra_core/__init__ (evolved_analysis
+        # runs with PYTHONPATH=astra_core/scientific_discovery). See _llm.py.
+        from ._llm import gateway_module
+        LLMGateway = gateway_module().LLMGateway
+        self._gw = LLMGateway(
+            model=(model or os.environ.get("ASTRA_PROPOSER_MODEL",
+                                           "claude-sonnet-5-20250929")),
+            max_tokens=max_tokens, timeout=timeout)
+        self.client = self._gw.client
+        self.model = self._gw.model
         self.max_tokens = max_tokens
         self.timeout = timeout
         self.context_level = context_level   # "minimal" | "rich"

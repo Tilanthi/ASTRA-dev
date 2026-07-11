@@ -1,0 +1,82 @@
+;; astra_worker.sb — macOS sandbox-exec profile for the ASTRA eval_worker.
+;;
+;; Defence-in-depth layer 3 of 3:
+;;   1. AST import allowlist          — evolved_analysis/safety.py (check_source)
+;;   2. resource.setrlimit caps       — eval_worker.py main() (CPU/FSIZE/NPROC)
+;;   3. THIS FILE                     — sandbox-exec: deny network, restrict writes
+;;
+;; The eval_worker runs LLM-GENERATED Python (a candidate `estimate_redshift`)
+;; on real SDSS data. If a candidate slips past the AST gate and rlimits, this
+;; profile ensures it still cannot:
+;;   * open a network connection            -> (deny network*)
+;;   * execute an arbitrary binary          -> process-exec* restricted to known
+;;                                             interpreter paths
+;;   * write anywhere except a temp area    -> (deny file-write*) + /tmp allow
+;;
+;; SEMANTICS (verified on macOS Darwin 25 / python 3.14):
+;;   * This profile language is DEFAULT-DENY: an operation not matched by an
+;;     (allow ...) is blocked. Every primitive the Python runtime + numpy /
+;;     scipy / scikit-learn need must therefore be explicitly opened up.
+;;   * Last-matching-rule-wins, so the (allow file-write* /tmp) that follows
+;;     (deny file-write*) reopens only the temp working area.
+;;   * Read access is deliberately PERMISSIVE (bare `(allow file-read*)`) per
+;;     the design intent ("be generous with READ access... the goal is to deny
+;;     NETWORK and restrict WRITES, not to break imports"). The AST gate
+;;     (safety.py) is the layer that stops `open()`; the sandbox is not relied
+;;     on to restrict reads, because enumerating every dyld / framework /
+;;     site-packages path Python touches at startup is fragile (on this machine
+;;     site-packages lives under a uv-managed ~/.local/share path that the
+;;     spec's suggested read-list did not include).
+;;   * Operation-name notes: the starred forms `process-info*`, `mach-lookup*`,
+;;     `sysctl-read*` are UNBOUND on this macOS version and must NOT be used;
+;;     the non-star forms are valid. `file-map-executable*` is required so the
+;;     runtime can dlopen the .so / .dylib backends of numpy/scipy/sklearn.
+;;
+;; Deviation note: the task spec wrote subpath filters with trailing "/*" (e.g.
+;; (subpath "/opt/homebrew/*")). sandbox-exec's (subpath "/x") form already
+;; matches /x and everything beneath it recursively, so the glob is dropped.
+
+(version 1)
+
+;; -------------------------------------------------------------- network: deny
+;; Deny ALL network access. No allow override follows, so this is absolute.
+(deny network*)
+
+;; ----------------------------------------------- runtime / process primitives
+(allow mach-lookup)                 ; bootstrap / launchd service resolution
+(allow sysctl-read)                 ; hw.* / kern.* queries during startup
+(allow signal (target self))        ; timeout / shutdown signalling
+(allow process-fork)                ; sklearn/numpy worker pools (also capped by RLIMIT_NPROC)
+(allow file-map-executable)         ; dlopen of numpy/scipy/sklearn native backends
+
+;; Execution is restricted to known interpreter / shell locations. The candidate
+;; source cannot call subprocess (blocked by safety.py); this additionally
+;; ensures that even a bypass could not exec an arbitrary binary.
+(allow process-exec*
+  (subpath "/Users/gjw255/.local")              ; uv-managed python3 + site-packages
+  (subpath "/usr/bin")
+  (subpath "/bin")
+  (subpath "/usr/sbin")
+  (subpath "/usr/local/bin")
+  (subpath "/opt/homebrew")
+  (subpath "/Library/Frameworks/Python.framework")
+  (subpath "/Library/Python"))
+
+;; ------------------------------------------------------------- reads: permissive
+;; See header: reads are intentionally fully allowed so imports never break.
+;; Network is denied above and writes are confined below; reads are not the
+;; security boundary here (safety.py's AST gate is).
+(allow file-read*)
+
+;; ------------------------------------------------------------- writes: lock down
+;; Deny ALL writes first (last-match-wins), then reopen only the temp working
+;; area. NB: this means the worker cannot refresh __pycache__ under the repo;
+;; Python handles an unwritable __pycache__ gracefully (it recompiles next run),
+;; so this is safe.
+(deny file-write*)
+(allow file-write*
+  (subpath "/tmp")
+  (subpath "/private/tmp")
+  (subpath "/var/tmp")
+  (subpath "/private/var/tmp")
+  (subpath "/private/var/folder"))   ; macOS per-user temp stub ($TMPDIR root)

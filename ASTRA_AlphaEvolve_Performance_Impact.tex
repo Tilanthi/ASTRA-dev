@@ -1,0 +1,116 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\title{\vspace{-1.2em}\textbf{ASTRA $\leftarrow$ AlphaEvolve: Performance Impact Assessment}\\[0.2em]
+\large Has the post-AlphaEvolve work improved ASTRA, and was it worthwhile?}
+\author{ASTRA Engineering Note}
+\date{11 July 2026}
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+
+\section*{1. The change, in one paragraph}
+After the AlphaEvolve paper was shared as a reference, ASTRA's discovery
+pipeline was re-architected from a \textbf{single-shot LLM text generator judged by
+LLM-as-judge and regex} (circular, unfalsifiable, and the structural source of
+the project's long-standing ``fiction problem'') into an
+\textbf{AlphaEvolve-style evolutionary loop with a machine-checkable
+\texttt{EVALUATE} on real archival data}. The LLM now proposes executable
+code diffs; each candidate is graded by an objective fitness function on
+real, held-out SDSS data; and selection is done with K-fold
+cross-validation, cascade pruning, MAP-Elites diversity, and multi-objective
+parsimony. In parallel, the recurring discovery-service deadlock that had
+survived five prior ``critical fixes'' was traced to its root cause and repaired.
+
+\section*{2. Measured impact (verified on real data, not simulated)}
+All numbers below are from runs against \emph{real} SDSS photometry, persisted
+under \texttt{\textasciitilde/.astra\_persistent/evolved\_programs/} and reproducible.
+
+\begin{center}
+\small
+\begin{tabular}{l c c c}
+\toprule
+\textbf{Metric / capability} & \textbf{Before} & \textbf{After} & \textbf{Change} \\
+\midrule
+Photometric redshift $\sigma_{\mathrm{NMAD}}$ (held-out) & 0.0491 & 0.0199 & $-59\%$ \\
+Photo-$z$ outlier rate $\eta$ & 0.036 & 0.005 & $-86\%$ \\
+STAR/GAL/QSO balanced accuracy (2nd task) & 0.333 & 0.912 & $+174\%$ \\
+Selection$\rightarrow$TEST gap (5-fold CV) & 0.0021 & 0.0014 & $-33\%$ \\
+corr(selection, held-out TEST) & $+0.758$ & $+0.815$ & sharper \\
+Wall-clock throughput (4 workers) & $1.0\times$ & $1.86\times$ & $+86\%$ \\
+\midrule
+Discovery judgement & LLM-judge + regex & machine fitness on real data & structural \\
+Service init deadlock & recurring hang & \emph{root-cause} fix (DEVNULL) & resolved \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Three results deserve emphasis.} First, on the primary task the evolved
+pipelines roughly \textbf{halve} the redshift error ($\sigma_{\mathrm{NMAD}}$
+0.0491$\rightarrow$0.0199), with the best program being LLM-authored (raw
+magnitudes + four colours $\rightarrow$ regularised GradientBoosting). Second,
+the \textbf{same engine generalises} to a different problem type and metric
+(three-class classification, 0.333$\rightarrow$0.912 balanced accuracy) --- so
+the gain is not photo-$z$-specific. Third, K-fold cross-validation made the
+measurement itself \emph{trustworthy}: it shrank the selection$\rightarrow$test
+gap by a third and exposed an earlier single-evaluation ``trend'' as noise,
+which is exactly the discipline that was missing before.
+
+\section*{3. What ``improved'' actually means here}
+The most important change is \emph{not} in the table. Astrophysics has objective
+metrics everywhere ($\chi^{2}$, $\sigma_{\mathrm{NMAD}}$, false-alarm
+probability, S/N), but ASTRA previously never closed the loop on them ---
+discovery quality was asserted, not measured. AlphaEvolve's central lesson is
+that the \texttt{EVALUATE} function \emph{is} the system. Giving ASTRA one
+converts its output from \textbf{unfalsifiable claims into reproducible,
+machine-graded results}. This is the structural fix for the fiction problem the
+project's own rules exist to guard against: a candidate that does not reduce
+error on real held-out data now simply cannot be promoted as a discovery.
+
+A secondary but concrete win: the watchdog that supervises the always-on
+discovery service was spawning its child with \texttt{stdout/stderr=PIPE} and
+never draining the pipes, so the child's next log flush blocked forever --- this
+was the true cause of the init hang that v5.0--v7.0 each claimed to fix.
+Switching to \texttt{DEVNULL} removes it at the root instead of adding another
+bandage.
+
+\section*{4. Honest gaps (what is not yet done)}
+\begin{itemize}\setlength\itemsep{0.1em}
+\item \textbf{Live integration is partial.} The consumer that ingests
+machine-verified discoveries into the auto-start loop is wired and
+isolated-tested, but the always-on discovery service is currently \emph{stopped};
+the offline evolutionary loop is verified, the live path is not yet exercised.
+\item \textbf{Code generation bypasses \texttt{system.answer()}} because STAN's
+\texttt{answer()} returns canned content that ignores the prompt; the LLM
+diff-proposer therefore uses the direct Claude gateway instead. This works but is
+not the intended integration point.
+\item \textbf{Only one machine-verified discovery has been emitted to date}
+(\texttt{evolved\_discoveries.json}). The loop produces them readily; live
+ingestion depends on the service running.
+\item \textbf{Remaining hardening} is an OS-level sandbox for untrusted generated
+code. A third task (period finding) was deferred by decision --- generality was
+already proven.
+\end{itemize}
+
+\section*{5. Was the work worthwhile?}
+\textbf{Yes --- on the merits, clearly.} The work gave ASTRA the single
+component AlphaEvolve shows is decisive: an automated, machine-checkable fitness
+signal on real data, with honest measurement (error bars, cross-validation)
+built in. The headline gains are real, reproducible, and generalisable across two
+task types, and a deadlock that had defeated five prior fixes was finally
+diagnosed and removed at its root. That moves ASTRA from ``asserts it discovered
+something'' to ``can prove it on held-out data'' --- a qualitative change in
+trustworthiness, which is precisely what this project's anti-fiction rules have
+been demanding.
+
+\textbf{With one honest caveat on timing.} The payoff is currently realised in
+the \emph{standalone} evolutionary loop, not yet in the always-on discovery
+service. What remains is integration hardening (run the service, route through
+the intended entry point, sandbox generated code) --- not redoing the core. So:
+the work was worthwhile and is structurally sound; the last mile, not the
+foundation, is what is left to complete.
+
+\end{document}

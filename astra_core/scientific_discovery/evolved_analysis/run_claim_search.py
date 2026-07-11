@@ -1,0 +1,243 @@
+"""run_claim_search.py — Phase-2 open-ended Eureka search driver.
+
+Runs the two-gate EVALUATE on (CLAIM, run_claim) candidate artifacts:
+
+    Gate 1 (real-data, SANDBOXED, no network)  -> claim_eval_worker
+    Gate 2 (literature novelty, WITH network)  -> novelty_gate.check_novelty
+
+A candidate is emitted to ``evolved_discoveries.json`` ONLY if it passes BOTH
+gates. The supervisor's consumer then folds it into the genuine store through
+the discovery_store chokepoint — so a claim can never bypass verification.
+
+Run (decoupled, like the Phase-1 engine):
+    PYTHONPATH=astra_core/scientific_discovery python -m evolved_analysis.run_claim_search [--steps N]
+
+If no LLM token is set, it runs the deterministic seed through both gates
+(sanity check: the known seed passes Gate 1 and is caught by Gate 2) and exits.
+With a token, it also evolves N LLM-proposed candidates looking for a
+significant AND novel relationship.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import logging
+import os
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+from .claim_task import (NAIVE_CLAIM_SEED, TASK_SYSTEM, ENTRY_POINT,
+                         parse_claim, gate1_significant)
+from .proposer import LLMProposer, apply_diff
+
+logger = logging.getLogger(__name__)
+
+REPO_ROOT = Path(__file__).resolve().parents[3]
+WORKER = "evolved_analysis.claim_eval_worker"
+EVOLVED_STORE = Path.home() / ".astra_persistent" / "evolved_discoveries.json"
+try:
+    import shutil
+    _SANDBOX_EXEC = shutil.which("sandbox-exec")
+except Exception:
+    _SANDBOX_EXEC = None
+_PROFILE = Path(__file__).resolve().parent / "astra_worker.sb"
+
+
+def _program_hash(src: str) -> str:
+    return hashlib.sha1(src.encode()).hexdigest()[:10]
+
+
+# --------------------------------------------------------------------------- #
+# Gate 1: sandboxed real-data test                                             #
+# --------------------------------------------------------------------------- #
+def gate1_run(src: str, seed: int = 42, timeout: float = 90.0) -> dict:
+    """Run the candidate's run_claim in a sandboxed subprocess on real data."""
+    if not src or f"def {ENTRY_POINT}" not in src:
+        return {"effect": 0.0, "pvalue": 1.0, "error": f"no {ENTRY_POINT}"}
+    with tempfile.NamedTemporaryFile("w", suffix=".py", delete=False,
+                                     dir=str(Path.cwd())) as tf:
+        tf.write(src)
+        tf.flush()
+        src_path = tf.name
+    try:
+        env = {**os.environ,
+               "PYTHONPATH": str(Path(__file__).resolve().parents[1])}
+        cmd = [sys.executable, "-m", WORKER, src_path, str(seed)]
+        # Wrap in sandbox-exec when available (no-network, temp-writes-only).
+        if _SANDBOX_EXEC and _PROFILE.is_file():
+            cmd = [_SANDBOX_EXEC, "-f", str(_PROFILE)] + cmd
+        proc = subprocess.run(cmd, capture_output=True, text=True,
+                              timeout=timeout, cwd=str(REPO_ROOT), env=env,
+                              check=False)
+    except subprocess.TimeoutExpired:
+        return {"effect": 0.0, "pvalue": 1.0, "error": "timeout"}
+    except Exception as e:
+        return {"effect": 0.0, "pvalue": 1.0,
+                "error": f"spawn:{type(e).__name__}:{str(e)[:80]}"}
+    finally:
+        try:
+            Path(src_path).unlink()
+        except OSError:
+            pass
+    out = proc.stdout.strip().splitlines()
+    if not out:
+        return {"effect": 0.0, "pvalue": 1.0,
+                "error": (proc.stderr.strip()[:160] or "no stdout")}
+    try:
+        return json.loads(out[-1])
+    except json.JSONDecodeError:
+        return {"effect": 0.0, "pvalue": 1.0,
+                "error": f"unparseable: {out[-1][:120]}"}
+
+
+# --------------------------------------------------------------------------- #
+# Two-gate evaluation                                                          #
+# --------------------------------------------------------------------------- #
+def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True) -> dict:
+    """Run Gate 1 then (if it passes) Gate 2. Returns a full verdict dict."""
+    claim = parse_claim(src) or ""
+    g1_metrics = gate1_run(src, seed=seed)
+    g1_pass, g1_reason = gate1_significant(g1_metrics)
+
+    result = {
+        "claim": claim,
+        "program_hash": _program_hash(src),
+        "gate1": {"pass": g1_pass, "reason": g1_reason,
+                  "metrics": {k: v for k, v in g1_metrics.items() if k != "trace"}},
+        "gate2": None,
+        "both_pass": False,
+    }
+
+    if not g1_pass:
+        return result  # fabricated/non-significant claim stops here
+
+    if run_gate2:
+        try:
+            from .novelty_gate import check_novelty
+            nr = check_novelty(claim)
+            result["gate2"] = {
+                "pass": nr.novel, "status": nr.status, "n_retrieved": nr.n_retrieved,
+                "reasoning": nr.reasoning[:200],
+                "entailed_by": nr.entailed_by.title[:80] if nr.entailed_by else None,
+            }
+        except Exception as e:
+            # Gate-2 failure is conservative: do NOT promote as novel.
+            result["gate2"] = {"pass": False, "status": "gate2-error",
+                               "reasoning": f"{type(e).__name__}: {str(e)[:120]}"}
+    else:
+        result["gate2"] = {"pass": None, "status": "skipped"}
+
+    result["both_pass"] = bool(g1_pass and result["gate2"] and result["gate2"]["pass"] is True)
+    return result
+
+
+# --------------------------------------------------------------------------- #
+# emit (only both-gate survivors, through the chokepoint-compatible shape)     #
+# --------------------------------------------------------------------------- #
+def _emit(verdict: dict) -> None:
+    """Append a both-gate survivor to evolved_discoveries.json (bare list)."""
+    if not verdict["both_pass"]:
+        return
+    claim = verdict["claim"]
+    record = {
+        "title": f"Novel verified claim: {claim[:80]}",
+        "abstract": claim,
+        "discovery_type": "machine_verified_claim",
+        "timestamp": _now_iso(),
+        "source": "evolved_analysis",
+        "verification": {
+            "program_hash": verdict["program_hash"],
+            "metric_name": "two_gate_claim",
+            "real_data_result": verdict["gate1"]["metrics"],
+            "gate": {"gate1_real_data": "pass",
+                     "gate2_novelty": verdict["gate2"]["status"]},
+            "claim": claim,
+            "effect": verdict["gate1"]["metrics"].get("effect"),
+            "pvalue": verdict["gate1"]["metrics"].get("pvalue"),
+        },
+    }
+    try:
+        EVOLVED_STORE.parent.mkdir(parents=True, exist_ok=True)
+        data = json.loads(EVOLVED_STORE.read_text()) if EVOLVED_STORE.exists() else []
+        if not isinstance(data, list):
+            data = []
+        if not any((r.get("verification") or {}).get("program_hash")
+                   == verdict["program_hash"] for r in data if isinstance(r, dict)):
+            data.append(record)
+            EVOLVED_STORE.write_text(json.dumps(data, indent=2))
+            logger.info("[claim_search] ✅ EMITTED both-gate survivor: %s", claim[:70])
+    except Exception as e:
+        logger.warning("[claim_search] emit failed: %s", e)
+
+
+def _now_iso() -> str:
+    import datetime
+    return datetime.datetime.now().isoformat()
+
+
+# --------------------------------------------------------------------------- #
+# main                                                                         #
+# --------------------------------------------------------------------------- #
+def main():
+    ap = argparse.ArgumentParser(description="Phase-2 two-gate claim search")
+    ap.add_argument("--steps", type=int, default=5,
+                    help="LLM-proposed candidates to try (needs token)")
+    ap.add_argument("--seed-only", action="store_true",
+                    help="just run the deterministic seed through both gates and exit")
+    ap.add_argument("--no-gate2", action="store_true",
+                    help="run Gate 1 only (skip network/novelty)")
+    args = ap.parse_args()
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+
+    logger.info("[claim_search] === seed claim through both gates (sanity) ===")
+    verdict = two_gate_eval(NAIVE_CLAIM_SEED, run_gate2=not args.no_gate2)
+    _log_verdict(verdict)
+    # The seed is a KNOWN effect: expect gate1 pass + gate2 'known' (no emit).
+    if verdict["both_pass"]:
+        logger.warning("[claim_search] seed unexpectedly passed both gates — "
+                       "novelty gate may be too permissive")
+
+    if args.seed_only or not os.environ.get("ANTHROPIC_AUTH_TOKEN"):
+        if not args.seed_only:
+            logger.info("[claim_search] no LLM token — seed-only run done")
+        return
+
+    logger.info("[claim_search] === evolving %d LLM-proposed claim(s) ===",
+                args.steps)
+    try:
+        proposer = LLMProposer(task_system=TASK_SYSTEM, entry_point=ENTRY_POINT)
+    except Exception as e:
+        logger.warning("[claim_search] LLM proposer unavailable: %s", e)
+        return
+    parent = NAIVE_CLAIM_SEED
+    parent_metrics = verdict["gate1"]["metrics"]
+    for i in range(args.steps):
+        child, _spec, info = proposer.propose(
+            parent, parent_metrics, None, [], context_level="rich")
+        if not child:
+            logger.info("[claim_search] step %d: proposer returned nothing (%s)",
+                        i, info.get("error", "?"))
+            continue
+        v = two_gate_eval(child, run_gate2=not args.no_gate2)
+        logger.info("[claim_search] step %d claim: %s", i, (v["claim"] or "")[:70])
+        _log_verdict(v, prefix=f"  step {i}: ")
+        _emit(v)
+        # adopt as parent if it passed gate 1 (a real effect to build on)
+        if v["gate1"]["pass"]:
+            parent, parent_metrics = child, v["gate1"]["metrics"]
+
+
+def _log_verdict(v: dict, prefix: str = ""):
+    logger.info("%sgate1: %s", prefix, v["gate1"]["reason"])
+    g2 = v["gate2"]
+    if g2:
+        logger.info("%sgate2: %s (%s) n=%s", prefix, g2.get("status"),
+                    (g2.get("reasoning") or "")[:90], g2.get("n_retrieved"))
+    logger.info("%s=> both_pass=%s", prefix, v["both_pass"])
+
+
+if __name__ == "__main__":
+    main()
