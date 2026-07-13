@@ -63,9 +63,34 @@ def main():
         if not callable(fn):
             raise RuntimeError(f"source does not define {ENTRY_POINT}(df_train, df_eval)")
 
-        result = fn(splits["train"], splits["eval"])
-        if not isinstance(result, dict):
-            raise RuntimeError("run_claim must return a dict")
+        def _call(split_first, split_second, label):
+            """Run the claim fn on one split pair; return its dict or an error dict."""
+            try:
+                r = fn(splits[split_first], splits[split_second])
+            except Exception as e:  # claim code fault on this split -> fail closed
+                return {"effect": 0.0, "pvalue": 1.0,
+                        "error": f"{label}:{type(e).__name__}:{str(e)[:120]}"}
+            if not isinstance(r, dict):
+                return {"effect": 0.0, "pvalue": 1.0,
+                        "error": f"{label}:non-dict return"}
+            return r
+
+        # Fix 2 — the HEADLINE statistic is the held-out one. The search used to
+        # report run_claim on df_train only (in-sample); df_eval/df_test were
+        # passed but ignored. We now evaluate twice:
+        #   * insample = fn(train, eval)  -> what the search effectively saw
+        #   * holdout  = fn(test,  eval)  -> genuinely unseen galaxies (test)
+        # Most claims compute on their FIRST arg (the seed does `df = df_train`),
+        # so fn(test, ...) computes the statistic on the untouched test split.
+        insample = _call("train", "eval", "insample")
+        holdout = _call("test", "eval", "holdout")
+
+        result = dict(holdout)  # hold-out is primary: effect / pvalue / summary
+        if "error" not in result:
+            result["effect_insample"] = float(insample.get("effect", 0.0))
+            result["pvalue_insample"] = float(insample.get("pvalue", 1.0))
+            if insample.get("effect_type"):
+                result["effect_type_insample"] = insample.get("effect_type")
         # echo the claim text back for Gate 2
         result.setdefault("claim", parse_claim(src) or "")
         # sanity: numeric effect/pvalue

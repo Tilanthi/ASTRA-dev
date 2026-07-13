@@ -73,13 +73,20 @@ def consume_evolved_discoveries(system: Any) -> int:
                 },
                 "verification": v,            # the proof (metric, held-out value, n, …)
                 "source": "evolved_analysis",
+                # Fix 1 (e2e): carry the persisted run_claim source so a claim in
+                # the genuine store can be independently re-run / audited.
+                "program_source": r.get("program_source"),
             }
             system.genuine_discoveries.append(discovery)
             n += 1
+            # Phase-2 claims carry effect/hold-out under verification; Phase-1
+            # pipelines carry eval_value/held_out_test_value. Report whichever.
             logger.info("[GenuineDiscovery] ✅ INGESTED machine-verified evolved "
-                        "discovery: %s [%s=%s, TEST=%s]", discovery["title"][:60],
-                        v.get("metric_name", "?"), v.get("eval_value", "?"),
-                        v.get("held_out_test_value", "?"))
+                        "discovery: %s [%s=%s, holdout=%s]", discovery["title"][:60],
+                        v.get("metric_name", "?"),
+                        v.get("effect", v.get("eval_value", "?")),
+                        v.get("held_out_test_value",
+                              v.get("effect_insample", "?")))
         if n:
             logger.info("[GenuineDiscovery] consumed %d new evolved discovery(ies) "
                         "into the genuine store.", n)

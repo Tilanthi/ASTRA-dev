@@ -30,7 +30,10 @@ import tempfile
 from pathlib import Path
 
 from .claim_task import (NAIVE_CLAIM_SEED, TASK_SYSTEM, ENTRY_POINT,
-                         parse_claim, gate1_significant)
+                         parse_claim, gate1_significant, PMAX)
+from .claim_gates import (triviality_check, consistency_check,
+                          holdout_distinct_check,
+                          bonferroni_pmax, bump_family_counter, family_size)
 from .proposer import LLMProposer, apply_diff
 
 logger = logging.getLogger(__name__)
@@ -97,22 +100,48 @@ def gate1_run(src: str, seed: int = 42, timeout: float = 90.0) -> dict:
 # Two-gate evaluation                                                          #
 # --------------------------------------------------------------------------- #
 def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True) -> dict:
-    """Run Gate 1 then (if it passes) Gate 2. Returns a full verdict dict."""
+    """Run Gate 1 (significance on HELD-OUT data, Bonferroni-corrected), the
+    triviality + consistency sub-gates, then (if all pass) Gate 2 (novelty).
+
+    Returns a full verdict dict. A claim is emitted only if every gate passes:
+      gate1 (real-data, hold-out, |effect|>=EFFECT_MIN and p<=bonferroni_pmax)
+        AND triviality (not a near-deterministic / few-band identity — Fix 3)
+        AND consistency (narrated rho matches measured — Fix 4)
+        AND gate2 (not already in the literature)."""
     claim = parse_claim(src) or ""
-    g1_metrics = gate1_run(src, seed=seed)
-    g1_pass, g1_reason = gate1_significant(g1_metrics)
+    bump_family_counter()                      # Fix 5: count this trial
+    corrected_pmax = bonferroni_pmax(PMAX)     # Fix 5: PMAX / family_size
+    g1_metrics = gate1_run(src, seed=seed)     # hold-out 'effect' is now primary
+    g1_pass, g1_reason = gate1_significant(g1_metrics, pmax=corrected_pmax)
+
+    # Fix 3 (triviality) + Fix 4 (consistency) on the held-out metric.
+    metrics_for_gates = g1_metrics if isinstance(g1_metrics, dict) else {}
+    holdout_effect = metrics_for_gates.get("effect", 0.0)
+    try:
+        holdout_effect = float(holdout_effect)
+    except (TypeError, ValueError):
+        holdout_effect = 0.0
+    triv_ok, triv_reason = triviality_check(src, holdout_effect)
+    cons_ok, cons_reason = consistency_check(claim, metrics_for_gates)
+    hold_ok, hold_reason = holdout_distinct_check(metrics_for_gates)  # Fix 6
 
     result = {
         "claim": claim,
+        "source": src,                          # Fix 1: persist program source
         "program_hash": _program_hash(src),
         "gate1": {"pass": g1_pass, "reason": g1_reason,
-                  "metrics": {k: v for k, v in g1_metrics.items() if k != "trace"}},
+                  "metrics": {k: v for k, v in g1_metrics.items() if k != "trace"},
+                  "bonferroni_pmax": corrected_pmax,
+                  "family_size": family_size()},
+        "triviality": {"pass": triv_ok, "reason": triv_reason},
+        "consistency": {"pass": cons_ok, "reason": cons_reason},
+        "holdout": {"pass": hold_ok, "reason": hold_reason},
         "gate2": None,
         "both_pass": False,
     }
 
-    if not g1_pass:
-        return result  # fabricated/non-significant claim stops here
+    if not (g1_pass and triv_ok and cons_ok and hold_ok):
+        return result  # significance / triviality / consistency / holdout stop here
 
     if run_gate2:
         try:
@@ -130,7 +159,9 @@ def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True) -> dict:
     else:
         result["gate2"] = {"pass": None, "status": "skipped"}
 
-    result["both_pass"] = bool(g1_pass and result["gate2"] and result["gate2"]["pass"] is True)
+    result["both_pass"] = bool(
+        g1_pass and triv_ok and cons_ok and hold_ok and result["gate2"]
+        and result["gate2"]["pass"] is True)
     return result
 
 
@@ -142,21 +173,39 @@ def _emit(verdict: dict) -> None:
     if not verdict["both_pass"]:
         return
     claim = verdict["claim"]
+    g1m = verdict["gate1"]["metrics"]
     record = {
         "title": f"Novel verified claim: {claim[:80]}",
         "abstract": claim,
         "discovery_type": "machine_verified_claim",
         "timestamp": _now_iso(),
         "source": "evolved_analysis",
+        # Fix 1: persist the actual run_claim source so every emitted claim is
+        # independently reproducible/verifiable (the 2026-07-12 record-8 audit
+        # found the source was ephemeral -> claims were unverifiable).
+        "program_source": verdict["source"],
         "verification": {
             "program_hash": verdict["program_hash"],
             "metric_name": "two_gate_claim",
-            "real_data_result": verdict["gate1"]["metrics"],
-            "gate": {"gate1_real_data": "pass",
-                     "gate2_novelty": verdict["gate2"]["status"]},
+            # real_data_result now carries the HELD-OUT metric as primary
+            # 'effect'/'pvalue' plus the in-sample values for transparency (Fix 2).
+            "real_data_result": g1m,
+            "gate": {
+                "gate1_real_data": "pass",
+                "gate2_novelty": verdict["gate2"]["status"],
+                "triviality": "pass",
+                "consistency": "pass",
+                "holdout": "pass",
+                "bonferroni_pmax": verdict["gate1"]["bonferroni_pmax"],
+                "family_size": verdict["gate1"]["family_size"],
+            },
             "claim": claim,
-            "effect": verdict["gate1"]["metrics"].get("effect"),
-            "pvalue": verdict["gate1"]["metrics"].get("pvalue"),
+            # Fix 2: headline statistic is the held-out one (test split).
+            "effect": g1m.get("effect"),
+            "pvalue": g1m.get("pvalue"),
+            "effect_insample": g1m.get("effect_insample"),
+            "pvalue_insample": g1m.get("pvalue_insample"),
+            "held_out_split": "test",
         },
     }
     try:

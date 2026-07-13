@@ -98,10 +98,14 @@ def parse_claim(src: str) -> Optional[str]:
     return m.group(2).strip() if m else None
 
 
-def gate1_significant(metrics: dict) -> Tuple[bool, str]:
+def gate1_significant(metrics: dict, pmax: float = PMAX) -> Tuple[bool, str]:
     """Gate 1: is the computed effect statistically significant on real data?
 
-    Returns (passed, reason). Conservative: missing/invalid fields fail."""
+    Returns (passed, reason). Conservative: missing/invalid fields fail.
+
+    ``pmax`` defaults to the nominal :data:`PMAX` but the Phase-2 driver passes a
+    Bonferroni-corrected threshold (PMAX / family_size) so the significance bar
+    accounts for how many relationships the search has tried (Fix 5)."""
     if not isinstance(metrics, dict) or "error" in metrics:
         return False, f"gate1-failed: no valid metric ({metrics.get('error', 'missing') if isinstance(metrics, dict) else 'not a dict'})"
     try:
@@ -109,10 +113,10 @@ def gate1_significant(metrics: dict) -> Tuple[bool, str]:
         pvalue = float(metrics.get("pvalue", 1.0))
     except (TypeError, ValueError):
         return False, "gate1-failed: non-numeric effect/pvalue"
-    if effect >= EFFECT_MIN and pvalue <= PMAX:
-        return True, f"gate1-pass: |effect|={effect:.3f}>={EFFECT_MIN}, p={pvalue:.1e}<={PMAX}"
+    if effect >= EFFECT_MIN and pvalue <= pmax:
+        return True, f"gate1-pass: |effect|={effect:.3f}>={EFFECT_MIN}, p={pvalue:.1e}<={pmax:.1e}"
     return False, (f"gate1-failed: |effect|={effect:.3f} or p={pvalue:.1e} "
-                   f"not significant (need |effect|>={EFFECT_MIN} and p<={PMAX})")
+                   f"not significant (need |effect|>={EFFECT_MIN} and p<={pmax:.1e})")
 
 
 if __name__ == "__main__":
