@@ -41,6 +41,15 @@ logger = logging.getLogger(__name__)
 REPO_ROOT = Path(__file__).resolve().parents[3]
 WORKER = "evolved_analysis.claim_eval_worker"
 EVOLVED_STORE = Path.home() / ".astra_persistent" / "evolved_discoveries.json"
+# Structured per-candidate verdict log (observability). The supervisor runs this
+# module as a subprocess with stdout/stderr -> DEVNULL, so without an explicit
+# file write the gate verdicts are lost and we cannot diagnose where candidates
+# die (Gate-1 significance / triviality / consistency / holdout / Gate-2
+# novelty). JSONL; rotated at VERDICT_LOG_CAP_BYTES to avoid unbounded growth
+# (the failure mode that produced the 1.26 GB legacy autonomous log).
+VERDICT_LOG = (Path.home() / ".astra_persistent" / "evolved_programs"
+               / "claim_verdicts.jsonl")
+VERDICT_LOG_CAP_BYTES = 20 * 1024 * 1024
 try:
     import shutil
     _SANDBOX_EXEC = shutil.which("sandbox-exec")
@@ -56,8 +65,13 @@ def _program_hash(src: str) -> str:
 # --------------------------------------------------------------------------- #
 # Gate 1: sandboxed real-data test                                             #
 # --------------------------------------------------------------------------- #
-def gate1_run(src: str, seed: int = 42, timeout: float = 90.0) -> dict:
-    """Run the candidate's run_claim in a sandboxed subprocess on real data."""
+def gate1_run(src: str, seed: int = 42, timeout: float = 90.0,
+              source: str = "legacy") -> dict:
+    """Run the candidate's run_claim in a sandboxed subprocess on real data.
+
+    ``source`` selects the dataset: 'legacy' (default, SDSS photo-z via
+    real_data.py) or a data-lake dataset name (data_lake.py, Sub-project C).
+    The worker only reads a cached CSV — it never fetches."""
     if not src or f"def {ENTRY_POINT}" not in src:
         return {"effect": 0.0, "pvalue": 1.0, "error": f"no {ENTRY_POINT}"}
     with tempfile.NamedTemporaryFile("w", suffix=".py", delete=False,
@@ -69,6 +83,8 @@ def gate1_run(src: str, seed: int = 42, timeout: float = 90.0) -> dict:
         env = {**os.environ,
                "PYTHONPATH": str(Path(__file__).resolve().parents[1])}
         cmd = [sys.executable, "-m", WORKER, src_path, str(seed)]
+        if source and source != "legacy":
+            cmd.append(source)
         # Wrap in sandbox-exec when available (no-network, temp-writes-only).
         if _SANDBOX_EXEC and _PROFILE.is_file():
             cmd = [_SANDBOX_EXEC, "-f", str(_PROFILE)] + cmd
@@ -99,7 +115,8 @@ def gate1_run(src: str, seed: int = 42, timeout: float = 90.0) -> dict:
 # --------------------------------------------------------------------------- #
 # Two-gate evaluation                                                          #
 # --------------------------------------------------------------------------- #
-def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True) -> dict:
+def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True,
+                  source: str = "legacy") -> dict:
     """Run Gate 1 (significance on HELD-OUT data, Bonferroni-corrected), the
     triviality + consistency sub-gates, then (if all pass) Gate 2 (novelty).
 
@@ -107,11 +124,13 @@ def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True) -> dict:
       gate1 (real-data, hold-out, |effect|>=EFFECT_MIN and p<=bonferroni_pmax)
         AND triviality (not a near-deterministic / few-band identity — Fix 3)
         AND consistency (narrated rho matches measured — Fix 4)
-        AND gate2 (not already in the literature)."""
+        AND gate2 (not already in the literature).
+
+    ``source`` selects the dataset (Sub-project C); default 'legacy'."""
     claim = parse_claim(src) or ""
     bump_family_counter()                      # Fix 5: count this trial
     corrected_pmax = bonferroni_pmax(PMAX)     # Fix 5: PMAX / family_size
-    g1_metrics = gate1_run(src, seed=seed)     # hold-out 'effect' is now primary
+    g1_metrics = gate1_run(src, seed=seed, source=source)  # hold-out primary
     g1_pass, g1_reason = gate1_significant(g1_metrics, pmax=corrected_pmax)
 
     # Fix 3 (triviality) + Fix 4 (consistency) on the held-out metric.
@@ -238,12 +257,43 @@ def main():
                     help="just run the deterministic seed through both gates and exit")
     ap.add_argument("--no-gate2", action="store_true",
                     help="run Gate 1 only (skip network/novelty)")
+    ap.add_argument("--data-source", default="legacy",
+                    help="data-lake dataset to mine (Sub-project C). Default "
+                         "'legacy' (SDSS photo-z via real_data.py). Use "
+                         "--list-sources to see available datasets.")
+    ap.add_argument("--list-sources", action="store_true",
+                    help="list available data sources and exit")
     args = ap.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
+    # Sub-project C: resolve the data source. 'legacy' leaves behaviour unchanged.
+    source = "legacy"
+    task_system = TASK_SYSTEM
+    if args.list_sources:
+        from .data_lake import list_datasets
+        print("  legacy (default)  SDSS u,g,r,i,z + z_spec galaxies (real_data.py)")
+        for ds in list_datasets():
+            cached = "cached" if ds.cache_path().exists() else "NOT-cached"
+            print(f"  {ds.name:24s} [{cached}]  {', '.join(ds.columns)}")
+        return
+    if args.data_source and args.data_source != "legacy":
+        from .data_lake import fetch_and_cache, task_system_for, get_dataset
+        if get_dataset(args.data_source) is None:
+            logger.warning("[claim_search] unknown --data-source %r; "
+                           "falling back to legacy", args.data_source)
+        else:
+            source = args.data_source
+            fetch_and_cache(source)  # pre-fetch OUTSIDE the sandbox (network)
+            ts = task_system_for(source)
+            if ts:
+                task_system = ts
+            logger.info("[claim_search] data source: %s", source)
+
     logger.info("[claim_search] === seed claim through both gates (sanity) ===")
-    verdict = two_gate_eval(NAIVE_CLAIM_SEED, run_gate2=not args.no_gate2)
+    verdict = two_gate_eval(NAIVE_CLAIM_SEED, run_gate2=not args.no_gate2,
+                            source=source)
     _log_verdict(verdict)
+    _append_verdict_log(verdict, label="seed")
     # The seed is a KNOWN effect: expect gate1 pass + gate2 'known' (no emit).
     if verdict["both_pass"]:
         logger.warning("[claim_search] seed unexpectedly passed both gates — "
@@ -257,7 +307,7 @@ def main():
     logger.info("[claim_search] === evolving %d LLM-proposed claim(s) ===",
                 args.steps)
     try:
-        proposer = LLMProposer(task_system=TASK_SYSTEM, entry_point=ENTRY_POINT)
+        proposer = LLMProposer(task_system=task_system, entry_point=ENTRY_POINT)
     except Exception as e:
         logger.warning("[claim_search] LLM proposer unavailable: %s", e)
         return
@@ -270,9 +320,10 @@ def main():
             logger.info("[claim_search] step %d: proposer returned nothing (%s)",
                         i, info.get("error", "?"))
             continue
-        v = two_gate_eval(child, run_gate2=not args.no_gate2)
+        v = two_gate_eval(child, run_gate2=not args.no_gate2, source=source)
         logger.info("[claim_search] step %d claim: %s", i, (v["claim"] or "")[:70])
         _log_verdict(v, prefix=f"  step {i}: ")
+        _append_verdict_log(v, label=f"step{i}")
         _emit(v)
         # adopt as parent if it passed gate 1 (a real effect to build on)
         if v["gate1"]["pass"]:
@@ -286,6 +337,60 @@ def _log_verdict(v: dict, prefix: str = ""):
         logger.info("%sgate2: %s (%s) n=%s", prefix, g2.get("status"),
                     (g2.get("reasoning") or "")[:90], g2.get("n_retrieved"))
     logger.info("%s=> both_pass=%s", prefix, v["both_pass"])
+
+
+def _append_verdict_log(verdict: dict, label: str = "") -> None:
+    """Append one compact JSONL line recording this candidate's gate outcomes.
+
+    Observability for the autonomous claim search: the supervisor runs this
+    module as a subprocess with stdout/stderr -> DEVNULL, so the per-candidate
+    gate verdicts are otherwise unrecoverable (the 2026-07-14 diagnostic had to
+    infer the failure funnel indirectly from the novelty cache). This writes the
+    verdict to a structured file independent of stdout capture, so we can see
+    WHERE candidates die (Gate-1 significance / triviality / consistency /
+    holdout / Gate-2 novelty).
+
+    Defensive by design: a logging failure must NEVER break the discovery loop
+    or affect emission/verification, so the whole body is wrapped and never
+    raises. The file rotates at VERDICT_LOG_CAP_BYTES to avoid unbounded growth.
+    """
+    try:
+        g1 = verdict.get("gate1") or {}
+        g2 = verdict.get("gate2") or {}
+        g1m = g1.get("metrics") or {}
+        line = json.dumps({
+            "ts": _now_iso(),
+            "label": label,
+            "claim": (verdict.get("claim") or "")[:200],
+            "program_hash": verdict.get("program_hash"),
+            "both_pass": verdict.get("both_pass"),
+            "gate1": {"pass": g1.get("pass"),
+                      "effect": g1m.get("effect"),
+                      "pvalue": g1m.get("pvalue"),
+                      "reason": (g1.get("reason") or "")[:160]},
+            "triviality": (verdict.get("triviality") or {}).get("pass"),
+            "consistency": (verdict.get("consistency") or {}).get("pass"),
+            "holdout": (verdict.get("holdout") or {}).get("pass"),
+            "gate2": {"status": g2.get("status"), "pass": g2.get("pass"),
+                      "n_retrieved": g2.get("n_retrieved"),
+                      "reasoning": (g2.get("reasoning") or "")[:160]},
+        }, default=str)
+        VERDICT_LOG.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            if (VERDICT_LOG.exists()
+                    and VERDICT_LOG.stat().st_size > VERDICT_LOG_CAP_BYTES):
+                rot = VERDICT_LOG.with_suffix(".jsonl.1")
+                try:
+                    rot.unlink()
+                except OSError:
+                    pass
+                VERDICT_LOG.rename(rot)
+        except OSError:
+            pass
+        with VERDICT_LOG.open("a", encoding="utf-8") as fh:
+            fh.write(line + "\n")
+    except Exception as e:  # never break the loop over a logging failure
+        logger.warning("[claim_search] verdict-log append failed: %s", e)
 
 
 if __name__ == "__main__":

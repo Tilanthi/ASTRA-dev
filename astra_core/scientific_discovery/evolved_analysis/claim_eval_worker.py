@@ -2,10 +2,16 @@
 real-data test (Gate 1 of the two-gate EVALUATE).
 
 Invoked as:
-    python -m evolved_analysis.claim_eval_worker <source_file> [seed]
+    python -m evolved_analysis.claim_eval_worker <source_file> [seed] [data_source]
+
+An optional third arg ``data_source`` selects a data-lake dataset
+(data_lake.py, Sub-project C); omit it (or pass 'legacy') to use the default
+SDSS photo-z sample via real_data.py. The worker only ever READS a cached CSV —
+it never fetches (no network from the sandbox); caches are populated by
+data_lake.fetch_and_cache() outside the sandbox.
 
 It loads the candidate (a module-level CLAIM + a ``run_claim(df_train, df_eval)``
-function), runs it on REAL SDSS data, and prints ONE line of JSON to stdout:
+function), runs it on REAL data, and prints ONE line of JSON to stdout:
     {"effect": ..., "pvalue": ..., "effect_type": ..., "summary": ..., "claim": ...}
 
 Defence-in-depth (identical to eval_worker): ``resource`` caps + the AST safety
@@ -46,8 +52,15 @@ except Exception:
 def main():
     src_path = sys.argv[1]
     seed = int(sys.argv[2]) if len(sys.argv) > 2 else 42
+    source = sys.argv[3] if len(sys.argv) > 3 else "legacy"
     try:
-        splits = load_split(seed=seed)
+        if source and source != "legacy":
+            # Sub-project C: read a cached data-lake dataset (file read only,
+            # never fetches — the sandbox has no network).
+            from .data_lake import load_split as _lake_split
+            splits = _lake_split(source, seed=seed)
+        else:
+            splits = load_split(seed=seed)
         src = Path(src_path).read_text()
 
         # AST safety gate BEFORE exec (catches os/subprocess/open/eval/...).
