@@ -119,6 +119,24 @@ def test_task_system_for_includes_niche_hint():
     assert ts_gal and "concentration-index" in ts_gal
 
 
+def test_round_robin_cycles_productive_datasets():
+    """The supervisor's per-episode picker must cycle through all productive niches."""
+    import tempfile
+    from astra_core.scientific_discovery.evolved_analysis import mine_rotation as mr
+    with tempfile.TemporaryDirectory() as td:
+        orig = mr._ROUND_ROBIN_POINTER
+        mr._ROUND_ROBIN_POINTER = Path(td) / "pointer.json"
+        try:
+            ds = productive_datasets()
+            assert len(ds) >= 1
+            picks = [mr._round_robin_pick(ds).name for _ in range(len(ds))]
+            assert set(picks) == {d.name for d in ds}, \
+                f"round-robin should cover all productive niches; got {picks}"
+            assert mr._round_robin_pick(ds).name == picks[0]  # wraps to first
+        finally:
+            mr._ROUND_ROBIN_POINTER = orig
+
+
 if __name__ == "__main__":
     failed = 0
     for name, fn in sorted(globals().items()):
