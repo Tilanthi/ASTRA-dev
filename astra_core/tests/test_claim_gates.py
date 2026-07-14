@@ -268,6 +268,15 @@ def test_prompts_require_df_train_discipline():
     assert ts and "df_train" in ts and "df_eval alone" in ts
 
 
+def test_prompts_prime_higher_order_relations():
+    """Pin the higher-order/conditional priming that raises the novel rate."""
+    from astra_core.scientific_discovery.evolved_analysis.claim_task import TASK_SYSTEM
+    from astra_core.scientific_discovery.evolved_analysis.data_lake import task_system_for
+    assert "higher-order" in TASK_SYSTEM and "SUBSET" in TASK_SYSTEM
+    ts = task_system_for("sdss_galaxy_extended")
+    assert ts and "higher-order" in ts and "SUBSET" in ts
+
+
 def _run():
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     passed = 0
