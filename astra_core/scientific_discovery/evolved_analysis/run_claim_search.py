@@ -157,6 +157,7 @@ def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True,
         "holdout": {"pass": hold_ok, "reason": hold_reason},
         "gate2": None,
         "both_pass": False,
+        "dataset": source,
     }
 
     if not (g1_pass and triv_ok and cons_ok and hold_ok):
@@ -361,6 +362,7 @@ def _append_verdict_log(verdict: dict, label: str = "") -> None:
         line = json.dumps({
             "ts": _now_iso(),
             "label": label,
+            "dataset": verdict.get("dataset"),
             "claim": (verdict.get("claim") or "")[:200],
             "program_hash": verdict.get("program_hash"),
             "both_pass": verdict.get("both_pass"),
