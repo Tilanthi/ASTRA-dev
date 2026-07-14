@@ -42,8 +42,15 @@ More methods: `CLAUDE_ASTRA_QUICKSTART.md`.
 
 ### Project Overview
 - **ASTRA**: Autonomous Scientific Discovery in Astrophysics
-- **Version**: 14.1 (2026-07-14) — opt-in **data lake + literature-mined action space** (Sub-project C) plus a verdict-logging / legacy-system cleanup, on top of the v14.0 fiction-free, two-gate EVALUATE re-architecture.
+- **Version**: 14.2 (2026-07-14) — adds novel-output scaling (rotation miner + textbook-saturation filtering + proposer niche hints) on top of v14.1 (data lake + cleanup) and v14.0 (fiction-free two-gate EVALUATE).
 - **GitHub**: https://github.com/Tilanthi/ASTRA-dev
+
+### System Status — v14.2 (2026-07-14): scaling novel output
+Pilots showed novelty is rare, roughly linear in candidate-evals, and object-type-dependent (stars → 0 novel; galaxies/QSOs → some). Two levers added:
+- **Scale** — `evolved_analysis/mine_rotation.py` runs the Phase-2 search across datasets in one command: `PYTHONPATH=astra_core/scientific_discovery python -m evolved_analysis.mine_rotation --steps N`.
+- **Focus** — datasets carry `textbook_risk` (`sdss_stars` + `gaia_nearby` = "high" — ~100% known, HR-diagram-dominated) and a `niche_hint` appended to the proposer prompt (galaxy concentration/morphology, QSO colour×redshift interactions). `productive_datasets()` returns the mineable ones; the rotation miner skips high-risk by default (`--include-high-risk` to opt in). `--list-sources` shows the risk flag.
+
+---
 
 ### System Status — v14.1 (2026-07-14)
 - **Data lake (Sub-project C).** Phase-2 claim search can mine real datasets beyond the single SDSS photo-z sample, via opt-in `--data-source NAME` (default `legacy` = unchanged). Modules `evolved_analysis/data_lake.py` (registry + fetch/cache; `sdss_stars`, `sdss_qso`, `sdss_galaxy_extended`, `gaia_nearby`) and `action_space_miner.py` (Biomni-style arXiv astro-ph miner). **Sandbox unchanged**: fetchers run outside the sandbox and write cache CSVs; the sandboxed worker reads cache files only (no-network profile intact). Live-validated vs SDSS CAS + Gaia DR3. Spec: `docs/superpowers/specs/2026-07-14-subproject-c-data-lake-design.md`.
