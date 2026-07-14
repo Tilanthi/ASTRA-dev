@@ -45,6 +45,11 @@ class Dataset:
     source: str               # archive provenance, e.g. "SDSS DR CAS", "Gaia DR3"
     fetcher: Optional[Callable[[], "pd.DataFrame"]] = None  # None = not wired yet
     cache_basename: str = ""
+    # Lever (b): the 2026-07-14 pilots showed some object types are textbook-
+    # saturated (stars -> HR diagram, 100% "known"). Mark them so the rotation
+    # miner skips them by default and effort goes to novelty-yielding niches.
+    textbook_risk: str = "low"   # "low" (mine by default) | "high" (skip by default)
+    niche_hint: str = ""         # appended to the proposer prompt for this dataset
 
     def cache_path(self) -> Path:
         return LAKE_DIR / (self.cache_basename or f"{self.name}.csv")
@@ -67,6 +72,15 @@ def get_dataset(name: str) -> Optional[Dataset]:
 
 def list_datasets() -> List[Dataset]:
     return list(DATASET_REGISTRY.values())
+
+
+def productive_datasets() -> List[Dataset]:
+    """Datasets worth mining by default — i.e. NOT textbook-saturated.
+
+    The 2026-07-14 pilots found stars (SDSS + Gaia) are ~100% 'known' (HR diagram,
+    reduced proper motion), so scaling them burns compute for no novelty. The
+    rotation miner mines only these by default; pass --include-high-risk to opt in."""
+    return [ds for ds in DATASET_REGISTRY.values() if ds.textbook_risk != "high"]
 
 
 # --------------------------------------------------------------------------- #
@@ -250,6 +264,9 @@ register_dataset(Dataset(
     columns=["u", "g", "r", "i", "z", "z_spec", "ra", "dec"],
     source="SDSS DR CAS (https://skyserver.sdss.org) via astroquery.sdss",
     fetcher=_fetch_sdss_stars,
+    textbook_risk="high",  # pilots: stellar colour relations are ~100% textbook (HR locus)
+    niche_hint="Stars are HR-diagram-dominated and ~100% textbook in pilots; only "
+               "pursue a genuinely non-obvious higher-order relation if one exists.",
 ))
 register_dataset(Dataset(
     name="sdss_qso",
@@ -257,6 +274,10 @@ register_dataset(Dataset(
     columns=["u", "g", "r", "i", "z", "z_spec", "ra", "dec"],
     source="SDSS DR CAS (https://skyserver.sdss.org) via astroquery.sdss",
     fetcher=_fetch_sdss_qso,
+    textbook_risk="low",
+    niche_hint="Productive directions (have yielded novelty): colour×redshift "
+               "interaction terms (e.g. z × (u−g)), non-linear colour space, "
+               "colour–colour curvature for QSOs.",
 ))
 register_dataset(Dataset(
     name="sdss_galaxy_extended",
@@ -264,6 +285,10 @@ register_dataset(Dataset(
     columns=["u", "g", "r", "i", "z", "extinction_r", "petror50_r", "petror90_r", "concentration_r", "z_spec"],
     source="SDSS DR CAS (https://skyserver.sdss.org) via astroquery.sdss",
     fetcher=_fetch_sdss_galaxy_extended,
+    textbook_risk="low",
+    niche_hint="Productive directions (have yielded novelty): concentration-index "
+               "(morphology) effects, colour–colour curvature, residuals after "
+               "removing the colour–redshift trend, size×colour interactions.",
 ))
 register_dataset(Dataset(
     name="gaia_nearby",
@@ -271,6 +296,10 @@ register_dataset(Dataset(
     columns=["parallax", "pmra", "pmdec", "phot_g_mean_mag", "phot_bp_mean_mag", "phot_rp_mean_mag", "bp_rp", "ruwe", "abs_g"],
     source="Gaia DR3 (https://gea.esac.esa.int/archive) via astroquery.gaia",
     fetcher=_fetch_gaia_nearby,
+    textbook_risk="high",  # pilots: 100% known (HR diagram, reduced proper motion)
+    niche_hint="Stellar astrometry is HR-diagram / reduced-proper-motion dominated "
+               "and ~100% textbook in pilots; only pursue a non-obvious higher-order "
+               "relation if one exists.",
 ))
 
 
@@ -281,7 +310,7 @@ def task_system_for(name: str) -> Optional[str]:
     if ds is None:
         return None
     cols = ", ".join(ds.columns)
-    return (
+    prompt = (
         "You are an expert astronomer searching for a NOVEL, real statistical "
         "relationship in this dataset that is NOT already a well-known textbook "
         "result. You are given the current candidate (a natural-language CLAIM "
@@ -315,6 +344,9 @@ def task_system_for(name: str) -> Optional[str]:
         "  (b) one complete ```python``` module (CLAIM + run_claim).\n"
         "Output ONLY the diff or code, no explanation."
     )
+    if ds.niche_hint:
+        prompt += "\nDataset-specific guidance: " + ds.niche_hint + "\n"
+    return prompt
 
 
 if __name__ == "__main__":
@@ -328,7 +360,8 @@ if __name__ == "__main__":
         for ds in list_datasets():
             cached = "cached" if ds.cache_path().exists() else "NOT-cached"
             wired = "ok" if ds.fetcher else "no-fetcher"
-            print(f"  {ds.name:24s} [{cached}/{wired}]  {ds.source}")
+            risk = "TEXTBOOK-saturated" if ds.textbook_risk == "high" else "mine"
+            print(f"  {ds.name:24s} [{cached}/{wired}/{risk}]  {ds.source}")
             print(f"  {' ':26s} cols: {', '.join(ds.columns)}")
     elif args.command == "fetch":
         if not args.name:

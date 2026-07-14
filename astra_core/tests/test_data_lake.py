@@ -18,7 +18,7 @@ import pandas as pd  # noqa: E402
 from astra_core.scientific_discovery.evolved_analysis import data_lake  # noqa: E402
 from astra_core.scientific_discovery.evolved_analysis.data_lake import (  # noqa: E402
     Dataset, register_dataset, fetch_and_cache, load_dataframe,
-    load_split, task_system_for,
+    load_split, task_system_for, productive_datasets,
 )
 
 
@@ -101,6 +101,22 @@ def test_task_system_for_describes_columns():
     ts = task_system_for("gaia_nearby")
     assert ts and "parallax" in ts and "bp_rp" in ts
     assert task_system_for("nonexistent_dataset") is None
+
+
+def test_productive_datasets_exclude_textbook_saturated():
+    """Lever (b): stars/gaia are textbook-saturated and skipped by default."""
+    names = {ds.name for ds in productive_datasets()}
+    assert "sdss_galaxy_extended" in names and "sdss_qso" in names
+    assert "sdss_stars" not in names      # HR-diagram-dominated
+    assert "gaia_nearby" not in names     # 100% known in pilots
+
+
+def test_task_system_for_includes_niche_hint():
+    """Niche hints focus the proposer on the relation types that yielded novelty."""
+    ts_qso = task_system_for("sdss_qso")
+    assert ts_qso and "colour×redshift" in ts_qso           # niche hint present
+    ts_gal = task_system_for("sdss_galaxy_extended")
+    assert ts_gal and "concentration-index" in ts_gal
 
 
 if __name__ == "__main__":

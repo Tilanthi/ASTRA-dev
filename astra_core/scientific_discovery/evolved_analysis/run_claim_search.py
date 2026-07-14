@@ -275,10 +275,11 @@ def main():
     task_system = TASK_SYSTEM
     if args.list_sources:
         from .data_lake import list_datasets
-        print("  legacy (default)  SDSS u,g,r,i,z + z_spec galaxies (real_data.py)")
+        print("  legacy (default)   SDSS u,g,r,i,z + z_spec galaxies (real_data.py)")
         for ds in list_datasets():
             cached = "cached" if ds.cache_path().exists() else "NOT-cached"
-            print(f"  {ds.name:24s} [{cached}]  {', '.join(ds.columns)}")
+            risk = "SKIP(textbook)" if ds.textbook_risk == "high" else "mine"
+            print(f"  {ds.name:20s} [{cached}/{risk}]  {', '.join(ds.columns)}")
         return
     if args.data_source and args.data_source != "legacy":
         from .data_lake import fetch_and_cache, task_system_for, get_dataset
