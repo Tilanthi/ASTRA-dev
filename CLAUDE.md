@@ -42,8 +42,11 @@ More methods: `CLAUDE_ASTRA_QUICKSTART.md`.
 
 ### Project Overview
 - **ASTRA**: Autonomous Scientific Discovery in Astrophysics
-- **Version**: 14.2 (2026-07-14) — adds novel-output scaling (rotation miner + textbook-saturation filtering + proposer niche hints) on top of v14.1 (data lake + cleanup) and v14.0 (fiction-free two-gate EVALUATE).
+- **Version**: 14.3 (2026-07-15) — the always-on supervisor now rotates the productive data-lake niches (higher-novelty, always-on), on top of v14.2 (rotation miner + textbook filtering + niche hints), v14.1 (data lake + cleanup), and v14.0 (fiction-free two-gate EVALUATE).
 - **GitHub**: https://github.com/Tilanthi/ASTRA-dev
+
+### System Status — v14.3 (2026-07-15): higher-novelty niches in the always-on path
+The supervisor's `ASTRA_EVOLUTION_MODULE` is now `evolved_analysis.mine_rotation` with `ASTRA_MINE_ROUND_ROBIN=1` + `ASTRA_MINE_STEPS=12` (in `~/.astra_persistent/llm_env`), so each evolution episode mines **one productive data-lake niche, round-robin** (galaxy morphology → QSOs → …) instead of the textbook-dominated legacy sdss_photoz. Each episode stays short (one niche × 12 steps) and user-yielding. Confirmed end-to-end (a confirmation run emitted a QSO novel claim immediately).
 
 ### System Status — v14.2 (2026-07-14): scaling novel output
 Pilots showed novelty is rare, roughly linear in candidate-evals, and object-type-dependent (stars → 0 novel; galaxies/QSOs → some). Two levers added:
