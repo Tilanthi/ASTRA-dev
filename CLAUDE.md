@@ -60,10 +60,13 @@ launchctl load ~/Library/LaunchAgents/com.astra.discovery.plist
 tail -f .astra_service.log
 ```
 
-### Method 2: Continuous Autonomous Operation (Manual v3.0)
-```bash
-./start_continuous_discovery.sh
-```
+### Method 2: ~~Continuous Autonomous Operation (Manual v3.0)~~ — DEPRECATED (v14.1)
+> ⚠️ **Do NOT use `start_continuous_discovery.sh`.** It launches the *retired
+> fiction emitter* (`autonomous_startup_discovery_v2`) via the legacy watchdog and
+> churns ~400 MB/day of log producing nothing (its output never reaches the
+> chokepoint-gated store). The only supported always-on path is the
+> `com.astra.discovery` LaunchAgent (Method 1), which runs the fiction-free
+> supervisor. The old script still exists but is not the discovery path.
 
 ### Method 3: Programmatic Control (Auto-Start v4.0)
 ```python
@@ -77,10 +80,48 @@ system = create_stan_system()  # Auto-starts discovery!
 
 ### Project Overview
 - **ASTRA**: Autonomous Scientific Discovery in Astrophysics
-- **Version**: 14.0 — 2026-07-11 Autonomous-Discovery Re-architecture (fiction-free, two-gate EVALUATE). *Supersedes* the v5–v7 "fixes" below, which did NOT make the pipeline operational (see System Status).
+- **Version**: 14.1 — 2026-07-14 adds the opt-in astronomy **data lake + literature-mined action space** (Sub-project C) and a verdict-logging / legacy-system cleanup on top of v14.0. v14.0 (2026-07-11): fiction-free, two-gate EVALUATE re-architecture. *Supersedes* the v5–v7 "fixes" below, which did NOT make the pipeline operational (see System Status).
 - **Code Size**: ~265,000 lines
 - **AGI Capability**: 75-80%
 - **GitHub**: https://github.com/Tilanthi/ASTRA-dev
+
+### System Status (2026-07-14 — Data lake + observability cleanup, v14.1)
+
+**v14.1 builds on v14.0 (below, still current) with two changes:**
+
+- **Astronomy data lake + literature-mined action space (Sub-project C).** The
+  Phase-2 claim search can now mine real datasets beyond the single SDSS photo-z
+  sample, via an opt-in `--data-source NAME` flag. This directly targets the
+  **data-narrowness bottleneck** found in the 2026-07-14 failure-mode diagnostic
+  (148/157 Gate-2 "known" were foundational/textbook; 129/157 colour–redshift —
+  the only strong relations in one narrow sample ARE the textbook ones). New
+  modules `evolved_analysis/data_lake.py` (registry + fetch/cache; registered real
+  datasets `sdss_stars`, `sdss_qso`, `sdss_galaxy_extended`, `gaia_nearby`) and
+  `evolved_analysis/action_space_miner.py` (Biomni-style arXiv astro-ph miner
+  that suggests datasets to add). **The sandbox no-network profile is unchanged**:
+  fetchers run OUTSIDE the sandbox and write cache CSVs; the sandboxed worker
+  only reads cache files. Default behaviour is unchanged (`--data-source legacy`
+  = sdss_photoz via `real_data.py`). Live-validated against SDSS CAS + Gaia DR3.
+  Spec: `docs/superpowers/specs/2026-07-14-subproject-c-data-lake-design.md`.
+  Tests: `astra_core/tests/test_data_lake.py`, `test_action_space_miner.py`.
+
+- **Observability cleanup.** (1) Stopped a legacy *dual* system —
+  `start_continuous_discovery.sh` → `astra_watchdog.py` → the retired fiction
+  emitter `autonomous_startup_discovery_v2` — that was churning ~400 MB/day into
+  `.astra_autonomous.log` and producing nothing. The legitimate
+  `com.astra.discovery` LaunchAgent supervisor is a separate path and was left
+  running. `start_continuous_discovery.sh` is now **DEPRECATED** (see Method 2).
+  (2) Added structured per-candidate verdict logging to
+  `~/.astra_persistent/evolved_programs/claim_verdicts.jsonl` (the supervisor runs
+  the claim-search subprocess with stdout→DEVNULL, so verdicts were previously
+  lost). Tests: `astra_core/tests/test_verdict_logging.py`.
+
+**Sub-project A (DeepScientist-style UCB selection / multi-fidelity) was
+designed but NOT implemented** — the diagnostic showed selection is not the
+binding constraint (data narrowness is), so it would optimise the wrong dial.
+Spec kept at `docs/superpowers/specs/2026-07-13-subproject-a-acquisition-multifidelity-design.md` for reference, not recommended.
+
+---
 
 ### System Status (2026-07-11 — Autonomous-Discovery Re-architecture, v14.0)
 
