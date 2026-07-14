@@ -518,3 +518,50 @@ For more information, see:
 - `CLAUDE_ASTRA_FULL.md` - Complete system documentation
 - `CLAUDE_ASTRA_TESTING.md` - Testing procedures
 - `CLAUDE_ASTRA_QUICKSTART.md` - Quick start methods
+
+---
+
+# Pipeline Validation Gates (v6.0) — moved from CLAUDE.md 2026-07-14
+
+### Pipeline Validation Gates (NEW v6.0)
+**Based on peer review feedback - ensures genuine scientific rigor:**
+
+**CRITICAL Gates (Block output completely):**
+- ✅ **Citation Resolution**: All `\cite{}` commands must resolve to bibliography entries
+- ✅ **Derivation Traces**: Every numeric result requires formula + substitution shown
+
+**MAJOR Gates (Should block output):**
+- ✅ **Non-Trivial Validation**: Requires non-calibration test cases (M ≠ 1.0 M☉)
+- ✅ **Explicit Tolerances**: Quantitative agreement criteria (not subjective "match")
+- ✅ **Metric Specification**: Self-generated scores must be retired OR fully specified
+
+**Implementation Files:**
+- `astra_core/pipeline_validation.py` - Validation gate implementations
+- `astra_core/scientific_discovery/validated_discovery_pipeline.py` - Integrated pipeline
+- `ASTRA_PIPELINE_RIGOR_FIXES.md` - Detailed analysis and rationale
+- `ASTRA_PIPELINE_FIXES_IMPLEMENTATION.md` - Implementation guide
+
+**Usage:**
+```python
+from astra_core.pipeline_validation import validate_discovery_pipeline
+
+# After generating discovery paper
+passed, report = validate_discovery_pipeline(
+    tex_content=paper_latex,
+    bib_content=bibliography,
+    results_section=results_section,
+    validation_cases=validation_test_cases,
+    predicted_values=system_results,
+    expected_values=literature_values
+)
+
+if not passed:
+    # BLOCK OUTPUT - validation failed
+    print(f"Validation failed: {report}")
+else:
+    # Approval for distribution
+    print(f"Validation passed: {report}")
+```
+
+---
+
