@@ -99,14 +99,21 @@ class NoveltyResult:
 # --------------------------------------------------------------------------- #
 # retrieval                                                                    #
 # --------------------------------------------------------------------------- #
-def _http_get(url: str, timeout: int = 25) -> Optional[str]:
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "ASTRA-novelty-gate/1.0"})
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            return r.read().decode("utf-8", errors="replace")
-    except Exception as e:
-        logger.debug("[novelty] GET failed %s: %s", url[:80], e)
-        return None
+def _http_get(url: str, timeout: int = 25, retries: int = 3) -> Optional[str]:
+    """GET with retry/backoff. arXiv/S2 transiently rate-limit or drop requests
+    (the 2026-07-14 pilot saw whole batches return empty), so retry a few times
+    before giving up. Returns None if all attempts fail."""
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "ASTRA-novelty-gate/1.0"})
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return r.read().decode("utf-8", errors="replace")
+        except Exception as e:
+            logger.debug("[novelty] GET failed (attempt %d/%d) %s: %s",
+                         attempt + 1, retries, url[:80], e)
+            if attempt < retries - 1:
+                time.sleep(2 * (attempt + 1))  # 2s, 4s backoff between attempts
+    return None
 
 
 def retrieve_arxiv(query: str, max_results: int = 5) -> List[Paper]:
@@ -286,6 +293,20 @@ def _save_cache(cache: dict) -> None:
 # --------------------------------------------------------------------------- #
 # public entry point                                                           #
 # --------------------------------------------------------------------------- #
+def _retrieve_papers(query: str, use_s2: bool, max_results: int = 5) -> List[Paper]:
+    """Retrieve + de-dup papers from arXiv (and optionally S2) for a query."""
+    papers = retrieve_arxiv(query, max_results=max_results)
+    if use_s2:
+        papers += retrieve_s2(query, max_results=max_results)
+    seen, deduped = set(), []
+    for p in papers:
+        k = p.title.lower()[:80]
+        if k and k not in seen:
+            seen.add(k)
+            deduped.append(p)
+    return deduped[:8]
+
+
 def check_novelty(claim: str, use_s2: bool = True, force: bool = False) -> NoveltyResult:
     """Gate 2: return whether ``claim`` is novel (not in the literature).
 
@@ -305,25 +326,20 @@ def check_novelty(claim: str, use_s2: bool = True, force: bool = False) -> Novel
 
     query = _extract_query(claim)
     logger.info("[novelty] retrieving for claim (query=%r)", query)
-    papers = retrieve_arxiv(query, max_results=5)
-    if use_s2:
-        papers += retrieve_s2(query, max_results=5)
-    # de-dup by title
-    seen = set()
-    deduped = []
-    for p in papers:
-        k = p.title.lower()[:80]
-        if k and k not in seen:
-            seen.add(k)
-            deduped.append(p)
-    papers = deduped[:8]
+    papers = _retrieve_papers(query, use_s2)
+    if not papers:
+        # Transient rate-limiting can return empty on the first pass (the
+        # 2026-07-14 pilot saw whole batches come back empty). Retry once after
+        # backoff before declaring retrieval-failed.
+        logger.info("[novelty] no papers on first pass; retrying after backoff")
+        time.sleep(_RATE_SLEEP)
+        papers = _retrieve_papers(query, use_s2)
 
     if not papers:
-        res = NoveltyResult(False, "retrieval-failed", claim, n_retrieved=0,
-                            reasoning="no papers retrieved; novelty unverified")
-        cache[key] = res.to_dict()
-        _save_cache(cache)
-        return res
+        # Retrieval genuinely failed. This is TRANSIENT — do NOT cache it, so the
+        # next run retries instead of inheriting a permanent "failed" verdict.
+        return NoveltyResult(False, "retrieval-failed", claim, n_retrieved=0,
+                             reasoning="no papers retrieved after retry; novelty unverified")
 
     known, entailing, label, reasoning = _judge_known(claim, papers)
     if not label and not reasoning:
