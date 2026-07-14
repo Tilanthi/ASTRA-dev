@@ -32,7 +32,7 @@ from pathlib import Path
 from .claim_task import (NAIVE_CLAIM_SEED, TASK_SYSTEM, ENTRY_POINT,
                          parse_claim, gate1_significant, PMAX)
 from .claim_gates import (triviality_check, consistency_check,
-                          holdout_distinct_check,
+                          holdout_distinct_check, claim_uses_train_split,
                           bonferroni_pmax, bump_family_counter, family_size)
 from .proposer import LLMProposer, apply_diff
 
@@ -264,6 +264,9 @@ def main():
                          "--list-sources to see available datasets.")
     ap.add_argument("--list-sources", action="store_true",
                     help="list available data sources and exit")
+    ap.add_argument("--propose-retries", type=int, default=3,
+                    help="max re-proposals per step when the candidate computes "
+                         "on df_eval instead of df_train (split-discipline fix)")
     args = ap.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
@@ -315,11 +318,24 @@ def main():
     parent = NAIVE_CLAIM_SEED
     parent_metrics = verdict["gate1"]["metrics"]
     for i in range(args.steps):
-        child, _spec, info = proposer.propose(
-            parent, parent_metrics, None, [], context_level="rich")
+        # Split-discipline fix: re-propose until the candidate computes on df_train
+        # (not df_eval alone), so the holdout-distinctness gate does not reject it
+        # and we don't waste a sandbox run on split-incorrect code.
+        child, info = None, {}
+        for _attempt in range(max(1, args.propose_retries)):
+            cand, _spec, info = proposer.propose(
+                parent, parent_metrics, None, [], context_level="rich")
+            if not cand:
+                break
+            ok, why = claim_uses_train_split(cand)
+            if ok:
+                child = cand
+                break
+            logger.info("[claim_search] step %d attempt %d: %s; re-proposing",
+                        i, _attempt, why)
         if not child:
-            logger.info("[claim_search] step %d: proposer returned nothing (%s)",
-                        i, info.get("error", "?"))
+            logger.info("[claim_search] step %d: no split-correct proposal (%s)",
+                        i, info.get("error", "all attempts computed on df_eval"))
             continue
         v = two_gate_eval(child, run_gate2=not args.no_gate2, source=source)
         logger.info("[claim_search] step %d claim: %s", i, (v["claim"] or "")[:70])

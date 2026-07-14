@@ -227,6 +227,47 @@ def test_holdout_split_yields_numeric_effect():
         "g-r vs z should be significantly correlated on both splits"
 
 
+# --------------------------------------------------------------------------- #
+# Split-discipline fix (2026-07-14) — proposer must compute on df_train        #
+# --------------------------------------------------------------------------- #
+def test_claim_uses_train_split_passes_df_train():
+    src = ('CLAIM = "x"\n\n\n'
+           'def run_claim(df_train, df_eval):\n'
+           '    df = df_train\n'
+           '    return {"effect": 0.5, "pvalue": 1e-9, "effect_type": "t", "summary": "s"}\n')
+    ok, _ = claim_gates.claim_uses_train_split(src)
+    assert ok is True
+
+
+def test_claim_uses_train_split_rejects_df_eval_only():
+    # Ignores df_train, computes on df_eval -> holdout-distinct would reject.
+    src = ('CLAIM = "x"\n\n\n'
+           'def run_claim(df_train, df_eval):\n'
+           '    df = df_eval\n'
+           '    return {"effect": 0.5, "pvalue": 1e-9, "effect_type": "t", "summary": "s"}\n')
+    ok, why = claim_gates.claim_uses_train_split(src)
+    assert ok is False
+    assert "df_eval" in why
+
+
+def test_claim_uses_train_split_accepts_direct_df_train_use():
+    src = ('CLAIM = "x"\n\n\n'
+           'def run_claim(df_train, df_eval):\n'
+           '    r = df_train["g"].corr(df_train["r"])\n'
+           '    return {"effect": float(r), "pvalue": 1e-9, "effect_type": "t", "summary": "s"}\n')
+    ok, _ = claim_gates.claim_uses_train_split(src)
+    assert ok is True
+
+
+def test_prompts_require_df_train_discipline():
+    """Pin the prompt wording so the split-discipline rule can't silently regress."""
+    from astra_core.scientific_discovery.evolved_analysis.claim_task import TASK_SYSTEM
+    from astra_core.scientific_discovery.evolved_analysis.data_lake import task_system_for
+    assert "df_train" in TASK_SYSTEM and "df_eval alone" in TASK_SYSTEM
+    ts = task_system_for("gaia_nearby")
+    assert ts and "df_train" in ts and "df_eval alone" in ts
+
+
 def _run():
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     passed = 0

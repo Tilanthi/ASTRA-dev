@@ -239,6 +239,29 @@ def holdout_distinct_check(metrics: dict) -> Tuple[bool, str]:
     return True, (f"holdout:pass (|effect - effect_insample|={abs(eff - ins):.2e})")
 
 
+def claim_uses_train_split(src: str) -> Tuple[bool, str]:
+    """Static pre-check (defence-in-depth BEFORE the sandbox): does the candidate
+    compute on df_train (the FIRST argument) rather than df_eval alone?
+
+    Rationale: the sandboxed worker runs run_claim twice — once with the train
+    split first, once with the test split first. A claim that ignores df_train and
+    computes on df_eval yields an identical effect both times, so
+    holdout_distinct_check (above) rejects it. This cheap STATIC check catches the
+    same flaw BEFORE a sandbox run is spent, letting the proposer re-generate
+    instead of wasting a Gate-1 eval. Revealed by the 2026-07-14 pilot: 12/12
+    Gate-1 passers on the new data-lake datasets were df_eval-only.
+
+    Heuristic: drop the signature line, then require df_train to appear in the
+    BODY. If it does, the code depends on the train split (so train vs test give
+    different effects). holdout_distinct_check remains the authoritative runtime
+    check (defence in depth)."""
+    body = re.sub(r"def\s+run_claim\s*\([^)]*\)\s*:", "", src or "", count=1)
+    if "df_train" in body:
+        return True, "uses df_train in body"
+    return False, ("df_train not referenced in body — computes on df_eval alone "
+                   "(holdout-distinct would reject)")
+
+
 # --------------------------------------------------------------------------- #
 # Fix 5 — multiple-testing (Bonferroni over the search family)                #
 # --------------------------------------------------------------------------- #
