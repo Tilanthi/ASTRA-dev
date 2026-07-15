@@ -78,6 +78,20 @@ def test_dedup_collapses_duplicates():
     assert len(kept) == 2 and dropped == 1
 
 
+def test_dedup_collapses_same_claim_different_hash():
+    """Regenerated duplicates — different program_hash, SAME claim + effect — collapse."""
+    def rec(ph):
+        claim = ("Among galaxies with high concentration the residual of r-i after "
+                 "removing the redshift trend correlates with mass")
+        return {"abstract": claim,
+                "verification": {"program_hash": ph, "effect": 0.352, "pvalue": 4e-13,
+                                 "claim": claim,
+                                 "gate": {"gate1_real_data": "pass",
+                                          "gate2_novelty": "novel"}}}
+    kept, dropped = dedup_verified([rec("h1"), rec("h2"), rec("h3")])
+    assert len(kept) == 1 and dropped == 2
+
+
 def test_purge_removes_fiction_and_dups():
     path = _tmp_store([
         {"title": "real", "verification": {"program_hash": "h1"}},
