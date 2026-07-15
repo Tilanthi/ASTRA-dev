@@ -110,9 +110,12 @@ def test_predict_actuals_surprise():
             pred = predictions.predict_for_episode("sdss_galaxy_extended")
             assert pred.dataset == "sdss_galaxy_extended"
             assert 0.0 <= pred.confidence <= 1.0
+            assert 0.0 <= pred.p_novel <= 1.0   # Beta-posterior forecast
             # actuals for the post-10:00 episode
             act = predictions.episode_actuals("sdss_galaxy_extended", "2026-07-15T10:00:00")
             assert act["n"] == 6  # seed + 5 steps
+            b = predictions.brier(pred.p_novel, predictions.episode_outcome(act))
+            assert 0.0 <= b <= 1.0
             # a "no data" actual -> max surprise contribution
             act_empty = {"gate1_pass_rate": None, "novel_emits": 0}
             assert predictions.score_surprise(pred, act_empty) >= 0.6
@@ -159,12 +162,33 @@ def test_compute_ci_degrades_and_blends():
             # add a surprise ledger entry + RSI effectiveness -> learning appears
             predictions.SURPRISE_LEDGER.write_text(json.dumps(
                 {"ts": "2026-07-15T10:01:00", "dataset": "sdss_galaxy_extended",
-                 "surprise": 0.3}) + "\n")
+                 "p_novel": 0.4, "outcome": 0, "brier": 0.16, "surprise": 0.3}) + "\n")
             capability_index.RSI_EFFECTIVENESS.write_text("72.5")
             ci2 = capability_index.compute_ci()
-            assert ci2["calibration"] is not None      # 100*(1-0.3)=70
-            assert ci2["learning"] is not None          # blended with 72.5
+            assert ci2["calibration"] is not None      # Brier 0.16 -> 100*(1-0.32)=68
+            assert ci2["learning"] is not None          # blended with RSI effectiveness
+            assert ci2["discovery"] is not None         # outcome sub-score present
             assert ci2["rsi_effectiveness_blended"] == 72.5
+        finally:
+            _restore(saved)
+
+
+def test_brier_and_reliability():
+    with tempfile.TemporaryDirectory() as td:
+        saved = _redirect(td)
+        try:
+            entries = [
+                {"ts": "t1", "dataset": "d", "p_novel": 0.0, "outcome": 0, "brier": 0.0},
+                {"ts": "t2", "dataset": "d", "p_novel": 1.0, "outcome": 1, "brier": 0.0},
+                {"ts": "t3", "dataset": "d", "p_novel": 0.5, "outcome": 1, "brier": 0.25},
+                {"ts": "t4", "dataset": "d", "p_novel": 0.5, "outcome": 0, "brier": 0.25},
+            ]
+            predictions.SURPRISE_LEDGER.write_text(
+                "\n".join(json.dumps(e) for e in entries) + "\n")
+            cm = predictions.calibration_metrics()
+            assert cm["mean_brier"] == 0.125               # (0+0+0.25+0.25)/4
+            curve = predictions.calibration_curve(bins=5)
+            assert isinstance(curve, list) and len(curve) >= 1
         finally:
             _restore(saved)
 
