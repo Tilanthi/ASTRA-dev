@@ -60,10 +60,38 @@ committing to the next (measure-before-build).
 
 **Phase-1 measurement (2026-07-15):** before-funnel baseline (pre-1a, N=745) reproduces
 Phase 0 exactly — gate1_fail 74.8%, **gate1-pass 25.2%**, novel-emit 5.4%, gate2_known
-14.1%. A controlled `mine_rotation` burst (all productive niches, new code, supervisor
-paused to avoid LLM-rate contamination) generated the after-sample; the decisive gate is
-whether gate1-pass climbs materially above 25% and gate2_known drops below 14%. Result
-recorded here when the run completes.
+14.1%. A controlled `mine_rotation` burst (all 4 productive niches × 15 steps, new code,
+supervisor paused to avoid LLM-rate contamination) generated a clean N=60 after-sample
+(ts ≥ burst-start 19:24; the 13 gaia_variables verdicts at 19:00–19:12 were excluded as
+possibly-old-code). Result (2026-07-15):
+
+| metric | BEFORE (N=745) | AFTER (N=60) | read |
+|---|---|---|---|
+| **gate1-pass** | **25.2%** | **21.7%** (95% CI 13.1–33.6%) | **NO change** — CI spans the baseline |
+| gate1_fail | 74.8% | 78.3% | binding constraint **unchanged** |
+| gate2_known | 14.1% | 10.0% | improved (novelty-steering working) |
+| novel_emit | 5.4% | 11.7% | **doubled** |
+| novel / gate1-pass | 21% | 54% | 2.5× — passers far more likely novel |
+
+**Verdict: Phase 1 did NOT meet its primary goal.** The #1 bottleneck (gate1_fail,
+proposer generating insignificant relations) is unchanged — correlation seeds did not
+raise gate1-pass above noise. **But 1b/1c (novelty-steering) clearly worked on the
+secondary axis:** among claims that *do* pass significance, ~2.5× more are now genuinely
+novel and fewer are textbook. Net: ~2× more novel discoveries per unit candidate effort,
+but the significant-candidate pool did not grow.
+
+Per-dataset (N=15 each — too small to separate, directional only): galaxy_extended
+40%, qso 27%, gaia_variables 13%, wise_midir 7%. The galaxy-vs-qso split (helps where
+data has exploitable structure; flat where the proposer already did OK) is a *hint*, not
+a conclusion.
+
+**Implications:** (1) Phase 2/4a deferral is vindicated — the proposer isn't fixed, so
+Phase 4a is still premature and Phase 2 (novelty) is now even less needed since novelty-
+steering already improved that axis. (2) The real next lever is a *different* attack on
+gate1_fail: investigate whether correlation seeds actually reach/influence the proposer
+(they may be appended as prose and ignored), or seed it with code templates derived from
+the real correlations rather than "extrapolate" hints. N=60 is directional — the
+supervisor's ongoing runs will sharpen the gate1-pass number.
 
 **Next steps:** land the Phase-1 before/after result above; then re-evaluate Phase 4a
 (only if the proposer is now fixed) — Phase 2 stays deferred.
