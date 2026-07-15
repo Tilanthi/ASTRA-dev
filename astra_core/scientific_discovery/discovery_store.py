@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import json
 import logging
+import math
 import os
 import re
 import tempfile
@@ -239,6 +240,52 @@ def dedup_verified(records: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]],
         seen.add(k)
         kept.append(r)
     return kept, dropped
+
+
+def near_duplicate_groups(
+        records: List[Dict[str, Any]],
+        effect_round: int = 3,
+        p_order: float = 1.0,
+) -> List[Tuple[float, List[Dict[str, Any]]]]:
+    """Surface NEAR-duplicate records for HUMAN REVIEW — never merges or removes.
+
+    The hard dedup (``dedup_key``) merges only EXACT (effect, p-value) matches.
+    Sometimes two legitimately-distinct findings share the same rounded |effect|
+    with p-values within an order of magnitude (e.g. two QSO-curvature relations
+    both at |effect|=0.742, p 7.7e-141 vs 1.7e-140). These are kept separate
+    (different computation => different p), but they're worth a human eye in case
+    they are the same phenomenon described twice.
+
+    Clusters on ``round(|effect|, effect_round)`` and, within that, a chain on
+    ``|log10(p_a) - log10(p_b)| <= p_order``. Returns one ``(effect, [records])``
+    per cluster of >=2. Pure read — does not modify anything."""
+    buckets: Dict[float, List[Tuple[Dict[str, Any], float]]] = {}
+    for r in records:
+        v = r.get("verification") or {}
+        try:
+            eff = round(abs(float(v.get("effect"))), effect_round)
+            pv = float(v.get("pvalue"))
+            if not (pv > 0):
+                continue
+        except (TypeError, ValueError):
+            continue
+        buckets.setdefault(eff, []).append((r, math.log10(pv)))
+    groups: List[Tuple[float, List[Dict[str, Any]]]] = []
+    for eff, items in buckets.items():
+        if len(items) < 2:
+            continue
+        items.sort(key=lambda x: x[1])
+        cur = [items[0]]
+        for it in items[1:]:
+            if abs(it[1] - cur[-1][1]) <= p_order:
+                cur.append(it)
+            else:
+                if len(cur) >= 2:
+                    groups.append((eff, [r for r, _ in cur]))
+                cur = [it]
+        if len(cur) >= 2:
+            groups.append((eff, [r for r, _ in cur]))
+    return groups
 
 
 def purge_file(path: Path, dry_run: bool = True) -> Dict[str, int]:

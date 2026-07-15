@@ -21,7 +21,7 @@ sys.path.insert(0, str(REPO))
 
 from astra_core.scientific_discovery.discovery_store import (  # noqa: E402
     has_machine_verification, append_verified, dedup_verified,
-    purge_file, load_records, save_bucket,
+    near_duplicate_groups, purge_file, load_records, save_bucket,
 )
 
 
@@ -90,6 +90,24 @@ def test_dedup_collapses_same_claim_different_hash():
                                           "gate2_novelty": "novel"}}}
     kept, dropped = dedup_verified([rec("h1"), rec("h2"), rec("h3")])
     assert len(kept) == 1 and dropped == 2
+
+
+def test_near_duplicate_groups_flags_similar_not_identical():
+    """Near-dup review: same |effect| + p within an order of magnitude -> grouped
+    for review (never merged)."""
+    def rec(eff, p, ph):
+        return {"abstract": f"claim {ph}",
+                "verification": {"program_hash": ph, "effect": eff, "pvalue": p,
+                                 "claim": f"claim {ph}",
+                                 "gate": {"gate1_real_data": "pass",
+                                          "gate2_novelty": "novel"}}}
+    # same |effect|, p within 1 order of magnitude (7.7e-141 vs 1.7e-140) -> 1 group of 2
+    g = near_duplicate_groups([rec(0.742, 7.7e-141, "a"), rec(0.742, 1.7e-140, "b")])
+    assert len(g) == 1 and len(g[0][1]) == 2
+    # p more than 1 order of magnitude apart -> NOT grouped
+    assert near_duplicate_groups([rec(0.742, 1e-140, "a"), rec(0.742, 1e-142, "b")]) == []
+    # different |effect| -> NOT grouped
+    assert near_duplicate_groups([rec(0.742, 1e-140, "a"), rec(0.500, 1e-140, "b")]) == []
 
 
 def test_purge_removes_fiction_and_dups():
