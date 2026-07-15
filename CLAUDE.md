@@ -42,7 +42,7 @@ More methods: `CLAUDE_ASTRA_QUICKSTART.md`.
 
 ### Project Overview
 - **ASTRA**: Autonomous Scientific Discovery in Astrophysics
-- **Version**: 14.6 (2026-07-15) — first NON-optical data-lake datasets (WISE mid-IR + Gaia variables), broadening the rotation beyond optical photometry, on top of v14.5 (near-duplicate reviewer), v14.4 (effect+p-value dedup), v14.3 (always-on niche rotation), v14.2 (rotation miner + textbook filtering + niche hints), v14.1 (data lake + cleanup), v14.0 (fiction-free two-gate EVALUATE).
+- **Version**: 14.7 (2026-07-15) — self-improvement layer (predict/surprise + measured RSI loop + capability index), on top of v14.6 (non-optical datasets), v14.5 (near-duplicate reviewer), v14.4 (effect+p-value dedup), v14.3 (always-on niche rotation), v14.2 (rotation miner + textbook filtering + niche hints), v14.1 (data lake + cleanup), v14.0 (fiction-free two-gate EVALUATE).
 - **GitHub**: https://github.com/Tilanthi/ASTRA-dev
 
 ### System Status — v14.3 (2026-07-15): higher-novelty niches in the always-on path
@@ -54,6 +54,12 @@ The store dedups on a **(held-out effect, p-value)** fingerprint (`discovery_sto
 **Near-duplicate review (v14.5):** `discovery_store.near_duplicate_groups` + `evolved_analysis.dup_review` surface distinct findings that share |effect| with p-values within an order of magnitude (they *might* be the same phenomenon) for **human review — not auto-merged**. Run: `PYTHONPATH=astra_core/scientific_discovery python -m evolved_analysis.dup_review`.
 
 **Breadth (v14.6): first non-optical datasets.** Registered `wise_midir` (AllWISE W1–W4 — a new **mid-IR** wavelength) and `gaia_variables` (Gaia DR3 variable stars — a **time-domain** modality), both live-fetched and validated (16,220 WISE rows; 4,000 variables). The productive rotation now cycles **4 niches: galaxy morphology, QSOs, mid-IR, variables** — breaking out of optical galaxy photometry. Gap remaining: radio, X-ray, spectroscopy, cross-matches (the registry is hand-curated; `action_space_miner` exists to grow it from the literature).
+
+**Self-improvement layer (v14.7): predict/surprise, measured RSI loop, capability index.** Three additive stdlib-only instruments (no chokepoint/gate changes), inspired by *Unleashing the Beast* (Perni/Dey, 2026):
+- **#1 predict-before-act + surprise ledger** (`predictions.py`): `mine_rotation` writes a statistical-baseline prediction before each episode and scores `surprise` after — turning the verdict log into a *calibration* instrument. `~/.astra_persistent/evolved_programs/{predictions,surprise_ledger}.jsonl`.
+- **#2 gated, measured self-improvement** (`improvement_loop.py`): mines verdicts into recurring failure classes → proposes gated fixes (propose only) → **measures whether an applied fix reduced its failure class**. Live result: split-discipline fix 100.0, Gate-2 retrieval fix 67.6 (rollup RSI effectiveness 83.8, "improving not solved"). `rsi_proposals.jsonl` / `rsi_applied.jsonl` / `rsi_effectiveness.txt`.
+- **#3 capability index** (`capability_index.py`): dated CI (0–100) from existing artifacts; **ingests sub-100 RSI effectiveness that can LOWER it** (baseline CI 87.0, learning 83.8). Trend not level; 100 = formula saturation. `ci_history.jsonl`.
+- Run: `python -m evolved_analysis.predictions|capability_index|improvement_loop [mine|measure]`.
 
 ### System Status — v14.2 (2026-07-14): scaling novel output
 Pilots showed novelty is rare, roughly linear in candidate-evals, and object-type-dependent (stars → 0 novel; galaxies/QSOs → some). Two levers added:
