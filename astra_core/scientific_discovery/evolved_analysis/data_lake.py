@@ -467,6 +467,37 @@ def correlation_seeds(name: str, top_k: int = 8, sample: int = 2000,
         return []
 
 
+def explored_themes(name: str, n: int = 6) -> List[tuple]:
+    """Phases 1b/1c — recent claims already tried on this dataset, for novelty-
+    steering (avoid the known/textbook families) and coverage awareness (avoid
+    re-deriving what's been explored). Returns [(claim_snippet, verdict_label)]
+    most-recent first. Defensive: [] on any error / missing log."""
+    try:
+        vl = LAKE_DIR.parent / "claim_verdicts.jsonl"
+        if not vl.exists():
+            return []
+        rows = [json.loads(l) for l in vl.read_text().splitlines() if l.strip()]
+        rows = [r for r in rows if r.get("dataset") == name and r.get("claim")]
+        rows.sort(key=lambda r: r.get("ts", ""), reverse=True)
+        out = []
+        for r in rows[:n]:
+            st = (r.get("gate2") or {}).get("status") or ""
+            if r.get("both_pass"):
+                label = "novel"
+            elif st == "known":
+                label = "KNOWN/textbook"
+            elif st == "retrieval-failed":
+                label = "unverified"
+            elif (r.get("gate1") or {}).get("pass") is not True:
+                label = "not-significant"
+            else:
+                label = "rejected"
+            out.append((str(r["claim"])[:90], label))
+        return out
+    except Exception:
+        return []
+
+
 def task_system_for(name: str) -> Optional[str]:
     """Return a proposer TASK_SYSTEM prompt describing this dataset's columns,
     or None for the legacy/unknown case (caller uses the default TASK_SYSTEM)."""
@@ -517,6 +548,12 @@ def task_system_for(name: str) -> Optional[str]:
                    "points — extrapolate toward non-obvious HIGHER-ORDER forms such as "
                    "residuals, interactions, or conditional subsets; do NOT just restate "
                    "these pairwise correlations): " + joined + "\n")
+    explored = explored_themes(name)
+    if explored:
+        joined = "; ".join(f'"{c}" [{lab}]' for c, lab in explored)
+        prompt += ("\nClaims ALREADY explored on this dataset (go in a DISTINCT direction; "
+                   "those marked KNOWN are textbook and will be rejected again): "
+                   + joined + "\n")
     return prompt
 
 

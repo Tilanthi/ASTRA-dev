@@ -39,6 +39,23 @@ committing to the next (measure-before-build).
 
 ## Phases
 
+## Status (2026-07-15, second pass)
+- **Phase 0** ✅ — gate1_fail 74% confirmed.
+- **Phase 1a** ✅ — `correlation_seeds` (data-driven seeding) + `task_system_for` injection.
+- **Phase 1b/1c** ✅ — `explored_themes` injection (novelty-steering + coverage awareness).
+- **Phase 3a** ✅ — `discovery_review` (rank novel claims for human review).
+- **Phase 3b** ✅ — `confirmed_discoveries.jsonl` + `confirmation_rate` field in the CI.
+- **Phase 2a** PENDING — multi-source Gate-2 (ADS/CrossRef — new APIs).
+- **Phase 2b** PENDING — embedding-based novelty pre-filter.
+- **Phase 4a** PENDING — SDSS×WISE cross-match (position matching, complex).
+- **Phase 4b** DEFERRED — `galSpecLine` (MPA-JHU emission lines) is NOT accessible via
+  the public SDSS CAS query (returned an HTML error page). Needs an alternative path:
+  MPA-JHU catalog direct download, or `emissionLinesPort` long-format pivot. The broken
+  fetcher was removed.
+
+**Next steps:** measure 1a's effect on gate1-pass rate (funnel script); then Phase 2
+(verification quality) or 4a (cross-modal).
+
 ### Phase 0 — re-confirm bottleneck ✅ DONE (2026-07-15)
 Read `claim_verdicts.jsonl` (NOT the discovery stores — `failure_class` expects the
 verdict-log shape: top-level `gate1`/`gate2`/`both_pass`). Result above: gate1_fail 74%.

@@ -42,7 +42,7 @@ More methods: `CLAUDE_ASTRA_QUICKSTART.md`.
 
 ### Project Overview
 - **ASTRA**: Autonomous Scientific Discovery in Astrophysics
-- **Version**: 14.8 (2026-07-15) — upgraded self-improvement: Brier-scored probabilistic calibration + Discovery outcome sub-score in the CI, on top of v14.7 (self-improvement layer), v14.6 (non-optical datasets), v14.5 (near-duplicate reviewer), v14.4 (effect+p-value dedup), v14.3 (always-on niche rotation), v14.2 (rotation miner + textbook filtering + niche hints), v14.1 (data lake + cleanup), v14.0 (fiction-free two-gate EVALUATE).
+- **Version**: 14.9 (2026-07-15) — discovery-performance improvements: data-driven proposer seeding (correlation_seeds) + explored-themes novelty-steering/coverage + discovery_review human-review tool + confirmation-rate CI field, on top of v14.8 (Brier calibration + Discovery CI), v14.7 (self-improvement layer), v14.6 (non-optical datasets), v14.5 (near-dup reviewer), v14.4 (effect+p-value dedup), v14.3 (always-on niche rotation), v14.2 (rotation miner + niche hints), v14.1 (data lake + cleanup), v14.0 (fiction-free two-gate EVALUATE).
 - **GitHub**: https://github.com/Tilanthi/ASTRA-dev
 
 ### System Status — v14.3 (2026-07-15): higher-novelty niches in the always-on path

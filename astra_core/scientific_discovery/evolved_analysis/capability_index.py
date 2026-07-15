@@ -123,9 +123,18 @@ def compute_ci() -> Dict[str, Any]:
     avail = [(w, v) for _, w, v in weighted if v is not None]
     ci = round(sum(w * v for w, v in avail) / sum(w for w, _ in avail), 1) if avail else None
 
+    # Phase 3b: human-confirmation rate over reviewed novel claims (a real outcome
+    # metric once a human reviews via discovery_review). None until reviews exist.
+    try:
+        from . import discovery_review
+        confirmation = discovery_review.confirmation_rate()
+    except Exception:
+        confirmation = None
+
     result = {"ts": _now_iso(), "ci": ci,
               "calibration": calibration, "learning": learning,
               "execution": execution, "breadth": breadth, "discovery": discovery,
+              "discovery_confirmation": confirmation,
               "rsi_effectiveness_blended": rsi_eff,
               "subscores_available": [k for k, _, v in weighted if v is not None],
               "note": "trend not level; 100 = formula saturation, not completion"}
