@@ -137,6 +137,36 @@ def test_round_robin_cycles_productive_datasets():
             mr._ROUND_ROBIN_POINTER = orig
 
 
+def test_correlation_seeds_finds_strong_nontrivial():
+    """Phase 1a: seeds surface the strongest non-trivial real correlations."""
+    with tempfile.TemporaryDirectory() as td:
+        _fresh_lake(td)
+
+        def _fetch():
+            import numpy as np
+            rng = np.random.default_rng(0)
+            x = rng.normal(size=300)
+            y = 0.7 * x + 0.5 * rng.normal(size=300)   # strong-but-nontrivial
+            z = rng.normal(size=300)                    # uncorrelated
+            return pd.DataFrame({"x": x, "y": y, "z": z})
+        ds = Dataset(name="corr_test", description="d", columns=["x", "y", "z"],
+                     source="test", fetcher=_fetch, cache_basename="corr_test.csv")
+        register_dataset(ds)
+        fetch_and_cache("corr_test")
+        seeds = data_lake.correlation_seeds("corr_test", top_k=5)
+        # x-y is the strongest pair; z doesn't appear strongly
+        assert any({a, b} == {"x", "y"} for a, b, _ in seeds)
+        assert all(abs(r) <= 0.95 for _, _, r in seeds)   # rmax filter holds
+
+
+def test_correlation_seeds_defensive_on_missing():
+    with tempfile.TemporaryDirectory() as td:
+        _fresh_lake(td)
+        register_dataset(Dataset(name="nocache_corr", description="d", columns=["a"],
+                                 source="t", cache_basename="nocache_corr.csv"))
+        assert data_lake.correlation_seeds("nocache_corr") == []  # no cache -> [], not raise
+
+
 if __name__ == "__main__":
     failed = 0
     for name, fn in sorted(globals().items()):

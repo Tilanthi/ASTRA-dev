@@ -406,6 +406,67 @@ register_dataset(Dataset(
 ))
 
 
+# Band-like columns for which pairwise differences (colour indices) are meaningful
+# derived features when mining correlation structure.
+_BAND_COLUMNS = {"u", "g", "r", "i", "z", "w1", "w2", "w3", "w4",
+                 "j", "h", "k", "phot_g_mean_mag", "phot_bp_mean_mag",
+                 "phot_rp_mean_mag"}
+
+
+def correlation_seeds(name: str, top_k: int = 8, sample: int = 2000,
+                      rmin: float = 0.30, rmax: float = 0.85) -> List[tuple]:
+    """Phase 1a — the dataset's strongest real, NON-TRIVIAL correlations, to seed the
+    proposer with genuine signals instead of letting it guess (74% of blind proposals
+    fail Gate-1 significance).
+
+    Computes over the dataset's ADVERTISED columns only (proposer-visible; avoids the
+    ~200-column export garbage in caches like AllWISE), derives colour indices for
+    band-like columns, and returns the top-K off-diagonal Spearman pairs with
+    rmin <= |r| <= rmax. Raw-band-vs-raw-band pairs (trivially correlated fluxes) are
+    excluded, so only meaningful colour<->physical-quantity / colour<->colour pairs
+    survive. Defensive: [] on any error / missing cache."""
+    try:
+        ds = DATASET_REGISTRY.get(name)
+        if ds is None:
+            return []
+        df = load_dataframe(name)
+        cols = [c for c in ds.columns
+                if c not in ("ra", "dec") and c in df.columns
+                and pd.api.types.is_numeric_dtype(df[c])]
+        if len(cols) < 2:
+            return []
+        if len(df) > sample:
+            df = df.sample(n=sample, random_state=42)
+        feats = df[cols].copy()
+        bands = [c for c in cols if c.lower() in _BAND_COLUMNS]
+        for ia, a in enumerate(bands):
+            for b in bands[ia + 1:]:
+                feats[f"{a}-{b}"] = df[a] - df[b]
+        corr = feats.corr(method="spearman")
+        pairs = []
+        cs = list(corr.columns)
+
+        def _is_science(f):
+            # a "science" column: not a derived colour (no '-') and not a raw band
+            return ("-" not in f) and (f not in bands)
+
+        for ia, a in enumerate(cs):
+            for b in cs[ia + 1:]:
+                r = corr.loc[a, b]
+                if not (pd.notna(r) and rmin <= abs(r) <= rmax):
+                    continue
+                # keep only pairs with at least one science column (colour<->quantity
+                # or quantity<->quantity); drop mag<->mag and colour<->colour, which
+                # are algebraically coupled / trivially correlated.
+                if not (_is_science(a) or _is_science(b)):
+                    continue
+                pairs.append((a, b, round(float(r), 3)))
+        pairs.sort(key=lambda x: -abs(x[2]))
+        return pairs[:top_k]
+    except Exception:
+        return []
+
+
 def task_system_for(name: str) -> Optional[str]:
     """Return a proposer TASK_SYSTEM prompt describing this dataset's columns,
     or None for the legacy/unknown case (caller uses the default TASK_SYSTEM)."""
@@ -449,6 +510,13 @@ def task_system_for(name: str) -> Optional[str]:
     )
     if ds.niche_hint:
         prompt += "\nDataset-specific guidance: " + ds.niche_hint + "\n"
+    seeds = correlation_seeds(name)
+    if seeds:
+        joined = "; ".join(f"{a} vs {b} (Spearman r={r:+.2f})" for a, b, r in seeds)
+        prompt += ("\nStrong relations ALREADY present in this data (grounded starting "
+                   "points — extrapolate toward non-obvious HIGHER-ORDER forms such as "
+                   "residuals, interactions, or conditional subsets; do NOT just restate "
+                   "these pairwise correlations): " + joined + "\n")
     return prompt
 
 
