@@ -256,6 +256,42 @@ def _fetch_gaia_nearby() -> "pd.DataFrame":
     return df
 
 
+def _cone_match_merge(sdss_df: "pd.DataFrame", wise_df: "pd.DataFrame",
+                      max_sep_arcsec: float = 2.0) -> "pd.DataFrame":
+    """Phase 4a — positional (cone) cross-match of SDSS optical rows to an AllWISE
+    IR table. For each SDSS object, find the nearest WISE source and keep it if it
+    lies within ``max_sep_arcsec``; merge the WISE photometry onto the matched SDSS
+    rows and compute optical-IR colours. Unmatched SDSS rows are dropped. Returns an
+    empty DataFrame if either input is empty or lacks ra/dec (defensive -- the fetcher
+    raises on an empty result; this never fabricates rows)."""
+    import astropy.units as u
+    from astropy.coordinates import SkyCoord
+
+    if (sdss_df is None or wise_df is None or len(sdss_df) == 0 or len(wise_df) == 0
+            or not {"ra", "dec"}.issubset(sdss_df.columns)
+            or not {"ra", "dec"}.issubset(wise_df.columns)):
+        return pd.DataFrame()
+    s = SkyCoord(sdss_df["ra"].to_numpy(), sdss_df["dec"].to_numpy(), unit="deg")
+    w = SkyCoord(wise_df["ra"].to_numpy(), wise_df["dec"].to_numpy(), unit="deg")
+    idx, d2d, _ = s.match_to_catalog_sky(w)
+    good = np.asarray(d2d < max_sep_arcsec * u.arcsec)
+    if not good.any():
+        return pd.DataFrame()
+    out = sdss_df[good].reset_index(drop=True).copy()
+    wise_cols = [c for c in wise_df.columns
+                 if c not in ("ra", "dec") and c not in out.columns]
+    if wise_cols:
+        wise_matched = (wise_df.iloc[idx[good]][wise_cols].reset_index(drop=True))
+        out = pd.concat([out, wise_matched], axis=1)
+    if "r" in out and "w1" in out:
+        out["r-w1"] = out["r"] - out["w1"]
+    if "r" in out and "w2" in out:
+        out["r-w2"] = out["r"] - out["w2"]
+    if "w1" in out and "w2" in out:
+        out["w1w2"] = out["w1"] - out["w2"]
+    return out
+
+
 def _fetch_wise_midir() -> "pd.DataFrame":
     """AllWISE mid-IR (W1-W4) sources — opens the mid-IR colour space (AGN/dust
     diagnostics like W1-W2, stellar-class W1-W2 vs W3-W4) entirely OUTSIDE optical
@@ -311,6 +347,97 @@ def _fetch_wise_midir() -> "pd.DataFrame":
     if "w3" in df.columns and "w4" in df.columns:
         df["w3w4"] = df["w3"] - df["w4"]
     return df
+
+
+def _fetch_allwise_cone(ra: float, dec: float, radius_deg: float) -> "pd.DataFrame":
+    """AllWISE W1-W4 sources + positions in a sky cone (IRSA allwise_p3as_psd, VizieR
+    II/328/allwise fallback), normalised to columns ra, dec, w1..w4. Shared by the
+    cross-match fetcher so the optical and IR pulls cover the same patch."""
+    import astropy.units as u
+    from astropy.coordinates import SkyCoord
+
+    field = SkyCoord(float(ra) * u.deg, float(dec) * u.deg)
+    rows = None
+    try:
+        from astroquery.irsa import Irsa
+        for cat in ("allwise_p3as_psd", "allwise"):
+            try:
+                t = Irsa.query_region(field, radius=radius_deg * u.deg, catalog=cat)
+                if t is not None and len(t) > 0:
+                    rows = t
+                    break
+            except Exception:
+                continue
+    except Exception:
+        pass
+    if rows is None:
+        from astroquery.vizier import Vizier
+        Vizier.ROW_LIMIT = 50000
+        res = Vizier.query_region(field, radius=radius_deg * u.deg,
+                                  catalog="II/328/allwise")
+        if res and len(res):
+            rows = res[0]
+    if rows is None or len(rows) == 0:
+        raise RuntimeError("AllWISE cone query returned no rows (IRSA + VizieR).")
+    df = rows.to_pandas()
+    lc = {str(c).lower(): c for c in df.columns}
+
+    def pick(*names):
+        for n in names:
+            if n in df.columns:
+                return n
+            if n.lower() in lc:
+                return lc[n.lower()]
+        return None
+
+    rename = {}
+    for key, cand in (("ra", "ra"), ("dec", "dec"),
+                      ("w1", "w1mpro"), ("w2", "w2mpro"),
+                      ("w3", "w3mpro"), ("w4", "w4mpro")):
+        c = pick(cand, cand.upper())
+        if c and c != key:
+            rename[c] = key
+    df = df.rename(columns=rename)
+    keep = [c for c in ("ra", "dec", "w1", "w2", "w3", "w4") if c in df.columns]
+    df = df[keep]
+    if "ra" in df and "dec" in df and "w1" in df:
+        df = df[df["ra"].notna() & df["dec"].notna() & df["w1"].notna()]
+    return df.reset_index(drop=True)
+
+
+def _fetch_sdss_wise_xmatch() -> "pd.DataFrame":
+    """Phase 4a -- cross-matched SDSS optical galaxies x AllWISE mid-IR for the SAME
+    objects (a genuinely new cross-modal axis: optical-IR colours tracing dust / stellar
+    mass / AGN). Region-bounded so both catalogs cover one patch, then cone-matched
+    locally via _cone_match_merge. Real archival data only; raises on empty."""
+    from astroquery.sdss import SDSS
+
+    # ~1 deg^2 box around (150, 2), inside the AllWISE cone pulled below.
+    sql = """
+    SELECT TOP 3000
+           p.objid, p.ra, p.dec,
+           p.dered_u AS u, p.dered_g AS g, p.dered_r AS r,
+           p.dered_i AS i, p.dered_z AS z,
+           p.extinction_r, p.petror50_r, p.petror90_r,
+           s.z AS z_spec
+    FROM PhotoObj AS p
+    JOIN SpecObj  AS s ON s.bestobjid = p.objid
+    WHERE s.class = 'GALAXY' AND s.z BETWEEN 0.01 AND 0.4 AND s.zwarning = 0
+      AND p.petror50_r > 0 AND p.petror90_r > 0
+      AND p.dered_r BETWEEN 14 AND 19.5
+      AND p.ra  BETWEEN 149.5 AND 150.5
+      AND p.dec BETWEEN 1.5 AND 2.5
+    """
+    res = SDSS.query_sql(" ".join(sql.split()))
+    if res is None or len(res) == 0:
+        raise RuntimeError("SDSS galaxy region query returned no rows.")
+    sdss = res.to_pandas()
+    sdss["concentration_r"] = sdss["petror90_r"] / sdss["petror50_r"]
+    wise = _fetch_allwise_cone(150.0, 2.0, 0.9)
+    out = _cone_match_merge(sdss, wise, max_sep_arcsec=2.0)
+    if len(out) == 0:
+        raise RuntimeError("SDSS x AllWISE cross-match produced 0 matched galaxies.")
+    return out
 
 
 def _fetch_gaia_variables() -> "pd.DataFrame":
@@ -391,6 +518,25 @@ register_dataset(Dataset(
     niche_hint="Mid-IR is a NEW wavelength for this search. Productive: higher-order "
                "mid-IR colour relations — but AVOID restating the standard W1-W2 > 0.5 "
                "AGN selection cut (textbook).",
+))
+register_dataset(Dataset(
+    name="sdss_wise_xmatch",
+    description=("SDSS optical galaxies CROSS-MATCHED to AllWISE mid-IR for the SAME "
+                 "objects: dereddened u,g,r,i,z + Petrosian radii/concentration + "
+                 "redshift AND WISE W1-W4 per galaxy, plus optical-IR colours (r-w1, "
+                 "r-w2, w1w2). Opens the cross-modal optical-IR axis (dust, stellar "
+                 "mass, AGN content) that no single-wavelength sample has."),
+    columns=["u", "g", "r", "i", "z", "extinction_r", "petror50_r", "petror90_r",
+             "concentration_r", "z_spec", "w1", "w2", "w3", "w4", "w1w2", "r-w1", "r-w2"],
+    source="SDSS DR CAS x AllWISE (IRSA) via astroquery + astropy cone-match",
+    fetcher=_fetch_sdss_wise_xmatch,
+    textbook_risk="low",
+    niche_hint=("Cross-modal optical+mid-IR per galaxy. Productive: optical-IR colours "
+                "(r-w1, r-w2) vs morphology/concentration/redshift -- these trace dust, "
+                "stellar mass and AGN content. PREFER residuals/conditionals (e.g. the "
+                "r-w1 residual after removing z). AVOID textbook: the W1-W2>0.5 AGN "
+                "wedge and plain colour-redshift."),
+    cache_basename="sdss_wise_xmatch.csv",
 ))
 register_dataset(Dataset(
     name="gaia_variables",

@@ -228,6 +228,44 @@ def test_correlation_seeds_surfaces_residual_signals():
             f"no residual seed surfacing the z_spec~feh signal; got {seeds}"
 
 
+def test_cone_match_merge_matches_and_colors():
+    """Phase 4a: cone-match SDSS optical to AllWISE IR by position, keep matches
+    within the radius, drop unmatched, and compute optical-IR colours."""
+    arcsec = 1.0 / 3600.0
+    sdss = pd.DataFrame({
+        "objid": [1, 2, 3],
+        "ra":  [150.0, 150.1, 150.2],
+        "dec": [2.0,   2.0,   2.0],
+        "u": [20.0, 20.5, 21.0], "g": [19.0, 19.5, 20.0],
+        "r": [18.5, 19.0, 19.5], "i": [18.2, 18.7, 19.2], "z": [18.0, 18.5, 19.0],
+        "concentration_r": [2.6, 2.7, 2.8], "z_spec": [0.05, 0.1, 0.15],
+    })
+    # WISE A' sits 1" from SDSS obj 1 (match); WISE B' sits 5" from SDSS obj 2 (no
+    # match); SDSS obj 3 has no nearby WISE source at all.
+    wise = pd.DataFrame({
+        "ra":  [150.0, 150.1],
+        "dec": [2.0 + 1 * arcsec, 2.0 + 5 * arcsec],
+        "w1": [18.0, 18.5], "w2": [17.8, 18.3],
+        "w3": [16.0, 16.5], "w4": [15.0, 15.5],
+    })
+    out = data_lake._cone_match_merge(sdss, wise, max_sep_arcsec=2.0)
+    assert len(out) == 1, f"expected exactly the 1 match, got {len(out)}"
+    assert list(out["objid"]) == [1]
+    # WISE columns merged onto the matched SDSS row
+    assert "w1" in out.columns and "w2" in out.columns
+    # optical-IR colours computed correctly (dashes => classified as colours)
+    assert "r-w1" in out.columns and abs(out["r-w1"].iloc[0] - (18.5 - 18.0)) < 1e-9
+    assert "w1w2" in out.columns and abs(out["w1w2"].iloc[0] - (18.0 - 17.8)) < 1e-9
+
+
+def test_cone_match_merge_defensive():
+    """Empty input -> empty result (no raise)."""
+    assert len(data_lake._cone_match_merge(pd.DataFrame(),
+                 pd.DataFrame({"ra": [], "dec": []}))) == 0
+    assert len(data_lake._cone_match_merge(
+                 pd.DataFrame({"ra": [], "dec": []}), pd.DataFrame())) == 0
+
+
 if __name__ == "__main__":
     failed = 0
     for name, fn in sorted(globals().items()):
