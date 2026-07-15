@@ -93,6 +93,30 @@ gate1_fail: investigate whether correlation seeds actually reach/influence the p
 the real correlations rather than "extrapolate" hints. N=60 is directional — the
 supervisor's ongoing runs will sharpen the gate1-pass number.
 
+### Seed-fix investigation + fix (2026-07-15, commit 64faa17)
+Investigated the two options above. **Option 1 (do the seeds reach the proposer?)
+= YES** — `task_system_for` appends `correlation_seeds`/`explored_themes` into the
+prompt and `LLMProposer` uses it verbatim as the system prompt; nothing was dropped.
+**The real root cause:** `correlation_seeds` returned each dataset's *strongest* pairwise
+correlations, which by definition are the textbook/dominant ones (band↔redshift for QSOs,
+mag↔size for galaxies, the HR diagram for stars) — exactly what the prompt tells the
+proposer to avoid. Plus a bug: dash-less pre-computed colours like WISE `w1w2` were
+misclassified as science columns, leaking trivial colour↔colour pairs (WISE's 6.7%
+gate1-pass, worst-in-class).
+
+Fix (TDD, `test_data_lake` 14/14): (1) `_is_science` now excludes concatenated-band
+tokens (`w1w2`, `ugriz`); (2) `correlation_seeds` now **leads with RESIDUAL seeds** —
+for each science column it removes the dominant predictor and surfaces mid-strength
+partial signals (`resid(s~p)` vs `q`) that are genuinely non-obvious. Real-data check:
+galaxy_extended now seeds `resid(petror90_r~g)↔petror50_r` (0.64) and
+`↔concentration_r` (−0.53); WISE correctly returns `[]` (no science columns) instead of
+garbage.
+
+**Measurement now three-way** (`measure_phase1_funnel.py`, run by the `a685ee3d` /loop):
+baseline (pre-1a) → ORIG (1a/1b/1c, old seeds) → FIX (1a/1b/1c + seed fix, ts ≥
+20:14:48). The FIX partition starts empty and fills as the supervisor runs; the loop
+stops + posts a conclusion when FIX N≥150 or the CI rules out a >~7pp gain.
+
 **Next steps:** land the Phase-1 before/after result above; then re-evaluate Phase 4a
 (only if the proposer is now fixed) — Phase 2 stays deferred.
 

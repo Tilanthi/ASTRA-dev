@@ -34,6 +34,7 @@ from evolved_analysis.improvement_loop import failure_class       # noqa: E402
 
 DEFAULT_BEFORE = "2026-07-15T18:31"
 DEFAULT_AFTER = "2026-07-15T19:24:00"
+DEFAULT_FIX = "2026-07-15T20:14:48"  # commit 64faa17 (correlation_seeds fix) took effect
 BASELINE_GATE1PASS = 25.2  # %, from the pre-1a N=745 sample
 
 
@@ -83,48 +84,57 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--before-cut", default=DEFAULT_BEFORE)
     ap.add_argument("--after-cut", default=DEFAULT_AFTER)
+    ap.add_argument("--fix-cut", default=DEFAULT_FIX)
     args = ap.parse_args()
 
     rows = [x for x in load_verdicts() if (x.get("label") or "") != "seed"]
     before = [x for x in rows if x.get("ts", "") < args.before_cut]
-    after = [x for x in rows if x.get("ts", "") >= args.after_cut]
+    orig = [x for x in rows if args.after_cut <= x.get("ts", "") < args.fix_cut]
+    fix = [x for x in rows if x.get("ts", "") >= args.fix_cut]
 
-    bf, af = funnel(before), funnel(after)
+    bf, of, ff = funnel(before), funnel(orig), funnel(fix)
     print("=" * 72)
-    print(f"PHASE-1 FUNNEL  before-cut<{args.before_cut}  after-cut>={args.after_cut}")
+    print(f"PHASE-1 FUNNEL  before<{args.before_cut} | orig[{args.after_cut},"
+          f"{args.fix_cut}) | fix>={args.fix_cut}")
     print("=" * 72)
-    show("BEFORE (pre-1a)", bf)
-    show("AFTER  (new code)", af)
+    show("BEFORE (pre-1a baseline)   ", bf)
+    show("ORIG   (1a/1b/1c old seeds)", of)
+    show("FIX    (1a/1b/1c +seed fix)", ff)
 
-    if af["n"]:
-        lo, hi = wilson(af["g1pass"], af["n"])
+    # Measure the FIX partition once it has data; until then fall back to ORIG.
+    if ff["n"]:
+        target, label, target_rows = ff, "FIX", fix
+    else:
+        target, label, target_rows = of, "ORIG (fix sample still empty)", orig
+    if target["n"]:
+        lo, hi = wilson(target["g1pass"], target["n"])
         spans = lo <= BASELINE_GATE1PASS <= hi
-        print(f"\n  AFTER gate1-pass 95% CI: {lo:.1f}% .. {hi:.1f}%   "
+        print(f"\n  {label} gate1-pass 95% CI: {lo:.1f}% .. {hi:.1f}%   "
               f"(baseline {BASELINE_GATE1PASS:.1f}% -> "
-              f"{'CI still spans baseline (no detectable change)' if spans else 'CI EXCLUDES baseline'})")
-
+              f"{'CI still spans baseline' if spans else 'CI EXCLUDES baseline'})")
         byds = collections.defaultdict(list)
-        for x in after:
+        for x in target_rows:
             byds[x.get("dataset", "?")].append(x)
-        print("\n  AFTER by dataset:")
-        for ds in sorted(byds):
-            xs = byds[ds]
-            g = sum(1 for x in xs if (x.get("gate1") or {}).get("pass"))
-            dlo, dhi = wilson(g, len(xs))
-            print(f"    {ds:22s} N={len(xs):3d}  gate1-pass {g/len(xs)*100:5.1f}% "
-                  f"(CI {dlo:.0f}-{dhi:.0f})")
-
-        # one-line verdict
+        if byds:
+            print(f"\n  {label} by dataset:")
+            for ds in sorted(byds):
+                xs = byds[ds]
+                g = sum(1 for x in xs if (x.get("gate1") or {}).get("pass"))
+                dlo, dhi = wilson(g, len(xs))
+                print(f"    {ds:22s} N={len(xs):3d}  gate1-pass {g/len(xs)*100:5.1f}% "
+                      f"(CI {dlo:.0f}-{dhi:.0f})")
         upper = hi
-        if af["n"] >= 150:
-            verdict = (f"after-N={af['n']} >= 150: measurement FIRM. "
-                       f"gate1-pass {af['g1pass_pct']:.1f}% vs {BASELINE_GATE1PASS:.1f}% baseline.")
+        if ff["n"] == 0:
+            verdict = (f"FIX sample empty (fix-cut {args.fix_cut}); supervisor hasn't run an "
+                       f"episode since. ORIG gate1-pass {of.get('g1pass_pct', 0):.1f}%.")
+        elif ff["n"] >= 150:
+            verdict = (f"FIX N={ff['n']} >= 150: FIRM. gate1-pass {ff['g1pass_pct']:.1f}% vs "
+                       f"{BASELINE_GATE1PASS:.1f}% baseline.")
         elif upper < 32:
-            verdict = (f"after-N={af['n']}: CI upper bound {upper:.1f}% < 32% rules out a "
-                       f">~7pp improvement -> 1a did NOT meaningfully raise gate1-pass.")
+            verdict = (f"FIX N={ff['n']}: CI upper {upper:.1f}% < 32% -> rules out a >~7pp "
+                       f"improvement (seed fix did NOT meaningfully raise gate1-pass).")
         else:
-            verdict = (f"after-N={af['n']}: still directional (CI {lo:.0f}-{hi:.0f}); "
-                       f"keep accumulating.")
+            verdict = (f"FIX N={ff['n']}: directional (CI {lo:.0f}-{hi:.0f}); keep accumulating.")
         print(f"\n  VERDICT: {verdict}")
     print("=" * 72)
     return 0
