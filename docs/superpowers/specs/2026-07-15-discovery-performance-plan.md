@@ -117,6 +117,22 @@ baseline (pre-1a) → ORIG (1a/1b/1c, old seeds) → FIX (1a/1b/1c + seed fix, t
 20:14:48). The FIX partition starts empty and fills as the supervisor runs; the loop
 stops + posts a conclusion when FIX N≥150 or the CI rules out a >~7pp gain.
 
+### Seed-fix result (2026-07-15, controlled fixed-seed burst, N=92)
+**The seed fix achieved Phase 1's primary goal.** gate1-pass **25.2% → 35.9%**, and the
+95% CI (26.8–46.1%) **excludes the baseline** — the improvement is statistically real,
+not noise. The binding constraint gate1_fail fell 74.8% → 64.1%. By dataset the gain is
+concentrated exactly where the old seeds were worst: **sdss_qso ~25% → 65%** (old seeds
+were textbook band↔redshift; residual `resid(z_spec~z)` seeds gave exploitable structure)
+and **wise_midir 7% → 45%** (the `_is_science` bug fix stopped feeding trivial `w1w2`
+pairs). galaxy (25%) and gaia_variables (15%) were noisier and did not replicate the
+earlier small-N "galaxy helps most" hint. novel_emit unchanged (~9%) — the fix targeted
+the *significance* axis, which was the goal; novelty was already improved by 1b/1c.
+
+**Verdict:** residual/partial-correlation seeding is the lever that works where naive
+pairwise seeding failed. N=92 is directional-but-significant; the /loop continues to firm
+up toward N=150. Phase 4a (cross-modal) is now the justified next build — the proposer can
+finally exploit richer data.
+
 **Next steps:** land the Phase-1 before/after result above; then re-evaluate Phase 4a
 (only if the proposer is now fixed) — Phase 2 stays deferred.
 
