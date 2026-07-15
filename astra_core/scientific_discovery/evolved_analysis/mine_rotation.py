@@ -103,10 +103,33 @@ def main() -> int:
                "--data-source", ds.name, "--steps", str(args.steps)]
         if args.no_gate2:
             cmd.append("--no-gate2")
+        # Self-improvement #1: predict-before-act (statistical baseline from history),
+        # then after the run score surprise against actuals and append to the ledger.
+        try:
+            from .predictions import (predict_for_episode, write_prediction,
+                                      episode_actuals, score_surprise, append_surprise)
+            pred = predict_for_episode(ds.name)
+            write_prediction(pred)
+            print(f"[rotate] predict {ds.name}: gate1~{pred.predicted_gate1_pass_rate}, "
+                  f"novel~{pred.predicted_novel_emits}, conf={pred.confidence:.2f} "
+                  f"(n_hist={pred.n_history})")
+        except Exception as e:
+            pred = None
+            print(f"[rotate] prediction skipped ({type(e).__name__})")
         print(f"[rotate] === {ds.name}: {args.steps} steps "
               f"({time.strftime('%H:%M:%S')}) ===")
         proc = subprocess.run(cmd, cwd=str(repo), env=env, check=False)
         last_rc = proc.returncode or last_rc
+        if pred is not None:
+            try:
+                actuals = episode_actuals(ds.name, pred.ts)
+                surprise = score_surprise(pred, actuals)
+                append_surprise(pred, actuals, surprise)
+                print(f"[rotate] surprise {ds.name}: {surprise} "
+                      f"(actual gate1={actuals.get('gate1_pass_rate')}, "
+                      f"novel={actuals.get('novel_emits')})")
+            except Exception as e:
+                print(f"[rotate] surprise scoring skipped ({type(e).__name__})")
     print(f"[rotate] done (last rc={last_rc})")
     return last_rc
 
