@@ -45,16 +45,28 @@ committing to the next (measure-before-build).
 - **Phase 1b/1c** ✅ — `explored_themes` injection (novelty-steering + coverage awareness).
 - **Phase 3a** ✅ — `discovery_review` (rank novel claims for human review).
 - **Phase 3b** ✅ — `confirmed_discoveries.jsonl` + `confirmation_rate` field in the CI.
-- **Phase 2a** PENDING — multi-source Gate-2 (ADS/CrossRef — new APIs).
-- **Phase 2b** PENDING — embedding-based novelty pre-filter.
-- **Phase 4a** PENDING — SDSS×WISE cross-match (position matching, complex).
-- **Phase 4b** DEFERRED — `galSpecLine` (MPA-JHU emission lines) is NOT accessible via
-  the public SDSS CAS query (returned an HTML error page). Needs an alternative path:
-  MPA-JHU catalog direct download, or `emissionLinesPort` long-format pivot. The broken
-  fetcher was removed.
+- **Phase 2a** DEFERRED — multi-source Gate-2 (ADS/CrossRef). Phase 0 showed novelty
+  is NOT the binding constraint (gate2_known 14%; 21% of Gate-1 passers already novel),
+  so improving the novelty gate is the wrong lever until the Phase-1 measurement shows
+  novelty became binding. Revisit only if the after-funnel's gate2_known rises.
+- **Phase 2b** DEFERRED — embedding-based novelty pre-filter. Trims Gate-2 *cost*, but
+  Gate-2 cost isn't the bottleneck either (the 74% that die at Gate-1 are cheap sandboxed
+  evals). Low ROI until Gate-2 call volume is the binding cost.
+- **Phase 4a** DEFERRED — SDSS×WISE cross-match. The plan's own "What NOT to do" says
+  more data before the proposer is fixed = efficient textbook rediscovery. Build only
+  AFTER the Phase-1 measurement proves 1a/1b/1c moved Gate-1 pass rate, so the new
+  cross-modal space can actually be exploited. (4b stays deferred: `galSpecLine` is not
+  accessible via public SDSS CAS — needs MPA-JHU direct download or `emissionLinesPort`.)
 
-**Next steps:** measure 1a's effect on gate1-pass rate (funnel script); then Phase 2
-(verification quality) or 4a (cross-modal).
+**Phase-1 measurement (2026-07-15):** before-funnel baseline (pre-1a, N=745) reproduces
+Phase 0 exactly — gate1_fail 74.8%, **gate1-pass 25.2%**, novel-emit 5.4%, gate2_known
+14.1%. A controlled `mine_rotation` burst (all productive niches, new code, supervisor
+paused to avoid LLM-rate contamination) generated the after-sample; the decisive gate is
+whether gate1-pass climbs materially above 25% and gate2_known drops below 14%. Result
+recorded here when the run completes.
+
+**Next steps:** land the Phase-1 before/after result above; then re-evaluate Phase 4a
+(only if the proposer is now fixed) — Phase 2 stays deferred.
 
 ### Phase 0 — re-confirm bottleneck ✅ DONE (2026-07-15)
 Read `claim_verdicts.jsonl` (NOT the discovery stores — `failure_class` expects the
