@@ -42,7 +42,7 @@ More methods: `CLAUDE_ASTRA_QUICKSTART.md`.
 
 ### Project Overview
 - **ASTRA**: Autonomous Scientific Discovery in Astrophysics
-- **Version**: 14.4 (2026-07-15) — tightened discovery dedup (effect+p-value fingerprint), on top of v14.3 (always-on niche rotation), v14.2 (rotation miner + textbook filtering + niche hints), v14.1 (data lake + cleanup), and v14.0 (fiction-free two-gate EVALUATE).
+- **Version**: 14.5 (2026-07-15) — near-duplicate reviewer (human-review flag, no auto-merge), on top of v14.4 (effect+p-value dedup), v14.3 (always-on niche rotation), v14.2 (rotation miner + textbook filtering + niche hints), v14.1 (data lake + cleanup), and v14.0 (fiction-free two-gate EVALUATE).
 - **GitHub**: https://github.com/Tilanthi/ASTRA-dev
 
 ### System Status — v14.3 (2026-07-15): higher-novelty niches in the always-on path
@@ -50,6 +50,8 @@ The supervisor's `ASTRA_EVOLUTION_MODULE` is now `evolved_analysis.mine_rotation
 
 ### Dedup (v14.4): effect + p-value fingerprint
 The store dedups on a **(held-out effect, p-value)** fingerprint (`discovery_store.dedup_key`), not just `program_hash`. Regenerated duplicates of the same finding vary in wording and program hash but share an identical effect + p-value (the `run_claim` computation is identical), so this collapses them reliably — fixes the triplicate near-duplicates the rotation was emitting. Applied at both the chokepoint (`append_verified`/`dedup_verified`) and emit-time (`_emit`), with a `program_hash` fallback for records lacking effect/p-value.
+
+**Near-duplicate review (v14.5):** `discovery_store.near_duplicate_groups` + `evolved_analysis.dup_review` surface distinct findings that share |effect| with p-values within an order of magnitude (they *might* be the same phenomenon) for **human review — not auto-merged**. Run: `PYTHONPATH=astra_core/scientific_discovery python -m evolved_analysis.dup_review`.
 
 ### System Status — v14.2 (2026-07-14): scaling novel output
 Pilots showed novelty is rare, roughly linear in candidate-evals, and object-type-dependent (stars → 0 novel; galaxies/QSOs → some). Two levers added:
