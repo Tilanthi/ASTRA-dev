@@ -63,27 +63,16 @@ def _program_hash(src: str) -> str:
     return hashlib.sha1(src.encode()).hexdigest()[:10]
 
 
-# Content-words ignored when building a claim signature for emit-time dedup.
-_EMIT_STOP = frozenset({
-    "the", "a", "an", "of", "in", "with", "and", "to", "is", "are", "for", "on",
-    "at", "by", "that", "this", "show", "shows", "exhibit", "exhibits", "above",
-    "significant", "significantly", "strong", "relation", "relationship",
-    "correlation", "correlated", "exists", "between", "among", "after",
-})
-
-
-def _claim_effect_key(claim: str, effect) -> tuple:
-    """Normalised (claim-signature, rounded-effect) key for emit-time dedup, or
-    None to fall back to program_hash. A regenerated duplicate of an already-
-    emitted finding has a different program hash but the same claim words + effect,
-    so this collapses it (mirrors discovery_store.dedup_key)."""
-    toks = re.findall(r"[a-z0-9]+", str(claim or "").lower())
-    sig = tuple(sorted(t for t in toks if len(t) > 1 and t not in _EMIT_STOP))
+def _finding_key(effect, pvalue) -> tuple:
+    """(rounded effect, p-value) fingerprint for emit-time dedup, or None to fall
+    back to program_hash. Regenerated duplicates of the same finding share
+    effect+p-value (the ``run_claim`` computation is identical) even though
+    program_hash and claim wording differ — so this reliably catches them. Mirrors
+    discovery_store.dedup_key."""
     try:
-        eff = round(float(effect), 4)
+        return ("fp", round(float(effect), 4), float(f"{float(pvalue):.6g}"))
     except (TypeError, ValueError):
         return None
-    return ("cse", sig, eff) if sig else None
 
 
 # --------------------------------------------------------------------------- #
@@ -257,14 +246,13 @@ def _emit(verdict: dict) -> None:
         data = json.loads(EVOLVED_STORE.read_text()) if EVOLVED_STORE.exists() else []
         if not isinstance(data, list):
             data = []
-        # Dedup: a regenerated duplicate has a different program_hash but the SAME
-        # claim words + measured effect — collapse it (fall back to program_hash).
-        nk = _claim_effect_key(claim, g1m.get("effect"))
+        # Dedup: a regenerated duplicate has a different program_hash + wording but
+        # the SAME held-out effect + p-value (identical computation) — collapse it.
+        nk = _finding_key(g1m.get("effect"), g1m.get("pvalue"))
 
         def _is_dup(r):
             rv = (r.get("verification") or {}) if isinstance(r, dict) else {}
-            rk = _claim_effect_key(rv.get("claim") or r.get("abstract"),
-                                   rv.get("effect"))
+            rk = _finding_key(rv.get("effect"), rv.get("pvalue"))
             if nk is not None and rk is not None:
                 return rk == nk
             return rv.get("program_hash") == verdict["program_hash"]

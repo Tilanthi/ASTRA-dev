@@ -78,41 +78,25 @@ def has_machine_verification(record: Any) -> bool:
     return any(v.get(k) not in (None, "", []) for k in EVIDENCE_KEYS)
 
 
-_DEDUP_STOP = frozenset({
-    "the", "a", "an", "of", "in", "with", "and", "to", "is", "are", "for", "on",
-    "at", "by", "that", "this", "show", "shows", "exhibit", "exhibits", "above",
-    "significant", "significantly", "strong", "relation", "relationship",
-    "correlation", "correlated", "exists", "between", "among", "after",
-})
-
-
-def _claim_signature(claim: str) -> tuple:
-    """Normalised bag of content-words for a claim, so a re-worded duplicate of
-    the same finding maps to the same signature (word order / minor phrasing don't
-    matter)."""
-    toks = re.findall(r"[a-z0-9]+", str(claim or "").lower())
-    return tuple(sorted(t for t in toks if len(t) > 1 and t not in _DEDUP_STOP))
-
-
 def dedup_key(record: Dict[str, Any]) -> tuple:
-    """Normalised dedup key: (claim signature, rounded effect) when a claim text
-    and effect are present; otherwise the legacy program_hash/metric/timestamp
-    fallback.
+    """Normalised dedup key: (rounded effect, p-value fingerprint) when both are
+    present; else the program_hash/metric/timestamp fallback.
 
-    Why: two regenerated emissions of the SAME finding get different program
-    hashes (the generated code differs slightly) but the same claim words and
-    measured effect, so keying on those collapses them — fixing the triplicate
-    near-duplicates the rotation was emitting. Distinct findings keep distinct
-    keys (different content words and/or different effect)."""
+    Two regenerated emissions of the SAME finding differ in program_hash AND in
+    claim wording, but the underlying ``run_claim`` computation is identical, so
+    the held-out effect and p-value are identical too. Keying on (effect, p-value)
+    collapses them reliably. (Claim-text was tried first, but regenerated dupes
+    vary wording, so effect+p-value is the reliable fingerprint — the spirit of
+    "claim text + effect" with the discriminator that actually catches real
+    dupes.) Distinct findings have distinct effect/p-value, so they keep distinct
+    keys."""
     v = record.get("verification") or {}
-    claim = v.get("claim") or record.get("abstract") or record.get("title") or ""
-    sig = _claim_signature(claim)
     try:
         eff = round(float(v.get("effect")), 4)
+        pv = float(f"{float(v.get('pvalue')):.6g}")
+        return ("fp", eff, pv)
     except (TypeError, ValueError):
-        eff = None
-    if sig and eff is not None:
-        return ("cse", sig, eff)
+        pass
     # Fallback: preserves prior behaviour + the program_hash-only regression test.
     return ("legacy", v.get("program_hash") or v.get("metric_name")
             or record.get("timestamp")
@@ -120,7 +104,7 @@ def dedup_key(record: Dict[str, Any]) -> tuple:
 
 
 def _verification_key(record: Dict[str, Any]) -> tuple:
-    """Stable dedup key for a verified record (claim+effect-normalised)."""
+    """Stable dedup key for a verified record (effect+p-value-normalised)."""
     return dedup_key(record)
 
 
