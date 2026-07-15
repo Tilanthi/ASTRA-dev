@@ -30,6 +30,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable, Dict, List, Optional
 
+import numpy as np
 import pandas as pd
 
 LAKE_DIR = (Path.home() / ".astra_persistent" / "evolved_programs" / "data_lake")
@@ -446,9 +447,30 @@ def correlation_seeds(name: str, top_k: int = 8, sample: int = 2000,
         pairs = []
         cs = list(corr.columns)
 
+        def _concatenated_bands(tok):
+            """True if tok is >=2 band names concatenated with no separator, e.g.
+            'w1w2' / 'w1w2w3' (AllWISE) or 'ugriz' -- these are pre-computed
+            colours, NOT science columns. Without this they were misclassified as
+            science (the name has no '-'), leaking algebraically-coupled
+            colour<->colour pairs into the seeds."""
+            t = tok.lower()
+            bs = sorted({str(b).lower() for b in bands}, key=len, reverse=True)
+            i = 0
+            n = 0
+            while i < len(t):
+                for b in bs:
+                    if t[i:i + len(b)] == b:
+                        i += len(b)
+                        n += 1
+                        break
+                else:
+                    return False  # a char no band covers -> not a pure concatenation
+            return n >= 2
+
         def _is_science(f):
-            # a "science" column: not a derived colour (no '-') and not a raw band
-            return ("-" not in f) and (f not in bands)
+            # a "science" column: not a derived colour (no '-'), not a raw band,
+            # and not a concatenated-band colour like 'w1w2'.
+            return ("-" not in f) and (f not in bands) and (not _concatenated_bands(f))
 
         for ia, a in enumerate(cs):
             for b in cs[ia + 1:]:
@@ -462,7 +484,51 @@ def correlation_seeds(name: str, top_k: int = 8, sample: int = 2000,
                     continue
                 pairs.append((a, b, round(float(r), 3)))
         pairs.sort(key=lambda x: -abs(x[2]))
-        return pairs[:top_k]
+
+        # RESIDUAL seeds (Phase-1 fix): the strongest PAIRWISE correlations are the
+        # textbook ones (band<->redshift, mag<->size, the HR diagram). Surface what
+        # only appears AFTER removing each science column's dominant predictor -- a
+        # non-obvious, mid-strength partial signal the proposer can build on. These
+        # are NOT subject to `rmax`: a high residual correlation is a strong
+        # *partial* signal (the trivial dominant axis is already gone), not a
+        # near-deterministic pairwise identity.
+        RESID_RMIN = 0.20
+        resid = []
+        science_cols = [c for c in cs if _is_science(c)]
+        for s in science_cols[:3]:
+            preds = [c for c in cs if c != s and not _is_science(c)]
+            if not preds:
+                continue
+            best_p, best_abs = None, 0.0
+            for p in preds:
+                r = corr.loc[s, p]
+                if pd.notna(r) and abs(r) > best_abs:
+                    best_p, best_abs = p, abs(r)
+            if best_p is None or best_abs < rmin:
+                continue
+            x = feats[best_p].to_numpy(dtype=float)
+            y = feats[s].to_numpy(dtype=float)
+            m = np.isfinite(x) & np.isfinite(y)
+            if int(m.sum()) < 30:
+                continue
+            slope, intercept = np.polyfit(x[m], y[m], 1)
+            r_series = pd.Series(y - (slope * x + intercept), index=feats.index)
+            for c in cs:
+                if c in (s, best_p):
+                    continue
+                r = r_series.corr(feats[c], method="spearman")
+                if pd.notna(r) and RESID_RMIN <= abs(r) < 0.99:
+                    resid.append((f"resid({s}~{best_p})", c, round(float(r), 3)))
+        resid.sort(key=lambda x: -abs(x[2]))
+
+        # Lead with the non-obvious residual seeds; fill the remainder with the
+        # strongest direct (pairwise) seeds.
+        out = resid[:top_k]
+        for a, b, r in pairs:
+            if len(out) >= top_k:
+                break
+            out.append((a, b, r))
+        return out[:top_k]
     except Exception:
         return []
 

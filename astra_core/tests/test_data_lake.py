@@ -167,6 +167,67 @@ def test_correlation_seeds_defensive_on_missing():
         assert data_lake.correlation_seeds("nocache_corr") == []  # no cache -> [], not raise
 
 
+def test_correlation_seeds_excludes_concatenated_band_colours():
+    """Bug: a pre-computed colour whose name has no dash (e.g. WISE 'w1w2') was
+    misclassified as a science column, so colour<->colour pairs that share bands
+    (algebraically coupled -> trivial) leaked into the seeds. Such pairs must be
+    dropped."""
+    with tempfile.TemporaryDirectory() as td:
+        _fresh_lake(td)
+
+        def _fetch():
+            import numpy as np
+            rng = np.random.default_rng(1)
+            flux = rng.normal(50, 5, 400)          # common flux driver -> bands correlated
+            temp = rng.normal(0, 1, 400)           # a real colour driver
+            w1 = flux + temp + rng.normal(0, 0.3, 400)
+            w2 = flux + 0.5 * temp + rng.normal(0, 0.3, 400)
+            w3 = flux + 0.2 * temp + rng.normal(0, 0.3, 400)
+            return pd.DataFrame({
+                "w1": w1, "w2": w2, "w3": w3,
+                "w1w2": w1 - w2,                   # pre-computed colour, no dash (like WISE cache)
+                "mass": 0.6 * temp + rng.normal(0, 0.3, 400),  # genuine science column
+            })
+        ds = Dataset(name="wise_bug", description="d",
+                     columns=["w1", "w2", "w3", "w1w2", "mass"],
+                     source="test", fetcher=_fetch, cache_basename="wise_bug.csv")
+        register_dataset(ds)
+        fetch_and_cache("wise_bug")
+        seeds = data_lake.correlation_seeds("wise_bug", top_k=12)
+        colour_feats = {"w1-w2", "w1-w3", "w2-w3", "w1w2"}
+        for a, b, _ in seeds:
+            assert not (a in colour_feats and b in colour_feats), \
+                f"trivial colour<->colour pair leaked: {a} vs {b}"
+
+
+def test_correlation_seeds_surfaces_residual_signals():
+    """The strongest pairwise correlations ARE the textbook ones (filtered or
+    unhelpful). Seeds should ALSO surface RESIDUAL structure -- a relation that
+    appears only after removing a science column's dominant predictor -- a
+    genuinely non-obvious starting point the proposer can build on."""
+    with tempfile.TemporaryDirectory() as td:
+        _fresh_lake(td)
+
+        def _fetch():
+            import numpy as np
+            rng = np.random.default_rng(2)
+            u = rng.normal(0, 1, 500)
+            g = u + rng.normal(0, 0.1, 500)
+            feh = rng.normal(0, 1, 500)            # independent science column
+            # z_spec is dominated by u (~r0.95 -> filtered by rmax) but also carries
+            # a feh signal visible ONLY in the residual after removing u.
+            z_spec = 3.0 * u + 1.0 * feh + rng.normal(0, 0.2, 500)
+            return pd.DataFrame({"u": u, "g": g, "z_spec": z_spec, "feh": feh})
+        ds = Dataset(name="resid_test", description="d",
+                     columns=["u", "g", "z_spec", "feh"],
+                     source="test", fetcher=_fetch, cache_basename="resid_test.csv")
+        register_dataset(ds)
+        fetch_and_cache("resid_test")
+        seeds = data_lake.correlation_seeds("resid_test", top_k=10)
+        assert any(a.startswith("resid") and b == "feh" for a, b, _ in seeds), \
+            f"no residual seed surfacing the z_spec~feh signal; got {seeds}"
+
+
 if __name__ == "__main__":
     failed = 0
     for name, fn in sorted(globals().items()):
