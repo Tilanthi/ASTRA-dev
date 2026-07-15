@@ -255,6 +255,83 @@ def _fetch_gaia_nearby() -> "pd.DataFrame":
     return df
 
 
+def _fetch_wise_midir() -> "pd.DataFrame":
+    """AllWISE mid-IR (W1-W4) sources — opens the mid-IR colour space (AGN/dust
+    diagnostics like W1-W2, stellar-class W1-W2 vs W3-W4) entirely OUTSIDE optical
+    photometry. Primary source IRSA AllWISE; VizieR II/328 fallback. Column names
+    are normalised (IRSA/VizieR differ in case)."""
+    import astropy.units as u
+    from astropy.coordinates import SkyCoord
+    field = SkyCoord("150.0 2.0", unit="deg")
+    rows = None
+    try:
+        from astroquery.irsa import Irsa
+        for cat in ("allwise_p3as_psd", "allwise"):
+            try:
+                t = Irsa.query_region(field, radius=0.6 * u.deg, catalog=cat)
+                if t is not None and len(t) > 0:
+                    rows = t
+                    break
+            except Exception:
+                continue
+    except Exception:
+        pass
+    if rows is None:
+        from astroquery.vizier import Vizier
+        Vizier.ROW_LIMIT = 5000
+        res = Vizier.query_region(field, radius=0.6 * u.deg, catalog="II/328/allwise")
+        if res and len(res):
+            rows = res[0]
+    if rows is None or len(rows) == 0:
+        raise RuntimeError("WISE query returned no rows (IRSA + VizieR).")
+    df = rows.to_pandas()
+    lc = {str(c).lower(): c for c in df.columns}
+
+    def pick(*names):
+        for n in names:
+            if n in df.columns:
+                return n
+            if n.lower() in lc:
+                return lc[n.lower()]
+        return None
+
+    rename = {}
+    for key, cand in (("w1", "w1mpro"), ("w2", "w2mpro"),
+                      ("w3", "w3mpro"), ("w4", "w4mpro")):
+        c = pick(cand, cand.upper())
+        if c:
+            rename[c] = key
+    df = df.rename(columns=rename)
+    if "w1" in df and "w2" in df:
+        df = df[df["w1"].notna() & df["w2"].notna()].reset_index(drop=True)
+    if len(df) == 0:
+        raise RuntimeError("WISE: no rows with W1+W2 after normalisation.")
+    df["w1w2"] = df["w1"] - df["w2"]
+    if "w3" in df.columns and "w4" in df.columns:
+        df["w3w4"] = df["w3"] - df["w4"]
+    return df
+
+
+def _fetch_gaia_variables() -> "pd.DataFrame":
+    """Gaia DR3 photometrically VARIABLE stars — a time-domain/variability sample
+    (objects confirmed to vary), opening variability-related relations outside
+    static photometry. (Optical wavelength but a new modality; period is not in
+    gaia_source, so relations are colour/astrometry-of-variables, not PL.)"""
+    from astroquery.gaia import Gaia
+    adql = """
+    SELECT TOP 4000 source_id, ra, dec, phot_g_mean_mag, phot_bp_mean_mag,
+           phot_rp_mean_mag, bp_rp, ruwe, phot_variable_flag, parallax
+    FROM gaiadr3.gaia_source
+    WHERE phot_variable_flag='VARIABLE' AND bp_rp BETWEEN 0 AND 4
+      AND ruwe < 1.4 AND phot_g_mean_mag BETWEEN 10 AND 16
+    """
+    job = Gaia.launch_job(" ".join(adql.split()))
+    table = job.get_results()
+    if table is None or len(table) == 0:
+        raise RuntimeError("Gaia variable-star query returned no rows.")
+    return table.to_pandas()
+
+
 # --------------------------------------------------------------------------- #
 # registry (extensible — add Dataset(...) + a fetcher to grow the lake)        #
 # --------------------------------------------------------------------------- #
@@ -300,6 +377,32 @@ register_dataset(Dataset(
     niche_hint="Stellar astrometry is HR-diagram / reduced-proper-motion dominated "
                "and ~100% textbook in pilots; only pursue a non-obvious higher-order "
                "relation if one exists.",
+))
+register_dataset(Dataset(
+    name="wise_midir",
+    description="AllWISE mid-IR sources (W1,W2,W3,W4 + W1-W2 and W3-W4 colours). The "
+                "mid-IR colour space — AGN/dust/stellar-class diagnostics — is a NEW "
+                "wavelength, distinct from the optical samples.",
+    columns=["w1", "w2", "w1w2", "w3", "w4", "ra", "dec"],
+    source="AllWISE via astroquery.irsa (fallback VizieR II/328)",
+    fetcher=_fetch_wise_midir,
+    textbook_risk="low",
+    niche_hint="Mid-IR is a NEW wavelength for this search. Productive: higher-order "
+               "mid-IR colour relations — but AVOID restating the standard W1-W2 > 0.5 "
+               "AGN selection cut (textbook).",
+))
+register_dataset(Dataset(
+    name="gaia_variables",
+    description="Gaia DR3 photometrically VARIABLE stars (confirmed variables): G/BP/RP "
+                "mags, BP-RP colour, RUWE, parallax. A time-domain / variability sample.",
+    columns=["phot_g_mean_mag", "phot_bp_mean_mag", "phot_rp_mean_mag", "bp_rp",
+             "ruwe", "parallax", "ra", "dec"],
+    source="Gaia DR3 (https://gea.esac.esa.int/archive) via astroquery.gaia",
+    fetcher=_fetch_gaia_variables,
+    textbook_risk="low",
+    niche_hint="Confirmed variables — a time-domain sample. No period here, so AVOID "
+               "textbook period-luminosity claims; pursue non-obvious colour/astrometry "
+               "relations specific to the variable population.",
 ))
 
 
