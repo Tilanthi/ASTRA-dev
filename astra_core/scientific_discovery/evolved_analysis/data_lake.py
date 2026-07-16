@@ -412,9 +412,11 @@ def _fetch_sdss_wise_xmatch() -> "pd.DataFrame":
     locally via _cone_match_merge. Real archival data only; raises on empty."""
     from astroquery.sdss import SDSS
 
-    # ~1 deg^2 box around (150, 2), inside the AllWISE cone pulled below.
+    # ~9 deg^2 box around (150, 2) -> a few thousand galaxies, enough statistical
+    # power to clear the Bonferroni gate (116 rows needed |rho|>=~0.5; a few
+    # thousand need only |rho|>=~0.16). Circumscribed by the AllWISE cone below.
     sql = """
-    SELECT TOP 3000
+    SELECT TOP 6000
            p.objid, p.ra, p.dec,
            p.dered_u AS u, p.dered_g AS g, p.dered_r AS r,
            p.dered_i AS i, p.dered_z AS z,
@@ -425,15 +427,15 @@ def _fetch_sdss_wise_xmatch() -> "pd.DataFrame":
     WHERE s.class = 'GALAXY' AND s.z BETWEEN 0.01 AND 0.4 AND s.zwarning = 0
       AND p.petror50_r > 0 AND p.petror90_r > 0
       AND p.dered_r BETWEEN 14 AND 19.5
-      AND p.ra  BETWEEN 149.5 AND 150.5
-      AND p.dec BETWEEN 1.5 AND 2.5
+      AND p.ra  BETWEEN 148.5 AND 151.5
+      AND p.dec BETWEEN 0.5 AND 3.5
     """
     res = SDSS.query_sql(" ".join(sql.split()))
     if res is None or len(res) == 0:
         raise RuntimeError("SDSS galaxy region query returned no rows.")
     sdss = res.to_pandas()
     sdss["concentration_r"] = sdss["petror90_r"] / sdss["petror50_r"]
-    wise = _fetch_allwise_cone(150.0, 2.0, 0.9)
+    wise = _fetch_allwise_cone(150.0, 2.0, 2.2)
     out = _cone_match_merge(sdss, wise, max_sep_arcsec=2.0)
     if len(out) == 0:
         raise RuntimeError("SDSS x AllWISE cross-match produced 0 matched galaxies.")
