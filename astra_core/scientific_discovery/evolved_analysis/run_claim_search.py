@@ -34,6 +34,7 @@ from .claim_task import (NAIVE_CLAIM_SEED, TASK_SYSTEM, ENTRY_POINT,
                          parse_claim, gate1_significant, PMAX)
 from .claim_gates import (triviality_check, consistency_check,
                           holdout_distinct_check, claim_uses_train_split,
+                          circularity_check,
                           bonferroni_pmax, bump_family_counter, family_size)
 from .proposer import LLMProposer, apply_diff
 
@@ -156,6 +157,7 @@ def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True,
     triv_ok, triv_reason = triviality_check(src, holdout_effect)
     cons_ok, cons_reason = consistency_check(claim, metrics_for_gates)
     hold_ok, hold_reason = holdout_distinct_check(metrics_for_gates)  # Fix 6
+    circ_ok, circ_reason = circularity_check(src)  # anti-circularity (2026-07-16)
 
     result = {
         "claim": claim,
@@ -168,13 +170,14 @@ def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True,
         "triviality": {"pass": triv_ok, "reason": triv_reason},
         "consistency": {"pass": cons_ok, "reason": cons_reason},
         "holdout": {"pass": hold_ok, "reason": hold_reason},
+        "circularity": {"pass": circ_ok, "reason": circ_reason},
         "gate2": None,
         "both_pass": False,
         "dataset": source,
     }
 
-    if not (g1_pass and triv_ok and cons_ok and hold_ok):
-        return result  # significance / triviality / consistency / holdout stop here
+    if not (g1_pass and triv_ok and cons_ok and hold_ok and circ_ok):
+        return result  # significance / triviality / consistency / holdout / circularity stop here
 
     if run_gate2:
         try:
@@ -413,6 +416,7 @@ def _append_verdict_log(verdict: dict, label: str = "") -> None:
             "triviality": (verdict.get("triviality") or {}).get("pass"),
             "consistency": (verdict.get("consistency") or {}).get("pass"),
             "holdout": (verdict.get("holdout") or {}).get("pass"),
+            "circularity": (verdict.get("circularity") or {}).get("pass"),
             "gate2": {"status": g2.get("status"), "pass": g2.get("pass"),
                       "n_retrieved": g2.get("n_retrieved"),
                       "reasoning": (g2.get("reasoning") or "")[:160]},

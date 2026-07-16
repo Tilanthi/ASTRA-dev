@@ -277,6 +277,60 @@ def test_prompts_prime_higher_order_relations():
     assert ts and "higher-order" in ts and "SUBSET" in ts
 
 
+def test_circularity_rejects_quantity_built_from_a_correlated_column():
+    """A residual constructed WITH a column, then correlated with that column, is
+    circular (the strong rho is partly built-in). This is the QSO xi=(u-r)-2.2(g-i)-
+    0.6*z_spec then Spearman(xi, z_spec) failure mode."""
+    src = (
+        'xi = df["u"] - df["r"] - 2.2*(df["g"]-df["i"]) - 0.6*df["z_spec"]\n'
+        'r, p = spearmanr(xi, df["z_spec"])'
+    )
+    ok, reason = claim_gates.circularity_check(src)
+    assert ok is False, f"z_spec embedded in xi then correlated with z_spec must reject: {reason}"
+
+
+def test_circularity_rejects_inline_construction():
+    """An inline expression that shares a column with a single-column counterpart is
+    circular: spearmanr(df['a']-df['b'], df['b'])."""
+    src = 'r, p = spearmanr(df["a"] - df["b"], df["b"])'
+    ok, _ = claim_gates.circularity_check(src)
+    assert ok is False
+
+
+def test_circularity_passes_clean_colour_vs_other_column():
+    """A colour built from g,r correlated with an unrelated column (z_spec) is fine."""
+    src = 'r, p = spearmanr(df["g"] - df["r"], df["z_spec"])'
+    ok, _ = claim_gates.circularity_check(src)
+    assert ok is True
+
+
+def test_circularity_passes_crossmodal_morphology_relation():
+    """The verified cross-modal discovery pattern: a size/colour residual correlated
+    with concentration must NOT be flagged (concentration is not in the residual)."""
+    src = (
+        'resid = df["r"] - df["w1"] - 0.3*df["log_r90"]\n'
+        'r, p = spearmanr(resid, df["concentration_r"])'
+    )
+    ok, _ = claim_gates.circularity_check(src)
+    assert ok is True
+
+
+def test_circularity_rejects_intermediate_var_and_mask_indexing():
+    """Real-world pattern (the exact QSO curvature failure mode): columns loaded into
+    short aliases, a residual built from one alias, then correlated with that alias
+    under boolean indexing. Must be caught via transitive alias resolution."""
+    src = (
+        'ur = df["u"] - df["r"]\n'
+        'gi = df["g"] - df["i"]\n'
+        'zs = df["z_spec"]\n'
+        'residual = ur - 2.2*gi - 0.6*zs\n'
+        'mask = np.isfinite(residual) & np.isfinite(zs)\n'
+        'corr, p = spearmanr(residual[mask], zs[mask])'
+    )
+    ok, _ = claim_gates.circularity_check(src)
+    assert ok is False
+
+
 def _run():
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     passed = 0

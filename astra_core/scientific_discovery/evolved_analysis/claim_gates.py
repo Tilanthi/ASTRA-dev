@@ -26,7 +26,7 @@ import json
 import logging
 import re
 from pathlib import Path
-from typing import Tuple
+from typing import Optional, Tuple
 
 logger = logging.getLogger(__name__)
 
@@ -260,6 +260,67 @@ def claim_uses_train_split(src: str) -> Tuple[bool, str]:
         return True, "uses df_train in body"
     return False, ("df_train not referenced in body — computes on df_eval alone "
                    "(holdout-distinct would reject)")
+
+
+# --------------------------------------------------------------------------- #
+# Anti-circularity (a constructed quantity correlated with one of its inputs)  #
+# --------------------------------------------------------------------------- #
+_NONSTRING_INDEX = re.compile(r'\[[^\[\]"\']*\]')  # [mask] / [0:5], but NOT ["col"]
+
+
+def _definition_of(src: str, var: str) -> Optional[str]:
+    """The RHS of the last ``<var> = <rhs>`` assignment in src, else None."""
+    rhs = None
+    for line in (src or "").splitlines():
+        m = re.match(r'\s*' + re.escape(var) + r'\s*=\s*(.*)', line)
+        if m:
+            rhs = m.group(1)
+    return rhs
+
+
+def _columns_in(expr: str, src: str, _seen=None) -> set:
+    """Set of base DATA COLUMNS an expression ultimately depends on, resolving
+    intermediate variables transitively (so a residual built from short var aliases
+    like ``ur``/``zs`` resolves to its real constituent columns). Boolean/integer
+    indexing ``[mask]`` is stripped; string column access ``df["C"]`` is kept."""
+    if _seen is None:
+        _seen = set()
+    s = _NONSTRING_INDEX.sub('', (expr or "").strip())       # drop [mask], keep ["col"]
+    cols = set(re.findall(r'\[\s*["\']([A-Za-z_]\w*)["\']\s*\]', s))
+    for v in set(re.findall(r'\b([A-Za-z_]\w*)\b', s)):
+        if v in _seen:
+            continue
+        defn = _definition_of(src, v)
+        if defn is not None:
+            _seen.add(v)
+            cols |= _columns_in(defn, src, _seen)
+    return cols
+
+
+def circularity_check(src: str) -> Tuple[bool, str]:
+    """Reject a circular claim: one side of the reported correlation is a single
+    column C and the other is a quantity CONSTRUCTED FROM C. Classic failure mode —
+    a residual built WITH z_spec, then ``Spearman(residual, z_spec)``: the strong rho
+    is partly built-in by construction (such a claim even reproduces on an unrelated
+    population, as the 2026-07-16 QSO curvature 'discovery' did when re-run on
+    galaxies). Resolves intermediate var aliases transitively, so it catches real
+    code (``residual = ur - ... - 0.6*zs; spearmanr(residual[mask], zs[mask])``).
+    Conservative: flags only a single-column side embedded in the other;
+    multi-column/multi-column pairs are left to the triviality gate. (ok, reason);
+    ok=False => circular => reject."""
+    a, b = _correlation_args(src or "")
+    if not a or not b:
+        return True, "circularity:skipped (no correlation args found)"
+    ca, cb = _columns_in(a, src), _columns_in(b, src)
+    if not ca or not cb:
+        return True, "circularity:skipped (columns unresolved)"
+    if len(cb) == 1 and next(iter(cb)) in ca and ca != cb:
+        return False, (f"circularity:reject — '{b.strip()}' is a single column built "
+                       f"into the other side ({sorted(ca)})")
+    if len(ca) == 1 and next(iter(ca)) in cb and ca != cb:
+        return False, (f"circularity:reject — '{a.strip()}' is a single column built "
+                       f"into the other side ({sorted(cb)})")
+    return True, "circularity:pass"
 
 
 # --------------------------------------------------------------------------- #

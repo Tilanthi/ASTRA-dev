@@ -56,6 +56,8 @@ def failure_class(v: Dict[str, Any]) -> str:
         return "triviality_block"
     if v.get("consistency") is False:
         return "consistency_block"
+    if v.get("circularity") is False:
+        return "circularity_block"
     st = (v.get("gate2") or {}).get("status")
     if st == "known":
         return "gate2_known"
