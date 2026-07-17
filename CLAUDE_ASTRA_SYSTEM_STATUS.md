@@ -4,6 +4,80 @@
 
 ---
 
+## Recent versions (v14.0–v14.13) — moved from CLAUDE.md (2026-07-17) to keep the entry file lean
+
+**One-line version history:**
+- **v14.13** (2026-07-17): repo-health audit — `RASTI.cls`→`rasti.cls` Linux build fix; 43 truncated source files baselined (`tests/known_broken_syntax.txt`) + `test_syntax_baseline.py` CI guard; `import astra_core` healthy.
+- **v14.12**: anti-circularity sub-gate (`claim_gates.circularity_check`).
+- **v14.11**: widened `sdss_wise_xmatch` 116→~1,240 rows.
+- **v14.10**: first cross-matched dataset (SDSS optical × AllWISE mid-IR per object).
+- **v14.9**: residual-seeding fix (gate1-pass 25%→34%, CI excludes baseline).
+- **v14.8**: Brier calibration + Discovery outcome CI.
+- **v14.7**: self-improvement layer (predict/surprise, measured RSI loop, capability index).
+- **v14.6**: non-optical datasets (WISE mid-IR, Gaia variables).
+- **v14.5**: near-duplicate reviewer.
+- **v14.4**: effect + p-value dedup fingerprint.
+- **v14.3**: always-on niche rotation (one productive niche/episode).
+- **v14.2**: rotation miner + per-dataset niche hints + textbook-risk flags.
+- **v14.1**: data lake (Sub-project C) + proposer split-discipline + Gate-2 retrieval robustness.
+- **v14.0**: fiction-free two-gate EVALUATE (chokepoint + supervisor + sandbox).
+
+---
+
+**Detailed status sections (v14.0–v14.12):**
+
+### System Status — v14.3 (2026-07-15): higher-novelty niches in the always-on path
+The supervisor's `ASTRA_EVOLUTION_MODULE` is now `evolved_analysis.mine_rotation` with `ASTRA_MINE_ROUND_ROBIN=1` + `ASTRA_MINE_STEPS=12` (in `~/.astra_persistent/llm_env`), so each evolution episode mines **one productive data-lake niche, round-robin** (galaxy morphology → QSOs → …) instead of the textbook-dominated legacy sdss_photoz. Each episode stays short (one niche × 12 steps) and user-yielding. Confirmed end-to-end (a confirmation run emitted a QSO novel claim immediately).
+
+### System Status — v14.10 (2026-07-15): first cross-matched (cross-modal) dataset
+Phase 4a landed: `sdss_wise_xmatch` (in `evolved_analysis/data_lake.py`) — SDSS optical galaxies **cross-matched by position** to AllWISE mid-IR for the *same* objects (region-bounded SDSS-CAS query + IRSA AllWISE pull + astropy cone-match at 2″ via `_cone_match_merge`), giving per-galaxy u,g,r,i,z + Petrosian radii/concentration + z_spec **and** WISE W1–W4 + optical–IR colours (r-w1, r-w2, w1w2). TDD (`test_data_lake`, 16 green) + live-fetched/validated. **Widened (v14.11, 2026-07-16):** the initial 1°²/116-row sample went **0/36** Gate-1 overnight — too few rows for the Bonferroni gate; the region is now 3°×3° / 2.2° AllWISE cone → **~1,240 matched galaxies** (one-time ~5-min fetch, then cached). This is the first **cross-modal** axis — dust / stellar-mass / AGN colour space — built now because the v14.9 residual-seeding fix (commit `64faa17`) raised gate1-pass 25%→34% (CI excludes baseline), so the proposer can finally exploit richer structure. The productive rotation now spans **5 niches**; `productive_datasets()` picks the new one up automatically. Gap remaining: radio, X-ray, spectroscopy.
+
+### Anti-circularity sub-gate (v14.12, 2026-07-16)
+A new Gate-1 sub-gate alongside triviality/consistency/holdout: `claim_gates.circularity_check(src)` rejects a claim whose reported correlation is circular — one side is a single column C and the other is a quantity **constructed from C**. Surfaced by a 2026-07-16 audit: the highest-|effect| "discovery" was a QSO residual ξ built *with* `z_spec`, then `Spearman(ξ, z_spec)` — the strong ρ was partly built-in (it spuriously reproduced on galaxies when re-run). The check resolves intermediate var aliases (`ur`/`gi`/`zs`) and boolean indexing (`[mask]`) transitively, so it catches real proposer code, not just `df["col"]` syntax. Conservative: flags only a single-column side embedded in the other; multi-column pairs stay with the triviality gate. TDD (5 tests in `test_claim_gates`); wired into `two_gate_eval` (stops before Gate-2), the verdict log (`circularity` bool), and `failure_class` (`circularity_block`). End-to-end verified: the real QSO claim now blocks; the clean cross-modal claim passes.
+
+### Dedup (v14.4): effect + p-value fingerprint
+The store dedups on a **(held-out effect, p-value)** fingerprint (`discovery_store.dedup_key`), not just `program_hash`. Regenerated duplicates of the same finding vary in wording and program hash but share an identical effect + p-value (the `run_claim` computation is identical), so this collapses them reliably — fixes the triplicate near-duplicates the rotation was emitting. Applied at both the chokepoint (`append_verified`/`dedup_verified`) and emit-time (`_emit`), with a `program_hash` fallback for records lacking effect/p-value.
+
+**Near-duplicate review (v14.5):** `discovery_store.near_duplicate_groups` + `evolved_analysis.dup_review` surface distinct findings that share |effect| with p-values within an order of magnitude (they *might* be the same phenomenon) for **human review — not auto-merged**. Run: `PYTHONPATH=astra_core/scientific_discovery python -m evolved_analysis.dup_review`.
+
+**Breadth (v14.6): first non-optical datasets.** Registered `wise_midir` (AllWISE W1–W4 — a new **mid-IR** wavelength) and `gaia_variables` (Gaia DR3 variable stars — a **time-domain** modality), both live-fetched and validated (16,220 WISE rows; 4,000 variables). The productive rotation now cycles **5 niches: galaxy morphology, QSOs, mid-IR, variables, and (v14.10) the SDSS×WISE cross-match** — breaking out of optical galaxy photometry. Gap remaining: radio, X-ray, spectroscopy (cross-matches begun in v14.10; the registry is hand-curated; `action_space_miner` exists to grow it from the literature).
+
+**Self-improvement layer (v14.7): predict/surprise, measured RSI loop, capability index.** Three additive stdlib-only instruments (no chokepoint/gate changes), inspired by *Unleashing the Beast* (Perni/Dey, 2026):
+- **#1 predict-before-act + surprise ledger** (`predictions.py`): `mine_rotation` writes a statistical-baseline prediction before each episode and scores `surprise` after — turning the verdict log into a *calibration* instrument. **Upgraded (v14.8) to Brier-scored probabilistic calibration**: a Beta-posterior forecast P(≥1 novel emit) per episode, scored with the Brier score + a reliability curve — proper calibration (do predicted probabilities match observed frequencies?), not just stationarity. `~/.astra_persistent/evolved_programs/{predictions,surprise_ledger}.jsonl`.
+- **#2 gated, measured self-improvement** (`improvement_loop.py`): mines verdicts into recurring failure classes → proposes gated fixes (propose only) → **measures whether an applied fix reduced its failure class**. Live result: split-discipline fix 100.0, Gate-2 retrieval fix 67.6 (rollup RSI effectiveness 83.8, "improving not solved"). `rsi_proposals.jsonl` / `rsi_applied.jsonl` / `rsi_effectiveness.txt`.
+- **#3 capability index** (`capability_index.py`): dated CI (0–100) from existing artifacts; **ingests sub-100 RSI effectiveness that can LOWER it**. **Upgraded (v14.8)**: Calibration now Brier-based (real forecast calibration); added a **Discovery outcome sub-score** (novel-yield vs a 15% aspiration + trend) so the CI tracks discovery quality, not just pipeline health. Live CI **66.5** (calibration 35.8 from 2 episodes — noisy, will stabilize; discovery 66.5; learning 59.8; execution 93.4; breadth 100). Trend not level; 100 = formula saturation. `ci_history.jsonl`.
+- Run: `python -m evolved_analysis.predictions|capability_index|improvement_loop [mine|measure]`.
+
+### System Status — v14.2 (2026-07-14): scaling novel output
+Pilots showed novelty is rare, roughly linear in candidate-evals, and object-type-dependent (stars → 0 novel; galaxies/QSOs → some). Two levers added:
+- **Scale** — `evolved_analysis/mine_rotation.py` runs the Phase-2 search across datasets in one command: `PYTHONPATH=astra_core/scientific_discovery python -m evolved_analysis.mine_rotation --steps N`.
+- **Focus** — datasets carry `textbook_risk` (`sdss_stars` + `gaia_nearby` = "high" — ~100% known, HR-diagram-dominated) and a `niche_hint` appended to the proposer prompt (galaxy concentration/morphology, QSO colour×redshift interactions). `productive_datasets()` returns the mineable ones; the rotation miner skips high-risk by default (`--include-high-risk` to opt in). `--list-sources` shows the risk flag.
+
+---
+
+### System Status — v14.1 (2026-07-14)
+- **Data lake (Sub-project C).** Phase-2 claim search can mine real datasets beyond the single SDSS photo-z sample, via opt-in `--data-source NAME` (default `legacy` = unchanged). Modules `evolved_analysis/data_lake.py` (registry + fetch/cache; `sdss_stars`, `sdss_qso`, `sdss_galaxy_extended`, `gaia_nearby`) and `action_space_miner.py` (Biomni-style arXiv astro-ph miner). **Sandbox unchanged**: fetchers run outside the sandbox and write cache CSVs; the sandboxed worker reads cache files only (no-network profile intact). Live-validated vs SDSS CAS + Gaia DR3. Spec: `docs/superpowers/specs/2026-07-14-subproject-c-data-lake-design.md`.
+- **Proposer split-discipline fix** — `claim_uses_train_split` guard + prompt rule + `--propose-retries` (the 2026-07-14 pilot found the proposer generated `df_eval`-only code the holdout gate rejected).
+- **Gate-2 retrieval robustness** — `_http_get` retry/backoff + retry-on-empty; transient "retrieval-failed" is no longer cached.
+- **Verdict logging** — `~/.astra_persistent/evolved_programs/claim_verdicts.jsonl` tags each per-candidate verdict with its dataset (the supervisor runs the subprocess with stdout→DEVNULL).
+- **2026-07-14 finding:** the binding constraint is a *chain* (data → proposer split-discipline → Gate-2 retrieval), now all fixed on main. Broader data is necessary-but-not-sufficient because real data is textbook-dominated (Gaia → 100% known: HR diagram, reduced proper motion). Sub-project A (UCB selection) was designed but **not** built — selection isn't the bottleneck. Spec kept at `docs/superpowers/specs/2026-07-13-subproject-a-acquisition-multifidelity-design.md` (not recommended).
+
+### System Status — v14.0 (2026-07-11, still current)
+**Fiction is structurally impossible.** A single write chokepoint — `astra_core/scientific_discovery/discovery_store.py::append_verified` — rejects any record without a machine `verification` block. The always-on `astra_core/autonomous_discovery_supervisor.py` (launchd `com.astra.discovery`) ingests only machine-verified records and, when idle + an LLM token is present, runs the evolutionary engine. It never falls back to fiction.
+
+**Two-gate EVALUATE (AlphaEvolve core):** Phase 1 = proven narrow-task evolution (photo-z σ_NMAD 0.049→0.021; star/gal/qso 0.33→0.91 on real SDSS). Phase 2 = open-ended (CLAIM, test) search: **Gate 1** real-data significance (sandboxed, no network) + **Gate 2** literature novelty vs arXiv. Only both-gate survivors are stored.
+
+- Generated code sandboxed: AST import allowlist + `resource` rlimits + `sandbox-exec` (no network, temp-writes-only).
+- Canonical LLM gateway (`astra_core/intelligence/llm_gateway.py`); STAN stays a symbolic component.
+- Honest limitation: Gate-2 novelty is best-effort (not a perfect oracle); Eureka-class novelty is rare.
+
+**Enabling autonomous evolution:** the supervisor runs ingest-only until `~/.astra_persistent/llm_env` (chmod 600) contains `ANTHROPIC_AUTH_TOKEN` (+ base URL) and `ASTRA_EVOLUTION_MODULE` (e.g. `evolved_analysis.run_claim_search`).
+
+Full design: `docs/superpowers/specs/2026-07-11-astra-autonomous-discovery-rearchitecture-design.md`.
+
+---
+
+
 ## Current System Status (2026-07-04)
 
 **🚀 GENUINE DISCOVERY FRAMEWORK V4.0 - REVOLUTIONARY**
