@@ -21,6 +21,7 @@ from astra_core.capabilities.v95_semantic_grounding import (
     SemanticGroundingLayer,
     GroundedOutputGenerator,
     VerificationLevel,
+    FormulaClaim,
     validate_scientific_content,
     check_formula,
     register_hallucination
@@ -41,12 +42,11 @@ def demo_hallucination_detection():
     print(f"Citation: {fake_citation}")
     print()
 
-    # Check the formula
-    result = check_formula(fake_formula, fake_citation)
+    # Check the formula (check_formula takes a FormulaClaim and returns a bool)
+    claim = FormulaClaim(formula=fake_formula, source_citation=fake_citation)
+    is_valid = check_formula(claim)
 
-    print("Result:")
-    for key, value in result.items():
-        print(f"  {key}: {value}")
+    print(f"In knowledge base: {is_valid}")
     print()
 
 
@@ -76,8 +76,8 @@ def demo_content_validation():
     print(content)
     print()
 
-    # Validate
-    report = validate_scientific_content(content, domain="astronomy")
+    # Validate (validate_scientific_content takes content only, no domain kwarg)
+    report = validate_scientific_content(content)
 
     print("Validation Report:")
     print(f"  Total claims: {report.total_claims}")
@@ -127,7 +127,10 @@ def demo_safe_output_generation():
     print(safe_content)
     print()
 
-    output, report = generator.generate(safe_content, domain="astronomy")
+    # generate() returns a dict (content/grounding_report/safe), no domain kwarg
+    result = generator.generate(safe_content)
+    output = result['content']
+    report = result['grounding_report']
 
     print("Generated Output:")
     print(output)
@@ -145,7 +148,9 @@ def demo_safe_output_generation():
     print(unsafe_content)
     print()
 
-    output, report = generator.generate(unsafe_content, domain="astronomy")
+    result = generator.generate(unsafe_content)
+    output = result['content']
+    report = result['grounding_report']
 
     print("Generated Output (with warnings):")
     print(output[:500])
@@ -170,12 +175,10 @@ def demo_formula_lookup():
 
     for formula in test_formulas:
         print(f"Formula: {formula}")
-        result = check_formula(formula)
-        print(f"  Status: {result['status']}")
-        if 'source' in result:
-            print(f"  Source: {result['source']}")
-        if 'warning' in result:
-            print(f"  Warning: {result['warning']}")
+        # check_formula takes a FormulaClaim and returns a bool
+        claim = FormulaClaim(formula=formula)
+        is_valid = check_formula(claim)
+        print(f"  In knowledge base: {is_valid}")
         print()
 
 
@@ -198,7 +201,7 @@ def demo_speculative_content():
     print(speculative)
     print()
 
-    report = validate_scientific_content(speculative, domain="astronomy")
+    report = validate_scientific_content(speculative)
 
     print(f"Safe to output: {report.safe_to_output}")
     print(f"Overall confidence: {report.overall_confidence:.2f}")

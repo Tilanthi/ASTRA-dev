@@ -36,6 +36,7 @@ class EpisodeType(Enum):
     EXPERIMENT_DESIGN = "experiment_design"
     PREDICTION = "prediction"
     DISCOVERY = "discovery"
+    CANONICAL_EXEMPLAR = "canonical_exemplar"  # warm-start seed exemplar
 
 
 class OutcomeType(Enum):
@@ -822,6 +823,20 @@ class CasedBasedReasoner:
             'reasoning_template': [s.to_dict() for s in best_case.reasoning_trace],
             'confidence': similarity * best_case.outcome.confidence
         }
+
+    def _extract_failure_lessons(self,
+                                 similar_cases: List[Tuple[Episode, float]]
+                                 ) -> List[str]:
+        """
+        Honest summary of why similar cases failed: surfaces the error strings
+        already recorded on each episode's outcome. Does not invent lessons;
+        returns an empty list when no errors were recorded.
+        """
+        lessons: List[str] = []
+        for episode, _ in similar_cases:
+            for error in episode.outcome.errors:
+                lessons.append(f"{episode.episode_id}: {error}")
+        return lessons
 
     def _adapt_solution(self, source_case: Episode,
                         target_problem: Problem) -> Any:

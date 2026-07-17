@@ -231,10 +231,15 @@ class V60CognitiveAgent:
         """Execute the cognitive cycle for a task."""
         # Simplified implementation
         return V60Result(
-            answer=f"Processed: {task.description}",
+            success=True,
+            output=f"Processed: {task.description}",
             confidence=0.8,
             reasoning_trace=["Perception", "Reasoning", "Action"],
-            metadata={"task_id": task.id}
+            memory_accessed=[],
+            concepts_used=[],
+            world_models_used=[],
+            free_energy=0.0,
+            processing_time=0.0,
         )
 
     def _classify_task(self, description: str) -> str:
@@ -255,20 +260,30 @@ def create_v60_agent(config: V60Config = None) -> V60CognitiveAgent:
 
 def create_v60_standard() -> V60CognitiveAgent:
     """Create a V60 agent with standard configuration."""
-    return V60CognitiveAgent(V60Config(mode=CognitiveMode.STANDARD))
+    agent = V60CognitiveAgent(V60Config())
+    agent.mode = CognitiveMode.DELIBERATIVE
+    return agent
 
 def create_v60_fast() -> V60CognitiveAgent:
     """Create a V60 agent with fast configuration."""
-    return V60CognitiveAgent(V60Config(mode=CognitiveMode.FAST))
+    agent = V60CognitiveAgent(V60Config())
+    agent.mode = CognitiveMode.REACTIVE
+    return agent
 
 def create_v60_deep() -> V60CognitiveAgent:
     """Create a V60 agent with deep configuration."""
-    return V60CognitiveAgent(V60Config(mode=CognitiveMode.DEEP))
+    agent = V60CognitiveAgent(V60Config())
+    agent.mode = CognitiveMode.METACOGNITIVE
+    return agent
 
 def create_v60_discovery() -> V60CognitiveAgent:
     """Create a V60 agent with discovery configuration."""
-    return V60CognitiveAgent(V60Config(mode=CognitiveMode.DISCOVERY))
+    agent = V60CognitiveAgent(V60Config())
+    agent.mode = CognitiveMode.EXPLORATORY
+    return agent
 
 def create_v60_gpqa() -> V60CognitiveAgent:
     """Create a V60 agent with GPQA configuration."""
-    return V60CognitiveAgent(V60Config(mode=CognitiveMode.GPQA))
+    agent = V60CognitiveAgent(V60Config())
+    agent.mode = CognitiveMode.LEARNING
+    return agent

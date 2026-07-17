@@ -443,3 +443,22 @@ class NebularDiagnosticsCalculator:
             Electron temperature (K)
         """
         # Empirical fit (valid for T_e ~ 5000-20000 K)
+
+
+# ============================================================================
+# Public API: consumer-expected names re-exported by astro_physics/__init__
+# ============================================================================
+
+def stromgren_radius(q_h: float, n_e: float, temperature: float = 1e4,
+                     filling_factor: float = 1.0) -> float:
+    """Module-level Strömgren radius (cm). Delegates to StromgrenSphere."""
+    return StromgrenSphere().stromgren_radius(q_h, n_e, temperature, filling_factor)
+
+
+def get_diagnostics_calculator():
+    """Factory returning the nebular diagnostics calculator."""
+    return NebularDiagnosticsCalculator()
+
+
+# Historical alias: hydrogen recombination line spectrum
+RecombinationLines = RecombinationSpectrum

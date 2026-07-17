@@ -143,7 +143,8 @@ class HallucinationRegister:
     """
 
     def __init__(self, register_path: Optional[Path] = None):
-        self.register_path = register_path or Path(__file__).parent / ".hallucination_register.json"
+        # Real file lives one level up at astra_core/capabilities/.hallucination_register.json
+        self.register_path = register_path or Path(__file__).parent.parent / ".hallucination_register.json"
         self.known_hallucinations: Dict[str, Dict] = {}
 
     def check_hallucination(self, claim: str) -> bool:

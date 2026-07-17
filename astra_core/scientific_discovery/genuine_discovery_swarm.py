@@ -74,13 +74,15 @@ class GenuineDiscoverySwarm:
         self.enabled = True
         self.config = config
 
-        # Initialize pheromone field with discovery-specific configuration
+        # Initialize pheromone field with discovery-specific configuration.
+        # Kwargs aligned to the REAL PheromoneFieldConfig in
+        # astra_core/intelligence/pheromone_dynamics.py (domain_mixture_bins,
+        # base_evaporation_rate, max_concentration, default_sense_radius).
         field_config = PheromoneFieldConfig(
-            field_dimensions=10,  # 10-dimensional domain space
-            resolution=50,  # 50 points per dimension
-            decay_rate=0.05,  # 5% decay per cycle
-            diffusion_rate=0.1,  # 10% diffusion to neighbors
-            evaporation_rate=0.02  # 2% evaporation prevents permanent trails
+            domain_mixture_bins=50,       # resolution: 50 bins per domain axis
+            base_evaporation_rate=0.05,   # ~5% decay/evaporation per cycle
+            max_concentration=10.0,       # cap pheromone strength
+            default_sense_radius=0.1      # sensing neighborhood
         )
 
         self.pheromone_field = create_pheromone_field(field_config)
@@ -114,14 +116,15 @@ class GenuineDiscoverySwarm:
 
         self.deposits.append(deposit)
 
-        # Convert location to numeric coordinates
-        numeric_coords = self._domains_to_coordinates(location)
+        # Convert location to a pheromone-field location dict
+        field_location = self._domains_to_location(location)
+        field_ptype = self._to_field_pheromone_type(pheromone_type)
 
         # Deposit pheromone in field
-        self.pheromone_field.deposit_pheromone(
-            coordinates=numeric_coords,
-            pheromone_type=pheromone_type.value,
-            amount=strength
+        self.pheromone_field.deposit(
+            pheromone_type=field_ptype,
+            location=field_location,
+            strength=strength
         )
 
         logger.debug(f"[Swarm] Deposited {pheromone_type.value} pheromone at {location} with strength {strength}")
@@ -140,24 +143,18 @@ class GenuineDiscoverySwarm:
         if not self.enabled:
             return {}
 
-        numeric_coords = self._domains_to_coordinates(location)
+        field_location = self._domains_to_location(location)
 
         if pheromone_type:
-            concentration = self.pheromone_field.sense_pheromones(
-                coordinates=numeric_coords,
-                pheromone_type=pheromone_type.value
+            field_ptype = self._to_field_pheromone_type(pheromone_type)
+            concentrations = self.pheromone_field.sense(
+                location=field_location,
+                pheromone_type=field_ptype
             )
-            return {pheromone_type.value: concentration}
+            return concentrations
         else:
             # Sense all pheromone types
-            concentrations = {}
-            for ptype in DiscoveryPheromoneType:
-                concentration = self.pheromone_field.sense_pheromones(
-                    coordinates=numeric_coords,
-                    pheromone_type=ptype.value
-                )
-                concentrations[ptype.value] = concentration
-            return concentrations
+            return self.pheromone_field.sense(location=field_location)
 
     def compute_exploration_gradient(self, current_location: Tuple[str, ...]) -> Dict[str, float]:
         """
@@ -172,10 +169,13 @@ class GenuineDiscoverySwarm:
         if not self.enabled:
             return {}
 
-        current_coords = self._domains_to_coordinates(current_location)
+        field_location = self._domains_to_location(current_location)
 
-        # Compute gradient using pheromone field
-        gradient = self.pheromone_field.compute_gradient(current_coords)
+        # Compute gradient using pheromone field (steepest ascent in success pheromone)
+        gradient = self.pheromone_field.sense_gradient(
+            location=field_location,
+            pheromone_type=PheromoneType.SUCCESS
+        )
 
         # Convert numeric gradient back to domain directions
         domain_directions = self._coordinates_to_domains(gradient)
@@ -201,19 +201,25 @@ class GenuineDiscoverySwarm:
             # Return random domains if swarm not available
             return [("random", "exploration")]
 
-        # Find areas with high EXPLORATION and NOVELTY pheromones
-        # Avoid areas with high FAILURE pheromones
+        # Find areas with high EXPLORATION pheromone and low FAILURE pheromone
         suggestions = []
 
-        # Analyze pheromone field to find promising regions
-        field_analysis = self.pheromone_field.analyze_field()
+        # Locate exploration pheromone hot spots via the real field API
+        exploration_spots = self.pheromone_field.get_hot_spots(
+            pheromone_type=PheromoneType.EXPLORATION,
+            threshold=0.3,
+            top_k=max(num_suggestions * 3, 10)
+        )
 
-        # Simple heuristic: suggest domains with moderate exploration pheromones
-        # and low failure pheromones
-        for location_key, concentration in field_analysis.items():
-            if concentration.get("exploration", 0) > 0.3 and concentration.get("failure", 0) < 0.2:
-                # Convert location_key back to domain tuple
-                domain_tuple = self._coordinates_to_domains(eval(location_key))
+        # Filter out hot spots that also have high failure pheromone
+        for domain_mixture, _exploration_conc in exploration_spots:
+            failure_reading = self.pheromone_field.sense(
+                location={'domain_mixture': domain_mixture},
+                pheromone_type=PheromoneType.FAILURE
+            )
+            failure_conc = failure_reading.get(PheromoneType.FAILURE.value, 0.0)
+            if failure_conc < 0.2:
+                domain_tuple = tuple(domain_mixture.keys())
                 suggestions.append(domain_tuple)
 
                 if len(suggestions) >= num_suggestions:
@@ -260,15 +266,24 @@ class GenuineDiscoverySwarm:
             ptype = deposit.pheromone_type.value
             deposits_by_type[ptype] = deposits_by_type.get(ptype, 0) + 1
 
-        field_stats = self.pheromone_field.get_field_statistics()
+        field_stats = self.pheromone_field.stats()
+        field_stats_by_type = field_stats.get("field_stats", {})
+
+        # Derive aggregate coverage and average concentration from per-type stats
+        means = [fs.get("mean", 0.0) for fs in field_stats_by_type.values()]
+        avg_concentration = sum(means) / len(means) if means else 0.0
+        nonzero_types = sum(
+            1 for fs in field_stats_by_type.values() if fs.get("nonzero_cells", 0) > 0
+        )
+        coverage = nonzero_types / len(field_stats_by_type) if field_stats_by_type else 0.0
 
         return {
             "swarm_enabled": True,
             "total_deposits": total_deposits,
             "deposits_by_type": deposits_by_type,
             "exploration_history_size": len(self.exploration_history),
-            "field_coverage": field_stats.get("coverage", 0.0),
-            "average_pheromone_concentration": field_stats.get("average_concentration", 0.0)
+            "field_coverage": coverage,
+            "average_pheromone_concentration": avg_concentration
         }
 
     def _domains_to_coordinates(self, domains: Tuple[str, ...]) -> np.ndarray:
@@ -282,18 +297,38 @@ class GenuineDiscoverySwarm:
 
         return np.array(coords)
 
-    def _coordinates_to_domains(self, coordinates: np.ndarray) -> Tuple[str, ...]:
-        """Convert numeric coordinates back to domain tuple"""
-        # This is a simplified inverse - in practice would use domain mapping
-        return tuple(f"coord_{i}" for i in range(len(coordinates)))
+    def _coordinates_to_domains(self, coordinates) -> Dict[str, float]:
+        """
+        Convert a numeric gradient / pheromone reading to domain attraction strengths.
 
-    def _coordinates_to_domains(self, gradient: np.ndarray) -> Dict[str, float]:
-        """Convert gradient to domain attraction strengths"""
-        # Simplified conversion
+        Handles both numpy arrays/sequences and the dict output of sense_gradient.
+        """
+        if isinstance(coordinates, dict):
+            return {str(k): float(v) for k, v in coordinates.items()}
+        return {f"domain_{i}": float(v) for i, v in enumerate(coordinates)}
+
+    def _domains_to_location(self, domains: Tuple[str, ...]) -> Dict[str, Any]:
+        """Convert domain names to a pheromone-field location dict."""
+        coords = self._domains_to_coordinates(domains)
+        cld = float(coords[0]) if len(coords) > 0 else 0.33
+        d1 = float(coords[1]) if len(coords) > 1 else 0.33
+        d2 = max(0.0, 1.0 - cld - d1)
+        total = (cld + d1 + d2) or 1.0
         return {
-            f"domain_{i}": float(gradient[i])
-            for i in range(len(gradient))
+            'domain_mixture': {
+                'CLD': cld / total,
+                'D1': d1 / total,
+                'D2': d2 / total
+            }
         }
+
+    def _to_field_pheromone_type(self, ptype: DiscoveryPheromoneType) -> "PheromoneType":
+        """Map a DiscoveryPheromoneType to the pheromone field's PheromoneType enum."""
+        try:
+            return PheromoneType(ptype.value)
+        except ValueError:
+            # Types like MECHANISM have no field equivalent; fall back to EXPLORATION
+            return PheromoneType.EXPLORATION
 
 
 def create_genuine_discovery_swarm(config: Optional[Any] = None) -> GenuineDiscoverySwarm:

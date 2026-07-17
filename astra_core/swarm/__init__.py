@@ -43,13 +43,13 @@ from .transforms import (
 )
 
 # Swarm orchestration
-from .orchestrator import (
-    SwarmOrchestrator,
-    SwarmAgent,
-    AgentType,
-    AgentState,
-    AgentConfig
-)
+from .orchestrator import SwarmAgent, AgentType, AgentState, AgentConfig
+try:
+    from .orchestrator import SwarmOrchestrator
+except ImportError:
+    # SwarmOrchestrator lives in astra_core.intelligence.orchestrator; the
+    # local swarm.orchestrator only defines the SwarmAgent base + enums.
+    SwarmOrchestrator = None
 
 # Pheromone dynamics
 from .pheromone_dynamics import (

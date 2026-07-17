@@ -676,17 +676,24 @@ class AlgorithmEvaluator:
 
         for problem in problems:
             try:
-                # Simplified evaluation - just check if algorithm type matches
-                if algorithm.algorithm_class == problem.required_class:
+                # Simplified evaluation - just check if algorithm type matches.
+                # problem.problem_class is a str, so compare the enum's value.
+                if algorithm.algorithm_class.value == problem.problem_class:
                     passed += 1
             except Exception:
                 pass
 
+        accuracy = passed / total if total > 0 else 0.0
         return AlgorithmEvaluation(
             algorithm_id=algorithm.id,
-            accuracy=passed / total if total > 0 else 0.0,
-            avg_time=0.1,
-            success_rate=passed / total if total > 0 else 0.0
+            accuracy=accuracy,
+            efficiency=0.0,
+            generalization=0.0,
+            novelty=0.0,
+            composite_fitness=accuracy,
+            test_cases_passed=passed,
+            test_cases_total=total,
+            execution_time=0.1,
         )
 
 
@@ -700,18 +707,32 @@ class PrimitiveDiscoverer:
 
     def discover_primitives(self, algorithms: List[DiscoveredAlgorithm]) -> List[ComputationalPrimitive]:
         """Discover new primitives from algorithm patterns."""
-        # Simplified implementation - extract common patterns
+        # Simplified implementation - extract the primitives used by each
+        # algorithm's node tree. DiscoveredAlgorithm exposes a single root
+        # AlgorithmNode (not a flat node list), so traverse the tree. Each
+        # AlgorithmNode carries a ComputationalPrimitive via its `primitive`
+        # field (there is no operation_type/input_types/output_type on nodes).
         primitives = []
+        seen = set()
 
         for algo in algorithms:
-            # Extract common subroutines as potential primitives
-            for node in algo.nodes:
+            stack = [algo.root]
+            while stack:
+                node = stack.pop()
+                stack.extend(node.children)
+
+                prim = node.primitive
+                if prim.id in seen:
+                    continue
+                seen.add(prim.id)
+
                 primitive = ComputationalPrimitive(
-                    name=f"primitive_{node.operation_type}",
-                    operation_type=node.operation_type,
-                    input_types=node.input_types,
-                    output_type=node.output_type,
-                    description=f"Auto-discovered from {algo.name}"
+                    id=f"discovered_{prim.name}_{time.time()}",
+                    name=f"primitive_{prim.name}",
+                    primitive_type=prim.primitive_type,
+                    arity=prim.arity,
+                    operation=prim.operation,
+                    discovered=True,
                 )
                 primitives.append(primitive)
 
@@ -730,22 +751,42 @@ class AlgorithmicDiscoveryEngine:
 
     def __init__(self):
         self.primitive_library = PrimitiveLibrary()
-        self.algorithm_generator = AlgorithmGenerator()
-        self.genetic_evolver = GeneticAlgorithmEvolver()
+        self.algorithm_generator = AlgorithmGenerator(self.primitive_library)
+        self.genetic_evolver = GeneticAlgorithmEvolver(
+            self.primitive_library, self.algorithm_generator
+        )
         self.algorithm_evaluator = AlgorithmEvaluator()
         self.primitive_discoverer = PrimitiveDiscoverer()
         self.discovered_algorithms: List[DiscoveredAlgorithm] = []
 
     def discover_algorithm(self, problem: ProblemInstance) -> DiscoveredAlgorithm:
         """Discover an algorithm for a given problem."""
-        # Generate initial algorithms
-        algorithms = self.algorithm_generator.generate_batch([problem], count=5)
+        # Map the problem's class string to an AlgorithmClass enum value.
+        try:
+            algo_class = AlgorithmClass(problem.problem_class)
+        except (ValueError, TypeError):
+            algo_class = AlgorithmClass.PREDICTION
 
-        # Evolve them
-        evolved = self.genetic_evolver.evolve_population(algorithms, generations=10)
+        # generate_batch does not exist on AlgorithmGenerator; use the real
+        # generate_random() to seed the population.
+        algorithms = [
+            self.algorithm_generator.generate_random(algo_class) for _ in range(5)
+        ]
+
+        # evolve_population does not exist; the real evolve() requires a fitness
+        # function and returns a (population, history) tuple.
+        def fitness(algo: DiscoveredAlgorithm) -> float:
+            return self.algorithm_evaluator.evaluate(algo, [problem]).accuracy
+
+        evolved, _history = self.genetic_evolver.evolve(
+            algorithms, fitness_function=fitness, generations=10
+        )
 
         # Evaluate
-        best = max(evolved, key=lambda a: self.algorithm_evaluator.evaluate(a, [problem]).accuracy)
+        best = max(
+            evolved,
+            key=lambda a: self.algorithm_evaluator.evaluate(a, [problem]).accuracy
+        )
 
         self.discovered_algorithms.append(best)
         return best
@@ -771,7 +812,9 @@ def discover_algorithm_for_data(data: Any, problem_type: str = "general") -> Dis
     engine = create_algorithmic_discovery_engine()
     problem = ProblemInstance(
         id=f"problem_{problem_type}",
-        description=f"Algorithm discovery for {problem_type}",
-        required_class=AlgorithmClass.OPTIMIZATION
+        inputs={"data": data},
+        expected_output=None,
+        problem_class=AlgorithmClass.OPTIMIZATION.value,
+        metadata={"description": f"Algorithm discovery for {problem_type}"},
     )
     return engine.discover_algorithm(problem)

@@ -44,7 +44,7 @@ try:
     from .autonomous_experimenter import AutonomousExperimentSystem
     from .meta_learning import MetaLearningSystem
     from .consciousness_simulator import ConsciousnessSimulator
-except ImportError:
+except Exception:
     STARLearnV25 = None
     CausalDiscoveryEngine = None
     TheoryConstructionSystem = None
@@ -75,7 +75,7 @@ try:
         SpectralEnergyDistributionBuilder,
         ComponentSeparation, SourceDetection, CausalInferenceFusion
     )
-except ImportError:
+except Exception:
     AstronomyCausalDiscoverySystem = None
     GasDynamicsCausalDiscovery = None
     FilamentFormationDiscovery = None

@@ -1590,7 +1590,7 @@ def pc_algorithm_discover(data: Dict[str, np.ndarray],
     # Phase 1: Skeleton discovery
     for depth in range(max_depth + 1):
         for i in range(n_vars):
-            for j in range(adjacency[i]):
+            for j in range(n_vars):
                 if i >= j:
                     continue
 
@@ -1609,3 +1609,9 @@ def pc_algorithm_discover(data: Dict[str, np.ndarray],
                         # Partial correlation
                         if len(subset) == 0:
                             corr, p_val = pearsonr(x, y)
+                            # TODO: PC phases 2-3 not implemented (partial
+                            # correlation for non-empty conditioning subsets,
+                            # edge removal using sep_sets, v-structure
+                            # orientation, and the final return value). This
+                            # helper's body is intentionally left incomplete
+                            # rather than fabricated.

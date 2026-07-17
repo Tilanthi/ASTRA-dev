@@ -378,12 +378,12 @@ class InformationCompressor:
     def compress(self, data: Any, modality: DataModality) -> InformationPoint:
         """Compress data to information point."""
         encoder = self.encoders.get(modality, ScalarEncoder())
-        features = encoder.encode(data)
+        coordinates = encoder.encode(data)
         return InformationPoint(
             id=f"point_{time.time()}",
-            features=features,
+            coordinates=coordinates,
             modality=modality,
-            timestamp=time.time()
+            original_data=data
         )
 
 
@@ -398,12 +398,12 @@ class CrossModalPredictor:
 
     def predict(self, source: InformationPoint, target_modality: DataModality) -> InformationPoint:
         """Predict in target modality from source."""
-        # Simplified implementation - just transform features
+        # Simplified implementation - just transform coordinates
         return InformationPoint(
             id=f"predicted_{source.id}",
-            features=source.features[:len(source.features)//2],  # Simple compression
+            coordinates=source.coordinates[:len(source.coordinates)//2],  # Simple compression
             modality=target_modality,
-            timestamp=time.time()
+            original_data=source
         )
 
 
@@ -425,7 +425,7 @@ class InformationManifold:
         """Find manifold region for point."""
         for region in self.regions:
             if region.center is not None:
-                dist = np.linalg.norm(point.features - region.center)
+                dist = np.linalg.norm(point.coordinates - region.center.coordinates)
                 if dist < region.radius:
                     return region
         return None
@@ -460,13 +460,18 @@ class PredictiveInformationGeometry:
         self.manifold.points = points
         # Simplified - just create a single region
         if points:
-            center = np.mean([p.features for p in points], axis=0)
-            radius = np.mean([np.linalg.norm(p.features - center) for p in points])
+            center_coords = np.mean([p.coordinates for p in points], axis=0)
+            radius = np.mean([np.linalg.norm(p.coordinates - center_coords) for p in points])
+            center_point = InformationPoint(
+                id="region_0_center",
+                coordinates=center_coords,
+                modality=points[0].modality,
+                original_data=None
+            )
             self.manifold.regions.append(ManifoldRegion(
                 id="region_0",
-                center=center,
-                radius=radius,
-                manifold_type=ManifoldType.GAUSSIAN
+                center=center_point,
+                radius=radius
             ))
 
 

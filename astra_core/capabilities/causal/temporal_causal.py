@@ -77,11 +77,15 @@ class TimeLaggedPAGEdge:
     confidence: float = 1.0
     granger_p_value: float = 1.0
     fci_p_value: float = 1.0
+    # Separate flag for feedback-loop membership. NOTE: the is_bidirectional()
+    # *method* below is computed from endpoint types; this attribute must not
+    # share that name or it shadows the method and breaks later call sites.
+    _is_bidirectional: bool = False
 
     def __str__(self):
         s_end = self.source_end.value[0]
         t_end = self.target_end.value[0]
-        return f"{self.source} {s_end}-{self.t_end}({self.lag}) {self.target}"
+        return f"{self.source} {s_end}-{t_end}({self.lag}) {self.target}"
 
     def is_bidirectional(self) -> bool:
         """Check if this is part of a feedback loop"""
@@ -395,8 +399,8 @@ class TemporalFCIDiscovery:
                         feedback_pairs.append((edge1.source, edge1.target))
 
                         # Mark as feedback loop
-                        edge1.is_bidirectional = True
-                        edge2.is_bidirectional = True
+                        edge1._is_bidirectional = True
+                        edge2._is_bidirectional = True
                         break
 
         return feedback_pairs
@@ -819,7 +823,7 @@ def _generate_temporal_summary(
     if change_points:
         summary.append(f"\nCHANGE POINTS DETECTED: {len(change_points)}")
         for cp in change_points:
-            summary.append(f"  t={cp.time_idx}: {cp.physical_interpretation}")
+            summary.append(f"  t={cp.time_index}: {cp.physical_interpretation}")
 
     return "\n".join(summary)
 

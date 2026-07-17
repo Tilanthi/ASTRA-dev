@@ -595,3 +595,120 @@ class Imager:
         y, x = np.mgrid[0:ny, 0:nx]
         y = (y - ny//2) * pixel_size
         x = (x - nx//2) * pixel_size
+
+
+# =============================================================================
+# Module-level public API re-exported by astro_physics/__init__
+# (CLEAN deconvolution, visibility modelling, self-calibration)
+# =============================================================================
+
+class VisibilityModeler:
+    """Compute model visibilities from discrete sky components via the DFT.
+
+    components: (n,3) array of (l, m, flux_Jy) with (l,m) the source direction
+    cosines (radians). u, v are baseline coordinates in wavelengths.
+        V(u,v) = sum_k S_k exp(-2*pi*i*(u*l_k + v*m_k))
+    """
+
+    def __init__(self, components):
+        self.components = np.asarray(components, float)
+
+    def predict(self, u, v):
+        u = np.asarray(u, float)
+        v = np.asarray(v, float)
+        V = np.zeros(u.shape, dtype=complex)
+        for l, m, S in self.components:
+            V += S * np.exp(-2j * np.pi * (u * l + v * m))
+        return V
+
+
+class CLEANDeconvolver:
+    """Hogbom CLEAN deconvolution.
+
+    Iteratively subtracts a (gain-scaled) PSF at the brightest residual peak to
+    build a clean-component model, then restores (convolve with a Gaussian beam
+    and add the residual) to a deconvolved image.
+
+    Args:
+        dirty_image: 2D dirty map (Jy/beam)
+        psf: 2D PSF/synthesized beam, same shape as dirty_image, centred
+        gain: CLEAN loop gain (fraction of peak subtracted per iteration)
+        threshold: stop when residual peak drops below this (Jy/beam)
+    """
+
+    def __init__(self, dirty_image, psf, gain: float = 0.1, threshold=None):
+        self.dirty = np.asarray(dirty_image, float)
+        self.psf = np.asarray(psf, float)
+        self.gain = gain
+        self.threshold = threshold
+        self.clean_model = np.zeros_like(self.dirty)
+        self.residual = self.dirty.copy()
+
+    def run(self, n_iter: int = 1000):
+        dirty = self.dirty.copy()
+        psf = self.psf
+        py, px = psf.shape
+        model = np.zeros_like(dirty)
+        for _ in range(n_iter):
+            iy, ix = np.unravel_index(np.argmax(dirty), dirty.shape)
+            peak = dirty[iy, ix]
+            if peak <= 0:
+                break
+            if self.threshold is not None and peak < self.threshold:
+                break
+            model[iy, ix] += self.gain * peak
+            shifted = np.roll(psf, (iy - py // 2, ix - px // 2), axis=(0, 1))
+            dirty -= self.gain * peak * shifted
+            dirty[dirty < 0] = np.maximum(dirty[dirty < 0], 0)  # clip tiny neg lobes
+        self.clean_model = model
+        self.residual = dirty
+        return model, dirty
+
+    def restore(self, beam_fwhm_px: float = 3.0):
+        """Convolve clean components with a restoring Gaussian + add residual."""
+        from scipy.ndimage import gaussian_filter
+        restored = gaussian_filter(self.clean_model, beam_fwhm_px / 2.354820045)
+        return restored + self.residual
+
+
+class SelfCalibrator:
+    """Iterative complex antenna-gain self-calibration.
+
+    Solves  V_obs_ij ~ g_i * conj(g_j) * V_model_ij  for per-antenna complex
+    gains using the Cornwell-Wilkinson iterative update:
+        g_i = sum_j V_obs_ij g_j conj(V_model_ij) / sum_j |g_j|^2 |V_model_ij|^2
+    """
+
+    def __init__(self, v_obs, v_model, ant1, ant2, n_antennas: int):
+        self.v_obs = np.asarray(v_obs, complex)
+        self.v_model = np.asarray(v_model, complex)
+        self.a1 = np.asarray(ant1)
+        self.a2 = np.asarray(ant2)
+        self.n = n_antennas
+
+    def solve(self, n_iter: int = 30, tol: float = 1e-6):
+        g = np.ones(self.n, complex)
+        for _ in range(n_iter):
+            num = np.zeros(self.n, complex)
+            den = np.zeros(self.n, complex)
+            for k in range(len(self.v_obs)):
+                i, j = int(self.a1[k]), int(self.a2[k])
+                vo, vm = self.v_obs[k], self.v_model[k]
+                if abs(vm) < 1e-12:
+                    continue
+                num[i] += vo * g[j] * np.conj(vm)
+                den[i] += (abs(g[j]) ** 2) * (abs(vm) ** 2)
+                num[j] += np.conj(vo) * g[i] * vm
+                den[j] += (abs(g[i]) ** 2) * (abs(vm) ** 2)
+            update = np.where(den != 0, num / np.where(den != 0, den, 1.0), g)
+            # fix reference antenna 0 to remove the global phase/amplitude degeneracy
+            update[0] = 1.0 + 0.0j
+            dg = np.max(np.abs(update - g))
+            g = update
+            if dg < tol:
+                break
+        return g
+
+    def predict_with_gains(self, g):
+        """Visibilities implied by solved gains + model."""
+        return g[self.a1] * np.conj(g[self.a2]) * self.v_model

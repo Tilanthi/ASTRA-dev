@@ -193,9 +193,9 @@ class AutonomyOrchestrator:
         if self.config.enable_v60:
             try:
                 from ..reasoning.v60_cognitive_agent import (
-                    CognitiveAgent, CognitiveMode, AgentState
+                    V60CognitiveAgent, CognitiveMode, AgentState
                 )
-                self.v60_agent = CognitiveAgent()
+                self.v60_agent = V60CognitiveAgent()
                 logger.info("[Autonomy] ✓ V60 Cognitive Agent initialized")
             except ImportError as e:
                 logger.warning(f"[Autonomy] V60 not available: {e}")

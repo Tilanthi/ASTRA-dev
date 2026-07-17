@@ -40,6 +40,8 @@ class KnowledgeSource(Enum):
     WIKIPEDIA = "wikipedia"
     ARXIV = "arxiv"
     WOLFRAM = "wolfram"
+    SEMANTIC_SCHOLAR = "semantic_scholar"
+    PUBMED = "pubmed"
 
 
 class ExternalKnowledge:

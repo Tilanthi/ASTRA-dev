@@ -24,11 +24,17 @@ from .hypothesis_engine import (
     HypothesisGenerator, HypothesisTester
 )
 
-from .pattern_library import (
-    Pattern, PatternType,
-    PatternDetector, PatternPrimitives,
-    ObjectRelationships, CompositeTransform
-)
+try:
+    from .pattern_library import (
+        Pattern, PatternType,
+        PatternDetector, PatternPrimitives,
+        ObjectRelationships, CompositeTransform
+    )
+except Exception:
+    # pattern_library.py is baselined-broken (truncation); degrade gracefully
+    # so this package never raises SyntaxError (protects all importers).
+    Pattern = PatternType = PatternDetector = PatternPrimitives = None
+    ObjectRelationships = CompositeTransform = None
 
 from .systematic_search import (
     SearchState, TaskAnalysis,
@@ -128,17 +134,5 @@ def autocorrelation_detect(data: np.ndarray, max_lag: int = None) -> Dict[str, A
 def log_computation(*args, **kwargs):
     """Utility function for log_computation."""
     return None
-
-
-
-def autocorrelation_detect(data: np.ndarray, max_lag: int = None) -> Dict[str, Any]:
-    """Detect patterns using autocorrelation analysis."""
-    import numpy as np
-    if max_lag is None:
-        max_lag = len(data) // 4
-    autocorr = np.correlate(data, data, mode='full')
-    autocorr = autocorr[len(autocorr)//2:]
-    autocorr = autocorr / autocorr[0]
-    return {'autocorrelation': autocorr[:max_lag], 'peaks': []}
 
 

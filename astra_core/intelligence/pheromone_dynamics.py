@@ -697,9 +697,15 @@ class DigitalPheromoneField:
 # EXPORTS
 # =============================================================================
 
+def create_pheromone_field(config: "PheromoneFieldConfig" = None) -> DigitalPheromoneField:
+    """Factory creating a DigitalPheromoneField (consumer-expected name)."""
+    return DigitalPheromoneField(config)
+
+
 __all__ = [
     'DigitalPheromoneField',
     'PheromoneType',
     'PheromoneDeposit',
-    'PheromoneFieldConfig'
+    'PheromoneFieldConfig',
+    'create_pheromone_field'
 ]

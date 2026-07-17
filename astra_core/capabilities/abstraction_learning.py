@@ -328,6 +328,32 @@ class SymbolicRegressor:
         """Evolve population through selection, crossover, mutation"""
         pass  # Evolution implementation
 
+    def _fitness(self, tree: ExpressionTree, X: np.ndarray, y: np.ndarray) -> float:
+        """
+        Compute fitness of an expression tree against (X, y) as the coefficient
+        of determination (R^2). A real, deterministic computation: evaluates the
+        tree on every row of X and compares predictions to y. Returns -inf on
+        evaluation failure or non-finite predictions, and 0.0 when y has no
+        variance (degenerate target).
+        """
+        try:
+            n_samples = X.shape[0]
+            var_names = getattr(self, 'var_names',
+                                [f'x{i}' for i in range(X.shape[1])])
+            predictions = np.array([
+                tree.evaluate({var_names[j]: X[i, j] for j in range(X.shape[1])})
+                for i in range(n_samples)
+            ])
+            if not np.all(np.isfinite(predictions)):
+                return -float('inf')
+            ss_res = float(np.sum((y - predictions) ** 2))
+            ss_tot = float(np.sum((y - np.mean(y)) ** 2))
+            if ss_tot < 1e-12:
+                return 0.0
+            return 1.0 - ss_res / ss_tot
+        except Exception:
+            return -float('inf')
+
 
 # =============================================================================
 # MISSING CLASSES FOR COMPATIBILITY
@@ -346,11 +372,18 @@ class AbstractionLearner:
         expression, fitness = self.regressor.fit(data[:, :-1], data[:, -1])
 
         if expression:
+            symbolic_expr = SymbolicExpression(
+                expression_id=f"expr_{len(self.templates)}",
+                formula=expression,
+                function_family=FunctionFamily.COMPOSITE
+            )
             template = SymbolicTemplate(
                 template_id=f"template_{len(self.templates)}",
-                expression=SymbolicExpression(expression),
-                abstraction_type=AbstractionType.FUNCTIONAL,
-                function_family=FunctionFamily.ALGEBRAIC
+                name=f"Learned template {len(self.templates)}",
+                description=f"Discovered expression: {expression}",
+                abstraction_type=AbstractionType.TEMPLATE,
+                expression=symbolic_expr,
+                validation_score=float(fitness)
             )
             self.templates.append(template)
             return [template]
@@ -382,14 +415,20 @@ class TemplateComposer:
         composed_id = f"composed_{template_ids}"
 
         # Simplified composition - combine expressions
-        patterns = ", ".join(t.expression.pattern for t in templates)
-        composed_expr = SymbolicExpression(f"compose({patterns})")
+        formulas = ", ".join(t.expression.formula for t in templates)
+        composed_expr = SymbolicExpression(
+            expression_id=composed_id,
+            formula=f"compose({formulas})",
+            function_family=FunctionFamily.COMPOSITE
+        )
 
         composed_template = SymbolicTemplate(
             template_id=composed_id,
+            name=f"Composed of {len(templates)} templates",
+            description=f"Composition ({composition_type}) of {template_ids}",
+            abstraction_type=AbstractionType.COMPOSITION,
             expression=composed_expr,
-            abstraction_type=templates[0].abstraction_type,
-            function_family=templates[0].function_family
+            parent_templates=[t.template_id for t in templates]
         )
 
         self.composed_templates[composed_id] = composed_template

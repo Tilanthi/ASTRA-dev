@@ -20,109 +20,51 @@ Date: 2025-12-15
 Version: 1.1
 """
 
-from .archive_query import (
-    VOQueryEngine,
-    TAP_Client,
-    AstroqueryInterface,
-    CrossMatchEngine,
-    ArchiveDataManager,
-    # Radio archives
-    ALMAArchive,
-    NRAOArchive,
-    LOFARArchive,
-    MWAArchive,
-    ESOArchive,
-    RadioArchiveManager,
-)
+# Best-effort submodule loading: each next_gen module is imported individually
+# and its public names are exposed (or set to None if the submodule or a name
+# is unavailable). Several next_gen modules are still incomplete (missing
+# classes); this guard keeps the package importable so the complete modules
+# (astrochemistry, alert_processing, archive_query, ...) remain usable.
+import importlib as _importlib
 
-from .transient_science import (
-    TransientClassifier,
-    LightCurveFitter,
-    SupernovaModels,
-    GRBAfterglowModel,
-    KilonovaModel,
-    TransientAlertBroker
-)
+_NEXT_GEN_NAMES = {
+    'archive_query': ['VOQueryEngine', 'TAP_Client', 'AstroqueryInterface',
+                      'CrossMatchEngine', 'ArchiveDataManager',
+                      'ALMAArchive', 'NRAOArchive', 'LOFARArchive', 'MWAArchive',
+                      'ESOArchive', 'RadioArchiveManager'],
+    'transient_science': ['TransientClassifier', 'LightCurveFitter', 'SupernovaModels',
+                          'GRBAfterglowModel', 'KilonovaModel', 'TransientAlertBroker'],
+    'astrochemistry': ['ChemicalNetwork', 'UMISTNetwork', 'KIDANetwork',
+                       'GrainSurfaceChemistry', 'IsotopologueAnalyzer',
+                       'COMFormationModel', 'DeuteriumFractionation'],
+    'disk_physics': ['ProtoplanetaryDisk', 'DiskEvolutionModel', 'GapOpeningCriteria',
+                     'DustGrainEvolution', 'DiskDispersalModel', 'PlanetDiskInteraction'],
+    'galactic_dynamics': ['GalacticPotential', 'OrbitIntegrator', 'StellarStreamFinder',
+                          'ChemicalEvolutionModel', 'ActionAngleCalculator', 'ClusterDissolutionModel'],
+    'ml_survey': ['AnomalyDetector', 'PhotometricRedshiftEstimator', 'SourceClassifier',
+                  'SpectralAutoencoder', 'ActiveLearningSelector'],
+    'atmospheric_retrieval': ['AtmosphericRetrieval', 'TransmissionSpectrum', 'EmissionSpectrum',
+                              'CloudModel', 'ChemicalEquilibrium'],
+    'cosmological_context': ['HaloMassFunction', 'GalaxyHaloConnection', 'EnvironmentalMetrics',
+                             'CGMModel', 'ReionizationModel'],
+    'alert_processing': ['AlertStreamProcessor', 'ZTFAlertHandler', 'RubinAlertHandler',
+                         'AlertFilterPipeline', 'FollowUpPrioritizer'],
+    'radio_astronomy': ['RadioFacility', 'ObservingBand', 'RadioObservation', 'Visibility',
+                        'RadioSource', 'FacilitySpecs', 'RadioContinuumAnalysis', 'RadioSpectralLine',
+                        'RadioInterferometry', 'LowFrequencyRadio', 'RadioPolarization',
+                        'RadioSourcePhysics', 'RadioArchiveInterface',
+                        'jy_to_kelvin', 'kelvin_to_jy', 'freq_to_wavelength', 'wavelength_to_freq'],
+}
 
-from .astrochemistry import (
-    ChemicalNetwork,
-    UMISTNetwork,
-    KIDANetwork,
-    GrainSurfaceChemistry,
-    IsotopologueAnalyzer,
-    COMFormationModel,
-    DeuteriumFractionation
-)
+for _modname, _names in _NEXT_GEN_NAMES.items():
+    try:
+        _mod = _importlib.import_module('.' + _modname, __name__)
+    except Exception:
+        _mod = None
+    for _n in _names:
+        globals()[_n] = getattr(_mod, _n, None) if _mod is not None else None
 
-from .disk_physics import (
-    ProtoplanetaryDisk,
-    DiskEvolutionModel,
-    GapOpeningCriteria,
-    DustGrainEvolution,
-    DiskDispersalModel,
-    PlanetDiskInteraction
-)
-
-from .galactic_dynamics import (
-    GalacticPotential,
-    OrbitIntegrator,
-    StellarStreamFinder,
-    ChemicalEvolutionModel,
-    ActionAngleCalculator,
-    ClusterDissolutionModel
-)
-
-from .ml_survey import (
-    AnomalyDetector,
-    PhotometricRedshiftEstimator,
-    SourceClassifier,
-    SpectralAutoencoder,
-    ActiveLearningSelector
-)
-
-from .atmospheric_retrieval import (
-    AtmosphericRetrieval,
-    TransmissionSpectrum,
-    EmissionSpectrum,
-    CloudModel,
-    ChemicalEquilibrium
-)
-
-from .cosmological_context import (
-    HaloMassFunction,
-    GalaxyHaloConnection,
-    EnvironmentalMetrics,
-    CGMModel,
-    ReionizationModel
-)
-
-from .alert_processing import (
-    AlertStreamProcessor,
-    ZTFAlertHandler,
-    RubinAlertHandler,
-    AlertFilterPipeline,
-    FollowUpPrioritizer
-)
-
-from .radio_astronomy import (
-    RadioFacility,
-    ObservingBand,
-    RadioObservation,
-    Visibility,
-    RadioSource,
-    FacilitySpecs,
-    RadioContinuumAnalysis,
-    RadioSpectralLine,
-    RadioInterferometry,
-    LowFrequencyRadio,
-    RadioPolarization,
-    RadioSourcePhysics,
-    RadioArchiveInterface,
-    jy_to_kelvin,
-    kelvin_to_jy,
-    freq_to_wavelength,
-    wavelength_to_freq,
-)
+del _importlib, _modname, _names, _mod
 
 __all__ = [
     # Archive Query

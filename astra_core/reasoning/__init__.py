@@ -162,14 +162,12 @@ try:
     from .cross_domain_meta_learner import (
         CrossDomainMetaLearner,
         DomainSimilarity,
-        DomainFeatures,
-        adapt_to_new_domain
+        DomainFeatures
     )
-except ImportError:
+except Exception:
     CrossDomainMetaLearner = None
     DomainSimilarity = None
     DomainFeatures = None
-    adapt_to_new_domain = None
 
 from .abstraction_learning import (
     LearnedTemplate,
@@ -319,11 +317,9 @@ from .unified_world_model import (
     AbstractionTemplate,
     Evidence,
     EvidenceSource,
-    BeliefState as WorldBeliefState
+    BeliefState as WorldBeliefState,
+    get_world_model
 )
-
-# get_world_model not available, set to None
-get_world_model = None
 
 # V41: Integration Bus
 from .integration_bus import (
@@ -485,7 +481,6 @@ from .multi_agent_deliberation import (
 try:
     from .continuous_learning import (
         ContinuousLearner,
-        get_continuous_learner,
         ExperienceType,
         LearningSignal,
         ConsolidationStrategy,
@@ -500,7 +495,6 @@ try:
     )
 except ImportError:
     ContinuousLearner = None
-    get_continuous_learner = None
     ExperienceType = None
     LearningSignal = None
     ConsolidationStrategy = None
@@ -793,7 +787,6 @@ __all__ = [
 
     # V41: Continuous Learning
     'ContinuousLearner',
-    'get_continuous_learner',
     'ExperienceType',
     'LearningSignal',
     'ConsolidationStrategy',

@@ -108,7 +108,9 @@ try:
     from ..astro_physics.radiative_transfer import StatisticalEquilibriumSolver
     from ..astro_physics.inference import BayesianSwarmInference
     ASTRO_CAPABILITIES_AVAILABLE = True
-except ImportError:
+except Exception:
+    # Catch Exception (not just ImportError): the astro_physics subtree contains
+    # baselined truncations that raise SyntaxError, which is not an ImportError.
     logging.warning("Astro physics capabilities not available")
     ASTRO_CAPABILITIES_AVAILABLE = False
 

@@ -119,7 +119,7 @@ class UnifiedCacheConfig:
     eviction_policy: CacheEvictionPolicy = CacheEvictionPolicy.HYBRID_EVICT
 
     # Persistent storage
-    disk_cache_dir: str = ".unified_astronomical_cache"
+    disk_cache_dir: str = str(Path.home() / ".astra_persistent" / "unified_astronomical_cache")
     enable_persistent_cache: bool = True
     cache_persistence_interval: int = 300  # Save to disk every 5 minutes
 

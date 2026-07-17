@@ -287,7 +287,7 @@ class LLMInferenceEngine:
                 signal.alarm(0)  # Cancel alarm
                 return LLMResponse(
                     content="",
-                    error=f"API call timed out after {timeout}s",
+                    metadata={"error": f"API call timed out after {timeout}s"},
                     confidence=0.0
                 )
 
@@ -295,7 +295,7 @@ class LLMInferenceEngine:
             signal.alarm(0)  # Ensure alarm is cancelled
             return LLMResponse(
                 content="",
-                error=f"API call failed: {str(e)}",
+                metadata={"error": f"API call failed: {str(e)}"},
                 confidence=0.0
             )
 
@@ -352,7 +352,7 @@ class LLMInferenceEngine:
                 signal.alarm(0)  # Cancel alarm
                 return LLMResponse(
                     content="",
-                    error=f"API call timed out after {timeout}s",
+                    metadata={"error": f"API call timed out after {timeout}s"},
                     confidence=0.0
                 )
 
@@ -360,7 +360,7 @@ class LLMInferenceEngine:
             signal.alarm(0)  # Ensure alarm is cancelled
             return LLMResponse(
                 content="",
-                error=f"API call failed: {str(e)}",
+                metadata={"error": f"API call failed: {str(e)}"},
                 confidence=0.0
             )
 
@@ -644,6 +644,33 @@ Acknowledge uncertainty where appropriate."""
         elif request.reasoning_mode == ReasoningMode.SOCRATIC:
             return PromptTemplate.SOCRATIC.format(problem=request.prompt)
 
+    def _simulate_response(self, prompt: str, request: LLMRequest) -> LLMResponse:
+        """
+        Honest fallback used when no LLM client / API key is available.
+        Does NOT fabricate content: returns an empty response carrying an
+        explicit error note in metadata so callers can detect the absence of
+        a real model answer.
+        """
+        model_used = ""
+        if hasattr(request, "model") and request.model is not None:
+            model_used = getattr(request.model, "value", str(request.model))
+        return LLMResponse(
+            content="",
+            model_used=model_used,
+            confidence=0.0,
+            metadata={"error": "no API key / simulation unavailable"}
+        )
+
+    def _extract_steps(self, content: str) -> List[str]:
+        """
+        Extract reasoning steps from model output text.
+        Honest heuristic: split into non-empty lines (the structure LLMs use
+        for step-by-step answers). Returns [] when there is no content.
+        """
+        if not content:
+            return []
+        return [line.strip() for line in content.split("\n") if line.strip()]
+
 
 # Alias for compatibility with __init__.py
 LLMInference = LLMInferenceEngine
@@ -695,10 +722,9 @@ class AnthropicBackend(LLMBackend):
         """Generate response using Anthropic API"""
         # Placeholder - actual implementation would call Anthropic API
         return LLMResponse(
-            request_id="mock",
             content=f"Mock Anthropic response to: {prompt[:50]}...",
-            model=config.model,
-            finish_reason="stop"
+            model_used=config.model,
+            metadata={"finish_reason": "stop", "request_id": "mock"}
         )
 
 
@@ -712,10 +738,9 @@ class OpenAIBackend(LLMBackend):
         """Generate response using OpenAI API"""
         # Placeholder - actual implementation would call OpenAI API
         return LLMResponse(
-            request_id="mock",
             content=f"Mock OpenAI response to: {prompt[:50]}...",
-            model=config.model,
-            finish_reason="stop"
+            model_used=config.model,
+            metadata={"finish_reason": "stop", "request_id": "mock"}
         )
 
 
@@ -725,10 +750,9 @@ class MockBackend(LLMBackend):
     def generate(self, prompt: str, config: LLMConfig) -> LLMResponse:
         """Generate mock response"""
         return LLMResponse(
-            request_id="mock",
             content=f"Mock response to: {prompt[:50]}...",
-            model=config.model,
-            finish_reason="stop"
+            model_used=config.model,
+            metadata={"finish_reason": "stop", "request_id": "mock"}
         )
 
 

@@ -482,7 +482,7 @@ class ToolIntegration:
             enable_python: Enable Python executor
         """
         self.wikipedia = WikipediaAPI() if enable_wikipedia else None
-        self.arxiv = ArxivAPI() if enable_arxiv else None
+        self.arxiv = ArXivAPI() if enable_arxiv else None
         self.math = MathTool() if enable_math else None
         self.python = PythonExecutor() if enable_python else None
 

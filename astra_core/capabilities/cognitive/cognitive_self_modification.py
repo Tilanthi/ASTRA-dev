@@ -676,8 +676,12 @@ class SafeModificationApplier:
 
     def _sandbox_test(self, proposal: ModificationProposal, state: Dict[str, Any]) -> bool:
         """Test modification in sandbox."""
-        # Simplified sandbox test
-        return proposal.safety_level != SafetyLevel.HIGH or proposal.estimated_improvement > 0.1
+        # Simplified sandbox test. SafetyLevel has no HIGH member (real levels
+        # are SAFE/MODERATE/RISKY/CRITICAL); CRITICAL is the most restrictive.
+        # expected_improvement is a Dict[PerformanceMetric, float], so compare
+        # the best predicted improvement against the threshold.
+        return (proposal.safety_level != SafetyLevel.CRITICAL or
+                any(v > 0.1 for v in proposal.expected_improvement.values()))
 
 
 class CognitiveSelfModificationSystem:
@@ -692,30 +696,43 @@ class CognitiveSelfModificationSystem:
 
     def __init__(self):
         self.performance_monitor = PerformanceMonitor()
-        self.bottleneck_detector = BottleneckDetector()
+        self.bottleneck_detector = BottleneckDetector(self.performance_monitor)
         self.strategy_evaluator = StrategyEvaluator()
-        self.modification_engine = ModificationEngine()
+        self.modification_engine = ModificationEngine(
+            self.bottleneck_detector, self.strategy_evaluator
+        )
         self.safe_applier = SafeModificationApplier()
         self.performance_history: List[PerformanceSnapshot] = []
         self.applied_modifications: List[ModificationProposal] = []
 
     def monitor_performance(self, task_data: Dict[str, Any]) -> PerformanceSnapshot:
         """Monitor current performance."""
-        snapshot = self.performance_monitor.monitor(task_data)
+        # PerformanceMonitor has no generic monitor() method; record() needs an
+        # explicit (metric, value) pair that generic task_data does not provide.
+        # Capture the current snapshot instead.
+        snapshot = self.performance_monitor.get_snapshot()
         self.performance_history.append(snapshot)
         return snapshot
 
-    def detect_bottlenecks(self, snapshot: PerformanceSnapshot) -> BottleneckAnalysis:
+    def detect_bottlenecks(self, snapshot: PerformanceSnapshot) -> List[BottleneckAnalysis]:
         """Detect performance bottlenecks."""
-        return self.bottleneck_detector.analyze(snapshot)
+        # BottleneckDetector.analyze() takes no args; it reads from the monitor.
+        return self.bottleneck_detector.analyze()
 
     def evaluate_strategies(self, bottlenecks: BottleneckAnalysis) -> List[Strategy]:
         """Evaluate alternative strategies."""
-        return self.strategy_evaluator.evaluate_alternatives(bottlenecks)
+        # StrategyEvaluator has no evaluate_alternatives() method and no real
+        # API maps a bottleneck list to candidate strategies. Its real methods
+        # (evaluate/select_best/compare_strategies) operate on registered
+        # strategies and a context dict. Return empty as an honest fallback.
+        return []
 
-    def propose_modifications(self, analysis: BottleneckAnalysis) -> List[ModificationProposal]:
+    def propose_modifications(self, analysis) -> List[ModificationProposal]:
         """Propose modifications based on analysis."""
-        return self.modification_engine.generate_proposals(analysis)
+        # ModificationEngine.propose_modifications() expects a list of
+        # bottlenecks; normalize a single analysis object into a list.
+        bottlenecks = analysis if isinstance(analysis, list) else [analysis]
+        return self.modification_engine.propose_modifications(bottlenecks)
 
     def apply_modification(self, proposal: ModificationProposal, current_state: Dict[str, Any]) -> Tuple[bool, Dict[str, Any]]:
         """Apply modification with safety checks."""
@@ -736,7 +753,7 @@ def create_performance_monitor() -> PerformanceMonitor:
 
 def create_bottleneck_detector() -> BottleneckDetector:
     """Create a bottleneck detector."""
-    return BottleneckDetector()
+    return BottleneckDetector(PerformanceMonitor())
 
 def create_strategy_evaluator() -> StrategyEvaluator:
     """Create a strategy evaluator."""
@@ -744,7 +761,9 @@ def create_strategy_evaluator() -> StrategyEvaluator:
 
 def create_modification_engine() -> ModificationEngine:
     """Create a modification engine."""
-    return ModificationEngine()
+    return ModificationEngine(
+        BottleneckDetector(PerformanceMonitor()), StrategyEvaluator()
+    )
 
 def create_safe_applier() -> SafeModificationApplier:
     """Create a safe modification applier."""
@@ -752,7 +771,13 @@ def create_safe_applier() -> SafeModificationApplier:
 
 def create_strategy(name: str, description: str = "") -> Strategy:
     """Create a strategy."""
-    return Strategy(name=name, description=description)
+    return Strategy(
+        id=f"strategy_{name}",
+        name=name,
+        description=description,
+        applicability={},
+        parameters={},
+    )
 
 # Alias for V60 naming
 V60Strategy = Strategy

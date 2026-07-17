@@ -18,6 +18,7 @@ from enum import Enum
 from abc import ABC, abstractmethod
 import numpy as np
 from collections import defaultdict
+import math
 import time
 import itertools
 
@@ -570,7 +571,8 @@ class CausalDiscoveryEngine:
         n = len(x)
         z = 0.5 * np.log((1 + corr) / (1 - corr + 1e-10))
         se = 1 / np.sqrt(n - 3)
-        p_value = 2 * (1 - 0.5 * (1 + np.math.erf(abs(z) / (se * np.sqrt(2)))))
+        # np.math was removed in numpy 2.x; use the stdlib math.erf instead.
+        p_value = 2 * (1 - 0.5 * (1 + math.erf(abs(z) / (se * np.sqrt(2)))))
 
         return p_value
 

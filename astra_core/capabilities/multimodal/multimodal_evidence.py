@@ -585,33 +585,19 @@ class CrossModalAttention:
         """
         weights = {}
 
-        # ✅ FIX: Lazy load model on first use with timeout protection
-        if not self.nlp_available or not self.embedder:
-            self._load_model_with_timeout(timeout_seconds=60)
-
-        if not self.nlp_available or not self.embedder:
-            # Fallback: random weights
-            for ev in evidence_items:
-                weights[ev.evidence_id] = 1.0 / len(evidence_items)
-            return weights
-
-        query_embedding = self.embedder.encode(query)
-
+        # CrossModalAttention does not own an embedder or model loader (those live
+        # on MultiModalEvidenceFusion), so use heuristic weighting here rather than
+        # embedding similarity.
         for ev in evidence_items:
             if ev.evidence_type == EvidenceType.TEXTUAL:
-                ev_embedding = self.embedder.encode(ev.content)
-                similarity = np.dot(query_embedding, ev_embedding) / (
-                    np.linalg.norm(query_embedding) * np.linalg.norm(ev_embedding)
-                )
-                weights[ev.evidence_id] = similarity
-
+                # No embedder available on this class; assign neutral weight
+                weights[ev.evidence_id] = 0.5
             elif ev.evidence_type == EvidenceType.NUMERICAL:
                 # Check if query mentions variables
                 if ev.content.get('variable1', '') in query or ev.content.get('variable2', '') in query:
                     weights[ev.evidence_id] = 0.8
                 else:
                     weights[ev.evidence_id] = 0.2
-
             else:
                 # Default weight for other types
                 weights[ev.evidence_id] = 0.5
@@ -660,8 +646,8 @@ def evaluate_hypothesis_with_multimodal_evidence(
     if numerical_data:
         for var1, var2, stats in numerical_data.get('correlations', []):
             ev_id = fusion.add_numerical_evidence(
-                var1=var1,
-                var2=var2,
+                variable1=var1,
+                variable2=var2,
                 correlation=stats.get('correlation', 0),
                 p_value=stats.get('p_value', 1),
                 sample_size=stats.get('n', 0)

@@ -105,7 +105,7 @@ class SPHKernel:
         q = r / h
         w = np.zeros_like(q)
 
-        sigma = 10.0 / (7.0 * np.pi * h**3)
+        sigma = 8.0 / (np.pi * h**3)   # 3D normalization: int W d^3r = 1
 
         mask1 = q <= 0.5
         mask2 = (q > 0.5) & (q <= 1.0)
@@ -136,7 +136,7 @@ class SPHKernel:
         q = r / h
         dw = np.zeros_like(q)
 
-        sigma = 10.0 / (7.0 * np.pi * h**4)
+        sigma = 8.0 / (np.pi * h**4)   # 3D normalization consistent with cubic_spline
 
         mask1 = q <= 0.5
         mask2 = (q > 0.5) & (q <= 1.0)
@@ -445,3 +445,132 @@ class FilamentFinder:
 
 
 # Custom optimization variant 46
+
+
+# =============================================================================
+# Public API: names re-exported by astro_physics/__init__
+# =============================================================================
+
+class GravitySolver:
+    """Softened-Newton N-body gravity (Plummer softening).
+
+    a_i = G * sum_{j != i} m_j (r_j - r_i) / (|r_j - r_i|^2 + eps^2)^(3/2)
+    """
+
+    def __init__(self, G: float = 1.0, softening: float = 0.1):
+        self.G = G
+        self.eps = softening
+
+    def accelerations(self, positions, masses):
+        positions = np.asarray(positions, float)
+        masses = np.asarray(masses, float)
+        n = len(masses)
+        acc = np.zeros_like(positions)
+        for i in range(n):
+            dr = positions - positions[i]                       # (n, d)
+            r2 = (dr ** 2).sum(axis=1) + self.eps ** 2
+            inv_r3 = r2 ** -1.5
+            inv_r3[i] = 0.0
+            acc[i] = self.G * np.sum(masses[:, None] * dr * inv_r3[:, None], axis=0)
+        return acc
+
+    def leapfrog_step(self, positions, velocities, masses, dt):
+        """One leapfrog (Kick-Drift-Kick) gravity step."""
+        a = self.accelerations(positions, masses)
+        v_half = velocities + 0.5 * dt * a
+        pos_new = positions + dt * v_half
+        a_new = self.accelerations(pos_new, masses)
+        v_new = v_half + 0.5 * dt * a_new
+        return pos_new, v_new
+
+
+class TurbulentDriver:
+    """Injects a stochastic turbulent velocity field (Gaussian random kicks).
+
+    A minimal driver: each step, add decorrelated Gaussian perturbations of
+    amplitude `driving_scale`, optionally projected to be approximately
+    divergence-free on large scales.
+    """
+
+    def __init__(self, driving_scale: float = 0.5, solenoidal: bool = True, seed=None):
+        self.A = driving_scale
+        self.solenoidal = solenoidal
+        self.rng = np.random.default_rng(seed)
+
+    def kicks(self, n_particles: int, ndim: int = 3) -> np.ndarray:
+        v = self.rng.standard_normal((n_particles, ndim))
+        if self.solenoidal and ndim >= 2:
+            # crude large-scale solenoidal projection: remove the mean (bulk) flow
+            v -= v.mean(axis=0, keepdims=True)
+        return self.A * v
+
+    def apply(self, velocities, n_particles=None, ndim=3):
+        velocities = np.asarray(velocities, float)
+        if n_particles is None:
+            n_particles = velocities.shape[0] if velocities.ndim > 1 else len(velocities)
+        kicks = self.kicks(n_particles, ndim)
+        return velocities + kicks
+
+
+class MolecularCloudFormation:
+    """Aggregates gas above a density threshold into molecular clouds via a
+    simple friends-of-friends (FOF) grouping on a linking length."""
+
+    def __init__(self, density_threshold: float = 100.0, linking_length: float = 0.2):
+        self.threshold = density_threshold
+        self.ll = linking_length
+
+    def identify_clouds(self, positions, densities) -> List:
+        positions = np.asarray(positions, float)
+        densities = np.asarray(densities, float)
+        members = np.where(densities >= self.threshold)[0]
+        if len(members) == 0:
+            return []
+        # FOF on the dense subset
+        sub = positions[members]
+        visited = np.zeros(len(members), dtype=bool)
+        clouds = []
+        for i in range(len(members)):
+            if visited[i]:
+                continue
+            stack = [i]
+            group = []
+            while stack:
+                k = stack.pop()
+                if visited[k]:
+                    continue
+                visited[k] = True
+                group.append(members[k])
+                d = np.linalg.norm(sub - sub[k], axis=1)
+                for j in np.where((d <= self.ll) & (~visited))[0]:
+                    stack.append(int(j))
+            clouds.append(group)
+        return clouds
+
+
+def get_h2_fraction(column_density_cm2: float, metallicity_solar: float = 1.0,
+                    alpha: float = 1.0) -> float:
+    """Approximate molecular-hydrogen mass fraction f_H2 in [0, 1].
+
+    Simplified Draine & Bertoldi (1996) style self-shielding: the
+    atomic-to-molecular transition sits at a metallicity-dependent critical
+    column N_c ~ 1.5e21 (Z/Z_sun)^-1 cm^-2, and
+        f_H2 = (N / N_c)^alpha / (1 + (N / N_c)^alpha).
+    Bounded in [0, 1] and monotonic in column; a documented approximation,
+    not a fit to a specific survey.
+    """
+    N_c = 1.5e21 / max(metallicity_solar, 1e-3)
+    x = (column_density_cm2 / N_c) ** alpha
+    return float(x / (1.0 + x))
+
+
+def create_sph_simulation(particles, kernel_type=KernelType.CUBIC_SPLINE) -> "SPHSimulation":
+    """Factory for an SPHSimulation."""
+    return SPHSimulation(particles, kernel_type=kernel_type)
+
+
+def find_filaments_in_data(data, threshold=None, min_length: float = 0.5,
+                           min_width: float = 0.05):
+    """Run FilamentFinder on a 2D density/Intensity map; returns List[Filament]."""
+    return FilamentFinder(min_length=min_length, min_width=min_width).find_filaments(
+        data, threshold=threshold)

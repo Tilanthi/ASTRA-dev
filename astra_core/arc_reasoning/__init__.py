@@ -22,7 +22,7 @@ try:
         NextGenARC_Solver as NextGenARC,
     )
     _next_gen_available = True
-except ImportError:
+except Exception:
     _next_gen_available = False
     SemanticConcept = None
     SemanticAnalyzer = None
@@ -44,7 +44,7 @@ except ImportError:
 try:
     from .improved_solver import ImprovedARC_Solver, SolutionHypothesis
     _improved_available = True
-except ImportError:
+except Exception:
     _improved_available = False
     ImprovedARC_Solver = None
     SolutionHypothesis = None
@@ -53,7 +53,7 @@ except ImportError:
 try:
     from .causal_arc_solver import CausalARC_Solver, GridObject, extract_objects
     _causal_available = True
-except ImportError:
+except Exception:
     _causal_available = False
     CausalARC_Solver = None
     GridObject = None
@@ -63,7 +63,7 @@ except ImportError:
 try:
     from .ensemble_arc_solver import EnsembleARC_Solver, SolverPrediction
     _ensemble_available = True
-except ImportError:
+except Exception:
     _ensemble_available = False
     EnsembleARC_Solver = None
     SolverPrediction = None
@@ -72,7 +72,7 @@ except ImportError:
 try:
     from .advanced_arc_solver import AdvancedARC_Solver, StatisticalPatternEngine, GridFeatures
     _advanced_available = True
-except ImportError:
+except Exception:
     _advanced_available = False
     AdvancedARC_Solver = None
     StatisticalPatternEngine = None
@@ -82,7 +82,7 @@ except ImportError:
 try:
     from .super_ensemble_solver import SuperEnsembleSolver
     _super_ensemble_available = True
-except ImportError:
+except Exception:
     _super_ensemble_available = False
     SuperEnsembleSolver = None
 
@@ -97,7 +97,7 @@ try:
         DiscoveryEngine,
     )
     _neuro_symbolic_available = True
-except ImportError:
+except Exception:
     _neuro_symbolic_available = False
     NeuroSymbolicHybridSolver = None
     HybridSolution = None

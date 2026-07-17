@@ -508,9 +508,9 @@ class OrderOfMagnitudeChecker:
             return ConstraintCheck(
                 constraint_type=ConstraintType.MATHEMATICAL,
                 constraint_name="magnitude_check",
-                is_satisfied=True,
-                reason="No numerical values found in answer",
-                confidence=1.0
+                outcome=VerificationOutcome.SATISFIED,
+                details="No numerical values found in answer",
+                evidence=[]
             )
 
         # Check if magnitudes are reasonable
@@ -522,24 +522,24 @@ class OrderOfMagnitudeChecker:
                 return ConstraintCheck(
                     constraint_type=ConstraintType.MATHEMATICAL,
                     constraint_name="magnitude_check",
-                    is_satisfied=False,
-                    reason=f"Value {value} has unusual magnitude",
-                    confidence=0.7
+                    outcome=VerificationOutcome.VIOLATED,
+                    details=f"Value {value} has unusual magnitude",
+                    evidence=[]
                 )
             return ConstraintCheck(
                 constraint_type=ConstraintType.MATHEMATICAL,
                 constraint_name="magnitude_check",
-                is_satisfied=True,
-                reason="Magnitude appears reasonable",
-                confidence=0.8
+                outcome=VerificationOutcome.SATISFIED,
+                details="Magnitude appears reasonable",
+                evidence=[]
             )
         except:
             return ConstraintCheck(
                 constraint_type=ConstraintType.MATHEMATICAL,
                 constraint_name="magnitude_check",
-                is_satisfied=True,
-                reason="Could not parse numerical value",
-                confidence=0.5
+                outcome=VerificationOutcome.UNCERTAIN,
+                details="Could not parse numerical value",
+                evidence=[]
             )
 
 
@@ -575,51 +575,41 @@ class SymbolicVerifier:
 
         # Run relevant checks based on domain
         if domain in ["physics", "chemistry"]:
-            # Dimensional analysis
-            dim_result = self.dimensional_analyzer.check_dimensions(question, answer)
+            # Dimensional analysis (single ConstraintCheck)
+            dim_result = self.dimensional_analyzer.check_dimensional_consistency(question, answer, [])
             checks.append(dim_result)
 
-            # Conservation laws
-            conservation_result = self.conservation_checker.check_conservation(question, answer)
-            checks.append(conservation_result)
+            # Conservation laws (List[ConstraintCheck])
+            conservation_result = self.conservation_checker.check_conservation(question, answer, answer)
+            checks.extend(conservation_result)
 
         if domain == "chemistry":
-            # Stoichiometry
-            stoich_result = self.stoichiometry_checker.check_stoichiometry(question, answer)
-            checks.append(stoich_result)
+            # Stoichiometry (List[ConstraintCheck])
+            stoich_result = self.stoichiometry_checker.check_stoichiometry(question, answer, answer)
+            checks.extend(stoich_result)
 
         if domain == "biology":
-            # Biological constraints
-            bio_result = self.biological_checker.check_biological_constraints(question, answer)
-            checks.append(bio_result)
+            # Biological constraints (List[ConstraintCheck])
+            bio_result = self.biological_checker.check_biological_constraints(question, answer, answer)
+            checks.extend(bio_result)
 
         # Magnitude check (all domains)
         mag_result = self.magnitude_checker.check_magnitude(question, answer)
         checks.append(mag_result)
 
-        # Compute overall outcome
-        passed_checks = sum(1 for c in checks if c.is_satisfied)
+        # Compute overall validity from individual check outcomes
         total_checks = len(checks)
-
-        if passed_checks == total_checks:
-            outcome = VerificationOutcome.CORRECT
-            confidence = 0.9
-        elif passed_checks >= total_checks * 0.7:
-            outcome = VerificationOutcome.PARTIALLY_CORRECT
-            confidence = 0.6
-        elif passed_checks >= total_checks * 0.3:
-            outcome = VerificationOutcome.UNCERTAIN
-            confidence = 0.4
-        else:
-            outcome = VerificationOutcome.INCORRECT
-            confidence = 0.7
+        satisfied_checks = sum(1 for c in checks if c.outcome == VerificationOutcome.SATISFIED)
+        overall_valid = total_checks > 0 and satisfied_checks == total_checks
+        confidence = satisfied_checks / total_checks if total_checks else 0.0
+        violations = [c.details for c in checks if c.outcome == VerificationOutcome.VIOLATED]
 
         return SymbolicVerificationResult(
-            outcome=outcome,
+            overall_valid=overall_valid,
             confidence=confidence,
-            checks_performed=checks,
-            domain=domain,
-            reasoning=f"Passed {passed_checks}/{total_checks} constraint checks"
+            checks=checks,
+            violations=violations,
+            suggestions=[]
         )
 
 

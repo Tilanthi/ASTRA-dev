@@ -718,6 +718,34 @@ class SymbolicVerifier:
 
         return None
 
+    def _check_v36_constraints(self, proposal: NeuralProposal) -> List[str]:
+        """
+        Check a neural proposal against the V36 prohibitive engine.
+
+        Honest fallback: only reports violations the v36_system actually
+        returns through a discoverable checker interface. Never fabricates
+        violations; returns [] when no v36_system is configured, when the
+        engine exposes no usable check method, or when the call raises.
+        """
+        if not self.v36_system:
+            return []
+        engine = getattr(self.v36_system, 'prohibitive_engine', None)
+        if engine is None:
+            return []
+        check_fn = (getattr(engine, 'check_constraints', None)
+                    or getattr(engine, 'check', None))
+        if check_fn is None:
+            return []
+        try:
+            result = check_fn(proposal.raw_text)
+        except Exception:
+            return []
+        if isinstance(result, list):
+            return [str(r) for r in result]
+        if isinstance(result, dict):
+            return [str(r) for r in result.get('violations', [])]
+        return []
+
 # =============================================================================
 # MISSING CLASSES FOR COMPATIBILITY
 # =============================================================================
@@ -773,9 +801,13 @@ class HybridReasoner:
         neural_response = self.symbolic_to_neural.translate(symbolic)
 
         return HybridResult(
-            neural_response=neural_response,
-            symbolic_representation=symbolic,
-            verification_status=verification.get('status') if verification else None
+            query=query,
+            neural_proposals=[],
+            verified_proposals=[],
+            symbolic_refinements=[symbolic],
+            final_answer=neural_response,
+            confidence=float(verification.get('score', 0.5)) if verification else 0.5,
+            reasoning_trace=[],
         )
 
 
@@ -793,9 +825,9 @@ class NeuralSymbolicBridge:
 
         return {
             'neural_input': neural_input,
-            'symbolic_representation': result.symbolic_representation,
-            'neural_output': result.neural_response,
-            'verification': result.verification_status
+            'symbolic_representation': result.symbolic_refinements,
+            'neural_output': result.final_answer,
+            'confidence': result.confidence,
         }
 
 

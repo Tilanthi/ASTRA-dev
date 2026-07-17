@@ -39,38 +39,75 @@ Date: 2025-12-23
 Version: 3.1.0 (V44)
 """
 
-# Core components (using relative imports)
-from .core import AstroSwarmSystem
+# Core components (using relative imports). Several of these depend on
+# baselined-truncated files (core->inference/knowledge_graph, radiative_transfer,
+# sed_fitting) or incomplete stubs (agents, data_interface, interferometry,
+# uncertainty_quantification) that cannot be repaired without fabricating
+# missing content. Guard each so the package degrades gracefully and the many
+# complete submodules still load.
+try:
+    from .core import AstroSwarmSystem
+except Exception:
+    AstroSwarmSystem = None
 from .physics import PhysicsEngine, AstrophysicalConstraints
-from .knowledge_graph import AstronomicalKnowledgeGraph
-from .inference import BayesianSwarmInference
-from .agents import AstroAgent, SpectroscopicAgent, PhotometricAgent, DynamicalAgent
+try:
+    from .knowledge_graph import AstronomicalKnowledgeGraph
+except Exception:
+    AstronomicalKnowledgeGraph = None
+try:
+    from .inference import BayesianSwarmInference
+except Exception:
+    BayesianSwarmInference = None
+try:
+    from .agents import AstroAgent, SpectroscopicAgent, PhotometricAgent, DynamicalAgent
+except Exception:
+    AstroAgent = SpectroscopicAgent = PhotometricAgent = DynamicalAgent = None
 
 # Extended capability modules
-from .radiative_transfer import (
-    StatisticalEquilibriumSolver, LineProfileSynthesizer,
-    DustContinuumRT, PDRInterface
-)
-from .data_interface import (
-    FITSHandler, SpectralCubeHandler, VOTableHandler,
-    RegionHandler, CASAInterface
-)
-from .uncertainty_quantification import (
-    PriorSet, GaussianLikelihood, MetropolisHastings,
-    EnsembleSampler, NestedSampler, FisherMatrix
-)
-from .sed_fitting import (
-    FilterLibrary, ModifiedBlackbody, StellarPopulation,
-    AGNTemplate, CompositeSED, SEDFitter
-)
+try:
+    from .radiative_transfer import (
+        StatisticalEquilibriumSolver, LineProfileSynthesizer,
+        DustContinuumRT, PDRInterface
+    )
+except Exception:
+    StatisticalEquilibriumSolver = LineProfileSynthesizer = None
+    DustContinuumRT = PDRInterface = None
+try:
+    from .data_interface import (
+        FITSHandler, SpectralCubeHandler, VOTableHandler,
+        RegionHandler, CASAInterface
+    )
+except Exception:
+    FITSHandler = SpectralCubeHandler = VOTableHandler = None
+    RegionHandler = CASAInterface = None
+try:
+    from .uncertainty_quantification import (
+        PriorSet, GaussianLikelihood, MetropolisHastings,
+        EnsembleSampler, NestedSampler, FisherMatrix
+    )
+except Exception:
+    PriorSet = GaussianLikelihood = MetropolisHastings = None
+    EnsembleSampler = NestedSampler = FisherMatrix = None
+try:
+    from .sed_fitting import (
+        FilterLibrary, ModifiedBlackbody, StellarPopulation,
+        AGNTemplate, CompositeSED, SEDFitter
+    )
+except Exception:
+    FilterLibrary = ModifiedBlackbody = StellarPopulation = None
+    AGNTemplate = CompositeSED = SEDFitter = None
 from .chemical_networks import (
     ReactionNetwork, ChemistrySolver, PDRChemistry,
     GrainChemistry, HotCoreChemistry
 )
-from .interferometry import (
-    ArrayConfiguration, UVSimulator, Imager,
-    CLEANDeconvolver, SelfCalibrator, VisibilityModeler
-)
+try:
+    from .interferometry import (
+        ArrayConfiguration, UVSimulator, Imager,
+        CLEANDeconvolver, SelfCalibrator, VisibilityModeler
+    )
+except Exception:
+    ArrayConfiguration = UVSimulator = Imager = None
+    CLEANDeconvolver = SelfCalibrator = VisibilityModeler = None
 from .advanced_lensing import (
     Cosmology, SIEProfile, NFWProfile, CompositeLensModel,
     TimeDelayCosmography, SubstructureDetector
@@ -85,12 +122,18 @@ from .spectroscopic_databases import (
     SplatalogueInterface, HITRANDatabase, UnifiedSpectroscopyQuery,
     SpectralLine, MoleculeData, CollisionPartner
 )
-from .multiscale_coupling import (
-    MultiScaleSimulation, ZoomRegion, ScaleCoupler,
-    TurbulentPressureModel, StarFormationModel,
-    StellarFeedbackModel, AGNFeedbackModel,
-    CoolingFunction, HierarchicalRefinement
-)
+try:
+    from .multiscale_coupling import (
+        MultiScaleSimulation, ZoomRegion, ScaleCoupler,
+        TurbulentPressureModel, StarFormationModel,
+        StellarFeedbackModel, AGNFeedbackModel,
+        CoolingFunction, HierarchicalRefinement
+    )
+except Exception:
+    MultiScaleSimulation = ZoomRegion = ScaleCoupler = None
+    TurbulentPressureModel = StarFormationModel = None
+    StellarFeedbackModel = AGNFeedbackModel = None
+    CoolingFunction = HierarchicalRefinement = None
 
 # V43: Core ISM Physics
 from .gravitational_collapse import (
@@ -113,11 +156,16 @@ from .supernova_remnant_physics import (
 )
 
 # V43: Data Analysis Infrastructure
-from .spectral_line_analysis import (
-    GaussianLineFitter, VoigtProfileFitter, HyperfineStructureFitter,
-    LineIdentifier, OpticalDepthCorrector, ColumnDensityCalculator,
-    fit_gaussian_line, identify_line
-)
+try:
+    from .spectral_line_analysis import (
+        GaussianLineFitter, VoigtProfileFitter, HyperfineStructureFitter,
+        LineIdentifier, OpticalDepthCorrector, ColumnDensityCalculator,
+        fit_gaussian_line, identify_line
+    )
+except Exception:
+    GaussianLineFitter = VoigtProfileFitter = HyperfineStructureFitter = None
+    LineIdentifier = OpticalDepthCorrector = ColumnDensityCalculator = None
+    fit_gaussian_line = identify_line = None
 from .source_extraction import (
     SourceDetector, AperturePhotometry, PSFPhotometry,
     DendrogramExtractor, FilamentFinder, CoreCatalogBuilder,
@@ -135,31 +183,56 @@ from .radio_surveys import (
     RadioSurveyAnalyzer, VariabilityAnalyzer,
     create_analyzer, get_cross_match_tolerance, load_survey_catalog, estimate_luminosity
 )
-from .star_formation import (
-    StellarPhase, RemnantType, SFTRindicator,
-    StellarPopulation, Star,
-    InitialMassFunction, StarFormationLaw, StarFormationRateTracer,
-    StellarEvolution, SupernovaFeedback,
-    create_stellar_population, sample_masses_from_imf, calculate_sfr_from_luminosity
-)
-from .sph_gas_dynamics import (
-    SPHParticle, SPHKernel, KernelType, Filament,
-    SPHSimulation, FilamentFinder, MolecularCloudFormation,
-    TurbulentDriver, GravitySolver,
-    create_sph_simulation, find_filaments_in_data, get_h2_fraction
-)
-from .infrared_submm import (
-    IRBand, PAHFeature,
-    IRPhotometry, PAHSpectrum, DustProperties,
-    ModifiedBlackbody, IRColorAnalysis, SubmillimeterAnalysis, LineCooling,
-    fit_dust_sed, calculate_gas_mass, get_ir_color
-)
-from .time_series_analysis import (
-    SignalType, TimeSeries, PeriodogramResult,
-    PowerSpectrumAnalyzer, VariabilityDetector, WaveletAnalyzer,
-    CrossCorrelationAnalyzer, BurstDetector,
-    analyze_power_spectrum, detect_periodicity, compute_structure_function, cross_correlate_series
-)
+try:
+    from .star_formation import (
+        StellarPhase, RemnantType, SFTRindicator,
+        StellarPopulation, Star,
+        InitialMassFunction, StarFormationLaw, StarFormationRateTracer,
+        StellarEvolution, SupernovaFeedback,
+        create_stellar_population, sample_masses_from_imf, calculate_sfr_from_luminosity
+    )
+except Exception:
+    StellarPhase = RemnantType = SFTRindicator = None
+    StellarPopulation = Star = None
+    InitialMassFunction = StarFormationLaw = StarFormationRateTracer = None
+    StellarEvolution = SupernovaFeedback = None
+    create_stellar_population = sample_masses_from_imf = calculate_sfr_from_luminosity = None
+try:
+    from .sph_gas_dynamics import (
+        SPHParticle, SPHKernel, KernelType, Filament,
+        SPHSimulation, FilamentFinder, MolecularCloudFormation,
+        TurbulentDriver, GravitySolver,
+        create_sph_simulation, find_filaments_in_data, get_h2_fraction
+    )
+except Exception:
+    SPHParticle = SPHKernel = KernelType = Filament = None
+    SPHSimulation = FilamentFinder = MolecularCloudFormation = None
+    TurbulentDriver = GravitySolver = None
+    create_sph_simulation = find_filaments_in_data = get_h2_fraction = None
+try:
+    from .infrared_submm import (
+        IRBand, PAHFeature,
+        IRPhotometry, PAHSpectrum, DustProperties,
+        ModifiedBlackbody, IRColorAnalysis, SubmillimeterAnalysis, LineCooling,
+        fit_dust_sed, calculate_gas_mass, get_ir_color
+    )
+except Exception:
+    IRBand = PAHFeature = None
+    IRPhotometry = PAHSpectrum = DustProperties = None
+    ModifiedBlackbody = IRColorAnalysis = SubmillimeterAnalysis = LineCooling = None
+    fit_dust_sed = calculate_gas_mass = get_ir_color = None
+try:
+    from .time_series_analysis import (
+        SignalType, TimeSeries, PeriodogramResult,
+        PowerSpectrumAnalyzer, VariabilityDetector, WaveletAnalyzer,
+        CrossCorrelationAnalyzer, BurstDetector,
+        analyze_power_spectrum, detect_periodicity, compute_structure_function, cross_correlate_series
+    )
+except Exception:
+    SignalType = TimeSeries = PeriodogramResult = None
+    PowerSpectrumAnalyzer = VariabilityDetector = WaveletAnalyzer = None
+    CrossCorrelationAnalyzer = BurstDetector = None
+    analyze_power_spectrum = detect_periodicity = compute_structure_function = cross_correlate_series = None
 from .data_visualization import (
     VisualizationType, DataCube, Spectrum,
     CubeVisualizer, SpectrumVisualizer, MultiPanelFigure,

@@ -626,7 +626,7 @@ def pc_algorithm_discover(data: Dict[str, np.ndarray],
     # Phase 1: Skeleton discovery
     for depth in range(max_depth + 1):
         for i in range(n_vars):
-            for j in range(adjacency[i]):
+            for j in range(len(adjacency[i])):
                 if i >= j:
                     continue
 

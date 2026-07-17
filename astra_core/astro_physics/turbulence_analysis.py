@@ -233,3 +233,201 @@ class StructureFunctionAnalysis:
         log_y = np.log10(y[start:end] + 1e-30)
 
         # Remove invalid values
+
+
+# =============================================================================
+# POWER SPECTRUM
+# =============================================================================
+
+class PowerSpectrumAnalysis:
+    """Isotropic power spectrum of a 2D field via FFT, with slope fitting."""
+
+    def power_spectrum_2d(self, field: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+        """Return (k, P(k)) radially-averaged. k in pixel units (k=0 excluded)."""
+        field = np.asarray(field, dtype=float)
+        f = np.fft.fftn(field)
+        P = np.abs(np.fft.fftshift(f)) ** 2
+        ny, nx = field.shape[-2], field.shape[-1]
+        cy, cx = ny // 2, nx // 2
+        yy, xx = np.indices((ny, nx))
+        r = np.sqrt((xx - cx) ** 2 + (yy - cy) ** 2).astype(int)
+        rmax = r.max()
+        sumP = np.bincount(r.ravel(), P.ravel(), minlength=rmax + 1)
+        cnt = np.bincount(r.ravel(), minlength=rmax + 1)
+        cnt[cnt == 0] = 1
+        radial = sumP / cnt
+        k = np.arange(rmax + 1)
+        return k[1:], radial[1:]
+
+    def fit_slope(self, k: np.ndarray, P: np.ndarray,
+                  kmin: float = None, kmax: float = None) -> float:
+        """Fit log P = slope * log k + c. Kolmogorov 2D -> slope ~ -8/3."""
+        k = np.asarray(k, float); P = np.asarray(P, float)
+        m = (k > 0) & np.isfinite(P) & (P > 0)
+        if kmin is not None:
+            m &= k >= kmin
+        if kmax is not None:
+            m &= k <= kmax
+        if m.sum() < 2:
+            return np.nan
+        slope, _ = np.polyfit(np.log10(k[m]), np.log10(P[m]), 1)
+        return float(slope)
+
+
+# =============================================================================
+# VELOCITY ANALYSIS
+# =============================================================================
+
+class VelocityAnalysis:
+    """Moment / dispersion analysis of a velocity field or cube."""
+
+    def velocity_dispersion(self, velocity_field: np.ndarray) -> float:
+        """1D velocity dispersion (same units as input)."""
+        v = np.asarray(velocity_field, float)
+        return float(np.std(v))
+
+    def centroid_velocity(self, cube: np.ndarray, vaxis: int = 0) -> np.ndarray:
+        """Intensity-weighted centroid velocity along `vaxis`."""
+        cube = np.asarray(cube, float)
+        v = np.arange(cube.shape[vaxis]).reshape([-1 if i == vaxis else 1 for i in range(cube.ndim)])
+        num = np.sum(cube * v, axis=vaxis)
+        den = np.sum(cube, axis=vaxis)
+        den[den == 0] = np.nan
+        return num / den
+
+    def line_width(self, velocity_dispersion_cm_s: float) -> float:
+        """FWHM = 2*sqrt(2*ln2)*sigma."""
+        return velocity_dispersion_cm_s * 2.3548200450309493
+
+
+# =============================================================================
+# SPECTRAL PCA (Brunt & Heyer 2002 style)
+# =============================================================================
+
+class SpectralPCA:
+    """Principal Component Analysis of a position-velocity (spectral) cube."""
+
+    def __init__(self, n_components: int = 3):
+        self.n_components = n_components
+
+    def fit(self, cube: np.ndarray, vaxis: int = 0) -> Dict[str, np.ndarray]:
+        """Return eigenvalues (variance spectrum) and the leading PCs.
+
+        Reshapes the cube to (n_channels, n_pixels) and forms the covariance
+        matrix across velocity channels, then eigen-decomposes it.
+        """
+        cube = np.asarray(cube, float)
+        # move velocity axis to front, flatten spatial
+        pv = np.moveaxis(cube, vaxis, 0).reshape(cube.shape[vaxis], -1)
+        pv = pv - pv.mean(axis=1, keepdims=True)
+        cov = np.cov(pv)
+        eigvals, eigvecs = np.linalg.eigh(cov)
+        order = np.argsort(eigvals)[::-1]
+        eigvals = eigvals[order]
+        eigvecs = eigvecs[:, order]
+        return {
+            'eigenvalues': eigvals[:self.n_components],
+            'components': eigvecs[:, :self.n_components],
+            'explained_variance_ratio': (eigvals / eigvals.sum())[:self.n_components],
+        }
+
+
+# =============================================================================
+# DAVIS-CHANDRASEKHAR-FERMI
+# =============================================================================
+
+class DavisChandrasekharFermi:
+    """Davis (1951) / Chandrasekhar & Fermi (1953) plane-of-sky B-field estimator.
+
+        B_pos = Q * sqrt(4*pi*rho) * sigma_v,NT / sigma_theta
+
+    where rho = mu * m_H * n is the mass density, sigma_v,NT the non-thermal
+    velocity dispersion, and sigma_theta the polarization-angle dispersion
+    (radians). Q ~ 0.5 (Ostriker, Stone & Gammie 2001; Crutcher 2004).
+    """
+
+    M_H = 1.6735575e-24  # g
+
+    def __init__(self, correction_factor: float = 0.5):
+        self.Q = correction_factor
+
+    def magnetic_field_gauss(self, number_density: float,
+                             velocity_dispersion_cm_s: float,
+                             angle_dispersion_rad: float,
+                             mu: float = 2.33) -> float:
+        """B_pos in Gauss. n (cm^-3), sigma_v (cm/s), sigma_theta (rad)."""
+        rho = mu * self.M_H * number_density
+        return self.Q * np.sqrt(4.0 * np.pi * rho) * velocity_dispersion_cm_s / angle_dispersion_rad
+
+    def magnetic_field_microgauss(self, number_density: float,
+                                  sigma_v_km_s: float,
+                                  sigma_theta_deg: float,
+                                  mu: float = 2.33) -> float:
+        """Convenience wrapper: returns B_pos in microgauss."""
+        return self.magnetic_field_gauss(
+            number_density, sigma_v_km_s * 1e5, np.deg2rad(sigma_theta_deg), mu) * 1e6
+
+
+# =============================================================================
+# HISTOGRAM OF RELATIVE ORIENTATIONS (Soler et al. 2013)
+# =============================================================================
+
+class HistogramRelativeOrientations:
+    """Relative orientation between a (polarization) angle field and a
+    (column-density gradient) angle field (Soler+ 2013)."""
+
+    def gradient_angle(self, image: np.ndarray) -> np.ndarray:
+        """Angle (rad) of the image gradient; pi/2 - phi for relative-orientation convention."""
+        gy, gx = np.gradient(np.asarray(image, float))
+        phi = np.arctan2(gy, gx)
+        return np.mod(np.pi / 2.0 - phi, np.pi)
+
+    def relative_orientation(self, polarization_angle: np.ndarray,
+                             gradient_angle: np.ndarray, nbins: int = 18) -> Dict[str, np.ndarray]:
+        """Histogram of (polarization - gradient) orientation differences.
+
+        Returns dict with 'bin_centers' (deg) and 'histogram' (normalised).
+        Alignment (diff~0) crests high; perpendicularity (diff~90) troughs.
+        """
+        diff = np.mod(polarization_angle - gradient_angle, np.pi)
+        hist, edges = np.histogram(diff, bins=nbins, range=(0, np.pi), density=True)
+        centers = 0.5 * (edges[:-1] + edges[1:])
+        return {'bin_centers_deg': np.rad2deg(centers), 'histogram': hist}
+
+    def hro_parameter(self, polarization_angle: np.ndarray,
+                      image: np.ndarray, nbins: int = 18) -> float:
+        """Soler+ (2013) HRO parameter: projects gradient angle from the image
+        onto the polarization direction and sums a (cos 2phi)-weighted moment."""
+        gphi = self.gradient_angle(image)
+        proj = np.cos(2.0 * np.mod(polarization_angle - gphi, np.pi))
+        return float(np.nanmean(proj))
+
+
+# =============================================================================
+# TURBULENCE STATISTICS
+# =============================================================================
+
+class TurbulenceStatistics:
+    """Dimensionless turbulence diagnostics (Mach numbers, sonic scale)."""
+
+    K_B = 1.380649e-16
+    M_H = 1.6735575e-24
+
+    def _sound_speed(self, T_K: float, mu: float = 2.33) -> float:
+        return np.sqrt(self.K_B * T_K / (mu * self.M_H))
+
+    def mach_number(self, velocity_dispersion_cm_s: float, T_K: float,
+                    mu: float = 2.33) -> float:
+        """Sonic Mach number M = sigma_v / c_s."""
+        return velocity_dispersion_cm_s / self._sound_speed(T_K, mu)
+
+    def alfven_speed(self, B_gauss: float, number_density: float,
+                     mu: float = 2.33) -> float:
+        """Alfven speed v_A = B / sqrt(4*pi*rho)  [cm/s]."""
+        rho = mu * self.M_H * number_density
+        return B_gauss / np.sqrt(4.0 * np.pi * rho)
+
+    def alfvenic_mach(self, velocity_dispersion_cm_s: float, B_gauss: float,
+                      number_density: float, mu: float = 2.33) -> float:
+        """M_A = sigma_v / v_A."""
+        return velocity_dispersion_cm_s / self.alfven_speed(B_gauss, number_density, mu)

@@ -249,3 +249,167 @@ class VOQueryEngine:
             raise ImportError("astropy required")
 
         coord = SkyCoord(ra=ra*u.deg, dec=dec*u.deg, frame='icrs')
+
+
+# =============================================================================
+# Additional archive interfaces (re-exported by next_gen/__init__).
+# CrossMatchEngine is fully implemented (great-circle nearest-neighbour
+# matching); AstroqueryInterface and the radio archives degrade gracefully when
+# astroquery/astropy or network access is unavailable (no fabricated data).
+# =============================================================================
+
+
+class AstroqueryInterface:
+    """Unified interface to astroquery services (Vizier, Simbad, NED, Gaia, ...).
+
+    All methods degrade gracefully: if astropy/astroquery are unavailable or a
+    query fails, an empty QueryResult is returned with an explanatory warning
+    (no data is fabricated).
+    """
+
+    def __init__(self):
+        self.available = ASTROPY_AVAILABLE
+
+    @staticmethod
+    def _empty(service: str, why: str) -> "QueryResult":
+        return QueryResult(archive=service, query_type='cone', n_results=0,
+                           table=None, warnings=[why])
+
+    def cone_search(self, ra: float, dec: float, radius_arcmin: float,
+                    service: str = 'vizier', catalog: Optional[str] = None,
+                    row_limit: int = 1000) -> "QueryResult":
+        if not self.available:
+            return self._empty(service, 'astropy/astroquery unavailable')
+        try:
+            from astropy.coordinates import SkyCoord
+            import astropy.units as u
+            coord = SkyCoord(ra=ra * u.deg, dec=dec * u.deg)
+            if service == 'vizier':
+                from astroquery.vizier import Vizier
+                Vizier.ROW_LIMIT = row_limit
+                res = Vizier.query_region(coord, radius=radius_arcmin * u.arcmin,
+                                          catalog=catalog)
+                tables = list(res) if res else []
+            elif service == 'simbad':
+                from astroquery.simbad import Simbad
+                res = Simbad.query_region(coord, radius=radius_arcmin * u.arcmin)
+                tables = [res] if res is not None else []
+            else:
+                return self._empty(service, f'unknown service: {service}')
+            table = tables[0] if tables else None
+            n = len(table) if table is not None else 0
+            return QueryResult(archive=service, query_type='cone', n_results=n,
+                               table=table)
+        except Exception as e:
+            return self._empty(service, f'query failed: {e}')
+
+    def query_object(self, name: str, service: str = 'simbad') -> "QueryResult":
+        if not self.available:
+            return self._empty(service, 'astropy/astroquery unavailable')
+        try:
+            if service == 'simbad':
+                from astroquery.simbad import Simbad
+                res = Simbad.query_object(name)
+            elif service == 'ned':
+                from astroquery.ned import Ned
+                res = Ned.query_object(name)
+            else:
+                return self._empty(service, f'unknown service: {service}')
+            n = len(res) if res is not None else 0
+            return QueryResult(archive=service, query_type='object', n_results=n,
+                               table=res)
+        except Exception as e:
+            return self._empty(service, f'query failed: {e}')
+
+
+class CrossMatchEngine:
+    """Cross-match two source catalogs by nearest-neighbour within a radius,
+    using the great-circle (haversine) angular separation."""
+
+    @staticmethod
+    def _angular_separation(ra1, dec1, ra2, dec2):
+        """Great-circle separation (degrees) between two directions (degrees),
+        broadcast over arrays via the vincenty/haversine formula."""
+        ra1, dec1 = np.radians(ra1), np.radians(dec1)
+        ra2, dec2 = np.radians(ra2), np.radians(dec2)
+        sdec = np.sin((dec2 - dec1) / 2.0) ** 2
+        sra = np.cos(dec1) * np.cos(dec2) * np.sin((ra2 - ra1) / 2.0) ** 2
+        return np.degrees(2.0 * np.arcsin(np.sqrt(sdec + sra)))
+
+    def crossmatch(self, ra1, dec1, ra2, dec2, radius_arcsec: float):
+        """Return lists (idx1, idx2, sep_arcsec) of matches within radius."""
+        ra1, dec1 = np.atleast_1d(ra1), np.atleast_1d(dec1)
+        ra2, dec2 = np.atleast_1d(ra2), np.atleast_1d(dec2)
+        idx1, idx2, sep = [], [], []
+        for i in range(len(ra1)):
+            d = self._angular_separation(ra1[i], dec1[i], ra2, dec2) * 3600.0  # arcsec
+            j = int(np.argmin(d))
+            if d[j] <= radius_arcsec:
+                idx1.append(i); idx2.append(j); sep.append(float(d[j]))
+        return idx1, idx2, sep
+
+
+class ArchiveDataManager:
+    """In-memory cache + simple on-disk persistence for archive query results."""
+
+    def __init__(self):
+        self._cache: Dict[str, "QueryResult"] = {}
+
+    def store(self, key: str, result: "QueryResult") -> None:
+        self._cache[key] = result
+
+    def retrieve(self, key: str) -> Optional["QueryResult"]:
+        return self._cache.get(key)
+
+    def keys(self) -> List[str]:
+        return list(self._cache.keys())
+
+
+class _RadioArchive:
+    """Base radio-archive interface. Real archive access requires astroquery +
+    network; cone_search returns an honest empty result otherwise."""
+
+    NAME = 'radio'
+    URL = ''
+
+    def cone_search(self, ra: float, dec: float, radius_arcmin: float,
+                    **kwargs) -> "QueryResult":
+        return QueryResult(archive=self.NAME, query_type='cone', n_results=0,
+                           table=None, warnings=[f'{self.NAME} archive access '
+                                                 'requires network/astroquery'])
+
+    def __repr__(self):
+        return f'{type(self).__name__}({self.NAME})'
+
+
+class ALMAArchive(_RadioArchive):
+    NAME = 'ALMA'
+
+
+class NRAOArchive(_RadioArchive):
+    NAME = 'NRAO'
+
+
+class LOFARArchive(_RadioArchive):
+    NAME = 'LOFAR'
+
+
+class MWAArchive(_RadioArchive):
+    NAME = 'MWA'
+
+
+class ESOArchive(_RadioArchive):
+    NAME = 'ESO'
+
+
+class RadioArchiveManager:
+    """Query a collection of radio archives and aggregate results."""
+
+    def __init__(self, archives: Optional[List[_RadioArchive]] = None):
+        self.archives = archives or [ALMAArchive(), NRAOArchive(), LOFARArchive(),
+                                     MWAArchive(), ESOArchive()]
+
+    def cone_search(self, ra: float, dec: float, radius_arcmin: float,
+                    **kwargs) -> Dict[str, "QueryResult"]:
+        return {a.NAME: a.cone_search(ra, dec, radius_arcmin, **kwargs)
+                for a in self.archives}

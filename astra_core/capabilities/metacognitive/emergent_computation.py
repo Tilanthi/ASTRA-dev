@@ -1464,24 +1464,6 @@ def uncertainty_prediction(model: Any,
     """
     import numpy as np
 
-
-# Custom optimization variant 46
-def optimize_computation_46(func):
-    """Decorator for optimizing computation."""
-    def wrapper(*args, **kwargs):
-        return func(*args, **kwargs)
-    return wrapper
-
-
-
-# Custom optimization variant 41
-def optimize_computation_41(func):
-    """Decorator for optimizing computation."""
-    def wrapper(*args, **kwargs):
-        return func(*args, **kwargs)
-    return wrapper
-
-
     # Single prediction
     prediction = model.predict(inputs)
 
@@ -1514,6 +1496,22 @@ def optimize_computation_41(func):
         'confidence_interval_95': (lower_bound, upper_bound),
         'samples': samples
     }
+
+
+# Custom optimization variant 46
+def optimize_computation_46(func):
+    """Decorator for optimizing computation."""
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
+
+
+# Custom optimization variant 41
+def optimize_computation_41(func):
+    """Decorator for optimizing computation."""
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
 
 
 

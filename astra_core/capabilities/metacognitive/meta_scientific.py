@@ -1151,7 +1151,7 @@ class MetaScientificReasoner:
         )
 
         # Identify gaps
-        gaps = self.knowledge_gap_analyzer.identify_gaps(domain)
+        gaps = self.gap_analyzer.identify_gaps(domain)
 
         return {
             'high_value_questions': high_value_questions[:5],
@@ -1169,24 +1169,21 @@ def create_meta_scientific_reasoner() -> MetaScientificReasoner:
 def analyze_scientific_question(question: str, domain: str = "") -> Dict[str, Any]:
     """Analyze a scientific question."""
     reasoner = create_meta_scientific_reasoner()
-    return reasoner.analyze_question(question, domain)
+    return reasoner.analyze_research_question(
+        question, domain, QuestionType.EXPLORATORY
+    )
 
 
 def recommend_methodology(question: str, domain: str = "") -> Methodology:
     """Recommend a methodology for a scientific question."""
     reasoner = create_meta_scientific_reasoner()
-    analysis = reasoner.analyze_question(question, domain)
+    analysis = reasoner.analyze_research_question(
+        question, domain, QuestionType.EXPLORATORY
+    )
     # Simplified - return a default methodology
     return Methodology(
         id="methodology_default",
         name="Experimental Method",
         description="Standard experimental approach",
-        type=MethodologyType.EXPERIMENTAL,
-        steps=[
-            "Formulate hypothesis",
-            "Design experiment",
-            "Collect data",
-            "Analyze results",
-            "Draw conclusions"
-        ]
+        methodology_type=MethodologyType.EXPERIMENTAL,
     )

@@ -2,6 +2,8 @@
 Scientific Discovery Package
 """
 
+from __future__ import annotations
+
 from .engine import (
     Hypothesis,
     HypothesisType,

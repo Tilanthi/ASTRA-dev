@@ -570,9 +570,39 @@ class ConditionalComputationEngine:
         dict
             Results from executed experts
         """
-        # Get routing decision
+        # Get routing decision: list of (expert_name, score) tuples
         selected_experts = self.router.select_experts(task, context)
+        selected_names = [e[0] for e in selected_experts]
 
         # Execute only selected experts (conditional computation!)
+        import time
         results = {}
         execution_times = {}
+        for expert_name in selected_names:
+            expert_func = task_func_map.get(expert_name)
+            if expert_func is None:
+                continue
+            start = time.time()
+            try:
+                results[expert_name] = expert_func(task)
+            except Exception:
+                results[expert_name] = None
+            execution_times[expert_name] = time.time() - start
+
+        return {
+            'selected_experts': selected_names,
+            'results': results,
+            'execution_times': execution_times,
+        }
+
+
+def create_moe_router(top_k: int = 3, min_score_threshold: float = 0.1) -> MoECapabilityRouter:
+    """Factory creating a MoE capability router (consumer-expected name)."""
+    return MoECapabilityRouter(top_k=top_k, min_score_threshold=min_score_threshold)
+
+
+def create_conditional_engine(router: Optional[MoECapabilityRouter] = None,
+                              top_k: int = 3,
+                              min_score_threshold: float = 0.1) -> ConditionalComputationEngine:
+    """Factory creating a conditional computation engine (consumer-expected name)."""
+    return ConditionalComputationEngine(router=router, top_k=top_k, min_score_threshold=min_score_threshold)

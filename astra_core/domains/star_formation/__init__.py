@@ -37,7 +37,7 @@ try:
         AccretionRates
     )
     ASTRO_PHYSICS_AVAILABLE = True
-except ImportError as e:
+except Exception as e:
     # Try partial import
     ASTRO_PHYSICS_AVAILABLE = False
     logger.info(f"Star formation domain: Running in standalone mode (astro_physics import optional)")

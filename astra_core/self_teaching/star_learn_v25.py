@@ -37,7 +37,7 @@ try:
     from .recursive_improver import RecursiveImprover
     from .stigmergic_memory import StigmergicMemory
     from .benchmark_suite import BenchmarkSuite
-except ImportError:
+except Exception:
     pass
 
 # Import V2.5 modules
@@ -47,7 +47,7 @@ try:
         CounterfactualResult, create_causal_discovery_engine,
         get_causal_discovery_reward
     )
-except ImportError:
+except Exception:
     CausalDiscoveryEngine = None
     create_causal_discovery_engine = None
     get_causal_discovery_reward = None
@@ -58,7 +58,7 @@ try:
         TheoryValidator, TheoryComparator, create_theory_construction_system,
         get_theory_construction_reward
     )
-except ImportError:
+except Exception:
     TheoryConstructionSystem = None
     create_theory_construction_system = None
     get_theory_construction_reward = None
@@ -70,7 +70,7 @@ try:
         create_autonomous_experiment_system,
         get_experimental_discovery_reward
     )
-except ImportError:
+except Exception:
     AutonomousExperimentSystem = None
     create_autonomous_experiment_system = None
     get_experimental_discovery_reward = None
@@ -81,7 +81,7 @@ try:
         MAMLMetaLearner, ContinualLearningSystem,
         create_meta_learning_system, get_meta_learning_reward
     )
-except ImportError:
+except Exception:
     MetaLearningSystem = None
     create_meta_learning_system = None
     get_meta_learning_reward = None
@@ -92,7 +92,7 @@ try:
         TheoryOfMindModel, IntrospectiveReport,
         create_consciousness_simulator, get_consciousness_reward
     )
-except ImportError:
+except Exception:
     ConsciousnessSimulator = None
     create_consciousness_simulator = None
     get_consciousness_reward = None
@@ -103,7 +103,7 @@ try:
     from .scientific_data import PhysicsDataLibrary, PhysicalLawDiscovery
     from .multi_agent_swarm import MultiAgentSwarm
     from .arxiv_integration import ContinuousLearningSystem
-except ImportError:
+except Exception:
     EnhancedRewardCalculator = None
     PhysicsDataLibrary = None
     MultiAgentSwarm = None
@@ -382,7 +382,11 @@ class STARLearnV25:
         if not self.consciousness:
             return None
 
-        from .consciousness_simulator import MentalProcess
+        try:
+            from .consciousness_simulator import MentalProcess
+        except Exception:
+            # consciousness_simulator.py is baselined-broken; degrade gracefully
+            return None
         process = MentalProcess.REASONING
         if process_type == "perception":
             process = MentalProcess.PERCEPTION

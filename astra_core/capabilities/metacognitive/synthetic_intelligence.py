@@ -632,11 +632,37 @@ class V70SyntheticIntelligence:
 
         return self._execute_task(task)
 
+    # =========================================================================
+    # Internal task execution
+    # =========================================================================
+    def _execute_task(self, task: SyntheticTask) -> SyntheticResult:
+        """Execute a single-component task.
+
+        NOTE: the full task-execution dispatch was never implemented in this
+        dormant module. Queue the task and return a neutral placeholder result
+        rather than fabricating outputs.
+        """
+        self.task_queue.append(task)
+        if task.id not in self.state.active_tasks:
+            self.state.active_tasks.append(task.id)
+        self.results[task.id] = SyntheticResult(
+            task_id=task.id,
+            success=False,
+            metadata={'note': 'task execution not implemented; queued only'}
+        )
+        return self.results[task.id]
+
+    def _execute_multi_component_task(self, task: SyntheticTask) -> SyntheticResult:
+        """Execute a multi-component task (see _execute_task caveat)."""
+        return self._execute_task(task)
+
 
 # Factory functions
 def create_synthetic_intelligence(mode: SyntheticMode = SyntheticMode.DISCOVERY) -> V70SyntheticIntelligence:
     """Create a synthetic intelligence system."""
-    return V70SyntheticIntelligence(mode=mode)
+    system = V70SyntheticIntelligence()
+    system.state.mode = mode
+    return system
 
 
 def quick_analysis(data: Any, question: str = "") -> Dict[str, Any]:
@@ -646,4 +672,4 @@ def quick_analysis(data: Any, question: str = "") -> Dict[str, Any]:
     Simplified interface for rapid analysis.
     """
     system = create_synthetic_intelligence()
-    return system.analyze_data(data, question)
+    return system.analyze(data, task_hint=question)

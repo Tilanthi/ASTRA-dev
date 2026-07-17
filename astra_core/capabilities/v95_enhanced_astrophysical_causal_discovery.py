@@ -89,7 +89,7 @@ class AstrophysicalPerformanceConfig:
     cache_strategy: CacheStrategy = CacheStrategy.HYBRID
     astro_cache_strategy: AstrophysicalCacheStrategy = AstrophysicalCacheStrategy.HYBRID_ASTRO
     cache_size: int = 2000  # Larger for astronomy (more diverse data)
-    persistent_cache_dir: str = ".astrophysical_causal_cache"
+    persistent_cache_dir: str = str(Path.home() / ".astra_persistent" / "astrophysical_causal_cache")
 
     # Early stopping (astronomy-specific thresholds)
     early_stopping: EarlyStoppingStrategy = EarlyStoppingStrategy.ADAPTIVE
@@ -151,7 +151,7 @@ class AstrophysicalCausalCache:
         # Initialize persistent cache if enabled
         if config.cache_strategy in [CacheStrategy.PERSISTENT, CacheStrategy.HYBRID]:
             self.cache_dir = Path(config.persistent_cache_dir)
-            self.cache_dir.mkdir(exist_ok=True)
+            self.cache_dir.mkdir(parents=True, exist_ok=True)
             self.persistent_cache = {}
             self._load_persistent_cache()
 

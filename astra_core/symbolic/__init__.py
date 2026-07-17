@@ -32,40 +32,71 @@ from .self_consistency import (
     ConsistencyResult
 )
 
-from .mork_expanded import (
-    ExpandedMORK,
-    MORKConcept,
-    DomainRouter
-)
+try:
+    from .mork_expanded import (
+        ExpandedMORK,
+        MORKConcept,
+        DomainRouter
+    )
+except Exception:
+    ExpandedMORK = None
+    MORKConcept = None
+    DomainRouter = None
 
-from .tool_integration import (
-    ToolIntegration,
-    ToolResult,
-    WikipediaAPI,
-    ArXivAPI,
-    MathTool,
-    PythonExecutor
-)
+try:
+    from .tool_integration import (
+        ToolIntegration,
+        ToolResult,
+        WikipediaAPI,
+        ArXivAPI,
+        MathTool,
+        PythonExecutor
+    )
+except Exception:
+    # tool_integration.py is a known-broken truncation (baselined). Degrade
+    # gracefully so this package never raises (protects all importers).
+    ToolIntegration = None
+    ToolResult = None
+    WikipediaAPI = None
+    ArXivAPI = None
+    MathTool = None
+    PythonExecutor = None
 
-from .local_rag import (
-    LocalRAG,
-    RetrievalResult,
-    KnowledgeBaseBuilder
-)
+try:
+    from .local_rag import (
+        LocalRAG,
+        RetrievalResult,
+        KnowledgeBaseBuilder
+    )
+except Exception:
+    LocalRAG = None
+    RetrievalResult = None
+    KnowledgeBaseBuilder = None
 
-from .stan_enhanced import (
-    STANEnhanced,
-    EnhancedAnswer,
-    V38CompleteSystem
-)
+try:
+    from .stan_enhanced import (
+        STANEnhanced,
+        EnhancedAnswer,
+        V38CompleteSystem
+    )
+except Exception:
+    STANEnhanced = None
+    EnhancedAnswer = None
+    V38CompleteSystem = None
 
 # Import V36 components for backward compatibility
-from .v36_system import (
-    SymbolicCausalAbstraction,
-    CrossDomainAnalogyEngine,
-    MechanismDiscoveryEngine,
-    V36CompleteSystem as _V36CompleteSystem
-)
+try:
+    from .v36_system import (
+        SymbolicCausalAbstraction,
+        CrossDomainAnalogyEngine,
+        MechanismDiscoveryEngine,
+        V36CompleteSystem as _V36CompleteSystem
+    )
+except Exception:
+    SymbolicCausalAbstraction = None
+    CrossDomainAnalogyEngine = None
+    MechanismDiscoveryEngine = None
+    _V36CompleteSystem = None
 
 __all__ = [
     # Self-Consistency

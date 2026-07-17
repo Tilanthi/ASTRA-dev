@@ -663,17 +663,22 @@ class CurriculumGenerator:
         # Generate values based on difficulty
         import random
         values = {}
-        for var_name, var_range in variables.items():
-            if isinstance(var_range, list):
-                values[var_name] = random.choice(var_range)
-            elif isinstance(var_range, dict):
-                if 'range' in var_range:
-                    start, end = var_range['range']
-                    values[var_name] = random.uniform(start, end)
+        if isinstance(variables, dict):
+            for var_name, var_range in variables.items():
+                if isinstance(var_range, list):
+                    values[var_name] = random.choice(var_range)
+                elif isinstance(var_range, dict):
+                    if 'range' in var_range:
+                        start, end = var_range['range']
+                        values[var_name] = random.uniform(start, end)
+                    else:
+                        values[var_name] = var_range.get('default', 0)
                 else:
-                    values[var_name] = var_range.get('default', 0)
-            else:
-                values[var_name] = var_range
+                    values[var_name] = var_range
+        else:
+            # templates only provide variable names, not ranges
+            for var_name in variables:
+                values[var_name] = "[VALUE]"
 
         return question_template.format(**values)
 
@@ -714,14 +719,19 @@ class CompetenceTracker:
             self.competence_boundaries[domain] = CompetenceBoundary(
                 domain=domain,
                 level=level,
-                threshold=0.5
+                confident_topics=[],
+                uncertain_topics=[],
+                unknown_topics=[],
+                accuracy_by_difficulty={},
+                improvement_rate=0.0
             )
         return self.competence_boundaries[domain]
 
     def is_within_competence(self, domain: str, difficulty: float) -> bool:
         """Check if a problem is within competence."""
         boundary = self.get_competence(domain)
-        return difficulty <= boundary.threshold
+        # CompetenceBoundary has no threshold field; use nominal 0.5 cutoff
+        return difficulty <= 0.5
 
 
 class MetaLearningSystem:
@@ -747,9 +757,7 @@ class MetaLearningSystem:
 
     def extract_strategy(self, successful_attempt: ReasoningAttempt) -> Optional[Strategy]:
         """Extract strategy from successful reasoning."""
-        strategy = self.strategy_abstractor.extract_strategy(
-            [successful_attempt.reasoning_trace]
-        )
+        strategy = self.strategy_abstractor.extract_strategy(successful_attempt)
         if strategy:
             self.learned_strategies[strategy.name] = strategy
         return strategy
@@ -757,11 +765,20 @@ class MetaLearningSystem:
     def generate_curriculum(self, domain: str, target_skills: List[str] = None) -> List[CurriculumProblem]:
         """Generate curriculum for learning."""
         competence = self.competence_tracker.get_competence(domain)
-        return self.curriculum_generator.generate_sequence(
-            domain,
-            competence.level,
-            target_skills
-        )
+        # Map competence level to a target difficulty (NOVICE -> easy ... MASTER -> hard)
+        level_to_difficulty = {
+            CompetenceLevel.NOVICE: 0.2,
+            CompetenceLevel.BEGINNER: 0.35,
+            CompetenceLevel.INTERMEDIATE: 0.5,
+            CompetenceLevel.ADVANCED: 0.65,
+            CompetenceLevel.EXPERT: 0.8,
+            CompetenceLevel.MASTER: 0.95,
+        }
+        target_difficulty = level_to_difficulty.get(competence.level, 0.5)
+        target_skill = target_skills[0] if target_skills else ""
+        return [self.curriculum_generator.generate_problem(
+            domain, target_difficulty, target_skill
+        )]
 
     def update_competence(self, attempt: ReasoningAttempt) -> None:
         """Update competence model."""

@@ -1071,15 +1071,42 @@ class EpisodicWarmStart:
         Returns:
             Number of episodes added
         """
+        # EpisodicMemory.store_episode expects structured (Problem,
+        # reasoning_trace, Outcome) objects rather than the loose dict shape
+        # produced by CanonicalExemplar.to_episode_dict(); build them here so
+        # the call matches the real signature.
+        from .episodic_memory import (Problem, ReasoningStep, Outcome,
+                                      EpisodeType, OutcomeType)
+
         count = 0
         for ex in self.exemplars:
-            episode_dict = ex.to_episode_dict()
+            problem = Problem(
+                problem_id=ex.exemplar_id,
+                description=ex.description,
+                domain=ex.domain,
+                problem_type=ex.category,
+                inputs={'problem_pattern': ex.problem_pattern},
+            )
+            reasoning_trace = [
+                ReasoningStep(
+                    step_id=0,
+                    action=ex.solution_strategy,
+                    inputs={},
+                    outputs={},
+                    reasoning=ex.description,
+                )
+            ]
+            outcome = Outcome(
+                outcome_type=OutcomeType.SUCCESS,
+                solution=ex.solution_strategy,
+                insights=list(ex.key_insights),
+            )
             episodic_memory.store_episode(
-                episode_type='canonical_exemplar',
-                context=episode_dict['context'],
-                actions=episode_dict['actions'],
-                outcomes=episode_dict['outcomes'],
-                metadata=episode_dict['metadata']
+                problem=problem,
+                reasoning_trace=reasoning_trace,
+                outcome=outcome,
+                episode_type=EpisodeType.CANONICAL_EXEMPLAR,
+                strategies=[ex.solution_strategy],
             )
             count += 1
         return count

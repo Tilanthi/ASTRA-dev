@@ -57,7 +57,7 @@ def grounded_answer(
 
         # Validate the answer
         grounding = SemanticGroundingLayer()
-        report = grounding.validate_content(answer_text, domain=domain)
+        report = grounding.ground_output(answer_text)
 
         # Add grounding report to result
         result['grounding_report'] = report.to_dict()
@@ -113,9 +113,8 @@ class GroundedScientificDiscovery:
 
         # Validate findings
         if 'raw_output' in findings:
-            report = self.grounding.validate_content(
-                findings['raw_output'],
-                domain=self.domain
+            report = self.grounding.ground_output(
+                findings['raw_output']
             )
 
             findings['grounding_report'] = report.to_dict()
@@ -139,21 +138,21 @@ class GroundedScientificDiscovery:
         Returns:
             Dict with validation status and metadata
         """
-        # Check against hallucination register
-        hallucination = self.grounding.hallucination_register.check_hallucination(
-            formula, citation
+        # Check against hallucination register (returns bool, not a dict)
+        is_hallucination = self.grounding.hallucination_register.check_hallucination(
+            formula
         )
 
-        if hallucination:
+        if is_hallucination:
             return {
                 'valid': False,
                 'status': 'HALLUCINATED',
-                'warning': hallucination['correction'],
-                'fake_citation': hallucination['fake_citation']
+                'warning': 'Formula matches a known hallucination',
+                'fake_citation': citation
             }
 
-        # Check knowledge base
-        known = self.grounding.knowledge_base.lookup(formula)
+        # Check knowledge base (formula_kb is a plain dict, no .lookup method)
+        known = self.grounding.formula_kb.get(formula)
 
         if known:
             return {
@@ -213,7 +212,7 @@ def quick_validate(text: str, domain: str = "astronomy") -> Dict[str, Any]:
         Dict with 'safe' boolean and 'report' details
     """
     grounding = SemanticGroundingLayer()
-    report = grounding.validate_content(text, domain=domain)
+    report = grounding.ground_output(text)
 
     return {
         'safe': report.safe_to_output,

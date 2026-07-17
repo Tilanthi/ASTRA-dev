@@ -3,16 +3,6 @@ astra_core/arc_reasoning/improved_solver.py
 astra_core/arc_reasoning/llm_code_generator.py
 astra_core/arc_reasoning/neuro_symbolic_solver.py
 astra_core/arc_reasoning/super_ensemble_solver.py
-astra_core/astro_physics/inference.py
-astra_core/astro_physics/inference_improved.py
-astra_core/astro_physics/knowledge_graph.py
-astra_core/astro_physics/multiscale_coupling.py
-astra_core/astro_physics/next_gen/alert_processing.py
-astra_core/astro_physics/next_gen/astrochemistry.py
-astra_core/astro_physics/radiative_transfer.py
-astra_core/astro_physics/sed_fitting.py
-astra_core/astro_physics/spectral_line_analysis.py
-astra_core/astro_physics/time_series_analysis.py
 astra_core/core/v105/scientific_discovery.py
 astra_core/gsd/atomic_workflow.py
 astra_core/gsd/codebase_mapper.py

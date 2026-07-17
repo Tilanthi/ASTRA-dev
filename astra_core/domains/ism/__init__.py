@@ -39,8 +39,9 @@ try:
         FilamentFinder
     )
     ASTRO_PHYSICS_AVAILABLE = True
-except ImportError as e:
-    # Try partial import
+except Exception as e:
+    # Try partial import (catch Exception, not just ImportError, because a
+    # truncated dependency raises SyntaxError which is not an ImportError)
     ASTRO_PHYSICS_AVAILABLE = False
     logger.info(f"ISM domain: Running in standalone mode (astro_physics import optional)")
 

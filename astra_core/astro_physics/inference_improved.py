@@ -1,148 +1,137 @@
-
-Uncertainty Quantification Module
-==================================
-
-This module provides Bayesian inference and uncertainty quantification
-tools for robust decision-making under uncertainty.
-
-Capabilities:
-- Hierarchical Bayesian modeling
-- Partial pooling (shrinkage estimators)
-- Uncertainty decomposition (aleatoric vs epistemic)
-
-
-
 """
-Improved inference methods for astrophysics reasoning
+Enhanced Bayesian inference diagnostics.
+
+Complements inference.py (SMC sampler) and uncertainty_quantification.py
+(samplers) with the standard convergence and model-comparison machinery used
+to *trust* a Bayesian result:
+
+  * Gelman-Rubin potential scale reduction factor R-hat (Gelman & Rubin 1992;
+    split-R-hat as in Vehtari+ 2021).
+  * Effective sample size from the integrated autocorrelation time
+    (Sokal 1997; Geyer 1992).
+  * Information-criteria model comparison: AIC (Akaike 1974), BIC (Schwarz
+    1978), DIC (Spiegelhalter+ 2002) and WAIC (Watanabe 2010; Gelman+ 2014).
 """
 
 import numpy as np
-from typing import Dict, List, Any, Optional, Tuple
+from dataclasses import dataclass
+from typing import Sequence, Optional
 
 
-def bayesian_parameter_inference(prior_mean: np.ndarray,
-                                  prior_cov: np.ndarray,
-                                  likelihood_func: callable,
-                                  data: np.ndarray,
-                                  n_samples: int = 10000) -> Tuple[np.ndarray, np.ndarray]:
+# --- Convergence diagnostics ----------------------------------------------
+
+def gelman_rubin(chains: Sequence[np.ndarray]) -> float:
+    """Standard Gelman-Rubin R-hat for >=2 chains of equal length.
+
+    chains: sequence of 1-D arrays (one per chain).
+    Returns R-hat; ~1.0 means convergence; >1.1 typically not converged.
     """
-    Bayesian parameter inference using MCMC-like sampling
+    chains = [np.asarray(c, float) for c in chains]
+    m = len(chains)
+    n = min(len(c) for c in chains)
+    chains = np.array([c[:n] for c in chains])          # (m, n)
+    means = chains.mean(axis=1)
+    grand = means.mean()
+    B = n / (m - 1) * np.sum((means - grand) ** 2)       # between-chain variance
+    W = np.mean([np.var(c, ddof=1) for c in chains])     # within-chain variance
+    if W <= 0:
+        return 1.0
+    var_hat = (n - 1) / n * W + B / n                    # marginal posterior var est.
+    return float(np.sqrt(var_hat / W))
 
-    Args:
-        prior_mean: Prior mean of parameters
-        prior_cov: Prior covariance matrix
-        likelihood_func: Function that computes likelihood given parameters
-        data: Observed data
-        n_samples: Number of samples to generate
 
-    Returns:
-        (posterior_mean, posterior_cov)
+def effective_sample_size(chain: np.ndarray) -> float:
+    """ESS from the integrated autocorrelation time tau: ESS = n / (1 + 2 sum rho_k),
+    truncated at the first non-positive autocorrelation (Geyer's initial monotone
+    sequence)."""
+    x = np.asarray(chain, float)
+    n = len(x)
+    x = x - x.mean()
+    var = np.dot(x, x) / n
+    if var <= 0:
+        return float(n)
+    # autocorrelation via FFT
+    f = np.fft.rfft(x, n=2 * n)
+    acf = np.fft.irfft(f * np.conjugate(f))[:n].real
+    acf /= acf[0]
+    # sum until first negative pair (Geyer)
+    s = 0.0
+    for k in range(1, n):
+        if acf[k] <= 0:
+            break
+        s += acf[k]
+    tau = 1.0 + 2.0 * s
+    return float(n / tau)
+
+
+# --- Information criteria --------------------------------------------------
+
+@dataclass
+class ModelComparison:
+    name: str
+    log_likelihood: float          # max log-likelihood (for AIC/BIC)
+    n_params: int
+    n_data: int
+    aic: float
+    bic: float
+
+
+def aic(log_likelihood: float, n_params: int) -> float:
+    """Akaike information criterion: AIC = 2k - 2 logL (lower is better)."""
+    return 2.0 * n_params - 2.0 * log_likelihood
+
+
+def bic(log_likelihood: float, n_params: int, n_data: int) -> float:
+    """Bayesian information criterion: BIC = k ln(n) - 2 logL."""
+    return n_params * np.log(max(n_data, 1)) - 2.0 * log_likelihood
+
+
+def dic(log_likelihood_samples: np.ndarray, deviance_at_mean_params: float) -> float:
+    """Deviance information criterion (Spiegelhalter+ 2002).
+
+    DIC = D_bar + p_D, where D_bar = -2 mean(logL over posterior samples)
+    and p_D = D_bar - D(mean params). Lower is better.
     """
-    import numpy as np
-
-    # Simple Metropolis-Hastings sampling
-    n_params = len(prior_mean)
-    samples = np.zeros((n_samples, n_params))
-
-    # Initialize from prior
-    current_params = np.random.multivariate_normal(prior_mean, prior_cov)
-    current_likelihood = likelihood_func(current_params, data)
-
-    acceptance_count = 0
-
-    for i in range(1, n_samples):
-        # Propose new parameters
-        proposal_cov = prior_cov * 0.1
-        proposed_params = np.random.multivariate_normal(current_params, proposal_cov)
-
-        # Compute likelihood
-        proposed_likelihood = likelihood_func(proposed_params, data)
-
-        # Compute acceptance probability
-        if proposed_likelihood > 0:
-            acceptance_ratio = min(1.0, proposed_likelihood / (current_likelihood + 1e-10))
-
-            if np.random.rand() < acceptance_ratio:
-                current_params = proposed_params
-                current_likelihood = proposed_likelihood
-                acceptance_count += 1
-
-        samples[i] = current_params
-
-    # Compute posterior statistics
-    posterior_mean = np.mean(samples[n_samples//2:], axis=0)
-    posterior_cov = np.cov(samples[n_samples//2:].T)
-
-    return posterior_mean, posterior_cov
+    Dbar = -2.0 * np.mean(log_likelihood_samples)
+    pD = Dbar - deviance_at_mean_params
+    return float(Dbar + pD)
 
 
-def causal_discovery_from_timeseries(timeseries_data: Dict[str, np.ndarray],
-                                    max_lag: int = 10,
-                                    significance: float = 0.05) -> Dict[str, Any]:
+def waic(log_likelihood_per_obs: np.ndarray) -> dict:
+    """Watanabe-Akaike (widely-applicable) information criterion.
+
+    log_likelihood_per_obs: (S, N) array of pointwise log-likelihood over S
+    posterior draws and N data points. Returns dict with waic and p_w.
     """
-    Discover causal relationships from timeseries data using Granger causality
-
-    Args:
-        timeseries_data: Dictionary mapping variable names to timeseries
-        max_lag: Maximum lag to consider
-        significance: Significance level for causality tests
-
-    Returns:
-        Causal graph as adjacency dictionary
-    """
-    from scipy.stats import f
-    import numpy as np
-
-    variables = list(timeseries_data.keys())
-    n_vars = len(variables)
-
-    causal_graph = {var: {'causes': [], 'effects': []} for var in variables}
-
-    # Test Granger causality for each pair
-    for i, target in enumerate(variables):
-        for j, source in enumerate(variables):
-            if source == target:
-                continue
-
-            # Prepare data
-            y = timeseries_data[target]
-            x = timeseries_data[source]
-
-            # Test if x Granger-causes y
-            f_stat, p_value = _granger_causality_test(x, y, max_lag)
-
-            if p_value < significance:
-                causal_graph[target]['causes'].append(source)
-                causal_graph[source]['effects'].append(target)
-
-    return causal_graph
+    ll = np.asarray(log_likelihood_per_obs, float)
+    S, N = ll.shape
+    lppd = np.log(np.mean(np.exp(ll - ll.max(axis=0, keepdims=True)), axis=0)) \
+        + ll.max(axis=0)
+    lppd_sum = float(np.sum(lppd))
+    p_w = float(np.sum(np.var(ll, axis=0, ddof=1)))
+    return {'waic': -2.0 * (lppd_sum - p_w), 'p_w': p_w, 'lppd': lppd_sum}
 
 
-def _granger_causality_test(x: np.ndarray, y: np.ndarray, max_lag: int) -> Tuple[float, float]:
-    """Perform Granger causality test"""
-    from scipy.stats import f
-    import numpy as np
+def compare_models(models: Sequence[ModelComparison], criterion: str = "bic"
+                   ) -> list:
+    """Rank models by the chosen criterion (lower = better); add deltas."""
+    key = criterion
+    best = min(getattr(m, key) for m in models)
+    ranked = sorted(models, key=lambda m: getattr(m, key))
+    for m in ranked:
+        m.__dict__[f'delta_{criterion}'] = getattr(m, key) - best
+    return ranked
 
-    # Ensure same length
-    min_len = min(len(x), len(y))
-    x = x[:min_len]
-    y = y[:min_len]
 
-    # Restricted model: y depends only on its own lags
-    # Full model: y depends on lags of y and x
-    n = min_len - max_lag
+def make_model(name: str, log_likelihood: float, n_params: int, n_data: int
+               ) -> ModelComparison:
+    return ModelComparison(name=name, log_likelihood=log_likelihood,
+                           n_params=n_params, n_data=n_data,
+                           aic=aic(log_likelihood, n_params),
+                           bic=bic(log_likelihood, n_params, n_data))
 
-    if n <= 0:
-        return 0.0, 1.0
 
-    # Create lag matrices
-    Y_lag = np.zeros((n, max_lag))
-    X_lag = np.zeros((n, max_lag))
-
-    for lag in range(max_lag):
-        Y_lag[:, lag] = y[max_lag-lag-1:-lag-1]
-        X_lag[:, lag] = x[max_lag-lag-1:-lag-1]
-
-    # Restricted model: y_t ~ sum(y_{t-i})
-    Y_restricted = y[max_lag:]
-    X_restricted = Y_lag
+__all__ = [
+    'gelman_rubin', 'effective_sample_size', 'aic', 'bic', 'dic', 'waic',
+    'ModelComparison', 'make_model', 'compare_models',
+]

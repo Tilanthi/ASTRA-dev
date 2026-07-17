@@ -58,14 +58,16 @@ class ExperimentDesigner:
 
     def design_experiment(self, hypothesis: Hypothesis, constraints: Dict = None) -> Experiment:
         """Design an experiment to test a hypothesis."""
-        template_type = 'causal' if 'causes' in hypothesis.description.lower() else 'observational'
+        template_type = 'causal' if 'causes' in hypothesis.statement.lower() else 'observational'
         templates = self.experiment_templates.get(template_type, self.experiment_templates['observational'])
         template = templates[0] if templates else self.experiment_templates['observational'][0]
 
         return Experiment(
-            description=template['template'].format(**template['variables']),
+            id=f"exp_{hypothesis.id}",
             experiment_type=ExperimentType.CONTROLLED if template_type == 'causal' else ExperimentType.OBSERVATIONAL,
-            hypothesis_id=hypothesis.gap_id,
+            hypothesis_ids=[hypothesis.gap_id],
+            design={'description': template['template'].format(**template['variables'])},
+            expected_outcomes={},
             status='designed'
         )
 
@@ -89,12 +91,13 @@ class KnowledgeIntegrator:
         """Integrate new knowledge."""
         self.integrations.append(integration)
 
-        # Add to knowledge base
-        if integration.concept and integration.concept not in self.knowledge_base['concepts']:
-            self.knowledge_base['concepts'][integration.concept] = {
-                'properties': [],
-                'relations': []
-            }
+        # Add to knowledge base (KnowledgeIntegration exposes new_concepts, not concept)
+        for concept in integration.new_concepts:
+            if concept not in self.knowledge_base['concepts']:
+                self.knowledge_base['concepts'][concept] = {
+                    'properties': [],
+                    'relations': []
+                }
 
         return True
 
@@ -119,11 +122,13 @@ class CuriosityEngine:
 
     def evaluate_curiosity(self, gap: KnowledgeGap) -> float:
         """Evaluate curiosity score for a knowledge gap."""
-        # Base curiosity from gap urgency
-        score = gap.urgency * 0.5
+        # Base curiosity from gap priority
+        score = gap.priority * 0.5
 
-        # Boost for novel concepts
-        if gap.concept not in ['X', 'unknown', 'general']:
+        # Boost for novel concepts (related_concepts is a list)
+        novel_concepts = [c for c in gap.related_concepts
+                          if c not in ['X', 'unknown', 'general']]
+        if novel_concepts:
             score += 0.3
 
         return min(1.0, score)
@@ -157,11 +162,15 @@ class ActiveKnowledgeSystem:
 
     def detect_gaps(self, domain: str, knowledge_base: Dict = None) -> List[KnowledgeGap]:
         """Detect knowledge gaps."""
-        return self.gap_detector.detect_gaps(domain, knowledge_base)
+        # GapDetector.detect_gaps expects a query_context dict, not a domain string
+        query_context = {'domain': domain}
+        return self.gap_detector.detect_gaps(query_context, knowledge_base or {})
 
     def generate_hypotheses(self, gap: KnowledgeGap) -> List[Hypothesis]:
         """Generate hypotheses for a gap."""
-        return self.hypothesis_generator.generate_hypotheses(gap)
+        # generate_hypotheses requires a knowledge_base argument
+        knowledge_base = self.knowledge_integrator.get_knowledge_base()
+        return self.hypothesis_generator.generate_hypotheses(gap, knowledge_base)
 
     def design_experiments(self, hypothesis: Hypothesis) -> Experiment:
         """Design experiments for a hypothesis."""
@@ -193,6 +202,7 @@ def create_curiosity_engine() -> CuriosityEngine:
 V60KnowledgeGap = KnowledgeGap
 V60Hypothesis = Hypothesis
 V60Experiment = Experiment
+V60ExperimentType = ExperimentType
 V60KnowledgeGapType = KnowledgeGapType
 V60HypothesisGenerator = HypothesisGenerator
 V60ExperimentDesigner = ExperimentDesigner

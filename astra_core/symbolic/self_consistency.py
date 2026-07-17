@@ -214,3 +214,11 @@ Please think through this carefully:
         # Use CoT to get a better answer
         cot_result = llm_fn(cot_prompt)
         return cot_result, 0.8, result
+
+
+# Backwards-compatibility alias: consumers (and symbolic/__init__) import the
+# historical name ``EnhancedSelfConsistency``. The fuller subclass lives in
+# astra_core.capabilities.self_consistency; this base-class alias is
+# crash-safe (the only extra method call-site is hasattr-guarded) and keeps
+# the public import working without a cross-package dependency.
+EnhancedSelfConsistency = SelfConsistencyEngine

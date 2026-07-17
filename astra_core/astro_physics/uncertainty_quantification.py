@@ -251,3 +251,169 @@ class GaussianLikelihood:
         """
         self.data = np.asarray(data)
         self.errors = np.asarray(errors)
+
+
+# =============================================================================
+# Sampling algorithms (Metropolis-Hastings, affine-invariant ensemble,
+# nested sampling) and Fisher-matrix forecasting.
+# =============================================================================
+
+def _logsubexp(a: float, b: float) -> float:
+    """log(exp(a) - exp(b)) for a > b, numerically stable."""
+    return a + np.log1p(-np.exp(b - a))
+
+
+class MetropolisHastings:
+    """Random-walk Metropolis-Hastings MCMC.
+
+    Args:
+        log_posterior: callable(params) -> log posterior (unnormalised)
+        n_dim: parameter dimension
+        proposal_cov: (n_dim, n_dim) proposal covariance
+    """
+
+    def __init__(self, log_posterior, n_dim: int, proposal_cov=None, seed=None):
+        self.log_post = log_posterior
+        self.n_dim = n_dim
+        self.cov = np.eye(n_dim) * 1e-2 if proposal_cov is None else np.asarray(proposal_cov, float)
+        self.rng = np.random.default_rng(seed)
+        self.accept_rate = 0.0
+
+    def sample(self, x0, n_samples: int, burn_in: int = 1000) -> np.ndarray:
+        x = np.asarray(x0, float)
+        lp = self.log_post(x)
+        L = np.linalg.cholesky(self.cov)
+        chain = np.empty((n_samples, self.n_dim))
+        n_acc = 0
+        n_total = n_samples + burn_in
+        for i in range(n_total):
+            prop = x + L @ self.rng.standard_normal(self.n_dim)
+            lp_prop = self.log_post(prop)
+            if np.log(self.rng.random()) < lp_prop - lp:
+                x, lp = prop, lp_prop
+                if i >= burn_in:
+                    n_acc += 1
+            if i >= burn_in:
+                chain[i - burn_in] = x
+        self.accept_rate = n_acc / n_samples
+        return chain
+
+
+class EnsembleSampler:
+    """Affine-invariant ensemble sampler (Goodman & Weare 2010; emcee stretch move).
+
+    Args:
+        log_posterior: callable(params) -> log posterior
+        n_dim: parameter dimension
+        n_walkers: number of walkers (>= 2*n_dim)
+    """
+
+    def __init__(self, log_posterior, n_dim: int, n_walkers=None, seed=None):
+        self.log_post = log_posterior
+        self.n_dim = n_dim
+        self.n_walkers = n_walkers or max(2 * n_dim, 4)
+        if self.n_walkers < 2 * n_dim:
+            raise ValueError("n_walkers must be >= 2*n_dim for the stretch move")
+        self.rng = np.random.default_rng(seed)
+        self.accept_rate = 0.0
+
+    def sample(self, p0, n_steps: int) -> np.ndarray:
+        p = np.array(p0, float)              # (n_walkers, n_dim)
+        W = self.n_walkers
+        logp = np.array([self.log_post(pi) for pi in p])
+        chain = np.empty((n_steps, W, self.n_dim))
+        a = 2.0
+        n_acc = 0
+        for k in range(n_steps):
+            for i in range(W):
+                j = self.rng.integers(0, W)
+                while j == i:
+                    j = self.rng.integers(0, W)
+                z = ((a - 1.0) * self.rng.random() + 1.0) ** 2 / a
+                prop = p[j] + z * (p[i] - p[j])
+                lp_prop = self.log_post(prop)
+                log_accept = (self.n_dim - 1) * np.log(z) + lp_prop - logp[i]
+                if np.log(self.rng.random()) < log_accept:
+                    p[i], logp[i] = prop, lp_prop
+                    n_acc += 1
+            chain[k] = p
+        self.accept_rate = n_acc / (n_steps * W)
+        return chain
+
+
+class NestedSampler:
+    """Basic nested sampling (Skilling 2004) for the Bayesian evidence.
+
+    Args:
+        log_likelihood: callable(params) -> log likelihood
+        prior_transform: callable(u in unit cube) -> params
+        n_dim: parameter dimension
+        n_active: number of live points
+    """
+
+    def __init__(self, log_likelihood, prior_transform, n_dim: int,
+                 n_active: int = 50, seed=None):
+        self.loglike = log_likelihood
+        self.prior_transform = prior_transform
+        self.n_dim = n_dim
+        self.n_active = n_active
+        self.rng = np.random.default_rng(seed)
+
+    def _draw_above(self, logL_min):
+        for _ in range(10000):
+            u = self.rng.random(self.n_dim)
+            p = self.prior_transform(u)
+            if self.loglike(p) > logL_min:
+                return p
+        return self.prior_transform(self.rng.random(self.n_dim))
+
+    def sample(self, n_iter: int = 1000) -> Dict[str, Any]:
+        u0 = self.rng.random((self.n_active, self.n_dim))
+        active = np.array([self.prior_transform(ui) for ui in u0])
+        logL = np.array([self.loglike(p) for p in active])
+        logX = 0.0
+        logZ = -np.inf
+        samples = np.empty((n_iter, self.n_dim))
+        for i in range(n_iter):
+            worst = int(np.argmin(logL))
+            logLstar = float(logL[worst])
+            logX_old = logX
+            logX -= self.rng.exponential(1.0 / self.n_active)   # shrink prior volume
+            logZ = np.logaddexp(logZ, logLstar + _logsubexp(logX_old, logX))
+            samples[i] = active[worst]
+            new = self._draw_above(logLstar)
+            active[worst] = new
+            logL[worst] = self.loglike(new)
+        # final live-point contribution
+        logLmax = float(np.max(logL))
+        logZ = np.logaddexp(logZ, logLmax + logX)
+        return {'log_evidence': float(logZ), 'samples': samples,
+                'active_points': active}
+
+
+class FisherMatrix:
+    """Fisher information matrix forecasting for Gaussian data.
+
+    F = J^T C^-1 J, where J = d(model)/d(params) (n_data x n_params) and
+    C is the data covariance. Parameter covariance = F^-1.
+
+    Args:
+        jacobian_func: callable(params) -> (n_data, n_params) Jacobian matrix
+        covariance: (n_data, n_data) data covariance
+    """
+
+    def __init__(self, jacobian_func, covariance):
+        self.jac = jacobian_func
+        self.C = np.asarray(covariance, float)
+
+    def at(self, params) -> np.ndarray:
+        J = np.atleast_2d(self.jac(params))
+        Cinv = inv(self.C)
+        return J.T @ Cinv @ J
+
+    def covariance(self, params) -> np.ndarray:
+        return inv(self.at(params))
+
+    def uncertainties(self, params) -> np.ndarray:
+        """1-sigma parameter uncertainties (sqrt of diagonal of F^-1)."""
+        return np.sqrt(np.diag(self.covariance(params)))

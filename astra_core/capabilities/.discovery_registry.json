@@ -5,17 +5,17 @@
       "claim": "Analyzed Herschel filamentcatalogue.fits data for Cygnus region, characterizing filament size distribution and stability properties",
       "provenance_level": "verified_analysis",
       "data_files": [
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/docs/filamentcatalogue.fits"
+        "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/data/discovery_provenance/filamentcatalogue.fits"
       ],
       "analysis_code": [
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/docs/filament_analysis_pipeline.md"
+        "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/data/discovery_provenance/filament_analysis_pipeline.md"
       ],
       "result_files": [
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/docs/cygnus_filament_analysis.md"
+        "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/data/discovery_provenance/cygnus_filament_analysis.md"
       ],
       "figure_files": [],
-      "timestamp": "2026-03-22T17:07:38.041818",
-      "files_exist": true,
+      "timestamp": "2026-07-17T12:08:37.833902",
+      "files_exist": false,
       "code_runs": false,
       "results_reproducible": false,
       "description": "Real analysis of Herschel data from March 18, 2026",
@@ -32,12 +32,12 @@
       "analysis_code": [],
       "result_files": [],
       "figure_files": [
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/figures_v41/fig_causal_chain.png",
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/figures_v41/fig_sfe_correlation.png",
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/figures_v41/fig_core_pattern.png"
+        "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/data/discovery_provenance/taurus_fig_causal_chain.png",
+        "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/data/discovery_provenance/taurus_fig_sfe_correlation.png",
+        "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/data/discovery_provenance/taurus_fig_core_pattern.png"
       ],
-      "timestamp": "2026-03-22T17:07:38.042560",
-      "files_exist": true,
+      "timestamp": "2026-07-17T12:08:37.834320",
+      "files_exist": false,
       "code_runs": false,
       "results_reproducible": false,
       "description": "Illustrative figures created for paper, not real analysis",
@@ -53,18 +53,18 @@
       "claim": "Analyzed IC5146 filament width distribution: median width 0.128 pc, 47.8% within 0.05-0.15 pc range",
       "provenance_level": "verified_analysis",
       "data_files": [
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/HGBS_ic5146_skeleton_map.fits",
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/HGBS_ic5146_column_density_map.fits"
+        "data/discovery_provenance/HGBS_ic5146_skeleton_map.fits",
+        "data/discovery_provenance/HGBS_ic5146_column_density_map.fits"
       ],
       "analysis_code": [
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/ic5146_autonomous_discovery.py"
+        "data/discovery_provenance/ic5146_autonomous_discovery.py"
       ],
       "result_files": [
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/ic5146_filament_catalog_astra.json"
+        "data/discovery_provenance/ic5146_filament_catalog_astra.json"
       ],
       "figure_files": [],
       "timestamp": "2026-03-22T19:31:11.343333",
-      "files_exist": true,
+      "files_exist": false,
       "code_runs": false,
       "results_reproducible": false,
       "description": "Autonomous ASTRA analysis of IC5146 filament widths",
@@ -78,18 +78,18 @@
       "claim": "Analyzed IC5146 filament stability: 37.3% supercritical, 25 of 67 filaments exceed critical mass per unit length",
       "provenance_level": "verified_analysis",
       "data_files": [
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/HGBS_ic5146_skeleton_map.fits",
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/HGBS_ic5146_dust_temperature_map.fits"
+        "data/discovery_provenance/HGBS_ic5146_skeleton_map.fits",
+        "data/discovery_provenance/HGBS_ic5146_dust_temperature_map.fits"
       ],
       "analysis_code": [
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/ic5146_autonomous_discovery.py"
+        "data/discovery_provenance/ic5146_autonomous_discovery.py"
       ],
       "result_files": [
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/ic5146_filament_catalog_astra.json"
+        "data/discovery_provenance/ic5146_filament_catalog_astra.json"
       ],
       "figure_files": [],
       "timestamp": "2026-03-22T19:31:11.343790",
-      "files_exist": true,
+      "files_exist": false,
       "code_runs": false,
       "results_reproducible": false,
       "description": "Autonomous ASTRA analysis of filament stability using Mline criterion",
@@ -103,18 +103,18 @@
       "claim": "Discovered density-temperature correlation in IC5146 filaments: r = -0.357. Found 8 hot+dense outlier filaments",
       "provenance_level": "verified_analysis",
       "data_files": [
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/HGBS_ic5146_column_density_map.fits",
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/HGBS_ic5146_dust_temperature_map.fits"
+        "data/discovery_provenance/HGBS_ic5146_column_density_map.fits",
+        "data/discovery_provenance/HGBS_ic5146_dust_temperature_map.fits"
       ],
       "analysis_code": [
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/ic5146_autonomous_discovery.py"
+        "data/discovery_provenance/ic5146_autonomous_discovery.py"
       ],
       "result_files": [
-        "/Users/gjw255/astrodata/SWARM/STAN_XI_ASTRO/RASTI/IC5146/ic5146_filament_catalog_astra.json"
+        "data/discovery_provenance/ic5146_filament_catalog_astra.json"
       ],
       "figure_files": [],
       "timestamp": "2026-03-22T19:31:11.346231",
-      "files_exist": true,
+      "files_exist": false,
       "code_runs": false,
       "results_reproducible": false,
       "description": "Autonomous ASTRA discovery of density-temperature relationship",
@@ -124,5 +124,5 @@
       ]
     }
   },
-  "last_updated": "2026-03-22T19:31:11.346273"
+  "last_updated": "2026-07-17T12:08:37.834403"
 }

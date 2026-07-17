@@ -92,7 +92,16 @@ class DiscoveryProvenance:
         if not all_files:
             return False
 
-        self.files_exist = all(Path(f).exists() for f in all_files)
+        # Log and skip missing files rather than crashing on bad paths
+        missing = [f for f in all_files if not Path(f).exists()]
+        if missing:
+            print(
+                f"Warning: {len(missing)} provenance file(s) missing for "
+                f"{self.discovery_id}: {missing}"
+            )
+            self.files_exist = False
+        else:
+            self.files_exist = True
         return self.files_exist
 
     def to_dict(self) -> Dict:
@@ -138,8 +147,10 @@ class DiscoveryProvenanceTracker:
     """
 
     def __init__(self, registry_path: Optional[Path] = None):
-        self.registry_path = registry_path or Path(
-            "/Users/gjw255/astrodata/SWARM/ASTRA/astra_core/capabilities/.discovery_registry.json"
+        # Resolve next to this module so the registry always references THIS repo
+        # (astra_core/capabilities/.discovery_registry.json), not a sibling repo.
+        self.registry_path = registry_path or (
+            Path(__file__).resolve().parent.parent / ".discovery_registry.json"
         )
         self.discoveries: Dict[str, DiscoveryProvenance] = {}
         self.load_registry()
@@ -345,14 +356,19 @@ def register_real_discoveries():
     """Register discoveries that have real evidence."""
     tracker = DiscoveryProvenanceTracker()
 
+    # Anchor all provenance artifacts under THIS repo (ASTRA-dev-main) so paths
+    # never reference non-existent sibling repos. Files may not yet exist; the
+    # tracker's validate_evidence() logs and skips missing files gracefully.
+    provenance_data = Path(__file__).resolve().parents[3] / "data" / "discovery_provenance"
+
     # Register the Cygnus filament analysis
     tracker.register_discovery(
         discovery_id="cygnus_filament_stability_2026",
         claim="Analyzed Herschel filamentcatalogue.fits data for Cygnus region, "
               "characterizing filament size distribution and stability properties",
-        data_files=["/Users/gjw255/astrodata/SWARM/ASTRA/docs/filamentcatalogue.fits"],
-        analysis_code=["/Users/gjw255/astrodata/SWARM/ASTRA/docs/filament_analysis_pipeline.md"],
-        result_files=["/Users/gjw255/astrodata/SWARM/ASTRA/docs/cygnus_filament_analysis.md"],
+        data_files=[str(provenance_data / "filamentcatalogue.fits")],
+        analysis_code=[str(provenance_data / "filament_analysis_pipeline.md")],
+        result_files=[str(provenance_data / "cygnus_filament_analysis.md")],
         figure_files=[],  # No figures generated yet
         provenance_level=ProvenanceLevel.VERIFIED_ANALYSIS,
         description="Real analysis of Herschel data from March 18, 2026",
@@ -367,9 +383,9 @@ def register_real_discoveries():
         analysis_code=[],
         result_files=[],
         figure_files=[
-            "/Users/gjw255/astrodata/SWARM/ASTRA/RASTI/figures_v41/fig_causal_chain.png",
-            "/Users/gjw255/astrodata/SWARM/ASTRA/RASTI/figures_v41/fig_sfe_correlation.png",
-            "/Users/gjw255/astrodata/SWARM/ASTRA/RASTI/figures_v41/fig_core_pattern.png"
+            str(provenance_data / "taurus_fig_causal_chain.png"),
+            str(provenance_data / "taurus_fig_sfe_correlation.png"),
+            str(provenance_data / "taurus_fig_core_pattern.png")
         ],
         provenance_level=ProvenanceLevel.HALLUCINATED,
         description="Illustrative figures created for paper, not real analysis",
