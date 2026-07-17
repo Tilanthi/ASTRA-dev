@@ -42,12 +42,12 @@ More methods: `CLAUDE_ASTRA_QUICKSTART.md`.
 
 ### Project Overview
 - **ASTRA**: Autonomous Scientific Discovery in Astrophysics
-- **Version**: 14.13 (2026-07-17). Recent work: residual-seeding fix (gate1-pass 25%→34%), cross-modal `sdss_wise_xmatch` dataset, anti-circularity sub-gate, repo-health audit. **Full version history + status detail → `CLAUDE_ASTRA_SYSTEM_STATUS.md`.**
+- **Version**: 14.14 (2026-07-17). Recent work: full `astra_core` audit + physics rebuild — revived `astro_physics` (import failures 43→0, `AstroSwarmSystem` live) via 11 new verified PhD-level physics modules (RADEX CO non-LTE radiative transfer, SMC inference, Salpeter/Kroupa IMF + Kennicutt-Schmidt, Högbom CLEAN, populated astronomy knowledge-graph, agents framework, …) + guard widening across the symbolic/swarm chains; removed the unused ARC-AGI puzzle subsystem (`arc_agi/`, `arc_reasoning/`); confirmed `swarm/` (MORK stigmergic-reasoning engine) is a core capability — **not** superseded by `intelligence/` (which is the complementary evolutionary/LEAP-core optimizer) — and is imported by `AstroSwarmSystem`. Importable modules 476→555; baseline 43→28; 74 tests pass. **Full version history + status detail → `CLAUDE_ASTRA_SYSTEM_STATUS.md`.**
 - **GitHub**: https://github.com/Tilanthi/ASTRA-dev
 
 
 ### Current Status
-All `System Status — v14.x` sections (v14.0→v14.13: fiction-free two-gate EVALUATE → data lake → niche rotation → dedup → non-optical datasets → self-improvement → residual-seed fix → cross-modal `sdss_wise_xmatch` → anti-circularity gate → repo-health audit) now live in **`CLAUDE_ASTRA_SYSTEM_STATUS.md`** to keep this entry file lean.
+All `System Status — v14.x` sections (v14.0→v14.14: fiction-free two-gate EVALUATE → data lake → niche rotation → dedup → non-optical datasets → self-improvement → residual-seed fix → cross-modal `sdss_wise_xmatch` → anti-circularity gate → repo-health audit → codebase audit + astro_physics physics rebuild) now live in **`CLAUDE_ASTRA_SYSTEM_STATUS.md`** to keep this entry file lean.
 
 ### Key Features
 4-level discovery classification (Novel Observation → Theoretical Insight → Paradigm Shift → Eureka); 3-D scoring (Novelty + Validation + Impact); swarm intelligence + ontology + causal inference; auto-start, user-yielding operation.

@@ -1,8 +1,3 @@
-astra_core/arc_agi/pattern_library.py
-astra_core/arc_reasoning/improved_solver.py
-astra_core/arc_reasoning/llm_code_generator.py
-astra_core/arc_reasoning/neuro_symbolic_solver.py
-astra_core/arc_reasoning/super_ensemble_solver.py
 astra_core/core/v105/scientific_discovery.py
 astra_core/gsd/atomic_workflow.py
 astra_core/gsd/codebase_mapper.py

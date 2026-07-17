@@ -1004,20 +1004,6 @@ __all__ = [
     'prioritize_followup',
     'get_telescope_database',
 
-    # V44: ARC-AGI Integration
-    'ARCTaskType',
-    'SolutionStrategy',
-    'ARCTask',
-    'ARCSolution',
-    'PatternDiscovery',
-    'ARCAGIReasoner',
-    'get_arc_reasoner',
-    'reset_arc_reasoner',
-    'solve_arc_task',
-    'analyze_arc_patterns',
-    'load_arc_task_from_json',
-    'ARC_AVAILABLE',
-
     # V42 GPQA: Test-Time Search
     'TestTimeSearch',
     'SearchConfig',
@@ -1580,36 +1566,6 @@ from .observational_strategy import (
     prioritize_followup,
     get_telescope_database,
 )
-
-# V44: ARC-AGI Integration
-try:
-    from .arc_agi_integration import (
-        ARCTaskType,
-        SolutionStrategy,
-        ARCTask,
-        ARCSolution,
-        PatternDiscovery,
-        ARCAGIReasoner,
-        get_arc_reasoner,
-        reset_arc_reasoner,
-        solve_arc_task,
-        analyze_arc_patterns,
-        load_arc_task_from_json,
-        ARC_AVAILABLE,
-    )
-except ImportError:
-    ARCTaskType = None
-    SolutionStrategy = None
-    ARCTask = None
-    ARCSolution = None
-    PatternDiscovery = None
-    ARCAGIReasoner = None
-    get_arc_reasoner = None
-    reset_arc_reasoner = None
-    solve_arc_task = None
-    analyze_arc_patterns = None
-    load_arc_task_from_json = None
-    ARC_AVAILABLE = None
 
 # V42 GPQA: Test-Time Search
 try:

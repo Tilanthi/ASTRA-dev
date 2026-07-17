@@ -44,12 +44,6 @@ def test_imports():
     assert MarketCausalAnalyzer is not None
     print("✓ Trading components")
 
-    # Test legacy imports
-    from astra_core.arc_agi import Grid, EnhancedARCSolver
-    assert Grid is not None
-    assert EnhancedARCSolver is not None
-    print("✓ ARC-AGI components (legacy)")
-
     from astra_core.astro_physics import AstroSwarmSystem
     assert AstroSwarmSystem is not None
     print("✓ ASTRO physics components (legacy)")
