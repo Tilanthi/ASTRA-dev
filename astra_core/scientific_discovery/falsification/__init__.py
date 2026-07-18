@@ -13,10 +13,11 @@ See registry.py for the fiction-safety contract. Seed predictions live in
 
 from .registry import FalsifiablePrediction, SystematicCheck, Registry
 from .engine import AnomalyResult, evaluate, audit, run_all, demonstrate
-from .eureka_gate import classify, MODEL_CONFIRMED, ANOMALY_CANDIDATE, EUREKA_CANDIDATE
+from .eureka_gate import classify, classify_combined, MODEL_CONFIRMED, ANOMALY_CANDIDATE, EUREKA_CANDIDATE
 
 __all__ = [
     'FalsifiablePrediction', 'SystematicCheck', 'Registry',
     'AnomalyResult', 'evaluate', 'audit', 'run_all', 'demonstrate',
-    'classify', 'MODEL_CONFIRMED', 'ANOMALY_CANDIDATE', 'EUREKA_CANDIDATE',
+    'classify', 'classify_combined',
+    'MODEL_CONFIRMED', 'ANOMALY_CANDIDATE', 'EUREKA_CANDIDATE',
 ]
