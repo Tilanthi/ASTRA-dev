@@ -1,0 +1,21 @@
+{
+  "campaigns": {
+    "supercritical_extended": {
+      "n_sims": 24,
+      "desc": "Extended-domain (24Lj) supercritical audit"
+    },
+    "domain_convergence": {
+      "n_sims": 15,
+      "desc": "Domain-size convergence map at f=2.0"
+    },
+    "field_geometry": {
+      "n_sims": 18,
+      "desc": "FG spot-check at extended domain"
+    },
+    "near_critical": {
+      "n_sims": 9,
+      "desc": "Near-critical validation at 24Lj"
+    }
+  },
+  "total_sims": 66
+}
