@@ -1,0 +1,141 @@
+{
+  "purpose": "Campaign B: synthetic-HGBS T1 forward model (referee #5)",
+  "pipeline": "synthetic_hgbs_forward_model.py: project -> beam-convolve -> Plummer-2 + Gaussian fits -> W_form/W_plummer = T1",
+  "suites": {
+    "B_t1_grid": [
+      {
+        "pid": "B_f1.0_b0.5_th0_Lx8_s42",
+        "config": "configs/B_t1_grid/B_f1.0_b0.5_th0_Lx8_s42.athinput",
+        "f": 1.0,
+        "beta": 0.5,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.02,
+        "tlim": 0.3
+      },
+      {
+        "pid": "B_f1.0_b1.0_th0_Lx8_s42",
+        "config": "configs/B_t1_grid/B_f1.0_b1.0_th0_Lx8_s42.athinput",
+        "f": 1.0,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.02,
+        "tlim": 0.3
+      },
+      {
+        "pid": "B_f1.0_b2.0_th0_Lx8_s42",
+        "config": "configs/B_t1_grid/B_f1.0_b2.0_th0_Lx8_s42.athinput",
+        "f": 1.0,
+        "beta": 2.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.02,
+        "tlim": 0.3
+      },
+      {
+        "pid": "B_f1.5_b0.5_th0_Lx8_s42",
+        "config": "configs/B_t1_grid/B_f1.5_b0.5_th0_Lx8_s42.athinput",
+        "f": 1.5,
+        "beta": 0.5,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.02,
+        "tlim": 0.3
+      },
+      {
+        "pid": "B_f1.5_b1.0_th0_Lx8_s42",
+        "config": "configs/B_t1_grid/B_f1.5_b1.0_th0_Lx8_s42.athinput",
+        "f": 1.5,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.02,
+        "tlim": 0.3
+      },
+      {
+        "pid": "B_f1.5_b2.0_th0_Lx8_s42",
+        "config": "configs/B_t1_grid/B_f1.5_b2.0_th0_Lx8_s42.athinput",
+        "f": 1.5,
+        "beta": 2.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.02,
+        "tlim": 0.3
+      },
+      {
+        "pid": "B_f2.0_b0.5_th0_Lx8_s42",
+        "config": "configs/B_t1_grid/B_f2.0_b0.5_th0_Lx8_s42.athinput",
+        "f": 2.0,
+        "beta": 0.5,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.02,
+        "tlim": 0.3
+      },
+      {
+        "pid": "B_f2.0_b1.0_th0_Lx8_s42",
+        "config": "configs/B_t1_grid/B_f2.0_b1.0_th0_Lx8_s42.athinput",
+        "f": 2.0,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.02,
+        "tlim": 0.3
+      },
+      {
+        "pid": "B_f2.0_b2.0_th0_Lx8_s42",
+        "config": "configs/B_t1_grid/B_f2.0_b2.0_th0_Lx8_s42.athinput",
+        "f": 2.0,
+        "beta": 2.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.02,
+        "tlim": 0.3
+      },
+      {
+        "pid": "B_f1.5_b1.0_th0_Lx8_s137",
+        "config": "configs/B_t1_grid/B_f1.5_b1.0_th0_Lx8_s137.athinput",
+        "f": 1.5,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 137,
+        "perturb": 0.01,
+        "odt": 0.02,
+        "tlim": 0.3
+      },
+      {
+        "pid": "B_f1.5_b1.0_th0_Lx8_s251",
+        "config": "configs/B_t1_grid/B_f1.5_b1.0_th0_Lx8_s251.athinput",
+        "f": 1.5,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 251,
+        "perturb": 0.01,
+        "odt": 0.02,
+        "tlim": 0.3
+      }
+    ]
+  },
+  "total_sims": 11
+}

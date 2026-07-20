@@ -1,0 +1,203 @@
+{
+  "purpose": "Campaign A: density-contrast validation of the t_frag-f scaling (referee #4)",
+  "diagnostic": "t(contrast >= 10/100/1000) from dense HDF5 vs CFL-trigger time from HST; fit 1/t ~ f^alpha for both",
+  "suites": {
+    "A_main_fgrid": [
+      {
+        "pid": "A_f1.1_b1.0_th0_Lx8_s42",
+        "config": "configs/A_main_fgrid/A_f1.1_b1.0_th0_Lx8_s42.athinput",
+        "f": 1.1,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f1.1_b1.0_th0_Lx8_s137",
+        "config": "configs/A_main_fgrid/A_f1.1_b1.0_th0_Lx8_s137.athinput",
+        "f": 1.1,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 137,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f1.3_b1.0_th0_Lx8_s42",
+        "config": "configs/A_main_fgrid/A_f1.3_b1.0_th0_Lx8_s42.athinput",
+        "f": 1.3,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f1.3_b1.0_th0_Lx8_s137",
+        "config": "configs/A_main_fgrid/A_f1.3_b1.0_th0_Lx8_s137.athinput",
+        "f": 1.3,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 137,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f1.5_b1.0_th0_Lx8_s42",
+        "config": "configs/A_main_fgrid/A_f1.5_b1.0_th0_Lx8_s42.athinput",
+        "f": 1.5,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f1.5_b1.0_th0_Lx8_s137",
+        "config": "configs/A_main_fgrid/A_f1.5_b1.0_th0_Lx8_s137.athinput",
+        "f": 1.5,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 137,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f2.0_b1.0_th0_Lx8_s42",
+        "config": "configs/A_main_fgrid/A_f2.0_b1.0_th0_Lx8_s42.athinput",
+        "f": 2.0,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f2.0_b1.0_th0_Lx8_s137",
+        "config": "configs/A_main_fgrid/A_f2.0_b1.0_th0_Lx8_s137.athinput",
+        "f": 2.0,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 137,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f2.5_b1.0_th0_Lx8_s42",
+        "config": "configs/A_main_fgrid/A_f2.5_b1.0_th0_Lx8_s42.athinput",
+        "f": 2.5,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f2.5_b1.0_th0_Lx8_s137",
+        "config": "configs/A_main_fgrid/A_f2.5_b1.0_th0_Lx8_s137.athinput",
+        "f": 2.5,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 137,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f3.0_b1.0_th0_Lx8_s42",
+        "config": "configs/A_main_fgrid/A_f3.0_b1.0_th0_Lx8_s42.athinput",
+        "f": 3.0,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f3.0_b1.0_th0_Lx8_s137",
+        "config": "configs/A_main_fgrid/A_f3.0_b1.0_th0_Lx8_s137.athinput",
+        "f": 3.0,
+        "beta": 1.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 137,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      }
+    ],
+    "A_betaspread": [
+      {
+        "pid": "A_f1.5_b0.5_th0_Lx8_s42",
+        "config": "configs/A_betaspread/A_f1.5_b0.5_th0_Lx8_s42.athinput",
+        "f": 1.5,
+        "beta": 0.5,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f1.5_b2.0_th0_Lx8_s42",
+        "config": "configs/A_betaspread/A_f1.5_b2.0_th0_Lx8_s42.athinput",
+        "f": 1.5,
+        "beta": 2.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f2.0_b0.5_th0_Lx8_s42",
+        "config": "configs/A_betaspread/A_f2.0_b0.5_th0_Lx8_s42.athinput",
+        "f": 2.0,
+        "beta": 0.5,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      },
+      {
+        "pid": "A_f2.0_b2.0_th0_Lx8_s42",
+        "config": "configs/A_betaspread/A_f2.0_b2.0_th0_Lx8_s42.athinput",
+        "f": 2.0,
+        "beta": 2.0,
+        "theta": 0.0,
+        "Lx": 8,
+        "seed": 42,
+        "perturb": 0.01,
+        "odt": 0.005,
+        "tlim": 0.5
+      }
+    ]
+  },
+  "total_sims": 16
+}
