@@ -1,0 +1,11 @@
+============================================================
+REFEREE FOLLOW-UP CAMPAIGN RUNNER
+============================================================
+Root: /data/referee_v34_campaigns_jul2026
+Config dir: configs_v34/P4_beta  (4 configs)
+Max concurrent: 4  dt_kill=1e-07  poll=20.0s
+[1/4] AM_gaus_f2.0_b0.5_th0_d1.0_user_s137: COLLAPSE_EARLY (3066.0s)
+[2/4] AM_gaus_f2.0_b2.0_th0_d1.0_user_s137: COLLAPSE_EARLY (3306.2s)
+[3/4] AM_gaus_f2.0_b0.5_th0_d1.0_user_s42: COLLAPSE_EARLY (6448.7s)
+[4/4] AM_gaus_f2.0_b2.0_th0_d1.0_user_s42: COLLAPSE_EARLY (8129.8s)
+COMPLETE 4 {'COLLAPSE_EARLY': 4}

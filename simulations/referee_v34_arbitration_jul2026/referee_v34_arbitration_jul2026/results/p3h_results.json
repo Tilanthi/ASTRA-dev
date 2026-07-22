@@ -1,0 +1,24 @@
+[
+  {
+    "pid": "AM_gaus_f2.0_b1.0_th0_d2.0_user_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 7750.4,
+    "returncode": null,
+    "nproc": 64,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P3_heavy/AM_gaus_f2.0_b1.0_th0_d2.0_user_s42.athinput",
+    "collapse_t": 0.476003,
+    "collapse_dt": 2.48419e-22,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "AM_gaus_f2.0_b1.0_th0_d2.0_refl_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 16136.8,
+    "returncode": null,
+    "nproc": 64,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P3_heavy/AM_gaus_f2.0_b1.0_th0_d2.0_refl_s42.athinput",
+    "collapse_t": 0.490012,
+    "collapse_dt": 2.30489e-23,
+    "dt_kill": 1e-07
+  }
+]

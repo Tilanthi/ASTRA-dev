@@ -1,0 +1,44 @@
+[
+  {
+    "pid": "AM_gaus_f2.0_b1.0_th0_d0.5_refl_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 163.2,
+    "returncode": 1,
+    "nproc": 16,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P1_controls/AM_gaus_f2.0_b1.0_th0_d0.5_refl_s42.athinput",
+    "collapse_t": 0.632321,
+    "collapse_dt": 8.46189e-19,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "AM_ostr_f2.0_b1.0_th0_d0.5_refl_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 1163.7,
+    "returncode": null,
+    "nproc": 16,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P1_controls/AM_ostr_f2.0_b1.0_th0_d0.5_refl_s42.athinput",
+    "collapse_t": 0.601007,
+    "collapse_dt": 5.12405e-22,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "AM_gaus_f2.0_b1.0_th0_d0.5_user_s42",
+    "status": "FAIL(-9)",
+    "wall_s": 4244.0,
+    "returncode": -9,
+    "nproc": 16,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P1_controls/AM_gaus_f2.0_b1.0_th0_d0.5_user_s42.athinput",
+    "stdout_tail": "784e-01 dt=3.1819910169245773e-06\ncycle=991 time=1.4068249739781477e-01 dt=2.6102500911454120e-06\ncycle=992 time=1.4068510764790593e-01 dt=2.0915165606751290e-06\ncycle=993 time=1.4068719916446659e-01 dt=1.7468177391264688e-06\ncycle=994 time=1.4068894598220572e-01 dt=1.5820483199114641e-06\ncycle=995 time=1.4069052803052562e-01 dt=1.5024652766587558e-06\ncycle=996 time=1.4069203049580228e-01 dt=1.4545504448094095e-06\ncycle=997 time=1.4069348504624710e-01 dt=1.4240658911644755e-06\ncycle=998 time=1.4069490911213825e-01 dt=1.4099939632912164e-06\ncycle=999 time=1.4069631910610153e-01 dt=1.4111867366206205e-06\ncycle=1000 time=1.4069773029283816e-01 dt=1.4268832512692165e-06\ncycle=1001 time=1.4069915717608944e-01 dt=1.4566458158979443e-06\ncycle=1002 time=1.4070061382190535e-01 dt=1.4978946231139846e-06\ncycle=1003 time=1.4070211171652847e-01 dt=1.5348725201047894e-06\ncycle=1004 time=1.4070364658904858e-01 dt=1.5676554569458938e-06\ncycle=1005 time=1.4070521424450552e-01 dt=1.5986062098028767e-06\n",
+    "stderr_tail": ""
+  },
+  {
+    "pid": "AM_ostr_f2.0_b1.0_th0_d0.5_user_s42",
+    "status": "FAIL(-9)",
+    "wall_s": 4244.2,
+    "returncode": -9,
+    "nproc": 16,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P1_controls/AM_ostr_f2.0_b1.0_th0_d0.5_user_s42.athinput",
+    "stdout_tail": "431497189e-01 dt=1.4747176200592116e-06\ncycle=929 time=1.7801193903259194e-01 dt=1.4731592011477518e-06\ncycle=930 time=1.7801341219179309e-01 dt=1.4716104483104910e-06\ncycle=931 time=1.7801488380224140e-01 dt=1.4700715590663212e-06\ncycle=932 time=1.7801635387380046e-01 dt=1.4685435108126162e-06\ncycle=933 time=1.7801782241731129e-01 dt=1.4670279765292047e-06\ncycle=934 time=1.7801928944528783e-01 dt=1.4655272182186307e-06\ncycle=935 time=1.7802075497250605e-01 dt=1.4640439624127216e-06\ncycle=936 time=1.7802221901646847e-01 dt=1.4625812704839832e-06\ncycle=937 time=1.7802368159773896e-01 dt=1.4611424256125235e-06\ncycle=938 time=1.7802514274016457e-01 dt=1.4597307545974703e-06\ncycle=939 time=1.7802660247091917e-01 dt=1.4583495320263942e-06\ncycle=940 time=1.7802806082045119e-01 dt=1.4570018808462266e-06\ncycle=941 time=1.7802951782233203e-01 dt=1.4556909073656258e-06\ncycle=942 time=1.7803097351323940e-01 dt=1.4544192807079280e-06\ncycle=943 time=1.7803242793252011e-01 dt=1.4531891718095912e-06\n",
+    "stderr_tail": ""
+  }
+]

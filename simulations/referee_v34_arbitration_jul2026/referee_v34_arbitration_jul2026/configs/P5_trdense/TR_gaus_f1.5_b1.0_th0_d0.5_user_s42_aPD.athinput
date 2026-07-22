@@ -1,0 +1,66 @@
+<comment>
+problem   = TR_gaus_f1.5_b1.0_th0_d0.5_user_s42_aP
+f=1.5 beta=1.0 bgeom=longitudinal profile=gaussian d=0.5 bc=user seed=42 ampl=1.0
+
+<job>
+problem_id      = TR_gaus_f1.5_b1.0_th0_d0.5_user_s42_aPD
+max_runtime     = 43200
+num_cores       = 16
+restart_file    =
+
+<output1>
+file_type   = hdf5
+variable    = prim
+dt          = 0.005
+id          = prim
+
+<output2>
+file_type   = hst
+dt          = 0.001
+id          = hst
+
+<time>
+cfl_number  = 0.3
+tlim        = 0.4
+nlim        = -1
+
+<mesh>
+nx1         = 512
+x1min       = 0.0
+x1max       = 8
+ix1_bc      = periodic
+ox1_bc      = periodic
+nx2         = 64
+x2min       = -0.5
+x2max       = 0.5
+ix2_bc      = user
+ox2_bc      = user
+nx3         = 64
+x3min       = -0.5
+x3max       = 0.5
+ix3_bc      = user
+ox3_bc      = user
+
+<meshblock>
+nx1 = 32
+nx2 = 64
+nx3 = 64
+
+<hydro>
+gamma           = 1.0
+iso_sound_speed  = 1.0
+
+<gravity>
+grav_mean_rho   = 1.0
+
+<problem>
+four_pi_G       = 39.4784176044
+f_line_mass     = 1.5
+plasma_beta     = 1.0
+bfield_geometry = longitudinal
+mach_number     = 1.0
+perturb_ampl    = 1.0
+random_seed     = 42
+W_core          = 0.3
+profile         = gaussian
+p_ext_ratio     = 0.0

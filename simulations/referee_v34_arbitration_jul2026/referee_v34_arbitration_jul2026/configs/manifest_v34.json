@@ -1,0 +1,523 @@
+{
+  "suites": {
+    "P0_smoke": [
+      {
+        "pid": "SMK_gaus_user",
+        "f": 2.0,
+        "beta": 1.0,
+        "d": 0.5,
+        "ny": 32,
+        "bc": "user",
+        "profile": "gaussian",
+        "nx": 64,
+        "nproc": 2,
+        "mb": [
+          32,
+          32,
+          32
+        ],
+        "tlim": 0.02,
+        "odt": 0.01
+      },
+      {
+        "pid": "SMK_gaus_refl",
+        "f": 2.0,
+        "beta": 1.0,
+        "d": 0.5,
+        "ny": 32,
+        "bc": "reflecting",
+        "profile": "gaussian",
+        "nx": 64,
+        "nproc": 2,
+        "mb": [
+          32,
+          32,
+          32
+        ],
+        "tlim": 0.02,
+        "odt": 0.01
+      },
+      {
+        "pid": "SMK_ostr_user",
+        "f": 2.0,
+        "beta": 1.0,
+        "d": 0.5,
+        "ny": 32,
+        "bc": "user",
+        "profile": "ostriker",
+        "nx": 64,
+        "nproc": 2,
+        "mb": [
+          32,
+          32,
+          32
+        ],
+        "tlim": 0.02,
+        "odt": 0.01
+      },
+      {
+        "pid": "SMK_ostr_refl",
+        "f": 2.0,
+        "beta": 1.0,
+        "d": 0.5,
+        "ny": 32,
+        "bc": "reflecting",
+        "profile": "ostriker",
+        "nx": 64,
+        "nproc": 2,
+        "mb": [
+          32,
+          32,
+          32
+        ],
+        "tlim": 0.02,
+        "odt": 0.01
+      }
+    ],
+    "P1_controls": [
+      {
+        "pid": "AM_gaus_f2.0_b1.0_th0_d0.5_user_s42",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "user",
+        "profile": "gaussian",
+        "d": 0.5,
+        "ny": 64,
+        "nproc": 16,
+        "mb": [
+          32,
+          64,
+          64
+        ]
+      },
+      {
+        "pid": "AM_gaus_f2.0_b1.0_th0_d0.5_refl_s42",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "reflecting",
+        "profile": "gaussian",
+        "d": 0.5,
+        "ny": 64,
+        "nproc": 16,
+        "mb": [
+          32,
+          64,
+          64
+        ]
+      },
+      {
+        "pid": "AM_ostr_f2.0_b1.0_th0_d0.5_user_s42",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "user",
+        "profile": "ostriker",
+        "d": 0.5,
+        "ny": 64,
+        "nproc": 16,
+        "mb": [
+          32,
+          64,
+          64
+        ]
+      },
+      {
+        "pid": "AM_ostr_f2.0_b1.0_th0_d0.5_refl_s42",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "reflecting",
+        "profile": "ostriker",
+        "d": 0.5,
+        "ny": 64,
+        "nproc": 16,
+        "mb": [
+          32,
+          64,
+          64
+        ]
+      }
+    ],
+    "P2b_am_d1": [
+      {
+        "pid": "AM_gaus_f2.0_b1.0_th0_d1.0_user_s42",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "user",
+        "profile": "gaussian",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "AM_gaus_f2.0_b1.0_th0_d1.0_refl_s42",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "reflecting",
+        "profile": "gaussian",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "AM_gaus_f2.0_b1.0_th0_d1.0_peri_s42",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "periodic",
+        "profile": "gaussian",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "AM_gaus_f1.5_b1.0_th0_d1.0_user_s42",
+        "f": 1.5,
+        "beta": 1.0,
+        "bc": "user",
+        "profile": "gaussian",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "AM_gaus_f2.0_b1.0_th0_d1.0_user_s137",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "user",
+        "seed": 137,
+        "profile": "gaussian",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "AM_gaus_f2.0_b1.0_th90_d1.0_user_s42",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "user",
+        "bgeom": "perpendicular",
+        "profile": "gaussian",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "AM_gaus_f1.5_b1.0_th0_d1.0_refl_s42",
+        "f": 1.5,
+        "beta": 1.0,
+        "bc": "reflecting",
+        "profile": "gaussian",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "AM_gaus_f2.0_b1.0_th0_d1.0_refl_s137",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "reflecting",
+        "seed": 137,
+        "profile": "gaussian",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "AM_gaus_f2.0_b1.0_th90_d1.0_refl_s42",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "reflecting",
+        "bgeom": "perpendicular",
+        "profile": "gaussian",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "AM_gaus_f2.0_b1.0_th0_d1.0_user_s42_a4",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "user",
+        "perturb": 0.0001,
+        "profile": "gaussian",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "EQ_ostr_f1.5_b1.0_th0_d1.0_user_s42",
+        "f": 1.5,
+        "beta": 1.0,
+        "bc": "user",
+        "profile": "ostriker",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "EQ_ostr_f2.0_b1.0_th0_d1.0_user_s42",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "user",
+        "profile": "ostriker",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "EQ_ostr_f2.0_b1.0_th0_d1.0_user_s137",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "user",
+        "seed": 137,
+        "profile": "ostriker",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "EQ_ostr_f1.5_b1.0_th0_d1.0_refl_s42",
+        "f": 1.5,
+        "beta": 1.0,
+        "bc": "reflecting",
+        "profile": "ostriker",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "EQ_ostr_f2.0_b1.0_th0_d1.0_refl_s42",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "reflecting",
+        "profile": "ostriker",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "EQ_ostr_f2.0_b1.0_th0_d1.0_refl_s137",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "reflecting",
+        "seed": 137,
+        "profile": "ostriker",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      }
+    ],
+    "P3_heavy": [
+      {
+        "pid": "AM_gaus_f2.0_b1.0_th0_d2.0_user_s42",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "user",
+        "profile": "gaussian",
+        "d": 2.0,
+        "ny": 256,
+        "nproc": 64,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "AM_gaus_f2.0_b1.0_th0_d2.0_refl_s42",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "reflecting",
+        "profile": "gaussian",
+        "d": 2.0,
+        "ny": 256,
+        "nproc": 64,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      }
+    ],
+    "P3_tr": [
+      {
+        "pid": "TR_gaus_f1.5_b1.0_th0_d0.5_user_s42_aP",
+        "f": 1.5,
+        "beta": 1.0,
+        "bc": "user",
+        "seed": 42,
+        "perturb": 1.0,
+        "profile": "gaussian",
+        "d": 0.5,
+        "ny": 64,
+        "nproc": 16,
+        "mb": [
+          32,
+          64,
+          64
+        ]
+      },
+      {
+        "pid": "TR_gaus_f1.5_b1.0_th0_d0.5_user_s137_aP",
+        "f": 1.5,
+        "beta": 1.0,
+        "bc": "user",
+        "seed": 137,
+        "perturb": 1.0,
+        "profile": "gaussian",
+        "d": 0.5,
+        "ny": 64,
+        "nproc": 16,
+        "mb": [
+          32,
+          64,
+          64
+        ]
+      },
+      {
+        "pid": "TR_gaus_f1.5_b1.0_th0_d1.0_user_s42_aP",
+        "f": 1.5,
+        "beta": 1.0,
+        "bc": "user",
+        "perturb": 1.0,
+        "profile": "gaussian",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      },
+      {
+        "pid": "TR_gaus_f2.0_b1.0_th0_d0.5_user_s42_aP",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "user",
+        "seed": 42,
+        "perturb": 1.0,
+        "profile": "gaussian",
+        "d": 0.5,
+        "ny": 64,
+        "nproc": 16,
+        "mb": [
+          32,
+          64,
+          64
+        ]
+      },
+      {
+        "pid": "TR_gaus_f2.0_b1.0_th0_d0.5_user_s137_aP",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "user",
+        "seed": 137,
+        "perturb": 1.0,
+        "profile": "gaussian",
+        "d": 0.5,
+        "ny": 64,
+        "nproc": 16,
+        "mb": [
+          32,
+          64,
+          64
+        ]
+      },
+      {
+        "pid": "TR_gaus_f2.0_b1.0_th0_d1.0_user_s42_aP",
+        "f": 2.0,
+        "beta": 1.0,
+        "bc": "user",
+        "perturb": 1.0,
+        "profile": "gaussian",
+        "d": 1.0,
+        "ny": 128,
+        "nproc": 32,
+        "mb": [
+          32,
+          64,
+          128
+        ]
+      }
+    ]
+  }
+}

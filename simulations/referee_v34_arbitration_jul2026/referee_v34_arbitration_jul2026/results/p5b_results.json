@@ -1,0 +1,59 @@
+[
+  {
+    "pid": "TR_gaus_f2.0_b1.0_th0_d0.5_user_s137_aPD",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 6628.1,
+    "returncode": null,
+    "nproc": 16,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P5_trdense/TR_gaus_f2.0_b1.0_th0_d0.5_user_s137_aPD.athinput",
+    "collapse_t": 0.078,
+    "collapse_dt": 9.93389e-08,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "TR_gaus_f2.0_b1.0_th0_d0.5_user_s42_aPD",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 11752.1,
+    "returncode": null,
+    "nproc": 16,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P5_trdense/TR_gaus_f2.0_b1.0_th0_d0.5_user_s42_aPD.athinput",
+    "collapse_t": 0.077,
+    "collapse_dt": 2.76326e-08,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "TR_gaus_f1.5_b1.0_th0_d0.5_user_s42_aPD",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 12552.8,
+    "returncode": null,
+    "nproc": 16,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P5_trdense/TR_gaus_f1.5_b1.0_th0_d0.5_user_s42_aPD.athinput",
+    "collapse_t": 0.079,
+    "collapse_dt": 6.98636e-08,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "TR_gaus_f1.5_b1.0_th0_d0.5_user_s137_aPD",
+    "status": "TIMEOUT",
+    "wall_s": 21619.0,
+    "returncode": -1,
+    "nproc": 16,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P5_trdense/TR_gaus_f1.5_b1.0_th0_d0.5_user_s137_aPD.athinput"
+  },
+  {
+    "pid": "TR_gaus_f2.0_b1.0_th0_d1.0_user_s42_aPD",
+    "status": "TIMEOUT",
+    "wall_s": 21619.5,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P5_trdense/TR_gaus_f2.0_b1.0_th0_d1.0_user_s42_aPD.athinput"
+  },
+  {
+    "pid": "TR_gaus_f1.5_b1.0_th0_d1.0_user_s42_aPD",
+    "status": "TIMEOUT",
+    "wall_s": 21620.0,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P5_trdense/TR_gaus_f1.5_b1.0_th0_d1.0_user_s42_aPD.athinput"
+  }
+]

@@ -1,0 +1,23 @@
+============================================================
+REFEREE FOLLOW-UP CAMPAIGN RUNNER
+============================================================
+Root: /data/referee_v34_campaigns_jul2026
+Config dir: configs_v34/P2b_am_d1  (16 configs)
+Max concurrent: 4  dt_kill=1e-07  poll=20.0s
+[1/16] AM_gaus_f1.5_b1.0_th0_d1.0_user_s42: COLLAPSE_EARLY (1484.6s)
+[2/16] AM_gaus_f2.0_b1.0_th0_d1.0_refl_s42: COLLAPSE_EARLY (1184.2s)
+[3/16] AM_gaus_f2.0_b1.0_th0_d1.0_peri_s42: COLLAPSE_EARLY (4707.7s)
+[4/16] AM_gaus_f1.5_b1.0_th0_d1.0_refl_s42: COLLAPSE_EARLY (5008.0s)
+[5/16] AM_gaus_f2.0_b1.0_th0_d1.0_user_s42_a4: COLLAPSE_EARLY (2365.3s)
+[6/16] AM_gaus_f2.0_b1.0_th0_d1.0_user_s42: COLLAPSE_EARLY (3266.1s)
+[7/16] AM_gaus_f2.0_b1.0_th90_d1.0_refl_s42: COLLAPSE_EARLY (683.7s)
+[8/16] AM_gaus_f2.0_b1.0_th0_d1.0_refl_s137: COLLAPSE_EARLY (8671.5s)
+[9/16] AM_gaus_f2.0_b1.0_th90_d1.0_user_s42: COLLAPSE_EARLY (923.9s)
+[10/16] EQ_ostr_f1.5_b1.0_th0_d1.0_refl_s42: COLLAPSE_EARLY (1444.4s)
+[11/16] EQ_ostr_f1.5_b1.0_th0_d1.0_user_s42: COLLAPSE_EARLY (2445.3s)
+[12/16] EQ_ostr_f2.0_b1.0_th0_d1.0_refl_s137: COLLAPSE_EARLY (3045.9s)
+[13/16] EQ_ostr_f2.0_b1.0_th0_d1.0_refl_s42: COLLAPSE_EARLY (2905.7s)
+[14/16] EQ_ostr_f2.0_b1.0_th0_d1.0_user_s42: COLLAPSE_EARLY (5067.8s)
+[15/16] AM_gaus_f2.0_b1.0_th0_d1.0_user_s137: COLLAPSE_EARLY (15618.0s)
+[16/16] EQ_ostr_f2.0_b1.0_th0_d1.0_user_s137: COLLAPSE_EARLY (9933.0s)
+COMPLETE 16 {'COLLAPSE_EARLY': 16}

@@ -1,0 +1,11 @@
+============================================================
+REFEREE FOLLOW-UP CAMPAIGN RUNNER
+============================================================
+Root: /data/referee_v34_campaigns_jul2026
+Config dir: configs_v34/P0_smoke  (4 configs)
+Max concurrent: 4  dt_kill=1e-09  poll=20.0s
+[1/4] SMK_gaus_refl: OK (20.0s)
+[2/4] SMK_ostr_refl: OK (20.0s)
+[3/4] SMK_ostr_user: OK (20.0s)
+[4/4] SMK_gaus_user: OK (20.0s)
+COMPLETE 4 {'OK': 4}

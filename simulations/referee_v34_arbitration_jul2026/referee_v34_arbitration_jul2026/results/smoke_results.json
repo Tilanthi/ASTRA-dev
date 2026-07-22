@@ -1,0 +1,42 @@
+[
+  {
+    "pid": "SMK_gaus_refl",
+    "status": "OK",
+    "wall_s": 20.0,
+    "returncode": 0,
+    "nproc": 2,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P0_smoke/SMK_gaus_refl.athinput",
+    "stdout_tail": "No data_format specified in output block 'output1', using default\nNo data_format specified in output block 'output1', using default\n\nSetup complete, entering main loop...\n\ncycle=0 time=0.0000000000000000e+00 dt=5.6895153890007275e-03\ncycle=1 time=5.6895153890007275e-03 dt=5.4567747371538850e-03\ncycle=2 time=1.1146290126154612e-02 dt=5.3053211890359371e-03\ncycle=3 time=1.6451611315190549e-02 dt=3.5483886848094517e-03\ncycle=4 time=2.0000000000000000e-02 dt=5.1591740824632193e-03\n\nTerminating on time limit\ntime=2.0000000000000000e-02 cycle=4\ntlim=2.0000000000000000e-02 nlim=-1\n\nzone-cycles = 262144\ncpu time used  = 2.5265799999999999e-01\nzone-cycles/cpu_second = 1.0375448234372155e+06\n",
+    "stderr_tail": ""
+  },
+  {
+    "pid": "SMK_ostr_refl",
+    "status": "OK",
+    "wall_s": 20.0,
+    "returncode": 0,
+    "nproc": 2,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P0_smoke/SMK_ostr_refl.athinput",
+    "stdout_tail": "No data_format specified in output block 'output1', using default\nNo data_format specified in output block 'output1', using default\n\nSetup complete, entering main loop...\n\ncycle=0 time=0.0000000000000000e+00 dt=5.6115554035576906e-03\ncycle=1 time=5.6115554035576906e-03 dt=5.3269748681630475e-03\ncycle=2 time=1.0938530271720738e-02 dt=5.1494074200372567e-03\ncycle=3 time=1.6087937691757995e-02 dt=3.9120623082420057e-03\ncycle=4 time=2.0000000000000000e-02 dt=4.9825284296865797e-03\n\nTerminating on time limit\ntime=2.0000000000000000e-02 cycle=4\ntlim=2.0000000000000000e-02 nlim=-1\n\nzone-cycles = 262144\ncpu time used  = 2.8211500000000000e-01\nzone-cycles/cpu_second = 9.2920971944065357e+05\n",
+    "stderr_tail": ""
+  },
+  {
+    "pid": "SMK_ostr_user",
+    "status": "OK",
+    "wall_s": 20.0,
+    "returncode": 0,
+    "nproc": 2,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P0_smoke/SMK_ostr_user.athinput",
+    "stdout_tail": "No data_format specified in output block 'output1', using default\nNo data_format specified in output block 'output1', using default\n\nSetup complete, entering main loop...\n\ncycle=0 time=0.0000000000000000e+00 dt=5.6115554035576906e-03\ncycle=1 time=5.6115554035576906e-03 dt=5.3037100939743176e-03\ncycle=2 time=1.0915265497532009e-02 dt=5.0860778668287941e-03\ncycle=3 time=1.6001343364360803e-02 dt=3.9986566356391973e-03\ncycle=4 time=2.0000000000000000e-02 dt=4.8112190464113212e-03\n\nTerminating on time limit\ntime=2.0000000000000000e-02 cycle=4\ntlim=2.0000000000000000e-02 nlim=-1\n\nzone-cycles = 262144\ncpu time used  = 2.3334600000000000e-01\nzone-cycles/cpu_second = 1.1234133004208342e+06\n",
+    "stderr_tail": ""
+  },
+  {
+    "pid": "SMK_gaus_user",
+    "status": "OK",
+    "wall_s": 20.0,
+    "returncode": 0,
+    "nproc": 2,
+    "config": "/data/referee_v34_campaigns_jul2026/configs_v34/P0_smoke/SMK_gaus_user.athinput",
+    "stdout_tail": "No data_format specified in output block 'output1', using default\nNo data_format specified in output block 'output1', using default\n\nSetup complete, entering main loop...\n\ncycle=0 time=0.0000000000000000e+00 dt=5.6895153890007275e-03\ncycle=1 time=5.6895153890007275e-03 dt=5.4383079058864621e-03\ncycle=2 time=1.1127823294887190e-02 dt=5.2543344049842270e-03\ncycle=3 time=1.6382157699871416e-02 dt=3.6178423001285848e-03\ncycle=4 time=2.0000000000000000e-02 dt=5.0261470945596734e-03\n\nTerminating on time limit\ntime=2.0000000000000000e-02 cycle=4\ntlim=2.0000000000000000e-02 nlim=-1\n\nzone-cycles = 262144\ncpu time used  = 2.9289999999999999e-01\nzone-cycles/cpu_second = 8.9499487879822461e+05\n",
+    "stderr_tail": ""
+  }
+]

@@ -1,0 +1,13 @@
+============================================================
+REFEREE FOLLOW-UP CAMPAIGN RUNNER
+============================================================
+Root: /data/referee_v34_campaigns_jul2026
+Config dir: configs_v34/P3_tr  (6 configs)
+Max concurrent: 6  dt_kill=1e-07  poll=20.0s
+[1/6] TR_gaus_f1.5_b1.0_th0_d0.5_user_s42_aP: FAIL(-9) (9609.4s)
+[2/6] TR_gaus_f1.5_b1.0_th0_d0.5_user_s137_aP: FAIL(-9) (9609.5s)
+[3/6] TR_gaus_f2.0_b1.0_th0_d0.5_user_s42_aP: FAIL(-9) (9609.5s)
+[4/6] TR_gaus_f2.0_b1.0_th0_d0.5_user_s137_aP: FAIL(-9) (9609.5s)
+[5/6] TR_gaus_f2.0_b1.0_th0_d1.0_user_s42_aP: FAIL(-9) (9609.5s)
+[6/6] TR_gaus_f1.5_b1.0_th0_d1.0_user_s42_aP: FAIL(-9) (9609.5s)
+COMPLETE 6 {'FAIL(-9)': 6}

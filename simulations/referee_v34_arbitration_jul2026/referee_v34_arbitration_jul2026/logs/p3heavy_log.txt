@@ -1,0 +1,6 @@
+============================================================
+REFEREE FOLLOW-UP CAMPAIGN RUNNER
+============================================================
+Root: /data/referee_v34_campaigns_jul2026
+Config dir: configs_v34/P3_heavy  (2 configs)
+Max concurrent: 2  dt_kill=1e-07  poll=20.0s
