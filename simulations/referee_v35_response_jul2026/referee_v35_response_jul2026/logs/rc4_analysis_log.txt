@@ -1,0 +1,14 @@
+12 runs
+RC4_ad_f1.0_b0.5_th90_eta0.01_s42: BEADING C_f=10704.2 rms_f=3.39e-01 peaks_max=6 lam=0.9453125 t_f=0.55
+RC4_ad_f1.0_b0.5_th90_eta0.05_s42: SPINDLE C_f=394.0 rms_f=1.43e-02 peaks_max=0 lam=None t_f=0.45
+RC4_ad_f1.0_b1.0_th90_eta0.01_s42: BEADING C_f=28192.3 rms_f=8.65e-01 peaks_max=15 lam=0.1875 t_f=0.55
+RC4_ad_f1.0_b1.0_th90_eta0.05_s42: MIXED C_f=690.6 rms_f=4.03e-02 peaks_max=2 lam=4.0 t_f=0.5
+RC4_ad_f1.2_b0.5_th90_eta0.01_s42: BEADING C_f=38173.3 rms_f=1.56e+00 peaks_max=20 lam=0.234375 t_f=0.55
+RC4_ad_f1.2_b0.5_th90_eta0.05_s42: BEADING C_f=11873.6 rms_f=3.65e-01 peaks_max=6 lam=0.78125 t_f=0.5
+RC4_ad_f1.2_b1.0_th90_eta0.01_s42: BEADING C_f=65725.7 rms_f=1.94e+00 peaks_max=14 lam=0.4375 t_f=0.55
+RC4_ad_f1.2_b1.0_th90_eta0.05_s42: BEADING C_f=36484.4 rms_f=7.05e-01 peaks_max=9 lam=0.65625 t_f=0.5
+RC4_ad_f1.5_b0.5_th90_eta0.01_s42: BEADING C_f=40111.6 rms_f=1.60e+00 peaks_max=19 lam=0.3125 t_f=0.5
+RC4_ad_f1.5_b0.5_th90_eta0.05_s42: BEADING C_f=8645.6 rms_f=2.91e-01 peaks_max=6 lam=0.7890625 t_f=0.45
+RC4_ad_f1.5_b1.0_th90_eta0.01_s42: BEADING C_f=58369.5 rms_f=1.97e+00 peaks_max=14 lam=0.4296875 t_f=0.5
+RC4_ad_f1.5_b1.0_th90_eta0.05_s42: BEADING C_f=26223.8 rms_f=5.01e-01 peaks_max=10 lam=0.4296875 t_f=0.45
+wrote rc4_beading.json

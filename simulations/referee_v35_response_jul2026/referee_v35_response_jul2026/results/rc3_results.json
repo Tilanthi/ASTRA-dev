@@ -1,0 +1,197 @@
+[
+  {
+    "pid": "RC3_perp_f1.2_b1.0_th90_d1.0_s137",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 683.7,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f1.2_b1.0_th90_d1.0_s137.athinput",
+    "collapse_t": 0.447411,
+    "collapse_dt": 4.8774e-11,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f1.2_b2.0_th90_d1.0_s137",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 703.8,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f1.2_b2.0_th90_d1.0_s137.athinput",
+    "collapse_t": 0.487278,
+    "collapse_dt": 5.55873e-11,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f1.2_b2.0_th90_d1.0_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 703.8,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f1.2_b2.0_th90_d1.0_s42.athinput",
+    "collapse_t": 0.487429,
+    "collapse_dt": 8.4813e-12,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f1.2_b1.0_th90_d1.0_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 723.8,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f1.2_b1.0_th90_d1.0_s42.athinput",
+    "collapse_t": 0.450884,
+    "collapse_dt": 8.15363e-12,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f1.5_b1.0_th90_d1.0_s137",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 683.8,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f1.5_b1.0_th90_d1.0_s137.athinput",
+    "collapse_t": 0.4146,
+    "collapse_dt": 3.98499e-12,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f1.5_b1.0_th90_d1.0_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 703.8,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f1.5_b1.0_th90_d1.0_s42.athinput",
+    "collapse_t": 0.413654,
+    "collapse_dt": 6.21085e-12,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f1.5_b0.5_th90_d1.0_s137",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 1164.3,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f1.5_b0.5_th90_d1.0_s137.athinput",
+    "collapse_t": 0.417068,
+    "collapse_dt": 1.03847e-20,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f1.5_b2.0_th90_d1.0_s137",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 603.7,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f1.5_b2.0_th90_d1.0_s137.athinput",
+    "collapse_t": 0.445786,
+    "collapse_dt": 1.23038e-12,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f1.5_b0.5_th90_d1.0_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 1384.5,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f1.5_b0.5_th90_d1.0_s42.athinput",
+    "collapse_t": 0.412055,
+    "collapse_dt": 4.71149e-21,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f1.5_b2.0_th90_d1.0_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 663.7,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f1.5_b2.0_th90_d1.0_s42.athinput",
+    "collapse_t": 0.453087,
+    "collapse_dt": 2.12298e-12,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f2.0_b1.0_th90_d1.0_s137",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 623.7,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f2.0_b1.0_th90_d1.0_s137.athinput",
+    "collapse_t": 0.378337,
+    "collapse_dt": 1.44797e-13,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f2.0_b1.0_th90_d1.0_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 623.7,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f2.0_b1.0_th90_d1.0_s42.athinput",
+    "collapse_t": 0.378161,
+    "collapse_dt": 1.06312e-13,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f2.0_b0.5_th90_d1.0_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 2405.6,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f2.0_b0.5_th90_d1.0_s42.athinput",
+    "collapse_t": 0.404005,
+    "collapse_dt": 2.28652e-21,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f1.2_b0.5_th90_d1.0_s137",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 4568.0,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f1.2_b0.5_th90_d1.0_s137.athinput",
+    "collapse_t": 0.518052,
+    "collapse_dt": 5.8408e-22,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f2.0_b0.5_th90_d1.0_s137",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 2726.0,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f2.0_b0.5_th90_d1.0_s137.athinput",
+    "collapse_t": 0.406096,
+    "collapse_dt": 3.44248e-22,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f1.2_b0.5_th90_d1.0_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 4768.2,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f1.2_b0.5_th90_d1.0_s42.athinput",
+    "collapse_t": 0.54704,
+    "collapse_dt": 1.27854e-21,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f2.0_b2.0_th90_d1.0_s137",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 2806.0,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f2.0_b2.0_th90_d1.0_s137.athinput",
+    "collapse_t": 0.419067,
+    "collapse_dt": 1.02539e-21,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "RC3_perp_f2.0_b2.0_th90_d1.0_s42",
+    "status": "TIMEOUT",
+    "wall_s": 21606.0,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v35_campaigns_jul2026/configs_v35/RC3_perp_d1/RC3_perp_f2.0_b2.0_th90_d1.0_s42.athinput"
+  }
+]

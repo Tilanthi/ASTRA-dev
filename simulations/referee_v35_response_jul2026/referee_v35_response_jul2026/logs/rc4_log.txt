@@ -1,0 +1,19 @@
+============================================================
+REFEREE FOLLOW-UP CAMPAIGN RUNNER
+============================================================
+Root: /data/referee_v35_campaigns_jul2026
+Config dir: /data/referee_v35_campaigns_jul2026/configs_v35/RC4_ambipolar_perp  (12 configs)
+Max concurrent: 4  dt_kill=1e-07  poll=20.0s
+[1/12] RC4_ad_f1.0_b0.5_th90_eta0.05_s42: TIMEOUT (21605.9s)
+[2/12] RC4_ad_f1.0_b0.5_th90_eta0.01_s42: TIMEOUT (21606.0s)
+[3/12] RC4_ad_f1.0_b1.0_th90_eta0.05_s42: TIMEOUT (21606.0s)
+[4/12] RC4_ad_f1.0_b1.0_th90_eta0.01_s42: TIMEOUT (21606.7s)
+[5/12] RC4_ad_f1.2_b0.5_th90_eta0.05_s42: TIMEOUT (21620.2s)
+[6/12] RC4_ad_f1.2_b0.5_th90_eta0.01_s42: TIMEOUT (21620.5s)
+[7/12] RC4_ad_f1.2_b1.0_th90_eta0.01_s42: TIMEOUT (21620.5s)
+[8/12] RC4_ad_f1.2_b1.0_th90_eta0.05_s42: TIMEOUT (21620.2s)
+[9/12] RC4_ad_f1.5_b0.5_th90_eta0.05_s42: TIMEOUT (21619.1s)
+[10/12] RC4_ad_f1.5_b0.5_th90_eta0.01_s42: TIMEOUT (21619.7s)
+[11/12] RC4_ad_f1.5_b1.0_th90_eta0.05_s42: TIMEOUT (21619.4s)
+[12/12] RC4_ad_f1.5_b1.0_th90_eta0.01_s42: TIMEOUT (21619.9s)
+COMPLETE 12 {'TIMEOUT': 12}

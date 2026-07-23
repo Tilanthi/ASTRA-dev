@@ -1,0 +1,20 @@
+18 runs
+RC3_perp_f1.2_b0.5_th90_d1.0_s137: BEADING C_f=22406.9 rms_f=7.08e-01 peaks_max=12 lam=0.5625 t_f=0.5
+RC3_perp_f1.2_b0.5_th90_d1.0_s42: BEADING C_f=15391.7 rms_f=6.36e-01 peaks_max=15 lam=0.28125 t_f=0.5
+RC3_perp_f1.2_b1.0_th90_d1.0_s137: SPINDLE C_f=399.0 rms_f=1.09e-02 peaks_max=0 lam=None t_f=0.4
+RC3_perp_f1.2_b1.0_th90_d1.0_s42: SPINDLE C_f=934.7 rms_f=1.89e-02 peaks_max=0 lam=None t_f=0.45
+RC3_perp_f1.2_b2.0_th90_d1.0_s137: MIXED C_f=604.6 rms_f=2.59e-02 peaks_max=1 lam=None t_f=0.45
+RC3_perp_f1.2_b2.0_th90_d1.0_s42: MIXED C_f=590.0 rms_f=2.60e-02 peaks_max=0 lam=None t_f=0.45
+RC3_perp_f1.5_b0.5_th90_d1.0_s137: MIXED C_f=971.8 rms_f=1.45e-02 peaks_max=2 lam=4.0 t_f=0.4
+RC3_perp_f1.5_b0.5_th90_d1.0_s42: SPINDLE C_f=898.5 rms_f=1.30e-02 peaks_max=1 lam=None t_f=0.4
+RC3_perp_f1.5_b1.0_th90_d1.0_s137: SPINDLE C_f=555.9 rms_f=1.47e-02 peaks_max=0 lam=None t_f=0.4
+RC3_perp_f1.5_b1.0_th90_d1.0_s42: SPINDLE C_f=547.3 rms_f=1.46e-02 peaks_max=0 lam=None t_f=0.4
+RC3_perp_f1.5_b2.0_th90_d1.0_s137: MIXED C_f=564.5 rms_f=1.89e-02 peaks_max=2 lam=4.0 t_f=0.4
+RC3_perp_f1.5_b2.0_th90_d1.0_s42: BEADING C_f=9866.5 rms_f=4.24e-01 peaks_max=10 lam=0.421875 t_f=0.45
+RC3_perp_f2.0_b0.5_th90_d1.0_s137: BEADING C_f=12326.3 rms_f=4.65e-01 peaks_max=13 lam=0.453125 t_f=0.4
+RC3_perp_f2.0_b0.5_th90_d1.0_s42: BEADING C_f=10333.3 rms_f=4.27e-01 peaks_max=14 lam=0.40625 t_f=0.4
+RC3_perp_f2.0_b1.0_th90_d1.0_s137: SPINDLE C_f=545.7 rms_f=1.31e-02 peaks_max=1 lam=None t_f=0.35000000000000003
+RC3_perp_f2.0_b1.0_th90_d1.0_s42: SPINDLE C_f=542.8 rms_f=1.31e-02 peaks_max=0 lam=None t_f=0.35000000000000003
+RC3_perp_f2.0_b2.0_th90_d1.0_s137: BEADING C_f=8279.1 rms_f=4.52e-01 peaks_max=12 lam=0.375 t_f=0.4
+RC3_perp_f2.0_b2.0_th90_d1.0_s42: BEADING C_f=124903.1 rms_f=3.07e+00 peaks_max=10 lam=0.7421875 t_f=0.5
+wrote rc3_beading.json

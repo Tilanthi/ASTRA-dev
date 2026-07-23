@@ -1,0 +1,19 @@
+============================================================
+REFEREE FOLLOW-UP CAMPAIGN RUNNER
+============================================================
+Root: /data/referee_v35_campaigns_jul2026
+Config dir: configs_v35/RC1_periodic_d1  (12 configs)
+Max concurrent: 6  dt_kill=1e-07  poll=20.0s
+[1/12] RC1_per_f1.5_b0.5_th0_d1.0_s42: COLLAPSE_EARLY (723.7s)
+[2/12] RC1_per_f1.5_b2.0_th0_d1.0_s42: COLLAPSE_EARLY (1644.5s)
+[3/12] RC1_per_f1.5_b2.0_th0_d1.0_s137: COLLAPSE_EARLY (2044.8s)
+[4/12] RC1_per_f1.5_b0.5_th0_d1.0_s137: COLLAPSE_EARLY (2185.0s)
+[5/12] RC1_per_f1.5_b1.0_th0_d1.0_s137: COLLAPSE_EARLY (2205.0s)
+[6/12] RC1_per_f1.5_b1.0_th0_d1.0_s42: COLLAPSE_EARLY (3165.9s)
+[7/12] RC1_per_f2.0_b0.5_th0_d1.0_s137: COLLAPSE_EARLY (3266.1s)
+[8/12] RC1_per_f2.0_b0.5_th0_d1.0_s42: COLLAPSE_EARLY (2865.6s)
+[9/12] RC1_per_f2.0_b1.0_th0_d1.0_s137: COLLAPSE_EARLY (3165.8s)
+[10/12] RC1_per_f2.0_b1.0_th0_d1.0_s42: COLLAPSE_EARLY (3145.6s)
+[11/12] RC1_per_f2.0_b2.0_th0_d1.0_s42: COLLAPSE_EARLY (2505.1s)
+[12/12] RC1_per_f2.0_b2.0_th0_d1.0_s137: COLLAPSE_EARLY (7108.6s)
+COMPLETE 12 {'COLLAPSE_EARLY': 12}

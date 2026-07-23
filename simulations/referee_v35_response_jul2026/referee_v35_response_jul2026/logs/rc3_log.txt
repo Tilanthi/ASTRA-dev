@@ -1,0 +1,25 @@
+============================================================
+REFEREE FOLLOW-UP CAMPAIGN RUNNER
+============================================================
+Root: /data/referee_v35_campaigns_jul2026
+Config dir: configs_v35/RC3_perp_d1  (18 configs)
+Max concurrent: 6  dt_kill=1e-07  poll=20.0s
+[1/18] RC3_perp_f1.2_b1.0_th90_d1.0_s137: COLLAPSE_EARLY (683.7s)
+[2/18] RC3_perp_f1.2_b2.0_th90_d1.0_s137: COLLAPSE_EARLY (703.8s)
+[3/18] RC3_perp_f1.2_b2.0_th90_d1.0_s42: COLLAPSE_EARLY (703.8s)
+[4/18] RC3_perp_f1.2_b1.0_th90_d1.0_s42: COLLAPSE_EARLY (723.8s)
+[5/18] RC3_perp_f1.5_b1.0_th90_d1.0_s137: COLLAPSE_EARLY (683.8s)
+[6/18] RC3_perp_f1.5_b1.0_th90_d1.0_s42: COLLAPSE_EARLY (703.8s)
+[7/18] RC3_perp_f1.5_b0.5_th90_d1.0_s137: COLLAPSE_EARLY (1164.3s)
+[8/18] RC3_perp_f1.5_b2.0_th90_d1.0_s137: COLLAPSE_EARLY (603.7s)
+[9/18] RC3_perp_f1.5_b0.5_th90_d1.0_s42: COLLAPSE_EARLY (1384.5s)
+[10/18] RC3_perp_f1.5_b2.0_th90_d1.0_s42: COLLAPSE_EARLY (663.7s)
+[11/18] RC3_perp_f2.0_b1.0_th90_d1.0_s137: COLLAPSE_EARLY (623.7s)
+[12/18] RC3_perp_f2.0_b1.0_th90_d1.0_s42: COLLAPSE_EARLY (623.7s)
+[13/18] RC3_perp_f2.0_b0.5_th90_d1.0_s42: COLLAPSE_EARLY (2405.6s)
+[14/18] RC3_perp_f1.2_b0.5_th90_d1.0_s137: COLLAPSE_EARLY (4568.0s)
+[15/18] RC3_perp_f2.0_b0.5_th90_d1.0_s137: COLLAPSE_EARLY (2726.0s)
+[16/18] RC3_perp_f1.2_b0.5_th90_d1.0_s42: COLLAPSE_EARLY (4768.2s)
+[17/18] RC3_perp_f2.0_b2.0_th90_d1.0_s137: COLLAPSE_EARLY (2806.0s)
+[18/18] RC3_perp_f2.0_b2.0_th90_d1.0_s42: TIMEOUT (21606.0s)
+COMPLETE 18 {'COLLAPSE_EARLY': 17, 'TIMEOUT': 1}

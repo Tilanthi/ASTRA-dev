@@ -1,0 +1,34 @@
+============================================================
+REFEREE FOLLOW-UP CAMPAIGN RUNNER
+============================================================
+Root: /data/referee_v35_campaigns_jul2026
+Config dir: configs_v35/RC2_refl_d1_expanded  (27 configs)
+Max concurrent: 8  dt_kill=1e-07  poll=20.0s
+[1/27] RC2_refl_f1.5_b0.5_th0_d1.0_s42: COLLAPSE_EARLY (1224.3s)
+[2/27] RC2_refl_f1.5_b1.0_th0_d1.0_s42: COLLAPSE_EARLY (2425.6s)
+[3/27] RC2_refl_f1.5_b0.5_th0_d1.0_s137: COLLAPSE_EARLY (3006.3s)
+[4/27] RC2_refl_f1.5_b0.5_th0_d1.0_s251: COLLAPSE_EARLY (6970.6s)
+[5/27] RC2_refl_f1.5_b2.0_th0_d1.0_s251: COLLAPSE_EARLY (7330.9s)
+[6/27] RC2_refl_f1.7_b0.5_th0_d1.0_s42: COLLAPSE_EARLY (823.9s)
+[7/27] RC2_refl_f1.5_b2.0_th0_d1.0_s137: COLLAPSE_EARLY (7871.5s)
+[8/27] RC2_refl_f1.7_b0.5_th0_d1.0_s137: COLLAPSE_EARLY (6610.2s)
+[9/27] RC2_refl_f1.7_b1.0_th0_d1.0_s251: COLLAPSE_EARLY (1404.5s)
+[10/27] RC2_refl_f1.5_b1.0_th0_d1.0_s251: COLLAPSE_EARLY (9433.3s)
+[11/27] RC2_refl_f1.7_b1.0_th0_d1.0_s42: COLLAPSE_EARLY (1564.7s)
+[12/27] RC2_refl_f1.5_b2.0_th0_d1.0_s42: COLLAPSE_EARLY (8832.5s)
+[13/27] RC2_refl_f1.7_b2.0_th0_d1.0_s137: COLLAPSE_EARLY (1144.2s)
+[14/27] RC2_refl_f1.7_b1.0_th0_d1.0_s137: COLLAPSE_EARLY (5328.7s)
+[15/27] RC2_refl_f2.0_b0.5_th0_d1.0_s42: COLLAPSE_EARLY (3406.6s)
+[16/27] RC2_refl_f1.7_b2.0_th0_d1.0_s42: COLLAPSE_EARLY (4768.1s)
+[17/27] RC2_refl_f1.7_b2.0_th0_d1.0_s251: COLLAPSE_EARLY (5709.1s)
+[18/27] RC2_refl_f2.0_b0.5_th0_d1.0_s251: COLLAPSE_EARLY (5448.9s)
+[19/27] RC2_refl_f2.0_b0.5_th0_d1.0_s137: COLLAPSE_EARLY (7170.9s)
+[20/27] RC2_refl_f2.0_b2.0_th0_d1.0_s42: COLLAPSE_EARLY (1404.5s)
+[21/27] RC2_refl_f2.0_b1.0_th0_d1.0_s42: COLLAPSE_EARLY (4007.3s)
+[22/27] RC2_refl_f2.0_b2.0_th0_d1.0_s251: COLLAPSE_EARLY (2866.1s)
+[23/27] RC2_refl_f2.0_b1.0_th0_d1.0_s137: COLLAPSE_EARLY (8131.7s)
+[24/27] RC2_refl_f1.5_b1.0_th0_d1.0_s137: COLLAPSE_EARLY (20945.7s)
+[25/27] RC2_refl_f1.7_b0.5_th0_d1.0_s251: COLLAPSE_EARLY (19243.9s)
+[26/27] RC2_refl_f2.0_b1.0_th0_d1.0_s251: COLLAPSE_EARLY (10133.8s)
+[27/27] RC2_refl_f2.0_b2.0_th0_d1.0_s137: COLLAPSE_EARLY (9773.2s)
+COMPLETE 27 {'COLLAPSE_EARLY': 27}
