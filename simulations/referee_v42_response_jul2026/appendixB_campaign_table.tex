@@ -1,0 +1,35 @@
+% Appendix B: complete list of simulation campaigns cited in the manuscript.
+% NOTE: confirm the two \langle\cdot\rangle entries (Fig-2 grid f; oblique run count) from run records.
+\begin{table*}
+\caption{Complete list of simulation campaigns underlying the paper. Rows 5--8 are the
+components of what was previously reported as a single Field-Geometry Campaign (314 runs);
+they are counted individually here and the 314 aggregate is \emph{not} added separately.
+The two radiative-transfer (RT) campaigns are post-processing of the isothermal snapshots,
+not independent Athena++ MHD runs.}
+\label{tab:campaigns}
+\begin{tabular}{cllrl}
+\hline
+\# & Campaign (section) & Coverage $(f,\beta,\mathcal{M},\theta,\eta_{\rm AD})$ & Runs & Independent? \\
+\hline
+1  & Base three-regime grid (\S4.1, \S4.5, Fig.~2) & $f=\langle$conf.$\rangle$; $\beta\,0.05$--$5$; $\mathcal{M}\,0.5$--$5$; $\theta=0$; ideal & 208 & yes \\
+2  & Transition grid / DTC (\S4.1, \S4.3, Fig.~5)   & $f\,1.4$--$2.2$; $\beta\,0.3$--$1.3$; $\mathcal{M}\,1$--$5$; $\theta=0$ & 540 & yes \\
+3  & Supercritical grid (\S4.2, \S4.6)              & $f\,1.1$--$3.0$; $\beta\,0.3$--$5.0$; $\mathcal{M}\,0.5$--$3$; periodic & 654 & yes \\
+4  & Validation (\S4.4, App.~A)                     & resolution / IC / EOS convergence & 83 & yes \\
+5  & Near-critical (\S4.7.1)                        & $f\,1.0$--$1.2$; $\beta\,0.3$--$1.0$; $\mathcal{M}\,1$--$2$; $\theta=0$ & 80 & (FG component) \\
+6  & Perpendicular (\S4.7.2)                        & $\theta=90^\circ$; $f\,1.2$--$1.5$; $\beta\,0.3$--$2.0$ & 96 & (FG component) \\
+7  & Oblique calibration (\S4.7.3)                  & $\theta=30/45/60^\circ$; $\beta\,0.5$--$2.0$ & $\langle$conf.$\rangle$ & (FG component) \\
+8  & Adiabatic EOS (\S4.7.4, Figs~6,7)             & $\gamma=5/3$; $f\,1.0$--$1.2$ & 30 & (FG component) \\
+9  & Turbulence + perp-$\beta$ + crit.-transition (\S4.8) & $\delta v/c_s\,10^{-4}$--$1$; $\beta\,0.3$--$2$ & 289 & yes (aggregate) \\
+10 & Targeted re-runs (Fig.~5)                      & $\beta=0.3,\mathcal{M}=1$; extended timeout & 25 & yes \\
+11 & Direct supercritical ensemble (\S4.6.6, Fig.~3)& $f\,1.5$--$2.0$; $\beta\,0.5$--$2.0$; $\theta=0$; ambient & 39 & yes \\
+12 & Reconciliation suite (\S4.6.6)                 & $f\times\beta\times2$ seeds; $\theta=0$; ambient & 12 & yes \\
+13 & Ideal-MHD perp.\ $d=1.0$ grid (\S4.6.6)        & $\theta=90^\circ$; $\beta\,0.5$--$2.0$; ambient & 18 & yes \\
+14 & Ambipolar non-ideal survey (\S4.6.6, Fig.~4)   & $\theta=90^\circ$; $\eta_{\rm AD}\,0.001$--$0.1$; $\beta\,0.5$--$2.0$ & 36 & yes \\
+\hline
+   & \textbf{Athena++ MHD total}                    &  & $\approx\!2110$ & \\
+\hline
+RT-a & Uniform-ISRF RT post-processing (\S6.4)      & isothermal snapshots & 519 & post-proc.\ (not MHD) \\
+RT-b & Varying-ISRF RT post-processing (\S6.4)      & isothermal snapshots & 5060 & post-proc.\ (not MHD) \\
+\hline
+\end{tabular}
+\end{table*}
