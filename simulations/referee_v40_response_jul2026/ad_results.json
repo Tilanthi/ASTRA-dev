@@ -1,0 +1,200 @@
+[
+  {
+    "pid": "AD_f1.2_b0.5_th90_eta0.1_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28811.9,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.2_b0.5_th90_eta0.1_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.2_b1.0_th90_eta0.001_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28812.1,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.2_b1.0_th90_eta0.001_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.2_b0.5_th90_eta0.05_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28812.3,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.2_b0.5_th90_eta0.05_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.2_b0.5_th90_eta0.001_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28812.3,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.2_b0.5_th90_eta0.001_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.2_b0.5_th90_eta0.01_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28812.3,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.2_b0.5_th90_eta0.01_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.2_b2.0_th90_eta0.01_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28811.4,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.2_b2.0_th90_eta0.01_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.2_b1.0_th90_eta0.01_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28811.8,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.2_b1.0_th90_eta0.01_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.2_b2.0_th90_eta0.001_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28811.6,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.2_b2.0_th90_eta0.001_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.2_b1.0_th90_eta0.05_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28811.8,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.2_b1.0_th90_eta0.05_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.2_b1.0_th90_eta0.1_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28811.9,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.2_b1.0_th90_eta0.1_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.5_b0.5_th90_eta0.001_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 3066.3,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.5_b0.5_th90_eta0.001_s42.athinput",
+    "collapse_t": 0.46501,
+    "collapse_dt": 1.61944e-20,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "AD_f1.2_b2.0_th90_eta0.1_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28813.6,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.2_b2.0_th90_eta0.1_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.2_b2.0_th90_eta0.05_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28813.6,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.2_b2.0_th90_eta0.05_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.5_b0.5_th90_eta0.01_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28813.6,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.5_b0.5_th90_eta0.01_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.5_b0.5_th90_eta0.05_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28813.5,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.5_b0.5_th90_eta0.05_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.5_b1.0_th90_eta0.001_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 1424.5,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.5_b1.0_th90_eta0.001_s42.athinput",
+    "collapse_t": 0.444013,
+    "collapse_dt": 1.08304e-20,
+    "dt_kill": 1e-07
+  },
+  {
+    "pid": "AD_f1.5_b0.5_th90_eta0.1_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28813.4,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.5_b0.5_th90_eta0.1_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.5_b1.0_th90_eta0.1_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28810.9,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.5_b1.0_th90_eta0.1_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.5_b1.0_th90_eta0.01_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28811.4,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.5_b1.0_th90_eta0.01_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.5_b1.0_th90_eta0.05_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28811.3,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.5_b1.0_th90_eta0.05_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.5_b2.0_th90_eta0.001_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28810.8,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.5_b2.0_th90_eta0.001_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.5_b2.0_th90_eta0.01_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28810.2,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.5_b2.0_th90_eta0.01_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.5_b2.0_th90_eta0.05_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28805.6,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.5_b2.0_th90_eta0.05_s42.athinput"
+  },
+  {
+    "pid": "AD_f1.5_b2.0_th90_eta0.1_s42",
+    "status": "TIMEOUT",
+    "wall_s": 28805.9,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded/AD_f1.5_b2.0_th90_eta0.1_s42.athinput"
+  }
+]

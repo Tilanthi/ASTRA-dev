@@ -1,0 +1,26 @@
+24 runs
+AD_f1.2_b0.5_th90_eta0.001_s42: BEADING C_f=54894.2 rms_f=2.13e+00 peaks_max=15 lam=0.484375 t_f=0.6000000000000001
+AD_f1.2_b0.5_th90_eta0.01_s42: BEADING C_f=4258.2 rms_f=1.33e-01 peaks_max=3 lam=1.90625 t_f=0.5
+AD_f1.2_b0.5_th90_eta0.05_s42: BEADING C_f=11873.6 rms_f=3.65e-01 peaks_max=6 lam=0.78125 t_f=0.5
+AD_f1.2_b0.5_th90_eta0.1_s42: MIXED C_f=537.3 rms_f=2.30e-02 peaks_max=0 lam=None t_f=0.45
+AD_f1.2_b1.0_th90_eta0.001_s42: BEADING C_f=72256.7 rms_f=1.85e+00 peaks_max=10 lam=0.640625 t_f=0.55
+AD_f1.2_b1.0_th90_eta0.01_s42: BEADING C_f=11137.0 rms_f=4.45e-01 peaks_max=10 lam=0.15625 t_f=0.5
+AD_f1.2_b1.0_th90_eta0.05_s42: BEADING C_f=36484.4 rms_f=7.05e-01 peaks_max=9 lam=0.65625 t_f=0.5
+AD_f1.2_b1.0_th90_eta0.1_s42: BEADING C_f=41637.8 rms_f=9.39e-01 peaks_max=9 lam=0.6875 t_f=0.5
+AD_f1.2_b2.0_th90_eta0.001_s42: BEADING C_f=49629.6 rms_f=9.24e-01 peaks_max=10 lam=0.65625 t_f=0.5
+AD_f1.2_b2.0_th90_eta0.01_s42: BEADING C_f=56572.6 rms_f=9.78e-01 peaks_max=9 lam=0.71875 t_f=0.5
+AD_f1.2_b2.0_th90_eta0.05_s42: BEADING C_f=56501.9 rms_f=1.12e+00 peaks_max=10 lam=0.65625 t_f=0.5
+AD_f1.2_b2.0_th90_eta0.1_s42: BEADING C_f=56874.4 rms_f=1.17e+00 peaks_max=9 lam=0.6875 t_f=0.5
+AD_f1.5_b0.5_th90_eta0.001_s42: BEADING C_f=3219.0 rms_f=2.33e-01 peaks_max=8 lam=0.65625 t_f=0.45
+AD_f1.5_b0.5_th90_eta0.01_s42: BEADING C_f=4889.9 rms_f=1.34e-01 peaks_max=4 lam=0.9609375 t_f=0.45
+AD_f1.5_b0.5_th90_eta0.05_s42: BEADING C_f=8645.6 rms_f=2.91e-01 peaks_max=6 lam=0.7890625 t_f=0.45
+AD_f1.5_b0.5_th90_eta0.1_s42: BEADING C_f=22048.0 rms_f=4.16e-01 peaks_max=7 lam=0.6875 t_f=0.45
+AD_f1.5_b1.0_th90_eta0.001_s42: SPINDLE C_f=519.0 rms_f=1.48e-02 peaks_max=0 lam=None t_f=0.4
+AD_f1.5_b1.0_th90_eta0.01_s42: BEADING C_f=8006.8 rms_f=3.40e-01 peaks_max=8 lam=0.4296875 t_f=0.45
+AD_f1.5_b1.0_th90_eta0.05_s42: BEADING C_f=26223.8 rms_f=5.01e-01 peaks_max=10 lam=0.4296875 t_f=0.45
+AD_f1.5_b1.0_th90_eta0.1_s42: BEADING C_f=32503.8 rms_f=5.72e-01 peaks_max=7 lam=0.671875 t_f=0.45
+AD_f1.5_b2.0_th90_eta0.001_s42: BEADING C_f=85719.4 rms_f=2.30e+00 peaks_max=10 lam=0.6796875 t_f=0.5
+AD_f1.5_b2.0_th90_eta0.01_s42: BEADING C_f=32667.8 rms_f=6.55e-01 peaks_max=9 lam=0.671875 t_f=0.45
+AD_f1.5_b2.0_th90_eta0.05_s42: BEADING C_f=88170.1 rms_f=2.17e+00 peaks_max=9 lam=0.6875 t_f=0.5
+AD_f1.5_b2.0_th90_eta0.1_s42: BEADING C_f=100751.0 rms_f=2.87e+00 peaks_max=11 lam=0.6875 t_f=0.55
+wrote ad_beading_final.json

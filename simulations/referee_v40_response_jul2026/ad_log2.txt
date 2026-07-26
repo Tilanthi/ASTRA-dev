@@ -1,0 +1,17 @@
+============================================================
+REFEREE FOLLOW-UP CAMPAIGN RUNNER
+============================================================
+Root: /data/referee_v40_campaigns_jul2026
+Config dir: /data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded  (24 configs)
+Max concurrent: 5  dt_kill=1e-07  poll=20.0s
+[1/24] AD_f1.2_b0.5_th90_eta0.05_s42: TIMEOUT (28813.7s)
+[2/24] AD_f1.2_b0.5_th90_eta0.1_s42: TIMEOUT (28813.6s)
+[3/24] AD_f1.2_b0.5_th90_eta0.01_s42: TIMEOUT (28813.8s)
+[4/24] AD_f1.2_b1.0_th90_eta0.001_s42: TIMEOUT (28814.0s)
+[5/24] AD_f1.2_b0.5_th90_eta0.001_s42: TIMEOUT (28814.0s)
+[6/24] AD_f1.2_b1.0_th90_eta0.05_s42: TIMEOUT (28813.7s)
+[7/24] AD_f1.2_b1.0_th90_eta0.01_s42: TIMEOUT (28813.8s)
+[8/24] AD_f1.2_b1.0_th90_eta0.1_s42: TIMEOUT (28813.8s)
+[9/24] AD_f1.2_b2.0_th90_eta0.001_s42: TIMEOUT (28814.0s)
+[10/24] AD_f1.2_b2.0_th90_eta0.01_s42: TIMEOUT (28814.0s)
+[11/24] AD_f1.5_b0.5_th90_eta0.001_s42: COLLAPSE_EARLY (3066.3s)

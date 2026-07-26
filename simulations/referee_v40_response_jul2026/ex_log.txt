@@ -1,0 +1,21 @@
+============================================================
+REFEREE FOLLOW-UP CAMPAIGN RUNNER
+============================================================
+Root: /data/referee_v40_campaigns_jul2026
+Config dir: configs_v40/EX_extended_cfl  (14 configs)
+Max concurrent: 6  dt_kill=1e-13  poll=20.0s
+[1/14] EX_f1.5_b1.0_th0_per_unconf_r128_s42: COLLAPSE_EARLY (1805.0s)
+[2/14] EX_f1.5_b1.0_th0_per_CONF_r256_s42: COLLAPSE_EARLY (2045.2s)
+[3/14] EX_f1.5_b1.0_th0_per_unconf_r256_s42: COLLAPSE_EARLY (2105.3s)
+[4/14] EX_f2.0_b1.0_th0_per_CONF_r256_s42: COLLAPSE_EARLY (1344.4s)
+[5/14] EX_f2.0_b1.0_th0_per_unconf_r128_s42: COLLAPSE_EARLY (1624.8s)
+[6/14] EX_f1.5_b1.0_th0_per_unconf_r256_s251: COLLAPSE_EARLY (5088.5s)
+[7/14] EX_f2.0_b1.0_th0_per_unconf_r256_s42: COLLAPSE_EARLY (1484.6s)
+[8/14] EX_f3.0_b1.0_th0_per_unconf_r128_s42: COLLAPSE_EARLY (3727.1s)
+[9/14] EX_f1.5_b1.0_th0_per_unconf_r256_s137: COLLAPSE_EARLY (9553.4s)
+[10/14] EX_f3.0_b1.0_th0_per_unconf_r256_s42: COLLAPSE_EARLY (2305.5s)
+[11/14] EX_f2.0_b1.0_th0_per_unconf_r256_s251: COLLAPSE_EARLY (9233.0s)
+[12/14] EX_f2.0_b1.0_th0_per_unconf_r256_s137: COLLAPSE_EARLY (13177.4s)
+[13/14] EX_f1.5_b1.0_th0_per_unconf_r512_s42: TIMEOUT (21606.9s)
+[14/14] EX_f2.0_b1.0_th0_per_unconf_r512_s42: TIMEOUT (21605.5s)
+COMPLETE 14 {'COLLAPSE_EARLY': 12, 'TIMEOUT': 2}

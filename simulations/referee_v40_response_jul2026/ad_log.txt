@@ -1,0 +1,31 @@
+============================================================
+REFEREE FOLLOW-UP CAMPAIGN RUNNER
+============================================================
+Root: /home/fetch-agi
+Config dir: /data/referee_v40_campaigns_jul2026/configs_v40/AD_ambipolar_expanded  (24 configs)
+Max concurrent: 5  dt_kill=1e-07  poll=20.0s
+[1/24] AD_f1.2_b0.5_th90_eta0.1_s42: TIMEOUT (28811.9s)
+[2/24] AD_f1.2_b1.0_th90_eta0.001_s42: TIMEOUT (28812.1s)
+[3/24] AD_f1.2_b0.5_th90_eta0.05_s42: TIMEOUT (28812.3s)
+[4/24] AD_f1.2_b0.5_th90_eta0.001_s42: TIMEOUT (28812.3s)
+[5/24] AD_f1.2_b0.5_th90_eta0.01_s42: TIMEOUT (28812.3s)
+[6/24] AD_f1.2_b2.0_th90_eta0.01_s42: TIMEOUT (28811.4s)
+[7/24] AD_f1.2_b1.0_th90_eta0.01_s42: TIMEOUT (28811.8s)
+[8/24] AD_f1.2_b2.0_th90_eta0.001_s42: TIMEOUT (28811.6s)
+[9/24] AD_f1.2_b1.0_th90_eta0.05_s42: TIMEOUT (28811.8s)
+[10/24] AD_f1.2_b1.0_th90_eta0.1_s42: TIMEOUT (28811.9s)
+[11/24] AD_f1.5_b0.5_th90_eta0.001_s42: COLLAPSE_EARLY (3066.3s)
+[12/24] AD_f1.2_b2.0_th90_eta0.1_s42: TIMEOUT (28813.6s)
+[13/24] AD_f1.2_b2.0_th90_eta0.05_s42: TIMEOUT (28813.6s)
+[14/24] AD_f1.5_b0.5_th90_eta0.01_s42: TIMEOUT (28813.6s)
+[15/24] AD_f1.5_b0.5_th90_eta0.05_s42: TIMEOUT (28813.5s)
+[16/24] AD_f1.5_b1.0_th90_eta0.001_s42: COLLAPSE_EARLY (1424.5s)
+[17/24] AD_f1.5_b0.5_th90_eta0.1_s42: TIMEOUT (28813.4s)
+[18/24] AD_f1.5_b1.0_th90_eta0.1_s42: TIMEOUT (28810.9s)
+[19/24] AD_f1.5_b1.0_th90_eta0.01_s42: TIMEOUT (28811.4s)
+[20/24] AD_f1.5_b1.0_th90_eta0.05_s42: TIMEOUT (28811.3s)
+[21/24] AD_f1.5_b2.0_th90_eta0.001_s42: TIMEOUT (28810.8s)
+[22/24] AD_f1.5_b2.0_th90_eta0.01_s42: TIMEOUT (28810.2s)
+[23/24] AD_f1.5_b2.0_th90_eta0.05_s42: TIMEOUT (28805.6s)
+[24/24] AD_f1.5_b2.0_th90_eta0.1_s42: TIMEOUT (28805.9s)
+COMPLETE 24 {'TIMEOUT': 22, 'COLLAPSE_EARLY': 2}

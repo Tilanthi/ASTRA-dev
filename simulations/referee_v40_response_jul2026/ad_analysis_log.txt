@@ -1,0 +1,27 @@
+10 runs
+AD_f1.2_b0.5_th90_eta0.001_s42: MIXED C_f=2.4 rms_f=1.06e-03 peaks_max=0 lam=None t_f=0.1
+AD_f1.2_b0.5_th90_eta0.01_s42: MIXED C_f=2.0 rms_f=0.00e+00 peaks_max=0 lam=None t_f=0.0
+AD_f1.2_b0.5_th90_eta0.05_s42: MIXED C_f=2.0 rms_f=0.00e+00 peaks_max=0 lam=None t_f=0.0
+AD_f1.2_b0.5_th90_eta0.1_s42: MIXED C_f=2.0 rms_f=0.00e+00 peaks_max=0 lam=None t_f=0.0
+AD_f1.2_b1.0_th90_eta0.001_s42: MIXED C_f=3.0 rms_f=1.73e-03 peaks_max=0 lam=None t_f=0.15000000000000002
+AD_f1.2_b1.0_th90_eta0.01_s42: BEADING C_f=11137.0 rms_f=4.45e-01 peaks_max=10 lam=0.15625 t_f=0.5
+AD_f1.2_b1.0_th90_eta0.05_s42: MIXED C_f=562.9 rms_f=2.43e-02 peaks_max=0 lam=None t_f=0.45
+AD_f1.2_b1.0_th90_eta0.1_s42: SPINDLE C_f=251.9 rms_f=7.46e-03 peaks_max=0 lam=None t_f=0.35000000000000003
+AD_f1.2_b2.0_th90_eta0.001_s42: BEADING C_f=49629.6 rms_f=9.24e-01 peaks_max=10 lam=0.65625 t_f=0.5
+AD_f1.2_b2.0_th90_eta0.01_s42: BEADING C_f=56572.6 rms_f=9.78e-01 peaks_max=9 lam=0.71875 t_f=0.5
+wrote ad_partial_beading.json
+EX_f1.5_b1.0_th0_per_CONF_r256_s42: n_snaps=85 t_final=0.842 σ_lon_final=0.2686
+EX_f1.5_b1.0_th0_per_unconf_r128_s42: n_snaps=94 t_final=0.930 σ_lon_final=0.1297
+EX_f1.5_b1.0_th0_per_unconf_r256_s137: n_snaps=89 t_final=0.886 σ_lon_final=0.0626
+EX_f1.5_b1.0_th0_per_unconf_r256_s251: n_snaps=87 t_final=0.861 σ_lon_final=1.3784
+EX_f1.5_b1.0_th0_per_unconf_r256_s42: n_snaps=85 t_final=0.842 σ_lon_final=0.2686
+EX_f1.5_b1.0_th0_per_unconf_r512_s42: n_snaps=82 t_final=0.816 σ_lon_final=0.0625
+EX_f2.0_b1.0_th0_per_CONF_r256_s42: n_snaps=74 t_final=0.737 σ_lon_final=0.7064
+EX_f2.0_b1.0_th0_per_unconf_r128_s42: n_snaps=85 t_final=0.841 σ_lon_final=0.1301
+EX_f2.0_b1.0_th0_per_unconf_r256_s137: n_snaps=79 t_final=0.788 σ_lon_final=0.0371
+EX_f2.0_b1.0_th0_per_unconf_r256_s251: n_snaps=78 t_final=0.772 σ_lon_final=1.9849
+EX_f2.0_b1.0_th0_per_unconf_r256_s42: n_snaps=74 t_final=0.737 σ_lon_final=0.7064
+EX_f2.0_b1.0_th0_per_unconf_r512_s42: n_snaps=72 t_final=0.712 σ_lon_final=0.0757
+EX_f3.0_b1.0_th0_per_unconf_r128_s42: n_snaps=70 t_final=0.699 σ_lon_final=2.4127
+EX_f3.0_b1.0_th0_per_unconf_r256_s42: n_snaps=62 t_final=0.610 σ_lon_final=1.7449
+wrote /data/referee_v40_campaigns_jul2026/ex_longitudinal_variance.json

@@ -1,0 +1,150 @@
+[
+  {
+    "pid": "EX_f1.5_b1.0_th0_per_unconf_r128_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 1805.0,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f1.5_b1.0_th0_per_unconf_r128_s42.athinput",
+    "collapse_t": 0.930023,
+    "collapse_dt": 4.96328e-21,
+    "dt_kill": 1e-13
+  },
+  {
+    "pid": "EX_f1.5_b1.0_th0_per_CONF_r256_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 2045.2,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f1.5_b1.0_th0_per_CONF_r256_s42.athinput",
+    "collapse_t": 0.842006,
+    "collapse_dt": 1.11694e-22,
+    "dt_kill": 1e-13
+  },
+  {
+    "pid": "EX_f1.5_b1.0_th0_per_unconf_r256_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 2105.3,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f1.5_b1.0_th0_per_unconf_r256_s42.athinput",
+    "collapse_t": 0.842006,
+    "collapse_dt": 1.11694e-22,
+    "dt_kill": 1e-13
+  },
+  {
+    "pid": "EX_f2.0_b1.0_th0_per_CONF_r256_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 1344.4,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f2.0_b1.0_th0_per_CONF_r256_s42.athinput",
+    "collapse_t": 0.737002,
+    "collapse_dt": 6.14284e-22,
+    "dt_kill": 1e-13
+  },
+  {
+    "pid": "EX_f2.0_b1.0_th0_per_unconf_r128_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 1624.8,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f2.0_b1.0_th0_per_unconf_r128_s42.athinput",
+    "collapse_t": 0.841002,
+    "collapse_dt": 1.12961e-20,
+    "dt_kill": 1e-13
+  },
+  {
+    "pid": "EX_f1.5_b1.0_th0_per_unconf_r256_s251",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 5088.5,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f1.5_b1.0_th0_per_unconf_r256_s251.athinput",
+    "collapse_t": 0.861005,
+    "collapse_dt": 2.26294e-22,
+    "dt_kill": 1e-13
+  },
+  {
+    "pid": "EX_f2.0_b1.0_th0_per_unconf_r256_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 1484.6,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f2.0_b1.0_th0_per_unconf_r256_s42.athinput",
+    "collapse_t": 0.737002,
+    "collapse_dt": 6.14284e-22,
+    "dt_kill": 1e-13
+  },
+  {
+    "pid": "EX_f3.0_b1.0_th0_per_unconf_r128_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 3727.1,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f3.0_b1.0_th0_per_unconf_r128_s42.athinput",
+    "collapse_t": 0.699021,
+    "collapse_dt": 3.44463e-21,
+    "dt_kill": 1e-13
+  },
+  {
+    "pid": "EX_f1.5_b1.0_th0_per_unconf_r256_s137",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 9553.4,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f1.5_b1.0_th0_per_unconf_r256_s137.athinput",
+    "collapse_t": 0.886,
+    "collapse_dt": 2.94796e-22,
+    "dt_kill": 1e-13
+  },
+  {
+    "pid": "EX_f3.0_b1.0_th0_per_unconf_r256_s42",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 2305.5,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f3.0_b1.0_th0_per_unconf_r256_s42.athinput",
+    "collapse_t": 0.610003,
+    "collapse_dt": 3.18287e-22,
+    "dt_kill": 1e-13
+  },
+  {
+    "pid": "EX_f2.0_b1.0_th0_per_unconf_r256_s251",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 9233.0,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f2.0_b1.0_th0_per_unconf_r256_s251.athinput",
+    "collapse_t": 0.772004,
+    "collapse_dt": 3.71967e-22,
+    "dt_kill": 1e-13
+  },
+  {
+    "pid": "EX_f2.0_b1.0_th0_per_unconf_r256_s137",
+    "status": "COLLAPSE_EARLY",
+    "wall_s": 13177.4,
+    "returncode": null,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f2.0_b1.0_th0_per_unconf_r256_s137.athinput",
+    "collapse_t": 0.788003,
+    "collapse_dt": 1.49983e-21,
+    "dt_kill": 1e-13
+  },
+  {
+    "pid": "EX_f1.5_b1.0_th0_per_unconf_r512_s42",
+    "status": "TIMEOUT",
+    "wall_s": 21606.9,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f1.5_b1.0_th0_per_unconf_r512_s42.athinput"
+  },
+  {
+    "pid": "EX_f2.0_b1.0_th0_per_unconf_r512_s42",
+    "status": "TIMEOUT",
+    "wall_s": 21605.5,
+    "returncode": -1,
+    "nproc": 32,
+    "config": "/data/referee_v40_campaigns_jul2026/configs_v40/EX_extended_cfl/EX_f2.0_b1.0_th0_per_unconf_r512_s42.athinput"
+  }
+]
