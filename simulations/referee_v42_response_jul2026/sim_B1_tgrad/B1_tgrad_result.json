@@ -1,0 +1,17 @@
+{
+ "gradient": {
+  "t": 0.8,
+  "n_beads": 7,
+  "n_warm": 0,
+  "n_cool": 7,
+  "lambda_cool_lamJ": 0.96875,
+  "lambda_warm_lamJ": null,
+  "lambda_cool_over_Wfil": 2.099
+ },
+ "control": {
+  "t": 0.801,
+  "n_beads": 9,
+  "lambda_lamJ": 0.890625,
+  "lambda_over_Wfil": 1.93
+ }
+}

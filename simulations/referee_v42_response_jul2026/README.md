@@ -15,11 +15,13 @@ simulation/analysis points **A2, A3, A5, A6, A7, C4–C8, the non-monotonic perp
     non-clipped regime labels.
   - `fig6_eos_corrected.pdf` / `.png` — corrected Figure 6 (C6): broken pie panel replaced by adiabatic-null annotation.
   - `fig9_nearcritical_corrected.pdf` / `.png` — corrected Figure 9 (C8): right T1 axis relabelled x0.65.
+  - `B1_tgrad_figure.pdf` / `.png` — NEW Figure B1 (§6 T-gradient sim): differential fragmentation vs uniform control.
   - `make_fig2_corrected.py`, `make_fig6_fig9_corrected.py` — scripts that produced the figures.
 - `analysis/`
   - `ensemble_A3_A6_D.py` — reproduces the 39-run ensemble stats (T1/arithmetic + A6 merging check).
   - `ad_trajectory.py`, `ad_lambda_trajectory.json` — ambipolar λ(t) trajectory (A2).
   - `analyze_A5.py`, `A5_progress.json`, `A5_collapse_vs_beta.png` — A5 collapse-vs-β diagnostics (running).
+- `sim_B1_tgrad/` — §6 temperature-gradient simulation: `filament_tgrad.cpp` (pgen), configs, `B1_tgrad_result.json`, `analyze_B1.py`, `make_B1_figure.py`.
 - `configs/`
   - `configs_A5/` (+ `gen_A5.py`) — 10 A5 magnetic-subcriticality long-integration configs (f=1.5,2.0 × β).
   - `configs_A2/` — 4 ambipolar finer-cadence reruns.
