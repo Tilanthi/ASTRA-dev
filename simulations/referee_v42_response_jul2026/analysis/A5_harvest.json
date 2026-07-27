@@ -1,0 +1,130 @@
+{
+ "runs": [
+  {
+   "f": 1.5,
+   "beta": 0.05,
+   "t_final": 1.05,
+   "gravE_ratio_at_0.85": 42.2,
+   "gravE_ratio_final": 2764.8
+  },
+  {
+   "f": 1.5,
+   "beta": 0.15,
+   "t_final": 0.9,
+   "gravE_ratio_at_0.85": 179.2,
+   "gravE_ratio_final": 604.5
+  },
+  {
+   "f": 1.5,
+   "beta": 0.1,
+   "t_final": 1.1,
+   "gravE_ratio_at_0.85": 74.6,
+   "gravE_ratio_final": 8740.8
+  },
+  {
+   "f": 1.5,
+   "beta": 0.3,
+   "t_final": 0.8,
+   "gravE_ratio_at_0.85": 1097.4,
+   "gravE_ratio_final": 1097.4
+  },
+  {
+   "f": 1.5,
+   "beta": 1.0,
+   "t_final": 0.7,
+   "gravE_ratio_at_0.85": 1551.4,
+   "gravE_ratio_final": 1551.4
+  },
+  {
+   "f": 2.0,
+   "beta": 0.05,
+   "t_final": 1.0,
+   "gravE_ratio_at_0.85": 64.9,
+   "gravE_ratio_final": 1726.4
+  },
+  {
+   "f": 2.0,
+   "beta": 0.15,
+   "t_final": 0.95,
+   "gravE_ratio_at_0.85": 584.8,
+   "gravE_ratio_final": 1941.2
+  },
+  {
+   "f": 2.0,
+   "beta": 0.1,
+   "t_final": 1.0,
+   "gravE_ratio_at_0.85": 357.9,
+   "gravE_ratio_final": 2725.6
+  },
+  {
+   "f": 2.0,
+   "beta": 0.3,
+   "t_final": 0.75,
+   "gravE_ratio_at_0.85": 570.7,
+   "gravE_ratio_final": 570.7
+  },
+  {
+   "f": 2.0,
+   "beta": 1.0,
+   "t_final": 0.6,
+   "gravE_ratio_at_0.85": 643.6,
+   "gravE_ratio_final": 643.6
+  },
+  {
+   "f": 0.9,
+   "beta": 0.05,
+   "t_final": 1.2,
+   "gravE_ratio_at_0.85": 60.2,
+   "gravE_ratio_final": 23178.2
+  },
+  {
+   "f": 0.9,
+   "beta": 0.15,
+   "t_final": 0.9,
+   "gravE_ratio_at_0.85": 64.1,
+   "gravE_ratio_final": 133.6
+  },
+  {
+   "f": 0.9,
+   "beta": 1.0,
+   "t_final": 0.9,
+   "gravE_ratio_at_0.85": 4822.6,
+   "gravE_ratio_final": 13790.7
+  },
+  {
+   "f": 1.0,
+   "beta": 0.05,
+   "t_final": 0.95,
+   "gravE_ratio_at_0.85": 54.5,
+   "gravE_ratio_final": 246.1
+  },
+  {
+   "f": 1.0,
+   "beta": 0.15,
+   "t_final": 0.95,
+   "gravE_ratio_at_0.85": 59.9,
+   "gravE_ratio_final": 772.2
+  },
+  {
+   "f": 1.0,
+   "beta": 1.0,
+   "t_final": 0.9,
+   "gravE_ratio_at_0.85": 4437.7,
+   "gravE_ratio_final": 8241.7
+  }
+ ],
+ "by_beta_at_t0.85_fle1.0": {
+  "0.05": {
+   "mean_gravE_ratio_at_0.85": 57.4,
+   "n": 2
+  },
+  "0.15": {
+   "mean_gravE_ratio_at_0.85": 62.0,
+   "n": 2
+  },
+  "1.0": {
+   "mean_gravE_ratio_at_0.85": 4630.1,
+   "n": 2
+  }
+ }
+}
