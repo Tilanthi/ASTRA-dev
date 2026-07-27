@@ -1,0 +1,21 @@
+{
+ "longitudinal_lambdaW": 2.1,
+ "perpendicular_lambdaW": [
+  0.85,
+  1.4
+ ],
+ "population_weighted_prediction": {
+  "central_ideal": 0.97,
+  "central_ambipolar": 1.47,
+  "full_band": [
+   0.85,
+   1.54
+  ]
+ },
+ "observed_NN": {
+  "fixed_width": 1.9,
+  "region_specific": 2.5
+ },
+ "verdict": "Population-weighted theory prediction lambda/W ~ 0.8-1.5 is BELOW the observed 1.9-2.5: taking the sample at face value (90% perpendicular), current MHD models UNDER-predict the observed spacing -> the theory does NOT explain the bulk of the population. This makes the perpendicular-field 'tension' the central (negative) result, and the longitudinal 'consistency' applies only to the ~10% minority.",
+ "caveats": "perpendicular values resolution-limited (Truelove violated, Appendix A); large-scale->internal field mapping uncertain (circumstantial)."
+}

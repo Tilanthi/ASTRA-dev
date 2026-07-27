@@ -1,0 +1,12 @@
+{
+ "n": 72,
+ "theta_tally": {
+  "None": 72
+ },
+ "beta_tally": {
+  "0.5": 24,
+  "1.0": 24,
+  "2.0": 24
+ },
+ "note": "If all theta=0/longitudinal -> T1 calibrated on longitudinal ONLY; applying to perpendicular runs is unjustified (R2-4). Anisotropic magnetic pressure changes beam-convolved column width with field orientation."
+}
