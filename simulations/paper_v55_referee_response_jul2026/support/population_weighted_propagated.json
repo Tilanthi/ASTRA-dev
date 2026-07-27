@@ -1,0 +1,24 @@
+{
+ "inputs": {
+  "f_perp_prior": "U(0.6,1.0)",
+  "perp_lambdaWfil": "U(0.85,1.4) [resolution-limited]",
+  "long_lambdaWfil": "N(2.1,0.4)",
+  "T1_systematic": "U(0.59,0.78)/0.65"
+ },
+ "population_weighted_lambdaWfil": {
+  "median": 1.38,
+  "68CI": [
+   1.15,
+   1.63
+  ],
+  "95CI": [
+   0.97,
+   1.87
+  ]
+ },
+ "observed_NN": {
+  "fixed": 1.9,
+  "region_specific": 2.5
+ },
+ "verdict": "Propagated population-weighted prediction = 1.38 (68%: 1.15-1.63; 95%: 0.97-1.87), below observed 1.9-2.5. With full uncertainty it remains below observation at ~68% but the 95% upper edge (1.87) approaches the fixed-width observed 1.9 -> the mismatch is real but NOT high-significance given the flagged systematics. RECOMMEND: quote this band, and label the synthesis 'Speculative/illustrative' (not 'Established') per Referee2-M5."
+}

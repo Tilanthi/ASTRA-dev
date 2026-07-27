@@ -1,0 +1,12 @@
+{
+ "T1_old": 0.65,
+ "T1_sample_median": 0.61,
+ "band": [
+  0.59,
+  0.78
+ ],
+ "supercritical_lambdaWfil_old": 2.13,
+ "supercritical_lambdaWfil_new": 1.99,
+ "perp_shift_pct": -6.2,
+ "note": "Adopting sample median 0.61 shifts supercritical lambda/Wfil 2.1->2.0 (still consistent with NN 1.9); perpendicular numbers down ~6%. '0.65 near p90' is wrong: 0.65 is midway between median 0.61 and p90 0.69."
+}
