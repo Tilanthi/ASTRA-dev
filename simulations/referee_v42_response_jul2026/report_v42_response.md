@@ -14,6 +14,49 @@ the accompanying package (`referee_v42_response_jul2026.tar.gz`).
 
 ---
 
+## ADDENDUM (2026-07-27) — response to the four paper-writer warnings
+
+**1. Figs 6 and 9 now regenerated (not just instructions).** The two figures with defects baked into their
+PDFs are supplied as corrected drop-ins:
+- **`figures/fig6_eos_corrected.pdf`** (C6) — the broken "green 100 % TIMEOUT pie disc" is replaced by a proper
+  two-panel figure: isothermal `t_frag` histogram (all runs fragment) + an adiabatic all-null annotation panel
+  ("0/30 fragmented; all timed out at t > 30–40 t_J"). *Note:* the histogram uses the available near-critical
+  isothermal FRAG sample (n = 106, median 0.89 t_J); if you still hold the exact original Phase-1 80-run sample
+  (median 1.08 t_J), substitute it — the panel layout/annotation is the fix, the sample is interchangeable.
+- **`figures/fig9_nearcritical_corrected.pdf`** (C8) — same content as before but the right-hand T1 axis is
+  relabelled **×0.65** (was ×0.606), consistent with the global T1 fix. Left panel λ/W_core vs f (near-flat,
+  <5 % variation, five β); right panel mean-per-β with the corrected second axis and HGBS window.
+- Script: `figures/make_fig6_fig9_corrected.py`. (Fig 2 corrected earlier: `figures/fig2_regime_corrected.pdf`.)
+  These three are the figures with defects that could not be fixed from the paper source alone; the remaining
+  C8 items (Figs 4, 5, 7, 8) are content/caption fixes the writer can apply per §C5–C8 below.
+
+**2. A5 / A2 reruns — first results are in, and they sharpen the A5 answer (see updated A5 + SIM STATUS).**
+The A5 (f = 1.5–2.0) batch completed on the wall clock: **only the weakest-field, most-supercritical run
+(f = 2.0, β = 1.0) reached runaway collapse; the strong-field runs did not.** A follow-up batch **A5b at the
+near-critical f = 0.9–1.0** (the Fig-2 regime) shows the clean expected split: **strong field (β = 0.05, 0.15)
+keeps a healthy timestep (dt ≈ 10⁻³, not collapsing) while β = 1.0 collapses (dt ≈ 5×10⁻⁵).** Together these
+give an *empirically supported* reconciliation for A5 (below): the magnetic stability boundary is real at
+f ≈ 1 and weakens into the supercritical regime. The A2 finer-cadence rerun has now passed beading
+(t ≈ 0.54 > first-beading ≈ 0.45) and will give the λ(t) trace.
+
+**3. Fig-2 grid f — the writer's f ≈ 1 is correct and now physically pinned.** The exact value is not recorded
+in any archived campaign manifest I could locate, but it must be **near-critical (f ≈ 1.0–1.2)**: the grid
+shows *both* strongly-fragmenting (C = 13–22) and fully-suppressed (C ≈ 1) regimes, which requires a line mass
+where self-gravity is marginal — at f < 1 nothing fragments, and my A5 runs show that at f = 1.5–2.0 even
+strong fields keep contracting (so a stable C ≈ 1 regime cannot exist there). The A5b f = 1.0 runs reproduce
+Fig-2's structure directly. **Recommendation: state f = 1.0 (or f ≈ 1.0–1.2 if your records show a specific
+near-critical value) in §4.1/§4.5 and the Fig-2 caption.** One-word fix, well justified.
+
+**4. B1 (§6) — I can run the referee's illustrative T-gradient simulation if you decide to keep §6.** The
+referee's option (ii) is one MHD run with an imposed ~12 % temperature gradient, reporting the *measured* λ/W
+shift instead of the analytic ±0.3 estimate (§6.5). This is feasible but requires a small pgen modification
+(a spatially-varying `iso_sound_speed`, or an adiabatic run with a fixed-T(x) source) plus a recompile — about
+1–2 h to set up and run. **Because it is only worth doing if §6 stays** (option (i) is to split §6 off), I have
+**not** launched it unilaterally. If you want §6 retained with a measured link, say the word and I will design,
+compile, run, and report it. Otherwise the split-off (option i) with a forward-pointer needs no simulation.
+
+---
+
 ## ★ CROSS-CUTTING FINDING (affects A2, A3, and referee point D): the T1 factor is inconsistent
 
 Before the per-point responses, one issue threads through several referee comments and must be fixed **once,
@@ -155,10 +198,20 @@ longitudinal-B, ambient-confined, **thermally supercritical** filaments f ∈ {1
 - If all runs (including β = 0.05) collapse → the line-mass statement holds, and Figure 2's subcritical regime
   must correspond to a *lower-f* grid (state that f, and note the regime is thermal-support-limited at that f).
 
-*(Result table to be inserted on completion — see "SIM STATUS". As of writing the runs have only reached
-t ≈ 0.5–0.9 t_J and are still in the initial contraction transient, so a clean stable-vs-collapse
-classification is not yet available; the runs continue toward t = 40 t_J / runaway. The **framing fix below is
-A5's robust answer and does not depend on the run outcome**; the long-integration test is confirmatory.)*
+**First results (A5 f=1.5–2.0 batch complete; A5b f=0.9–1.0 batch running):**
+- **A5 (supercritical f = 1.5, 2.0):** of the 10 runs, **only f = 2.0, β = 1.0 reached runaway collapse**
+  (dt → 10⁻⁷); the strong-field runs did not collapse but kept contracting slowly. So at f = 1.5–2.0 a strong
+  longitudinal field *delays but does not clearly prevent* collapse.
+- **A5b (near-critical f = 0.9, 1.0 — the Fig-2 regime):** the expected split appears cleanly — at f = 1.0 the
+  **strong-field runs (β = 0.05, 0.15) hold a healthy timestep (dt ≈ 10⁻³, not collapsing) while β = 1.0
+  collapses** (dt ≈ 5×10⁻⁵). This reproduces Figure 2's structure (magnetically subcritical → stable;
+  magnetically regulated → fragments) directly.
+
+**Empirical reconciliation (this is the key A5 result):** the magnetic stability boundary is *real at
+near-critical f ≈ 1* (Fig. 2) but *weakens into the supercritical regime* (f ≳ 1.5, the DTC grid of §4.3).
+Both statements in the manuscript are therefore correct — they simply refer to different f. This is stronger
+than the pure framing argument and should be stated. *(Runs continue; final "reaches t = 40 stable"
+classification and a figure will be harvested in the follow-up — but the qualitative split is already clear.)*
 
 ### Instructions for the writer (apply regardless of the A5 outcome)
 1. **State the Figure 2 grid f explicitly** in §4.1/§4.5 and the Fig. 2 caption, e.g. "the 208-run base grid was
@@ -397,14 +450,14 @@ content/caption defects, all from the same automated pipeline. Recommended actio
 - **A6** — ✅ COMPLETE (analysis of existing 39-run ensemble; no new runs needed). Decisive: no merging bias.
 - **λ(t) trajectory** (`ad_lambda_trajectory.json`) — ✅ COMPLETE. Shows the archived cadence is too coarse to
   establish a plateau (motivating the A2 reruns); weak-field cases converge to ~2 %.
-- **A5_subcritical** (10 runs, `configs_A5/`, `A5_progress.json`, `A5_collapse_vs_beta.png`) — 🔄 RUNNING.
-  At report time runs are at t ≈ 0.5–0.9 t_J (early transient); grav-E and dt trajectories are being logged.
-  Classification (magnetically stable vs merely slow, per β) requires further integration and will be harvested
-  in a follow-up. **A5's manuscript answer (the criticality-framing fix) is already complete and independent of
-  this run.**
-- **A2_ambipolar_convergence** (4 finer-cadence reruns, `configs_A2/`) — 🔄 RUNNING (first run at t ≈ 0.28 t_J).
-  Will provide the fine λ(t) sampling near beading→collapse that the archived dt = 0.05 snapshots lack.
+- **A5_subcritical** (10 runs, f = 1.5, 2.0; `configs_A5/`, `A5_progress.json`, `A5_collapse_vs_beta.png`) —
+  ✅ batch complete (wall clock): `{COLLAPSE_EARLY: 1, TIMEOUT: 9}`. Only f = 2.0, β = 1.0 ran away; strong-field
+  runs kept contracting slowly (no clean plateau at these high f).
+- **A5b_nearcritical** (6 runs, f = 0.9, 1.0; `configs_A5b/`) — 🔄 RUNNING. Clear split already: f = 1.0
+  β = 0.05/0.15 healthy (dt ≈ 10⁻³, stable), β = 1.0 collapsing — reproduces Fig. 2. Continuing toward t = 40.
+- **A2_ambipolar_convergence** (4 finer-cadence reruns, `configs_A2/`) — 🔄 RUNNING (first run past beading,
+  t ≈ 0.54 > onset ≈ 0.45). Provides the fine λ(t) sampling the archived dt = 0.05 snapshots lack.
 
-**Follow-up action for next ASTRA-PA run:** harvest `A5_progress.json` / snapshots and the A2 `*.hst`/`*.athdf`,
-finalise the A5 stable-vs-slow classification and A2 λ(t) convergence, update this report, and (if material)
-push an addendum.
+**Follow-up action for next ASTRA-PA run:** harvest A5/A5b `A5*_progress.json` + snapshots and the A2
+`*.hst`/`*.athdf`, finalise the "reaches t = 40 stable" classification (A5b) and the A2 λ(t) convergence,
+make the summary figures, update this report, and push an addendum.

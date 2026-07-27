@@ -1,0 +1,70 @@
+<comment>
+problem   = A5b_f1.0_b0.15_th0_M2.0_s42
+A5 magnetic-subcriticality stability test: f=1.5 beta=0.05 longitudinal th0 M=2.0 tlim40
+
+<job>
+problem_id      = A5b_f1.0_b0.15_th0_M2.0_s42
+max_runtime     = 36000
+num_cores       = 16
+
+<output1>
+file_type   = hdf5
+variable    = prim
+dt          = 2.0
+id          = prim
+
+<output2>
+file_type   = hst
+dt          = 0.05
+id          = hst
+
+<time>
+cfl_number  = 0.3
+tlim        = 40.0
+nlim        = -1
+
+<mesh>
+nx1         = 256
+x1min       = 0.0
+x1max       = 8
+ix1_bc      = periodic
+ox1_bc      = periodic
+nx2         = 64
+x2min       = -1.0
+x2max       = 1.0
+ix2_bc      = periodic
+ox2_bc      = periodic
+nx3         = 64
+x3min       = -1.0
+x3max       = 1.0
+ix3_bc      = periodic
+ox3_bc      = periodic
+
+<meshblock>
+nx1 = 16
+nx2 = 64
+nx3 = 64
+
+<hydro>
+gamma           = 1.0
+iso_sound_speed  = 1.0
+
+<gravity>
+grav_mean_rho   = 1.0
+
+<problem>
+four_pi_G       = 39.4784176044
+f_line_mass     = 1.0
+plasma_beta     = 0.15
+bfield_geometry = longitudinal
+bfield_angle    = 0
+mach_number     = 2.0
+perturb_ampl    = 0.01
+random_seed     = 42
+W_core          = 0.3
+profile         = gaussian
+p_ext_ratio     = 0.0
+dt_kill         = 1e-09
+eta_ohm         = 0.0
+eta_hall        = 0.0
+eta_ad          = 0.0

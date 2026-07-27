@@ -13,7 +13,9 @@ simulation/analysis points **A2, A3, A5, A6, A7, C4–C8, the non-monotonic perp
 - `figures/`
   - `fig2_regime_corrected.pdf` / `.png` — corrected Figure 2 (C4): real newline title, correct colour key,
     non-clipped regime labels.
-  - `make_fig2_corrected.py` — script that produced it.
+  - `fig6_eos_corrected.pdf` / `.png` — corrected Figure 6 (C6): broken pie panel replaced by adiabatic-null annotation.
+  - `fig9_nearcritical_corrected.pdf` / `.png` — corrected Figure 9 (C8): right T1 axis relabelled x0.65.
+  - `make_fig2_corrected.py`, `make_fig6_fig9_corrected.py` — scripts that produced the figures.
 - `analysis/`
   - `ensemble_A3_A6_D.py` — reproduces the 39-run ensemble stats (T1/arithmetic + A6 merging check).
   - `ad_trajectory.py`, `ad_lambda_trajectory.json` — ambipolar λ(t) trajectory (A2).
@@ -21,7 +23,7 @@ simulation/analysis points **A2, A3, A5, A6, A7, C4–C8, the non-monotonic perp
 - `configs/`
   - `configs_A5/` (+ `gen_A5.py`) — 10 A5 magnetic-subcriticality long-integration configs (f=1.5,2.0 × β).
   - `configs_A2/` — 4 ambipolar finer-cadence reruns.
-- `data/` — `rc1_beading.json`, `rc2_beading.json` (39-run ensemble), `ad_beading_final.json` (ambipolar 24/24).
+- `data/` — `isothermal_tfrag_sample.json`, `rc1_beading.json`, `rc2_beading.json` (39-run ensemble), `ad_beading_final.json` (ambipolar 24/24).
 
 ## Headline conclusions
 - **T1 inconsistency (D, A3):** paper text adopts T1=0.65 but numbers use 0.606. 3.27×0.606=1.98 (printed "2.0");
