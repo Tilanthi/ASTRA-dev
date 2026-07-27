@@ -1,0 +1,13 @@
+{
+ "note": "Consolidated perpendicular-field outcome taxonomy. AD (ambipolar) from ad_beading_final.json (24 runs). Other perp campaigns documented from paper: 96-run field-geometry theta=90 grid (classified by t_rad=radial collapse, NOT beading); 18-run ideal-MHD d=1.0 ambient grid (7/18 bead by t_bead); 27-run extended-16lJ-domain perp (beta>=1 bead at lam/Wcore=1.25).",
+ "AD_ambipolar_24": {
+  "bead": 22,
+  "total": 24,
+  "median_lambda_Wfil": 1.464
+ },
+ "reconciliation": {
+  "why_96_all_fragmented_but_18_only_7_bead": "The 96-run grid is periodic field-geometry classified by t_rad (radial runaway) => 'all fragmented' means all COLLAPSED, not beaded. The 18-run grid is ambient-confined classified by t_bead (true longitudinal beading) => 7/18 bead. Different BC + different outcome definition.",
+  "lambda085_vs_081_same": "lambda/Wfil=0.85 (ideal ambient) and 0.81 (=1.25 lambda/Wcore x0.65, field-geometry grid) are the SAME measurement within scatter (~0.8).",
+  "truelove_caveat": "Perp beading measured at cells/lamJ~1-2 (Truelove violated) => these short wavelengths are resolution-limited upper limits (see truelove_check.json)."
+ }
+}

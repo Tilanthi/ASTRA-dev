@@ -1,0 +1,28 @@
+{
+ "theta_deg": [
+  30,
+  45,
+  60
+ ],
+ "t_frag": [
+  0.604,
+  0.508,
+  0.454
+ ],
+ "lambda_MJ_beta1": [
+  1.225,
+  1.414,
+  1.581
+ ],
+ "linear_fit_tf_vs_lamMJ": {
+  "slope": -0.4228,
+  "intercept": 1.1168,
+  "R2": 0.9848,
+  "residuals": [
+   0.0051,
+   -0.0108,
+   0.0058
+  ]
+ },
+ "verdict": "only 3 angles, no uncertainty per point -> cannot claim 'empirically validate'; report as smooth monotonic theta-trend consistent with lambda_MJ but not a validated fit."
+}

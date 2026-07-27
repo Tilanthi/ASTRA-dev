@@ -1,0 +1,18 @@
+{
+ "varying_ISRF": {
+  "n": 5060,
+  "detections": 1152,
+  "rate": 0.2277
+ },
+ "uniform_control": {
+  "n": 519,
+  "rate": 0.109
+ },
+ "two_proportion_z": 6.25,
+ "p_value": "4.13e-10",
+ "rate_difference": 0.1187,
+ "diff_95CI": [
+  0.0895,
+  0.1479
+ ]
+}

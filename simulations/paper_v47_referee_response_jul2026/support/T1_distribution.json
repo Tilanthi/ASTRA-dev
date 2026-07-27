@@ -1,0 +1,16 @@
+{
+ "n": 72,
+ "mean": 0.605,
+ "median": 0.607,
+ "std": 0.072,
+ "p10": 0.52,
+ "p90": 0.694,
+ "min": 0.437,
+ "max": 0.784,
+ "adopted_T1": 0.65,
+ "adopted_band": [
+  0.59,
+  0.78
+ ],
+ "note": "T1 = W_form/W_fil forward-modelled distribution (n=72). Adopted central 0.65; the 0.59-0.78 band brackets the spread. Referee R2-11.8: fold this full band into the simulation lambda/W_fil, not only ensemble scatter."
+}

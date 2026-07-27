@@ -1,0 +1,82 @@
+{
+ "scaling_law": "mu_Phi/mu_crit \u221d f * sqrt(beta)  (increases with f; DECREASES with stronger field / lower beta)",
+ "note": "Paper's 'f^-1/2' is the fragmentation-wavelength scaling lambda_max\u221df^-1/2, NOT the mass-to-flux ratio.",
+ "held_fixed": "cs, rho_bg, W_core, four_pi_G; B0 set by beta; central density set by f",
+ "table": [
+  {
+   "f": 1.0,
+   "beta": 0.05,
+   "muPhi_over_crit": 1.868
+  },
+  {
+   "f": 1.0,
+   "beta": 0.15,
+   "muPhi_over_crit": 3.236
+  },
+  {
+   "f": 1.0,
+   "beta": 0.5,
+   "muPhi_over_crit": 5.908
+  },
+  {
+   "f": 1.0,
+   "beta": 1.0,
+   "muPhi_over_crit": 8.355
+  },
+  {
+   "f": 1.0,
+   "beta": 2.0,
+   "muPhi_over_crit": 11.816
+  },
+  {
+   "f": 1.5,
+   "beta": 0.05,
+   "muPhi_over_crit": 2.802
+  },
+  {
+   "f": 1.5,
+   "beta": 0.15,
+   "muPhi_over_crit": 4.854
+  },
+  {
+   "f": 1.5,
+   "beta": 0.5,
+   "muPhi_over_crit": 8.862
+  },
+  {
+   "f": 1.5,
+   "beta": 1.0,
+   "muPhi_over_crit": 12.533
+  },
+  {
+   "f": 1.5,
+   "beta": 2.0,
+   "muPhi_over_crit": 17.725
+  },
+  {
+   "f": 2.0,
+   "beta": 0.05,
+   "muPhi_over_crit": 3.737
+  },
+  {
+   "f": 2.0,
+   "beta": 0.15,
+   "muPhi_over_crit": 6.472
+  },
+  {
+   "f": 2.0,
+   "beta": 0.5,
+   "muPhi_over_crit": 11.816
+  },
+  {
+   "f": 2.0,
+   "beta": 1.0,
+   "muPhi_over_crit": 16.711
+  },
+  {
+   "f": 2.0,
+   "beta": 2.0,
+   "muPhi_over_crit": 23.633
+  }
+ ]
+}

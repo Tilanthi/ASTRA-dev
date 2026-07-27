@@ -1,0 +1,19 @@
+{
+ "n_total": 39,
+ "n_bead": 38,
+ "periodic": {
+  "n": 12,
+  "median_lambda": 0.93,
+  "median_lambdaWfil": 2.014
+ },
+ "reflecting": {
+  "n": 26,
+  "median_lambda": 1.055,
+  "median_lambdaWfil": 2.285
+ },
+ "KS_periodic_vs_reflecting": {
+  "statistic": 0.365,
+  "p_value": 0.171,
+  "interpretation": "p>0.05 -> periodic and reflecting BC give statistically indistinguishable lambda (justifies combining)"
+ }
+}
