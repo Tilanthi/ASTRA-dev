@@ -1,0 +1,943 @@
+\documentclass[usenatbib,twoside,twocolumn]{mnras}
+
+% Paper packages
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+
+% Define astronomical units
+\newcommand{\msun}{\ensuremath{M_{\odot}}}
+\newcommand{\pc}{\ensuremath{\rm pc}}
+\newcommand{\kms}{\ensuremath{\rm km\,s^{-1}}}
+
+\title{Core Spacing in Herschel Gould Belt Survey Filaments: a Convention-Limited Sub-Classical Scale and its Interpretation}
+
+\author[G.~J.~White]{G.~J.~White$^{1,2}$\\
+$^{1}$School of Physical Sciences, The Open University, Walton Hall, Milton Keynes, MK7 6AA, UK\\
+$^{2}$Rutherford Appleton Laboratory, Harwell Science and Innovation Campus, Didcot, OX11 0QX, UK}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\textit{Herschel} finds dense cores spaced along filaments well below the classical Inutsuka \& Miyama fragmentation wavelength $\lambda_{\rm IM92}$ of an isothermal \emph{equilibrium} cylinder --- a ``sub-classical'' deficit usually read as evidence for fibres or (helical) magnetic tension. We re-analyse Herschel Gould Belt Survey core spacings in four clouds ($N=4$) with Gaia DR3 distances, and run an Athena++ MHD campaign. First, the spacing is sub-classical in \emph{sign} --- a factor $\approx3$--$4$ below the classical fastest-growing wavelength $\lambda_{\rm m}\approx5$--$6\times$FWHM (Fischera \& Martin 2012) --- but poorly determined in magnitude: $\lambda/W\approx0.4$--$0.8$ (FilFinder) to $\approx1.9$ (fixed-width DisPerSE), with our primary directly-measured region-Plummer value $\approx1.35$; the skeleton/width choice, not statistical error, dominates. The cores are moreover random-to-clustered, not periodic, so this is a line-density deficit rather than a single resonant wavelength. Second, a dynamically contracting filament fragments below the hydrostatic scale, which our growth-rate spectra reproduce for near-critical, \emph{longitudinal}-field filaments. The measured wavelength is an order-$\lambda_{\rm J}$ \emph{upper limit} (the spectrum does not turn over within the converged band); the simulated ratio is $\lambda_{\rm max}/W_{\rm FWHM}\approx2$ (Gaussian FWHM) versus the classical $\approx5$--$6$; in the like-for-like beam-convolved Plummer convention this is $\lambda/W\approx1.0$--$1.3$, consistent with the observed region-Plummer value. The perpendicular geometry Planck indicates is common is numerically unresolved, so this applies only to the longitudinal minority. The data are therefore consistent with single-filament fragmentation but do not \emph{discriminate} it from fibres or (helical) magnetic tension. Fibre-resolved kinematics --- is the classical $5$--$6\times$FWHM recovered within individual fibres? --- would decide.
+\end{abstract}
+
+
+\begin{keywords}
+stars: formation -- ISM: structure -- ISM: filaments -- MHD -- turbulence
+\end{keywords}
+
+\section{INTRODUCTION}
+
+The \textit{Herschel} Space Observatory established that filaments are the fundamental structures within which star formation occurs in molecular clouds \citep{Andre2010}. Two key observational results emerged: (1) a characteristic filament width of $\sim$0.1 pc across diverse environments \citep{Arzoumanian2011}, and (2) a critical mass-per-unit-length of $M_{\rm line,crit} \approx 16~M_\odot$/pc \citep{Ostriker1964}.
+
+Classical fragmentation theory \citep{Inutsuka1992} predicts that isothermal gas cylinders fragment at a wavelength of $\lambda_{\rm m}\approx5$--$6\times$ the filament FWHM (\citealt{Fischera2012}; equivalently $4\times$ the flat inner diameter, \citealt{Inutsuka1992}); for the characteristic HGBS width of $0.10$\,pc this is a core spacing of $\sim0.5$\,pc. Our primary \emph{physical} estimate of the nearest-neighbour spacing is $\lambda/W\approx1.35$, using directly-fitted region-specific Plummer widths (Section~\ref{sec:widths}); the fixed-width convention gives $\lambda/W\approx1.9$, which we retain only for comparability with prior HGBS work (both are sub-classical by a factor $\approx3$--$4$ relative to the $\lambda_{\rm m}\approx5$--$6\times$FWHM prediction)\footnote{Throughout, $W\equiv W_{\rm fil}$ is the observed HGBS FWHM and the reference width for all observation--theory comparisons; the fixed-width convention sets $W\approx0.10$\,pc, the region-Plummer convention $W=0.11$--$0.16$\,pc, and the simulation core half-width $W_{\rm core}$ relates to $W_{\rm fil}$ by the normalisation T1 (Section~\ref{sec:width_correction}).}. We adopt Gaia DR3-based distances \citep{Zhang2023} and the nearest-neighbour (NN) statistic, the estimator that most directly measures the fragmentation wavelength, and the one already used in the HGBS catalogue papers \citep{Konyves2015,Konyves2020} (Section~\ref{sec:statistics}).
+
+This apparent deficit relative to the classical $\lambda_{\rm m}\approx5$--$6\times$FWHM has been attributed to additional physics. Two mechanisms are usually invoked: \emph{hierarchical fragmentation}, in which the filaments are bundles of velocity-coherent fibres \citep{Hacar2013,Hacar2018,Yang2024} so that, if each fibre fragments near the classical scale, measuring across the bundle compresses the apparent filament-level spacing; and \emph{magnetic tension}, in which a magnetic field alters the most unstable wavelength \citep{Nakamura1993}. (We note the field geometry carefully. For an axial fragmentation mode, a \emph{longitudinal} field is compressed \emph{along} its own direction and exerts essentially no restoring force, leaving $\lambda_{\rm max}$ almost unchanged \citep[][consistent with our $\theta=0^\circ$ runs being nearly $\beta$-independent]{Nagasawa1987,Nakamura1993}; a static \emph{perpendicular} field is amplified by the axial compression and \emph{lengthens}/stabilises the mode; only a \emph{helical}/toroidal field, whose pinch destabilises the sausage mode, shortens it \citep{Fiege2000}. ``Magnetic tension'' as a route to a shorter spacing is therefore a specifically helical effect, which our campaign does not test.) These are natural readings of the discrepancy within the equilibrium fragmentation theory that was the available comparison; what we suggest is not that they are wrong, but that an alternative comparison for a still-collapsing filament is the time-dependent one, which reduces the deficit without invoking them, though (as we show) it does not by itself select among the readings.
+
+From a large campaign of self-gravitating MHD simulations we measure the fragmentation wavelength of a dynamically collapsing filament from its growth-rate spectrum, and two caveats must be stated at the outset. First, the measured wavelength is an order-$\lambda_{\rm J}$ \emph{upper limit}, not a located peak: the growth-rate spectrum rises monotonically and does not turn over within the resolution-converged band ($\lambda\gtrsim1\,\lambda_{\rm J}$), so $\lambda_{\rm max}\lesssim1\,\lambda_{\rm J}$ ($\lambda_{\rm max}/W_{\rm FWHM}\approx2$ versus the classical $\approx5$--$6$), and the true dynamical scale may be shorter (Appendix~\ref{sec:val_appendix}). Second, the like-for-like comparison must use matched widths: in a common beam-convolved Plummer convention the simulated value is $\lambda/W\approx1.0$--$1.3$, which lies \emph{between} the FilFinder ($0.4$--$0.8$) and DisPerSE ($1.9$) observed values and coincides with the directly-measured region-Plummer widths ($1.2$--$1.35$); the ``$\lambda_{\rm max}/W\approx2\approx1.9$'' agreement compares a Gaussian to a Plummer width and we do not rely on it. A filament that is still contracting is expected to fragment below the marginally-stable hydrostatic mode \citep{Clarke2016,Clarke2017}; our contribution is to reproduce that sub-hydrostatic behaviour numerically in Athena++ for the longitudinal near-critical case --- a numerical demonstration of the generic sub-classical fragmentation expected of any contracting, non-equilibrium filament, of which the accretion-driven \citet{Clarke2016,Clarke2017} mechanism is one realisation we do not specifically isolate --- and to connect it to a homogeneous Gaia-DR3 re-analysis of HGBS spacings. We solve the classical equilibrium dispersion relation only as the reference benchmark (Appendix~\ref{sec:val_appendix}); our contracting-filament wavelength is measured numerically, and the initial profile we adopt is not the exact isothermal equilibrium (Section~\ref{sec:limitations}), so we cannot fully separate the contracting-filament effect from an initial-condition contribution. The observations are therefore \emph{consistent with} single-filament dynamical fragmentation but do not \emph{require} it, nor discriminate it from hierarchical fibres or magnetic tension; which reading, if any, is favoured depends on the segmentation convention (Section~\ref{sec:error_budget}).
+
+We present a full-coverage nearest-neighbour core-spacing analysis with Gaia DR3 distances \citep{Zhang2023} for the four robust HGBS regions (Orion~B, Aquila, Perseus, Taurus; the eight-region sample is retained only for the legacy pairwise-median statistic), followed by the simulation campaign, its validation and the interpretation. We note throughout that the large-scale filament--field misalignment from Planck polarimetry \citep{Planck2016} measures the projected orientation, which need not equal a filament's internal field geometry (Section~\ref{sec:discussion}).
+
+\begin{table}
+\caption{Principal symbols.}
+\label{tab:symbols}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lp{6.1cm}}
+\toprule
+Symbol & Meaning \\
+\midrule
+$\lambda$ & core-to-core spacing (fragmentation wavelength) \\
+$W_{\rm fil}$ & observed filament FWHM (beam-deconvolved Plummer; the reference width) \\
+$W_{\rm core}$ & simulation initial Gaussian half-width $\sigma$ ($0.3\,\lambda_{\rm J}$) \\
+$W_{\rm form}$ & FWHM of the evolved, projected simulation profile \\
+$T_1\!\equiv\!\eta_W$ & $W_{\rm form}/W_{\rm fil}$, the simulation-to-observation width normalisation (forward-model band $0.59$--$0.78$; adopted $0.61$) \\
+$\lambda_{\rm J}$ & background Jeans length ($=1$ in code units) \\
+$\lambda_{\rm max}$ & dominant fragmentation wavelength (growth-rate peak) \\
+$\lambda_{\rm IM92}$ & classical equilibrium-cylinder wavelength $\approx5$--$6\,W_{\rm FWHM}$ ($=4\times$ flat diameter) \\
+$\Gamma(\lambda)$ & linear growth rate of axial mode of wavelength $\lambda$ \\
+$f$ & thermal line-mass fraction $M_{\rm line}/M_{\rm line,crit}$ \\
+$\beta$ & plasma beta $8\pi P/B^2$ \\
+$\mathcal{M}$ & amplitude label of the seed perturbation ($\delta v=\mathcal{M}c_s\times10^{-4}$; a linear seed, \emph{not} a turbulent Mach number --- driven transonic turbulence is tested separately, Section~\ref{sec:supplementary_campaigns}) \\
+$\mu_\Phi/\mu_{\Phi,\rm crit}$ & normalised mass-to-flux ratio \\
+$\theta$ & angle between field and filament axis \\
+$N_J$ & cells per local Jeans length (Truelove criterion) \\
+$C$ & density contrast $\rho_{\rm max}/\langle\rho\rangle$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{OBSERVATIONAL ANALYSIS}
+
+\subsection{Complete HGBS Sample}
+
+Our sample comprises 8 high-confidence HGBS regions (Table~\ref{tab:sample}). The original catalogues \citep{Konyves2015, Konyves2020, Ladjelate2020, Pezzuto2021} adopted distances of $130$--$400$\,pc from the best estimates available in 2010--2015 (Table~\ref{tab:literature} lists the pre-Gaia distance and its source per region; note that \citealt{Konyves2020} already adopted $\sim400$\,pc for Orion~B); Gaia DR3 parallaxes \citep{Zhang2023} have since enabled substantial revisions, largest for the more distant regions, whose pre-Gaia distances were the most uncertain (Gaia fractional parallax errors are in fact largest, not smallest, at greater distance).
+
+We adopt the Gaia DR3 YSO-based distances from \citet{Zhang2023} (Table~4), with typical uncertainties of 3\%--5\%. The revisions are strongly region-dependent. The largest are for Serpens ($260 \to 458$ pc, $+76\%$) and Aquila ($260 \to 436$ pc, $+68\%$); by contrast Orion~B, the \emph{largest} region in the sample, is essentially unchanged (its pre-Gaia HGBS distance was already $\sim400$\,pc, \citealt{Konyves2020}, and Gaia DR3 gives $386$\,pc, a $-3.5\%$ change), and Taurus ($140 \to 135$ pc) and Ophiuchus ($130 \to 137$ pc) barely move. Since spacings scale linearly with distance, the \emph{core-count-weighted} mean spacing therefore rises only modestly ($\sim10\%$ for the robust regions), and is dominated by Aquila rather than being a uniform $+32\%$ shift. (This $\sim10\%$ is the core-count-weighted mean, dominated by the unchanged Orion~B; the \emph{unweighted} per-region NN characteristic shifts more, $\lambda/W\approx1.4\to1.9$, because there the large Aquila revision carries equal weight.)
+
+The analysis includes all HGBS-identified cores (starless, prestellar and protostellar), extracted and classified within the consistent HGBS framework \citep{Konyves2015, Konyves2020}. Including unbound starless and protostellar sources may introduce some bias, but fragmentation produces a continuum of boundness states, and restricting the sample to prestellar cores would shrink several regions (notably TMC1, CRA and Serpens) below statistical usefulness. Core positions and properties are taken directly from the published catalogues.
+
+Protostellar migration displacements of $0.01$--$0.05$\,pc \citep{Kirk2016, Mattern2018} are small against the $\sim0.2$--$0.3$\,pc spacing; we estimate the resulting NN bias at $\sim5$--$10\%$ and carry it as a systematic (Section~\ref{sec:error_budget}).
+
+\begin{table*}
+\caption{Complete HGBS Sample with Gaia DR3 Distances. Per-region spacings are pairwise-median values rounded to three significant figures; the core-count-weighted mean is $0.279$\,pc (full sample) and $0.290$\,pc (robust), the latter used only for the robust-vs-full comparison (Section~2.3).}
+\label{tab:sample}
+\begin{tabular}{lccccc}
+\toprule
+Region & Distance & Total & Pairwise ($L/3$) & Std Error & Status \\
+       & (pc)   & Cores & (pc)   & (pc)      &  \\
+\midrule
+Orion B  & 386 & 1,844 & 0.313 & 0.047 & Robust \\
+Aquila   & 436 & 749   & 0.346 & 0.047 & Robust \\
+Perseus  & 300 & 816   & 0.248 & 0.040 & Robust \\
+Taurus   & 135 & 536   & 0.198 & 0.040 & Robust \\
+Ophiuchus& 137 & 513   & 0.206 & 0.053 & Limited \\
+Serpens  & 458 & 194   & 0.331 & 0.097 & Limited \\
+TMC1     & 135 & 178   & 0.195 & 0.056 & Limited \\
+CRA      & 150 & 239   & 0.248 & 0.072 & Limited \\
+\midrule
+\textbf{Weighted Mean}$^\dagger$ &  & \textbf{5,069} & \textbf{0.279} & \textbf{0.009} &  \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}
+\footnotesize $^\dagger$The $0.009$\,pc figure is a formal core-count-weighted standard error (treating cores as independent); it is \emph{not} the relevant uncertainty, since the four clouds are the independent units (Section~\ref{sec:error_budget}). It is retained only as a within-region formal quantity and plays no role in the comparison with theory.
+\end{table*}
+
+\subsection{Measurement Methodology}
+
+Filament skeletons were identified using DisPerSE \citep{Sousbie2011} following standard HGBS methodology \citep{Arzoumanian2011}, with a persistence threshold of $3\sigma$ above the background noise and manual editing restricted to removing obvious artefacts (e.g.\ spurs connecting unrelated structures). Because the skeletons and core positions derive from angular positions on the sky, which are distance-independent, the Gaia DR3 revisions require no re-extraction: physical scales follow by rescaling the angular positions, leaving core associations and skeleton topology unchanged. Cores at filament junctions are retained, following standard HGBS practice; junctions are physically relevant sites where filaments converge, and excluding them would introduce selection bias about what counts as a filament segment. Cores were associated with filaments within a perpendicular threshold of $2\times$ the characteristic width ($0.2$\,pc, applied as a fixed physical distance). The measured spacing is insensitive to these choices: excluding junctions changes it by $<5\%$, and varying the association threshold between $1\times$ and $1.5\times$ the width changes it by $<3\%$, both well within the statistical uncertainty. (This $2\times$-width, $0.2$\,pc threshold refers to the pairwise-median association; the primary along-skeleton NN pipeline instead associates cores within a filament half-width, $\sim0.06$\,pc, of a spine, Section~\ref{sec:injection_recovery}.)
+
+Core-to-core spacings were also measured using the pairwise median statistic, which Section~\ref{sec:statistics} shows converges to $L/3$ rather than the fragmentation wavelength for $N\gtrsim5$; we retain it only as a comparability statistic with prior HGBS work.
+
+Because physical spacing is angular separation times distance, the $\lambda\propto d$ scaling is tautological and we do not present it as corroboration; the relevant check is that the \emph{residuals} about that scaling do not correlate with the absolute revision fraction $|\Delta D/D_{\rm original}|$ ($r=0.18$, $p=0.68$), so the revision does not preferentially bias the most-revised clouds. Two caveats remain, and we flag them as limitations rather than resolve them: the YSO-based distances \citep{Zhang2023} are assumed to apply to the dense gas measured here, and the Aquila/Serpens Rift is known to have substantial line-of-sight depth, so assigning a single distance may blend populations and inflate the inferred spacing. As a floor, retaining the pre-Gaia distances lowers the robust-region characteristic to $\lambda/W\approx1.4$ (still sub-classical), so the sub-classical \emph{sign} does not depend on the distance revision, though its magnitude does.
+
+\begin{figure}
+\centering
+\begin{minipage}{0.95\columnwidth}
+\footnotesize
+\begin{enumerate}\setlength{\itemsep}{2pt}
+\item HGBS column-density maps ($250\,\mu$m reference) + Gaia DR3 distances
+\item DisPerSE skeleton extraction ($3\sigma$ persistence threshold)
+\item Morphological closing (8 iterations) $+$ re-skeletonisation (bridge fragmented segments; components $\geq40$\,px)
+\item Core association: cores within $0.06$\,pc of a spine are assigned; others rejected
+\item Graph ordering: cores ordered by double-BFS arclength along each component
+\item Adjacent-core NN spacing (in pc, via Gaia DR3 distance)
+\item Injection--recovery bias correction ($\div\,1.11$--$1.29$, region-dependent)
+\item Characteristic $\lambda/W = $ bias-corrected median spacing $/\,W_{\rm fil}$
+\end{enumerate}
+\end{minipage}
+\caption{Analysis pipeline from raw HGBS maps to the final characteristic $\lambda/W$. Each step's parameters are given in the text (Sections~\ref{sec:statistics}--\ref{sec:injection_recovery}).}
+\label{fig:pipeline}
+\end{figure}
+
+\subsection{Results}
+
+The four robust regions are the independent statistical units throughout this paper; individual cores and spacings within a cloud are not independent, and we propagate this nesting in the hierarchical bootstrap (Section~\ref{sec:error_budget}).
+
+\begin{table}
+\caption{The nearest-neighbour $\lambda/W$ under each width/skeleton convention and correction state, for the four robust HGBS regions (revised distances). Every combination is sub-classical (classical $\lambda_{\rm m}\approx5$--$6\times$FWHM). We adopt the directly-measured region-Plummer value ($\lambda/W\approx1.35$) as the primary physical headline; the fixed-width value ($\lambda/W\approx1.9$) is retained for comparability with prior HGBS work. The ``bias-corr.'' column applies the (periodic) injection--recovery correction; the data-matched \emph{clustered} correction (Section~\ref{sec:clustering}) is a further downward factor $\div1.64$, giving $\approx1.2$ (fixed width) and $\approx0.8$ (region-Plummer), so every convention and correction is sub-classical. The classical fastest-growing wavelength is $\lambda_{\rm m}\approx5$--$6\times$FWHM (\citealt{Fischera2012}; $=4\times$ the flat diameter, \citealt{Inutsuka1992}); every observed convention is sub-classical by a factor $\approx3$--$4$ (Appendix~\ref{sec:val_appendix}).}
+\label{tab:headline}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{4.1cm}cc}
+\toprule
+Convention & raw & bias-corr. \\
+\midrule
+Region Plummer, DisPerSE (\emph{primary}) & $1.35$ & $1.2$ \\
+Fixed $0.10$\,pc, DisPerSE & $2.1$ & $1.9$ \\
+FilFinder skeleton & $0.5$--$0.9$ & $0.4$--$0.8$ \\
+Pairwise median ($L/3$, not $\lambda$) & $2.84$ & --- \\
+\midrule
+Classical $\lambda_{\rm m}$ (F\&M 2012) & \multicolumn{2}{c}{$5$--$6$ ($=4\times$ diam.)} \\
+\bottomrule
+\end{tabular}
+\\[2pt]
+\footnotesize
+\emph{Notes} The primary physical result is the directly-measured region-Plummer NN $\lambda/W\approx1.35$ (plausible range $0.8$--$1.9$ across the conventions and injection--recovery corrections above; not a formal confidence interval; Section~\ref{sec:error_budget}). The fixed-width convention gives a \emph{higher} value ($\approx1.9$, or $\approx1.2$ under the data-matched clustered correction; Section~\ref{sec:clustering}) because it uses $0.10$\,pc rather than the larger measured widths; the FilFinder skeleton gives lower values still. The pairwise median converges to $L/3$, overestimating the fragmentation wavelength by $\sim$45--50\% (Section~\ref{sec:statistics}), and is not directly comparable to the classical prediction. Per-region values are given in Sections~\ref{sec:widths} and~\ref{sec:injection_recovery}.
+\end{table}
+
+\textbf{Robust regions.} We adopt the four ``robust'' regions (Orion~B, Aquila, Perseus, Taurus; $N>500$ cores each, well-established distances) as the primary sample.
+
+\textbf{Full sample result.} The core-count-weighted mean across all 8 HGBS regions ($0.279$\,pc) and the robust-only weighted mean ($0.290$\,pc) differ by $\approx3.9\%$, and a leave-one-out analysis confirms no single region dominates ($<6\%$ shifts). All spacings are quoted to three significant figures; where an exact recomputation from the rounded per-region inputs differs from the bootstrap-derived primary value it does so by $\lesssim1\%$, which does not affect any conclusion.
+
+All weighted means use core-count weighting,
+\begin{equation}
+\bar{\lambda} = \frac{\sum_i N_i\,\lambda_i}{\sum_i N_i},
+\label{eq:weighting}
+\end{equation}
+where $\lambda_i$ and $N_i$ are the per-region spacing and core count.
+
+The Gaia DR3 distance revisions raise the core-count-weighted mean spacing modestly and region-dependently ($\sim10\%$ for the robust regions; large for Aquila/Serpens, negligible for the dominant Orion~B; Section~\ref{sec:distance_uncertainties}); a uniform $260$\,pc baseline would instead imply a $+32\%$ shift, which over-states the true, region-weighted revision. The absolute $\lambda/W$ result below uses the adopted Gaia distances and is unaffected by this. With only four independent clouds we do not attach a formal confidence level to the comparison: a nonparametric resampling of the four regions is degenerate and cannot estimate a population variance, so we quote the four per-region values and their min--max range rather than a bootstrap ``95\% CI'' (resampling the four pairwise-median values spans $0.261$--$0.298$\,pc, which we treat as descriptive only). The preferred NN measurement is presented in Section~\ref{sec:injection_recovery}.
+
+\subsection{The dominant observational systematic: filament width}
+\label{sec:widths}
+
+The fixed $W_{\rm fil}=0.10$\,pc convention is the largest single lever on $\lambda/W$, comparable to the whole sub-classical discrepancy, so we measured region-specific widths directly. Along each skeleton spine we sampled the column-density profile perpendicular to the local tangent and fitted a beam-deconvolved Plummer function, the HGBS width definition \citep{Arzoumanian2019}, to hundreds of profiles per region ($18.2''$ beam; Table~\ref{tab:widths}). All four robust regions give a well-defined Plummer index $p\simeq2.0$ and a width $W_{\rm fil}=0.11$--$0.16$\,pc, agreeing with the published HGBS values \citep{Arzoumanian2019} and slightly broader than the canonical $0.10$\,pc. The region-specific $\lambda/W$ is $1.1$--$1.8$ (median $\approx1.35$), so the region-specific convention gives a \emph{lower} value than the fixed-width headline ($\approx1.9$), not a higher one, because the true widths exceed $0.10$\,pc; every robust region is sub-classical under either convention. A Gaussian-crest width estimate returns a spuriously narrow Taurus width ($0.031$\,pc, formally driving $\lambda/W\to4$); the physically-motivated Plummer fit ($W_{\rm fil}=0.11$\,pc, $\lambda/W\approx1.1$) is the appropriate measure and makes Taurus the most sub-classical region rather than a classical one. The sub-classical result is thus not conditional on the width convention.
+
+\begin{table}
+\caption{Region-specific, beam-deconvolved filament widths from a direct Plummer fit to perpendicular column-density profiles along the skeletons (the HGBS width definition; \citealt{Arzoumanian2019}), and the resulting NN $\lambda/W$. $W_{\rm fil}$ is the beam-deconvolved Plummer FWHM ($18.2''$ beam), $p$ the Plummer index, $N$ the number of fitted profiles. All four regions give $p\simeq2$ and sub-classical $\lambda/W$.}
+\label{tab:widths}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{1.7cm}ccccc}
+\toprule
+Region & $W_{\rm fil}$ (pc) & $p$ & $N$ & NN (pc) & $\lambda/W$ \\
+\midrule
+Taurus  & $0.110$ & $2.01$ & 295 & $0.124$ & $1.12$ \\
+Orion B & $0.148$ & $2.00$ & 356 & $0.207$ & $1.40$ \\
+Perseus & $0.147$ & $2.00$ & 235 & $0.263$ & $1.79$ \\
+Aquila  & $0.161$ & $2.00$ & 446 & $0.210$ & $1.31$ \\
+\midrule
+median  & $0.148$ & $2.00$ & --- & --- & $1.35$ \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}
+\footnotesize The measured widths ($0.11$--$0.16$\,pc) agree with the published HGBS values and exceed the canonical $0.10$\,pc, so region-specific Plummer widths give a \emph{lower} $\lambda/W$ ($\approx1.35$) than the fixed-width headline ($\approx1.9$): all four regions are sub-classical under either convention. NN spacings are the full-coverage medians (Section~\ref{sec:injection_recovery}), measured on the same DisPerSE skeleton as the widths (its deposited crest for the width fit, its bridged form for the spacing); the injection--recovery bias correction lowers each $\lambda/W$ by a further $\sim$10--20\%.
+\end{table}
+
+The fit is consistent across the sample: every region returns a Plummer index $p\simeq2.0$, the value found for HGBS filaments generally \citep{Arzoumanian2019}, and a width within $\sim50\%$ of $0.10$\,pc (inter-quartile ranges $\sim0.07$--$0.20$\,pc), so the sub-classical $\lambda/W$ is a property of all four robust regions, not of one anomalous cloud. The single earlier outlier, a spuriously narrow $0.031$\,pc Gaussian crest for Taurus, was a profile-selection effect of fitting the inner ridge rather than the broad Plummer wings (not a pixel-scale artefact: the $3''$ pixels subtend $0.002$\,pc at $135$\,pc); it does not survive the Plummer fit, which gives $0.11$\,pc and $\lambda/W\approx1.1$.
+
+\subsection{Sample Classification and Distance Robustness}
+\label{sec:distance_uncertainties}
+
+We classify the eight regions (Table~\ref{tab:sample}) as \textbf{robust} (Orion~B, Aquila, Perseus, Taurus) or \textbf{limited} by three criteria: $N>500$ cores; a well-established distance; and a skeleton simple enough for unambiguous core-to-filament association. Limited regions fail at least one, Ophiuchus on skeleton complexity, the others on small samples, and are excluded from the primary NN measurement. The largest distance revisions (Serpens $+76\%$, Aquila $+68\%$) are independently corroborated: direct VLBI maser parallaxes validate Gaia DR3 to $<5\%$ where available \citep{Kounkel2018,Xu2021,OrtizLeon2018,OrtizLeon2017}, and for Serpens the 458\,pc value is supported by extinction-based estimates \citep[$440$--$460$\,pc;][]{Yan2022,Green2024} and by co-spatiality with Aquila in the Aquila Rift \citep{Zucker2020}. The sub-classical conclusion is independent of these two regions: a leave-one-out analysis shifts the weighted mean by $<6\%$, reverting the limited regions to their original HGBS distances gives a pairwise-median $\lambda/W=2.68$ (sub-classical relative to $\lambda_{\rm m}\approx5$--$6\times$FWHM), and the distance-revision consistency check of Section~\ref{sec:statistics} confirms the $\lambda\propto d$ unit conversion.
+
+
+\subsection{Choice of spacing statistic: the $L/3$ property of the pairwise median}
+\label{sec:statistics}
+
+We adopt the nearest-neighbour (NN) spacing as the primary measure of the fragmentation wavelength, reporting the all-pairs median only for comparability with prior HGBS work. The two differ fundamentally because the pairwise median has an analytic $L/3$ convergence property. For $N$ points uniformly distributed on a filament of length $L$, a single pairwise distance $D=|X_i-X_j|$ has the triangular PDF $f(d)=2(L-d)/L^2$ ($d\in[0,L]$), with mean $\langle D\rangle=L/3$ and median $d^\star=L(1-1/\sqrt{2})\approx0.293\,L\approx0.88\,(L/3)$. The median of all $N(N-1)/2$ pairwise distances converges to $d^\star$ as $N\to\infty$, for a random or a perfectly periodic distribution alike, so on an idealised filament it measures the extent, not the fragmentation wavelength. Real catalogues, with finite sampling, branching and incomplete skeletons, deviate from this limit, so we treat $L/3$ as the statistic's limiting behaviour rather than an exact per-filament prediction; in practice it tracks $\sim L/3$ for any filament with $N\gtrsim5$ cores, and our injection--recovery test reproduces the $\approx0.88\,(L/3)$ asymptote (Section~\ref{sec:injection_recovery}). The HGBS catalogue papers \citep{Konyves2015,Konyves2020} and fibre-resolved analyses \citep{Hacar2013,Hacar2018} likewise use nearest-neighbour separations. The NN statistic is unaffected by this bias and is beam-safe: the $18.2''$ HGBS beam corresponds to $0.012$--$0.039$\,pc across our robust regions, $\gtrsim6\times$ smaller than the measured NN spacing.
+
+We reconstruct the along-skeleton core ordering for the four robust regions from the deposited DisPerSE skeleton maps, bridging fragmentation by morphological closing, and extend the NN measurement to all four at full coverage in Section~\ref{sec:injection_recovery}; the limited regions are excluded from the NN measurement owing to branching skeletons or small samples. Figure~\ref{fig:spacing} shows the per-region spacings with revised distances.
+
+\begin{figure*}
+\includegraphics[width=0.95\columnwidth]{figures/figure1_spacing_comparison.pdf}
+\caption{Core spacing measurements for all 8 HGBS regions with revised distances (left) and comparison with literature values (right). \emph{Left:} per-region spacing with standard-error bars; horizontal lines mark the weighted mean (0.279\,pc, dashed) and the IM92 fastest-growing prediction (dash-dotted; drawn at the often-quoted $4\times$FWHM$=0.4$\,pc, though the correct value is $\lambda_{\rm m}\approx5$--$6\times$FWHM$=0.5$--$0.6$\,pc, Section~\ref{sec:theory}). These are pairwise-median ($L/3$ extent-scale) values, not fragmentation wavelengths (Section~\ref{sec:statistics}); the physical NN measure is given in Section~\ref{sec:injection_recovery}. \emph{Right:} comparison with published values (grey bars); our measurements (blue) differ from the published values through a combination of the Gaia DR3 distance revisions (large for Aquila/Serpens) and the homogeneous DisPerSE+NN re-analysis (which dominates for Orion~B, whose distance is essentially unchanged), so the shift is not uniform (Taurus decreases slightly).}
+\label{fig:spacing}
+\end{figure*}
+
+\subsection{Injection-Recovery Validation of Spacing Statistics}
+\label{sec:injection_recovery}
+
+To test whether the nearest-neighbour (NN) statistic recovers known spacings under realistic HGBS conditions, we placed synthetic cores with known periodic spacings (0.15--0.35\,pc) on HGBS-property-matched DisPerSE skeletons for all 8 regions and applied the NN statistic with identical methodology. Across 40 tests the raw measurement recovers the input with a small \emph{intrinsic-estimator} bias of $3.05 \pm 0.69$\% on clean skeletons. The larger correction actually applied to the headline is the \emph{full-coverage pipeline} bias ($\div1.11$--$1.29$, from junction/branch topology on the real bridged skeletons; Section~\ref{sec:injection_recovery}), which moves raw $2.1\to1.9$. Because that test injects a periodic pattern whereas real cores may be clustered, we also ran clustered injection--recovery (Poisson inflation $1.03$--$2.47$, mean $1.64$; lognormal $0.98$--$1.63$, mean $1.22$), and --- crucially --- we determined \emph{directly from the data} which regime applies (Section~\ref{sec:clustering}). The observed adjacent-core spacings are random-to-clustered, not periodic (coefficient of variation of order unity, $0.65$--$1.36$; a regular ``periodic$+$jitter'' distribution is rejected at $p\lesssim10^{-15}$ in every region), so the clustered correction is the appropriate one. Adopting the Poisson-clustered factor ($\div1.64$, the best match to the observed CoV$\approx1$) converts the raw apparent $\lambda/W\approx2.0$ into a data-matched $\lambda/W\approx1.2$ (systematic range $0.8$--$1.7$ across the clustered/lognormal family); the periodic-correction value $\lambda/W\approx1.9$ assumes a regularity the data reject. The sub-classical \emph{sign} holds under every correction.
+
+Repeating the injection--recovery for the pairwise-median statistic confirms that it does not recover $\lambda_{\rm true}$: it returns a value $\sim$$20\times$ larger, tracking $L/3$ ($\langle\lambda_{\rm PW}\rangle/\lambda_{\rm true}\approx L/(3\lambda_{\rm true})$) and asymptoting to $\approx0.88\,(L/3)$, while the NN statistic recovers $\lambda_{\rm true}$ to $1.8$--$3\%$ on the identical skeletons. Computing the pairwise median over \emph{all} cores in each robust region (without per-filament segmentation) returns $\sim L_{\rm region}/3$ ($12.5$, $7.5$, $8.0$, $2.5$\,pc for Orion~B, Aquila, Perseus, Taurus), the region extent, not the $\sim0.2$--$0.35$\,pc per-filament values, confirming directly that the statistic measures segmentation scale rather than the fragmentation wavelength.
+
+\textbf{Full-coverage along-skeleton NN for the robust regions (primary measurement)}. We extend the along-skeleton NN measurement to all four robust regions at full coverage using the dense deposited DisPerSE skeletons, which (unlike the sparse FilFinder spines) pass near essentially all cores. These skeletons are fragmented; we bridge the fragmentation by morphological closing followed by 1-pixel re-skeletonization, order cores along each reconstructed filament by graph arclength, and associate cores lying within a filament half-width ($\sim$0.06\,pc) of a spine. This yields $N_{\rm pairs} = 461,\,614,\,563,\,168$ adjacent-core spacings for Taurus, Orion~B, Perseus and Aquila respectively. The median NN spacings are $0.124,\,0.207,\,0.263,\,0.210$\,pc, i.e.\ $\lambda/W = 1.2,\,2.1,\,2.6,\,2.1$, with a robust-region characteristic of $\lambda/W \approx 2.1$. The result is robust to the bridging length: $\lambda/W$ for Orion~B stays in the range $1.9$--$2.7$ as the closing radius spans a factor $>2$, and is insensitive to the association radius. Injecting synthetic cores at known spacings onto the real bridged skeletons (with their genuine junction/branch topology) and recovering them with the identical pipeline shows a quantified overestimate of $\sim$$15$--$20$\% at the observed scale (recovery ratio $1.11$--$1.29$ across regions; larger at smaller injected spacings), arising from the longest-path ordering at junctions. The injection--recovery correction is a downward systematic whose magnitude is uncertain because the cores are non-periodic (Section~\ref{sec:clustering}): the periodic pipeline factor ($\div1.11$--$1.29$) gives $\lambda/W\approx1.0,\,1.9,\,2.1,\,1.8$ (Taurus, Orion~B, Perseus, Aquila; robust-region characteristic $\approx1.9$), while a clustered factor ($\div1.64$) would lower this to $\approx1.2$. We apply this correction \emph{uniformly} to every width convention rather than to one alone, so the fixed-width characteristic is $\lambda/W\approx1.2$--$1.9$ and the region-Plummer characteristic (Section~\ref{sec:widths}) is $\lambda/W\approx0.8$--$1.35$; we quote the directly-measured region-Plummer value $\lambda/W\approx1.35$ as the primary figure and carry the correction as a stated systematic. \textbf{The full-coverage NN spacing ($\lambda/W\approx1.2$--$2.1$ across corrections) is sub-classical --- a factor $\approx3$--$4$ below the classical $\lambda_{\rm m}\approx5$--$6\times$FWHM --- and the pairwise-median value $\lambda/W\approx2.8$ overestimates it by $\sim$45--50\% through the $L/3$ extent-bias.} Taurus is the most sub-classical region, not an outlier.
+
+As an independent cross-check, running the same along-skeleton BFS-arclength NN pipeline on independently extracted FilFinder spine maps (all four robust regions) gives $\lambda/W\approx0.4/0.6/0.7/0.8$ for Taurus, Orion~B, Perseus, Aquila respectively, systematically $2$--$3\times$ smaller than the DisPerSE values ($1.0/1.9/2.1/1.8$) because the FilFinder mask threshold produces a denser, more branched network. Both methods agree the characteristic spacing is far sub-classical ($\lambda/W\ll4$) in every region; FilFinder if anything strengthens the conclusion.
+
+\subsection{Regularity of the core spacing: periodic, random, or clustered?}
+\label{sec:clustering}
+Classical gravitational fragmentation predicts a \emph{quasi-periodic} chain of cores, whereas fibre projection or a turbulent/accretion-driven cascade predicts a broad, random-to-clustered distribution with no single characteristic comb. We tested this directly. Ordering the associated cores by arclength along each filament spine and measuring the adjacent-core gaps, we find a coefficient of variation $\mathrm{CoV}=\sigma/\mathrm{mean}$ of order unity in every robust region (Taurus $1.36$, Orion~B $0.83$, Perseus $0.96$, Aquila $0.65$; pooled $1.16$), with gap histograms that closely follow an exponential (Poisson) law (Fig.~\ref{fig:clustering}). A Kolmogorov--Smirnov test rejects a regular ``periodic$+$jitter'' distribution at $p\lesssim10^{-15}$ in all four regions, while the exponential model is a good-to-acceptable description ($p=0.02$--$1$). A mild deficit of the smallest separations (1-D Clark--Evans ratio $R>1$) reflects a finite-core/deblending exclusion at the $\sim$beam scale, not quasi-periodicity (which additionally requires $\mathrm{CoV}\!\to\!0$). Quasi-periodic fragmentation is therefore \emph{not} strongly imprinted: the spacings are consistent with a random process bearing a mild hard-core exclusion and a weakly clustered tail. This is the theory-side statement of \citet{Clarke2020} --- fragmentation through sub-filaments leaves no single characteristic length --- seen directly in the data, and it fixes the injection--recovery correction (Section~\ref{sec:injection_recovery}) to the clustered branch, giving the data-matched $\lambda/W\approx1.2$. A shifted-exponential (minimum-separation) model fits the gaps better than either a pure exponential or a peaked distribution in every region (by AIC), with an inferred hard core of $0.011$--$0.044$\,pc $\approx$ the beam/core diameter. The observed median separation is therefore essentially set by the core line-density plus a finite-core exclusion, \emph{not} by a resonant fragmentation wavelength: the ``spacing'' is sub-classical in the sense that cores are more numerous along the spine than one per classical wavelength ($\lambda_{\rm m}\approx5$--$6\times$FWHM would place $\sim3$--$4\times$ fewer cores), the signature of sub-fragmentation rather than a single characteristic scale.
+\begin{figure}
+\centering
+\includegraphics[width=0.99\columnwidth]{figures/fig_clustering.pdf}
+\caption{Adjacent-core gap distributions along the skeletons of the four robust regions (histograms), with exponential/Poisson (solid) and regular/periodic (dashed) reference curves; each panel is annotated with the coefficient of variation CoV and the 1-D Clark--Evans ratio $R$. CoV of order unity and the overwhelming rejection of the periodic model ($p\lesssim10^{-15}$) show the cores are random-to-clustered, not periodically spaced.}
+\label{fig:clustering}
+\end{figure}
+
+\subsection{Combined Systematic Error Budget}
+\label{sec:error_budget}
+
+We distinguish three kinds of uncertainty and present them separately rather than as a single error bar: (i) \emph{statistical} (bootstrap/jackknife resampling, formal); (ii) \emph{systematic} (measured offsets, e.g.\ the pipeline bias and the fixed-width convention); and (iii) \emph{sensitivity ranges} (plausible bounds on effects we can sign but not measure as Gaussian errors, e.g.\ protostellar migration). Quoted $\pm$ values combine these in quadrature for economy but are \emph{not} formal statistical confidence intervals (see also the Abstract). We further separate the observational error budget of each statistic from the additional systematics that enter only when simulation predictions are compared with observation. For the nearest-neighbour primary measurement, the primary region-Plummer NN result $\lambda/W\approx1.35$ (fixed-width $\approx1.9$) carries four observational systematics: residual pipeline bias ($\sim$10\%, from the spread in injection--recovery ratios 1.11--1.29 after bias correction; the uncorrected pipeline bias is $\sim$15--20\%, and the intrinsic NN statistic bias is 3\%); the fixed-width convention ($\sim$25\%; the distance-dependent filament-width variation measured by \citealt{Panopoulou2022}, including its beam-convolution component, counted once here, not in addition to it); protostellar migration ($\sim$7.5\%, uncorrected); and between-region bootstrap scatter ($\sim$4\%). Manual spur removal during skeleton cleaning is a further, unquantified systematic, smaller than the width-convention term but not bounded by independent re-editing. The skeleton-extraction algorithm is the single largest observational systematic, an independent FilFinder pipeline giving values $2$--$3\times$ smaller than DisPerSE (Section~\ref{sec:injection_recovery}); we treat it separately below. Combining the four observational terms in quadrature gives $\sigma_{\rm sys}\approx28\%$, i.e.\ a $\sim28\%$ systematic on the primary value (equivalently $\lambda/W=1.9\pm0.5$ under the fixed-width convention), with the skeleton factor of two carried separately.
+
+The legacy pairwise-median value $\lambda/W=2.84$ is an observational $L/3$ scale measure (Section~\ref{sec:statistics}); its observational uncertainty is the bootstrap scatter $\pm4.2\%$ ($\lambda/W=2.84\pm0.12$), and we do not quote a $\sigma$-level tension with the classical prediction because the statistic does not measure the fragmentation wavelength. (In pc, $\lambda/W=2.84$ is $0.284$\,pc; the full- and robust-sample core-weighted pairwise means are $0.279$ and $0.290$\,pc respectively, Table~\ref{tab:sample}, differing from $0.284$ only through the weighting scheme.)
+
+\emph{Skeleton-algorithm dependence.} The factor-of-two spread between DisPerSE and FilFinder is the single largest uncertainty, and the two algorithms do not measure the same object. DisPerSE identifies topologically robust density crests via persistence, tracing the ridge of each filament, and is the algorithm used to build the published HGBS filament catalogues, so it is the natural choice for consistency with prior work. FilFinder instead skeletonises an intensity mask, returning the medial axis of a thresholded region; at HGBS resolution this yields a denser, more branched network that subdivides a single filament into several segments, placing more spine near each core and so shortening the apparent nearest-neighbour spacing. The two bracket a genuine ambiguity in what constitutes ``the filament'' at these scales, rather than one being simply wrong, and we regard their values ($\lambda/W\approx1.9$ and $\approx0.4$--$0.8$ respectively) as systematic limits on the true spacing. The point is convention-independent: both lie far below the classical $\lambda_{\rm m}\approx5$--$6\times$FWHM, so the sub-classical result is not an artefact of the skeletoniser, even if its precise value is. A definitive resolution, common-footing extraction with matched spatial filtering and an agreed definition of a filament segment, is beyond our scope, and we flag the factor of two as an open observational systematic rather than resolve it here. Until a community consensus exists on filament definition and skeleton extraction, the observational core spacing cannot be known to substantially better than a factor of $\sim$2, and this, rather than the formal statistical error, is the dominant limit on any comparison with theory. The choice of skeletoniser also selects the physical interpretation. In matched (beam-convolved Plummer) width units the simulated single-filament wavelength is $\approx1.0$--$1.3$ (Section~\ref{sec:validation_endtoend}). It coincides with the region-Plummer observed values ($1.2$--$1.35$), sits \emph{below} the fixed-width DisPerSE spacing ($1.9$; single filaments slightly over-produce fragmentation relative to it), and lies \emph{above} the FilFinder spacing ($0.4$--$0.8$). So if the denser FilFinder extraction is the more faithful one, single-filament fragmentation would be insufficient and the extra compression of hierarchical-fibre projection (Section~\ref{sec:fibre_projection}) would be required; under DisPerSE or the region-Plummer widths it is not. The two skeletonisers thus bracket not only the spacing but which explanation it favours, and only a fibre-resolved measurement (Section~\ref{sec:limitations}) can decide between them.
+
+Table~\ref{tab:errorbudget} collects every significant uncertainty on the comparison. The dominant terms are \emph{methodological}, not statistical: the skeleton algorithm and the width convention each move $\lambda/W$ by up to a factor of two, and it is these, rather than the formal bootstrap error, that limit how precisely the observed and simulated spacings can be compared.
+
+\begin{table}
+\caption{Summary of the uncertainties on the $\lambda/W$ comparison. ``Sim.'' entries apply to the simulated wavelength, ``obs.'' to the observed spacing, and ``comparison'' to terms that enter only when the two are matched.}
+\label{tab:errorbudget}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{3.6cm}p{1.9cm}p{1.7cm}}
+\toprule
+Source & Type & Magnitude \\
+\midrule
+Bootstrap / cloud-to-cloud (obs.) & statistical & $\sigma\approx0.4$ ($\sim$20\%) \\
+NN pipeline bias (obs.) & systematic & $\sim$10\% (corrected) \\
+Protostellar migration (obs.) & sensitivity & $\sim$7.5\% \\
+Width convention, fixed vs region (obs.) & systematic & $\sim$25\% \\
+Skeleton algorithm, DisPerSE/FilFinder (obs.) & systematic & factor $\sim$2 \\
+Growth-rate resolution/epoch (sim.) & modelling & $\lesssim$5\% (converged) \\
+Line-mass ($f$) dependence (sim.) & modelling & $\sim$25\% \\
+Gaussian vs Plummer FWHM (comparison) & systematic & factor $\sim$1.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+When simulation $\lambda/W_{\rm core}$ values are converted to observable $\lambda/W_{\rm fil}$, the T1 width-normalisation (forward-modelled $\eta_W=0.59$--$0.78$, provisional calibration $0.61\pm0.10$; Section~\ref{sec:width_correction}) is the dominant additional systematic; the directly measured supercritical ensemble (Section~\ref{sec:modecompetition}) carries its own $\pm0.4$ scatter. These comparison-only systematics do not affect the NN observational measurement, which is already in $W_{\rm fil}$ units.
+
+Because the four robust clouds are the genuine independent units, we quote uncertainties descriptively, not inferentially. Two distinct quantities must be kept apart: (i) the empirical \emph{per-region range} of the bias-corrected fixed-width values, $\lambda/W=1.0$--$2.1$ (Taurus, Orion~B, Perseus, Aquila $=1.0,1.9,2.1,1.8$; Section~\ref{sec:injection_recovery}), which is the real cloud-to-cloud spread; and (ii) the \emph{methodological/systematic envelope}, $\lambda/W\approx1.1$--$2.4$, obtained by varying the width-convention, skeleton and association-radius choices (the quadrature sum of these is $\sigma_{\rm sys}\approx28\%$, a synthesis of heterogeneous sensitivity ranges, not a Gaussian error). With $N=4$ we do \emph{not} report a bootstrap $\sigma$ or a confidence interval as a formal quantity, and we do not claim a $\sigma$-level exclusion of the classical prediction; the informal descriptor ``$\sigma\approx0.4$'' quoted elsewhere for the four-cloud scatter should be read only as the half-width of the per-region range.
+
+\subsection{NN pipeline reproducibility and population-split test}
+\label{sec:nnpipeline}
+
+The along-skeleton NN pipeline thresholds the deposited DisPerSE skeleton, bridges fragmentation by morphological closing and re-skeletonisation, associates each core to the nearest spine within $0.06$\,pc, orders cores along each component by graph arclength (double-BFS diameter), and takes adjacent-core separations. It reproduces the deposited catalogue counts and raw medians exactly (Table~\ref{tab:nnpipeline}); cores not on a robust skeleton segment are rejected.
+
+\begin{table}
+\caption{NN pipeline counts: skeleton components, catalogue cores, cores associated to a skeleton, and adjacent NN pairs, per robust region.}
+\label{tab:nnpipeline}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccc}
+\toprule
+Region & comps & catalogue & associated & NN pairs \\
+\midrule
+Orion B & 67 & 1844 & 680 & 614 \\
+Aquila  & 14 & 749  & 182 & 168 \\
+Perseus & 54 & 816  & 619 & 563 \\
+Taurus  & 32 & 536  & 479 & 461 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+To test whether mixing core populations biases the headline, we repeated the measurement separately for prestellar, unbound starless, and protostellar cores using the published classification flags. The prestellar-only robust-median $\lambda/W=2.10$ ($717$ pairs) is statistically indistinguishable from the all-cores value $2.08$ ($1806$ pairs; both $\approx1.9$ after the injection-recovery bias correction). Prestellar cores dominate the on-skeleton budget in every region and set the headline; unbound starless cores give a larger, noisier value (median $\lambda/W\approx3.3$) and protostellar cores are too few ($6$--$80$ pairs) to constrain it. The sub-classical headline is therefore not an artefact of population mixing.
+
+\subsection{Hierarchical statistics and angular-resolution robustness}
+
+Cores within a filament are not independent, so we assessed the role of the cloud-to-filament-to-core nesting with a three-level nonparametric bootstrap (clouds $\to$ skeleton-connected filament components $\to$ core spacings, 2000 iterations; adjacent spacings sharing a central core are carried in and out together with their filament, capturing the dominant covariance). On a 2-D projected nearest-neighbour metric, which underestimates the along-spine arc length and so sits below the headline value ($\lambda/W\approx1.1$--$1.5$), the bootstrap median is stable and does not shift the central value; the dominant source of uncertainty is the intrinsic cloud-to-cloud scatter, $\sigma\approx0.4$ in $\lambda/W$ (range $\sim0.8$ in Taurus to $\sim1.7$ in Aquila). Core-count and equal-cloud weighting agree to within $\sim0.1$. We therefore quote the cloud-to-cloud scatter, rather than a per-pair formal error, as the relevant uncertainty on the characteristic spacing (Section~\ref{sec:error_budget}).
+
+Angular-resolution blending: the HGBS beam grows from $0.012$\,pc (Taurus, 135\,pc) to $0.039$\,pc (Aquila, 436\,pc), and the fraction of nearest-neighbour pairs closer than $2\times$ the physical beam rises with distance ($0$\,per cent in Taurus to $10$\,per cent in Orion~B; Spearman $\rho=+0.80$), as expected. Merging cores within one beam shifts the characteristic $\lambda/W$ by $\le0.004$, however, so distance-dependent blending is not a significant bias on the headline.
+
+\begin{table}
+\caption{Summary of validation tests performed in this paper.}
+\label{tab:validation_summary}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{2.4cm}p{2.8cm}p{2.0cm}}
+\toprule
+Test & What it checks & Result \\
+\midrule
+Injection--recovery (NN) & NN bias on real skeletons & $3\%$; pipeline $15$--$20\%$ \\
+Injection--recovery (pairwise) & $L/3$ convergence & tracks $L/3$, not $\lambda$ \\
+Resolution convergence & $t_{\rm frag}(128^3)$ vs $256^3$ & ratio $0.915\pm0.012$ \\
+Truelove criterion & cells per $\lambda_{\rm J}$ at measurement & long.\ $5$--$7$; perp.\ $1$--$2$ \\
+IC sensitivity & Gaussian vs uniform profile & identical \\
+EOS sensitivity & $\gamma=0.8$--$5/3$ & $\gamma<1$ accelerates; $5/3$ suppresses \\
+Region resampling (descriptive) & spread over 4 clouds & $0.261$--$0.298$\,pc \\
+Leave-one-out & single-region dominance & $<6\%$ shift \\
+Population splits & prestellar vs all cores & $\lambda/W\!=\!2.10$ vs $2.08$ \\
+Hierarchical bootstrap & cloud$\to$filament$\to$core & $\sigma_{\rm cloud}\!\approx\!0.4$ \\
+Mock-blending & distance-dependent beam & $\Delta\lambda/W\!\le\!0.004$ \\
+Region-specific Plummer widths & beam-deconvolved $W_{\rm fil}$ & $0.11$--$0.16$\,pc; $\lambda/W\!=\!1.1$--$1.8$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Comparison with Literature}
+
+Our revised-distance measurements differ from the original HGBS values (Table~\ref{tab:literature}) by the region-dependent distance revisions (Aquila $+68\%$; Orion~B essentially unchanged, its pre-Gaia distance already $\sim400$\,pc; Taurus $-4\%$); the core-count-weighted mean rises only $\sim10\%$ for the robust regions, dominated by Aquila.
+
+\begin{table*}
+\caption{Comparison with Published HGBS Spacing Measurements}
+\label{tab:literature}
+\begin{tabular}{lcccc}
+\toprule
+Region & This Work (pc) & Original HGBS (pc) & Literature (pc) & Reference \\
+\midrule
+\textbf{Robust Regions} &  &  &  &  \\
+Orion B & 0.313 $\pm$ 0.047 & 0.212 & 0.20--0.30 & \citet{Konyves2020} \\
+Aquila  & 0.346 $\pm$ 0.047 & 0.206 & 0.22--0.26 & \citet{Konyves2015} \\
+Perseus & 0.248 $\pm$ 0.040 & 0.199 & 0.22 $\pm$ 0.02 & \citet{Pezzuto2021} \\
+Taurus  & 0.198 $\pm$ 0.040 & 0.206 & 0.19 $\pm$ 0.02 & \citet{Hacar2013} \\
+\midrule
+\textbf{Limited Regions} &  &  &  &  \\
+Ophiuchus & 0.206 $\pm$ 0.053 & 0.197 & 0.18 $\pm$ 0.02 & \citet{Konyves2020} \\
+Serpens  & 0.331 $\pm$ 0.097 & 0.188 & 0.17--0.19 & \citet{Konyves2020} \\
+TMC1     & 0.195 $\pm$ 0.056 & 0.203 & $\sim$0.20 & \citet{Hacar2013} \\
+CRA      & 0.248 $\pm$ 0.072 & 0.212 & $\sim$0.21 & \citet{Konyves2020} \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.1in}
+\footnotesize
+\emph{Notes} (1) ``Original HGBS'' values are the published spacing measurements from HGBS papers using pre-Gaia distances. (2) Literature ranges reflect uncertainties from different measurement methods (pairwise vs. nearest-neighbor) and distance assumptions. (3) Taurus values from Hacar et al. (2013) use nearest-neighbour spacing on velocity-coherent fibres. (4) Serpens original HGBS value used distance of 260 pc; revised distance of 458 pc (+76\%) increases spacing proportionally. (5) For Orion~B the pre-Gaia HGBS distance was already $\sim$400\,pc \citep{Konyves2020}, so the difference between the original ($0.212$\,pc) and revised ($0.313$\,pc) spacing is a \emph{methodological} effect of the homogeneous re-analysis, not a distance revision.
+\end{table*}
+
+\section{THEORETICAL FRAMEWORK}
+\label{sec:theory}
+
+\subsection{Classical Fragmentation Theory}
+
+For an isothermal, self-gravitating cylinder of density $\rho_0$ and sound speed $c_s$, the critical line mass for gravitational instability is \citep{Ostriker1964}:
+\begin{equation}
+\mu_{\rm crit} = \frac{2c_s^2}{G}
+\end{equation}
+The most unstable fragmentation wavelength is \citep{Inutsuka1992}:
+\begin{equation}
+\lambda_{\rm IM92} = 22\,H \approx 4\times(2R_{\rm flat}) \approx 5\text{--}6\times W_{\rm fil}
+\label{eq:im92}
+\end{equation}
+where $H = c_s\,(4\pi G\rho_c)^{-1/2}$ is the thermal scale height ($\rho_c$ the central density), $R_{\rm flat}=\sqrt8\,H$ is the flattening radius, and $W_{\rm fil}\approx0.1$\,pc is the characteristic filament width, taken throughout as the FWHM of the (beam-deconvolved) column-density profile. The classical prediction is most reliably quoted in FWHM units: solving the dispersion relation exactly (Appendix~\ref{sec:val_appendix}; \citealt{Fischera2012}) gives a fastest-growing wavelength $\lambda_{\rm m}\approx5\times W_{\rm fil}$ for the near-critical, star-forming regime, rising to $\approx6\times W_{\rm fil}$ at low line mass, and a shortest-unstable (critical) wavelength $\lambda_{\rm cr}\approx2.6\times W_{\rm fil}$. The often-quoted ``$\lambda\approx4\times$ the width'' is $4\times$ the flat \emph{diameter} $2R_{\rm flat}$ (\citealt{Inutsuka1992}), which equals $\approx5$--$6\times$ the \emph{FWHM}; taking it as $4\times$ the FWHM conflates the two and \emph{understates} the classical scale. We therefore adopt $\lambda_{\rm m}\approx5$--$6\,W_{\rm fil}$ (Fischera \& Martin 2012) as the benchmark. Because observed and simulated spacings and widths are measured at the same epoch, we compare them as the density-independent ratio $\lambda/W_{\rm fil}$, which sidesteps the fact that $22H\propto\rho_c^{-1/2}$ is not fixed in absolute units. The simulation width bookkeeping is set out in Section~\ref{sec:width_correction}. This sub-classical result is not new in sign: \citet{Fischera2012} already noted that observed cores sit ``about the FWHM'' apart, too close for the classical instability, and \citet{Zhang2023cal} find a core spacing $\approx1.3\times$ the width in the California cloud, significantly below the canonical value. Our contribution is to quantify the deficit homogeneously with Gaia DR3 distances and to reproduce it in a controlled MHD campaign.
+
+With $f=\mu_{\rm line}/\mu_{\rm crit}$ and $t_{\rm frag}\propto(f-1)^{-1/2}$, marginally supercritical filaments fragment slowly. At magnetically supercritical field strength ($\beta\gtrsim0.2$) all configurations fragment for $\mathcal{M}\geq1$ at every $f$ tested once integrated adequately (Section~\ref{sec:dtc}): above the critical line mass there is no \emph{thermal} stability boundary. This is distinct from \emph{magnetic} stabilisation, where a strong longitudinal field ($\beta\lesssim0.15$) suppresses collapse even for $f>1$ (the ``strong-field, magnetically supported'' regime of Fig.~\ref{fig:regime}); the thermal ($f$) and magnetic (mass-to-flux) criticalities are physically distinct.
+
+We adopt a single reference $W_{\rm fil}=0.10$\,pc for all regions, for comparability with prior HGBS work. The universality of this width is debated \citep{Panopoulou2017,Panopoulou2022}. We have measured region-specific Plummer widths directly (Section~\ref{sec:widths}); they are $0.11$--$0.16$\,pc ($p\simeq2.0$) and give $\lambda/W\approx1.35$, so the sub-classical conclusion is robust to the width convention, and the width term is carried once as the single $\sim25\%$ systematic in the Section~\ref{sec:error_budget} budget.
+
+\textbf{Width normalisation: $W_{\rm core}$ to $W_{\rm fil}$}
+\label{sec:width_correction}
+Three widths enter the simulation--observation comparison and must be kept separate (Table~\ref{tab:widthdefs}): the initial Gaussian half-width $W_{\rm core}=0.3\,\lambda_{\rm J}$; the formation FWHM $W_{\rm form}=0.683\,\lambda_{\rm J}$ of the evolved projected profile ($\simeq2.28\,W_{\rm core}$, slightly below the initial $2.355\,W_{\rm core}$ owing to contraction; resolution- and seed-converged to $<1\%$); and the observed HGBS width $W_{\rm fil}$, the beam-convolved Plummer FWHM \citep{Arzoumanian2019}, which we obtain by forward-modelling the simulated filaments through the full synthetic-HGBS pipeline (projection, beam convolution, Plummer fit). This gives $\eta_W=W_{\rm form}/W_{\rm fil}=0.59$--$0.78$ and
+\begin{equation}
+T_1 \equiv \frac{W_{\rm form}}{W_{\rm fil}} = 0.61 \pm 0.10 \quad (\text{forward-model band } 0.59\text{--}0.78),
+\label{eq:t1_correction}
+\end{equation}
+so that $W_{\rm fil}=W_{\rm form}/T_1\approx1.12\,\lambda_{\rm J}$. The observable is $\lambda/W_{\rm fil}$; because the fragmentation spacing $\lambda$ is a physical length independent of the width definition, the conversion from the simulation-internal ratio $\lambda/W_{\rm core}$ (normalised by the initial $\sigma=0.3\,\lambda_{\rm J}$) is
+\begin{equation}
+\left(\frac{\lambda}{W}\right)_{\rm fil} = \frac{W_{\rm core}}{W_{\rm fil}}\left(\frac{\lambda}{W}\right)_{\rm core} = T_1\,\frac{W_{\rm core}}{W_{\rm form}}\left(\frac{\lambda}{W}\right)_{\rm core} \approx 0.27\left(\frac{\lambda}{W}\right)_{\rm core},
+\label{eq:t1_apply}
+\end{equation}
+i.e.\ $\lambda/W_{\rm fil}=\lambda\,[\lambda_{\rm J}]/1.12$, the spacing in units of the forward-modelled observed width; the factor $0.27$ includes the $\sigma\!\to\!$FWHM factor $0.44$, and using $T_1$ alone would overstate $\lambda/W_{\rm fil}$ by $\approx2.3\times$. The observational NN measurement (Section~\ref{sec:injection_recovery}) is already in $W_{\rm fil}$ units. Because the observable is sensitive to how $W_{\rm fil}$ is defined, we do not rely on it; the primary comparison uses the convention-free growth-rate wavelength (an upper limit; Section~\ref{sec:validation_endtoend}), and this normalisation is retained only as a cross-check.
+
+\begin{table}
+\caption{The three filament widths used in the simulation--observation comparison (all in Jeans lengths, $\lambda_{\rm J}=1$).}
+\label{tab:widthdefs}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{1.5cm}p{1.4cm}p{4.0cm}}
+\toprule
+Symbol & Value ($\lambda_{\rm J}$) & Definition \\
+\midrule
+$W_{\rm core}$ & $0.30$ & initial Gaussian half-width $\sigma$ (input) \\
+$W_{\rm form}$ & $0.683$ & Gaussian FWHM of evolved projected profile, supercritical ensemble ($\simeq2.28\,W_{\rm core}$) \\
+$W_{\rm FWHM}$ & $0.58$ & Gaussian FWHM at the growth-rate epoch, near-critical runs (narrower, already contracting); normalises Table~\ref{tab:wave} \\
+$W_{\rm fil}$ & $\approx1.12$ & beam-convolved Plummer FWHM ($=W_{\rm form}/T_1$); the observable normalisation \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For the ambient-confined supercritical ensemble ($\lambda/W_{\rm core}=3.27$) this gives $\lambda/W_{\rm fil}\approx0.9$.
+
+\subsection{Magnetic Tension Mechanism}
+\label{sec:magnetic}
+
+For a filament threaded by a longitudinal magnetic field with Alfv\'en speed $v_{A,\parallel}$, the dispersion relation is \citep{Nakamura1993}:
+\begin{equation}
+\omega^2 = c_s^2 k^2 + v_{A,\parallel}^2 k^2 - 4\pi G\rho_0 F(kR)
+\label{eq:dispersion}
+\end{equation}
+where $F(kR)$ encodes the cylindrical geometry. For the purely axial mode of a \emph{longitudinal} field the compression is directed along $\mathbf{B}$, which exerts no restoring force, so the $v_{A,\parallel}^2k^2$ term vanishes and Eq.~(\ref{eq:dispersion}) reduces to the field-free thermal relation: a static longitudinal field leaves the fragmentation wavelength almost unchanged. (The general oblique relation carries a magnetic term $\propto v_A^2k^2\sin^2\theta$, retained in the perpendicular calibration Eq.~\ref{eq:calib}, which vanishes at $\theta=0^\circ$.) We do \emph{not} solve the full cylindrical dispersion relation, and this paper therefore contains \emph{no quantitative model of magnetic tension}. Consistent with the physics above, our longitudinal-field runs show the \emph{growth-rate} wavelength depends only weakly on $\beta$ ($\lambda_{\rm max}=1.00,1.14,0.80\,\lambda_{\rm J}$ at $\beta=0.3,0.5,1.0$, a non-monotonic spread within the axial mode-quantisation step $\Delta\lambda\approx0.15\,\lambda_{\rm J}$ set by $L_x=8\,\lambda_{\rm J}$, so not a resolved physical trend; the larger $\beta$-trend of the late-time bead count in Table~\ref{tab:cross_campaign} and Section~\ref{sec:supplementary_campaigns} --- a resolution-sensitive, late-epoch measure we do not adopt for the wavelength --- is an artefact of that epoch) and on supercriticality, so \emph{in our runs} the scale is set by the thermal Jeans length, not the field. The shortening we measure is therefore \emph{not} a magnetic-tension effect: it is the dynamical/contraction shift. A genuinely shorter magnetic wavelength would require a \emph{helical} field, which we do not simulate. Planck polarimetry finds dense filaments preferentially perpendicular to the mean \emph{projected} field \citep{Jadhav2026}; the projected orientation does not fix the internal three-dimensional geometry, so the internally-longitudinal fraction is strictly unconstrained --- if it tracks the projected orientation it is a minority ($\lesssim10\%$), which is the assumption under which our longitudinal result applies to only part of the population. These estimates are calibrated in the near-critical regime ($f\approx1$); the directly measured supercritical spacing appears in Section~\ref{sec:modecompetition}.
+
+\subsection{Hierarchical Fragmentation}
+
+High-resolution studies have revealed that filament fragmentation is hierarchical: filaments fragment into velocity-coherent fibres, and fibres fragment into cores \citep{Hacar2013,Hacar2018,Yang2024}. Whether the fibre-to-core spacing is quasi-periodic at the classical scale is not yet established, the ALMA study of \citet{Yang2024} finds a clear filament--fibre--core hierarchy but only a weak quasi-periodic imprint at the core level, so the fibre-level fragmentation scale remains an observational open question.
+
+If HGBS filaments are bundles of velocity-coherent fibres, each fragmenting at the classical scale, then measuring core spacings across the whole filament rather than within individual fibres would compress the apparent spacing. This goes in the observed direction: fibre-level measurements recover the classical $\lambda_{\rm m}\approx5$--$6\times$FWHM prediction, while filament-level measurements are sub-classical.
+
+We test this interpretation quantitatively in Section~\ref{sec:fibre_projection}, where a forward-model of $N$-fibre bundles run through our identical NN pipeline reproduces the observed $\lambda/W$; it emerges there as a viable explanation for the sub-classical filament-level spacing (though, as Section~\ref{sec:validation_endtoend} shows, not the only one, since single-filament dynamical fragmentation is also consistent with the data). The evidence is not yet decisive: the \citet{Yang2024} fibre-level result comes from a single region (Orion~B) and may not generalise, and the number of fibres per filament is not directly constrained across our robust regions. Confirming the picture requires fibre-resolved core-spacing analysis in further HGBS filaments, to test whether the classical $\lambda_{\rm m}\approx5$--$6\times$FWHM recovers within individual fibres beyond Orion~B.
+
+\section{MHD SIMULATIONS}
+
+The MHD campaign below ($2243$ Athena++ runs; Appendix~\ref{sec:campaigns}) is a set of controlled numerical experiments, not models of individual HGBS filaments. Most of these runs establish \emph{outcomes and timescales} across parameter space; the headline fragmentation-\emph{wavelength} measurement rests on a much smaller, dedicated subset (campaign~15 of Table~\ref{tab:campaigns}: 25 growth-rate and control runs, of which 8 form the production convergence ladder), and the large campaign size should not be read as statistical weight behind the wavelength. Two results emerge (Section~\ref{sec:why_mhd_fails}). The \emph{outcome} of a run, radial collapse or longitudinal beading, depends on regime and boundary conditions, so a single filament has no setup-independent fate. Its dominant fragmentation \emph{mode}, measured from the growth-rate spectrum, is sub-classical ($\approx0.5$--$1\times$ the classical value; Section~\ref{sec:validation_endtoend}) for near-critical, longitudinal-field filaments; the perpendicular geometry is not numerically resolved. This section provides the evidence for both.
+
+\subsection{Simulation Methodology}
+
+We performed self-gravitating MHD simulations using Athena++ \citep{Stone2020} to test filament fragmentation under controlled conditions. The simulations solve the ideal MHD equations with self-gravity:
+\begin{align}
+\frac{\partial \rho}{\partial t} &= -\nabla \cdot (\rho \mathbf{v}) \\
+\frac{\partial (\rho \mathbf{v})}{\partial t} &= -\nabla \cdot \left(\rho \mathbf{v} \mathbf{v} + P + \frac{B^2}{8\pi} - \frac{\mathbf{B}\mathbf{B}}{4\pi}\right) - \rho \nabla \phi \\
+\frac{\partial \mathbf{B}}{\partial t} &= \nabla \times (\mathbf{v} \times \mathbf{B}) \\
+\frac{\partial E}{\partial t} &= -\nabla \cdot \left[(E + P + \frac{B^2}{8\pi})\mathbf{v} - \frac{(\mathbf{v} \cdot \mathbf{B})\mathbf{B}}{4\pi}\right] - \rho \mathbf{v} \cdot \nabla \phi
+\end{align}
+where $\rho$ is density, $\mathbf{v}$ is velocity, $\mathbf{B}$ is magnetic field, $P$ is pressure, $E$ is total energy, and $\phi$ is gravitational potential satisfying $\nabla^2 \phi = 4\pi G\rho$.
+
+We initialise a cylindrical filament with density profile $\rho(r) = \rho_0 / [1 + (r/W)^2]$ and uniform magnetic field $\mathbf{B}_0$. The filament is characterised by: the thermal line-mass fraction $f = M_{\rm line}/M_{\rm line,crit}$ (Eq.~2), plasma $\beta = 8\pi P/B^2$, and the seed-amplitude parameter $M_{\rm seed}=\delta v/c_s\times10^{4}$ (a perturbation-spectrum label, not a physical Mach number; Section~\ref{sec:supplementary_campaigns}). Note that the magnetic mass-to-flux ratio $\mu_\Phi/\mu_{\Phi,\rm crit}$ is distinct from the thermal $f$; with $B_0$ set by $\beta$ and the central density by $f$ (at fixed $c_s$, background density, and $W_{\rm core}$), the on-axis mass-to-flux ratio scales as $\mu_\Phi/\mu_{\Phi,\rm crit}\propto f\sqrt{\beta}$, and every configuration in our grid has $\mu_\Phi/\mu_{\Phi,\rm crit}>1$ (Table~\ref{tab:massflux}), none is strictly magnetically subcritical; the low-$\beta$ runs are magnetically \emph{supported} (a strong field delays but does not prevent collapse; Section~\ref{sec:dtc}).
+
+\begin{table}
+\caption{On-axis normalised mass-to-flux ratio $\mu_\Phi/\mu_{\Phi,\rm crit}$ for the simulation initial conditions, scaling as $\propto f\sqrt{\beta}$. All values exceed unity, so no configuration is strictly magnetically subcritical; the low-$\beta$ models are magnetically \emph{supported}.}
+\label{tab:massflux}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+$f$ & $\beta{=}0.05$ & $\beta{=}0.15$ & $\beta{=}0.5$ & $\beta{=}1.0$ & $\beta{=}2.0$ \\
+\midrule
+1.0 & 1.9 & 3.2 & 5.9 & 8.4 & 11.8 \\
+1.5 & 2.8 & 4.9 & 8.9 & 12.5 & 17.7 \\
+2.0 & 3.7 & 6.5 & 11.8 & 16.7 & 23.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The campaign's breadth maps the $(f,\beta,\mathcal{M},\theta)$ parameter space; the headline wavelength rests specifically on the growth-rate ladder of Section~\ref{sec:validation_endtoend}, and the large run count should not be read as statistical weight behind that value. We explored a base grid spanning Mach number $\mathcal{M}=0.5$--$5$ and plasma $\beta=0.05$--$5$ at a near-critical line mass, and a transition grid across $f=1.4$--$2.0$, $\beta=0.3$--$1.3$ and $\mathcal{M}=1$--$5$ to resolve the stable--unstable boundary (Section~\ref{sec:dtc}). Full parameter ranges and run counts are given in Appendix~\ref{sec:campaigns}.
+
+\subsection{The radial-collapse/fragmentation timescale competition}
+\label{sec:regimes}
+
+The simulations show that the fate of an isothermal, self-gravitating filament is governed by the competition between radial collapse and longitudinal fragmentation \citep{Inutsuka1997, Pon2012}. Near-critical filaments ($f\lesssim1.2$) retain sufficient thermal and magnetic support to evolve quasi-statically, and the longitudinal fragmentation instability grows to non-linearity, producing the beading pattern from which $\lambda/W$ can be measured directly. Supercritical filaments ($f\gtrsim1.5$) fragment longitudinally when properly confined by an ambient medium (Section~\ref{sec:modecompetition}), at a converged linear wavelength $\approx0.5$ times the classical value (Section~\ref{sec:validation_endtoend}). Without ambient confinement the filament's Gaussian skirt feeds an accretion channel through the boundary and suppresses fragmentation. Extended-integration tests confirm that the periodic grid's early termination fires before the longitudinal instability becomes non-linear ($\sigma_{\rm lon}$ onset at $t=0.42$--$0.71\,t_{\rm J}$ versus a Courant-limited kill at $t\approx0.25$--$0.34\,t_{\rm J}$), independent of resolution.
+
+In the near-critical regime ($f\approx1.0$--$1.2$), filaments fragment with clearly measurable longitudinal density peaks at $t_{\rm frag}\approx1.1$--$1.2\,t_{\rm J}$ (Section~\ref{sec:fieldgeo}). Runs at the exact Jeans-critical value ($f=1.00$) likewise bead, at $t_{\rm frag}=1.62\pm0.03\,t_{\rm J}$ across seeds and resolutions (this exact-critical, weak-field subset fragments later than the $f=1.0$--$1.2$ field-geometry grid above, whose stronger seeding and field bring it to $1.1$--$1.2\,t_{\rm J}$), so there is no stability threshold at the critical line mass; this is the regime in which $\lambda/W$ is directly measurable.
+
+\textbf{Supercritical regime ($f \geq 1.5$): Radial collapse dominates}. In the periodic supercritical grid ($f=1.5$--$3.0$) we find no longitudinal fragmentation structure, only pure radial collapse: the central density increases by two orders of magnitude while the longitudinal density variance remains at $<0.02\%$ up to and including the fragmentation time. All simulations undergo runaway radial collapse (detected as $\Delta t < 10^{-8}\,t_{\rm J}$ from the CFL limit) before longitudinal beading can develop.
+
+The supercritical radial-collapse time ($t_{\rm coll}\approx0.25$--$0.34\,t_{\rm J}$) is $3$--$5$ times shorter than the near-critical longitudinal-fragmentation time ($t_{\rm frag}\approx1.1$--$1.6\,t_{\rm J}$), so in configurations whose initial conditions are out of radial equilibrium the radial mode reaches runaway before longitudinal perturbations grow to non-linearity. The measurable fragmentation wavelengths therefore come from two regimes: the near-critical, quasi-static regime where longitudinal beading is observed directly (Section~\ref{sec:fieldgeo}), and ambient-confined supercritical filaments that fragment longitudinally before radial collapse (Section~\ref{sec:modecompetition}).
+
+\subsection{The fragmentation boundary}
+\label{sec:dtc}
+
+The transition grid maps the longitudinal-field fragmentation boundary across $\mathcal{M}=1$--$5$, $\beta=0.3$--$1.3$ and $f=1.4$--$2.2$. The critical $\beta$ below which fragmentation is suppressed shifts lower as $\mathcal{M}$ rises, and with adequately long integration at magnetically supercritical field strengths ($\beta\gtrsim0.2$) no configuration is stable for $\mathcal{M}\geq1$ at any $f$ tested; the magnetically subcritical regime ($\beta\lesssim0.15$, Fig.~\ref{fig:regime}) is a separate, magnetic-pressure-stabilised case. Compared at fixed time ($t=0.85\,t_{\rm J}$), the collapse indicator $|E_{\rm grav}(t)/E_{\rm grav}(0)|$ is cleanly monotonic in $\beta$ at every $f=0.9$--$2.0$: a strong field ($\beta\lesssim0.15$) suppresses radial collapse by $\sim1$--$2$ orders of magnitude relative to $\beta\gtrsim0.3$--$1.0$ (near-critical suppression $\sim75\times$; Fig.~\ref{fig:A5_collapse}), operating even for thermally supercritical filaments ($f>1$) and so demonstrating the magnetic-vs-thermal criticality distinction directly. These low-$\beta$ filaments collapse only eventually, through the periodic-boundary accretion channel, so the regime map records a fixed-time density contrast rather than asymptotic stability.
+
+\begin{figure}
+\includegraphics[width=0.48\textwidth]{figures/A5_collapse_vs_beta.pdf}
+\caption{Magnetic suppression of radial collapse (long-integration test, Section~\ref{sec:dtc}). The collapse indicator $|E_{\rm grav}(t)/E_{\rm grav}(0)|$ at matched time $t=0.85\,t_{\rm J}$ versus $\beta$, for $f=0.9$--$2.0$. Strong-field runs ($\beta\lesssim0.15$) remain at $\sim$40--180 while weak-field runs ($\beta\gtrsim0.3$--$1$) run away to $\sim$600--4600: a clean $\sim1$--2\,dex magnetic suppression operating even for thermally supercritical filaments, the mechanism behind Fig.~\ref{fig:regime}'s magnetically subcritical regime.}
+\label{fig:A5_collapse}
+\end{figure} The fragmentation time follows a tight, monotonic $t_{\rm frag}(f)\approx1.57-0.27\,f\,t_{\rm J}$ with seed-to-seed scatter $<0.08\,t_{\rm J}$. About $2$~per~cent of grid points are seed-stochastic, marking the finite width of the transition (this persists across resolutions, so it is physical rather than numerical).
+
+
+\subsection{Simulation Validation}
+
+Resolution, initial-condition, and equation-of-state tests are given in Appendix~\ref{sec:validation}; fragmentation classification is resolution-independent (mean $t_{\rm frag}(256^3)/t_{\rm frag}(128^3)=0.915\pm0.012$), insensitive to the initial-condition choice, and accelerated by sub-isothermal EOS.
+
+\subsection{Three fragmentation regimes}
+
+The baseline grid, at a near-critical line mass ($f\approx1$), reveals three fragmentation regimes in the $(\beta,\mathcal{M})$ plane, characterised by the end-of-run density contrast $C=\rho_{\rm max}/\rho_0$ (Fig.~\ref{fig:regime}): (i) \emph{strong-field, magnetically supported} ($\beta\lesssim0.15$), where magnetic pressure strongly suppresses collapse ($C\approx1$ at the snapshot time); (ii) \emph{magnetically regulated} ($0.2\lesssim\beta\lesssim2$), where fields modify but do not prevent fragmentation ($C=3$--$11$); and (iii) \emph{thermally dominated} ($\beta\gtrsim3$), where fields are too weak to affect the scale ($C=13$--$22$). The dispersion relation \citep{Nakamura1993} predicts near-complete suppression for $\beta\lesssim0.15$ and $<10\%$ modification of the most unstable wavelength for $\beta\gtrsim2$--$3$, consistent with the empirical boundaries; these boundaries bracket the sampled grid points ($\beta=0.05,0.1,0.15,0.2,0.3,\ldots$) at roughly the one-grid-step level rather than being interpolated, so the $\beta\approx0.15$ and $\approx3$ thresholds carry an uncertainty of $\sim$one grid step. Observed dense-filament conditions ($\mathcal{M}\approx1$--$3$, $\beta\approx0.3$--$2$; \citealt{Arzoumanian2019,Planck2016,Pattle2018}) place most HGBS filaments in the magnetically regulated regime.
+
+\begin{figure*}
+\includegraphics[width=0.8\textwidth]{figures/fig2_regime_corrected.pdf}
+\caption{Three-regime fragmentation framework from the Athena++ base grid (near-critical, $\theta=0^\circ$, isothermal; Section~\ref{sec:regimes}). Colour shows the end-of-run density contrast $C=\rho_{\rm max}/\rho_0$ (blue = low, red = high). The regimes, set by plasma $\beta$, are: (I) \emph{strong-field, magnetically supported} ($\beta\lesssim0.15$): magnetic pressure strongly suppresses collapse, $C\approx1$ (minimal fragmentation at this epoch, not an absence-of-star-formation statement); (II) \emph{magnetically regulated} ($0.2\lesssim\beta\lesssim2$): fields modify but do not prevent fragmentation, $C=3$--$11$; (III) \emph{thermally dominated} ($\beta\gtrsim3$): fields too weak to affect the scale, $C=13$--$22$. Typical HGBS filament conditions ($\mathcal{M}\approx1$--$3$, $\beta\approx0.3$--$2$; \citealt{Arzoumanian2019,Planck2016,Pattle2018}) lie in the magnetically regulated regime. The regime here is set by the \emph{dynamical} suppression of collapse (a $\beta$ criterion) and is physically distinct from the magneto-static mass-to-flux criticality of Table~\ref{tab:massflux} (Section~\ref{sec:regimes}); the two are not in tension.}
+\label{fig:regime}
+\end{figure*}
+
+\subsection{Supercritical filaments}
+\label{sec:supercrit}
+
+The supercritical grid spans $f=1.1$--$3.0$, $\beta=0.3$--$5.0$ and $\mathcal{M}=0.5$--$3$; every configuration is gravitationally unstable and either fragments or collapses within the run.
+
+\subsubsection{Simulation Setup}
+
+Each run initialises a Gaussian-profile filament, $\rho(r)=\rho_c\,e^{-r^2/(2W_{\rm core}^2)}$ with $W_{\rm core}=0.3\,\lambda_{\rm J}$, threaded by a purely longitudinal field ($v_A^2=2c_s^2/\beta$) and seeded with axial Kolmogorov perturbations ($\delta v=\mathcal{M}c_s\times10^{-4}$, 8 modes, $v_{x_2}=v_{x_3}=0$). The domain is $8\times2\times2\,\lambda_{\rm J}$ at $256\times64\times64$ (MeshBlock $32^3$), periodic on all faces; self-gravity uses an FFT Poisson solver on the density fluctuation $\rho-\langle\rho\rangle$ (implicit Jeans-swindle subtraction), with ${\rm four\_pi\_G}=4\pi^2$ so $\lambda_{\rm J}=1$. This near-laminar seeding is not driven transonic turbulence, though a driven-realisation test (Section~\ref{sec:supplementary_campaigns}) leaves the wavelength unchanged.
+
+\subsubsection{Domain size and seeding}
+
+The longitudinal domain $L_x=8\,\lambda_{\rm J}$ provides $2$--$4$ wavelengths of buffer over the most unstable mode ($\lambda_{\rm max}\in[1.8,4.0]\,\lambda_{\rm J}$), and a doubling test to $L_x=16\,\lambda_{\rm J}$ changes the fragmentation timescale by $<1\%$ at $f=1.5,2.0,3.0$; the transverse dimensions ($2\,\lambda_{\rm J}$) contain the filament width with a $\sim7\times$ margin. Because the self-gravity solver is periodic, we also doubled the \emph{transverse} extent ($2\to4\,\lambda_{\rm J}$) at $f=1.1$ and $1.5$: the growth-rate spectrum and its peak are unchanged, confirming that periodic-image contributions from neighbouring transverse copies do not affect the measured $\lambda_{\rm max}$ even once density contrasts of $20$--$40$ develop. The supercritical result is anchored at $L_x=8$--$16\,\lambda_{\rm J}$, where the Kolmogorov seeding (modes at $k_n=2\pi n/L_x$) covers Jeans scales. Extended-domain runs ($L_x\geq24$) are contaminated by a box-scale seeding artefact, the seeded wavelength scales with the box rather than any physical scale, so the initial-condition power is uncontrolled across $L_x$, and are not used.
+
+\subsubsection{Fragmentation Detection}
+
+A CFL-timestep watchdog (terminating at $\Delta t<10^{-8}\,t_{\rm J}$) flags the onset of runaway collapse when flux-freezing amplifies the Alfv\'en speed during compression. All 654 main-grid configurations reach this collapse across the full parameter space ($f=1.1$--$3.0$, $\beta=0.3$--$5.0$, $\mathcal{M}=0.5$--$3$); each is gravitationally unstable, as expected from linear theory.
+
+\subsubsection{Fragmentation Timescales}
+
+The collapse-onset time $t_{\rm frag}$ (the CFL-timestep watchdog firing time, a proxy for radial runaway rather than a density-peak fragmentation time) decreases with supercriticality across the periodic main grid, following approximately $1/t_{\rm frag}\propto f^{0.39\pm0.05}$ over $f=1.1$--$3.0$ ($r^2=0.999$; the $\pm0.05$ widens the fit-only $\pm0.01$ to include the 6\% seed scatter in $\lambda/W$). It does not describe the fragmentation wavelength $\lambda/W$. The exponent is configuration-specific: an independent density-contrast diagnostic agrees with the CFL trigger within each run, but the fitted exponent varies with boundary conditions and seeding amplitude, so we quote $\alpha\approx0.39$ only as the value measured in the periodic main grid, not a general law.
+
+
+The collapse time $t_{\rm frag}$ is nearly independent of $\beta$ for $\beta \gtrsim 0.5$; only at $\beta = 0.3$ (strong field) is it measurably shorter ($0.2725\,t_{\rm J}$ vs $0.2950\,t_{\rm J}$ at $\beta = 5$, a 7.7\% difference), and the variation over $\beta = 0.5$--$5.0$ is under 3\%, so longitudinal fields do not significantly resist radial collapse. It is also independent of Mach number across $\mathcal{M}=0.5$--$3.0$ ($\langle t_{\rm frag}\rangle=0.2869\,t_{\rm J}$): at the seeded amplitude $\delta v=\mathcal{M}c_s10^{-4}$ (linear regime), turbulence does not modify the collapse timescale.
+
+
+
+
+\subsubsection{Near-critical calibration of the fragmentation wavelength}
+
+Where longitudinal beading is directly observed (the near-critical regime $f=0.9$--$1.3$; Section~\ref{sec:fieldgeo}), the measured spacing calibrates the field-geometry-dependent magnetic Jeans length (this is an internal calibration; the headline longitudinal comparison uses the independent direct supercritical measurement of Section~\ref{sec:modecompetition}, not this relation):
+\begin{equation}
+\lambda_{\rm frag} = (1.11 \pm 0.12)\,\lambda_{MJ}(\theta, \beta),
+\label{eq:calib}
+\end{equation}
+with $\lambda_{MJ}=\lambda_J\sqrt{1+2\sin^2\theta/\beta}$ \citep{Nakamura1993} and $\theta$ the field--axis angle ($0^\circ$ longitudinal, $90^\circ$ perpendicular). This expression describes the magnetic support of the \emph{radial} mode of a \emph{perpendicular}-field filament only; we do \emph{not} evaluate it at $\theta=0^\circ$, since the longitudinal axial mode is governed by the (field-free) reduction of Eq.~(\ref{eq:dispersion}). The longitudinal wavelengths in Table~\ref{tab:cross_campaign} are measured directly from the simulations, not derived from this relation.
+
+
+\subsubsection{Boundary-distance dependence and direct supercritical measurement}
+\label{sec:modecompetition}
+
+The outcome for a supercritical filament is set by whether it is confined by an ambient medium, as real HGBS filaments are within their parent clouds. Throughout this subsection $d$ denotes the transverse distance from the filament axis to the domain boundary, in units of $\lambda_{\rm J}$ (so $d=1.0$ places the boundary one Jeans length from the axis). The main 654-run grid uses a truncated Gaussian with no ambient medium, so the Gaussian skirt wraps through the periodic transverse boundary and feeds an accretion channel that suppresses longitudinal beading, the filament collapses radially (Sections~4.6.3--4.6.4). With ambient confinement (\texttt{filament\_ambient} generator, low-density ambient medium), the same configurations fragment longitudinally instead: a reconciliation suite (12 runs, $f\times\beta\times2$ seeds) beads at physical, $\beta$-dependent collapse times ($0.55$--$0.70\,t_{\rm J}$), converging across boundary conditions (Fig.~\ref{fig:mode_competition}).
+
+Ambient-confined supercritical filaments ($f=1.5$--$2.0$, $\theta=0^\circ$) fragment longitudinally: an ensemble of 39 runs (periodic and reflecting BCs, ambient confinement, $f\times\beta\times$multi-seed) develops 3--10 interior axial density maxima, at a spacing of order the Jeans length. We do not rely on the median peak spacing of this ensemble for a precise number, because counting peaks late in the collapse is epoch- and resolution-dependent (Section~\ref{sec:validation_endtoend}); we instead take the wavelength from the linear growth-rate spectrum, whose low-$n$ modes are resolution-stable and which gives an order-$\lambda_{\rm J}$, sub-classical value $\lambda_{\rm max}\approx1.0$--$1.14\,\lambda_{\rm J}$, $\approx0.3$--$0.5$ times the classical value (this is the peak of the converged part, not a resolved spectral maximum; Section~\ref{sec:validation_endtoend}). The scale declines mildly with both $f$ and $\beta$, so it is not constant across the supercritical regime. The ambient configuration confines the filament in a low-density medium (central-to-ambient density ratio $\sim10^2$) that is approximately in radial force balance, consistent with background-subtracted HGBS column-density profiles (crest-to-background contrasts of order $10$--$10^2$; \citealt{Arzoumanian2019}), so the confinement is representative of real filaments rather than tuned to produce fragmentation. The 39 runs span periodic ($n=12$, median $\lambda/W_{\rm fil}\approx0.89$), reflecting ($n=26$, median $\approx1.01$) and one user-outflow transverse boundary, and the periodic and reflecting distributions are statistically indistinguishable (KS $p=0.17$, though with these $n$ the test has limited power), consistent with combining them. This ensemble median ($\lambda/W_{\rm fil}\approx0.9$--$1.0$) and the growth-rate result ($\lambda_{\rm max}/W_{\rm FWHM}\approx2.0$, Section~\ref{sec:validation_endtoend}) are the same physical wavelength, $\lambda\approx1.1\,\lambda_{\rm J}$, expressed against different width normalisations (the broad beam-convolved Plummer $W_{\rm fil}$ versus the narrower Gaussian formation FWHM); they are not in tension. The ensemble beads early, at $t_{\rm bead}\approx0.6$--$0.75\,t_{\rm J}$, well before gravitational runaway and at moderate density contrast, so with $\lambda\approx\lambda_{\rm J}$ resolved by ${\sim}32$ cells it satisfies the Truelove criterion at the measurement epoch (Table~\ref{tab:truelove}), unlike the perpendicular ambipolar runs below (which bead only at $C\approx250$--$560$, deep in collapse). The full per-run table ($f,\beta$, seed, BC, outcome, $t_{\rm bead}$, bead count, spacing) is released with the public data archive.
+
+Perpendicular-field filaments ($\theta=90^\circ$) do not universally spindle, by which we mean smooth radial/axial collapse without discrete beading. An 18-run ideal-MHD grid at $d=1.0$ shows $7/18$ runs bead (at $\beta=0.5$ and $\beta=2.0$), while spindle collapse is concentrated near equipartition ($\beta\approx1$). This non-monotonicity reflects a competition between the axial fragmentation mode and the radial spindle mode: at $\beta\approx1$ the perpendicular field's tension response in the radial plane is maximised, so the radial mode reaches non-linearity before axial beading can develop, whereas at both weaker (thermally driven) and stronger (magnetic-pressure-delayed radial collapse) fields the axial mode has time to grow (a plausibility argument, not a mode-by-mode demonstration). Where perpendicular filaments do bead, the spacing appears short ($\lambda/W_{\rm fil}\approx0.4$, corrected conversion) --- but we caution that this \emph{conflicts} with linear theory, which for a static perpendicular field predicts a \emph{longer}, not shorter, mode; since the perpendicular runs are numerically unresolved ($N_J\approx1$--$2$, below the Truelove criterion), we cannot presently determine whether the short beading is physical or a resolution artefact, and draw no perpendicular conclusion in either direction. In an expanded 36-run non-ideal survey ($\eta_{\rm AD}=0.001$--$0.1$, $\beta=0.5$--$2.0$), $32/36$ ($89\%$) bead (Fig.~\ref{fig:ambipolar}). We report this as suggestive only: because these runs are at $N_J\approx1$--$2$, where under-resolution is itself a known source of spurious fragmentation (Truelove et al.\ 1997), we cannot separate a genuine ambipolar enhancement from a numerical one. The median onset wavelength is $\lambda/W_{\rm fil}\approx0.6$ (bulk $0.6$--$0.7$; strongest case $\beta=0.5$, $\eta_{\rm AD}=0.01$ reaches $0.85$). These are fragmentation-onset measurements: the non-ideal runs bead at $t\approx0.44$--$0.55\,t_{\rm J}$ and undergo gravitational runaway essentially simultaneously (the density contrast is already $C\sim10^3$ at first beading and reaches $C\sim10^4$ within $\Delta t\approx0.02$--$0.04\,t_{\rm J}$, driving the CFL timestep below the kill threshold). A finer-cadence rerun ($\Delta t=0.02$) through the beading-to-collapse transition shows the measured wavelength does not reach a converged plateau over the available window. We therefore quote the median $\lambda/W_{\rm fil}\approx0.6$ explicitly as a fragmentation-onset value rather than a converged fragmentation wavelength. Ambipolar diffusion therefore promotes but does not yet resolve the perpendicular-field tension; a converged wavelength measurement is left to future work.
+
+\begin{figure*}
+\includegraphics[width=0.9\textwidth]{figures/fig_v34_arbitration.pdf}
+\caption{Direct supercritical fragmentation measurement. \emph{Left:} collapse time for unconfined (truncated-Gaussian) versus ambient-confined initial conditions; only the ambient-confined filament fragments longitudinally. \emph{Right:} the ensemble fragments at a spacing of order the Jeans length, far below the classical $\lambda_{\rm m}\approx5$--$6\times$FWHM; the growth-rate wavelength (Section~\ref{sec:validation_endtoend}) is an order-$\lambda_{\rm J}$, sub-classical value, $\approx0.2$--$0.4$ times the classical value.}
+\label{fig:mode_competition}
+\end{figure*}
+
+\begin{figure}
+\includegraphics[width=0.48\textwidth]{figures/fig_v40_ad_ambipolar.pdf}
+\caption{Ambipolar diffusion promotes perpendicular-field fragmentation. Across a 36-run non-ideal survey ($\eta_{\rm AD}=0.001$--$0.1$, $\beta=0.5$--$2.0$), $32/36$ runs ($89\%$) bead at a median $\lambda/W_{\rm fil}\approx0.6$ (bulk $0.6$--$0.7$, corrected conversion); the strongest case ($\beta=0.5$, $\eta_{\rm AD}=0.01$) reaches $0.85$. Ideal-MHD perpendicular runs bead only away from equipartition, at $\lambda/W_{\rm fil}\approx0.4$. These perpendicular wavelengths are resolution-limited ($N_J\approx1$--$2$; Appendix~\ref{sec:validation}) and are used only qualitatively (that ambipolar diffusion promotes perpendicular fragmentation); the quoted wavelengths are not converged and are not used in the quantitative comparison with observation.}
+\label{fig:ambipolar}
+\end{figure}
+
+\subsection{Field-geometry dependence}
+\label{sec:fieldgeo}
+
+\subsubsection{Near-critical fragmentation}
+At $f=1.00$--$1.20$, $\beta=0.3$--$1.0$, $\mathcal{M}=1$--$2$, all near-critical runs fragment with longitudinal beading at $t_{\rm frag}\approx1.1$--$1.2\,t_{\rm J}$ (decreasing with $f$; lower $\beta$ delays slightly). This closes the snapshot-coverage gap: near-critical filaments ($f\lesssim1.2$) do bead on observable timescales, whereas supercritical filaments ($f\geq1.5$) collapse radially first.
+\begin{figure*}
+\includegraphics[width=0.8\textwidth]{figures/fig1_pfrag_heatmaps.pdf}
+\caption{Fragmentation outcome in the $(\beta,f)$ plane across the near-critical transition grid ($\mathcal{M}=1$--$5$); all 80 near-critical runs fragment. Diamond markers denote the $\sim2$\% of seed-stochastic grid points (Section~\ref{sec:dtc}).}
+\label{fig:beading_threshold}
+\end{figure*}
+
+\subsubsection{Perpendicular fields}
+
+\begin{quote}\sloppy\small
+\textbf{Convergence caveat.} Quantitative perpendicular-field $\lambda/W$ predictions in this and the following subsection should be regarded as preliminary: they are measured at $N_J\approx1$--$2$ cells per local Jeans length, below the Truelove et al.\ (1997) criterion of $\geq4$, and are therefore not numerically converged (Appendix~\ref{sec:validation}, Table~\ref{tab:truelove}). A dedicated $128^3$-versus-$256^3$ study of three perpendicular ambipolar configurations confirms this directly: the measured beading wavelength shifts by factors of $2$--$5$ between the two resolutions (both epochs at density contrast $C\gtrsim10^4$), so no converged perpendicular wavelength can yet be quoted, and we use the perpendicular runs only qualitatively.
+\end{quote}
+
+At $\theta=90^\circ$, all runs of the periodic field-geometry grid reach radial runaway ($t_{\rm rad}^{\perp}=0.381\,t_{\rm J}$, $2.8\times$ faster than the longitudinal beading time $t_{\rm bead}\approx1.08\,t_{\rm J}$); this radial-runaway classification is distinct from longitudinal beading. A static perpendicular field is amplified by axial compression and adds magnetic-pressure support against the axial mode, so linear theory \citep{Nagasawa1987,Nakamura1993} predicts it \emph{lengthens} (stabilises), not shortens, the fragmentation mode --- deepening rather than resolving the sub-classical puzzle for the perpendicular majority. Our perpendicular runs instead show \emph{short} beading, but at $N_J\approx1$--$2$ (below the Truelove criterion) this is most plausibly a resolution artefact, used only as a resolution flag; we draw no physical perpendicular conclusion.
+
+\subsubsection{Oblique-field calibration}
+$t_{\rm frag}$ decreases monotonically with field angle: $0.604\,t_{\rm J}$ ($30^\circ$), $0.508\,t_{\rm J}$ ($45^\circ$), $0.454\,t_{\rm J}$ ($60^\circ$), consistent with the $\lambda_{MJ}(\theta,\beta)$ form. This is not a formal validation: only three angles are sampled with no per-angle uncertainty (a linear fit against $\lambda_{MJ}$ gives $R^2=0.98$ but is under-determined), so we treat it as empirical consistency rather than a calibrated relation.
+
+\subsubsection{Equation-of-state dependence}
+All 30 adiabatic ($\gamma=5/3$) runs at $f=1.00$--$1.20$ remained unfragmented to $t>30$--$40\,t_{\rm J}$ (0\%, vs 100\% for matched isothermal). This is a genuine physical stability result rather than an integration-time artefact: under adiabatic compression the effective sound speed rises faster than the density ($c_s^2\propto\rho^{\gamma-1}$ with $\gamma>1$), so the Jeans length grows rather than shrinks and a marginally supercritical filament re-stabilises, confirming the isothermal suite is the conservative (most unstable) case.
+\begin{figure*}
+\includegraphics[width=0.8\textwidth]{figures/fig7_eos_nocaption.pdf}
+\caption{Equation-of-state dependence. \emph{Left:} isothermal ($\gamma=1$) fragmentation-time histogram (all runs fragment). \emph{Right:} adiabatic ($\gamma=5/3$) all-null annotation, $0/30$ runs fragmented, all timed out at $t>30$--$40\,t_{\rm J}$ (no distribution is meaningful for a $0/30$ outcome, so the panel states the result textually).}
+\label{fig:adia_comparison}
+\end{figure*}
+
+
+\subsection{Turbulence and critical-transition dependence}
+\label{sec:supplementary_campaigns}
+
+Additional grids map the turbulence, field-geometry and critical-transition dependence of $\lambda/W$.
+
+\subsubsection{Turbulence versus $\lambda/W$}
+
+Comparing physical turbulence ($\delta v/c_s=1.0$, Kolmogorov) with synthetic perturbations ($10^{-4}$) at longitudinal field ($f=1.0$--$1.2$, $\beta=0.5,1,2$), the fragmentation \textit{wavelength} is unchanged ($<5\%$; $\lambda/W=3.44\pm0.76$ vs $3.30\pm0.85$; Fig.~\ref{fig:C5_turbulence}), with a clear $\beta$-dependence ($4.31\pm0.60$ at $\beta=0.5$ to $2.81\pm0.13$ at $\beta=2.0$). Turbulence does accelerate collapse by $3.2\times$ ($t_{\rm frag}=0.33\pm0.06$ vs $1.06\pm0.16\,t_{\rm J}$). As a single decaying realisation, this constrains, but does not resolve, whether \emph{driven} transonic turbulence is a first-order parameter for the fragmentation scale; we conclude only that the characteristic spacing is insensitive to the seed perturbation amplitude in this limited test, and do not claim turbulence is generically unimportant.
+
+\begin{figure*}
+\includegraphics[width=0.8\textwidth]{figures/fig_C5_turbulence_lambdaW.pdf}
+\caption{turbulence comparison: physical vs synthetic turbulence give statistically indistinguishable $\lambda/W_{\rm core}$ ($\Delta\mu<5\%$, KS $p=0.43$), with the $\beta$-dependence preserved ($\sim$4.3 at $\beta=0.5$ to $\sim$2.8 at $\beta=2.0$).}
+\label{fig:C5_turbulence}
+\end{figure*}
+
+\subsubsection{Perpendicular-field spacing}
+
+For perpendicular fields ($\theta=90^\circ$, $f=1.2$--$1.5$, $\beta=0.3$--$2.0$; extended $16\lambda_{\rm J}$ periodic axial domain): strong perpendicular B ($\beta\leq0.5$) gives pure radial collapse with no axial fragmentation, while for $\beta\geq1.0$ axial beading occurs at $\lambda/W_{\rm core}=1.25\pm0.09$ ($N=27$), i.e.\ $\lambda/W_{\rm fil}\approx0.4$ under the corrected conversion (Eq.~\ref{eq:t1_apply}), a factor $2$--$3$ \textit{shorter} than the longitudinal-field value at the same $\beta$. Field geometry, not $\beta$, dominates, and the perpendicular spacing lies far below the observed NN value ($\lambda/W\approx1.9$).
+
+The two perpendicular campaigns give different $\beta$-trends: this periodic-domain grid beads only for $\beta\geq1.0$, whereas the ambient-confined ideal-MHD grid of Section~\ref{sec:modecompetition} beads at $\beta=0.5$ and $2.0$ with spindle collapse near $\beta\approx1$. They differ in transverse confinement and both are measured at only $N_J\approx1$--$2$ cells per Jeans length, below the Truelove criterion, so we treat the perpendicular $\beta$-dependence as numerically unresolved and draw no physical trend from either; a matched-resolution, matched-confinement grid is needed to settle it (Section~\ref{sec:limitations}). The robust statement is only that the perpendicular beading wavelength, where it occurs, is short ($\lambda/W_{\rm fil}\lesssim0.6$), well below the observed spacing.
+
+\subsubsection{Critical-transition spacing}
+
+Mapping $\lambda/W$ across $f=0.9$--$1.3$ at five $\beta$ values (Fig.~\ref{fig:C7_critical}) shows no discontinuity at $f=1.0$ (variation $<5\%$) and an apparent $\beta$-dependence in the \emph{late-time bead count}: $\lambda/W_{\rm core} = 4.74\pm0.73,\,4.38\pm0.59,\,3.19\pm0.29,\,2.86\pm0.18,\,2.80\pm0.14$ at $\beta=0.3,0.5,1.0,1.5,2.0$. This bead-count $\beta$-trend is, however, larger than the primary growth-rate measurement: repeating the growth-rate-spectrum method (Section~\ref{sec:validation_endtoend}) across $\beta=0.3,0.5,1.0$ gives $\lambda_{\rm max}=1.00,\,1.14,\,0.80\,\lambda_{\rm J}$, i.e.\ order one Jeans length with only a weak, mode-quantised $\beta$-dependence. We therefore treat the $\beta$-dependence of the wavelength as weak (the stronger bead-count trend being a late-epoch, resolution-sensitive artefact) and the two highest-$\beta$ bead-count points ($\lambda/\lambda_{\rm J}\approx0.84$) as consistent with the supercritical ensemble; the observable $\lambda/W_{\rm fil}$ then follows from the end-to-end forward model (Section~\ref{sec:validation_endtoend}) rather than the shortcut factor. \textbf{Continuity across $f\approx1$ does not validate extrapolation to the supercritical regime ($f\geq1.5$)}, where the mode changes to radial collapse (Section~\ref{sec:supercrit}); the near-critical $\lambda/W$ values are a hypothesis for supercritical filaments, not a measurement.
+
+\begin{figure*}
+\includegraphics[width=0.8\textwidth]{figures/fig9_nearcritical_corrected.pdf}
+\caption{Near-critical runs: $\lambda/W_{\rm core}$ across $f=0.9$--$1.3$ for five $\beta$ values, smooth with no discontinuity at $f=1.0$ (left); mean per $\beta$ (right). The convergence-independent quantity is $\lambda/W_{\rm core}$; the observable follows from $\lambda/W_{\rm fil}\approx0.27\,(\lambda/W_{\rm core})$ (Eq.~\ref{eq:t1_apply}), so the highest-$\beta$ points correspond to $\lambda/W_{\rm fil}\approx0.75$--$0.8$. This near-critical calibration lies below the observed spacing under any convention (Table~\ref{tab:headline}); the primary simulated value is the growth-rate wavelength (an upper limit; Section~\ref{sec:validation_endtoend}), not this ratio.}
+\label{fig:C7_critical}
+\end{figure*}
+
+\begin{table}
+\caption{Effective line-mass fraction with turbulent support.}
+\label{tab:feff}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{3.0cm}cc}
+\toprule
+Quantity & Value & Source \\
+\midrule
+Nominal $f$ (thermal) & $1.5 \pm 0.3$ & HGBS line-mass \\
+Turbulent support $f_{\rm eff}/f$ & $0.82 \pm 0.11$ & TURB (90 sims) \\
+Effective $f_{\rm eff}$ & $1.23 \pm 0.28$ & product \\
+HGBS ensemble range & $0.7$--$1.9$ & propagated \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Synthesis}
+
+Table~\ref{tab:cross_campaign} summarises the simulation $\lambda/W$ measurements and their role in the comparison with observation.
+
+\begin{table*}
+\caption{Simulation fragmentation scale by configuration, in the two convention-independent forms: the raw internal ratio $\lambda/W_{\rm core}$ (normalised by the initial half-width) and the background-density Jeans-length ratio $\lambda/\lambda_{\rm J}=0.3\,(\lambda/W_{\rm core})$. We do \emph{not} tabulate the observable $\lambda/W_{\rm fil}$ here, since it depends on the width convention; the comparison with observation uses the growth-rate wavelength expressed in \emph{matched} beam-convolved Plummer units, $\lambda/W\approx1.0$--$1.3$ ($\approx0.3$--$0.5$ times the classical value; Section~\ref{sec:validation_endtoend}), which is set against the observed $\lambda/W\approx0.4$ (FilFinder) to $1.9$ (fixed-width DisPerSE).}
+\label{tab:cross_campaign}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccl}
+\toprule
+Configuration & $\lambda/W_{\rm core}$ & $\lambda/\lambda_{\rm J}$ & Status \\
+\midrule
+\multicolumn{4}{l}{\emph{Longitudinal field (quantitative)}} \\
+Long.\ near-critical ($\beta{=}2.0$, calibration) & $2.80{\pm}0.14$ & $0.84$ & Calibration only \\
+Long.\ supercritical ensemble (\S\ref{sec:modecompetition}) & $3.27$ & $0.98$ & Near one Jeans length; see growth-rate result \\
+\midrule
+\multicolumn{4}{l}{\emph{Perpendicular field --- PRELIMINARY, numerically unconverged ($N_J{\approx}1$--$2$); not for quantitative use}} \\
+Perp.\ near-critical ($\beta{\geq}1$, ideal-MHD) & $[1.25]$ & $[0.38]$ & unconverged \\
+Perp.\ ambipolar ($\eta_{\rm AD}{=}0.001$--$0.1$) & $[{\sim}2.2]$ & $[0.66]$ & unconverged \\
+\bottomrule
+\end{tabular}
+\\[2pt]
+Only the longitudinal rows are used quantitatively, and even there the reference value is the convergently-bounded growth-rate wavelength (an upper limit; Section~\ref{sec:validation_endtoend}, Table~\ref{tab:wave}), not these raw ratios. The perpendicular values are bracketed to signal that they are numerically unconverged ($N_J\approx1$--$2$, below the Truelove criterion; wavelengths shift by factors $2$--$5$ between resolutions) and must not be read as measurements.
+\end{table*}
+
+With the exception of the 54-run turbulence comparison (Section~\ref{sec:supplementary_campaigns}), the grid uses near-laminar seeding ($\delta v=\mathcal{M}c_s\times10^{-4}$) rather than driven ISM turbulence. That comparison shows the fragmentation \textit{wavelength} is unchanged ($<5\%$) at driven amplitudes, so the laminar-seeded $\lambda/W$ values are reported, though the collapse \textit{timescales} are shorter by a factor of $3$--$5$.
+
+In convergence-independent units the two first-order parameters are field geometry (perpendicular $\lambda/W_{\rm core}\approx1.25$ versus longitudinal $2.8$--$4.4$) and, for longitudinal fields, plasma $\beta$; the observable comparison uses the growth-rate wavelength (Section~\ref{sec:validation_endtoend}), not these raw ratios.
+
+
+
+
+
+\section{The fragmentation scale and its comparison with observation}
+\label{sec:validation_endtoend}
+
+The measured core spacing is sub-classical only when expressed against the filament FWHM. Because that comparison hinges on how the observable width is defined, and a single conversion factor was shown above to move the inferred $\lambda/W_{\rm fil}$ by a factor of two, we anchor the comparison on the quantity that carries no width-convention ambiguity, the spacing in units of the filament FWHM measured the same way on simulations and data, and we verify the whole chain end to end (Appendix~\ref{sec:val_appendix}).
+
+First, the measurement is unbiased: passing synthetic filaments with a known spacing and width through the identical pipeline recovers $\lambda/W$ to better than $0.5\%$ over $\lambda/W=1.4$--$5.7$ (Appendix~\ref{sec:val_appendix}), confirming that the observed$\to$simulated comparison depends on the width normalisation convention rather than on any bias in the measurement itself. Second, forward-modelling the simulations end to end through the HGBS pipeline, projection to a column-density map, beam convolution, Plummer fitting and the same NN measurement, gives the observable $\lambda/W_{\rm fil}$ directly, with no analytic width conversion. The forward-model value ($\lambda/W_{\rm fil}\approx1.0$--$1.3$) is $\approx30\%$ above the analytic shortcut ($\approx0.9$, Eq.~\ref{eq:t1_apply}), because the shortcut applies a single $\sigma\!\to\!$FWHM factor whereas the forward model captures the full Gaussian$\to$beam-convolved-Plummer broadening; we adopt the forward-model value as definitive and carry this $\approx30\%$ offset as the width-conversion systematic in the comparison error budget.
+
+The fragmentation wavelength must be measured with care. Counting density peaks late in the collapse gives an epoch- and resolution-dependent answer, because a collapsing filament continues to sub-fragment and higher resolution resolves finer peaks. We instead identify the dominant fragmentation mode from the growth-rate spectrum. Seeding the filament with a small broadband perturbation ($\delta v/c_s=10^{-3}$, twelve axial modes), we track the power $P(k,t)$ in each mode and fit its growth over the interval during which it grows approximately exponentially (Fig.~\ref{fig:growthcurves}). This growth accelerates as the filament collapses, so what we isolate is the dominant fragmentation mode of a \emph{dynamically collapsing} filament, not the mode of a quasi-static hydrostatic cylinder. The growth rate $\Gamma(\lambda)$ (Fig.~\ref{fig:growthrate}, left) rises as $\lambda$ decreases and is resolution-stable for $\lambda\gtrsim1\,\lambda_{\rm J}$ (the low-$n$ modes agree to $\sim5\%$ across $128^3$--$512^3$; $\Gamma$ at $n=7$ is $17.8$, $18.5$, $18.7$), while below $\lambda\lesssim0.9\,\lambda_{\rm J}$ it diverges with resolution and is numerical. We take the dominant wavelength to be the peak of the converged part, $\lambda_{\rm max}\approx1.0$--$1.14\,\lambda_{\rm J}$, but stress that this sits at the short-wavelength \emph{edge} of the converged band and near the analytic thermal cutoff, so we do \emph{not} claim a precisely-located spectral maximum (Appendix~\ref{sec:val_appendix}): it is an order-$\lambda_{\rm J}$, sub-classical value: in formation-FWHM units $\lambda_{\rm max}/W_{\rm FWHM}\approx1.5$--$2.0$, i.e.\ a factor $\approx2.5$--$3$ below the classical $\lambda_{\rm m}\approx5$--$6\,W_{\rm FWHM}$ (\citealt{Fischera2012}), and at or below even the critical wavelength ($2.6\,W_{\rm FWHM}$) across $f=1.1$--$2.0$; but the observations use a beam-convolved Plummer width, so the \emph{like-for-like} value (below) is $\lambda/W\approx1.0$--$1.3$, not $\approx2$, and it is this matched value that should be set against the data (Table~\ref{tab:wave}).\footnote{The formation FWHM here is $W_{\rm FWHM}=0.58\,\lambda_{\rm J}$, the Gaussian FWHM fitted to the spine-averaged projected profile of these near-critical, ambient-confined runs at the growth-rate epoch. It is modestly narrower than the $W_{\rm form}=0.683\,\lambda_{\rm J}$ of the supercritical ensemble (Section~\ref{sec:width_correction}) because a near-critical filament has already begun to contract when its dominant mode is set; both are narrower than the initial Gaussian FWHM ($2.355\,W_{\rm core}=0.71\,\lambda_{\rm J}$) for the same reason. Table~\ref{tab:widthdefs} tabulates both formation widths. The classical fastest-growing wavelength is $\lambda_{\rm m}\approx5\,W_{\rm FWHM}$ (\citealt{Fischera2012}), so the like-for-like sub-classical statement is the density-independent ratio $\lambda_{\rm max}/W_{\rm FWHM}\approx2$ versus the classical $\approx5$--$6$, i.e.\ sub-classical by a factor $\approx2.5$--$3$ (and below even the classical critical wavelength $2.6\,W_{\rm FWHM}$).}
+
+\begin{figure}
+\includegraphics[width=0.47\textwidth]{figures/fig_growthcurves.pdf}
+\caption{Power in three axial modes versus time for a near-critical filament ($f=1.1$). Each grows with an approximately exponential interval (the fit window, shaded) whose slope gives the growth rate; the growth steepens as the filament collapses, so the extracted rate characterises the dominant mode of a dynamically collapsing filament. The peak mode $n=7$ grows faster than the long-wavelength $n=3$, giving the sub-classical $\lambda_{\rm max}$; the grid-scale $n=12$ is shown for reference.}
+\label{fig:growthcurves}
+\end{figure}
+
+\begin{figure*}
+\includegraphics[width=0.92\textwidth]{figures/fig_growthrate.pdf}
+\caption{\emph{(a)} Growth-rate spectrum $\Gamma(\lambda)$ of the axial fragmentation modes for a near-critical filament ($f=1.1$) at three resolutions. For $\lambda\gtrsim1\,\lambda_{\rm J}$ the three curves overlap: the growth rate is resolution-converged. At the grid scale ($\lambda\lesssim0.9\,\lambda_{\rm J}$, shaded) the curves separate and rise with resolution, the numerical signature of unresolved sub-fragmentation. The low-$n$ modes are resolution-stable but the spectrum does not turn over within the converged band, so $\lambda_{\rm max}\approx1.0$--$1.14\,\lambda_{\rm J}$ is the peak of the \emph{converged part}, at its short-wavelength edge, not a resolved maximum (Appendix~\ref{sec:val_appendix}). \emph{(b)} The resulting $\lambda_{\rm max}/W_{\rm FWHM}$ versus line-mass fraction (Gaussian FWHM; points: individual runs; dashed: median), well below the classical $\lambda_{\rm m}/{\rm FWHM}\approx5$--$6$ at every $f$. The like-for-like comparison with the observations uses a beam-convolved Plummer width $\sim1.5\times$ broader, giving matched $\lambda/W\approx1.0$--$1.3$ (grey band): this, not the Gaussian $\approx2$, is what should be set against the observed $\lambda/W\approx0.4$--$1.9$.}
+\label{fig:growthrate}
+\end{figure*}
+
+The convention-independent statement is that the dominant fragmentation wavelength of a dynamically collapsing filament is sub-classical: $\lambda_{\rm max}/W_{\rm FWHM}\approx2$, a factor $\approx2.5$--$3$ below the classical fastest-growing $\lambda_{\rm m}\approx5$--$6\,W_{\rm FWHM}$ (\citealt{Fischera2012}; $=4\times$ the flat diameter, \citealt{Inutsuka1992}), and at or below even the critical wavelength ($2.6\,W_{\rm FWHM}$). This is an \emph{upper limit}: the spectrum rises monotonically and does not turn over within the resolution-converged band, so the true peak may lie at shorter, currently-unresolved wavelength (the ratio $\lambda_{\rm max}/\lambda_{\rm m}$ measured this way runs $\approx0.2$--$0.4$ across $f=1.1$--$2.0$, but each value is an upper bound). The dominant mode is imprinted early and is fit-window-invariant (the same axial mode is selected in every linear sub-window, at central contrast $C\approx1$; Appendix~\ref{sec:val_appendix}), so the sub-classical ratio is set while the filament is at the background density and is not an artefact of the density at which the classical scale is evaluated. The shortening is the direction predicted for the accreting/contracting filament of \citet{Clarke2016,Clarke2017}. Two caveats temper the causal attribution. (i) The fitted growth rates ($\Gamma\approx18$--$26$ in units of $t_{\rm J}^{-1}$) exceed the free-fall rate ($\Gamma_{\rm ff}=\sqrt{4\pi G\rho_0}\approx2\pi$), i.e.\ they are not quasi-static linear eigenvalues but the accelerating growth of a collapsing background; the \emph{wavelength} (peak of $\Gamma(\lambda)$) is what we use, and it is corroborated by the fit-window invariance and the nonlinear bead spacing, not the absolute rate. (ii) Our initial profile is Plummer-like ($p\simeq2$), matching observed filaments but \emph{not} the isothermal equilibrium ($p=4$), so it is out of force balance and contracts from the start. Replacing it with a $p=4$ Ostriker profile gives the same order-$\lambda_{\rm J}$ wavelength ($\lambda_{\rm max}\approx0.8\,\lambda_{\rm J}$; Appendix~\ref{sec:val_appendix}), so the sub-classical scale is not an artefact of the profile index; but even that near-equilibrium cylinder collapses and fragments at $\approx0.8\,\lambda_{\rm J}$ (sub-classical) rather than near the classical $\lambda_{\rm m}\approx5$--$6\times$FWHM, so what we actually demonstrate is the generic ``fragmentation from a contracting, non-equilibrium state'' rather than specifically the \emph{accretion}-driven Clarke mechanism, which a near-equilibrium accreting run would be needed to isolate (Section~\ref{sec:limitations}).
+
+The simulated observable is quoted at several values in this paper, and it is worth converting once. The convention-independent internal ratio is $\lambda_{\rm max}/W_{\rm core}\approx3.3$; the $\sigma$-normalised shortcut ($\times0.27$; Eq.~\ref{eq:t1_apply}) gives $\lambda/W_{\rm fil}\approx0.9$, whereas forward-modelling the same runs through the HGBS pipeline (projection, beam convolution, Plummer fit) gives $\lambda/W_{\rm fil}\approx1.0$--$1.3$. We adopt the forward-model value as \emph{the} observable, since the shortcut normalises by the initial-profile $\sigma$ rather than the evolved beam-convolved Plummer FWHM; the $0.9$ figure is a shortcut lower estimate only. In Gaussian formation-FWHM units the same wavelength is $\lambda_{\rm max}/W_{\rm FWHM}\approx1.5$--$2.0$, but a Gaussian FWHM is $\sim1.5$--$1.9\times$ narrower than the observed Plummer FWHM, so the ``$\approx2\approx1.9$'' coincidence is not like-for-like. In matched units, then, the simulated $\lambda/W\approx1.0$--$1.3$ coincides with the region-Plummer observed widths ($1.2$--$1.35$), under-predicts the fixed-width DisPerSE value ($1.9$) and over-predicts FilFinder ($0.4$--$0.8$); no single convention makes single-filament fragmentation decisively sufficient or insufficient.
+
+Single-filament gravitational fragmentation, evolved dynamically, thus produces a converged sub-classical wavelength consistent with the observed spacing for the near-critical filaments that dominate the sample. The observations are \emph{consistent with} ordinary fragmentation being sufficient, under the DisPerSE convention (Section~\ref{sec:error_budget}); this demonstrates sufficiency, not uniqueness, and hierarchical-fibre projection (Section~\ref{sec:fibre_projection}) and magnetic tension remain viable but, within the factor-$\sim$2 systematics, are neither demanded nor excluded. The picture is falsifiable: fibre-resolved kinematics placing cores at the classical $\lambda_{\rm m}\approx5$--$6\times$FWHM within individual velocity-coherent fibres would favour projection, and more strongly supercritical filaments should show shorter core spacing (Section~\ref{sec:limitations}).
+
+\section{DISCUSSION}
+\label{sec:discussion}
+
+\subsection{Hierarchical-fibre projection reproduces the sub-classical spacing}
+\label{sec:fibre_projection}
+
+Section~\ref{sec:validation_endtoend} showed that single-filament dynamical fragmentation already reproduces the observed sub-classical spacing. A second, purely geometric route reaches the same value without any modified physics, and is worth setting out because the substructure it relies on is independently observed: high-resolution kinematic studies show that HGBS filaments are not monolithic cylinders but bundles of $N$ velocity-coherent \emph{fibres} \citep{Hacar2013,Hacar2018,Yang2024}. This motivates a purely geometric alternative to modified fragmentation physics: if each fibre fragments near the classical wavelength but core spacing is measured \emph{across} the bundle, as any filament-level skeleton pipeline necessarily does, the interleaving of cores from $N$ fibres compresses the apparent filament-level spacing. The premise, quasi-periodic fibre-to-core fragmentation at the classical scale, is a hypothesis rather than an established measurement (\citealt{Yang2024} find only a weak such imprint), so we present projection as viable but unconfirmed.
+
+We tested this quantitatively with a forward-model that reuses our exact NN measurement (order cores along the reconstructed spine by arclength; take adjacent separations; median $=\lambda$). Each fibre is a cylinder of physical width $W_{\rm fib}$ that fragments at its \emph{own} classical wavelength $\lambda_{\rm fib}\approx5$--$6\,W_{\rm fib}$ (\citealt{Fischera2012}; the FWHM-based fastest-growing scale); we populate a filament with $N$ such fibres (random inter-fibre phase, $\sim30\%$ lognormal intrinsic scatter), project the cores onto the shared spine, and measure the spacing in units of the \emph{filament} width $W_{\rm fil}$. This assumes fibres are quasi-hydrostatic and fragment at the classical scale, which sits uneasily with this paper's own result. The physically consistent cases are limited: a genuinely \emph{subcritical} fibre is gravitationally stable and would not fragment into cores at all, whereas a \emph{near-critical} one, being self-gravitating and contracting, would by our own argument fragment sub-classically at $\approx\tfrac12\lambda_{\rm fib}$. In the latter case the numerator halves and the $r/N$ needed to match the data \emph{doubles} (Eq.~\ref{eq:fourrn} becomes $\lambda/W_{\rm fil}\approx(2.5$--$3)r/N$). We therefore treat the classical-fibre $(5$--$6)r/N$ result as an upper bound on the projection effect; the fibre and single-filament pictures are not independent. Two distinct hierarchical effects then compress the apparent filament-level spacing below the single-cylinder value: the fibres are narrower than the filament ($r\equiv W_{\rm fib}/W_{\rm fil}<1$), and there are several of them. In the interleaving limit the Monte-Carlo model reproduces the simple scaling
+\begin{equation}
+\frac{\lambda}{W_{\rm fil}} \;\approx\; \frac{(5\text{--}6)\,r}{N},
+\label{eq:fourrn}
+\end{equation}
+verified across $r$ and $N$ in Fig.~\ref{fig:fibre_degen}. Either effect alone can produce a sub-classical value: a single fibre of half the filament width ($r=0.5$, $N=1$) gives $\lambda/W_{\rm fil}=2.0$, as do two full-width fibres ($r=1$, $N=2$).
+
+The observation constrains only the combination $r/N$, not $N$ individually. The fixed-width value $\lambda/W_{\rm fil}\approx1.9$ requires $r/N\approx0.35$; the region-specific Plummer value ($\approx1.35$) gives $r/N\approx0.25$; and the independent FilFinder skeletons ($\lambda/W\approx0.4$--$0.8$) give $r/N\approx0.07$--$0.15$. The observed fibre widths, $W_{\rm fib}\approx0.03$--$0.05$\,pc (so $r\approx0.3$--$0.5$; \citealt{Hacar2013,Arzoumanian2011}), then imply a small fibre number, $N\approx1$--$2$ for the DisPerSE-based spacings and $N\approx3$--$5$ if the FilFinder spacings are correct. \citet{Hacar2013} resolve of order $3$--$5$ velocity-coherent fibres per bundle in Taurus, which with $r\approx0.3$--$0.5$ gives $r/N\approx0.07$--$0.15$, below the $\approx0.35$ that the DisPerSE spacing requires. Taken at face value, the projection model with the observed fibre counts would \emph{over}-compress the spacing (predict cores closer than observed), matching the DisPerSE value only at the low end $N\approx1$--$2$; it is internally consistent only for a restricted region of $(r,N)$, a further reason it is not uniquely favoured. We do \emph{not} claim a specific fibre number; the robust statement is that measuring core separations across hierarchical structure (narrower, and generally multiple, fibres) in units of the filament width reduces the apparent spacing below the classical prediction by the observed factor, with no modified fragmentation physics required.
+
+The $(5$--$6)r/N$ scaling is also reproduced when the forward-model is run on the real DisPerSE arclengths and counts of the four robust regions rather than idealised straight spines; that exercise is only a consistency check, since it seeds classical-spacing cores onto the observed skeletons and so assumes the fibre population rather than measuring it.
+
+\begin{figure}
+\includegraphics[width=0.48\textwidth]{figures/fig_fibre_degeneracy.pdf}
+\caption{Hierarchical-fibre forward-model, showing the filament-level $\lambda/W_{\rm fil}$ recovered by our NN pipeline as a function of the fibre-to-filament width ratio $r=W_{\rm fib}/W_{\rm fil}$ and the number of fibres $N$; the model follows $\lambda/W_{\rm fil}\approx(5$--$6)r/N$ (Eq.~\ref{eq:fourrn}). White contours mark the observed fixed-width and region-specific values, the orange contour the FilFinder value, and the red band the observed fibre-width range ($r\approx0.3$--$0.5$). The observation constrains the combination $r/N$, not $N$ alone: the sub-classical value is reproduced by a single narrow fibre, by a few wider fibres, or by intermediate combinations.}
+\label{fig:fibre_degen}
+\end{figure}
+
+Hierarchical structure, the combination of narrower fibres and interleaving that compresses the apparent spacing below the classical filament-level value (Eq.~\ref{eq:fourrn}), is thus a natural and sufficient way to produce the observed sub-classical spacing without modified magnetic physics, and it is the natural reading of the fibre-resolved observations \citep{Yang2024,Hacar2013}; it also accounts for the large skeleton-algorithm and $L/3$ systematics ($\S$\ref{sec:error_budget}), as expected if the measurement slices across blended structure. It is not, however, \emph{required}: the end-to-end validation (Section~\ref{sec:validation_endtoend}) shows single-filament dynamical fragmentation already accounts for the bulk of the spacing, so projection is one of at least two viable readings, and it assumes both the fibre population and quasi-periodic fibre-level fragmentation rather than measuring them. It does not \emph{disprove} a magnetic contribution, only that one is not required and that present data cannot distinguish the possibilities. The decisive test is to decompose the observed cores into their parent velocity-coherent fibres and measure the fibre-level spacing across the robust regions (Section~\ref{sec:limitations}): a quasi-periodic classical-scale spacing within individual fibres, with the fibre widths, would break the $r/N$ degeneracy and establish the hierarchical origin. A complementary theoretical test, not attempted here, is a self-consistent MHD (or SPH) fragmentation calculation of a multi-fibre bundle run through the same NN pipeline. Numerical work reaches the same under-determined conclusion from the theory side: \citet{Clarke2020} find that fragmentation proceeding through sub-filaments leaves \emph{no} single characteristic core-spacing length-scale, consistent with our finding that the measured spacing is convention-limited rather than a universal wavelength.
+
+
+
+\subsection{Field geometry, boundary conditions and the perpendicular case}
+\label{sec:why_mhd_fails}
+
+Across the campaign the \emph{outcome} of a run, radial collapse or longitudinal beading, depends on regime and boundary conditions: an ambient-confined supercritical filament fragments longitudinally, whereas the identical filament in a periodic box collapses radially. A single filament therefore has no setup-independent fate. Its dominant fragmentation \emph{mode} is nonetheless well defined and resolution-converged (Section~\ref{sec:validation_endtoend}) at $\approx0.5$ times the classical value, sub-classical and consistent with the observed spacing. The perpendicular-field case is the exception: it is numerically unconverged ($N_J\approx1$--$2$ cells per Jeans length; Appendix~\ref{sec:validation}) and places no quantitative constraint. It is sometimes argued that most filaments are threaded by perpendicular fields, from the tendency of dense filaments to lie perpendicular to the large-scale field seen by Planck \citep{Planck2016}; the projected large-scale orientation need not equal the three-dimensional internal field geometry of a dense filament, and hourglass morphologies in which the field turns longitudinal inside the crest are observed \citep{Jadhav2026}. We do not treat perpendicular geometry as either established or as a source of tension.
+
+Where perpendicular geometry does apply, three non-exclusive resolutions of the residual deficit remain: hierarchical fibre fragmentation (bundles of near-critical fibres, each fragmenting longitudinally and projected across the bundle; \citealt{Hacar2013,Hacar2018,Yang2024}); non-ideal MHD at later evolution, which narrows the factor-$\sim3$ perpendicular deficit in longer runs; and an observational lag, in which the observed cores are relics of an earlier fragmentation episode. The two leading interpretations, single-filament dynamical fragmentation and hierarchical projection, are distinguished decisively by fibre-resolved core spacing across the robust regions and by high-resolution polarimetry of filament interiors (Section~\ref{sec:limitations}); the temperature-gradient signature (Section~\ref{sec:mt_variation}) adds a third test, predicting spatially differential fragmentation that fibre geometry alone would not produce.
+
+Sub-isothermal equations of state ($\gamma<1$) accelerate fragmentation by $30$--$40\%$ without changing the wavelength, while adiabatic heating ($\gamma=5/3$) suppresses it entirely (0\% fragmentation to $t>30$--$40\,t_{\rm J}$; Fig.~\ref{fig:adia_comparison}); the isothermal suite is therefore the conservative (most unstable) case in a globally averaged sense. This framing does not apply locally: Section~\ref{sec:mt_variation} shows the core dust temperature, and hence the local Jeans length, varies spatially by $\sim12\%$ within active clouds, driven by a spatially varying radiation field, so sub-regions can fragment at a scale that differs from the isothermal prediction in either direction. This is a directly measured effect, since an imposed temperature gradient of this magnitude shifts the local $\lambda/W$ by $\sim0.1$ ($\sim10$\,per-cent) and relocates where cores form (Section~\ref{sec:mt_variation}).
+
+\subsubsection{Non-Ideal MHD Effects}
+\label{sec:nonideal}
+
+At the densities probed here ($n_0\sim10^4$\,cm$^{-3}$), the ambipolar-diffusion time ($t_{\rm AD}\propto L^2/\eta_{\rm AD}$; $\sim10$--$20\,t_{\rm ff}$ for typical filament conditions) is long compared with the collapse time \citep{Tassis2004}, so ideal MHD is a good approximation for the longitudinal fragmentation stage: four non-ideal runs at $\eta_{\rm AD}=\{0.01,0.05\}$ still collapse radially, $\sim12$--$15\%$ \textit{earlier} than the ideal control (flux leakage erodes magnetic support, the conservative direction). Non-ideal effects nonetheless change the outcome for perpendicular fields, where ambipolar diffusion promotes longitudinal fragmentation (Section~\ref{sec:modecompetition}); Hall and Ohmic terms remain relevant for late-stage core evolution.
+
+\subsection{Limitations and future work}
+\label{sec:limitations}
+
+Two limitations bound the strength of our conclusion. First, on the observational side, the characteristic $\lambda/W$ and its cloud-to-cloud scatter ($\sigma\approx0.4$) rest on only four independent regions (Orion~B, Aquila, Perseus, Taurus). Four clouds are a thin base for an intrinsic-scatter estimate or for claiming that $\lambda/W\approx1.9$ is representative of filaments generally, and the value itself carries the factor-of-two skeleton-algorithm and width-convention systematics quantified in Section~\ref{sec:error_budget}. Extending the full-coverage nearest-neighbour pipeline to further HGBS regions, and to independent surveys (e.g.\ JCMT/SCUBA-2 Gould Belt fields), is needed to confirm that neither the central value nor the scatter is dominated by these four clouds. Second, on the theoretical side, the simulations are deliberately idealised controlled experiments, not models of specific filaments. The periodic-BC main grid does not represent the turbulent, pressure-supported, magnetically coupled boundaries of a real filament embedded in its parent cloud; our ambient-confined configuration is an idealisation of that confinement. Neither turbulent inflow/outflow at the boundaries nor gravitational coupling to the parent cloud is modelled, so the simulations are controlled experiments rather than direct models of individual HGBS filaments.
+
+A specific theoretical caveat concerns the causal attribution of the sub-classical wavelength. Our seeded filaments are initialised with a Plummer-like profile ($p\simeq2$, matching observed filaments) rather than the isothermal hydrostatic equilibrium ($p=4$), so they are out of radial force balance and contract from the start. This contraction, not accretion of new mass, is what shortens the wavelength in our runs, so what we demonstrate is the more general ``fragmentation from a non-equilibrium, contracting state'' rather than specifically the accretion-driven case of \citet{Clarke2016,Clarke2017}; a seeded near-equilibrium (Ostriker) cylinder also fragments sub-classically (Appendix~\ref{sec:val_appendix}), which argues against a pure profile artefact, but our numerical equilibrium is itself imperfect (it relaxes by a factor $\sim10$ in central contrast), so we cannot cleanly isolate the two. A near-equilibrium filament grown by controlled accretion is the decisive future test. The simulations adopt several further idealisations: (i) an \emph{isothermal} equation of state (sub-isothermal cooling accelerates fragmentation without changing the wavelength, while the temperature-gradient run of Section~\ref{sec:mt_variation} shifts the local $\lambda/W$ by $\sim10$\,per-cent, so the isothermal values are locally uncertain at the $\sim10$--$20\%$ level); (ii) \emph{periodic transverse boundaries}, whose accretion channel suppresses fragmentation unless ambient confinement is imposed (Section~\ref{sec:modecompetition}); (iii) \emph{simplified initial profiles} that omit the sub-structure of real filaments; and (iv) a \emph{prescribed, low-amplitude Kolmogorov turbulence spectrum} rather than driven transonic turbulence, which leaves the wavelength unchanged ($<5\%$) but shortens the timescale by $3$--$5\times$ (Section~\ref{sec:supplementary_campaigns}).
+
+Fragmentation classification is resolution-independent ($t_{\rm frag}(256^3)/t_{\rm frag}(128^3)=0.915\pm0.012$; Appendix~\ref{sec:validation}) and domain-doubling changes the collapse time by $<2\%$, but the transition zone is sampled with only 2 seeds per point. Non-linear core merging could in principle inflate the apparent supercritical spacing by up to $\sim50\%$ over a few Myr, but we have verified it does \emph{not} bias the quoted value: $\lambda/W_{\rm fil}$ is measured at maximum bead count (fragmentation onset), and in $38/39$ runs the peak count is still rising at the final snapshot while no run shows the peak-count decline that would signal merging. The ambipolar wavelengths are likewise fragmentation-onset measurements (the runs reach gravitational runaway before a converged plateau is established; Section~\ref{sec:modecompetition}).
+
+The decisive follow-ups are: (i) fibre-resolved NN spacing on the full HGBS catalogues, to test the hierarchical interpretation; (ii) high-resolution polarimetry of filament interiors, to test the longitudinal-versus-perpendicular assumption; (iii) MHD simulations with a spatially varying temperature field (Section~\ref{sec:mt_variation}); (iv) longer non-ideal runs, to test whether the perpendicular deficit closes; (v) a seeding-fixed domain study and matched-boundary re-measurement of the near-critical $\lambda/W$ calibration.
+
+
+\subsection{Non-isothermal effects and the temperature-gradient test}
+\label{sec:mt_variation}
+
+The MHD suite is isothermal, whereas HGBS dust-temperature maps show cloud-scale variations of $\sim12$\,per-cent (e.g.\ $\sim10$\,K to $\gtrsim13$\,K), a local perturbation to the fragmentation scale since $\lambda_{\rm J}\propto\sqrt{T}$. A single illustrative non-isothermal run (a near-critical filament, $f=1.05$, $\beta=1$, with an imposed $\sim12$\,per-cent longitudinal temperature gradient) fragments \emph{differentially}: the cool, locally supercritical half beads while the warm, locally subcritical half is suppressed, with the local wavelength shifted by $\sim10$\,per-cent. Because temperature sets both the local Jeans scale ($\propto\sqrt{T}$) and the local critical line mass ($\mu_{\rm crit}\propto T$), a spatially varying temperature field relocates and re-times fragmentation as well as shifting its scale. The isothermal assumption is therefore conservative only in a globally averaged sense; a proper treatment (self-consistent radiative transfer, or a statistical analysis of intra-cloud temperature structure) is deferred to a companion paper and not relied upon here.
+
+
+\section{CONCLUSIONS}
+
+We have investigated the origin of the sub-classical core spacing in HGBS filaments, combining an observational re-analysis, a large MHD simulation campaign, and a hierarchical-fibre forward-model. Our main conclusions are:
+
+\begin{itemize}
+    \item \textbf{Established.}
+    \begin{itemize}
+        \item Gaia DR3 distances raise the core-weighted mean spacing modestly and region-dependently ($\sim10\%$ for the robust regions; large for Aquila/Serpens, negligible for the dominant Orion~B, whose pre-Gaia HGBS distance was already $\sim400$\,pc). The absolute $\lambda/W$ uses the adopted Gaia distances and does not depend on this revision.
+        \item The primary physical core spacing is $\lambda/W\approx1.35$ (median of direct region-specific Plummer fits); the fixed $0.10$\,pc-width value is $\lambda/W\approx1.2$ under the data-matched clustered injection--recovery correction (the cores are random-to-clustered, not periodic; Section~\ref{sec:clustering}), rising to $\approx1.9$ only under a periodic correction the data reject. Both are robust in sign against population splits, injection--recovery bias correction, hierarchical bootstrap, clustered-injection tests, and an independent FilFinder cross-check. Its precise value carries a factor-$\sim$2 skeleton-algorithm systematic. Direct Plummer fits to all four regions ($W_{\rm fil}=0.11$--$0.16$\,pc, $p\simeq2.0$) give $\lambda/W=1.1$--$1.8$ (median $1.35$), all sub-classical, with Taurus (a classical outlier only under a narrow Gaussian-crest width) the most sub-classical at $\approx1.1$; the bias-corrected per-region values are $1.0$, $1.9$, $2.1$, $1.8$ (Taurus, Orion~B, Perseus, Aquila), and dropping Taurus leaves the median at $1.9$. The pairwise median converges to $L/3$, not the fragmentation wavelength. The core distribution is random-to-clustered rather than periodic (Section~\ref{sec:clustering}), which both fixes the injection--recovery correction to the clustered branch and independently disfavours a single quasi-periodic fragmentation wavelength.
+        \item The measurement pipeline is unbiased for extracting $\lambda/W$ from a clean cube (closed-loop recovery to $<0.5\%$; Section~\ref{sec:validation_endtoend}; this does not test the skeletonisation, the dominant observational systematic). The dominant fragmentation wavelength is sub-classical, $\approx0.3$--$0.5$ times the classical value ($\approx1$ background Jeans length): the low-$n$ growth-rate modes are resolution-stable, but the spectrum does not turn over within the converged band, so we quote an order-$\lambda_{\rm J}$ value, not a precisely-located maximum. Boundary condition, profile and seed each move it by $\lesssim40\%$.
+        \item This is the wavelength expected for a filament that fragments while still contracting, rather than from hydrostatic equilibrium \citep{Clarke2016}. \textbf{The primary conclusion is under-determination, not sufficiency.} At present precision the observed spacing is consistent with several distinct mechanisms and does not discriminate among them. What is robust is the \emph{sign}, sub-classical by a factor $\approx3$--$4$ relative to the classical $\lambda_{\rm m}\approx5$--$6\times$FWHM; the precise value spans a factor of several (Table~\ref{tab:headline}), and whether single-filament fragmentation is by itself \emph{sufficient} depends on the segmentation convention. In matched (beam-convolved Plummer) units the simulated single-filament wavelength is $\approx1.0$--$1.3$ (the spread reflecting the Gaussian$\to$Plummer broadening factor). It sits between the FilFinder value ($0.4$--$0.8$) and the DisPerSE value ($1.9$), and is consistent with our own directly-measured region-Plummer values ($1.2$--$1.35$) --- though, because the simulated value is an \emph{upper limit}, a shorter true wavelength would make single-filament fragmentation \emph{over}-produce cores relative to the observed spacing, a constraint in the opposite sense to fibre projection (which decreases the apparent spacing) and one that would then require core coalescence rather than additional compression. So single-filament fragmentation \emph{matches} under the region-Plummer widths, \emph{under}-predicts the spacing under DisPerSE ($\sim1.3$ vs $1.9$), and \emph{over}-predicts under FilFinder: no single convention makes it decisively sufficient or insufficient. Hierarchical fibres, magnetic effects and turbulence therefore remain equally admissible. \emph{This holds, moreover, only for the near-critical, longitudinal-field geometry}: the perpendicular-field case that Planck indicates is common is numerically unresolved here ($N_J\approx1$--$2$), so no quantitative single-filament prediction exists for the majority geometry. The discriminating test is a fibre-resolved core spacing: recovering the classical $\lambda_{\rm m}\approx5$--$6\times$FWHM within individual velocity-coherent fibres would favour projection; its absence would favour the single-filament scale.
+    \end{itemize}
+
+    \item \textbf{Viable (but not required) explanations.}
+    \begin{itemize}
+        \item \emph{Hierarchical-fibre projection}: if filaments are bundles of $N$ velocity-coherent fibres of width $W_{\rm fib}$, each fragmenting at its own classical wavelength, the filament-level spacing is $\lambda/W_{\rm fil}\approx(5$--$6)r/N$ ($r=W_{\rm fib}/W_{\rm fil}$; fixed-width DisPerSE requires $r/N\approx0.35$, region-Plummer $\approx0.25$). This is a natural reading of the fibre-resolved data \citep{Yang2024,Hacar2013} and also accounts for the large skeleton-algorithm and $L/3$ systematics; but if fibres themselves fragment dynamically (sub-classically, as our own result implies for near-critical self-gravitating cylinders) the required $r/N$ roughly doubles (Section~\ref{sec:fibre_projection}). In that self-consistent case the fibre and single-filament pictures are \emph{not distinct mechanisms}: they are the same sub-classical physics counted at two levels, and the ``$(5$--$6)r/N$'' projection is a genuinely separate mechanism only in the (contradicted) limit of quasi-hydrostatic classical fibres. It is decisively testable with fibre-resolved NN spacing across the robust regions.
+        \item \emph{Magnetic tension}: a shorter spacing requires a \emph{helical}/toroidal field \citep{Fiege2000} (static longitudinal or perpendicular fields do not shorten the axial mode; Section~\ref{sec:magnetic}). Our campaign contains no helical-field runs, so this route is \emph{untested} here, neither required nor excluded; non-helical tension is disfavoured as a shortening mechanism on the theory above.
+        \item Perpendicular-field calculations (the majority geometry) are numerically unconverged ($N_J\approx1$--$2$ cells per Jeans length; Appendix~\ref{sec:validation}) and are not a physical constraint at present; the earlier ``perpendicular-field tension'' is a symptom of comparing against an ill-defined single-filament target, not an established discrepancy.
+    \end{itemize}
+
+    \item \textbf{Speculative.}
+    \begin{itemize}
+        \item A single illustrative simulation indicates the isothermal assumption can be non-conservative locally under a $\sim12\%$ temperature gradient; a fuller analysis is deferred to a companion paper.
+    \end{itemize}
+
+    \item \textbf{Outlook.} The decisive test that would distinguish single-filament from hierarchical-fibre fragmentation is fibre-resolved NN spacing on the full HGBS catalogues; complementary tests are high-resolution polarimetry of filament interiors, a resolution-convergence study of the perpendicular-field case, and MHD runs with a spatially varying temperature field.
+    \end{itemize}
+
+\section*{ACKNOWLEDGMENTS}
+
+We thank the Herschel Gould Belt Survey team for the datasets. HGBS data are available from the Herschel Science Archive. The Athena++ simulations were run on cloud computing infrastructure (Google Cloud E2); the full set of $2243$ Athena++ MHD simulations (Appendix~\ref{sec:campaigns}) consumed of order $10^5$ CPU-hours.
+
+\section*{DATA AVAILABILITY}
+
+The simulation data underlying the figures and tables (derived $\lambda/W$ catalogues, per-run parameter files, and analysis scripts) will be deposited in a public Zenodo archive, with the DOI inserted prior to publication; this deposit will include the HDF5 snapshots of the growth-rate resolution-convergence subset ($128^3$--$512^3$), so that the central convergence claim can be verified independently, with the remaining snapshots ($\sim$0.1\,TB) available from the corresponding author on reasonable request. The analysis code was validated end to end by the closed-loop injection--recovery test (Appendix~\ref{sec:val_appendix}), and the nearest-neighbour estimator was independently re-implemented and checked against the deposited catalogue counts and medians (Table~\ref{tab:nnpipeline}). The HGBS column-density and skeleton maps are available from the Herschel Science Archive and the HGBS Archive.
+
+\bibliographystyle{mnras}
+\appendix
+
+\section{Validation of the measurement and the width normalisation}
+\label{sec:val_appendix}
+
+This appendix documents the three checks summarised in Section~\ref{sec:validation_endtoend}.
+
+To verify that the routines extracting $\lambda$ and $W$ carry no hidden normalisation bias, we built synthetic filament cubes at the simulation resolution with a \emph{known} transverse FWHM $W_{\rm in}$ and a \emph{known} axial bead spacing $\lambda_{\rm in}$ (localised Gaussian beads on a Gaussian transverse profile) and passed them through the identical pipeline used on the simulations (spine-averaged transverse profile, Gaussian and beam-convolved Plummer width fits, axial peak-spacing). The recovered $\lambda/W$ matches the input to better than $0.5\%$ over $\lambda/W_{\rm in}=1.4$--$5.7$ (Fig.~\ref{fig:pipeval}). The measurement is therefore unbiased, and the corrected width bookkeeping of Eq.~(\ref{eq:t1_apply}) is confirmed.
+
+\begin{figure}
+\includegraphics[width=0.46\textwidth]{figures/fig_pipeline_validation.pdf}
+\caption{Closed-loop validation: the pipeline recovers the injected $\lambda/W$ to within $0.4\%$ over $\lambda/W=1.4$--$5.7$.}
+\label{fig:pipeval}
+\end{figure}
+
+\emph{Growth-rate measurement and convergence.} The fragmentation wavelength quoted in Section~\ref{sec:validation_endtoend} is the peak of the growth-rate spectrum, which is physically meaningful and numerically convergeable; the alternative of counting density peaks late in the collapse is not, because a collapsing filament sub-fragments and higher resolution merely resolves finer peaks. We seeded eight ambient-confined filaments ($f=1.1$, $1.2$, $1.5$; $\beta=1$; two seeds) with a small broadband perturbation ($\delta v/c_s=10^{-3}$, twelve axial modes) and, at each output, computed the power in every axial Fourier mode of the spine-averaged density contrast. Fitting each mode's growth over the interval in which $\delta_{\rm rms}$ rises from $3\times$ the seed amplitude to $0.3$ gives $\Gamma(\lambda)$ (the growth is fast and accelerates towards collapse, so this is the dominant mode of a collapsing filament rather than a quasi-static linear mode; Fig.~\ref{fig:growthcurves}). The spectrum rises as $\lambda$ decreases and is resolution-converged for $\lambda\gtrsim1\,\lambda_{\rm J}$: for the $f=1.1$ ladder the mode at $n=7$ ($\lambda=1.14\,\lambda_{\rm J}$) has $\Gamma=17.8$, $18.5$ and $18.7$ at $128^3$, $256^3$ and $512^3$ (stable to $\sim5\%$), and all modes with $\lambda\gtrsim1\,\lambda_{\rm J}$ overlap across resolution (Fig.~\ref{fig:growthrate}a). At smaller scales ($\lambda\lesssim0.9\,\lambda_{\rm J}$) the growth rate rises with resolution, the numerical signature of unresolved sub-fragmentation. Linear theory for a self-gravitating cylinder requires $\Gamma(k)$ to peak and turn over at small $\lambda$ (the thermal-pressure cutoff), so this small-scale rise is not physical; the converged spectrum reaches the short-wavelength edge of its resolved band near $\lambda_{\rm max}\approx1.0$--$1.14\,\lambda_{\rm J}$, which we adopt as an \emph{upper limit} on the dominant physical wavelength (it does not turn over within the converged band). Across the eight runs $\lambda_{\rm max}=0.9$--$1.1\,\lambda_{\rm J}$ ($\lambda_{\rm max}/W_{\rm FWHM}=1.5$--$2.0$; Table~\ref{tab:wave}), declining mildly with line mass, so $\lambda_{\rm max}/\lambda_{\rm IM92}=0.4$--$0.5$ (closest to $0.5$ for the near-critical filaments). Applying the identical procedure to the equilibrium-control runs (seeded Ostriker and subcritical Gaussian; below) recovers the same converged peak, confirming the number is not specific to the Gaussian near-critical setup. The convergence ladder is complete ($128^3$--$512^3$) for $f=1.1$; $f=1.5$ has two resolutions. Extending the measurement to $f=1.8$ and $2.0$ gives the same sub-classical scale ($\lambda_{\rm max}/W\approx1.2$ by the spectral-peak metric), so the result holds across the HGBS ensemble line-mass range ($f\approx0.7$--$1.9$; Table~\ref{tab:feff}) and is not an artefact of restricting the calibration to $f\le1.5$. These runs use reflecting transverse boundaries, $\beta=1$, $\theta=0^\circ$; the supercritical ensemble (Section~\ref{sec:modecompetition}) finds the fragmentation spacing statistically indistinguishable between periodic and reflecting boundaries (KS $p=0.17$), so the wavelength is not a boundary artefact, while its $\beta$- and geometry-dependence is indicative only.
+
+\emph{Comparison with linear theory, and the gravity solver.} Figure~\ref{fig:dispersion} overplots the \emph{solved} linear dispersion relation of the isothermal self-gravitating equilibrium cylinder on the measured spectrum. We obtain it from scratch: linearising the continuity--Euler--Poisson system for $m=0$ (compressive) perturbations of the Ostriker (1964) profile and solving the resulting coupled radial eigenvalue problem (generalised eigenproblem, $K_0$-matched outer boundary) reproduces the standard result to better than one per cent --- the growth rate peaks at $\lambda_{\rm max}=22.0\,H$ ($k_{\rm max}H=0.285$) with $\Gamma_{\rm peak}=0.343\,(4\pi G\rho_c)^{1/2}$ and vanishes at the thermal cutoff $\lambda_{\rm cut}=11.1\,H$ ($k_{\rm cut}H=0.565$), matching \citet{Nagasawa1987}, \citet{Inutsuka1992} and \citet{Fischera2012}. In our background-Jeans normalisation $\lambda_{\rm IM92}=22\,H=2.3\,\lambda_{\rm J}$, so the equilibrium spectrum peaks at $2.3\,\lambda_{\rm J}$ and turns over at the analytic cutoff $\approx1.16\,\lambda_{\rm J}$ (Fig.~\ref{fig:dispersion}, solid curve). The measured spectrum of the dynamically collapsing filament does the opposite: it rises monotonically towards shorter wavelength and passes straight \emph{through} the equilibrium cutoff without turning over within the resolution-converged band ($\lambda\gtrsim1\,\lambda_{\rm J}$). We emphasise that the short-wavelength rise ($\lambda\lesssim0.9\,\lambda_{\rm J}$) is identified as numerical \emph{not} because it lies beyond the analytic cutoff --- a genuinely contracting filament is expected to have real growth below the background cutoff --- but because it \emph{diverges with resolution} (the $128^3$, $256^3$ and $512^3$ curves separate and grow with $N$ in the grid-scale band), whereas the low-$n$ modes at $\lambda\gtrsim1\,\lambda_{\rm J}$ are resolution-stable to $\sim5\%$; the fit-window-invariance test (below) shows the selected wavelength is imprinted early while the mode is resolved. The dominant physical wavelength is therefore an order-$\lambda_{\rm J}$ \emph{upper limit}, sub-classical by a factor $\approx2.5$--$3$ relative to the solved equilibrium peak (equivalently $\lambda_{\rm max}/W_{\rm FWHM}\approx2$ versus the classical $\lambda_{\rm m}/{\rm FWHM}\approx5$--$6$; \citealt{Fischera2012}) --- the direction expected for a contracting, non-equilibrium filament \citep{Clarke2016,Clarke2017} --- with the equilibrium curve shown as the classical reference, not as a fit to the data. The comparison is best made as the density-independent ratio $\lambda/W_{\rm FWHM}$: the fastest-growing mode is imprinted early, while the filament is still near the background density (the fit-window-invariance test below shows the selected mode is fixed at central contrast $C\approx1$), so the sub-classical result is not an artefact of evaluating the classical scale at the wrong density. Self-gravity is solved with a periodic FFT while the transverse hydrodynamic boundaries are reflecting; the transverse domain-doubling test ($2\to4\,\lambda_{\rm J}$) leaves $\lambda_{\rm max}$ unchanged, but that test retains the same solver--boundary pairing, so we note the mismatch as a residual (though small: the transverse boundary potential is a few per cent of the on-axis value at the measurement epoch) rather than a fully-isolated result.
+
+\begin{figure}
+\includegraphics[width=0.48\textwidth]{figures/fig_dispersion.pdf}
+\caption{The from-scratch--solved eigenvalue dispersion relation of the isothermal self-gravitating equilibrium cylinder (\citealt{Nagasawa1987}; \citealt{Inutsuka1992}), validated to $<1\%$ against \citet{Nagasawa1987} and \citet{Fischera2012}, not a fit: it peaks at the established most-unstable wavelength $\lambda_{\rm IM92}\approx2.3\,\lambda_{\rm J}$ and vanishes at the thermal cutoff $\lambda_{\rm crit}\approx1.2\,\lambda_{\rm J}$, overplotted on the measured growth-rate spectrum ($f=1.1$, three resolutions), each normalised to its value at $\lambda=1.14\,\lambda_{\rm J}$. The analytic curve peaks at the classical value and vanishes below $\lambda_{\rm crit}$; the measured spectrum instead rises monotonically into the grid-scale region (shaded), confirming that the small-scale rise is numerical. The measured wavelength ($\approx1.1\,\lambda_{\rm J}$, dotted; $\lambda_{\rm max}/W_{\rm FWHM}\approx2$) lies a factor $\approx2.5$--$3$ below the analytic equilibrium peak ($\lambda_{\rm m}\approx5$--$6\times$FWHM), the dynamical (contracting-filament) shift, and near the analytic cutoff; we therefore treat it as an order-$\lambda_{\rm J}$, sub-classical value rather than a precisely-located maximum (text).}
+\label{fig:dispersion}
+\end{figure}
+
+\emph{Nonlinear bead spacing and timescale separation.} Because the growth rate is fitted while the filament is itself contracting, we checked that the linear peak is the scale at which discrete cores actually form. Evolved into the non-linear regime, the near-critical runs develop discrete axial beads whose spacing, $\lambda_{\rm bead}\approx1.1$--$1.6\,\lambda_{\rm J}$ (measured before bead merging at high contrast reduces the count), overlaps the growth-rate range $\lambda_{\rm max}=0.89$--$1.14\,\lambda_{\rm J}$ (Table~\ref{tab:wave}): the two independent measurements agree at the order-$\lambda_{\rm J}$ level, though not to better than the $\sim30\%$ epoch- and seed-dependent scatter of the bead count. The growth is fast: over the fit window the mode e-folds $\sim3$--$4$ times while the central contrast rises from $C\approx20$ to $\gtrsim100$, so the background evolves on a timescale only a few times longer than the mode growth ($\tau_{\rm growth}/\tau_{\rm bg}\approx0.3$--$0.8$), marginal timescale separation as expected for a collapsing rather than a quasi-static filament. Because of this we tested directly whether the extracted spectrum depends on the fit window: restricting the fit to the \emph{early}, near-static phase ($\delta_{\rm rms}<0.05$, where $N_J\gtrsim5$ and the background is closest to hydrostatic) reproduces the full-window growth-rate spectrum to better than $1\%$ at every physical mode, and the peak mode is unchanged, at $f=1.1$ and $1.5$. The measured wavelength is therefore set at the low-contrast start of the window and is not an artefact of fitting the contracting late-time background; $\Gamma(\lambda)$ is the effective growth rate of the collapsing configuration, but the \emph{selected wavelength} is fit-window invariant, and is independently corroborated by the nonlinear bead spacing above.
+
+\emph{Pipeline benchmark against the analytic Jeans rate.} To verify that the growth-rate machinery returns physical rates, we seeded a near-uniform self-gravitating box ($\rho\simeq\rho_0$) and measured $\Gamma$ per axial mode. For the well-resolved long-wavelength modes the measured rates match the analytic uniform-medium value $\Gamma(k)=\sqrt{4\pi G\rho_0-c_s^2k^2}$ to $1$--$7\%$ ($n{=}1$: $6.16$ vs $6.23$; $n{=}2$: $6.24$ vs $6.08$; $n{=}4$: $5.80$ vs $5.44$), confirming the pipeline. This also explains the apparently large filament rates ($\Gamma\approx18$--$26$): $\Gamma(\rho_0)=\sqrt{4\pi G\rho_0}\approx6.3$, so the filament value corresponds to $\rho/\rho_0\approx(18/6.3)^2\approx8$, i.e.\ $\Gamma$ is the \emph{local} free-fall rate at the elevated central density during the fit window, not an anomalous super-free-fall rate.
+
+\emph{Robustness to line-mass, initial profile and field strength.} The order-$\lambda_{\rm J}$ result is not specific to one configuration. Repeating the growth-rate measurement (i) across $\beta=0.3$, $0.5$, $1.0$ (longitudinal, $f=1.1$) gives $\lambda_{\rm max}=1.00$, $1.14$, $0.80\,\lambda_{\rm J}$ --- order $\lambda_{\rm J}$ with only a weak, non-monotonic $\beta$-dependence within the mode-quantisation step ($\Delta\lambda=L_x/[n(n{+}1)]\approx0.13$--$0.15\,\lambda_{\rm J}$ near $\lambda\sim1$), i.e.\ not a resolved physical trend, so the $\beta=1$ headline is representative and the stronger $\beta$-trend of the late-time bead count in Section~\ref{sec:supplementary_campaigns} (which we do not adopt for the wavelength) is a late-epoch artefact; and (ii) replacing the Plummer-like ($p\simeq2$) initial profile with a Ostriker equilibrium profile ($p=4$) gives $\lambda_{\rm max}=0.80\,\lambda_{\rm J}$ at $128^3$ and $256^3$ --- again order $\lambda_{\rm J}$, so the sub-classical scale is not an artefact of the adopted profile index. Notably even the $p=4$ cylinder fragments at $\approx0.8\,\lambda_{\rm J}$ (an order-$\lambda_{\rm J}$, sub-classical scale), not near the classical $\lambda_{\rm m}\approx5$--$6\times$FWHM. We caution, however, that this $p=4$ run is only \emph{approximately} in equilibrium in our discretised setup: its central contrast relaxes by a factor $\sim10$ before beading, so it too fragments from a contracted, dynamical state. We therefore cannot cleanly separate a genuine contraction effect from this initial relaxation, and we report the sub-classical scale as a generic outcome of fragmentation from a non-equilibrium, contracting state --- \emph{not} as a demonstration that a true equilibrium cylinder cannot fragment at the classical scale (which would require a properly relaxed, force-balanced equilibrium control we do not achieve here; Section~\ref{sec:limitations}).
+
+\emph{Recovery of the classical limit, and an equilibrium control.} Three checks establish that the sub-classical result is not an artefact of the measurement or of the initial state. First, the closed-loop test above recovers an \emph{injected} $\lambda/W$ of up to $5.7$, spanning the classical range $\lambda_{\rm IM92}/W\approx5$--$6$, to better than $0.5\%$: the pipeline carries no downward bias and would report the classical wavelength if it were present. Second, an \emph{unperturbed} Ostriker cylinder at the critical line mass, evolved with no seed, does not run away. Its central contrast rises about tenfold (from $C\approx3$ to $C\approx28$) over the first $\sim0.5\,t_{\rm J}$ as the discretised profile settles to a more concentrated radial balance, then holds steady at $C\approx28$ through $t=2\,t_{\rm J}$ with the axial density variance identically zero. The initial Ostriker state is thus not force-balanced better than this $\sim$tenfold level, but it relaxes to a stable radial configuration rather than running away, so the collapse of the seeded runs is the axial fragmentation instability, not a pathological initial state. Third, when the same Ostriker cylinder is seeded, and likewise a Gaussian ladder spanning $f=0.7$--$0.95$, the growth-rate spectrum peaks at the same resolution-converged mode as the near-critical runs ($\lambda_{\rm max}\approx1\,\lambda_{\rm J}$, $\approx0.5$ times classical), each cylinder having contracted by a large factor ($C\gtrsim20$) before the axial mode saturates; the late-time dominant-power mode is shorter still ($\lambda/\lambda_{\rm IM92}\approx0.3$), a lower bound reflecting continued sub-fragmentation. (These Gaussian filaments are not in equilibrium and collapse at every $f$, so the ladder tests the persistence of sub-classical fragmentation across line mass, not subcritical stability; the unperturbed-Ostriker run and the closed-loop test are the controls proper.) No self-gravitating isothermal cylinder in our setup, Gaussian or Ostriker, fragments at the classical equilibrium wavelength, because fragmentation always proceeds from a contracted, dynamical state rather than from the marginally-stable hydrostatic configuration the classical calculation assumes. The classical value is thus recovered where the classical assumptions hold (injected synthetic data) and is physically absent for a real self-gravitating filament, which is the paper's central point made quantitative.
+
+\begin{table}
+\caption{Growth-rate (dominant-mode) measurements. $\lambda_{\rm max}$ is the peak of $\Gamma(\lambda)$, $\Gamma_{\rm peak}$ its growth rate, $W$ the \emph{per-run} Gaussian formation FWHM ($\approx0.55$--$0.67\,\lambda_{\rm J}$, not a single fixed value; all in $\lambda_{\rm J}$). The $f=1.8$, $2.0$ rows extend the \emph{same} growth-rate method into the supercritical regime (single resolution, so not part of the convergence ladder); they give the same sub-classical scale as the bead-count supercritical ensemble ($\lambda/\lambda_{\rm J}\approx0.98$; Table~\ref{tab:cross_campaign}), so the two wavelength-measurement methods agree at the $\sim\lambda_{\rm J}$ level where they overlap. The wavelength resolution is set by the discrete axial modes ($\lambda=L_x/n$, $\Delta\lambda\approx0.15\,\lambda_{\rm J}$ near $\lambda\sim1$), which bounds the precision of $\lambda_{\rm max}$.}
+\label{tab:wave}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{cccccc}
+\toprule
+$f$ & resolution & seed & $\lambda_{\rm max}$ & $\Gamma_{\rm peak}$ & $\lambda_{\rm max}/W$ \\
+\midrule
+1.1 & $128^3$ & 42  & 1.14 & 17.8 & 1.95 \\
+1.1 & $256^3$ & 42  & 1.14 & 18.5 & 1.99 \\
+1.1 & $512^3$ & 42  & 1.14 & 18.7 & 2.00 \\
+1.2 & $256^3$ & 42  & 1.00 & 19.1 & 1.81 \\
+1.2 & $256^3$ & 137 & 0.89 & 20.1 & 1.60 \\
+1.5 & $256^3$ & 42  & 0.89 & 21.2 & 1.47 \\
+1.5 & $256^3$ & 137 & 0.89 & 22.1 & 1.47 \\
+1.5 & $512^3$ & 42  & 0.89 & 21.5 & 1.47 \\
+1.8 & $256^3$ & 42  & 0.80 & 24.6 & 1.19 \\
+2.0 & $256^3$ & 42  & 0.80 & 26.3 & 1.20 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A complementary end-to-end grid of 21 ambient-confined runs ($f=1.5$--$3.0$, $\beta=0.5$--$2.0$, two seeds), forward-modelled through beam convolution and Plummer fitting, gives a consistent picture: the spacing in background-density Jeans lengths is $\lambda/\lambda_{\rm J}(\rho_0)\approx0.9$--$1.2$, and the same growth-rate/late-peak distinction accounts for its scatter. Boundary condition, profile and seed each move the value by $\lesssim40\%$ (medians $1.2$ reflecting, $0.8$ periodic, $1.4$ user; $1.4$ Gaussian, $0.9$ Ostriker), and the central-to-ambient contrast varying by a factor $\approx1.6$ across the grid shifts it by only $\sim0.3$, so the wavelength is a property of the filament, not of the imposed confinement. All per-run measurements (configuration, resolution, $\lambda_{\rm max}$, growth rate, epoch) are released with the public data archive.
+
+\section{Simulation Validation Details}
+\label{sec:validation}
+
+To ensure robustness against numerical effects we performed three validation tests (83 simulations). For resolution, six parameter points run at both $128^3$ and $256^3$ with matched problem-generator settings, initial conditions, seeds and boundaries all fragment at both resolutions; the mean timescale ratio is
+\begin{equation}
+\frac{t_{\rm frag}(256^3)}{t_{\rm frag}(128^3)} = 0.915 \pm 0.012,
+\end{equation}
+an $8.5\%\pm1.2\%$ offset (from the ratio $0.915\pm0.012$), all points within a $\pm11\%$ band (Fig.~\ref{fig:resolution}), so the fragmentation classification is resolution-independent. Replacing the Gaussian-profile initial condition with uniform density yields identical classifications at all 10 tested points.
+
+A fragmentation-wavelength measurement is trustworthy only if the local Jeans length remains resolved ($\gtrsim4$ cells; Truelove et al.\ 1997) up to the epoch at which the spacing is measured. The Truelove criterion was derived to prevent \emph{artificial} fragmentation in self-gravitating collapse; we apply it here as a necessary resolution-adequacy condition for a growth-rate measurement, because an under-resolved Jeans length spuriously enhances small-scale power, exactly the grid-scale, resolution-divergent rise we identify as numerical (Fig.~\ref{fig:growthrate}a). We therefore tracked the minimum cells-per-local-Jeans-length, $N_J$, along each collapse trajectory (Table~\ref{tab:truelove}). For the \emph{longitudinal} runs (both the near-critical calibration and the supercritical ensemble that provides the headline longitudinal value), the inter-bead wavelength ($\lambda\approx\lambda_{\rm J}$, itself resolved by $\sim32$ cells) is established at moderate density contrast ($C\approx20$--$40$ near-critical; early beading well before runaway for the supercritical ensemble), where $N_J\approx5$--$7$ (Truelove satisfied); $N_J$ drops below 4 only at $C>170$, i.e. \emph{after} the spacing is first set. For the perpendicular \emph{ambipolar} runs, by contrast, beading is measured only at $C\approx250$--$560$ where $N_J\approx1$--$2$ (Truelove violated), and the short perpendicular values are \emph{resolution-limited upper limits}. This is why we base the quoted wavelength on the linear growth-rate spectrum rather than on late-time peak counts: the growth-rate peak is established when $N_J\gtrsim5$ and is resolution-converged (the $128^3$--$512^3$ ladder above), whereas the late-time peak count is set by sub-fragmentation at $N_J<4$ and is not.
+
+\begin{table}
+\caption{Jeans (Truelove) resolution: minimum cells per local Jeans length $N_J$ at the epoch the spacing is measured, and the density contrast $C$ at that epoch.}
+\label{tab:truelove}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{3.6cm}cc}
+\toprule
+Configuration & $C$ at measurement & min $N_J$ \\
+\midrule
+Near-critical longitudinal (calibration) & $20$--$40$ & $5$--$7$ (OK) \\
+Supercritical longitudinal ensemble (headline) & early beading, moderate $C$ & $\gtrsim4$ (OK) \\
+Perp.\ ambipolar (tension side) & $250$--$560$ & $1$--$2$ (violated) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}
+\includegraphics[width=0.48\textwidth]{figures/figR1_resolution_scatter.pdf}
+\caption{Resolution convergence with matched problem generator: $t_{\rm frag}(256^3)$ versus $t_{\rm frag}(128^3)$ for six parameter points, all within a $\pm11\%$ band (mean ratio $0.915\pm0.012$).}
+\label{fig:resolution}
+\end{figure}
+
+\subsubsection{Equation of State Sensitivity}
+
+Testing mildly sub-isothermal equations of state with $\gamma = 0.9$ and $0.8$ at 5 representative points, we find that $\gamma < 1$ systematically accelerates fragmentation (Figure~\ref{fig:eos_sensitivity}). At $\gamma = 0.8$, all 5 test points fragmented at $t_{\rm frag} \approx 0.66$--$0.68\,t_{\rm J}$, approximately half the isothermal fragmentation timescale for the same $(f, \beta, \mathcal{M})$; at $\gamma = 0.9$ fragmentation is delayed (1 of 5 fragments by the integration limit). These are relative comparisons at matched $t_{\rm J}$: the point is that $\gamma<1$ shortens $t_{\rm frag}$ monotonically, consistent with the isothermal runs of the main text (which fragment at $t_{\rm frag}\approx1.1$--$1.2\,t_{\rm J}$); we draw no stability inference from the finite integration window.
+
+For $\gamma<1$ the pressure response to compression weakens ($P\propto\rho^{\gamma}$ rises more slowly than isothermal), reducing Jeans support and hastening fragmentation. Far-IR-cooled cloud filaments typically have $\gamma\approx0.7$--$0.95$, so the isothermal predictions are conservative: real filaments are if anything more fragmentation-prone.
+
+\begin{figure}
+\includegraphics[width=0.48\textwidth]{figures/fig6_phase3_eos_sensitivity.pdf}
+\caption{Equation of state sensitivity test. Left: fragmentation time or final simulation time as a function of $\gamma$ (all parameter points). Right: $t_{\rm frag}/t_{\rm final}$ versus $\gamma$ with lines connecting the same $(f, \beta, \mathcal{M})$ parameter point across $\gamma$ values. Sub-isothermal EOS ($\gamma < 1$) systematically reduces $t_{\rm frag}$.}
+\label{fig:eos_sensitivity}
+\end{figure}
+
+
+\section{Complete simulation campaign list}
+\label{sec:campaigns}
+
+Table~\ref{tab:campaigns} lists every simulation campaign cited in the manuscript. Rows 5--8 are the components of what was previously reported as a single Field-Geometry campaign (314 runs); they are counted individually here and the 314 aggregate is \emph{not} added separately.
+
+\begin{table*}
+\caption{Complete list of simulation campaigns underlying the paper.}
+\label{tab:campaigns}
+\begin{tabular}{cllrl}
+\toprule
+\# & Campaign (section) & Coverage $(f,\beta,\mathcal{M},\theta,\eta_{\rm AD})$ & Runs & Independent? \\
+\midrule
+1  & Base three-regime grid (\S4.5; Fig.~\ref{fig:regime}) & $f\approx1$; $\beta\,0.05$--$5$; $\mathcal{M}\,0.5$--$5$; $\theta=0$; ideal & 208 & yes \\
+2  & Transition grid / DTC (\S4.3; Fig.~\ref{fig:beading_threshold}) & $f\,1.4$--$2.2$; $\beta\,0.3$--$1.3$; $\mathcal{M}\,1$--$5$; $\theta=0$ & 540 & yes \\
+3  & Supercritical grid (\S4.6) & $f\,1.1$--$3.0$; $\beta\,0.3$--$5.0$; $\mathcal{M}\,0.5$--$3$; periodic & 654 & yes \\
+4  & Validation (\S4.4; App.~\ref{sec:validation}) & resolution / IC / EOS convergence & 83 & yes \\
+5  & Near-critical (\S4.7.1) & $f\,1.0$--$1.2$; $\beta\,0.3$--$1.0$; $\mathcal{M}\,1$--$2$; $\theta=0$ & 80 & FG component \\
+6  & Perpendicular (\S4.7.2) & $\theta=90^\circ$; $f\,1.2$--$1.5$; $\beta\,0.3$--$2.0$ & 96 & FG component \\
+7  & Oblique calibration (\S4.7.3) & $\theta=30/45/60^\circ$; $\beta\,0.5$--$2.0$ & 108 & FG component \\
+8  & Adiabatic EOS (\S4.7.4; Fig.~\ref{fig:adia_comparison}) & $\gamma=5/3$; $f\,1.0$--$1.2$ & 30 & FG component \\
+9  & Turbulence + perp-$\beta$ + crit.-transition (\S4.8) & $\delta v/c_s\,10^{-4}$--$1$; $\beta\,0.3$--$2$ & 289 & yes (aggregate) \\
+10 & Targeted DTC re-runs (Fig.~\ref{fig:beading_threshold}) & $\beta=0.3,\mathcal{M}=1$; extended timeout & 25 & yes \\
+11 & Direct supercritical ensemble (\S4.6.6; Fig.~\ref{fig:mode_competition}) & $f\,1.5$--$2.0$; $\beta\,0.5$--$2.0$; $\theta=0$; ambient & 39 & yes \\
+12 & Reconciliation suite (\S4.6.6) & $f\times\beta\times2$ seeds; $\theta=0$; ambient & 12 & yes \\
+13 & Ideal-MHD perp.\ $d=1.0$ grid (\S4.6.6) & $\theta=90^\circ$; $\beta\,0.5$--$2.0$; ambient & 18 & yes \\
+14 & Ambipolar non-ideal survey (\S4.6.6; Fig.~\ref{fig:ambipolar}) & $\theta=90^\circ$; $\eta_{\rm AD}\,0.001$--$0.1$; $\beta\,0.5$--$2.0$ & 36 & yes \\
+15 & Growth-rate + equilibrium control + transverse/higher-$f$ tests (\S\ref{sec:validation_endtoend}, App.~\ref{sec:val_appendix}) & $f\,0.7$--$2.0$; $128^3$--$512^3$; Gaussian/Ostriker; transverse $2$--$4\,\lambda_{\rm J}$ & 25 & yes \\
+\midrule
+   & \textbf{Athena++ MHD total} & & $\boldsymbol{2243}$ & \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\bibliography{references_complete}
+
+\end{document}
