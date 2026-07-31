@@ -1,0 +1,219 @@
+\documentclass[usenatbib,twoside,twocolumn]{mnras}
+
+% Paper packages
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+
+% Define astronomical units
+\newcommand{\msun}{\ensuremath{M_{\odot}}}
+\newcommand{\pc}{\ensuremath{\rm pc}}
+\newcommand{\kms}{\ensuremath{\rm km\,s^{-1}}}
+
+\title[Core spacing in HGBS filaments --- Supporting Information]{Supporting Information for \\ ``Core Spacing in Herschel Gould Belt Survey Filaments: a Convention-Limited Sub-Classical Scale and its Interpretation''}
+
+\author[G.~J.~White]{G.~J.~White$^{1,2}$\\
+$^{1}$School of Physical Sciences, The Open University, Walton Hall, Milton Keynes, MK7 6AA, UK\\
+$^{2}$Rutherford Appleton Laboratory, Harwell Science and Innovation Campus, Didcot, OX11 0QX, UK}
+
+\begin{document}
+\maketitle
+
+\noindent\emph{This document is the online-only Supporting Information for the main paper. It collects the exploratory simulation campaigns and numerical-validation details that are summarised, but not relied upon quantitatively, in the main text. Section, equation, table and figure references of the form ``Section~X'', ``Eq.~Y'' etc.\ that are not defined here refer to the main paper. The headline fragmentation wavelength rests solely on the near-critical longitudinal growth-rate ladder of the main paper; nothing in this Supporting Information is load-bearing for the main conclusions.}
+
+\appendix
+\setcounter{section}{0}
+\renewcommand{\thesection}{S\arabic{section}}
+
+\section{Simulation Validation Details}
+\label{sec:validation}
+
+To ensure robustness against numerical effects we performed three validation tests (83 simulations). For resolution, six parameter points run at both $128^3$ and $256^3$ with matched problem-generator settings, initial conditions, seeds and boundaries all fragment at both resolutions; the mean timescale ratio is
+\begin{equation}
+\frac{t_{\rm frag}(256^3)}{t_{\rm frag}(128^3)} = 0.915 \pm 0.012,
+\end{equation}
+an $8.5\%\pm1.2\%$ offset (from the ratio $0.915\pm0.012$), all points within a $\pm11\%$ band (Fig.~\ref{fig:resolution}), so the fragmentation classification is resolution-independent. Replacing the Gaussian-profile initial condition with uniform density yields identical classifications at all 10 tested points.
+
+A fragmentation-wavelength measurement is trustworthy only if the local Jeans length remains resolved ($\gtrsim4$ cells; Truelove et al.\ 1997) up to the epoch at which the spacing is measured. The Truelove criterion was derived to prevent \emph{artificial} fragmentation in self-gravitating collapse; we apply it here as a necessary resolution-adequacy condition for a growth-rate measurement, because an under-resolved Jeans length spuriously enhances small-scale power, exactly the grid-scale, resolution-divergent rise we identify as numerical (Fig.~\ref{fig:growthrate}a). We therefore tracked the minimum cells-per-local-Jeans-length, $N_J$, along each collapse trajectory (Table~\ref{tab:truelove}). For the \emph{longitudinal} runs (both the near-critical calibration and the supercritical ensemble that provides the headline longitudinal value), the inter-bead wavelength ($\lambda\approx\lambda_{\rm J}$, itself resolved by $\sim32$ cells) is established at moderate density contrast ($C\approx20$--$40$ near-critical; early beading well before runaway for the supercritical ensemble), where $N_J\approx5$--$7$ (Truelove satisfied); $N_J$ drops below 4 only at $C>170$, i.e. \emph{after} the spacing is first set. For the perpendicular \emph{ambipolar} runs, by contrast, beading is measured only at $C\approx250$--$560$ where $N_J\approx1$--$2$ (Truelove violated), and the short perpendicular values are \emph{resolution-limited upper limits}. This is why we base the quoted wavelength on the linear growth-rate spectrum rather than on late-time peak counts: the growth-rate peak is established when $N_J\gtrsim5$ and is resolution-converged (the $128^3$--$512^3$ ladder above), whereas the late-time peak count is set by sub-fragmentation at $N_J<4$ and is not.
+
+\begin{table}
+\caption{Jeans (Truelove) resolution: minimum cells per local Jeans length $N_J$ at the epoch the spacing is measured, and the density contrast $C$ at that epoch.}
+\label{tab:truelove}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{3.6cm}cc}
+\toprule
+Configuration & $C$ at measurement & min $N_J$ \\
+\midrule
+Near-critical longitudinal (calibration) & $20$--$40$ & $5$--$7$ (OK) \\
+Supercritical longitudinal ensemble (headline) & early beading, moderate $C$ & $\gtrsim4$ (OK) \\
+Ideal perp., converged ladder ($512^3$; Section~\ref{sec:optional_tests}) & $\approx3$ / $\approx30$ & $170$ / $40$ (OK; monolithic) \\
+Ideal perp., short-$\lambda$ artefact onset & $>10^2$ (grid-dependent) & $\lesssim1$ (violated) \\
+Perp.\ ambipolar (tension side) & $250$--$560$ & $1$--$2$ (violated) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}
+\includegraphics[width=0.48\textwidth]{figures/figR1_resolution_scatter.pdf}
+\caption{Resolution convergence with matched problem generator: $t_{\rm frag}(256^3)$ versus $t_{\rm frag}(128^3)$ for six parameter points, all within a $\pm11\%$ band (mean ratio $0.915\pm0.012$).}
+\label{fig:resolution}
+\end{figure}
+
+\subsubsection{Equation of State Sensitivity}
+
+Testing mildly sub-isothermal equations of state with $\gamma = 0.9$ and $0.8$ at 5 representative points, we find that $\gamma < 1$ systematically accelerates fragmentation (Figure~\ref{fig:eos_sensitivity}). At $\gamma = 0.8$, all 5 test points fragmented at $t_{\rm frag} \approx 0.66$--$0.68\,t_{\rm J}$, approximately half the isothermal fragmentation timescale for the same $(f, \beta, \mathcal{M})$; at $\gamma = 0.9$ fragmentation is delayed (1 of 5 fragments by the integration limit). These are relative comparisons at matched $t_{\rm J}$: the point is that $\gamma<1$ shortens $t_{\rm frag}$ monotonically, consistent with the isothermal runs of the main text (which fragment at $t_{\rm frag}\approx1.1$--$1.2\,t_{\rm J}$); we draw no stability inference from the finite integration window.
+
+For $\gamma<1$ the pressure response to compression weakens ($P\propto\rho^{\gamma}$ rises more slowly than isothermal), reducing Jeans support and hastening fragmentation. Far-IR-cooled cloud filaments typically have $\gamma\approx0.7$--$0.95$, so the isothermal predictions are conservative: real filaments are if anything more fragmentation-prone.
+
+\begin{figure}
+\includegraphics[width=0.48\textwidth]{figures/fig6_phase3_eos_sensitivity.pdf}
+\caption{Equation of state sensitivity test. Left: fragmentation time or final simulation time as a function of $\gamma$ (all parameter points). Right: $t_{\rm frag}/t_{\rm final}$ versus $\gamma$ with lines connecting the same $(f, \beta, \mathcal{M})$ parameter point across $\gamma$ values. Sub-isothermal EOS ($\gamma < 1$) systematically reduces $t_{\rm frag}$.}
+\label{fig:eos_sensitivity}
+\end{figure}
+
+\section{Complete simulation campaign list}
+\label{sec:campaigns}
+
+Table~\ref{tab:campaigns} lists every simulation campaign cited in the manuscript. Rows 5--8 are the components of what was previously reported as a single Field-Geometry campaign (314 runs); they are counted individually here and the 314 aggregate is \emph{not} added separately.
+
+\begin{table*}
+\caption{Complete list of simulation campaigns underlying the paper.}
+\label{tab:campaigns}
+\begin{tabular}{cllrl}
+\toprule
+\# & Campaign (section) & Coverage $(f,\beta,\mathcal{M},\theta,\eta_{\rm AD})$ & Runs & Independent? \\
+\midrule
+1  & Base three-regime grid (\S4.5; Fig.~\ref{fig:regime}) & $f\approx1$; $\beta\,0.05$--$5$; $\mathcal{M}\,0.5$--$5$; $\theta=0$; ideal & 208 & yes \\
+2  & Transition grid / DTC (\S4.3; Fig.~\ref{fig:beading_threshold}) & $f\,1.4$--$2.2$; $\beta\,0.3$--$1.3$; $\mathcal{M}\,1$--$5$; $\theta=0$ & 540 & yes \\
+3  & Supercritical grid (\S4.6) & $f\,1.1$--$3.0$; $\beta\,0.3$--$5.0$; $\mathcal{M}\,0.5$--$3$; periodic & 654 & yes \\
+4  & Validation (\S4.4; App.~\ref{sec:validation}) & resolution / IC / EOS convergence & 83 & yes \\
+5  & Near-critical (\S4.7.1) & $f\,1.0$--$1.2$; $\beta\,0.3$--$1.0$; $\mathcal{M}\,1$--$2$; $\theta=0$ & 80 & FG component \\
+6  & Perpendicular (\S4.7.2) & $\theta=90^\circ$; $f\,1.2$--$1.5$; $\beta\,0.3$--$2.0$ & 96 & FG component \\
+7  & Oblique calibration (\S4.7.3) & $\theta=30/45/60^\circ$; $\beta\,0.5$--$2.0$ & 108 & FG component \\
+8  & Adiabatic EOS (\S4.7.4; Fig.~\ref{fig:adia_comparison}) & $\gamma=5/3$; $f\,1.0$--$1.2$ & 30 & FG component \\
+9  & Turbulence + perp-$\beta$ + crit.-transition (\S4.8; incl.\ turbulent-support $f_{\rm eff}$ 90 + physical-vs-synthetic turbulence comparison 54) & $\delta v/c_s\,10^{-4}$--$1$; $\beta\,0.3$--$2$ & 289 & yes (aggregate) \\
+10 & Targeted DTC re-runs (Fig.~\ref{fig:beading_threshold}) & $\beta=0.3,\mathcal{M}=1$; extended timeout & 25 & yes \\
+11 & Direct supercritical ensemble (\S4.6.6; Fig.~\ref{fig:mode_competition}) & $f\,1.5$--$2.0$; $\beta\,0.5$--$2.0$; $\theta=0$; ambient & 39 & yes \\
+12 & Reconciliation suite (\S4.6.6) & $f\times\beta\times2$ seeds; $\theta=0$; ambient & 12 & yes \\
+13 & Ideal-MHD perp.\ $d=1.0$ grid (\S4.6.6) & $\theta=90^\circ$; $\beta\,0.5$--$2.0$; ambient & 18 & yes \\
+14 & Ambipolar non-ideal survey (\S4.6.6; Fig.~\ref{fig:ambipolar}) & $\theta=90^\circ$; $\eta_{\rm AD}\,0.001$--$0.1$; $\beta\,0.5$--$2.0$ & 36 & yes \\
+15 & Growth-rate + equilibrium control + transverse/higher-$f$ tests (\S\ref{sec:validation_endtoend}, App.~\ref{sec:val_appendix}) & $f\,0.7$--$2.0$; $128^3$--$512^3$; Gaussian/Ostriker; transverse $2$--$4\,\lambda_{\rm J}$ & 25 & yes \\
+16 & Axial-resolution stability (\S\ref{sec:optional_tests}) & $f=1.1$; $\theta=0$; $1024\times128^2$ growth-rate rerun & 1 & yes \\
+17 & Ideal-perpendicular refinement ladder (\S\ref{sec:optional_tests}; Table~\ref{tab:truelove}) & $\theta=90^\circ$; $f=1.1$; $128^3$--$512^3$ & 3 & yes \\
+18 & Divergence-free helical grid (\S\ref{sec:optional_tests}) & $f=1.1$; $B_\phi/B_z=0$--$2$; $512\times128^2$ & 4 & yes \\
+\midrule
+   & \textbf{Athena++ MHD total} & & $\boldsymbol{2251}$ & \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Supplementary simulation-campaign results}
+\label{sec:supplementary_campaigns_app}
+
+The campaigns in this appendix are exploratory and are \emph{not} used quantitatively in the main conclusions; the headline wavelength rests solely on the near-critical longitudinal growth-rate ladder of Section~\ref{sec:validation_endtoend}.
+
+\subsection{The radial-collapse/fragmentation timescale competition}
+\label{sec:regimes}
+
+The simulations show that the fate of an isothermal, self-gravitating filament is governed by the competition between radial collapse and longitudinal fragmentation \citep{Inutsuka1997, Pon2012}. Near-critical filaments ($f\lesssim1.2$) retain sufficient thermal and magnetic support to evolve quasi-statically, and the longitudinal fragmentation instability grows to non-linearity, producing the beading pattern from which $\lambda/W$ can be measured directly. Supercritical filaments ($f\gtrsim1.5$) fragment longitudinally when properly confined by an ambient medium (Section~\ref{sec:modecompetition}), at a converged \emph{upper bound} on the wavelength $\lesssim0.5$ times the classical value (Section~\ref{sec:validation_endtoend}). Without ambient confinement the filament's Gaussian skirt feeds an accretion channel through the boundary and suppresses fragmentation. Extended-integration tests confirm that the periodic grid's early termination fires before the longitudinal instability becomes non-linear ($\sigma_{\rm lon}$ onset at $t=0.42$--$0.71\,t_{\rm J}$ versus a Courant-limited kill at $t\approx0.25$--$0.34\,t_{\rm J}$), independent of resolution.
+
+In the near-critical regime ($f\approx1.0$--$1.2$), filaments fragment with clearly measurable longitudinal density peaks at $t_{\rm frag}\approx1.1$--$1.2\,t_{\rm J}$ (Section~\ref{sec:fieldgeo}). Runs at the exact Jeans-critical value ($f=1.00$) likewise bead, at $t_{\rm frag}=1.62\pm0.03\,t_{\rm J}$ across seeds and resolutions (this exact-critical, weak-field subset fragments later than the $f=1.0$--$1.2$ field-geometry grid above, whose stronger seeding and field bring it to $1.1$--$1.2\,t_{\rm J}$), so there is no stability threshold at the critical line mass; this is the regime in which $\lambda/W$ is directly measurable.
+
+\textbf{Supercritical regime ($f \geq 1.5$): Radial collapse dominates}. In the periodic supercritical grid ($f=1.5$--$3.0$) we find no longitudinal fragmentation structure, only pure radial collapse: the central density increases by two orders of magnitude while the longitudinal density variance remains at $<0.02\%$ up to and including the fragmentation time. All simulations undergo runaway radial collapse (detected as $\Delta t < 10^{-8}\,t_{\rm J}$ from the CFL limit) before longitudinal beading can develop.
+
+The supercritical radial-collapse time ($t_{\rm coll}\approx0.25$--$0.34\,t_{\rm J}$) is $3$--$5$ times shorter than the near-critical longitudinal-fragmentation time ($t_{\rm frag}\approx1.1$--$1.6\,t_{\rm J}$), so in configurations whose initial conditions are out of radial equilibrium the radial mode reaches runaway before longitudinal perturbations grow to non-linearity. The measurable fragmentation wavelengths therefore come from two regimes: the near-critical, quasi-static regime where longitudinal beading is observed directly (Section~\ref{sec:fieldgeo}), and ambient-confined supercritical filaments that fragment longitudinally before radial collapse (Section~\ref{sec:modecompetition}).
+
+\subsection{Three fragmentation regimes}
+
+The baseline grid, at a near-critical line mass ($f\approx1$), reveals three fragmentation regimes in the $(\beta,\mathcal{M})$ plane, characterised by the end-of-run density contrast $C=\rho_{\rm max}/\rho_0$ (Fig.~\ref{fig:regime}): (i) \emph{strong-field, magnetically supported} ($\beta\lesssim0.15$), where magnetic pressure strongly suppresses collapse ($C\approx1$ at the snapshot time); (ii) \emph{magnetically regulated} ($0.2\lesssim\beta\lesssim2$), where fields modify but do not prevent fragmentation ($C=3$--$11$); and (iii) \emph{thermally dominated} ($\beta\gtrsim3$), where fields are too weak to affect the scale ($C=13$--$22$). The dispersion relation \citep{Nakamura1993} predicts near-complete suppression for $\beta\lesssim0.15$ and $<10\%$ modification of the most unstable wavelength for $\beta\gtrsim2$--$3$, consistent with the empirical boundaries; these boundaries bracket the sampled grid points ($\beta=0.05,0.1,0.15,0.2,0.3,\ldots$) at roughly the one-grid-step level rather than being interpolated, so the $\beta\approx0.15$ and $\approx3$ thresholds carry an uncertainty of $\sim$one grid step. Observed dense-filament conditions ($\mathcal{M}\approx1$--$3$, $\beta\approx0.3$--$2$; \citealt{Arzoumanian2019,Planck2016,Pattle2018}) place most HGBS filaments in the magnetically regulated regime.
+
+\begin{figure*}
+\includegraphics[width=0.8\textwidth]{figures/fig2_regime_corrected.pdf}
+\caption{Three-regime fragmentation framework from the Athena++ base grid (near-critical, $\theta=0^\circ$, isothermal; Section~\ref{sec:regimes}). Colour shows the end-of-run density contrast $C=\rho_{\rm max}/\rho_0$ (blue = low, red = high). The regimes, set by plasma $\beta$, are: (I) \emph{strong-field, magnetically supported} ($\beta\lesssim0.15$): magnetic pressure strongly suppresses collapse, $C\approx1$ (minimal fragmentation at this epoch, not an absence-of-star-formation statement); (II) \emph{magnetically regulated} ($0.2\lesssim\beta\lesssim2$): fields modify but do not prevent fragmentation, $C=3$--$11$; (III) \emph{thermally dominated} ($\beta\gtrsim3$): fields too weak to affect the scale, $C=13$--$22$. Typical HGBS filament conditions ($\mathcal{M}\approx1$--$3$, $\beta\approx0.3$--$2$; \citealt{Arzoumanian2019,Planck2016,Pattle2018}) lie in the magnetically regulated regime. The regime here is set by the \emph{dynamical} suppression of collapse (a $\beta$ criterion) and is physically distinct from the magneto-static mass-to-flux criticality of Table~\ref{tab:massflux} (Section~\ref{sec:regimes}); the two are not in tension.}
+\label{fig:regime}
+\end{figure*}
+
+\subsection{Turbulence and critical-transition dependence}
+\label{sec:supplementary_campaigns}
+
+Additional grids map the turbulence, field-geometry and critical-transition dependence of $\lambda/W$.
+
+\subsubsection{Turbulence versus $\lambda/W$}
+
+Comparing physical turbulence ($\delta v/c_s=1.0$, Kolmogorov) with synthetic perturbations ($10^{-4}$) at longitudinal field ($f=1.0$--$1.2$, $\beta=0.5,1,2$), the fragmentation \textit{wavelength} is unchanged ($<5\%$; $\lambda/W=3.44\pm0.76$ vs $3.30\pm0.85$; Fig.~\ref{fig:C5_turbulence}), with a $\beta$-dependence in the \emph{raw late-time bead-count} ratio ($4.31\pm0.60$ at $\beta=0.5$ to $2.81\pm0.13$ at $\beta=2.0$); as the growth-rate analysis shows (Section~\ref{sec:validation_endtoend}), this trend is a late-epoch bead-count effect, not a shift in the underlying $\lambda_{\rm max}$, whose $\beta$-variation is weak and within the mode-quantisation step. Turbulence does accelerate collapse by $3.2\times$ ($t_{\rm frag}=0.33\pm0.06$ vs $1.06\pm0.16\,t_{\rm J}$). As a single decaying realisation, this constrains, but does not resolve, whether \emph{driven} transonic turbulence is a first-order parameter for the fragmentation scale; we conclude only that the characteristic spacing is insensitive to the seed perturbation amplitude in this limited test, and do not claim turbulence is generically unimportant.
+
+\begin{figure*}
+\includegraphics[width=0.8\textwidth]{figures/fig_C5_turbulence_lambdaW.pdf}
+\caption{turbulence comparison: physical vs synthetic turbulence give statistically indistinguishable $\lambda/W_{\rm core}$ ($\Delta\mu<5\%$, KS $p=0.43$). The $\beta$-trend in the raw late-time bead-count ratio ($\sim$4.3 at $\beta=0.5$ to $\sim$2.8 at $\beta=2.0$) is preserved across the two turbulence prescriptions, but is a late-epoch bead-count effect rather than a shift in the underlying growth-rate $\lambda_{\rm max}$, whose $\beta$-variation is weak (Section~\ref{sec:validation_endtoend}).}
+\label{fig:C5_turbulence}
+\end{figure*}
+
+\subsubsection{Perpendicular-field spacing}
+
+For perpendicular fields ($\theta=90^\circ$, $f=1.2$--$1.5$, $\beta=0.3$--$2.0$; extended $16\lambda_{\rm J}$ periodic axial domain): strong perpendicular B ($\beta\leq0.5$) gives pure radial collapse with no axial fragmentation, while for $\beta\geq1.0$ axial beading occurs at $\lambda/W_{\rm core}=1.25\pm0.09$ ($N=27$), i.e.\ $\lambda/W_{\rm fil}\approx0.4$ under the corrected conversion (Eq.~\ref{eq:t1_apply}), a factor $2$--$3$ \textit{shorter} than the longitudinal-field value at the same $\beta$. Field geometry, not $\beta$, dominates, and the perpendicular spacing lies far below the observed NN value (fixed-width, periodic-corrected, $\lambda/W\approx1.9$; raw $2.1$).
+
+The two perpendicular campaigns give different $\beta$-trends: this periodic-domain grid beads only for $\beta\geq1.0$, whereas the ambient-confined ideal-MHD grid of Section~\ref{sec:modecompetition} beads at $\beta=0.5$ and $2.0$ with spindle collapse near $\beta\approx1$. They differ in transverse confinement and are both numerically unresolved ($N_J\approx1$--$2$; Appendix~\ref{sec:validation}), so we draw no physical $\beta$-trend from either; a matched-resolution, matched-confinement grid is needed to settle it (Section~\ref{sec:limitations}). The robust statement is only that the perpendicular beading wavelength, where it occurs, is short ($\lambda/W_{\rm fil}\lesssim0.6$), well below the observed spacing.
+
+\subsubsection{Critical-transition spacing}
+
+Mapping $\lambda/W$ across $f=0.9$--$1.3$ at five $\beta$ values (Fig.~\ref{fig:C7_critical}) shows no discontinuity at $f=1.0$ (variation $<5\%$) and an apparent $\beta$-dependence in the \emph{late-time bead count}: $\lambda/W_{\rm core} = 4.74\pm0.73,\,4.38\pm0.59,\,3.19\pm0.29,\,2.86\pm0.18,\,2.80\pm0.14$ at $\beta=0.3,0.5,1.0,1.5,2.0$. This bead-count $\beta$-trend is, however, larger than the primary growth-rate measurement: repeating the growth-rate-spectrum method (Section~\ref{sec:validation_endtoend}) across $\beta=0.3,0.5,1.0$ gives $\lambda_{\rm max}=1.00,\,1.14,\,0.80\,\lambda_{\rm J}$, i.e.\ order one Jeans length with only a weak, mode-quantised $\beta$-dependence. We therefore treat the $\beta$-dependence of the wavelength as weak (the stronger bead-count trend being a late-epoch, resolution-sensitive artefact) and the two highest-$\beta$ bead-count points ($\lambda/\lambda_{\rm J}\approx0.84$) as consistent with the supercritical ensemble; the observable $\lambda/W_{\rm fil}$ then follows from the end-to-end forward model (Section~\ref{sec:validation_endtoend}) rather than the shortcut factor. \textbf{Continuity across $f\approx1$ does not validate extrapolation to the supercritical regime ($f\geq1.5$)}, where the mode changes to radial collapse (Section~\ref{sec:supercrit}); the near-critical $\lambda/W$ values are a hypothesis for supercritical filaments, not a measurement.
+
+\begin{figure*}
+\includegraphics[width=0.8\textwidth]{figures/fig9_nearcritical_corrected.pdf}
+\caption{Near-critical runs: $\lambda/W_{\rm core}$ across $f=0.9$--$1.3$ for five $\beta$ values, smooth with no discontinuity at $f=1.0$ (left); mean per $\beta$ (right). The convergence-independent quantity is $\lambda/W_{\rm core}$; the observable follows from $\lambda/W_{\rm fil}\approx0.27\,(\lambda/W_{\rm core})$ (Eq.~\ref{eq:t1_apply}), so the highest-$\beta$ points correspond to $\lambda/W_{\rm fil}\approx0.75$--$0.8$. This near-critical calibration lies below the observed spacing under any convention (Table~\ref{tab:headline}); the primary simulated value is the growth-rate wavelength (an upper limit; Section~\ref{sec:validation_endtoend}), not this ratio.}
+\label{fig:C7_critical}
+\end{figure*}
+
+\begin{table}
+\caption{Effective line-mass fraction with turbulent support.}
+\label{tab:feff}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{3.0cm}cc}
+\toprule
+Quantity & Value & Source \\
+\midrule
+Nominal $f$ (thermal) & $1.5 \pm 0.3$ & HGBS line-mass \\
+Turbulent support $f_{\rm eff}/f$ & $0.82 \pm 0.11$ & TURB (90 sims) \\
+Effective $f_{\rm eff}$ & $1.23 \pm 0.28$ & product \\
+HGBS ensemble range & $0.7$--$1.9$ & propagated \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Synthesis}
+
+Table~\ref{tab:cross_campaign} summarises the simulation $\lambda/W$ measurements and their role in the comparison with observation.
+
+\begin{table*}
+\caption{Simulation fragmentation scale by configuration, in the two convention-independent forms: the raw internal ratio $\lambda/W_{\rm core}$ (normalised by the initial half-width) and the background-density Jeans-length ratio $\lambda/\lambda_{\rm J}=0.3\,(\lambda/W_{\rm core})$. We do \emph{not} tabulate the observable $\lambda/W_{\rm fil}$ here, since it depends on the width convention; the comparison with observation uses the growth-rate wavelength expressed in \emph{matched} beam-convolved Plummer units, $\lambda/W\approx1.0$--$1.3$ ($\approx0.35$--$0.5$ times the classical value, a factor $\approx2$--$3$; Section~\ref{sec:validation_endtoend}), which is set against the observed $\lambda/W\approx0.4$ (FilFinder) to $1.9$ (fixed-width DisPerSE).}
+\label{tab:cross_campaign}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccl}
+\toprule
+Configuration & $\lambda/W_{\rm core}$ & $\lambda/\lambda_{\rm J}$ & Status \\
+\midrule
+\multicolumn{4}{l}{\emph{Longitudinal field (quantitative)}} \\
+Long.\ near-critical ($\beta{=}2.0$, calibration) & $2.80{\pm}0.14$ & $0.84$ & Calibration only \\
+Long.\ supercritical ensemble (\S\ref{sec:modecompetition}) & $3.27$ & $0.98$ & Near one Jeans length; see growth-rate result \\
+\midrule
+\multicolumn{4}{l}{\emph{Perpendicular field --- PRELIMINARY, numerically unconverged ($N_J{\approx}1$--$2$); not for quantitative use}} \\
+Perp.\ near-critical ($\beta{\geq}1$, ideal-MHD) & $[1.25]$ & $[0.38]$ & unconverged \\
+Perp.\ ambipolar ($\eta_{\rm AD}{=}0.001$--$0.1$) & $[{\sim}2.2]$ & $[0.66]$ & unconverged \\
+\bottomrule
+\end{tabular}
+\\[2pt]
+Only the longitudinal rows are used quantitatively, and even there the reference value is the convergently-bounded growth-rate wavelength (an upper limit; Section~\ref{sec:validation_endtoend}, Table~\ref{tab:wave}), not these raw ratios. The perpendicular values are bracketed to signal that they are numerically unconverged ($N_J\approx1$--$2$, below the Truelove criterion; wavelengths shift by factors $2$--$5$ between resolutions) and must not be read as measurements.
+\end{table*}
+
+With the exception of the 54-run physical-versus-synthetic turbulence \emph{comparison} (Section~\ref{sec:supplementary_campaigns}; distinct from the 90-run turbulent-\emph{support} $f_{\rm eff}$ grid of Table~\ref{tab:feff}, both components of the 289-run aggregate campaign~9 of Table~\ref{tab:campaigns}), the grid uses near-laminar seeding ($\delta v=\mathcal{M}c_s\times10^{-4}$) rather than driven ISM turbulence. That comparison shows the fragmentation \textit{wavelength} is unchanged ($<5\%$) at driven amplitudes, so the laminar-seeded $\lambda/W$ values are reported, though the collapse \textit{timescales} are shorter by a factor of $3$--$5$.
+
+In convergence-independent units the two first-order parameters are field geometry (perpendicular $\lambda/W_{\rm core}\approx1.25$ versus longitudinal $2.8$--$4.4$) and, for longitudinal fields, plasma $\beta$; the observable comparison uses the growth-rate wavelength (Section~\ref{sec:validation_endtoend}), not these raw ratios.
+
+\bibliographystyle{mnras}
+\bibliography{references_complete}
+
+\end{document}
