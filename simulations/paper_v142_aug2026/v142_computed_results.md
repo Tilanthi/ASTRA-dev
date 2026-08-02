@@ -1,91 +1,117 @@
-# v142 computed results (August 2026 referee round 3)
+# Supporting computations for v142 (internal record, not part of the manuscript)
 
-## 1. Contraction-rate ladder (Referee 3, item 4 — "essential before publication")
+## 1. Contraction-rate ladder
 
-**Setup.** Patched the Athena++ problem generator (`athena-ladder`) to accept a homologous
-initial radial contraction `v_r(r) = -A (c_s/R_0) r`, tapered beyond 3 R_0. Five otherwise
-identical runs from the same relaxed Ostriker cylinder, A = 0, 0.25, 0.5, 0.75, 1, at
-256x64x64 (dx = 0.0625 lambda_J isotropic), L_x = 16 lambda_J periodic, twelve-mode
-Kolmogorov seed at dv/c_s = 1e-3, tlim = 2 t_J, 41 snapshots each. Plus 512x128x128
-endpoint checks at A = 0 and A = 1.
+Athena++ problem generator extended to accept a homologous initial radial contraction
+`v_r(r) = -A (c_s/R_0) r`, tapered beyond 3 R_0. Five otherwise identical runs from the same
+relaxed Ostriker cylinder at A = 0, 0.25, 0.5, 0.75, 1, on 256x64x64 (dx = 0.0625 lambda_J,
+isotropic), L_x = 16 lambda_J periodic, twelve-mode Kolmogorov seed at dv/c_s = 1e-3,
+tlim = 2 t_J, 41 snapshots each; plus 512x128x128 endpoint checks at A = 0 and A = 1.
 Configs and logs: `/data/contraction_ladder_aug2026/`.
 
-**Analysis.** Per-mode growth rates Gamma_n fitted over the common linear window
-(0.0015 < delta_rms < 0.12) for the seeded, well-resolved modes n <= 10 (lambda >= 1.6,
->= 25 cells). rho_eff = central density at the mid-point of that window.
+Per-mode growth rates fitted over the common linear window (0.0015 < delta_rms < 0.12) for
+the seeded, well-resolved modes n <= 10. rho_eff = central density at the mid-point of that
+window.
 
 | A    | rho_eff/rho_0 | n_peak | lambda_peak/lambda_J | 22H(rho_eff)/lambda_J | lambda_peak/22H |
 |------|---------------|--------|----------------------|-----------------------|-----------------|
-| 0    | 0.66          | 5      | 3.20                 | 2.94                  | **1.09**        |
+| 0    | 0.66          | 5      | 3.20                 | 2.94                  | 1.09            |
 | 0.25 | 1.51          | >=10   | <1.60                | 1.95                  | <0.82           |
 | 0.5  | 0.85          | 7      | 2.29                 | 2.59                  | 0.88            |
 | 0.75 | 0.50          | 6      | 2.67                 | 3.38                  | 0.79            |
 | 1    | 0.32          | 4      | 4.00                 | 4.26                  | 0.94            |
 
-**Scaling test (the referee's requested test):**
+    lambda_select ∝ rho_eff^(-0.554 +/- 0.120),  Pearson r = -0.936,  n = 5,
+    spanning a factor 4.8 in rho_eff.  Predicted exponent -1/2.
 
-    lambda_select ∝ rho_eff^(-0.554 +/- 0.120),   Pearson r = -0.936,  n = 5,
-    over a factor 4.8 in rho_eff (0.68 to 3.24 rho_0).   Predicted: -1/2.
+512x128x128 endpoints: lambda_peak/22H(rho_eff) = 0.987 (A = 0) and 0.839 (A = 1), against
+1.088 and 0.939 at production resolution.
 
-Consistent with the predicted -1/2 at 0.45 sigma. **The proposed mechanism is confirmed.**
+rho_eff is not monotonic in A: a large initial inward velocity overshoots and rebounds, so
+the A = 1 run grows its modes at lower density than the A = 0.25 run. The control parameter
+is the density at mode selection, not the contraction rate.
 
-**High-resolution endpoint checks (512x128x128):**
-A = 0 gives lambda_peak/22H(rho_eff) = 0.987; A = 1 gives 0.839 (against 1.088 and 0.939
-at production resolution). The static run recovers the classical value; the contracting
-run falls below it. Conclusion is resolution-robust.
+## 2. Core-masking radius sensitivity of the eligible line density
 
-**Important secondary finding.** rho_eff is NOT monotonic in A: a large initial inward
-velocity overshoots and rebounds, so the A = 1 run is at LOWER density during its growth
-window than A = 0.25. Contraction *rate* is therefore not the control parameter; the
-density at mode selection is. The mechanism must be quoted as a dependence on rho_eff,
-not on how fast the filament is falling in. This is a stronger and narrower statement
-than the two-point equilibrium-versus-contracting control supported.
+| r_mask (pc) | Orion B      | Aquila      | Perseus     | Taurus      |
+|-------------|--------------|-------------|-------------|-------------|
+| 0 (raw)     | 1.56 [417]   | 3.14 [306]  | 1.96 [199]  | 0.81 [186]  |
+| 0.030       | 1.89 [317]   | 3.14 [306]  | 3.68 [85]   | 1.80 [43]   |
+| 0.045       | 2.04 [277]   | 3.15 [305]  | 3.91 [70]   | 1.61 [37]   |
+| 0.060       | 2.02 [268]   | 3.17 [303]  | 4.13 [57]   | 3.11 [13]   |
+| 0.090       | 1.98 [252]   | 3.21 [296]  | 4.45 [41]   | -- [1]      |
+| 0.120       | 1.95 [238]   | 3.20 [297]  | 3.62 [37]   | -- [1]      |
 
-## 2. Pipeline-A / pipeline-B association reconciliation (Referee 2, items 1 and 2)
+Cells: S_elig = (L_elig/N_elig)/W, with N_elig in brackets.
 
-Referee 2 correctly identified that Table 3's headline numbers came from a different
-implementation than Table 13's association counts, and that Table 3's Aquila S_local (2.1)
-did not match Table 8 (1.66).
+## 3. Moving-block bootstrap of the gap-model comparison
 
-Tested whether the morphological closing or the minimum-component-size filter explains the
-association-count difference. **They do not:**
+400 resamples per cloud of contiguous five-gap blocks drawn within single skeleton components.
 
-| Region  | N_cat | raw  | close only | minpix only | both (pipeline B) |
-|---------|-------|------|------------|-------------|-------------------|
-| Orion B | 1870  | 1011 | 1010       | 992         | 995               |
-| Aquila  | 749   | 315  | 314        | 304         | 308               |
-| Perseus | 816   | 522  | 522        | 502         | 501               |
-| Taurus  | 536   | 473  | 468        | 470         | 463               |
+| Cloud   | n_gaps | r1     | n_eff | dAICc periodic, median [5,95] | dAICc Poisson, median [5,95] |
+|---------|--------|--------|-------|-------------------------------|------------------------------|
+| Orion B | 699    | +0.035 | 651   | 507 [415, 599]                | 221 [190, 250]               |
+| Aquila  | 168    | -0.146 | 225   | 69 [45, 97]                   | 83 [71, 102]                 |
+| Perseus | 438    | +0.119 | 344   | 326 [249, 391]                | 35 [31, 48]                  |
+| Taurus  | 440    | +0.564 | 122   | 696 [587, 803]                | 86 [55, 118]                 |
 
-Closing and the component filter together move the count by < 2 per cent, whereas pipeline A
-reports 680 / 182 / 619 / 479. Part of the difference is catalogue parsing (1870 vs 1844
-rows for Orion B); the remainder is a difference in which cores are admitted to a "primary
-segment" and is NOT resolved.
+## 4. Persistence-threshold robustness
 
-**Resolution adopted in the paper:** all headline numbers are declared to come from
-pipeline B, Table 3's Aquila entry corrected 2.1 -> 1.7 (and Orion B 1.7 -> 1.8, Taurus
-1.7 -> 1.8), the reproducibility table now shows both pipelines side by side, and the
-unresolved bookkeeping difference is stated explicitly as an open issue that an external
-re-run of the deposited code would settle.
+Branch-persistence pruning of the published 3-sigma skeletons (branch persistence =
+(max N_H2 on branch - N_H2 at attaching junction)/sigma_map):
 
-## 3. Length reduction
+| Cloud   | 3 sigma (L pc, s_med pc, L/N pc) | 4 sigma              | 6 sigma              | 8 sigma              |
+|---------|----------------------------------|----------------------|----------------------|----------------------|
+| Orion B | 283.8, 0.1773, 0.2852            | 237.1, 0.1628, 0.2797| 236.2, 0.1628, 0.2792| 236.4, 0.1628, 0.2795|
+| Aquila  | 96.8, 0.1662, 0.3141             | 81.8, 0.1617, 0.3040 | 81.8, 0.1617, 0.3040 | 81.2, 0.1617, 0.3018 |
+| Perseus | 73.6, 0.2969, 0.1470             | 66.8, 0.2978, 0.1424 | 66.0, 0.3002, 0.1416 | 65.3, 0.3002, 0.1402 |
+| Taurus  | 36.8, 0.1805, 0.0794             | 34.6, 0.1715, 0.0765 | 34.0, 0.1746, 0.0754 | 33.6, 0.1742, 0.0750 |
 
-38 pages -> **25 pages**, as instructed.
+Merge-tree persistence extraction with a free threshold, Orion B:
 
-Deleted outright (retained in the deposited repository): complete simulation-campaign list,
-supplementary campaign results, radial-collapse timescale competition, three-regime
-classification, turbulence/critical-transition appendix, detailed simulation-validation
-appendix (compressed to five short paragraphs).
+| threshold | L (pc) | N_assoc | S_local | S_global | f_occ |
+|-----------|--------|---------|---------|----------|-------|
+| 2 sigma   | 160.7  | 635     | 1.63    | 2.53     | 0.409 |
+| 3 sigma   | 153.9  | 615     | 1.63    | 2.50     | 0.413 |
+| 4 sigma   | 147.8  | 597     | 1.63    | 2.48     | 0.416 |
 
-Removed floats: duplicate benchmark table, Orion B decomposition table, validation-summary
-table, injection-recovery figure, perpendicular refinement ladder figure, helical scan
-figure, limited-sample table, pipeline flow figure. 18 figures -> 11; 21 tables -> 17.
+## 5. Measurement counts adopted in the manuscript
 
-Rewritten far more compactly: Introduction, Results, fragmentation-scale section (now
-"The simulated fragmentation scale"), eligibility (now explicitly an exploratory
-diagnostic), spatial inhomogeneity, gap regularity, error budget, fibre projection,
-literature comparison, limitations, conclusions (now a numbered list of nine points).
+| Region  | catalogue | associated | f_assoc | ACS pairs | S_local (fixed 0.10 pc) |
+|---------|-----------|------------|---------|-----------|-------------------------|
+| Orion B | 1870      | 995        | 0.53    | 699       | 1.77                    |
+| Aquila  | 749       | 308        | 0.41    | 168       | 1.66                    |
+| Perseus | 816       | 501        | 0.61    | 438       | 2.97                    |
+| Taurus  | 536       | 463        | 0.86    | 440       | 1.81                    |
 
-Removed: all meta-commentary about earlier drafts and about referees; the repeated N = 4
-caveat (now stated once in the Introduction); the repeated 2251-run figure (now once in
-the methods and once in Data Availability).
+Effect of the morphological closing and the minimum-component-size filter on the
+association count (both < 2 per cent):
+
+| Region  | N_cat | raw  | closing only | minpix only | both |
+|---------|-------|------|--------------|-------------|------|
+| Orion B | 1870  | 1011 | 1010         | 992         | 995  |
+| Aquila  | 749   | 315  | 314          | 304         | 308  |
+| Perseus | 816   | 522  | 522          | 502         | 501  |
+| Taurus  | 536   | 473  | 468          | 470         | 463  |
+
+## 6. FilFinder configuration as run
+
+FilFinder2D with the cloud distance set per region and an externally supplied mask
+(`use_existing_mask=True`) followed by `medskel()`. The mask is a 92nd-percentile
+column-density cut (Orion B: 2.46e21 cm^-2; 70th percentile 1.32e21 cm^-2). No adaptive
+or branch thresholding is invoked.
+
+## 7. Simulation initial condition as coded
+
+Production (default) profile, Gaussian:
+
+    rho(r) = rho_bg + rho_amp exp(-r^2 / 2 W_core^2),
+    rho_amp = f M_line,crit / (2 pi W_core^2),   M_line,crit = 2 c_s^2 / G,
+    rho_bg = 1,  W_core = 0.3 lambda_J
+
+Equilibrium-control profile, Ostriker (p = 4):
+
+    rho(r) = rho_bg + f rho_c,ost / [1 + (r/W_core)^2]^2,  rho_c,ost = 2 c_s^2/(pi G W_core^2)
+
+B_0 = c_s sqrt(2 rho_bg / beta); velocity seed of 12 Kolmogorov modes k_n = 2 pi n / L_x with
+A_n ~ k_n^(-11/6) and random phases; v_r = v_phi = 0 in the production runs.
