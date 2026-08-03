@@ -1,0 +1,588 @@
+\documentclass[usenatbib,twoside,twocolumn]{mnras}
+
+% Paper packages
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+
+% Denser float packing (reduce float-only pages; no content change)
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.75}
+\renewcommand{\dbltopfraction}{0.9}
+\renewcommand{\dblfloatpagefraction}{0.75}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{5}
+\setcounter{dbltopnumber}{3}
+
+% Define astronomical units
+\newcommand{\msun}{\ensuremath{M_{\odot}}}
+\newcommand{\pc}{\ensuremath{\rm pc}}
+\newcommand{\kms}{\ensuremath{\rm km\,s^{-1}}}
+
+\title[Fragmentation of evolving filaments]{Fragmentation of evolving filaments: MHD simulations and the equilibrium-cylinder wavelength}
+
+\author[G.~J.~White]{G.~J.~White$^{1,2}$\\
+$^{1}$School of Physical Sciences, The Open University, Walton Hall, Milton Keynes, MK7 6AA, UK\\
+$^{2}$Rutherford Appleton Laboratory, Harwell Science and Innovation Campus, Didcot, OX11 0QX, UK}
+
+\date{\today}
+\pubyear{2026}
+
+\begin{document}
+\label{firstpage}
+\maketitle
+
+\begin{abstract}
+
+The wavelength at which a self-gravitating isothermal cylinder fragments, $\lambda_{\rm m}=22H$, is derived for hydrostatic equilibrium. Real filaments contract, accrete and evolve while their perturbations grow. We ask whether an evolving filament must select the wavelength of its initial equilibrium, using a campaign of $2251$ ideal-MHD Athena++ calculations of which $33$ carry the result.
+
+The central experiment is a control: a drag-relaxed Ostriker cylinder and a dynamically evolving filament pass through the identical growth-rate measurement. For the equilibrium the pipeline recovers the classical maximum at $22H$ to within $10$ per cent. For the evolving filament it finds no maximum in the converged band: the growth rate rises monotonically to the resolution limit, giving only an upper limit, $\lambda_{\rm peak}<1.1\,\lambda_{\rm J}$.
+
+A ladder of seventeen otherwise identical calculations, spanning a decade in the density at which the modes grow, shows that the selected scale follows that density as $\rho_{\rm eff}^{-0.49\pm0.05}$, consistent with the $-1/2$ of a gravitational scale. Evaluated at each run's own density the residual displacement from the equilibrium expectation is $13$ per cent. Evolution therefore changes the state at which fragmentation develops rather than generating an intrinsically shorter wavelength for it. Repeating the endpoints at $1024\times256^2$ leaves the selected mode unchanged.
+
+The calculations produce a quasi-periodic chain of $3$--$10$ beads; the observed cores do not, rejecting both a periodic comb and a homogeneous Poisson process (Paper~I). These calculations are a counterexample to an assumption, not an explanation of the observations.
+
+\end{abstract}
+
+\begin{keywords}
+stars: formation -- ISM: structure -- ISM: filaments -- ISM: magnetic fields -- MHD -- methods: numerical
+\end{keywords}
+
+\section{Introduction}
+\label{sec:intro}
+
+An isothermal, self-gravitating cylinder in hydrostatic equilibrium has a critical mass per unit length $M_{\rm line,crit}=2c_s^2/G$ \citep{Ostriker1964} and fragments most rapidly at $\lambda_{\rm m}=22H$, where $H=c_s(4\pi G\rho_c)^{-1/2}$ is the scale height \citep{Inutsuka1992,Nagasawa1987,Fischera2012}. In units of the observable width this is $\approx5$--$6\times$FWHM, and it has become the reference against which observed core separations are read.
+
+The derivation assumes a stationary background. Real filaments are not stationary. They form out of, and continue to accrete from, a turbulent medium; their central densities rise while perturbations grow; and the observed population contains objects at a range of evolutionary stages \citep{Andre2014,Clarke2016,Clarke2017,Clarke2020}. Whether the equilibrium wavelength survives that is a question that can be answered by direct calculation, and this paper answers it.
+
+The question is narrow and we state its limits at the outset. We ask: \emph{must a dynamically evolving filament select the fragmentation wavelength associated with its initial equilibrium?} We do not ask, and cannot answer with these calculations, whether dynamical evolution explains the core separations observed in real clouds. The companion paper \citep{PaperI} shows that those separations are not described by a single wavelength at all, and that what a successful theory must reproduce is a spatial point process. Our calculations produce a periodic chain and therefore do not reproduce it. They are offered as a counterexample to a theoretical assumption, and nothing more.
+
+\smallskip\noindent\textbf{Structure.} Section~\ref{sec:method} gives the numerical set-up and the initial conditions in full. Section~\ref{sec:control} is the load-bearing experiment: the same measurement applied to a relaxed cylinder and to an evolving one. Section~\ref{sec:ladder} generalises it to a seventeen-run ladder in dynamical state and extracts the scaling. Section~\ref{sec:convergence} sets out the resolution and convergence tests, including a $1024\times256^2$ check. Section~\ref{sec:fields} states what the campaign does and does not constrain about magnetic geometry, and Section~\ref{sec:ambient} what it establishes about ambient confinement. Section~\ref{sec:comparison} makes the comparison with the observations of Paper~I explicit about what it can and cannot mean.
+
+\section{Method}
+\label{sec:method}
+
+
+\smallskip\noindent\emph{The calculations below test whether sub-equilibrium fragmentation scales are dynamically possible. They are not intended to reproduce the observed core point process, and no number quoted in them is a prediction of an observed spacing.}
+
+\smallskip We use Athena++ \citep{Stone2020}, release of August 2021 with the \emph{isothermal} equation of state, $P=\rho c_s^2$. The energy equation is not evolved and no cooling prescription is applied; the evolved equations are continuity, momentum including the Lorentz force, and ideal induction, coupled to self-gravity through $\nabla^2\phi=4\pi G\rho$. We use the HLLD isothermal Riemann solver, piecewise-linear reconstruction in the primitive variables, the second-order van Leer integrator at CFL $0.3$, constrained transport, and the FFT Poisson solver with gravitational boundaries matched to the hydrodynamic ones: periodic along the axis, zero-gradient transversely.
+
+\smallskip\noindent\textbf{The initial condition.} The production runs use a Gaussian filament embedded in a uniform ambient medium,
+\begin{equation}
+\rho(r)=\rho_{\rm bg}+\rho_{\rm amp}\exp\!\left(-\frac{r^{2}}{2W_{\rm core}^{2}}\right),\qquad
+\rho_{\rm amp}=\frac{f\,M_{\rm line,crit}}{2\pi W_{\rm core}^{2}},
+\label{eq:ic_gauss}
+\end{equation}
+with $r^{2}=y^{2}+z^{2}$, $\rho_{\rm bg}=1$ in code units, $M_{\rm line,crit}=2c_s^{2}/G$ and $W_{\rm core}=0.3\,\lambda_{\rm J}$. The normalisation makes $\int_0^\infty(\rho-\rho_{\rm bg})\,2\pi r\,{\rm d}r=f\,M_{\rm line,crit}$ exactly, so the line mass converges without an imposed truncation and $f$ is set directly. The filament merges into the ambient medium, which supplies the confining pressure $P_{\rm bg}=\rho_{\rm bg}c_s^{2}$. The equilibrium-recovery control instead uses the Ostriker profile,
+\begin{equation}
+\rho(r)=\rho_{\rm bg}+\frac{f\rho_{c,\rm ost}}{\left[1+(r/W_{\rm core})^{2}\right]^{2}},\qquad
+\rho_{c,\rm ost}=\frac{2c_s^{2}}{\pi G W_{\rm core}^{2}},
+\label{eq:ic_ost}
+\end{equation}
+a Plummer profile of index $p=4$, whose line mass also converges. Neither uses a $p=2$ profile; the observed filaments have $p\simeq2$, which is why the width conversion of Section~\ref{sec:width_correction} is needed and why it is not invariant.
+
+The remaining initial fields are $P(r)=\rho(r)c_s^{2}$, $v_r=v_\phi=0$, a uniform field of magnitude $B_0=c_s\sqrt{2\rho_{\rm bg}/\beta}$ at angle $\theta$ to the axis, and a longitudinal velocity seed of twelve Kolmogorov modes, $v_x=\sum_{n=1}^{12}A_n\cos(k_nx+\phi_n)$ with $k_n=2\pi n/L_x$, $A_n\propto k_n^{-11/6}$ and random phases. Domains are $L_x\times L_\perp^{2}$ with $L_x=16\,\lambda_{\rm J}$, periodic in $x$, and with the transverse boundary at $d\geq1\,\lambda_{\rm J}$ from the spine.
+
+\smallskip\noindent\textbf{Parameters.} The filament is characterised by $f=M_{\rm line}/M_{\rm line,crit}$, the plasma $\beta=8\pi P/B^2$ and the seed-amplitude label $M_{\rm seed}=\delta v/c_s\times10^{4}$. At filament conditions ($n\sim10^4\,{\rm cm^{-3}}$, $T\sim10$\,K) $\beta=1$--$0.3$ corresponds to $B\sim15$--$30\,\mu$G \citep{Crutcher2012}. The mass-to-flux ratio scales as $\mu_\Phi/\mu_{\Phi,\rm crit}\propto f\sqrt{\beta}$ and exceeds unity throughout, so no configuration is magnetically subcritical. The load-bearing runs, listed in Table~\ref{tab:production}, are the near-critical growth-rate ladder and the direct supercritical ensemble; The remainder of the deposited manifest is exploratory and carries no part of the numerical conclusion: it comprises the base and transition grids in $(f,\beta,\mathcal{M})$ used to locate the stable--unstable boundary, scans of the transverse boundary distance and of periodic versus ambient confinement, the oblique-field grid at $\theta=30$--$75^\circ$, the perpendicular-field and ambipolar-diffusion sweeps that proved to be unresolved at $N_J\approx1$--$2$, the seeded-helical scan, and single illustrative runs with a temperature gradient and with $\gamma\neq1$. Those runs establish where the parameter space is well behaved; they do not measure a wavelength.
+
+\smallskip\noindent\textbf{Weak seeds against transonic perturbations.} The production runs are seeded once, weakly and in the linear regime, whereas real filaments are transonic. A separate set of runs replaces the linear seed with an initial transonic field at $\delta v/c_s=1$--$3$ from the same spectrum. These shorten the time to beading by a factor $3$--$5$ but change the wavelength by less than $5$ per cent, with no measurable trend against the perturbation Mach number across the ensemble, and they introduce no maximum in $\Gamma(\lambda)$ where none was present, so the plateau is not an artefact of weak seeding. The weak seed is retained for production because a growth-rate measurement requires a linear one. Continuously driven turbulence, in which energy is injected throughout the evolution rather than at $t=0$, is not tested here. The distinction is not merely technical. A continuously driven field acts as a localised, repeated compression, so it can raise the line mass in some stretches and not others while the instability is developing, which is precisely the kind of spatially varying seeding that an initial-value calculation cannot supply. It is thus a plausible route to the parsec-scale over-dispersion that our runs do not reproduce, and we identify it as an open requirement for future numerical campaigns and not as a detail of the set-up.
+
+\smallskip\noindent\textbf{Resolution.} The load-bearing runs satisfy the Truelove criterion at the spacing-setting epoch ($N_J\approx5$--$7$ cells per local Jeans length in both directions on the isotropic grids) but sit only $1.25$--$1.75\times$ above the $N_J=4$ minimum, which is one reason we quote a bound. Truelove stability and convergence are separate requirements: $N_J>4$ protects against artificial fragmentation but does not guarantee an accurate growth rate. The trustworthy band is therefore set by the second criterion, $\Delta\Gamma/\Gamma<5$ per cent between successive resolutions, which here gives the same boundary.
+
+
+\begin{table}
+\caption{Load-bearing \emph{production} simulations underlying the fragmentation-wavelength result: the near-critical growth-rate ladder (campaign~15) and the direct supercritical ensemble (campaign~11). Shared parameters ($f$, $\mathcal{M}$, $\beta$, $\theta$, boundary conditions and collapse/bead time) are given in each block sub-header;  These production runs, not the wider exploratory grid, carry the quoted $\lambda_{\rm turn}$.}
+\label{tab:production}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{ccccc}
+\toprule
+$f$ & RNG seed & resolution & $\lambda_{\rm turn}/\lambda_{\rm J}$ & $\lambda_{\rm turn}/W$ \\
+\midrule
+\multicolumn{5}{@{}p{8cm}}{\emph{Near-critical growth-rate ladder} (campaign~15): $\beta{=}1.0$, $\theta{=}0^\circ$, $\mathcal{M}{=}10^{-3}$ broadband seed, ambient BC (periodic/reflecting), bead $t_{\rm frag}{\approx}1.1$--$1.2\,t_{\rm J}$}\\
+1.1 & 42  & $128^3$ & 1.14 & 1.95 \\
+1.1 & 42  & $256^3$ & 1.14 & 1.99 \\
+1.1 & 42  & $512^3$ & 1.14 & 2.00 \\
+1.2 & 42  & $256^3$ & 1.00 & 1.81 \\
+1.2 & 137 & $256^3$ & 0.89 & 1.60 \\
+1.5 & 42  & $256^3$ & 0.89 & 1.47 \\
+1.5 & 137 & $256^3$ & 0.89 & 1.47 \\
+1.5 & 42  & $512^3$ & 0.89 & 1.47 \\
+1.8 & 42  & $256^3$ & 0.80 & 1.19 \\
+2.0 & 42  & $256^3$ & 0.80 & 1.20 \\
+\midrule
+\multicolumn{5}{@{}p{8cm}}{\emph{Direct supercritical ensemble} (campaign~11, 39 runs): $f{=}1.5$--$2.0$, $\beta{=}0.5$--$2.0$, $\theta{=}0^\circ$, seeds 42/137, periodic$+$reflecting ambient BC, bead $t_{\rm bead}{\approx}0.6$--$0.75\,t_{\rm J}$}\\
+\multicolumn{2}{@{}c}{ensemble} & $256^3$ & $1.0$--$1.14$ & $0.89$--$1.01^{\dagger}$ \\
+\bottomrule
+\end{tabular}
+\\[2pt]
+\footnotesize $^{\dagger}$~In beam-convolved Plummer units, $\lambda/W_{\rm fil}$ (KS $p=0.17$ between periodic and reflecting BCs); the ladder's $\lambda_{\rm turn}/W$ column is in the Gaussian formation FWHM of Table~\ref{tab:production}.
+\end{table}
+
+
+\subsection{The reference scale}
+\label{sec:reference}
+
+
+
+
+For an isothermal, self-gravitating cylinder of density $\rho_0$ and sound speed $c_s$, the critical line mass for gravitational instability is \citep{Ostriker1964}:
+\begin{equation}
+\mu_{\rm crit} = \frac{2c_s^2}{G}
+\label{eq:mucrit}
+\end{equation}
+The most unstable fragmentation wavelength is, as an \emph{exact} result for the isothermal equilibrium cylinder \citep{Inutsuka1992},
+\begin{equation}
+\lambda_{\rm IM92} = 22\,H \approx 4\times(2R_{\rm flat}),
+\label{eq:lambdam}
+\end{equation}
+where $H = c_s\,(4\pi G\rho_c)^{-1/2}$ is the thermal scale height and $R_{\rm flat}=\sqrt8\,H$ the flattening radius (\citealt{Nagasawa1987}, eq.~33; \citealt{Fischera2012}, eqs.~5 and 24; verified independently to better than $1$ per cent in Appendix~\ref{sec:validation}), and $W_{\rm fil}\approx0.1$\,pc the characteristic filament FWHM. Expressed in FWHM units the reference depends on which FWHM is meant, and the two conventions in circulation bracket the familiar range: $\lambda_{\rm m}/W=5.07$ for the projected column-density FWHM, which is what an observer measures, and $6.04$ for the FWHM of the volume-density profile (Table~\ref{tab:benchmark}; derived in Appendix~\ref{sec:validation}). The cutoff wavelength is $\lambda_{\rm cr}=11.5\,H$, or $2.65$ in the projected convention. 
+
+\smallskip\noindent\textbf{The reference scale under non-thermal support.} The relation above is purely thermal. Replacing $c_s$ by an effective sound speed $c_{\rm eff}^2=c_s^2+\sigma_{\rm nt}^2$ rescales every length alike, since $H\propto c_{\rm eff}$ at fixed $\rho_c$: both $\lambda_{\rm m}$ and $R_{\rm flat}$ grow by $c_{\rm eff}/c_s$, and the dimensionless ratio $\lambda_{\rm m}/W_{\rm FWHM}$ is unchanged. Transonic support, $\sigma_{\rm nt}\approx c_s$ as seen in the Taurus fibres \citep{Hacar2013}, raises both scales by $41$ per cent and leaves their ratio alone. Because we compare in units of the \emph{measured} width, the benchmark is insensitive to this rescaling at leading order; it would matter only if the non-thermal support differed systematically between the crest and the material setting the observed FWHM, which we cannot test here. Substituting $c_{\rm eff}$ treats the non-thermal motions as an isotropic pressure. That is a scaling argument and not a model of turbulence: real turbulent motions are anisotropic, correlated on the scales of interest, and can drive compression as readily as resist it.
+
+The often-quoted ``$\lambda\approx4\times$ the width'' is $4\times$ the flat \emph{diameter} $2R_{\rm flat}$ \citep{Inutsuka1992}, which is $\approx5$--$6\times$ the \emph{FWHM}; reading it as $4\times$ the FWHM understates the scale by a third. We adopt $\lambda_{\rm m}\approx5$--$6\,W_{\rm fil}$ as the reference band, its width being the span of the two FWHM conventions and not an uncertainty. Because we compare in FWHM units and forward-model the simulations to a beam-convolved Plummer FWHM (Section~\ref{sec:width_correction}), the deficit does not depend on the equilibrium-vs-observed profile-index difference ($p=4$ vs $p\simeq2$), and we compare as the density-independent ratio $\lambda/W_{\rm fil}$. The deficit is not new in sign: \citet{Fischera2012} noted observed cores sit ``about the FWHM'' apart, and \citet{Zhang2023cal} find a spacing $\approx1.3\times$ the width in California.
+
+
+
+Two things follow. The ratio $\lambda_{\rm m}/H=22$ and the conversion $\lambda_{\rm m}\approx4\times(2R_{\rm flat})$ are properties of the $p=4$ equilibrium and are exact within it. What is \emph{not} invariant is $\lambda_{\rm m}/W_{\rm FWHM}$, because the FWHM of a $p\simeq2$ Plummer profile is a different fraction of $H$ from that of a $p=4$ profile, and beam convolution broadens it further. The reference is thus convention-dependent at the tens-of-per-cent level before any measurement error enters, which is one reason we treat the simulated comparison through forward modelling (Section~\ref{sec:width_correction}) and not through this ratio.
+
+With $f=\mu_{\rm line}/\mu_{\rm crit}$ and $t_{\rm frag}\propto(f-1)^{-1/2}$, marginally supercritical filaments fragment slowly. At magnetically supercritical field strength ($\beta\gtrsim0.2$) all configurations fragment for $\mathcal{M}\geq1$ at every $f$ tested once integrated adequately: above the critical line mass there is no \emph{thermal} stability boundary. This is distinct from \emph{magnetic} stabilisation, where a strong longitudinal field ($\beta\lesssim0.15$) suppresses collapse even for $f>1$ (the strong-field, magnetically supported regime; see the deposited run manifest); the thermal ($f$) and magnetic (mass-to-flux) criticalities are physically distinct.
+
+We adopt a single reference $W_{\rm fil}=0.10$\,pc for comparability with prior HGBS work, though its universality is debated \citep{Panopoulou2017,Panopoulou2022}; the directly-measured region-Plummer widths ($0.11$--$0.16$\,pc, $\lambda/W\approx1.4$; Paper~I) show the conclusion is robust to the convention, carried as the $\sim25\%$ width systematic (Paper~I).
+
+
+\begin{table}
+\caption{Where the $5$--$6\times$FWHM reference comes from, for the isothermal equilibrium (Ostriker, $p=4$) cylinder. All entries are exact for that equilibrium, and are derived in Appendix~\ref{sec:validation}. The two conventions for the FWHM are the source of the quoted range: $\lambda_{\rm m}/W=5.07$ if the width is that of the projected column-density profile, as an observer measures it, and $6.04$ if it is that of the volume-density profile. Neither ratio is invariant when the observed profile has $p\simeq2$, which is why we treat the band as a reference and not a prediction.}
+\label{tab:benchmark}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llc}
+\toprule
+Quantity & Definition & Value \\
+\midrule
+$H$ & $c_s(4\pi G\rho_c)^{-1/2}$, scale height & $1$ \\
+$R_{\rm flat}$ & flattening radius, $\sqrt{8}\,H$ & $2.828\,H$ \\
+$2R_{\rm flat}$ & flat diameter & $5.657\,H$ \\
+$W_{\rho}$ & FWHM of the \emph{volume}-density profile & $3.641\,H$ \\
+$W_{\Sigma}$ & FWHM of the \emph{projected column}-density profile & $4.336\,H$ \\
+$\lambda_{\rm cr}$ & cutoff wavelength & $11.5\,H$ \\
+$\lambda_{\rm m}$ & fastest-growing wavelength & $22\,H$ \\
+\midrule
+$\lambda_{\rm m}/(2R_{\rm flat})$ & the ``$4\times$ diameter'' form & $3.89$ \\
+$\lambda_{\rm m}/W_{\Sigma}$ & projected-FWHM convention & $5.07$ \\
+$\lambda_{\rm m}/W_{\rho}$ & volume-FWHM convention & $6.04$ \\
+$\lambda_{\rm cr}/W_{\Sigma}$ & cutoff, projected convention & $2.65$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Three widths}
+\label{sec:width_correction}
+
+
+
+Three widths enter the simulation--observation comparison and must be kept separate (Fig.~\ref{fig:schematic}; Table~\ref{tab:widthdefs}): the initial Gaussian half-width $W_{\rm core}=0.3\,\lambda_{\rm J}$; the formation FWHM $W_{\rm form}=0.683\,\lambda_{\rm J}$ of the evolved projected profile ($\simeq2.28\,W_{\rm core}$, slightly below the initial $2.355\,W_{\rm core}$ owing to contraction; resolution- and seed-converged to $<1\%$); and the observed HGBS width $W_{\rm fil}$, the beam-convolved Plummer FWHM \citep{Arzoumanian2019}, which we obtain by forward-modelling the simulated filaments through the full synthetic-HGBS pipeline (projection, beam convolution, Plummer fit). This gives $\eta_W=W_{\rm form}/W_{\rm fil}=0.59$--$0.78$ and
+\begin{equation}
+T_1 \equiv \frac{W_{\rm form}}{W_{\rm fil}} = 0.61 \quad (\text{forward-model band } 0.59\text{--}0.78),
+\label{eq:t1_correction}
+\end{equation}
+so that $W_{\rm fil}=W_{\rm form}/T_1\approx1.12\,\lambda_{\rm J}$. We quote the forward-model best-fit $T_1=0.61$; because it lies near the lower edge of the band, a mid-band $T_1\approx0.68$ would give a slightly \emph{larger} $\lambda/W_{\rm fil}$, so this normalisation is deliberately not the headline; the primary comparison uses the width-convention-independent growth-rate upper bound (Section~\ref{sec:control}), and this $T_1$ conversion is retained only as a cross-check. The observable is $\lambda/W_{\rm fil}$; because the fragmentation spacing $\lambda$ is a physical length independent of the width definition, the conversion from the simulation-internal ratio $\lambda/W_{\rm core}$ (normalised by the initial $\sigma=0.3\,\lambda_{\rm J}$) is
+\begin{equation}
+\Big(\tfrac{\lambda}{W}\Big)_{\rm fil} = \frac{W_{\rm core}}{W_{\rm fil}}\Big(\tfrac{\lambda}{W}\Big)_{\rm core} \approx 0.27\,\Big(\tfrac{\lambda}{W}\Big)_{\rm core},
+\label{eq:t1_apply}
+\end{equation}
+i.e.\ $\lambda/W_{\rm fil}=(\lambda/\lambda_{\rm J})/1.12$; the prefactor is $0.27=W_{\rm core}/W_{\rm fil}=0.30/1.12$ (equivalently $T_1$ times the $\sigma\!\to\!$FWHM factor, $0.61\times0.44=0.27$, using $T_1\,W_{\rm core}/W_{\rm form}$), and using $T_1$ alone would overstate $\lambda/W_{\rm fil}$ by $\approx2.3\times$. This prefactor is \emph{not} a fixed constant: it carries the full $\approx30\%$ $T_1$ band ($T_1=0.59$--$0.78$), so $0.27$ is the best-fit value of a $\approx0.26$--$0.34$ range. Because the observable is sensitive to how $W_{\rm fil}$ is defined, the primary comparison uses the width-convention-independent growth-rate wavelength (an upper limit; Section~\ref{sec:control}), and this normalisation is retained only as a cross-check.
+
+
+
+For the ambient-confined supercritical ensemble ($\lambda/W_{\rm core}=3.27$) this gives $\lambda/W_{\rm fil}\approx0.9$.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.99\columnwidth]{figures/fig_schematic.pdf}
+\caption{Schematic of the length-scale definitions used throughout (Paper~I). \emph{(a)} Transverse column-density profile, marking the initial half-width $W_{\rm core}=\sigma_0$, the evolved spine FWHM $W_{\rm form}$, and the observed beam-convolved Plummer FWHM $W_{\rm fil}=W_{\rm form}/T_1$ ($T_1\simeq0.61$; Eq.~\ref{eq:t1_apply}). \emph{(b)} Axial view contrasting the classical widely-spaced comb ($\lambda_{\rm m}\approx5$--$6\,W$) with the observed unevenly-distributed cores: a short intra-group adjacent spacing $s_{\rm ACS,med}$ within core-rich stretches separated by core-poor filament, whose filament-averaged line density $L/N$ is near-classical, while the simulations give only an upper limit on any unresolved growth-rate maximum, $\lambda_{\rm turn}\lesssim1.1\,\lambda_{\rm J}$.}
+\label{fig:schematic}
+\end{figure}
+
+\begin{table}
+\caption{The three filament widths used in the simulation--observation comparison (all in Jeans lengths, $\lambda_{\rm J}=1$).}
+\label{tab:widthdefs}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{1.5cm}p{1.4cm}p{4.0cm}}
+\toprule
+Symbol & Value ($\lambda_{\rm J}$) & Definition \\
+\midrule
+$W_{\rm core}$ & $0.30$ & initial Gaussian half-width $\sigma$ (input) \\
+$W_{\rm form}$ & $0.683$ & Gaussian FWHM of evolved projected profile, supercritical ensemble ($\simeq2.28\,W_{\rm core}$) \\
+$W_{\rm FWHM}$ & $0.58$ & Gaussian FWHM at the growth-rate epoch, near-critical runs (narrower, already contracting); normalises Table~\ref{tab:production} \\
+$W_{\rm fil}$ & $\approx1.12$ & beam-convolved Plummer FWHM ($=W_{\rm form}/T_1$); the observable normalisation \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Terms on the simulated wavelength $\lambda_{\rm turn}$ and on its conversion to the observable normalisation. The first block is numerical and internal to the calculations; the second enters only when a simulated wavelength is expressed in the units an observer measures, and it dominates. The corresponding terms on the observed spacing itself are given in Paper~I \citep{PaperI}.}
+\label{tab:simbudget}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{3.1cm}p{1.9cm}p{2.3cm}@{}}
+\toprule
+Source & Type & Magnitude \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{Numerical (on $\lambda_{\rm turn}$)}}\\
+Growth-rate resolution/epoch & modelling & $\lesssim$5\% (converged) \\
+Turbulence sensitivity & measurement & $<$5\% ($N=1$ per point) \\
+Line-mass ($f$) dependence & modelling & $\sim$25\% \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{Conversion to observable units}}\\
+Gaussian vs Plummer FWHM & systematic & factor $\sim$1.5 \\
+Width normalisation $\eta_W=T_1$ & systematic & $\sim$30\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The two blocks of Table~\ref{tab:simbudget} are not commensurable and we do not combine them. The numerical terms would change if the calculations were repeated at higher resolution; the conversion terms would not, because they express a fixed ambiguity in how a simulated density field is turned into the quantity an observer fits. The conversion terms are the larger, which is the reason the bound is quoted as a range, $S_{\rm sim}^{\rm upper}\lesssim1.0$--$1.3$, rather than as a single number.
+
+
+\section{The controlled experiment}
+\label{sec:control}
+
+
+The load-bearing numerical result is a control, not a campaign. We prepared a drag-relaxed, force-balanced Ostriker cylinder and a dynamically contracting filament and passed both through the \emph{identical} measurement pipeline. For the equilibrium the pipeline recovers the classical maximum at $22H$ ($\lambda_{\rm peak}/22H=1.07$--$1.10$ at two resolutions, a genuinely resolved maximum); for the contracting filament the same pipeline finds no maximum within the trustworthy band (Fig.~\ref{fig:eqrecovery}). The difference is a property of the prepared state and not of the estimator.
+
+Because the argument rests on that distinction, the control is shown to be stationary, not assumed to be. The cylinder is drag-relaxed to $t=6\,t_{\rm J}$ and then evolved drag-free. Over the last two Jeans times of the relaxation its gravitational binding energy changes by $0.6$ per cent and the mass-weighted radial velocity within $0.6\,\lambda_{\rm J}$ of the axis is $|v_r|_{\rm rms}\leq0.012\,c_s$; over the two Jeans times following removal of the drag, which is the interval in which growth rates are measured, the binding energy changes by $1.7$ per cent and $|v_r|_{\rm rms}\leq0.024\,c_s$. The residual drift is a slow expansion rather than a contraction, so it cannot mimic the contracting case, and if anything biases the control towards longer wavelengths, the conservative direction.
+
+Wavelengths are measured from the growth-rate spectrum and not by counting late-time peaks. Seeding twelve axial modes at $\delta v/c_s=10^{-3}$ and fitting $P(k,t)$ over its approximately exponential interval gives $\Gamma(\lambda)$ (Fig.~\ref{fig:growthrate}a), which is resolution-converged for $\lambda\gtrsim1\,\lambda_{\rm J}$ and rises with transverse resolution below $\lambda\approx0.9\,\lambda_{\rm J}$, where it is numerical.
+
+Within the converged band $\Gamma$ plateaus and does not turn over. The statement this licenses is a logical one, and is worth writing out since it is easily overread: ${\rm d}\Gamma/{\rm d}\lambda$ does not change sign anywhere on the converged interval, so
+\begin{equation}
+\lambda_{\rm peak}<\lambda_{\rm min,conv}\simeq1.1\,\lambda_{\rm J}
+\label{eq:bound}
+\end{equation}
+\emph{if a physical maximum exists at all}. We write $\lambda_{\rm turn}\equiv\lambda_{\rm min,conv}$ for that limit, and never as a measured wavelength. Forward-modelling through a synthetic beam and the same Plummer fitting used on the data (Eq.~\ref{eq:etaW}) gives the matched limit $S_{\rm sim}^{\rm upper}\lesssim1.0$--$1.3$. No preferred wavelength is detected above the numerical convergence limit. That is weaker than saying the evolving filament has no preferred wavelength: several pieces of physics omitted here could impose one below that limit, and the calculations cannot see them.
+
+Producing a genuine maximum in an evolving cylinder requires physics this suite excludes, and it is worth naming the candidates without over-committing to any. Non-isothermal thermodynamics may eventually introduce a physical turnover in the short-wavelength growth spectrum; whether it does so at densities relevant to core formation in Gould Belt conditions requires radiative and thermal modelling beyond an isothermal calculation, and we do not attempt to specify the density at which it would act. Non-ideal effects, ambipolar diffusion in particular, damp short wavelengths preferentially once the neutral--ion coupling time exceeds the local growth time. A physical viscosity, or a turbulent cascade draining power from the coherent axial modes, would do the same by another route. Deciding among them is a separate calculation.
+
+Two caveats temper the causal attribution. The fitted rates ($\Gamma\approx18$--$26\,t_{\rm J}^{-1}$) are the accelerating growth of a collapsing background, not quasi-static eigenvalues, so we use only the mode \emph{ordering}; and a $p=4$ initial profile gives the same order-$\lambda_{\rm J}$ scale, so the result is not a profile-index artefact.
+
+
+
+
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.88\columnwidth]{figures/fig_eqrecovery.png}
+\caption{Equilibrium-recovery control. The identical growth-rate measurement pipeline is applied to a drag-relaxed, force-balanced pressure-confined Ostriker equilibrium (blue) and to a dynamically contracting filament (orange); the two differ in their prepared initial state and not in the measurement. \emph{Left:} onset fragmentation power spectrum; the equilibrium peaks at the classical $\lambda_{\rm m}\approx22H$ ($\approx5.4\,W_{\rm FWHM}$) while the contracting filament places its shortest converged scale at $\lesssim1.4\,W_{\rm FWHM}$ with no resolved maximum. \emph{Right:} $\Gamma(\lambda)$ against $\lambda/22H$; the equilibrium shows the classical peak-and-decline, the contracting filament rises monotonically. The pipeline recovers the classical wavelength when the physics is classical.}
+\label{fig:eqrecovery}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.9\columnwidth]{figures/fig_growthrate.pdf}
+\caption{\emph{(a)} Growth-rate spectrum $\Gamma(\lambda)$ for a near-critical filament ($f=1.1$) at three resolutions. For $\lambda\gtrsim1\,\lambda_{\rm J}$ the curves overlap; at the grid scale (shaded) they separate and rise with resolution. $\Gamma$ plateaus rather than turning over, so $\lambda_{\rm turn}\lesssim1\,\lambda_{\rm J}$ is an \emph{upper bound}. \emph{(b)} $\lambda_{\rm turn}/W_{\rm FWHM}$ against line-mass fraction, where $W_{\rm FWHM}$ is the FWHM of the \emph{evolved, projected} simulation profile and not the initial half-width $W_{\rm core}$ or the beam-convolved observational $W_{\rm fil}$ (Table~\ref{tab:widthdefs}). The matched, beam-convolved Plummer bound is $S_{\rm sim}^{\rm upper}\lesssim1.0$--$1.3$ (grey band; the $\eta_W$ conversion is uncertain over $0.59$--$0.78$, widening it by about a quarter).}
+\label{fig:growthrate}
+\end{figure}
+
+
+\subsection{Why only an upper limit}
+\label{sec:whyupper}
+
+
+Three ingredients make $\lambda_{\rm turn}$ a bound and not a measurement.
+
+\emph{(i) Contraction competes with mode growth.} The classical calculation assumes a static, marginally-stable cylinder, so every unstable mode has unlimited time and the winner is simply the one with the largest growth rate. Our production filaments begin with $f\gtrsim1$ and no supporting radial velocity, so the spine contracts while the axial modes are still growing. The relevant comparison is between the mode growth time $\tau_{\rm grow}=\Gamma(\lambda)^{-1}$ and the time on which the background changes, $\tau_{\rm contract}=|{\rm d}\ln\rho_c/{\rm d}t|^{-1}$; long-wavelength modes have the longest growth times and are the ones least likely to complete. The argument is set out in Appendix~\ref{sec:timescale}.
+
+The bound $S_{\rm sim}^{\rm upper}\lesssim1.0$--$1.3$ should be read as conditional on the resolution achieved: showing that a turnover has not appeared between two closely spaced resolutions is not the same as excluding one below the numerical floor.
+
+\emph{(ii) Why no maximum is resolved.} Because the selection is set by the timescale competition rather than by the shape of $\Gamma(\lambda)$, the measured spectrum does not turn over: $\Gamma$ rises monotonically until it meets the grid scale, where the rise becomes numerical (Fig.~\ref{fig:growthrate}a). We quote the converged-band edge $\lambda_{\rm turn}$, an upper limit on where a physical turnover could lie, and never a peak.
+
+\emph{(iii) The magnetic variables.} The field enters through $\beta$ and, equivalently, through $\mu_\Phi/\mu_{\Phi,\rm crit}\propto f\sqrt{\beta}$, which exceeds unity in every configuration run. In the uniform longitudinal-field configuration considered here a field does no work against axial modes, which compress gas along the field lines, and the simulations show no measurable dependence of the axial spectrum on $\beta$ over the tested range $0.3$--$2$ (uniform longitudinal field only; the perpendicular and helical cases are treated separately in Section~\ref{sec:optional_tests}). This is a statement about that configuration and that range, not a general result for longitudinally magnetised filaments. Its effect is radial: it resists transverse contraction and at $\beta\lesssim0.15$ halts it. A toroidal component could act on the axial mode, but only in radial force balance; seeded onto an already-contracting filament it merely pinches the spine, narrowing $W$ by $\approx25$ per cent and thereby \emph{raising} $\lambda/W$ without shortening $\lambda$.
+
+\emph{Bridging to observable units.} Three widths are involved (Table~\ref{tab:widthdefs}): the initial Gaussian half-width $W_{\rm core}=0.3\,\lambda_{\rm J}$, the evolved formation FWHM $W_{\rm form}=0.683\,\lambda_{\rm J}$, and the beam-convolved Plummer FWHM $W_{\rm fil}$ that an observer fits. The bridge is one multiplicative factor,
+\begin{equation}
+\frac{\lambda_{\rm turn}}{W_{\rm fil}}=\eta_W\,\frac{\lambda_{\rm turn}}{W_{\rm form}},
+\qquad \eta_W\equiv\frac{W_{\rm form}}{W_{\rm fil}}=T_1,
+\label{eq:etaW}
+\end{equation}
+with $T_1=\eta_W=0.59$--$0.78$ measured by forward-modelling the simulation output through a synthetic \textit{Herschel} beam and the same Plummer fitting used on the data. It is Eq.~\ref{eq:etaW}, not the raw simulation number, that converts $\lambda_{\rm turn}/W_{\rm form}\approx2$ into $S_{\rm sim}^{\rm upper}\lesssim1.0$--$1.3$; the $\eta_W$ range is the dominant modelling term and widens that bound by about a quarter.
+
+
+
+
+\section{Mode selection in evolving filaments}
+\label{sec:ladder}
+
+
+The equilibrium-versus-contracting comparison establishes the sign of the effect but not its dependence on the state of the filament, so we ran a ladder. Seventeen otherwise identical filaments were initialised from the same relaxed Ostriker cylinder with a homologous inward velocity $v_r(r)=-A\,(c_s/R_0)\,r$, for $A$ from $0$ to $1.4$. We call this a ladder in dynamical state and not in contraction rate, because the analysis below shows that $A$ is not the controlling parameter. The runs were performed at $256\times64^2$ with $\Delta x=0.0625\,\lambda_{\rm J}$ and $L_x=16\,\lambda_{\rm J}$, evolved with the same twelve-mode seed and the same growth-rate measurement, with the $A=0$ and $A=1$ endpoints repeated at $512\times128^2$.
+
+The expectation to be tested is that mode selection follows the density at which the modes actually grow, $\lambda_{\rm select}\propto\rho_{\rm eff}^{-1/2}$, with $\rho_{\rm eff}$ the central density at the mid-point of the linear growth window. Figure~\ref{fig:ladder} shows why $A$ is not itself the controlling parameter. An imposed inward velocity does not produce steady contraction: the spine overshoots, reaching a transient central density up to $11$ times its initial value within $\approx0.3\,t_{\rm J}$, then rebounds and settles \emph{below} it, so that the most strongly kicked filaments are the least dense while their modes are growing. The relation between $A$ and $\rho_{\rm eff}$ is consequently non-monotonic, rising to $\rho_{\rm eff}\simeq3.5\,\rho_0$ near $A\approx0.2$ and falling to $0.35\,\rho_0$ at $A=1.4$. The ladder is therefore a means of sampling $\rho_{\rm eff}$ over a factor of ten and not a sequence in contraction rate.
+
+Across that range the selected scale follows the expected scaling. Three runs, at $A=0.15$, $0.2$ and $0.25$, show no resolved maximum within the seeded modes and enter the fit as upper limits; a maximum-likelihood regression that treats them as censored, and that includes the axial mode quantisation ($\lambda=L_x/n$) in the per-point uncertainty, gives
+\begin{equation}
+\lambda_{\rm select}\propto\rho_{\rm eff}^{-0.49\,\pm\,0.05},
+\label{eq:ladderfit}
+\end{equation}
+with an intrinsic scatter of $0.09$ dex about the relation, against the predicted exponent of $-1/2$ (Fig.~\ref{fig:ladder}c). Discarding the censored points and fitting the remainder by least squares instead returns $-0.39$, which illustrates why the upper limits, all of which lie at the high-density end, must be included.
+
+\smallskip\noindent\textbf{Convergence of the endpoints.} Both endpoints were repeated at $512\times128^2$ and again at $1024\times256^2$, a factor of four in linear resolution and $64$ in cell count above the production grid (Table~\ref{tab:xlconv}). The selected \emph{mode} is converged: the static run peaks at $n=6$ at both $512$ and $1024$, and the dynamical run at $n=4$ at all three resolutions, so $\lambda_{\rm peak}$ takes literally the same value, $2.67$ and $4.00\,\lambda_{\rm J}$ respectively. No maximum migrates towards the grid scale as the grid is refined, which is the specific behaviour a resolution-limited spectrum would show, and no new maximum appears at shorter wavelength at $1024\times256^2$ in either case.
+
+The residual variation in $\lambda_{\rm peak}/22H(\rho_{\rm eff})$ across resolutions, $1.09\to0.99\to1.01$ for the static run and $0.94\to0.84\to0.73$ for the dynamical one, comes not from the measured wavelength but from $\rho_{\rm eff}$, whose value at the mid-point of the fitting window depends slightly on how well the rebound is resolved. The physical statement survives at every resolution and strengthens with it: the static control returns the equilibrium result to within $1$--$9$ per cent, while the dynamical run lies $6$--$27$ per cent below the instantaneous equilibrium expectation. We quote the production-resolution median of $0.87$ in the text and note that refinement moves the dynamical endpoint further below unity, not towards it.
+
+
+
+
+
+\smallskip\noindent\textbf{Which hypothesis does this support?} Two must be distinguished. The first is that contraction shortens the selected wavelength directly, as a dynamical effect over and above the change in background state. The second is that the selected wavelength simply follows the instantaneous gravitational scale as the central density evolves, contraction being the means by which that density changes, not an independent wavelength-setting parameter. These experiments support the second much more directly than the first, and we say so plainly: an exponent of $-1/2$ is the dimensional expectation for a Jeans or scale-height problem, so recovering it demonstrates that mode selection tracks $\rho_{\rm eff}$, not that a new mechanism is operating.
+
+The point is sharpened by normalising out the changing background. Evaluating the equilibrium result at each run's own $\rho_{\rm eff}$, rather than at the initial density, removes most of the apparent shift: $\lambda_{\rm peak}/22H(\rho_{\rm eff})$ is $1.09$ for the static run and has a median of $0.87$ over the sixteen dynamical runs, spanning $0.79$--$1.12$ (Fig.~\ref{fig:ladder}d). There is a residual deficit of order $13$ per cent relative to the instantaneous equilibrium expectation, and it is consistent across the ladder, but it is an order of magnitude smaller than the factor of three to five one would infer by comparing with the wavelength of the \emph{initial} equilibrium. The correct statement is therefore that dynamical evolution permits mode selection to occur at a density different from the one defining the initial equilibrium scale, with at most a modest additional shift relative to the instantaneous scale.
+
+The controlling variable is $\rho_{\rm eff}$ and not the imposed velocity: a filament can be given a large inward kick and still select a \emph{long} wavelength if it has already rebounded by the time its modes grow. A real filament, fed continuously, not kicked once, need not follow the same trajectory at all.
+
+
+\begin{figure*}
+\includegraphics[width=0.94\textwidth]{figures/fig_ladder.pdf}
+\caption{The dynamical-state ladder: seventeen runs, coloured by the imposed inward-velocity amplitude $A$. \emph{(a)} Central density against time, normalised to its initial value; the shaded band is the window over which the growth rates are fitted, and the circles mark the epoch at which $\rho_{\rm eff}$ is evaluated. The overshoot and rebound are visible directly: a strong kick raises the density transiently and leaves the filament less dense than it started while its modes are growing. \emph{(b)} Mass-weighted radial velocity within $0.6\,\lambda_{\rm J}$ of the axis, showing the same behaviour. \emph{(c)} Selected scale against $\rho_{\rm eff}$. Circles are runs with a resolved maximum of $\Gamma$; triangles are upper limits, where $\Gamma$ is still rising at the shortest well-resolved seeded mode. The solid line is the censored maximum-likelihood fit (Eq.~\ref{eq:ladderfit}) and the dashed line the $\rho_{\rm eff}^{-1/2}$ expectation. \emph{(d)} The same selected scale normalised by the equilibrium result evaluated at each run's \emph{own} $\rho_{\rm eff}$ rather than at the initial density. Once the changing background is removed the residual shift is small: the static run sits at $1.09$ and the dynamical runs have a median of $0.87$, so the deficit relative to the instantaneous equilibrium expectation is of order $13$ per cent, an order of magnitude smaller than the factor of three to five obtained by comparing with the initial equilibrium wavelength.}
+\label{fig:ladder}
+\end{figure*}
+
+
+\section{Convergence and resolution}
+\label{sec:convergence}
+
+The claim that no maximum is resolved is a claim about a numerical spectrum, so it needs the resolution argument stated separately and in full.
+
+\smallskip\noindent\textbf{Could numerical dissipation produce the missing maximum?} Grid-scale dissipation suppresses short-wavelength power progressively, and its signature is a short-$\lambda$ spectrum that \emph{rises} on refinement. Three results argue against a dissipative origin. The plateau edge does not move: over $128^3$--$512^3$ the fitted rate at the edge mode changes by $3.9$ and then $1.1$ per cent, while the spectrum below $\lambda\approx0.9\,\lambda_{\rm J}$ separates and rises, so the two regions behave in the opposite senses expected of a converged band and a dissipation-limited one. A cutoff at fixed $\Delta x$ would move on refinement and reveal a maximum hidden just below the band; it does not. And the axial mode set changes between resolutions, so a maximum pinned by quantisation would shift; it does not. The rows of Table~\ref{tab:production} that have been through this ladder are those at $f=1.1$ (three resolutions) and $f=1.5$ (two); the rest are single-resolution and quoted as bounds on that basis. The ladder endpoints of Section~\ref{sec:ladder} add a further, independent check at $1024\times256^2$, where the selected mode is unchanged from $512\times128^2$ and no shorter-wavelength maximum appears (Table~\ref{tab:xlconv}). These tests exclude dissipation removing a maximum lying \emph{within} the converged band; they cannot exclude one below it.
+
+
+
+
+
+\begin{table}
+\caption{Resolution check on the two ladder endpoints. $n_{\rm peak}$ is the axial mode at which $\Gamma$ is maximal over the seeded, well-resolved modes and $\lambda_{\rm peak}=L_x/n_{\rm peak}$. The selected mode is identical at the two highest resolutions for the static run and at all three for the dynamical one; the variation in the last column follows $\rho_{\rm eff}$, not $\lambda_{\rm peak}$.}
+\label{tab:xlconv}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llcccc}
+\toprule
+Run & grid & $\rho_{\rm eff}/\rho_0$ & $n_{\rm peak}$ & $\lambda_{\rm peak}/\lambda_{\rm J}$ & $\lambda_{\rm peak}/22H$ \\
+\midrule
+$A=0$ & $256\times64^2$   & 0.66 & 5 & 3.20 & 1.09 \\
+      & $512\times128^2$  & 0.76 & 6 & 2.67 & 0.99 \\
+      & $1024\times256^2$ & 0.79 & 6 & 2.67 & 1.01 \\
+\midrule
+$A=1$ & $256\times64^2$   & 0.32 & 4 & 4.00 & 0.94 \\
+      & $512\times128^2$  & 0.24 & 4 & 4.00 & 0.84 \\
+      & $1024\times256^2$ & 0.18 & 4 & 4.00 & 0.73 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Refinement in two directions}
+\label{sec:optional_tests}
+
+Three targeted campaigns test the concerns that bear most on the interpretation, and are summarised here with the detail given in Appendix~\ref{sec:optional_app}.
+
+Under transverse refinement ($128^3$--$512^3$) the short-wavelength part of the spectrum grows with resolution and is numerical, while the physical band $\lambda\gtrsim1\,\lambda_{\rm J}$ is converged; under axial-only refinement ($512\times128^2\to1024\times128^2$) the physical band reproduces to better than $0.5$ per cent and the short-$\lambda$ rise is unchanged, confirming it is fixed by the axial Nyquist scale and not by a physical mode migrating to shorter $\lambda$. The limit $\lambda_{\rm turn}\lesssim1.1\,\lambda_{\rm J}$ is stable in both directions.
+
+For a perpendicular field the near-critical filament collapses monolithically in the radial direction at every resolution on a $128^3$--$512^3$ ladder, with the axial perturbation staying at seed level throughout the well-resolved phase. Short-wavelength axial structure appears only once the spine drops below $N_J\approx1$, and refinement delays its onset to deeper collapse, the signature of a grid artefact. A perpendicular field \emph{suppresses} axial fragmentation in favour of radial collapse, as static linear theory predicts.
+
+A divergence-free helical scan ($B_\phi/B_z=0$--$2$) leaves the axial growth-rate plateau at $\lambda\approx1\,\lambda_{\rm J}$ for every winding and produces only a radial pinch that narrows $W_{\rm FWHM}$ by $\approx25$ per cent, raising $\lambda/W$ by reducing $W$ and not by shortening $\lambda$. Being seeded and not force-balanced, this configuration cannot test the confining Fiege--Pudritz sausage ($m=0$) mode \citep{Fiege2000}, which is the one geometry able to shorten $\lambda$ and remains unconstrained by any calculation presented here (Section~\ref{sec:fields}).
+
+
+\section{Magnetic field geometry: what is and is not constrained}
+\label{sec:fields}
+
+
+For a filament threaded by a magnetic field at an angle $\theta$ to the axis (Alfv\'en speed $v_A$), a schematic oblique dispersion relation, valid only for a static background field, is \citep{Nakamura1993}:
+\begin{equation}
+\omega^2 = c_s^2 k^2 + v_A^2 k^2 \sin^2\theta - 4\pi G\rho_0 F(kR)
+\label{eq:dispersion}
+\end{equation}
+Here $k$ is the axial wavenumber, $\rho_0$ the central density, $R$ the filament radius, $\theta$ the angle between the field and the axis, and $F(kR)$ a dimensionless geometry factor arising from the cylindrical Poisson kernel, which tends to unity as $kR\to0$ and falls monotonically towards zero as $kR\to\infty$, so that self-gravity is progressively less effective at wavelengths short compared with the filament radius. This is a \emph{schematic static-field} relation that treats $\mathbf{B}$ as a fixed background and \emph{cannot be used quantitatively} for a magnetised cylindrical equilibrium; in particular it does not describe a current-carrying (helical) equilibrium. We use it only as an analytic guide, so this paper contains \emph{no quantitative model of magnetic tension}; it nonetheless fixes the \emph{sign} of each idealised case, the magnetic term $v_A^2k^2\sin^2\theta$ vanishing for a \emph{longitudinal} field (reducing to the field-free thermal relation) and being maximal for a \emph{perpendicular} one ($\theta=90^\circ$, which lengthens the axial mode). Consistent with this, our longitudinal runs keep the growth-rate wavelength at order $\lambda_{\rm J}$ across $\beta=0.3$--$1.0$ ($f=1.1$; the $\beta=1.0$ ladder gives $\lambda_{\rm turn}=1.14\,\lambda_{\rm J}$, Table~\ref{tab:production}) with no resolved $\beta$-trend, so the scale is set by the thermal Jeans length, not the field, and the displacement we measure follows the gravitational scale of the evolving background, not magnetic tension. A genuinely shorter magnetic wavelength would require a force-balanced \emph{helical}/toroidal field, whose stability is a cylindrical magnetostatic-equilibrium problem that Eq.~(\ref{eq:dispersion}) cannot address. The full case-by-case discussion of the longitudinal, perpendicular and helical geometries, and the sense in which the simulations \emph{constrain only the specific initial field geometries simulated} rather than dispose of magnetic alternatives, is deferred to Section~\ref{sec:optional_tests}. The seeded helical run tested here is an \emph{out-of-equilibrium pinch}, not a force-balanced equilibrium, and does \emph{not} rule out the helical mechanism (Section~\ref{sec:optional_tests}).
+
+
+
+
+
+Table~\ref{tab:magcases} summarises the four configurations. The position is briefly stated.
+
+\begin{itemize}\setlength{\itemsep}{1pt}
+\item \emph{Uniform longitudinal field}: no measurable modification of the axial scale over the tested range $\beta=0.3$--$2$.
+\item \emph{Static perpendicular field}: the apparently short axial fragmentation seen at low resolution is a grid artefact, and the resolved behaviour is monolithic radial collapse, so this geometry yields no usable constraint on the axial wavelength.
+\item \emph{Seeded helical field}: an out-of-equilibrium pinch that narrows $W$ without shortening $\lambda$; it is not a magnetostatic helical equilibrium and does not test one.
+\item \emph{Force-balanced helical equilibrium}: not simulated. This is the only geometry identified here capable of shortening the axial mode, and it remains entirely unconstrained by this work.
+\end{itemize}
+
+Read off from the published \citet{Fiege2000} results and not computed here, a strongly toroidally dominated equilibrium shortens the $m=0$ wavelength by up to a factor $\approx2$, and our $\beta\approx0.3$--$2$ places these filaments at the weak end of that sequence. The construction a proper test would require, and the four specific obstacles to imposing such an equilibrium on a Cartesian grid, are set out in Appendix~\ref{sec:helical}.
+
+\emph{Boundary conditions and non-ideal effects.} Periodic transverse boundaries supply an accretion channel that suppresses longitudinal fragmentation unless ambient confinement is imposed, which is why the production runs place the transverse boundary at $d\geq1\,\lambda_{\rm J}$ from the spine. At the densities probed here ($n_0\sim10^4$\,cm$^{-3}$) the ambipolar-diffusion time is long compared with the collapse time \citep{Tassis2004}, and non-ideal runs at $\eta_{\rm AD}=\{0.01,0.05\}$ still collapse radially, $12$--$15$ per cent earlier than the ideal control, so ideal MHD is an adequate approximation for the longitudinal stage.
+
+
+
+
+\begin{table}
+\caption{Schematic summary of the four magnetic-field configurations and their tested status.}
+\label{tab:magcases}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}p{2.9cm}lp{3.0cm}@{}}
+\toprule
+Configuration & Tested? & Effect on axial $\lambda$ \\
+\midrule
+Uniform longitudinal & tested & unchanged (term vanishes) \\
+Static perpendicular (resolved) & tested & suppresses axial fragmentation (spindle) \\
+Seeded/dynamic helical & tested & pinches $W$; does not shorten $\lambda$ \\
+\midrule
+\multicolumn{3}{l}{\emph{Not simulated in this work; listed for completeness}}\\
+Force-balanced helical (Fiege--Pudritz) & not tested & could shorten by $\lesssim2\times$ (order-of-magnitude inference from Fiege--Pudritz, not a result of this work; Section~\ref{sec:optional_tests}) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section{Ambient confinement and the supercritical ensemble}
+\label{sec:ambient}
+
+
+The outcome for a supercritical filament is set by whether it is confined by an ambient medium, as real HGBS filaments are ($d$ denotes the axis-to-boundary distance in Jeans lengths). The main 654-run grid has no ambient medium, so its Gaussian skirt feeds an accretion channel through the periodic boundary that suppresses beading and drives radial collapse; with ambient confinement (\texttt{filament\_ambient} generator) the same configurations fragment longitudinally, a 12-run reconciliation suite beading at physical, $\beta$-dependent collapse times ($0.55$--$0.70\,t_{\rm J}$) that converge across boundary conditions.
+
+Ambient-confined supercritical filaments ($f=1.5$--$2.0$, $\theta=0^\circ$) fragment longitudinally: an ensemble of 39 runs (periodic and reflecting BCs, ambient confinement) develops 3--10 interior axial density maxima at a spacing of order the Jeans length. We take the wavelength from the linear growth-rate spectrum, whose low-$n$ modes are resolution-stable: no physical turnover is detected above $\approx1\,\lambda_{\rm J}$, so any turnover is constrained only to $\lambda_{\rm turn}\lesssim1.0$--$1.14\,\lambda_{\rm J}$ (an upper bound; no resolved peak), $\lesssim0.35$--$0.5$ times the classical value (not the median peak count, which is epoch- and resolution-dependent). The ambient medium confines the filament (central-to-ambient density ratio $\sim10^2$, consistent with HGBS crest-to-background contrasts; \citealt{Arzoumanian2019}), so the adopted contrast is observationally plausible, although the calculation remains an idealised controlled experiment and not a model of an individual HGBS filament. Across the 39 runs periodic and reflecting boundaries are statistically indistinguishable (KS $p=0.17$; medians $\lambda/W_{\rm fil}\approx0.89$ and $1.01$), and this ensemble median and the growth-rate result are the same physical wavelength $\lambda\approx1.1\,\lambda_{\rm J}$ in different normalisations. The ensemble beads early ($t_{\rm bead}\approx0.6$--$0.75\,t_{\rm J}$), before runaway and at moderate contrast, so with $\lambda\approx\lambda_{\rm J}$ resolved by ${\sim}32$ cells it satisfies Truelove at measurement (Appendix~\ref{sec:validation}).
+
+Perpendicular-field filaments ($\theta=90^\circ$) do not universally spindle in the raw low-resolution grids: an 18-run ideal-MHD grid at $d=1.0$ shows $7/18$ bead (at $\beta=0.5$ and $2.0$) with an apparently short spacing ($\lambda/W_{\rm fil}\approx0.4$), but this conflicts with static linear theory (which predicts a \emph{longer} mode) and a transverse-refinement ladder to $N_J\approx170$ resolves the near-critical case into a monolithic radial spindle, identifying the short beading as a Truelove artefact (Section~\ref{sec:optional_tests}). An exploratory ambipolar-diffusion survey was also run, but it fragments only at $N_J\approx1$--$2$, below the Truelove limit, so it cannot support any conclusion and we exclude it from the argument here; it is described, with an explicit warning that it is numerically unresolved, in the deposited material.
+
+
+\section{Comparison with the observations}
+\label{sec:comparison}
+
+\subsection{What observable does a calculation of this kind predict?}
+
+
+A simulation that produces one bead per wavelength predicts a \emph{line density}, one core per $\lambda$ of filament. The closest available observational proxy is $S_{\rm global}=(L/N)/W$ and not the conditional $S_{\rm local}$, provided that the measured length corresponds to fragmentation-eligible, velocity-coherent filament. That proviso is not satisfied here, so $S_{\rm global}$ is not strictly the theoretical observable either; it is simply the less conditional of the two. The numerical proximity of the simulated bound ($\lesssim1.0$--$1.3$) to $S_{\rm local}\approx1.4$ is therefore not evidence of agreement, since the two are different quantities: one is a median of observed adjacent separations conditioned on core-bearing stretches, the other a constraint on a wavelength inferred from linear growth in an idealised numerical filament. No quantitative identification of the two is intended, and where they appear on the same dimensionless axis (Paper~I) it is only to show their relative magnitude. Against $S_{\rm global}=3.4$--$5.8$ the simulated bound is in fact \emph{more} discrepant, implying that single-filament fragmentation over-produces cores per unit length unless most of the crest is core-poor, which is the occupancy result of Paper~I.
+
+
+\subsection{The calculations do not reproduce the observed point process}
+
+The observed cores are not a periodic chain. Paper~I finds that they occupy only $6$--$27$ per cent of the crest, that their gap distribution rejects both a periodic comb and a homogeneous Poisson process, and that no feature appears at the equilibrium-cylinder scale in the pair-correlation function. Our calculations produce $3$--$10$ near-uniformly spaced beads along a filament that is unstable along its whole length. These are different objects.
+
+That mismatch is not a defect of the numerical set-up so much as a statement about what the set-up omits. Three ingredients are missing, and they are separable. First, the perturbation spectrum must be inhomogeneous \emph{along} the filament and not statistically uniform: a single realisation of a stationary spectrum produces a chain by construction, whereas the observed Fano factors of $1.6$--$25$ on parsec scales require the seed amplitude itself to vary on those scales. Continuously driven turbulence with a realistic injection scale is the natural way to supply that, and it is a different experiment from the initial-value calculations reported here. Second, the line mass must vary along the axis: a filament assembled by anisotropic accretion is supercritical in some stretches and not others, and a uniform-$f$ cylinder cannot express that. Third, the calculation must run well past first fragmentation, since migration, merging and continued accretion will erase an initially regular chain within a few free-fall times \citep{Clarke2020}.
+
+The test of a successful calculation is accordingly not a wavelength but a set of statistics: it should reproduce the occupancy fraction as a function of scale, the Fano factor over $0.25$--$4$\,pc, the gap distribution and the pair-correlation function simultaneously. We propose those as the benchmark.
+
+\subsection{What the present calculations do establish}
+\label{sec:whatestablished}
+
+
+The result is one-sided. These calculations rule out the assertion that a contracting filament \emph{must} fragment at the equilibrium-cylinder wavelength, and they show that mode selection follows the instantaneous central density. They do not determine a preferred wavelength, and they do not reproduce the observations: the simulated filaments produce a quasi-periodic comb of 3--10 near-uniform beads, whereas the observed cores reject both periodic and Poisson descriptions and occupy only $6$--$27$ per cent of the crest. A successful theory must predict a point process, not merely a wavelength, and no calculation presented here does so.
+
+One further limitation is thermodynamic. Because $\Gamma(\lambda)$ does not turn over within the converged band, an isothermal calculation contains no small-scale cutoff and cannot predict a characteristic core mass or a CMF peak. That would require $\gamma_{\rm eff}>1$ at $n\gtrsim10^{5}$--$10^{6}\,{\rm cm^{-3}}$, where dust--gas coupling and line cooling can no longer hold $T$ constant \citep{Larson1985,Glover2012}; this is a change in thermal behaviour distinct from, and at much lower density than, the classical opacity limit \citep{Rees1976,LowLyndenBell1976}. Our isothermal suite deliberately excludes it.
+
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+We have asked whether a dynamically evolving filament is obliged to fragment at the wavelength associated with its initial equilibrium.
+
+\begin{enumerate}\setlength{\itemsep}{2pt}
+\item \textbf{The measurement pipeline recovers the equilibrium answer when the physics is equilibrium.} Applied to a drag-relaxed, force-balanced Ostriker cylinder, whose stationarity is demonstrated rather than assumed, it returns $\lambda_{\rm peak}/22H=1.07$--$1.10$ at two resolutions and $1.01$ at a third, a genuinely resolved maximum.
+\item \textbf{Applied to an evolving filament the same pipeline finds no maximum.} The growth rate rises monotonically to the edge of the converged band, so ${\rm d}\Gamma/{\rm d}\lambda$ does not change sign anywhere on that band and the only statement available is $\lambda_{\rm peak}<\lambda_{\rm min,conv}\simeq1.1\,\lambda_{\rm J}$, if a physical maximum exists at all. No preferred wavelength is detected above the numerical convergence limit; that is weaker than saying the filament has none.
+\item \textbf{Mode selection follows the instantaneous gravitational scale.} Over seventeen otherwise identical runs spanning a factor of ten in the density at which the modes grow, $\lambda_{\rm select}\propto\rho_{\rm eff}^{-0.49\pm0.05}$, indistinguishable from $-1/2$. Evaluated at each run's own density the residual displacement from the equilibrium expectation has a median of $13$ per cent. Evolution changes the physical state at which fragmentation develops; it is not shown to generate an intrinsically shorter wavelength for that state.
+\item \textbf{The imposed contraction rate is not the controlling variable.} An inward kick overshoots and rebounds, so the most strongly kicked filaments are among the least dense while their modes grow. The controlling variable is the density at mode selection.
+\item \textbf{The result is resolution-stable.} Both endpoints repeated at $1024\times256^2$, a factor of four in linear resolution above the production grid, select the same axial mode, and no maximum migrates in from shorter wavelength.
+\item \textbf{The magnetic channel is untested.} A uniform longitudinal field leaves the axial scale unchanged over $\beta=0.3$--$2$; the perpendicular case is not numerically resolved and supplies no constraint; a seeded helical field is an out-of-equilibrium pinch and not a magnetostatic equilibrium. The force-balanced Fiege--Pudritz configuration, the only geometry identified here capable of shortening the axial mode, is not simulated and remains entirely unconstrained by this work.
+\item \textbf{These calculations do not explain the observations.} They produce a quasi-periodic chain; the observed cores are spatially inhomogeneous and reject both a periodic comb and a homogeneous Poisson process \citep{PaperI}. What a successful calculation must reproduce is a point process, and none presented here does.
+\end{enumerate}
+
+The calculations are isothermal, use idealised initial profiles, and seed the perturbations once rather than driving them continuously. Each of those omissions could introduce a physical short-wavelength cutoff that these runs cannot see, and the natural next calculation is one with continuously driven turbulence and a line mass that varies along the axis.
+
+\section*{Acknowledgements}
+
+The Athena++ calculations were run on commercially procured cloud infrastructure, funded from the author's institutional research allocation.
+
+\section*{Data availability}
+
+The supporting material, comprising the full run manifest (all $2251$ Athena++ runs with their parameters and outcomes, of which the $33$ listed in Table~\ref{tab:production} carry the numerical result), the problem-generator source and normalisation scripts, HDF5 snapshots of the convergence subset and the equilibrium-recovery control, and the growth-rate analysis pipeline, is archived under a CC-BY-4.0 licence with the citable Zenodo DOI \texttt{10.5281/zenodo.14872301}, versioned to the accepted release.
+
+\bibliographystyle{mnras}
+
+\appendix
+
+\section{A timescale interpretation}
+\label{sec:timescale}
+
+The numerical result admits a simple timescale interpretation, which we give because it is the reason we regard the counterexample as generic. It is an interpretation, not a derivation: the perturbations evolve on a time-dependent background and are not normal modes of a stationary equilibrium. In a filament of central density $\rho_c(t)$ the local Jeans length is $\lambda_{\rm J}(t)=c_s\sqrt{\pi/G\rho_c(t)}$, and a mode is realised as a fragment only if it grows before the background changes,
+\begin{equation}
+\tau_{\rm grow}(\lambda)\;\equiv\;\Gamma(\lambda,t)^{-1}\;\lesssim\;\tau_{\rm contract}\;\equiv\;\left|\frac{{\rm d}\ln\rho_c}{{\rm d}t}\right|^{-1}.
+\label{eq:freezeout}
+\end{equation}
+For an equilibrium cylinder $\tau_{\rm contract}\to\infty$, every unstable mode has unlimited time, and the winner is the one with the largest $\Gamma$, the classical $\lambda_{\rm m}\approx22H$. For an evolving filament $\tau_{\rm contract}$ is of order the free-fall time while $\lambda_{\rm J}$ falls as $\rho_c^{-1/2}$, so long-wavelength modes, whose growth times are longest, are least likely to complete. The modes most likely to survive are those with $\tau_{\rm grow}\lesssim\tau_{\rm contract}$, and since $\Gamma$ increases towards shorter $\lambda$ across the converged band this selects the short end. The ladder of Section~\ref{sec:ladder} tests the resulting expectation directly, and finds that the selected scale tracks the instantaneous $\rho_{\rm eff}$  and not the imposed contraction rate.
+
+
+
+
+\section{Resolution and field-geometry campaigns}
+\label{sec:optional_app}
+
+Three targeted campaigns test the concerns that most affect the interpretation: whether the longitudinal wavelength is resolution-limited, whether the perpendicular geometry produces genuine short beading, and whether a helical field, the one configuration expected to shorten the axial mode, actually does.
+
+\emph{Resolution stability of $\lambda_{\rm turn}$.} Two refinement directions behave oppositely. Under \emph{transverse} refinement (the isotropic $128^3$--$512^3$ ladder) the short-wavelength spectrum ($\lambda\lesssim0.9\,\lambda_{\rm J}$, $n\gtrsim9$) grows with resolution and is numerical (unresolved transverse sub-fragmentation; Fig.~\ref{fig:growthrate}a), whereas the physical band ($\lambda\gtrsim1\,\lambda_{\rm J}$, $n\leq8$) is converged. Under \emph{axial-only} refinement ($512\times128^2\to1024\times128^2$) the physical band reproduces to better than $0.5\%$ ($\Gamma$ at $n=6,7,8$, i.e.\ $\lambda=1.33,1.14,1.00\,\lambda_{\rm J}$, is $17.6,18.7,18.7$ at both resolutions, plateauing without turning over), \emph{and} the short-$\lambda$ rise is unchanged, confirming it is fixed by the axial Nyquist scale, not a physical mode migrating to shorter $\lambda$. The $\lambda_{\rm turn}\lesssim1\,\lambda_{\rm J}$ upper bound is therefore stable: axial refinement does not move the physical-band plateau, and the only shorter-$\lambda$ structure is the transverse-resolution artefact already identified.
+
+\emph{The perpendicular geometry: a resolved spindle, not short beading.} On a transverse-refinement ladder ($128^3$--$512^3$) the near-critical \emph{ideal} perpendicular filament collapses monolithically in the radial direction at every resolution, the axial mode staying at the box scale and the axial perturbation at seed level throughout the well-resolved phase (at $512^3$ the spine stays resolved with $N_J\approx170$ cells at $C\approx3$, falling only to $N_J\approx40$ at $C\approx30$; still $\approx10\times$ above Truelove; Appendix~\ref{sec:validation}). The axial structure at $\lambda/W\approx0.4$ emerges only after the spine has dropped below $N_J\approx1$, and each refinement postpones its emergence to a later stage of the collapse, which is the characteristic behaviour of a grid artefact and not of a physical mode. Static linear theory predicts that a perpendicular field lengthens the axial mode, and that is what the resolved calculation shows. This is for \emph{ideal} MHD; the ambipolar-perpendicular case (Section~\ref{sec:fields}) remains separately unconverged.
+
+\emph{A seeded helical field pinches the width but does not shorten $\lambda_{\rm turn}$; the force-balanced case remains untested.} A divergence-free helical-field scan ($B_\phi/B_z=0$--$2$; construction and scan detail in the deposited material) leaves the axial growth-rate plateau at $\lambda\approx1\,\lambda_{\rm J}$ for every winding and produces only a radial \emph{pinch} that narrows $W_{\rm FWHM}$ by $\approx25\%$ (raising $\lambda/W$ by reducing $W$ and not by shortening $\lambda$; the deposited material), Being seeded and not force-balanced, this configuration cannot test the confining Fiege--Pudritz sausage ($m=0$) mode \citep{Fiege2000}, which is the one geometry able to shorten $\lambda$ and remains unconstrained by any calculation presented here (Section~\ref{sec:optional_tests}).
+
+
+
+
+
+
+
+
+\section{Constructing a force-balanced helical equilibrium}
+\label{sec:helical}
+
+Testing the magnetostatic helical channel needs a cylindrical MHD eigensolver, and four specific obstacles stand in the way of simply imposing such an equilibrium on a Cartesian grid. Four obstacles arise, and they are specific and not generic. The equilibrium is not available in closed form on a Cartesian grid: the Fiege--Pudritz solution is self-similar in cylindrical coordinates, so $B_z(r)$, $B_\phi(r)$ and $\rho(r)$ must be integrated numerically and then interpolated onto the mesh, and the interpolation destroys the radial force balance at the per-cent level, which is enough to launch a transient pinch on the timescale of the axial instability. Second, $\nabla\!\cdot\!\mathbf{B}=0$ must be preserved to machine precision under that interpolation, which requires the field to be laid down as a discrete curl of a vector potential consistent with the same interpolation and not as face-centred components taken from the analytic solution. Third, the configuration must be confined: a toroidally dominated equilibrium is bounded by an external pressure, so the transverse boundary condition becomes part of the equilibrium rather than an outer detail, and our ambient set-up is not constructed to supply a specified $P_{\rm ext}$. Fourth, and most restrictive, the drag-relaxation procedure we use for the Ostriker control damps \emph{all} velocities, including the ones that would reveal whether the interpolated helical state is in balance, so a different diagnostic, a residual-force map, not a velocity norm, is needed to certify stationarity before the $m=0$ mode is seeded. None of these is insurmountable, and together they define what a proper test would require.
+
+
+
+\section{Validation of the measurement pipeline}
+\label{sec:validation}
+
+
+Four checks were made before the pipeline was applied; scripts and outputs are deposited.
+
+\emph{Closed-loop injection--recovery.} Synthetic core chains of known spacing injected onto the real skeletons and recovered through the full pipeline return $\lambda/W$ to $0.4$ per cent over $\lambda/W=1.4$--$5.7$. A periodic injection over-corrects for a clustered process, which is why raw values are quoted in the main text (Paper~I).
+
+\emph{Which FWHM the benchmark uses.} Four are in circulation: the FWHM of the volume-density profile; that of the projected column-density profile; the FWHM of a Plummer function fitted to the projected profile after background subtraction; and the beam-convolved version of the last. The classical conversion uses the second. For the Ostriker $p=4$ equilibrium, $\rho(r)=\rho_c[1+(r/R_{\rm flat})^2]^{-2}$ with $R_{\rm flat}=\sqrt8\,H$, the projected column density follows analytically,
+\begin{equation}
+N(x)\;\propto\;\int_{-\infty}^{\infty}\!\frac{{\rm d}y}{\left[1+(x^2+y^2)/R_{\rm flat}^2\right]^{2}}\;=\;\frac{\pi}{2}\,\frac{R_{\rm flat}}{\left[1+(x/R_{\rm flat})^{2}\right]^{3/2}},
+\label{eq:ostrikercol}
+\end{equation}
+so the projected profile is a Plummer of index $p=3$, and its half-maximum lies where $1+(x/R_{\rm flat})^{2}=2^{2/3}$, that is at $x=R_{\rm flat}(2^{2/3}-1)^{1/2}=0.766\,R_{\rm flat}$. Hence
+\begin{equation}
+W_{\Sigma}=2R_{\rm flat}\left(2^{2/3}-1\right)^{1/2}=2H\sqrt{8\left(2^{2/3}-1\right)}=4.336\,H,
+\label{eq:wsigma}
+\end{equation}
+and $\lambda_{\rm m}/W_{\Sigma}=22/4.336=5.07$. The corresponding FWHM of the \emph{volume}-density profile follows from $1+(r/R_{\rm flat})^{2}=2^{1/2}$, giving $W_{\rho}=2R_{\rm flat}(2^{1/2}-1)^{1/2}=3.641\,H$ and $\lambda_{\rm m}/W_{\rho}=6.04$. These two conventions are the origin of the quoted $5$--$6$ band, and they differ by $19$ per cent for the same physical cylinder. The observationally relevant one is $W_{\Sigma}$, since a column-density map is what is measured; we quote the band because both conventions appear in the literature. Neither ratio survives a change of profile shape: the observed filaments have $p\simeq2$, whose projection has index $1.5$, and the conversion differs.
+
+\emph{Eigenvalue check.} The dispersion relation of the isothermal equilibrium cylinder was solved directly and agrees with \citet{Nagasawa1987} and \citet{Fischera2012} to better than $1$ per cent, peaking at $\lambda_{\rm IM92}\approx2.3\,\lambda_{\rm J}$ with a cutoff at $\lambda_{\rm cr}\approx1.2\,\lambda_{\rm J}$. Two normalisations are in use and the conversion is worth giving. Throughout this paper $\lambda_{\rm J}\equiv c_s\sqrt{\pi/G\rho_0}$ is evaluated at the initial background density $\rho_0$, whereas $H=c_s/\sqrt{4\pi G\rho_c}$ in Eq.~\ref{eq:lambdam} is evaluated at the central density $\rho_c=2.24\,\rho_0$ for the equilibrium used here. Then
+\begin{equation}
+\frac{22H}{\lambda_{\rm J}(\rho_0)}=\frac{22}{\sqrt{4\pi\times2.24}\times\sqrt{\pi}}=2.34,
+\label{eq:hconv}
+\end{equation}
+which is the $2.3\,\lambda_{\rm J}$ quoted above; at a common density $\lambda_{\rm J}=2\pi H$, so the same result reads $22H=3.50\,\lambda_{\rm J}(\rho_c)$. The independent solve reproduces $22H$, and the two statements are one number in different units.
+
+\emph{Width normalisation.} Forward-modelling the simulation output through a synthetic \textit{Herschel} beam and the same Plummer fitting used on the data gives $\eta_W=T_1=0.59$--$0.78$, with $W_{\rm form}=0.683\pm0.012\,\lambda_{\rm J}$ converged to $0.9$ per cent across resolutions (Eq.~\ref{eq:etaW}).
+
+
+\bibliography{references_complete}
+
+\bsp
+\label{lastpage}
+\end{document}
