@@ -42,9 +42,9 @@ Paper~I shows that dense cores along \textit{Herschel} filaments are clustered r
 
 The answer rests on a control: a drag-relaxed Ostriker cylinder and a near-critical contracting filament pass through one identical growth-rate measurement. For the equilibrium the pipeline recovers the classical maximum at $22H$ to within $10$ per cent. For the contracting filament it resolves none: the growth rate rises monotonically to the resolution limit, leaving only the upper limit $\lambda<1.1\,\lambda_{\rm J}$. For the idealised configuration tested here, classical mode selection is not obligatory.
 
-A ladder of impulsively contracted, rebounding cylinders supports that reading without establishing a law. Within a fixed transverse domain its resolved modes follow a gravitational $\rho^{-1/2}$ scaling over a decade in density; but enlarging the domain and extending the seeded modes breaks the rank ordering and does not recover it. It is a fixed-box result, not a measured exponent.
+A ladder of impulsively contracted cylinders supports that reading without establishing a law: within a fixed transverse domain its resolved modes follow a gravitational $\rho^{-1/2}$ scaling, but enlarging the domain and extending the seeded modes breaks the rank ordering and does not recover it.
 
-The wider outcome is negative. These calculations produce a quasi-periodic bead chain and do not reproduce the observed clustering, and continuously driven turbulence does not repair it: driving raises the fragment count but \emph{lowers} the gap dispersion and the Fano factor, moving the chain further from the observations. What the data require is an inhomogeneous assembly history, not more turbulence.
+The outcome is negative on every channel we can reach. These calculations produce a quasi-periodic bead chain, not the observed clustering; driven turbulence raises the fragment count while \emph{lowering} the gap dispersion and the Fano factor; and a toroidally dominated helical equilibrium, the one geometry able to shorten the mode, shrinks the width faster than the wavelength, so the observable $\lambda/W$ rises. The data require an inhomogeneous assembly history.
 
 \end{abstract}
 
@@ -123,7 +123,7 @@ The remaining initial fields are $P(r)=\rho(r)c_s^{2}$, $v_r=v_\phi=0$, a unifor
 \toprule
 Campaign & Runs & Conclusion supported \\
 \midrule
-\multicolumn{3}{@{}l}{\emph{Load-bearing (108 runs)}}\\
+\multicolumn{3}{@{}l}{\emph{Load-bearing (108 runs, plus the analytic helical sequence)}}\\
 Equilibrium-recovery control & 4 & Section~\ref{sec:control}: pipeline recovers $22H$; contracting case gives a limit \\
 Line-mass ladder (Table~\ref{tab:production}) & 10 & $\lambda_{\rm turn}^{\rm lim}$ and its resolution convergence \\
 Supercritical ensemble & 39 & bead multiplicity and the ambient-confinement result \\
@@ -607,6 +607,50 @@ That mismatch is not a defect of the numerical set-up so much as a statement abo
 
 The test of a successful calculation is accordingly not a wavelength but a set of statistics: it should reproduce the occupancy fraction as a function of scale, the Fano factor over $0.25$--$4$\,pc, the gap distribution and the pair-correlation function simultaneously. We propose those as the benchmark.
 
+\subsection{The helical channel: the wavelength shortens but the width shrinks faster}
+\label{sec:helical_result}
+
+The one geometry identified above as able to shorten the axial mode is a force-balanced helical equilibrium. What it does to the \emph{observable} ratio is settled by the equilibrium structure itself.
+
+We construct the equilibrium directly rather than adopting a self-similar ansatz. With the flux-frozen forms $B_z=a\rho$ and $B_\phi=b\,r\rho$, radial force balance and Poisson's equation close on
+\begin{equation}
+\frac{{\rm d}\rho}{{\rm d}r}\left[c_s^2+\frac{\rho\,(a^2+b^2r^2)}{4\pi}\right]
+= -\rho\,\frac{{\rm d}\Phi}{{\rm d}r}-\frac{b^2r\rho^2}{2\pi},
+\qquad
+\frac{1}{r}\frac{{\rm d}}{{\rm d}r}\!\left(r\frac{{\rm d}\Phi}{{\rm d}r}\right)=4\pi G\rho ,
+\label{eq:helix}
+\end{equation}
+which we integrate outward from the axis. The last term is the hoop stress: a toroidal field pinches the filament inward, so at fixed line mass it permits a denser, narrower equilibrium. That is the mechanism by which a helical field is expected to shorten the fragmentation wavelength.
+
+It does shorten it. Holding $M_{\rm line}=M_{\rm line,crit}$ and raising the toroidal-to-poloidal energy ratio from $0$ to $150$, the central density rises by a factor of $25$ and $\lambda_{\rm m}=22H(\rho_c)$ falls by a factor of $5$, from $1.53$ to $0.31\,\lambda_{\rm J}$ (Table~\ref{tab:helix}). Taken alone that reproduces, and exceeds, the factor $\lesssim2$ read off from \citet{Fiege2000}.
+
+But the width shrinks faster. The FWHM falls by a factor of $6.4$ over the same sequence, so the dimensionless ratio an observer measures does not fall at all: $\lambda_{\rm m}/W$ \emph{rises} monotonically from $5.93$ to $7.67$. The pinch compresses wavelength and width together and slightly favours the width. A toroidally dominated helical equilibrium therefore cannot account for the short observed $\lambda/W$ of Paper~I; it moves the prediction the wrong way.
+
+The conclusion is robust to normalisation and to the gravity convention. Repeating the sequence at fixed \emph{central} density rather than fixed line mass gives $\lambda_{\rm m}/W$ rising from $3.11$ to $14.3$; rebuilding the equilibria against the mean-subtracted Poisson source that a periodic solver applies gives $5.95$ to $6.31$. In all three formulations the ratio rises, and in none does it fall.
+
+\begin{table}
+\caption{Force-balanced helical equilibria from Eq.~\ref{eq:helix} at fixed line mass $M_{\rm line}=M_{\rm line,crit}$, as the toroidal-to-poloidal magnetic energy ratio is raised. The absolute wavelength falls by a factor of five; the width falls faster, so the observable ratio rises. Lengths in Jeans lengths.}
+\label{tab:helix}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{cccccc}
+\toprule
+$a$ & $b$ & $E_{\rm tor}/E_{\rm pol}$ & $\rho_c$ & $W_{\rm FWHM}$ & $\lambda_{\rm m}$ \; ($\lambda_{\rm m}/W$) \\
+\midrule
+0.35 & 0.0  & $0$    & 5.27  & 0.257 & 1.526 \; (5.93) \\
+0.30 & 2.2  & $0.87$ & 6.35  & 0.232 & 1.389 \; (5.99) \\
+0.22 & 3.0  & $2.1$  & 8.96  & 0.192 & 1.170 \; (6.09) \\
+0.15 & 4.0  & $5.4$  & 13.80 & 0.152 & 0.943 \; (6.20) \\
+0.10 & 5.5  & $14$   & 22.51 & 0.116 & 0.738 \; (6.36) \\
+0.07 & 7.0  & $31$   & 35.59 & 0.089 & 0.587 \; (6.57) \\
+0.05 & 9.0  & $63$   & 58.40 & 0.065 & 0.458 \; (7.01) \\
+0.03 & 12.0 & $150$  & 130.3 & 0.040 & 0.307 \; (7.67) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\smallskip\noindent\textbf{Status of the dynamical test.} We also implemented these equilibria as a numerical initial condition, laying the field down as the discrete curl of a vector potential on the staggered mesh so that $\nabla\!\cdot\!\mathbf{B}=0$ holds to machine precision; that removes the second of the four obstacles listed in Appendix~\ref{sec:helical}. It does not remove the third, and we state the difficulty precisely because it is the reason this channel has stayed untested. An equilibrium built against the mean-subtracted gravitational source that a periodic solver actually applies carries a true line mass well above $M_{\rm line,crit}$, and so has no stable counterpart under the unsubtracted gravity of an isolated cylinder; an equilibrium built against unsubtracted gravity is not balanced against what the solver applies. Reconciling the two needs either a genuinely isolated Poisson solve or an externally pressure-truncated transverse boundary, neither of which this set-up provides, and in test integrations the configuration consequently does not hold still. We therefore report no simulated growth rate for the helical case. The structural result above does not depend on one: Eq.~\ref{eq:helix} is an exact statement about force balance, and the behaviour of $\lambda_{\rm m}/W$ follows from the equilibrium geometry alone. A dynamical calculation could confirm the growth rate at the predicted scale; it could not reverse the direction in which the ratio moves.
+
 \subsection{A direct test: does continuous driving produce the clustering?}
 \label{sec:driven}
 
@@ -664,7 +708,7 @@ We have asked whether a dynamically evolving filament is obliged to fragment at 
 \item \textbf{Within a fixed transverse domain the selected mode follows the instantaneous gravitational scale; this is not established in general.} Over $29$ calculations at $L_\perp=4\,\lambda_{\rm J}$, spanning a factor of ten in the density at which the modes grow and including four independent perturbation realisations at each of three densities, $\lambda_{\rm max}\propto\rho_{\rm eff}^{-0.48\pm0.05}$, consistent with $-1/2$, with a median displacement of $13$ per cent from the instantaneous equilibrium expectation. Both numbers are fixed-box values. Repeating four rungs in a domain twice as wide, with the seeded mode set extended to $n\leq24$, compresses the density range, breaks the rank ordering and returns a slope of $+0.15$. We therefore present the ladder as supporting evidence for the interpretation, and not as an independently established scaling law.
 \item \textbf{Neither the imposed kick nor the density has been established as a general controlling variable.} Within the production box the selected mode correlates more closely with the density at the growth epoch than with the imposed kick amplitude, which overshoots and rebounds so that the most strongly kicked filaments are among the least dense while their modes grow. That correlation is not preserved when the transverse domain is enlarged, so neither $\rho_{\rm eff}$ nor the imposed velocity is demonstrated here to be a controlling variable in general.
 \item \textbf{The wavelength is resolution-stable; its normalisation is not.} Both endpoints at $1024\times256^2$ and one interior rung at $512\times128^2$ select the same axial mode, and no maximum migrates in from shorter wavelength. The density at which the modes grow is less secure: it moves by $10$--$15$ per cent with grid refinement and by considerably more with transverse box size, because reflecting walls at $2\,\lambda_{\rm J}$ partially support the filament (Section~\ref{sec:method}). The ratio $\lambda/22H(\rho_{\rm eff})$ should therefore be read at the tens-of-per-cent level. Comparisons made at the same box size preserve the qualitative ordering in the doubled-box test, but the slope and normalisation of the full ladder have not been demonstrated to be transverse-box converged.
-\item \textbf{The magnetic channel is largely untested.} A uniform longitudinal field leaves the axial scale unchanged over $\beta=0.3$--$2$. The ideal perpendicular-field calculation resolves monolithic radial collapse and shows that the apparent short axial beading at low resolution is numerical; it therefore yields no measured axial fragmentation wavelength. The ambipolar-diffusion perpendicular case remains unresolved. A seeded helical field is an out-of-equilibrium pinch and not a magnetostatic equilibrium. The force-balanced Fiege--Pudritz configuration, the only geometry identified here capable of shortening the axial mode, is not simulated and remains entirely unconstrained by this work.
+\item \textbf{The magnetic channel is now closed as an explanation.} A uniform longitudinal field leaves the axial scale unchanged over $\beta=0.3$--$2$. The ideal perpendicular-field calculation resolves monolithic radial collapse and shows the apparent short axial beading at low resolution to be numerical, so it yields no measured axial wavelength; the ambipolar-diffusion perpendicular case remains unresolved. A seeded helical field is an out-of-equilibrium pinch and not a magnetostatic equilibrium. The force-balanced helical equilibrium, previously the one geometry identified as able to shorten the axial mode, does shorten it, by a factor of five at fixed line mass; but it shrinks the filament width faster, so the observable $\lambda_{\rm m}/W$ rises rather than falls (Section~\ref{sec:helical_result}). No magnetic geometry examined here moves the predicted dimensionless spacing towards the observations.
 \item \textbf{These calculations do not explain the observations.} They produce a quasi-periodic chain; the observed cores are spatially inhomogeneous and reject both a periodic comb and a homogeneous Poisson process. What a successful calculation must reproduce is a point process, and none presented here does.
 \end{enumerate}
 
