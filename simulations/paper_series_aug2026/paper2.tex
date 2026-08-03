@@ -42,9 +42,9 @@ Paper~I shows that dense cores along \textit{Herschel} filaments are clustered r
 
 The answer rests on a control: a drag-relaxed Ostriker cylinder and a near-critical contracting filament pass through one identical growth-rate measurement. For the equilibrium the pipeline recovers the classical maximum at $22H$ to within $10$ per cent. For the contracting filament it resolves none: the growth rate rises monotonically to the resolution limit, leaving only the upper limit $\lambda<1.1\,\lambda_{\rm J}$. For the idealised configuration tested here, classical mode selection is not obligatory.
 
-A ladder of impulsively contracted, rebounding cylinders supports that reading without establishing a law. Within a fixed transverse domain its resolved modes follow a gravitational $\rho^{-1/2}$ scaling over a decade in density, reproducibly between realisations; but enlarging the domain and extending the seeded modes breaks the rank ordering and does not recover the scaling. It is a fixed-box result, not a measured exponent.
+A ladder of impulsively contracted, rebounding cylinders supports that reading without establishing a law. Within a fixed transverse domain its resolved modes follow a gravitational $\rho^{-1/2}$ scaling over a decade in density; but enlarging the domain and extending the seeded modes breaks the rank ordering and does not recover it. It is a fixed-box result, not a measured exponent.
 
-The wider outcome is negative. Seeded from a statistically homogeneous spectrum on an axially uniform filament, these calculations produce a quasi-periodic bead chain and do not reproduce the observed clustering. The one field geometry able to shorten the mode is not simulated, and driven turbulence is not tested, so what sets the observed distribution remains open.
+The wider outcome is negative. These calculations produce a quasi-periodic bead chain and do not reproduce the observed clustering, and continuously driven turbulence does not repair it: driving raises the fragment count but \emph{lowers} the gap dispersion and the Fano factor, moving the chain further from the observations. What the data require is an inhomogeneous assembly history, not more turbulence.
 
 \end{abstract}
 
@@ -112,7 +112,7 @@ a Plummer profile of index $p=4$, whose line mass also converges. Neither uses a
 
 The remaining initial fields are $P(r)=\rho(r)c_s^{2}$, $v_r=v_\phi=0$, a uniform field of magnitude $B_0=c_s\sqrt{2\rho_{\rm bg}/\beta}$ at angle $\theta$ to the axis, and a longitudinal velocity seed of twelve Kolmogorov modes, $v_x=\sum_{n=1}^{12}A_n\cos(k_nx+\phi_n)$ with $k_n=2\pi n/L_x$, $A_n\propto k_n^{-11/6}$ and random phases. Domains are $L_x\times L_\perp^{2}$ with $L_x=16\,\lambda_{\rm J}$, periodic in $x$, and with the transverse boundary at $d\geq1\,\lambda_{\rm J}$ from the spine.
 
-\smallskip\noindent\textbf{Parameters.} The filament is characterised by $f=M_{\rm line}/M_{\rm line,crit}$, the plasma $\beta=8\pi P/B^2$ and the seed-amplitude label $M_{\rm seed}=\delta v/c_s\times10^{4}$. At filament conditions ($n\sim10^4\,{\rm cm^{-3}}$, $T\sim10$\,K) $\beta=1$--$0.3$ corresponds to $B\sim15$--$30\,\mu$G \citep{Crutcher2012}. The mass-to-flux ratio scales as $\mu_\Phi/\mu_{\Phi,\rm crit}\propto f\sqrt{\beta}$ and exceeds unity throughout, so no configuration is magnetically subcritical. Table~\ref{tab:accounting} accounts for every calculation. Of the $2270$ runs in the deposited manifest, $93$ carry the numerical conclusions; the remainder are exploratory and support none of them. The exploratory set comprises the base and transition grids in $(f,\beta,\mathcal{M})$ used to locate the stable--unstable boundary, scans of the transverse boundary distance, non-ideal and perpendicular-field surveys that we show below to be numerically unresolved, and runs at $\gamma\neq1$. Those runs establish where the parameter space is well behaved; they do not measure a wavelength, and none of them is quoted as a result.
+\smallskip\noindent\textbf{Parameters.} The filament is characterised by $f=M_{\rm line}/M_{\rm line,crit}$, the plasma $\beta=8\pi P/B^2$ and the seed-amplitude label $M_{\rm seed}=\delta v/c_s\times10^{4}$. At filament conditions ($n\sim10^4\,{\rm cm^{-3}}$, $T\sim10$\,K) $\beta=1$--$0.3$ corresponds to $B\sim15$--$30\,\mu$G \citep{Crutcher2012}. The mass-to-flux ratio scales as $\mu_\Phi/\mu_{\Phi,\rm crit}\propto f\sqrt{\beta}$ and exceeds unity throughout, so no configuration is magnetically subcritical. Table~\ref{tab:accounting} accounts for every calculation. Of the $2285$ runs in the deposited manifest, $108$ carry the numerical conclusions; the remainder are exploratory and support none of them. The exploratory set comprises the base and transition grids in $(f,\beta,\mathcal{M})$ used to locate the stable--unstable boundary, scans of the transverse boundary distance, non-ideal and perpendicular-field surveys that we show below to be numerically unresolved, and runs at $\gamma\neq1$. Those runs establish where the parameter space is well behaved; they do not measure a wavelength, and none of them is quoted as a result.
 
 \begin{table}
 \caption{Complete accounting of the campaign. Every run in the deposited manifest belongs to exactly one row. Only the first block is load-bearing: no conclusion in this paper rests on a run in the second block, and the exploratory runs are deposited so that the boundary of the well-behaved parameter space can be checked, not as measurements.}
@@ -123,7 +123,7 @@ The remaining initial fields are $P(r)=\rho(r)c_s^{2}$, $v_r=v_\phi=0$, a unifor
 \toprule
 Campaign & Runs & Conclusion supported \\
 \midrule
-\multicolumn{3}{@{}l}{\emph{Load-bearing (93 runs)}}\\
+\multicolumn{3}{@{}l}{\emph{Load-bearing (108 runs)}}\\
 Equilibrium-recovery control & 4 & Section~\ref{sec:control}: pipeline recovers $22H$; contracting case gives a limit \\
 Line-mass ladder (Table~\ref{tab:production}) & 10 & $\lambda_{\rm turn}^{\rm lim}$ and its resolution convergence \\
 Supercritical ensemble & 39 & bead multiplicity and the ambient-confinement result \\
@@ -133,6 +133,7 @@ Contraction-ladder replicates & 12 & realisation-to-realisation reproducibility 
 Contraction ladder, interior high resolution & 1 & convergence away from the endpoints \\
 Contraction ladder, doubled transverse domain & 2 & transverse-boundary diagnostic (Section~\ref{sec:method}) \\
 Contraction ladder, larger transverse domain, extended axial modes & 4 & box-size convergence of the $\rho_{\rm eff}$ relation (Section~\ref{sec:ladder}, Table~\ref{tab:bigbox}) \\
+Continuous-driving campaign, $L_x=48\,\lambda_{\rm J}$ & 15 & the point-process test of Section~\ref{sec:driven}, Table~\ref{tab:driven} (7 at onset) \\
 \midrule
 \multicolumn{3}{@{}l}{\emph{Exploratory (2177 runs) --- no conclusion rests on these}}\\
 Base and transition grids in $(f,\beta,\mathcal{M})$ & 1560 & locate the stable--unstable boundary \\
@@ -141,7 +142,7 @@ Perpendicular-field grid and refinement ladder & 32 & shown to be Truelove-limit
 Non-ideal (ambipolar) survey & 46 & unresolved; excluded from the argument \\
 Transonic-seed, $\gamma\neq1$ and other scans & 325 & set-up robustness only \\
 \midrule
-\textbf{Total} & \textbf{2270} & \\
+\textbf{Total} & \textbf{2285} & \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -606,6 +607,43 @@ That mismatch is not a defect of the numerical set-up so much as a statement abo
 
 The test of a successful calculation is accordingly not a wavelength but a set of statistics: it should reproduce the occupancy fraction as a function of scale, the Fano factor over $0.25$--$4$\,pc, the gap distribution and the pair-correlation function simultaneously. We propose those as the benchmark.
 
+\subsection{A direct test: does continuous driving produce the clustering?}
+\label{sec:driven}
+
+The natural objection to the preceding subsection is that the mismatch is an artefact of seeding the perturbations once. We therefore tested it. Athena++ supplies a continuously driven turbulence module, and we ran a campaign of fifteen supercritical filaments ($f=1.5$, Gaussian production profile, $\beta=1$) in an axial box lengthened to $L_x=48\,\lambda_{\rm J}$ at the production cell size, so that several core groups could form and be counted: three undriven controls at different perturbation seeds, and twelve driven runs spanning three injection bands (axial mode numbers $3$--$6$, $6$--$12$ and $12$--$24$, i.e.\ driving on scales above, at and below the expected fragment spacing) and two driving amplitudes, with an Ornstein--Uhlenbeck correlation time of $0.3\,t_{\rm J}$ and a solenoidal fraction of $0.6$.
+
+Runs are compared at matched fragmentation onset rather than at matched time, because driving shortens the time to onset; we take the first snapshot at which the axial density contrast exceeds $3.5$, identify cores as connected axial stretches above twice the median density, and measure the occupancy fraction, the gap coefficient of variation and the Fano factor of core counts, the same quantities Paper~I measures on the sky. Table~\ref{tab:driven} gives the seven runs that had reached onset.
+
+The answer is negative, and it is negative in an informative direction. Driving does increase the number of fragments, from $8$--$15$ to $16$--$18$, and roughly doubles the occupancy fraction. But it makes the resulting chain \emph{more} regular, not less: the gap coefficient of variation falls from a median of $1.50$ in the controls to $0.57$, and the Fano factor of core counts on $6\,\lambda_{\rm J}$ cells falls from $1.54$ to $0.38$, that is from mildly over-dispersed to sub-Poissonian. Neither set comes close to the observations, where Paper~I measures Fano factors of $1.6$--$25$ on parsec scales and occupancy fractions of $6$--$27$ per cent against the $1$--$3$ per cent found here.
+
+The reason is instructive. A statistically homogeneous driver stirs every stretch of the filament equally, so it promotes fragmentation everywhere rather than in patches; it supplies additional seed power, not the persistent axial modulation of the line mass that the observed point process requires. What the observations call for is not more turbulence but an inhomogeneous \emph{assembly} history, in which some stretches become supercritical and others do not. Adding a homogeneous driver to an axially uniform filament cannot supply that, and we can now say so from calculation rather than from expectation.
+
+\begin{table}
+\caption{Continuous-driving campaign, compared at matched fragmentation onset (axial contrast $3.5$). Injection bands: L $=$ axial modes $3$--$6$, S $=$ $12$--$24$; suffix a denotes the lower driving amplitude. Cores are connected axial stretches above twice the median density in a box of $L_x=48\,\lambda_{\rm J}$. Driving raises the fragment count but \emph{lowers} the gap dispersion and the Fano factor, moving the chain away from the observed behaviour, for which Paper~I finds $F=1.6$--$25$ and $f_{\rm occ}=0.06$--$0.27$. The eight remaining driven runs had not reached onset when this analysis was made and are deposited without measurements.}
+\label{tab:driven}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+Run & $N_{\rm core}$ & $f_{\rm occ}$ & gap CoV & $F(6\,\lambda_{\rm J})$ & $F(3\,\lambda_{\rm J})$ \\
+\midrule
+\multicolumn{6}{@{}l}{\emph{Undriven controls}}\\
+seed 42  &  8 & 0.012 & 1.34 & 1.00 & 1.50 \\
+seed 137 & 14 & 0.020 & 1.50 & 1.54 & 1.41 \\
+seed 271 & 15 & 0.026 & 1.60 & 1.93 & 1.53 \\
+\midrule
+\multicolumn{6}{@{}l}{\emph{Continuously driven}}\\
+La, seed 42  & 18 & 0.031 & 0.65 & 0.08 & 0.54 \\
+La, seed 137 & 17 & 0.034 & 1.44 & 0.99 & 1.47 \\
+Sa, seed 42  & 16 & 0.030 & 0.50 & 0.50 & 0.38 \\
+Sa, seed 137 & 16 & 0.023 & 0.40 & 0.25 & 0.25 \\
+\midrule
+\multicolumn{6}{@{}l}{\emph{Observed} \citep{PaperI}}\\
+four clouds & --- & $0.06$--$0.27$ & $0.65$--$1.37$ & \multicolumn{2}{c}{$F=1.6$--$25$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsection{What the present calculations do establish}
 \label{sec:whatestablished}
 
@@ -630,7 +668,7 @@ We have asked whether a dynamically evolving filament is obliged to fragment at 
 \item \textbf{These calculations do not explain the observations.} They produce a quasi-periodic chain; the observed cores are spatially inhomogeneous and reject both a periodic comb and a homogeneous Poisson process. What a successful calculation must reproduce is a point process, and none presented here does.
 \end{enumerate}
 
-The calculations are isothermal, use idealised initial profiles, and seed the perturbations once rather than driving them continuously. Each of those omissions could introduce a physical short-wavelength cutoff that these runs cannot see. We identify one specific next calculation rather than a general appeal for more work. A statistically homogeneous initial perturbation field on an axially uniform filament tends to produce approximately homogeneous fragmentation statistics, and lacks the persistent parsec-scale modulation in instability conditions inferred in Paper~I; that is why these runs do not reproduce the observed clustering, and why tuning the parameters would not be expected to. Continuous driving breaks that symmetry, because the injected energy acts as a repeated, spatially localised compression which raises the line mass in some stretches and not others while the instability is developing. The required calculation is therefore a continuously driven, non-isothermal MHD run with an injection scale of order a parsec and a line mass that varies along the axis, evolved well past first fragmentation; and the quantity to compare is not a wavelength but the occupancy fraction, the Fano factor and the gap distribution measured in Paper~I. That comparison is only meaningful once the observed network is known to be a physical object, which requires the velocity-resolved dense-gas mapping recommended in Paper~I: N$_2$H$^+$(1--0) or NH$_3$(1,1) at $\lesssim0.05$\,pc resolution. The observational and the numerical programmes therefore converge on the same missing measurement.
+The calculations are isothermal, use idealised initial profiles, and seed the perturbations once rather than driving them continuously. Each of those omissions could introduce a physical short-wavelength cutoff that these runs cannot see. We identify one specific next calculation rather than a general appeal for more work. A statistically homogeneous initial perturbation field on an axially uniform filament tends to produce approximately homogeneous fragmentation statistics, and lacks the persistent parsec-scale modulation in instability conditions inferred in Paper~I; that is why these runs do not reproduce the observed clustering, and why tuning the parameters would not be expected to. Continuous driving breaks that symmetry, because the injected energy acts as a repeated, spatially localised compression which raises the line mass in some stretches and not others while the instability is developing. We have now carried out the driven half of that experiment (Section~\ref{sec:driven}) and it does not close the gap, which sharpens rather than removes the requirement: what remains untested is an axially \emph{varying} line mass, that is a filament assembled inhomogeneously, evolved well past first fragmentation. The quantity to compare is not a wavelength but the occupancy fraction, the Fano factor and the gap distribution measured in Paper~I. That comparison is only meaningful once the observed network is known to be a physical object, which requires the velocity-resolved dense-gas mapping recommended in Paper~I: N$_2$H$^+$(1--0) or NH$_3$(1,1) at $\lesssim0.05$\,pc resolution. The observational and the numerical programmes therefore converge on the same missing measurement.
 
 \section*{Acknowledgements}
 
@@ -638,7 +676,7 @@ We thank the \textit{Herschel} Gould Belt Survey team for the datasets, which we
 
 \section*{Data availability}
 
-The supporting material, comprising the full run manifest (all $2270$ Athena++ runs with their parameters and outcomes, classified by the campaign rows of Table~\ref{tab:accounting}, of which the $93$ load-bearing runs carry the numerical result), the problem-generator source and normalisation scripts, HDF5 snapshots of the convergence subset and the equilibrium-recovery control, and the growth-rate analysis pipeline, is archived under a CC-BY-4.0 licence with the citable Zenodo DOI \texttt{10.5281/zenodo.14872318}, versioned to the accepted release. The observational material of Paper~I is deposited separately under \texttt{10.5281/zenodo.14872301}.
+The supporting material, comprising the full run manifest (all $2285$ Athena++ runs with their parameters and outcomes, classified by the campaign rows of Table~\ref{tab:accounting}, of which the $108$ load-bearing runs carry the numerical result), the problem-generator source and normalisation scripts, HDF5 snapshots of the convergence subset and the equilibrium-recovery control, and the growth-rate analysis pipeline, is archived under a CC-BY-4.0 licence with the citable Zenodo DOI \texttt{10.5281/zenodo.14872318}, versioned to the accepted release. The observational material of Paper~I is deposited separately under \texttt{10.5281/zenodo.14872301}.
 
 \nocite{PaperI}
 \bibliographystyle{mnras}
