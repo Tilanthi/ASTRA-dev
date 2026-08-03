@@ -44,7 +44,7 @@ The answer rests on a control: a drag-relaxed Ostriker cylinder and a near-criti
 
 A ladder of impulsively contracted cylinders supports that reading without establishing a law: within a fixed transverse domain its resolved modes follow a gravitational $\rho^{-1/2}$ scaling, but enlarging the domain and extending the seeded modes breaks the rank ordering and does not recover it.
 
-Every homogeneous channel we can reach fails. The calculations give a quasi-periodic bead chain, not the observed clustering; driven turbulence raises the fragment count while \emph{lowering} the gap dispersion and Fano factor; and a toroidally dominated helical equilibrium shrinks the width faster than the wavelength, so $\lambda/W$ rises. Only an axially varying line mass produces core-free stretches, and for the right reason: fragmentation is confined to the locally supercritical parts.
+Every homogeneous channel fails. The calculations give a quasi-periodic bead chain, not the observed clustering; driven turbulence raises the fragment count while \emph{lowering} the gap dispersion and Fano factor; and a toroidally dominated helical equilibrium shrinks the width faster than the wavelength, so $\lambda/W$ rises. Only an axially varying line mass produces core-free stretches, because fragmentation is confined to the locally supercritical parts. That predicts $f_{\rm occ}\simeq f_{\rm elig}$, satisfied by Paper~I's two independent measurements in three clouds of four.
 
 \end{abstract}
 
@@ -703,7 +703,28 @@ The qualitative behaviour is the one required. Fragmentation is confined to the 
 
 The quantitative comparison is not yet a success, and the reason is specific. Measured at the same fragmentation-onset threshold used above, the modulated runs give \emph{fewer} cores than the uniform controls, $3$--$6$ against $8$--$15$, and a lower occupancy fraction, $0.004$--$0.008$ against $0.012$--$0.026$. That is a selection effect of the comparison rather than a property of the mechanism: onset is triggered by whichever patch is densest, so a strongly modulated filament reaches the threshold as soon as its single most supercritical stretch collapses, long before the others have responded. Following these runs far enough for the remaining groups to fragment requires adaptive refinement, because the first group enters a timestep runaway while the rest of the filament is still linear. We have not done that here.
 
-The position is therefore this. An axially varying line mass is the only mechanism we have tested that produces core-free stretches at all, and it produces them for the right reason. Whether it also produces the observed occupancy fraction of $6$--$27$ per cent and Fano factors of $1.6$--$25$ is not settled by these calculations, and settling it is a well-posed problem: a refined, longer-duration calculation of Eq.~\ref{eq:fmod} with $\mathcal{A}$ and $\ell$ scanned, compared against Paper~I's statistics. That is a sharper statement of what is missing than the one we could make before, which was only that homogeneous models fail.
+\smallskip\noindent\textbf{A quantitative prediction, and a test of it.} The mechanism makes a prediction sharp enough to check against data already in hand. If fragmentation is controlled by the local line mass, the fraction of the crest that carries cores should equal the fraction that is locally supercritical: $f_{\rm occ}\simeq f_{\rm elig}$. Those two quantities are measured independently in Paper~I, the first from where the cores are and the second from the column density with the cores masked out, and they are not constructed to agree. They do agree in three clouds of four:
+
+\begin{center}
+\footnotesize
+\begin{tabular}{lccc}
+\toprule
+Cloud & $f_{\rm occ}$ & $f_{\rm elig}$ & ratio \\
+\midrule
+Orion B & 0.27 & 0.19 & 1.4 \\
+Perseus & 0.12 & 0.13 & 0.9 \\
+Taurus  & 0.06 & 0.07 & 0.9 \\
+\midrule
+Aquila  & 0.27 & 0.91 & 0.3 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Perseus and Taurus agree to better than $15$ per cent and Orion~B to $40$ per cent, across a factor of four in occupancy. This is the behaviour expected if the empty stretches are empty because they are subcritical, and it is not a comparison either paper set out to make. Aquila is the exception and an informative one: $91$ per cent of its crest is nominally eligible but only $27$ per cent carries a core, so there supercriticality is necessary but plainly not sufficient. Paper~I identifies Aquila as the cloud whose crest is almost entirely above the critical line mass, and as the one whose distance and line-of-sight depth are least secure.
+
+We therefore state the conclusion as a testable proposition rather than as a preference: \emph{the occupancy fraction measures the supercritical fraction of the filament}, exactly in the calculations and to within tens of per cent in three of the four observed clouds. The way to test it properly is a dense-gas survey giving the virial line mass per stretch, which is the same measurement Paper~I already identifies as decisive.
+
+The position is therefore this. An axially varying line mass is the only mechanism we have tested that produces core-free stretches at all, and it produces them for the right reason. Whether it also reproduces the observed Fano factors of $1.6$--$25$ is not settled here. Following every group to fragmentation within one calculation is prevented by a limitation of the method rather than of the model: a grid code following gravitational collapse without sink particles loses its timestep once the first core forms, and we verified that this is intrinsic by repeating the experiment with a stiffened equation of state, which delays the loss but does not prevent it. Sink particles, or a calculation halted and restarted group by group, would settle it.
 
 \subsection{What the present calculations do establish}
 \label{sec:whatestablished}
