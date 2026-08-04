@@ -155,7 +155,7 @@ Transonic-seed, $\gamma\neq1$ and other scans & 325 & set-up robustness only \\
 
 
 \begin{table}
-\caption{Load-bearing \emph{production} simulations underlying the fragmentation-wavelength result: the line-mass ladder (campaign~15) and the direct supercritical ensemble (campaign~11). Shared parameters ($f$, $\mathcal{M}$, $\beta$, $\theta$, boundary conditions and collapse/bead time) are given in each block sub-header;  These production runs, not the wider exploratory grid, carry the quoted $\lambda_{\rm turn}^{\rm lim}$.}
+\caption{Load-bearing \emph{production} simulations underlying the fragmentation-wavelength result: the line-mass ladder (campaign~15) and the direct supercritical ensemble (campaign~11). The line-mass ladder uses $\beta=1.0$, $\theta=0^\circ$, a broadband $\mathcal{M}=10^{-3}$ seed and ambient (periodic or reflecting) boundaries, and beads at $t_{\rm frag}\approx1.1$--$1.2\,t_{\rm J}$; the supercritical ensemble spans $f=1.5$--$2.0$, $\beta=0.5$--$2.0$ at $\theta=0^\circ$ with seeds 42 and 137, periodic and reflecting ambient boundaries, and beads at $t_{\rm bead}\approx0.6$--$0.75\,t_{\rm J}$.  These production runs, not the wider exploratory grid, carry the quoted $\lambda_{\rm turn}^{\rm lim}$.}
 \label{tab:production}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
@@ -163,7 +163,7 @@ Transonic-seed, $\gamma\neq1$ and other scans & 325 & set-up robustness only \\
 \toprule
 $f$ & RNG seed & resolution & $\lambda_{\rm turn}^{\rm lim}/\lambda_{\rm J}$ & $\lambda_{\rm turn}^{\rm lim}/W$ \\
 \midrule
-\multicolumn{5}{@{}p{8cm}}{\emph{Line-mass ladder} (campaign~15): $\beta{=}1.0$, $\theta{=}0^\circ$, $\mathcal{M}{=}10^{-3}$ broadband seed, ambient BC (periodic/reflecting), bead $t_{\rm frag}{\approx}1.1$--$1.2\,t_{\rm J}$}\\
+\multicolumn{5}{@{}l}{\emph{Line-mass ladder} (campaign~15)}\\
 1.1 & 42  & $128^3$ & 1.14 & 1.95 \\
 1.1 & 42  & $256^3$ & 1.14 & 1.99 \\
 1.1 & 42  & $512^3$ & 1.14 & 2.00 \\
@@ -175,7 +175,7 @@ $f$ & RNG seed & resolution & $\lambda_{\rm turn}^{\rm lim}/\lambda_{\rm J}$ & $
 1.8 & 42  & $256^3$ & 0.80 & 1.19 \\
 2.0 & 42  & $256^3$ & 0.80 & 1.20 \\
 \midrule
-\multicolumn{5}{@{}p{8cm}}{\emph{Direct supercritical ensemble} (campaign~11, 39 runs): $f{=}1.5$--$2.0$, $\beta{=}0.5$--$2.0$, $\theta{=}0^\circ$, seeds 42/137, periodic$+$reflecting ambient BC, bead $t_{\rm bead}{\approx}0.6$--$0.75\,t_{\rm J}$}\\
+\multicolumn{5}{@{}l}{\emph{Direct supercritical ensemble} (campaign~11, 39 runs)}\\
 \multicolumn{2}{@{}c}{ensemble} & $256^3$ & $1.0$--$1.14$ & $0.89$--$1.01^{\dagger}$ \\
 \bottomrule
 \end{tabular}
@@ -220,7 +220,8 @@ We adopt a single reference $W_{\rm fil}=0.10$\,pc for comparability with prior 
 \label{tab:benchmark}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{llc}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lp{4.15cm}r@{}}
 \toprule
 Quantity & Definition & Value \\
 \midrule
@@ -228,7 +229,7 @@ $H$ & $c_s(4\pi G\rho_c)^{-1/2}$, scale height & $1$ \\
 $R_{\rm flat}$ & flattening radius, $\sqrt{8}\,H$ & $2.828\,H$ \\
 $2R_{\rm flat}$ & flat diameter & $5.657\,H$ \\
 $W_{\rho}$ & FWHM of the \emph{volume}-density profile & $3.641\,H$ \\
-$W_{\Sigma}$ & FWHM of the \emph{projected column}-density profile & $4.336\,H$ \\
+$W_{\Sigma}$ & FWHM of the \emph{projected column} profile & $4.336\,H$ \\
 $\lambda_{\rm cr}$ & cutoff wavelength & $11.5\,H$ \\
 $\lambda_{\rm m}$ & fastest-growing wavelength & $22\,H$ \\
 \midrule
@@ -420,18 +421,18 @@ Two caveats apply to the larger-box runs themselves, so they are not a clean rep
 What does survive, and in fact strengthens, is the distinction this paper is built on, in its ladder form: the contrast between a filament with no imposed inward motion and one that is contracting when its modes grow. In the larger box the static rung selects at $0.985$ of the instantaneous equilibrium expectation while the contracting rungs select at $0.476$--$0.649$, a cleaner separation than the $1.088$ against $0.79$--$1.12$ obtained at $L_\perp=4\,\lambda_{\rm J}$. The equilibrium-versus-contracting control is therefore robust to the transverse boundary; the quantitative ladder relation is not.
 
 \begin{table}
-\caption{Four rungs of the impulsive-contraction ladder repeated in a transverse domain twice as wide at fixed cell size ($L_\perp=8\,\lambda_{\rm J}$, $256\times128^2$), with the seeded axial mode set extended to $n\leq24$. The $A=0$ entry is the \emph{static rung of this ladder}, initialised from the relaxed Ostriker profile with no imposed inward velocity; it is not the separately prepared, drag-relaxed equilibrium-recovery control of Section~\ref{sec:control}, which was not itself repeated in the wider domain. Comparison values at the production width $L_\perp=4\,\lambda_{\rm J}$ are given in brackets. The density range compresses, the rank ordering with $\rho_{\rm eff}$ is not preserved, and a censored fit to these four runs gives $+0.15$ rather than $-1/2$. The separation between the static and the contracting rungs is preserved and widened.}
+\caption{Four rungs of the impulsive-contraction ladder repeated in a transverse domain twice as wide at fixed cell size ($L_\perp=8\,\lambda_{\rm J}$, $256\times128^2$), with the seeded axial mode set extended to $n\leq24$. The $A=0$ entry is the \emph{static rung of this ladder}, initialised from the relaxed Ostriker profile with no imposed inward velocity; it is not the separately prepared, drag-relaxed equilibrium-recovery control of Section~\ref{sec:control}, which was not itself repeated in the wider domain. Comparison values at the production width $L_\perp=4\,\lambda_{\rm J}$ are given in brackets, and a superscript ``lim'' marks a run in which $\Gamma$ is still rising at the shortest well-resolved seeded mode, so that the entry is an upper limit. The density range compresses, the rank ordering with $\rho_{\rm eff}$ is not preserved, and a censored fit to these four runs gives $+0.15$ rather than $-1/2$. The separation between the static and the contracting rungs is preserved and widened.}
 \label{tab:bigbox}
 \footnotesize
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{lcccc}
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lcccc@{}}
 \toprule
-$A$ & $\rho_{\rm eff}/\rho_0$ & $n_{\rm max}$ & $\lambda_{\rm max}\,[\lambda_{\rm J}]$ & $\lambda_{\rm max}/22H(\rho_{\rm eff})$ \\
+$A$ & $\rho_{\rm eff}/\rho_0$ & $n_{\rm max}$ & $\lambda_{\rm max}/\lambda_{\rm J}$ & $\lambda_{\rm max}/22H$ \\
 \midrule
-$0.0$ (static) & $9.10$ ($1.42$) & 14 (5)  & $1.14$ ($3.20$) & $0.985$ ($1.088$) \\
-$0.2$          & $7.28$ ($3.47$) & 19 (10) & $0.84$ ($<1.60$) & $0.649$ ($<0.851$) \\
-$0.5$          & $4.88$ ($1.83$) & 20 (7), lim & $<0.80$ ($2.29$) & $<0.505$ ($0.882$) \\
-$1.2$          & $3.14$ ($0.47$) & 17 (4)  & $0.94$ ($4.00$) & $0.476$ ($0.785$) \\
+$0.0$ & $9.10$ ($1.42$) & 14 (5)  & $1.14$ ($3.20$) & $0.985$ ($1.088$) \\
+$0.2$ & $7.28$ ($3.47$) & 19 (10) & $0.84$ ($<1.60$) & $0.649$ ($<0.851$) \\
+$0.5$ & $4.88$ ($1.83$) & 20$^{\rm lim}$ (7) & $<0.80$ ($2.29$) & $<0.505$ ($0.882$) \\
+$1.2$ & $3.14$ ($0.47$) & 17 (4)  & $0.94$ ($4.00$) & $0.476$ ($0.785$) \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -616,10 +617,11 @@ The one geometry identified above as able to shorten the axial mode is a force-b
 
 We construct the equilibrium directly rather than adopting a self-similar ansatz. With the flux-frozen forms $B_z=a\rho$ and $B_\phi=b\,r\rho$, radial force balance and Poisson's equation close on
 \begin{equation}
+\begin{aligned}
 \frac{{\rm d}\rho}{{\rm d}r}\left[c_s^2+\frac{\rho\,(a^2+b^2r^2)}{4\pi}\right]
-= -\rho\,\frac{{\rm d}\Phi}{{\rm d}r}-\frac{b^2r\rho^2}{2\pi},
-\qquad
-\frac{1}{r}\frac{{\rm d}}{{\rm d}r}\!\left(r\frac{{\rm d}\Phi}{{\rm d}r}\right)=4\pi G\rho ,
+ &= -\rho\,\frac{{\rm d}\Phi}{{\rm d}r}-\frac{b^2r\rho^2}{2\pi},\\[2pt]
+\frac{1}{r}\frac{{\rm d}}{{\rm d}r}\!\left(r\frac{{\rm d}\Phi}{{\rm d}r}\right) &= 4\pi G\rho ,
+\end{aligned}
 \label{eq:helix}
 \end{equation}
 which we integrate outward from the axis. The last term is the hoop stress: a toroidal field pinches the filament inward, so at fixed line mass it permits a denser, narrower equilibrium. That is the mechanism by which a helical field is expected to shorten the fragmentation wavelength.
@@ -826,7 +828,8 @@ Four checks were made before the pipeline was applied; scripts and outputs are d
 
 \emph{Which FWHM the benchmark uses.} Four are in circulation: the FWHM of the volume-density profile; that of the projected column-density profile; the FWHM of a Plummer function fitted to the projected profile after background subtraction; and the beam-convolved version of the last. The classical conversion uses the second. For the Ostriker $p=4$ equilibrium, $\rho(r)=\rho_c[1+(r/R_{\rm flat})^2]^{-2}$ with $R_{\rm flat}=\sqrt8\,H$, the projected column density follows analytically,
 \begin{equation}
-N(x)\;\propto\;\int_{-\infty}^{\infty}\!\frac{{\rm d}y}{\left[1+(x^2+y^2)/R_{\rm flat}^2\right]^{2}}\;=\;\frac{\pi}{2}\,\frac{R_{\rm flat}}{\left[1+(x/R_{\rm flat})^{2}\right]^{3/2}},
+N(x)\propto\int_{-\infty}^{\infty}\!\frac{{\rm d}y}{\left[1+\frac{x^2+y^2}{R_{\rm flat}^2}\right]^{2}}
+=\frac{\pi}{2}\,\frac{R_{\rm flat}}{\left[1+\left(\frac{x}{R_{\rm flat}}\right)^{2}\right]^{3/2}},
 \label{eq:ostrikercol}
 \end{equation}
 so the projected profile is a Plummer of index $p=3$, and its half-maximum lies where $1+(x/R_{\rm flat})^{2}=2^{2/3}$, that is at $x=R_{\rm flat}(2^{2/3}-1)^{1/2}=0.766\,R_{\rm flat}$. Hence
