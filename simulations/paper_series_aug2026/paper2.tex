@@ -112,7 +112,7 @@ a Plummer profile of index $p=4$, whose line mass also converges. Neither uses a
 
 The remaining initial fields are $P(r)=\rho(r)c_s^{2}$, $v_r=v_\phi=0$, a uniform field of magnitude $B_0=c_s\sqrt{2\rho_{\rm bg}/\beta}$ at angle $\theta$ to the axis, and a longitudinal velocity seed of twelve Kolmogorov modes, $v_x=\sum_{n=1}^{12}A_n\cos(k_nx+\phi_n)$ with $k_n=2\pi n/L_x$, $A_n\propto k_n^{-11/6}$ and random phases. Domains are $L_x\times L_\perp^{2}$ with $L_x=16\,\lambda_{\rm J}$, periodic in $x$, and with the transverse boundary at $d\geq1\,\lambda_{\rm J}$ from the spine.
 
-\smallskip\noindent\textbf{Parameters.} The filament is characterised by $f=M_{\rm line}/M_{\rm line,crit}$, the plasma $\beta=8\pi P/B^2$ and the seed-amplitude label $M_{\rm seed}=\delta v/c_s\times10^{4}$. At filament conditions ($n\sim10^4\,{\rm cm^{-3}}$, $T\sim10$\,K) $\beta=1$--$0.3$ corresponds to $B\sim15$--$30\,\mu$G \citep{Crutcher2012}. The mass-to-flux ratio scales as $\mu_\Phi/\mu_{\Phi,\rm crit}\propto f\sqrt{\beta}$ and exceeds unity throughout, so no configuration is magnetically subcritical. Table~\ref{tab:accounting} accounts for every calculation. Of the $2293$ runs in the deposited manifest, $116$ carry the numerical conclusions; the remainder are exploratory and support none of them. The exploratory set comprises the base and transition grids in $(f,\beta,\mathcal{M})$ used to locate the stable--unstable boundary, scans of the transverse boundary distance, non-ideal and perpendicular-field surveys that we show below to be numerically unresolved, and runs at $\gamma\neq1$. Those runs establish where the parameter space is well behaved; they do not measure a wavelength, and none of them is quoted as a result.
+\smallskip\noindent\textbf{Parameters.} The filament is characterised by $f=M_{\rm line}/M_{\rm line,crit}$, the plasma $\beta=8\pi P/B^2$ and the seed-amplitude label $M_{\rm seed}=\delta v/c_s\times10^{4}$. At filament conditions ($n\sim10^4\,{\rm cm^{-3}}$, $T\sim10$\,K) $\beta=1$--$0.3$ corresponds to $B\sim15$--$30\,\mu$G \citep{Crutcher2012}. The mass-to-flux ratio scales as $\mu_\Phi/\mu_{\Phi,\rm crit}\propto f\sqrt{\beta}$ and exceeds unity throughout, so no configuration is magnetically subcritical. Table~\ref{tab:accounting} accounts for every calculation. Of the $2300$ runs in the deposited manifest, $123$ carry the numerical conclusions; the remainder are exploratory and support none of them. The exploratory set comprises the base and transition grids in $(f,\beta,\mathcal{M})$ used to locate the stable--unstable boundary, scans of the transverse boundary distance, non-ideal and perpendicular-field surveys that we show below to be numerically unresolved, and runs at $\gamma\neq1$. Those runs establish where the parameter space is well behaved; they do not measure a wavelength, and none of them is quoted as a result.
 
 \begin{table}
 \caption{Complete accounting of the campaign. Every run in the deposited manifest belongs to exactly one row. Only the first block is load-bearing: no conclusion in this paper rests on a run in the second block, and the exploratory runs are deposited so that the boundary of the well-behaved parameter space can be checked, not as measurements.}
@@ -123,7 +123,7 @@ The remaining initial fields are $P(r)=\rho(r)c_s^{2}$, $v_r=v_\phi=0$, a unifor
 \toprule
 Campaign & Runs & Conclusion supported \\
 \midrule
-\multicolumn{3}{@{}l}{\emph{Load-bearing (116 runs, plus the analytic helical sequence)}}\\
+\multicolumn{3}{@{}l}{\emph{Load-bearing (123 runs, plus the analytic helical sequence)}}\\
 Equilibrium-recovery control & 4 & Section~\ref{sec:control}: pipeline recovers $22H$; contracting case gives a limit \\
 Line-mass ladder (Table~\ref{tab:production}) & 10 & $\lambda_{\rm turn}^{\rm lim}$ and its resolution convergence \\
 Supercritical ensemble & 39 & bead multiplicity and the ambient-confinement result \\
@@ -134,7 +134,8 @@ Contraction ladder, interior high resolution & 1 & convergence away from the end
 Contraction ladder, doubled transverse domain & 2 & transverse-boundary diagnostic (Section~\ref{sec:method}) \\
 Contraction ladder, larger transverse domain, extended axial modes & 4 & box-size convergence of the $\rho_{\rm eff}$ relation (Section~\ref{sec:ladder}, Table~\ref{tab:bigbox}) \\
 Continuous-driving campaign, $L_x=48\,\lambda_{\rm J}$ & 15 & the point-process test of Section~\ref{sec:driven}, Table~\ref{tab:driven} (9 at onset) \\
-Axially modulated line mass & 8 & the inhomogeneous-assembly test of Section~\ref{sec:inhom} \\
+Axially modulated line mass, isothermal & 8 & the inhomogeneous-assembly test of Section~\ref{sec:inhom} \\
+Axially modulated line mass, adiabatic & 7 & the same test with a stiffened EOS \\
 \midrule
 \multicolumn{3}{@{}l}{\emph{Exploratory (2177 runs) --- no conclusion rests on these}}\\
 Base and transition grids in $(f,\beta,\mathcal{M})$ & 1560 & locate the stable--unstable boundary \\
@@ -143,7 +144,7 @@ Perpendicular-field grid and refinement ladder & 32 & shown to be Truelove-limit
 Non-ideal (ambipolar) survey & 46 & unresolved; excluded from the argument \\
 Transonic-seed, $\gamma\neq1$ and other scans & 325 & set-up robustness only \\
 \midrule
-\textbf{Total} & \textbf{2293} & \\
+\textbf{Total} & \textbf{2300} & \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -701,7 +702,7 @@ with random phases $\phi_n$ and the band $n_1$--$n_2$ chosen to give a correlati
 
 The qualitative behaviour is the one required. Fragmentation is confined to the supercritical stretches: cores form in a few groups and the intervening filament, which is locally subcritical, forms none, so the empty stretches are a property of the initial line-mass field rather than of the perturbation spectrum. Neither the uniform-$f$ nor the driven calculations produce empty stretches of this kind.
 
-The quantitative comparison is not yet a success, and the reason is specific. Measured at the same fragmentation-onset threshold used above, the modulated runs give \emph{fewer} cores than the uniform controls, $3$--$6$ against $8$--$15$, and a lower occupancy fraction, $0.004$--$0.008$ against $0.012$--$0.026$. That is a selection effect of the comparison rather than a property of the mechanism: onset is triggered by whichever patch is densest, so a strongly modulated filament reaches the threshold as soon as its single most supercritical stretch collapses, long before the others have responded. Following these runs far enough for the remaining groups to fragment requires adaptive refinement, because the first group enters a timestep runaway while the rest of the filament is still linear. We have not done that here.
+The quantitative comparison is not a success, and the reason is specific. Repeating the experiment with an adiabatic equation of state at $f_0=2.5$, so that the cores heat as they compress, and measuring at the same fragmentation-onset threshold, the modulated runs give \emph{fewer} cores than the uniform controls, $4$--$6$ against $8$--$9$, and a lower occupancy, $0.020$--$0.023$ against $0.043$--$0.055$. That is a selection effect of the comparison and not a property of the mechanism: onset is set by whichever patch is densest, so a modulated filament crosses the threshold as soon as its most supercritical stretch collapses, at $t\simeq0.4\,t_{\rm J}$ against $t\simeq1.3\,t_{\rm J}$ for the uniform case, long before the remaining groups have responded.
 
 \smallskip\noindent\textbf{A quantitative prediction, and a test of it.} The mechanism makes a prediction sharp enough to check against data already in hand. If fragmentation is controlled by the local line mass, the fraction of the crest that carries cores should equal the fraction that is locally supercritical: $f_{\rm occ}\simeq f_{\rm elig}$. Those two quantities are measured independently in Paper~I, the first from where the cores are and the second from the column density with the cores masked out, and they are not constructed to agree. They do agree in three clouds of four:
 
@@ -724,7 +725,7 @@ Aquila  & 0.27 & 0.91 & 0.3 \\
 
 We therefore state the conclusion as a testable proposition rather than as a preference: \emph{the occupancy fraction measures the supercritical fraction of the filament}, exactly in the calculations and to within tens of per cent in three of the four observed clouds. The way to test it properly is a dense-gas survey giving the virial line mass per stretch, which is the same measurement Paper~I already identifies as decisive.
 
-The position is therefore this. An axially varying line mass is the only mechanism we have tested that produces core-free stretches at all, and it produces them for the right reason. Whether it also reproduces the observed Fano factors of $1.6$--$25$ is not settled here. Following every group to fragmentation within one calculation is prevented by a limitation of the method rather than of the model: a grid code following gravitational collapse without sink particles loses its timestep once the first core forms, and we verified that this is intrinsic by repeating the experiment with a stiffened equation of state, which delays the loss but does not prevent it. Sink particles, or a calculation halted and restarted group by group, would settle it.
+The position is therefore this. An axially varying line mass is the only mechanism we have tested that produces core-free stretches at all, and it produces them for the right reason. Whether it also reproduces the observed Fano factors of $1.6$--$25$ is not settled here, and we can be precise about why. Following every group to fragmentation in one calculation is prevented by a limitation of the method, not of the model: a grid code integrating gravitational collapse without sink particles loses its timestep once the first core forms. We measured the effect rather than assuming it. In the isothermal runs the timestep falls to ${\sim}10^{-20}\,t_{\rm J}$ once any core collapses, and it does so in the uniform controls as well as the modulated ones, so it is not an artefact of the modulation. Stiffening the gas delays the loss but does not prevent it: with an adiabatic equation of state the integration reaches $t\simeq1.35\,t_{\rm J}$ and then stalls, the measured rate of advance implying $\gtrsim10^{2}$ days of wall time to reach $2.5\,t_{\rm J}$, with several runs frozen outright. Sink particles, or a calculation halted and restarted group by group, are required; neither is attempted here.
 
 \subsection{What the present calculations do establish}
 \label{sec:whatestablished}
@@ -758,7 +759,7 @@ We thank the \textit{Herschel} Gould Belt Survey team for the datasets, which we
 
 \section*{Data availability}
 
-The supporting material, comprising the full run manifest (all $2293$ Athena++ runs with their parameters and outcomes, classified by the campaign rows of Table~\ref{tab:accounting}, of which the $116$ load-bearing runs carry the numerical result), the problem-generator source and normalisation scripts, HDF5 snapshots of the convergence subset and the equilibrium-recovery control, and the growth-rate analysis pipeline, is archived under a CC-BY-4.0 licence with the citable Zenodo DOI \texttt{10.5281/zenodo.14872318}, versioned to the accepted release. The observational material of Paper~I is deposited separately under \texttt{10.5281/zenodo.14872301}.
+The supporting material, comprising the full run manifest (all $2300$ Athena++ runs with their parameters and outcomes, classified by the campaign rows of Table~\ref{tab:accounting}, of which the $123$ load-bearing runs carry the numerical result), the problem-generator source and normalisation scripts, HDF5 snapshots of the convergence subset and the equilibrium-recovery control, and the growth-rate analysis pipeline, is archived under a CC-BY-4.0 licence with the citable Zenodo DOI \texttt{10.5281/zenodo.14872318}, versioned to the accepted release. The observational material of Paper~I is deposited separately under \texttt{10.5281/zenodo.14872301}.
 
 \nocite{PaperI}
 \bibliographystyle{mnras}
