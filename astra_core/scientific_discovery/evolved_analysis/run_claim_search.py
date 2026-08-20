@@ -34,7 +34,8 @@ from .claim_task import (NAIVE_CLAIM_SEED, TASK_SYSTEM, ENTRY_POINT,
                          parse_claim, gate1_significant, PMAX)
 from .claim_gates import (triviality_check, consistency_check,
                           holdout_distinct_check, claim_uses_train_split,
-                          circularity_check,
+                          circularity_check, precision_check,
+                          geometry_narration_check,
                           bonferroni_pmax, bump_family_counter, family_size)
 from .proposer import LLMProposer, apply_diff
 
@@ -145,7 +146,8 @@ def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True,
     bump_family_counter()                      # Fix 5: count this trial
     corrected_pmax = bonferroni_pmax(PMAX)     # Fix 5: PMAX / family_size
     g1_metrics = gate1_run(src, seed=seed, source=source)  # hold-out primary
-    g1_pass, g1_reason = gate1_significant(g1_metrics, pmax=corrected_pmax)
+    g1_pass, g1_reason = gate1_significant(g1_metrics, pmax=corrected_pmax,
+                                           dataset=source)
 
     # Fix 3 (triviality) + Fix 4 (consistency) on the held-out metric.
     metrics_for_gates = g1_metrics if isinstance(g1_metrics, dict) else {}
@@ -158,6 +160,8 @@ def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True,
     cons_ok, cons_reason = consistency_check(claim, metrics_for_gates)
     hold_ok, hold_reason = holdout_distinct_check(metrics_for_gates)  # Fix 6
     circ_ok, circ_reason = circularity_check(src)  # anti-circularity (2026-07-16)
+    prec_ok, prec_reason = precision_check(claim, metrics_for_gates)  # IOAA sig-figs
+    geom_ok, geom_reason = geometry_narration_check(claim, metrics_for_gates)  # code-only-geometry
 
     result = {
         "claim": claim,
@@ -171,12 +175,15 @@ def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True,
         "consistency": {"pass": cons_ok, "reason": cons_reason},
         "holdout": {"pass": hold_ok, "reason": hold_reason},
         "circularity": {"pass": circ_ok, "reason": circ_reason},
+        "precision": {"pass": prec_ok, "reason": prec_reason},
+        "geometry": {"pass": geom_ok, "reason": geom_reason},
         "gate2": None,
         "both_pass": False,
         "dataset": source,
     }
 
-    if not (g1_pass and triv_ok and cons_ok and hold_ok and circ_ok):
+    if not (g1_pass and triv_ok and cons_ok and hold_ok and circ_ok
+            and prec_ok and geom_ok):
         return result  # significance / triviality / consistency / holdout / circularity stop here
 
     if run_gate2:
@@ -186,14 +193,24 @@ def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True,
             result["gate2"] = {
                 "pass": nr.novel, "status": nr.status, "n_retrieved": nr.n_retrieved,
                 "reasoning": nr.reasoning[:200],
+                "confidence": nr.confidence,
                 "entailed_by": nr.entailed_by.title[:80] if nr.entailed_by else None,
             }
+            result["novelty_revision"] = nr.revision
         except Exception as e:
             # Gate-2 failure is conservative: do NOT promote as novel.
             result["gate2"] = {"pass": False, "status": "gate2-error",
                                "reasoning": f"{type(e).__name__}: {str(e)[:120]}"}
     else:
         result["gate2"] = {"pass": None, "status": "skipped"}
+
+    # token-free novelty prior (ALS concept graph): ranking signal only,
+    # recorded beside the verdict — it never gates (see concept_prior.py)
+    try:
+        from .concept_prior import score_cached
+        result["concept_prior"] = score_cached(claim)
+    except Exception:
+        result["concept_prior"] = None
 
     result["both_pass"] = bool(
         g1_pass and triv_ok and cons_ok and hold_ok and result["gate2"]
@@ -409,6 +426,13 @@ def _append_verdict_log(verdict: dict, label: str = "") -> None:
             "claim": (verdict.get("claim") or "")[:200],
             "program_hash": verdict.get("program_hash"),
             "both_pass": verdict.get("both_pass"),
+            # provenance (Egent): which model judged, with what sampling, and
+            # how many times this claim's novelty verdict has been revised
+            "llm": {"judge_model": os.environ.get("ASTRA_LLM_MODEL",
+                                                  "claude-sonnet-5-20250929"),
+                    "judge_max_tokens": 300,
+                    "judge_temperature": "api-default",
+                    "novelty_revision": verdict.get("novelty_revision", 0)},
             "gate1": {"pass": g1.get("pass"),
                       "effect": g1m.get("effect"),
                       "pvalue": g1m.get("pvalue"),
@@ -417,9 +441,20 @@ def _append_verdict_log(verdict: dict, label: str = "") -> None:
             "consistency": (verdict.get("consistency") or {}).get("pass"),
             "holdout": (verdict.get("holdout") or {}).get("pass"),
             "circularity": (verdict.get("circularity") or {}).get("pass"),
+            "precision": (verdict.get("precision") or {}).get("pass"),
+            "geometry": (verdict.get("geometry") or {}).get("pass"),
             "gate2": {"status": g2.get("status"), "pass": g2.get("pass"),
                       "n_retrieved": g2.get("n_retrieved"),
+                      "confidence": g2.get("confidence"),
                       "reasoning": (g2.get("reasoning") or "")[:160]},
+            # token-free ALS concept-graph prior (crowding of the claim's
+            # concept combination); ranking signal only — never a gate
+            "concept_prior": {
+                "crowding": (verdict.get("concept_prior") or {}).get("crowding"),
+                "n_concepts": (verdict.get("concept_prior") or {}).get("n"),
+                "concepts": [c.get("concept") for c in
+                             (verdict.get("concept_prior") or {}).get(
+                                 "concepts", [])][:6]},
         }, default=str)
         VERDICT_LOG.parent.mkdir(parents=True, exist_ok=True)
         try:

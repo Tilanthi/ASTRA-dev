@@ -145,12 +145,19 @@ def _rate(verdicts: List[Dict[str, Any]], failure_class_name: str,
 def measure_effectiveness() -> Optional[Dict[str, Any]]:
     """For each recorded applied fix, compare the failure-class rate before vs after
     its apply-date. Returns per-fix effectiveness + a roll-up; writes the roll-up to
-    rsi_effectiveness.txt (consumed by the capability index). None if nothing applied."""
+    rsi_effectiveness.txt (consumed by the capability index). None if nothing applied.
+
+    Verdicts are noise-aware (Mephisto knowledge-lifecycle rule): a two-proportion
+    ~95% band decides improved / neutral / worsened; under 30 verdicts on either
+    side the fix is 'underpowered' and claims nothing. A 'worsened' fix is flagged
+    ``negative_impact`` in rsi_applied.jsonl so a human can retire it — measured
+    harm must never hide behind a clamped zero."""
     if not APPLIED.exists():
         return None
     applied = [json.loads(l) for l in APPLIED.read_text().splitlines() if l.strip()]
     verdicts = load_verdicts()
     per_fix = []
+    flagged = False
     for a in applied:
         cls = a["failure_class"]
         ds = a.get("dataset")
@@ -160,15 +167,38 @@ def measure_effectiveness() -> Optional[Dict[str, Any]]:
         before = [v for v in verdicts if (_parse_ts(v.get("ts", "")) or datetime.min) < cut]
         after = [v for v in verdicts if (_parse_ts(v.get("ts", "")) or datetime.min) >= cut]
         rb, ra = _rate(before, cls, ds), _rate(after, cls, ds)
+        nb, na = len(before), len(after)
         if rb > 0:
             eff = round(100.0 * max(0.0, (rb - ra) / rb), 1)
         else:
             eff = 100.0 if ra == 0 else 0.0
+        if nb < 30 or na < 30:
+            verdict_label = "underpowered"
+        else:
+            sigma = ((rb * (1 - rb) / nb) + (ra * (1 - ra) / na)) ** 0.5
+            if sigma <= 0:
+                verdict_label = "improved" if ra < rb else (
+                    "worsened" if ra > rb else "neutral")
+            elif rb - ra > 2 * sigma:
+                verdict_label = "improved"
+            elif ra - rb > 2 * sigma:
+                verdict_label = "worsened"
+            else:
+                verdict_label = "neutral"
+        if verdict_label == "worsened" and not a.get("negative_impact"):
+            a["negative_impact"] = True
+            flagged = True
         per_fix.append({"id": a.get("id"), "failure_class": cls, "dataset": ds,
+                        "n_before": nb, "n_after": na,
                         "rate_before": round(rb, 4), "rate_after": round(ra, 4),
-                        "effectiveness": eff})
+                        "effectiveness": eff, "verdict": verdict_label})
     if not per_fix:
         return None
+    if flagged:
+        try:
+            APPLIED.write_text("".join(json.dumps(a) + "\n" for a in applied))
+        except Exception:
+            pass
     rollup = round(sum(p["effectiveness"] for p in per_fix) / len(per_fix), 1)
     try:
         EFFECTIVENESS.write_text(str(rollup))

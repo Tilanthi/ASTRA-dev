@@ -53,12 +53,18 @@ class LLMGateway:
 
     def complete(self, system: str, messages: List[Dict[str, Any]],
                  model: Optional[str] = None,
-                 max_tokens: Optional[int] = None) -> Tuple[str, Dict[str, int]]:
+                 max_tokens: Optional[int] = None,
+                 caller: Optional[str] = None,
+                 ledger_path: Optional[Any] = None) -> Tuple[str, Dict[str, int]]:
         """Run a single messages.create call and return (text, usage).
 
         ``text`` is the concatenation of every text block in the response.
         ``usage`` is ``{"input_tokens": int, "output_tokens": int}`` (0 when
         the SDK does not report a value).
+
+        When ``caller`` is given the usage is appended to the token ledger
+        (see ``astra_core.intelligence.token_ledger``); ``ledger_path``
+        overrides the destination file for tests.
         """
         r = self.client.messages.create(
             model=model or self.model,
@@ -71,6 +77,11 @@ class LLMGateway:
             "input_tokens": getattr(r.usage, "input_tokens", 0),
             "output_tokens": getattr(r.usage, "output_tokens", 0),
         }
+        if caller:
+            from astra_core.intelligence import token_ledger
+            kwargs = {"ledger_path": ledger_path} if ledger_path is not None else {}
+            token_ledger.record_usage(caller, model or self.model, usage,
+                                      **kwargs)
         return text, usage
 
 

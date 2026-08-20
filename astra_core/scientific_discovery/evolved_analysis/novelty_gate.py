@@ -88,6 +88,8 @@ class NoveltyResult:
     n_retrieved: int = 0
     reasoning: str = ""
     retrieved: List[Paper] = None
+    confidence: Optional[float] = None      # judge self-report, ranking signal only
+    revision: int = 0                       # times this claim's novelty was re-judged
 
     def to_dict(self) -> dict:
         d = asdict(self)
@@ -204,7 +206,26 @@ def _extract_query(claim: str) -> str:
 # --------------------------------------------------------------------------- #
 # the grounded entailment judge                                                #
 # --------------------------------------------------------------------------- #
-def _judge_known(claim: str, papers: List[Paper]) -> tuple[bool, Optional[Paper], str, str]:
+def _parse_judge_text(text: str) -> tuple:
+    """Parse the judge's JSON verdict. Returns (confidence, verdict_dict);
+    confidence is a float in [0, 1] or None when the judge did not state one.
+    Returns (None, {}) when no JSON object is present."""
+    m = re.search(r"\{.*\}", text or "", re.DOTALL)
+    if not m:
+        return None, {}
+    try:
+        verdict = json.loads(m.group(0))
+    except ValueError:
+        return None, {}
+    conf = verdict.get("confidence")
+    if isinstance(conf, (int, float)) and 0.0 <= float(conf) <= 1.0:
+        conf = float(conf)
+    else:
+        conf = None
+    return conf, verdict
+
+
+def _judge_known(claim: str, papers: List[Paper]) -> tuple:
     """Ask the LLM whether ``claim`` is ALREADY-KNOWN (not a new discovery).
 
     A claim is already-known if EITHER:
@@ -218,14 +239,16 @@ def _judge_known(claim: str, papers: List[Paper]) -> tuple[bool, Optional[Paper]
     conservative: borderline claims lean toward 'known' (we would rather drop a
     marginal result than emit a textbook restatement as a 'discovery').
 
-    Returns (known, entailing_paper, reason_label, reasoning). reason_label is
-    'entailed' | 'foundational' | 'novel'. On judge failure returns
-    (False, None, '', '') — caller treats that conservatively (judge-failed)."""
+    Returns (known, entailing_paper, reason_label, reasoning, confidence).
+    reason_label is 'entailed' | 'foundational' | 'novel'; confidence is the
+    judge's self-reported [0, 1] calibration signal (recorded for ranking,
+    never a verdict). On judge failure returns (False, None, '', '', None) —
+    caller treats that conservatively (judge-failed)."""
     if not papers:
-        return False, None, "", ""
+        return False, None, "", "", None
     gw = _get_gateway()
     if gw is None:
-        return False, None, "", ""
+        return False, None, "", "", None
     abstracts = "\n\n".join(
         f"[{i}] {p.title} ({p.year})\n{p.abstract[:900]}"
         for i, p in enumerate(papers))
@@ -243,15 +266,15 @@ def _judge_known(claim: str, papers: List[Paper]) -> tuple[bool, Optional[Paper]
     user = (f"CANDIDATE CLAIM:\n{claim}\n\nRETRIEVED ABSTRACTS:\n{abstracts}\n\n"
             "Respond with ONLY JSON: "
             '{"known": true|false, "reason": "entailed"|"foundational"|"novel", '
-            '"by_abstract": <int|null>, "reasoning": "<one sentence>"}')
+            '"by_abstract": <int|null>, "confidence": <0.0-1.0>, '
+            '"reasoning": "<one sentence>"}')
     try:
         text, _ = gw.complete(
             system=system, messages=[{"role": "user", "content": user}],
-            max_tokens=300)
-        m = re.search(r"\{.*\}", text, re.DOTALL)
-        if not m:
-            return False, None, "", ""
-        verdict = json.loads(m.group(0))
+            max_tokens=300, caller="novelty_gate")
+        conf, verdict = _parse_judge_text(text)
+        if not verdict:
+            return False, None, "", "", None
         known = bool(verdict.get("known"))
         label = str(verdict.get("reason", ""))[:24]
         idx = verdict.get("by_abstract")
@@ -259,10 +282,10 @@ def _judge_known(claim: str, papers: List[Paper]) -> tuple[bool, Optional[Paper]
         entailing = None
         if known and isinstance(idx, int) and 0 <= idx < len(papers):
             entailing = papers[idx]
-        return known, entailing, label, reasoning
+        return known, entailing, label, reasoning, conf
     except Exception as e:
         logger.warning("[novelty] judge failed: %s", e)
-        return False, None, "", ""
+        return False, None, "", "", None
 
 
 # --------------------------------------------------------------------------- #
@@ -322,7 +345,17 @@ def check_novelty(claim: str, use_s2: bool = True, force: bool = False) -> Novel
         c = cache[key]
         return NoveltyResult(c.get("novel", False), c.get("status", "?"),
                              claim, None, c.get("n_retrieved", 0),
-                             c.get("reasoning", ""))
+                             c.get("reasoning", ""),
+                             confidence=c.get("confidence"),
+                             revision=int(c.get("revision", 0)))
+
+    # forced re-judgement: archive the prior verdict so the iteration history
+    # of how this claim's novelty assessment evolved is preserved (Egent
+    # provenance rule — archive outputs, never assume a re-run reproduces)
+    history = list(cache.get(key, {}).get("history", []))
+    if key in cache:
+        history.append({"status": cache[key].get("status"),
+                        "ts": time.strftime("%Y-%m-%dT%H:%M:%S")})
 
     query = _extract_query(claim)
     logger.info("[novelty] retrieving for claim (query=%r)", query)
@@ -341,7 +374,24 @@ def check_novelty(claim: str, use_s2: bool = True, force: bool = False) -> Novel
         return NoveltyResult(False, "retrieval-failed", claim, n_retrieved=0,
                              reasoning="no papers retrieved after retry; novelty unverified")
 
-    known, entailing, label, reasoning = _judge_known(claim, papers)
+    # deterministic pre-check tier: features are logged beside every verdict
+    # so any future auto-known threshold is measured, not assumed (see
+    # novelty_precheck.py for the 2026-08-20 calibration negative result)
+    from . import novelty_precheck as _pc
+    feats = _pc.precheck_features(claim, [asdict(p) for p in papers])
+    if _pc.should_auto_known(feats):
+        res = NoveltyResult(False, "known", claim, entailed_by=papers[feats.get(
+            "top_similarity_idx", 0)] if feats.get("top_similarity_idx", -1) >= 0
+            else None, n_retrieved=len(papers),
+            reasoning="auto-known: top_similarity above armed tau",
+            retrieved=papers)
+        cache[key] = res.to_dict()
+        _save_cache(cache)
+        _pc.log_precheck(feats, "known-auto")
+        logger.info("[novelty] known-auto (tau tier) — %s", claim[:60])
+        return res
+
+    known, entailing, label, reasoning, confidence = _judge_known(claim, papers)
     if not label and not reasoning:
         # judge itself failed -> conservative
         res = NoveltyResult(False, "judge-failed", claim, n_retrieved=len(papers),
@@ -358,8 +408,16 @@ def check_novelty(claim: str, use_s2: bool = True, force: bool = False) -> Novel
     else:
         res = NoveltyResult(True, "novel", claim, n_retrieved=len(papers),
                             reasoning=reasoning, retrieved=papers)
+    res.confidence = confidence
+    res.revision = len(history)
     cache[key] = res.to_dict()
+    if confidence is not None:
+        cache[key]["confidence"] = confidence
+    if history:
+        cache[key]["history"] = history
+        cache[key]["revision"] = len(history)
     _save_cache(cache)
+    _pc.log_precheck(feats, res.status, confidence=confidence)
     logger.info("[novelty] %s — %s (n=%d)", res.status, claim[:60], len(papers))
     return res
 

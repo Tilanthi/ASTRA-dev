@@ -31,6 +31,8 @@ from __future__ import annotations
 import re
 from typing import Optional, Tuple
 
+from . import reference_sheet
+
 # Gate-1 thresholds (statistical significance on real held-out data).
 EFFECT_MIN = 0.30     # |effect| (e.g. |Spearman r|) must be at least this
 PMAX = 1e-3           # p-value must be at most this
@@ -93,7 +95,8 @@ TASK_SYSTEM = (
     "RESPOND WITH EITHER:\n"
     "  (a) one or more diff blocks (<<<SEARCH>>>...<<<REPLACE>>>...<<<END>>>)\n"
     "  (b) one complete ```python``` module (CLAIM + run_claim).\n"
-    "Output ONLY the diff or code, no explanation."
+    "Output ONLY the diff or code, no explanation.\n\n"
+    + reference_sheet.REFERENCE_SHEET
 )
 
 
@@ -109,14 +112,19 @@ def parse_claim(src: str) -> Optional[str]:
     return m.group(2).strip() if m else None
 
 
-def gate1_significant(metrics: dict, pmax: float = PMAX) -> Tuple[bool, str]:
+def gate1_significant(metrics: dict, pmax: float = PMAX,
+                      dataset: str = "") -> Tuple[bool, str]:
     """Gate 1: is the computed effect statistically significant on real data?
 
     Returns (passed, reason). Conservative: missing/invalid fields fail.
 
     ``pmax`` defaults to the nominal :data:`PMAX` but the Phase-2 driver passes a
     Bonferroni-corrected threshold (PMAX / family_size) so the significance bar
-    accounts for how many relationships the search has tried (Fix 5)."""
+    accounts for how many relationships the search has tried (Fix 5).
+
+    ``dataset`` selects a named systematic floor (systematic_floor.py): the
+    effect must also clear EFFECT_MIN + floor, since propagated statistical
+    errors are lower bounds on the true uncertainty."""
     if not isinstance(metrics, dict) or "error" in metrics:
         return False, f"gate1-failed: no valid metric ({metrics.get('error', 'missing') if isinstance(metrics, dict) else 'not a dict'})"
     try:
@@ -124,10 +132,19 @@ def gate1_significant(metrics: dict, pmax: float = PMAX) -> Tuple[bool, str]:
         pvalue = float(metrics.get("pvalue", 1.0))
     except (TypeError, ValueError):
         return False, "gate1-failed: non-numeric effect/pvalue"
-    if effect >= EFFECT_MIN and pvalue <= pmax:
-        return True, f"gate1-pass: |effect|={effect:.3f}>={EFFECT_MIN}, p={pvalue:.1e}<={pmax:.1e}"
+    from .systematic_floor import effect_floor
+    floor = effect_floor(dataset)
+    bar = EFFECT_MIN + floor
+    if effect >= bar and pvalue <= pmax:
+        return True, (f"gate1-pass: |effect|={effect:.3f}>={bar:.3f}"
+                      + (f" (incl. systematic floor {floor:.3f})" if floor else "")
+                      + f", p={pvalue:.1e}<={pmax:.1e}")
+    if effect >= EFFECT_MIN and effect < bar:
+        return False, (f"gate1-failed: |effect|={effect:.3f} below systematic "
+                       f"floor (need >= {bar:.3f} = EFFECT_MIN + floor "
+                       f"{floor:.3f} for dataset '{dataset}')")
     return False, (f"gate1-failed: |effect|={effect:.3f} or p={pvalue:.1e} "
-                   f"not significant (need |effect|>={EFFECT_MIN} and p<={pmax:.1e})")
+                   f"not significant (need |effect|>={bar:.3f} and p<={pmax:.1e})")
 
 
 if __name__ == "__main__":

@@ -389,3 +389,79 @@ if __name__ == "__main__":
                             {"effect": 0.469}))
     print(consistency_check("...correlation (rho ~ 0.45) with redshift...",
                             {"effect": 0.469}))
+
+
+# --------------------------------------------------------------------------- #
+# IOAA-derived narration rules (arXiv 2510.05016)                              #
+# --------------------------------------------------------------------------- #
+# Significant figures: the pipeline's working precision for narrated
+# correlation magnitudes is 3 decimals (every code summary is formatted .3f).
+# A claim stating 4-6 decimals narrates digits the code never produced —
+# recorded as a flag; 7+ is unambiguically hallucinated precision and rejects.
+_PVALUE_PATTERN = re.compile(
+    r"\bp\s*(?:~|≈|=|:|<|<=)?\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)", re.IGNORECASE)
+
+
+def _decimals(s: str) -> int:
+    if "." in s and "e" not in s.lower():
+        return len(s.split(".")[1])
+    return 0
+
+
+def _sig_figs(s: str) -> int:
+    digits = s.lstrip("0+-.").split("e")[0].split("E")[0].replace(".", "")
+    return len(digits.rstrip("0")) or len(digits)
+
+
+def precision_check(claim: str, metrics: dict) -> Tuple[bool, str]:
+    """Significant-figure rule. Return (ok, reason).
+
+    ok=False only for hallucinated precision (7+ decimals on a magnitude, or
+    5+ significant figures on a stated p-value). 4-6 decimals pass with a
+    recorded flag so the verdict history shows the downgrade."""
+    flags = []
+    for m in _RHO_PATTERN.finditer(claim or ""):
+        raw = m.group(1)
+        d = _decimals(raw)
+        if d > 6:
+            return False, (f"precision:reject — narrated magnitude {raw} carries "
+                           f"{d} decimals; code precision is 3")
+        if d > 3:
+            flags.append(f"magnitude {raw} ({d} dp)")
+    for m in _PVALUE_PATTERN.finditer(claim or ""):
+        raw = m.group(1)
+        sf = _sig_figs(raw)
+        if sf >= 5:
+            return False, (f"precision:reject — stated p = {raw} carries {sf} "
+                           "significant figures; sampling noise cannot support it")
+        if sf > 2:
+            flags.append(f"p = {raw} ({sf} sf)")
+    if flags:
+        return True, "precision:flag " + ", ".join(flags)
+    return True, "precision:pass"
+
+
+# Geometric units a claim may narrate. Numbers in these units are exactly the
+# kind frontier models get wrong (IOAA category-I gap), so a narrated geometric
+# value must appear in the code-measured summary — never come from the LLM.
+_GEOM_PATTERN = re.compile(
+    r"([-+]?\d+(?:\.\d+)?)\s*(?:deg(?:rees?)?|°|arcmin(?:utes?)?|'"
+    r"|arcsec(?:onds?)?|\"|mas|kpc|Mpc|parsecs?|\bAU\b|astronomical units)",
+    re.IGNORECASE)
+
+
+def geometry_narration_check(claim: str, metrics: dict) -> Tuple[bool, str]:
+    """Code-only-geometry rule. Return (ok, reason).
+
+    ok=False when the claim states a geometric quantity (angle, separation,
+    distance) whose numeric value does not appear in the code-measured
+    summary — i.e. the LLM narrated a geometric number the code never
+    produced."""
+    summary = str((metrics or {}).get("summary", ""))
+    for m in _GEOM_PATTERN.finditer(claim or ""):
+        value = m.group(1)
+        if value not in summary:
+            return False, (f"geometry:reject — claim narrates {m.group(0).strip()} "
+                           f"but the code summary contains no such measurement "
+                           f"({value!r} absent)")
+    return True, "geometry:pass (no unmatched narrated geometry)"
