@@ -17,7 +17,7 @@ its ability to detect and prevent hallucinations.
 Run with: python -m astra_core.capabilities.v95_semantic_grounding_demo
 """
 
-from astra_core.capabilities.v95_semantic_grounding import (
+from astra_core.capabilities.learning.semantic_grounding import (
     SemanticGroundingLayer,
     GroundedOutputGenerator,
     VerificationLevel,

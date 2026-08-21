@@ -432,3 +432,174 @@ class CounterexampleSearch:
                     variable_assignment=assignment,
                     explanation="Statement false for random assignment"
                 )
+
+
+class NeuralTheoremProver:
+    """
+    Neural-symbolic theorem prover (restored 2026-08-21).
+
+    Imported by v40_system but never defined in the original module
+    (2026-08-21 audit). This honest restoration only decides claims it
+    can soundly check:
+
+    - ``lhs = rhs`` where both sides are pure arithmetic expressions
+      (numbers, + - * / **, parentheses) -> PROVED / DISPROVED by
+      direct evaluation of both sides over a whitelisted AST.
+    - Anything else -> (TheoremStatus.UNKNOWN, None).
+
+    It never fabricates a proof or a counterexample: undecided means
+    undecided.
+    """
+
+    def __init__(self):
+        import ast as _ast  # local: safe-evaluation only, no import cost otherwise
+
+        self._ast = _ast
+        self.verifier = ProofVerifier()
+        self.counterexample_search = CounterexampleSearch()
+
+        # Statistics
+        self.theorems_attempted = 0
+        self.proved_count = 0
+        self.disproved_count = 0
+        self.undecided_count = 0
+
+    # ------------------------------------------------------------ public
+
+    def prove(self, theorem: str) -> Tuple[TheoremStatus, Any]:
+        """
+        Attempt to prove or disprove a theorem.
+
+        Returns:
+            (status, result) where result is a ProofSketch when PROVED,
+            a Counterexample when DISPROVED, and None when UNKNOWN.
+        """
+        self.theorems_attempted += 1
+
+        if not theorem or not isinstance(theorem, str):
+            self.undecided_count += 1
+            return TheoremStatus.UNKNOWN, None
+
+        # Only "=" claims over pure arithmetic are soundly decidable here.
+        if "=" not in theorem or "!=" in theorem:
+            self.undecided_count += 1
+            return TheoremStatus.UNKNOWN, None
+
+        lhs_text, rhs_text = theorem.split("=", 1)
+        lhs = self._safe_eval(lhs_text)
+        rhs = self._safe_eval(rhs_text)
+
+        if lhs is None or rhs is None:
+            # Not pure arithmetic (or division by zero): do not guess.
+            self.undecided_count += 1
+            return TheoremStatus.UNKNOWN, None
+
+        if self._nearly_equal(lhs, rhs):
+            self.proved_count += 1
+            return TheoremStatus.PROVED, self._arithmetic_proof(
+                theorem, lhs, rhs)
+
+        self.disproved_count += 1
+        return TheoremStatus.DISPROVED, Counterexample(
+            statement=theorem,
+            variable_assignment={'lhs': lhs, 'rhs': rhs},
+            explanation=(f"Direct evaluation: left side is {lhs}, "
+                         f"right side is {rhs}")
+        )
+
+    def get_stats(self) -> Dict[str, Any]:
+        """Prover statistics"""
+        return {
+            'theorems_attempted': self.theorems_attempted,
+            'proved': self.proved_count,
+            'disproved': self.disproved_count,
+            'undecided': self.undecided_count
+        }
+
+    # ----------------------------------------------------------- private
+
+    def _arithmetic_proof(self, theorem: str,
+                          lhs: float, rhs: float) -> ProofSketch:
+        """Build a proof sketch for a verified arithmetic equality"""
+        step = ProofSketchStep(
+            step_id="1",
+            statement=theorem,
+            justification=(f"Direct computation: {lhs} = {rhs} "
+                           f"(whitelisted-AST evaluation of both sides)"),
+            proof_method=ProofMethod.DIRECT,
+            verified=True,
+            verification_score=1.0
+        )
+        return ProofSketch(
+            theorem=theorem,
+            method=ProofMethod.DIRECT,
+            steps=[step],
+            complete=True,
+            confidence=1.0,
+            source="arithmetic_evaluation"
+        )
+
+    def _safe_eval(self, text: str) -> Optional[float]:
+        """
+        Evaluate a pure-arithmetic expression via a whitelisted AST.
+
+        Returns None if the text contains anything other than numeric
+        literals, + - * / **, unary +/-, or parentheses.
+        """
+        text = text.strip()
+        if not text:
+            return None
+
+        try:
+            tree = self._ast.parse(text, mode="eval")
+        except (SyntaxError, ValueError):
+            return None
+
+        return self._eval_node(tree.body)
+
+    def _eval_node(self, node) -> Optional[float]:
+        """Recursively evaluate a whitelisted AST node; None = not pure"""
+        ast = self._ast
+
+        if isinstance(node, ast.Constant):
+            if isinstance(node.value, (int, float)) and not isinstance(
+                    node.value, bool):
+                return float(node.value)
+            return None
+
+        if isinstance(node, ast.BinOp) and isinstance(
+                node.op, (ast.Add, ast.Sub, ast.Mult, ast.Div, ast.Pow)):
+            left = self._eval_node(node.left)
+            right = self._eval_node(node.right)
+            if left is None or right is None:
+                return None
+            try:
+                if isinstance(node.op, ast.Add):
+                    return left + right
+                if isinstance(node.op, ast.Sub):
+                    return left - right
+                if isinstance(node.op, ast.Mult):
+                    return left * right
+                if isinstance(node.op, ast.Div):
+                    return left / right
+                # Pow: keep magnitudes sane so crafted inputs cannot hang us
+                if abs(right) > 100 or abs(left) > 1e6:
+                    return None
+                return left ** right
+            except (ZeroDivisionError, OverflowError):
+                return None
+
+        if isinstance(node, ast.UnaryOp) and isinstance(
+                node.op, (ast.UAdd, ast.USub)):
+            value = self._eval_node(node.operand)
+            if value is None:
+                return None
+            return value if isinstance(node.op, ast.UAdd) else -value
+
+        return None
+
+    @staticmethod
+    def _nearly_equal(a: float, b: float,
+                      rel_tol: float = 1e-9, abs_tol: float = 1e-12) -> bool:
+        """Float comparison with tolerance"""
+        return abs(a - b) <= max(rel_tol * max(abs(a), abs(b)), abs_tol)

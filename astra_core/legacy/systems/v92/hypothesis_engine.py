@@ -517,17 +517,6 @@ class HypothesisGenerator:
         })
         return analogies
 
-    def _discover_causal_patterns(self, domain: Optional[str]) -> List[Dict]:
-        """Discover causal patterns in knowledge"""
-        patterns = []
-        # Simplified implementation
-        patterns.append({
-            'type': 'causal_chain',
-            'elements': ['cause1', 'cause2', 'effect'],
-            'length': 3
-        })
-        return patterns
-
     def _find_mathematical_patterns(self, domain: Optional[str]) -> List[Dict]:
         """Find mathematical patterns"""
         patterns = []

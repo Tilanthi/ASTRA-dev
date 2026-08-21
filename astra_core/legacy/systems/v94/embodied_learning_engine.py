@@ -13,11 +13,24 @@ import time
 import logging
 
 from ..v80.neural_symbolic_integration import NeuralSymbolicBridge
-from ..v93.self_modifying_architecture import DynamicArchitecture
-from .sensorimotor_system import SensorimotorInterface, WorldAction, Experience
 from .developmental_learning import DevelopmentalLearning
 from .common_sense_engine import CommonSenseEngine
-from .language_grounding import LanguageGroundingEngine
+
+# v93/self_modifying_architecture.py, v94/sensorimotor_system.py and
+# v94/language_grounding.py have baselined syntax errors
+# (tests/known_broken_syntax.txt); quarantined so this module stays importable.
+try:
+    from ..v93.self_modifying_architecture import DynamicArchitecture
+except (ImportError, SyntaxError):
+    DynamicArchitecture = None
+try:
+    from .sensorimotor_system import SensorimotorInterface, WorldAction, Experience
+except (ImportError, SyntaxError):
+    SensorimotorInterface = WorldAction = Experience = None
+try:
+    from .language_grounding import LanguageGroundingEngine
+except (ImportError, SyntaxError):
+    LanguageGroundingEngine = None
 
 
 @dataclass

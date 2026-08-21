@@ -39,7 +39,7 @@ from datetime import datetime
 
 # Import V36 core (if available)
 try:
-    from ..core_legacy.v36.v36_system import (
+    from ..legacy.systems.v36.v36_system import (
         MechanismDiscoveryEngine, SymbolicCausalAbstraction,
         CrossDomainAnalogyEngine
     )

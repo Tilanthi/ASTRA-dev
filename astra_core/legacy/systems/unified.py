@@ -79,9 +79,9 @@ except Exception as e:
     V94CompleteSystem = None
 
 # Import memory and intelligence systems
-from ..memory import MemoryGraph, MORKOntology, ExpandedMORK
-from ..intelligence import SwarmOrchestrator, DigitalPheromoneField
-from ..capabilities import (
+from ...memory import MemoryGraph, MORKOntology, ExpandedMORK
+from ...intelligence import SwarmOrchestrator, DigitalPheromoneField
+from ...capabilities import (
     BayesianInference, CausalDiscovery, AbductiveInference,
     SelfConsistency, ExternalKnowledge, LLMInference,
     MetaLearning, AnalogicalReasoning, ToolIntegration
@@ -89,10 +89,10 @@ from ..capabilities import (
 
 # Import ASTRO-specific capabilities
 try:
-    from ..astro_physics import AstroSwarmSystem, PhysicsEngine
-    from ..astro_physics.physics import GravitationalLensModel, AstrophysicalConstraints
-    from ..astro_physics.radiative_transfer import StatisticalEquilibriumSolver
-    from ..astro_physics.inference import BayesianSwarmInference
+    from ...astro_physics import AstroSwarmSystem, PhysicsEngine
+    from ...astro_physics.physics import GravitationalLensModel, AstrophysicalConstraints
+    from ...astro_physics.radiative_transfer import StatisticalEquilibriumSolver
+    from ...astro_physics.inference import BayesianSwarmInference
     ASTRO_CAPABILITIES_AVAILABLE = True
 except ImportError:
     logging.warning("Astro physics capabilities not available")

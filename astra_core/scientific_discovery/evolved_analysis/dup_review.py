@@ -15,7 +15,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-from discovery_store import load_records, near_duplicate_groups
+from ..discovery_store import load_records, near_duplicate_groups
 
 
 def main() -> int:

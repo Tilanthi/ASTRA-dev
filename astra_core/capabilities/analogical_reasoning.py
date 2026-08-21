@@ -20,11 +20,11 @@ from enum import Enum
 from collections import defaultdict
 import re
 
-from .unified_world_model import (
+from ..reasoning.unified_world_model import (
     UnifiedWorldModel, Hypothesis, Evidence, EvidenceSource,
     AbstractionTemplate, get_world_model
 )
-from .integration_bus import IntegrationBus, EventType, get_integration_bus
+from ..reasoning.integration_bus import IntegrationBus, EventType, get_integration_bus
 
 
 class AnalogyType(Enum):

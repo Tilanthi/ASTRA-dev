@@ -350,7 +350,18 @@ class UnifiedSTANSystem:
             'status': 'processed',
             'message': 'STAN-CORE V4.0 system operational',
             'meta_cognitive': False,
-            'data_sufficient': True
+            'data_sufficient': True,
+            # no response components produced content in this simplified
+            # path — an honest empty list, never fabricated responses
+            'responses': []
+        }
+
+    def get_status(self) -> Dict[str, Any]:
+        """System status summary."""
+        return {
+            'mode': self.mode,
+            'version': '4.0.0',
+            'operational': True
         }
 
 

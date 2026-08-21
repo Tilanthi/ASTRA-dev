@@ -57,40 +57,11 @@ except ImportError:
         UNCERTAIN = "uncertain"
         INSUFFICIENT = "insufficient"
 
-# Import all capabilities from version-specific modules
-try:
-    # Core reasoning capabilities (from core_legacy)
-    from ..core_legacy.v36 import V36CoreSystem
-    from ..core_legacy.v37 import V37CompleteSystem
-    from ..core_legacy.v38 import V38CompleteSystem
-    from ..core_legacy.v39 import V39CompleteSystem
-    from ..core_legacy.v40 import V40CompleteSystem
-    from ..core_legacy.v41 import V41CompleteSystem
-    from ..core_legacy.v42 import V42CompleteSystem
-    from ..core_legacy.v80 import V80CompleteSystem
-    from ..core_legacy.v90 import V90CompleteSystem
-    from ..core_legacy.v91 import V91CompleteSystem
-    from ..core_legacy.v92 import V92CompleteSystem
-    from ..core_legacy.v93 import V93CompleteSystem
-    from ..core_legacy.v94 import V94CompleteSystem
-except Exception as e:
-    # Log the error but don't fail - legacy modules are optional for V100
-    import logging
-    logging.warning(f"Legacy module import failed: {type(e).__name__}: {e}")
-    # Set all to None
-    V36CoreSystem = None
-    V37CompleteSystem = None
-    V38CompleteSystem = None
-    V39CompleteSystem = None
-    V40CompleteSystem = None
-    V41CompleteSystem = None
-    V42CompleteSystem = None
-    V80CompleteSystem = None
-    V90CompleteSystem = None
-    V91CompleteSystem = None
-    V92CompleteSystem = None
-    V93CompleteSystem = None
-    V94CompleteSystem = None
+# NOTE: a former block here imported V36-V94 system classes from a
+# `core_legacy` package that never existed (the real modules live under
+# legacy/systems/), logging a warning on every import. The imported names
+# were never used in this file or imported from it elsewhere, so the block
+# was removed entirely during the 2026-08 audit cleanup.
 
 # Import memory and intelligence systems
 from ..memory import MemoryGraph, MORKOntology, ExpandedMORK

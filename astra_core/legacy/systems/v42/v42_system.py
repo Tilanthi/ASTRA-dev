@@ -27,26 +27,26 @@ from enum import Enum
 from ..v41.v41_system import V41CompleteSystem, V41Config, V41Mode
 
 # Import new capabilities
-from ...capabilities.test_time_search import (
+from ....capabilities.test_time_search import (
     TestTimeSearch, SearchConfig, SearchResult, create_gpqa_search
 )
-from ...capabilities.adaptive_compute import (
+from ....capabilities.adaptive_compute import (
     AdaptiveComputeManager, ComputeBudget, DifficultyLevel,
     create_adaptive_manager, EarlyStoppingMonitor
 )
-from ...capabilities.enhanced_self_consistency import (
+from ....capabilities.enhanced_self_consistency import (
     EnhancedSelfConsistency, ConsistencyResult
 )
-from ...capabilities.stepwise_retrieval import (
+from ....capabilities.stepwise_retrieval import (
     StepWiseRetrieval, RetrievalResult, ScientificKnowledgeBase
 )
-from ...capabilities.contrastive_explanation import (
+from ....capabilities.contrastive_explanation import (
     ContrastiveExplainer, ContrastiveAnalysis
 )
-from ...capabilities.gpqa_strategies import (
+from ....capabilities.gpqa_strategies import (
     GPQAStrategyEngine, StrategyResult, DOMAIN_STRATEGIES
 )
-from ...capabilities.enhanced_math_engine import (
+from ....capabilities.enhanced_math_engine import (
     EnhancedMathEngine, MathResult
 )
 

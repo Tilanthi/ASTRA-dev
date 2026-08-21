@@ -19,21 +19,21 @@ import numpy as np
 import time
 
 # Import V60 components
-from .v60_predictive_world_models import (
+from ...reasoning.v60_predictive_world_models import (
     PredictiveWorldModelSystem,
     WorldModelLibrary,
     create_world_model_system,
     DomainType
 )
 
-from .v60_grounded_representations import (
+from ...reasoning.v60_grounded_representations import (
     GroundedRepresentationSystem,
     ConceptRepresentation,
     create_representation_system,
     CompositionType
 )
 
-from .v60_persistent_memory import (
+from ...reasoning.v60_persistent_memory import (
     PersistentMemorySystem,
     WorkingMemory,
     EpisodicMemory,
@@ -42,21 +42,21 @@ from .v60_persistent_memory import (
     RetrievalStrategy
 )
 
-from .v60_active_knowledge import (
+from ...reasoning.v60_active_knowledge import (
     ActiveKnowledgeSystem,
     KnowledgeGap,
     Hypothesis,
     create_active_knowledge_system
 )
 
-from .v60_cognitive_self_modification import (
+from ...reasoning.v60_cognitive_self_modification import (
     CognitiveSelfModificationSystem,
     PerformanceMetric,
     Strategy,
     create_self_modification_system
 )
 
-from .v60_active_inference import (
+from ...reasoning.v60_active_inference import (
     ActiveInferenceController,
     Belief,
     Policy,

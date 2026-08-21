@@ -836,3 +836,36 @@ class PredictiveWorldModelSystem:
 
             # Trigger model updates
             self.library.update_all(observation, [last_pred])
+
+
+# ---------------------------------------------------------------------------
+# Factory functions (restored 2026-08-21)
+#
+# Imported by v60_cognitive_agent and astra_core.reasoning/__init__ but
+# never defined in the original module. Minimal honest factories: each
+# constructs the real class above with its documented defaults.
+# ---------------------------------------------------------------------------
+
+def create_world_model_system() -> PredictiveWorldModelSystem:
+    """Create a complete predictive world modeling system"""
+    return PredictiveWorldModelSystem()
+
+
+def create_physics_model(model_id: str = "physics_v1") -> PhysicsWorldModel:
+    """Create a physics domain world model"""
+    return PhysicsWorldModel(model_id=model_id)
+
+
+def create_chemistry_model(model_id: str = "chemistry_v1") -> ChemistryWorldModel:
+    """Create a chemistry domain world model"""
+    return ChemistryWorldModel(model_id=model_id)
+
+
+def create_biology_model(model_id: str = "biology_v1") -> BiologyWorldModel:
+    """Create a biology domain world model"""
+    return BiologyWorldModel(model_id=model_id)
+
+
+def create_causal_model(model_id: str = "causal_v1") -> CausalWorldModel:
+    """Create a causal domain world model"""
+    return CausalWorldModel(model_id=model_id)

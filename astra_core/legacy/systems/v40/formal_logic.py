@@ -118,3 +118,153 @@ class Z3Solver:
             self.z3_available = True
         except ImportError:
             self.z3_available = False
+
+
+class PrologEngine:
+    """
+    Minimal Prolog-style inference engine (forward chaining).
+
+    Facts are ground atoms as tuples: ("parent", "alice", "bob").
+    Rules map a head atom (with variables) to a body of atoms:
+        ("grandparent", "X", "Z") :- ("parent", "X", "Y"), ("parent", "Y", "Z")
+
+    ``solve(goal)`` derives new facts by forward chaining until fixpoint,
+    then reports whether the goal (ground or with variables) is entailed.
+    Goals are never affirmed unless derivable from the fact base.
+    """
+
+    def __init__(self):
+        self.facts: Set[tuple] = set()
+        self.rules: List[Tuple[tuple, List[tuple]]] = []
+        self.max_iterations = 1000
+
+    def add_fact(self, predicate: str, *args) -> None:
+        self.facts.add((predicate,) + tuple(args))
+        self._derived = None  # invalidate cached closure
+
+    def add_rule(self, head: tuple, body: List[tuple]) -> None:
+        self.rules.append((head, list(body)))
+        self._derived = None
+
+    @staticmethod
+    def _is_variable(term) -> bool:
+        return isinstance(term, str) and len(term) == 1 and term.isupper()
+
+    @classmethod
+    def _unify(cls, atom: tuple, fact: tuple, binding: Dict) -> Optional[Dict]:
+        """Unify atom (may contain variables) against ground fact under binding."""
+        if len(atom) != len(fact):
+            return None
+        b = dict(binding)
+        for a, f in zip(atom, fact):
+            if cls._is_variable(a):
+                if a in b and b[a] != f:
+                    return None
+                b[a] = f
+            elif a != f:
+                return None
+        return b
+
+    def _closure(self) -> Set[tuple]:
+        """All facts derivable by forward chaining to fixpoint."""
+        if getattr(self, "_derived", None) is not None:
+            return self._derived
+        derived = set(self.facts)
+        for _ in range(self.max_iterations):
+            added = False
+            for head, body in self.rules:
+                # all bindings satisfying the body
+                candidates = [{}]
+                for atom in body:
+                    nxt = []
+                    for b in candidates:
+                        for fact in derived:
+                            u = self._unify(atom, fact, b)
+                            if u is not None:
+                                nxt.append(u)
+                    candidates = nxt
+                    if not candidates:
+                        break
+                for b in candidates:
+                    new_fact = tuple(
+                        b.get(t, t) if self._is_variable(t) else t for t in head
+                    )
+                    if new_fact not in derived:
+                        derived.add(new_fact)
+                        added = True
+            if not added:
+                break
+        self._derived = derived
+        return derived
+
+    def solve(self, goal: tuple) -> Tuple[bool, List[Dict]]:
+        """Solve a goal against the derived fact base.
+
+        Returns (proved, bindings): proved is True only when at least one
+        binding satisfies the goal.
+        """
+        bindings = []
+        for fact in self._closure():
+            u = self._unify(goal, fact, {})
+            if u is not None:
+                bindings.append(u)
+        return (bool(bindings), bindings)
+
+
+class FormalLogicEngine:
+    """
+    Unified formal-logic front end for V40.
+
+    Wraps the Z3 SMT interface and the Prolog-style rule engine. ``solve``
+    answers a natural-language-style question only when it maps to a fact the
+    Prolog engine can derive ("predicate(a,b)"); anything else is honestly
+    reported as UNKNOWN with a trace step — never fabricated as valid.
+    """
+
+    def __init__(self):
+        self.z3 = Z3Solver()
+        self.prolog = PrologEngine()
+
+    _ATOM_RE = re.compile(r"^\s*([a-z]\w*)\s*\(\s*([a-zA-Z0-9_]+)\s*,\s*([a-zA-Z0-9_]+)\s*\)\s*$")
+
+    def solve(self, question: str) -> Tuple[Any, LogicalProof]:
+        # Try to read the question as a binary ground atom: pred(a, b)
+        m = self._ATOM_RE.match(question or "")
+        if m:
+            pred, a, b = m.groups()
+            proved, bindings = self.prolog.solve((pred, a, b))
+            if proved:
+                steps = [
+                    ProofStep(
+                        step_number=1,
+                        statement=f"{pred}({a},{b}) entailed by the fact base",
+                        justification="forward-chaining derivation",
+                        rule_applied="modus ponens",
+                    )
+                ]
+                proof = LogicalProof(
+                    premises=[f"fact base: {len(self.prolog.facts)} facts, "
+                              f"{len(self.prolog.rules)} rules"],
+                    conclusion=question.strip(),
+                    steps=steps,
+                    status=ProofStatus.VALID,
+                    logic_type=LogicType.FIRST_ORDER,
+                    verified=True,
+                )
+                return True, proof
+
+        # No backend could decide the question
+        backend = "Z3 (unavailable)" if not self.z3.z3_available else "Z3"
+        proof = LogicalProof(
+            premises=[],
+            conclusion=(question or "").strip(),
+            steps=[ProofStep(
+                step_number=1,
+                statement=f"no derivation found via {backend} or the Prolog fact base",
+                justification="undecidable by available backends",
+            )],
+            status=ProofStatus.UNKNOWN,
+            logic_type=LogicType.PROPOSITIONAL,
+            verified=False,
+        )
+        return None, proof

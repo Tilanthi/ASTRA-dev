@@ -188,7 +188,7 @@ class V100Config:
     max_cost_dollars: float = 10000.0
 
     # Output
-    output_dir: str = "/Users/gjw255/astrodata/SWARM/ASTRA/data/v100_output"
+    output_dir: str = str(Path(__file__).resolve().parents[3] / "data" / "v100_output")
     save_intermediate: bool = True
 
 

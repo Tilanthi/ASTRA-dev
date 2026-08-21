@@ -46,7 +46,10 @@ from .feasibility_checker import (
     create_feasibility_assessor
 )
 
-# Import V41, V50, V92 components (try both relative and absolute imports)
+# Import V41 components (try both relative and absolute imports).
+# The former core_legacy.v92/v50 imports were removed: that package never
+# existed (the real modules live in legacy/systems/) and the imported names
+# were never used in this file.
 try:
     from ..reasoning.v41_orchestrator import (
         V41Orchestrator, ReasoningMode, ReasoningTask, ReasoningResult
@@ -54,8 +57,6 @@ try:
     from ..reasoning.integration_bus import (
         get_integration_bus, Event, EventType, EventPriority
     )
-    from ..core_legacy.v92.v92_system import V92CompleteSystem
-    from ..core_legacy.v50.v50_discovery_engine import V50DiscoveryEngine
     HAS_V41_V50_V92 = True
 except (ImportError, ValueError):
     try:
@@ -66,11 +67,9 @@ except (ImportError, ValueError):
         from astra_core.reasoning.integration_bus import (
             get_integration_bus, Event, EventType, EventPriority
         )
-        from astra_core.core_legacy.v92.v92_system import V92CompleteSystem
-        from astra_core.core_legacy.v50.v50_discovery_engine import V50DiscoveryEngine
         HAS_V41_V50_V92 = True
     except ImportError as e:
-        logging.warning(f"Could not import V41/V50/V92 components: {e}")
+        logging.warning(f"Could not import V41 components: {e}")
         HAS_V41_V50_V92 = False
 
 # Import AstroSwarm

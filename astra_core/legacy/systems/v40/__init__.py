@@ -70,13 +70,25 @@ from .causal_world_model import (
     CausalQuery
 )
 
-from .meta_cognitive import (
-    MetaCognitiveController,
-    ReasoningStrategy,
-    ResourceBudget,
-    ConfidenceEstimator,
-    StrategySelector
-)
+# meta_cognitive.py is a baselined syntax-broken file (IndentationError
+# at line 544, known_broken_syntax.txt); its names come from a faithful
+# fallback module when it fails to load.
+try:
+    from .meta_cognitive import (
+        MetaCognitiveController,
+        ReasoningStrategy,
+        ResourceBudget,
+        ConfidenceEstimator,
+        StrategySelector
+    )
+except (ImportError, SyntaxError):
+    from .meta_cognitive_fallback import (
+        MetaCognitiveController,
+        ReasoningStrategy,
+        ResourceBudget,
+        ConfidenceEstimator,
+        StrategySelector
+    )
 
 from .continuous_learning import (
     ContinuousLearner,

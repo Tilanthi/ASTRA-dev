@@ -98,3 +98,68 @@ class TemporalCausalDiscovery:
         # Extract Granger causalities
         for effect_var in data.columns:
             pass  # Granger causality extraction needed
+
+
+def granger_causality_test(x, y, max_lag: int = 5, alpha: float = 0.05):
+    """
+    Test whether time series x Granger-causes y (restored 2026-08-21).
+
+    Imported by astra_core.causal.discovery/__init__ and
+    tests/test_all.py but never defined in this module. Runs the same
+    nested lagged-regression F-test used by
+    astro_causal_discovery._granger_causality_test at each lag up to
+    max_lag and reports the strongest lag.
+
+    Args:
+        x: Candidate cause series
+        y: Effect series
+        max_lag: Maximum lag to test
+        alpha: Significance level
+
+    Returns:
+        (causes, best_lag, best_p) where causes is True when the
+        smallest p-value across lags is below alpha.
+    """
+    import numpy as np
+    from scipy.stats import f as f_dist
+
+    x = np.asarray(x, dtype=float)
+    y = np.asarray(y, dtype=float)
+    n = len(y)
+
+    best_p = 1.0
+    best_lag = 1
+
+    for lag in range(1, max_lag + 1):
+        if n - 2 * lag <= 0:
+            break
+
+        # Lag matrices: full model includes x's lags, restricted does not
+        Y_lag = np.column_stack([y[lag - i: n - i] for i in range(1, lag + 1)])
+        X_lag = np.column_stack([x[lag - i: n - i] for i in range(1, lag + 1)])
+        Y_target = y[lag:]
+
+        if len(X_lag) != len(Y_target):
+            continue
+
+        full_design = np.column_stack([Y_lag, X_lag])
+        full_res = np.linalg.lstsq(full_design, Y_target, rcond=None)[0]
+        full_sse = np.sum((Y_target - full_design @ full_res) ** 2)
+
+        rest_res = np.linalg.lstsq(Y_lag, Y_target, rcond=None)[0]
+        rest_sse = np.sum((Y_target - Y_lag @ rest_res) ** 2)
+
+        df1 = lag
+        df2 = n - 2 * lag
+
+        if df2 <= 0 or rest_sse <= 0 or full_sse <= 0:
+            continue
+
+        f_stat = (rest_sse - full_sse) / df1 / (full_sse / df2)
+        p_value = 1.0 - f_dist.cdf(f_stat, df1, df2)
+
+        if p_value < best_p:
+            best_p = p_value
+            best_lag = lag
+
+    return best_p < alpha, best_lag, best_p

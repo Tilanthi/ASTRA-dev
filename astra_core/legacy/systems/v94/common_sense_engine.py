@@ -13,7 +13,11 @@ import time
 import logging
 from enum import Enum
 
-from .sensorimotor_system import Experience, SensoryInput
+# sensorimotor_system.py has a baselined syntax error (tests/known_broken_syntax.txt).
+try:
+    from .sensorimotor_system import Experience, SensoryInput
+except (ImportError, SyntaxError):
+    Experience = SensoryInput = None
 
 
 class CommonSenseDomain(Enum):

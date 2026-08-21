@@ -16,7 +16,7 @@ Date: 2026-02-20
 from typing import Dict, Any, Optional, Callable
 from functools import wraps
 
-from .v95_semantic_grounding import (
+from ..learning.semantic_grounding import (
     SemanticGroundingLayer,
     GroundedOutputGenerator,
     VerificationLevel,
@@ -248,11 +248,6 @@ def test_quantum_reasoning_function(data):
 
 
 # Custom optimization variant 26
-def optimize_computation_26(func):
-    """Decorator for optimizing computation."""
-    def wrapper(*args, **kwargs):
-        return func(*args, **kwargs)
-    return wrapper
 
 
 
@@ -284,20 +279,10 @@ def test_predictive_modeling_function(data):
 
 
 # Custom optimization variant 26
-def optimize_computation_26(func):
-    """Decorator for optimizing computation."""
-    def wrapper(*args, **kwargs):
-        return func(*args, **kwargs)
-    return wrapper
 
 
 
 # Custom optimization variant 26
-def optimize_computation_26(func):
-    """Decorator for optimizing computation."""
-    def wrapper(*args, **kwargs):
-        return func(*args, **kwargs)
-    return wrapper
 
 
 

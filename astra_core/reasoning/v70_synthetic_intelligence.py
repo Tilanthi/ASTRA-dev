@@ -23,7 +23,7 @@ from enum import Enum, auto
 import logging
 
 # Import all V70 components
-from .v70_algorithmic_discovery import (
+from ..capabilities.discovery.algorithmic_discovery import (
     AlgorithmicDiscoveryEngine,
     create_algorithmic_discovery_engine,
     DiscoveredAlgorithm
@@ -33,11 +33,18 @@ from .v70_universal_causal import (
     create_universal_causal_substrate,
     CausalStructure
 )
-from .v70_predictive_geometry import (
-    PredictiveInformationGeometry,
-    create_predictive_geometry,
-    InformationPoint
-)
+# v70_predictive_geometry.py has a baselined syntax error
+# (tests/known_broken_syntax.txt); quarantined so this module stays importable.
+try:
+    from .v70_predictive_geometry import (
+        PredictiveInformationGeometry,
+        create_predictive_geometry,
+        InformationPoint
+    )
+except (ImportError, SyntaxError):
+    PredictiveInformationGeometry = None
+    create_predictive_geometry = None
+    InformationPoint = None
 from .v70_meta_scientific import (
     MetaScientificReasoner,
     create_meta_scientific_reasoner,

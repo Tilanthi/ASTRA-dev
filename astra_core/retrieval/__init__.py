@@ -30,31 +30,57 @@ from .hybrid_search import (
     Document,
 )
 
-from .context_distiller import (
-    ContextDistiller,
-    RelevancyCheck,
-    DistillationResult,
-    create_context_distiller,
-    SimpleKeywordChecker,
-)
+# context_distiller.py, sharded_retrieval.py and query_expander.py have
+# baselined syntax errors (tests/known_broken_syntax.txt); quarantined so the
+# package's healthy modules stay importable.
+try:
+    from .context_distiller import (
+        ContextDistiller,
+        RelevancyCheck,
+        DistillationResult,
+        create_context_distiller,
+        SimpleKeywordChecker,
+    )
+except (ImportError, SyntaxError):
+    ContextDistiller = None
+    RelevancyCheck = None
+    DistillationResult = None
+    create_context_distiller = None
+    SimpleKeywordChecker = None
 
-from .sharded_retrieval import (
-    ShardedRetriever,
-    DomainShard,
-    ShardedRetrievalResult,
-    ShardStrategy,
-    ShardSelector,
-    create_sharded_retriever,
-)
+try:
+    from .sharded_retrieval import (
+        ShardedRetriever,
+        DomainShard,
+        ShardedRetrievalResult,
+        ShardStrategy,
+        ShardSelector,
+        create_sharded_retriever,
+    )
+except (ImportError, SyntaxError):
+    ShardedRetriever = None
+    DomainShard = None
+    ShardedRetrievalResult = None
+    ShardStrategy = None
+    ShardSelector = None
+    create_sharded_retriever = None
 
-from .query_expander import (
-    QueryExpander,
-    ParallelQueryExpander,
-    RuleBasedExpander,
-    ExpandedQueries,
-    QueryExpansionResult,
-    create_query_expander,
-)
+try:
+    from .query_expander import (
+        QueryExpander,
+        ParallelQueryExpander,
+        RuleBasedExpander,
+        ExpandedQueries,
+        QueryExpansionResult,
+        create_query_expander,
+    )
+except (ImportError, SyntaxError):
+    QueryExpander = None
+    ParallelQueryExpander = None
+    RuleBasedExpander = None
+    ExpandedQueries = None
+    QueryExpansionResult = None
+    create_query_expander = None
 
 from .parallel_rag import (
     ParallelRAGOrchestrator,

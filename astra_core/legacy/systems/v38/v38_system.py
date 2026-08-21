@@ -39,14 +39,14 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from ..v37 import V37CompleteSystem
 
 # Swarm memory imports (updated for V38)
-from ...memory import (
+from ....memory import (
     ExpandedMORK,
     MORKConcept,
     ScientificDomain
 )
 
 # Advanced capabilities imports
-from ...capabilities import (
+from ....capabilities import (
     # Bayesian
     BayesianInference,
     Prior,
@@ -75,7 +75,7 @@ from ...capabilities import (
 )
 
 # STAN Enhanced unified system
-from ...capabilities.stan_enhanced import (
+from ....capabilities.stan_enhanced import (
     STANEnhanced,
     EnhancedAnswer,
     ReasoningType
@@ -180,7 +180,7 @@ class V38CompleteSystem(V37CompleteSystem):
 
     def _initialize_bayesian_priors(self):
         """Initialize domain-specific Bayesian priors"""
-        from ...capabilities.bayesian_inference import PriorType, LikelihoodType
+        from ....capabilities.bayesian_inference import PriorType, LikelihoodType
 
         # Prior for domain classification confidence
         self.bayesian.create_prior(

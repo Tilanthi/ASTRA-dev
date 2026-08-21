@@ -14,10 +14,19 @@ import numpy as np
 
 # Import V94 components
 from .embodied_learning_engine import EmbodiedLearningEngine, LearningState
-from .sensorimotor_system import SensorimotorInterface, WorldAction, Experience
 from .developmental_learning import DevelopmentalLearning, DevelopmentalStage
 from .common_sense_engine import CommonSenseEngine
-from .language_grounding import LanguageGroundingEngine
+
+# sensorimotor_system.py and language_grounding.py have baselined syntax errors
+# (tests/known_broken_syntax.txt); quarantined so this module stays importable.
+try:
+    from .sensorimotor_system import SensorimotorInterface, WorldAction, Experience
+except (ImportError, SyntaxError):
+    SensorimotorInterface = WorldAction = Experience = None
+try:
+    from .language_grounding import LanguageGroundingEngine
+except (ImportError, SyntaxError):
+    LanguageGroundingEngine = None
 
 # Import previous versions for integration
 from ..v80 import V80CompleteSystem

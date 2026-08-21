@@ -16,13 +16,13 @@ from pathlib import Path
 # Add parent directory to path to import astra_core
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from configurations import (
+from .configurations import (
     AblationConfig,
     get_all_ablations,
     get_critical_ablations,
     get_ablation_by_name
 )
-from metrics import (
+from .metrics import (
     QueryResult,
     MetricScore,
     AblationEvaluation,

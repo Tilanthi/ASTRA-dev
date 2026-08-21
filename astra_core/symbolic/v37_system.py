@@ -27,7 +27,7 @@ from typing import Dict, List, Optional, Any
 
 # V36 imports - using relative imports from core_legacy
 try:
-    from ..core_legacy.v36.v36_system import (
+    from ..legacy.systems.v36.v36_system import (
         V36CompleteSystem,
         ProhibitiveConstraintEngine,
         HybridWorldGenerator,

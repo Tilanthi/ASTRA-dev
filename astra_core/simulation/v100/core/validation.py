@@ -240,7 +240,7 @@ class ValidationEngine:
             self.generated_papers[paper.id] = paper
 
             # Save paper
-            output_dir = "/Users/gjw255/astrodata/SWARM/ASTRA/docs/v100_papers"
+            output_dir = str(Path(__file__).resolve().parents[3] / "docs" / "v100_papers")
             Path(output_dir).mkdir(parents=True, exist_ok=True)
             paper_path = paper.save(output_dir)
             print(f"    Paper saved to: {paper_path}")
@@ -648,7 +648,7 @@ def create_validation_engine() -> ValidationEngine:
 # =============================================================================
 
 def validate_on_cygnus(
-    data_path: str = "/Users/gjw255/astrodata/SWARM/ASTRA/docs/",
+    data_path: str = str(Path(__file__).resolve().parents[3] / "docs") + "/",
     generate_paper: bool = True
 ) -> ValidationResult:
     """

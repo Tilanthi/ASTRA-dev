@@ -166,7 +166,7 @@ class ArchiveExplorer:
     """
 
     def __init__(self, cache_dir: Optional[str] = None):
-        self.cache_dir = cache_dir or "/Users/gjw255/astrodata/SWARM/ASTRA/data/cache"
+        self.cache_dir = cache_dir or str(Path(__file__).resolve().parents[4] / "data" / "cache")
         os.makedirs(self.cache_dir, exist_ok=True)
 
         self.cached_queries: Dict[str, DatasetCollection] = {}

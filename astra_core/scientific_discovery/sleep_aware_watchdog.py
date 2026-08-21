@@ -41,7 +41,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Configuration
-ASTRA_DIR = Path("/Users/gjw255/astrodata/SWARM/ASTRA-dev-main")
+ASTRA_DIR = Path(__file__).resolve().parents[2]
 ACTIVE_FILE = ASTRA_DIR / ".astra_active"
 SHUTDOWN_FILE = ASTRA_DIR / ".astra_intentional_shutdown"
 DISCOVERY_SCRIPT = ASTRA_DIR / "start_autonomous_discovery.py"

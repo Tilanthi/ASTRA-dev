@@ -41,15 +41,15 @@ from ..v36 import (
 )
 
 # Memory system imports
-from ...memory.mork_ontology import MORKOntology
-from ...memory.memory_graph import MemoryGraph, NodeType, EdgeType
-from ...memory.milvus_store import MilvusVectorStore, VectorBackend
-from ...memory.rrf_fusion import ThreeWayRRF, RankingConfig
+from ....memory.mork_ontology import MORKOntology
+from ....memory.memory_graph import MemoryGraph, NodeType, EdgeType
+from ....memory.milvus_store import MilvusVectorStore, VectorBackend
+from ....memory.rrf_fusion import ThreeWayRRF, RankingConfig
 
 # Swarm intelligence imports
-from ...intelligence.pheromone_dynamics import DigitalPheromoneField, PheromoneType
-from ...intelligence.leapcore_evolution import LEAPCoreEvolution, EvolutionConfig
-from ...intelligence.orchestrator import SwarmOrchestrator
+from ....intelligence.pheromone_dynamics import DigitalPheromoneField, PheromoneType
+from ....intelligence.leapcore_evolution import LEAPCoreEvolution, EvolutionConfig
+from ....intelligence.orchestrator import SwarmOrchestrator
 
 
 class V37CompleteSystem(V36CompleteSystem):

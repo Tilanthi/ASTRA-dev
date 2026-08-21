@@ -10,9 +10,10 @@ import time
 from typing import Dict, List, Any
 import sys
 import os
+from pathlib import Path
 
 # Add ASTRA to path
-sys.path.insert(0, '/Users/gjw255/astrodata/SWARM/ASTRA-dev-main')
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from astra_core.capabilities.v95_enhanced_astrophysical_causal_discovery import (
     OptimizedAstrophysicalCausalDiscovery,

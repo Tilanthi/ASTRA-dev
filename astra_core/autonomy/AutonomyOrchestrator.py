@@ -161,7 +161,7 @@ class AutonomyOrchestrator:
                 'forbidden_domains': self.config.unsafe_domains
             },
             SafetyConstraint.FILE_SYSTEM_BOUNDARIES: {
-                'safe_paths': self.config.safe_file_paths or ["/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/"],
+                'safe_paths': self.config.safe_file_paths or [str(Path(__file__).resolve().parents[2]) + "/"],
                 'require_permission': True
             },
             SafetyConstraint.COMPUTATIONAL_LIMITS: {

@@ -943,19 +943,6 @@ class EnhancedUnifiedSTANSystem:
             # Now: ALL query paths properly resume discovery
             self._handle_user_task_complete()
 
-    def answer(self, query: str, context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
-        """
-        Alias for process_query for backward compatibility
-
-        Args:
-            query: User query
-            context: Additional context
-
-        Returns:
-            Processing result with answer and metadata
-        """
-        return self.process_query(query, context)
-
     def _determine_optimal_mode(self, query: str, context: Dict[str, Any]) -> str:
         """Determine optimal processing mode for query"""
         query_lower = query.lower()

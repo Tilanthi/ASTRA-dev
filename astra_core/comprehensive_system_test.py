@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.ERROR, format='%(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
 
 # Add project root to path
-project_root = Path("/Users/gjw255/astrodata/SWARM/ASTRA")
+project_root = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(project_root))
 
 

@@ -650,3 +650,45 @@ class SafeModificationApplier:
         # Sandbox test if enabled
         if sandbox_test:
             test_success = self._sandbox_test(proposal, target_state)
+
+
+class CognitiveSelfModificationSystem:
+    """
+    Integrator for safe cognitive self-modification (restored 2026-08-21).
+
+    Imported by v60_cognitive_agent but never defined in the original
+    module. Wires the real pipeline above — PerformanceMonitor ->
+    BottleneckDetector -> StrategyEvaluator -> ModificationEngine ->
+    SafeModificationApplier — and delegates to it.
+    """
+
+    def __init__(self):
+        self.monitor = PerformanceMonitor()
+        self.bottleneck_detector = BottleneckDetector(self.monitor)
+        self.strategy_evaluator = StrategyEvaluator()
+        self.modification_engine = ModificationEngine(
+            bottleneck_detector=self.bottleneck_detector,
+            strategy_evaluator=self.strategy_evaluator
+        )
+        self.safe_applier = SafeModificationApplier()
+
+    def record_performance(self,
+                           metric: PerformanceMetric,
+                           value: float,
+                           component: Optional[str] = None,
+                           task: Optional[Dict[str, Any]] = None) -> None:
+        """Record a performance measurement"""
+        self.monitor.record(metric, value, component=component, task=task)
+
+    def analyze_bottlenecks(self) -> List[BottleneckAnalysis]:
+        """Delegate bottleneck analysis to the detector"""
+        return self.bottleneck_detector.analyze()
+
+    def propose_modifications(self) -> List[ModificationProposal]:
+        """Delegate modification proposal to the engine"""
+        return self.modification_engine.propose_modifications()
+
+
+def create_self_modification_system() -> CognitiveSelfModificationSystem:
+    """Create a cognitive self-modification system"""
+    return CognitiveSelfModificationSystem()

@@ -201,12 +201,3 @@ class KnowledgeBaseBuilder:
     def retrieve(self, query: str, top_k: int = 5) -> RetrievalResult:
         """Retrieve relevant documents"""
         return self.rag.retrieve(query, top_k)
-    """
-    Local RAG system using ChromaDB for vector storage.
-
-    Falls back to in-memory storage if ChromaDB is not available.
-    """
-
-    def __init__(self, persist_dir: Optional[str] = None, collection_name: str = "stan_knowledge"):
-        self.persist_dir = persist_dir
-        self.collection_name = collection_name

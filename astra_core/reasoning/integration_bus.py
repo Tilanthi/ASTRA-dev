@@ -345,3 +345,32 @@ class IntegrationBus:
 
         for sub_id in subscription_ids:
             subscription = self.subscriptions.get(sub_id)
+            if subscription is None:
+                continue
+
+            # Apply subscriber's filter, if any
+            if subscription.filter_fn is not None:
+                try:
+                    if not subscription.filter_fn(event):
+                        continue
+                except Exception as e:
+                    logger.warning(f"Filter error for {subscription.subscriber}: {e}")
+                    continue
+
+            try:
+                subscription.callback(event)
+            except Exception as e:
+                # One failing subscriber must not break delivery to the rest
+                logger.error(f"Callback error for {subscription.subscriber}: {e}")
+
+
+# Singleton instance (same API as integration_bus_stub.get_integration_bus)
+_integration_bus_instance: Optional[IntegrationBus] = None
+
+
+def get_integration_bus() -> IntegrationBus:
+    """Get or create the singleton integration bus instance"""
+    global _integration_bus_instance
+    if _integration_bus_instance is None:
+        _integration_bus_instance = IntegrationBus()
+    return _integration_bus_instance

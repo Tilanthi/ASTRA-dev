@@ -1151,3 +1151,10 @@ class MetaScientificReasoner:
         )
 
         # Identify gaps
+
+
+def create_meta_scientific_reasoner() -> MetaScientificReasoner:
+    """Create a meta-scientific reasoner (restored 2026-08-21:
+    factory was imported by v70_synthetic_intelligence but never
+    defined)."""
+    return MetaScientificReasoner()

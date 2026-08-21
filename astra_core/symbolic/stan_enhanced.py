@@ -34,19 +34,26 @@ from .mork_expanded import (
     Domain,
     DomainRouter
 )
-from .tool_integration import (
-    ToolIntegration,
-    ToolResult,
-    WikipediaAPI,
-    ArXivAPI,
-    MathTool,
-    PythonExecutor
-)
-from .local_rag import (
-    LocalRAG,
-    RetrievalResult,
-    KnowledgeBaseBuilder
-)
+# tool_integration.py has a baselined syntax error (tests/known_broken_syntax.txt);
+# quarantined so this module stays importable.
+try:
+    from .tool_integration import (
+        ToolIntegration,
+        ToolResult,
+        WikipediaAPI,
+        ArXivAPI,
+        MathTool,
+        PythonExecutor
+    )
+except (ImportError, SyntaxError):
+    ToolIntegration = None
+    ToolResult = None
+    WikipediaAPI = None
+    ArXivAPI = None
+    MathTool = None
+    PythonExecutor = None
+from .local_rag import LocalRAG, RetrievalResult
+from ..capabilities.local_rag import KnowledgeBaseBuilder
 
 
 class ReasoningType(Enum):

@@ -415,3 +415,41 @@ class HypothesisGenerator:
             context['claim'] = context.get('hypothesis', 'No claim')
 
         return context
+
+
+class ActiveKnowledgeSystem:
+    """
+    Integrator for active-knowledge acquisition (restored 2026-08-21).
+
+    Imported by v60_cognitive_agent but never defined in the original
+    module. Composes the real components above — GapDetector and
+    HypothesisGenerator — and delegates to them; nothing is fabricated.
+    """
+
+    def __init__(self):
+        self.gap_detector = GapDetector()
+        self.hypothesis_generator = HypothesisGenerator()
+        self.integrated_knowledge: Dict[str, Any] = {}
+
+    def detect_gaps(self,
+                    query_context: Dict[str, Any],
+                    knowledge_base: Dict[str, Any]) -> List[KnowledgeGap]:
+        """Delegate gap detection to the GapDetector"""
+        return self.gap_detector.detect_gaps(query_context, knowledge_base)
+
+    def generate_hypotheses(self,
+                            gap: KnowledgeGap,
+                            knowledge_base: Dict[str, Any],
+                            max_hypotheses: int = 5) -> List[Hypothesis]:
+        """Delegate hypothesis generation to the HypothesisGenerator"""
+        return self.hypothesis_generator.generate_hypotheses(
+            gap, knowledge_base, max_hypotheses=max_hypotheses)
+
+    def integrate(self, integration: KnowledgeIntegration) -> None:
+        """Record integrated knowledge"""
+        self.integrated_knowledge[integration.gap_id] = integration
+
+
+def create_active_knowledge_system() -> ActiveKnowledgeSystem:
+    """Create an active knowledge acquisition system"""
+    return ActiveKnowledgeSystem()

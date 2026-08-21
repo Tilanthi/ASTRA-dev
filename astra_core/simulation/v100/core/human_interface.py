@@ -521,7 +521,7 @@ Detailed Mechanisms
     def save_session(
         self,
         session_id: str,
-        output_dir: str = "/Users/gjw255/astrodata/SWARM/ASTRA/data/v100_sessions"
+        output_dir: str = str(Path(__file__).resolve().parents[3] / "data" / "v100_sessions")
     ) -> str:
         """Save collaboration session to disk"""
         if session_id not in self.sessions:

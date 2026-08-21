@@ -23,42 +23,49 @@ from enum import Enum, auto
 import logging
 
 # Import all V70 components
-from .v70_algorithmic_discovery import (
+from ..discovery.algorithmic_discovery import (
     AlgorithmicDiscoveryEngine,
     create_algorithmic_discovery_engine,
     DiscoveredAlgorithm
 )
-from .v70_universal_causal import (
+from ...reasoning.v70_universal_causal import (
     UniversalCausalSubstrate,
     create_universal_causal_substrate,
     CausalStructure
 )
-from .v70_predictive_geometry import (
-    PredictiveInformationGeometry,
-    create_predictive_geometry,
-    InformationPoint
-)
-from .v70_meta_scientific import (
+# v70_predictive_geometry.py has a baselined syntax error
+# (tests/known_broken_syntax.txt); quarantined so this module stays importable.
+try:
+    from ...reasoning.v70_predictive_geometry import (
+        PredictiveInformationGeometry,
+        create_predictive_geometry,
+        InformationPoint
+    )
+except (ImportError, SyntaxError):
+    PredictiveInformationGeometry = None
+    create_predictive_geometry = None
+    InformationPoint = None
+from ...reasoning.v70_meta_scientific import (
     MetaScientificReasoner,
     create_meta_scientific_reasoner,
     ScientificQuestion,
     QuestionType
 )
-from .v70_emergent_computation import (
+from ...reasoning.v70_emergent_computation import (
     EmergentComputationLayer,
     create_emergent_computation_layer,
     EmergentPattern
 )
-from .v70_temporal_hierarchy import (
+from ...reasoning.v70_temporal_hierarchy import (
     TemporalHierarchyLearner,
     create_temporal_hierarchy_learner,
     TemporalPattern
 )
-from .v70_analogical_transfer import (
+from ...reasoning.v70_analogical_transfer import (
     DeepAnalogicalTransferEngine,
     create_analogical_transfer_engine
 )
-from .v70_hypothesis_generator import (
+from ...reasoning.v70_hypothesis_generator import (
     HypothesisSpaceGenerator,
     create_hypothesis_generator,
     Hypothesis

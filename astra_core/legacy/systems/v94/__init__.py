@@ -7,12 +7,25 @@ Enhanced for astrophysics applications with cosmic-scale embodied understanding.
 """
 
 from .embodied_learning_engine import EmbodiedLearningEngine
-from .sensorimotor_system import SensorimotorInterface, WorldAction, Experience
 from .developmental_learning import DevelopmentalLearning, PlayfulExplorer
 from .common_sense_engine import CommonSenseEngine, PhysicsIntuitionModule
-from .language_grounding import LanguageGroundingEngine, ConceptGroundingEngine
 from .v94_complete import V94CompleteSystem, V94Config
 from .astro_embodied_integration import AstroEmbodiedIntegrator
+
+# sensorimotor_system.py and language_grounding.py have baselined syntax errors
+# (tests/known_broken_syntax.txt); quarantined so the rest of v94 stays importable.
+try:
+    from .sensorimotor_system import SensorimotorInterface, WorldAction, Experience
+except (ImportError, SyntaxError):
+    SensorimotorInterface = None
+    WorldAction = None
+    Experience = None
+
+try:
+    from .language_grounding import LanguageGroundingEngine, ConceptGroundingEngine
+except (ImportError, SyntaxError):
+    LanguageGroundingEngine = None
+    ConceptGroundingEngine = None
 
 __all__ = [
     'EmbodiedLearningEngine',

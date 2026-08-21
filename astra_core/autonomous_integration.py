@@ -72,7 +72,7 @@ class AutonomousSystemConfig:
     # Safety constraints
     require_validation_for_discoveries: bool = True
     allow_self_modification: bool = True
-    modification_scope: List[str] = field(default_factory=lambda: ["/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/"])
+    modification_scope: List[str] = field(default_factory=lambda: [str(Path(__file__).resolve().parents[1]) + "/"])
 
     # Activity settings
     idle_threshold_seconds: int = 300  # 5 minutes

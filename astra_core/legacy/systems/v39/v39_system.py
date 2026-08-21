@@ -61,7 +61,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from ..v38 import V38CompleteSystem
 
 # V39 Enhancement imports
-from ...capabilities.abductive_inference import (
+from ....capabilities.abductive_inference import (
     AbductiveInferenceEngine,
     Observation,
     Hypothesis,
@@ -69,7 +69,7 @@ from ...capabilities.abductive_inference import (
     Evidence
 )
 
-from ...capabilities.active_experiment import (
+from ....capabilities.active_experiment import (
     ActiveExperimentDesigner,
     CausalExperimentDesigner,
     Experiment,
@@ -79,7 +79,7 @@ from ...capabilities.active_experiment import (
     Belief
 )
 
-from ...capabilities.episodic_memory import (
+from ....capabilities.episodic_memory import (
     EpisodicMemory,
     Episode,
     EpisodeType,
@@ -90,7 +90,7 @@ from ...capabilities.episodic_memory import (
     CasedBasedReasoner
 )
 
-from ...capabilities.causal_discovery import (
+from ....capabilities.causal_discovery import (
     CausalDiscoveryEngine,
     CausalGraph,
     CausalEdge,
@@ -99,7 +99,7 @@ from ...capabilities.causal_discovery import (
     GESAlgorithm
 )
 
-from ...capabilities.meta_learning import (
+from ....capabilities.meta_learning import (
     MetaLearner,
     SwarmMetaLearner,
     StrategyLibrary,
@@ -109,7 +109,7 @@ from ...capabilities.meta_learning import (
     TaskComplexity
 )
 
-from ...capabilities.abstraction_learning import (
+from ....capabilities.abstraction_learning import (
     AbstractionLearner,
     SymbolicTemplate,
     SymbolicExpression,
@@ -117,7 +117,7 @@ from ...capabilities.abstraction_learning import (
     FunctionFamily
 )
 
-from ...capabilities.neural_symbolic_bridge import (
+from ....capabilities.neural_symbolic_bridge import (
     NeuralSymbolicBridge,
     HybridReasoner,
     SymbolicStructure,
@@ -126,7 +126,7 @@ from ...capabilities.neural_symbolic_bridge import (
     VerificationResult
 )
 
-from ...capabilities.uncertainty_planning import (
+from ....capabilities.uncertainty_planning import (
     UncertaintyPlanner,
     ContingencyPlanner,
     BayesianPlanner,
@@ -138,7 +138,7 @@ from ...capabilities.uncertainty_planning import (
 )
 
 # V39.1 Enhancement imports (HLE-optimized)
-from ...capabilities.reasoning_templates import (
+from ....capabilities.reasoning_templates import (
     ReasoningTemplateEngine,
     ReasoningTemplate,
     ReasoningStyle,
@@ -146,14 +146,14 @@ from ...capabilities.reasoning_templates import (
     CATEGORY_TEMPLATES
 )
 
-from ...capabilities.episodic_warmstart import (
+from ....capabilities.episodic_warmstart import (
     EpisodicWarmStart,
     CanonicalExemplar,
     ExemplarType,
     ALL_EXEMPLARS
 )
 
-from ...capabilities.semantic_clustering import (
+from ....capabilities.semantic_clustering import (
     SemanticAnswerClustering,
     ClusteringConsistency,
     AnswerCluster,
@@ -161,7 +161,7 @@ from ...capabilities.semantic_clustering import (
     extract_final_answer
 )
 
-from ...capabilities.domain_strategies import (
+from ....capabilities.domain_strategies import (
     DomainStrategySelector,
     DynamicConfigManager,
     DomainStrategy,
@@ -170,7 +170,7 @@ from ...capabilities.domain_strategies import (
 )
 
 # V39.1 LLM Inference and External Knowledge
-from ...capabilities.llm_inference import (
+from ....capabilities.llm_inference import (
     LLMInference,
     LLMConfig,
     LLMResponse,
@@ -178,7 +178,7 @@ from ...capabilities.llm_inference import (
     StructuredPrompter
 )
 
-from ...capabilities.external_knowledge import (
+from ....capabilities.external_knowledge import (
     UnifiedKnowledgeRetrieval,
     KnowledgeSource,
     KnowledgeResult,

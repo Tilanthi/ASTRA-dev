@@ -38,19 +38,39 @@ from .hybrid_search import (
     HybridRetriever, Document, TfidfRetriever, VectorRetriever,
     HybridSearchResult
 )
-from .context_distiller import (
-    ContextDistiller, RelevancyCheck, DistillationResult,
-    SimpleKeywordChecker
-)
-from .sharded_retrieval import (
-    ShardedRetriever, DomainShard, ShardStrategy,
-    ShardedRetrievalResult
-)
-from .query_expander import (
-    QueryExpander, RuleBasedExpander, ParallelQueryExpander,
-    ExpandedQueries
-)
-from ..intelligence.redundant_executor import RedundantExecutor, ExecutionResult
+# context_distiller.py, sharded_retrieval.py and query_expander.py have
+# baselined syntax errors (tests/known_broken_syntax.txt); quarantined so this
+# module stays importable. Their feature flags degrade at runtime via None.
+try:
+    from .context_distiller import (
+        ContextDistiller, RelevancyCheck, DistillationResult,
+        SimpleKeywordChecker
+    )
+except (ImportError, SyntaxError):
+    ContextDistiller = RelevancyCheck = DistillationResult = None
+    SimpleKeywordChecker = None
+try:
+    from .sharded_retrieval import (
+        ShardedRetriever, DomainShard, ShardStrategy,
+        ShardedRetrievalResult
+    )
+except (ImportError, SyntaxError):
+    ShardedRetriever = DomainShard = ShardStrategy = None
+    ShardedRetrievalResult = None
+try:
+    from .query_expander import (
+        QueryExpander, RuleBasedExpander, ParallelQueryExpander,
+        ExpandedQueries
+    )
+except (ImportError, SyntaxError):
+    QueryExpander = RuleBasedExpander = ParallelQueryExpander = None
+    ExpandedQueries = None
+# intelligence/redundant_executor.py also has a baselined syntax error.
+try:
+    from ..intelligence.redundant_executor import RedundantExecutor, ExecutionResult
+except (ImportError, SyntaxError):
+    RedundantExecutor = None
+    ExecutionResult = None
 
 
 class RetrievalMode(Enum):
@@ -85,7 +105,8 @@ class ParallelRAGConfig:
     max_query_variations: int = 9
 
     # Sharding parameters
-    shard_strategy: ShardStrategy = ShardStrategy.ALL
+    # (None when sharded_retrieval.py is quarantined — baselined syntax error.)
+    shard_strategy: ShardStrategy = ShardStrategy.ALL if ShardStrategy is not None else None
 
     # Performance
     max_workers: int = 5

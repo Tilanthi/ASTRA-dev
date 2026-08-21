@@ -58,13 +58,23 @@ from .causal_world_model import (
     CausalQuery
 )
 
-from .meta_cognitive import (
-    MetaCognitiveController,
-    ReasoningStrategy,
-    ResourceBudget,
-    StrategyResult,
-    ProblemCharacteristics
-)
+try:
+    from .meta_cognitive import (
+        MetaCognitiveController,
+        ReasoningStrategy,
+        ResourceBudget,
+        StrategyResult,
+        ProblemCharacteristics
+    )
+except (ImportError, SyntaxError):
+    # meta_cognitive.py is baselined syntax-broken; faithful fallback.
+    from .meta_cognitive_fallback import (
+        MetaCognitiveController,
+        ReasoningStrategy,
+        ResourceBudget,
+        StrategyResult,
+        ProblemCharacteristics
+    )
 
 from .continuous_learning import (
     ContinuousLearner,

@@ -247,3 +247,276 @@ class SymbolicMathVerifier:
     - Equation solutions
     - Derivative/Integral computations
     """
+
+
+class AnswerVerifier:
+    """
+    Unified answer verifier (restored 2026-08-21).
+
+    Imported by v40_system (constructor + .verify + .get_stats) but
+    never defined in the original module. This restoration composes the
+    verifiers that DO exist in this module (BackwardChainer) with
+    explicit numeric-sanity checks, and never reports 'verified' unless
+    a real check actually passed — undecidable stays 'unknown'.
+    """
+
+    def __init__(self):
+        self.backward_chainer = BackwardChainer()
+
+        # Statistics
+        self.total_verifications = 0
+        self.verified_count = 0
+        self.failed_count = 0
+        self.unknown_count = 0
+
+    def verify(self,
+               answer: str,
+               question: str,
+               reasoning_trace: List[str],
+               category: str = "") -> Dict[str, Any]:
+        """
+        Verify an answer against its question and derivation.
+
+        Args:
+            answer: The answer to verify
+            question: Original question
+            reasoning_trace: Steps taken to derive the answer
+            category: Optional problem category
+
+        Returns:
+            Dict with verified flag, status, confidence, per-check
+            details, and issues found.
+        """
+        self.total_verifications += 1
+
+        if answer is None or not str(answer).strip():
+            self.unknown_count += 1
+            return {
+                'verified': False,
+                'status': VerificationStatus.UNKNOWN.value,
+                'confidence': 0.0,
+                'checks': [],
+                'issues': ['No answer to verify']
+            }
+
+        checks: List[Dict[str, Any]] = []
+        issues: List[str] = []
+
+        # Check 1: backward chaining over the derivation (real module code)
+        chain_result = self.backward_chainer.verify(
+            str(answer), question, reasoning_trace or [])
+        checks.append(chain_result.to_dict())
+        issues.extend(chain_result.issues)
+
+        # Check 2: numeric sanity — a numeric answer must be a finite number
+        numeric_result = self._check_numeric_sanity(str(answer))
+        checks.append(numeric_result.to_dict())
+        issues.extend(numeric_result.issues)
+
+        # Aggregate: verified only if the backward chain genuinely passed
+        # and no check failed outright.
+        failed = any(c['status'] == VerificationStatus.FAILED.value
+                     for c in checks)
+        if (chain_result.status == VerificationStatus.VERIFIED
+                and not failed):
+            status = VerificationStatus.VERIFIED
+            confidence = min(0.95, max(chain_result.confidence,
+                                       numeric_result.confidence))
+        elif failed:
+            status = VerificationStatus.FAILED
+            confidence = min(chain_result.confidence,
+                             numeric_result.confidence)
+        else:
+            status = VerificationStatus.UNKNOWN
+            confidence = min(chain_result.confidence, 0.5)
+
+        if status == VerificationStatus.VERIFIED:
+            self.verified_count += 1
+        elif status == VerificationStatus.FAILED:
+            self.failed_count += 1
+        else:
+            self.unknown_count += 1
+
+        return {
+            'verified': status == VerificationStatus.VERIFIED,
+            'status': status.value,
+            'confidence': round(confidence, 3),
+            'checks': checks,
+            'issues': issues,
+            'category': category
+        }
+
+    def get_stats(self) -> Dict[str, Any]:
+        """Verification statistics"""
+        return {
+            'total_verifications': self.total_verifications,
+            'verified': self.verified_count,
+            'failed': self.failed_count,
+            'unknown': self.unknown_count
+        }
+
+    def _check_numeric_sanity(self, answer: str) -> VerificationResult:
+        """
+        If the answer looks numeric, it must parse as a finite number.
+        Non-numeric answers pass this check trivially (nothing asserted).
+        """
+        cleaned = answer.strip().rstrip('%').replace(',', '')
+        is_numeric = bool(cleaned) and (
+            cleaned.replace('.', '', 1).replace('-', '', 1).isdigit())
+
+        if not is_numeric:
+            return VerificationResult(
+                verification_type=VerificationType.FORMAT,
+                status=VerificationStatus.UNKNOWN,
+                confidence=0.5,
+                message="Answer is not numeric; no numeric check applies"
+            )
+
+        try:
+            value = float(cleaned)
+        except ValueError:
+            return VerificationResult(
+                verification_type=VerificationType.RANGE,
+                status=VerificationStatus.FAILED,
+                confidence=0.9,
+                message="Numeric-looking answer does not parse as a number",
+                issues=["Malformed numeric answer"]
+            )
+
+        if value != value or value in (float('inf'), float('-inf')):
+            return VerificationResult(
+                verification_type=VerificationType.RANGE,
+                status=VerificationStatus.FAILED,
+                confidence=0.9,
+                message="Numeric answer is not finite",
+                issues=["Non-finite numeric answer"]
+            )
+
+        return VerificationResult(
+            verification_type=VerificationType.RANGE,
+            status=VerificationStatus.VERIFIED,
+            confidence=0.9,
+            message=f"Numeric answer is finite ({value})"
+        )
+
+
+class UnitConsistencyChecker:
+    """
+    Checks physical consistency between two quantities by converting
+    both to SI before comparing (restored 2026-08-21).
+    """
+
+    def __init__(self, tolerance: float = 1e-6):
+        self.tolerance = tolerance
+        self.checks_performed = 0
+
+    def check_consistency(self,
+                          value_a: float,
+                          unit_a: Unit,
+                          value_b: float,
+                          unit_b: Unit) -> VerificationResult:
+        """
+        Verify that two quantities are consistent.
+
+        Fails when dimensions differ or the SI-converted magnitudes
+        disagree beyond tolerance.
+        """
+        self.checks_performed += 1
+
+        if unit_a.dimension != unit_b.dimension:
+            return VerificationResult(
+                verification_type=VerificationType.UNIT_CONSISTENCY,
+                status=VerificationStatus.FAILED,
+                confidence=0.9,
+                message=(f"Dimension mismatch: {unit_a.dimension} vs "
+                         f"{unit_b.dimension}"),
+                issues=["Incompatible physical dimensions"]
+            )
+
+        si_a = value_a * unit_a.si_conversion
+        si_b = value_b * unit_b.si_conversion
+
+        if abs(si_a - si_b) > self.tolerance * max(abs(si_a), abs(si_b), 1.0):
+            return VerificationResult(
+                verification_type=VerificationType.UNIT_CONSISTENCY,
+                status=VerificationStatus.FAILED,
+                confidence=0.9,
+                message=f"Values disagree in SI units: {si_a} vs {si_b}",
+                issues=["Quantities are not equal after SI conversion"]
+            )
+
+        return VerificationResult(
+            verification_type=VerificationType.UNIT_CONSISTENCY,
+            status=VerificationStatus.VERIFIED,
+            confidence=0.95,
+            message=f"Consistent in SI units ({si_a})"
+        )
+
+
+class ConstraintValidator:
+    """
+    Validates a value against explicit constraints
+    (restored 2026-08-21).
+
+    Supported constraints: min, max, allowed (list of valid values),
+    non_null.
+    """
+
+    def __init__(self):
+        self.validations_performed = 0
+
+    def validate(self, value: Any,
+                 constraints: Dict[str, Any]) -> VerificationResult:
+        """
+        Validate value against a constraint dict.
+
+        An empty constraint dict is honestly UNKNOWN: nothing was
+        asserted, so nothing was verified.
+        """
+        self.validations_performed += 1
+
+        if not constraints:
+            return VerificationResult(
+                verification_type=VerificationType.CONSTRAINT,
+                status=VerificationStatus.UNKNOWN,
+                confidence=0.5,
+                message="No constraints provided"
+            )
+
+        issues = []
+
+        if constraints.get('non_null') and value is None:
+            issues.append("Value is null but must not be")
+
+        if 'allowed' in constraints and value not in constraints['allowed']:
+            issues.append(f"Value {value!r} not in allowed set")
+
+        if 'min' in constraints:
+            try:
+                if float(value) < float(constraints['min']):
+                    issues.append(f"Value below minimum {constraints['min']}")
+            except (TypeError, ValueError):
+                issues.append("Non-numeric value compared against 'min'")
+
+        if 'max' in constraints:
+            try:
+                if float(value) > float(constraints['max']):
+                    issues.append(f"Value above maximum {constraints['max']}")
+            except (TypeError, ValueError):
+                issues.append("Non-numeric value compared against 'max'")
+
+        if issues:
+            return VerificationResult(
+                verification_type=VerificationType.CONSTRAINT,
+                status=VerificationStatus.FAILED,
+                confidence=0.9,
+                message="Constraint validation failed",
+                issues=issues
+            )
+
+        return VerificationResult(
+            verification_type=VerificationType.CONSTRAINT,
+            status=VerificationStatus.VERIFIED,
+            confidence=0.95,
+            message="All constraints satisfied"
+        )

@@ -1022,3 +1022,15 @@ class ContinuousLearner:
         except Exception as e:
             print(f"Failed to load state: {e}")
             return False
+
+
+# Singleton instance
+_learner: Optional["ContinuousLearner"] = None
+
+
+def get_continuous_learner() -> "ContinuousLearner":
+    """Get or create the global continuous learner"""
+    global _learner
+    if _learner is None:
+        _learner = ContinuousLearner()
+    return _learner

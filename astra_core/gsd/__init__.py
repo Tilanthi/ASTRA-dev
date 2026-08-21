@@ -35,7 +35,7 @@ try:
         generate_xml_task,
         validate_xml_task
     )
-except ImportError:
+except (ImportError, SyntaxError):  # xml_task_formatting.py: baselined syntax error
     XMLTask = None
     TaskType = None
     TaskPriority = None
@@ -105,7 +105,7 @@ try:
         map_codebase,
         spawn_parallel_analysis
     )
-except ImportError:
+except (ImportError, SyntaxError):  # codebase_mapper.py: baselined syntax error
     CodebaseMapper = None
     CodebaseDocumentation = None
     StackDocument = None
@@ -116,3 +116,4 @@ except ImportError:
     IntegrationsDocument = None
     ConcernsDocument = None
     map_codebase = None
+    spawn_parallel_analysis = None
