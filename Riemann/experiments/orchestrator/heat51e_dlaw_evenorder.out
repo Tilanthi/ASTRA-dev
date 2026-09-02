@@ -1,0 +1,25 @@
+Lehmer site: m0 = 7005.08171542378365147453  d = 0.0188492488631
+d^7 = 8.45392e-13   2*720/d^7 = 1.70335e+15 per unit delta (a6 gain)
+
+E1: d-ladder at exact m0 (PLAIN t_k; odd j clean under d-shift)
+  delta=1.0e-18: t6 shift obs -2.366e-6 pred -2.366e-6 ratio 1.0 | t5 shift 0.0 (law: 0) | t2 shift obs -2.99e-13 pred -2.99e-13
+  delta=-1.0e-18: t6 shift obs 2.366e-6 pred 2.366e-6 ratio 1.0 | t5 shift 0.0 (law: 0) | t2 shift obs 2.99e-13 pred 2.99e-13
+  delta=5.0e-19: t6 shift obs -1.183e-6 pred -1.183e-6 ratio 1.0 | t5 shift 0.0 (law: 0) | t2 shift obs -1.49e-13 pred -1.49e-13
+
+E2: machine 3 old-T2g Lehmer offsets through BOTH laws
+  eps = m0_T2g - m0_true = 2.107e-13
+  kappa3 offset obs -3.339e-6  eps-law pred -3.339e-6  ratio 1.0
+  stored d offset = -6.26e-19 (T2g d vs true d)
+  kappa6 offset obs 1.48e-6  d-law pred from stored d 1.48e-6  ratio 0.999987
+  d-law: delta implied by kappa6 offset = -6.257e-19
+E3: float64 candidates for the implied delta
+  float64(d)-d = -6.258e-19
+  float64((z2-z1)/2)-d = 1.918e-13
+  float64(m0)-m0 = 2.107e-13  (vs eps 2.107e-13)
+
+E4: second-site ladder at telescope (h=71732.9, d=0.00735 — the
+    d^-7 gain is ~1000x Lehmer's; delta rescaled to 1e-21)
+  telescope m0 = 71732.90855861  d = 0.00735073769616  2/d^7 = 1.725e+15 per unit delta
+  delta=1.0e-21: t6 shift obs -1.725e-6 pred -1.725e-6 ratio 1.0 | t5 shift 0.0 (law: 0)
+  delta=-1.0e-21: t6 shift obs 1.725e-6 pred 1.725e-6 ratio 1.0 | t5 shift 0.0 (law: 0)
+done

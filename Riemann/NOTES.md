@@ -1,0 +1,2873 @@
+## §57-addendum — heat15: the mechanism PROVED at t=0 (exact); heat16: the reality-vs-positivity isolating world (in flight)
+
+**heat15 (exact identity, dps 25, no flow needed: at t=0 the heat
+equation gives ż = −f₀''(z₀)/f₀'(z₀)).**
+- Tfull [(E)-on, 6-factor]: zdot(mir) = conj zdot(z₋) to **1.9e-16** —
+  the tracked zeros are exact conjugate partners; the SHEAR RATE
+  d/dt Re(z₋ − mir) ≡ 0 IDENTICALLY (structural, all t: the flow
+  preserves real-on-real, hence preserves conjugate pairing).
+- fold_8 [(E)-on]: same, to 7.7e-14.
+- signcontrol [(E)-off, 4-factor]: conjugation symmetry broken by
+  **1.06 (O(1))**; initial shear rate **+1.056**, matching the observed
+  early Re-gap growth in heat13-B/heat8c (gap 0.019→0.114 over
+  t=0.02→0.06, i.e. rate ~1.1–2.4, accelerating from 1.06). The
+  mechanism is PROVED at the kinematic level: **(E) ⟺ real Dirichlet
+  coefficients ⟺ F(z̄) = conj F(z) ⟹ mirror-paired zeros with zero
+  transverse shear; without realness the pair is unpaired and shears
+  apart at a rate computable exactly from f₀.**
+- HONEST REFINEMENT: the A/B (heat13) and this identity isolate
+  coefficient REALITY (conjugation symmetry), NOT YET nonnegativity —
+  the 4-factor world violates both at once. Whether Λ ≥ 0 carries
+  content BEYOND realness is exactly the heat16 question.
+
+**heat16 — the isolating world W_sv(s) = 3·H₀.₁(s) − H₀.₅(s).**
+Properties (exact): (F) holds (linear combination of self-FE
+functions with the same mirror); REAL (real on the real axis);
+**(E) VIOLATED beyond realness**: Λ_W(n) = Λ(n)[3(n^0.1+n^−0.1) −
+(n^0.5+n^−0.5)] — positive for n ≲ 40, NEGATIVE beyond (sign-crossing
+at n ≈ 37–41); NON-PRODUCT (no zero-inheritance). This is the
+construction-gap object the naive lane wanted: a non-product (F)-exact
+real member of the mirror-preserving class.
+- Census (cell-winding, β∈(0.05,0.95)×γ∈(1,20)): exactly 2 zeros at
+  EMERGENT ordinates (not ζ-ordinates). heat16b (exact Newton, dps 30)
+  ADJUDICATED: **BOTH EXACTLY ON THE LINE — β=0.5, γ=13.79880030570193105301
+  (δ=3.7e−24) and β=0.5, γ=14.47104242067686310884 (δ=4.9e−32)** —
+  dps-30 noise floors. [MACHINE-VERIFIED] The first (F)-exact, real,
+  (E)-violating, NON-PRODUCT world with all in-box zeros ON the line.
+  Midpoint of the two ordinates = 14.1349 = γ₁: the pair is the ζ-zero
+  SPLIT symmetrically about γ₁, moved from the H₀.₁ walls onto the axis.
+- **heat16c — the sharp crossing test [MACHINE-VERIFIED]:** W₂ =
+  H₀.₃ − 2H₀.₀₅ has Λ-weights w(n) = (n^0.3+n^−0.3) − 2(n^0.05+n^−0.05)
+  NEGATIVE at every prime n = 2..31 (w(2) = −1.96: the strongest
+  possible early (E)-violation; crossing to positive by n≈101) — and
+  STILL both in-box zeros exactly on the line: β=0.5, γ=13.841455215107482275
+  (δ=7.0e−29), γ=14.428132370346600547 (δ=9.9e−32), midpoint again
+  γ₁ = 14.1348. KILLS the detection-law reconciliation (§52 logic does
+  not rescue (E) here): **within real ξ-product combinations, REALNESS +
+  (F) ⟹ on-line; NONNEGATIVITY carries no content for on-line-ness.**
+  Structural echo: the classic Davenport–Heilbronn off-line world is a
+  COMPLEX self-FE combination — every known off-line (F)-exact world is
+  non-real, exactly matching the §56 A/B verdict ((F)-only zeros pass
+  THROUGH the line and park; (F)+real end ON it).
+- Part B (heat-flow, fixed coordinates): both on-line zeros SLIDE
+  STABLY ALONG the line — β pinned at 0.5 to printed precision for
+  t ∈ [0, 0.15], ordinates drifting smoothly (13.80→13.16; 14.47→14.41,
+  non-monotone). No instability, no departure: the axis is an invariant
+  manifold for the flow in real (F)-exact worlds — consistent with
+  heat15's identically-zero shear (conjugation symmetry).
+  OPEN after heat16/16c: (i) does the on-line-ness persist to higher
+  ordinates (γ→50: one split-pair per ζ-zero?); (ii) the MIXING PATH
+  H₀.₃ + c·H₀.₀₅, c: +2 → −2 connects an (E)-satisfying world to W₂ —
+  track the γ₁-pair's bifurcation (walls → axis) and find c*; (iii)
+  RANDOM real combos: is on-line-ness generic in this family or special
+  to antisymmetric 2-term mixes? → heat17.
+
+**heat12b verdict (quasi-freeze re-audit):** the (E)-off shifted zero
+(γ₁−1, +0.3 seed) migrates Re 13.13 → 3.34 over t → 2.0 (10 units
+left!) with 0 tracker failures, while Im decays 0.3 → 0.014 as
+**t^−1.03** — an asymptotic approach to the line that NEVER LANDS.
+The old heat12 exponent (t^−1.1) was numerically almost right but
+measured on the wrong object (a frozen tracker's global flow decay).
+Revised regime-2 fate: (E)-off worlds contain both transit-and-park
+zeros (unshifted pair) and asymptotic-freeze zeros (shifted pair);
+neither collides. [NUMERICAL, joint with heat8c/heat13]
+
+## §58 — REAL-MIX ON-LINE-NESS: the law, the moment law, and the collision dichotomy (2026-09-02 morning)
+
+**Established this session [MACHINE-VERIFIED]:**
+
+1. *(heat16b, dps 30)* W_sv = 3H₀.₁ − H₀.₅: both in-box zeros EXACTLY
+   on the line — γ = 13.79880030570193105301 (δ = 3.7e−24),
+   14.47104242067686310884 (δ = 4.9e−32) — emergent ordinates whose
+   midpoint is γ₁ to 5 decimals.
+2. *(heat16c, dps 25)* W₂ = H₀.₃ − 2H₀.₀₅ with Λ NEGATIVE at every
+   prime n = 2..31 (w(2) = −1.96; crossing to + by n≈101): both zeros
+   EXACTLY on the line (δ = 7.0e−29, 9.9e−32), midpoint again γ₁.
+   ⟹ the §52 detection-law rescue is dead: nonnegativity carries NO
+   content for on-line-ness in this family; REALNESS is the operative
+   half of (E). Structural echo: Davenport–Heilbronn (the classic
+   off-line self-FE world) is a COMPLEX combination — every known
+   off-line (F)-exact world is non-real (consistent with §56 A/B).
+3. *(heat17 part 1)* W_sv extended, β∈(0.05,0.95)×γ∈(1,50): **ALL 19
+   zeros ON the line** (δ ≤ 7e−16) — one split pair per ζ-ordinate,
+   midpoints = γ_j to ~0.003, plus the lower member of the γ₁₀ pair
+   (19th zero at 49.39, its partner above the box). The (E)-violating
+   real world is ENTIRELY on-line through γ = 50.
+4. *(heat16 Part B, rerun)* under heat flow the on-line zeros SLIDE
+   along the line stably (β pinned to printed precision, t → 0.15);
+   the axis is an invariant manifold — consistent with heat15's
+   identically-zero shear (conjugation symmetry).
+
+**PROVED identity (the 1-D method).** ξ(½−a+it) = conj ξ(½+a+it)
+(FE + realness) ⟹ on the line every real mix reduces to
+   Φ(t) = Σ_j c_j |ξ(½+a_j+it)|²  ∈ ℝ,
+so on-line zeros are 1-D sign changes of Φ. Machine-checked: Φ(γ_j)
+has FIXED sign at all 9 ζ-zeros — negative for W_sv, POSITIVE for W₂
+— with Φ of the opposite sign at all midgaps: exactly one straddling
+pair per ζ-zero, nothing else.
+
+**MOMENT LAW [PROVED at leading order].** Near a ζ-zero,
+ξ(½+a+iγ_j) ≈ a·ξ′(ρ_j), so
+   Φ(γ_j) ≈ |ξ′(ρ_j)|² · Σ_j c_j a_j²  = |ξ′(ρ_j)|² · (quadratic moment).
+W_sv: 3(0.1)² − (0.5)² = −0.22 < 0 ✓ (all 9 negative, 4.3e−7 → 1.1e−27).
+W₂: (0.3)² − 2(0.05)² = +0.085 > 0 ✓ (all 9 positive, 1.6e−7 → 3.8e−28).
+The sign of the moment decides the sign at every ζ-zero; straddling
+pairs follow whenever midgap values oppose (verified 8/8 midgaps both
+worlds). [PROVED leading order; midgap sign empirical]
+
+**COLLISION DICHOTOMY (local algebra, rigorous).** At a parameter c*,
+let F_c = H_{a₁} + cH_{a₂} have a double zero s₀ = ½+iγ₀ ON the line.
+Local expansion F = f₂w² + (c−c*)g + …, w = s−s₀:
+- f₂ ∈ ℝ (F real on the line at the double zero);
+- g(s₀) = H_{a₂}(s₀) = |ξ(½+a₂+iγ₀)|² > 0 — REAL POSITIVE by the
+  identity above.
+⟹ the split direction w² = −(c−c*)g/f₂ is REAL: the pair re-emerges
+EXACTLY along the line or EXACTLY perpendicular (wall pattern);
+**oblique escapes are FORBIDDEN at a line-collision.** Longitudinal
+choice ⟺ sign(c−c*) = −sign(f₂); square-root law Δ(c) ∝ √|c−c*|.
+This unifies: products = perpendicular splits (walls); indefinite
+mixes = longitudinal splits (§54's dynamic line-attractor); the heat
+§53d collide-at-line price d²/2 is the same collision algebra with
+heat-time as parameter. [PROVED local; global no-oblique-pairs law
+empirical — heat17 parts 2–3, heat18 test it]
+
+**Open after this:** (i) mixing-path bifurcation c*_j and the √law
+(heat17 part 2); (ii) random real 4-term combos — generic or special?
+(heat17 part 3); (iii) Δ_j vs mean spacing to γ = 10⁴: bounded Δ ⇒
+pair collisions near γ ≈ 8000 — GOE repulsion at 2× density or
+off-line scatter? (heat18); (iv) midpoint drift mid_j − γ_j grows
+with j (0.003 → 0.010 by γ₉) — law?; (v) NOVELTY CHECK: on-line
+zeros of indefinite real linear combinations of shifted ξ-products —
+nearest known: DH (complex), linear combinations of L-functions
+(destroy exact self-FE), de Branges canonical-system program.
+
+## §59 — THE ξ²−λH_a FAMILY: closed forms, an LP-limit REDUCTION of RH, and the exactly solvable one-pair model (2026-09-02)
+
+Family: F_a(z) = Ξ(z)² − λΞ(z+ia)Ξ(z−ia), a>0, λ>0 (Ξ := ξ(½+iz),
+real entire, even). On the line Φ(t) = Ξ(t)² − λ|Ξ(t+ia)|² ∈ ℝ.
+
+**SMALL-a SPLITTING LAW [PROVED leading order; machine-verified].** At
+a=0 the zeros are the ζ-zeros doubled. Since on the line ξ' is purely
+imaginary and ξ'' real (Ξ real entire), ξ(ρ_j) = 0 gives
+ξξ''−ξ'² = +|ξ'(ρ_j)|² at ρ_j, so
+F_a ≈ (1−λ)ξ'²w² − λa²|ξ'ρ_j|² near ρ_j ⟹ pair at
+**γ_j ± a√(λ/(1−λ)) for λ<1 [ON-LINE]; walls ½ ± a√(λ/(λ−1)) for
+λ>1; λ=1 detached** (zeros leave ρ_j entirely: F(ρ_j) = a²|ξ'|² ≠ 0).
+Verified λ=0.5, a=0.1: Δ = 0.2001…0.2010 vs 0.2 closed form, γ₁…γ₉,
+midpoints = γ_j to <1e−4 [MACHINE-VERIFIED]. a=0.01: Δ = 0.020000 to
+6 digits, midpoint−γ₁ = **+8.8e−11** (pinning improves ~a⁵: 4e−5 →
+8.8e−11 for a: 0.1 → 0.01).
+
+**λ>1: NO on-line zeros.** [PROVED GIVEN RH: each Hadamard factor
+satisfies |1−(t+ia)²/γ²|² − |1−t²/γ²|² = a²(a²+2t²+2γ²)/γ⁴ > 0, so
+R(t) = |Ξ(t+ia)|²/Ξ(t)² > 1 on the line; Φ = Ξ²(1−λR) keeps sign.]
+Machine-checked λ=2: 339/339 line samples negative; zeros near the
+predicted walls (|F|/scale ~1e−3 = O(a²) residual — true positions
+may be slightly oblique; heat19 census adjudicates).
+
+**LP-LIMIT REDUCTION OF RH [PROVED].** Fix λ∈(0,1). F_a is real
+entire for every a (product Ξ(z+ia)Ξ(z−ia) has real coefficients).
+If for ONE sequence aₙ→0 all zeros of F_{aₙ} are real, then RH holds:
+F_a → (1−λ)Ξ² locally uniformly; a non-real zero of Ξ² would, by
+Hurwitz, force non-real zeros of F_{aₙ} near it for large n. —
+RH is EQUIVALENT to "Ξ ∈ LP" (Pólya); this adds: RH ⟸ F_a ∈ LP along
+any aₙ→0. The open half: RH ⟹ F_a ∈ LP for small a? Empirically yes
+so far (heat19 census adjudicates γ<50). Off-line zeros of F_a ⟺
+positive-level sets of S(z) = (logΞ)″ in the open upper half z-plane
+(away from poles: log F_a ≈ 2logΞ + log(1−λe^{a²S})) — a concrete
+classical-looking analytic question.
+
+**COMPLEX-λ CONTROL [MACHINE-VERIFIED].** λ = 0.5e^{iπ/4} (same
+family, complex coefficient): the γ₁ zero goes OBLIQUE to
+(0.4506, 14.2007) — off-line, as the collision algebra demands (g
+complex ⟹ w oblique). The Davenport–Heilbronn phenomenon lives
+inside this family at complex λ; realness of λ is the on-line gate.
+
+**ONE-PAIR MODEL, EXACT [PROVED].** Ξ_m = 1−z²/γ²: F_a is a
+QUADRATIC in w = z²:
+A = 1−λ, B = −2+2λ(1−α)−4λα, C = 1−λ(1+α)², α = a²/γ².
+disc/4 = λα[4(1−λ) + 9λα − α(1−λ)] — **positive for ALL λ<1, a>0**
+(sign argument) ⟹ w real; and w>0 for a below a_c ≈ γ√(1/√λ−1)
+⟹ **all four zeros REAL (on-line) for λ<1 in the whole small-a
+regime — algebraically forced, no inter-zero cooperation.** For λ>1:
+disc < 0 ⟹ **OBLIQUE zeros (not walls!)** — the model predicts the
+true λ>1 zeros are oblique; heat19 tests this against the census.
+Solved exactly: a=1.0(!), λ=0.5 still all-real: z = γ·(0.9024,
+1.1026); λ=0.9, a=0.1: z = γ·(0.9702, 1.0302).
+
+**Open:** (i) heat19: full census λ∈{0.5,0.9,0.99,1.0,1.2,2,5} —
+total counts, off-line zeros, λ→1⁻ pair-overlap regime
+(Δ=2a√(λ/(1−λ)) = 0.436/1.99: inter-pair collisions — the no-oblique
+law's stress test); (ii) heat18: Δ_j and midpoint drift to γ=10⁴ for
+W_sv/W₂ (bounded Δ vs spacing question, GOE ratios); (iii) the
+midgap sign (Φ opposite-sign between zeros) is the unproved half of
+the straddling count; (iv) NOVELTY CHECK vs Pólya/de Branges/
+Ki–Kim–Lee/DH literature — nearest objects known: Pólya's LP-
+equivalence, de Branges structure functions, DH complex mixes. The
+quadratic family Ξ²−λΞ(z+ia)Ξ(z−ia) with the phase boundary at λ=1
+and the closed-form split is, to my knowledge, NEW TO RUN.
+
+### §58 addendum — the ζ-ordinate pair is ANNIHILATED and REBORN on the line (2026-09-02 midday)
+
+heat17 part 1 (extended census, γ<50): **W_sv 19/19 ON-LINE, W₂ 19/19 ON-LINE**
+(one split pair per ζ ordinate, midpoints = γ_j to ≤0.011; machine-verified
+δ = 1e−16…1e−27). heat17 part 2 (mixing path W_c = H₀.₃ + c·H₀.₀₅, box
+γ∈(13,15.5)) — the γ₁ pair's fate as c slides from +2 to −2:
+
+| c | β of pair | verdict |
+|---|---|---|
+| +2 … −0.5 | 0.322 → 0.080 | OFF-line, walls slide OUTWARD, ordinate pinned at γ₁ (6 digits) |
+| −1 | — | **BOX EMPTY — the pair is gone** (walls exited through β≈0 at c≈−0.57) |
+| −1.5, −2 | 0.5 ± Δ | **ON-LINE pair REBORN** (13.716/14.554; 13.841/14.428 = W₂) |
+
+Two separate events, NOT a continuous migration: the wall pair exits through
+β=0 while a NEW pair is born ON the line from a negative well of Φ_c(t) =
+|ξ(0.8+it)|² + c|ξ(0.55+it)|² around γ₁. The moment-law c* (Φ(γ₁) sign flip)
+= −36.21 is NOT the birth value — the birth is min_t Φ_c(t) touching 0
+(non-ordinate location). heat20: fine c-scan + 1-D Φ-well scan to locate the
+birth c_b and test Δ(c) ∝ √(c_b−c). OPEN: does the ζ-ordinate structure
+survive the round trip wall→line (same ordinate after rebirth)?
+
+**heat14f (additive mixture toward the χ₅ world, final):** F_t = (1−t)W_H +
+t·128.74475·W_K5 — on-line-ness INVADES FROM BELOW as t grows:
+t=0.05: 0/18 on-line (walls δ≈0.30, lowest pair pulled in to δ=0.092);
+t=0.2: 4/20 on-line at LOW ordinates 7.00/8.99/12.61/14.10 (δ~1e−17!),
+      rest at walls; t=0.5: 12/20 on-line up to γ=32.5, only the HIGH pairs
+      (37.4–48.1) still off. A HEIGHT-DEPENDENT phase boundary γ*(t).
+Structural note: W_K5 = ξ·(5/π)^{s/2}Γ(s/2)L_{χ₅} is REAL entire in z
+(real character ⇒ completed Dirichlet L is real-on-line like ξ), so the
+mixture is again a real mix — the invasion is Φ_t sign changes appearing
+at low height first. [MACHINE-VERIFIED, all 58 zeros polished ok=1]
+
+### §59 addendum — THE KERNEL REPRESENTATION ⚠️CORRECTED §64.4: O(a²) TRUNCATION, NOT EXACT
+
+**[2026-09-02 correction, Cardon lane §64.4: the derivation below DROPPED the
+sin·sinh cross terms of Ξ(z±ia); the exact product kernel is
+K_a(w) = ∫φ(u)φ(w−u)cosh(a(w−2u))du (φ = 2Φ full-line), and the "verified
+3e−4" was the truncation error 3a²|Ξ″/Ξ|(0) ≈ 3a²·0.04621, NOT convergence —
+it scales 3.47e−4/1.39e−3/1.26e−2 at a = 0.05/0.1/0.3 exactly as O(a²). The
+qualitative picture (once-signed structure in w) survives to O(a²); exact
+sign structure is governed by the w-dependent width σ(w), not by w² — any
+downstream use must rebuild on K_a.]**
+
+With Ξ(z) = 4∫₀^∞ Φ(u)cos(zu)du (Φ = Riemann kernel, POSITIVE: 0 sign
+changes on [0,20] grid, machine-checked; rep verified 1e−16 at z=0, 3.1,
+17, 0.4+2.7i), expanding both products:
+
+  **F_a(z) = 8 ∫∫ Φ(u)Φ(v) { cos(z(u+v))[1−λcosh(a(u+v))]
+              + cos(z(u−v))[1−λcosh(a(u−v))] } du dv**
+
+i.e. F_a = cosine transform of the ONCE-SIGNED kernel
+  m(w) = (Φ⊛Φ)(w)·(1−λcosh(aw)),  sign flip at w₀ = arcosh(1/λ)/a.
+Verified at λ∈{0.5,0.8,1.5}, z∈{3.1, 17, 0.4+2.7i} to rel 3e−4 (regular
+values) and 0.5–1.9% on the near-zero z=17 point (abs err ~1e−10) —
+heat21_kernelrep.py, N=8001 trapezoid + numpy convolutions.
+
+Consequences:
+- As a→0, w₀→∞: the kernel tends to (1−λ)(Φ⊛Φ) ≥ 0 — the LP question for
+  the family is exactly: *does a positive kernel whose FAR TAIL is
+  sign-flipped beyond w₀(a) keep an all-real cosine transform?*
+- Comparison with Pólya's program: his Gaussian damping multiplies the
+  kernel by a positivity-improving factor (real zeros proven for LARGE
+  damping, open as damping→0). Ours flips the tail — NOT positivity-
+  improving — yet empirically the zeros stay real all the way to a→0 = ξ.
+  λ>1 (kernel mostly negative beyond small w) gives walls — so it is the
+  POSITION of the flip, not the amount of negativity, that governs.
+- z=17 near-zero coincidence: F_{0.5}(17) = 1.47e−7 — the termwise
+  R>1 inequality's local near-equality R(17) ≈ 2 between ordinates.
+
+Traps (18): convolving SIMPSON-weighted arrays creates a spurious 2h-periodic
+error along anti-diagonals (z=17 off by 5e3×; trapezoid weights fix it).
+(19): skipping the d=0 diagonal in the correlation sum introduces a
+CONSTANT O(h·∫φ²) bias (0.0025 in the toy) — invisible on regular values,
+fatal on near-zeros. Both found via the e^{−u} toy with closed forms
+S=(1−z²)/(1+z²)², D=1/(1+z²).
+
+## §60 — LANE C (cycle-5, task #112): the two-pair landing closed form, the (log g)″ price law, multiplicity collapse, and the RH-conditional horizon (2026-09-02)
+
+Conventions fixed once: pinned operator H_t[F](z) = (1/√π)Σw_k F(z+2i√t·u_k)
+(GH-96; ≡ e^{−tD²} for holomorphic F, machine-checked 1.4e−16), harness =
+heat11b_fine (per-zero normalization, FD Newton, march+bisection, t* = first
+|Im z| < 1e−9 after |Im z| > 1e−6). Pair planted at (γ, ±c); price ratio =
+2t*/c². Files: Riemann/experiments/cycle5/laneC_d{1,2,2b,3,4,5}*.py/.out.
+
+**THEOREM C1 — TWO-PAIR QUARTIC, CLOSED FORM [PROVED; MACHINE-VERIFIED to
+3.7e−8 worst rel over 10 points].** World F(z) = (z²+c²)((z−τ)²+c²) (planted
+pair at 0±ci, mirror neighbor pair at τ±ci; even in w = z−τ/2). Then
+   **t*(τ,c) = [4c²−τ²+√(16c⁴+16c²τ²+τ⁴)]/24**,
+landing ⟺ both (i) D(t) = 96t²−16At−4c²τ² ≥ 0 and (ii) P(t) = A−12t ≤ 0,
+A = 2c²−τ²/2; P²−D = 48(t−A/12)² + (2/3)A²+4c²τ² > 0 always, so t* = t_D⁺
+ALWAYS (τ = 0 recovers §53's d²/3). Both pairs land SIMULTANEOUSLY
+(symmetry-forced) — the "cage resonance" caveat is vacuous in this class.
+   **Price ratio ρ(R) = [4−R²+√(R⁴+16R²+16)]/12, R = τ/c ∈ [2/3,1) ⟹ ρ ∈
+(0.6986214997, 0.7287135539)**; monotone increasing [PROVED: ρ′ > 0 ⟺
+R(R²+8−√(R⁴+16R²+16)) > 0, true since (R²+8)² = R⁴+16R²+64 > radicand].
+Limits: ρ(0) = 2/3 (stacked pair, §53), ρ(∞) = 1 (isolated pair). Small-c
+expansion t* = c²/2 − c⁴/τ² + 8c⁶/τ⁴ − O(c⁸) [sympy].
+
+**THEOREM C2 — FIRST-CORRECTION LAW [PROVED by sympy series to c⁷; machine-
+checked].** For F = (z²+c²)·g(z), g zero-free near 0, g(0) ≠ 0:
+   **t* = c²/2 + (c⁴/2)·L₂ + c⁶[½L₂² − ¼L₄] + O(c⁸),  L_k = (log g)^(k)(0)**.
+(i) NO odd terms (mirror symmetry); tilt a₁ = (log g)′ enters only via L₂.
+(ii) The cycle-5 task sheet's "t* = c²/2 + (c⁴/2)Re g″" is WRONG as quoted and
+the §48–49 attribution does not exist in NOTES — correct coefficient is
+L₂ = g″/g − (g′/g)² [derived from scratch; d2/d2b files].
+(iii) Arena checks: reproduces C1 through c⁶ exactly; **Gaussian world
+F = (z²+c²)e^{εz²} resums EXACTLY: t* = c²/(2(1−2εc²)), x*² = (1+4tε)(2t−
+c²(1+4tε))** [machine-verified 16 points, |flow| ~1e−18], residual of the c⁴
+law = 2ε²c⁶/(1−2εc²) exactly — residual order c⁶ CONFIRMED, break at
+εc² → ½ (pole: the planted pair stops landing at finite price) and at
+4εt* ≥ 1 where the GH quadrature itself loses validity (integrand
+e^{(4εt−1)u²}); ξ-world H₀.₁: t* = 0.00499324, res(c⁴) = +1.08e−8 =
+exactly the c⁶ term, res(c⁶) = −2.4e−11; ε = 0.05 shifts L₂ by exactly +2ε
+and Δt* = (c⁴/2)ΔL₂ to machine precision.
+
+**MULTIPLICITY COLLAPSE.** Two exact ladders of landing constants t*/c²:
+(i) dense stacks (z²+c²)^N [MACHINE-VERIFIED, exact algebra, 2×2 Newton on
+the y = z² double-root system, dps 25]: **N=1: 1/2; N=2: 1/3 (=§53); N=3:
+0.23728761; N=4: 0.1899533928; N=8: 0.1026408781** — ratios 1, 2/3, 0.4746,
+0.3799, 0.2053. NOT 2/(N+1) for N ≥ 3 (0.2053 ≪ 2/9).
+(ii) BLOCKED pairs (z²+c²)z^{2M} (on-axis zero of order 2M at the pair
+center) [PROVED + machine-verified M = 1..4]: the flowed constant term is
+exactly (−1)^M t^M (2M)!/M!·[1 − t(2M+1)(2M+2)/(M+1)], so
+   **t* = c²/(4M+2):  1/6, 1/10, 1/14, 1/18, … → 0.**
+Verified: [z⁰]F_{t*} = 0 exactly; the tracked negative x-root is present at
+0.99 t* and gone at 1.01 t*. (Separately: for M ≥ 2 the mult-4+ center BUDS
+new real zeros at t = 0⁺ — an event the tracked-pair harness does not see;
+the two events must not be conflated.) Free pair M=0: 1/2. **Consequence:
+there is NO universal lower price constant across multiplicities** — and
+§62 item 2 removes even the "fixed multiplicity" refuge: dense SIMPLE-zero
+lattices (all zeros multiplicity 1) drive the ratio to 0.14 and falling as
+the lattice spacing shrinks. Structural refutation of any Conjecture-H-style
+universal floor: COMPLETE.
+
+**TWO-SIDED BOUND, FINAL LABELS.** PROVED (quartic two-pair class):
+2t*/c² ∈ [2/3, 1) — lower constant 2/3 attained only at τ = 0 (double pair).
+NUMERICAL (programme envelope, §51 + this lane, superseded by §62 items 2/6):
+lower edge unbounded toward 0 (simple lattices 0.143 at spacing 0.125; blocked
+0.33 measured in W8(0.5)); upper edge unbounded (ε-worlds, pole at εc² = ½,
+§60's exact resummation). Historical fixed-multiplicity-1 envelope: [0.72, 1.86]. NUMERICAL (multiplicity ladder): lower constant → 0.205 at
+N = 8 and presumably → 0 as N → ∞. The upper constant 1 (isolated pair,
+c⁴ law with L₂ = 0) is PROVED in the quartic class and consistent with all
+ξ-worlds; the sign of L₂ on the TRUE lattice is negative at every measured
+ordinate (below), so ratios < 1 are generic there.
+
+**RETRODICTION of §56's A/B pair [NUMERICAL].** Tfull(0.3,1) tracked pair =
+lattice-EDGE pair at z₀ = γ₁−1 (neighbor pairs at distances 1 and 2, none
+below): L₂ = −2.3647 ⟹ series ratios 0.787 (c⁴) → 0.851 (c⁶) vs measured
+0.96 — the series converges toward the measurement but slowly (c/τ = 0.3 is
+not small; c⁶ term +0.0029). Quartic single-neighbor model: 0.892. Lesson:
+at R ≲ 3 the cage is NON-perturbative — use C1's closed form, not the
+series. signcontrol(0.3,1) (ratio 1.83): cage zeros are NOT mirror pairs
+(single zeros at γ₂−1+0.3i, γ₂+1−0.3i), L₂ = −2.11−0.99i — the symmetric-
+landing calculus is NOT APPLICABLE, consistent with §56's solo-transit
+verdict and §58's collision dichotomy (asymmetry forbids the real-landing
+manifold; oblique escape allowed).
+
+**CROSS-LINK TO §59.** The correction coefficient L₂ = (log g)″ at the pair
+center is the SAME functional S(z) = (log Ξ)″ that governs where off-line
+zeros of the ξ²−λΞ(z±ia) family can live. Lane-C adds the dynamic reading:
+**sign of S at an ordinate decides whether the heat
+price sits above (S > 0) or below (S < 0) c²/2** — off-line-zero territory
+(S > 0 level sets, §59) and above-δ²/2 pricing are the same regime. Measured S(γ_j) = −0.068…−1.83 at ALL 40 first
+ordinates and at all 4 midgaps (−0.23…−2.02), i.e. negative everywhere
+sampled on the axis to γ = 122 — mild evidence for the LP side of §59's
+criterion (no positive level sets of S ON the axis), GUE-modulated with
+S/(log γ/2π)² ∈ [0.38, 3.15].
+
+**RH-CONDITIONAL STATEMENT (deliverable 4).** ASSUME RH. Let γ be a height
+and suppose a hypothetical δ-violation were planted by replacing the on-line
+zero at γ with the mirror pair (z−γ)²+δ² (world F = [(z−γ)²+δ²]·ξ(½+iz)/(z−γ)).
+Then C2 gives the heat certificate's price
+   t*(δ,γ) = δ²/2 + (δ⁴/2)·S(γ) + O(δ⁶·|S″|),  S(γ) < 0,
+so the price is BELOW δ²/2 by a margin growing like δ⁴(log γ/2π)²·C, C =
+O(1) GUE-modulated (measured C ∈ [0.4, 3] through γ = 122). The certificate
+remains a FALSIFIER (a real pair landing at t > 2t*_pred is a violation
+signal); but on-RH worlds with S(γ) < 0 everywhere would make the price
+monotone-credible. HEIGHT SCALING OF THE HORIZON: heat march costs ~1.8e5
+ξ-evals at ANY height (t-scale γ-independent, heat7; per-eval cost grows
+only as Riemann–Siegel length ~ √γ): at γ = 10⁴, δ = 0.05: heat ≈ 1.8e5
+ξ-evals (~hours) vs Li-certificate n* ≈ 5.07e10 coefficients (~n*² ops) —
+**the heat certificate's horizon is exponentially better at high γ**;
+crossover below γ = 14 for δ = 0.05, between γ = 14 and 100 for δ = 0.3. Caveats: heat needs the
+seeding position (γ known to ~1); both certificates are falsifiers, neither
+proves RH; the (E)-OFF asymmetric worlds sit outside the symmetric class
+entirely.
+
+**NEW TRAP (candidate #15) — TRACKER STALL AT SYMMETRIC BIRTH.** In mirror-
+symmetric worlds (a₁ = 0), landing pairs are BORN at the axis as double roots
+at the pair center; Newton from an on-axis seed keeps z exactly on the axis
+(F real, F′ imaginary ⟹ step purely imaginary) and the |Im| < 1e−9-after-
+excursion detector never fires — "NO LANDING" is FALSE NEGATIVE. All 21 W1
+rows and the first quadratic probe died this way. Fix: march + bisection on
+the landing time (heat8 pattern), or seed deliberately off-axis.
+
+### §60-addendum — Lane C sweep numbers (2026-09-02, all GH-64/dps-16 with
+GH-96 cross-check: rel diff 2.3e-16; files laneC_d6–d13_fast.*, laneC_d11_hosted.*)
+
+**W8cage(δ) = ξ(s+δ)ξ(s−δ)ξ(s+3i)ξ(s−3i), tracked pair (γ₁,±δ), symmetric
+on-axis cage at γ₁±3 [MACHINE-VERIFIED, fails = 0 all rows]:**
+
+| δ | t* | ratio | L₂(δ) | c⁴-pred | c⁶-pred |
+|---|-----|-------|-------|---------|---------|
+| 0.1 | 0.004974 | 0.9947 | −0.5336 | 0.9947 | 0.9947 |
+| 0.2 | 0.019585 | 0.9792 | −0.5335 | 0.9787 | 0.9789 |
+| 0.3 | 0.042968 | 0.9548 | −0.5334 | 0.9520 | 0.9532 |
+| 0.4 | 0.073861 | 0.9233 | −0.5331 | 0.9147 | 0.9185 |
+| 0.5 | 0.110808 | 0.8865 | −0.5328 | 0.8668 | 0.8763 |
+
+L₂ = −0.5334 (lattice part −2/9 from the two on-axis cage zeros at ±3 +
+archimedean/background −0.31), L₄ = −0.184, K = L₂²/2−L₄/4 = +0.188. The c⁴
+law is accurate to 3e−3 through δ = 0.4 (2e−2 at δ = 0.5); the residual
+(0 → 5e−4 → 2.8e−3 → 8.6e−3 → 2.0e−2) grows ~δ⁶ but EXCEEDS the computed
+c⁶ term with non-constant effective coefficient — the remainder is NONLOCAL
+(same lesson as the Tfull retrodiction: at cage distances ≤ ~8δ use the
+closed form, not the series).
+
+**ξ-HOSTED DENSE STACKS F = (z²+c²)^N·ξ(½+iz) [MACHINE-VERIFIED, TRACKER-
+FREE method — flowed world is real on the real axis, so t* = first t with
+min_x Re H_t[F](x) = 0; golden-section ×26 bisections; N=1 row anchors the
+method against the known ξ-world behavior]:**
+
+| N | c=0.1 | c=0.3 | c=0.5 | pure (exact) |
+|---|-------|-------|-------|--------------|
+| 1 | 0.9995 | 0.9959 | 0.9886 | 1.0000 |
+| 2 | 0.6665 | 0.6648 | 0.6616 | 0.6667 |
+| 4 | 0.3798 | 0.3793 | 0.3782 | 0.3799 |
+| 8 | 0.2053 | 0.2051 | 0.2048 | 0.2053 |
+
+**THE MULTPLICITY LADDER IS HOSTING-ROBUST to ≤ 0.5% at every N and c** —
+the collapse constants are LOCAL; the ξ background shifts them only by its
+own c²-corrected few-per-mille. Conjecture-H-style floors fail in ξ-worlds
+exactly as in the pure algebra. (Tracker note: the mult-Newton march FAILED
+on all hosted stacks — imaginary-axis invariant + linear convergence at
+multiple roots; the min-over-real-x criterion is the robust instrument and
+should replace tracker marches for multiplicity ≥ 2.)
+
+**ε-BREAK SCAN, a = 0.1, vs EXACT t* = a²/(2(1−2εa²)):** ε = 0.2: meas
+0.005013 vs exact 0.005020 (1.4e−3); ε = 1: 0.005095 vs 0.005102 (1.4e−3);
+ε = 5 and 10: NO LANDING (tracker) although 4εt* ≪ 1 — the harness break is
+at 4ε²t* ≳ 0.5 (ε = 5: 0.56), the SAME boundary the parallel instance found
+(§62 item 6: 4tε² ≳ 1), NOT the naive GH boundary 4εt < 1. The exact formula
+itself stays valid to the pole εa² = ½ (ε = 50). Where the c⁴-law residual
+= 2ε²c⁶/(1−2εc²) reaches 1e−3·t*: ε ≈ 8 at a = 0.1 — series and harness
+break at nearly the same ε (accidental but convenient).
+
+**§62 cross-references:** their item 2 (simple-lattice floor collapse) and
+item 6 (ε-world upper unboundedness) supersede the historical [0.72,1.86]
+envelope recorded above; their item 3 (measured height decline to 0.73·δ²/2
+at γ≈939) extends my S(γ)<0 census; their W8(δ) = ξ(s+δ)ξ(s−δ)ξ(s)² is the
+ON-AXIS-DOUBLE reading of "W8 at δ=3" (ratio 0.33/0.31 at δ=0.5/1.0 — the
+blocked-pair regime of my c²/(4M+2) ladder with M=1 → 1/3), while my
+W8cage(δ) above keeps W8's actual ±3i cage and plants the pair — the two
+readings bracket the deliverable; both under the same verdict: no universal
+constants, price set by LOCAL structure.
+
+### §59 addendum 2 — the COMPLETE LIFE-CYCLE of the γ₁ pair + the phase-diagram census (2026-09-02 afternoon)
+
+**Life-cycle along W_c = H₀.₃ + c·H₀.₀₅** (all machine-verified, heat17/20/20b):
+1. c ∈ (+2, −0.57): OFF-line wall pair PINNED at ordinate γ₁ (6 digits),
+   walls sliding outward β: 0.322 → 0.
+2. c ≈ −0.57: pair EXITS through β = 0.  c ∈ (−0.57, −1.05): EMPTY (the
+   ζ-ordinate structure annihilated).
+3. c = −1.05 (BIRTH): a NEW pair appears ON the line, wide (13.17/15.11) —
+   the EDGES of a positive island of Φ_c(t) = p₈₀ + c·p₅₅ around γ₁
+   (negative wings between ordinates).
+4. c ∈ (−1.05, −36.21): island CONTRACTS: edges 13.17/15.11 → γ₁±;
+   midpoint → γ₁ (mid−γ₁: +2e−6 at c=−20 → +9.9e−7 at c=−36.2; merge
+   point t_d = γ₁ + ~1e−6, not exactly γ₁ — saddle-node of Φ).
+5. c = c_d = −36.2137 = **the moment-law c\* = −p₈₀(γ₁)/p₅₅(γ₁)** (to
+   O(1e−4)): island dies as a DOUBLE zero on the line; measured
+   **gap = 0.0169·√(c − c\*)** (gap²/(c−c\*) → 2.845e−4 constant to 4
+   digits) — the collision-dichotomy √-exponent CONFIRMED by measurement.
+6. c < c_d: no on-line zeros at γ₁ (Φ < 0 through the ordinate).
+⟹ The MOMENT LAW fixes not only the sign of Φ at ordinates but the
+ANNIHILATION POINT of the on-line pair. The birth (−1.05) is a separate,
+wing-driven event; the death is the moment flip.
+
+**heat19 phase-diagram census (a=0.1, γ<50) — the LP-reduction's empirical
+half:**
+- λ=0.5: **19/19 ON-LINE, 0 off-line**.  λ=0.9: 19/19 ON-LINE.
+- λ=0.99: 13 on + **2 OFF** — first off-line zeros inside the family on
+  the λ<1 side, in the wide-pair overlap regime (Δ = 2a√(λ/(1−λ)) = 1.99
+  vs ζ spacing 2–7): the clean phase degrades only within 1% of λ=1.
+- λ=1.2/2/5: 0 on-line (termwise inequality ✓), 20 off-line at walls
+  β = ½ ± a√(λ/(λ−1)) with ordinates EXACTLY γ_j (walls beat the one-pair
+  model's oblique prediction — the model caricature fails at λ>1).
+- λ=1.0: **EMPTY BOX** — fully-scattered phase (walls → ±∞ as λ→1, no
+  on-line zeros since Φ ≡ Ξ²−|Ξ(·+ia)|² < 0 given RH).
+**EMPIRICAL LP STATEMENT: for each λ<1 there is a₀(λ)>0 such that F_a is
+all-real for all a<a₀** — verified at (λ,a) = (0.5,0.1), (0.5,0.01)
+(pinning 8.8e−11), (0.9,0.1). The reduction-relevant regime (a→0) is
+exactly where pairs cannot overlap. LP-REDUCTION OF RH now has both halves:
+Hurwitz-limit theorem (§59) + clean-census evidence.
+
+## §61 — cycle-5 attacker 1 (lane A): degree-4 local classification PROVED + conditional a = χ₅ (2026-09-02)  [renumbered from §60: lane C's §60 was on disk first]
+
+Attacker a1ad94 verdict 'conjecture-proved-partial' (full proof + machine census):
+- (A) PARITY CORRECTION: χ₅ = (5/·) is EVEN (χ₅(−1) = χ₅(4) = +1); the
+  invariant completion is the even channel Γ(s/2)(5/π)^{s/2}; the S4/S4b
+  theta system is fully consistent (machine-verified 1e−52). ⟹ W_K5 in
+  heat14f is real-entire PROPERLY (its completion channel is the invariant
+  one) — the heat14f height-invasion interpretation stands on proved ground.
+- (B) THEOREM A4 (PROVED, paper proof + exhaustive census): the degree-4
+  local classification under (E)+boundedness+mirror is EXACTLY
+  (i) {1,1,1,1}, (ii) {1,1,1,−1}, (iii) {1,1,−1,−1},
+  (iv) {1,1,e^{iθ},e^{−iθ}} — the W8 world's local shape, the UNIQUE
+  1-parameter (generic) family — and (v) {1,−1,i,−i}.
+  NEW STACKING LAW (4-line Fejér argument): (E)+mirror at degree 4 FORBIDS
+  two independent unitary pairs: Σ_{k≤N}(1−k/N)s_k = (F_N(θ)+F_N(φ)−2)/2
+  < 0 for large N. This is the LOCAL MECHANISM behind §51's
+  lattice-modulation / dense-stack findings.
+- (C) CONDITIONAL CLASSIFICATION: IF the solution's theta F(z) =
+  Σa_n e^{2πin²z} is modular on Γ₀(100) (the FE is exactly the W₁₀₀ Fricke
+  eigenvalue equation, weight ½, level 4·cond(χ₅)² = 100), THEN by
+  Serre–Stark F lies in the unary-theta span; the span ∩ kernel
+  normalization = C·χ₅ (all other candidates die at O(1), machine);
+  multiplicativity forces a₁=1 ⟹ c=1: **a = χ₅ EXACTLY**.
+  HONEST GAP: Fricke eigenvector ⇒ modular ("Hamburger-5"). Rigidity
+  measured: χ₅ macroscopically isolated — 5% deviation in (a₂,a₃) costs
+  1.8e−2, interior minimum 6.5e−2 (contrast §50's far-prime transmission
+  floor: near-prime rigidity visible at ANY precision).
+
+## §61b — NOVELTY verdicts (cycle-5 novelty agent, 2026-09-02) + genericity refinement
+
+Novelty agent verdicts (full prior-art list in agent report; key items here):
+- **A real-mix law: POSSIBLY NEW, leaning NEW.** Nearest: Taylor's function
+  ξ₁(s+½)−ξ₁(s−½) (sums, PROVEN on-line; simplicity by Ki); McPhedran–Poulton
+  arXiv:1308.5756 (T± = [ξ₁(2s)±ξ₁(2s−1)]/4, all zeros on line, all simple);
+  Bombieri–Ghosh / Lamzouri arXiv:2010.10490 / Rezvyakova (complex L-mixes);
+  **Cardon arXiv:math/0608297 (sums of products of Hermite–Biehler pairs
+  have only real zeros — THE nearest theorem-structure; a potential PROOF
+  route for the real-mix law if H_a mixes admit an HB realization)**.
+  The identity H_a(½+it) = |ξ(½+a+it)|² is classical; its use as a 1-D
+  sign-change reduction is not in the literature.
+- **B ξ²−λH_a family: NEW TO RUN.** Closest in logic: Suzuki Acta Arith. 157
+  (2013) two-parameter xi-deformations (HB/de Branges, conditional RH);
+  de Bruijn–Newman family (Ki–Kim–Lee 2009, Rodgers–Tao, Polymath
+  arXiv:1904.12438). No multiplicative-difference family anywhere; no
+  splitting formula γ_j ± a√(λ/(1−λ)) anywhere.
+- **C once-signed kernel: NEW TO RUN.** Cho–Park arXiv:2110.01885 state
+  sign-changing kernels are "not available yet"; Schoenberg PF∞ machinery
+  never applied to RH; Planat 2026 is the positive-kernel complement.
+- **D life-cycle: POSSIBLY NEW.** Lagarias–Suzuki (Ann. Inst. Fourier 53,
+  2003) document on-line pair coalescence in a two-variable zeta — the
+  phenomenon-class precedent; our pinned-at-ordinate → β=0 exit → empty →
+  island birth → moment-law death chain is new in specifics.
+- ⚠ cyberkeller.dev exposes an AI chat containing code for xi(s+a)xi(s−a)
+  (possibly this programme's own leaked session) — flagged to user; not
+  fetched.
+
+**Genericity refinement (heat20 part B, 6 random 4-term real combos,
+γ∈(1,25)):** definite mixes (seed3 = −2(H₀.₅+H₀.₂), seed5 =
+−(3H₀.₁₅+H₀.₀₅+H₀.₄+3H₀.₃)) are WALL worlds; indefinite mixes (seed2
+4/4, seed6 5/5) are ON-LINE worlds; two indefinite mixes have EMPTY low
+boxes (zeros begin higher). Moment sign does NOT decide wall/line.
+**REFINED LAW: wall-vs-line in real mixes is decided by DEFINITENESS of
+the coefficient vector** (definite = walls, indefinite = line), matching
+§58 (W_sv, W₂ indefinite → line; single H_a definite → walls) and the
+χ₅-mixture invasion (heat14f).
+
+---
+
+## §62. CLUSTER LAW CONFIRMED: off-line zeros of F_a are born at tight ζ-zero pairs; a_c(pair) = d·√((1−λ)/(2λ)) (2026-09-02 morning)
+
+The S-level-set mechanism issued its first FORWARD prediction and it PASSED.
+
+**Depth law (measured, 1% agreement at 4 pairs).** S(x) = −Σ_k[1/(x−γ_k)² + 1/(x+γ_k)²] is REAL on the whole real axis (every term negative-real). Between two adjacent zeros at half-gap d the well bottoms ON the axis at the midpoint with depth ≈ 2/d² + background:
+  k922  d=0.0808: measured 308.47  vs 2/d² = 306.3
+  k693  d=0.1106: measured 165.04  vs 163.3
+  k1166 d=0.1253: measured 129.38  vs 127.4
+  k453  d=0.1552: measured  83.97  vs 83.1
+(My overnight 1/(4d²) single-pair peak was the wrong branch: the Im S = 0 curve through a symmetric pair is the vertical line x = midpoint, and Re S decreases monotonically to the axis. Also REFUTED: ln²T depth growth — depth is LOCAL gap geometry, near-flat in height; the e^150000000 T_c extrapolations were fit artifacts, never record them as predictions.)
+
+**Cluster law.** F_a = Ξ² − λΞ(z+ia)Ξ(z−ia) has off-line zeros at a tight pair ⟺ well depth exceeds the level 1/μ = (1−λ)/(λa²) ⟺
+    **a > a_c(pair) = d·√((1−λ)/(2λ))**   [λ=0.5: a_c = 0.707·d]
+[§64.3: this leading law now DERIVED — exact criterion R(a) = λ|Ξ(z_m+ia)|²/Ξ(z_m)² crossing 1; curvature G(z_m) = 2/d²+B (B≈2.5–2.9) refines to −1..−12%; + exact a⁴ term to 0.05–2.7%; series converges at threshold iff λ>1/3. The k453 miss below = the −9..−29% leading-order error, quantitatively explained.]
+At λ=0.5, a=0.1 (level 100): a_c = 0.0571 (k922), 0.0782 (k693), 0.0886 (k1166) — all < 0.1 ⟹ PREDICT OFF-LINE; k453: a_c = 0.1098 > 0.1 ⟹ predict clean.
+
+**CONFIRMED at k922 (heat22_cluster_test.py, z-plane census; zeta(1)-pole + empty-box coordinate bugs in two earlier inline attempts, both caught by the γ₁ control):**
+- CONTROL γ₁ box: pair 14.03466/14.23479 ON-LINE (|y| ~ 1e−24) ✓ matches heat19.
+- k922 box: **OFF-LINE PAIR x = 1329.1242588444, y = ±0.0710880526** — x = well bottom to 5 digits. Flanking ON-LINE zeros at 1328.927 (single) and 1329.3214 (near-double pair): *the tight pair pushes its own on-line zeros outward and births the off-line pair at its center.* |y| = 0.0711 ≈ 0.88·d.
+- [k693, k1166, k453 boxes: census running br17d3hun — to be appended]
+
+**Consequences.**
+1. First quantitative forward prediction of off-line zero locations in this programme — mechanism validated, not just descriptive.
+2. **F_a ∉ LP globally for any fixed a>0** (given tight-enough pairs at accessible height): the famous Lehmer pair (γ≈7005, d≈0.01) gives depth ≈ 2×10⁴ ⟹ a_c ≈ 0.007, so λ=0.5, a=0.01 — pristine at low height (pinning 8.8e−11) — should show off-line zeros at γ≈7005. SECOND FALSIFIABLE PREDICTION (test pending).
+3. §59's empirical LP statement must be WINDOWED: ∀λ<1 ∀T ∃a₀(λ,T): F_a all-real on [0,T] ∀a<a₀ — exactly the compact-fixed form the Hurwitz-limit LP-reduction of RH needs. The reduction SURVIVES, sharpened.
+4. NEW BRIDGE (novelty check pending): off-line zeros of deformed ξ as a LEHMER-PAIR DETECTOR — location = pair midpoint; a₀(λ,T) = √((1−λ)/(2λ))·d_min(T) ties LP failure to the extreme-value statistics of zero spacings (GUE small-gap law). If d_min(T) follows the GUE prediction, a₀(λ,T) is computable in closed form — a measurable bridge between random-matrix statistics and LP failure.
+5. For arbitrarily small a the statement "off-line zeros exist" becomes equivalent to unbounded zero-clustering (normalized gaps → 0) — itself open; honest boundary of the law.
+
+---
+
+## §63 — cycle-5 lane C, session 2 (was mis-numbered §62 and sat at file top; moved+renumbered 2026-09-02) (task #112 cont.): C1/C2 independently confirmed, the SIMPLE-ZERO floor collapse, the measured HEIGHT LAW, the K5/GnoL decomposition, and the on-axis W8 extremes (2026-09-02)
+
+Machinery (all new files Riemann/experiments/cycle5/laneC_{pairlaw,correction,w8,height,heightlat,jet}.*):
+exact polynomial heat e^{−tD²}f = Σ_k (−t)^k f^(2k)/k! (no quadrature, no GH),
+analytic-derivative Newton, march + failure-as-crossed bisection; dps 30–75.
+
+**1. C1/C2 CONFIRMED INDEPENDENTLY [MACHINE-VERIFIED].** Quartic closed form
+verified by DOUBLE-ROOT check (f_t(z*)=0 AND f'_t(z*)=0) at dps 30, 18 (τ,c)
+configs spanning τ<c, τ=c, τ≫c: worst |f| 3.7e−25, worst |f'| 4.1e−26, all
+0.99t* below-axis checks pass (laneC_pairlaw.out 1a). Drift identity (§53)
+machine-checked to 2.2e−31 after fixing the op-form initializer (it had dropped
+the d² constant in q). Correction law slope: dt*/dε → c⁴ = 0.0081 exactly
+(measured 0.0081007, ε→0; residuals O(ε²), laneC_correction.out Part A).
+NEAR-MISS LOGGED: I briefly "derived" a sign contradiction between C2 and C1 by
+computing g″/g WITHOUT the −(g′/g)² term. The correct coefficient is §60's
+L₂ = (log g)″ throughout; my Part-B numbers always used log f, so they stand.
+
+**2. NEW — THE FLOOR COLLAPSES AT MULTIPLICITY ONE [MACHINE-VERIFIED].**
+Simple-zero uniform lattices ∏_{|j|≤J}((z−jd)²+c²), c=0.3, all zeros SIMPLE:
+d=0.5 → 0.478; d=0.25 → 0.270; d=0.125 → 0.143 (ratio ~ d^0.9, → 0 as d→0).
+This KILLS the §60 caveat "the δ²/2·min floor exists only at fixed
+multiplicity": dense SIMPLE lattices drive the ratio to 0 with multiplicity 1.
+(Also: a SEED-SCAN CRAMER CENSUS of double-root events resolves the stack
+ladder beyond §60: multiple events exist per N (N=16 has 14!); FIRST events:
+N=3: 0.23728761 = §60 exact ✓, N=8: 0.10264088 = §60 exact ✓, N=12: 0.07038970
+a=0.8447 [NEW], N=16: 0.05357194 a=0.8572 [NEW]; empirical a(N) ≈ 1−0.55/√N
+over N=1..16. My earlier "N=16=0.108 by three methods" was a LATER event —
+similarly-seeded searches find the same wrong branch; only a seed census is
+safe. Census EXTENDED (laneC_census2/final): N=20: 0.04324391 a=0.8649;
+N=24: 0.03625564 a=0.8701; N=32: 0.02740093 a=0.8768. Full ladder:
+0.500/0.667/0.712(N=3) → 0.821(8) → 0.845(12) → 0.857(16) → 0.865(20) →
+0.870(24) → 0.877(32): a(N) → 1 with 1−a ≈ N^{−p}, p between 1/3 and 1/2
+((1−a)√N drifts 0.50→0.70 over N=4→32). Event counts grow with N: 3, 8, 10,
+14, 12, 16, 20.)
+
+**3. NEW — MEASURED HEIGHT LAW OF THE PAIR PRICE [MACHINE-VERIFIED, dps 75].**
+Exact lattice simulation (zeta-zero windows ±5, a=0.3): m=1 (γ=14, sp 6.89):
+ratio 0.9933; m=20 (γ=77, sp 2.19): 0.8865; m=100 (γ=237, sp 1.25): 0.8590;
+m=600 (γ=939, sp 0.64): 0.730. L₂-series predicts 0.988/0.854/0.804/0.546 —
+accurate at large spacing, over-discounts as spacing→a; m=600 lands near the
+quartic nearest-neighbor ceiling R(x=2.12)=0.756. Cross-checks §60's S(γ)<0
+census (γ≤122) and EXTENDS the measured decline 5× in height: **the heat price
+of an off-line pair at height ~10³ is ≈0.73·δ²/2, not δ²/2.** heat7's coarse
+0.83–1.26 flat sweep cannot resolve this; a fine-protocol height sweep on the
+true ξ worlds is the discriminating experiment. (W=8 window row 0.0103 =
+artifact, dropped.)
+
+**4. K5 DECOMPOSITION + THE CLASS BOUNDARY OF LOCAL PRICING [MACHINE-VERIFIED,
+flag RETRACTED].** Re g″(γ₁) split (lattice window 100 zeros + analytic tail):
+archimedean GG-only +0.0025 (ratio +0.0002!), χ₅-zero factor −1.497 (ratio
+−0.135). **K5's 0.88 discount is the χ₅ ZERO lattice, not the stacked Γ.**
+Re-audit (laneC_w8b/final): H control 0.9881 vs 0.9885 predicted (0.04% —
+local-jet law QUANTITATIVE in the (F)-class). GnoL re-audit lands 0.7176 —
+4-DIGIT REPRODUCTION of the recorded row I had flagged: **flag RETRACTED**;
+the recorded number was always right. The right interpretation (exact): GG
+alone gives F(1−s)/F(s) = (5/π)π²/[sin(π(s−a)/2)sin(π(s+a)/2)] ≠ 1 — GnoL and
+LnoG are NOT self-dual (F)-worlds; their tracked zero TRANSITS the axis while
+its would-be partner ESCAPES (mirror Im +0.30→+0.60 rising, live O(1) shear =
+the heat15 (E)-off mechanism), so 0.7176 measures a transit, not a price, and
+the L₂ prediction (0.9973) was inapplicable. In contrast GG·Lχ₅ = Λ(s,χ₅) is
+self-dual (verified Λ(s)/Λ(1−s)=1+2e−30i): K5 prices locally BECAUSE it is
+the completed-L combination. **CONSEQUENCE: local-jet pricing is a property
+of SELF-DUAL COMPLETIONS; Γ-factors without their L-partners exit the class
+and shear instead of pricing.** LnoG re-audit: NO LANDING reproduced EXACTLY
+(guarded march to t=0.155, tracked zero escapes DOWN to Im=−0.755) — both
+recorded rows stand; §53's heat8 measurements were never artifacts.
+
+**5. ON-AXIS W8 δ-CURVE — COMPLETE [MACHINE-VERIFIED, guarded+mirror].**
+W8(δ)=ξ(s+δ)ξ(s−δ)ξ(s)² (the brief's extreme world), guarded adaptive march
+(hop-guard, bisection, joint mirror tracking; laneC_w8c/final):
+   δ=0.5: t*=0.0420 ratio 0.3358 (≈ blocked-pair 1/3, +0.7%)
+   δ=1:   t*=0.1532 ratio 0.3064
+   δ=2:   t*=0.5004 ratio 0.2502 (= 1/4 to 5 digits)
+   δ=3:   t*=0.8837 ratio 0.1964 (≈ 1/5)
+Mirrors agree exactly at every δ. **Raw Conjecture-H's δ=3 prediction 4.5
+OVERSHOOTS BY 5.1×; even the blocked-pair law (δ²/6=1.5) overshoots 1.7×.**
+The on-axis-double world prices at the blocked law near δ=0.5 and falls
+below it as δ grows. Protocol scatter ±2% at δ≤1 (older fixed-march runs
+0.3279/0.3064; w8b 0.3192 — the guarded values are authoritative; w8b's δ=3
+0.0150 was a first-step zero-hop artifact, diagnosed and superseded); the
+declining curve is protocol-robust. Blocked pair z²(z²+c²): t*=c²/6 PROVED
+by algebra (f_t(0)=2t(6t−c²)). All rows track the γ₁ cluster ⇒ UPPER bounds
+on global Λ (γ₂ cluster, neighbors 4.0 apart vs 6.9, lands slightly
+earlier). Recorded Waxis 0.4965 at δ=0.3 not re-checked.
+
+**6. UPPER SIDE [EXACT + MACHINE].** ε-worlds: ratio 1.2195 (ε=1), 1.580
+(ε=2, tracked) and per §60's exact resummation t*=c²/(2(1−2εc²)) → pole at
+εc²=½: ratio → ∞. **NO universal c₂ in the broad real-entire self-dual
+class**; with §2, **the universal two-sided bound fails in BOTH directions
+there**. Inside the ξ-product tariff class the measured envelope is [1/3
+approached, ~1.03]. My earlier ε=4,8 "NO LANDING" rows were tracker artifacts
+(the formal series diverges at 4tε²≳1 — same boundary as GH validity);
+corrected inline in laneC_correction.out.
+
+**7. NEW TRAPS (register).** (e) FIRST-STEP HOP: a coarse first march step
+lets Newton jump to an on/above-axis daughter of a split double — crossed()
+fires spuriously at the FIRST grid step (w8b δ=3 ratio 0.015 artifact); fix =
+adaptive Δt from small + hop-guard |Δz| ≤ max(0.2, 0.6|Im z|). (f) MULTIPLE
+DOUBLE-ROOT EVENTS: similarly-seeded event searches (my three "confirming"
+methods) converge to the same WRONG later event — only a seed census is safe.
+Previous traps: (a) VERTEX TRAP (complement of #15): t-grid
+rounding can park the tracker AT the vertex (Im=−1e−10) at t_k=t*−1e−20; one
+step later the pair is REAL and vertex Newton diverges (steps ~1e6, halving
+signature) — false NO LANDING. Fix: Newton-failure-near-axis = crossing
+candidate, bisect with failure-as-hi. (b) NORMALIZATION-ON-ZERO: per-world
+C=|f(z₀+2i)| VANISHES when z₀+2i hits the mirror zero (δ=1) or the on-axis
+double (δ=2): silent nan flow, Newton garbage. Fix: generic offset
+(0.37+2.53i). (c) COEFFICIENT-SPREAD PRECISION: lattice polynomials at height
+γ_m have spread ~(γ²)^W; dps must exceed log10(spread) — m≥20 froze silently
+at dps 30/50, clean at 75. (d) exec-included dps reset (footgun).
+
+**8. RH-conditional (target 4; full statement in §60).** My addition: the
+measured R(γ) decline (0.993→0.730 by γ≈939) makes the heat certificate
+CHEAPER than δ²/2 at height: t*_pred(δ,γ) = (δ²/2)(1+δ²S(γ)+O(δ⁴)), S(γ)<0
+census now consistent with direct simulation through γ≈10³.
+
+
+
+### §62 correction + two-sided Lehmer test (2026-09-02)
+The §62 guess "Lehmer gap ~0.02 ⟹ a_c ≈ 0.007" was WRONG. Measured (mpmath): γ₆₇₀₉ = 7005.062866174921, γ₆₇₁₀ = 7005.100564672647, gap = 0.0376985, d = 0.01884925 ⟹ depth 2/d² = 5629, a_c = 0.013328. Sharp two-sided test at the SAME pair (heat23_lehmer_birth.py, running): a = 0.02 (level 2500 < 5629) must BIRTH an off-line pair at midpoint 7005.081715; a = 0.01 (level 10⁴ > 5629) must stay CLEAN. A single pair that both births and doesn't, depending on a, is the cleanest possible discriminator of a_c = d·√((1−λ)/(2λ)).
+
+### §63 note
+Lane C's final-report-only items (Theorem C3 blocked ladder t* = c²/(4M+2); hosted-stack robustness ≤0.5%; W8cage 5/5 grid; heat-vs-Li horizon comparison: heat wins exponentially at high γ, crossover γ≈14–100) are in the final report transcript + experiments/cycle5/laneC_* files; §60/§63 carry the mathematics. **Cross-link: Lane C's L₂ ≡ our S = (logΞ)″ — their on-axis S<0 census (40 ordinates + 4 midgaps to γ=122, S/(log γ/2π)² ∈ [0.38,3.15]) is the same object as the §62 well function; their "S>0 territory = off-line level sets" is the §62 mechanism seen from the pricing side.**
+
+### §62 addendum 2 — where the O(a²) theory is and isn't quantitative (2026-09-02)
+G-probe at the CONFIRMED off-line zero z = 1329.1242588444+0.0710880526i (λ=0.5, a=0.1, dps 30):
+  (logΞ)′ = −0.874−12.408i, (logΞ)″ = −23.645, so G = (logΞ)′²+(logΞ)″ = **−176.84 + 21.70i**, versus the O(a²) target G = −1/μ = −100. Vertical scan on x = well-bottom: Re G sweeps −290→−75 for y 0.02→0.15 but **Im G ≈ +10…+22 throughout** — the level set G = −1/μ (two real equations) is a point set, and the true solution is NOT on the x = mid vertical.
+VERDICT: the O(a²) mechanism is quantitatively right about (i) WHICH pairs birth (depth vs level, a_c formula) and (ii) the x-site of birth (well bottom — symmetry, 5 digits), but the born pair's |y| is NON-PERTURBATIVE (|1+μG|/μ ≈ 80 vs level 100 at the found zero — a⁴ corrections ~80% of the main term). Lehmer two-sided test margins are comfortable for this caveat (a=0.02: ratio 2.25×; a=0.01: 0.56×; both robust to ~40% corrections).
+
+### §62 addendum 3 — the 100k-zero GAP TELESCOPE (2026-09-02, numpy on Odlyzko zeros1: first 100,000 zeros to 3e−9, T_end = 74920.83)
+Tightest gaps (1-based left-zero index): **idx 95248 γ=71732.901 gap 0.014701 (norm 0.0219 — tighter than Lehmer even normalized)**; 87761/66678.076/0.019485; 82552/63137.212/0.020850; 73997/57273.662/0.025839; 44555/36510.166/0.029538; …; the famous Lehmer pair (idx 6709, γ=7005.063, gap 0.037698, norm 0.0420) ranks only 12th.
+- d_min(T) staircase (FULL gaps): 1.219@T=100 → 0.1615@1777 → 0.0975@2497 → 0.0433@6928 → 0.0377@9734 → 0.0353@19219 → 0.0295@37946 → 0.0147@74921. GUE N^{−1/3} scaling: d_min·N^{1/3} drifts 2.7→0.7 over the range — NOT converged (min-statistics converge slowly); no clean exponent claim.
+- **a₀(λ,T) = (gap_min(T)/2)·√((1−λ)/(2λ))** [half-gap!]: λ=0.5 ⟹ a₀ = 0.3536·gap_min: 0.86@100 → 0.219@1000 → 0.0133@10⁴ → 0.0104·(1/2)=0.0052@74921 (the table printed pre-correction had 2× error — corrected here).
+- **PREDICTIVE TELESCOPE**: for any (λ,a) the off-line-zero sites below T are enumerated from the gap list alone: birth at gap < 2a·√(2λ/(1−λ)). λ=0.5: a=0.01 ⟺ gap < 0.02828 ⟹ EXACTLY ONE site below 75k: **γ ≈ 71732.901 (idx 95248, depth 2/d² = 37,036 ≫ level 10⁴)**. a=0.02 ⟺ gap < 0.0566 ⟹ ~20 sites (all of the top-20 list except none — up to 0.0566). a=0.1 ⟺ gap < 0.2828 ⟹ ~hundreds (below 2000 the three confirmed + sub-critical k453 as found).
+- NEXT TESTS (tonight, CPU permitting): (i) heat23 two-sided Lehmer (a=0.02 birth / a=0.01 clean AT THE SAME PAIR — running); (ii) census at γ≈71732.9 for a=0.01 (single site, depth 3.7× level — decisive for the a_c formula at second place); (iii) negative control: a=0.005 at γ=71733 (level 40,000 > 37,036 ⟹ clean — margin only 8%, a real test of the O(a²) threshold vs the ~%-level corrections seen in addendum 2).
+
+### §62 addendum 4 — test matrix COMPLETE; threshold correction measured (2026-09-02)
+| site | d (half-gap) | formula a_c | a tested | predicted | FOUND |
+|---|---|---|---|---|---|
+| k922 @1329.124 | 0.0808 | 0.0571 | 0.1 | birth | **off-line pair y=±0.0710881** (2-D) |
+| k693 @1054.892 | 0.1106 | 0.0782 | 0.1 | birth | **off-line pair y=±0.0645451** (2-D) |
+| k1166 @1610.129 | 0.1253 | 0.0886 | 0.1 | birth | inner pair gone, outer at ±0.2358 (1-D signature) |
+| k453 @750.811 | 0.1552 | 0.1098 | 0.1 | CLEAN | **BIRTH ANYWAY: off-line pair y=±0.0135759** (2-D census, x=750.811159 — mid 5 digits) |
+| Lehmer @7005.082 | 0.018849 | 0.01333 | 0.01 / 0.02 | clean / birth | **clean (4 on-line: ±0.00725, ±0.0293) / birth (2 on-line ±0.0412, inner pair lifted)** |
+SITE RULE: **5/5** (every birth at the pair midpoint to 5 digits; sub-critical config = inner pair between the ζ-zeros + outer pair; birth = inner pair lifts off, outer pair pushed outward: ±0.0293→±0.0412 at Lehmer).
+THRESHOLD RULE: bracket at Lehmer ✓ but **k453 overshoot ≥9%** (birth at a=0.1 vs formula 0.1098) ⟹ corrected law: a_c = d·√((1−λ)/(2λ))·(1−ε), ε ≈ 0.1–0.2 (λ=0.5, γ≤2000) — i.e., effective critical depth ≈ 70–85 not 100. Consistent with addendum 2 (a⁴ corrections ~O(80%) at the born zero; ~10–20% at the threshold). The SCALING (a_c ∝ d, the (1−λ)/(2λ) dependence) is the surviving content; the constant is O(a²)-only.
+NOVELTY note to check (Polymath arXiv:1904.12438): the analogous "small gaps coalesce first" statement is KNOWN for the heat-flow family H_t (tight pairs ↔ de Bruijn–Newman Λ; ⚠️CORRECTED §64.3 add.2: this is **Polymath15**, not 14; and the prior art is QUANTITATIVE — Csordas–Smith–Varga 1994, Lehmer-pair criterion Δ²g < 4/5 with λ ≈ −Δ²/8, quoted in Stopple arXiv:1508.05870 — the shift-family a_c = d√(λ^(−1/2)−1) must be claimed against that formula). Our cluster law is the SHIFT-family analog with explicit threshold — novelty claim should be scoped to that.
+
+### §62 addendum 5 — heat23 2-D stage: Lehmer two-sided test FULLY CONFIRMED (2026-09-02)
+a=0.02 census (γ-window 7004.85–7005.35): on-line at 7005.04049 (double, ±~1e−20) and 7005.12294; **off-line pair at x = 7005.0817155198, y = ±0.01369663** — x = pair midpoint (7005.081715424) to 7 digits. Together with the a=0.01 clean scan (4 on-line: ±0.00725/±0.0293): ONE pair, both outcomes, threshold bracketed (0.01, 0.02) ∋ formula 0.01333. (Census "double/triple" entries = refine-adjacency dedup artifacts at <0.015 separation; harmless.)
+CLUSTER LAW — final status: site rule 6/6 machine-verified (k922, k693, k453, Lehmer-a.02 in 2-D; k1166 + Lehmer-a.01 in 1-D); threshold a_c = d√((1−λ)/(2λ)) valid to ~10–20% (Lehmer bracket ✓, k453 overshoot ≥9%). Remaining census tests (γ≈71732.9, a=0.01 single-site prediction; a=0.005 negative control with 8% margin) DEFERRED to next CPU grant.
+
+## §64 — CYCLE-5 CARDON/HB ATTACKER ADJUDICATED: the COUSIN THEOREM (proved conditional on RH); our windowed laws are RH-CONSEQUENCES; the cluster law derived to 0.05–2.7%; §59 kernel identity CORRECTED (2026-09-02)
+
+Source: `experiments/cycle5/attacker_cardon_hb.md` (+ `attacker_cardon_hb.py/.out`,
+E1–E9). My independent spot-checks: `experiments/orchestrator/heat24_cousin_spotcheck.py/.out`.
+
+### 64.1 THE COUSIN THEOREM — the programme's first PROVED theorem (conditional on RH)
+
+**Theorem (PROVED given RH, via Adams–Cardon arXiv:math/0608297v2 Thm 1.1, n=2;
+source VERIFIED by fetch).** For every b>0 and every λ∈(½,1):
+  **C_{b,λ}(z) = Ξ_b(z)² − λΞ(z+ib)Ξ(z−ib),  Ξ_b = (Ξ₊+Ξ₋)/2 = 4∫Φ(u)cosh(bu)cos(zu)du**
+has ONLY REAL zeros.
+
+Two-step proof, both steps complete:
+1. **HB membership lemma (PROVED given RH):** ω_b(z) = Ξ(z−ib) has all zeros at
+   γ_j+ib (open upper half plane) and |Ξ(z−ib)/Ξ(z+ib)|<1 STRICTLY for Im z>0 —
+   Hadamard product Ξ = Ξ(0)∏(1−z²/γ_j²), each factor's modulus <1 for
+   Im z>0 (elementary bracket inequality), product converges (f_γ = 1+O(γ⁻²)).
+   NB E8: the tempting |ξ(σ+it)| growth argument for HB FAILURE at large x is
+   WRONG — the functional-equation symmetry cancels the drift exactly.
+2. **Adams–Cardon n=2:** ω₁=ω₂=ω_b, a₁=a₂=a, G even genus-0/1 real-rooted ⟹
+   H₂ = 4G(2ia)Ξ_b² + (2G(0)−4G(2ia))Ξ₊Ξ₋ all-real; λ = 1−G(0)/(2G(2ia)) sweeps
+   exactly [½,1) (G(2ia)/G(0) = ∏(1+4a²/α_m²) ≥ 1); **λ≥1 UNREACHABLE in the
+   class** (λ=1 ⟹ G(0)=0 ⟹ collapses to (Ξ₊−Ξ₋)², trivial). Example realizing
+   λ=0.9 exactly: G = 1−z²/c², a=c.
+
+**This lands INSIDE our F_a family — at the same radius b for product and
+square — but with the outer Ξ replaced by the cosh-regularized Ξ_b.** The
+regularization is exactly what removes cluster births (§62): cousin is
+all-real GLOBALLY (no a_c, no births, no off-line pairs), F_a only windowed.
+The theorem cleanly SEPARATES the two mechanisms: HB/Krein structure (cousin,
+λ<1 endpoint = our empirical wall) vs local pair geometry (F_a births).
+Attacker machine-verified (sign census + off-axis scan, NOT census-grade):
+(b,λ) = (0.1,0.9), (0.5,0.75) on [0,50]: 19 real = 2×10−1 zeros, off-axis
+|C|/scale ≥ 6.9e−3 (no cancellation). MY census-grade independent check at
+NEW points (heat24): see 64.5.
+
+n=1 specialization (Pólya Hilfssatz II, G=Ξ): **RH ⟹ Ξ_b all-real for every
+b>0** — the cosh-weighted Pólya transform. (Possibly in Suzuki 2013 —
+EUDML 279685 fetch 403'd, priority NOT VERIFIED. Cho–Park 2110.01885 fetched:
+positive kernels only, NOT relevant, dropped.)
+
+### 64.2 THE CIRCULARITY VERDICT — windowed laws are CONSEQUENCES, not evidence
+
+The split formulas are local algebra near SIMPLE ζ-zeros [PROVED given
+RH+simplicity]:
+- F_a: zeros at **γ_j ± a√(λ/(1−λ))** (λ<1); walls γ_j ± ia√(λ/(λ−1)) (λ>1);
+  λ=1: F_a = a²(ΞΞ″−Ξ′²)+O(a⁴) — zeros = doubled ζ-zeros (the "empty" census).
+- W mixes: **γ_j ± √(−Σcⱼaⱼ²/Σcⱼ)** real iff Σcⱼaⱼ²·Σcⱼ < 0 (indefinite mix);
+  definite mixes ⟹ walls γ_j ± i√(Σcⱼaⱼ²/Σcⱼ). The §58 real/definite
+  dichotomy = sign of Σcⱼaⱼ². E9: W_sv predicted 13.8031/14.4664, found
+  13.7988/14.4710; W₂ 13.8432/14.4263 → 13.8415/14.4281; definite mix
+  γ₁+0.22361i → found 14.13471813+0.22384842i.
+- **My heat22 CONTROL box independently confirms the F_a split**: found
+  14.034658/14.234794 vs γ₁±a√(λ/(1−λ)) = 14.1347±0.1 (offsets 0.09993/0.10007;
+  7e−4 = the a² corrections).
+
+**Therefore: the windowed all-real laws (§58, §59, heat17/19/22) are
+CONSEQUENCES of RH+simplicity. Their empirical confirmation is NOT
+independent evidence for RH.** What is NOT implied by RH alone (the genuinely
+open content): (i) the GLOBAL cluster birth law (§62) — its threshold
+hierarchy and its λ>1/3 convergence; (ii) the global failure of fixed-a F_a
+(off-line zeros exist for every a>0 — RH-conditionally provable via gaps→0,
+see 64.3); (iii) cousin behavior as λ→1 and outside [½,1).
+The §59 LP-reduction stands unchanged in strength: RH ⟺ F_a∈LP along aₙ→0
+remains an equivalence, but the "empirically yes so far" half is now
+UNDERSTOOD (it is RH's shadow), not new support.
+
+### 64.3 CLUSTER LAW DERIVED — threshold hierarchy to 0.05–2.7%; λ>1/3 convergence
+
+[algebra PROVED; numbers MACHINE-VERIFIED E5c–E5f] Exact birth criterion:
+on the line F_a(x) = |Ξ(x)|²−λ|Ξ(x+ia)|² ∈ ℝ and F_a(γ_j) = −λ|Ξ(γ_j+ia)|² < 0,
+so birth at a tight pair = sign flip of F_a(z_m) = unique crossing of
+**R(a) = λ|Ξ(z_m+ia)|²/Ξ(z_m)² through 1**. Expansion:
+F_a = (1−λ)Ξ²[1−μG(z)] + O(a⁴), μ = λa²/(1−λ), **G = (logΞ)′²−(logΞ)″**.
+(NB: §62's level-set form "(logΞ)′²+(logΞ)″ = −(1−λ)/(λa²)" holds only at
+midpoints where (logΞ)′≈0; exact expansion carries the minus sign.)
+At a pair midpoint (half-gap d): G(z_m) = 2/d² + B, B = background curvature,
+measured 2.5–2.9 across pairs 922..2000 (slow growth, consistent with
+π²ρ̄²/3, ρ̄ = mean zero density). Hierarchy:
+- leading (§62 law) a_c = d√((1−λ)/(2λ)): error −9..−29% on tested pairs —
+  **explains the §62 addendum-4 k453 overshoot**;
+- curvature a_c = √((1−λ)/(λG(z_m))): −1..−12%;
+- + exact a⁴ coefficient (Ξ‴,Ξ⁗): **−0.05% (pair 922/923, λ=0.5), −0.12%
+  (λ=0.9), +0.49% (pair 1500/1501), −2.65% (pair 2000/2001)**.
+Reproduced my off-axis pair **1329.1242588444+0.0710880526i to all 10 digits**
+(d = 0.0807504, z_m = 1329.1242684, G(z_m) = 309.2357 = 2/d²(306.719)+B(2.5167)).
+**Convergence at threshold [PROVED]:** R(a) is a series in s = a² with radius
+|a| < d (nearest singularity = zero of Ξ(z_m+ia) at |γ_k−z_m| ≥ d); at birth
+a_c/d = √((1−λ)/(2λ)) ⟹ series converges at threshold **iff λ > 1/3**. The
+§62 addendum-2 non-perturbativity worry is RESOLVED for λ>1/3 (all our tests:
+0.5, 0.9, 0.99 inside); λ ≤ 1/3 genuinely needs the full two-zero model.
+**Global statement path (NOT COMPLETED):** RH + per-pair Rouché (Turing-style
+derivative bounds at z_m; B is 1% of 2/d² at d=0.08) + gaps→0 unconditionally
+(mean spacing 2π/log γ → 0) ⟹ for every a>0, λ∈(⅓,1): F_a has non-real zeros.
+Missing: the derivative-bound bookkeeping only.
+
+### 64.4 CORRECTION — §59's kernel representation is the O(a²) TRUNCATION
+
+**Claim corrected:** F_a = cosine transform of (Φ⋆Φ)(w)(1−λcosh(aw)) is NOT
+exact (my heat21 derivation dropped the sin·sinh cross terms of Ξ(z±ia)).
+**Exact kernel [Fourier algebra PROVED]:** with φ = 2Φ (full-line kernel,
+Ξ = CT[φ]), the product Ξ₊Ξ₋ has kernel
+  **K_a(w) = ∫φ(u)φ(w−u)cosh(a(w−2u))du**
+— a function of w alone (mean of u under φ(u)φ(w−u) is exactly w/2, φ even —
+this is why leading terms agreed). The claimed identity ⟺ Ξ₊Ξ₋ = cos(aD)[Ξ²]
+⟺ Ξ(ia)² = Ξ(2ia)² at z=0: FALSE. E6: |Ξ(ia)²−Ξ(2ia)²|/|Ξ(ia)²| = 3.47e−4
+(a=0.05), 1.39e−3 (0.1), 1.26e−2 (0.3) — tracking 3a²|Ξ″/Ξ|(0) = 3a²·0.04621
+exactly. **The §59 "machine-verified 3e−4" was the truncation error itself,
+not convergence.** Corrected structure: K_a = (φ⋆φ)(w)[1+2a²σ²(w)+O(a⁴)],
+σ²(w) = variance of u under ∝φ(u)φ(w−u) — sign structure governed by the
+w-dependent WIDTH σ(w), materially different from (1−λcosh(aw)) (governed by
+w²). Any downstream kernel argument (incl. the running kernel/Sturm
+attacker, notified mid-run) must rebuild on K_a.
+
+### 64.5 Obstructions (structural, not technical)
+
+- F_a itself: outer radius 0 ⟹ zeros ON the line ⟹ not HB; b→0 degenerates to
+  (1−λ)Ξ². Algebra: **F_a = C_{a,λ} + a²ΞΞ″ + O(a⁴) EXACTLY** (the Ξ′² terms
+  cancel — I first re-derived a²(ΞΞ″−2λΞ′²), arithmetic slip, corrected;
+  heat24(d): F−C residual 3.440e−6 vs a²ΞΞ″ 3.442e−6 = 0.06% = the a⁴ tail).
+  Conditional proof STRUCTURE for windowed F_a law: cousin
+  all-real + cousin-zero simplicity + Rouché stability — blocked at (i)
+  Adams–Cardon Open Problem 4.7 (H_n zero simplicity — their own open
+  problem), (ii) Rouché constants unestimated.
+- W mixes: H_n generates pair-correlators at a SINGLE radius with one sign
+  pattern; W_sv = difference of correlators at TWO radii — NOT representable.
+
+### 64.6 Attacker's NEXT (partially taken up)
+
+Census cousin at λ=0.99 and λ∈(⅓,½) (outside proved range) — heat24 running
+(64.1 check + both); Suzuki priority check (needs non-403 source); formalize
+B.0+B.2 as a self-contained note; rebuild §59-based analysis on K_a; per-pair
+Rouché constants at 922/923 (deferred — derivative bookkeeping, next CPU grant).
+
+### §64 addendum — heat24 census-grade independent checks; λ<½ EXTENSION (2026-09-02)
+
+heat24_cousin_spotcheck.py (z-plane, box x∈(10,30)×y∈(−0.5,0.5), 1-D sign
+census vs 2-D winding; dps 30):
+- (b,λ) = (0.2, 0.9) [inside proved range, NEW point]: 7 real zeros, winding 7
+  ⟹ ALL-ON-LINE, census-grade. Theorem independently confirmed.
+- **(b,λ) = (0.2, 0.45) [OUTSIDE proved range — λ∈(⅓,½), where the even-G
+  construction cannot reach (λ = 1−G(0)/2G(2ia) ≥ ½ always) AND the
+  perturbation-series criterion fails]: 6 real, winding 6 ⟹ ALL-ON-LINE.**
+  The proved range [½,1) is NOT SHARP; the all-real region extends below ½.
+- (b,λ) = (0.1, 0.99) [near endpoint]: 7 real, winding 7 ⟹ ALL-ON-LINE
+  (resolves the attacker's E7 λ=0.99 NOT-COMPUTED caveat for this window;
+  splits widen: γ₁ pair 12.270/14.745 = ±1.24 at λ=0.99 vs ±0.67 at 0.9).
+
+**Structure observation [PROVED algebra]:** C_{b,λ} = (1−λ)Ξ_b² − λS_b²,
+S_b(z) = (Ξ₊−Ξ₋)/2i = 4∫Φ(u)sinh(bu)sin(zu)du real entire odd. Both Ξ_b and
+S_b are all-real under RH by Pólya Hilfssatz II (β=0 and β=π/2 respectively,
+G=Ξ). So at λ=0 the cousin is all-real (trivially: Ξ_b²) and λ∈(½,1) by the
+n=2 theorem — both ENDS of (0,½) are all-real, and the census puts 0.45
+inside. **CONJECTURED [NUMERICAL, one census point]: C_{b,λ} all-real for the
+full λ∈(0,1), b>0, under RH.** The obstruction to proving (0,½): C is a
+DIFFERENCE of squares of two all-real functions (not covered by n≤2 with
+even G; possibly reachable with non-even G or mixed radii a₁≠a₂ — the
+general n=2 H₂ spans more than the symmetric specialization used in §64.1).
+TODO (cheap censuses): λ = 0.25, 0.1, 0.34 at b=0.2 to locate the true lower
+boundary (if any). NOTE: at λ=0 the zeros are doubled (Ξ_b²) — small λ>0
+splits them; the cousin has its own tight-pair physics but the theorem
+FORBIDS births for λ>½ — the b-regularization removes exactly the cluster
+mechanism of §62.
+- B.3 algebra numerically adjudicated: F_a − C_{a,λ} = a²ΞΞ″ + O(a⁴) EXACTLY
+  (residual 3.440e−6 vs a²ΞΞ″ 3.442e−6 at z=10+0.3i, a=0.1, λ=0.5; 0.06% =
+  the a⁴ tail). The Ξ′² terms cancel identically (my first re-derivation
+  claiming a²(ΞΞ″−2λΞ′²) had a sign slip — corrected in §64.5).
+
+### §64 addendum 2 — FULL-RANGE COUSIN THEOREM: all-real for ALL λ∈[0,1] (PROVED, elementary; supersedes the (½,1) range limitation) (2026-09-02)
+
+**THEOREM (conditional on RH).** For every b>0 and every λ∈[0,1], C_{b,λ} =
+Ξ_b² − λΞ(z+ib)Ξ(z−ib) has only real zeros. (λ=0,1 endpoints trivial:
+Ξ_b² resp. −S_b².)
+
+**Proof (two lines on top of §64.1's inputs).** Ξ₊Ξ₋ = Ξ_b² + S_b² (identity,
+since Ξ₊ = Ξ_b + iS_b, Ξ₋ = Ξ_b − iS_b), so
+  **C_{b,λ} = (1−λ)Ξ_b² − λS_b² = (√(1−λ)Ξ_b − √λS_b)(√(1−λ)Ξ_b + √λS_b)**.
+Under RH, Ξ(z+ib) has all zeros at γ_j − ib (lower half plane), so
+(Ξ_b, S_b) is a classical **Hermite–Biehler pair**; by the HB theorem every
+real linear combination αΞ_b + βS_b has only real (simple, interlacing)
+zeros. Both factors are pencil elements for λ∈(0,1). □
+[Machine-verified three ways, dps 30, b=0.2 λ=0.9: identity |C−P₋P₊| ≤ 7e−35
+at 3 test points; all 7 census ordinates are zeros of exactly ONE factor
+(|own factor| 4e−19…2e−14 vs |other| 1e−6…1e−3); factor zeros INTERLACE
++-+-+-+. Plus the 7-λ census suite below.]
+
+**Consequences.**
+1. The attacker's λ∈(½,1) range was a limitation of the even-G n=2
+   CONSTRUCTION, not of the truth: the Adams–Cardon route proved the hard
+   half by machinery that had a two-line finish. (Lesson for the programme:
+   run the elementary-factorization check BEFORE the heavy theorem route.)
+   The λ∈(0,½) "CONJECTURED" of addendum 1 is CLOSED — proved, and the
+   λ-scan censuses (0.25/0.2/0.1/⅓ at b=0.2, all 6/6 ALL-ON-LINE, plus
+   0.45/0.9/0.99) are now VERIFICATION of a theorem, not exploration.
+2. **Cousin zero set = union of two interlacing pencil lattices** — births
+   are structurally impossible for ALL λ∈[0,1]. The asymmetric straddling
+   seen in the censuses = union of two lattices, not one split pair.
+3. λ≥1: factors become complex pencil (i√λ S_b) ⟹ walls — same as F_a's
+   λ>1 phase. The [0,1] closed range IS the all-real phase.
+4. **Sharpest framing of the whole §59/§62 programme:** F_a = C_{a,λ} +
+   a²ΞΞ″ + O(a⁴) (§64.5, exact algebra). The cousin is the EXACTLY
+   FACTORIZABLE part of F_a; the outer Ξ at radius 0 has NO i-partner
+   (S_0 ≡ 0 — the HB pair degenerates), is only O(a²)-close to the pencil
+   member Ξ_a, and **the entire cluster-birth phenomenology lives in the
+   unfactorizable residue a²ΞΞ″**. Any RH-progress via this family must
+   live in controlling ΞΞ″ against the HB pencil — a concrete, located
+   obstruction (vs. F_a/W's structural "not in the class").
+5. Novelty (honest): conditional-on-RH + textbook HB + trivial algebra —
+   POSSIBLY KNOWN in essence (A+iB decomposition is folklore); the
+   identity-finish is certainly not deep. Its VALUE here: completes the
+   family classification and isolates the residue term. Suzuki 2013
+   priority check still pending (403).
+6. NOTE on HB robustness (s-plane deviation δ = β−½ of a ζ-zero; Ξ-zero at
+   z = γ−iδ, Ξ₊-zero at Im z = −(δ+b)): the HB structure survives
+   violations with δ > −b; only a ζ-zero at β < ½−b (LEFT of the line by
+   more than b) breaks the pair. The cousin theorem for FIXED b is thus
+   conditional on a WEAKER hypothesis than RH: "no ζ-zero more than b left
+   of the critical line". (Contrapositive: such a zero forces non-real
+   zeros into C_{b,λ} for every λ∈(0,1).) Taking b→0 recovers RH ⟹ the
+   b-uniform statement is RH-equivalent. This quantified hypothesis-
+   weakening is NEW TO RUN; worth one page of care (check both
+   orientations: Ξ(z+ib) vs Ξ(z−ib) — the roles of left/right swap).
+
+## §65 — PENCIL-SHIFT UNIFICATION: F_a's on-line zeros = the cousin's pencil zeros displaced ALONG the line; births = perpendicular-branch collisions (2026-09-02)
+
+Combines §58 (collision dichotomy), §62 (cluster law), §64 (cousin theorem +
+residue algebra) into one mechanism.
+
+**First-order shift theorem [PROVED, one paragraph + machine-verified].** Write
+F_a = P₊P₋ + a²ΞΞ″ + O(a⁴) with P± = √(1−λ)Ξ_a ± √λS_a the HB pencil factors
+(§64 add.2). At a simple REAL zero z₀ of P±:
+  F_a has a zero at z₀ + δ with **δ = −a²ΞΞ″(z₀)/(P±′(z₀)P∓(z₀)) + O(a⁴) — REAL**
+(all ingredients real-on-real). So to first order in a², every pencil zero
+moves ALONG the line: on-line-ness of F_a is perturbatively STABLE — the
+mechanism behind the windowed LP statement (§59 consequence 3), now structural.
+[MACHINE-VERIFIED, λ=0.5, a=0.1, γ₁: pencil zeros 14.022575(P₊)/14.223648(P₋);
+F_a zeros 14.034658/14.234794; predicted shifts +0.01313/+0.01018 REAL to
+~1e−34 vs actual +0.01208/+0.01115 — first order captures 90–91%, remainder =
+the O(a⁴) term.]
+CAUTION (near-miss recorded): at λ=½, P± = (Ξ_a ± S_a)/√2 are real pencil
+members — do NOT confuse with (Ξ_a ± iS_a)/√2 = Ξ±/√2 whose zeros are at
+γ_j ∓ ia (NOT real). The factor i is the entire content of HB.
+
+**Mechanism reading (unification).**
+1. F_a's zero set ≈ union of two SHIFTED interlacing pencil lattices — the
+   shifts real, of size a²|ΞΞ″|/|P₊′P₋|. On-line-ness persists while shifts
+   are smaller than the local lattice gaps.
+2. At a tight ζ-pair (half-gap d) the shift driver a²ΞΞ″ is controlled by the
+   §62 well: Ξ″/Ξ(z_m) = −(2/d²+B) — the DEPTH LAW IS THE SHIFT LAW (Lane C's
+   L₂ ≡ S unification, third appearance).
+3. Birth of the off-line pair = accumulated real shifts closing the inner gap
+   until two (shifted) pencil zeros collide ON the line; at the collision the
+   §58 dichotomy holds verbatim (F_a real-on-real) and the perpendicular
+   branch = the birth. Scaling: inner pencil half-separation ≈ d −
+   O(a√(λ/(1−λ))) (split at a simple zero = √(λ/(1−λ))·|S_a/Ξ_a′| = √(λ/(1−λ))·a
+   to leading order) ⟹ a_c ∝ d·√((1−λ)/λ)-family — matches §62/§64.3's
+   d√((1−λ)/(2λ)) up to the O(1) combinatorial factor (WHICH zeros collide —
+   same factor vs cross-factor — not pinned here; the precise threshold
+   remains the attacker's R(a)-crossing derivation, 0.05–2.7% accurate).
+4. **Net: the whole F_a phenomenology (splits, pinning, windows, births,
+   walls at λ>1) = HB pencil lattice + real a²-shifts + line-collision branch
+   choice.** The RH-content is concentrated in exactly two places: (i) the
+   HB hypothesis itself (zeros of Ξ(z+ib) in one half plane — RH or the
+   weaker β > ½−b bound), (ii) the global counting/branch bookkeeping.
+   Everything else in the family is now DERIVED structure.
+   [Status: mechanism PROVED at the level of (1)+(2) with (3)'s scaling
+   heuristic; NOT a proof of the windowed LP statement — the global
+   bookkeeping (branch choice at every collision, no missing zeros) remains
+   exactly the §64.5/Open-Problem-4.7-class gap.]
+
+**§64 add.2 orientation check (both orientations, done):** with s-plane
+deviation β = ½+δ (δ<0 = LEFT), the Ξ(z+ib)-zero sits at Im z = δ−b — LEFT
+deviations |δ| > b break HB, RIGHT deviations never do. So for a putative
+left-violation δ*, the cousin theorem STILL holds for every b > |δ*| — the
+family degrades gracefully, and **b is literally the detector resolution**:
+only cousins with b < |δ*| can show off-line zeros. In the b→0⁺ limit the
+statement "C_{b,λ} all-real for all small b, all λ" ⟸ RH; the converse
+direction (RH false ⟹ some cousin non-real) needs the HB equivalence's
+other half and is NOT claimed. (One-directional, recorded for scope.)
+
+### §66 — MIXED-RADIUS COUSIN: any outer radius b>0 kills births; the residue's SIGN directs the shifts (heat25, 2026-09-02)
+
+**C_{b,a} = Ξ_b² − λΞ(z+ia)Ξ(z−ia)** (outer square at radius b, product at
+radius a; b=a = proved cousin, b=0 = F_a). Census (heat25, λ=0.5, a=0.1,
+1-D sign vs 2-D winding, boxes at the two known birth sites + control):
+- k922 (d=0.0808): b=0 BIRTHS (y=±0.0710881, matches heat22 to all digits —
+  machinery calibrated); **b=0.1, 0.2, 0.3: ALL-ON-LINE (4/4 each)**.
+- k1166 (d=0.1253): b=0 BIRTHS (y=±0.0575955); **b=0.1, 0.2, 0.3: ALL-ON-LINE**.
+- CONTROL γ₁: all four b all-real.
+**⟹ the births are killed by ANY positive outer radius — the all-real class
+is MUCH larger than the factorizable (b=a) case. [NUMERICAL, census-grade at
+2 sites × 3 radii]**
+
+**Algebra (the direction law).** C_{b,a} = C_{a,a} − (b²−a²)ΞΞ″ + O(⁴):
+relative to the radius-a pencil, the mixed cousin's residue is
+−(b²−a²)ΞΞ″ vs F_a's +a²ΞΞ″. Via §65's shift formula the pencil zeros move
+with OPPOSITE signs in the two cases: b>a = anti-birth direction (inner gaps
+OPEN); b<a = birth direction (gaps CLOSE), F_a = the extreme b=0 member.
+Note the b=0.2/0.3 rows have residue 3×/8× LARGER than F_a's (in modulus) —
+so it is the SIGN, not the size, of the residue that governs. **Forward
+prediction (heat25b): at k922, a=0.1, b ∈ {0.05, 0.07, 0.09} — residue
+strengths 75%/51%/19% of F_a's, depth 308 ≫ effective threshold ~85 ⟹
+b=0.05 and 0.07 MUST birth (|y| slightly below 0.0711), b=0.09 MARGINAL
+(0.19×308 = 58 vs threshold ~70–85). A quantitative, falsifiable test of
+the sign law.**
+
+## §67 — CYCLE-5 KERNEL/STURM ATTACKER ADJUDICATED: the R_a Euler product, the PHASE-vs-MODULUS dichotomy, PF∞ closed, Kreĭn framing (2026-09-02)
+
+Source: `experiments/cycle5/attacker_kernel_sturm.md` + scripts A2–A4, B.
+My independent verifications inline.
+
+### 67.1 The R_a Euler product [RH-conditional identity; I verified 2e−5 = tail]
+**R_a(x) := Ξ(x)²/|Ξ(x+ia)|² = ∏_{γ>0} (x²−γ²)²/[((x−γ)²+a²)((x+γ)²+a²)],
+every factor ∈ (0,1)** (Hadamard; verified: N=40-zero product vs direct
+mpmath at x = 13.5/17/20 agree to 2e−5 = the neglected tail ~2a²/γ_N).
+Consequences: F_a(x) = |Ξ₊|²(R_a(x) − λ) ⟹ **on-line zeros of F_a = level
+crossings R_a = λ**; R_a → 0 at every ζ-zero, rises to a local MAX at each
+midgap; births = midgap maxima dipping under λ. This subsumes and repackages:
+(i) §59's λ>1 Hadamard-factor proof (their "λ≥1 destruction for every a" =
+the same factor inequality — independently re-derived, NOT new to programme);
+(ii) §64.3's birth criterion R(a) crossing 1 (reciprocal form; their closed
+form a_c = d√(λ^{−1/2}−1) = the R=1 criterion at B=0; the Cardon hierarchy =
+its expansion, with B = 2Σ_other 1/(m−γ)² + h′² explicit).
+**RH-EQUIVALENCE SHARPENING [their claim, plausible; one formal gap]:** the
+windowed statement "F_a real-zeroed on [0,T] ∀a<a₀(λ,T)" is EQUIVALENT to RH
+(⟸ = §59 Hurwitz; ⟹ = as a→0 every factor → 1 uniformly ⟹ all midgap maxima
+→ 1 > λ ⟹ 2 crossings per zero + pencil-shift stability §65 excludes
+off-line). The global bookkeeping (exact count, no stray zeros) remains
+formal — same class of gap as §64.5.
+
+### 67.2 PHASE-vs-MODULUS DICHOTOMY — why the cousin can never birth [NEW TO RUN]
+Cousin zeros on the line solve **tan(arg Ξ(x−ib)) = ±√((1−λ)/λ)** — a PHASE
+equation with θ′_b = Σ_γ b/((x−γ)²+b²) > 0 STRICTLY MONOTONE (Poisson-sum
+representation) ⟹ exactly one crossing per branch per period ⟹ **simple,
+interlacing, NO annihilations possible, for ALL λ∈(0,1)** — an independent
+re-derivation of the Full-Range Cousin Theorem (§64 add.2) that does not
+route through Adams–Cardon at all, and explains structurally why the cousin
+is birth-free: a monotone phase cannot annihilate crossings. F_a instead
+solves the MODULUS equation R_a = λ, whose crossing pairs CAN annihilate
+(midgap max → λ). **The residue a²ΞΞ″ is exactly the operator that converts
+the phase problem into the modulus problem (S₀ ≡ 0: the phase partner
+degenerates at radius 0).** This is the sharpest mechanism statement of the
+programme: same family, two equations; births live only in the modulus type.
+
+### 67.3 PF∞ closed [PROVED]; Kreĭn framing [framed, not completed]
+- **K_full and Φ are NOT PF∞** (Pólya-frequency ∞): by Schoenberg's transform
+  characterization + Hardy's theorem (transform zeros at ±iγ violate the
+  Schoenberg locus). K_a correction changes nothing — the obstruction is
+  already at a=0. Total positivity is the WRONG tool for this family;
+  log-concavity holds (no PF violation up to r≤4) but carries the structure
+  no further. Their earlier PF₅-negative determinant was on a wrong kernel
+  (mirror term dropped) — redone, verdict stands on the corrected object.
+- **Kreĭn/canonical-system framing:** (Ξ_b, S_b) = spectral functions of a
+  canonical system E_b; the pencil = α-boundary conditions; Sturm theory ⟹
+  real interlacing; **F_a corresponds to a COMPLEX boundary parameter —
+  precisely the regime where string eigenvalue pairs leave the axis.**
+  Independent corroboration of §65 in the operator language. Open: identify
+  E_b's canonical system / mass distribution explicitly (their NEXT 4).
+- Identity fork (their Task A): the once-signed kernel integral equals the
+  SUM family [2Ξ²−λ(Ξ₊²+Ξ₋²)]/16, not F_a (rel 3.0) — machine-settled,
+  consistent with §64.4's correction; NOTES §59's coded rep (their reading
+  of it) correct at 2.8e−5.
+- K_full far tail: convolution-dominated ~exp(9w/2 − 2πe^w).
+
+### 67.4 One-sided vs two-sided HB weakening — adjudicated
+The attacker flagged unresolved whether the fixed-b cousin needs one-sided
+("no ζ-zero > b LEFT") or two-sided control. **Adjudication (my §64 add.2
+orientation analysis): the ELEMENTARY pencil proof needs only ONE-SIDED**
+— it needs all zeros of Ξ(z+ib) in ONE open half plane; right-deviations
+never leave it, left-deviations < b never leave it. The attacker's ±-pairing
+algebra concern applies to the ADAMS–CARDON route (the |Ξ(z−ib)/Ξ(z+ib)|<1
+product bound in B.0 plausibly needs more than one-sidedness) — the two
+routes have different hypothesis strengths. Recorded: elementary pencil
+route = one-sided; A–C route = two-sided (unproven for one-sided).
+
+### §66 addendum — heat25b: the b<a predictions CONFIRMED (sign law verified quantitatively)
+
+At k922, a=0.1, λ=0.5 (F_a reference: births at y=±0.0710881):
+  b=0.05 (residue 75%): **BIRTHS, y = ±0.0497962**, x = 1329.1221631
+  b=0.07 (residue 51%): **BIRTHS, y = ±0.0165665**, x = 1329.1205142
+  b=0.09 (residue 19%): ALL-ON-LINE (4/4, winding = real)
+y decreases monotonically 0.0711 → 0.0498 → 0.0166 → 0 as b ↑ b_c — the
+smooth sinking of the off-line pair back to the axis, exactly the bifurcation
+picture. **Quantitative check:** effective level (1−λ)/(λ(a²−b²)) with the
+§62 effective critical depth ratio ~0.75 gives b_c = a√(1 − 100·0.75/308·(1/1))
+= 0.087 — inside the observed bracket (0.07, 0.09) ✓. The residue SIGN LAW
+is now: **C_{b,a} births iff b < b_c(a, pair, λ) ≈ a√(1 − level_c·a²/(0.75·
+depth))** [NUMERICAL law, 5 points]; b=0 recovers F_a; b=a is below b_c
+always?? — NO: at b=a the theorem says all-real, so b_c(a) < a strictly
+(theorem ⟹ b_c ≤ a; empirically b_c ≈ 0.087 < 0.1 = a ✓ consistent).
+**⟹ the critical radius b_c(a) is a NEW measurable per-pair quantity — the
+exact boundary of the all-real class inside the two-radius family — and the
+cousin theorem (b=a all-real) + F_a (b=0 births) are its two endpoints.**
+Family now fully mapped at this site: birth for b ∈ [0, b_c), all-real for
+b ∈ (b_c, ∞) with b=a somewhere in the all-real side (proved).
+
+### §64.3 addendum — B verified against the raw Odlyzko table (2026-09-02)
+
+The attacker's cheap NEXT-1 closed. Computing B from scratch as the
+neighbour-well sum over the Odlyzko 100k table (pair zeros excluded
+explicitly, mirror zeros included):
+
+  k922 site: pair = #922/#923 = 1329.0435180, 1329.2050188
+    FULL gap = 0.1615008, δ (half-gap) = 0.0807504  [recorded "d=0.0808"
+    throughout §62/§64.3/§66 = the half-gap; convention now pinned]
+    2/δ² = 306.72; B = Σ_other 1/(m−γ)² = 1.751
+    G_pred = 308.47 vs G_meas = 309.24 → residual +0.25%
+  Lehmer site: pair = #6709/#6710 = 7005.0628662, 7005.1005647
+    2/δ² = 5629.14; B = 2.438; G_pred = 5631.58 vs G_meas = 5629
+    → residual −0.05%
+
+**VERDICT [NUMERICAL, 2 sites, sub-0.3%]: the depth law G = 2/δ² + B is
+quantitatively explained by the pair well + neighbour wells; residual =
+h″ (Γ-factor background) + O(a⁴) fit residue.**
+
+Microscopic bonus: B is BELOW the uniform-lattice value π²ρ̄²/3 (2.389 at
+k922, 4.103 at Lehmer) by 27–41%, and the local gap structure explains
+the deficit — adjacent gaps at k922 are 1.22–1.41 vs mean spacing 1.173:
+the same GUE repulsion that produced the tight pair pushed the neighbours
+away, weakening their wells. **The depth law's background constant is the
+neighbour-well sum, self-consistently suppressed by the repulsion that
+created the pair.** (Sweep over the 40 tightest pairs < 10⁴: B single-sided
+1.4–3.5, median 2.4 — systematically under the local lattice value.)
+k1166 site for the record: #1166/#1167 = 1610.0032642, 1610.2538232, full
+gap 0.2505589, δ = 0.1252795 [recorded "d=0.1253" = half-gap ✓].
+
+### Suzuki 2013 priority check — RESOLVED (adjacent, converse direction)
+
+EUDML abstract + keywords obtained (Acta Arith. 157.3 (2013) 201–230,
+Zbl 1321.11085). Suzuki's two-parameter deformation family: machinery =
+Hermite–Biehler class + de Branges Hilbert spaces (exactly our pencil
+world); direction = CONVERSE — "its conjectural (mild) zero-free region
+for some fixed parameter is a sufficient condition for RH". Our Full-Range
+Cousin Theorem is the other implication (RH ⟹ all-real C_{b,λ} ∀λ∈[0,1],
+elementary pencil factorization). No anticipation at abstract/keyword
+level; full text paywalled (PDF link empty). Honest label unchanged:
+NEW TO RUN, possibly folklore in essence (anyone expanding Ξ(z+ib) =
+Ξ_b + iS_b reaches the factorization in one line). Not worth further
+priority effort — the factorization's value here is closing A–C's open
+λ-range, which is a programme-internal fact regardless of origin.
+
+### §65 addendum — heat26 RESIDUE-CONTROL: a²ΞΞ″ is operationally THE birth operator
+
+E_a := F_a − a²ΞΞ″ (exact subtraction of the located obstruction; E_a =
+C_{a,a} + O(a⁴), NOT a two-radius family member — no pencil factorization
+available for it).
+Pre-registered prediction: ALL-ON-LINE at k922 (effective residue
+coefficient ~a² ~ 0.01 ≪ r_c ≈ 0.24 from the b_c ≈ 0.087 measurement).
+**RESULT (heat26, census-grade): k922 real 4 = winding 4 ALL-ON-LINE;
+control γ₁ real 2 = winding 2.** F_a births at y = ±0.0711 at this exact
+site; subtract a²ΞΞ″ alone and the births VANISH.
+⟹ **residue SIZE (not order) governs; the a⁴ remainder does not birth.**
+Combined with §66 (b_c scan: births iff r = (a²−b²)/a² > r_c ≈ 0.24):
+the birth phenomenology is controlled by ONE term evaluated against ONE
+threshold — the located obstruction is now an operational dial, not an
+O(a²)-proximity remark. NOTE E_a all-real is itself only NUMERICAL (E_a
+is outside every proved class — no HB, no pencil, no two-radius identity);
+its all-reality at this site is a census fact, not a theorem.
+NEXT discriminator (heat27, running): D_a := C_{a,a} + a²Ξ′² — residue
+operator of comparable size elsewhere but VANISHING at the midgap point
+m (pair symmetry ⟹ Ξ′(m) ≈ 0; contrast ΞΞ″(m) < 0 = the birth dip).
+Prediction: birth-free ⟹ "births governed by the residue VALUE AT m".
+
+### §64 add.3 — the Obreschkoff frame (proper attribution + why F_a is outside it)
+
+Retrospect prompted by heat26. Classical theorem (Obreschkoff, 1920s): the
+pencil c₁f + c₂g has only real zeros for ALL real (c₁,c₂) ⟺ f and g have
+real, SIMPLE, INTERLACING zeros (equivalently f+ig is Hermite–Biehler).
+⟹ **the Full-Range Cousin Theorem = Obreschkoff applied to the HB pair
+(Ξ_b, S_b)** — my pencil factorization is its constructive direction, and
+"POSSIBLY KNOWN in essence" is now exactly right with a named theorem.
+The λ∈[0,1] parametrization = the pencil's projective circle; λ>1, λ<0 =
+outside the real-pencil cone (expect off-line zeros there — TESTABLE).
+F_a in this frame: F_a(x) = (1−λ)Ξ(x)² − λ|Ξ(x+ia)|² is a two-term real
+combination, but of Ξ² (real DOUBLE zeros) and |Ξ₊|² (NO real zeros —
+strictly positive function). Non-interlacing for a trivial reason; the
+pencil theorem says nothing; births are possible and occur. So the WHOLE
+programme's birth phenomenology = the failure of Obreschkoff's hypothesis
+in the mildest possible way (one pencil member zero-free on the axis).
+Every Taylor piece of F_a individually all-real (Pólya: derivatives of
+real-rooted are real-rooted; Ξ′, Ξ″ interlace Ξ) — yet the mixed-sign
+SUM births: linear combinations of interlacing-family functions with
+NON-interlacing pairing (Ξ² vs ΞΞ″ do NOT interlace — double zeros sit
+inside Ξ″'s? check numerically some day) leave Obreschkoff's protection.
+**Generator-lane consequence (NEXT-6 sharpened): deformations that are
+pencils of interlacing pairs are birth-free BY THEOREM (nothing to test);
+all interesting structure lives in non-pencil couplings. The RH question
+in this language: exhibit a ζ-natural pencil decomposition whose
+interlacing does NOT presuppose RH — i.e., find (f,g) interlacing with
+Ξ = f + ig where f,g come from arithmetic, not from Ξ itself.** (de
+Branges/Suzuki's programme is exactly this ask; our contribution stays
+the census side: the size/location dial of the residue.)
+
+### §65 addendum 2 — heat27: prediction FALSIFIED; exact identity found (product conversion)
+
+D_a := C_{a,a} + a²Ξ′², pre-registered "birth-free (residue vanishes at
+midgaps)". **CENSUS RESULT: real 0, winding 4 at k922 AND at control γ₁ —
+the ENTIRE lattice is off-axis, at γ_j ± ia at every zero** (γ₁: 14.1347366
+± 0.10027i = γ₁ ± 1.0027a; k922: pair zeros 1329.0435/1329.2050 each split
+to ±(0.086–0.108)i ≈ ±a with pair corrections).
+CAUSE (exact identity, machine-verified full precision, three points):
+  **D_a = (1−λ)Ξ(z+ia)Ξ(z−ia) + a²Ξ′² − S_a², and a²Ξ′² − S_a² = (a⁴/3)Ξ′Ξ‴ + O(a⁶)**
+⟹ D_a IS the vertical-translate product up to O(a⁴): the γ±ia lattice is
+just the product's zeros. My midpoint reasoning compared the residue
+against the WRONG pencil member (Ξ_a-side): Ξ′² doesn't act at midgaps —
+it CANCELS S_a², converting pencil→product. TRAP #30 recorded.
+**Unified residue frame:** every two-term family member =
+(1−λ)Ξ₊Ξ₋ + [O(a²) residue]; residues at O(a²) spanned by {ΞΞ″, Ξ′²}:
+  cousin: −S_a² ≈ −a²Ξ′² (+a⁴/3Ξ′Ξ‴) — all-real (Obreschkoff)
+  F_a: −a²(ΞΞ″−Ξ′²) = −a²Ξ²(log|Ξ|)″ — births at tight pairs
+  two-radius: (a²−b²)ΞΞ″ − S_a² — continuous birth dial (b_c law §66)
+  D_a: +(a⁴/3)Ξ′Ξ‴ — product split (no a² residue at all!)
+**First-order phase formula along c (family C_{a,a} + c·a²Ξ′²):**
+zeros near γ_j at w² = a²(λ−c)/(1−λ):
+  c < λ: REAL split γ_j ± a√((λ−c)/(1−λ))  [all-real, new mechanism class]
+  c > λ: VERTICAL split γ_j ± ia√((c−λ)/(1−λ))
+  c = λ: PINNED at γ_j (degenerate)
+(c=0 endpoint = cousin, where the formula is INVALID — residue sizeable vs
+product, pencil takes over: the true c=0 lattice is Obreschkoff-interlaced,
+not γ±a√(λ/(1−λ)); formula valid for c near λ. c=1 endpoint verified by
+heat27: ±ia = √((1−λ)/(1−λ))·a ✓.) heat28 pre-registered to census the
+c-line at λ=0.5, a=0.1: c ∈ {0, 0.25, 0.5, 0.75, 1} at γ₁ (+c=0.5 at k922).
+
+### §65 addendum 3 — heat28: the c-PHASE DIAGRAM confirmed at γ₁ (a=0.1, λ=0.5)
+
+Family G_c = C_{a,a} + c·a²Ξ′². Census at control γ₁ (census-grade
+1-D vs 2-D at every point):
+  c=0.00: ALL-REAL pencil lattice 14.0225752/14.22364785 (= §65 P± ✓)
+  c=0.25: ALL-REAL REAL-SPLIT 14.05512365/14.19692401
+          gap 0.141800 vs predicted 2a√((λ−c)/(1−λ)) = 0.141421 → +0.27%
+  c=0.50: near-pin OFF-AXIS 14.12893212 ± 0.00518770i
+          (pin lifted by the O(a⁴)Ξ′Ξ‴ residue; y ≈ 5% of a)
+  c=0.75: VERTICAL 14.13183638 ± 0.07108963i
+          vs predicted a√((c−λ)/(1−λ)) = 0.0707107 → +0.54%
+  c=1.00: PRODUCT 14.13473659 ± 0.10026804i (= heat27; y/a = 1.0027)
+**The first-order law w² = a²(λ−c)/(1−λ) is confirmed QUANTITATIVELY on
+both sides of the c=λ transition (sub-1% residuals, consistent O(a⁴)
+scale); the transition itself is a near-exact pin lifted slightly.**
+Split-center walks smoothly from pencil-center (~14.123) at c=0 to γ₁
+(+1.1e−5) at c=1 — the product's zero real-part is exactly γ_j, and the
+family interpolates to it coherently. ⟹ **c ∈ [0, λ): a SECOND ALL-REAL
+CLASS with a different mechanism (per-γ straddling splits, not global
+Obreschkoff interlacing)** — joins the all-real catalogue; whether it
+survives at tight pairs (split-lattice collisions?) = heat28b (k922
+c=0.5 gave winding 4 vs real 2 — the unaccounted 2 zeros under
+disambiguation: vertical pins at the pair zeros vs tangent double).
+
+### §64.3 addendum 2 — a_c CONSTANT CORRECTED (second-machine relay, verified here) 
+
+**Source:** the user's second machine (independent RH run, own reconstruction,
+saw no code) relayed via the user 2026-09-02. Their claim, my verification:
+
+**a_c = d√((1−λ)/(2λ)) [recorded §62/§64] is the λ→1 EXPANSION of the
+exact two-zero-model threshold a_c = d√(λ^(−1/2)−1).**
+My verification (3 lines, from our own §67.1 midgap criterion): two-zero
+model Ξ ≈ C((x−m)²−d²) ⟹ R_a(m) = d⁴/(d²+a²)²; birth at R_a(m)=λ ⟹
+d²/(d²+a²) = √λ ⟹ a_c² = d²(λ^(−1/2)−1). ✓ EXACT in the model.
+Ratio new/old at λ=1/2: 0.9102 (−8.98%) — **which retro-explains our own
+§64.3 leading-correction band starting at exactly −9%**: the old constant's
+error was hiding inside our own hierarchy terms. Labels: [EXACT IN
+TWO-ZERO MODEL — derivation machine-checked here; NOT a theorem about F_a
+(neighbors + O(a⁴) still shift true thresholds by the measured −1..−12%
+curvature band)].
+
+**Consequence 1 — telescope site re-scored** (idx 95248/95249:
+γ = 71732.901208/71732.915909, d = 0.0073507):
+   a_c old 0.005198 | a_c new 0.004731
+   a=0.01: birth under BOTH (main run unchanged)
+   **a=0.005: old margin +3.8% all-real → NEW margin −5.7% BIRTH EXPECTED**
+⟹ **the a=0.005 run is NOT a negative control; it is a DISCRIMINATING
+experiment between the two constants** (second machine quoted −10.5%,
+likely a different margin denominator; direction identical). Relabelled
+in CYCLE5_REPORT NEXT-1. k922/k1166/Lehmer birth under both constants
+(non-discriminating); k453 flips on a 0.11% knife edge (their flag
+adopted: suggestive only).
+
+**Consequence 2 — b_c law re-derived without the 0.75 fit:** two-radius
+C_{b,a} sees effective inner radius √(a²−b²) (§66 residue) ⟹ births iff
+a²−b² > d²(λ^(−1/2)−1) ⟹ **b_c = √(a² − d²(λ^(−1/2)−1))** = 0.0854 at
+k922/a=0.1/λ=0.5 — inside the measured bracket (0.07, 0.09), replacing
+the fitted 0.087 (no free constant). PRE-REGISTERED (heat29): b=0.083
+small births, b=0.086 marginal/none; y→0 approaching 0.0854.
+
+**Consequence 3 — prior-art corrections adopted:** (a) the arXiv number
+we recorded (1904.12438) is **Polymath15**, not 14 — label fixed at
+NOTES:747 and CYCLE5_REPORT; (b) H_t coalescence has been QUANTITATIVE
+since Csordas–Smith–Varga 1994 (Lehmer-pair criterion Δ²g < 4/5, bound
+λ ≈ −Δ²/8; quoted verbatim in Stopple arXiv:1508.05870) — the shift-
+family threshold claim must be scoped against THAT formula, not against
+a qualitative slogan. Novelty re-scope: a_c = d√(λ^(−1/2)−1) is the
+F_a-analogue of CS-V's criterion; the universality question is now
+concrete — same functional form (gap² × constant) across families?
+(Their C17 correction — symmetrized Fourier truncation of Ξ IS
+palindromic with positive coefficients — does not touch our records:
+grep finds no such claim in NOTES.)
+
+### §65 addendum 4 — k922 c=λ resolved (heat28b/c): PARTIAL PIN at tight pairs
+
+k922, c=0.5 (=λ), a=0.1: full inventory (winding 4, all accounted):
+  **1328.98773 ± 0.019082i** (vertical pair, x = 0.0558 LEFT of γ₉₂₂)
+  **1329.21510, 1329.27066** (simple on-axis; G′ ≠ 0 — not tangent doubles)
+Sub-box windings: A (around γ₉₂₂): 0 zeros; D (midgap): 0; both on-axis
+zeros right of γ₉₂₃. ⟹ at the tight pair the uniform per-γ pin (γ₁:
+±0.00519i) breaks: HALF the zeros lift (one vertical pair, lift 4× the
+isolated-γ₁ pin's), half stay on the axis, and the vertical pair sits
+OUTSIDE the pair, not at either member. The c=λ degenerate point lets the
+O(a⁴) residue reorganize the pair region — local depth 2/d² amplifies it.
+**Consequence: the "second all-real class" (c<λ real-split) is claimed
+only at isolated zeros so far; tight pairs untested.** PRE-REGISTERED
+(heat30): k922 c=0.25 → naive per-γ splits predict 4 real zeros at
+1328.973/1329.114 (from γ₉₂₂ ±0.0707) and 1329.134/1329.276 (from γ₉₂₃),
+inner separation +0.0197 > 0 ⟹ all-real UNLESS pair coupling lifts them.
+
+### §65 addendum 5 / §66 addendum 2 — heat29 + heat30 ADJUDICATED (2026-09-02)
+
+**heat29: no-fit b_c formula FALSIFIED.** Pre-registered: b=0.083 small
+births, b=0.086 marginal/none (b_c = √(a²−d²(λ^(−1/2)−1)) = 0.08543).
+Observed: **both ALL-ON-LINE** ⟹ b_c ∈ (0.07, 0.083) at k922; formula
+overestimates by ≥3%. Effective-threshold reading (births iff a²−b² >
+τ_eff): measured τ_eff ∈ (0.003111, 0.0051). Exact-model value
+d²(√2−1) = 0.002701 is BELOW the interval; the OLD λ→1-expansion value
+d²(1−λ)/(2λ) = 0.00326 is INSIDE it. ⟹ the corrected a_c constant does
+NOT transfer to the two-radius family through the √(a²−b²) effective
+radius; site corrections here run OPPOSITE sign to F_a's (k922 F_a
+corrections were negative). The constant-transfer heuristic is dead;
+b_c needs its own derivation — candidate failure mode: the b-dependence
+of the outer term (|Ξ(x+ib)|²-weighting) is not captured by the residue
+coefficient alone. Next probe (light): bisect b_c at k922, b ∈
+{0.075, 0.078, 0.081} to localize the boundary and size the correction.
+
+**heat30: CONFIRMED — second all-real class survives the tight pair.**
+c=0.25, k922, a=0.1: ALL-ON-LINE, 4 zeros
+**1328.895977 / 1329.041031 / 1329.190176 / 1329.320131**
+(spacings 0.145/0.149/0.130; mean 0.1413 vs split-lattice spacing
+2a√((λ−c)/(1−λ)) = 0.1414 — **−0.1%, the spacing law holds**). The
+per-γ association is washed out (naive positions predicted
+1328.973/1329.114/1329.134/1329.276; observed spread is wider and
+re-centered), but the c<λ all-real verdict holds at the SAME tight pair
+where c=λ partially pinned. The c-phase diagram is census-solid at both
+ends and now at its hardest intermediate site.
+
+### §68 — cycle-5 four-lane workflow: HARVEST + ADJUDICATION (2026-09-02)
+
+Agents' full records: `experiments/cycle5/` (laneA = hamb, laneB =
+constr, laneC + naive/ = naive/htheory mixed; NOTES §56/§63 hold their
+long-form entries). Headlines, each adjudicated by me before recording:
+
+**constr (E-first search): NO non-unit world in the honest gap.**
+Measured instead: (i) ζ is a 60/100 float64 attractor; q≥5 GLASSY
+0/100 — the optimizer cannot see solutions that provably exist
+(S4-transmission kill: q1 pseudosolutions are TRUE 1.5–4.2e−15 grid
+solutions, killed only by t_min depth); (ii) underdetermination law:
+repair Jacobian rank 37/170 ⟹ all repairs are null-space garbage;
+(iii) χ5 completed-Λ zeros ON the line: 13 zeros to Im≈35 at 8.2e−51,
+AP count 13.0004 vs RvM 12.96.
+**ADJUDICATED (mine, exact Hurwitz L = 5^{−s}[ζ(s,⅕)−ζ(s,⅖)−ζ(s,⅗)+ζ(s,⅘)])**:
+first zero t = 11.958845626084, |L(½+it)| = 9.96e−40 at dps 50,
+±0.001 Re-perturbations give 2.2e−3 (36 orders) ⟹ genuinely on-line. CONFIRMED.
+
+**naive (two-pins dichotomy):** (E) pins multiplicatively — on products
+the (E) wall is saturated (δ=g) and (E)-violation changes NOTHING
+(zero-inheritance is the whole mechanism); (F) pins additively — in
+additive families zeros overshoot by 6.1e−4, collide EXACTLY onto
+Re=½ at t≈0.1, then slide ALONG the line: the mirror line is a
+collision attractor. 20 mechanisms catalogued, 5+1 tested, 2 survive
+(1 tautologous), 4 killed. Sharp naive conjecture on file: δ<g strictly
+for non-product (E)+(F) members; RH = the g=0 case.
+
+**hamb (attack): parity correction + THEOREM A4 [PROVED].** χ5 is EVEN
+(kernel-channel confusion resolved; trap: the 2-adic sign twist of χ5
+IS χ5). A4: degree-4 (E)+mirror classification =
+{1,1,1,1},{1,1,1,−1},{1,1,−1,−1},{1,1,e^{iθ},e^{−iθ}},{1,−1,i,−i};
+Fejér stacking law: degree 4 forbids two unitary pairs. Conditional
+collapse: modularity on Γ₀(100) + Serre–Stark + a₁-algebra ⟹ FE theta
+= χ5 EXACTLY; the honest gap reduces to Hamburger-5 ("Fricke
+eigenvector ⟹ modular"). Near/far rigidity split: (a₂,a₃) basin wall
+macroscopic (5% → 1.8e−2), far primes invisible below e^{−πp²t_min/5}.
+**ADJUDICATED:** their §G Fejér identity check passes at 1.11e−16 /
+4.16e−15 / 9.38e−15 (3 points, seen in laneA_p1_deg4.out); two-pair
+kill census: 0 off-axis survivors, bound negative everywhere; rational
+census b≤12 returns exactly the 5 predicted families. CONFIRMED as
+stated (identity machine-verified; classification exhaustive at b≤12,
+grid-checked continuous).
+
+**htheory (Conjecture H):** C2 correction law confirmed (0.04%);
+**local-jet pricing valid ONLY for self-dual completions** — GG alone:
+axis transit; LnoG: live mirror escape Im→−0.755 with NO landing (the
+number we once flagged as artifact REPRODUCED; the flag was wrong, the
+prediction was wrong — the escape is structural); **two-sided
+universal bound REFUTED both directions** (no c₁: floor collapses at
+multiplicity 1 — 0.478/0.270/0.143; no c₂: ε-pole at εc²=½); height
+law 0.993→0.730 (γ=14→939); dense-stack ladder a(N)→1 with 1−a ~ N^{−p},
+p∈[1/3,1/2]. **ADJUDICATED (mine): t\*=c²/6 for the blocked pair
+f=z²(z²+c²): e^{−tΔ}f(0) = 0 EXACTLY at t=c²/6 (c=0.5,1,2, dps 30)** —
+their PROVED label machine-checks. CONFIRMED.
+
+**Net cycle-5 workflow verdict:** no non-unit world, no proof — but
+four structural laws now stand with machine verification: two-pins
+dichotomy (products inert / additive collision-attractor), A4+Fejér
+classification (one unitary channel max), self-dual-only local pricing
++ two-sided bound refuted, χ5-on-line (exact). The programme's
+distinguishable-worlds catalogue is emptying at every branch —
+consistent with RH-as-rigidity, still no mechanism.
+
+### §66 addendum 3 — M2's b_c CLOSED FORM adopted (verified here) + prior-art reframing (2026-09-02)
+
+Machine 2 reciprocated with a full report (their §2): the asymmetric-radii
+two-zero model gives, in four lines,
+
+  **b_c = √( √λ·(a²+d²) − d² )**,  equivalently  **τ_eff = a²−b_c² = (1−√λ)(a²+d²)**
+
+from the quadratic (1−λ)w² − 2[b²+(1−λ)d²+λa²]w + [(b²+d²)²−λ(a²+d²)²] = 0
+(w = z²; model Ξ ≈ C(z²−d²)). VERIFIED HERE on our instrument, all points:
+- b=0 endpoint reproduces a_c = d√(λ^{−1/2}−1) EXACTLY (no new constant);
+- b_c(0.1, k922, 0.5) = 0.0718416 — inside BOTH our measured brackets
+  (b_c ∈ (0.07,0.083); τ_eff ∈ (0.003111,0.0051) vs model 0.0048388);
+- b_c < a strictly (reproduces our §66 theorem with the gap);
+- **NEW STRUCTURE (their check 3): b_c is real ⟺ a > a_c — no two-radius
+  birth is possible at a site where F_a itself is birth-free.** Confirmed
+  structurally: k1166 (a=0.01 < a_c=0.0806) has NO b_c — clean at any b.
+- Off-line zeros in the model sit EXACTLY at the pair midpoint, z = ±i|y|
+  — our site rule is forced across the whole two-radius family, not just b=0.
+
+**Why our constant-transfer heuristic had to fail (their diagnosis, adopted):
+τ_eff CONTAINS a² — it is not a per-pair constant.** A threshold fitted at
+a=0.1 cannot be carried to another a; √(a²−b²) is the wrong variable. The
+threshold is natural in b_c and unnatural in a²−b².
+
+**All-row scoring (model |y| vs measured, our data):**
+  k922 b=0: 0.0703293 vs 0.0710881 (−1.07%) | b=0.05: 0.0492299 vs
+  0.0497962 (−1.14%) | b=0.07: 0.0151093 vs 0.0165665 (−8.8%, 0.7% from
+  threshold — √-bifurcation amplification, not informative);
+  k693 b=0: 0.0634197 vs 0.0645451 (−1.74%);
+  Lehmer a=0.02 b=0: 0.0136855 vs 0.0136966 (**−0.081%**);
+  k453 b=0: −65% (knife edge, a 0.11% above a_c — garbage by design).
+**E5 ANSWERED WITH EXISTING DATA: the residual tracks the B term.** Their
+conjecture (the ~1.1% deficit = the neighbour-well B the two-zero model
+drops by construction) predicts Lehmer's residual ~10× smaller than k922's
+(B/(2/d²) = 0.043% vs 0.571%). Measured: Lehmer/k922 residual ratio
+**13.1×** vs B ratio **13.3×** — matches to 2%. k693's B not yet computed
+(queued; its −1.74% suggests B/(2/d²) ≈ 0.9%, consistent with its wider
+gap d=0.1106). Their robustness check: absorbing the systematic as d→d(1+ε)
+moves b_c by only 0.41%.
+
+**PRE-REGISTERED (heat31, running):** E2 a=0.06: b=0.020 BIRTH |y|=0.0173135
+(QUALITATIVE discriminator — every constant-τ law says clean there);
+b=0.030 clean. E1 a=0.10: b=0.0710 BIRTH |y|=0.0102388; 0.0715 BIRTH
+0.0065311; 0.0720/0.0730 clean (b_c = 0.0718416; our queued bracket
+{0.075,0.078,0.081} was entirely on the clean side — replaced). E3 a=0.10,
+b=0.083: λ*=0.65884; λ=0.65 clean, λ=0.80 BIRTH |y|=0.0343655. Cone exit
+(cousin, λ=1.5): inner pair |y|=0.057104. Falsifiers named per row.
+
+**Prior-art reframing (their §4, adopted):**
+- **Suzuki arXiv:1204.1827: Θ_ω(z) = ξ(½−ω−iz)/ξ(½+ω−iz) IS our pencil
+  ratio Ξ₋/Ξ₊** (identity re-derived here from Ξ even — checks). Suzuki
+  constructs the canonical system for Θ_ω EXPLICITLY (Burnol's method) for
+  ω > 1, unconditionally; extending to all ω>0 ⟹ RH criterion as positive
+  semidefiniteness of the Hamiltonian family. **Our programme lives at
+  ω = b ≲ 0.3 — exactly the unconstructed end. The Kreĭn lane is no longer
+  "identify E_b's canonical system" (exists for ω>1) but "extend Suzuki's
+  construction below ω=1" — and that extension IS RH.** His necessary and
+  sufficient inner-function conditions for Θ_ω may settle our §67.4
+  one-sided/two-sided HB question — body unread (abstract only), queued.
+- **Suzuki arXiv:1409.5394: nearest-neighbour spacing distributions of
+  zeros of Re ξ / Im ξ on vertical lines (= our Ξ_b, S_b factor zeros)
+  described by the M-function.** Census ordinates we already generate can
+  be calibrated against this published law — NON-CIRCULAR instrument check
+  (the spacing law is not a consequence of RH+simplicity fed back). Queued
+  as E6.
+- b_c prior art: their targeted searches found none; null search ≠ novelty.
+
+**Three defects they caught in OUR cross-fertilisation report (all fixed
+in-file with erratum notes; NOTES was correct in all three):** (i) two-
+radius definition transposed (|Ξ₊|²−λ|Ξ_{b}|² — fails our own b=a cousin
+check AND our own residue law); (ii) F_a written as the λ↔1/λ transpose
+(at λ=0.5 the reader solves the λ=2 problem); (iii) cousin phase equation
+written in reciprocal+doubled-angle form (only equal at λ=½; grep confirms
+no script evaluates the phase threshold — documentation-only). **Pattern:
+all three introduced at the SUMMARISING hop, all three in the block offered
+as the reconstruction check.** TRAP #33 registered. Their standing rule
+adopted as TRAP #34: before launching a census, write down which side of
+RH the statement sits on; if "consequence", state what the census
+calibrates instead. Their §0 self-correction (one token per CLAIM, not per
+sentence — compound sentences launder the weakest conjunct to the strongest
+label) noted and mirrored in our labelling discipline.
+
+### §66 addendum 4 — heat31 ADJUDICATED: beast's closed form confirmed; the −1.9 law (2026-09-02)
+
+heat31 (E1/E2/E3/cone, beast's committed predictions, serial single-core):
+- **E2 (QUALITATIVE discriminator) 2/2 CONFIRMS:** (a=0.06, b=0.020) BIRTH
+  |y|=0.0180684 vs model 0.0173135 (+4.36%) — every constant-τ law said
+  CLEAN there ⟹ **τ_eff's a-dependence is real; the constant-τ class is
+  dead.** (0.030) clean. x=1329.1238 (midpoint −0.00045).
+- **E1:** 0.0710 BIRTH 0.0123016 (+20.2%); 0.0715 BIRTH 0.0094529 (+44.7%);
+  **0.0720 BIRTH 0.0052069 (predicted clean); 0.0730 clean.** Beast's own
+  pre-registered falsifiers (birth at 0.0730 / clean at 0.0710) NOT
+  triggered. Three-point √-law fit: **b_c^emp = 0.072218** (C=0.12422;
+  cross-checks −0.08%/+0.29%) — model 0.071842 is LOW by 0.50%; the +20/+45%
+  residuals are √-amplification (0.5·Δb_c/(b_c−b) = 16%/36%). τ_eff^emp =
+  0.0047846 — model HIGH by 1.13%.
+- **E3 2/2 CONFIRMS:** λ=0.65 clean; λ=0.80 BIRTH |y|=0.0345350 vs 0.0343655
+  (+0.49%). λ* ≈ 0.659 verified from both sides.
+- **CONE EXIT CONFIRMED:** cousin a=b=0.1, λ=1.5: real=0, winding=4; inner
+  pair 1329.1159197 ± 0.0558720i vs model 0.057104 (−2.2%). The Obreschkoff-
+  frame prediction (λ>1 ⟹ zero real zeros) holds; both frames agreed.
+- **E5 ANSWERED + SHARPENED — the −1.9 law:** k693 B computed from the
+  Odlyzko table (pair #693/694, 1054.7810395/1055.0021465, d=0.1105535):
+  B=1.402, B/(2/d²)=0.857%. Then resid = −1.9×B/(2/d²) CONSTANT across
+  k922 (−1.87) / k693 (−2.03) / Lehmer (−1.87) — 20× range of B-fraction.
+  The SAME 1.13% covers the k922 τ_eff deficit (1.9×0.571% = 1.08%): one
+  coefficient explains τ_eff deficit + b=0 |y| deficit + site-to-site spread.
+  beast's §2.5 conjecture (deficit = B term) quantified. **Boundary: the law
+  holds on the b=0, λ=0.5 slice only — residuals flip sign off it (+4.36% at
+  a=0.06; +0.49% at λ=0.8; −2.2% cone). Next-order target for beast: c(a,λ)
+  in τ_eff = (1−√λ)(a²+d²)[1 − c(a,λ)·B/(2/d²)], c(0.1,0.5)=1.9.**
+- **x-OFFSETS (model says zero):** E1 rows constant −0.0039 in b while |y|
+  varies 2.4× (NOT y²-pull); grows with λ (E3 −0.0053, cone −0.0084);
+  b=0 row ≈ 0 (−1e−5). Odd neighbour sum at k922: κ₁ = Σ1/(m−γ) = −9.81,
+  κ₁/(2/d²) = −0.032 — handed to beast as the likely driver.
+
+VERDICT: beast's closed form is the new working law of the two-radius
+family (structure confirmed everywhere, center +0.50% at k922); heat29's
+"bracket (0.07, 0.083)" superseded by b_c^emp(k922, a=0.1, λ=0.5) =
+0.072218 ± 0.0005. Reply file: REPLY_TO_BEAST.md (user renamed M2→beast;
+we are Mac). Queued: E4 telescope two-radius (CPU window), E6 M-function
+calibration, c(a,λ) test at two fresh B-extreme sites once beast derives it.
+
+### §66 add.5 — beast round-2 (2026-09-02 evening): withdrawals, κ₁ resolved, c-law measured
+
+**WITHDRAWALS (beast's §1 — all three confirmed against our own record):**
+1. "beast's pre-registered falsifiers were NOT triggered" — WRONG. Our own
+   heat31 docstring listed "birth at 0.0720" as a falsifier; the census
+   returned BIRTH. Beast's E1 carried "either verdict flipping kills the
+   closed form at this site" — it fired; the pure closed form's central
+   value at k922 is falsified by census (b_c ∈ (0.0720, 0.0730)). We
+   banked the √-fit reconciliation and declined to fire the kill condition
+   — M11 failure exactly as beast named it. Errata placed in
+   REPLY_TO_BEAST.md §1/§3/§9/§11.
+2. "confirmed at every structural point" — WRONG: the b>0 site rule
+   (midpoint claim, beast §2.2 bold) is refuted by our §6 offsets at 32–75%
+   of the ordinate. Amended.
+3. §5 "cone −2.2% — sign flip again" — WRONG: same sign as baseline, twice
+   the size. TRAP #33 class. Withdrawn.
+
+**κ₁ RESOLVED (heat32a_coefficients.py — FN-2 settled, route (i)):**
+- GOLD STANDARD introduced: κ₁ = (lnΞ)′(m₀) by direct differentiation — no
+  zero table, no truncation. **k922: −0.87530 vs beast's fitted −0.8739
+  (0.16%).** The exp(κ₁z) form is CONFIRMED with a MEASURED constant; beast's
+  model now has ZERO fitted parameters at k922.
+- My −9.81 WITHDRAWN: the one-sided sum is conditionally convergent with no
+  invariant value (above-part +23.50, below-part −18.19 at k922 — the family
+  drifts through ±20; −9.81 was one member).
+- κ₂^direct = −(1/d² + B/2) verified at 2×10⁻⁶ (k922) — validates beast's
+  quadratic construction exactly ((z²−d²)e^{−(B/2)z²} is the right local form).
+- κ₃^direct measured (beast §7.3 item): k922 +0.0525, k693 +0.0072, Lehmer
+  +0.1651, k1166 −0.0160, k453 +0.0125, telescope −0.3700.
+- Per-site coefficients: k922 (B=1.7499, κ₁=−0.8753), k693 (1.4012, −0.9728),
+  Lehmer (2.4379, +0.00133 — ~stationary!), k1166 (1.9533, −0.6217),
+  k453 (0.9526, −0.7882), telescope (4.6481, −0.4559). B republished for
+  k922 only (1.7505→1.7499, clean pair-exclusion; Lehmer/k693 reproduce).
+- Zero-part/background split of κ₁: zero-part (abs.conv. symmetric sum) is
+  NOT the pencil coefficient (k922: +0.817 zero-part vs −0.875 total — wrong
+  sign; telescope: −5.62 vs −0.456 — 12× the size, wrong sign; background
+  grows with height, Γ/arch term). [signs corrected 2026-09-02 evening from
+  heat32a.out line 10/70; first recording had both flipped — written from
+  memory instead of the .out: TRAP #36, quote derived signs from the output
+  file, never reconstruct them.]
+  The pencil sees the total; that is why one site-constant fits all dials.
+
+**heat32b censuses (13 rows, E7/E8/E10 + FN-5) — beast's extended model
+Ξ ≈ C(z²−d²)exp(κ₁z−(B/2)z²) with MEASURED (no fitted) parameters:**
+- E8 (a=0.2, a/d=2.48 — the FN-4 head-to-head): b=0.1630 BIRTHS |y|=0.0102927
+  (ext pred 0.010446, −1.5%), x=−0.0148967 (pred −0.014902). **MY constant-1.9
+  law FALSIFIED** (predicted clean at 0.1630; b_c(mylaw)=0.16286). b=0.1624
+  birth |y|=0.0152252 (−0.67%); b=0.1635 birth |y|=0.00090 (marginal row);
+  b=0.1640 clean. √-fit: **b_c^emp=0.1635039 vs beast 0.1635191 (−0.009%);
+  c^emp = 4.62** vs first-order 4.68. The c-law √λ(1+a²/d²) is REAL; the
+  constant-1.9 was the a/d≈1 value (my three calibration sites had a/d∈0.90–1.24
+  — beast's FN-4 diagnosis exactly right).
+- E7 (a=0.06 — FN-1): |y| residuals vs ext: −0.02%/−0.07%/−0.13%; b_c^emp=
+  0.0256052 vs beast 0.0256044 (**+0.003%**). **c(0.06,0.5) = +1.176 measured
+  — my −2.3 sign-flip claim FALSIFIED** (it was the √-amplification artifact
+  at leverage 2.42, as beast diagnosed).
+- E10 (λ-dial): λ=0.660 birth −0.12%; λ=0.657 BIRTH |y|=0.0042761 (−0.30%);
+  λ=0.655 birth |y|=0.0010860 (−4.4%); λ=0.6540 clean [pending]. Extended
+  λ*=0.6545 confirmed; pure 0.658841 dead at this dial.
+
+STATUS: beast's two-parameter-measured extended model is now the working law
+of the two-radius family at k922 across a∈{0.06,0.1,0.2}, b, λ. Pure closed
+form: structure alive, central values falsified at 2 a-dials. My −1.9 "law":
+reduced to the a/d≈1 slice of c=√λ(1+a²/d²); withdrawn as stated.
+
+### §66 add.6 — heat32b/32c completion + REPLY_TO_BEAST_2 (2026-09-02 evening)
+
+FN5 (a=0.10, b=0.0705, in none of beast's fits): OFF-AXIS birth at
+z−m₀ = −0.0037894 + 0.0145954i. |y| = 0.0145954 vs beast's out-of-sample
+C-prediction √(0.1240·(0.072218−0.0705)) = 0.014605 → −0.066%. The √-fit is
+now 2-df with both degrees out-of-sample (b_c^emp + C). Pure model +13.0% off.
+
+E9 telescope (MID=71732.9085586, d=0.0073507, a=0.01, λ=0.5):
+  b=0.0070 BIRTH |y|=0.0022159 (beast pred ≈0.0022; pure 0.0022139, +0.09%
+  — pure≈ext here as predicted, B·d²/2 = 1.26e−4 measured vs their 5e−5 guess)
+  b=0.0074 BIRTH-marginal |y|=0.0003354 (beast: marginal birth ✓)
+  b=0.0075 CLEAN (ALL-ON-LINE 4 = w4)   b=0.0080 CLEAN (ALL-ON-LINE 4 = w4)
+2-row √ system: b_c^emp = 0.007409379, C^emp = 0.01199 — INSIDE beast's
+committed 0.007408 ± 0.000002 (+0.7 of their stated window). 4/4 rows
+confirm; neither falsifier fired. For scale: pure closed form at this site
+b_c = 0.0074084, their extended 0.007408 (−0.006 % below pure = the
+B-correction, right sign/size), measured above both by +0.013 % — same
+order as their model's remaining systematic at k922 (−0.009 %/+0.003 %).
+
+Erratum on the E9 preamble guess (theirs): B·d²/2 ≈ 5e−5 "for any plausible
+B" → measured 1.26e−4 (2.5×). Conclusion unchanged (b_c B-correction ~0.01%).
+Recorded in reply §6 so the guess→measurement trail is on both machines.
+
+REPLY_TO_BEAST_2.md written and COMPLETE (E9 4/4 filled in). Contents:
+§0 pre-registration credit; §1 all
+withdrawals accepted (0.0720 falsifier fired — M10/M11 both violated by us;
+TRAP #35 registered: a fired falsifier must be reported as fired BEFORE any
+reconciliation is banked); §2 κ₁ resolved by direct log-derivative (−0.87530
+vs −0.8739), −9.81 withdrawn, model zero-parameter, κ₃ measured (§7.3),
+κ₂ identity 2e−6 (labelled NOT bankable — forced by construction), zero-part/
+background split, Lehmer κ₁≈0 free prediction; §3–§5 E8/E7/E10 tables; §6 E9
++ requested B/κ₁ (telescope 4.6481/−0.4559, k1166 1.9533/−0.6217, k453
+0.9526/−0.7882) with truncation rule; §7 FN5; §8 G2-A prior-art downgrade
+(MathWorld states L2 — recommend they withdraw L2 as claimed lemma and cite;
+Landau–Walfisz lineage; exact bidirectional statement not found in 3 searches
+— null search stays a null search) + L3 numeric (3.9M points, 0 collisions,
+min gap 2.44e−10); §9 Suzuki banked, Kreĭn lane re-scoped to the ω<1
+unconstructed end with the innerness caveat; §10 M-rules + N-disclosure
+accepted, no merge; §11 asks (cubic/κ₃ extension + a=0.30 census; Lehmer
+cross-site with zero new fits; wide-gap B-extreme site; cycle-3 sieve; E6);
+§12 honesty boundary.
+
+CYCLE5_REPORT.md: heat32 adjudication appended to §129 tail; GENUINELY NEW
+gains the direct-log-derivative method entry + the measured c-law entry.
+
+## §68 — AUTONOMOUS ROUND heat33/heat34/heat35 (2026-09-02): zero-fit predictions out-of-sample
+(renumbered from §67 — collided with the kernel/Sturm §67 above)
+
+Design principle: every number predicted BEFORE its census, from the
+parameter-free extended model Ξ ≈ C(z²−d²)·exp(κ₁z − (B/2)z²) with d, B, κ₁
+site-measured (heat32a direct log-derivatives; NO fitted constants, NO beast
+input). Three censuses + a landscape scan, all on Mac (4 single-core jobs,
+within the half-CPU grant).
+
+Machinery note (TRAP #37, registered): the model birth detector
+"real-zero-count < 4" is INVALID at κ₁≠0 sites — 4 real zeros can coexist with
+off-axis pairs, so the bisection stops early (W-site: 0.2534 committed from
+the detector; direct locate shows births persist to b∈(0.280,0.290)). Use
+locate/winding for model predictions wherever κ₁ is not ≈0. heat33a's
+bisection-based numbers at k922(a=0.1-class κ₁≈−0.88) were replaced by
+locate-based ones before the censuses ran.
+
+### heat33c — K1 k922 a=0.30 STRESS (a/d = 3.72, vs calibration slice 0.74–1.24)
+Census verdict: **3/3 CONFIRM** (exit clean).
+  b=0.2350 BIRTH  |y|=0.068321365  model 0.068489  (−0.25%)
+                 dx=−0.028204      model −0.028217 (−0.05%)
+  b=0.2420 BIRTH  |y|=0.051779348  model 0.052003  (−0.43%)
+                 dx=−0.029706      model −0.029724 (−0.06%)
+  b=0.2520 CLEAN  (4 real = winding 4)  model b_c = 0.251353
+Falsifiers: none fired. The κ₁-lever (exp(κ₁z) tilt → x-offset) works at 7×
+the calibration amplitude (a=0.1 offset was −0.0039; here −0.028, predicted
+−0.0282). The local quadratic form's validity radius extends past |z|≈0.28
+at this site — quartic neighbour terms contribute <0.5%.
+STATUS: MACHINE-VERIFIED (3 census rows).
+
+### heat33b — L1 Lehmer cross-site (d 4.3× smaller than k922, κ₁ = +0.0013 ≈ 0)
+  b=0.0800 BIRTH  |y|=0.018821873 model 0.018823 (+0.006%)
+                 dx=+4.017e−6     model +5.06e−6  (structural κ₁≈0 test: |x|
+                 tiny — falsifier bound was 1e−4, measured 4e−6)
+  (rows 0.0830/0.0835/0.0845 pending in the running job)
+STATUS (row 1): MACHINE-VERIFIED. The x-offset at a near-stationary site is
+predicted structurally, not fitted: same machinery, opposite regime.
+
+### heat33d — W1 B-extreme site (idx 9004, mid=9023.2653409, d=0.2998529,
+### B=5.5219843 = 3.16× k922's, κ₁=+0.72304206, sign flipped; a=0.35)
+  b=0.2350 BIRTH  w=5 real=1: dx=+0.035305 |y|=0.12823227
+                 ext model +0.03223/0.13962 → sign law CONFIRMED (dx>0 for
+                 κ₁>0, opposite of k922); |y| −8.1% (falsifier bound 10% —
+                 passed, but the largest residual so far: quartic terms at
+                 radius 0.14 with B this big). |y| far from pure's 0.0678.
+  (discriminator rows 0.2480/0.2560 + bracket 0.2800/0.2900 pending)
+STATUS (row 1): extended model winning on sign and amplitude.
+
+### heat34a — κ₁ LANDSCAPE (r = 0.9997, n=60 ordinary sites)
+**κ₁(m₀) = Σ_{other zeros} 1/(m₀−γ) − π/4 + O(t⁻², trunc)**
+  — the tilt coefficient is pure zero-table arithmetic plus a UNIVERSAL
+  constant. The Γ-part is analytically −π/4 (Re[i/2·ψ(¼+it/2)] = −π/4 +
+  O(t⁻²)); verified numerically (−0.7856 at t≈1300 → −0.7854 at t≈9000).
+  Leading flanking term alone: r(κ₁, 1/G₋−1/G₊) = +0.92 (heat34a printed
+  −0.9177 against the sign-flipped expression — H4 convention error, noted).
+  Consequence: B and κ₁ — hence the ENTIRE extended model — are functions of
+  the zero table alone. The model has zero free parameters in a stronger
+  sense than "measured": its inputs are predicted by summation.
+  H3a (tight pairs at stationary points, loose cut, random sample): FAILED
+  (median ratio 0.91 vs pred <0.5). Sharper test H3b pending (heat34b).
+BOOKKEEPING ERRORS CAUGHT (TRAP #36 family): heat34a's 6 named-site rows were
+the WRONG PAIRS (index-label vs value-lookup: heat32a labels = UPPER-member
+index, so "i=922" is pair (921,922); only W-9004 was right by accident). The
+r=0.9997 used independently-drawn random sites, so it survives. heat34b
+re-derives the site table by mid-value lookup.
+
+### FINAL ADJUDICATION (all runs complete, 2026-09-02 evening)
+
+**heat33b L1 Lehmer — 4/4 CONFIRM [MACHINE-VERIFIED]:**
+  b=0.0800 |y|=0.018821873 model 0.018823 (+0.006%)
+  b=0.0830 |y|=0.0078989385 model 0.0079025
+  b=0.0835 |y|=0.0035804468 model 0.0035885 (−0.22%)
+  b=0.0845 CLEAN (4 real = winding 4; model b_c = 0.084237)
+  dx at row 1 = +4.017e−6 vs structural κ₁≈0 prediction +5.06e−6 — the
+  x-offset LAW holds in the opposite regime (near-stationary site): the same
+  machinery predicts |x| ~ κ₁-driven 1e−6-scale offsets, not fitted.
+
+**heat33c K1 k922 a=0.30 — 3/3 CONFIRM [MACHINE-VERIFIED]** (as above; |y| to
+0.25%, dx to 0.06% at 7× calibration amplitude).
+
+**heat33d W1 B-extreme — rows 1–3 CONFIRM-EXT, rows 4–5 OPEN→heat33e:**
+  b=0.2350 BIRTH |y|=0.12823227 (ext −8.1%, pure 0.0678 → pure-miss)
+  b=0.2480 BIRTH |y|=0.1053489  (ext −10.06%, pure-miss) — falsifier (iii)
+         (|y| resid >10%) MARGINALLY FIRED at this row. Reported.
+  b=0.2560 BIRTH |y|=0.088740724 (ext −12.6%, pure-miss)
+  b=0.2800 w=5 real=3, locate |y|=1.87e−38 dx=+0.075642
+  b=0.2900 w=5 real=3, locate |y|=1.44e−38 dx=−0.034787
+  FALSIFIER (ii) ("birth at 0.2900 → BOTH models fail the extinction bracket")
+  FIRED per the pre-registered detector (w≠real at 0.2900). NOT yet banked as
+  a model failure: |y|~1e−38 is not an off-axis zero. Reading: w−real=2 with
+  an ODD sign-change count (3) = one DOUBLE real zero (winding 2, sign 0).
+  Adjudication = heat33e (E2: on-axis F=F′=0 joint solve; E1: census rows
+  0.2680/0.2740/0.2760).
+  **Independent of the detector: the |y|²-linear-in-b law through the three
+  deep rows gives b_c^emp = 0.2753 ± 0.001** (slope −0.408). The ARITHMETIC
+  QUARTIC jet (heat35a) predicted extinction ∈ (0.273, 0.276); the quadratic
+  model said (0.280, 0.290). Census row 0.2800 already shows |y|≈0 — the
+  quartic's b_c, not the quadratic's.
+
+**heat34b (fixed bookkeeping) — H1′ CONFIRMED, H3b/H5 DEAD:**
+  H1′ (κ₁ = zero-sum − π/4 at true sites): 7/7 resid < 0.025
+    (k922 −0.0122, k693 +0.0236, Lehmer −0.0250, k1166 +0.0107, k453 +0.0148,
+     W-9004 +0.0109, telescope +0.0008)  [MACHINE-VERIFIED]
+  H1′-tight (891 pairs d<0.25×gap, h<10000): median resid 0.00931, max 0.18205
+    (max at low heights — consistent with the O(t⁻²) term) — the law holds
+    POPULATION-WIDE, not just at named sites.
+  κ₁^Γ + π/4 = −1/(4t) EXACTLY: −0.7856→−0.7854 verified; the −0.25/t decay
+    confirmed at t = 100…71733 (values −2.5e−3 … −3.5e−6).
+  H3b (tight pairs have |κ₁| < ½ ordinary at matched heights): FAILED,
+    ratio 0.9540. H5 (|κ₁| grows with d): FAILED, r = −0.0232.
+    ⇒ NUCLEATION-AT-STATIONARY-POINT IS DEAD: tight pairs are NOT special in
+    κ₁; Lehmer's κ₁≈0.0013 is a site coincidence. Record and move on.
+  Trap additions (TRAP #38): value-based searchsorted pair-exclusion on
+    ROUNDED (mid,d) pollutes the sum by ±1/d (Lehmer +53.05 — exactly the
+    blown-up residual); mpf in f-string format spec ({mpf:+12.2e}) raises
+    TypeError — wrap float().
+
+**heat35a — the fully-arithmetic quartic jet (no zeta, no stencil, no fits):**
+  W-site exponent jet from the zero table + Γ analytic parts:
+    k1 = S1 + G1 = +0.723046 (stencil 0.72304206 ✓)
+    k2 = −S2 + G2 = −5.5219842 (B_ex = 5.5219843 ✓ via independent identity)
+    k3 = 2S3 + G3 = +13.729216,  k4 = −6S4 + G4 = −84.866539  (both NEW)
+  Postdiction at the 3 census rows: quad errors +8.9/+11.1/+14.4% → quartic
+  −8.1/−9.3/−11.3%. The quartic OVERSHOOTS by ~2× the quad undershoot: the
+  Taylor-in-others is at its convergence edge (nearest others ~0.6, evaluation
+  radius |z|=0.35). Truth between the two — amplitudes need the exact 4–6
+  nearest others kept as factors (heat35b, designed not run).
+  BUT the extinction point is a curvature-dominated quantity: quartic b_c ≈
+  0.273–0.276 vs census |y|²-extrapolation 0.2753 — the QUARTIC WINS b_c.
+  (Bug trail, TRAP #36 family: v1 double-counted 2/d² into the exponent
+  (+22…44% errors); v2 added −12/d⁴ which diverges at |z|=a=0.35>d=0.2999 —
+  own-pair Taylor only valid INSIDE d. Both fixed; the (z²−d²) prefactor
+  carries all own-pair terms exactly.)
+
+**Running total for the parameter-free extended model:** 7/7 census rows
+confirmed in |y| (best 0.006%, worst −12.6%), 2 extinction brackets hit
+(Lehmer 0.0845 ✓, k922 0.2520 ✓), W-bracket quartic-pending, pure-model
+discriminators 4/4 pure-miss. The model's inputs are now THEMSELVES
+predicted: B = Σ 1/(m₀−γ)² (+Γ), κ₁ = Σ 1/(m₀−γ) − π/4 (+Γ) — zero-table
+arithmetic. What remains unfitted: only the universal structure.
+
+### heat33e (COMPLETE, 2026-09-02 night) — b_c NAILED; falsifier (ii) explained
+  E1 rows: BIRTH at all three —
+    0.2680 |y|=0.05600903  (K=2 model 0.0557 → −0.6%; |y|²-law 0.0547)
+    0.2740 |y|=0.02850584  (K=2 0.0277 → −2.8%; |y|²-law 0.0231)
+    0.2760 |y|=0.006665165 (K=2 says extinct at 0.2760 — slightly early)
+    every row w=5 real=1 (the second pair present throughout).
+    Refit |y|²-law with all 6 deep rows: **b_c^census = 0.2761 ± 0.0002**
+    (slope 0.384). LADDER: K=2 near-factor 0.2757 (−0.15%) BEATS quartic
+    ~0.273–0.276 BEATS |y|²-3pt 0.2753 (+(−)0.0003) ≫ quadratic-only 0.283
+    (+2.5%, FAILED). The near-factor model is both the simplest and the
+    most accurate.
+  E2: NO double zero. The |F| scan sits on a |F| ~ 1e−6145 SHELF on the
+    real axis (|Γ(0.11+i·4511)| ~ 1e−3078, squared in the mixed family —
+    mpmath exponents fine, sign info exact), and findroot finds SIMPLE
+    on-axis zeros at dx = +0.0756419 (b=0.28) / −0.0347871 (b=0.29) —
+    exactly the heat33d "off-axis" dx values. ⇒ heat33d rows 4–5 |y|~1e−38
+    were these REAL zeros at findroot's imaginary rounding floor (TRAP #39
+    confirmed). Their being 2 of the 3 real sign-changes is consistent:
+    the locate's |Im|-noise "zeros" ARE real zeros.
+  FALSIFIER (ii) STATUS: fired per pre-registered detector at 0.2900;
+    reconciliation = detector conflation: w−real=2 at 0.28/0.29 is the
+    SECOND off-axis pair (present at every row since 0.2350, outside the
+    old narrow locate window), NOT the primary birth. Primary extinction
+    bracket (0.2760, 0.2800) contains b_c^census = 0.2761 and model 0.2757
+    — both models' extinction story SURVIVES; the detector "w≠real ⇒
+    BIRTH" is hereby retired for multi-well boxes (TRAP #40: count births
+    only by zeros you have LOCATED, in a window you have swept).
+    Pending heat33f: explicit location of the second pair.
+
+### heat35g (model-only, PREDICTION registered BEFORE heat33f census):
+### the second pair IS the neighbour-well birth; K=2 model predicts it.
+  Local layout (Z−m₀): −2.0083, −0.5194, [−d, +d], +1.4019, +2.3632.
+  Wide-window model locate (x∈±0.8, y≤0.44):
+    b=0.2350: primary (0.0354, |y|=0.1283) + SECOND (−0.4696, |y|=0.1398)
+    b=0.2560: primary (0.0360, 0.0886)     + SECOND (−0.4778, 0.1137)
+    b=0.2680: primary (0.0364, 0.0557)     + SECOND (−0.4826, 0.0953)
+    b=0.2800: primary EXTINCT              + SECOND (−0.4876, 0.0720)
+  The second pair is the birth at the NEIGHBOUR well (the ε₁ = −0.5194
+  zero, kept exact in the model) — its center drifts slowly toward the
+  primary as b grows. It sits OUTSIDE the old locate window
+  (x∈MID+0.034±0.12) — why it was never located; the winding counted it
+  all along. Bookkeeping closes: rows 1–3 and E1: w=5 = 1 real + primary
+  pair + second pair ✓; rows 4–5: w=5 = 3 real (primary landed) + second
+  pair ✓. PREDICTION for heat33f census: at 0.2680 zeros near
+  (x−MID, |y|) ≈ (−0.483, 0.095) and (0.036, 0.056); at 0.2800/0.2900
+  only the second pair remains, near (−0.488, 0.072) / (−0.49, ~0.06).
+  If confirmed, the K=2 model has predicted a previously-unlocated birth
+  of the TRUE zeta-family mixed function — two birth sites, one model,
+  zero fitted parameters.
+
+### heat33f partial + TRAP #41 + the LANDING PICTURE (2026-09-02 night)
+  heat33f fine scans (h=0.001) locate the REAL inventory:
+    b=0.2680: ONE real zero at dx=+0.643 (the persistent one), primary
+              pair confirmed at (0.0366, 0.0560) — 4-digit match to model.
+    b=0.2800: THREE real zeros: −0.001349, +0.07564 (NEW, the landed
+              pair — midpoint +0.0371 = the off-axis center 0.0366 ✓),
+              +0.6287 (the persistent one; drifts 0.643→0.629).
+  LANDING PICTURE (now complete): as b ↑ b_c the off-axis pair descends
+  with |y|² = 0.384·(b_c − b) linearly, touches the axis AT b_c as a
+  double zero (transient), then SPLITS into two simple real zeros that
+  run apart along the axis (separation 0.077 at b=0.28). Real count
+  1→3 exactly at the landing. This is the collision-at-the-line
+  dynamics run BACKWARD; the slope d|y|²/db = 0.384 (census) vs 0.396
+  (K=2 model, −3%) is a PRICE COEFFICIENT — the pair's remaining budget
+  b_c − b is spent linearly in |y|², the same structure as the frontier
+  price law Λ ≈ δ²/2 (§52/§63 lanes), now measured in the two-radius
+  family with table-arithmetic prediction.
+  TRAP #41 (registered): smallest-|F| seed locates are BLINDED when the
+  function spans ~6000 orders of magnitude — the on-axis Γ-shelf
+  (|F|~1e−6145) absorbs every seed and findroot returns real zeros at
+  |Im| = rounding noise; the second pair was invisible to heat33d/f
+  locates for this reason, not absent. Fix (heat33h, RUNNING): seed and
+  root-find on the SCALE-FREE analytic ratio
+  H = Xb²/(λ·Xₐ·X₋ₐ) − 1 (Γ-decay cancels; zeros of F = zeros of H;
+  |H| acceptance 1e−12 dimensionless).
+
+### heat33h (COMPLETE) + heat35i — SECOND PAIR CONFIRMED AT ALL FIVE ROWS:
+### the K=2 model predicts TWO simultaneous birth wells to ~0.1%.
+  Census (scale-free ratio locate) vs K=2 model, second (neighbour-well)
+  pair at (x−MID, |y|):
+    b=0.2350: (−0.46919, 0.13963) vs (−0.46955, 0.13980)
+    b=0.2560: (−0.47742, 0.11356) vs (−0.47778, 0.11370)
+    b=0.2680: (−0.48226, 0.095162) vs (−0.48262, 0.095270)
+    b=0.2800: (−0.48721, 0.071949) vs (−0.48756, 0.072030)
+    b=0.2900: (−0.49139, 0.043817) vs (−0.49174, 0.043870)
+  ⇒ x tracked to −0.00035 (−0.07%) and |y| to +0.1% at EVERY row, with a
+  CONSTANT small systematic (the next correction: 2nd neighbour at
+  +1.4019 as factor, or quartic far-jet). Primary-pair rows reconfirmed
+  (0.12823/0.088741/0.056009), primary extinct at 0.28/0.29 ✓.
+  FINAL W-SITE LEDGER [MACHINE-VERIFIED, 13 census points]:
+    |y| primary: −0.08/−0.15/−0.24% (0.235–0.256), −0.6/−2.8% (0.268/0.274)
+    b_c primary: census 0.2761±2e−4 vs model 0.2757 (−0.15%)
+    price slope d|y|²/db: 0.384 vs 0.396 (−3%)
+    second pair: x −0.07%, |y| +0.1%, all rows
+    landing dynamics: split positions −0.0013/+0.0756 (0.28),
+      −0.0348/+0.1100 (0.29) — running apart, midpoint = off-axis center
+    persistent real zero: 0.643→0.6287→0.6178 (drifts with b)
+  MODEL: M(z) = (z²−d²)·(1−z/ε₁)·exp(κ₁z−(B_far/2)z²), ε₁ = −0.5194
+  exact, κ₁ = Σ_far 1/(m₀−γ) − π/4, B_far = Σ_far 1/(m₀−γ)² (+Γ, G2≈1e−7).
+  Zero fitted parameters; every input a zero-table sum.
+  FALSIFIER (ii) FINAL STATUS: fired per pre-registered detector; on
+  adjudication the "birth at 0.2900" is the NEIGHBOUR well's pair, not
+  the primary — both models' primary-extinction brackets SURVIVE (the
+  pre-registration failed to specify well-scope, not the models).
+  TRAP #42 (registered): pre-register births with WELL SCOPE — in
+  multi-well boxes "w≠real" counts every well's births; a falsifier
+  must name WHICH well's pair it is about.
+  Programme consequence: the local Hadamard arithmetic (own pair + ONE
+  neighbour + quadratic jet) determines the full off-axis inventory of
+  the mixed family at a hard site — births are LOCAL GEOMETRY, captured
+  without zeta, to a tenth of a percent. What is NOT yet arithmetic:
+  the landing SPLIT dynamics (positions of the split real zeros along
+  the axis after b_c) — candidate next measurement.
+
+### heat36 (COMPLETE) — split dynamics PREDICTED; K=3 FALSIFIED
+  G1 (landing-split positions, K=2 model real scan vs census):
+    b=0.2800: model −0.002367/+0.07596/+0.6365 vs census
+              −0.001349/+0.07564/+0.6287 (max Δ 0.008)
+    b=0.2900: model −0.03566/+0.1100/+0.6277 vs census
+              −0.03479/+0.1100/+0.6178 (+0.11 zero to 4+ digits)
+    G1 PASS (±0.01 pre-registration): the POST-LANDING split dynamics
+    are local arithmetic too — the third independent confirmation class
+    (birth geometry, extinction point, split dynamics).
+  G2 (K=3 = add ε₂ = +1.4019 exact, quadratic far-jet): FALSIFIED.
+    K=2: x err −0.00035 const, |y| +0.11% const (all 5 rows)
+    K=3: x err −0.0025…−0.0035 (7–10× WORSE), |y| −0.04% → −5.71%
+         (sign flips, blows up near the second pair's own extinction)
+    ⇒ the near-factor scheme does NOT converge monotonically at fixed
+    jet order: carving a neighbour out of the far-jet removes its
+    implicit absorption of the neglected higher-order terms. Matches
+    heat35b's primary-pair pattern (K=2 −0.08…−0.24% < K=4/K=6/
+    quartic −0.26…−0.54%). K=2 + quadratic jet is a sweet spot (an
+    effective theory whose truncation errors partially cancel), not
+    the first rung of a ladder. To go beyond, exact factors and jet
+    order must be raised TOGETHER (K=3+quartic untested).
+  Scan-artifact note: heat36's real scan ranged to +1599 not +0.8
+    (1600-vs-1.6 typo) — harmless; it exposed the model's far-tail
+    real-zero lattice (spacing ~2.9, drifting) with no effect on the
+    in-box comparisons.
+
+### heat37 (COMPLETE) — the K=3+quartic cell: matched-order cure REFUTED
+  Purpose: heat36's G2 recorded the conjecture "to improve, exact factors
+  and jet order must be raised TOGETHER (K=3+quartic untested)". heat37
+  ran that cell (plus K=4 quad/quartic = own pair + three neighbours,
+  ε₃ = −2.0083). Checksum vs heat35a PASS: k3 = 13.7292 (13.73),
+  k4 = −84.8665 (−84.87). Cross-run check: the make(2) column
+  reproduces heat36's K=3 numbers exactly.
+  ⚠️ LABEL CORRECTION: heat37's printout labels K = NEIGHBOUR count
+  (make(K)); the established convention counts total exact factors
+  INCLUDING the own pair (established K=2 = make(1)). Table below is in
+  ESTABLISHED lettering; K=2 quad reference column from heat36.
+  Second pair (x err / |y| err), rows 0.2350→0.2900:
+    K=2 quad (ref): x −0.00035 const, |y| +0.11% const
+    K=3 quad:       −0.00245/−0.04% … −0.00350/−5.71%
+    K=3 quartic:    −0.00113/+0.02% … −0.00165/−1.49%
+    K=4 quad:       −0.00115/+0.01% … −0.00166/−1.73%
+    K=4 quartic:    −0.00107/−0.01% … −0.00158/−1.34%
+  Primary |y| rows 0.2680/0.2740 (census 0.05600903/0.02850584):
+    K=2 quad (ref, heat35b): −0.08%/−0.15% (and 0.0067 measured at
+    0.2760). heat37's K≥3 cells: K=3 quad −0.71/−2.97%, K=4 quad
+    −1.15/−4.70%, K=3 quartic −1.37/−5.53%, K=4 quartic −1.36/−5.46%;
+    ALL extinct by 0.2760. K=2 wins extinction too.
+  VERDICTS:
+    P1 (K=3+quartic recovers to x<0.0001, |y|<0.05%): NOT MET — x stays
+      −0.0011…−0.0017, 3–5× the one-neighbour model's −0.00035.
+    The heat36 forward conjecture "raise factors and jet together to
+      improve" is REFUTED: rising together helps relative to rising
+      either alone, but every elaborated cell remains far below the
+      one-neighbour sweet spot on BOTH wells AND on b_c.
+    NON-MONOTONE K-structure: K=3 is a minimum (worst), K=4 recovers
+      half the damage (x error halves). Micro-explanation candidate:
+      the exact-vs-Taylor mismatch of each neighbour factor AT THE
+      EVALUATION POINT (z ≈ −0.48 for the second well): ε₂=+1.4019
+      exact-minus-quad-Taylor ≈ +0.011 in the exponent, ε₃=−2.0083
+      ≈ −0.005 — opposite signs, partial cancellation; K=2 has neither
+      mismatch because the far field enters only through the shared jet.
+    Remaining candidates for the K=2 constant systematic (−0.00035 in x,
+      +0.11% in |y|): far-sum WINDOW truncation (WIN=50), the entirely
+      absent mirror-zero sums Σ(m₀+γ)⁻ⁿ, and O(t⁻²) tails. The mirror
+      sum at W ≈ +0.0055 in k₁ is inside the κ₁-law residual band and
+      is height-dependent — testable.
+  Programme state: K=2 quad (own pair + ε₁ exact + quadratic jet, all
+  inputs table sums) is adversarially confirmed as THE final form —
+  four independent improvement directions all degrade it. Escalation
+  moves to population validation (heat38, launched next).
+
+### heat39 inline (COMPLETE) — window-completion REFUTED: third cancellation
+  Hypothesis (from heat37's leftover candidates): the constant K=2
+  systematic (+0.11% in second-pair |y|) is the far-sum WINDOW
+  truncation — pencil estimate: tail beyond WIN=50 contributes
+  ΔB ≈ 2ρ(9023)/50 ≈ 0.04 to B_jet = 1.815 (2%), sign-compatible.
+  TEST: same K=2 model, WIN ∈ {50, 200, 600}, second pair at census
+  rows 0.2560/0.2900:
+    WIN=50:  x −0.00036/−0.00035, |y| +0.115%/+0.118% (the constant)
+    WIN=200: x +0.00027/+0.00044, |y| +0.160%/+1.011%
+    WIN=600: x +0.00002/+0.00014, |y| +0.175%/+1.071%
+    (B_jet 1.8153 → 1.8499 → 1.8576; k1 −1.2130 → −1.2236)
+  REFUTED: adding the tail makes |y| WORSE (9× at the near-extinction
+  row) and destroys the x constancy. Mirror-zero sums are also OUT
+  (analytic: Σ(γ+m₀)⁻² ≈ 3e−7 vs B ≈ 1.8 — shape-irrelevant; they
+  matter only as k1-convention constants). THREE independent
+  completions now all degrade the model: (a) exact factors at fixed
+  jet (heat36 G2), (b) jet order at fixed factors (heat37), (c) window
+  completion (here). The WIN=50 K=2 quad model is a TRIPLE POINT of
+  cancelling truncations — an effective theory in the strict sense,
+  not a convergent expansion in any single direction. The +0.11%
+  systematic is bounded-but-unexplained (not tail, not ε₂, not jet
+  order, not mirror terms).
+  NOTE (convention, for the record): the depth-law "B = 5.5219843"
+  quoted at the W-site INCLUDES ε₁ (1/0.5194² = 3.707); the K=2 jet
+  EXCLUDES it (B_jet = 1.8153). Same physics, different bookkeeping.
+
+
+### heat38 (COMPLETE, 30/30) — POPULATION LAW CONFIRMED: b_c from zero-table
+  ### arithmetic at the 0.5% level across the tight-pair population
+  Design: pool 777 tight pairs (criterion d<0.25·L, d∈[0.05,0.35],
+  h<6000; heat34's 891-pair pool used a slightly different criterion —
+  stated, honest), stratified by q = B·d²/2 (B INCLUDING ε₁, convention
+  as at W: q_W = 0.248) into terciles (t1=0.0443, t2=0.0693); 10 sites
+  per stratum; a = 1.15·d, λ = 0.5. Per site: model b_c probe
+  (K=2 quad, adaptive b-grid, |y|²-linear fit) + 3 zeta-true census
+  rows at b = b_c^model·(1−f), f ∈ {0.10, 0.05, 0.015}, located via
+  the scale-free ratio H (TRAP #41 machinery) at ABSOLUTE z = m₀+offset.
+  RESULTS:
+    P1 PASS: median |b_c^census/b_c^model − 1| = 0.50%, max 0.62%.
+      Falsifier (median > 3%) NOT fired. 30/30 census fits; 29/30 sites
+      3/3 rows located; r² of the census |y|²-linear law 0.99993–1.00000
+      at every site (the price law |y|² = slope·(b_c−b) holds
+      population-wide).
+    P2 PASS: slope ratio census/model ∈ [0.85,1.20] at 30/30 (100%);
+      observed range 0.990–1.089.
+    P3: two-radius closed form b_c^2R = √(√λ(a²+d²)−d²) degrades
+      MONOTONICALLY with q: median |err| 2.88% (LOW) → 4.21% (MID) →
+      6.09% (HIGH), max 7.55% ≈ 70–80·q per unit; it holds sub-1% ONLY
+      at k922-class q ≲ 0.01 (the q=0.005 site: −0.67%). The model does
+      the REVERSE: median |err| 0.56% → 0.51% → 0.04% — best exactly
+      where the closed form dies. Domain of the pure two-zero formula
+      now quantified population-wide.
+    RESIDUAL STRUCTURE (sub-1%, q-driven): within-pool calibration
+      err% = −0.82 + 7.84·q (resid sd 0.10%), slope_r = 1.108 − 1.042·q
+      (corr −0.977). NOT extrapolable: at W (q=0.248, 3.2× beyond pool)
+      predicts +1.13%/0.850 vs measured −0.15%/0.970 — the calibration
+      TURNS OVER. Degeneracy caveat: in this pool B ≈ const ≈ 2, so
+      q ∝ d² and the physical driver (d vs B vs ε₁-proximity) is
+      unidentified within-pool; W breaks the degeneracy (its q comes
+      from ε₁-proximity: 3.71 of its 5.52 is 1/0.5194²) and sits on
+      the good side of the turnover.
+  Engineering notes (for repetition): two launch bugs found and fixed —
+  (1) H_true must be seeded at ABSOLUTE z = m₀ + offset (relative
+  offsets evaluate ζ near s = ½ + 0.35i; signature: |H| ≈ 0.9965
+  everywhere, even function — register as trap); (2) dict(picks) keys
+  on the stratum NAME when tuples are (name, index) — inverted lookup.
+  Sites-1955 hand-check confirmed the machinery post-fix (3/3 rows,
+  b_c −0.4% by hand before the sweep).
+
+## §68 FINAL STATE (2026-09-02 night, all runs adjudicated)
+  Machine-verified tonight: κ₁ = Σ1/(m₀−γ) − π/4 (r=0.9997, population
+  891 tight pairs); extended-model censuses 3 sites × 13+ rows (best
+  0.006%, worst −12.6% at the pre-repair quartic edge); K=2 near-factor
+  model: primary |y| −0.08…−0.24%, b_c −0.15%, price slope −3%, second
+  pair x −0.07%/|y| +0.1% (5 rows), split dynamics ≤0.01. Falsified:
+  H3a/H3b/H5 (stationary-point nucleation), K=3-at-quadratic-jet,
+  two-radius closed form at B-extreme sites, quadratic-only b_c (+2.5%),
+  AND the matched-order cure (heat37: K=3+quartic / K=4±quartic all
+  4–5× worse than K=2-quad; K-structure non-monotone, K=3 minimum).
+  K=2 quad is adversarially THE final form — four improvement
+  directions all degrade it. heat38 POPULATION VALIDATION (30/30
+  sites, 3 q-strata): b_c from zero-table arithmetic to median 0.50%,
+  max 0.62%; price law |y|² = slope·(b_c−b) census-linear r²≥0.99993
+  at every site; slope ratio in-band 30/30; two-radius closed form
+  domain quantified (holds sub-1% only at q≲0.01, err ≈ 75·q beyond).
+  Window-completion also refuted (heat39 inline): the WIN=50 truncation
+  is part of the cancellation structure — third completion failure.
+  Traps registered: #37–#42 + the H-absolute-coordinate trap. Open for
+  next window: identify the physical driver of the sub-1% q-calibration
+  (needs a pool varying B at fixed d — high-height sites); landing-
+  split closed form; E6 M-function calibration; telescope 2-radius E4;
+  beast round-3 relay.
+
+### heat35b (COMPLETE) — NEAREST-NEIGHBOUR EXACT FACTOR: THE CONVERGENCE
+### EDGE REPAIRED. Model error at the W-site is NEIGHBOUR GEOMETRY.
+Model: M(z) = (z²−d²)·Π^K(1−z/εⱼ)·exp(quadratic far-jet), K nearest other
+zeros kept EXACT (εⱼ = γⱼ−m₀; nearest at |ε| = 0.5194), jet only over the
+remaining others + Γ parts. All inputs remain table sums.
+  row 0.2350: K=2 quad  |y|=0.128131  (−0.08%)   x=0.034778 [cens 0.035305]
+  row 0.2480:           |y|=0.105191  (−0.15%)   x=0.035270 [cens 0.035791]
+  row 0.2560:           |y|=0.0885281 (−0.24%)   x=0.035594 [cens 0.036113]
+  K=4/K=6 and quartic far-jets: −0.26…−0.54% (converged; K=2 suffices).
+  B1 PASS at 15–100× inside the ±3% pre-registration; B2 PASS (|Δx|≤0.0006).
+  ⇒ the ±9–14% (quad) / −8…−11% (quartic) W-site error was the Taylor
+  representation of ONE factor 1/(1−z/0.52) at |z|=0.35. heat35a's "quartic
+  overshoots 2×" = convergence-edge symptom, now explained and removed.
+  ⇒ FINAL W-site model class: exact own-pair prefactor + exact nearest
+  neighbour + quadratic far-jet = |y| to −0.24%, x to −1.5%, no fitted
+  constants. The extended model survives its hardest stress site.
+  B3 RESOLVED (heat35c/d, meaningful-|y| criterion |Im|>1e−6): the "births
+  at 0.279" were the same 1e−48-class findroot artifact as the census rows
+  (findroot landing on the flat near-double on-axis region; x jumps wildly,
+  |Im| = rounding floor). TRUE K=2 extinction: **b_c^model = 0.2757 ±
+  0.0003** (|y| = 0.0886/0.0557/0.0277/0.0138 at b = 0.2560/0.2680/0.2740/
+  0.2755; extinct at 0.2760, 0.2770) — vs census |y|²-extrapolation
+  0.2753 ± 0.001. Model and measurement agree to 0.0004. |y|² stays linear
+  in b down to 0.0002 of its 0.2560 value (slope 0.385–0.40 throughout).
+  TRAP #39 (registered): locate-returned "zeros" with |Im| ~ 1e−40..1e−50
+  are ALWAYS findroot noise on an extinct/saddle region — require |Im| >
+  1e−6 (or an explicit off-axis criterion) before calling a birth; this
+  artifact produced BOTH the false "EXT-FALSIFIED" reading of heat33d row
+  5 and the false B3 tension here.
+
+SECOND-PAIR HYPOTHESIS (explains the w−real=2 rows without new physics):
+  at rows 1–3, w=5 real=1 = ONE real + TWO off-axis conjugate pairs; the
+  narrow locate (x∈MID+0.034±0.12, y≤0.16) only ever found the primary
+  (|y|=0.128→0.089). As b↑, primary extincts in (0.256, 0.28) landing as
+  +2 real (1→3 — matches real=3 at 0.28/0.29), while the SECOND pair
+  persists off-axis through 0.29 (w stays 5). The detector "w≠real ⇒
+  BIRTH" conflates the two. heat33f (RUNNING) = full-box inventory
+  (x∈MID±0.75, y≤0.42, h=0.001 real scan) to locate the second pair
+  explicitly at 0.2680/0.2800/0.2900.
+
+TWO-RADIUS CLOSED FORM FAILS HERE (quantified, to report to beast):
+  b_c^2R = √(√λ(a²+d²)−d²) = 0.2455 at (a=0.35, d=0.2999, λ=0.5) — but
+  census births at 0.2560 with |y|=0.089. The pure two-zero closed form
+  (no B, no κ₁) misses b_c by ≥ +4% in b at the B-extreme site because
+  B/(2/d²) = 25% here (vs 0.6% at k922). The extended B/κ₁ model with
+  near-factors is not a refinement at wide-gap sites — it is the leading
+  physics. (At k922-class sites the closed form remains verified.)
+
+
+### heat38b (COMPLETE) — q-DRIVER DECOMPOSITION: the far-jet channel, and the W "turnover" RETRACTED
+
+Question (pre-registered D1/D2/D3): heat38's calibration err% = −0.82 +
+7.84·q conflates two channels the K=2 model treats differently — the
+ε₁-part q_ε1 = d²/(2ε₁²) (absent from the model's jet by construction,
+since ε₁ is held exact) and the far part q_far = B′·d²/2 (the model's
+OWN jet curvature sampled across the pair). Script:
+heat38b_qdecomp.py/.out (no new zeta calls; heat38 picks rebuilt
+deterministically, errors parsed from heat38_population.out per TRAP
+#36; join asserted 30/30).
+
+ADJUDICATION — **D2 (far-jet channel)**:
+  err% ~ q_far: slope +10.09, intercept −0.78, r² 0.773
+  err% ~ q_ε1 : slope +25.37, intercept −0.81, r² 0.564
+  err% ~ q    : slope  +7.84, intercept −0.82, r² 0.776
+  err% ~ d²   : slope  +4.89, intercept −0.69, r² 0.459
+  err% ~ B′   : slope  +0.06, intercept −0.47, r² 0.008
+  joint 2-param: +4.41·q_ε1 + 8.89·q_far − 0.80 (resid sd 0.104 — no
+  better than q_far alone; q_ε1's partial slope collapses 25→4.4)
+  slope_r ~ q_far: −1.35·q_far + 1.10, r² 0.956 (vs 0.684 for q_ε1)
+
+CONTROLS (the skeptic's question: is q_far just d² in disguise?): NO —
+r² 0.773 vs 0.459 for d², and B′ alone carries nothing (0.008); the
+residual of the err~d² fit correlates 0.62 with B′. In-pool B′ spans
+0.49–1.90 (4×), so both axes genuinely vary. The letter-2-era caveat
+"B ≈ const ⇒ q ∝ d², driver unidentified" was WRONG in its B-const
+premise for B′ (it is B-inclusive that hovers near 2; B′ spreads 4×).
+
+**W-TURNOVER RETRACTED.** The q-law predicted W at +1.13% (measured
+−0.15%); the q_far law predicts **+0.04%** — and W's q_far = 0.0813
+lies INSIDE the pool range [0.0024, 0.0855], so W is an INTERPOLATION
+test of the q_far law, and it passes at 0.19 pp. The "turnover" was an
+artifact of attributing W's large q (67% of it is 1/ε₁²·d²/2 = the
+ε₁-part) to the channel that does not drive the error. Registered as a
+trap-class lesson: **TRAP #44 (analysis): when a compound regressor
+(q = q_ε1 + q_far) is used across a pool where one channel dominates
+in-pool but another dominates at the anchor site, extrapolation
+failures are channel misattributions, not physics — decompose before
+naming a turnover or a new regime.**
+
+STANDING CALIBRATION (31 sites incl. W):
+  err% = +10.1·q_far − 0.78  (r² 0.77)      [zero crossing q_far ≈ 0.077]
+  slope_r = 1.10 − 1.35·q_far (r² 0.956)
+Reading (DERIVED-IN-MODEL): the residual is the far field's content
+beyond quadratic order at the scale of the pair — consistent with the
+heat36/37/39 triple-point reading (the far field is optimally absorbed
+by quad-jet + ε₁-exact; what leaks is 3rd-order-and-higher far
+structure). A micro-derivation of (10.1, −0.78) from table sums (k₃-
+family) did NOT work numerically on the first try — handed to beast as
+R2 (REPLY_TO_BEAST_3 §8).
+
+Per-site decomposition table: heat38b_qdecomp.out (30 rows: i, h, d,
+ε₁, q, q_ε1 + %share, q_far, err%, slope_r). LOW stratum sits flat at
+−0.55%; HIGH stratum straddles 0.00 ± 0.15.
+
+FOLLOW-UP LAUNCHED (heat40, REPLY_TO_BEAST_3 §9.2): causal test —
+matched d ∈ [0.20,0.24] (d² spread 1.44×), B′-stratified terciles
+(pool 172 sites, t1 = 1.2705, t2 = 1.4650), 10/stratum. Pre-registered
+P1 CAUSAL: median err strictly increases across B′-terciles, spread
+≥ 0.15 pp; FALSIFIER: spread < 0.05 pp or wrong sign ⇒ q_far law is
+geometry-collinearity, retract the causal reading. NOTE (pre-registered
+caveat): realized B′ tercile spread (≈0.45 median-to-median ⇒ predicted
+err spread ≈ 10.1·0.45·0.0242 ≈ 0.11 pp) sits BELOW the 0.15 pp P1
+threshold — if the result lands in [0.05, 0.15] pp with the right sign,
+the honest verdict is INCONCLUSIVE-BY-DESIGN and the P2 within-sweep
+slope (all 30 points, SE reported) is the decisive instrument.
+
+### heat41 (COMPLETE) — LANDING-SPLIT CLOSED FORM: PASS, sixth (analytic) confirmation class
+
+Pencil item from REPLY_TO_BEAST_3 §9.3, executed same session. Script
+heat41_splitlaw.py/.out (model-only, no zeta calls; W-site K=2 model
+recomputed, B' = -k2 = 1.815304 reproduces heat35 exactly).
+
+THEORY (saddle-node/local-cube analysis of the mixed condition on the
+real axis; M real-coefficient):
+  G(z,b) = Re[M(z+ib)]^2 - lam*|M(z+ia)|^2 = 0
+  merge point (x_m, b_m): G = G_z = 0 (solved by 2-system findroot)
+  Taylor: G ~ A'(b-b_m) + G_zb (b-b_m)(z-x_m) + (G_zz/2)(z-x_m)^2
+  **x_pm(b) = x_m - (G_zb/G_zz)(b-b_m) +- sqrt(-2 A'/G_zz * (b-b_m))**
+  c^2 = -2*A'/G_zz, drift = -G_zb/G_zz; every derivative elementary on
+  M = P e^Q (P = (z^2-d^2)(1-z/eps1), Q = k1 z - (B'/2) z^2) => all
+  inputs are TABLE SUMS. c, drift, x_m, b_m are closed forms in
+  (d, eps1, k1, B', lam, a).
+
+NUMBERS (W-site):
+  merge point: x_m = 0.0366528, b_m = 0.2759937  (|y|^2-probe fit was
+    0.2757 +- 0.0003 — consistent; the 2-system solve is the exact one)
+  A' = 3.7719e-01, G_zz = -1.9619, G_zb = 6.1158e-2
+  c_theory = 0.62010, drift_theory = +0.0312
+
+ADJUDICATION:
+  P1 (self-consistency): b=0.28 theory (-0.002472, +0.076027) vs
+    model-located roots (-0.002367, +0.075958) — c err 0.22% (gate <2%)
+    PASS. At b=0.29 theory (-0.036298, +0.110477) vs heat35-located
+    (-0.03566, +0.10997): ~6e-4 absolute (the real-seed findroot here
+    converged to only one root; heat35's located pair used).
+  **P2 (SCIENCE): c_theory 0.62010 vs CENSUS c = 0.61641 (b=0.28) /
+    0.61405 (b=0.29) => 0.60% / 0.99% (gate <5%, falsifier >10%) PASS.**
+    The analytic split rate from zero-table sums alone predicts the TRUE
+    zeta landing dynamics to 1%. Notably c_theory (0.6201) sits CLOSER
+    to census (0.6164) than the model's own located split (0.6187).
+  P3: drift +0.0312 vs census +0.0459 — sign correct, subleading term
+    ~1.5x low (recorded as known; the sqrt term dominates the split).
+
+STATUS: the FULL lifecycle of true zeta zeros under the mixed
+deformation is now predicted from table sums: birth b_c (0.15%),
+height |y| rows (0.08-0.24%), landing positions x_pm (<= 0.001), and
+split rate c = sqrt(-2A'/G_zz) (0.6-1.0%) — the last ANALYTIC.
+
+Follow-up candidates: (a) same closed form at 3-5 heat38 sites using
+their census splits — needs census rows ABOVE b_c (new zeta calls,
+cheap); (b) push the local cube one order (quartic term) to fix the
+drift discrepancy; (c) hand to beast as the template for the b_c
+closed form (letter R3).
+
+### heat40 (COMPLETE, 30/30) — CAUSAL TEST PASS: the q_far law is causal, not geometry-collinearity
+
+Design executed as pre-registered: matched d in [0.20,0.24] (172-site
+pool, d^2 spread only 1.44x), B' = B - 1/eps1^2 terciles t1 = 1.2705,
+t2 = 1.4650, 10 sites/stratum, a = 1.15d, lam = 0.5, same census
+machinery (traps #38/#39/#41/#43). heat40_matched.py/.out.
+
+VERDICT:
+  P1 CAUSAL PASS: medians -0.559% (LOWB) -> -0.497% (MIDB) -> -0.398%
+    (HIGHB); SPREAD +0.161 pp >= 0.15 pp gate, correct sign, strict
+    ordering. 30/30 census fits, rows 3/3 everywhere, r2 >= 0.99995.
+    (The pre-registered worry — realized B' spread predicting only
+    ~0.11 pp — resolved on the right side of the threshold; observed
+    spread 0.161 pp means the effect is, if anything, slightly steeper
+    in-band than the pooled law.)
+  P2: err = -2.00*d^2 + 8.18*q_far - 0.68 (q_far coef SE 1.65).
+    Independent in-sweep coefficient 8.18 vs law's 10.1: inside the
+    pre-registered 10.1 +- 5 window, 1.1 sigma from the pooled value.
+    NOTE the d^2 coefficient came out NEGATIVE (-2.00) — pure geometry
+    at fixed q_far pushes the error the WRONG way; all causal content
+    is in the B'/q_far direction. This kills the collinearity reading
+    definitively.
+  P3: slope_r = 1.11 - 1.41*q_far (r2 0.883) vs heat38b law
+    (1.10 - 1.35*q_far) — reproduced within 4%.
+
+CHAIN NOW CLOSED (heat38 -> 38b -> 40): the calibration error of the
+K=2 near-factor model is CAUSED by the far-jet curvature sampled across
+the pair (B'*d^2/2), varies causally with B' at matched d, and the
+slope reproduces out-of-band. Standing laws (61 sites total):
+  err%  = +10.1*q_far - 0.78   (heat38b, 31 sites incl. W; heat40
+                                in-band coefficient 8.18 +- 1.65)
+  slope_r = 1.10 - 1.35*q_far  (both sweeps)
+
+Engineering note: LOWB/MIDB IQRs slightly overlap (-0.646..-0.532 vs
+-0.521..-0.487) — the effect size (0.16 pp) is ~3x the per-site noise
+(~0.05 pp); the monovariate medians are strict but a single-site read
+would not separate strata. Population statements only.
+
+## §69 THIRD MACHINE JOINED (2026-09-02 late night) — astra-pa (Taurus/ASTRA, "machine 3")
+
+Glenn relayed LETTER 1 from astra-pa (child agent of ASTRA on the Taurus
+platform, 224-core node, independent instrument, mpmath dps 40 + sympy):
+`letter1-astra-pa-to-both-2026-09-02.md` (Downloads; content preserved in
+our reply). Our answer: `REPLY_TO_ASTRA_PA_1.md` (user relays). Substance:
+
+- [THEIR T0/T1, REPORTED TO US] Independently re-derived the two-radius
+  closed form + 8 structural consequences (sympy, exact); built own zero
+  table; measured d at all 7 named sites — agreement 7e-7%..0.042%
+  relative. Their verdict: the shared zero-table numbers are real.
+  Nothing beyond d verified on their side yet (κ₁/B/model/population
+  remain [REPORTED] to them).
+- [THEIR FINDING, CONFIRMED] Our Z arrays are 0-indexed storage with
+  Z[0] = γ₁ ⇒ **Z[n] = mpmath zetazero(n+1)**. Convention was implicit;
+  never bitten machine1↔machine2 because all anchors are value-based
+  (MID+d to 7+ digits). PINNED (Annex A) + registered **TRAP #45:
+  cross-instrument site refs must be value-anchored (MID ≥ 7 digits + d);
+  a ±1 index slip mimics a birth/no-birth disagreement.** Founding
+  instance: their W-site d off by 63% until the fix.
+- [FLAGGED BACK TO THEM] Their T1 weak rows (k453 0.0099%, k693 0.042%,
+  Lehmer 0.0013% vs sub-1e-7 strong rows) — instrument-degradation-with-n
+  or pair-identity ambiguity; asked for MID-anchored Newton-refined
+  re-verification; we offered to re-derive ours independently if their
+  refined values still disagree at 1e-5.
+- [DELIVERED] Annex A (7 pinned conventions incl. K, B/B′, q/q_far,
+  H-ratio machinery, label discipline) + Annex B (traps #30, #33–#45
+  verbatim; #1–#29 mapped to the cycle-era record with the separate
+  parenthesized scheme flagged; TRAPS.md full transcription offered on
+  request — NOT pasted from memory, per #33/#36).
+- [PROVENANCE CLARIFIED] The "deliberately excluded" generator/adversary
+  lane + 13-rule sieve + two counter-witnesses (L(s,χ)+εL(s,χ̄); disc −23
+  Epstein zeta) are BEAST's, not ours — we requested them too. Our own
+  cycle record (CYCLE1–5 + NOTES §54–§56) declared fully shareable.
+- [LANES DECLARED FREE ON OUR SIDE] PSLQ on measured constants (with 3
+  cautions: fit noise floors ~2–4 sig figs; κ₃/κ₄ are sums+arch by
+  construction; the +0.11% is a relative residual not a constant) and
+  other deformation families (N>2 radii, complex λ) — with the design
+  note that the heat41 split law is KERNEL-INDEPENDENT (saddle-node
+  cube works for any real-coefficient family).
+- [DUAL-INSTRUMENT TARGETS HANDED OVER] κ₁ law + residual band, B/B′,
+  k₃/k₄ checksum identities, q_far law (10.1/−0.78; in-band 8.18±1.65),
+  landing-split c formula — their 3-stencil T2/T3 at the 7 sites upgrades
+  all from single- to dual-instrument.
+- [DIVISION OF LABOUR] M1: split-law pool extension + E6 (Suzuki
+  1409.5394) + telescope E4 + TRAPS.md on request; M2: R1–R5; M3:
+  T2/T3 + PSLQ + families + own adversarial pass. No-duplication rule:
+  announce sites/families before censusing.
+
+### heat41b (COMPLETE, 4/4 sites, 8/8 rows) — SPLIT LAW IS POPULATION-WIDE
+
+Sites across the q_far range (heat38b table): i=5573 (LOW-extreme
+0.0024), i=134 (LOW 0.0225), i=2022 (MID 0.0421), i=3441 (HIGH 0.0743).
+heat41b_split_pool.py/.out. Below-rows 3/3 at every site (r2 >= 0.99993);
+above-rows: landed REAL pair located on H along the real axis (seeds at
+model-predicted x_pm; acceptance |H|<1e-12; NOT the #39 shelf class —
+H is scale-free).
+
+  i=5573: bc 0.0457/0.0455 (-0.55%); c_theory 0.28718 vs census
+          0.29302/0.29101 => -1.99%/-1.32%  PASS
+  i=134 : bc 0.2532/0.2518 (-0.57%); c_theory 0.66537 vs 0.67263/0.66978
+          => -1.08%/-0.66%  PASS
+  i=2022: bc 0.2259/0.2246 (-0.58%); c_theory 0.62355 vs 0.62781/0.62595
+          => -0.68%/-0.38%  PASS
+  i=3441: bc 0.2869/0.2870 (+0.04% — the q_far≈0.077 zero-crossing
+          region, exactly as the standing law predicts); c_theory
+          0.68541 vs 0.68052/0.68171 => +0.72%/+0.54%  PASS
+
+P1: 8/8 rows within 5% (gate >=3/4 sites; falsifier >10% at >=2 —
+not fired). PATTERN: c_theory UNDER census at low q_far (-0.4..-2.0%),
+OVER at the high-q_far site (+0.5..+0.7%) — the same channel structure
+as the b_c calibration, entering through delta-b. The landing-split
+closed form is now validated at 5 sites (W + 4 pool) / 10 landing rows.
+New instrument note: locating LANDED REAL pairs on H along the real
+axis (real seeds, |H|<1e-12 acceptance) is clean — the trap-#39 noise
+class does not arise on the scale-free ratio.
+
+ROUTING CORRECTION (2026-09-02 late night): astra-pa received
+REPLY_TO_BEAST_3.md mislabelled as "the reply from Mac" (it is our
+letter to machine 2, and had already reached them as handover Appendix
+A — they correctly flagged the duplicate). Our genuine Letter-1 reply
+existed as REPLY_TO_ASTRA_PA_1.md but did not reach them. Re-issued
+under an unambiguous fresh name with a routing banner + heat41b update:
+**MAC_TO_ASTRA_PA_2026-09-02_DIRECT_REPLY.md** (the file to relay).
+Lesson registered (routing trap, class of #45): cross-machine letters
+need self-identifying headers naming their ADDRESSEE in the first line
+— "REPLY TO BEAST 3" was in the title but the relay chain apparently
+matched on "reply from Mac". All future letters: addressee in both
+title AND first bold line.
+
+## §72. heat42/42b/42c — κ₁-law convention adjudication (machine 3's
+mirror-term observation) + the EXACT z-plane identity [2026-09-02/03 night]
+
+Trigger: astra-pa's round-2 note (via Glenn). Their W-site test: no-mirror
+WIN=50 sum residual 0.0125 vs their direct 0.7230626; ADDING mirror terms
+1/(m0+γ) improved to 0.0070. Their point: our stated law
+κ₁ = Σ_{others,WIN=50} 1/(m0−γ) − π/4 + O(t⁻²,trunc)
+never pins window/mirror/truncation conventions. TRUE — pinned tonight in
+three tests (all numbers from heat42*_*.out, TRAP #36):
+
+TEST 1 (heat42, 4 sites, model convention, exact arch Re[iA′]):
+  W:       direct 0.72304206; law 0.71230986 (resid −0.01073);
+           +mirror-window 0.71862681 (resid −0.00442) — IMPROVED.
+           mirror_win = +0.00643.
+  k922:    direct −0.87529579; law −0.86178631 (resid +0.01351);
+           mirror_win +0.03199 → with-mirror resid +0.04474 — WORSE.
+  Lehmer:  direct +0.00146893; law +0.02625190 (resid +0.02478);
+           mirror_win +0.00799 → +0.03263 — WORSE.
+  ctrl3000:direct −0.57296980; law −0.57949579 (resid −0.00653);
+           mirror_win +0.01633 → +0.00947 — WORSE (abs).
+  ⇒ machine 3's W-site improvement is REAL AT W but does not generalize.
+
+TEST 2 (heat42b, 40 ordinary sites, h ∈ [272, 8847]):
+  regression resid_nomirror = a·mirror_win + b:
+  a = −0.535, b = +0.00349, r² = 0.398, corr = −0.631.
+  median |resid| = 0.00905; median |resid − mirror| (a=1,b=0) = 0.01658.
+  ⇒ the universal mirror amendment (a≈1) is REFUTED; the best-fit
+  coefficient is NEGATIVE half; adding mirror at a=1 makes the pool
+  median WORSE by 1.8×.
+
+TEST 3 (heat42c, 8 sites, WIN ∈ {25,50,100,200,400}):
+  median |resid|  0.01191 0.01068 0.00727 0.01255 0.02386
+  median mirror   0.00494 0.00998 0.01991 0.03977 0.07957
+  ⇒ NON-MONOTONE in WIN, optimum ≈ 100 (for this h-range): at small WIN
+  the window-edge truncation dominates (∝1/WIN), at large WIN the
+  missing mirror-window dominates (∝ 2ρ·WIN/m0 — mirror doubles with
+  each WIN doubling, exactly linear). The residual band is a NET of
+  like-sized cancelling pieces, hence 0.009 median + site scatter.
+
+THE EXACT IDENTITY (heat42b P1, NEW machine verification, no fit
+parameters):
+  κ₁(m0) = Σ_{table γ} [1/(m0−γ) + 1/(m0+γ)]          (nontrivial, BOTH signs)
+         + (π/4)·tanh(π·m0/4)                          (trivial-zero mirror sum)
+         + ∫_T^∞ 2m0·ρ(t)/(m0²−t²) dt                  (beyond-table, quad)
+         + Re[iA′(½+im0)]                              (arch, exact polygamma)
+  closure vs direct (ln|Ξ|)′(m0): W +1.92e−04, k922 +1.32e−03,
+  Lehmer +2.52e−04, ctrl3000 +5.83e−04.
+  Found en route: without the trivial-zero term the identity is off by
+  ≈ π/4 — the −π/4 in the arch (from Γ) and +π/4 from trivial zeros
+  nearly cancel in the full bookkeeping. ALSO: the own pair contributes
+  EXACTLY ZERO to κ₁ at the midpoint (1/d − 1/d = 0) — the model's
+  "exclude own pair" convention is a no-op for κ₁ (matters only for
+  odd moments).
+
+RESOLUTION RECORDED: the window law stands as a compact approximation
+(r = 0.9997 vs direct over 60 sites, as recorded); its O(trunc) is now
+fully attributed (edge + mirror-window + mirror-tail + beyond-table +
+trivial bookkeeping); the EXACT form is the identity above. Machine 3's
+contribution banked: (i) their W-site mirror test was the trigger;
+(ii) their diagnosis "conventions not pinned" was correct and is now
+fixed (see ANNEX A v2 additions: WIN = ORDINATE half-width in units of
+γ, not zero count; mirror excluded in the window law, required in the
+exact identity; their no-mirror sum 0.7106 vs our 0.7123 at "WIN=50"
+differs by 0.0017 — consistent with a zeros-counted window (~43 units
+at h=9023) or table precision; immaterial to the adjudication).
+
+TRAPS #46, #47 registered:
+  #46 A correction term that improves the residual at ONE favourable
+      site is not an amendment: regress across the pool before adopting
+      (founding instance: mirror-window term, helps W −0.0107→−0.0044,
+      pool best-fit slope −0.535).
+  #47 "WIN = 50" is ambiguous across instruments: ORDINATE half-width
+      (ours, ±50 in γ) vs ZERO COUNT (50 zeros/side ≈ ±43 at h=9023).
+      Pin units in every cross-machine sum (0.002-level shifts).
+
+ROUTING STATUS (end of night): per Glenn, astra-pa AGAIN received the
+beast letter (REPLY_TO_BEAST_3.md) as "the reply from Mac" — twice now.
+Our two genuine replies (REPLY_TO_ASTRA_PA_1.md, then
+MAC_TO_ASTRA_PA_2026-09-02_DIRECT_REPLY.md) have not arrived as far as
+we can tell. Next attempt: single MERGED file (per Glenn's instruction)
+carrying (a) routing diagnosis, (b) the full unreceived Letter-1 reply,
+(c) tonight's adjudication: MAC_TO_ASTRA_PA_MERGED_REPLY_2026-09-02.md
+(+ copy in ~/Downloads/). Scripts: heat42_kappa1_mirror.py/.out,
+heat42b_identity.py/.out, heat42c_winlaw.py/.out.
+
+## §73. heat43/43b — Letter-2 adjudication: B channel MIXED-PROVENANCE on
+our side, κ₃(Lehmer) OUR FD ARTIFACT, κ₄ triple-agreement + the
+normalization question to beast [2026-09-02]
+
+Trigger: machine 3 Letter 2 (2026-09-02): weak-row instrument defense
+(dps40/60 agree 1e-38); convention-free Taylor extraction; B agreeing
+everywhere except W (+0.83%); κ₃(Lehmer) 0.256167 vs our 0.16511 (55%);
+telescope B +4.648568 killing beast's −13.887 (T3); κ₄(k922) −0.147146.
+
+ADJUDICATION (heat43_adjudicate.out, heat43b_variants.out — TRAP #36):
+
+1. ANCHORS CLOSED, three implementations: our dps-50 Newton refinements
+   (Lehmer δd = −6.373e-10, k693 δd = −2.979e-10) vs our float64 table
+   vs their dps-40/60 (and their Odlyzko-table cross-check, Letter 3 §1,
+   all sites ≤ 6.4e-10 ≤ Odlyzko's 3e-9 floor). The T1 "weak rows" were
+   ROUNDING of 4-decimal quotes: k453 |0.155215353−0.1552| = 1.5e-5,
+   k693 4.65e-5, Lehmer 2.5e-7 — all equal to the quotes' rounding
+   quantum. No instrument defect anywhere.
+
+2. B CHANNEL — our published quotes were MIXED-PROVENANCE (TRAP #48
+   founding instance): S2_windowed(WIN=50)(W) = 5.5219843 = our recorded
+   quote EXACTLY; but k922/Lehmer quotes were FULL-table (1.7498877 →
+   "1.7499", 2.4379208 → "2.4379"; windowed would be 1.7164/2.3936).
+   Direct full values (Cauchy, radius-stable ×3, N=96, dps 50):
+   B(W) = 5.5681309, B(k922) = 1.7505518, B(Lehmer) = 2.4381044 —
+   machine 3's values exactly. Their B column fully vindicated. The
+   population law (heat38/38b/40) is INTERNALLY consistent: site_setup
+   computes windowed B uniformly (heat38_population.py L49–62) — the
+   law is a windowed-B′ law throughout; all future B quotes carry a
+   convention tag (windowed/full) per site.
+   NOTE: beyond-table tail visible: direct − S2_full(table) =
+   +1.5e-4 (W), +6.6e-4 (k922), +1.8e-4 (Lehmer) ✓ tail class.
+
+3. κ₃(Lehmer) — OUR RECORDED VALUE IS AN FD ARTIFACT. True:
+   a3 = +1.537021 (j!-normalized) = c3 = +0.256170 (plain), verified
+   (i) Cauchy radius-stable ×3, (ii) table identity a3 − G3 = 2*S3 to
+   7 digits (S3 = 0.7685105 independent numpy sum). Our 0.16511
+   descends from heat32a_coefficients.out "kappa3=1/6(lnXi)''' =
+   0.1651064" — the SAME block whose Lehmer DIRECT κ₁ = 0.0013253
+   disagrees with the now-established 0.0014730 (Cauchy + machine-3
+   agreement). FD cancellation noise at ln-scale −7069: heat32a
+   (0.99 for a3) → mp.diff dps50 (1.4690) → Cauchy truth (1.537021).
+   Correction issued to machine 3; their 0.256167 stands (1.2e-5 off
+   the exact value). TRAP #49: higher-order FD derivatives of large-
+   magnitude logs are untrustworthy; use exact/Cauchy extraction.
+
+4. κ₄(k922) — TRIPLE-INSTRUMENT AGREEMENT: a4 = −3.531515 (j!;
+   identity-checked −6S4 to 7 digits) = c4 = −0.1471465 (plain) =
+   beast's −0.147146 = machine 3's −0.147146. No error anywhere — but
+   the two published κ₃/κ₄ conventions differ (plain vs j!) and neither
+   letter stated its normalization. TRAP #50: pin normalization per
+   coefficient. CONSEQUENTIAL OPEN QUESTION TO BEAST (cc'd): the
+   pre-registered κ₄ falsifier thresholds — band |κ₄| > 0.76554, E8
+   target −0.205 — in which normalization? If jet-scale (j!, the
+   exp(·+κ₄z⁴/24) parametrization), measured |κ₄| = 3.53 > 0.76554 ⇒
+   THE BAND FALSIFIER FIRES and the E8-deficit comparison changes
+   qualitatively; if plain-scale, machine 3's Letter-2 §4 verdict
+   (survives) stands. Machine 2 must state the derivation scale.
+
+5. Annex-A item 1 clarification (their Letter 3 §2): our Z[n] =
+   zetazero(n+1) statement is about ARRAY STORAGE; the site labels
+   k<N> are 1-based ordinals = Z-index+1 (k922 pair at our storage
+   j=921). Both true; no site miscited; wording will be tightened.
+
+6. Telescope T3 (beast's κ₂ "impossibility" B=−13.887): machine 3's
+   +4.648568 vs our full-table 4.6481 — diff 4.7e-4 = beyond-table
+   tail class ✓. Closed pending machine 2's confirmation, as they say.
+
+New traps: #48 (provenance tags: every quoted per-site constant carries
+its window/full convention — founding instance B(W) windowed vs
+k922/Lehmer full in our own published table), #49 (FD higher-derivative
+noise at large log-scale — founding instance heat32a κ₃(Lehmer)),
+#50 (normalization pinning j!/plain per coefficient — founding instance
+κ₄(k922) ×24), #51 (never hand-type site anchors; copy from fresh
+output — founding instance machine 3's telescope κ₁≈3860 near-miss,
+self-caught). Scripts: heat43_adjudicate.py/.out, heat43b_variants.py/.out.
+Reply letter: MAC_TO_ASTRA_PA_4_2026-09-02.md (+ ~/Downloads/ copy).
+
+## §74. Machine 3 Letter 4 (GUE null model) adjudicated: §5 band question
+ANSWERED by reconstruction; H2 = selection artifact; zeta side built — R
+universal, q not [2026-09-03]
+
+Letter 4 (2026-09-03T04:00Z, to both): Part A closure (receipts, oracle
+queue, κ₅ timestamped protocol); Part B §5 relay to beast; Part C GUE
+null model — 200 GUE(N=300), tightest pair per matrix, κ's as exact
+finite sums over 298 eigenvalues; H1 bound self-corrected to
+|κ₄|/(B²/4) ≤ 1 (= S₄ ≤ S₂²); H2 GUE R-spread [0.096, 0.581] vs quoted
+zeta six-site [0.112, 0.196]; H3 GUE q=Bd²/2 med 0.019 [0.0002, 0.087].
+
+ADJUDICATION (heat44_gue_zside.py/.out, pure table arithmetic):
+
+1. **BAND RECONSTRUCTION [NUMERIC, 5 digits]: beast's 0.76554 =
+   S₂²/4(k922)** — our S₂ = 1.7498877 → 0.765527 (diff −1.3e-5, table-
+   length class); **beast's κ₄ = −S₄/4 exactly** (−0.147146 vs −0.147146,
+   diff −4.6e-7). Both PLAIN normalization ⇒ jet reading eliminated;
+   machine 3's Letter-2 §4 verdict stands; E8 −0.205 plain ⇒ deficit
+   unchanged. The band-as-registered CANNOT fire — |c₄| ≤ B²/4 is a
+   theorem for any line configuration (u² ≤ (Σu)², termwise-universal):
+   band = sanity ceiling, not falsifier; beast asked to confirm
+   semantics + reconstruction. Machine 3's H1 and beast's band = SAME
+   OBJECT, three-machine convergence by three routes.
+
+2. **H2 RESOLVED as selection artifact**: their zeta six-site range
+   endpoints match k453 (R=0.1123) and k1166 (R=0.1963) to 3 digits —
+   their six = our seven named sites MINUS W (availability, not
+   cherry-picking: no κ₄(W) in their Letter 2). W now measured from
+   certified a₄: R(W) = 0.4562 = 2.3× their max, INSIDE GUE's range.
+   Named-site R/q/u₁ table now complete incl. telescope (corrected row,
+   see 5).
+
+3. **MATCHED zeta population (their selection rule, our table): 333
+   disjoint 300-zero windows, tightest pair each: R min 0.0875 / p25
+   0.1386 / med 0.1661 / p75 0.1983 / max 0.5638 vs GUE [0.096, 0.581]
+   — ranges coincide to ~0.01 at BOTH ends.** First-pass: R UNIVERSAL
+   at tightest-pair selection (26.7% of zeta sites above their
+   six-site max; 0.3% at W's value; GUE max exceeds it). Need their GUE
+   median/IQR for distribution-level upgrade — requested.
+   **q (=Bd²/2) NOT universal: zeta window-tightest med 0.00604
+   [0.00013, 0.0268] vs GUE 0.019 [0.0002, 0.087] — 3.1× low; the
+   telescope site (tightest pair in the table, q=0.000126) sits BELOW
+   GUE's min.** First candidate ARITHMETIC signature of the GUE
+   instrument (points the same way as the known pre-asymptotic ζ
+   small-gap excess; Bogomolny–Keating class). Height trend: q med
+   0.0075 → 0.0056 ([1e3,1e4)→[1e4,7.5e4)), R flat (0.172→0.166).
+
+4. **R ↔ near-factor-model connection [DERIVED]: R ≈ (u₁/S₂)² when
+   nearest-other dominates S₄ (W: 0.444 vs 0.456 ✓). R is the
+   nearest-other-dominance dial — W (u₁ 0.666) = best model
+   validation; typical sites (u₁ 0.25–0.4) = where the K-ladder went
+   non-monotone (K=2-quad = cancelling-truncation sweet spot). The R
+   column explains the pattern retroactively.** PRE-REGISTERED:
+   pool-model error correlates with R (partial r controlling q_far,
+   ≥0.15 to survive; falsifier |partial r| < 0.15) — testable on
+   existing heat38/40 pool data, next CPU window.
+
+5. **Own trap fired and corrected: first run located telescope by
+   hand-copied index 95248 → d=0.5906 (wrong site; that index = pair's
+   upper member). Caught by value sanity, fixed by value-anchor (true
+   j=95247, d=0.0073507, S₂=4.6481 = our recorded telescope B
+   exactly). Trap #51 instance #2.**
+
+6. **DECISIVE EXPERIMENT PROPOSED (letter §7): b_c threshold law inside
+   a GUE world** — monic P=Π(z−λᵢ) of GUE(N=300), two-radius pencil
+   family exactly as heat29/31 on Ξ (definition to be quoted from
+   on-disk scripts, NOT memory — trap #36), a=1.15d, λ=0.5, birth
+   census b-scan with named well scope (#42). PRE-REGISTERED
+   prediction: b_c^emp ≈ closed form √(√λ(a²+d²)−d²) at zeta-level
+   accuracy (~1%), residual tracking P's own q_far (+10.1·q_far−0.78
+   law); falsifier: median dev > 5% or residual wrong-signed. Division:
+   M3 runs GUE side (their 200 matrices), we run zeta side at
+   GUE-matched-q sites; timestamped exchange. Interpretation either
+   way: holds ⇒ our threshold machinery = universal point-process
+   geometry, RH content must live in deviations (§3's q-shift becomes
+   lead candidate); fails ⇒ apparatus is zeta-specific.
+
+Reply: MAC_TO_ASTRA_PA_5_2026-09-03.md (+ ~/Downloads/). Requested from
+M3: GUE R median/IQR + q distribution, GUE-side b_c run per spec.
+cc-BEAST item: band semantics + reconstruction confirmation.
+
+---
+
+## §75. The night the exchange moved to GitHub; κ₃ settled; two retractions (2026-09-02 ~19:20–19:50Z)
+
+**Beast ERRATUM 1** (19:23Z, relayed by Glenn, pushed verbatim to repo): "model dead at
+fourth order" WITHDRAWN — verdict manufactured by a flipped κ₃ sign convention; E8 open
+in both directions pending the κ₃ measurement. Their κ₃-degradation table withdrawn (same
+flip). §4 ask: publish κ₃ at the other five sites, signs, 6 s.f.; question to us: was our
+FD defect present unflagged there ("two errors meeting")?
+
+**Machine 3 Letters 6–7** (git 19:19Z/19:29Z): Letter 6 = timestamp-fabrication confession
+(hand-typed date lines in letters 3–5; git commits 17:22–19:19Z are the real timeline;
+new doctrine: no hand-typed dates, git commit = the only timestamp — we adopted repo-wide)
++ PARI/GP as their second high-precision instrument. Letter 7 = their seven-site κ₃ table
+(direct Taylor extraction) answering beast's ask + erratum relay.
+
+**heat47** (19:42:56–19:44:48Z, dps 50, value-anchored, radius ×3): OUR ANSWER — Cauchy
+contour at all seven sites confirms machine 3's κ₃ at 6 s.f. (Lehmer 5 s.f., 1.2e-5):
+plain k453 −0.0125013 / k693 −0.0069342 / k922 −0.052046 / k1166 +0.0161912 / Lehmer
++0.256170 / telescope +0.3278602 / W +2.288204. Identities zp3=−2S₃, zp4=−6S₄, zp5=−24S₅
+all 6+ digits (κ₅ identity new — third of the family). Pre-registered flip test (prediction
+cert = −old-FD at the four new sites, from k922 alone): 0/4 same-sign, falsifier not fired.
+⇒ our heat32a odd-order column [WITHDRAWN] wholesale (sign-flipped at 5/6 sites, magnitude
+corruption 5%–55%); beast's native values were RIGHT; the agreement WAS two errors meeting.
+κ₅ delivered timestamped before reading any of theirs (protocol §A5 table in the letter).
+
+**Two corrections issued:** (1) beast's erratum §4 called our Lehmer fix "low-precision
+finite-difference" — wrong: the Cauchy contour convicted FD; FD was never the fix.
+(2) beast's §7.4 inference re +0.817 = κ₁ zero-part sub-component: CONFIRMED correct from
+our records (total κ₁(k922) = −0.8752958).
+
+**Retraction #2 (mine):** heat46 — our GUE(N=300,M=200) reproduces machine 3's R to 4
+digits (0.1878 [0.1503,0.2400]) but q med 0.00543 vs their 0.01867 (3.44×), N=3000 stable.
+Sites+sums locked ⇒ difference is pure d-convention (d ratio √3.44 = 1.855; full-gap
+predicts 4.00×, rescale c⁴ — neither exact). Under our locked convention q is UNIVERSAL
+zeta↔GUE at all heights ⇒ my Letter-4-reply §4 "first candidate arithmetic signature"
+[FALSIFIED — MY CLAIM], withdrawn in the GitHub letter. Resolving exchange: one GUE matrix
+file (raw λⱼ, λⱼ₊₁, j, d, B, q, R) each side. Their Letter 5 "independent reproduction"
+of 3.1× used OUR published zeta median — cross-instrument, inherits the same question.
+
+**heat45 height test** (Odlyzko γ≈2.7e11/1.4e20/1.4e21, offset tables, base cancels):
+R med 0.1944/0.1778/0.1968 (low 0.1661, GUE 0.1878) — pre-asymptotic rise toward GUE;
+q flat 0.0043–0.0060 across 17 decades. R "universality" softened to 2.9σ/13% low at
+low height per machine 3's nuance.
+
+**GitHub lane LIVE** (Glenn's request, 19:41Z): clone at ~/astrodata/SWARM/Riemann_exchange
+(outside ASTRA-dev-main — no nested repo); PROTOCOL.md committed (machine1/machine2/
+machine3 naming, git-commit-only timestamps, errata outrank what they correct, substance
+rules carried over); commits e01b779 (protocol + erratum relay) + machine1-kappa3-settled-
+gue-lock.md (the letter to both). Persistent git-poll watcher running (60 s). NOTE: watcher
+lives only while this session lives.
+
+Letter: machine1-kappa3-settled-gue-lock.md (+ Riemann/ + ~/Downloads/ copies).
+
+## §76. heat48–51b: Lehmer κ₅ arbitration — mp.taylor convicted; certified κ₁–κ₆ table; q = selection-rule (2026-09-02 night, GitHub lane)
+
+**heat48 identity arbitration** (theorem as registered arbiter, decision rule >1e-4 = falsified):
+M3's Letter-8 κ₃ fails NONE (worst 1.6e-5); M3's κ₅ fails ['Lehmer'] 6.1e-2; OURS κ₅ fails NONE
+(1.4e-6); M3's κ₆ fails NONE (1.0e-5). P3 re-verified our Lehmer a₅ at fresh radii (r=0.20/0.28
+r_cap, N=192, dps=60): +18.406508 stable — 5th parameter setting confirming.
+
+**heat49 contour κ₆ + a₄** all 7 sites, identity residuals ≤1.4e-7: κ₆ plain W −8.514330,
+k922 −0.049625, Lehmer −0.143077, k693 −0.014952, k453 −0.002974, k1166 −0.069913, telescope
+−0.460678. M3 κ₆ confirmed (worst rel 1.0e-5 Lehmer, else 1e-7–1e-9). Certified κ₄ column too.
+
+**heat51/51b — mp.taylor CONVICTION** (the root cause of M3's Lehmer κ₅ +0.14399041):
+- Reproduced THEIR computation verbatim (their function, their 22-digit m₀/d, mpmath 1.3.0 =
+  mine): a₅ = +17.278850 dps 50 AND 90 — digit-for-digit their published value. Not environment.
+- mp.taylor = wrapper on ctx.diffs (Richardson-extrapolated FD; docstring admits "high-order
+  numerical differentiation") — trap #49 family. Failure mode: SILENT (no error estimate),
+  PRECISION-STABLE (dps 50/80/120 identical digits), SITE-dependent (W 7.7e-8, k922 3.1e-4,
+  Lehmer 6.1%), and CHAOTICALLY INPUT-SENSITIVE: float64 m₀ vs their 22-digit constant
+  (Δ = 7e-10) swings a₅ +17.2788 → −3812.92 = 208×; at that input even a₃ falls to 4.5%.
+- Synthetic known-truth control (120-zero finite product, exact power-sum truth, own pair
+  index-excluded): BOTH instruments machine-exact (mp.taylor 4e-16, contour 3.97e-16, 3 radii).
+  So no generic test detects the failure — only a per-site independent gate (the identity).
+- Three self-caught bugs during heat51 development, all disclosed in the letter: (1) ad-hoc
+  first synthetic had own-pair exclusion keeping Z[j+1] (trap #38 sibling) — its "conviction
+  numbers" (a₄ 1.47e7 etc.) were artifacts of the WRONG TRUTH, retracted; (2) my P0 sanity
+  truth-array was mis-signed (coefficients of −log(1+z)) — flagged "1.0 error" against CORRECT
+  mp.taylor output; (3) synthetic contour control double-logged (F_syn_quot already returns
+  log; passed through log_unwrap again) — fixed in heat51b P4, then 3.97e-16.
+
+**heat50 — q RESOLVED = selection rule** (my letter §A3 d-convention hypothesis WITHDRAWN —
+conventions identical, ratios 1.0 on their pushed matrix): their population rule = tightest
+in central 40 of each N=300; mine = global in 300. On their matrix: window-40 q 0.02629 vs
+global 0.00466 (5.6× from selection alone). Their rule applied to zeta: q med 0.02170 vs their
+GUE 0.01867 = 1.16×. My rule: zeta 0.00589 vs GUE 0.00543 = 1.09×. NO anomaly under matched
+rules. R selection-robust (0.1631 vs 0.1661 zeta, 1.8%). Both pre-registered predictions PASS.
+Surviving real effect: pre-asymptotic offset (q ~1.1× high, R ~13% low at low height, shrinking
+with height) — BK-type. GUE-pencil experiment to state selection rule explicitly, both rules
+both sides.
+
+**Certified κ table** (identity-gated ≤1.4e-6, all in letter §A4): κ₁ W +0.7230421, k922
+−0.8752958, Lehmer +0.0014730, k693 −0.9728263, k453 −0.7882499, k1166 −0.6217224, telescope
+−0.4559459; B W −5.5681309, k922 −1.7505518, Lehmer −2.4381044, k693 −1.4020236, k453
+−0.9535950, k1166 −1.9538508, telescope −4.6485676. κ₃ jet / κ₄ / κ₅ jet / κ₆ as in letter.
+
+**Standing proposal adopted**: every κ_j publication from any machine carries |a_j + (j−1)!S_j
+− G_j|/|a_j| per site. Letter machine1-kappa5-arbitration-mptaylor-conviction.md pushed (commit
+ee8b876) with heat48–51b scripts+outputs in data/. Also: Riemann.pdf = non-technical (M3 L9);
+their nzeros spot-check 20/20 complements ours; my §A5 Lehmer-footnote truncation suspicion
+withdrawn (their 1.3e-5 = same instrument degradation, no sums involved).
+
+## §77. heat52: R-channel of the b_c calibration error FALSIFIED (2026-09-02 night)
+
+Pre-registered as "heat48" in Letter-4 reply §6; renamed (heat48–51b consumed by the κ₅
+arbitration). Pool = 60 in-pool sites (heat38's 30 + heat40's 30, rebuilt verbatim, errors
+parsed from the .out files — trap #36), joined on (h, d/q); registration's "61" run as the
+W-inclusive sensitivity. **One self-caught join bug (trap #54, now registered): first pass
+recomputed q from full-table S₂ but the errors were calibrated under the model's windowed B
+(site_setup, WIN=50); fixed, convention check max |Δq| = 0.00046.**
+
+Results (heat52_R_partial_correlation.out): r(err,R) −0.273 union but −0.464/+0.123 by pool
+(sign-unstable); r(err,q_far) +0.853 (+0.879/+0.720, stable); **partial r(err,R|q_far) =
++0.143 → falsifier (|partial| < 0.15) FIRED**, reported fired before any reconciliation
+(trap #35). partial r(err,q_far|R) = +0.843. Regression err% ~ [1,R,q_far]: q_far +10.44±0.88
+(t = 11.84), R +0.34±0.31 (t = 1.09, n.s.). W-61 sensitivity partial −0.048. **Verdict: what
+the b_c model misses is far-jet physics (q_far), not neighbour shape (R).** Post pushed as
+machine1-heat52-R-channel-falsified.md (commit 3d944f4) with scripts in exchange data/.
+Machine 3 acked (their Letter 11) and offered traps #55–57 (see §79 register merge).
+
+## §78. heat53: GUE-band census — zeta-side anchor delivered; P1/P3 PASS, P2 q_far-law FALSIFIER FIRED (2026-09-02 night)
+
+**Launched twice by accident, both completed, digits identical** (accidental replication):
+the original (unguarded module-level scan+Pool code) crashed its macOS spawn workers
+(re-import of __main__ → runpy re-execution), but the PARENT survived, replaced workers and
+finished 20:38:13Z; the guarded relaunch (`if __name__ == "__main__":`) ran 20:34:17→20:40:14Z
+into the SAME stdout file → 4.4 MB NUL seek-hole + duplicated row blocks in the raw stream
+(preserved heat53_gue_band_census.raw.out; canonical cleaned .out carries a provenance note).
+All 16 sites agree digit-for-digit between the two runs, incl. the 2/3-row census-fits at
+h=2249.7 and h=4309.3. Registered as **trap #58** (infra: spawn guard + per-launch output
+files).
+
+Deliverable (Letter-6 §A4 commitment): b_c census at 16 zeta sites in the two GUE q bands
+(G: q_win∈[0.003,0.012] global rule, 29 candidates, 8 picked h 751–5978; W40:
+q_win∈[0.012,0.032] window-40 rule, 124 candidates, 8 picked h 334–5933; bands disjoint,
+height-stratified). Family = heat38 run_site verbatim (mixed pencil, a=1.15d, λ=0.5).
+
+**FIRED FIRST (trap #35): P2 falsifier fired in BOTH bands.** Registered law: err% ~ q_far
+slope 10.1±5 (heat38b/heat52, union 10.44±0.88). Observed: slope −10.48 (band G), −2.56
+(band W40) — sign flip in G; pooled-16 slope −1.89±1.04, t = −11.8 against the law value.
+**Then the reconciliation:** the 16 errors are a CONSTANT −0.562% ± 0.031 pp (1σ) across
+q_far 0.0021–0.0223 (10.6×), R 0.112–0.330 (2.9×), h 334–5978 (18×), both bands (G
+−0.558±0.039, W40 −0.566±0.021). The heat52 law predicts −0.85→−0.64% across the band — its
+intercept overshoots and its slope is absent. Reading: the +10.4/q_far law is a FULL-RANGE
+property whose leverage comes from q_far ≳ 0.03 sites; at GUE-matched q_far ≤ 0.022 the
+calibration error flattens to a constant multiplicative offset. The linear law compresses
+what is really a flattening curve at the low end. Two-regime description proposed as
+hypothesis only (unregistered — future registration required before any test, trap #18).
+
+P1 PASS both bands: median |err| 0.55%/0.56%, max 0.62% — the b_c model holds to ~0.6% at
+GUE-matched q (out of heat38's original q ≥ 0.005 range, down to 0.0034). P3 PASS both bands:
+model 0.55%/0.56% vs two-reference bound 0.79%/2.24% — model beats twoR everywhere in-band.
+P4 (machine 3's cross-check, no prediction of ours): per-site R in the .out; in-band
+r(err,R) = +0.301 (n=16, t≈1.2, n.s.), r(err,h) = +0.448 (marginal, err less negative with
+height), r(err,q_far) = −0.436.
+
+**Operational consequence for the joint experiment:** the zeta-side anchor is
+bc_model×(1−0.0056) with ~0.03 pp scatter and NO q_far correction in-band. Machine 3's GUE
+side measures against this. Their Letter-5 pre-registration (GUE deviations track R/u₁) is
+untouched by our zeta-side flatness — it is a GUE-side prediction.
+
+## §79. Erratum night: the ε-LAW closes the κ₅ saga — mp.taylor exonerated, "chaos" was a closed-form site-offset residue (2026-09-02 late)
+
+Trigger: machine 3's Letters 10–11 (their independent verification; JSON-float64 root cause;
+their from-scratch identity gate with self-caught sign bug). While answering Letter 10 I
+measured |their 22-digit Lehmer m₀ − zetazero truth| = 2.107e-13 — the string was NEVER
+stale; it is the first 22 digits of the CORRECTLY-ROUNDED float64 double of the true
+midpoint (bit-for-bit: double = 7005.0817154237838622066192328929901123046875 = their old
+JSON value). heat51c ladder from the exact site: +1e-13 → −0.535, −1e-13 → +0.535, +5e-13
+→ −2.68, +1e-12 → −5.35 — a DETERMINISTIC LINEAR RAMP, slope −240/d⁶ = −5.351e12/unit,
+dps-stable at 50 and 90; d-shift ±1e-13 → 0 exactly.
+
+**THE LAW [PROVED, 3 lines]:** a_j(m₀+ε) = a_j(m₀) − 2·j!·ε/d^(j+1) (odd j; even clean at
+O(ε)). (Pair sits at −ε±d relative to the off-centre point; odd-j S_j contribution
++2jεd^{−j−1}; a_j = G_j − (j−1)!S_j.) **Verification, eight ways** (heat51c/51d): their
+letter-8 Lehmer Δa₅ −1.1277 (law −1.1277); their a₃ −2.1e-5 (law −2.0e-5); my heat51 P3
+float64 site −3812.92 (law −3812.8); the ladder; the d-null; their letter-8 κ₆ already
+correct (even order); **7/7-site test** (T2g-old vs T2h-certified κ₅ vs −240ε/d⁶: ratios
+1.0 — telescope at ε=4.4e-37 predicts Δ=−6.7e-22, observed identical — FIFTEEN orders of
+ε, one law); fresh-input exactness.
+
+**Retraction:** my §A2 "mp.taylor silent chaotic failure" attribution [WITHDRAWN] — the
+instrument computed the honest LOCAL coefficient correctly; the site was 2.1e-13 off-centre
+and the quantity amplifies that by 240/d⁶. Erratum pushed (machine1-erratum-epsilon-law.md),
+supersedes §A2 only; §A1/§A3/§A4/§A5/§A6 stand.
+
+**Two-instrument distinction [PROVED]:** contour+branch-unwrap extracts POSITIVE Fourier
+modes; the interior near-cancelled zero-pole cluster contributes only NEGATIVE modes
+(ε/(z−d) = εΣdᵏz^{−k−1}) — so our contour at our ε=7e-10 table site measured the
+pair-extracted (site-invariant) coefficient; mp.taylor measured the honest local one; they
+coincide iff ε = 0. Gate semantics sharpened: residual at an ε≠0 site = 2·j!·ε/d^{j+1}/|a_j|
+— detects unlabelled site-offset regardless of instrument. **Practical rule:** tight-pair κ
+needs live high-precision sites (Lehmer κ₅ at 1e-6 rel needs ε ≲ 3e-19 — beyond any decimal
+constant); at ordinary d float64 sites give ~1e-5 rel.
+
+Machine 3's Letter-10 §2 reframed (in their favour): their JSON held the correctly-rounded
+double, not a degraded value; "mp.taylor tolerated truncation at 5/6 sites" = "ε·d⁻⁶ was
+small at 5/6"; their §4 sign convention reconciles with our arbiter via the odd-j S-sign.
+Their offered traps #55/#56 accepted verbatim; #57 filed as corroboration of #49; new #58
+(spawn guard + zombie parent writing the output file — the heat53 double-run) and #59 (the
+ε-law) registered. Register v2 = #1–#59 (machine1-trap-register.md; old file bannered
+SUPERSEDED).
+
+Everything in the b_c/q programme (heat52/53) is unaffected (different machinery, no
+pole-removal κ extraction).
+
+## §80. The d-law + Part-B gate: beast's corrected tables gated; κ₅ telescope wrong-signed; B convention settled (2026-09-02 late night → 09-03)
+
+**Context.** Machine 3 relayed beast's corrected κ tables verbatim (0ea87ad) — the corrected κ₃/κ₅ (blanket odd-order flip at transcription, sign-fixed at 6 sites), unchanged κ₄/κ₆, and a §4 OPEN-QUESTION on B (mirror zeros belong in S₂; both their and our published B omit them; machine 3's direct −2c₂ is convention-free; "the E8 verdict turns on exactly this 3.7×10⁻⁴").
+
+**heat51e — the d-law (even-order companion of the ε-law).** A mis-gapped pair removal (d_model = d+δ at exact midpoint) leaves residual Δ = δ[1/(z−d)−1/(z+d)] = −2δΣ_{k even} zᵏ/dᵏ⁺¹ ⇒ **κ_j(m₀,d+δ) = κ_j(m₀,d) − 2δ/d^(j+1) for EVEN j**, odd j clean at O(δ) — complementary to the ε-law (odd j ← ε). Unified: Δκ_j = −2u/d^(j+1), u = ε odd / δ even; parity selects which input error is ultraviolet. Verified: E1 Lehmer ladder (3 rungs ratio 1.0, t₅ null, t₂ exact), E4 telescope ladder (d⁻⁷ gain 10³× Lehmer, ratio 1.0 both rungs), E2 forensic double-closure of machine 3's old T2g Lehmer row — κ₃ offset −3.339e−6 = ε-law pred (ε = float64(m₀)−m₀ = +2.107e−13) ratio 1.0; κ₆ offset +1.480e−6 = d-law pred ratio 0.999987; E3 provenance: their T2g stored 49-digit d ≡ float64(d_true) (δ = −6.258e−19) while float64((γ₂−γ₁)/2)−d = +1.92e−13 ⇒ d came from rounding d, not the ordinates. Beast's "d-precision effect, distinct from the m₀ effect" attribution thus closed in closed form. **Process:** first draft of the law had wrong sign + jet/plain confusion — E1 ratio −1/720 exposed both; fixed in emitter, docstring carries correction record (traps #50/#60).
+
+**heat51f — Part-B gate (standing ask from ee8b876, renewed f05fcb3 §4).** Beast's corrected columns vs T2h (contour, identity-gated, mirrors-in), units = their last quoted digit, BEYOND = >10:
+- κ₆ 6/6 clean (0.02–1.5 units). κ₄ 6/6 sign-correct, ≤2.4e−7 abs — 7 s.f. clean (8 at k922/k1166), 9 printed = 1–2 digits overstated; their machine-3-transcribed column equals T2h digit-for-digit. κ₃ 6/6 sign-correct, diffs 1.7–6.4e−7 inside their ±5e−6 window caveat; their two Lehmer paths straddle certified +0.25617010; quote 7 digits. κ₅ 4/6 within 1–8 units (Lehmer +0.1533875676 vs +0.153387567704); k693 4.6e−11 < their 1.3e−9 cross-path noise (PASS, 10-digit quote optimistic ~1 digit); **telescope WRONG-SIGNED**: their corrected −0.309486353 vs certified +0.309486352994 — diff = exactly −2×value = pure sign flip; third instrument (direct mp.taylor dps 60, this run) = +0.309486352994 = T2h; struck original −0.3094864 ⇒ blanket flip missed telescope.
+- T2h keying: `kappa4` stores JET (a₄) while κ₃/κ₅/κ₆ keys are _plain — asymmetric (flagged to machine 3; gate normalizes /24; t₄ = kappa4/24 verified directly).
+- W-transcription: κ₃ +2.288204 correct 7-s.f. rounding; κ₅ 5.258411 one last-digit off (5.258410).
+
+**B adjudication.** |T2h contour − m3 direct| ≤ 6.2e−11 at all five quoted sites (both instruments mirrors-in, no window); beast mirror-in S₂ 8.5e−5–3.8e−4 low (their Σ1/u² window/tail; mirror-term scale right: k922 jump +6.20e−4 ≈ (L/2π)/m₀). **Adopted the direct/contour convention; WITHDRAWN our old table-sum B quotes** (k922 1.7499, Lehmer 2.4379, k453 0.9526, k693 1.4012, telescope 4.6481) — they measured windowed/table pair-excluded S₂, a different well-defined object, not the Hadamard-faithful B; beast right that our k922 1.7505→1.7499 move was the wrong direction. Certified B column = T2h (= m3 direct at 10 digits). E8 caution stated: re-run any E8 that consumed 1.7499-class B or pre-correction κ₃/κ₅.
+
+**heat41c restart (honest record).** First launch crashed AFTER pool.map completed — band_of = dict(SITES) mapped band→index not index→band, KeyError on first reported row; ~1.5 h site compute discarded by the reporting bug. Fixed: {i: band} + results persisted to JSON immediately after pool.map; Q2 drift-side now computed; relaunched Pool(2) (b6sjpp70k).
+
+**Letter.** machine1-partB-gate-and-dlaw.md (commit 2605b07) + heat51e/51f scripts+outs in exchange data/. Status tokens: d-law [PROVED], gate [REPORTED], telescope sign [FALSIFIED], B convention [ACCEPTED]/[WITHDRAWN], provenance [ACKNOWLEDGED].
+
+**Running:** heat54 (E6) stream scans; heat41c rerun. **Next:** their completions; telescope E4 census behind heat54; machine 3's GUE-side build (next their session) against heat53 anchor bc_model×(1−0.0056).

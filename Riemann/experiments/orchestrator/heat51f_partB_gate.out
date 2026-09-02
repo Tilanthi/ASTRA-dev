@@ -1,0 +1,60 @@
+== Part-B gate: BEAST corrected vs T2h certified (plain) ==
+NOTE: T2h stores kappa4 as JET (a4) under the key 'kappa4' while
+kappa3/kappa5/kappa6 carry _plain keys — asymmetric naming (their
+file, our reading); the gate normalises kappa4/24. Verified here:
+direct mp.taylor t4 = T2h kappa4/24 at Lehmer and telescope.
+site        k          beast              T2h       diff last-digit units
+k453       k3   -0.012501958 -0.0125013174293  -6.406e-7            640.6  <-- BEYOND
+k453       k5 -0.00302117259 -0.00302117251596 -7.404e-11            7.404
+k453       k4   -0.025467683 -0.0254676898103    6.81e-9             6.81
+k453       k6 -0.00297433104 -0.00297433104135  1.347e-12           0.1347
+k693       k3  -0.0069345849 -0.00693421538132  -3.695e-7           3695.0  <-- BEYOND
+k693       k5 +0.002488754876 0.00248875492171 -4.571e-11            45.71  <-- BEYOND
+k693       k4   -0.072931507 -0.0729315226201   1.562e-8            15.62  <-- BEYOND
+k693       k6  -0.0149522807 -0.0149522806976 -2.387e-12          0.02387
+k922       k3   -0.052046098 -0.0520457591599  -3.388e-7            338.8  <-- BEYOND
+k922       k5  -0.0259592386 -0.0259592385616 -3.845e-11           0.3845
+k922       k4   -0.147146455  -0.147146456473   1.473e-9            1.473
+k922       k6  -0.0496245566 -0.0496245565804 -1.959e-11           0.1959
+k1166      k3   +0.016191371  0.0161911960261    1.75e-7            175.0  <-- BEYOND
+k1166      k5   +0.004461096 0.00446109551657  4.834e-10           0.4834
+k1166      k4   -0.187247789  -0.187247786157  -2.843e-9            2.843
+k1166      k6  -0.0699133133 -0.0699133133123  1.234e-11           0.1234
+Lehmer     k3     +0.2561707   0.256170097455   6.025e-7            6.025
+Lehmer     k5  +0.1533875676   0.153387567704 -1.045e-10            1.045
+Lehmer     k4   -0.270149071  -0.270149090936   1.994e-8            19.94  <-- BEYOND
+Lehmer     k6  -0.1430774046   -0.14307740461  9.688e-12          0.09688
+telescope  k3     +0.3278604   0.327860172336   2.277e-7            2.277
+telescope  k5   -0.309486353   0.309486352994     -0.619          6.19e+8  <-- BEYOND
+telescope  k4   -0.720667532  -0.720667294743  -2.373e-7            237.3  <-- BEYOND
+telescope  k6  -0.4606781979  -0.460678197747 -1.534e-10            1.534
+
+column verdicts (bad sites beyond 10 last-digit units): k3 4/6, k5 2/6, k4 3/6, k6 0/6
+
+k5 telescope row: diff -0.619 = exactly -2x the value -> pure SIGN
+flip, not a measurement difference. Independent instrument (direct
+mp.taylor of ln[Xi(m0+z)/(z^2-d^2)], dps 60, this run):
+  telescope t5 = +0.309486352994  (== T2h +0.309486352994)
+  Lehmer    t5 = +0.153387567704  (== T2h)
+BEAST's corrected telescope k5 = -0.309486353 is wrong-signed; their
+struck original was -0.3094864, so the blanket odd-order flip missed
+the telescope site (correct flip => +0.3094864).
+
+
+== their Lehmer kappa3 caveat check (their two code paths +-5e-6) ==
+  their path A                            +0.2561707  diff 6.03e-7
+  their path B                            +0.2561695  diff -5.97e-7
+  m3 script m0-fixed (their quote)    +0.25617009746  diff 4.59e-12
+
+== B adjudication table (their section 4) ==
+site         T2h (contour)     m3 direct  beast mirror-in our OLD struck
+k453         0.95359499439  0.9535949944     0.9534557439         0.9526   |T2h-m3|=6.2e-12  |bm-T2h|=0.00014
+k693          1.4020236312  1.4020236312      1.401751856         1.4012   |T2h-m3|=2.4e-11  |bm-T2h|=0.00027
+k922          1.7505517969  1.7505517969      1.750466395         1.7499   |T2h-m3|=4.9e-11  |bm-T2h|=8.5e-5
+Lehmer        2.4381044413  2.4381044413      2.437777929         2.4379   |T2h-m3|=4.4e-11  |bm-T2h|=0.00033
+telescope     4.6485675617  4.6485675617      4.648946718         4.6481   |T2h-m3|=4.4e-11  |bm-T2h|=0.00038
+
+== their transcription of our W-site column vs T2h ==
+  W kappa3: T2h 2.2882036  their transcription +2.288204  diff 4.0e-7
+  W kappa5: T2h 5.25841023  their transcription +5.258411  diff 7.7e-7
+done
