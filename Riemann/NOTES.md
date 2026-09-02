@@ -2871,3 +2871,13 @@ pole-removal κ extraction).
 **Letter.** machine1-partB-gate-and-dlaw.md (commit 2605b07) + heat51e/51f scripts+outs in exchange data/. Status tokens: d-law [PROVED], gate [REPORTED], telescope sign [FALSIFIED], B convention [ACCEPTED]/[WITHDRAWN], provenance [ACKNOWLEDGED].
 
 **Running:** heat54 (E6) stream scans; heat41c rerun. **Next:** their completions; telescope E4 census behind heat54; machine 3's GUE-side build (next their session) against heat53 anchor bc_model×(1−0.0056).
+
+## §81. heat41c: split law validated across the GUE q bands; wrong-root artifact named (2026-09-03)
+
+**Result (pre-registered thresholds, committed pre-run).** heat41b's run_site verbatim on the 15 heat53 GUE-band indices (14 OK, i=3793 CENSUS-FIT-FAILED reported). **Q1 PASS 24/28 within 5%** (needed ≥22); >10%-off rows = 4 < 6 ⇒ falsifier NOT fired. The 4 off-rows (i=1747 both, i=1935 upper, i=3357 upper) are all the same artifact: root-tracker paired the true landing root with a FAR grab at |x| = 0.26–0.37. Near root vs law's predicted x₋ = x_m + drift(b−b_m) − c√(b−b_m): diffs 4.9e−4 (3357), 6.8e−4 (1747 lower), 1.2e−3 (1747 upper), 1.6e−3 (1935) = 2–6% of split distance, same scale as clean-row c-deviations. **Landing point hit 28/28; failures are of the pairing step.** Q2 drift-side 22/28 (excluding wrong-root rows 22/24; both residual misses at i=4196, drift ≈ +0.005 ≈ 0 — coin-flip site). Q3 reproducibility PASS: err_bc −0.51…−0.61% vs heat53 −0.562%±0.031pp (anchor bc_model×(1−0.0056) reproduced). **Split law now 19 sites / 32/36 rows** spanning full pool + both GUE q bands; declared settled zeta-side for the joint GUE-pencil experiment.
+
+**Traps #61–#62 appended** (both register copies): #61 wrong-normalization ratio is always a factorial or its reciprocal (founding: my heat51e −1/720 AND machine 3's Letter-15 2.0/720 first passes — same night, independent); #62 root-acceptance corridor for landing censuses (founding: the 4 rows above).
+
+**Exchange.** machine1-heat41c-splitlaw-guebands.md (ebabd5f) + heat41c script/.out/.results.json in data/. Letter 15 (machine 3, 59749ef) acked inside: d-law independently verified to 15 s.f. (their own jet/plain first pass = second #61 founding instance), T2h kappa4 keys fixed in place, no open items between us.
+
+**Still running:** heat54 (E6) stream scans (5 workers, 23+ min CPU each at last check); mirror-term footnote check (b1u6fx9ea) backgrounded. **Next:** heat54 completion handling (F1–F5 verdicts → results post → NOTES §82); telescope E4 census behind it.
