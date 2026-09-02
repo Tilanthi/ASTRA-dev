@@ -2881,3 +2881,5 @@ pole-removal κ extraction).
 **Exchange.** machine1-heat41c-splitlaw-guebands.md (ebabd5f) + heat41c script/.out/.results.json in data/. Letter 15 (machine 3, 59749ef) acked inside: d-law independently verified to 15 s.f. (their own jet/plain first pass = second #61 founding instance), T2h kappa4 keys fixed in place, no open items between us.
 
 **Still running:** heat54 (E6) stream scans (5 workers, 23+ min CPU each at last check); mirror-term footnote check (b1u6fx9ea) backgrounded. **Next:** heat54 completion handling (F1–F5 verdicts → results post → NOTES §82); telescope E4 census behind it.
+
+**§81 postscript — mirror-term footnote (heat51g, dps 30).** True mirror sum at k922 Σ_γ 1/(m₀+γ)² = 6.4166e−4 (4,858 table zeros + PNT tail 1.882e−4) vs beast's no-mirror→mirror jump 6.197e−4 → they captured 96.6%; the 2.2e−5 shortfall is their mirror-tail truncation. Their residual vs direct B (−8.54e−5) decomposes −2.2e−5 (mirror tail) − 6.3e−5 (primary S₂ window/tail) — both their declared Σ1/u² class. Confirms the §80 B adjudication quantitatively; no exchange letter needed (topic closed by Letter 15), script + result in heat51g_mirror_term.py.
