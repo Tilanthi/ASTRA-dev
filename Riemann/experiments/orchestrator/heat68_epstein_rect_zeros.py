@@ -186,17 +186,25 @@ def run_controls():
     P('C3 duality s=0.7 D=0.05: A %.1f dig, B %.1f dig (need 20)' % (dA, dB))
     assert dA >= 20 and dB >= 20, 'C3 failed'
     ok['C3'] = [dA, dB]
-    # C4: residue lim (s-1) zeta2 = pi/(2D) at D=0.1 via Richardson on A
-    # at s = 1-1e-10, 1-2e-10 (cancels the linear term; error ~1e-20)
+    # C4: residue lim (s-1) zeta2 = pi/(2D) at D=0.1 via 3-point Richardson on A
+    # (AMENDMENT-4: the registered 2-point scheme's intrinsic error 2*a1*h^2 at
+    # h=1e-10 is ~8e-19 -> 18.1 dig, unreachable at order >= 20; 3-point kills the
+    # h^2 term as well: (8g(h)-6g(2h)+g(4h))/3, error O(h^3) ~ 1e-30. h-sensitivity
+    # sub-check: d - dh in [2,4] — under O(h^3) the h-agreement sits exactly
+    # 3 decades below the main count; measured 27.2/24.2 = gap 3.0.)
     D = mpf('0.1')
     def g(e):
         return -e * zeta2_A(1 - e, D)[0]
-    rich = 2 * g(mpf('1e-10')) - g(mpf('2e-10'))
-    d = digits(relerr(rich, pi / (2 * D)))
-    P('C4 residue D=0.1: Richardson %s vs pi/(2D): %.1f dig (need 20)'
-      % (mp.nstr(rich, 14), d))
+    def rich3(h):
+        return (8 * g(h) - 6 * g(2 * h) + g(4 * h)) / 3
+    r10, r9 = rich3(mpf('1e-10')), rich3(mpf('1e-9'))
+    d = digits(relerr(r10, pi / (2 * D)))
+    dh = digits(relerr(r10, r9))
+    P('C4 residue D=0.1: 3-pt Richardson %s vs pi/(2D): %.1f dig (need 20); '
+      'h-floor (1e-9 vs 1e-10 agree) %.1f dig' % (mp.nstr(r10, 14), d, dh))
     assert d >= 20, 'C4 failed'
-    ok['C4'] = d
+    assert 2 <= d - dh <= 4, 'C4 h-scaling inconsistent with O(h^3)'
+    ok['C4'] = [d, dh]
     # C5: parsing linearization — g(d) = -Gamma(-d)zeta(-2d)/(Gamma(d)zeta(2d))
     # equals 1 + 2[gamma - 2 log(2 pi)] d at d = 1e-6, coefficient to >= 8 digits
     d0 = mpf('1e-6')
