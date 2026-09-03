@@ -1,0 +1,4 @@
+heat70 QUAD-FLOOR M=128 (pre-registered; runner sha256 below)
+runner sha256: 25038526d4202b61064b74ee9a750a6c7ead8f51eeb2aecd87fea0b109c7a7e1
+heat70 BATTERY (instrument validation; no contact with scored M=128 quad values)
+B4 symbolic-tracking drift (M=8 s1, 2000 pts): 4.441e-16  (expect ~1e-15)
