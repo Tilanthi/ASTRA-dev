@@ -1,0 +1,30 @@
+targets: 3 (drift-rejects carry no genome; Q-values only in log)
+
+===== LA [final best (fitness -9.994e-04)] =====
+  genome: {"J": 2, "terms": [[-1.9292815115370974, 6.899188590744414, 0.4255310111771612], [0.7238866142813478, 6.3989730219810905, 0.4114038190489374]]}
+  2^19: Q_prime = -9.99371267e-04
+  2^21: Q_prime = -4.31908211e-06
+  2^23: Q_prime = +5.79947746e-05
+  zero T=  100 ( 29 zeros): Q_zero = +6.20095595e-05   last|term| 2.89e-17
+  zero T=  150 ( 52 zeros): Q_zero = +6.20095595e-05   last|term| 3.84e-21
+  zero T=  200 ( 79 zeros): Q_zero = +6.20095595e-05   last|term| 3.14e-25
+
+===== LB [final best (fitness -9.378e-04)] =====
+  genome: {"c": 8.269682645079028, "pairs": [[-5.403768707144485, 0.06503429109537279], [-2.3013384940121777, 0.21406933960201457], [-2.0029598389303853, -0.27201523957986606], [5.611268955963705, -2.6461346096
+  2^19: Q_prime = -9.37806455e-04
+  2^21: Q_prime = +8.51691996e-05
+  2^23: Q_prime = +1.49162128e-04
+  zero T=  100 ( 29 zeros): Q_zero = +1.53419622e-04   last|term| 9.60e-17
+  zero T=  150 ( 52 zeros): Q_zero = +1.53419622e-04   last|term| 5.33e-21
+  zero T=  200 ( 79 zeros): Q_zero = +1.53419622e-04   last|term| 7.74e-25
+
+===== LC [final best (fitness +2.587e-01)] =====
+  genome: {"terms": [[-0.4153024368852276, 43], [1.6843589837494224, 59], [0.40979631959997426, 2], [1.6577660987731637, 61], [-0.41152148089305784, 53], [-0.19164715241383212, 19]]}
+  2^19: Q_prime = +2.58694099e-01
+  2^21: Q_prime = +2.58972865e-01
+  2^23: Q_prime = +2.58990476e-01
+  zero T=  100 ( 29 zeros): Q_zero = +1.24999981e-01   last|term| 3.89e-03
+  zero T=  150 ( 52 zeros): Q_zero = +1.67067201e-01   last|term| 1.88e-03
+  zero T=  200 ( 79 zeros): Q_zero = +2.35761234e-01   last|term| 7.97e-18
+
+verdict per NOTES 88f pre-statement: (a) >=0 artifact / (b) <0 both sides -> freeze, counterparty, no claims / (c) drift -> map it

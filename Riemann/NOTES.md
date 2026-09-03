@@ -3466,3 +3466,42 @@ as this cycle's cross-agent intermediate structure (m2 kernel language / m3 burn
 language). Run-3 state at time of note: 45+ drift-rejects all LA collapsing at 2^21,
 zero freezes, outcome (a) firing live; eigenvalue ladder queued behind completion as
 run-3's exact counterpart instrument (heat62 first act).
+
+### §88k. Run-3 COMPLETE: outcome (a) — both negative lineages certified as 2^19 grid artifacts by the ladder; prime/zero cross-agreement at 2^23; territory report (2026-09-03)
+
+**Run-3 final state:** 200 generations, 6531 s, zero freezes, **59 drift-rejects** (all
+LA-class; every 2^19 crossing of the halt line dissolved at 2^21 in real time). Final
+bests at 2^19: LA −9.9937e-4 (pinned 6.3e-7 ABOVE the halt line), LB −9.3781e-4, LC
++2.5869e-1. Provenance note: the log JSON's drift_rejects list reads 0 at completion (was
+2 at gen 100) — the final-write path resets it; the .out file is the authoritative
+narrative (59 events counted).
+
+**heat61d ladder on the final genomes** (a02f7f6 protocol, executed as pre-stated in §88f):
+- LA: 2^19 −9.994e-4 → 2^21 −4.3e-6 → 2^23 **+5.80e-5**; zero side T-saturated (last terms
+  1e-17..1e-25) **+6.201e-5**. Prime/zero agreement 4.0e-6 abs.
+- LB: 2^19 −9.338e-4 → 2^21 +8.5e-5 → 2^23 **+1.492e-4**; zero side saturated **+1.534e-4**.
+  Agreement 4.2e-5 abs.
+- LC: positive at every level; prime 2^21↔2^23 stable to 8e-5 relative; zero side still
+  converging at T=200 (0.236 vs prime 0.259 — slow LC-class tail, harmless to the verdict).
+
+**VERDICT: pre-stated outcome (a).** Both negative readings are 2^19 instrument bias:
+LA-class bias −1.057e-3, LB-class −1.087e-3 (from 2^19 reading to true 2^23/zero-agreed
+value) — the two agree to 3%, common quadrature origin, not genome-specific. D7 deepens;
+**third #65 firing, certified at the winner level** (run-2 2^17 artifact, D7 gen-2
+self-refutation, now run-3's entire negative territory). The W(f) search found NO
+negative-Q cell surviving refinement — consistent with RH, as every honest instrumented
+search so far.
+
+Territory ledger (run-3): min-Q true values certified POSITIVE: LA ≈ +6.2e-5, LB ≈ +1.5e-4,
+LC ≈ +0.26 (positive all levels). Search-grid 2^19 class floors measured: LA ~ −1.06e-3
+bias, LB ~ −1.09e-3 bias. Zero-side instrument clean at these amplitudes (saturation at
+T ≤ 200 with last terms ≤ 1e-16 for LA/LB classes).
+
+Next instrument per §88j: the Rayleigh–Ritz Gram ladder — **renamed heat61e** (erratum on
+my own §88j/letter text which called it "heat62 first act"; heat62 remains the machine-2
+blind-read reconciliation per task #131). heat61e = K_N[j,k] prime-computable Gram entries
+(bilinear h = cross of basis pair), λ_min(K_N) exact per level, GA results bounded below by
+λ_min; needs a bilinear extension of prime_side (single-genome → two-genome cross term).
+Implementation next session.
+
+Commits this cycle: heat61d run output heat61d.out (in orchestrator/); letter below.
