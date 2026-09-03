@@ -54,19 +54,23 @@ monotonicity check built into heat61f (fires a stop, not a result).
 **B1. inf Q = 0, unattained (object layer).** LOAD-BEARING for route-1's interpretation. The
 near-null direction (+3.07e-13 in an 8-dim span) is the closest concrete approach; nothing yet
 distinguishes "spectral bottom 0, approached" from "flat direction of the truncated operator".
-Exposure: the M-ladder rate + the eigenvector structure as M grows.
+Update (heat62, D4): random orthonormal spans reach +5.87e-16 generic-closeness — the
+near-null cluster is large, consistent with "0 approached along a wide ridge". Exposure: the
+M-ladder RATE (heat63, in flight) + the eigenvector structure as M grows.
 
-**B2. Winners + their mutants span the directions the GA explored.** UNEXAMINED, with measured
-motivation now: the mutant ladder's Gram conditioning explodes (cond(G) 970 → 7.6e3 → 1.15e7 at
-M=8/16/32, heat61i) — winner+mutant bases saturate at M~16; deeper probing of the near-null
-ridge requires orthogonalized or RANDOM bases. The ladder inherits the GA's sight either way: a
-negative direction OUTSIDE all winner spans is invisible to it. Exposure: run the ladder on
-RANDOM admissible bases (not winner-centered) at M=8-16 with cond ~1e2; a materially lower
-λ_min there falsifies the span assumption AND doubles as the ridge probe.
+**B2. Winners + their mutants span the directions the GA explored.** RETIRED-BY-TEST
+(heat62, hash-committed db7de084, outcome (b) RIDGE-GENERIC 2026-09-03) → **D4**. Random
+orthonormal M=8 spans in the GA's own LA/LB families land +5.6e-16…+1.7e-14 (floors ~1e-18,
+cond=1) — every genuine reading 20–520× closer to the bottom than the winner+mutant span's
++3.066441e-13 at the same M. The M~16 ladder saturation was acceptance-geometry conditioning
+death (heat61i), not a property of the ridge. Residual question inherited by heat63: the
+approach RATE λ_min ~ c·M^−α, which the mutant ladder could not measure.
 
-**B3. The three lineages (Gaussian/sinc/Fourier) cover the admissible class.** SURVEY-GRADE.
-The GA never left them; compact-support bases (machine 3's Letter-44 hint: the real search uses
-compactly-supported bases) are NOT represented. Exposure: add a compact-support lineage.
+**B3. The three lineages (Gaussian/sinc/Fourier) cover the admissible class.** RETIRED-BY-TEST
+(same run) → **D5**. The absent compact-support family is MATERIAL: random BUMP draws at M=16
+score +7.85e-14 (1106× floor) — matching the GA's entire optimized history from unsearched
+draws. Counter-contrast: LC (Fourier/Mellin) random spans sit at +2e-2…+7.9e-1, twelve orders
+out — family choice dominates; the GA's LC lineage was exploring a bottom-blind family.
 
 **B4. Local ξ analysis cannot see RH (earned constraint).** ENFORCED (route selection rule,
 NOTES §88g). Exposure: none known — machine-verified at every order; this assumption gates the
@@ -116,3 +120,15 @@ Letter 48: all three E~1e12 windows certified complete, n_scan == n_rigorous by 
 Turing/Rosser count at dps=25; edge margins ≥ 0.0039 (1.6% of mean spacing); bit-identical
 constants by construction — same in-memory mp.mpf values into both measurements). A3's
 exposure route (completeness tested at E~1e12) satisfied for these windows.
+
+**D4.** "Winners + their mutants span the GA's directions" (was B2) — RETIRED-BY-TEST
+(heat62): orthonormal random spans in the GA's own families sit 20–520× closer to the spectral
+bottom (best genuine +5.868e-16, 243× floor, vs +3.066441e-13); the near-null ridge is GENERIC
+in the admissible class. Nominal best trial −2.08e-16 was 0.35× its own floor — below
+resolution, excluded (trap #68 clause 1, self-applied). Under B1 this reads as a large generic
+near-null cluster of the truncated operator, not a needle the search earned.
+
+**D5.** "Three lineages (Gaussian/sinc/Fourier) cover the admissible class" (was B3) —
+RETIRED-BY-TEST (heat62): compact support absent AND material (random BUMP M=16 +7.85e-14,
+1106× floor); LC family bottom-blind (+2e-2…+7.9e-1). Class design is a first-order
+experimental variable, not bookkeeping.

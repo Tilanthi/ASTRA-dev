@@ -1,0 +1,45 @@
+CATEGORY: D (B2 random-basis + B3 compact-support exposure; zero-side-primary; pre-registered + hash-committed)
+LA-rand/s1/M8: lmin +1.390234e-14  floor 3.9e-18  cond 1.0  ok
+LA-rand/s1/M16: DEGENERATE DRAW — DQ
+LA-rand/s2/M8: lmin +5.631821e-16  floor 3.8e-18  cond 1.0  ok
+LA-rand/s2/M16: lmin -1.877370e-17  floor 8.9e-17  cond 1.0  DQ
+LA-rand/s3/M8: lmin +1.276967e-15  floor 3.0e-18  cond 1.0  ok
+LA-rand/s3/M16: lmin -2.083193e-16  floor 6.0e-16  cond 1.0  ok
+LA-rand/s4/M8: lmin +9.510237e-16  floor 8.8e-18  cond 1.0  ok
+LA-rand/s4/M16: lmin -6.323544e-17  floor 2.1e-16  cond 1.0  DQ
+LA-rand/s5/M8: lmin +1.952361e-15  floor 5.0e-18  cond 1.0  ok
+LA-rand/s5/M16: DEGENERATE DRAW — DQ
+LB-rand/s1/M8: lmin +1.699379e-14  floor 3.2e-18  cond 1.0  ok
+LB-rand/s1/M16: DEGENERATE DRAW — DQ
+LB-rand/s2/M8: lmin +9.849397e-16  floor 2.9e-18  cond 1.0  ok
+LB-rand/s2/M16: DEGENERATE DRAW — DQ
+LB-rand/s3/M8: lmin +1.230855e-15  floor 7.0e-18  cond 1.0  ok
+LB-rand/s3/M16: DEGENERATE DRAW — DQ
+LB-rand/s4/M8: lmin +5.868094e-16  floor 2.4e-18  cond 1.0  ok
+LB-rand/s4/M16: DEGENERATE DRAW — DQ
+LB-rand/s5/M8: lmin +1.712113e-15  floor 9.7e-19  cond 1.0  ok
+LB-rand/s5/M16: DEGENERATE DRAW — DQ
+LC-rand/s1/M8: lmin +7.856683e-01  floor 5.2e-16  cond 1.0  ok
+LC-rand/s1/M16: lmin +1.369599e-01  floor 5.4e-16  cond 1.0  ok
+LC-rand/s2/M8: lmin +6.849388e-01  floor 5.2e-16  cond 1.0  ok
+LC-rand/s2/M16: lmin +1.842141e-01  floor 5.6e-16  cond 1.0  DQ
+LC-rand/s3/M8: lmin +3.545390e-01  floor 5.1e-16  cond 1.0  DQ
+LC-rand/s3/M16: lmin +2.365242e-01  floor 5.8e-16  cond 1.0  DQ
+LC-rand/s4/M8: lmin +1.980192e-01  floor 4.6e-16  cond 1.0  ok
+LC-rand/s4/M16: lmin +3.316964e-02  floor 6.2e-16  cond 1.0  ok
+LC-rand/s5/M8: lmin +2.738828e-01  floor 5.2e-16  cond 1.0  ok
+LC-rand/s5/M16: lmin +1.983052e-02  floor 6.0e-16  cond 1.0  ok
+BUMP/s1/M8: DEGENERATE DRAW — DQ
+BUMP/s1/M16: DEGENERATE DRAW — DQ
+BUMP/s2/M8: lmin +8.274346e-09  floor 1.4e-18  cond 1.0  ok
+BUMP/s2/M16: lmin +3.961080e-13  floor 3.0e-15  cond 1.0  ok
+BUMP/s3/M8: lmin +5.793983e-11  floor 5.3e-17  cond 1.0  ok
+BUMP/s3/M16: DEGENERATE DRAW — DQ
+BUMP/s4/M8: lmin +4.206733e-09  floor 9.4e-17  cond 1.0  ok
+BUMP/s4/M16: lmin +7.849760e-14  floor 7.1e-17  cond 1.0  ok
+BUMP/s5/M8: lmin +6.051907e-10  floor 3.5e-13  cond 1.0  ok
+BUMP/s5/M16: lmin +9.548598e-13  floor 2.0e-16  cond 1.0  ok
+
+best trial: LA-rand/s3/M16 lmin -2.083193e-16 | mutant-ladder M=8 reference +3.066441e-13
+
+== OUTCOME (b-RIDGE-GENERIC) — see docstring pre-registration ==
