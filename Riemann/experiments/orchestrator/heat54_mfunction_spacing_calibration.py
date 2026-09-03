@@ -59,6 +59,13 @@ import numpy as np
 import mpmath as mp
 from multiprocessing import Pool
 
+# CPU budget (user directive 2026-09-03): TOTAL compute across all streams
+# <= 5 cores while the user is working (10-core laptop). Default 5 = this
+# stream alone owns the budget; set RIEMANN_WORKERS lower when a second
+# single-core stream (e.g. heat61e) runs beside it. Two full Pool streams
+# concurrently are an overnight-only configuration (explicit CPU grant).
+WORKERS = max(1, int(os.environ.get("RIEMANN_WORKERS", "5")))
+
 SMOKE = os.environ.get("HEAT54_SMOKE") == "1"
 mp.mp.dps = 30
 
@@ -222,8 +229,31 @@ if __name__ == "__main__":
 
     print("\n== streams: A/B ordinate scans (grid 0.05, 26-step bisection) ==",
           flush=True)
+    # phase-level checkpoint (power-cut lesson 2026-09-03: run A lost ~55 min
+    # of scans to a crash before any persist; #41c family). /tmp survives a
+    # reboot on macOS; a mid-phase death still loses that one phase.
+    CKPT = "/tmp/heat54_ckpt.json"
     ROOTS = {}
-    with Pool(5) as pool:
+    XRAW = None
+    if os.path.exists(CKPT):
+        with open(CKPT) as fh:
+            ck = json.load(fh)
+        ROOTS = {eval(k): np.array(v) for k, v in ck.get("roots", {}).items()}
+        XRAW = ({eval(k): np.array(v) for k, v in ck.get("xraw", {}).items()}
+                if ck.get("xraw") else None)
+        print(f"  [checkpoint: {len(ROOTS)}/{len(streams)} streams, "
+              f"{0 if XRAW is None else len(XRAW)} X-windows restored]",
+              flush=True)
+
+    def save_ckpt():
+        with open(CKPT, "w") as fh:
+            json.dump({"roots": {str(k): list(v) for k, v in ROOTS.items()},
+                       "xraw": ({} if XRAW is None
+                                else {str(k): list(v)
+                                      for k, v in XRAW.items()})}, fh)
+
+    if len(ROOTS) < len(streams):
+      with Pool(WORKERS) as pool:
         for T0, W, om, side, roots, dt in pool.imap_unordered(scan_stream,
                                                               streams):
             ROOTS[(T0, om, side)] = np.array(roots)
@@ -246,12 +276,22 @@ if __name__ == "__main__":
             dq = "OK" if abs(len(roots) - Nbar) / Nbar <= 0.02 else "DQ-FAIL"
             print(f"  T0={T0:7.1f} omega={om:.2f} side={side}: N={len(roots):5d} "
                   f"Nbar={Nbar:8.1f}  ({dq})  [{dt:.0f}s]", flush=True)
+            save_ckpt()
+    else:
+        print("  [streams already complete from checkpoint; skipping scans]",
+              flush=True)
 
     print("\n== m side: X = Re zeta'/zeta samples (dps 40) ==", flush=True)
-    XRAW = {}
-    with Pool(5) as pool:
-        for T0, W, om, j0, j1, xs in pool.imap_unordered(sample_X, mjobs):
-            XRAW.setdefault((T0, om), []).extend(xs)
+    if XRAW is None:
+        XRAW = {}
+        with Pool(WORKERS) as pool:
+            for T0, W, om, j0, j1, xs in pool.imap_unordered(sample_X, mjobs):
+                XRAW.setdefault((T0, om), []).extend(xs)
+        for k in XRAW:
+            XRAW[k] = np.array(XRAW[k])
+        save_ckpt()
+    else:
+        print("  [X windows already complete from checkpoint; skipping]", flush=True)
     for k in sorted(XRAW):
         arr = np.array(XRAW[k])
         XRAW[k] = arr
@@ -284,7 +324,8 @@ if __name__ == "__main__":
                         ).statistic
         var_ratio = v.var() * np.pi ** 2 * rho / X.var()
         rng = np.random.default_rng(12345)
-        boots = [v[rng.integers(0, n, n)].var() * np.pi ** 2 * rho / X.var()
+        m = len(v)  # v has len(g)-1 spacings; n=len(g) caused IndexError at B-side
+        boots = [v[rng.integers(0, m, m)].var() * np.pi ** 2 * rho / X.var()
                  for _ in range(200)]
         lo, hi = np.percentile(boots, [2.5, 97.5])
         # raw-gap NNSD vs Wigner surmise (positioning only, NOT a Thm-1 test):

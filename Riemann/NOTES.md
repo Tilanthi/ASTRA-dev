@@ -3505,3 +3505,66 @@ blind-read reconciliation per task #131). heat61e = K_N[j,k] prime-computable Gr
 Implementation next session.
 
 Commits this cycle: heat61d run output heat61d.out (in orchestrator/); letter below.
+
+### §88l. CPU budget directive + session resume (2026-09-03 afternoon)
+
+**User directive (standing): TOTAL compute ≤ 5 cores while the user is working** (10-core
+laptop; the 09-03 morning configuration — heat54 Pool(5) + W-search stream, 12 workers in
+two streams — starved their interactive use). Implemented: `RIEMANN_WORKERS` env var in
+heat54/heat55 (default 5 = stream owns the whole budget); two full Pool(5) streams
+concurrent = overnight-only with explicit CPU grant, per the 2026-09-01/02 mandate terms.
+Recorded in memory (riemann-cpu-budget).
+
+Reboot at ~14:30 killed both streams: heat54 died 6 lines in (ω-rows done: 0.15/0.30 sieve
+vs P'' rel-diff 7.3e-6/2.5e-7, stream scans not started; checkpoint JSON persists ROOTS),
+heat61e had produced its first span at M=4 (eig min 2^19/2^21 = 0.22258/0.22283 — LC-winner
+scale as pre-registered, GATE-E 0 fails so far, zero side T=100 min 0.0972 not yet
+T-saturated, LA/LB spans + T=150/200 + GATE-Z outstanding). Resume order: heat61e
+completion (1 core) beside heat54 at RIEMANN_WORKERS=4 (= 5 total), heat55 chained after
+heat54 at 5.
+
+### §88m. heat61e COMPLETE — Gram-ladder verdict; LB near-null direction +3.066e-13; heat61f M-ladder pre-registered and running; own letter mislabel caught (2026-09-03 afternoon)
+
+**Full table (M=8 all lineages, basis = winner + diverse mutants, generalized eigenproblem on
+the 2^23 L² Gram):**
+
+| span | prime 2^21 λ_min | prime 2^23 λ_min | zero T=200 λ_min (saturated) | GATE-E | GATE-Z | eig-DQ |
+|---|---|---|---|---|---|---|
+| LA (Gaussian, cond 1.2e5) | −1.409e-4 | −8.166e-6 | **+1.145997e-11** | 7/64 | 10/64 | 4/8 |
+| LB (sinc, cond 200) | −5.553e-5 | −3.323e-6 | **+3.066441e-13** | 23/64 | 15/64 | 5/8 |
+| LC (Fourier, cond 953) | +8.8906e-2 | +8.8914e-2 | +7.900e-2 (T=200; still rising to prime value — known slow tail, last term 4e-17) | 0/64 | 15/64 | 0/8 |
+
+**Verdict (mine, per §88f discipline): NO (b) anywhere** — zero side strictly positive on all
+three spans, T-saturated (last terms 1e-16..1e-24). **LC = (a)-clean** (prime side stable to 5
+digits across grids, zero side converging up to it). **LA/LB = (c)-flavored**: the span minima
+sit at/below the prime-side class floors (prime negatives dissolve with refinement exactly as
+the certified 2^19/2^21 floors predict: LA −1.06e-3@2^19 → −1.4e-4@2^21 → −8.2e-6@2^23; LB
+−1.09e-3 → −5.6e-5 → −3.3e-6), so span-certified-positive cannot be minted from the prime side;
+the exact zero side carries the sign.
+
+**The structural find: the LB span contains a NEAR-NULL direction.** λ_min = +3.066441e-13,
+T-stable to 7 digits (T=100/150/200: …454 → …441 → …441 e-13), ~100× above the float64
+generalized-eig floor (eps·‖K‖·cond ≈ 4e-15) — a genuine near-null direction of the polarized
+Weil form, **8 orders below the GA's best (+6.2e-5) and 11 below the ζ-side winners**. Under RH
++ Weil's criterion the form is ≥ 0 with spectral bottom plausibly 0 (inf unattained) — so this
+is the expected shape of the approach to the bottom, now made concrete: an 8-dim sinc-span
+already reaches 3e-13 from above. Route-1's question becomes the RATE: λ_min(M) → 0⁺ how?
+
+**heat61f (pre-registered in docstring, running at 1 core):** nested M-ladder M=8→16→32 on the
+LB span — diverse_mutants(rng 20260903) is prefix-deterministic ⇒ Rayleigh–Ritz monotonicity is
+theorem-grade bookkeeping; outcome (a) λ_min>0 at M=16/32 + decay fit λ_min ~ c/M^α; (b) zero
+side < −1e-11 (30× floor) at any M → FREEZE + relay; (c) floor-dominated. Instrument falsifiers:
+T-saturation per M; prefix-violation stop. First M-ladder = the deterministic route-1 upgrade
+the mutation promised (GA = stochastic λ_min estimator → exact ladder).
+
+**Own error caught (trap #66 class, mine this time):** my pushed letter 96c2c23 §5 labelled the
+LB-span numbers (+3.066e-13) as "LA span" — written from a tail fragment of the still-running
+.out before the LB section header was visible. Caught by opening the full section map when the
+run finished. LA's zero-side λ_min is +1.146e-11; the near-null champion is LB. Correction goes
+in the follow-up exchange letter (errata outrank what they correct). Fitting: the letter that
+co-founded #66 (quotation-compression) carried its own compression error, caught the same way —
+open the source.
+
+Standing: heat54 streams running (4 workers); heat61f running (1 core); heat55 chained after
+heat54; M-ladder verdict + decay fit next; exchange follow-up letter pending heat61f or earlier
+if (b) fires (it would relay immediately).

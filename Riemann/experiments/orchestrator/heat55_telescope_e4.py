@@ -35,6 +35,7 @@ evals + winding (700) + fine locates; ~2-4 min/row single-proc; 15 rows
 ~ 45 min; Pool(5) ~ 12-15 min. Launched only after heat54 exits (CPU grant
 = 5 workers on this 10-core machine).
 """
+import os
 import mpmath as mp
 
 mp.mp.dps = 30
@@ -152,6 +153,13 @@ def fmt(r):
             s += f"  pure={r['ymodel_pure']:.7f}"
     return s
 
+def job(spec):
+    fam, b_s, a_s, lam_s = spec
+    tag = (f"E1 b={b_s}" if fam == "E1"
+           else f"SL a={a_s} lam={lam_s} b={b_s}")
+    return census_row(a_s, b_s, lam_s, tag)
+
+
 if __name__ == "__main__":
     import json
     from multiprocessing import Pool
@@ -178,13 +186,11 @@ if __name__ == "__main__":
         for db in ("-0.0004", "-0.0002"):
             specs.append(("SLICE", mp.nstr(bmod + mp.mpf(db), 8), a_s, lam_s))
 
-    def job(spec):
-        fam, b_s, a_s, lam_s = spec
-        tag = (f"E1 b={b_s}" if fam == "E1"
-               else f"SL a={a_s} lam={lam_s} b={b_s}")
-        return census_row(a_s, b_s, lam_s, tag)
-
-    with Pool(5) as pool:
+    with Pool(max(1, int(os.environ.get("RIEMANN_WORKERS", "5")))) as pool:
+        # CPU budget (user directive 2026-09-03): total across all streams
+        # <= 5 cores while the user works; job lives at module top level
+        # (trap #58 — spawn): workers re-import __mp_main__ and would
+        # die on unpickling a guard-nested def (heat55 v1's 70-min stall)
         rows = pool.map(job, specs)
     json.dump(rows, open("heat55_telescope_e4.results.json", "w"), indent=1)  # heat41c lesson: persist BEFORE reporting
     for r in rows:

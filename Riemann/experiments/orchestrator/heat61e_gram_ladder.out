@@ -1,0 +1,41 @@
+
+===== LA: basis = winner + diverse mutants (generalized eig) =====
+  basis size 8 (of 8 requested), winner included
+  2^21: lambda_min = -1.408942e-04  lambda_max = +3.391628e+01  asym 0.0e+00  cond(G) 122068.4
+    eigs: -1.409e-04 -4.034e-05 -2.252e-05 +7.191e-06 +4.187e-04 +5.270e-03 +8.712e-01 +3.392e+01
+  2^23: lambda_min = -8.166226e-06  lambda_max = +3.391423e+01  asym 0.0e+00  cond(G) 122068.4
+    eigs: -8.166e-06 -6.390e-07 +6.593e-06 +4.691e-05 +4.380e-04 +6.138e-03 +8.711e-01 +3.391e+01
+  zero T=100 (29 zeros): lambda_min = +1.146000e-11  last|u|max^2 5.88e-15
+  zero T=150 (52 zeros): lambda_min = +1.145997e-11  last|u|max^2 4.97e-19
+  zero T=200 (79 zeros): lambda_min = +1.145997e-11  last|u|max^2 1.17e-22
+  GATE-E: 7/64 entries fail max|dK| 7.91e-05 (thr base 2e-5)
+  eig-stability DQ: 4/8 eigenvalues move >50% rel between 2^21 and 2^23
+  GATE-Z: 10/64 entries fail max|dK| 3.51e-04
+
+===== LB: basis = winner + diverse mutants (generalized eig) =====
+  basis size 8 (of 8 requested), winner included
+  2^21: lambda_min = -5.552557e-05  lambda_max = +4.998300e-02  asym 0.0e+00  cond(G) 200.2
+    eigs: -5.553e-05 -3.207e-05 -1.453e-05 -5.623e-06 +2.275e-05 +3.585e-04 +1.653e-02 +4.998e-02
+  2^23: lambda_min = -3.322801e-06  lambda_max = +5.009280e-02  asym 0.0e+00  cond(G) 200.2
+    eigs: -3.323e-06 -1.572e-06 -6.321e-07 +1.218e-07 +8.895e-05 +5.212e-04 +1.659e-02 +5.009e-02
+  zero T=100 (29 zeros): lambda_min = +3.066454e-13  last|u|max^2 8.77e-16
+  zero T=150 (52 zeros): lambda_min = +3.066441e-13  last|u|max^2 4.87e-20
+  zero T=200 (79 zeros): lambda_min = +3.066441e-13  last|u|max^2 7.06e-24
+  GATE-E: 23/64 entries fail max|dK| 1.13e-04 (thr base 2e-5)
+  eig-stability DQ: 5/8 eigenvalues move >50% rel between 2^21 and 2^23
+  GATE-Z: 15/64 entries fail max|dK| 2.65e-03
+
+===== LC: basis = winner + diverse mutants (generalized eig) =====
+  basis size 8 (of 8 requested), winner included
+  2^21: lambda_min = +8.890617e-02  lambda_max = +2.653990e+00  asym 0.0e+00  cond(G) 952.6
+    eigs: +8.891e-02 +4.112e-01 +9.312e-01 +1.255e+00 +1.485e+00 +1.621e+00 +1.957e+00 +2.654e+00
+  2^23: lambda_min = +8.891365e-02  lambda_max = +2.654099e+00  asym 0.0e+00  cond(G) 952.6
+    eigs: +8.891e-02 +4.112e-01 +9.313e-01 +1.256e+00 +1.486e+00 +1.621e+00 +1.958e+00 +2.654e+00
+  zero T=100 (29 zeros): lambda_min = +3.434054e-02  last|u|max^2 3.75e-02
+  zero T=150 (52 zeros): lambda_min = +5.430505e-02  last|u|max^2 4.01e-02
+  zero T=200 (79 zeros): lambda_min = +7.899810e-02  last|u|max^2 4.34e-17
+  GATE-E: 0/64 entries fail max|dK| 9.78e-05 (thr base 2e-5)
+  eig-stability DQ: 0/8 eigenvalues move >50% rel between 2^21 and 2^23
+  GATE-Z: 15/64 entries fail max|dK| 2.31e+00
+
+== verdict (pre-stated): (a) all lambda_min>0 both instruments & gates -> spans certified positive; (b) stable negative -> FREEZE + counterparty; (c) gates fail -> instrument floor, D7 class ==
