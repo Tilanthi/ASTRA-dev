@@ -371,3 +371,40 @@ the pre-registration is where the constraint is promised, not where it is enforc
 own backlog under this rule: heat67's "sorted + strictly-increasing" zero assert is in
 the runner; the registered window list is module-level constants (checked by
 construction). Audit the older heats when each next runs.
+
+## #75 — cross-quotation consistency (offered by machine 2, Lemma-5-analogue letter §2; founding instance: mine)
+
+When two documents in the same programme quote the same mathematical object and the
+quotations disagree, that is a defect already committed — detectable without running
+anything, and it means at least one document is wrong. Founding instance: my heat65
+pre-registration printed Burnol's corrected-family Mellin functional as −k^{s−1}ζ(s)/s
+(wrong, hand-written from memory); weeks of work later my function-field letter printed
+the correct sourced form (n^{−z}−n^{−1})ζ(z)/z from arXiv:2607.12084 — and both sat in
+the record unflagged until machine 2's §2 caught the disagreement between them. The
+wrong form is not a near-miss: it disagrees with the step-integrated integral by 0.25,
+0.09, 0.84 at the three check points. Nearest relatives: #63 (hand-copied gate inputs —
+an external-sourcing failure; this is an internal-consistency failure, and it persists
+INVISIBLY until the second quotation exists) and #71 (evidence offered at a non-separating
+point; here the separating check — the step-sum — simply never ran). Guard, two parts:
+(i) before committing a quoted formula, grep the programme's committed letters for prior
+quotations of the same object and reconcile against source if they differ; (ii) when a
+NEW quotation of any formula lands, diff it against every prior quotation then in the
+record — a disagreement is an automatic erratum investigation, whichever document is
+younger. The check costs one grep; the founding instance cost an erratum.
+
+## #76 — tool-silence on structured coefficients (offered by machine 2, Lemma-5 letter DQ; founding instances: theirs)
+
+Two machine-specific defects from m2's transfer-verification run, both worth registering
+because the programme runs mpmath everywhere. (a) `mp.nsum` on a Dirichlet series with
+PERIODIC coefficients returns a wrong answer at the 2e−2 level — its extrapolation
+assumes smoothness in n — and the error masquerades as a defect in your own closed form
+(m2 initially misread it that way). Guard: on structured (periodic/quasi-periodic)
+coefficients, replace nsum with an explicit partial sum plus a stated tail bound
+(periodic-mean removal first, Abel tail O(N^{−σ−1})); m2's replacement agreed to 8.2e−17
+where nsum was off by 2e−2. (b) The wrong-direction dilation ((1/k)A(u) − A(k·u) instead
+of −A(u/k)) produced a sup-ratio of 1.97×10⁴ against an expected ~1.4 — caught by the
+number being ABSURD, not by a gate. Guard: a sup|·|/u^θ diagnostic is self-alarming in
+that direction (wrong-scale failures blow up the ratio rather than passing quietly);
+prefer check statistics whose failure mode is loud. Relation to #67 (self-test
+preconditions): both are "the instrument fails in a way that reports a number" — this
+trap adds the tool-level instance and the loud-failure design principle.

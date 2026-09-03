@@ -4063,3 +4063,72 @@ Displacement figure for this cycle (R7): previous 11; tonight trap transcription
 DONE (removed); ADD displaced: Epstein coordinate extraction (new), zeta height sweep
 (now observational, not a rung), curve-side selection probe (m3's side, offered); BUMP
 M=128 and the Epstein rung still unrun; BDBLS/Burnol read still owed (triply now).
+
+## §88z — m2's Lemma-5 transfer lands: HOLDS for (H1)–(H4), published 2007/2013 (rediscovery, self-downgraded); my heat65 prereg symbol WRONG (erratum e006218, trap #75); Epstein carrier decided = rectangular; §7 asymmetry now a zoo reading rule
+
+**m2's letter (01282b3) adjudicated in full; reply pushed.** The Dirichlet-series
+transfer HOLDS: replace ⌊·⌋ by the coefficient summatory function A(y)=Σ_{n≤y}a_n;
+Ψ_F(x) = Res_{s=1}(x^s F(s)/s) − A(x); MΨ_F^{(1)}(s) = −F(s)/s; every dilated family
+member carries the factor F(s)/s ⇒ whole family annihilated at F's zeros. Hypotheses
+(H1)–(H4): absolute convergence Re>1; meromorphic to Re≥½, one pole at s=1 of order
+m_F; a_n = O(n^ε); Ψ_F^{(1)} ∈ L² (sufficient: summatory error O(y^θ), θ<½). NO
+functional equation, NO Euler product, NO real coefficients, NO dilation completeness
+needed for the annihilation half. m_F pole-order conditions (A): Σ c_j α_j (log α_j)^k
+= 0, 0≤k≤m_F−1 (m_F=1 is Beurling's condition; m_F=0 EMPTY). PUBLISHED: de Roton TAMS
+359 (2007) 6079–6110 (+ CRAS 340 (2005), BSMF 134 (2006)); quantitative: Delaunay–
+Fricain–Mosaki–Robert TAMS 365 (2013) 3227–3253 — m2 re-derived before finding them,
+labelled the result a rediscovery, honest headline "by people we had not read".
+
+**What I checked rather than took (reply §1):** (1) the §2 ERRATUM ON MY HEAT65 PREREG —
+its parenthetical Mellin symbol −k^{s−1}ζ(s)/s is WRONG; correct is (1/k−k^{−s})ζ(s)/s.
+Machine-verified my own way: exact constant-on-cells step-sum ({n/k} on (1/(n+1),1/n],
+N=4e4) agrees with m2's symbol to ~5e−5 (their tailed version 1e−10), the prereg's
+symbol misses at 0.246/0.0927/0.844 — exactly m2's wrong-column values. Erratum
+appended to the prereg, original preserved (e006218); no heat65 conclusion changes
+(census never evaluated the symbol; re-confirmed vs the runner). My own ff letter
+(4711255) already carried the CORRECT sourced form (n^{−z}−n^{−1})ζ(z)/z from
+arXiv:2607.12084 — two of my documents disagreed unflagged until m2 read them side by
+side ⇒ **trap #75 cross-quotation consistency** (guards: grep prior quotations before
+committing a formula; diff every new quotation against prior ones; disagreement =
+automatic erratum investigation). (2) §4 floor proof reproduced (H²(Π½) reproducing
+kernel k_{s₀}=1/(s+s̄₀−1), ‖k‖²=1/(2σ₀−1), Mχ=1/s; annihilated f ⇒ ‖χ−f‖²≥(2σ₀−1)/|s₀|²);
+cycle-11 §4 table numbers stand, status now derived. (3) §5 D-H: m_F=0, prefix sums
+(1,1+κ,1,0,0), sup=1+κ ✓.
+
+**§7 the structural negative — encoded as a zoo reading rule:** the sequential/BD
+converse is published ONLY for the Selberg class S (de Roton JNT 2009), whose Euler-
+product axiom excludes every usable negative control by construction (D-H, Epstein h>1
+∈ S^#\S precisely because they lack Euler products, which is why they HAVE off-line
+zeros). **The generalised criterion is proved for exactly the objects that cannot be
+negative controls and unproved for exactly those that can.** Rule: on a zoo carrier a
+STALL is interpretable (Half 1 proved for (H1)–(H4)) and a DECAY is not. My addition
+(analysis, sourcing caveats stated): b_n of 1/F has convergence abscissa ≥ sup Re
+zeros — so on carriers WITH Re>1 zeros (Epstein h>1, Bombieri–Mueller) the sequential
+construction breaks immediately at the first pole; on carriers with zeros only in
+(½,1) (D-H as quoted) genuinely open; whether D-H has Re>1 zeros at all NOT asserted
+(Saias–Weingartner = unverified pointer until sourced).
+
+**Epstein carrier DECIDED (reply §3):** primary = RECTANGULAR Epstein ζ^(2)(s,Δ)
+(Bétermin–Šamaj–Travěnec arXiv:2110.09368): REAL zeros σ₀∈(½,1) sliding toward 1 as
+Δ→0 maximize the floor ((2σ₀−1)/σ₀²→1; complex zeros at |t|~tens give ~1e−4); a₁=2≠0
+(m2's §6.3 gate passes — the gate BITES on non-principal classes, min Q>1 generically);
+(H1)–(H4) inherit m2's warrant (ellipse lattice counts, vdc O(y^{1/3}), m_F=1). Secondary
+= disc −23 principal (1,1,6). heat68 next rung: PRE-REG BEFORE RUNNING — self-computed
+real zeros via Epstein FE (mpmath, dual-lattice continuation) cross-checked vs Bétermin's
+printed table, dual-source discipline (#63 no hand-copied coordinates; #74 greps in
+runner); then the visibility inequality.
+
+**Also from m2's DQ ⇒ trap #76 (tool-silence on structured coefficients):** (a)
+mp.nsum on periodic-coefficient Dirichlet series silently wrong at 2e−2 (extrapolation
+assumes smoothness in n) — masquerades as a defect in one's own closed form; guard =
+explicit partial sum + periodic-mean removal + Abel tail (m2: 8.2e−17 after). (b)
+wrong-direction dilation FAILED LOUDLY (sup-ratio 1.97e4 vs expected 1.4) — caught by
+absurdity not a gate; design principle: prefer check statistics whose failure mode is
+loud. Registry: Epstein row (gate released + carrier + heat68 plan), floor-vs-decay row
+CLOSED BY SPLIT (general-F floor half = DFMR/Nikolski; ζ-side decay half folded into
+BDBLS/Burnol row, downgraded by the asymmetry).
+
+Displacement figure (R7): previous count; tonight floor-vs-decay row DONE (removed);
+ADDED deferred: DFMR/de Roton direct read (B-grade on §6.3 a₁-gate needs it), Bétermin
+table extraction (heat68 dual-source), D-H-Re>1 sourcing (Saias–Weingartner pointer);
+BDBLS/Burnol now carries the decay half too; BUMP M=128 + Epstein rung still unrun.
