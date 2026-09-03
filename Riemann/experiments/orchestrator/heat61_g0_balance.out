@@ -1,0 +1,53 @@
+/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat61_g0_balance.py:237: RuntimeWarning: invalid value encountered in divide
+  integrand2 = (hm - h0) / (np.exp(2 * xm) - 1)
+== heat61 G0: explicit-formula balance (Burnol math/9810169 convention) ==
+   grid: N=131072 dx=3.662e-04 on [-24.0,24.0]; primes to e^16 = 8886112
+   design-doc sha256 (record): 88b4a374eca8327c9ab14090b612b91fe2d96c01fa68cb1b4c436d8ba9b323be
+
+--- f1 ---
+  [xcheck-h] x=+0.0: mp 2.2758758 vs fft 2.2758757945  rel 4.64e-17
+  [xcheck-h] x=+3.0: mp 0.053523469 vs fft 0.0535234685  rel 1.42e-16
+  [xcheck-h] x=-3.0: mp 1.0750476 vs fft 1.0750476035  rel 2.91e-16
+  [xcheck-h] x=+7.0: mp 3.2884318e-7 vs fft 0.0000003288  rel 4.08e-14
+  [xcheck-h] x=-7.5: mp 7.5579904e-5 vs fft 0.0000755799  rel 3.61e-10
+  [xcheck-Mellin] Int h e^{sx} vs gh(s)gh(1-s): rel 2.8e-13
+  zero-side  T=50  (10 zeros): +0.000000000000
+  zero-side  T=100 (29 zeros): +0.000000000000   last |term| 7.99e-33
+  prime-side          : -12.789382174244
+    parts: g0=+2.506628 g1=+4.132731 sum_p V_p=+12.78938730
+           V_r: c0=+1.95946710 i1=+2.48362394 i2=-0.47856604
+  REL DIFF: 1.000e+00   -> FAIL (gate 1e-6)
+
+--- f2 ---
+  [xcheck-h] x=+0.0: mp 3.9853796 vs fft 3.9853795650  rel 5.99e-16
+  [xcheck-h] x=+3.0: mp -0.14250246 vs fft -0.1425024586  rel 1.86e-15
+  [xcheck-h] x=-3.0: mp -2.8622384 vs fft -2.8622383930  rel 1.92e-15
+  [xcheck-h] x=+7.0: mp -0.0017332529 vs fft -0.0017332529  rel 1.71e-13
+  [xcheck-h] x=-7.5: mp -1.2665946 vs fft -1.2665946415  rel 1.00e-13
+  [xcheck-Mellin] Int h e^{sx} vs gh(s)gh(1-s): rel 4.71e-13
+  zero-side  T=50  (10 zeros): +0.000000000010
+  zero-side  T=100 (29 zeros): +0.000000000010   last |term| 9.11e-25
+  prime-side          : +27.013705298073
+    parts: g0=-0.978742 g1=+7.748548 sum_p V_p=-27.01369895
+           V_r: c0=+3.43130331 i1=+3.38873518 i2=-0.89702205
+  REL DIFF: 1.000e+00   -> FAIL (gate 1e-6)
+
+--- f3 ---
+  [xcheck-h] x=+0.0: mp 10.400199 vs fft 10.4001990987  rel 1.59e-12
+  [xcheck-h] x=+3.0: mp -0.17211518 vs fft -0.1721151812  rel 1.16e-11
+  [xcheck-h] x=-3.0: mp -3.4570258 vs fft -3.4570258264  rel 1.16e-11
+  [xcheck-h] x=+7.0: mp 0.0010872444 vs fft 0.0010872444  rel 9.89e-12
+  [xcheck-h] x=-7.5: mp 8.1022671 vs fft 8.1022670843  rel 6.62e-13
+  [xcheck-Mellin] Int h e^{sx} vs gh(s)gh(1-s): rel 3.46e-11
+  zero-side  T=50  (10 zeros): +0.000006243891
+  zero-side  T=100 (29 zeros): +0.000006243891   last |term| 1.22e-18
+  prime-side          : -11.421704038858
+    parts: g0=+1.994970 g1=+6.982965 sum_p V_p=+11.42155944
+           V_r: c0=+8.95428828 i1=+3.61348884 i2=-4.34768037
+  REL DIFF: 1.000e+00   -> FAIL (gate 1e-6)
+
+== G0 VERDICT: FAIL — instrument not yet verified; NO search until fixed ==
+   f1: 1.000e+00
+   f2: 1.000e+00
+   f3: 1.000e+00
+EXIT 0

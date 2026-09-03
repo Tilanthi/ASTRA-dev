@@ -3020,3 +3020,54 @@ to machine 2 (their witness).
 
 Standing: heat54 executing (PID 31969; DQ anomalies documented, diagnosis deferred per pre-reg);
 heat55 chained; M3 resume pending; W(f) design hash-first next after those.
+
+## §88. heat61 G0 PASSED — the Weil W(f) instrument certified; negative-cell search launched (2026-09-03)
+
+**The gate did its job.** First execution FAILED all three test functions at O(1) (zero sides
+~0, prime sides O(10): heat61_g0_balance.out). Residual structure analysis: balance closes iff
+the prime sum enters ONCE — the source (Burnol math/9810169, re-fetched rather than trusted,
+trap #63) folds the transpose into a SINGLE W_p sum since V_p(g^τ)=V_p(g) identically. Fixed
+formula: Q(g) = 2ĝ(0)ĝ(1) − [Σ_p W_p(h) + 2V_r(h)], h = g∗g^τ, h^τ = h.
+
+**Closed-form isolation (heat61b).** Pure unwindowed Gaussian g(u)=e^{−(log u)²/2}: zero side
+= 0 to ~1e-85 (ĝ(ρ)ĝ(1−ρ) = 2πe^{1/4−γ²}), so the identity reads ĝ(0)+ĝ(1) = Σ_p W_p + W_r in
+closed/quadrature form only. **Left 6.6393596287534934409 vs right 6.6393596287534894124 —
+diff 4.0e-15: the formula is exact; the remaining grid residual is numerical.** Grid refinement
+2^17→2^23 confirms (residual falls 16–45× per 4× refinement).
+
+**G0 VERDICT: PASS at 2^23** (heat61_g0_grid23.out, verdict block appended): f1 |diff|/scale
+8.6e-11, f2 9.0e-11, f3 1.3e-9 (= 0.58% of Q itself). Disclosure D6: the design's "1e-8
+relative" gate is read relative to the balance scale |ĝ(0)+ĝ(1)| — a Q-relative reading is
+unsatisfiable for any finite-precision instrument when Q ~ 1e-33. Instrument floors: ~2e-9
+(2^23), ~5e-6 (2^17 search speed). ε_cert = 1e-3 clears both by ≥200×. **Q(f3) = +6.24e-6
+banked as the first certified positivity instance.**
+
+Development disclosures D1–D6 in the G0 docstring (D1 spurious e^x weights caught pre-run;
+D4 C^∞ flat-step window replaces cos², which is only C¹; D5 trapezoid, spectral for C_c^∞).
+FFT-correlation phantom "−L shift" in my own comment re-derived away — the correlation index
+samples f(x_j − mΔ) directly.
+
+**Search launched** (heat61_w_search.py, PID 26609): three lineages per the hashed design
+(L-A Gaussian mixtures J≤8; L-B sinc/prolate pairs; L-C mollifiers ĝ=P(s)P(1−s)w(s), P a ≤6-term
+Dirichlet-type polynomial over first-20 primes, realized by inverse Mellin along Re s=½), 24 pop
+× 200 generations, migration/25, fitness = prime-side Q (zero-free, so no proxy gap), halt-and-
+verify on Q < −ε_cert ⇒ freeze + zero-side at 2^23 + exchange counterparty BEFORE any claim
+language. Two runner bugs caught on pre-launch re-read: L-C period fold subtracted the period
+only once; L-A term-drop pop() off-by-one. L-C inverse-FFT convention self-tested at startup
+against the known pair e^{−t²} → e^{−x²/4}/(2√π) (measured 4.3e-6 = the linear-interp floor of
+the realization grid, 4+ orders below any convention error; gate 1e-4). Smoke test at 2^17:
+~0.4–1.2 s per individual, ~29 s/generation, ~100 min total. **Territory is alive: a random
+sinc-pair genome scores Q = −1.13e-4, ~20× the 2^17 floor** — negative cells are reachable;
+the question the search answers is whether any reach −1e-3 with the certified instrument
+confirming.
+
+Machine 3 Letters 33–34 (this session): round-4 reveal — the E=3e6 dip does NOT replicate at
+an independent window (their own falsifier fired cleanly; Letter 31's confirmation premature,
+within-window consistency mistaken for a height effect); honest null-ish campaign ledger
+proposed for LEDGER.md. E≥1e12 infeasible with mpmath zetazero (needs Turing-method tooling) —
+deferred, not dropped. My GUE-side null offer (heat59 CUE machinery at matched N_eff) still
+standable but now lower priority given their null.
+
+Standing: heat54 rerun HEALTHY (parent waits on Pool(5); five workers ~95% CPU each for 40+ min
+— initial "stalled" read retracted after child-process check); W(f) search running; exchange
+letter + commit pending next.

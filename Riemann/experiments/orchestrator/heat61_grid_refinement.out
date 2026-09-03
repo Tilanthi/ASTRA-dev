@@ -1,0 +1,25 @@
+--- f1 ---
+  zero-side  T=100 (29 zeros): +0.000000000000   last |term| 7.99e-33
+  prime-side          : +0.000005136467
+  REL DIFF: 1.000e+00   -> FAIL (gate 1e-6)
+--- f2 ---
+  zero-side  T=100 (29 zeros): +0.000000000010   last |term| 9.11e-25
+  prime-side          : +0.000006379554
+  REL DIFF: 1.000e+00   -> FAIL (gate 1e-6)
+--- f3 ---
+  zero-side  T=100 (29 zeros): +0.000006243891   last |term| 1.22e-18
+  prime-side          : -0.000143874843
+  REL DIFF: 1.043e+00   -> FAIL (gate 1e-6)
+=== 2^19 ===
+--- f1 ---
+  zero-side  T=100 (29 zeros): +0.000000000000   last |term| 1.49e-32
+  prime-side          : +0.000000321226
+  REL DIFF: 1.000e+00   -> FAIL (gate 1e-6)
+--- f2 ---
+  zero-side  T=100 (29 zeros): +0.000000000010   last |term| 9.11e-25
+  prime-side          : +0.000000396396
+  REL DIFF: 1.000e+00   -> FAIL (gate 1e-6)
+--- f3 ---
+  zero-side  T=100 (29 zeros): +0.000006243891   last |term| 1.22e-18
+  prime-side          : -0.000003166778
+  REL DIFF: 2.972e+00   -> FAIL (gate 1e-6)
