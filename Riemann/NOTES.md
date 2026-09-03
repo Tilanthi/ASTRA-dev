@@ -4132,3 +4132,130 @@ Displacement figure (R7): previous count; tonight floor-vs-decay row DONE (remov
 ADDED deferred: DFMR/de Roton direct read (B-grade on §6.3 a₁-gate needs it), Bétermin
 table extraction (heat68 dual-source), D-H-Re>1 sourcing (Saias–Weingartner pointer);
 BDBLS/Burnol now carries the decay half too; BUMP M=128 + Epstein rung still unrun.
+
+## §88aa — DFMR/de Roton direct read DONE: the §6.3 a₁-gate grades B → A (published hypothesis, verified by direct read); page-range correction; heat68 pre-run chain (AM-2..5 + erratum, attempts 1–3 each halted pre-data by the discipline itself)
+
+**The read (deferral from §88z closed).** DFMR = Delaunay–Fricain–Mosaki–Robert,
+arXiv:1101.1199 = TAMS 365 (2013) 3227–3253, extracted in full to /tmp/dfmr.txt.
+Three verifications:
+
+1. **a₁ ≠ 0 is a PUBLISHED hypothesis.** Their Theorem 2.4 (the general
+   Beurling–Nyman-type theorem): hypotheses are ϕ̂ non-vanishing on Π_r, a limsup
+   log-growth condition, **and a₁ ≠ 0** — then four assertions are equivalent
+   (non-vanishing of L on Π_r ⟺ d_r ≡ 0 ⟺ K_r = L² closure of the dilation span).
+   m2's §6.3 gate (Epstein: a₁ = 2 ≠ 0 via (±1,0)) checks exactly this published
+   hypothesis. Grade: B → **A (direct read)**.
+2. **The pole moment conditions are published and correctly sourced.** DFMR's
+   m-admissible sequences: Σ_{j=1}^{ℓ(α)} c_j α_j (log α_j)^k = 0 for all
+   0 ≤ k ≤ m−1, "introduced in [dR07a]" = de Roton TAMS 359 (2007), generalizing
+   Nyman's condition (1.1) which "corresponds to m = 1" — m2's "m_F=1 is Beurling's
+   condition" verified verbatim through DFMR's own attribution.
+3. **Page range corrected:** de Roton TAMS 359 (2007) is **6111–6126** (NOTES §88z
+   carried 6079–6110). de Roton's PDF itself was NOT directly read (AMS access);
+   the verification runs through DFMR's published attributions — honest caveat
+   recorded, grade for the moment conditions A-via-DFMR rather than
+   A-direct-from-de-Roton.
+
+Bonus context read: DFMR Thm 2.1 shows the ψ ∈ L²((1,∞), du/u^{1+2r}) condition is
+equivalent to an L² vertical-strip condition on L·ϕ̂ (their Cor. 3.4: both hold for
+r > 1) — the quantitative scaffolding behind the (H1)–(H4) analog; and they note
+[dR07b]: ψ ∈ L² is SATISFIED for Selberg-class degree < 4 (via functional
+equation) and NECESSARY for GRH there. Consistent with §88z's asymmetry rule.
+
+**heat68 pre-run chain, for the record (all committed to the exchange prereg before
+any data):** AM-2 (evaluator-B registration + A k-power erratum = trap #77);
+AM-3 (L1 re-scope: Bétermin (4.8) derives from their "certainly only approximate"
+(3.32) per the paper's own words — exactness only their hypothesis; L1 gated
+Δ ≤ 0.10 only, full-grid L1-digit profile = scored (3.32)-error measurement
+superseding their 27-digit datum; two-term-truncation mechanism hypothesis tested
+and REFUTED — t1+t2 has no root within ±0.01 of the true root and |t1+t2| at the
+root is O(5)–O(300)); AM-4 (attempt-1 halt at C4: registered 2-point Richardson
+tolerance below its own 2a₁h² floor; 3-point fix, O(h³) scaling as sub-assert);
+AM-5 (attempt-2 halt at C5: linearization |e/c|·d floor, e ≈ 20, +2.00 dig/decade
+across five decades measured; d → 1e−12); AM-5 ERRATUM (attempt-3 halt: my scaling
+assert subtracted in the wrong direction — values green, assert sign wrong).
+**Trap #78 registered: compute a control's intrinsic floor at its evaluation point
+BEFORE registering its tolerance (three instances C2/C4/C5 = absence of the rule,
+not luck) + guard (iv): re-derive an assert's expected direction numerically from
+its probe table before commit.** Attempts 1–3 each halted BEFORE any zero was
+computed — the halt discipline cost three run cycles and zero data integrity.
+Attempt-4 launched 21:5x local.
+
+Displacement figure (R7): DFMR/de Roton read DONE (removed); Bétermin dual-source
+IN PROGRESS (attempt-4); D-H-Re>1 sourcing still open (Saias–Weingartner unverified);
+BUMP M=128 still unrun.
+
+## §88ab — Saias–Weingartner pointer SOURCED + one better: Cassels 1961 already had it; the "genuinely open" D-H branch of §88z CLOSES; the strip-only carrier class may be empty — and my heat68 carrier's own σ>1 status is now a live question
+
+**Sourcing chain (the last open deferral of §88z).** Via Nakamura, arXiv:1501.02045
+(extracted, /tmp/nakamura.txt) whose §1 surveys exactly this: (i) **Saias–
+Weingartner, "Zeros of Dirichlet series with periodic coefficients", Acta Arith.
+140 (2009) no. 4, 335–344**: a Dirichlet series with periodic coefficients that is
+non-vanishing in σ > 1 equals P(s)L(s,χ) with P a Dirichlet polynomial zero-free in
+σ > 1 — a STRUCTURE theorem; contrapositive: periodic-coefficient series not of
+that form MUST have a σ > 1 zero. The D-H function (period-5 coefficients,
+cos θ·L(s,χ₁)+sin θ·L(s,χ₃), not a single P·L(χ)) is such a series. (ii) Even more
+direct: **Cassels, "Footnote to a note of Davenport and Heilbronn", J. London Math.
+Soc. s1-36 (1961) 177–184**: the D-H function HAS zeros in σ > 1 (verified
+bibliographically; cited 114×; Spira 1976 computed them). D-H II's original claim
+of zero-freeness there was wrong and Cassels corrected it.
+
+**Consequences for the zoo reading rules (§88z §7 amendment):**
+1. The branch "carriers with zeros only in (½,1) — D-H as quoted — genuinely open"
+   CLOSES: D-H has σ > 1 zeros (Cassels direct + S-W structural), so the sequential
+   construction breaks on D-H exactly as on Epstein h>1 and Bombieri–Mueller.
+   b_n = 1/F has convergence abscissa ≥ sup Re zeros > 1 there.
+2. The strip-only class may be EMPTY among known negative-control candidates —
+   unless RECTANGULAR Epstein ζ^(2)(s,Δ) qualifies. Bétermin §4 shows the real
+   pair ρ± ∈ (0,1) and complex zeros at |t| ~ tens; whether ANY complex zero has
+   σ > 1 is not asserted anywhere I have read. **New open question, now well-posed
+   and attached to my own carrier: does ζ^(2)(s,Δ) (Δ < Δ*_c) have zeros in
+   σ > 1?** If yes, the decay/sequential half breaks on my carrier too (the floor
+   half is untouched — Half 1 needs only (H1)–(H4), which hold). Cheap probe
+   candidate: σ-scan at the |t|-tens heights where their Fig. 6 draws the complex
+   zeros. Registered as a heat68 FOLLOW-UP question, not a rung.
+3. S-W's structure theorem sharpens the a₁-gate story (§88aa): the classification
+   axis is P(s)L(s,χ)-form vs not; Epstein rectangular is not periodic-coefficient
+   in the relevant sense (a_n = r_2(n; lattice), not periodic), so S-W does not
+   directly classify it — Cassels-type results are the closer analogues.
+
+Displacement figure (R7): D-H-Re>1 sourcing DONE (removed); NEW follow-up
+question (rect-Epstein σ>1 zeros) ADDED to the heat68 row.
+
+## §88ac — BDBLS/Burnol deep read DONE: the ζ-side decay half gets its published envelope, and the zoo asymmetry acquires a MECHANISM — the floor (2σ₀−1)/|s₀|² is positive iff σ₀ > ½
+
+Read from BD arXiv:math/0205003 (full text, /tmp/bd2003.txt) with its bibliography
+resolving the exact sources:
+
+1. **The unconditional no-too-fast-decay bound (ζ side).** BD-2003 equation (1.2),
+   attributed to [Báez-Duarte–Balazard–Landreau–Saias, "Notes sur la fonction ζ de
+   Riemann, 3", Adv. Math. 149 (2000) 130–144]: for ANY approximant
+   F = Σ_{k≤n} c_k ρ_{a_k} with N = max a_k, **‖F − χ‖_H ≥ C/√(log N)**
+   unconditionally — no linear combination of dilation functions can approach χ
+   faster than log^{−1/2} of the largest dilation index. The constant sharpened by
+   [Burnol, "A lower bound in an approximation problem involving the zeroes of the
+   Riemann zeta function", Adv. Math. (2001/02), AIM01/048] — note Burnol's title:
+   the bound is proved THROUGH the zeros, same kernel as our floor.
+2. **The conditional decay rate (ζ side).** Balazard's Proposition 3.1 in BD-2003:
+   under RH, the natural Möbius-weighted approximants achieve
+   dist ≪ (log log n)^{−1/3}. So ζ's distance is sandwiched:
+   C/√(log N) ≲ dist ≲ (log log n)^{−1/3} (RH) — decay exists, but glacially.
+3. **The mechanism (closes the §88z asymmetry row).** m2/m3's floor
+   ‖χ−f‖² ≥ (2σ₀−1)/|s₀|² is **positive iff σ₀ > ½** — a zero strictly right of
+   the line forces a permanent gap (STALL); on-line zeros (σ₀ = ½) make the floor
+   ZERO — decay is permitted. That IS the asymmetry: our negative-control carriers
+   were chosen for real zeros σ₀ ∈ (½,1) → maximal positive floor → provable stall
+   (Half 1, (H1)–(H4)); ζ under RH has no σ > ½ zeros → zero floor → decay, at the
+   published glacial rate. "Stall interpretable, decay not" upgrades from empirical
+   rule to mechanism statement. The BDBLS/Burnol row likewise upgrades from
+   "downgraded by the asymmetry" to **the ζ-side reference envelope**: any measured
+   carrier distance curve is now comparable against ζ's published
+   [C/√(log N), (log log n)^{−1/3}] band.
+4. Bonus (BD-2003 §2, the f_s machinery): f_s(x) = Σ µ(a)a^{−s}ρ_a(x) is
+   meromorphic with poles exactly at the zeros of ζ(s+1) — the Möbius-dilation
+   Mellin kernel our transfer questions keep circling; noted for the Lemma-5
+   transfer file.
+
+Displacement figure (R7): BDBLS/Burnol read DONE (removed from the reading queue);
+its row becomes the ζ-side reference envelope. Remaining reading lane: none open
+tonight. heat68 real run in flight.
