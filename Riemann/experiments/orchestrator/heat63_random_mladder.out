@@ -1,0 +1,43 @@
+CATEGORY: D (random-basis M-ladder — ridge decay-rate measurement; hash-committed pre-registration)
+LA-rand/s1/M16: lmin -4.554306e-18  floor 1.4e-17  [DQ]
+LA-rand/s1/M32: degenerate-draw
+LA-rand/s2/M16: degenerate-draw
+LA-rand/s2/M32: degenerate-draw
+LA-rand/s3/M16: lmin -1.882720e-17  floor 7.8e-17  [DQ]
+LA-rand/s3/M32: degenerate-draw
+LA-rand/s4/M16: lmin -3.998553e-18  floor 1.0e-16  [DQ]
+LA-rand/s4/M32: degenerate-draw
+LA-rand/s5/M16: lmin -3.113663e-18  floor 1.7e-17  [DQ]
+LA-rand/s5/M32: degenerate-draw
+LB-rand/s1/M16: degenerate-draw
+LB-rand/s1/M32: degenerate-draw
+LB-rand/s2/M16: degenerate-draw
+LB-rand/s2/M32: degenerate-draw
+LB-rand/s3/M16: degenerate-draw
+LB-rand/s3/M32: degenerate-draw
+LB-rand/s4/M16: degenerate-draw
+LB-rand/s4/M32: degenerate-draw
+LB-rand/s5/M16: degenerate-draw
+LB-rand/s5/M32: degenerate-draw
+BUMP/s1/M16: lmin +1.218886e-10  floor 2.6e-15  [GENUINE]
+BUMP/s1/M32: degenerate-draw
+BUMP/s2/M16: degenerate-draw
+BUMP/s2/M32: degenerate-draw
+BUMP/s3/M16: lmin +1.222783e-10  floor 2.5e-14  [GENUINE]
+BUMP/s3/M32: lmin +4.883549e-12  floor 3.4e-14  [GENUINE]
+BUMP/s4/M16: lmin +2.914533e-10  floor 8.4e-16  [GENUINE]
+BUMP/s4/M32: degenerate-draw
+BUMP/s5/M16: degenerate-draw
+BUMP/s5/M32: degenerate-draw
+LC-rand/s9/M16: lmin +1.330335e-01  floor 5.5e-16  [DQ]
+LC-rand/s9/M32: lmin +2.643959e-02  floor 6.0e-16  [DQ]
+LA-rand/s1/M64: degenerate-draw
+LA-rand/s2/M64: degenerate-draw
+BUMP/s1/M64: degenerate-draw
+BUMP/s2/M64: degenerate-draw
+
+== per-family genuine minima by M ==
+  BUMP M=16: min +1.218886e-10 (n=3)
+  BUMP M=32: min +4.883549e-12 (n=1)
+
+== verdict per docstring (a)/(b)/(c)/(d); below-res rows excluded from fits ==
