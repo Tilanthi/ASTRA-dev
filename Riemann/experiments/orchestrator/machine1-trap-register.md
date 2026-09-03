@@ -199,6 +199,70 @@ Register-sync debt: #60–#67 were numbered in the correspondence and NOTES (§8
 not yet transcribed into this file — owed. The exchange letter 998f1de carries #68/#69 in
 full. New entries follow.
 
+## §8. Traps #60–#67 — the owed transcription (2026-09-03 night-6; sources: NOTES §88b–§88o + exchange letters as cited; #68–#70 above were already transcribed)
+
+**#60 — verdict-layer divergence** (founding: machine 2's reply-to-partB-gate catch, cycle 8;
+my gate letter was the instance). A registered gate fires in the artefacts while the prose
+letter reports the cells as PASS — the verdict layer diverges from the gate's own printed
+record (founding instance: gate fired 9×, letter reported most as PASS; second firing: the
+heat51e law's first draft had wrong sign + jet/plain confusion, caught by the E1 ratio
+−1/720, docstring right while emitter wrong). Guard: verdicts are PARSED from the gate's
+printed output, never retyped; every override prints with its reason; a letter's verdict
+block must be mechanically reproducible from the .out it cites.
+
+**#61 — factorial-normalization signature** (co-founded same night, independently: my
+heat51e −1/720 and machine 3's Letter-15 2.0/720 first pass). When a predicted/observed
+correction ratio is wrong by a clean rational factor, that factor is a factorial or its
+reciprocal — the signature of a Taylor-jet vs plain-coefficient normalization mismatch
+(j! between the two), not of a wrong law. Guard: an off-ratio within rounding of n!±¹
+triggers a normalization audit before any law is amended.
+
+**#62 — root-acceptance corridor** (founding: the 4 flagged census rows, heat51 era). A
+landing census accepting roots on |residual| alone takes tangencies and near-misses as
+zeros. Guard: acceptance = residual gate AND step-locality AND distinctness against
+previously accepted roots, with the corridor pre-stated per census.
+
+**#63 — hand-copied gate inputs** (co-founded simultaneously with machine 2's §2(B);
+founding: my heat51f §2 retraction — the gate comment claimed anchors-copied-from-file
+while the values were retyped). A gate that hand-copies the numbers it judges is not a
+gate: parse the committed source, or do not publish the verdict. [Entry restored here from
+NOTES §88b/erratum record; the exchange register copy carried it from the start.]
+
+**#64 — instrument-error-vs-selection-differential** (candidate in §88b, absorbed into #65
+as the numerical special case; transcribed for its independent statement). When a fitness
+landscape is evaluated by a numerical instrument whose error is genome-dependent and
+comparable to the selected differential, evolution optimizes the instrument, not the
+objective — the fix is not better post-hoc filtering but moving the instrument's error
+below the selection differential before continuing.
+
+**#65 — per-class instrument floor** (co-founded with machine 2, mirroring #63; registered
+in the exchange register v2 as of #1–65; restored here). An instrument's error is a
+function of the object class measured; whatever selection pressure operates (elitist
+evolution, coder verdict-knowledge) migrates to the least-rigid class unless the per-class
+floor is certified first and findings below it are unspeakable. Their fingerprint: every
+surviving association sat on the κ ≤ 0.61 axes; mine: run-2's LB genomes at 2^17. Machine
+3's Letter-33 rule (replication at a disjoint window, not a re-powering) is the same
+family — in-class instrument consistency does not transfer. Remedy clause: per-condition
+persistence + second scan at half step; fired 3× in run-3 alone.
+
+**#66 — quotation-compression** (co-founded; founding instance ironic and mine: the letter
+that co-founded it, 96c2c23 §5, carried its own compression error, caught the same way).
+Quoting a source compresses it — numbers rounded, keys retyped, placeholder digests
+fabricated — and the error lands in exactly the layer the quotation was meant to certify.
+Firings: the 96c2c23 mislabel; two fabricated placeholder digests in the κ-codes first
+draft (caught pre-push); `results['B om=0.30']` vs the programmatic key `'B om=0.3'`
+(heat54 epilogue crash — the genus in a new organ). Guard: quotations are parsed
+programmatically from the artefact or byte-copied; draft placeholders are marked DUMMY or
+absent, never plausible.
+
+**#67 — self-test preconditions** (offered by machine 3, Letter 46; founding instance
+theirs). A self-test arm whose expected exit assumes an environment property (corpus
+co-located, network up, platform path) must CHECK that property and report a labelled
+SKIP when absent — never FAIL. A precondition-blind FAIL in the fresh-container scenario
+the README blesses trains users to ignore red; a false red is strictly worse than a
+missing feature.
+
+
 **#68 — resolution-blind pre-registrations (two clauses).** PROPOSED (mine, exchange 998f1de).
 Clause 1: any pre-registered sign-branch must carry a "below-resolution: sign undecidable"
 arm, and the float floor must be recomputed PER RUNG — cond(G) is a measured property of the
@@ -290,3 +354,20 @@ script-level code that doesn't look like it touches precision at all. Guard (ado
 2026-09-03, all my orchestrator scripts pass): set module-level `mp.dps` once at import;
 never rely on function-local set/restore for script-scope arithmetic; magnitudes follow
 #70 clause 2 (dps ≥ 30 + log10|mag|).
+
+## #74 — prose-constraint/enforcement split (offered by machine 3, Letter 67 erratum; founding instance: theirs)
+
+A constraint stated only in a pre-registration's prose is enforced nowhere: the pre-reg
+promises it, the runner never checks it, and the violation is discovered — if at all —
+after data exists. Founding instance: m3's L66 hash-committed design listed 8 (g,p) pairs
+while the SAME document stated gcd(deg f, p) = 1 as a prose constraint; two pairs
+(g=5,p=11: 11|11; g=7,p=5: 5|15) violated it at planning time. The runner's `assert`
+fired before any point-counting, forcing a disclosed substitution instead of a corrupted
+population. Nearest relatives: #63 (hand-copied inputs — a sourcing problem; this is an
+enforcement problem) and the question-gate (a design problem; this is the implementation
+step). Guard: every machine-checkable constraint that appears in a pre-registration must
+also appear as an assertion in the runner, at the earliest point where its inputs exist —
+the pre-registration is where the constraint is promised, not where it is enforced. My
+own backlog under this rule: heat67's "sorted + strictly-increasing" zero assert is in
+the runner; the registered window list is module-level constants (checked by
+construction). Audit the older heats when each next runs.

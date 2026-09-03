@@ -183,3 +183,14 @@ near-null cluster of the truncated operator, not a needle the search earned.
 RETIRED-BY-TEST (heat62): compact support absent AND material (random BUMP M=16 +7.85e-14,
 1106× floor); LC family bottom-blind (+2e-2…+7.9e-1). Class design is a first-order
 experimental variable, not bookkeeping.
+
+**D6.** "The NB-BD closure engine transfers to function fields, enabling a
+Weil-certified positive control for the zoo's d_N instruments." — RETIRED-BY-ANALYSIS
+(transfer check, 09-03 night-6, exchange 4711255): the direct transfer is not typeable
+(free monoid → discrete divisor group; dual torus carries no zeta; no archimedean
+floor; affine-line ζ has no zeros so the F_q[T]-proper statement would be vacuous; curve
+zeros enter via cohomology, not Mellin). The exactly-transferable kernel is the
+Jensen/harmonic family (u = q^{−s} conformal map; J_C = Σ max(0, log(q^{−½}/|u_j|)) = 0
+⟺ Weil) — an identity, not an instrument family the zoo uses. Zoo calibration rests on
+heat65 D–H controls + the Epstein leg. Literature corroboration: three search angles
+empty (negative-search caveat stated).

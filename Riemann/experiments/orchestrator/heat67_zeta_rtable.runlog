@@ -1,0 +1,29 @@
+heat67 zeta-side R/q table (prereg 7847b6c). arms: primary W=8, secondary W=30
+n=    1000 t~1422.1559 arm=pri d=0.3053719 R=0.1200862 q=0.0575764 k1=0.3991 OK agree=6.57e-36 [19:44:09]
+n=    1000 t~1422.1559 arm=sec d=0.3053719 R=0.1200862 q=0.0575764 k1=0.3991 OK agree=6.57e-36 [19:44:12]
+n=    2000 t~2516.859 arm=pri d=0.28794137 R=0.12653811 q=0.0687021 k1=0.6036 OK agree=4.84e-35 [19:44:27]
+n=    2000 t~2531.7567 arm=sec d=0.21271143 R=0.162845 q=0.0439366 k1=0.9393 OK agree=8.77e-35 [19:44:30]
+n=    5000 t~5451.4881 arm=pri d=0.17868398 R=0.25961251 q=0.0464437 k1=2.015 OK agree=4.41e-35 [19:44:55]
+n=    5000 t~5458.8889 arm=sec d=0.17326876 R=0.26898045 q=0.0449476 k1=1.899 OK agree=2.97e-35 [19:45:00]
+n=   10000 t~9878.8458 arm=pri d=0.19098051 R=0.186435 q=0.0558632 k1=0.7345 OK agree=3.22e-35 [19:45:42]
+n=   10000 t~9898.2942 arm=sec d=0.11124802 R=0.18250784 q=0.0156199 k1=0.002988 OK agree=7.48e-35 [19:45:52]
+n=   20000 t~18050.308 arm=pri d=0.2301236 R=0.1347863 q=0.0775869 k1=1.291 OK agree=6.92e-35 [19:47:00]
+n=   20000 t~18057.561 arm=sec d=0.15875334 R=0.31260956 q=0.0512249 k1=2.333 OK agree=9.4e-36 [19:47:13]
+n=   50000 t~40433.958 arm=pri d=0.27077948 R=0.123625 q=0.12871 k1=0.9797 OK agree=3.68e-34 [19:49:27]
+n=   50000 t~40443.184 arm=sec d=0.042816031 R=0.23242036 q=0.00518092 k1=0.139 OK agree=2.67e-36 [19:49:57]
+n=  100000 t~74923.843 arm=pri d=0.1814565 R=0.13579273 q=0.0752267 k1=0.2022 OK agree=7.06e-34 [19:51:52]
+n=  100000 t~74934.117 arm=sec d=0.089138614 R=0.14090831 q=0.0175088 k1=1.681 OK agree=9.26e-35 [19:52:48]
+n=  200000 t~139503.49 arm=pri d=0.24236112 R=0.14288269 q=0.139311 k1=0.2896 OK agree=8.38e-34 [19:54:28]
+n=  200000 t~139516.38 arm=sec d=0.13270987 R=0.13782027 q=0.041243 k1=1.447 OK agree=2.3e-34 [19:55:46]
+n=  500000 t~319391.0 arm=pri d=0.16557415 R=0.25987711 q=0.10294 k1=0.4697 OK agree=1.97e-34 [19:59:10]
+n=  500000 t~319392.31 arm=sec d=0.070131563 R=0.20733408 q=0.0174433 k1=1.914 OK agree=1.31e-34 [20:02:15]
+n= 1000000 t~600271.88 arm=pri d=0.11977587 R=0.37185729 q=0.0769999 k1=1.588 OK agree=3.04e-34 [20:08:25]
+n= 1000000 t~600282.55 arm=sec d=0.064475516 R=0.12153083 q=0.0113445 k1=1.264 OK agree=5.06e-33 [20:14:17]
+n= 2000000 t~1131947.8 arm=pri d=0.20368079 R=0.13273776 q=0.139512 k1=0.2368 OK agree=3.56e-34 [20:18:12]
+n= 2000000 t~1131952.0 arm=sec d=0.067892566 R=0.16357029 q=0.0206165 k1=0.02235 OK agree=4.31e-34 [20:19:31]
+n= 5000000 t~2630122.8 arm=pri d=0.12113674 R=0.10033846 q=0.0489066 k1=0.5574 OK agree=7.98e-33 [20:20:56]
+n= 5000000 t~2630133.0 arm=sec d=0.068574836 R=0.19806999 q=0.0291004 k1=0.5166 OK agree=2.3e-33 [20:22:00]
+PRIMARY W=8: n_ok=12 median R=0.13528952 min=0.10033846 max=0.37185729  in-curve-range 1/12
+SECONDARY W=30: n_ok=12 median R=0.17303907 min=0.1200862 max=0.31260956  in-curve-range 0/12
+OUTCOME (c): median OUTSIDE curve range -> R-universality-in-range DIES; L57 n=1 agreement reclassified coincidence.
+DQ-SECTION: guards per row (registered): taylor@dps60 vs @dps70 vs two-step Richardson FD@dps90 (h=1e-13, h/2; step chosen by #70 clause 2 magnitude arithmetic -- f ~ O(pi t/4), per-eval abs err ~2e-84 at dps 90) (epsilon-law guard; conviction D1 stays retired); k1,k3 != 0 degeneracy check (no zeta-side forced-identity expected, checked not assumed); zeros dps 50 mpmath zetazero, sorted+strictly-increasing assert; windows anchored at the registered n list, W=8 primary / W=30 secondary from the SAME located 30 zeros (secondary superset of primary by construction — arms never pooled). FAILURE MODES: time-budget skip (none expected; zetazero ~0.6s/zero at n=5e6); branch cut in log xi near a zero of the divided argument (would surface as taylor/FD disagreement, not silently). CERTIFIED: population comparison only. NOT CERTIFIED: anything about RH; R-universality as a theorem.

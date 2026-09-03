@@ -1,0 +1,22 @@
+primary rows OK: 12/12; secondary rows OK: 12/12; DQ: none
+PRIMARY W=8: median=0.135290 min=0.1003 max=0.3719  in-[0.346,0.608] 1/12  in-[0.161,0.336] 3/12  in-envelope[0.03,0.46] 12/12
+SECONDARY W=30: median=0.173039 min=0.1201 max=0.3126  in-[0.346,0.608] 0/12  in-[0.161,0.336] 8/12  in-envelope[0.03,0.46] 12/12
+REGISTERED OUTCOME (c): median 0.1353 OUTSIDE registered band [0.346,0.608] (1/12 in range) -> R-universality-in-range DIES; L57 n=1 agreement reclassified coincidence.
+POST-HOC (i): primary median 0.1353 vs L67 genus-5-7 band [0.161,0.336]: outside
+POST-HOC (ii): primary median 0.1353 vs combined 17-point median 0.357551 (m3-L70-corrected, verified from their data files): not within 0.10
+POST-HOC (iii): Kendall tau(R, log t) over 12 primary windows = +0.1212 (discordant 29/66); EXACT two-sided null P = 0.63836 -> no significant monotone trend
+W-arm probe (pri R vs sec R at same n; d_pri != d_sec => different tightest pair => windows not measuring the same object):
+  n=    1000 R_pri=  0.1201 R_sec=  0.1201  pri>=sec  (d_pri=0.30537190 d_sec=0.30537190)
+  n=    2000 R_pri=  0.1265 R_sec=  0.1628  sec>pri  (d_pri=0.28794136 d_sec=0.21271143)
+  n=    5000 R_pri=  0.2596 R_sec=  0.2690  sec>pri  (d_pri=0.17868397 d_sec=0.17326876)
+  n=   10000 R_pri=  0.1864 R_sec=  0.1825  pri>=sec  (d_pri=0.19098050 d_sec=0.11124802)
+  n=   20000 R_pri=  0.1348 R_sec=  0.3126  sec>pri  (d_pri=0.23012359 d_sec=0.15875333)
+  n=   50000 R_pri=  0.1236 R_sec=  0.2324  sec>pri  (d_pri=0.27077948 d_sec=0.04281603)
+  n=  100000 R_pri=  0.1358 R_sec=  0.1409  sec>pri  (d_pri=0.18145650 d_sec=0.08913861)
+  n=  200000 R_pri=  0.1429 R_sec=  0.1378  pri>=sec  (d_pri=0.24236112 d_sec=0.13270986)
+  n=  500000 R_pri=  0.2599 R_sec=  0.2073  pri>=sec  (d_pri=0.16557414 d_sec=0.07013156)
+  n= 1000000 R_pri=  0.3719 R_sec=  0.1215  pri>=sec  (d_pri=0.11977587 d_sec=0.06447551)
+  n= 2000000 R_pri=  0.1327 R_sec=  0.1636  sec>pri  (d_pri=0.20368078 d_sec=0.06789256)
+  n= 5000000 R_pri=  0.1003 R_sec=  0.1981  sec>pri  (d_pri=0.12113674 d_sec=0.06857483)
+DQ-SECTION (scorer): registered rule applied unmodified; post-hoc reads (i)-(iii) were COMMITTED at exchange 114d3ba BEFORE the runner finished (timing: prereg 7847b6c -> L67 ecf950d landed mid-run -> plan 114d3ba -> table completion) — post-hoc reads generate the next pre-registration, never a retroactive claim. Combined median 0.357551 verified from m3's curve_population.json + curve_population_ext.json (L70 correction: mine was an even-n off-by-one). Kendall null is EXACT (Mahonian DP over all n! orderings), two-sided, n=12 so the null is coarse (smallest attainable two-sided P is 2/479001600 * C(66,k)-tail ~ 8.3e-9; power is adequate for strong trends only). W-arm probe is confounded by selected-pair identity (d comparison printed); arms never pooled per prereg.
+DQ-SECTION (scorer): registered rule applied unmodified; post-hoc reads (i)-(iii) were COMMITTED at exchange 114d3ba BEFORE the runner finished (timing: prereg 7847b6c -> L67 ecf950d landed mid-run -> plan 114d3ba -> table completion) — post-hoc reads generate the next pre-registration, never a retroactive claim. Combined median 0.357551 verified from m3's curve_population.json + curve_population_ext.json (L70 correction: mine was an even-n off-by-one). Kendall null is EXACT (Mahonian DP over all n! orderings), two-sided, n=12 so the null is coarse (smallest attainable two-sided P is 2/479001600 * C(66,k)-tail ~ 8.3e-9; power is adequate for strong trends only). W-arm probe is confounded by selected-pair identity (d comparison printed); arms never pooled per prereg.

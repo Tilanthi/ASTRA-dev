@@ -1,0 +1,251 @@
+{
+ "rows": [
+  {
+   "n": 1000,
+   "arm": "pri",
+   "d": "0.30537190022935629284",
+   "m0": "1422.1559390872780102",
+   "R": "0.12008620174270029407",
+   "q": "0.057576389413307644875",
+   "status": "OK"
+  },
+  {
+   "n": 1000,
+   "arm": "sec",
+   "d": "0.30537190022935629284",
+   "m0": "1422.1559390872780102",
+   "R": "0.12008620174270029407",
+   "q": "0.057576389413307644875",
+   "status": "OK"
+  },
+  {
+   "n": 2000,
+   "arm": "pri",
+   "d": "0.28794136876393543448",
+   "m0": "2516.8589905116514214",
+   "R": "0.12653811048558254614",
+   "q": "0.068702115933309445812",
+   "status": "OK"
+  },
+  {
+   "n": 2000,
+   "arm": "sec",
+   "d": "0.21271143074856556824",
+   "m0": "2531.756672650813403",
+   "R": "0.1628449999345511638",
+   "q": "0.0439366288051902585",
+   "status": "OK"
+  },
+  {
+   "n": 5000,
+   "arm": "pri",
+   "d": "0.17868397612991562717",
+   "m0": "5451.4880916365620416",
+   "R": "0.25961250931885889413",
+   "q": "0.046443659791260988925",
+   "status": "OK"
+  },
+  {
+   "n": 5000,
+   "arm": "sec",
+   "d": "0.17326876191439549436",
+   "m0": "5458.888913848744845",
+   "R": "0.26898044654191835104",
+   "q": "0.044947597668813769219",
+   "status": "OK"
+  },
+  {
+   "n": 10000,
+   "arm": "pri",
+   "d": "0.19098050543822126055",
+   "m0": "9878.8457528911305094",
+   "R": "0.18643500180006624817",
+   "q": "0.055863180272439577453",
+   "status": "OK"
+  },
+  {
+   "n": 10000,
+   "arm": "sec",
+   "d": "0.11124802458928726806",
+   "m0": "9898.2942077704766168",
+   "R": "0.18250784071841316707",
+   "q": "0.015619920378659117649",
+   "status": "OK"
+  },
+  {
+   "n": 20000,
+   "arm": "pri",
+   "d": "0.23012359845460088049",
+   "m0": "18050.307634476867909",
+   "R": "0.13478629873349732144",
+   "q": "0.077586884219319563212",
+   "status": "OK"
+  },
+  {
+   "n": 20000,
+   "arm": "sec",
+   "d": "0.15875333618133753076",
+   "m0": "18057.56100120487209",
+   "R": "0.31260956495759008313",
+   "q": "0.051224891140416152073",
+   "status": "OK"
+  },
+  {
+   "n": 50000,
+   "arm": "pri",
+   "d": "0.27077948109529956154",
+   "m0": "40433.958164943256484",
+   "R": "0.1236250014413129011",
+   "q": "0.12871030598192045231",
+   "status": "OK"
+  },
+  {
+   "n": 50000,
+   "arm": "sec",
+   "d": "0.042816031302937970441",
+   "m0": "40443.183650513053692",
+   "R": "0.23242036293392955659",
+   "q": "0.0051809171249523188353",
+   "status": "OK"
+  },
+  {
+   "n": 100000,
+   "arm": "pri",
+   "d": "0.18145650449925898888",
+   "m0": "74923.842788862358686",
+   "R": "0.13579273256365510862",
+   "q": "0.075226678060802133839",
+   "status": "OK"
+  },
+  {
+   "n": 100000,
+   "arm": "sec",
+   "d": "0.089138613555345178854",
+   "m0": "74934.117167227388781",
+   "R": "0.14090830810674324626",
+   "q": "0.017508814383532725681",
+   "status": "OK"
+  },
+  {
+   "n": 200000,
+   "arm": "pri",
+   "d": "0.24236112384138433575",
+   "m0": "139503.48886170276147",
+   "R": "0.1428826868321801061",
+   "q": "0.1393107704381533719",
+   "status": "OK"
+  },
+  {
+   "n": 200000,
+   "arm": "sec",
+   "d": "0.13270986826566703178",
+   "m0": "139516.38275881913453",
+   "R": "0.13782026972632160168",
+   "q": "0.041242991503558568817",
+   "status": "OK"
+  },
+  {
+   "n": 500000,
+   "arm": "pri",
+   "d": "0.16557414955632573582",
+   "m0": "319390.99776920987441",
+   "R": "0.25987711370646057579",
+   "q": "0.10293992726389466451",
+   "status": "OK"
+  },
+  {
+   "n": 500000,
+   "arm": "sec",
+   "d": "0.070131563234366486245",
+   "m0": "319392.30662692965188",
+   "R": "0.20733408300085380733",
+   "q": "0.017443270517199423453",
+   "status": "OK"
+  },
+  {
+   "n": 1000000,
+   "arm": "pri",
+   "d": "0.11977587202584985072",
+   "m0": "600271.88125629796363",
+   "R": "0.37185729274306953148",
+   "q": "0.076999926860362803385",
+   "status": "OK"
+  },
+  {
+   "n": 1000000,
+   "arm": "sec",
+   "d": "0.064475515923722944569",
+   "m0": "600282.55335926533768",
+   "R": "0.12153083471950088259",
+   "q": "0.011344530794308179612",
+   "status": "OK"
+  },
+  {
+   "n": 2000000,
+   "arm": "pri",
+   "d": "0.20368078756186851632",
+   "m0": "1131947.8223023222608",
+   "R": "0.13273776488765068583",
+   "q": "0.13951205498705131812",
+   "status": "OK"
+  },
+  {
+   "n": 2000000,
+   "arm": "sec",
+   "d": "0.067892566480619487605",
+   "m0": "1131952.0264837877272",
+   "R": "0.16357029243623968446",
+   "q": "0.020616548494970190046",
+   "status": "OK"
+  },
+  {
+   "n": 5000000,
+   "arm": "pri",
+   "d": "0.12113674311960266368",
+   "m0": "2630122.8189011401045",
+   "R": "0.10033846428317658429",
+   "q": "0.048906628790517271898",
+   "status": "OK"
+  },
+  {
+   "n": 5000000,
+   "arm": "sec",
+   "d": "0.068574835570403010445",
+   "m0": "2630132.9905492428271",
+   "R": "0.19806999109878538724",
+   "q": "0.029100388529054969873",
+   "status": "OK"
+  }
+ ],
+ "dq": []
+}
+heat67 zeta-side R/q table (prereg 7847b6c). arms: primary W=8, secondary W=30
+n=    1000 t~1422.1559 arm=pri d=0.3053719 R=0.1200862 q=0.0575764 k1=0.3991 OK agree=6.57e-36 [19:44:09]
+n=    1000 t~1422.1559 arm=sec d=0.3053719 R=0.1200862 q=0.0575764 k1=0.3991 OK agree=6.57e-36 [19:44:12]
+n=    2000 t~2516.859 arm=pri d=0.28794137 R=0.12653811 q=0.0687021 k1=0.6036 OK agree=4.84e-35 [19:44:27]
+n=    2000 t~2531.7567 arm=sec d=0.21271143 R=0.162845 q=0.0439366 k1=0.9393 OK agree=8.77e-35 [19:44:30]
+n=    5000 t~5451.4881 arm=pri d=0.17868398 R=0.25961251 q=0.0464437 k1=2.015 OK agree=4.41e-35 [19:44:55]
+n=    5000 t~5458.8889 arm=sec d=0.17326876 R=0.26898045 q=0.0449476 k1=1.899 OK agree=2.97e-35 [19:45:00]
+n=   10000 t~9878.8458 arm=pri d=0.19098051 R=0.186435 q=0.0558632 k1=0.7345 OK agree=3.22e-35 [19:45:42]
+n=   10000 t~9898.2942 arm=sec d=0.11124802 R=0.18250784 q=0.0156199 k1=0.002988 OK agree=7.48e-35 [19:45:52]
+n=   20000 t~18050.308 arm=pri d=0.2301236 R=0.1347863 q=0.0775869 k1=1.291 OK agree=6.92e-35 [19:47:00]
+n=   20000 t~18057.561 arm=sec d=0.15875334 R=0.31260956 q=0.0512249 k1=2.333 OK agree=9.4e-36 [19:47:13]
+n=   50000 t~40433.958 arm=pri d=0.27077948 R=0.123625 q=0.12871 k1=0.9797 OK agree=3.68e-34 [19:49:27]
+n=   50000 t~40443.184 arm=sec d=0.042816031 R=0.23242036 q=0.00518092 k1=0.139 OK agree=2.67e-36 [19:49:57]
+n=  100000 t~74923.843 arm=pri d=0.1814565 R=0.13579273 q=0.0752267 k1=0.2022 OK agree=7.06e-34 [19:51:52]
+n=  100000 t~74934.117 arm=sec d=0.089138614 R=0.14090831 q=0.0175088 k1=1.681 OK agree=9.26e-35 [19:52:48]
+n=  200000 t~139503.49 arm=pri d=0.24236112 R=0.14288269 q=0.139311 k1=0.2896 OK agree=8.38e-34 [19:54:28]
+n=  200000 t~139516.38 arm=sec d=0.13270987 R=0.13782027 q=0.041243 k1=1.447 OK agree=2.3e-34 [19:55:46]
+n=  500000 t~319391.0 arm=pri d=0.16557415 R=0.25987711 q=0.10294 k1=0.4697 OK agree=1.97e-34 [19:59:10]
+n=  500000 t~319392.31 arm=sec d=0.070131563 R=0.20733408 q=0.0174433 k1=1.914 OK agree=1.31e-34 [20:02:15]
+n= 1000000 t~600271.88 arm=pri d=0.11977587 R=0.37185729 q=0.0769999 k1=1.588 OK agree=3.04e-34 [20:08:25]
+n= 1000000 t~600282.55 arm=sec d=0.064475516 R=0.12153083 q=0.0113445 k1=1.264 OK agree=5.06e-33 [20:14:17]
+n= 2000000 t~1131947.8 arm=pri d=0.20368079 R=0.13273776 q=0.139512 k1=0.2368 OK agree=3.56e-34 [20:18:12]
+n= 2000000 t~1131952.0 arm=sec d=0.067892566 R=0.16357029 q=0.0206165 k1=0.02235 OK agree=4.31e-34 [20:19:31]
+n= 5000000 t~2630122.8 arm=pri d=0.12113674 R=0.10033846 q=0.0489066 k1=0.5574 OK agree=7.98e-33 [20:20:56]
+n= 5000000 t~2630133.0 arm=sec d=0.068574836 R=0.19806999 q=0.0291004 k1=0.5166 OK agree=2.3e-33 [20:22:00]
+PRIMARY W=8: n_ok=12 median R=0.13528952 min=0.10033846 max=0.37185729  in-curve-range 1/12
+SECONDARY W=30: n_ok=12 median R=0.17303907 min=0.1200862 max=0.31260956  in-curve-range 0/12
+OUTCOME (c): median OUTSIDE curve range -> R-universality-in-range DIES; L57 n=1 agreement reclassified coincidence.
+DQ-SECTION: guards per row (registered): taylor@dps60 vs @dps70 vs two-step Richardson FD@dps90 (h=1e-13, h/2; step chosen by #70 clause 2 magnitude arithmetic -- f ~ O(pi t/4), per-eval abs err ~2e-84 at dps 90) (epsilon-law guard; conviction D1 stays retired); k1,k3 != 0 degeneracy check (no zeta-side forced-identity expected, checked not assumed); zeros dps 50 mpmath zetazero, sorted+strictly-increasing assert; windows anchored at the registered n list, W=8 primary / W=30 secondary from the SAME located 30 zeros (secondary superset of primary by construction — arms never pooled). FAILURE MODES: time-budget skip (none expected; zetazero ~0.6s/zero at n=5e6); branch cut in log xi near a zero of the divided argument (would surface as taylor/FD disagreement, not silently). CERTIFIED: population comparison only. NOT CERTIFIED: anything about RH; R-universality as a theorem.
+DQ-SECTION: guards per row (registered): taylor@dps60 vs @dps70 vs two-step Richardson FD@dps90 (h=1e-13, h/2; step chosen by #70 clause 2 magnitude arithmetic -- f ~ O(pi t/4), per-eval abs err ~2e-84 at dps 90) (epsilon-law guard; conviction D1 stays retired); k1,k3 != 0 degeneracy check (no zeta-side forced-identity expected, checked not assumed); zeros dps 50 mpmath zetazero, sorted+strictly-increasing assert; windows anchored at the registered n list, W=8 primary / W=30 secondary from the SAME located 30 zeros (secondary superset of primary by construction — arms never pooled). FAILURE MODES: time-budget skip (none expected; zetazero ~0.6s/zero at n=5e6); branch cut in log xi near a zero of the divided argument (would surface as taylor/FD disagreement, not silently). CERTIFIED: population comparison only. NOT CERTIFIED: anything about RH; R-universality as a theorem.

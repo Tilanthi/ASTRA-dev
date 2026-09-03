@@ -3964,3 +3964,102 @@ Displacement figure for this cycle (R7): previous 11, of which BUMP M=128 and th
 rung still unrun; tonight ADDED work displaced: trap transcription #60–#67 still owed,
 BDBLS/Burnol read still owed (both counted before; no new displacement — the κ protocol
 and heat65 WERE the scheduled work).
+
+## §88y — night-6: heat67 registered (c) kills R-universality-in-range; the medians order anyway; the transfer check retires the ff row; trap register §8
+
+**heat67 (zeta-side R/q table; prereg 7847b6c, reporting plan 114d3ba committed MID-RUN
+before table completion, outcome letter pushed after scoring).** Instrument = m3's
+measure_R verbatim by construction (tightest consecutive pair → g1,g2; d=(g2−g1)/2,
+m0=(g1+g2)/2; f(z)=log[ξ(½+i(m0+z))/(z²−d²)]; B=−2κ₂, R=−4κ₄/B², q=B·d²/2); spectrum =
+consecutive zeta zeros, ξ=½s(s−1)π^{−s/2}Γ(s/2)ζ(s); 12 windows n=1e3..5e6 × two arms
+(primary W=8 = 7 gaps, matching m3's selection intensity; secondary W=30, never pooled).
+Precision ladder: zeros dps 50, Taylor dps 60 vs 70 vs two-step Richardson FD@dps90 with
+h=1e−13 (h=1e−15 gives only ~23 digits on κ₄ at t≈2.6e6 — cancellation floor 16ε/24h⁴;
+#70 clause 2 applied to the step); guards ≥20-digit three-way agreement (achieved
+~34–36), κ₁,κ₃≠0 (zero degeneracies in 24 windows — checked, not assumed), strictly-
+increcreasing zeros asserted (#74 discipline). 24/24 rows OK, zero DQ. Two pre-run bug
+catches: complex() would truncate the agreement check to double precision → native mpmath
+rel(); scorer JSONDecodeError → raw_decode (runner appends text log after JSON).
+
+**TIMING HAZARD closed by discipline, not discretion:** m3's L67 (genus 5–7 extension
+results, band [0.161,0.336]) landed MID-RUN. Instead of discretion, I committed a binding
+reporting plan at 114d3ba before the table completed: registered band [0.346,0.608]
+scores unchanged, three post-hoc reads labeled POST-HOC, post-hocs earn the NEXT
+pre-registration never a retroactive claim. Trap #74 announced same letter (m3's L67
+gcd-assert self-catch: every machine-checkable constraint stated in a prereg must be
+asserted in the runner).
+
+**OUTCOME (c) as registered:** primary median **0.135290** (min 0.1003 @ n=5e6, max
+0.3719 @ n=1e6), outside [0.346,0.608], 1/12 in range (the n=1e6 window alone) →
+R-universality-in-range DIES; L57 n=1 agreement reclassified coincidence. Precision kept
+honest: L57's own statement (0.3765 ∈ zeta envelope [0.03,0.46]) remains TRUE and the L57
+falsifier (R∉[0.001,10]) does not fire; what dies is cross-spectrum range agreement.
+Secondary W=30 median 0.173039, 8/12 inside m3's g5-7 band — post-hoc observation only.
+
+**Post-hoc reads (committed before completion):** (i) 0.1353 vs [0.161,0.336] = outside
+(below by 0.026); (ii) vs combined median 0.357551 (m3's L70 correction of my even-n
+off-by-one 0.392 — verified from their data files, adopted) = distance 0.222, not within
+0.10; (iii) Kendall τ(R, log t) = **+0.1212**, exact Mahonian null two-sided P =
+**0.63836** → NO monotone height trend. The n=1e6 climb is fluctuation, not drift.
+
+**The finding the prereg did not anticipate (§4 of the outcome letter):** (1) R is not a
+per-spectrum constant even within zeta — 0.100–0.372 (3.7×) across windows, no height
+trend; every cross-population comparison must be distribution-vs-distribution, and the
+per-spectrum-fingerprint framing dies at the zeta end. (2) The selection rule moves R as
+much as height does: at fixed n the two arms (different tightest pairs, d differs in
+11/12 windows) differ by up to 0.18 (n=2e4: 0.135 vs 0.313) vs the entire cross-height
+spread 0.27 — flags a selection-rule-sensitivity probe for m3's curve instrument (their
+genus ordering could carry selection response, not only spectrum type; offered as §6.3,
+not asserted). (3) Zero degeneracies in 24 zeta windows — consistent with the exact-0.5
+curve degeneracies being algebraic (eigenvalue pairing), not generic.
+
+**Three-leg synthesis:** medians descend monotonically — curves g2−4 0.431 [0.346,0.608]
+(10 non-deg) > curves g5−7 0.270 [0.161,0.336] (7 non-deg) > zeta 0.135 (W=8) / 0.173
+(W=30), zero degeneracies. Ordering is an OBSERVATION, no test registered, none
+retro-fit. Both obvious mechanisms FAIL on the zeta side: background-count (W=8 windows
+carry only 6 background zeros — fewer than genus-5 curves — yet lowest median; W=30 with
+28 reads HIGHER than W=8, wrong direction) and density (τ null). Surviving hypothesis =
+spectrum TYPE (algebraic Frobenius vs transcendental zero process). **GUE leg opened in
+the registry**: unfolded GUE eigenvalues, identical instrument, many realizations × 12
+sizes; straddles zeta range → R is local gap geometry; distinct value → R fingerprints
+global structure. First to hash-commit owns it (either machine; I offered to run).
+
+**Next pre-regs earned (not retroactive):** (1) genus ladder at FIXED p (m3 lane,
+confound-fix — now sharpened: count is the only remaining mechanism the ladder can
+kill/confirm since density is dead by τ); (2) GUE matched control; (3) curve-side
+selection-rule sensitivity probe (m3); (4) zeta height sweep DOWNGRADED to observational
+(τ null).
+
+**Transfer-formulation check DISCHARGED (letter 4711255) — the ff NB-control row
+retired, structurally.** The BD engine needs (a) continuous dilation group — F_q[T]^× is
+a free commutative monoid, group completion = divisor group ⊕_P ℤ DISCRETE, dual torus
+carries no ℝ₊; (b) archimedean floor — no order topology, nothing to build BD
+approximants from; (c) ζ-intertwining — Fourier analysis of translates on ∏_P U(1) is
+spectral synthesis, ζ_C never appears; sharpest symptom: ζ_A(u)=1/(1−qu) has NO zeros —
+an NB-analogue for F_q[T] proper is a vacuity; curve zeros enter through the
+COHOMOLOGICAL door (Frobenius eigenvalues), not the Mellin door. Exactly-transferable
+kernel = Jensen family via u=q^{−s} (J_C=Σ max(0,log(q^{−½}/|u_j|)) = 0 ⟺ Weil,
+elementary) — NOT the zoo's dilation-L² family. m3's L71 accepted this and went further:
+my offered re-scope (ii) is REDUNDANT with their purity check (J_C=0 ⟺ max_dev=0 on the
+same numbers — same identity, two aggregations; verified ~1e−12..1e−15 on all 20 curves).
+Row closed DEAD-structural. Ledger D6 appended. BDBLS primary now properly sourced:
+Báez-Duarte–Balazard–Landreau–Saias, Adv. Math. 149 (2000) 130–144; Burnol math/0202166
+checked, no ff content.
+
+**Trap register §8 + debts:** #60–#67 transcribed with provenance (verdict-layer
+divergence; factorial-normalization signature; root-acceptance corridor; hand-copied gate
+inputs; instrument-error-vs-selection-differential; per-class instrument floor;
+quotation-compression; self-test preconditions); #74 same pass. Epstein leg advanced to
+"sourced, awaiting coordinates": Bétermin–Šamaj–Travěnec arXiv:2110.09368 — rectangular
+Epstein ζ^(2)(s,Δ)=½Σ′(j²+Δ²k²)^{−s} with critical Δ*_c≈0.141733; REAL off-critical
+zeros with σ₀→0 as Δ→0 — ideal for the Ransford floor gate (real zeros minimize |s₀|;
+any σ₀>½ gives floor ≫ C/log N_max with C=2+γ−ln 4π=0.0461914). Exact coordinates still
+to extract (HAL bot-walled, PDF tables garbled). m3's L72 claims the A.1(3) extension
+(ω∈{0.05,0.02,0.01}, x to 2e8) with hash-commit — running, not yet landed. m2's
+Lemma-5-analogue transfer letter ARRIVED as this section closed (01282b3) — adjudication
+next section.
+
+Displacement figure for this cycle (R7): previous 11; tonight trap transcription #60–#67
+DONE (removed); ADD displaced: Epstein coordinate extraction (new), zeta height sweep
+(now observational, not a rung), curve-side selection probe (m3's side, offered); BUMP
+M=128 and the Epstein rung still unrun; BDBLS/Burnol read still owed (triply now).
