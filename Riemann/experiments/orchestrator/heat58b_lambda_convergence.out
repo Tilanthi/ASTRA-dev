@@ -1,0 +1,55 @@
+== heat58b: lambda_n zero-sum, cutoffs at zero-index [900, 1800, 2700] ==
+  T(idx 900) = gamma_900 = 1302.346742
+  T(idx 1800) = gamma_1800 = 2304.305139
+  T(idx 2700) = gamma_2700 = 3233.913361
+
+  n | lam(T1)      lam(T2)      lam(T3)   | deficit12   deficit23 | ratio12/23
+  1 |  0.022322112  0.022618887  0.022739249 |   0.000297    0.00012 |    2.466
+  2 |  0.089251347  0.090438446  0.090919897 |    0.00119   0.000481 |    2.466
+  3 |   0.20067655   0.20334752   0.20443078 |    0.00267    0.00108 |    2.466
+  4 |   0.35641293   0.36116132   0.36308713 |    0.00475    0.00193 |    2.466
+  5 |   0.55620279   0.56362216   0.56663123 |    0.00742    0.00301 |    2.466
+  6 |   0.79971653   0.81040041   0.81473347 |     0.0107    0.00433 |    2.466
+  7 |    1.0865539    1.1010958    1.1069936 |     0.0145     0.0059 |    2.466
+  8 |    1.4162455    1.4352391    1.4429423 |      0.019     0.0077 |    2.466
+  9 |    1.7882548    1.8122935    1.8220428 |      0.024    0.00975 |    2.466
+ 10 |    2.2019798    2.2316572    2.2436934 |     0.0297      0.012 |    2.466
+ 11 |    2.6567558    2.6926654    2.7072292 |     0.0359     0.0146 |    2.466
+ 12 |    3.1518576     3.194593    3.2119252 |     0.0427     0.0173 |    2.466
+ 13 |    3.6865025    3.7366572    3.7569984 |     0.0502     0.0203 |    2.466
+ 14 |    4.2598531    4.3180206    4.3416116 |     0.0582     0.0236 |    2.466
+ 15 |    4.8710206    4.9377945     4.964876 |     0.0668     0.0271 |    2.466
+
+  n | k_n(1,2)     k_n(2,3)     theory n(n+1)/2 | extrap lam_n(T=inf)
+  1 |      0.11963       0.1221             1.0 | 0.02308211667
+  2 |      0.47852      0.48838             3.0 | 0.09229136599
+  3 |       1.0767       1.0989             6.0 | 0.2075165896
+  4 |       1.9141       1.9535            10.0 | 0.3685730019
+  5 |       2.9908       3.0524            15.0 | 0.5752029051
+  6 |       4.3067       4.3954            21.0 | 0.8270766856
+  7 |       5.8619       5.9827            28.0 | 1.123794088
+  8 |       7.6563       7.8141            36.0 | 1.464885757
+  9 |         9.69       9.8897            45.0 | 1.849815052
+ 10 |       11.963        12.21            55.0 | 2.277980102
+ 11 |       14.475       14.774            66.0 | 2.748716125
+ 12 |       17.227       17.582            78.0 | 3.261297965
+ 13 |       20.217       20.634            91.0 | 3.814942871
+ 14 |       23.447       23.931           105.0 | 4.408813469
+ 15 |       26.917       27.471           120.0 | 5.042020948
+
+checks:
+  raw lam_1(T3)      = 0.022739249
+  published lam_1    = 0.0230957089661 (on record)
+  raw lam_15(T3)     = 4.964876   (m3 contour: 5.045)
+  extrapolated values in the table above are the cross-check numbers
+
+== ERRATUM (appended, not silent) ==
+The table above printed "theory n(n+1)/2" with values 1, 3, 6, ... — that column
+was a leftover from the first (wrong) tail prior, corrected in the docstring
+BEFORE the run but not in this print statement. The intended theory column is
+n^2/(2*pi) = 0.159*n^2. The fit itself never used any theory value: k_n is
+data-fit from consecutive cutoff pairs, so every extrapolated lambda_n above is
+unaffected. Empirical finding: k_n = 0.1196*n^2 (2% stable across cutoff
+pairs), 25% below the crude asymptotic n^2/(2*pi) — the low-gamma corrections
+(theta = 2*arctan(1/(2*gamma)) < 1/gamma) and the N(T) constant terms all push
+the effective constant down. Script print line fixed post-hoc; .out preserved.
