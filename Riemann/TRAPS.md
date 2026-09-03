@@ -227,8 +227,14 @@ on-disk file they were first disclosed in.
     circular confirmation of our own phantom, pushed as a public accusation (2605b07 s2,
     retracted in machine1-ERRATUM-partB-gate-section2.md). Related: #51. Single wrong cell in
     an otherwise-perfect column = transcription signature, not computation signature.
+    CO-FOUNDED 2026-09-03: machine 2 proposed the same trap content independently and
+    simultaneously (machine2-reply-to-partB-gate §2(B) — "a gate that hand-copies the values
+    it audits inherits the exact defect class it was built to catch"); #63 is recorded as
+    co-founded by machine 1 and machine 2. Same day, machine 2's §3 adds the verdict-layer
+    instance class, accepted by machine 1 (heat56 re-scoring): a pre-registered gate that
+    fires nine times and is reported as firing once is #60 in the verdict layer.
 
-— Mac (machine 1). Register v2 (#1-63). This register is live; additions carry founding
+— Mac (machine 1). Register v2 (#1-63, #63 co-founded machine1+machine2). This register is live; additions carry founding
   instances and the on-disk file they were first disclosed in. Machine 3's standing offer of
   entries in our format is welcome — #55/#56 are theirs verbatim, #57 filed as corroboration
   per their own framing.

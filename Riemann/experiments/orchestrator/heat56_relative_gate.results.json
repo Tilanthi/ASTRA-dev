@@ -1,0 +1,242 @@
+[
+ {
+  "site": "k453",
+  "col": "k3",
+  "quoted": "\u22120.012501958",
+  "rel": 5.124025157045776e-05,
+  "target_sf": 4,
+  "carried_sf": 5,
+  "old_units_verdict": "BEYOND",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k453",
+  "col": "k5",
+  "quoted": "\u22120.00302117259",
+  "rel": 2.4507332620351895e-08,
+  "target_sf": 6,
+  "carried_sf": 8,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k453",
+  "col": "k4",
+  "quoted": "\u22120.025467683",
+  "rel": 2.674105257465065e-07,
+  "target_sf": 6,
+  "carried_sf": 7,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k453",
+  "col": "k6",
+  "quoted": "\u22120.00297433104",
+  "rel": 4.529247525142524e-10,
+  "target_sf": 9,
+  "carried_sf": 10,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k693",
+  "col": "k3",
+  "quoted": "\u22120.0069345849",
+  "rel": 5.328918394615538e-05,
+  "target_sf": 4,
+  "carried_sf": 5,
+  "old_units_verdict": "BEYOND",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k693",
+  "col": "k5",
+  "quoted": "+0.002488754876",
+  "rel": 1.836588352681373e-08,
+  "target_sf": 6,
+  "carried_sf": 8,
+  "old_units_verdict": "BEYOND",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k693",
+  "col": "k4",
+  "quoted": "\u22120.072931507",
+  "rel": 2.1417442598262696e-07,
+  "target_sf": 6,
+  "carried_sf": 7,
+  "old_units_verdict": "BEYOND",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k693",
+  "col": "k6",
+  "quoted": "\u22120.0149522807",
+  "rel": 1.596476293626823e-10,
+  "target_sf": 9,
+  "carried_sf": 10,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k922",
+  "col": "k3",
+  "quoted": "\u22120.052046098",
+  "rel": 6.510426707910698e-06,
+  "target_sf": 4,
+  "carried_sf": 6,
+  "old_units_verdict": "BEYOND",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k922",
+  "col": "k5",
+  "quoted": "\u22120.0259592386",
+  "rel": 1.4811346540176579e-09,
+  "target_sf": 6,
+  "carried_sf": 9,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k922",
+  "col": "k4",
+  "quoted": "\u22120.147146455",
+  "rel": 1.0010612756557017e-08,
+  "target_sf": 6,
+  "carried_sf": 8,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k922",
+  "col": "k6",
+  "quoted": "\u22120.0496245566",
+  "rel": 3.9476384813799444e-10,
+  "target_sf": 9,
+  "carried_sf": 10,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k1166",
+  "col": "k3",
+  "quoted": "+0.016191371",
+  "rel": 1.0806729459831628e-05,
+  "target_sf": 4,
+  "carried_sf": 5,
+  "old_units_verdict": "BEYOND",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k1166",
+  "col": "k5",
+  "quoted": "+0.004461096",
+  "rel": 1.083655496279272e-07,
+  "target_sf": 6,
+  "carried_sf": 7,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k1166",
+  "col": "k4",
+  "quoted": "\u22120.187247789",
+  "rel": 1.518256226399811e-08,
+  "target_sf": 6,
+  "carried_sf": 8,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "k1166",
+  "col": "k6",
+  "quoted": "\u22120.0699133133",
+  "rel": 1.765508185457707e-10,
+  "target_sf": 9,
+  "carried_sf": 10,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "Lehmer",
+  "col": "k3",
+  "quoted": "+0.2561707",
+  "rel": 2.352126967234234e-06,
+  "target_sf": 4,
+  "carried_sf": 6,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "Lehmer",
+  "col": "k5",
+  "quoted": "+0.1533875676",
+  "rel": 6.812499040172323e-10,
+  "target_sf": 9,
+  "carried_sf": 10,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "Lehmer",
+  "col": "k4",
+  "quoted": "\u22120.270149071",
+  "rel": 7.379594056334422e-08,
+  "target_sf": 6,
+  "carried_sf": 8,
+  "old_units_verdict": "BEYOND",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "Lehmer",
+  "col": "k6",
+  "quoted": "\u22120.1430774046",
+  "rel": 6.770851263684648e-11,
+  "target_sf": 9,
+  "carried_sf": 11,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "telescope",
+  "col": "k3",
+  "quoted": "+0.3278604",
+  "rel": 6.943933502396577e-07,
+  "target_sf": 4,
+  "carried_sf": 7,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "telescope",
+  "col": "k5",
+  "quoted": "+0.309486353",
+  "rel": 1.881922813292447e-11,
+  "target_sf": 9,
+  "carried_sf": 11,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "telescope",
+  "col": "k4",
+  "quoted": "\u22120.720667532",
+  "rel": 3.292182163209085e-07,
+  "target_sf": 6,
+  "carried_sf": 7,
+  "old_units_verdict": "BEYOND",
+  "new_verdict": "PASS"
+ },
+ {
+  "site": "telescope",
+  "col": "k6",
+  "quoted": "\u22120.4606781979",
+  "rel": 3.3302984197415235e-10,
+  "target_sf": 9,
+  "carried_sf": 10,
+  "old_units_verdict": "pass",
+  "new_verdict": "PASS"
+ }
+]

@@ -1,0 +1,89 @@
+== heat57: anchors parsed from relay (trap #63) + zetazero cross-check ==
+  X1: zeros [33, 34] m0=109.099073363723 d=1.930462179  zetazero-agrees=YES (dm0=1.0e-20, dd=5.0e-16)
+  X2: zeros [2548, 2549] m0=3080.363888492393 d=0.4924938496  zetazero-agrees=YES (dm0=3.0e-19, dd=3.3e-17)
+  X3: zeros [2411, 2412] m0=2941.343409645515 d=0.08180811083  zetazero-agrees=YES (dm0=1.7e-19, dd=3.1e-17)
+
+-- X1  d=1.9304622  (kappa3=-0.00937712, kappa5=-0.000918268, kappa6=-0.000452396, kappa7=-9.642e-5)
+   rho=1.0e-8 n=2: obs= -5.43e-10 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=1.0e-8 n=4: obs= -8.86e-11 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=1.0e-8 n=6: obs=  -1.3e-11 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=1.0e-8 n=3: obs=  -3.28e-9 ratio(2-term)=     1.0  ratio(lead-only)=   1.181
+   rho=1.0e-8 n=5: obs= -7.98e-10 ratio(2-term)=     1.0  ratio(lead-only)=    1.07
+   rho=1.0e-6 n=2: obs=  -5.43e-8 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=1.0e-6 n=4: obs=  -8.86e-9 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=1.0e-6 n=6: obs=   -1.3e-9 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=1.0e-6 n=3: obs=  -3.28e-7 ratio(2-term)=     1.0  ratio(lead-only)=   1.181
+   rho=1.0e-6 n=5: obs=  -7.98e-8 ratio(2-term)=     1.0  ratio(lead-only)=    1.07
+   rho=0.0001 n=2: obs=  -5.44e-6 ratio(2-term)=     1.0  ratio(lead-only)=   1.002
+   rho=0.0001 n=4: obs=   -8.9e-7 ratio(2-term)=     1.0  ratio(lead-only)=   1.004
+   rho=0.0001 n=6: obs=  -1.32e-7 ratio(2-term)=     1.0  ratio(lead-only)=   1.011
+   rho=0.0001 n=3: obs=  -3.28e-5 ratio(2-term)=     1.0  ratio(lead-only)=   1.181
+   rho=0.0001 n=5: obs=  -7.98e-6 ratio(2-term)=     1.0  ratio(lead-only)=    1.07
+   rho=0.0003 n=2: obs=  -1.64e-5 ratio(2-term)=     1.0  ratio(lead-only)=   1.005
+   rho=0.0003 n=4: obs=  -2.69e-6 ratio(2-term)=     1.0  ratio(lead-only)=   1.013
+   rho=0.0003 n=6: obs=  -4.03e-7 ratio(2-term)=     1.0  ratio(lead-only)=   1.032
+   rho=0.0003 n=3: obs=  -9.85e-5 ratio(2-term)=     1.0  ratio(lead-only)=   1.181
+   rho=0.0003 n=5: obs=   -2.4e-5 ratio(2-term)=     1.0  ratio(lead-only)=    1.07
+   rho= 0.001 n=2: obs=  -5.53e-5 ratio(2-term)=     1.0  ratio(lead-only)=   1.018
+   rho= 0.001 n=4: obs=  -9.25e-6 ratio(2-term)=     1.0  ratio(lead-only)=   1.043
+   rho= 0.001 n=6: obs=  -1.44e-6 ratio(2-term)=     1.0  ratio(lead-only)=   1.107
+   rho= 0.001 n=3: obs= -0.000328 ratio(2-term)=     1.0  ratio(lead-only)=   1.181
+   rho= 0.001 n=5: obs=  -7.98e-5 ratio(2-term)=     1.0  ratio(lead-only)=    1.07
+
+-- X2  d=0.49249385  (kappa3=0.0849394, kappa5=0.0240951, kappa6=-0.0243018, kappa7=0.008316)
+   rho=1.0e-8 n=2: obs=   1.25e-9 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=1.0e-8 n=4: obs=  5.93e-10 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=1.0e-8 n=6: obs=  2.87e-10 ratio(2-term)=     1.0  ratio(lead-only)=  0.9998
+   rho=1.0e-8 n=3: obs=  -1.69e-7 ratio(2-term)=     1.0  ratio(lead-only)=   1.012
+   rho=1.0e-8 n=5: obs=  -6.91e-7 ratio(2-term)=     1.0  ratio(lead-only)=   1.001
+   rho=1.0e-6 n=2: obs=   1.25e-7 ratio(2-term)=     1.0  ratio(lead-only)=  0.9999
+   rho=1.0e-6 n=4: obs=   5.92e-8 ratio(2-term)=     1.0  ratio(lead-only)=  0.9986
+   rho=1.0e-6 n=6: obs=   2.82e-8 ratio(2-term)=     1.0  ratio(lead-only)=  0.9829
+   rho=1.0e-6 n=3: obs=  -1.69e-5 ratio(2-term)=     1.0  ratio(lead-only)=   1.012
+   rho=1.0e-6 n=5: obs=  -6.91e-5 ratio(2-term)=     1.0  ratio(lead-only)=   1.001
+   rho=0.0001 n=2: obs=   1.24e-5 ratio(2-term)=     1.0  ratio(lead-only)=    0.99
+   rho=0.0001 n=4: obs=   5.08e-6 ratio(2-term)=     1.0  ratio(lead-only)=  0.8566
+   rho=0.0001 n=6: obs=  -2.04e-6 ratio(2-term)=     1.0  ratio(lead-only)= -0.7112
+   rho=0.0001 n=3: obs=  -0.00169 ratio(2-term)=     1.0  ratio(lead-only)=   1.012
+   rho=0.0001 n=5: obs=  -0.00691 ratio(2-term)=     1.0  ratio(lead-only)=   1.001
+   rho=0.0003 n=2: obs=   3.65e-5 ratio(2-term)=     1.0  ratio(lead-only)=  0.9701
+   rho=0.0003 n=4: obs=   1.01e-5 ratio(2-term)=     1.0  ratio(lead-only)=  0.5698
+   rho=0.0003 n=6: obs=  -3.56e-5 ratio(2-term)=     1.0  ratio(lead-only)=  -4.134
+   rho=0.0003 n=3: obs=  -0.00508 ratio(2-term)=     1.0  ratio(lead-only)=   1.012
+   rho=0.0003 n=5: obs=   -0.0207 ratio(2-term)=     1.0  ratio(lead-only)=   1.001
+   rho= 0.001 n=2: obs=  0.000113 ratio(2-term)=     1.0  ratio(lead-only)=  0.9003
+   rho= 0.001 n=4: obs=  -2.57e-5 ratio(2-term)=     1.0  ratio(lead-only)= -0.4339
+   rho= 0.001 n=6: obs= -0.000462 ratio(2-term)=     1.0  ratio(lead-only)=  -16.11
+   rho= 0.001 n=3: obs=   -0.0169 ratio(2-term)=     1.0  ratio(lead-only)=   1.012
+   rho= 0.001 n=5: obs=   -0.0691 ratio(2-term)=     1.0  ratio(lead-only)=   1.001
+
+-- X3  d=0.081808111  (kappa3=-0.0587006, kappa5=-0.0184607, kappa6=-0.0421111, kappa7=-0.007366)
+   rho=1.0e-8 n=2: obs= -1.44e-10 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=1.0e-8 n=4: obs= -8.67e-11 ratio(2-term)=     1.0  ratio(lead-only)=   1.148
+   rho=1.0e-8 n=6: obs=  -2.38e-9 ratio(2-term)=     1.0  ratio(lead-only)=   56.36
+   rho=1.0e-8 n=3: obs=  -3.65e-5 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=1.0e-8 n=5: obs=  -0.00546 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=1.0e-6 n=2: obs=  -1.49e-8 ratio(2-term)=     1.0  ratio(lead-only)=   1.031
+   rho=1.0e-6 n=4: obs=  -1.19e-7 ratio(2-term)=     1.0  ratio(lead-only)=   15.78
+   rho=1.0e-6 n=6: obs=  -2.34e-5 ratio(2-term)=     1.0  ratio(lead-only)=  5537.0
+   rho=1.0e-6 n=3: obs=  -0.00365 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=1.0e-6 n=5: obs=    -0.546 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=0.0001 n=2: obs=  -5.92e-6 ratio(2-term)=     1.0  ratio(lead-only)=   4.112
+   rho=0.0001 n=4: obs=  -0.00112 ratio(2-term)=     1.0  ratio(lead-only)=  1479.0
+   rho=0.0001 n=6: obs=    -0.234 ratio(2-term)=     1.0  ratio(lead-only)=5.536e+5
+   rho=0.0001 n=3: obs=    -0.365 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=0.0001 n=5: obs=     -54.6 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=0.0003 n=2: obs=  -4.47e-5 ratio(2-term)=     1.0  ratio(lead-only)=   10.33
+   rho=0.0003 n=4: obs=     -0.01 ratio(2-term)=     1.0  ratio(lead-only)=  4436.0
+   rho=0.0003 n=6: obs=      -2.1 ratio(2-term)=     1.0  ratio(lead-only)=1.661e+6
+   rho=0.0003 n=3: obs=      -1.1 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho=0.0003 n=5: obs=    -164.0 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho= 0.001 n=2: obs= -0.000463 ratio(2-term)=     1.0  ratio(lead-only)=   32.12
+   rho= 0.001 n=4: obs=    -0.112 ratio(2-term)=     1.0  ratio(lead-only)=1.478e+4
+   rho= 0.001 n=6: obs=     -23.4 ratio(2-term)=     1.0  ratio(lead-only)=5.536e+6
+   rho= 0.001 n=3: obs=     -3.65 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+   rho= 0.001 n=5: obs=    -546.0 ratio(2-term)=     1.0  ratio(lead-only)=     1.0
+
+persisted heat57_xsite_law.results.json
+V1 (|ratio-1|<=0.01 at rho=1e-6,1e-4, all n): PASS
+V3 n=6 flags at any rho: 0

@@ -1,0 +1,34 @@
+== heat56: relative-error re-scoring (metric + widths: BEAST §3 proposal) ==
+   carried sf = floor(-log10 rel) + 1; PASS iff rel <= 10^-target
+  k453       k3: rel=  5.12e-5  carried~ 5 sf  target 4 -> PASS   (old abs-units: BEYOND)
+  k453       k5: rel=  2.45e-8  carried~ 8 sf  target 6 -> PASS   (old abs-units: pass)
+  k453       k4: rel=  2.67e-7  carried~ 7 sf  target 6 -> PASS   (old abs-units: pass)
+  k453       k6: rel= 4.53e-10  carried~10 sf  target 9 -> PASS   (old abs-units: pass)
+  k693       k3: rel=  5.33e-5  carried~ 5 sf  target 4 -> PASS   (old abs-units: BEYOND)
+  k693       k5: rel=  1.84e-8  carried~ 8 sf  target 6 -> PASS   (old abs-units: BEYOND)
+  k693       k4: rel=  2.14e-7  carried~ 7 sf  target 6 -> PASS   (old abs-units: BEYOND)
+  k693       k6: rel=  1.6e-10  carried~10 sf  target 9 -> PASS   (old abs-units: pass)
+  k922       k3: rel=  6.51e-6  carried~ 6 sf  target 4 -> PASS   (old abs-units: BEYOND)
+  k922       k5: rel=  1.48e-9  carried~ 9 sf  target 6 -> PASS   (old abs-units: pass)
+  k922       k4: rel=   1.0e-8  carried~ 8 sf  target 6 -> PASS   (old abs-units: pass)
+  k922       k6: rel= 3.95e-10  carried~10 sf  target 9 -> PASS   (old abs-units: pass)
+  k1166      k3: rel=  1.08e-5  carried~ 5 sf  target 4 -> PASS   (old abs-units: BEYOND)
+  k1166      k5: rel=  1.08e-7  carried~ 7 sf  target 6 -> PASS   (old abs-units: pass)
+  k1166      k4: rel=  1.52e-8  carried~ 8 sf  target 6 -> PASS   (old abs-units: pass)
+  k1166      k6: rel= 1.77e-10  carried~10 sf  target 9 -> PASS   (old abs-units: pass)
+  Lehmer     k3: rel=  2.35e-6  carried~ 6 sf  target 4 -> PASS   (old abs-units: pass)
+  Lehmer     k5: rel= 6.81e-10  carried~10 sf  target 9 -> PASS   (old abs-units: pass)
+  Lehmer     k4: rel=  7.38e-8  carried~ 8 sf  target 6 -> PASS   (old abs-units: BEYOND)
+  Lehmer     k6: rel= 6.77e-11  carried~11 sf  target 9 -> PASS   (old abs-units: pass)
+  telescope  k3: rel=  6.94e-7  carried~ 7 sf  target 4 -> PASS   (old abs-units: pass)
+  telescope  k5: rel= 1.88e-11  carried~11 sf  target 9 -> PASS   (old abs-units: pass)
+  telescope  k4: rel=  3.29e-7  carried~ 7 sf  target 6 -> PASS   (old abs-units: BEYOND)
+  telescope  k6: rel= 3.33e-10  carried~10 sf  target 9 -> PASS   (old abs-units: pass)
+
+  column k3: 6/6 PASS at BEAST's declared width
+  column k5: 6/6 PASS at BEAST's declared width
+  column k4: 6/6 PASS at BEAST's declared width
+  column k6: 6/6 PASS at BEAST's declared width
+
+old gate (abs units >10): {'k3': 4, 'k5': 1, 'k4': 3, 'k6': 0}
+persisted heat56_relative_gate.results.json
