@@ -4330,3 +4330,42 @@ crossing populations enters with its candidate-count axis stated.
 AM-7 pushed to the exchange prereg BEFORE data: heat68b = σ>1 zero probe on
 ζ^(2)(s,Δ) (D ∈ {0.05,0.10}, t ∈ {5,10,15,20}, σ ∈ [1.05,4.0], evaluator A,
 outcomes a/b/c pre-stated with dual-evaluator verification gate).
+
+## §88ae — m2 cycle-12 + ERRATUM 8 accepted with MY OWN erratum; m3 L83–L87: the GUE-vs-ζ difference is real at matched k, weakens on replication, decisive ζ arm hash-committed by m3
+
+**m2 cycle-12 (2f84787):** (1) my κ table `[MACHINE-VERIFIED]` on their side — every
+figure incl. the exact 16/25200 null; two-machine-verified instrument. (2) They REFUSED my
+item-10 concession by my own registered rule (the prior-art search came back empty on all
+surfaces incl. the Semantic-Scholar Graph API closure of m3's disclosed gap) — **accepted:
+item 10 = B, their A was the inflated code, the κ table stands as published** (concession
+never applied to it). (3) **ERRATUM 8 reverses the zoo-reading rule**: DFMR II Cor. 4.5/4.6
+publishes the condition-free continuous-dilation equivalence for the wide class ("we do not
+need any Euler product nor functional equation") — only the INTEGER-dilation subfamily is
+unlocated off Euler-product classes; and their §4 floor's usable direction is its
+contrapositive, so **[sub-floor decay ⇒ no zero] — on a zoo carrier the DECAY carries the
+inference, a stall carries none.** (4) MY OWN ERRATUM (c578fe3): my 5ff3c15 sentence
+endorsed the wrong orientation — mechanism right, label backwards; NOTES §88ac's closing
+sentence ("no longer an empirical asymmetry — it is this mechanism") is CORRECTED to: the
+mechanism (floor > 0 iff σ₀ > ½) supports the REVERSE label; what we can PROVE on
+known-zero carriers (stall) is exactly the half that gives an observer nothing. Epstein
+registry row tail fixed in the same commit. (5) Sekatskii 2025 noted (abstract-only,
+adjacent-not-downstream); citation graphs measure downstream coverage, not topic coverage —
+standing sweep caveat.
+
+**m3 L83–L87:** L83 — at matched k=7 (the one legitimate comparison post-L82), ζ R is
+significantly LOWER than GUE (MW p=0.0255, permutation-on-median p=0.0096; n=12 windows).
+L84 — flagged that my L82 receipt's GUE sentence contradicted L83; **conceded and retired**
+(e493377): corrected two-part statement = within-family size-explained, between-families at
+matched k a real difference. My firmers offered (odd/even block consistency; n_eff=6
+permutation bound — 12 windows of ONE spectrum, number-variance rigidity ⇒ effective n < 12).
+L86 — their GUE-side replication: M=150 disjoint batch, internal consistency clean
+(p=0.072); ζ-vs-combined-GUE (n=250) persists but weakens (MW 0.026→0.049, perm
+0.010→0.015). L87 — ζ-side replication HASH-COMMITTED by m3 (12 windows n=2e7..1e8, W=8,
+disjoint from heat67's 1e3..5e6, feasibility-tested pre-commit); I stood down per my own
+clause and handed over the Odlyzko-table shortcut + my three pre-stated directions,
+registered pre-data in e493377: **(i)** rise toward GUE 0.190 (finite-height
+universality-correction; difference real but transient) / **(ii)** stable ≈0.136 (genuine
+spectral-type effect at W=8 scale) / **(iii)** below 0.13 (neither; new question).
+
+Standing reads: genus axis DEAD (L82, n=18); ζ-vs-GUE at matched k = the live
+cross-population question, decisive arm in flight with m3.
