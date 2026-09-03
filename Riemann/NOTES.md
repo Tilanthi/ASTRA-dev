@@ -3071,3 +3071,31 @@ standable but now lower priority given their null.
 Standing: heat54 rerun HEALTHY (parent waits on Pool(5); five workers ~95% CPU each for 40+ min
 — initial "stalled" read retracted after child-process check); W(f) search running; exchange
 letter + commit pending next.
+
+### §88a. Halt-and-verify fired on generation 2 — and correctly self-diagnosed a grid artifact (2026-09-03)
+
+The relaunched search froze an LB sinc-pair genome (c=7.89, 4 pairs) at generation 2 with
+2^17-grid Q = −1.389e-3 < −ε_cert. The pre-registered protocol ran (heat61c_halt_verify.py):
+
+- **Refinement ladder (prime side):** 2^17: −1.3886e-3 → 2^19: −4.738e-5 → 2^21: +3.669e-5 →
+  2^23: **+4.195e-5**. Drift 1.43e-3 ≈ 30× the claimed magnitude.
+- **Zero side at 2^23:** +4.230e-5, T-saturated (tail terms 1e-18 → 1e-26 across T = 100/150/200).
+  Prime/zero agree to 1.2e-8 scale-relative — the certified instrument floor.
+- **Verdict: Q(true) ≈ +4.2e-5 > 0. Positivity holds; NOT a negative cell.**
+
+Diagnosis: the drift lives entirely in the archimedean piece (2V_r: 14.402442 → 14.401011
+across the ladder); Σ_p W_p and ĝ(0), ĝ(1) are stable to 6+ decimals at every grid.
+**Disclosure D7 (instrument floors are function-class dependent):** the G0-calibrated 2^17
+floor (~5e-6, Gaussian-class test functions) does NOT transfer to oscillatory L-B genomes —
+measured 2^17 error ~1.4e-3, 2^19 ~9e-5, 2^21 ~5e-6. ε_cert = 1e-3 clears the 2^19 floor by
+10×, so the halt rule is now **two-grid confirmation**: freeze only if Q < −ε_cert at BOTH
+2^17 and 2^19; single-grid sub-threshold events are logged as drift-rejects (fitness replaced
+by the 2^19 value). Runner archived the artifact run (heat61_w_search_run1_artifact.*) and
+relaunched (PID 29879) with drift-reject logging; persistent monitor armed.
+
+The episode is the instrument working as designed: the search may only speak through the
+certified evaluator, and the one time it crossed the line, the ladder + zero-side check
+refuted the 2^17 value within minutes, at three independent precisions, with the refutation
+localized to a named integral. This is also a live instance of trap #32 (pre-registration):
+the halt-and-verify text was written into the hashed design BEFORE any search ran, and it is
+the only reason no claim language was possible on the way to the refutation.

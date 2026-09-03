@@ -242,12 +242,88 @@ def mutate(genome, lineage, rng):
 F_OF = {"LA": f_of_LA, "LB": f_of_LB, "LC": f_of_LC}
 MAKE = {"LA": make_LA, "LB": make_LB, "LC": make_LC}
 
+# ---------------- two-grid halt confirmation (post heat61c disclosure D7) ----------------
+# The first halt (LB gen 2, Q(2^17) = -1.389e-3) was a GRID ARTIFACT: ladder
+# 2^17/19/21/23 gave -1.389e-3 / -4.74e-5 / +3.67e-5 / +4.19e-5 with the zero
+# side at 2^23 agreeing (+4.230e-5, T-saturated). The G0-calibrated 2^17 floor
+# (~5e-6, Gaussian-class) does NOT transfer to oscillatory L-B genomes: their
+# measured 2^17 V_r error is ~1.4e-3 (2^19: ~9e-5). New halt rule: freeze only
+# if Q < -eps_cert at BOTH 2^17 and 2^19; single-grid sub-threshold events are
+# logged as drift-rejects (territory data on the instrument floor by class).
+PRIMES_C = PRIMES
+LOGP_C = LOGP
+KMAX_C = KMAX
+
+def prime_side_genome(lineage, genome, grid_log2):
+    LGRID = 24.0
+    N = 1 << grid_log2
+    dx = 2 * LGRID / N
+    xs = -LGRID + dx * np.arange(N)
+    win = window(xs)
+    if lineage == "LA":
+        f = np.zeros_like(xs)
+        for c, mu, sg in genome["terms"]:
+            f += c * np.exp(-((xs - mu) ** 2) / (2 * sg * sg))
+    elif lineage == "LB":
+        f = np.zeros_like(xs)
+        cc = genome["c"]
+        for ctr, amp in genome["pairs"]:
+            t = xs - ctr
+            f += amp * np.where(np.abs(t) > 1e-10,
+                                np.sin(cc * t) / (np.pi * np.where(np.abs(t) > 1e-10, t, 1.0)),
+                                cc / np.pi)
+    else:
+        P = np.zeros(NT, dtype=complex)
+        for a, p in genome["terms"]:
+            P += a * np.exp(-(0.5 + 1j * TS_C) * np.log(p))
+        gh = P * np.conj(P) * _theta((TMAX - np.abs(TS_C)) / (TMAX / 4))
+        f = np.exp(-xs / 2) * _realize_f_on(gh, xs)
+    f = f * win
+    nrm = np.sqrt(dx * (f * f).sum())
+    f = f / max(nrm, 1e-300)
+    g0 = dx * (f.sum() - 0.5 * (f[0] + f[-1]))
+    fw = f * np.exp(xs)
+    g1 = dx * (fw.sum() - 0.5 * (fw[0] + fw[-1]))
+    A = f * np.exp(xs)
+    n2 = 2 * N
+    corr = np.fft.irfft(np.fft.rfft(A, n2) * np.conj(np.fft.rfft(f, n2)), n2)
+    ms = np.arange(int(np.floor(-20 / dx)), int(np.ceil(20 / dx)) + 1)
+    hx = ms * dx
+    hgrid = np.exp(-hx) * dx * corr[ms % n2]
+    terms = np.zeros(len(PRIMES_C))
+    for k in range(1, int(KMAX_C.max()) + 1):
+        active = KMAX_C >= k
+        if not active.any():
+            continue
+        xa = k * LOGP_C[active]
+        terms[active] += lagrange8(hx, hgrid, xa)
+        terms[active] += np.exp(-xa) * lagrange8(hx, hgrid, -xa)
+    sump = float(np.sum(LOGP_C * terms))
+    h0 = lagrange8(hx, hgrid, 0.0)[0]
+    c0 = (np.log(np.pi) + np.euler_gamma) / 2 * h0
+    m = (xs >= 0) & (xs <= 16.0)
+    xm = xs[m]
+    hm = lagrange8(hx, hgrid, xm)
+    i1 = dx * (hm.sum() - 0.5 * (hm[0] + hm[-1]))
+    with np.errstate(invalid="ignore", divide="ignore"):
+        integ2 = (hm - h0) / np.expm1(2 * xm)
+    integ2[np.abs(xm) < 10 * dx] = -h0 / 4
+    i2 = dx * (integ2.sum() - 0.5 * (integ2[0] + integ2[-1]))
+    return 2 * g0 * g1 - (sump + 2 * (c0 + i1 + i2))
+
+# realization onto an arbitrary x-grid (L-C confirm at 2^19)
+TS_C = TS
+def _realize_f_on(gh, xs):
+    F = np.fft.fft(gh) * (DT / (2 * np.pi)) * ((-1.0) ** np.arange(NT))
+    return np.interp(xs, XQ_SORTED, F.real[XQ_ORDER])
+
 # ---------------- evolution ----------------
 POP, GENS, MIG_EVERY = 24, 200, 25
 
 def run():
     log = []
     frozen = []
+    drift_rejects = []
     populations = {L: [MAKE[L](rng) for _ in range(POP)] for L in F_OF}
     fitness = {L: [np.inf] * POP for L in F_OF}
     t0 = time.time()
@@ -257,12 +333,23 @@ def run():
             for i, g in enumerate(populations[L]):
                 try:
                     Q, _ = Q_prime(F_OF[L](g))
-                    fitness[L][i] = Q
                     if Q < -EPS_CERT:
-                        frozen.append(dict(lineage=L, gen=gen, genome=g, Q=Q))
-                        print(f"  !! HALT-AND-VERIFY: {L} gen {gen} Q={Q:.3e} < -{EPS_CERT}",
-                              flush=True)
-                except Exception as e:
+                        # two-grid confirmation (heat61c disclosure D7)
+                        Q19 = prime_side_genome(L, g, 19)
+                        if Q19 < -EPS_CERT:
+                            frozen.append(dict(lineage=L, gen=gen, genome=g,
+                                               Q17=Q, Q19=Q19))
+                            print(f"  !! HALT-AND-VERIFY CONFIRMED: {L} gen {gen} "
+                                  f"Q17={Q:.3e} Q19={Q19:.3e}", flush=True)
+                        else:
+                            drift_rejects.append(dict(lineage=L, gen=gen,
+                                                      Q17=Q, Q19=Q19,
+                                                      drift=Q19 - Q))
+                            print(f"  ~~ drift-reject: {L} gen {gen} Q17={Q:.3e} "
+                                  f"-> Q19={Q19:.3e} (grid artifact, logged)", flush=True)
+                            Q = Q19
+                    fitness[L][i] = Q
+                except Exception:
                     fitness[L][i] = np.inf
             # elitist selection: keep best half, mutate copies
             order = np.argsort(fitness[L])
@@ -283,7 +370,7 @@ def run():
             print(f"  gen {gen:3d}  " + "  ".join(f"{L}: {v:+.4e}" for L, v in stat.items())
                   + f"   [{time.time()-t0:.0f}s]", flush=True)
             with open("heat61_w_search.log.json", "w") as fh:
-                json.dump(dict(log=log, frozen=frozen), fh, indent=1)
+                json.dump(dict(log=log, frozen=frozen, drift_rejects=drift_rejects), fh, indent=1)
         if frozen:
             break
     print("== search complete ==")

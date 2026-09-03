@@ -1,0 +1,14 @@
+/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat61_w_search.py:123: RuntimeWarning: invalid value encountered in divide
+  integ2 = (hm - h0) / (np.exp(2 * xm) - 1)
+   L-C inverse-FFT self-test (pair e^{-t^2} -> e^{-x^2/4}/2sqrt(pi)): max abs err 4.35e-06
+== heat61 W(f) negative-cell search (post-G0-PASS) ==
+   grid 2^17, primes to e^16, eps_cert 0.001
+   population 24 x 3 lineages x 200 generations, migration /25
+  gen   1  LA: -1.5701e-06  LB: -7.9490e-04  LC: +9.6190e-01   [31s]
+  !! HALT-AND-VERIFY: LB gen 2 Q=-1.389e-03 < -0.001
+== search complete ==
+  generations run: 2; frozen candidates: 1
+  LA min-Q all-time: -1.6380e-06
+  LB min-Q all-time: -1.3886e-03
+  LC min-Q all-time: +8.2404e-01
+FROZEN — halt-and-verify protocol engaged; NO claim language until zero-side + counterparty.
