@@ -1,1 +1,8 @@
 CATEGORY: M (A1 exposure resolver v2 — dual-path reproduction; no RH content)
+[1] diverse_mutants built twice: bit-identical = True
+[2] ||f0|| (winner row) = 4.273930  (cond ratio prediction ~2.067^2 = 18.3; heat61g saw 970/200.2 = 4.85)
+[3] heat61f path (as-is rows): lmin -3.197241e-06  (target -3.197200e-06, diff 4.13e-11)
+[4] heat61e path (renormalized): lmin -3.322801e-06  (target -3.322801e-06, diff 7.76e-14)
+    cond(G): as-is 970.3 vs renormalized 200.2 (heat61f-era vs heat61e-era: 970 vs 200)
+
+== OUTCOME (beta) — PARTIAL (one path reproduces; A1 CLOSED with that path named) ==

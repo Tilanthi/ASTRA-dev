@@ -1,0 +1,11 @@
+{
+ "basis_deterministic": true,
+ "norm_f0": 4.273929647895091,
+ "lmin_as_is": -3.1972412884529825e-06,
+ "reproduces_61f": false,
+ "lmin_renorm": -3.322801077600555e-06,
+ "reproduces_61e": true,
+ "condG_as_is": 970.3050363160083,
+ "condG_renorm": 200.21874712982057,
+ "outcome": "beta"
+}

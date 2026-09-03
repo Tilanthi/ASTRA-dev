@@ -18,9 +18,12 @@ standing rule actively polices it) · **UNEXAMINED** (acted on, never tested) ·
 LOAD-BEARING + ENFORCED (#65: per-class floors measured before selection; findings below the
 floor are unspeakable). Exposure: closed-form Gaussians (done — G0 certified 4e-15); the floor
 is class-dependent (D7) and every new function class needs its own floor before its readings
-count. Open detail: heat61f M=8 prime λ_min differs 4% from heat61e's nominally identical path
-(both floor-scale negative) — same-basis confirmed by exact zero-side agreement; pending Kp-hash
-comparison; floor-class behavior either way.
+count. OPEN DETAIL CLOSED (heat61h v2, 2026-09-03): the 4% heat61e-vs-heat61f prime discrepancy
+= winner-row normalization (‖f₀‖ = 4.274 measured; heat61e's rung renormalized, the selector
+does not) + float64 congruence scatter on the near-null eigenvalue; both .out numbers reproduced
+at their printed precision (7 and 5 digits respectively); 1.3e-7 absolute < every certified
+per-class floor, so nothing above floor depends on it. Practice: normalize rows before
+polarizing.
 
 **A2. The zero-side sum is exact and T-saturation certifies it.** LOAD-BEARING. Exposure: T-ladder
 stability to 7 digits (heat61e/61f LB: …454 → …441e-13) + last-term magnitudes ≤ 1e-16 for

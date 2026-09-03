@@ -3609,3 +3609,59 @@ Delivered this session. Verdict:
    symmetry-pass debt ("weakest own link") — our C8 equivalent resolves NOT by kill but by
    derivation-merge, which is the stronger outcome: the weakest link in our own list was a
    route we were already running under another name.
+
+### §88o. heat61f COMPLETE + the assumption-ledger day: ladder floor-dominated above M=8; cond(G) explosion measured; A4 refuted, A1 closed mechanism-named; traps #68 (two clauses) + #69 proposed; hash-commit pattern adopted (2026-09-03)
+
+The M-ladder (heat61f, pre-registered §88m/letter 799f90d) completed all three rungs, and the
+session turned into a systematic exposure pass on the instrument's own assumptions — every
+open ledger item that today's results touched got measured or closed.
+
+1. **heat61f verdict: (c)-flavored, floor-dominated above M=8.** Zero side T=200: M=8
+   +3.066441e-13 (T-stable 7 digits), M=16 −1.025359e-17, M=32 −2.440884e-14 (both T-sat ok,
+   ladder monotone throughout, no prefix violation). No (b): nothing below −1e-11. (a) fails:
+   non-positive at 16/32. The pre-registered (c) ("sign-positive but floor-limited") fails
+   LITERALLY at both rungs — sign undecidable at 16, negative-but-invisible at 32 — gap #68.
+2. **heat61i (post-hoc, pre-registered): the floors are per-rung, and they explode.**
+   cond(G): 970 (M=8) → 7.6e3 (M=16) → **1.15e7 (M=32)**; floor(32) = cond·eps·λ_max ≈ 1.1e-8
+   — the M=32 reading is EIGHT ORDERS under its own rung's floor. There is no
+   instrument-negative content anywhere in the ladder. M=8's +3.07e-13 stands with 28× floor
+   margin (not the 140× the cond-200 estimate implied) — the programme's nearest certified
+   approach to the spectral bottom. Decay fit dead (only the α ≥ log2(77) ≈ 6.3 bound if
+   λ_min(16) ≤ floor). Structure: near-null coefficients flatten 0.695 → 0.690 → 0.479 — the
+   near-null space is a WIDENING RIDGE, and its growth is coupled to the Gram conditioning:
+   the acceptance rule sells spectral reach for conditioning death. **Winner+mutant ladders
+   are exhausted at M~16.**
+3. **heat61g: A4 REFUTED (outcome ii).** thr 0.95/0.98 → BIT-IDENTICAL +3.066441e-13
+   (threshold does not bite below 0.98); thr 0.99 → HIGHER (+2.709401e-11 — near-duplicates
+   narrow the span). The near-null direction is threshold-robust; the spectral reading
+   stands. Ledger A4 → ENFORCED-BY-TEST. Byproduct: cond 970 (as-is) vs 200.2 (renormalized)
+   exposed the winner-row scale difference.
+4. **heat61h v2: A1 CLOSED, mechanism named and measured.** ‖f₀‖ = 4.274 — the mutant
+   selector's winner row is >4× off unit norm; heat61e's rung renormalized it. Congruence
+   (DKD, DGD) preserves exact eigenvalues (zero side agreed 7 digits) but not float64 ones
+   (prime near-null scattered 1.3e-7 = 4% of 3.3e-6). Both .out numbers reproduced at their
+   printed precision (7 and 5 digits). Practice: normalize rows before polarizing. The
+   pre-registered 1e-12 tolerance labeled this "PARTIAL" because heat61f's .out preserved
+   only 5 digits — tolerance finer than record precision is unfirable-by-construction →
+   #68 clause 2. Both v1 crashes (dict genomes; results file holds only the LAST lineage)
+   were pre-measurement and are #69's founding instances.
+5. **Traps proposed (self-founded): #68** pre-registered sign-branches need a
+   below-resolution arm with floors stated PER RUNG (cond is a property of the basis, not
+   the instrument) — clause 2: tolerances must not be finer than the record's preserved
+   precision; **#69** persistence that overwrites per condition cannot attribute its own
+   numbers (per-condition files or keys; .out section headers are not a database).
+6. **Exchange: Letter 48 (machine 3) endorsed** — all 3 E~1e12 windows Turing-certified
+   (41/41, 16/16, 16/16; edge margin ≥ 0.0039; bit-identical constants by construction);
+   ledger D3 → RETIRED-CERTIFIED, A3 route satisfied; their heat55 certification offer
+   accepted (windows to follow with results). **Letter 49 acknowledged**: hash-commitment
+   pre-registration (SHA-256 before run) adopted — it fixes a real gap (my pre-registrations
+   commit to the private repo, unverifiable to counterparties). **heat62 (B2 random-basis
+   ladder + B3 compact-support family, GS-orthonormal, floors ~1e-17, zero-side-primary) is
+   hash-committed in the letter (db7de084…b8cc5) BEFORE its first scored evaluation and now
+   running at 1 core.** Route-6 merge relay (§88n) delivered in the same letter;
+   A.1(3) sign-lane proposal (Suzuki; eventual single-sign of h_ω^⟨1⟩ ⟹ zero-free Re>½+ω;
+   single ω suffices; sieve-cost; C5 body-read) submitted as a division-of-labour candidate.
+7. **Queue:** heat62 verdict → B2 status + possible ridge-generic finding; heat54 stream
+   scans → heat55 auto-chains (CATEGORY: C added; RIEMANN_WORKERS=4 explicit); heat55 windows
+   → machine 3; m2 minimal batch + representation-reset next session. CPU: exactly 5 cores
+   throughout (4 pool + 1 diagnostic), verified live twice.
