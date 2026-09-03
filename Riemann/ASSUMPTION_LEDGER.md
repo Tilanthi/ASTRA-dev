@@ -82,6 +82,23 @@ out — family choice dominates; the GA's LC lineage was exploring a bottom-blin
 NOTES §88g). Exposure: none known — machine-verified at every order; this assumption gates the
 whole explicit-formula-native restriction.
 
+**B5. The ζ-side NB-BD d_N ladder measures something at machine scale.** RETIRED-BY-AUDIT
+(m2 cycle 11 + addendum, 09-03; my erratum a5e5bdf). Four grounds, independent: (i) the
+information-limit theorem — d_n ≥ ~√(C/log n) unconditionally (BDBLS via Ransford et al.
+2019), so halving d_70 needs n~1.6e7 and d=0.01 needs n~10^200; (ii) BDBLS already published
+N=2×10⁴ in 2002 — any machine-scale run is a re-derivation; (iii) the ladder fails the
+question-gate as a STATEMENT (every rung N≤30 certifies a zero-free region strictly inside
+Re s > 1, free by Euler; first non-vacuous rung ≈ 2×10⁴); (iv) my pre-registration specified
+the WRONG family/space pairing (bare {1/(nx)} incl. f_1 in L²(0,1) breaks the ⟸ direction —
+m2 §5, verified at the first zero). NB-BD is an IFF: "certified non-decay, RH untouched" is
+retracted — non-decay would BE the disproof, and no finite table can certify it (d_n
+monotone, limit exists, finite values bound only from above). Residue: heat64 v2 machinery =
+instrument calibration, cross-validated vs m2's digamma instrument to 2.9e-14 worst over
+n=2..30. The lane's live arm is the ZOO under the small-|s₀| floor gate
+(2σ₀−1)/|s₀|² > C/log N_max — m2's pre-scheduling condition; classic D-H zeros are 55×
+invisible at every reachable N; the rescue test = D-H zeros in Re s > 1 at small |s₀|,
+strip-statement owed before running).
+
 ## C. Process assumptions
 
 **C1. Three independent machines with a non-zero disagreement rate beat one careful machine.**
@@ -121,6 +138,19 @@ sustained sign oscillation at large x. Lane is m3's; my exposure = none until th
 SURVEY-GRADE (M3 12/12, two re-verify flags open, transfer-ops rank contested). Exposure: the
 two open re-verifications + the J-symmetry question (only empty cell with in-family existence
 proof).
+
+**C7. Methodology consensus R1–R7 is the operative rule set.** ENFORCED from 09-03
+(machine1-consensus-encoding, a5e5bdf; all inputs in: m3 L51–54, m2's opinion [delivered
+inside f6ce093 per their NOTICE], SAPIENS adjudication). R1 D-allocation scored on the
+DERIVED denominator (state-change at close; two published numbers incl. tag-vs-outcome
+disagreement rate). R2 question-gate as-STATEMENT (what would the number certify), unbounded.
+R3 DQ-SECTION per .out; missing = red run (121 runs / 1 DQ at first check — the 120-red
+retrofit debt stands until each lane next runs). R4 reset outputs traded at each sync
+(reset_slots/). R5 owner-or-expiry AMENDED: silence is never a decision — default fires only
+on explicit not-claiming or positive liveness. R6 every zero-compute rule gets an artifact
+MISSING when it does not fire (rung_discipline_check.py). R7 each sync reports the
+displacement figure (mine: 11 — 10 wasted-opportunity, 1 saved-by-not-running). Exposure:
+SAPIENS re-adjudication invited; correlated blind spots of three machines under one director.
 
 ## D. Retired (kept for the record)
 

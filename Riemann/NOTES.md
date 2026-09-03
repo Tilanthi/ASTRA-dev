@@ -3832,3 +3832,71 @@ T~1e13. Reply pushed (375f930) incl. one offered discriminator for their anomaly
 original e13_site.py in a fresh process, dps pinned at import: reproduces ⇒ bug (b);
 vanishes clean but reproduces in scan→measure session shape ⇒ context-bound (a)). My
 window-bounds round-trip check (4.95e-36) noted as the sanity-print generalized to re-parse.
+
+## §88w — m2 cycle 11 lands mid-debug: the heat64 audit, four defects, the ladder cancelled, the two-machine cross-check, and the consensus encoded
+
+18:36–19:00 window. While I was debugging v2's G_with (P_s unshifted-floor bug — Σ_{s<20}P_s
+= 16.96 instead of 0.272; fixed: floor(t/j) = a + sL/j, not a), machine 2 returned to the
+exchange with cycle 11 + addendum + consensus opinion + a reply to m3's Letter 58 — the
+three-way functioning at once for the first time.
+
+**The audit (all four defects accepted, erratum a5e5bdf):** (i) my pre-reg's Correction 2
+b[j] = (H_j−ln j−γ)/j wrong at every j≥2 — RIGHT at j=1, the one index where all candidates
+coincide ("denominator 1"); my own S1 had self-caught this pre-scoring, but the LETTER was
+in the record with a hash beside the wrong formula — "a hash-commit makes a wrong formula
+look pre-registered rather than checked". Correct: b[j] = (ln j+1−γ)/j = m2's block-sums.
+(ii) Their family diagnosis: my Gram integrand {jt}{kt} is the Gram of σ_n = {n/x}, NOT the
+stated family; my committed b was off by exactly j² from that family's b — "a misplaced
+factor, not a typo" (the substitution jacobian left in the wrong place). (iii) My own v2
+P_s unshifted-floor bug (found today, fixed, never scored; G[1,1] now 2.5e-14 vs an
+independent exact per-unit path — and my session note "expected 0.55–0.6" was itself wrong;
+correct 0.2607). (iv) The deepest: the SPECIFICATION — bare family incl. f_1 in L²(0,1)
+breaks the ⟸ direction (the 1/(s−1) residual, verified at the first zero: f_2 annihilated
+to 3e-20, {1/x} residual 0.0707). None of my self-checks could catch it: they verify the
+machinery layer against itself. → traps #71 (index-separation) + #72 (layer-scope), both
+m2-offered, accepted with credit.
+
+**The cancellation:** ζ-side ladder DEAD as measurement on four independent grounds —
+information-limit theorem (d_n ≳ √(C/log n), BDBLS; halving d_70 needs n~1.6e7, d=0.01
+needs 10^200); BDBLS 2002 already at N=2×10⁴; fails MY OWN question-gate as a statement
+(every rung N≤30 certifies zero-free strictly inside Re s>1 where Euler is free; first
+non-vacuous rung ≈2×10⁴); wrong family/space. "RH untouched" RETRACTED — NB-BD is an IFF
+(Ransford Thm 1), so certified non-decay would BE the disproof; and no finite table can
+certify non-decay (monotone + limit exists + finite values bound only from above). Three
+roads to the same verdict (m2 decay-rate, m3 literature L56, m2 certified-region) with no
+shared premise.
+
+**The cross-check (the good part):** my t-space machinery computes the CORRECTED family
+exactly — Ĝ[j,k] = G[j,k] − G[j,1]/k − G[1,k]/j + G[1,1]/(jk), ĝ_k = (ln k)/k falls out
+identically. d_n² n=2..30 vs m2's dps-60 digamma table: worst rel diff 2.9e-14 (their
+printed precision; all 29 rows). Two exact instruments, different spaces, different
+self-tests, neither read the other's code — the strongest mutual validation either side has.
+heat64_crosscheck_m2.py/.out committed; their certified-region table at N≤30 confirmed by
+mine.
+
+**The consensus ENCODED (task #6 closed):** m2's opinion landed inside f6ce093 (two-lanes-
+one-worktree staging accident; their NOTICE supersedes the commit message). Positions:
+adopts 2/3/4; refuses D-quota tag-denominator (derived denominator: score state-change at
+close; publish TWO numbers — quota + tag-vs-outcome disagreement rate; "score the mechanism,
+not the count"); refuses owner-or-expiry as written (SILENCE IS NEVER A DECISION — their
+71-minute zombie process; amended: default fires on explicit not-claiming or POSITIVE
+liveness); the structural point: four of my five adjustments had NO MECHANISM — zero-compute
+= zero-artifact, rules that fire when someone remembers. R6 implemented same night:
+rung_discipline_check.py (first output: 121 runs, 1 DQ section — the 120-red retrofit debt
+stands, not retro-fixed), reset_slots/2026-09-03-cycle-heat63b-window-law.md. R7: my
+displacement figure 11 (10 wasted-opportunity incl. trap transcription #60–#67 + BUMP M=128
++ prior-art read; 1 SAVED by not running — the original Epstein rung, killed on paper by
+m2's floor gate). Zoo re-scope: small-|s₀| floor gate (2σ₀−1)/|s₀|² > C/log N_max before any
+leg is scheduled (D-H's four classic zeros 55× invisible at every reachable N; the rescue =
+D-H zeros in Re s>1 at small |s₀| — floor ~1/|s₀|², e.g. σ₀=1.05,t=2 → 0.47 ≈ 4× the ζ
+curve's d_30; strip-statement owed before running). Three-way division: me = D-H rescue +
+Epstein floor check + floor-criterion precedent search + BDBLS/Burnol read; m3 =
+function-field positive control after my transfer-formulation check (+ L57 R-population
+joint proposal accepted in principle — zeta-side R-table assembly mine); m2 = digamma
+instrument + Lemma-5-analogue transfer + their §3.3 debt.
+
+Glenn's intercommunication directive: honored in substance tonight — m2 audited my object, I
+cross-checked their instrument, m3's L58 collision (A.1(3) = the ζ-native engine m2's causal
+pass found missing) was endorsed by both, m2's descriptor-warning self-disclosure protected
+m3 from a string-with-no-resolving-power. Three machines, one lane, divided. Next rung (mine,
+pre-registered first): the D-H Re>1 / Epstein small-|s₀| floor tests.

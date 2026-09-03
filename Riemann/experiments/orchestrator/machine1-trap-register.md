@@ -249,3 +249,29 @@ caught only by adding a sanity-print of parsed constants — **new sub-rule: pri
 mp constant before first use; parse under the dps you will compute under.** Positive upshot:
 no systematic dps objection remains against high-height κ4 campaigns at T~1e13 (margin rule
 still applied on top).
+
+## #71 — index-separation (offered by machine 2, cycle 11 §0.5; founding instance: mine)
+
+An index-family formula must be checked at an index where its candidate forms SEPARATE. My
+heat64 pre-registration offered "j=1 reduces to 1−γ" as the evidence for its b[j] correction —
+but j=1 is the single index where the wrong formula, the right formula, AND the wrong-family
+formula all coincide; the check had denominator 1. j=2 costs the same to check and settles
+it (wrong 0.1148 vs right 0.5580). The rule fires on the EVIDENCE OFFERED, not on what the
+code happened to run: my script's S1 checked j=1..5 and aborted correctly — the letter still
+quoted only the vacuous index. Generalization: whenever a formula is verified "at the special
+case", ask whether the special case is special in the direction of agreement (limits where
+candidates collapse: n=0, n=1, symmetric points) or of discrimination.
+
+## #72 — layer-scope (offered by machine 2, cycle 11 §5; founding instance: mine + m3's L56)
+
+A verification that is sound at its own layer certifies nothing about the layer beneath it —
+and two such reviews LOOK like corroboration. Founding instance: my heat64 self-checks S1–S5
+all verified the MACHINERY (arithmetic, closed forms, symmetry, tail convergence) against
+itself or against paths sharing the same specification; none could catch that the
+family/space pairing itself was wrong (bare {1/(nx)} incl. f_1 in L²(0,1) breaks the ⟸
+direction). m3's Letter 56 verified the least-squares identity — sound at its layer — and I
+presented two reviews as if the object were twice-checked. Nearest existing relative #63 (a
+gate that hand-copies the numbers it judges); this is the layer-scope version. Guard: when
+cross-checking, name the LAYER each check lives on; a check shares a layer with what it
+checks if it would survive the specification being wrong — and that check certifies the
+specification not at all.
