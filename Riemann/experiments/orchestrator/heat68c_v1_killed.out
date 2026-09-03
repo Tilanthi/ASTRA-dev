@@ -1,0 +1,5 @@
+heat68c sigma>1 DELTA-DESCENT probe (AM-8). dps=30 scan. Pre-stated outcomes a/b/c (letter).
+D=0.02 (n=50, |D|=1e+04) t= 5: scale=2.432e+10 min|z2|=4.520e+03 at sigma=1.05  local-minima=0
+D=0.02 (n=50, |D|=1e+04) t=10: scale=2.594e+10 min|z2|=4.752e+03 at sigma=1.05  local-minima=0
+D=0.02 (n=50, |D|=1e+04) t=15: scale=2.334e+10 min|z2|=4.071e+03 at sigma=1.05  local-minima=0
+D=0.02 (n=50, |D|=1e+04) t=20: scale=2.072e+10 min|z2|=3.533e+03 at sigma=1.05  local-minima=0

@@ -14,8 +14,16 @@ Also noted in the letter (no computation needed): for real s > 1 every term
 any Delta — any sigma>1 zero must be complex, which is what the vertical
 scans probe.
 
-Evaluator: A VERBATIM from heat68b (validated at Delta=0.001 in heat68 by
-the L1 closed-form cross-check, 48.9 digits). dps=30 scan / dps=50 refine.
+Evaluator: A with heat68's ADAPTIVE truncation discipline (v2, 2026-09-04).
+v1 copied heat68b's compact form, whose hard range(1,60) inner m-bound does
+not scale with Delta: at Delta<=0.02 the loop dies before the Bessel decay
+regime 2*pi*Delta*k*m ~ 1 begins (m3 Letter 99; independently verified here:
+4.5% error at D=0.02, 43.8% at D=0.01, sigma=1.05+5i vs relaxed bounds).
+Run v1 killed after 4 lines (all D=0.02), preserved as heat68c_v1_killed.out;
+those values are VOID. v2 restores heat68's discipline verbatim: m-loop breaks
+at z > 160 (K underflow), k-loop breaks at TRUNC_REL = 1e-45 relative shell —
+the exact evaluator the heat68 L1 closed-form cross-check validated at
+Delta=0.001 to 48.9 digits. dps=30 scan / dps=50 refine.
 Scan: D in {0.02, 0.01, 0.005, 0.002, 0.001}, t in {5,10,15,20},
 sigma in [1.05, 4.0] step 0.05. Threshold 1e-3 x line median, as AM-7.
 
@@ -37,24 +45,35 @@ from mpmath import mp, mpf, mpc, pi, sqrt, exp, log, gamma, zeta, besselk, fabs,
 mp.dps = 30
 
 
+TRUNC_REL = mpf("1e-45")                      # heat68 registered relative shell cutoff
+
+
 def zeta2_A(s, D):
-    """Bessel representation (heat68 evaluator A, k-power (m/k)^{s-1/2} per trap #77 fix)."""
+    """Bessel representation (heat68 evaluator A discipline, v2). m-loop breaks at
+    z = 2*pi*D*k*m > 160 (K underflows past exp(-160) ~ 1e-70); k-loop breaks at
+    TRUNC_REL relative shell. Replaces v1's hard range(1,60) bounds (m3 Letter 99)."""
     D = mpf(D); s = mpc(s)
     t1 = zeta(2*s)
     t2 = sqrt(pi)*gamma(s - mpf('0.5'))*D**(1 - 2*s)*zeta(2*s - 1)/gamma(s)
     tot = t1 + t2
     nu = s - mpf('0.5')
-    ssum = mpf(0)
-    for k in range(1, 60):
-        z = 2*pi*D*k
-        inner = mpf(0)
-        for m in range(1, 60):
-            inner += (mpf(m)/k)**nu * besselk(nu, z*m)
-        term = inner
-        ssum += term
-        if abs(term) < mpf('1e-40') and k > 5:
+    total = mpf(0)
+    k = 1
+    while True:
+        shell = mpf(0)
+        m = 1
+        while True:
+            z = 2*pi*D*k*m
+            if z > 160:
+                break
+            shell += (mpf(m)/k)**nu * besselk(nu, z)
+            m += 1
+        if abs(shell) < TRUNC_REL * max(abs(total), mpf(1)):
+            total += shell
             break
-    return tot + (4*pi**s/gamma(s))*D**(mpf('0.5') - s)*ssum
+        total += shell
+        k += 1
+    return tot + (4*pi**s/gamma(s))*D**(mpf('0.5') - s)*total
 
 
 def scan_line(D, t):
@@ -73,7 +92,7 @@ def scan_line(D, t):
 
 if __name__ == '__main__':
     t0 = time.time()
-    print("heat68c sigma>1 DELTA-DESCENT probe (AM-8). dps=30 scan. Pre-stated outcomes a/b/c (letter).", flush=True)
+    print("heat68c sigma>1 DELTA-DESCENT probe (AM-8) v2 (adaptive truncation, m3 L99). dps=30 scan. Pre-stated outcomes a/b/c (letter).", flush=True)
     THRESH = mpf('1e-3')
     out = {'lines': [], 'candidates': [], 'outcome': None, 'arm': 'AM-8 delta-descent'}
     for D in ['0.02', '0.01', '0.005', '0.002', '0.001']:
