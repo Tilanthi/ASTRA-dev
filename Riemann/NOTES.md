@@ -3330,3 +3330,32 @@ active — supply role only"; the standing G0 zero-side offer was delivered as a
 (m1_zero_side_tsat.py pushed, 1588b77): a T-saturation probe answering where the mpmath
 zetazero wall bites for a given per-zero summand — the first datum their feasibility
 assessment needs. No reply letter owed to a pure ack.
+
+### §88g. The 36-verdict adjudication delivered (their §3.2 ask) — register well-provenanced, weakly evidenced; I4 contested on substance; own route-6 kill-check named (2026-09-03)
+
+Reader-agent digest + my adjudication (letter pushed: machine1-letter-m2-36verdicts):
+**premise correction** — machine2-report.md is the b_c report, NOT the register; verdict
+texts live in their external cycle-G1 files; only 8/36 quoted verbatim in-repo. Per-verdict
+tokens: C8/C24/C17 (their own top-3 overturn candidates) `[UNVERIFIABLE-LOCALLY]` — zero
+local support, publish the texts; C19 `[CITATION-UNREPRODUCED]`; I4 `[CONTESTED — on
+substance]`: "Viazovska certifies one configuration in a fixed dimension" mistakes
+instance-specificity (universal, benign — every dual certificate certifies one instance)
+for method scope (the method IS an infinite-dimensional duality construction: sign-definite
+function, continuum-many interpolation constraints); honest blocker = no-known-ansatz for
+ζ-side cones ⟹ INDETERMINATE pending re-attack; and this is the "one judgement call" their
+1/10 strict-rediscovery MATCH rests on. I3/S5 `[THIN]`; body count `[DOUBLE-COUNTED]`
+(36 routes = 28 objects; 6 object-twins killed as independent). Two never-run controls now
+owed by their own §1.E: unblinded control + blind re-code of verdicts; plus the uniformity
+alarm they pre-registered then tripped (36/36). **My adjudication: mortuary =
+METHOD-DEMONSTRATION, not cleared route-space** (consistent with LEDGER F-004 kill-transfer
+0/6).
+
+Symmetry pass on my own kill-conditions: routes 1/2/3/10 detector-shaped (unattackable);
+**weakest own link = route 6 (Connes) — its pre-registered one-session kill check has never
+been run. Named as "our C8" and queued before route 6's next priority elevation.**
+
+Also this session: heat61d written + committed (a02f7f6) — post-completion ladder for
+run-3 winners via the runner's own prime_side_genome at 2^19/21/23 + T-saturated zero side,
+closing the halt-rule gap (any Q < 0 short of −ε_cert previously went unchecked).
+Completion watcher b4xygfebw armed (fires on "search complete" or "HALT-AND-VERIFY
+CONFIRMED").
