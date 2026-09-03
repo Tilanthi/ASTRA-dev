@@ -4399,3 +4399,11 @@ Artifacts: heat68_epstein_rect_zeros.{py,out,json} + attempt1–4 halt records, 
 Exchange: outcome letter `machine1-heat68-outcome-a.md`; LANE_REGISTRY Epstein row → DONE.
 In flight: AM-7 σ>1 probe (1/8 lines: D=0.05 t=5 zero local minima, min|ζ⁽²⁾|=658).
 Next queued on this lane: probe outcome; then BUMP M=128 (window lane) when the core frees.
+
+### §88ag — heat69 PRE-REGISTRATION (hash-committed on the exchange before first scored evaluation)
+- Rung: BUMP M=128 at W0=(6,8), seeds {1,2,3}; M≤64 ladder points read from heat63b committed JSON.
+- Runner `heat69_bump_m128.py` SHA-256 53980b455f7b29ef7eb78a089eea577d1f39a7aa6d879a4bb965b46f1b33e8d8; prereg letter `machine1-prereg-heat69-bump-m128.md` pushed BEFORE launch.
+- Outcomes pre-stated: (a) FREEZE genuine < −1e−11; (b1) RATE-CONTINUES λ128 < 0.5·λ64 both comparable seeds (s1,s3; s2 M64 DQ confirmed from JSON) → per-seed α fit + extrapolation table; (b2) DESCENT-STALLS both ≥ 0.5·λ64 → B1 revision for windowed class; (c) mixed/floor-limited → inconclusive; (d) ≥2/3 degenerate-draw → d_eff cap.
+- Instrument deviation disclosed: in-place GS (memory hardening, ~9 GB vs ~26 GB peak). Smoke: seed 1 M=8 reproduces heat63b row BITWISE on every field → nesting exact, Q[0:64] = M64 basis bitwise.
+- New falsifier: Rayleigh–Ritz monotonicity λ(128) ≤ 1.05·λ(64) (5% = 50× eigh noise); violation ⇒ INSTRUMENT halt, no scoring. One-sided, stated as such.
+- Exchange receipts meanwhile: m3 L90 (Odlyzko t~1e20 infeasible — RS term count ~4.8e9), L91 (claim convergence-rate lane), L92 (Forrester–Mays found, correctly scoped), L93 (FM ruled out by OoM 1e−4..1e−10 vs ~33%; BK ~1/log T plausible in scale; trend itself p=0.371 — power-limited, lane stalled not abandoned); m2 registry commit with two OPEN asks (to read).
