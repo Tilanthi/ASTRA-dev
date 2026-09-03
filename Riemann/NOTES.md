@@ -3277,3 +3277,48 @@ itself territory: the positivity margin thinning to the certification threshold 
 family without crossing — to be reported as exactly that, no claim language either way.
 
 Reply: machine1-reply-letter37-2026-09-03.md (commit below). Task #132 closed.
+
+### §88f. machine 2 methodology note (sync of 12 record files) — three asks delivered; 8-of-10 intersection computed; box-surf nominated (2026-09-03)
+
+Machine 2 synced their record (4191a5e, 12 files — mostly already-adjudicated letters plus
+their disruptive-methodology note responding to Glenn's virtual-universe directive). No new
+answers to my asks (no codebook, no object-keyed intersection, no formal trap-#65 accept) —
+but §D of the note PUBLISHES the eight banned mechanisms (H–P, RMT, Li, Nyman–Beurling,
+de Branges, Weil EF, Connes, Selberg), which let me compute my own intersection: **routes
+1,2,3,4,6,7,8,9 inside; 5 (obstruction taxonomy) and 10 (Turing frontier) outside** —
+matching their 8/10 count. Their reading of the datum is against themselves: the low
+rediscovery rate measured their own exclusion rule, not the space; they are re-keying the
+ban on the object built.
+
+Their §3 asked all machines for three things; all three answered (reply pushed:
+machine1-reply-m2methodology-2026-09-03.md):
+1. **Trace deposits** — my ten routes re-keyed as one-line object-built records (their §C
+   stigmergy: coordinate through the trace, not the plan). Route 1's object = "positivity-
+   certificate search", not "Weil EF" — and the §D cost-measure gets its concrete instance:
+   the mechanism ban kept them off the lane that produced this week's certified instrument
+   + positivity instances + Letter-37 formula-level closure.
+2. **Box-surf nomination** (their §3.3): the Weil positivity criterion as instrumented —
+   specification is an unbounded quantifier over C_c^∞; implementation is a finite exact
+   prime sum, zero-free, certified 1e-9, with compact support making the prime cutoff
+   EXACT and per-class floors (D7) making search-over-g sound at pre-registered ε. The
+   quantifier is discharged by search + certification, not mathematics. Runner-up: λₙ
+   interval frontier.
+3. **Which of their 36 kills is wrong** — honestly PENDING: requires reading their synced
+   633-line machine2-report.md; queued as a task; will answer per-verdict with tokens, and
+   per their §1.E attack my own routes' kill-conditions with the same instrument.
+
+Also adopted verbatim into machine-1 language: their §0(3) charter ("maximally disruptive
+about how we search, never about what counts as valid") — same line as #32/#65 discipline
+from the game side.
+
+Run-3 at gen 60: LB −9.0986e-4, increments halving per 5 gens (−3.6→−1.7→−0.8 ×10⁻⁵) —
+asymptotic plateau ≈ −9.1e-4 forming ABOVE the halt line. NOTE FOR THE LADDER: this is a
+NEGATIVE Q reading at 2^19 (~9× the 2^19 class floor) — the halt rule as written only
+self-checks genomes crossing −1e-3, which is a design gap: any Q measurably < 0 is
+disproof-class if true. Runner persists genomes at completion (final= per lineage), so the
+ladder (heat61c machinery) runs on the plateau winner when run-3 finishes (~75 min). Three
+outcomes pre-stated: (a) ladder converges positive → run-3 was noise-chasing at 2^19 too —
+D7 deepens, search grid must rise again, trap #64/#65 fires a third time; (b) ladder
+converges negative ≈ −9e-4 with zero-side agreement → genuine negative cell → freeze, no
+claims, counterparty FIRST (machine 3's burnol_final.py is validated and ready); (c) drift
+between → map it. No claim language until the ladder speaks.
