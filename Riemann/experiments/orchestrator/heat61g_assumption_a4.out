@@ -1,0 +1,6 @@
+CATEGORY: M (assumption-ledger A4 exposure — instrument geometry test)
+thr=0.95: M=8 condG=970 lmin T150 +3.066441e-13 T200 +3.066441e-13 [sat ok]
+thr=0.98: M=8 condG=970 lmin T150 +3.066441e-13 T200 +3.066441e-13 [sat ok]
+thr=0.99: M=8 condG=1097 lmin T150 +2.709401e-11 T200 +2.709401e-11 [sat ok]
+
+== OUTCOME (ii): non-monotone/wrong-direction — A4 REFUTED for this span; spectral reading stands ==

@@ -50,6 +50,19 @@ PRE-REGISTRATION (trap #32):
   interpretation pauses until understood.
 
 CPU budget: single core, chained after heat61g (5-core directive).
+
+FIX-NOTE (pre-measurement): first launch crashed at input load — genomes in
+heat61e's results JSON are DICTS, not numeric arrays (np.array(dict) raised);
+no scored evaluation ran. Fixed alongside a mechanism generalisation BEFORE
+any measurement: heat61g (which ran in between) printed condG=970 for this
+same M=8 basis where heat61e's renormalised rung printed 200.2 — ratio 4.85
+=> ||f0|| ~ 2.2, i.e. the winner row is NOT unit norm by a factor >2, not by
+eps. The A1 mechanism is therefore a genuine diagonal rescaling between the
+two runs' (K, G) pairs — congruent in exact arithmetic (eigenvalues equal),
+bitwise different in float64, with the near-null prime eigenvalue scattering
+by the observed 4%-of-3.3e-6. Probe [5] measures ||f0|| directly; the
+eps-level wording above is retained as originally pre-registered, with this
+note as the pre-run correction.
 """
 import json
 
@@ -87,14 +100,17 @@ if __name__ == "__main__":
     winner = json.loads(REC["final"]["LB"][1])
     saved = json.load(open("heat61e_gram_ladder.results.json"))
 
-    genomes_saved = [np.array(g, dtype=float) for g in saved["genomes"]]
+    genomes_saved = saved["genomes"]   # list of genome DICTS (LB: c + pairs)
     Kp_saved = np.array(saved["Kp_23"])
     eig_saved = np.array(saved["eig_23"])
     m = len(genomes_saved)
 
-    # (1) genome-level prefix-determinism
+    # (1) genome-level prefix-determinism (JSON-normalised dict compare)
+    def normj(x):
+        return json.loads(json.dumps(x))
+
     genomes_fresh, F_fresh = E.diverse_mutants("LB", winner, XS23, DX23, m)
-    genomes_equal = all(np.array_equal(g, s)
+    genomes_equal = all(normj(g) == normj(s)
                         for g, s in zip(genomes_fresh, genomes_saved))
     print(f"[1] genomes equal: {genomes_equal} "
           f"(fresh {len(genomes_fresh)} vs saved {m})", flush=True)

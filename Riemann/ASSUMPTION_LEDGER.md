@@ -32,12 +32,14 @@ every zero-anchored result. Exposure: triple-locked anchors (dps-50 Newton + dps
 Odlyzko) at all named sites; nzeros is an independent algorithm (Turing/RS backtracking) and
 machine 3's certifier will test completeness at E~1e12 directly.
 
-**A4. Mutant-diversity threshold (|corr| < 0.98) yields a representative basis.** UNEXAMINED —
-flagged TODAY by the near-null direction being a near-cancellation pair (coeffs 0.695/0.683):
-the ladder's λ_min(M) decay conflates the spectral bottom with acceptance-threshold geometry.
-Exposure: vary the threshold (0.95/0.99) at fixed M and compare λ_min; if it moves
-systematically, the decay fit is basis-geometry, not spectrum. Do before interpreting any
-c/M^α.
+**A4. Mutant-diversity threshold (|corr| < 0.98) yields a representative basis.** ENFORCED-BY-
+TEST (heat61g, pre-registered, outcome (ii) 2026-09-03): thr 0.95 and 0.98 give BIT-IDENTICAL
+λ_min (+3.066441e-13 — the threshold does not bite below 0.98; double-mutate jumps land well
+under 0.95), and thr 0.99 gives a HIGHER λ_min (+2.709401e-11 — admitting near-duplicates
+narrows the span and RAISES the minimum, opposite of the geometry-dominance prediction). The
+near-null direction is robust to acceptance geometry: the spectral reading of the M-ladder
+stands, and λ_min(M) decay is not a threshold artifact. Byproduct: cond(G)=970 on the
+unnormalized-winner basis vs 200.2 on heat61e's renormalized rung ⇒ ‖f₀‖≈2.2 — feeds A1.
 
 **A5. diverse_mutants is prefix-deterministic (M=8 basis ⊂ M=16 ⊂ M=32).** Verified today
 empirically (zero-side λ_min bit-identical on rebuild); rests on default_rng(20260903) stream

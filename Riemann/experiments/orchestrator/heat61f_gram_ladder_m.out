@@ -4,3 +4,8 @@ M= 8: prime 2^23 lmin -3.1972e-06 | zero T=150 +3.066441e-13 T=200 +3.066441e-13
 M=16: prime 2^23 lmin -1.1724e-05 | zero T=150 -1.097658e-17 T=200 -1.025359e-17 (nz 79, last 7.7e-24)
         near-null eigvec coeff (top 4 |.|): [np.float64(0.6901407663115763), np.float64(0.3973762396126855), np.float64(0.3242314144326469), np.float64(0.30706231482854723)]
         ladder step: -3.067e-13 (monotone OK)
+M=32: prime 2^23 lmin -1.0068e-02 | zero T=150 -2.584975e-14 T=200 -2.440884e-14 (nz 79, last 7.7e-24)
+        near-null eigvec coeff (top 4 |.|): [np.float64(0.4794581811210641), np.float64(0.36495084084861296), np.float64(0.33433284040528094), np.float64(0.29932425977550525)]
+        ladder step: -2.440e-14 (monotone OK)
+
+== verdict per pre-registration in docstring (a)/(b)/(c) ==
