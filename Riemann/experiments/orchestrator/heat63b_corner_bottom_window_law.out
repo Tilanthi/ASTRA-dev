@@ -1,0 +1,57 @@
+CATEGORY: D (corner bottom + window law; in-support draws; pre-registered + hash-committed)
+W0/LA-rand/s1/M8: lmin +7.447345e-19  floor 6.5e-20  [GENUINE]
+W0/LA-rand/s1/M16: lmin -2.487536e-19  floor 8.6e-19  [below-res]
+W0/LA-rand/s1/M32: lmin -5.298061e-18  floor 1.5e-17  [DQ]
+W0/LA-rand/s2/M8: lmin +4.543899e-18  floor 3.5e-20  [GENUINE]
+W0/LA-rand/s2/M16: lmin -7.310363e-20  floor 2.1e-19  [below-res]
+W0/LA-rand/s2/M32: lmin -1.990617e-18  floor 1.1e-17  [below-res]
+W0/LA-rand/s3/M8: lmin +8.169945e-19  floor 1.7e-21  [GENUINE]
+W0/LA-rand/s3/M16: lmin -2.522839e-20  floor 1.1e-19  [below-res]
+W0/LA-rand/s3/M32: lmin -1.907123e-18  floor 5.9e-18  [DQ]
+W0/LB-rand/s1/M8: lmin +3.128521e-16  floor 2.8e-19  [GENUINE]
+W0/LB-rand/s1/M16: degenerate at position 12
+W0/LB-rand/s2/M8: lmin +4.436475e-16  floor 9.4e-19  [GENUINE]
+W0/LB-rand/s2/M16: degenerate at position 14
+W0/LB-rand/s3/M8: lmin +3.488963e-15  floor 4.8e-19  [GENUINE]
+W0/LB-rand/s3/M16: degenerate at position 13
+W0/BUMP/s1/M8: lmin +1.176121e-05  floor 6.1e-16  [GENUINE]
+W0/BUMP/s1/M16: lmin +1.100568e-06  floor 1.1e-15  [GENUINE]
+W0/BUMP/s1/M32: lmin +2.529845e-09  floor 6.1e-15  [GENUINE]
+W0/BUMP/s1/M64: lmin +1.181309e-10  floor 6.6e-14  [GENUINE]
+W0/BUMP/s2/M8: lmin +1.078363e-05  floor 4.7e-17  [GENUINE]
+W0/BUMP/s2/M16: lmin +1.862964e-06  floor 2.6e-16  [GENUINE]
+W0/BUMP/s2/M32: lmin +3.654325e-09  floor 5.4e-15  [GENUINE]
+W0/BUMP/s2/M64: lmin +4.163101e-12  floor 6.2e-14  [DQ]
+W0/BUMP/s3/M8: lmin +3.944936e-05  floor 4.1e-16  [GENUINE]
+W0/BUMP/s3/M16: lmin +1.721962e-06  floor 6.1e-16  [GENUINE]
+W0/BUMP/s3/M32: lmin +1.935720e-08  floor 5.3e-15  [GENUINE]
+W0/BUMP/s3/M64: lmin +9.277106e-10  floor 4.0e-14  [GENUINE]
+W1/BUMP/s1/M16: lmin +1.846275e-06  floor 1.1e-15  [GENUINE]
+W1/BUMP/s1/M32: lmin +2.960469e-08  floor 6.1e-15  [GENUINE]
+W1/BUMP/s2/M16: lmin +1.860437e-06  floor 2.7e-16  [GENUINE]
+W1/BUMP/s2/M32: lmin +3.685374e-09  floor 5.4e-15  [GENUINE]
+W1/LA-rand/s1/M16: lmin -2.042975e-23  floor 4.1e-23  [below-res]
+W1/LA-rand/s1/M32: lmin -9.487069e-22  floor 1.4e-21  [below-res]
+W1/LA-rand/s2/M16: lmin -7.335215e-24  floor 1.5e-23  [below-res]
+W1/LA-rand/s2/M32: lmin -1.435254e-22  floor 1.3e-21  [below-res]
+W2/BUMP/s1/M16: lmin +1.846275e-06  floor 1.1e-15  [GENUINE]
+W2/BUMP/s1/M32: lmin +2.960469e-08  floor 6.1e-15  [GENUINE]
+W2/BUMP/s2/M16: lmin +1.860437e-06  floor 2.7e-16  [GENUINE]
+W2/BUMP/s2/M32: lmin +3.685374e-09  floor 5.4e-15  [GENUINE]
+W2/LA-rand/s1/M16: lmin -5.474489e-24  floor 1.4e-23  [below-res]
+W2/LA-rand/s1/M32: lmin -4.484635e-22  floor 1.2e-21  [below-res]
+W2/LA-rand/s2/M16: lmin -6.968586e-24  floor 9.0e-24  [below-res]
+W2/LA-rand/s2/M32: lmin -2.432812e-22  floor 5.1e-22  [below-res]
+
+== W0 corner bottoms (largest surviving M per family) ==
+  LA-rand M=8: min +7.447345e-19 (n=3)
+  LB-rand M=8: min +3.128521e-16 (n=3)
+  BUMP M=64: min +1.181309e-10 (n=2)
+
+== paired window ratios (same family/seed/M across windows) ==
+  BUMP/s1/M16: W0:+1.101e-06  W1:+1.846e-06  W2:+1.846e-06
+  BUMP/s1/M32: W0:+2.530e-09  W1:+2.960e-08  W2:+2.960e-08
+  BUMP/s2/M16: W0:+1.863e-06  W1:+1.860e-06  W2:+1.860e-06
+  BUMP/s2/M32: W0:+3.654e-09  W1:+3.685e-09  W2:+3.685e-09
+
+== verdict per docstring (a)/(b)/(c)/(d); diagnosis tested separately from outcome ==

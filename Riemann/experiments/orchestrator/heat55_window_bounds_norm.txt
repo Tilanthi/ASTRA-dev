@@ -1,0 +1,7 @@
+held dps = 45
+MID_stored - exact_decimal = -4.995e-27
+D_stored   - exact_decimal = 3.5444e-34
+z[0]: |f(z)|/scale = 1.727e-23  scale=|f(z+1e-3 i)|=7.179e-48925
+z[1]: |f(z)|/scale = 7.354e-23  scale=|f(z+1e-3 i)|=2.642e-48926
+z[2]: |f(z)|/scale = 7.258e-23  scale=|f(z+1e-3 i)|=2.638e-48926
+z[3]: |f(z)|/scale = 3.583e-22  scale=|f(z+1e-3 i)|=6.814e-48925

@@ -3775,3 +3775,45 @@ not RH — instrument is kill-capable on BD-seq only. First rungs: (i) ζ d_N to
 this candidate recycles the exact Gram-ladder instrument built for the Weil lane — the
 falsification machinery is now the filter, generation is the occupation (R1 executed in the
 same letter that accepted it).
+
+**§88u (heat63b ADJUDICATED — window law support-tied; reset slot FIRED; A.1(3) handed over source-verified; bounds delivered).**
+(a) *heat63b verdict (b)+(c)+(d), hash ec896ace verified pre-reveal.* Corner bottoms
+(in-support draws, largest surviving M): LA-rand +7.447345e-19 (M=8, n=3; M16 below-res ×3,
+M32 DQ ×2 — d_eff(LA) ≈ 8–16 saturates); LB-rand +3.128521e-16 (M=8, n=3; M16 degenerate ×3
+— d_eff(LB) < 16 INTRINSIC to sinc, not draw-range); BUMP +1.181309e-10 (M=64, n=2 of 3,
+s2/M64 DQ excluded; per-seed monotone descent M8→M64 ✓ Rayleigh–Ritz on nested prefixes).
+**Window law: NEITHER pre-stated reading holds — third, unpre-stated mechanism =
+SUPPORT-TIED invariance:** W1 ≡ W2 identical to every printed digit in all four BUMP pairs
+(structural: exact compact support ⊂ W1 full-support region |x|≤10 → wider window multiplies
+only exact zeros); W0 ≠ W1 non-monotonically (s2 ≤0.85% invariant; s1 DEEPER at W0 — 1.68×
+at M16, 11.7× at M32: truncation that cuts tail mass deepened the corner; recorded without
+mechanism claim). LA W1/W2 all below-res (floors rose 2–3 orders with window width as
+predicted). **B1 note: the window-scale approach axis to inf Q=0 is DEAD; the live descent
+axis is basis dimension M (BUMP still descending at 64; M=128 queued). D5 sharpened:
+d_eff(BUMP) > 32, d_eff(LB) < 16, d_eff(LA) ≈ 8–16.** heat63's diagnosis VALIDATED by
+execution (in-support fix eliminated degenerate-draw DQs: 11/12 W0 BUMP genuine). Reveal
+= exchange 235268d.
+(b) *Reset slot FIRED (named event = window-law reading).* Output registered = box-surf
+candidate #1 (SAPIENS reply): RH restated with zero ζ-vocabulary as the NB-BD closure
+statement; new question = d_N stall-vs-decay as zoo discriminator; falsifier = certified
+ζ non-decay refutes sequential BD conjecture (RH untouched), zoo off-line object without
+stall kills the discriminator.
+(c) *A.1(3) HANDOVER (m3 claimed in Letter 53 — owner-or-expiry worked on first use).* My
+notes held the theorem + c_ω but NOT the g_ω^⟨1⟩ formula; fetched arXiv:1204.1827 e-print
+and verified EVERYTHING before sending (#63 discipline extended to formula handover):
+β(z;p,q)=∫_z¹ t^{p−1}(1−t)^{q−1}dt (integral definition extends Re(p)≤0); c_ω(n)=n^ω∏_{p|n}
+(1−p^{−2ω}) (eq 203 both forms); g_ω (eq 201) = (2π^ω/Γ(ω))[x^{2−ω}(1−x²)^{ω−1} −
+ωx^{ω−1}β(x²,(3−2ω)/2,ω)]; g_ω^⟨1⟩ = ∫_x¹√(y/x)g_ω(y)dy/y, closed form ω≠½ =
+[4ω/(2ω−1)](π^ω/Γ(ω)){x^{ω−1}β(x²,(3−2ω)/2,ω) − [(2ω+1)/(4ω)]x^{−1/2}β(x²,(5−2ω)/4,ω)};
+ω=½ elementary = (2/√x)(2√(1−x²)+log x − log(1+√(1−x²))); h^⟨1⟩ = (1/x)Σ_{n≤x}c_ω(n)
+g^⟨1⟩(n/x) = ∫_1^x√(y/x)h_ω(y)dy/y; thm_3: (3) eventual single-sign ⟹ inner (the lane),
+(2) L² iff-companion, (4) lim √x·h^⟨1⟩ EXISTS ⟹ inner (cheaper target than single-sign),
+(5) inner ∀ω ⟹ √x h^⟨1⟩→1 (eventual sign POSITIVE under the full conjecture). Probe
+guidance: ω=½ cheapest (elementary g; c_{1/2}(n)=√n∏(1−p^{−2})); both β parameters
+positive for ω<3/2. My original body-read statement CHECKED OUT against the source.
+(d) *Window bounds DELIVERED under strengthened #70 (exchange 235268d).* Held dps=45 ≥
+34.86; 4 zeros of the b=0.00745 CLEAN row + MID/D at 40 digits; TWO disclosures: quoted
+MID/D are the dps-30-constructed values the run actually used (deviations −5.0e-27/+3.5e-34
+from exact decimals — serialized-as-used, not as-meant); normalized residuals |f(z)|/|f(z+
+1e-3i)| = 1.7e-23…3.6e-22 (raw 1e-48947 meaningless without scale — #39 analogue); round-trip
+4.95e-36. Files: heat55_window_bounds_e70.txt + _norm.txt.
