@@ -458,3 +458,15 @@ d-reduction (9.51 → 11.51) and the assert was nonetheless written as d10 − d
 demanding the impossible direction; attempt-3 halted on its own sign with every value
 green. Direction-free asserts (equality, ≥ against an absolute tolerance on a value
 known positive) are immune; difference asserts are the exposure class.
+Guard (v), added after attempt-4 (L2 probe): pre-flight every registered scan
+interval against the function's own singularities and endpoints ON PAPER before
+registration — founding instance: the L2 negative-probe scan of (0.1, 1.0) has its
+right endpoint exactly ON the pole s=1 of ζ^(2) (crash; and absent the crash the
+pole would register as a spurious crossing, making the probe unpassable as
+registered). Companion launch practice after four run-halts (C4 floor, C5 floor,
+C5 assert-sign, L2 pole): a full-path smoke run (identical code, Δ grid shrunk) must
+complete main() end-to-end before any real launch — all four defects lived in code
+paths never once executed pre-launch. Related: when subtracting a pole term from an
+evaluator output, subtract the term AS THE EVALUATOR CONSTRUCTS IT (here /2Γ(s)) —
+a mis-scaled subtraction produces a spurious 1/(s−1) blowup that mimics a
+double-pole defect.

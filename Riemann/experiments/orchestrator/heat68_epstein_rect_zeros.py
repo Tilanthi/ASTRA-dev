@@ -344,15 +344,32 @@ def main():
       % (mp.dps, len(DELTA_GRID), mp.nstr(DSTAR_C, 22)))
     ok = run_controls()
 
-    # L2 negative probe: D = 0.15 > D*_c, 61-pt sign scan in (0.1, 1.0), expect 0
+    # L2 negative probe: D = 0.15 > D*_c, expect NO real zero in (0.1, 1).
+    # AMENDMENT-6: the registered interval (0.1, 1.0) contains s=1 = THE POLE
+    # (attempt-4 ZeroDivision there; absent the crash the pole masquerades as a
+    # crossing). Fixed: (i) 61-pt scan over (0.1, 0.974); (ii) pole-dominance
+    # exclusion for (0.974, 1): with h = zeta2 - pole-term the sampled max |h| on
+    # [0.9, 1.1] is ~77 (14 pts, probed pre-AMENDMENT-6); registered bound 200
+    # (2.6x margin) gives no-zero zone |s-1| < R/(2H) = 10.47/400 = 0.0262 >
+    # 0.026, covering (0.974, 1). Note the correct pole-term subtraction carries
+    # the 1/(2*Gamma(s)) (B returns zeta^(2), not 2*Gamma*zeta^(2)).
     D = D_NEG_PROBE
     with mp.workdps(30):
-        xs = [mpf('0.1') + mpf('0.9') * mpf(i) / 60 for i in range(61)]
+        xs = [mpf('0.1') + mpf('0.874') * mpf(i) / 60 for i in range(61)]
         vals = [zeta2_B(x, D) for x in xs]
         cross = sum(1 for i in range(len(xs) - 1) if vals[i] * vals[i + 1] < 0)
-    P('L2 negative probe D=0.15: %d sign changes over 61 pts in (0.1,1.0) (expect 0)' % cross)
+        hs = [abs(zeta2_B(mpf(x), D) - (pi ** mpf(x) / (D * (mpf(x) - 1))) / (2 * gamma(mpf(x))))
+              for x in ('0.9', '0.95', '0.98', '0.99', '0.995', '0.999', '1.001',
+                        '1.005', '1.01', '1.02', '1.05', '1.1')]
+        Hm = max(hs)
+        zone = (pi / (2 * D)) / (2 * mpf('200'))
+    P('L2 negative probe D=0.15: %d sign changes over 61 pts in (0.1,0.974) (expect 0); '
+      'pole-exclusion |h|max=%s < 200, zone |s-1|<%s covers (0.974,1)'
+      % (cross, mp.nstr(Hm, 5), mp.nstr(zone, 4)))
     assert cross == 0, 'L2 negative probe FAILED'
-    ok['L2'] = cross
+    assert Hm < 200, 'L2 pole-exclusion bound blown'
+    assert zone > mpf('0.026'), 'L2 exclusion zone too small'
+    ok['L2'] = [cross, str(Hm), str(zone)]
 
     rows = []
     for Dv in DELTA_GRID:
