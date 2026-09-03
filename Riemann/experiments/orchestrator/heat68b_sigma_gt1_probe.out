@@ -1,0 +1,12 @@
+heat68b sigma>1 probe. dps=30 scan. Pre-stated outcomes a/b/c (letter).
+D=0.05 t= 5: scale=8.736e+07 min|z2|=6.577e+02 at sigma=1.05  local-minima=0
+D=0.05 t=10: scale=8.657e+07 min|z2|=5.243e+02 at sigma=1.05  local-minima=0
+D=0.05 t=15: scale=8.506e+07 min|z2|=4.803e+02 at sigma=1.05  local-minima=0
+D=0.05 t=20: scale=7.797e+07 min|z2|=3.547e+02 at sigma=1.05  local-minima=0
+D=0.10 t= 5: scale=1.274e+06 min|z2|=1.524e+02 at sigma=1.05  local-minima=0
+D=0.10 t=10: scale=1.262e+06 min|z2|=1.173e+02 at sigma=1.05  local-minima=0
+D=0.10 t=15: scale=1.252e+06 min|z2|=1.120e+02 at sigma=1.05  local-minima=0
+D=0.10 t=20: scale=1.245e+06 min|z2|=1.166e+02 at sigma=1.05  local-minima=0
+
+OUTCOME (a): no candidate below threshold 0.001 — height-limited no-evidence.
+done in 2914s; json written
