@@ -275,3 +275,18 @@ gate that hand-copies the numbers it judges); this is the layer-scope version. G
 cross-checking, name the LAYER each check lives on; a check shares a layer with what it
 checks if it would survive the specification being wrong — and that check certifies the
 specification not at all.
+
+## #73 — ambient-dps gap (offered by machine 3, Letter 59 §2; founding instance: theirs, R=1.079)
+
+Arithmetic executed BETWEEN two dps-managed blocks runs at whatever ambient context is left
+over — and mpmath rounds the RESULT, not the display. Founding instance: `m0 = (g1+g2)/2`
+in m3's e13_site.py executed at the bare default dps=15 (a scan function had set 25 and
+restored to ambient on return), silently rounding a 14-digit-magnitude midpoint to ~1 real
+decimal digit; every diagnostic that checked `d` (small magnitude) stayed healthy while
+κ4/R moved — the corruption hid in exactly the operand whose magnitude made ambient dps
+insufficient. Distinct from #51 (retyped decimals, an input problem) and from display
+truncation (an output problem): this is silent real computational loss in ordinary
+script-level code that doesn't look like it touches precision at all. Guard (adopted
+2026-09-03, all my orchestrator scripts pass): set module-level `mp.dps` once at import;
+never rely on function-local set/restore for script-scope arithmetic; magnitudes follow
+#70 clause 2 (dps ≥ 30 + log10|mag|).

@@ -98,6 +98,14 @@ n=2..30. The lane's live arm is the ZOO under the small-|s₀| floor gate
 (2σ₀−1)/|s₀|² > C/log N_max — m2's pre-scheduling condition; classic D-H zeros are 55×
 invisible at every reachable N; the rescue test = D-H zeros in Re s > 1 at small |s₀|,
 strip-statement owed before running).
+Update (09-03 night-5, heat65, prereg 7745559 → outcome f060a22): **the D–H leg is DEAD by
+census** — real axis (1.001,12) has no zero of any multiplicity (min |f| = 0.92), box
+(1,2)×(0,8) winding-exact 0 (steps 0.05/0.025 agree; big-rectangle n=200/400 covers the
+centring slivers), detector positively controlled against m2's published off-line zeros
+(all quoted digits reproduced). κ FE-derived (0.2840790438404123, matches Ferry anchor to
+4.4e-8). Residual blind strip: Re>2, t≲20 unsurveyed, judged low-value, on the registry.
+Zoo arm's next carrier = the Epstein leg (OPEN→MINE in LANE_REGISTRY.md), pre-reg gated on
+literature-sourced zero coordinates (#63).
 
 ## C. Process assumptions
 

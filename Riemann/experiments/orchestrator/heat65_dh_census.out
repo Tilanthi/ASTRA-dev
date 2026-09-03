@@ -1,0 +1,34 @@
+ln5 = 1.60943791243   euler = 0.577215664902   ln(4pi) = 2.53102424697
+C = 2+euler-ln(4pi) = 0.0461914179322
+kappa derived at s=(0.65 + 3.1j) : (0.2840790438404123 - 6.660657574200869e-31j)
+kappa derived at s=(-1.3 + 0.7j) : (0.2840790438404123 - 2.060438764701469e-30j)
+kappa = 0.28407904384  (Ferry anchor tan phi = 0.284079; diff = 4.38404e-8)
+  FE residual at (0.65 + 3.1j) : 6.40949e-31
+  FE residual at (-1.3 + 0.7j) : 4.85586e-31
+  FE residual at (2.3 - 4.1j) : 5.26998e-31
+real-axis scan: 5500 points, worst |Im f| on axis = 0.0 (must be ~0)
+census step 0.05 ...
+  coarse hits: 0 cells
+census step 0.025 ...
+  fine hits: 0 cells
+total winding count coarse = 0, fine = 0
+located complex zeros (deduped): 0
+OUTCOME (c): no D-H zeros in the floor-gate-satisfiable region -> D-H arm DEAD; Epstein floor check carries the arm; ledger update follows.
+DQ-SECTION: FE-derived kappa (two generic s, dps 30, agreement <1e-20; printed-anchor match to 5e-7); real-axis worst |Im f| stated; winding census double-step agreement forced (red otherwise); Newton residuals < 1e-20 or rejected. FAILURE MODES guarded: wrong FE shape -> kappa inconsistency; hand-copied constants -> none used (derivation + parsed prints only); step-aliasing of phase -> 0.05/0.025 count equality. NOT CERTIFIED here: existence of a D-H-family basis with the annihilation property (m2's owed Lemma-5-analogue) — this census locates targets only and schedules no distance run.
+CONTROL-SECTION (appended post-run, before the outcome letter; controls did not alter the scored section above):
+  positive control 1: winding box (0.75,0.87)x(85.60,85.80) -> winding 1.0 at n=20 AND n=40;
+    refined zero 0.808517182456637388 + 85.6993484853775922i, |f| = 2.2e-30
+    (matches machine 2's cycle-11 table quote "0.808517@85.70" to all printed digits)
+  positive control 2: refined zero 0.574356050450805992 + 166.479305913168156i, |f| = 7.6e-30
+    (matches quoted "0.574356@166.48")
+  sliver coverage: big-rectangle winding over the FULL region (1.001,2)x(0.001,8):
+    0 at n=200 AND n=400 (residuals ~5e-33) — covers the cell-centring slivers the per-cell
+    census could not reach; total enclosed zero count is exactly 0
+  tangency check: real-axis min |f| over (1.001,12) at 0.002 spacing = 0.9229 at sigma=1.001
+    — f bounded >= 0.92 everywhere on the axis; no real zero of ANY multiplicity exists there
+  census-limitation disclosure: region surveyed is Re in (1.2 covered)... precisely:
+    real axis (1.001,12) + box (1.001,2)x(0.001,8); conjugate symmetry covers t<0.
+    NOT surveyed: Re in (2,oo) x t>0 (floor there: (2sig-1)/|s|^2 with |s|>2 -> at N=1e4
+    boundary |s0| < 14.1*sqrt(2sig-1) could admit sig>2 zeros with t<~20 — BUT any such zero
+    has floor d^2 <= (2sig-1)/(sig^2+t^2) and for sig>=2, t<=20: floor <= 3/(4+0)=0.75 visible,
+    so the region Re>2, t<20 remains a stated residual blind spot, NOT certified empty)

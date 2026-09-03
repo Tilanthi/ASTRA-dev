@@ -1,0 +1,94 @@
+{
+ "pairs": {
+  "m1-m2": {
+   "p_o": 0.8,
+   "p_e": 0.27,
+   "kappa": 0.726,
+   "perm_p": 0.0006
+  },
+  "m1-m3": {
+   "p_o": 0.3,
+   "p_e": 0.24,
+   "kappa": 0.0789,
+   "perm_p": 0.6595
+  },
+  "m2-m3": {
+   "p_o": 0.4,
+   "p_e": 0.28,
+   "kappa": 0.1667,
+   "perm_p": 0.346
+  }
+ },
+ "item_table": {
+  "1": [
+   "C",
+   "C",
+   "B"
+  ],
+  "2": [
+   "B",
+   "B",
+   "B"
+  ],
+  "3": [
+   "X",
+   "D",
+   "A"
+  ],
+  "4": [
+   "X",
+   "X",
+   "C"
+  ],
+  "5": [
+   "A",
+   "A",
+   "C"
+  ],
+  "6": [
+   "X",
+   "X",
+   "A"
+  ],
+  "7": [
+   "X",
+   "X",
+   "A"
+  ],
+  "8": [
+   "A",
+   "A",
+   "A"
+  ],
+  "9": [
+   "A",
+   "A",
+   "A"
+  ],
+  "10": [
+   "B",
+   "A",
+   "A"
+  ]
+ }
+}
+item table (m1, m2, m3):
+   1: C = C   B x
+   2: B = B = B 
+   3: X   D   A x
+   4: X = X   C x
+   5: A = A   C x
+   6: X = X   A x
+   7: X = X   A x
+   8: A = A = A 
+   9: A = A = A 
+  10: B   A   A 
+kappa m1-m2: p_o=0.800 p_e=0.270 kappa=0.7260   exact-null P(|k|>=|k_obs|)=16/25200=0.0006
+kappa m1-m3: p_o=0.300 p_e=0.240 kappa=0.0789   exact-null P(|k|>=|k_obs|)=831/1260=0.6595
+kappa m2-m3: p_o=0.400 p_e=0.280 kappa=0.1667   exact-null P(|k|>=|k_obs|)=436/1260=0.3460
+X-doctrine restriction, items [1, 2, 5, 8, 9, 10]:
+  kappa m1-m3 on non-X items: p_o=0.500 p_e=0.389 kappa=0.1818 (n=6)
+  kappa m2-m3 on non-X items: p_o=0.667 p_e=0.417 kappa=0.4286 (n=6)
+  kappa m1-m2 on non-X items: p_o=0.833 p_e=0.417 kappa=0.7143 (n=6)
+DQ-SECTION: n=10 items, 5 categories; kappa computed on all three pairs plus the exact permutation null (all distinct relabelings, no sampling); X-doctrine restriction stated as a sensitivity check, not a second result. CAVEATS that bound every number above: n=10 gives wide CIs (exact-null floors ~1/5040-equivalent at this n; the null has no power against weak effects); m2's codes are NON-BLIND at the marginal level (their ERRATUM-6: m3's reveal commit subject line leaked the m3 distribution via git log) — item-level blinding intact per their account; m1-m2 item-1/4 agreement is partially anchored in m1's PUBLISHED pre-set self-codings (c128adb), which m2 cites as external ground truth — that is a shared-source effect, not independent convergence. What these numbers certify: the reliability STRUCTURE of the rubric as applied by three machines (the m1-m2/m3 asymmetry and its X-doctrine component). What they do NOT certify: any item's mathematical content, class, or correctness.
+DQ-SECTION: n=10 items, 5 categories; kappa computed on all three pairs plus the exact permutation null (all distinct relabelings, no sampling); X-doctrine restriction stated as a sensitivity check, not a second result. CAVEATS that bound every number above: n=10 gives wide CIs (exact-null floors ~1/5040-equivalent at this n; the null has no power against weak effects); m2's codes are NON-BLIND at the marginal level (their ERRATUM-6: m3's reveal commit subject line leaked the m3 distribution via git log) — item-level blinding intact per their account; m1-m2 item-1/4 agreement is partially anchored in m1's PUBLISHED pre-set self-codings (c128adb), which m2 cites as external ground truth — that is a shared-source effect, not independent convergence. What these numbers certify: the reliability STRUCTURE of the rubric as applied by three machines (the m1-m2/m3 asymmetry and its X-doctrine component). What they do NOT certify: any item's mathematical content, class, or correctness.
