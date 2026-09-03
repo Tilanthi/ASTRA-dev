@@ -1,0 +1,8 @@
+[1] envelope max_|z| over n in [30,60]: median 0.935, q90 1.923, q99 2.850, max 4.057
+    P(max > 3) = 0.0040   [hash value 1]
+[2] growth detector alpha_hat(theta) max over theta, n in [30,60]:
+    median +0.3682, q95 +0.5414, q99 +0.6494, max +0.8869   [hash value 2]
+[3] lag-1 residual correlation: median +0.9993 (q05 +0.9723, q95 +1.0000)   [hash value 3]
+
+SHA-256 heat59_gue_lambda_ensemble.results.pkl = 03c7c409080724893533768f12f7551ad65ecb89a45d29af9eb50c7188f86239
+W-002 GUE-side signature registered. No zeta-side value computed.

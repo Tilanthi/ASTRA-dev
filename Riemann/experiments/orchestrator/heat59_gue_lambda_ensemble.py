@@ -66,21 +66,23 @@ for m in range(M):
         T_hi = np.where(hi, T_mid, T_hi)
         T_lo = np.where(hi, T_lo, T_mid)
     gam = 0.5 * (T_lo + T_hi)
-    # deterministic analytic tail: sum n^2/gamma^2 style via integral on grid
+    # deterministic analytic tail: n^2 * int_T^inf (dN/dt)/t^2 dt on a log grid
     tg = np.geomspace(T_max, 2e6, 4000)
     dens = (1 / (2 * np.pi)) * np.log(tg / (2 * np.pi))
     w = np.diff(tg)
+    tm = 0.5 * (tg[:-1] + tg[1:])
+    dens_m = 0.5 * (dens[:-1] + dens[1:])
+    tail_unit = np.sum(dens_m * w / tm**2)      # per n^2, same for all n
     for n in range(1, NN + 1):
-        s = np.zeros(K)
         z = 1 - 1 / (0.5 + 1j * gam)
         zn = np.ones(K, dtype=complex)
         for _ in range(n):
             zn = zn * z
         s = 2 - 2 * np.real(zn)
-        tail = (n**2) * np.sum(0.5 * (dens[:-1] + dens[1:]) * w / tg)  # n^2 * int dN/gamma^2 approx
-        lam_all[m, n] = s.sum() + tail
+        lam_all[m, n] = s.sum() + (n**2) * tail_unit
     if (m + 1) % 250 == 0:
         print(f"   draw {m+1}/{M}", flush=True)
+        np.save("heat59_lam_all_partial.npy", lam_all[: m + 1])  # crash-safe
 
 mu = lam_all[:, 1:].mean(axis=0)
 sd = lam_all[:, 1:].std(axis=0)
@@ -98,12 +100,18 @@ print(f"    P(max > 3) = {np.mean(env > 3):.4f}   [hash value 1]")
 
 resid = lam_all[:, NMIN:NMAX + 1] - mu[None, NMIN - 1:NMAX]
 nn = np.arange(NMIN, NMAX + 1)
-C = np.cos(np.outer(nn, THETAS))                       # (windows, thetas)
-A1 = resid @ C[:NMID - NMIN]                           # (M, thetas) window 1
-A2 = resid @ C[NMID + 1 - NMIN:]
-a2, a1 = np.abs(A2).sum(axis=1), np.abs(A1).sum(axis=1)
+C = np.cos(np.outer(nn, THETAS))                       # (31 windows, thetas)
+# ERRATUM (2026-09-03, fixed in heat59b after two crashes; draws unaffected -- the
+# checkpoint .npy held all 2000 draws before the first crash): the detector must
+# slice BOTH operands, and the per-theta amplitudes must NOT be summed over theta
+# (the design doc pre-registers "maximized over theta"). Original never-executed
+# lines were `resid @ C[:16]` (shape error) and `.sum(axis=1)` on |A2|,|A1|
+# (collapses the frequency resolution). See heat59b_complete_stats.py.
+A1 = resid[:, : NMID - NMIN + 1] @ C[: NMID - NMIN + 1]   # window 1: n = 30..45
+A2 = resid[:, NMID - NMIN:] @ C[NMID - NMIN:]             # window 2: n = 45..60
+a2m, a1m = np.abs(A2), np.abs(A1)
 with np.errstate(divide="ignore", invalid="ignore"):
-    alpha = np.where(a1 > 0, (1.0 / (NMAX - NMID)) * np.log(np.maximum(a2, 1e-300) / np.maximum(a1, 1e-300)), 0.0)
+    alpha = np.where(a1m > 0, (1.0 / (NMAX - NMID)) * np.log(np.maximum(a2m, 1e-300) / np.maximum(a1m, 1e-300)), 0.0)
 amax_per_draw = alpha.max(axis=1)
 print(f"[2] growth detector alpha_hat(theta) max over theta, n in [{NMIN},{NMAX}]:")
 print(f"    median {np.median(amax_per_draw):+.4f}, q95 {np.quantile(amax_per_draw, .95):+.4f}, "

@@ -1,0 +1,49 @@
+== heat59: CUE(256) x 2000 draws, zeros 1..101 on [0,240.0], n<= 60 ==
+   tail beyond T_max: deterministic analytic (rigidity), per design doc
+   draw 250/2000
+   draw 500/2000
+   draw 750/2000
+   draw 1000/2000
+   draw 1250/2000
+   draw 1500/2000
+   draw 1750/2000
+   draw 2000/2000
+
+ n |  mu_n (ensemble)   sigma_n
+  1 |         0.031084     0.001869
+  2 |         0.124197     0.007465
+  3 |         0.278931     0.016757
+  5 |         0.770280     0.046200
+ 10 |         2.998587     0.178418
+ 15 |         6.456149     0.378554
+ 20 |        10.819691     0.619784
+ 25 |        15.743112     0.870990
+ 30 |        20.931244     1.101945
+ 35 |        26.197463     1.288401
+ 40 |        31.491320     1.416274
+ 45 |        36.890156     1.484154
+ 50 |        42.558022     1.503397
+ 55 |        48.683563     1.494964
+ 60 |        55.413838     1.482489
+
+[1] envelope max_|z| over n in [30,60]: median 0.935, q90 1.923, q99 2.850, max 4.057
+    P(max > 3) = 0.0040   [hash value 1]
+Traceback (most recent call last):
+  File "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat59_gue_lambda_ensemble.py", line 104, in <module>
+    A1 = resid @ C[: NMID - NMIN + 1]                      # window 1: n = 30..45 (16 rows)
+         ~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 16 is different from 31)
+
+=== ERRATUM (appended 2026-09-03, before hash registration) ===
+The Traceback above is the SECOND crash of the detector block (first run: same
+matmul error with unfixed windows; rerun: resid column slicing still missing).
+Both crashes occurred AFTER draw 2000/2000 was checkpointed to
+heat59_lam_all_partial.npy (crash-safe save every 250 draws), so no draws were
+lost. Statistics [2]/[3] were completed from the checkpoint by
+heat59b_complete_stats.py, which also found and fixed a second latent bug in the
+never-executed lines (|A2|,|A1| summed over theta, collapsing the pre-registered
+per-frequency resolution). Statistic [1] re-verified identical from the
+checkpoint. Both fixes are disclosed in heat59b_complete_stats.py docstring and
+in this script's ERRATUM comment. Hash target written by heat59b:
+heat59_gue_lambda_ensemble.results.pkl
+SHA-256 = 03c7c409080724893533768f12f7551ad65ecb89a45d29af9eb50c7188f86239
