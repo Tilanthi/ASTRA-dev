@@ -3099,3 +3099,26 @@ refuted the 2^17 value within minutes, at three independent precisions, with the
 localized to a named integral. This is also a live instance of trap #32 (pre-registration):
 the halt-and-verify text was written into the hashed design BEFORE any search ran, and it is
 the only reason no claim language was possible on the way to the refutation.
+
+### §88b. Run-2 at 2^17 diagnosed as noise-chasing; search moved to 2^19 (2026-09-03)
+
+Run-2 (two-grid halt rule, search grid 2^17) accumulated ~12 drift-rejects in 11
+generations, all LB: Q17 values −1.0e-3…−2.8e-3 mapping to Q19 −6e-5…+4.4e-4. Read as a
+population, not incidents: **the L-B class carries a systematic ~−1.5e-3 V_r bias at 2^17,
+so elitist selection on Q17 was partially selecting for instrument error** — the genome
+population was drifting toward configurations with large negative grid error, spending
+exploration budget on the artifact. Diagnosis + action (D7 corollary):
+
+- Search grid 2^17 → **2^19** (class error ~1e-4, ≈10× below ε_cert and ≈ typical |Q|);
+  halt-confirmation grid 2^19 → **2^21** (error ~5e-6). Env-parametrized
+  (W_SEARCH_GRID_LOG2 / W_CONFIRM_GRID_LOG2) so no recompile choices by hand.
+- Run-2 archived verbatim (heat61_w_search_run2_noisechasing.*) — it is territory data:
+  the drift-reject ledger is a measured map of the instrument floor by genome class.
+- Halt semantics unchanged: confirmed Q < −ε_cert ⇒ freeze ⇒ zero side at 2^23 ⇒
+  counterparty. Run-3 launched (PID 32098), persistent monitor armed.
+
+Lesson generalized (candidate trap #64, to be registered if it recurs): when a fitness
+landscape is evaluated by a numerical instrument whose error is genome-dependent and
+comparable to the selected differential, evolution optimizes the instrument, not the
+objective — the fix is not better post-hoc filtering but moving the instrument's error
+below the selection differential before continuing.

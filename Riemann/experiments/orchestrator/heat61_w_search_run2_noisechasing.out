@@ -1,0 +1,22 @@
+/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat61_w_search.py:123: RuntimeWarning: invalid value encountered in divide
+  integ2 = (hm - h0) / (np.exp(2 * xm) - 1)
+   L-C inverse-FFT self-test (pair e^{-t^2} -> e^{-x^2/4}/2sqrt(pi)): max abs err 4.35e-06
+== heat61 W(f) negative-cell search (post-G0-PASS) ==
+   grid 2^17, primes to e^16, eps_cert 0.001
+   population 24 x 3 lineages x 200 generations, migration /25
+  gen   1  LA: -1.5701e-06  LB: -7.9490e-04  LC: +9.6190e-01   [28s]
+  ~~ drift-reject: LB gen 2 Q17=-1.389e-03 -> Q19=-4.738e-05 (grid artifact, logged)
+  ~~ drift-reject: LB gen 4 Q17=-1.003e-03 -> Q19=-2.799e-05 (grid artifact, logged)
+  ~~ drift-reject: LB gen 5 Q17=-1.578e-03 -> Q19=-8.012e-05 (grid artifact, logged)
+  ~~ drift-reject: LB gen 5 Q17=-2.275e-03 -> Q19=1.805e-04 (grid artifact, logged)
+  gen   5  LA: -9.3680e-05  LB: -9.4257e-04  LC: +6.6088e-01   [139s]
+  ~~ drift-reject: LB gen 7 Q17=-1.533e-03 -> Q19=4.174e-05 (grid artifact, logged)
+  ~~ drift-reject: LB gen 7 Q17=-1.206e-03 -> Q19=2.349e-04 (grid artifact, logged)
+  ~~ drift-reject: LB gen 9 Q17=-2.520e-03 -> Q19=3.241e-04 (grid artifact, logged)
+  ~~ drift-reject: LB gen 9 Q17=-1.379e-03 -> Q19=-6.135e-05 (grid artifact, logged)
+  ~~ drift-reject: LB gen 9 Q17=-1.087e-03 -> Q19=1.184e-04 (grid artifact, logged)
+  ~~ drift-reject: LB gen 10 Q17=-1.981e-03 -> Q19=2.804e-04 (grid artifact, logged)
+  ~~ drift-reject: LB gen 10 Q17=-1.332e-03 -> Q19=1.197e-04 (grid artifact, logged)
+  gen  10  LA: -2.2886e-04  LB: -9.9467e-04  LC: +3.0573e-01   [282s]
+  ~~ drift-reject: LB gen 11 Q17=-2.757e-03 -> Q19=4.395e-04 (grid artifact, logged)
+  ~~ drift-reject: LB gen 11 Q17=-1.005e-03 -> Q19=2.255e-05 (grid artifact, logged)

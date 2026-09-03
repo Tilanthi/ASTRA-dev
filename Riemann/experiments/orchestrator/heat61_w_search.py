@@ -17,7 +17,9 @@ before any scored evaluation). Protocol per design section 5:
   Population 24 per lineage, 200 generations, best-individual migration every
   25 generations. Fitness = Q(g) via the PRIME side (zero-free). G1 admissibility:
   support width >= 4 (automatic: window |x|<=8), ||f||_2 = 1.
-  Halt-and-verify: any Q < -eps_cert (1e-3, >= 200x the search-grid floor)
+  Search grid 2^19 with halt-confirmation at 2^21 (run-3 configuration; see the
+  D7 note at the NGRID definition for why 2^17 was abandoned mid-run-2).
+  Halt-and-verify: any confirmed Q < -eps_cert (1e-3)
   => FREEZE the individual, recompute on the ZERO side at grid 2^23, and post to
   the exchange for counterparty re-derivation BEFORE any claim language.
 
@@ -27,6 +29,7 @@ Conventions certified by G0 (Burnol math/9810169):
   V_r(h) = (log pi + gamma)/2 h(0) + Int_0^16 h dx + Int_0^16 (h-h(0))/(e^{2x}-1) dx.
 """
 import json
+import os
 import sys
 import time
 
@@ -37,7 +40,12 @@ rng = np.random.default_rng(20260903)
 # ---------------- instrument (shared with G0, verified there) ----------------
 CUT_IN, CUT_OUT = 6.0, 8.0
 LGRID = 24.0
-NGRID = 1 << 17
+# Search grid 2^19 (run-2 change): run-1/2 at 2^17 showed the L-B class carries
+# a systematic ~-1.5e-3 V_r error at 2^17 (measured 2^19: ~1e-4; 2^21: ~5e-6) —
+# selection was partially chasing instrument error. At 2^19 the class error sits
+# ~10x below eps_cert and ~1x below typical |Q| (~1e-4): honest exploration.
+NGRID = 1 << int(os.environ.get("W_SEARCH_GRID_LOG2", "19"))
+CONFIRM_LOG2 = int(os.environ.get("W_CONFIRM_GRID_LOG2", "21"))
 DX = 2 * LGRID / NGRID
 XS = -LGRID + DX * np.arange(NGRID)
 EPS_CERT = 1e-3
@@ -335,19 +343,22 @@ def run():
                     Q, _ = Q_prime(F_OF[L](g))
                     if Q < -EPS_CERT:
                         # two-grid confirmation (heat61c disclosure D7)
-                        Q19 = prime_side_genome(L, g, 19)
-                        if Q19 < -EPS_CERT:
+                        Qc = prime_side_genome(L, g, CONFIRM_LOG2)
+                        if Qc < -EPS_CERT:
                             frozen.append(dict(lineage=L, gen=gen, genome=g,
-                                               Q17=Q, Q19=Q19))
+                                               Q_search=Q, Q_confirm=Qc,
+                                               confirm_log2=CONFIRM_LOG2))
                             print(f"  !! HALT-AND-VERIFY CONFIRMED: {L} gen {gen} "
-                                  f"Q17={Q:.3e} Q19={Q19:.3e}", flush=True)
+                                  f"Q({NGRID.bit_length()-1}^2-grid)={Q:.3e} "
+                                  f"Q(2^{CONFIRM_LOG2})={Qc:.3e}", flush=True)
                         else:
                             drift_rejects.append(dict(lineage=L, gen=gen,
-                                                      Q17=Q, Q19=Q19,
-                                                      drift=Q19 - Q))
-                            print(f"  ~~ drift-reject: {L} gen {gen} Q17={Q:.3e} "
-                                  f"-> Q19={Q19:.3e} (grid artifact, logged)", flush=True)
-                            Q = Q19
+                                                      Q_search=Q, Q_confirm=Qc,
+                                                      drift=Qc - Q))
+                            print(f"  ~~ drift-reject: {L} gen {gen} Q_search={Q:.3e} "
+                                  f"-> Q(2^{CONFIRM_LOG2})={Qc:.3e} (grid artifact, logged)",
+                                  flush=True)
+                            Q = Qc
                     fitness[L][i] = Q
                 except Exception:
                     fitness[L][i] = np.inf
