@@ -57,6 +57,12 @@ distinguishes "spectral bottom 0, approached" from "flat direction of the trunca
 Update (heat62, D4): random orthonormal spans reach +5.87e-16 generic-closeness — the
 near-null cluster is large, consistent with "0 approached along a wide ridge". Exposure: the
 M-ladder RATE (heat63, in flight) + the eigenvector structure as M grows.
+Update (heat63b, 235268d): the WINDOW-SCALE approach axis is DEAD — d(·,W) is bitwise
+invariant (W1≡W2) once the draw's support sits inside the window's full-support region, and
+non-monotone (s1 deeper at the NARROWER W0) when it doesn't. The live descent axis is basis
+dimension M: BUMP descends per-seed monotonically M=8→64 (+1.2e-10 at M=64, Rayleigh–Ritz
+nested-prefix ✓), still descending. Next exposure: M=128 rate; d_eff ladder BUMP>32,
+LB<16 (intrinsic to sinc), LA≈8–16.
 
 **B2. Winners + their mutants span the directions the GA explored.** RETIRED-BY-TEST
 (heat62, hash-committed db7de084, outcome (b) RIDGE-GENERIC 2026-09-03) → **D4**. Random
@@ -103,6 +109,13 @@ Ch. VI). Affects heat54/E6 interpretation scope (calibration-only claim safe eit
 BYPRODUCT of the read (lane candidate, not acted on): Thm A.1(3) eventual single-sign of
 h_ω^⟨1⟩(x) ⟹ Θ_ω inner ⟹ ζ zero-free in Re>½+ω (single-ω suffices) — numerically probeable,
 sieve-cost; registered in NOTES, scheduling proposal goes to the exchange.
+Update (09-03, 235268d): CLAIMED by machine 3 (Letter 53; owner-or-expiry worked on first
+use). Full handover delivered with every formula re-verified against the arXiv e-print
+(NOT from memory — #63 discipline extended to formula handover): β-integral convention, c_ω
+product form, g_ω eq. 201, g_ω^⟨1⟩ closed form ω≠½ + elementary ω=½ case, h^⟨1⟩ both forms,
+thm_3 items (2)/(3)/(4)/(5) incl. the cheaper lim-√x·h^⟨1⟩ target and the POSITIVE eventual
+sign under the full conjecture. m3 runs x≤1e8 first probe (ω=½, elementary g); kill =
+sustained sign oscillation at large x. Lane is m3's; my exposure = none until their report.
 
 **C6. No fourth positivity/trace/duality instance exists among the 11 surveyed families.**
 SURVEY-GRADE (M3 12/12, two re-verify flags open, transfer-ops rank contested). Exposure: the
