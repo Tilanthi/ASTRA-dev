@@ -1,0 +1,8 @@
+CATEGORY: M (M=32 floor re-statement + precision triangulation; no RH content)
+M= 8: cond(G) = 970.3
+M=16: cond(G) = 7622.7
+M=32: cond(G) = 11534054.9
+
+M=32 zero side rebuilt: lmin -2.440884e-14 lmax +4.3180e+00 (nz 79) | floor(32) = cond*eps*lmax = 1.106e-08
+
+== OUTCOME (i) FLOOR-CLASS: cond(G) growth covers the M=32 reading; verdict (c)-flavored stands; trap #68 gains the per-rung-floor clause ==

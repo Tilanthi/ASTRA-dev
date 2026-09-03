@@ -53,10 +53,13 @@ near-null direction (+3.07e-13 in an 8-dim span) is the closest concrete approac
 distinguishes "spectral bottom 0, approached" from "flat direction of the truncated operator".
 Exposure: the M-ladder rate + the eigenvector structure as M grows.
 
-**B2. Winners + their mutants span the directions the GA explored.** UNEXAMINED. The ladder
-inherits the GA's sight: a negative direction OUTSIDE all winner spans is invisible to it.
-Exposure: run the ladder on RANDOM admissible bases (not winner-centered) at M=8; a materially
-lower λ_min there falsifies the span assumption.
+**B2. Winners + their mutants span the directions the GA explored.** UNEXAMINED, with measured
+motivation now: the mutant ladder's Gram conditioning explodes (cond(G) 970 → 7.6e3 → 1.15e7 at
+M=8/16/32, heat61i) — winner+mutant bases saturate at M~16; deeper probing of the near-null
+ridge requires orthogonalized or RANDOM bases. The ladder inherits the GA's sight either way: a
+negative direction OUTSIDE all winner spans is invisible to it. Exposure: run the ladder on
+RANDOM admissible bases (not winner-centered) at M=8-16 with cond ~1e2; a materially lower
+λ_min there falsifies the span assumption AND doubles as the ridge probe.
 
 **B3. The three lineages (Gaussian/sinc/Fourier) cover the admissible class.** SURVEY-GRADE.
 The GA never left them; compact-support bases (machine 3's Letter-44 hint: the real search uses
@@ -105,5 +108,8 @@ proof).
 is a Richardson FD measuring the ε-ultraviolet coefficient; the conviction was wrong, the two-
 instrument distinction right).
 **D2.** "2^17/2^19 floors transfer across function classes" — RETIRED (D7).
-**D3.** "Half-step rescan is the completeness remedy at E~1e12" — RETIRED-IF-CERTIFIED
-(machine 3's Turing certifier supersedes; withdrawal lettered).
+**D3.** "Half-step rescan is the completeness remedy at E~1e12" — RETIRED-CERTIFIED (machine 3
+Letter 48: all three E~1e12 windows certified complete, n_scan == n_rigorous by independent
+Turing/Rosser count at dps=25; edge margins ≥ 0.0039 (1.6% of mean spacing); bit-identical
+constants by construction — same in-memory mp.mpf values into both measurements). A3's
+exposure route (completeness tested at E~1e12) satisfied for these windows.

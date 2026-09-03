@@ -1,68 +1,50 @@
-"""heat61h — A1 exposure resolver: the 4% prime-side discrepancy between
-heat61e (LB 2^23 prime lmin -3.322801e-6, from Kp_23 saved in results JSON)
-and heat61f (M=8 prime lmin -3.1972e-6) on nominally the same basis + code.
+"""heat61h (v2) — A1 exposure resolver: the 4% prime-side discrepancy between
+heat61e (LB 2^23 prime lmin -3.322801e-6, from the .out section) and heat61f
+(M=8 prime lmin -3.1972e-6) on nominally the same basis + code.
 
 CATEGORY: M (instrument/meta — assumption-ledger A1 open detail; no RH content)
 
-WHAT WAS ESTABLISHED BY INSPECTION (this session, before writing this file):
-  - prime-side construction is line-for-line identical in both scripts
-    (diag Qs + 0.5 polarization identity -> Kp -> symmetrize -> eigh(Kp, G));
-  - at gl=23 heat61e's np.interp(xs, xs23, F[i]) is the identity (same float
-    grid), and its renormalization divides by exactly 1.0;
-  - the zero side agrees BIT-IDENTICALLY (+3.066441e-13 both runs), so the
-    bases F are the same to the bit — the difference is in the prime-side
-    evaluation chain given identical inputs, or in cross-process arithmetic.
-  - scale check: 4% of 3.3e-6 = 1.3e-7 — this sits far below every certified
-    prime-side class floor (LB/sinc floor at 2^23 is ~few e-6), so whatever
-    the mechanism, both readings are floor-class and no above-floor result
-    depends on the answer. This test CLOSES A1 either way; it cannot open a
-    claim.
+v2 NOTE (both crashes happened pre-measurement; nothing was ever scored from
+this script): v1 crashed twice at input load — first on numeric-array
+assumption (genomes are dicts), then on the discovery that heat61e's results
+JSON holds ONLY THE LAST LINEAGE (LC: res is reused and re-dumped per
+lineage; the flat file cannot attribute numbers to lineages — the .out
+section headers are the only map; proposed trap #69, same genus as my
+letter §5 erratum). v2 therefore uses NO saved matrix: it rebuilds both
+evaluation paths from scratch and tests which .out number each reproduces.
 
-METHOD: heat61e saved genomes + Kp_23 + eig_23 in its results JSON. Rebuild
-everything in one process, twice where nondeterminism is possible:
-  (1) genomes_fresh = E.diverse_mutants(...) -> genome-level identity vs saved;
-  (2) F rebuilt from SAVED genomes via E.realize + same normalization ->
-      bit-compare vs F_fresh (prefix-determinism at the array level);
-  (3) Kp_recomputed (heat61f path) vs Kp_saved: per-entry max|diff|, computed
-      TWICE to probe in-process nondeterminism (threaded BLAS);
-  (4) eigh(Kp_saved, G23) vs saved eig_23 (does the saved matrix reproduce the
-      heat61e .out number on this machine today?) and eigh(Kp_recomputed, G23)
-      vs heat61f's -3.1972e-6.
+MECHANISM HYPOTHESIS (from source reading + heat61g's condG print, pre-run):
+  diverse_mutants leaves the WINNER row unnormalized (heat61e line 155);
+  heat61g measured cond(G)=970 on that unnormalized M=8 basis where heat61e's
+  RENORMALIZED rung printed 200.2 — ratio 4.85 => ||f0|| ~ 2.2, a genuine
+  factor-2 rescaling, not eps. Exact arithmetic is scale-invariant
+  (eigh(DKD, DGD) = eigh(K,G), D diagonal invertible) so both runs measured
+  the SAME operator — hence zero-side agreement to 7 digits — but bitwise
+  the (K,G) pairs differ, and float64 eigh scatters the near-null prime
+  eigenvalue by ~1e-7 absolute = the whole 4%-of-3.3e-6.
+
+PROBES:
+  [1] basis determinism: diverse_mutants built twice, bit-identical F.
+  [2] ||f0|| measured (expect ~2.2, NOT 1).
+  [3] heat61f path: Kp from F as-is, eigh vs G as-is -> compare -3.1972e-6.
+  [4] heat61e path: rows renormalized exactly as heat61e's rung lines
+      220-221 (np.interp is the identity at gl=23), Kp rebuilt, eigh vs
+      renormalized G -> compare -3.322801e-6.
 
 PRE-REGISTRATION (trap #32):
-  Mechanism hypothesis (from source reading, pre-run): diverse_mutants leaves
-  the WINNER row unnormalized; heat61e's rung code renormalized every row.
-  Exact arithmetic is scale-invariant (eigh(DKD, DGD) = eigh(K,G)), so both
-  runs measured the same operator — but bitwise they differ, and the near-null
-  prime eigenvalue amplifies ||f0|| != 1 by eps into ~1e-7 absolute shift
-  (4% of 3.3e-6), while the zero side agrees to 7 digits.
-  Outcome (alpha) MECHANISM CONFIRMED: renormalized-path Kp reproduces the
-  SAVED Kp_23 (bit-exact or <= float noise) AND the unnormalized-path lmin
-  reproduces heat61f's -3.1972e-6 (within 1e-12) -> the 4% discrepancy is
-  named: winner-row normalization difference; both readings floor-class; A1
-  CLOSED benign; no above-floor result affected.
-  Outcome (beta) RESIDUAL: genomes and F identical but neither path
-  reproduces both .out numbers -> cross-process arithmetic variance at floor
-  scale (D7-flavored scatter) -> A1 CLOSED benign-with-mechanism-unlocalized;
-  prime readings at |lmin| < class floor carry ~1e-7 cross-run scatter.
-  Outcome (gamma) PREFIX QUESTION: genomes differ -> prefix-determinism
-  broken at genome level despite zero-side agreement -> A5 reopens, M-ladder
-  interpretation pauses until understood.
+  (alpha) MECHANISM CONFIRMED: [3] reproduces heat61f's number AND [4]
+      reproduces heat61e's number (both within 1e-12 absolute) -> the 4%
+      discrepancy is the winner-row normalization difference; both readings
+      floor-class (per-class prime floors exceed 1.3e-7); A1 CLOSED benign;
+      standing practice: normalize rows before polarizing.
+  (beta) PARTIAL: exactly one path reproduces -> A1 CLOSED with the
+      reproducing path named; the other .out number gets a caveat.
+  (gamma) NEITHER: cross-process arithmetic variance at floor scale ->
+      A1 CLOSED benign-unlocalized (D7-flavored scatter).
+  Scale check either way: 1.3e-7 absolute sits below every certified
+  per-class prime floor; no above-floor result depends on the answer.
 
-CPU budget: single core, chained after heat61g (5-core directive).
-
-FIX-NOTE (pre-measurement): first launch crashed at input load — genomes in
-heat61e's results JSON are DICTS, not numeric arrays (np.array(dict) raised);
-no scored evaluation ran. Fixed alongside a mechanism generalisation BEFORE
-any measurement: heat61g (which ran in between) printed condG=970 for this
-same M=8 basis where heat61e's renormalised rung printed 200.2 — ratio 4.85
-=> ||f0|| ~ 2.2, i.e. the winner row is NOT unit norm by a factor >2, not by
-eps. The A1 mechanism is therefore a genuine diagonal rescaling between the
-two runs' (K, G) pairs — congruent in exact arithmetic (eigenvalues equal),
-bitwise different in float64, with the near-null prime eigenvalue scattering
-by the observed 4%-of-3.3e-6. Probe [5] measures ||f0|| directly; the
-eps-level wording above is retained as originally pre-registered, with this
-note as the pre-run correction.
+CPU: single core, ~30-40 min (72 Q_grid calls at 2^23), after heat61i.
 """
 import json
 
@@ -77,8 +59,8 @@ LGRID = E.LGRID
 DX23 = 2 * LGRID / (1 << 23)
 XS23 = -LGRID + DX23 * np.arange(1 << 23)
 
-HEAT61E_LMIN = -3.322801e-6   # from heat61e .out LB 2^23 (letter table source)
-HEAT61F_LMIN = -3.1972e-6     # from heat61f .out M=8 prime
+HEAT61E_LMIN = -3.322801e-6   # heat61e .out, LB section, 2^23 prime
+HEAT61F_LMIN = -3.1972e-6     # heat61f .out, M=8 prime
 
 
 def build_kp(F):
@@ -89,107 +71,64 @@ def build_kp(F):
         for j in range(i + 1, m):
             Kp[i, j] = Kp[j, i] = \
                 0.5 * (E.Q_grid(XS23, DX23, F[i] + F[j]) - Qs[i] - Qs[j])
-    return Kp, Qs
+    return Kp
 
 
 if __name__ == "__main__":
-    print("CATEGORY: M (A1 exposure resolver — Kp hash comparison; no RH content)",
-          flush=True)
+    print("CATEGORY: M (A1 exposure resolver v2 — dual-path reproduction; "
+          "no RH content)", flush=True)
     with open("heat61_w_search.log.json") as fh:
         REC = json.load(fh)
     winner = json.loads(REC["final"]["LB"][1])
-    saved = json.load(open("heat61e_gram_ladder.results.json"))
 
-    genomes_saved = saved["genomes"]   # list of genome DICTS (LB: c + pairs)
-    Kp_saved = np.array(saved["Kp_23"])
-    eig_saved = np.array(saved["eig_23"])
-    m = len(genomes_saved)
+    _, F1 = E.diverse_mutants("LB", winner, XS23, DX23, 8)
+    _, F2 = E.diverse_mutants("LB", winner, XS23, DX23, 8)
+    det = bool(np.array_equal(F1, F2))
+    print(f"[1] diverse_mutants built twice: bit-identical = {det}", flush=True)
 
-    # (1) genome-level prefix-determinism (JSON-normalised dict compare)
-    def normj(x):
-        return json.loads(json.dumps(x))
+    n0 = float(np.sqrt(DX23 * (F1[0] * F1[0]).sum()))
+    print(f"[2] ||f0|| (winner row) = {n0:.6f}  "
+          f"(cond ratio prediction ~{np.sqrt(n0):.3f}^2 = {n0**2:.1f}; "
+          f"heat61g saw 970/200.2 = 4.85)", flush=True)
 
-    genomes_fresh, F_fresh = E.diverse_mutants("LB", winner, XS23, DX23, m)
-    genomes_equal = all(normj(g) == normj(s)
-                        for g, s in zip(genomes_fresh, genomes_saved))
-    print(f"[1] genomes equal: {genomes_equal} "
-          f"(fresh {len(genomes_fresh)} vs saved {m})", flush=True)
-
-    # (2) F rebuilt from SAVED genomes EXACTLY as diverse_mutants builds it
-    #     (first element = winner realization, NOT normalized — line 155 of
-    #     heat61e; mutants are normalized at acceptance). Bit-compare to fresh.
-    F_saved = [E.realize("LB", genomes_saved[0], XS23)]
-    for g in genomes_saved[1:]:
-        f = E.realize("LB", g, XS23)
-        nr = np.sqrt(DX23 * (f * f).sum())
-        F_saved.append(f / nr)
-    F_saved = np.array(F_saved)
-    F_equal = np.array_equal(F_saved, F_fresh)
-    print(f"[2] F bit-identical (saved-genome rebuild vs fresh): {F_equal}",
+    # [3] heat61f path (rows as-is)
+    G_u = DX23 * (F1 @ F1.T)
+    Kp_u = build_kp(F1)
+    lam_u = float(eigh(0.5 * (Kp_u + Kp_u.T), G_u, eigvals_only=True)[0])
+    print(f"[3] heat61f path (as-is rows): lmin {lam_u:+.6e}  "
+          f"(target {HEAT61F_LMIN:+.6e}, diff {abs(lam_u - HEAT61F_LMIN):.2e})",
           flush=True)
 
-    # (3) Kp recomputed twice (in-process nondeterminism probe) vs saved
-    Kp_a, Qs_a = build_kp(F_fresh)
-    Kp_b, Qs_b = build_kp(F_fresh)
-    rep_equal = np.array_equal(Kp_a, Kp_b)
-    dkps = float(np.max(np.abs(Kp_a - Kp_saved)))
-    dqs = float(np.max(np.abs(Qs_a - np.diag(Kp_saved))))
-    print(f"[3] recomputed-twice identical: {rep_equal} | "
-          f"max|Kp_recomputed - Kp_saved| = {dkps:.3e} | max diag diff {dqs:.3e}",
+    # [4] heat61e path (renormalized rows, rung lines 220-221; interp=identity)
+    P = np.array([np.interp(XS23, XS23, F1[i]) for i in range(8)])
+    P = P / np.sqrt(DX23 * (P * P).sum(axis=1))[:, None]
+    G_e = DX23 * (P @ P.T)
+    Kp_e = build_kp(P)
+    lam_e = float(eigh(0.5 * (Kp_e + Kp_e.T), G_e, eigvals_only=True)[0])
+    print(f"[4] heat61e path (renormalized): lmin {lam_e:+.6e}  "
+          f"(target {HEAT61E_LMIN:+.6e}, diff {abs(lam_e - HEAT61E_LMIN):.2e})",
+          flush=True)
+    print(f"    cond(G): as-is {np.linalg.cond(G_u):.1f} vs renormalized "
+          f"{np.linalg.cond(G_e):.1f} (heat61f-era vs heat61e-era: 970 vs 200)",
           flush=True)
 
-    # (4) eigen checks
-    G23 = DX23 * (F_fresh @ F_fresh.T)
-    for tag, K in (("saved", Kp_saved), ("recomputed", Kp_a)):
-        ev = eigh(0.5 * (K + K.T), G23, eigvals_only=True)
-        print(f"[4] lmin from {tag} Kp: {ev[0]:+.6e} "
-              f"(heat61e .out {HEAT61E_LMIN:+.6e}; heat61f .out {HEAT61F_LMIN:+.6e})",
-              flush=True)
-    ev_saved_check = eigh(0.5 * (Kp_saved + Kp_saved.T), G23, eigvals_only=True)
-    print(f"    saved eig_23[0] (as stored): {float(eig_saved[0]):+.6e} | "
-          f"recomputed-from-saved-matrix {ev_saved_check[0]:+.6e}",
-          flush=True)
-
-    # (5) RENORMALIZATION PROBE — candidate mechanism: heat61e's rung code
-    #     renormalized EVERY row (P = P/sqrt(dx*(P*P).sum())); diverse_mutants
-    #     leaves the winner row unnormalized. Generalized eigh is scale-
-    #     invariant in exact arithmetic (D K D, D G D) but NOT bitwise — and
-    #     ||f0|| != 1 by eps-level amounts perturbs the near-null prime
-    #     eigenvalue at exactly the observed 4%-of-3e-6 scale, while leaving
-    #     the zero side (well-conditioned rows) agreeing to 7 digits.
-    n0 = np.sqrt(DX23 * (F_fresh[0] * F_fresh[0]).sum())
-    print(f"[5] ||f0|| (winner row, diverse_mutants path) = {n0:.17f} "
-          f"(|dev from 1| = {abs(n0 - 1.0):.3e})", flush=True)
-    P_e = F_fresh / np.sqrt(DX23 * (F_fresh * F_fresh).sum(axis=1))[:, None]
-    Kp_e, _ = build_kp(P_e)
-    G_e = DX23 * (P_e @ P_e.T)
-    dkpe = float(np.max(np.abs(Kp_e - Kp_saved)))
-    ev_e = eigh(0.5 * (Kp_e + Kp_e.T), G_e, eigvals_only=True)
-    print(f"    renormalized-path Kp vs heat61e SAVED Kp_23: max|diff| = "
-          f"{dkpe:.3e} | lmin = {ev_e[0]:+.6e}", flush=True)
-
-    # verdict per pre-registration
-    lmin_recomputed = float(eigh(0.5 * (Kp_a + Kp_a.T), G23,
-                                 eigvals_only=True)[0])
-    out = {"genomes_equal": bool(genomes_equal), "F_equal": bool(F_equal),
-           "recompute_repeat_identical": bool(rep_equal),
-           "max_dKp_vs_saved": dkps, "max_dQs_vs_saved": dqs,
-           "norm_f0": float(n0), "max_dKp_renorm_vs_saved": dkpe,
-           "lmin_recomputed": lmin_recomputed,
-           "lmin_renorm_path": float(ev_e[0]),
-           "lmin_from_saved_Kp": float(ev_saved_check[0]),
-           "eig23_saved_stored": float(eig_saved[0])}
-    json.dump(out, open(f"{OUTSTEM}.results.json", "w"), indent=1)
-    if not genomes_equal:
-        v = "gamma"
-    elif (dkpe <= 1e-18 and abs(float(ev_e[0]) - float(eig_saved[0])) <= 1e-12
-          and abs(lmin_recomputed - HEAT61F_LMIN) <= 1e-12):
+    ok_u = abs(lam_u - HEAT61F_LMIN) <= 1e-12
+    ok_e = abs(lam_e - HEAT61E_LMIN) <= 1e-12
+    if ok_u and ok_e:
         v = "alpha"
-    else:
+    elif ok_u or ok_e:
         v = "beta"
+    else:
+        v = "gamma"
     labels = {
         "alpha": "MECHANISM CONFIRMED (winner-row normalization; A1 CLOSED benign)",
-        "beta": "RESIDUAL (floor-scale cross-process scatter; A1 CLOSED benign-unlocalized)",
-        "gamma": "PREFIX QUESTION (A5 reopens; M-ladder interpretation pauses)",
+        "beta": "PARTIAL (one path reproduces; A1 CLOSED with that path named)",
+        "gamma": "NEITHER (cross-process variance; A1 CLOSED benign-unlocalized)",
     }
+    out = {"basis_deterministic": det, "norm_f0": n0,
+           "lmin_as_is": lam_u, "reproduces_61f": bool(ok_u),
+           "lmin_renorm": lam_e, "reproduces_61e": bool(ok_e),
+           "condG_as_is": float(np.linalg.cond(G_u)),
+           "condG_renorm": float(np.linalg.cond(G_e)), "outcome": v}
+    json.dump(out, open(f"{OUTSTEM}.results.json", "w"), indent=1)
     print(f"\n== OUTCOME ({v}) — {labels[v]} ==", flush=True)
