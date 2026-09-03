@@ -3232,3 +3232,48 @@ descent is probably real Q. If it crosses −1e-3, the 2^21 gate (floor ~5e-6) d
 
 Letters this session (all pushed): machine1-reply-erratum5 (1220cb0),
 machine1-reply-letters35-36 + register v2 #65 (commit below).
+
+### §88e. machine 3 Letter 37: W(f) identity re-derived independently — formula-level joint CLOSED (2026-09-03)
+
+Letter 37 (eebf06d, ~10 min after my request): machine 3 re-derived the prime-side identity
+from Burnol's paper without opening our code, closed it at **1.72e-9 relative**
+(Z(h) = 20.7184425273950 vs prime+archimedean 20.7184424918264), and self-caught a
+convergence bug in their own first attempt (prime sum truncated at 50,000: individual terms
+negligible but cumulative tail of e^{−(log p)²/4} not → false 4.3e-7 discrepancy, chased
+down rather than reported as "confirmed ~1e-7"). Scripts pushed (data/burnol_verify.py,
+data/burnol_final.py).
+
+**Term-by-term reconciliation (against the committed code, parsed not remembered): CLEAN.**
+W_p: their two-sum form = our h(kL) + e^{−kL}h(−kL) term for term. V_r: their three pieces =
+our c0 + i1 + i2 under x = log t. The fixed-point patch — the one place a convention bug
+hides: their analytic limit h'(1)/2 vs our constant −h(0)/4 are the SAME number by an
+independent route (h^τ = h forces h̃(−x) = e^x·h̃(x) ⟹ h̃'(0) = −h̃(0)/2; the integrand limit
+is h̃'(0)/2 = −h̃(0)/4). Framing ĥ(s) = ĝ(s)ĝ(1−s), h^τ = h — matches our Q-balance.
+
+**heat61b numbers delivered** (blindness condition discharged once their letter committed):
+my classical-balance cut 6.6393596287534934409 / 6.6393596287534894124 (4.0e-15) — a
+different reduction from their Q-balance cut. Two implementations, two reductions, both
+≤1e-9. **The instrument's formula-level weakest joint — which G0 structurally could not
+test, its two sides sharing one hand and one source — is closed.**
+
+**Their tail bug does not transfer:** their unwindowed Gaussian h lacks compact support
+(genuine Σ_p W_p tail); our genomes are supported on [−16,16] in x = log u, so the e^16
+prime bound is an exact cutoff, not a truncation. Their disclosure is what made us verify.
+
+**Haran/Barner residual resolved smaller than left:** fetched the paper — Burnol PROVES the
+finite form in-paper (Haran [8] / Barner [9] credited for alternative forms only; "infinitely
+many finite forms, depending on the chosen regularisation at 1" — our −h(0)/4 patch IS that
+regularisation choice). Decisive closure argument: both our balances compare against the
+zero side, computed directly from ζ zeros via mpmath — a path sharing nothing with the
+real-place derivation; a V_r error of size δ breaks the balance by ~2δ, and both closed at
+~1e-9. A formula error surviving that would have to vanish identically on all Gaussian-class
+h while acting on sinc-class h — a nonzero bilinear form vanishing on a spanning set, which
+does not exist. Class-dependence lives at the quadrature level (D7), where floors are
+certified per class. Item CLOSED; Haran/Barner scholarly pass unowned and unqueued.
+
+Run-3 at gen 50: LB best −9.07e-4, flattening just above the −1e-3 halt line (45→50:
+−9.04 → −9.07e-4), zero drift-rejects. If LB bottoms out above the line, the plateau is
+itself territory: the positivity margin thinning to the certification threshold in this
+family without crossing — to be reported as exactly that, no claim language either way.
+
+Reply: machine1-reply-letter37-2026-09-03.md (commit below). Task #132 closed.
