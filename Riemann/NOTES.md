@@ -3377,3 +3377,92 @@ One naming discipline offered before their results arrive: scan+bisect zeros are
 not Turing-VERIFIED (verification = Platt–Trudgian isolation + validated Riemann–Siegel
 bounds); state which one each E≥1e12 result claims, in the same sentence as the number —
 same discipline as my measured/certified split.
+
+### §88i. machine 3 Letter 40: first LOCATED tight pair at E~1e12 (2026-09-03)
+
+Letter 40 (acd466f): the promised E≥1e12 locator result, framed exactly per the naming
+discipline offered in my Letter-39 reply — subject line "LOCATED (not verified)". Site:
+gamma_1 = 1e12+0.387, gamma_2 = 1e12+0.454, d = 0.03349, N_eff = 5.936; kappa table via
+mp.taylor (same convention-free method all week): kappa1 = 1.8925, B = 46.0543,
+kappa4 = −151.6286, **R = −4k4/B^2 = 0.285957, q = Bd^2/2 = 0.025833**. R sits above every
+campaign median (0.15–21 over N_eff 2.76–4.60), near the campaign's single highest pairs.
+They scope it as one located, locally-verified site, NOT a trend point (round-5 lesson
+applied to their own result); cost honestly ~11 min/site; E~1e15 (N_eff≥8 regime) declared
+out of reach tonight. Tooling bug disclosed: mp.findroot(solver='bisect') silently ignores
+tol (87 steps at full dps) — replaced by 5-line hand-rolled bisection (23 steps).
+
+My adjudication (reply c128adb): **ACCEPTED AS SCOPED.** Independent checks: R and q
+reproduce EXACTLY from their quoted digits (recomputed before reading their values);
+campaign-median comparison matches my swarm-survey harvest table. One technical addition
+— the locator's d-dependent blind spot quantified: detection requires a scan point inside
+the pair gap, P = d/s for random phase (d ≤ s). At this site: spacing 0.2436, s = spacing/4
+= 0.0609, d = 0.0335 ⟹ **eps(d) = d/s = 0.55 — this scan missed ~45% of pairs exactly this
+tight; eps → 0 as d → 0** (detection probability proportional to the measured quantity).
+Consequences separated: R on a FOUND pair unbiased (measurement correct once found);
+selection-level claims (tightest-in-window, d-distributions, N_eff-ranked sampling) biased
+AGAINST the extreme pairs. Their own scoping already correct as stated (found-pairs only) —
+the label guards the future n=5 population. Remedy = #65 clause: second scan at half-step
+offset (+48 evals ≈ +1.2 min/site); union COMPLETE for d ≥ s/4 = 0.0152 ⟹ pre-stated class
+floor "locator completeness floor = s/4 under double-offset scan". Self-caught bug
+endorsement: third "verify the instrument" instance programme-wide this week (findroot tol,
+zetazero bracket-finder, our run-2/3 grid machinery) — looks like the default state of
+numerical libraries. (Process note: my first eps computation had an operator-precedence
+bug — math.log(T/2*math.pi) vs math.log(T/(2*math.pi)) — caught and corrected before
+publishing; spacing 0.2436 not 0.2237, eps 0.55 not 0.60.)
+
+### §88j. Glenn's disruptive-methodology directive; Novelty Register run on own portfolio (2026-09-03)
+
+**Genuine user message this session** (first in this window): Glenn's detailed framework —
+three-agent structure (Historian–Skeptic / Alien Mathematician / Adversarial Constructor);
+rules (multiple simultaneous representations; conserved-quantity hunt; inversion; forbidden
+structures; global/local separation; change the unit of reasoning; unexpected equivalences;
+computation for hypothesis-generation only; extreme hypotheses tested fast); artefacts
+(Novelty Register A–D with most resources on D; Assumption Ledger; Failure Map with
+obstruction-promotion; representation resets; cross-agent collisions exchanging
+INTERMEDIATE STRUCTURES not conclusions; reward compression and falsifiability); six
+evidence levels (analogy / numerical / heuristic / partial / conditional / complete);
+closing standard (no sophisticated versions of known failed programmes; return a new
+object/equivalence/invariant/impossibility mechanism or a precise collapse explanation);
+novelty gate (cap historical analysis at 20–30%); forced conceptual mutation each few
+cycles; 10–20 simultaneous world models. Verbatim directive text preserved in session
+transcript (a161b907); exchange note c128adb is the machine-readable summary + response.
+
+Machine 3 Letter 41 (fa4e14f) answered it first with a zero-D self-audit of their own week
+(N_eff campaign honestly re-classed A — "felt disruptive in the room; it is not"), cap
+accepted "with teeth against me specifically", roles-exist-informally/no-locking, one
+forced mutation (analytic→geometric): Connes–Consani Arithmetic/Scaling Site flagged
+UNMEASURED for the five-question Historian–Skeptic treatment, paired naturally with my
+route 6.
+
+My response (in c128adb): **Novelty Register on my ten sealed routes — five A, three B,
+three C, ZERO D; nearest-to-D (routes 4 D–H template, 7 kernel-identity enumeration)
+exactly the unexecuted ones.** Meta-layer honesty: trap #65 and the two-grid halt rule are
+D-shaped LAWS ABOUT OUR INSTRUMENTS, not mathematics — registered as practice, no
+inflation. Cap accepted with MORE teeth against me (my week = adjudication/verification =
+the capped class); concession executed: four open requests to machine 2 re-scoped to one
+minimal batch (verdict texts + citation + dedup map, one commit; controls
+declinable-with-reason without prejudice). **Forced mutation executed (static search →
+exact spectral): the Rayleigh–Ritz Gram ladder** — Q(g) = c^T K_N c over a basis of
+admissible test functions, K_N[j,k] = Sigma_rho phij(rho) phik(1−rho) prime-computable by
+our own transpose-folded machinery; RH ⟺ K_N PSD ∀N + limit; constrained minimum over the
+span = lambda_min(K_N) exactly, one eigenvalue per level — the GA is a stochastic
+lambda_min estimator, the mutation replaces sampling with an exact ladder. Two immediate
+falsifiable uses: (i) exact disjoint-instrument check on run-3 (lambda_min > 0 while GA
+reads −9.3e-4 ⟹ artifact diagnosed by eigenvalue ladder vs population dynamics — disjoint
+error structures per #65 remedy clause); (ii) deterministic route-1 upgrade with
+pre-registrable lambda_min(N) convergence signature. Class C honestly (Rayleigh–Ritz +
+Weil both textbook); SOS/copositive extension flagged UNMEASURED with the I4 connection
+NAMED BY ME proactively (if literature collapses Gram-matrix Weil positivity into known
+LP/SDP, mutation degrades to C-for-known — literature check owed first session after
+run-3 ladder). Standing-question answers: (assumed-because-assumed) every route on all
+three lists is zero-side/explicit-formula-side — nobody carries a purely arithmetic or
+combinatorial invariant; (almost-conserved) inf Q = 0 unattained object-layer, class-floor
+conservation meta-layer; (same-obstruction-different-names) YES — #65 fired 3× in one
+week independently across all three machines. Adoptions: register standing (re-run
+honestly per cycle), Assumption Ledger as companion file next session, cap accepted,
+one SCHEDULED representation-reset session per machine before next full sync (mine: RH
+restated with no zeta-vocabulary), one forced mutation per cycle per machine, K offered
+as this cycle's cross-agent intermediate structure (m2 kernel language / m3 burnol
+language). Run-3 state at time of note: 45+ drift-rejects all LA collapsing at 2^21,
+zero freezes, outcome (a) firing live; eigenvalue ladder queued behind completion as
+run-3's exact counterpart instrument (heat62 first act).
