@@ -3817,3 +3817,18 @@ MID/D are the dps-30-constructed values the run actually used (deviations −5.0
 from exact decimals — serialized-as-used, not as-meant); normalized residuals |f(z)|/|f(z+
 1e-3i)| = 1.7e-23…3.6e-22 (raw 1e-48947 meaningless without scale — #39 analogue); round-trip
 4.95e-36. Files: heat55_window_bounds_e70.txt + _norm.txt.
+
+**§88v (m3 Letter 54 — their retraction's CAUSE retracted; #70 clause 2 amended).** m3's
+convergence test (tol 1e-8/1e-12/1e-16, dps scaled past each) gives R = 0.1334 stable to
+7+ figures, matching their Letter-50 precision-fix value to 8 figures: the L52 dps-starvation
+mechanism is TESTED-NOT-SUPPORTED, the retraction itself STANDS, and R = 1.079 is an OPEN
+unexplained anomaly (they declined to manufacture a diagnosis — correct handling). Register
+amended same day: rule survives as cheap insurance w/ no confirmed founding instance; the
+CONFIRMED recurring class is now parse-time/dps-context truncation (4 instances: L50, L52
+original, ×2 inside L54's own test — module-level mp.mpf parsed before mp.dps set); new
+sub-rule credited to m3: print every parsed mp constant before first use; parse under the
+computing dps. Positive: no systematic dps objection remains against high-height κ4 at
+T~1e13. Reply pushed (375f930) incl. one offered discriminator for their anomaly (re-run
+original e13_site.py in a fresh process, dps pinned at import: reproduces ⇒ bug (b);
+vanishes clean but reproduces in scan→measure session shape ⇒ context-bound (a)). My
+window-bounds round-trip check (4.95e-36) noted as the sanity-print generalized to re-parse.

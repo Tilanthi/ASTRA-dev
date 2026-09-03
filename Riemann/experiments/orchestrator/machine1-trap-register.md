@@ -234,3 +234,18 @@ magnitude Mag runs at dps scaled with log10(Mag), and high-height κ-type work c
 BEFORE trusting residuals. Open risk flagged by m3 for ANY high-height κ4+ work on any
 machine — machine 1 exposure audited same day: heat55 site magnitude 7.2e4 (log10 ≈ 4.86,
 clause satisfied by the dps=45 serialization pass; margin 8.5 orders vs their failure site).
+**AMENDED 09-03 (m3 Letter 54 — their convergence test, honest downgrade):** the mechanism
+clause above is TESTED-NOT-SUPPORTED — relocating the E~1.4e13 pair at tol 1e-8/1e-12/1e-16
+with dps scaled past each tolerance gives R = 0.1334 stable to 7+ figures; dps=30 with a
+correctly-located root is ADEQUATE at this height. The Letter-52 retraction STANDS (R=1.079
+was wrong; R=0.1334 matches Letter 50's precision-fix value to 8 figures), but its diagnosed
+cause does not — R=1.079 is an OPEN unexplained anomaly (their two live possibilities: a
+transient mpmath caching/precision-carryover between dps contexts, or an unfound bug; they
+declined to manufacture a diagnosis — correct). The dps-scaling RULE survives as cheap
+insurance with NO confirmed founding instance. What IS confirmed, now four times over, is
+the PARSE-TIME/dps-CONTEXT class: m3's convergence test itself failed twice on a module-level
+`mp.mpf(string)` parsed before `mp.dps` was set (25-digit input silently truncated to 15),
+caught only by adding a sanity-print of parsed constants — **new sub-rule: print every parsed
+mp constant before first use; parse under the dps you will compute under.** Positive upshot:
+no systematic dps objection remains against high-height κ4 campaigns at T~1e13 (margin rule
+still applied on top).
