@@ -3737,3 +3737,41 @@ on any machine. My exposure check: heat55 site magnitude 7.2e4 (8.5 orders below
 serializer launched, bounds to m3 under #70 with per-value |f(z)| residuals + round-trip check.
 Note the symmetry with my f85e807 §2 promise: the deliverable is being shipped under exactly
 the artefact class the bug describes.
+
+**§88t (SAPIENS external review adjudicated — Glenn-authorized, confirmed in-session).**
+External one-time oversight letter (sapiens-oversight-letter.md, 33f7a85): verdict "world-
+class falsification engine pointed at a conventional hypothesis generator" — epistemic layer
+extreme, search moderate, object-level not yet (zero D by our own count), generation weak.
+Three structural findings: (2.1) the earned constraint is the box (our week killed LOCAL-
+ξ-instruments, not all local approaches — mainstream consensus ≠ proven necessity; burden
+rule funnels into the mined basin; the unowned arithmetic/combinatorial invariant lane =
+the disruptive frontier inside our own register); (2.2) generators ARE the training
+distribution (m2's ban-list measurement: 8/10 of my routes landed inside the banned eight
+even under explicit prohibition); (2.3) reward gradient still favours verification-shaped
+wins (m2's box-surf ask sat unanswered in a footer). Seven recommendations. **My adjudication
+(exchange a31af9b):** R1 flip-once ACCEPT — replaces my D-quota standing mechanics (the
+quota debate = disease in cure's coat, correction accepted); R2 box-surf standing question
+ACCEPT — subsumes my reset hard slot as the same object; one candidate per machine per
+cycle; R3 ACCEPT with the recorded defense (machine-verified negative was specific:
+local-ξ analysis cannot see arithmetic — killed local-analytic class only); constraint
+demoted to hypothesis under test; R4 zeta-zoo ACCEPT = the genuinely D-shaped lane; R5
+Lean accept-in-principle (scarcest for me; m3's Turing certifier adjacent); R6 C+
+(executed combination with new purpose) ACCEPTED as promoted register unit — resolves the
+symbolic-D fear; R7 dark lanes ACCEPTED fused with hash-commitment (hash intent+falsifier
+at lane start, content dark until first results — pre-registration + isolation, both).
+Cautions adopted: score attempted-generation-honestly-killed; "best weird failure of the
+cycle" standing line in cycle reports; patience argument held to. **Box-surf candidate #1
+DELIVERED (this cycle's owed object, not a promise): Nyman–Beurling–Báez–Duarte distance
+lane** — RH ⟺ 1 ∈ closure span{f_n = {1/(nx)}} (BD countable form); implementation d_N =
+dist(1, span_N) = 1 − bᵀG_N⁻¹b with CLOSED-FORM Gram entries (BD computational literature);
+our #68/1 cond-floor discipline transplants; zoo extension = stall-vs-decay discriminator
+across Epstein (off-line zeros, stall predicted) / Dirichlet L / function-field (RH theorem,
+decay predicted) — a computed discriminating invariant is the shape-of-the-problem discovery
+R4 targets. Question-gate PASSED on own rule (both readings resolvable). Labels: A/B ζ-side
+execution, NEW TO RUN zoo classifier. NOT D until the discriminator is real. Note:
+d_N → 0 implies RH (sequential BD conjecture); certified non-decay refutes the CONJECTURE,
+not RH — instrument is kill-capable on BD-seq only. First rungs: (i) ζ d_N to cond floors,
+(ii) Epstein negative control construction + criterion-transfer check. NOTE the symmetry:
+this candidate recycles the exact Gram-ladder instrument built for the Weil lane — the
+falsification machinery is now the filter, generation is the occupation (R1 executed in the
+same letter that accepted it).
