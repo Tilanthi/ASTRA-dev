@@ -1,0 +1,22 @@
+== rho_omega: prime-zeta route vs sieve(5e6)+PNT ==
+  omega=0.05: rho(P'') = 5.01000668116  rho(sieve) = 5.01011088  rel diff = 2.08e-05  asympt 1/(8 pi^2 w^2) = 5.0661
+  omega=0.15: rho(P'') = 0.530962349046  rho(sieve) = 0.53096623  rel diff = 7.31e-06  asympt 1/(8 pi^2 w^2) = 0.5629
+  omega=0.30: rho(P'') = 0.123458869107  rho(sieve) = 0.12345890  rel diff = 2.52e-07  asympt 1/(8 pi^2 w^2) = 0.1407
+
+== streams: A/B ordinate scans (grid 0.05, 26-step bisection) ==
+
+=== RUN-1 RECORD (void; file was truncated at relaunch — restored from transcript) ===
+Run 1 (killed 2026-09-03 after 11h wall / 2.25s CPU, wedged since 07:36) printed:
+  T0= 7005.0 omega=0.30 side=B: N=79999 Nbar=  3821.4  (DQ-FAIL)  [25328s]
+  T0= 7005.0 omega=0.15 side=A: N=79999 Nbar=  3821.4  (DQ-FAIL)  [26047s]
+  T0= 7005.0 omega=0.15 side=B: N=79999 Nbar=  3821.4  (DQ-FAIL)  [26161s]
+  T0= 7005.0 omega=0.05 side=B: N=79999 Nbar=  3821.4  (DQ-FAIL)  [26411s]
+  T0= 7005.0 omega=0.05 side=A: N=79999 Nbar=  3821.4  (DQ-FAIL)  [26494s]
+  (+ divide-by-zero RuntimeWarnings at line 222; T0=1000 W2 row Nbar=nan)
+Three defects, all fixed before this rerun (details in script ERRATUM comments):
+(1) xi_part ~1e-2390 at t~7000 -> float() underflow -> every grid point a
+    "root"; fixed by modulus-scaled form (phase exp(iv) only, O(1) magnitude).
+(2) run-1 Nbar double-subtracted T/2pi: low by exactly W/2pi=636.6 (true
+    ~4458) — DQ gate unrunnable in run 1 regardless of (1).
+(3) W2 low edge log-of-negative -> nan; fixed by theta(t)/pi+1 form.
+Run-1 rows are VOID for all gate purposes. F1-F5 thresholds unchanged.
