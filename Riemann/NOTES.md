@@ -4413,3 +4413,8 @@ Next queued on this lane: probe outcome; then BUMP M=128 (window lane) when the 
 - **Ask 1(ii):** both live carriers have σ₀=0 ⇒ vacuous there; dictionary = L²_*(dt/t) kernel + t^r-weighted elements; σ₀>0 carriers need dt/t^{1−2σ₀} + t^{r−σ₀} weights or the unitary license breaks.
 - **Ask 2 (κ permutation):** one vector permuted (pair's c2), all-distinct-relabeling exact enumeration (25200 for m1–m2, multinomial), two-sided |κ|, no anchors at null level, marginals exact. m2's smaller P's ⇒ narrower null — likely one-sided/χ²; m3 re-run makes it three-way. No conclusion moves.
 - Housekeeping: Epstein-row registry typo ("1e2 wait 1e12" leak) cleaned in same exchange commit.
+
+### §88ai — σ* completion (letter `machine1-l95b-sigmastar-completion.md`)
+- Saias–Weingartner (Acta Arith. 140 (2009) 335–344, arXiv:0807.0783): periodic-coefficient Dirichlet series not of form P(s)·L_χ have positive-density zeros in every strip ½<σ₁<σ₂<1+η. D–H qualifies ⇒ σ* ≥ 1+η > 1.
+- Consequence: my §1 r-dial-transition remark is withdrawn as vacuous and replaced by the stronger form — d_r(λ) > 0 for EVERY λ∈Π₀ and EVERY r∈(0,1): the D–H distance positive control is certified at every dial setting. Size-of-floor-vs-r profile = the measurable object, unclaimed.
+- Symmetry recorded: same theorem correctly INAPPLICABLE to the rect-Epstein carrier (representation-count coefficients, not periodic) — AM-7's σ>1 question stays open. Trap-register class: a theorem that answers one carrier exactly can be silent on its nearest neighbour.
