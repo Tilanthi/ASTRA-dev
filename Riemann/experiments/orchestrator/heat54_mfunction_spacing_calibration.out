@@ -4,3 +4,39 @@
   omega=0.30: rho(P'') = 0.123458869107  rho(sieve) = 0.12345890  rel diff = 2.52e-07  asympt 1/(8 pi^2 w^2) = 0.1407
 
 == streams: A/B ordinate scans (grid 0.05, 26-step bisection) ==
+  T0= 7005.0 omega=0.15 side=A: N= 4459 Nbar=  4458.0  (OK)  [2751s]
+  T0= 7005.0 omega=0.15 side=B: N= 4458 Nbar=  4458.0  (OK)  [2754s]
+  T0= 7005.0 omega=0.05 side=B: N= 4458 Nbar=  4458.0  (OK)  [2801s]
+  T0= 7005.0 omega=0.05 side=A: N= 4459 Nbar=  4458.0  (OK)  [2806s]
+  T0= 1000.0 omega=0.15 side=B: N= 1518 Nbar=  1516.0  (OK)  [401s]
+  T0= 7005.0 omega=0.30 side=A: N= 4459 Nbar=  4458.0  (OK)  [2696s]
+  T0= 7005.0 omega=0.30 side=B: N= 4458 Nbar=  4458.0  (OK)  [2700s]
+
+== m side: X = Re zeta'/zeta samples (dps 40) ==
+  T0= 1000.0 omega=0.15: n=8000  mean=+0.004  var=4.001
+  T0= 7005.0 omega=0.05: n=8000  mean=+0.059  var=25.515
+  T0= 7005.0 omega=0.15: n=8000  mean=+0.019  var=4.693
+  T0= 7005.0 omega=0.30: n=8000  mean=+0.003  var=1.213
+
+== comparison (v = gamma^(2) spacing; P = pi rho^.5 f(pi rho^.5 v)) ==
+  W1 B omega=0.05                    N=4458  var(v)=0.006  bridge var ratio=0.012 [0.012,0.013]
+     KS(v, P)=0.6280   KS(v, N01)=0.4251   KS(v, shiftExp)=0.5563   raw-gap KS vs Wigner=0.2176
+  W1 B omega=0.15                    N=4458  var(v)=0.057  bridge var ratio=0.064 [0.061,0.067]
+     KS(v, P)=0.4141   KS(v, N01)=0.3128   KS(v, shiftExp)=0.4192   raw-gap KS vs Wigner=0.2245
+  W1 B omega=0.3                     N=4458  var(v)=0.206  bridge var ratio=0.207 [0.198,0.217]
+     KS(v, P)=0.2356   KS(v, N01)=0.1976   KS(v, shiftExp)=0.2658   raw-gap KS vs Wigner=0.2492
+  W1 A omega=0.15                    N=4459  var(v)=0.208  bridge var ratio=0.232 [0.223,0.244]
+     KS(v, P)=0.2862   KS(v, N01)=0.2092   KS(v, shiftExp)=0.2656   raw-gap KS vs Wigner=0.0692
+  W2(1000) B omega=0.15              N=1518  var(v)=0.032  bridge var ratio=0.041 [0.034,0.054]
+     KS(v, P)=0.4967   KS(v, N01)=0.3641   KS(v, shiftExp)=0.4874   raw-gap KS vs Wigner=0.1732
+  W1 B omega=0.15 w/ rho(0.30) [CTRL] N=4458  var(v)=0.247  bridge var ratio=0.064 [0.061,0.067]
+     KS(v, P)=0.4142   KS(v, N01)=0.1718   KS(v, shiftExp)=0.2408   raw-gap KS vs Wigner=0.2245
+
+== PRE-REGISTERED VERDICTS ==
+  F1 (primary structure, KS<=0.1): FALSIFIED  KS=0.4141
+  F2 (rho-bridge): FALSIFIED  KS(B)={0.05: 0.628, 0.15: 0.4141, 0.3: 0.2356}  wrong-rho 0.4142 vs 0.6212 threshold
+Traceback (most recent call last):
+  File "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat54_mfunction_spacing_calibration.py", line 382, in <module>
+    f"{results['B om=0.30']['ks_n01']:.4f}/"
+       ~~~~~~~^^^^^^^^^^^^^
+KeyError: 'B om=0.30'

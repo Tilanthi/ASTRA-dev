@@ -364,6 +364,15 @@ if __name__ == "__main__":
         results["wrongrho"] = analyse(7005.0, 4000.0, 0.15, "B", RHOS[0.30],
                                       "W1 B omega=0.15 w/ rho(0.30) [CTRL]")
 
+    # persistence precedes epilogue cosmetics (trap #69 lesson): dump as soon
+    # as the results exist so a print bug cannot destroy the record. The
+    # 2026-09-03 run crashed in the F3 print (hand-typed key 'B om=0.30' vs
+    # the programmatic f-string key 'B om=0.3' — float 0.30 formats as 0.3;
+    # #63/#66 genus) BEFORE this dump existed at the end; the .out was the
+    # only record. Dump moved up; F3 now loops over OMS.
+    with open("/tmp/heat54_results.json", "w") as fh:
+        json.dump({str(k): v for k, v in results.items()}, fh, indent=1)
+
     if not SMOKE:
         print("\n== PRE-REGISTERED VERDICTS ==", flush=True)
         ksB = {om: results[f"B om={om}"]["ks"] for om in OMS}
@@ -377,11 +386,10 @@ if __name__ == "__main__":
               f"KS(B)={ {k: round(v, 4) for k, v in ksB.items()} }  "
               f"wrong-rho {results['wrongrho']['ks']:.4f} vs "
               f"{1.5 * r['ks']:.4f} threshold")
-        print(f"  F3 (Thm-2 direction, qualitative): KS vs N01 at "
-              f"om=0.30/0.15/0.05 = "
-              f"{results['B om=0.30']['ks_n01']:.4f}/"
-              f"{results['B om=0.15']['ks_n01']:.4f}/"
-              f"{results['B om=0.05']['ks_n01']:.4f}  (trend expected down)")
+        f3 = "  ".join(f"om={om}: {results[f'B om={om}']['ks_n01']:.4f}"
+                       for om in OMS)
+        print(f"  F3 (Thm-2 direction, qualitative): KS vs N01 = {f3}  "
+              f"(trend expected down with om)")
         print(f"  F4 (A/B symmetry <=0.15): "
               f"{'PASS' if results['A om=0.15']['ks'] <= 0.15 else 'FALSIFIED'}  "
               f"KS(A)={results['A om=0.15']['ks']:.4f}")
