@@ -1,6 +1,9 @@
 """heat55 — E4: the FULL telescope two-radius census (the division-of-labour
   item behind heat54; E9/heat32c was the 4-row first pass).
 
+CATEGORY: C (κ/telescope lane — E4 census; the C4 stop-rule applies after
+this run; zero RH claim possible from it).
+
 Site: idx 95248/95249, mid=71732.9085586, d=0.0073507 (2/d^2 = 37,014) —
 anchors copied from heat32c_telescope.py's committed header (trap #51: from
 the on-disk file, not memory). B(measured) = 4.6481 -> B d^2/2 = 1.26e-4, so
@@ -164,6 +167,8 @@ if __name__ == "__main__":
     import json
     from multiprocessing import Pool
 
+    print("CATEGORY: C (κ/telescope lane — E4 census; C4 stop-rule after this)",
+          flush=True)
     print("== heat55: E4 telescope full census (pre-registered) ==", flush=True)
     print(f"site mid={MID} d={D}  a/d={float(mp.mpf('0.01')/D):.4f}  "
           f"2/d^2={float(2/D**2):.0f}", flush=True)

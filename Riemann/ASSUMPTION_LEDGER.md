@@ -82,8 +82,15 @@ to hide effort — the 20–30% cap question is now answerable, which is also a 
 concession). Exposure: a counterparty result that requires ζ-side κ to interpret.
 
 **C5. Suzuki's ω>1 kernel-continuity restriction plausibly extends to ω>½.** SURVEY-GRADE,
-UNMEASURED — affects heat54/E6 interpretation scope (calibration-only claim is safe either way).
-Exposure: read arXiv:1204.1827 Prop 1.2 chain end-to-end (queued; body unread).
+body READ end-to-end (arXiv:1204.1827, §2 Thm 2.3 remarks + §5): the restriction's precise
+locus is CONTINUITY of the kernel h_ω(xy) — integer singularities |x−n|^{ω−1}, continuous
+iff ω>1, L² exactly for ω>½ (their own observation). §4.1 Lemmas 4.2/4.4 already hold for
+ω>½; the unproved step to ω∈(½,1] is §4.2 differentiability of φ_a^ε + the m(a) determinant
+formula, route = Burnol-style distributions + L²-kernel Fredholm determinants (Smithies
+Ch. VI). Affects heat54/E6 interpretation scope (calibration-only claim safe either way).
+BYPRODUCT of the read (lane candidate, not acted on): Thm A.1(3) eventual single-sign of
+h_ω^⟨1⟩(x) ⟹ Θ_ω inner ⟹ ζ zero-free in Re>½+ω (single-ω suffices) — numerically probeable,
+sieve-cost; registered in NOTES, scheduling proposal goes to the exchange.
 
 **C6. No fourth positivity/trace/duality instance exists among the 11 surveyed families.**
 SURVEY-GRADE (M3 12/12, two re-verify flags open, transfer-ops rank contested). Exposure: the

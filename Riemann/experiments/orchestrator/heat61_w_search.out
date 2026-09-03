@@ -1,0 +1,111 @@
+/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat61_w_search.py:131: RuntimeWarning: invalid value encountered in divide
+  integ2 = (hm - h0) / (np.exp(2 * xm) - 1)
+   L-C inverse-FFT self-test (pair e^{-t^2} -> e^{-x^2/4}/2sqrt(pi)): max abs err 4.35e-06
+== heat61 W(f) negative-cell search (post-G0-PASS) ==
+   grid 2^19, primes to e^16, eps_cert 0.001
+   population 24 x 3 lineages x 200 generations, migration /25
+  gen   1  LA: -1.9148e-08  LB: -3.8493e-05  LC: +9.7389e-01   [33s]
+  gen   5  LA: -4.3150e-07  LB: -4.5408e-05  LC: +5.4196e-01   [168s]
+  gen  10  LA: -3.1844e-06  LB: -1.0832e-04  LC: +4.4062e-01   [333s]
+  gen  15  LA: -9.5983e-06  LB: -4.6348e-04  LC: +4.2713e-01   [499s]
+  gen  20  LA: -5.8545e-05  LB: -5.7063e-04  LC: +4.1900e-01   [665s]
+  gen  25  LA: -9.0755e-05  LB: -6.5841e-04  LC: +4.1135e-01   [830s]
+  gen  30  LA: -1.2717e-04  LB: -8.2162e-04  LC: +3.7848e-01   [995s]
+  gen  35  LA: -1.8923e-04  LB: -8.2412e-04  LC: +2.9972e-01   [1162s]
+  gen  40  LA: -2.7584e-04  LB: -8.5881e-04  LC: +2.7838e-01   [1328s]
+  gen  45  LA: -4.5284e-04  LB: -9.0369e-04  LC: +2.7502e-01   [1490s]
+  gen  50  LA: -5.0544e-04  LB: -9.0733e-04  LC: +2.7051e-01   [1653s]
+  gen  55  LA: -6.3756e-04  LB: -9.0903e-04  LC: +2.7051e-01   [1815s]
+  gen  60  LA: -7.1758e-04  LB: -9.0986e-04  LC: +2.6945e-01   [1980s]
+  gen  65  LA: -7.2118e-04  LB: -9.1266e-04  LC: +2.6775e-01   [2140s]
+  gen  70  LA: -7.8091e-04  LB: -9.2999e-04  LC: +2.6351e-01   [2309s]
+  gen  75  LA: -7.9522e-04  LB: -9.3008e-04  LC: +2.6258e-01   [2487s]
+  gen  80  LA: -8.1676e-04  LB: -9.3233e-04  LC: +2.6235e-01   [2655s]
+  gen  85  LA: -8.1676e-04  LB: -9.3299e-04  LC: +2.6235e-01   [2816s]
+  gen  90  LA: -8.3041e-04  LB: -9.3429e-04  LC: +2.6137e-01   [2977s]
+  gen  95  LA: -9.7818e-04  LB: -9.3429e-04  LC: +2.6004e-01   [3135s]
+  ~~ drift-reject: LA gen 97 Q_search=-1.031e-03 -> Q(2^21)=5.410e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 99 Q_search=-1.022e-03 -> Q(2^21)=-7.412e-08 (grid artifact, logged)
+  gen 100  LA: -9.7818e-04  LB: -9.3429e-04  LC: +2.6004e-01   [3294s]
+  ~~ drift-reject: LA gen 103 Q_search=-1.725e-03 -> Q(2^21)=1.040e-04 (grid artifact, logged)
+  ~~ drift-reject: LA gen 104 Q_search=-1.043e-03 -> Q(2^21)=-2.066e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 105 Q_search=-1.002e-03 -> Q(2^21)=-1.176e-05 (grid artifact, logged)
+  gen 105  LA: -9.8971e-04  LB: -9.3429e-04  LC: +2.5899e-01   [3455s]
+  ~~ drift-reject: LA gen 106 Q_search=-1.100e-03 -> Q(2^21)=3.790e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 109 Q_search=-1.031e-03 -> Q(2^21)=4.684e-05 (grid artifact, logged)
+  gen 110  LA: -9.8971e-04  LB: -9.3673e-04  LC: +2.5887e-01   [3614s]
+  ~~ drift-reject: LA gen 111 Q_search=-1.012e-03 -> Q(2^21)=1.232e-04 (grid artifact, logged)
+  gen 115  LA: -9.9880e-04  LB: -9.3673e-04  LC: +2.5887e-01   [3771s]
+  gen 120  LA: -9.9880e-04  LB: -9.3695e-04  LC: +2.5887e-01   [3929s]
+  ~~ drift-reject: LA gen 121 Q_search=-1.026e-03 -> Q(2^21)=8.468e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 122 Q_search=-1.053e-03 -> Q(2^21)=-3.913e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 123 Q_search=-1.010e-03 -> Q(2^21)=-3.901e-06 (grid artifact, logged)
+  ~~ drift-reject: LA gen 125 Q_search=-1.030e-03 -> Q(2^21)=6.979e-05 (grid artifact, logged)
+  gen 125  LA: -9.9937e-04  LB: -9.3695e-04  LC: +2.5887e-01   [4089s]
+  ~~ drift-reject: LA gen 130 Q_search=-1.010e-03 -> Q(2^21)=1.420e-04 (grid artifact, logged)
+  gen 130  LA: -9.9937e-04  LB: -9.3695e-04  LC: +2.5887e-01   [4245s]
+  ~~ drift-reject: LA gen 133 Q_search=-1.127e-03 -> Q(2^21)=1.831e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 133 Q_search=-1.030e-03 -> Q(2^21)=6.759e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 134 Q_search=-1.048e-03 -> Q(2^21)=9.514e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 135 Q_search=-1.029e-03 -> Q(2^21)=9.795e-05 (grid artifact, logged)
+  gen 135  LA: -9.9937e-04  LB: -9.3695e-04  LC: +2.5886e-01   [4406s]
+  ~~ drift-reject: LA gen 137 Q_search=-1.006e-03 -> Q(2^21)=-1.423e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 140 Q_search=-1.027e-03 -> Q(2^21)=8.009e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 140 Q_search=-1.026e-03 -> Q(2^21)=4.465e-06 (grid artifact, logged)
+  gen 140  LA: -9.9937e-04  LB: -9.3695e-04  LC: +2.5886e-01   [4565s]
+  ~~ drift-reject: LA gen 142 Q_search=-1.031e-03 -> Q(2^21)=3.683e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 143 Q_search=-1.003e-03 -> Q(2^21)=-2.562e-07 (grid artifact, logged)
+  ~~ drift-reject: LA gen 143 Q_search=-1.017e-03 -> Q(2^21)=1.252e-04 (grid artifact, logged)
+  ~~ drift-reject: LA gen 144 Q_search=-1.027e-03 -> Q(2^21)=6.074e-06 (grid artifact, logged)
+  ~~ drift-reject: LA gen 144 Q_search=-1.023e-03 -> Q(2^21)=-7.109e-09 (grid artifact, logged)
+  gen 145  LA: -9.9937e-04  LB: -9.3695e-04  LC: +2.5886e-01   [4726s]
+  ~~ drift-reject: LA gen 146 Q_search=-1.025e-03 -> Q(2^21)=1.706e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 146 Q_search=-1.057e-03 -> Q(2^21)=1.038e-04 (grid artifact, logged)
+  ~~ drift-reject: LA gen 147 Q_search=-1.029e-03 -> Q(2^21)=2.770e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 149 Q_search=-1.024e-03 -> Q(2^21)=1.512e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 149 Q_search=-1.038e-03 -> Q(2^21)=5.222e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 150 Q_search=-1.032e-03 -> Q(2^21)=1.411e-05 (grid artifact, logged)
+  gen 150  LA: -9.9937e-04  LB: -9.3695e-04  LC: +2.5886e-01   [4891s]
+  ~~ drift-reject: LA gen 151 Q_search=-1.022e-03 -> Q(2^21)=1.170e-04 (grid artifact, logged)
+  ~~ drift-reject: LA gen 153 Q_search=-1.066e-03 -> Q(2^21)=5.755e-05 (grid artifact, logged)
+  gen 155  LA: -9.9937e-04  LB: -9.3695e-04  LC: +2.5886e-01   [5053s]
+  ~~ drift-reject: LA gen 156 Q_search=-1.020e-03 -> Q(2^21)=-2.735e-06 (grid artifact, logged)
+  ~~ drift-reject: LA gen 156 Q_search=-1.090e-03 -> Q(2^21)=3.633e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 159 Q_search=-1.099e-03 -> Q(2^21)=7.562e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 160 Q_search=-1.012e-03 -> Q(2^21)=-1.027e-05 (grid artifact, logged)
+  gen 160  LA: -9.9937e-04  LB: -9.3702e-04  LC: +2.5886e-01   [5221s]
+  ~~ drift-reject: LA gen 162 Q_search=-1.014e-03 -> Q(2^21)=1.373e-04 (grid artifact, logged)
+  ~~ drift-reject: LA gen 162 Q_search=-1.013e-03 -> Q(2^21)=1.178e-05 (grid artifact, logged)
+  gen 165  LA: -9.9937e-04  LB: -9.3743e-04  LC: +2.5886e-01   [5390s]
+  ~~ drift-reject: LA gen 166 Q_search=-1.028e-03 -> Q(2^21)=6.364e-06 (grid artifact, logged)
+  ~~ drift-reject: LA gen 168 Q_search=-1.124e-03 -> Q(2^21)=3.363e-05 (grid artifact, logged)
+  gen 170  LA: -9.9937e-04  LB: -9.3743e-04  LC: +2.5886e-01   [5559s]
+  ~~ drift-reject: LA gen 175 Q_search=-1.294e-03 -> Q(2^21)=1.151e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 175 Q_search=-1.015e-03 -> Q(2^21)=1.820e-05 (grid artifact, logged)
+  gen 175  LA: -9.9937e-04  LB: -9.3744e-04  LC: +2.5886e-01   [5724s]
+  ~~ drift-reject: LA gen 176 Q_search=-1.028e-03 -> Q(2^21)=7.808e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 176 Q_search=-1.002e-03 -> Q(2^21)=-1.389e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 178 Q_search=-1.017e-03 -> Q(2^21)=4.206e-06 (grid artifact, logged)
+  ~~ drift-reject: LA gen 179 Q_search=-1.027e-03 -> Q(2^21)=2.120e-05 (grid artifact, logged)
+  gen 180  LA: -9.9937e-04  LB: -9.3744e-04  LC: +2.5880e-01   [5887s]
+  ~~ drift-reject: LA gen 184 Q_search=-1.010e-03 -> Q(2^21)=-3.725e-06 (grid artifact, logged)
+  gen 185  LA: -9.9937e-04  LB: -9.3744e-04  LC: +2.5869e-01   [6048s]
+  ~~ drift-reject: LA gen 186 Q_search=-1.032e-03 -> Q(2^21)=4.694e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 187 Q_search=-1.008e-03 -> Q(2^21)=4.061e-06 (grid artifact, logged)
+  ~~ drift-reject: LA gen 187 Q_search=-1.003e-03 -> Q(2^21)=1.420e-04 (grid artifact, logged)
+  ~~ drift-reject: LA gen 188 Q_search=-1.233e-03 -> Q(2^21)=6.927e-05 (grid artifact, logged)
+  gen 190  LA: -9.9937e-04  LB: -9.3766e-04  LC: +2.5869e-01   [6209s]
+  ~~ drift-reject: LA gen 192 Q_search=-1.419e-03 -> Q(2^21)=2.546e-06 (grid artifact, logged)
+  ~~ drift-reject: LA gen 194 Q_search=-1.002e-03 -> Q(2^21)=-9.790e-06 (grid artifact, logged)
+  ~~ drift-reject: LA gen 195 Q_search=-1.026e-03 -> Q(2^21)=8.486e-05 (grid artifact, logged)
+  gen 195  LA: -9.9937e-04  LB: -9.3781e-04  LC: +2.5869e-01   [6370s]
+  ~~ drift-reject: LA gen 196 Q_search=-1.006e-03 -> Q(2^21)=-6.827e-06 (grid artifact, logged)
+  ~~ drift-reject: LA gen 196 Q_search=-1.103e-03 -> Q(2^21)=-2.063e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 197 Q_search=-1.040e-03 -> Q(2^21)=2.525e-05 (grid artifact, logged)
+  ~~ drift-reject: LA gen 199 Q_search=-1.025e-03 -> Q(2^21)=6.705e-05 (grid artifact, logged)
+  gen 200  LA: -9.9937e-04  LB: -9.3781e-04  LC: +2.5869e-01   [6531s]
+== search complete ==
+  generations run: 200; frozen candidates: 0
+  LA min-Q all-time: -9.9937e-04
+  LB min-Q all-time: -9.3781e-04
+  LC min-Q all-time: +2.5869e-01
