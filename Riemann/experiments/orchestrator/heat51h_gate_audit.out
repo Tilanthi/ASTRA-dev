@@ -1,0 +1,46 @@
+== A1: values parsed from the committed file (0ea87ad) ==
+  k453       k3=   −0.012501958 k5=  −0.00302117259 k4= −0.025467683 k6= −0.00297433104
+  k693       k3=  −0.0069345849 k5= +0.002488754876 k4= −0.072931507 k6=  −0.0149522807
+  k922       k3=   −0.052046098 k5=   −0.0259592386 k4= −0.147146455 k6=  −0.0496245566
+  k1166      k3=   +0.016191371 k5=    +0.004461096 k4= −0.187247789 k6=  −0.0699133133
+  Lehmer     k3=     +0.2561707 k5=   +0.1533875676 k4= −0.270149071 k6=  −0.1430774046
+  telescope  k3=     +0.3278604 k5=    +0.309486353 k4= −0.720667532 k6=  −0.4606781979
+
+== A2: parsed vs OUR hand-typed heat51f dict (all cells) ==
+  MISMATCH telescope k5: committed      +0.309486353 vs our dict      -0.309486353
+  transcription errors found: 1 (of 24 cells)
+
+== A3: gate re-run on PARSED values vs T2h (plain) ==
+  k453       k3: committed     −0.012501958 T2h -0.01250131743      640.6 units  BEYOND
+  k693       k3: committed    −0.0069345849 T2h -0.006934215381     3695.0 units  BEYOND
+  k693       k5: committed  +0.002488754876 T2h 0.002488754922      45.71 units  BEYOND
+  k693       k4: committed     −0.072931507 T2h -0.07293152262      15.62 units  BEYOND
+  k922       k3: committed     −0.052046098 T2h -0.05204575916      338.8 units  BEYOND
+  k1166      k3: committed     +0.016191371 T2h 0.01619119603      175.0 units  BEYOND
+  Lehmer     k4: committed     −0.270149071 T2h -0.2701490909      19.94 units  BEYOND
+  telescope  k3: committed       +0.3278604 T2h  0.3278601723      2.277 units
+  telescope  k5: committed     +0.309486353 T2h   0.309486353   0.005824 units
+  telescope  k4: committed     −0.720667532 T2h -0.7206672947      237.3 units  BEYOND
+  telescope  k6: committed    −0.4606781979 T2h -0.4606781977      1.534 units
+  column verdicts (>10 units): k3 4/6, k5 1/6, k4 3/6, k6 0/6
+
+== H1: BEAST's even-channel law, our own check at Lehmer ==
+   D kappa_n(eps) = (n+1)*kappa_{n+1}*eps + O(eps^2)  (non-pair zeros)
+  eps=1.0e-13: k2: obs 0.768508 pred 0.76851 ratio 1.0 | k4: obs 0.75579 pred 0.766938 ratio 0.9855 | k6: obs -43.1843 pred 0.744104 ratio -58.04
+  eps=1.0e-12: k2: obs 0.768487 pred 0.76851 ratio 1.0 | k4: obs 0.655456 pred 0.766938 ratio 0.8546 | k6: obs -438.54 pred 0.744104 ratio -589.4
+  eps=1.0e-11: k2: obs 0.768273 pred 0.76851 ratio 0.9997 | k4: obs -0.347885 pred 0.766938 ratio -0.4536 | k6: obs -4392.1 pred 0.744104 ratio -5903.0
+
+== X1: delta->odd exact identity (delta/d = 1%, 5%) ==
+  delta/d=0.01: D kappa_3 = 2.35e-58  D kappa_5 = 5.89e-55  (exact identity: ~1e-54..-57 machine zero at dps 60)
+  delta/d=0.05: D kappa_3 = 1.07e-57  D kappa_5 = 2.58e-54  (exact identity: ~1e-54..-57 machine zero at dps 60)
+
+== H2: second-order coefficient extraction (two-eps subtraction) ==
+   D kappa_n = A_n*eps + B_n*eps^2; A_n = (n+1) kappa_{n+1} (H1),
+   B_n = -(n+1)/d^(n+2) (pair curvature, closed form: exact pair
+   block -1/k*[(d-eps)^-k + (d+eps)^-k - 2 d^-k], even k). Note:
+   first draft of the closed form said -n/d^(n+2), dropping the
+   eps^2 term inside the log argument — same slip class as #60.
+  n=2: A = 0.76851  H1 pred 0.76851  | B = -2.377e+7  pair pred -2.377e+7  | eps* = kappa_3*d^4 = 3.23e-8  | A/|B| = 3.2e-8
+  n=4: A = 0.766938  H1 pred 0.766938  | B = -1.115e+11  pair pred -1.115e+11  | eps* = kappa_5*d^6 = 6.88e-12  | A/|B| = 6.9e-12
+  n=6: A = 0.744104  H1 pred 0.744104  | B = -4.393e+14  pair pred -4.393e+14  | eps* = kappa_7*d^8 = 1.69e-15  | A/|B| = 1.7e-15
+done

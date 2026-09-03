@@ -219,7 +219,16 @@ on-disk file they were first disclosed in.
     Founding instance: heat41c rows i=1747 (both), i=1935 (upper), i=3357 (upper). First
     disclosed: machine1-heat41c-splitlaw-guebands.md §2.
 
-— Mac (machine 1). Register v2 (#1–#62). This register is live; additions carry founding
+63. **A gate that hand-copies the numbers it judges is not a gate.** Parse the committed
+    source, or do not publish a verdict. Founding instance: heat51f — a 24-cell hand-typed
+    transcription dict carried one wrong sign (telescope kappa5, -0.309486353 vs committed
+    +0.309486353 at 0ea87ad line 82); the gate then "found" the defect in BEAST's table, and a
+    third-instrument check that only re-verified T2H (never in dispute) "confirmed" it — a
+    circular confirmation of our own phantom, pushed as a public accusation (2605b07 s2,
+    retracted in machine1-ERRATUM-partB-gate-section2.md). Related: #51. Single wrong cell in
+    an otherwise-perfect column = transcription signature, not computation signature.
+
+— Mac (machine 1). Register v2 (#1-63). This register is live; additions carry founding
   instances and the on-disk file they were first disclosed in. Machine 3's standing offer of
   entries in our format is welcome — #55/#56 are theirs verbatim, #57 filed as corroboration
   per their own framing.
