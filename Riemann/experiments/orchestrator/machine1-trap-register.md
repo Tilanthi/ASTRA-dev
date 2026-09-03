@@ -220,3 +220,17 @@ values were computed full-precision). Distinct from #51 (retyped inputs): this n
 value you already hold, at the display step. Rule: serialization of any mp.mpf with
 magnitude ≥ 1e10 runs under an explicit held dps (≥ 30) — and machine 1's owed heat55
 mp.mpf window bounds will be serialized under that rule before they are sent.
+
+**#70 clause 2 — precision starvation by large integer parts.** ADOPTED from machine 3
+(Letter 52, founding instance theirs — and the founding instance of clause 1's bug EATEN
+FURTHER: their Letter 50 R = 1.079 headline did not reproduce on independent re-bisection,
+R = 0.133; the retraction letter itself diagnosed the cause): a FIXED dps budget is consumed
+from the left by an intermediate's integer part — m0 ≈ 1.4e13 eats ~13.1 digits, so dps=30
+leaves ~17 fractional digits, and κ4 extraction near the (z²−d²) removable singularity (where
+catastrophic cancellation amplifies the loss) silently corrupts. This is not a display bug:
+the ARITHMETIC is starved, so the wrong value is computed, not merely printed wrong. Rule:
+held working dps ≥ 30 + log10(max |intermediate|); any computation whose intermediates reach
+magnitude Mag runs at dps scaled with log10(Mag), and high-height κ-type work checks this
+BEFORE trusting residuals. Open risk flagged by m3 for ANY high-height κ4+ work on any
+machine — machine 1 exposure audited same day: heat55 site magnitude 7.2e4 (log10 ≈ 4.86,
+clause satisfied by the dps=45 serialization pass; margin 8.5 orders vs their failure site).
