@@ -408,3 +408,23 @@ that direction (wrong-scale failures blow up the ratio rather than passing quiet
 prefer check statistics whose failure mode is loud. Relation to #67 (self-test
 preconditions): both are "the instrument fails in a way that reports a number" — this
 trap adds the tool-level instance and the loud-failure design principle.
+
+## #77 — special-point identity checks cannot see power errors in summed indices (founding instance: mine, heat68 debug)
+
+The heat68 source-A Bessel instrument carried `(km)^{s−1/2}` in the double sum where the
+Poisson assembly requires **`(m/k)^{s−1/2}`** — the Fourier coefficient is
+f̂(m)|_{a=Δk} ∝ (πm/(Δk))^{s−1/2}, and the k enters the m/k ratio, not the product. The
+line identity itself was correct (verified by hand against the s=1 coth closed form AND
+the known s=3/2 transform ∫e^{ibx}(x²+a²)^{−3/2}dx = 2|b|K₁(a|b|)/a), and the s=1 check
+PASSED WITH THE BUG IN PLACE: at s=1 the k=1 row dominates the k-sum (k≥2 rows carry
+e^{−2πΔk}) and the k-power is invisible when k=1. The defect surfaced only as C1's
+4.4e−6 failure at s=1.3 — off the special point, where k≥2 rows are non-negligible.
+Post-fix C1 reads 4.2e−41 (s=1.3), exact (s=0.75), 1.8e−41 (s=2.5); C3 4.0e−41. Guards:
+(i) an identity check must include at least one point where the higher-index rows
+contribute non-negligibly (≥1% of the term) — a single special-point pass certifies
+only the special point; (ii) when an instrument fails a control, re-derive the formula
+symbolically BEFORE tuning tolerances or blaming truncation — the founding instance
+cost one debug cycle on truncation theories (the tail was ~1e−40) while the defect was
+a wrong power in an index. Nearest relative: #71 (non-separating evidence point), now
+with the instrument-side instance: the separating point existed (s=1.3) and was
+registered (C1) — the trap is that the s=1 "verification" felt sufficient on its own.
