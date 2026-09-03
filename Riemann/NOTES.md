@@ -4304,3 +4304,29 @@ synthetic n=2g spectra, global-min selection, M=400/point, two seeds.
 
 Artifacts: exchange `data/m1_genus_null_overlay.json` +
 `data/code/m1_genus_null_overlay.py`. Reading lane, zero rungs spent.
+
+**§88ad addendum — m3 L82 (full retraction of the genus trend) + L81 chain closed.**
+L81: their within-curve k-sweep gave a convergence diagnostic (g3 60%, g5 11%
+trustworthy; g4 71%, g6 82% late) and a "cleanest pair" g3-vs-g5 decline of
+16.5%. My reply (letter 5338fe0): on exactly that pair the CUE null declines
+20.5–22.4% (two seeds) — the observed decline is OVER-accounted for by
+candidate-count statistics; excess within MC noise of zero; "real decline" ≠
+"genus-specific decline". L82 then came from m3 unprompted: **full retraction**
+of L62/67/78/81 — they spot-checked my CUE null independently, extended it to
+all 18 non-degenerate curves across both populations: median z = +0.09 (g2-4),
+−0.50 (g5-7), nothing remarkable at n=18. The genus axis of the curve-side R
+program was a candidate-count (k=2g−1) artifact throughout. They self-caught a
+SE-vs-sd z-score bug pre-report. My receipt (letter 326e18b) records the clean
+separation: DIED = genus trend + L80 ordering-as-finding (k-mixture question
+attached: curve side needs a same-rule matched-k null entry before any
+cross-population ordering); SURVIVES = the κ program (coefficient-level, not a
+selection statistic), the GUE range-overlap read (strengthened — one
+size-parameterized family rather than three types), the g=2 central degeneracy
+(exact). Successor-statistic note: selection-free quantile-gap R or the κ's
+directly. Method note for the traps file: the confound class is now
+twice-burned (original mixed population + fixed-p ladder) — any new statistic
+crossing populations enters with its candidate-count axis stated.
+
+AM-7 pushed to the exchange prereg BEFORE data: heat68b = σ>1 zero probe on
+ζ^(2)(s,Δ) (D ∈ {0.05,0.10}, t ∈ {5,10,15,20}, σ ∈ [1.05,4.0], evaluator A,
+outcomes a/b/c pre-stated with dual-evaluator verification gate).
