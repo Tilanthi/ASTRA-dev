@@ -1,0 +1,43 @@
+CATEGORY: C (κ/telescope lane — E4 census; C4 stop-rule after this)
+== heat55: E4 telescope full census (pre-registered) ==
+site mid=71732.9085586 d=0.0073507  a/d=1.3604  2/d^2=37015
+bc_model(0.01, 0.5) = 0.0074084303  (E9 2-row b_c^emp 0.007409379 = +0.013%; beast committed 0.007408 +- 2e-6)
+  E1 b=0.0060    a=0.0100 b=0.00600 lam=0.50: BIRTH                real=2 wind=4  |y|=0.0040077  pure=0.0040065
+  E1 b=0.0065    a=0.0100 b=0.00650 lam=0.50: BIRTH                real=2 wind=4  |y|=0.0032621  pure=0.0032607
+  E1 b=0.0070    a=0.0100 b=0.00700 lam=0.50: BIRTH                real=2 wind=4  |y|=0.0022159  pure=0.0022139
+  E1 b=0.0072    a=0.0100 b=0.00720 lam=0.50: BIRTH                real=2 wind=4  |y|=0.0015920  pure=0.0015891
+  E1 b=0.0073    a=0.0100 b=0.00730 lam=0.50: BIRTH                real=2 wind=4  |y|=0.0011529  pure=0.0011489
+  E1 b=0.0074    a=0.0100 b=0.00740 lam=0.50: BIRTH                real=2 wind=4  |y|=0.0003354  pure=0.0003211
+  E1 b=0.00745   a=0.0100 b=0.00745 lam=0.50: CLEAN(all-on-line)   real=4 wind=4
+  E1 b=0.0075    a=0.0100 b=0.00750 lam=0.50: CLEAN(all-on-line)   real=4 wind=4
+  E1 b=0.0076    a=0.0100 b=0.00760 lam=0.50: CLEAN(all-on-line)   real=4 wind=4
+  E1 b=0.0078    a=0.0100 b=0.00780 lam=0.50: CLEAN(all-on-line)   real=4 wind=4
+  E1 b=0.0080    a=0.0100 b=0.00800 lam=0.50: CLEAN(all-on-line)   real=4 wind=4
+  SL a=0.01 lam=0.65 b=0.0079757039 a=0.0100 b=0.00798 lam=0.65: BIRTH                real=2 wind=4  |y|=0.0023094  pure=0.0023081
+  SL a=0.01 lam=0.65 b=0.0081757039 a=0.0100 b=0.00818 lam=0.65: BIRTH                real=2 wind=4  |y|=0.0016397  pure=0.0016377
+  SL a=0.01 lam=0.80 b=0.0087508647 a=0.0100 b=0.00875 lam=0.80: BIRTH                real=2 wind=4  |y|=0.0023925  pure=0.0023919
+  SL a=0.01 lam=0.80 b=0.0089508647 a=0.0100 b=0.00895 lam=0.80: BIRTH                real=2 wind=4  |y|=0.0016966  pure=0.0016956
+  SL a=0.005 lam=0.5 b=0.00096082019 a=0.0050 b=0.00096 lam=0.50: BIRTH                real=2 wind=4  |y|=0.0011256  pure=0.0011238
+  SL a=0.005 lam=0.5 b=0.0011608202 a=0.0050 b=0.00116 lam=0.50: BIRTH                real=2 wind=4  |y|=0.0008293  pure=0.0008269
+  SL a=0.015 lam=0.5 b=0.011569678 a=0.0150 b=0.01157 lam=0.50: BIRTH                real=2 wind=4  |y|=0.0025723  pure=0.0025678
+  SL a=0.015 lam=0.5 b=0.011769678 a=0.0150 b=0.01177 lam=0.50: BIRTH                real=2 wind=4  |y|=0.0018284  pure=0.0018218
+
+E1 sqrt-fit: b_c^emp = 0.011400227  C^emp = 0.000085  r^2 = 0.999637
+F1 (b_c^emp vs model, >1% FAIL): dev = +53.882% -> FAIL
+F2 (linearity r^2 >= 0.999): -> PASS
+F3 (row labels): PASS
+  (C^emp handed to beast's c(a,lam) lane — no our-side closed-form prediction pre-registered)
+
+E2 lam=0.65: bc_model = 0.0083757039
+  2-row system: b_c^emp = 0.007572377  dev = -9.591%  (gate 2%) -> FAIL
+
+E2 lam=0.80: bc_model = 0.0091508647
+  2-row system: b_c^emp = 0.008348563  dev = -8.767%  (gate 2%) -> FAIL
+
+E3 a=0.005: bc_model = 0.0013608202
+  2-row system: b_c^emp = 0.000523346  dev = -61.542%  (gate 2%) -> FAIL
+
+E3 a=0.015: bc_model = 0.011969678
+  2-row system: b_c^emp = 0.011165432  dev = -6.719%  (gate 2%) -> FAIL
+
+done

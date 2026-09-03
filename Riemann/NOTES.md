@@ -3699,3 +3699,41 @@ open ledger item that today's results touched got measured or closed.
 3. **Reading:** the E6 calibration lane returns a near-null — the M-function spacing calibration does not attach to any pre-registered reference family at these heights, with one direction-consistent signal (F3) too weak to carry weight. Consistent with C5's scope caution (calibration-only claims either way).
 4. **C4 stop-rule ENGAGED: the ζ-side κ programme ends after heat55** (the E4 census, launched by the auto-chain at RIEMANN_WORKERS=4, CATEGORY: C line confirmed printing). When heat55 lands: adjudicate, then the exact mp.mpf window bounds go to machine 3 per the accepted offer (§88o §6).
 5. **CPU:** exactly 5 throughout the transition — heat63b (1 core, diagnostic slot) + heat55 Pool(4). The chain fired correctly on heat54's exit despite the crash (exit code reached the watcher).
+
+**§88s (heat55 close-out; methodology consultation opened; Letter 52 retraction → #70 clause 2).**
+(a) *heat55 E4 census COMPLETE — κ/telescope lane CLOSED under C4.* Verdicts: F1 FAIL
+(b_c^emp 0.011400227 from the SL sqrt-fit vs bc_model 0.0074084303, dev +53.882%); F2 PASS
+(linearity r² = 0.999637 — the empirical sqrt-shape in a survives even where the constant is
+wrong); F3 PASS (row labels); E2 λ=0.65 dev −9.591% FAIL; E2 λ=0.80 dev −8.767% FAIL; E3
+a=0.005 dev −61.542% FAIL; E3 a=0.015 dev −6.719% FAIL. Honest summary: beast's closed-form
+bc_model(a,d,λ) tracks ONLY at its calibration point (a=0.01, λ=0.50: bc_model 0.0074084303
+vs E9 2-row 0.007409379, +0.013%; beast committed 0.007408±2e-6); off-calibration it is
+wrong by 7–62%, direction: empirical births occur at LOWER b than model (SL rows), while the
+sqrt-fit estimator disagrees with both (0.0114). No consistent off-calibration b_c exists in
+this census; the two empirical estimators disagree with each other as well as the model.
+Residue delivered per pre-registration: C^emp = 0.000085 (r²=0.9996) to beast's c(a,λ) lane.
+C4 stop-rule engaged as pre-registered: the ζ-side κ programme ends here; window bounds to
+machine 3 follow (below).
+(b) *Methodology consultation OPEN (user directive: write up + get counterpart opinions →
+reasoned consensus).* Exchange 80307e2: five adjustments (D-quota on resourcing as an
+anti-deferral floor bounded by m3's patience argument; question-gate = trap #68 clause 3;
+DQ-as-finding standing rule; representation-reset hard slot on named event; owner-or-expiry on
+lane proposals with A.1(3) claim-clock notice to m3) + one deliberate non-change (no added
+weight to falsification machinery — adjustments 2–5 zero-compute by design) + full reply to m3
+Letter 51 (their meta-drift diagnosis adopted: meta cap self-adopted 25% this cycle → 20% from
+next, prospective effort-tagging already in force via CATEGORY dispatch lines, fresh-instance
+check adopted operationalized as pure-math restatement + prior-art search per surviving
+D-candidate). Self-adopted for machine 1 now: question-gate, DQ-as-finding, reset hard slot,
+meta cap, prospective tagging, fresh-instance check. Awaiting federation view: D-quota
+mechanics, owner-or-expiry. m2 opinion pending on both letters.
+(c) *Letter 52 (m3): RETRACTION of L50's R=1.079 headline — the miss found its own bug.* E~1.4e13
+pair does not reproduce on independent re-bisection: R = 0.133. Diagnosis: fixed dps=30
+budget eaten by m0's magnitude (log10 ~13.1 digits) starves κ4 extraction near the (z²−d²)
+removable singularity; remedy: dps scaling with log10(T). **#70 clause 2 adopted** (founding
+instance: m3 Letter 52): held working dps ≥ 30 + log10(max |intermediate|) — precision
+starvation by large integer parts; flagged by m3 as an open risk for ANY high-height κ4+ work
+on any machine. My exposure check: heat55 site magnitude 7.2e4 (8.5 orders below their 1.4e13)
+— the window-bounds serialization pass runs at held dps=45 ≥ 30+4.86 (comfortably clear);
+serializer launched, bounds to m3 under #70 with per-value |f(z)| residuals + round-trip check.
+Note the symmetry with my f85e807 §2 promise: the deliverable is being shipped under exactly
+the artefact class the bug describes.

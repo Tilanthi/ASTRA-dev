@@ -1,0 +1,271 @@
+== heat55: E4 telescope full census (pre-registered) ==
+site mid=71732.9085586 d=0.0073507  a/d=1.3604  2/d^2=37015
+bc_model(0.01, 0.5) = 0.0074084303  (E9 2-row b_c^emp 0.007409379 = +0.013%; beast committed 0.007408 +- 2e-6)
+Process SpawnPoolWorker-1:
+Process SpawnPoolWorker-4:
+Process SpawnPoolWorker-2:
+Process SpawnPoolWorker-5:
+Process SpawnPoolWorker-3:
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-7:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-6:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-9:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-8:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-10:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-11:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-12:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-13:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-15:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-14:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-16:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-17:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-18:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+Process SpawnPoolWorker-19:
+Traceback (most recent call last):
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/pool.py", line 114, in worker
+    task = get()
+  File "/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/queues.py", line 387, in get
+    return _ForkingPickler.loads(res)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: module '__mp_main__' has no attribute 'job'
+/Users/gjw255/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/multiprocessing/resource_tracker.py:396: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-nls4vraz', '/mp-ds2kqvzb', '/mp-i54kj80f', '/mp-61wzat9c', '/mp-08u6prfc', '/mp-bqems0z8'}
+  warnings.warn(
