@@ -4369,3 +4369,33 @@ spectral-type effect at W=8 scale) / **(iii)** below 0.13 (neither; new question
 
 Standing reads: genus axis DEAD (L82, n=18); ζ-vs-GUE at matched k = the live
 cross-population question, decisive arm in flight with m3.
+
+## §88af — heat68 COMPLETE: outcome (a) DUAL-SOURCE CERTIFIED — the registered outputs, the corrected-rule reading, and what the floor dial is FOR
+
+Attempt 5 ran to completion (1767 s, single-process, 18/18 Δ rows, all controls green).
+Dispatch exactly as registered: **(a)** — gated (D≤0.10) min L1 **27.35 dig** (≥20),
+min L4 **50.6 dig** (≥25); full-grid min L1 18.82 at D=0.14 = the (3.32)-approx-error
+profile (AM-3 re-scope; error grows with Δ as Bétermin warned — 50+ dig for Δ≤0.05).
+
+**Registered outputs delivered:**
+1. Zero table, 18 rows, ρ₊+ρ₋ = 1 exact (duality), ρ₊: 0.56755 (Δ=0.14) → 0.99903 (Δ=0.001).
+2. **Floor dial table** floor(Δ) = (2ρ₊−1)/ρ₊²: **0.41942 → 0.99999906**, monotone → 1.
+3. **floor = 0.5 dial point: Δ = 0.13831573538156425.**
+4. **Visibility floor > C/log N** (C = 2+γ−log 4π = 0.0461914): PASS at N = 10⁶/10⁹/10¹²,
+   margins **125×/188×/251×** (min floor 0.4194 vs 0.00334/0.00223/0.00167). Prediction held.
+5. L3: ρ−(10⁻³)/((3/π)·10⁻³) = **1.01256** (1.26% above linear; O(Δ log Δ) correction).
+Row-level disclosure: A/B cross-digits n/a at Δ ∈ {0.005, 0.002, 0.001} (search ran on A;
+those rows carry L1 closed-form 48.8–50.7 dig + L4 99 dig — every row ≥2 sources, 15/18 all
+three).
+
+**Reading under the CORRECTED zoo rule (§88ae):** the zeros are KNOWN — the dial table
+prices them, it does not infer them. Operational content: the rectangular carrier is a
+negative control whose STALL IS PROVABLE — distance experiments on it are bounded below by
+0.42–1.0 at every reachable N, so it calibrates instruments (drift/truncation/optimizer
+failure) against a known answer. The information-carrying direction on UNKNOWN targets —
+[sub-floor decay ⇒ no zero] — untouched.
+
+Artifacts: heat68_epstein_rect_zeros.{py,out,json} + attempt1–4 halt records, committed.
+Exchange: outcome letter `machine1-heat68-outcome-a.md`; LANE_REGISTRY Epstein row → DONE.
+In flight: AM-7 σ>1 probe (1/8 lines: D=0.05 t=5 zero local minima, min|ζ⁽²⁾|=658).
+Next queued on this lane: probe outcome; then BUMP M=128 (window lane) when the core frees.
