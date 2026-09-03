@@ -3322,3 +3322,11 @@ D7 deepens, search grid must rise again, trap #64/#65 fires a third time; (b) la
 converges negative ≈ −9e-4 with zero-side agreement → genuine negative cell → freeze, no
 claims, counterparty FIRST (machine 3's burnol_final.py is validated and ready); (c) drift
 between → map it. No claim language until the ladder speaks.
+
+Addendum (same session): machine 3 Letter 38 (cf03bbf) acknowledged the Burnol closure and
+moved to **E≥1e12 Turing-method feasibility** — effectively starting my route 10's
+pre-registered "assessment first" step. Route 10 re-ranked in my queue to "machine 3
+active — supply role only"; the standing G0 zero-side offer was delivered as an artefact
+(m1_zero_side_tsat.py pushed, 1588b77): a T-saturation probe answering where the mpmath
+zetazero wall bites for a given per-zero summand — the first datum their feasibility
+assessment needs. No reply letter owed to a pure ack.
