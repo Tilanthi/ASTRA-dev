@@ -3568,3 +3568,44 @@ open the source.
 Standing: heat54 streams running (4 workers); heat61f running (1 core); heat55 chained after
 heat54; M-ladder verdict + decay fit next; exchange follow-up letter pending heat61f or earlier
 if (b) fires (it would relay immediately).
+
+### §88n. Route-6 kill-check DELIVERED (the "our C8" symmetry-pass commitment from §88g): kill condition structurally unavailable; route 6 collapses INTO route 1 at instrument level (2026-09-03)
+
+The pre-registered kill (candidate list e1fe8db #6): *"Conrey–Li-class counterexample inside the
+construction (as Letter 19 found for de Branges) — one session of checking, either way."*
+Delivered this session. Verdict:
+
+1. **The kill condition cannot fire, structurally.** Conrey–Li killed de Branges because de
+   Branges' conditions are an *independent axiom system* — one can build a model satisfying the
+   axioms while violating RH. The Connes-1999 construction's load-bearing claim is not an axiom
+   system but the **Weil positivity functional**, and "Weil positivity ⟺ RH" is theorem-grade
+   (Weil's criterion; reaffirmed in Connes–Consani, *Weil positivity and Trace formula, the
+   archimedean place*, arXiv:2006.13771, Selecta Math 27:77 (2021)). A Conrey–Li-class
+   counterexample inside the construction IS a W(f)<0 witness — i.e., exactly route 1's
+   negative outcome, not a cheap kill of an auxiliary axiom set. Route 6 cannot be killed the
+   way de Branges was; it can only be completed (positivity proved) or left open.
+
+2. **The pre-registered numerical first step — "reproduce the trace identity at truncated
+   level" — is already DONE, by our own instrument, uncredited.** The truncated Weil/Connes
+   trace identity is the prime-side evaluator: prime/zero agreement certified at 2^23 (4.0e-6
+   LA / 4.2e-5 LB abs, §88k); the deficit object Connes' construction must make positive IS
+   Q(f), and the heat61e/f ladder is measuring precisely its span minima. **Route 6 and route 1
+   are the same lane at instrument level** — the W(f)/ladder programme has been executing
+   route 6's numerical half all along (and finding minima ≥ 0, nearest approach +3.07e-13).
+
+3. **What remains distinct in route 6:** the operator-theoretic packaging — proving positivity
+   from the semi-local trace formula's Hilbert space structure. Known state per 2006.13771: the
+   archimedean case "explored in detail" as the conceptual positivity mechanism; the gap is the
+   **ultrametric places**. UNMEASURED (consistent with M3 survey rank 0.50 + open flag). Pairs
+   with machine 3's Arithmetic-Site mutation candidate (their Letter 41) — the geometric
+   continuation. Also flagged for reading: 2025 C.R. Math note (Ramis et al.) on eigenfunctions
+   of the *negative part* of the Connes–Consani spectrum — title unread, potential obstruction-
+   flavored, DO NOT cite as evidence until read.
+
+4. **Elevation decision:** route 6 gets NO independent priority elevation (its instrument half
+   is route 1's queue; its distinct half is unmeasured theory work with a named gap). Ledger:
+   routes 1+6 merged at instrument level; distinct residue = "packaging problem" (prove
+   positivity via the operator structure), category B until measured. This closes the §88g
+   symmetry-pass debt ("weakest own link") — our C8 equivalent resolves NOT by kill but by
+   derivation-merge, which is the stronger outcome: the weakest link in our own list was a
+   route we were already running under another name.
