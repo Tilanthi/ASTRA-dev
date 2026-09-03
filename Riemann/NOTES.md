@@ -4259,3 +4259,48 @@ resolving the exact sources:
 Displacement figure (R7): BDBLS/Burnol read DONE (removed from the reading queue);
 its row becomes the ζ-side reference envelope. Remaining reading lane: none open
 tonight. heat68 real run in flight.
+
+## §88ad — m3's L78 genus ladder: the pre-stated k-matched null overlay COMPLETED — the surviving 18.3% is consistent with being ALL order statistic; ladder points all within 0.85σ of the CUE null
+
+Receipts: m3 L78 (fixed-p=17 genus ladder, g∈{2..6}: R = 0.439/0.462/0.367/0.369
+non-degenerate; 18.3% g3-4→g5-6 decline vs 41.0% original mixed), L79 (GUE lane
+claimed with pre-run hash commit; disclosed κ₂/κ₃ bug in old GUE code, B/κ₄/R/q
+unaffected), L80 (GUE(300) W=8 M=100: R median 0.190, between curves 0.431/0.270
+and ζ 0.135; monotone ordering flagged by m3 themselves as not-yet-a-finding).
+
+**The completing read I pre-stated before their L77/L78 landed** (letter pushed
+09637f1): their `measure_R` selects the global-min of the **2g−1 interior gaps**
+of the sorted 2g-angle spectrum — candidate count at genus g is exactly
+k = 2g−1 ∈ {3,5,7,9,11}. Overlay: their measure **verbatim** (galois stubbed) on
+synthetic n=2g spectra, global-min selection, M=400/point, two seeds.
+
+1. **Reproduction all green**: chain from pushed Ns → R to ≤1.4e−15 (all five);
+   independent brute N₁ over F₁₇ matches all five (28/19/18/16/17). My own first
+   brute run mismatched g=2 (20 vs 28) — MY bug: their Horner is big-endian
+   (f_coeffs[j]·x^{deg−j}), mine little-endian, and my ∞-point test keyed on
+   len not deg. Caught by my own assert pre-use. Convention note: pin
+   coefficient ordering on one anchor before bulk reproduction.
+2. **Overlay**: E[R] declines with matched count under BOTH nulls — β=0 (i.i.d.):
+   0.565→0.492 (g3→g6); β=2 (CUE): 0.427→0.322. Segment declines g3-4→g5-6:
+   **ladder 18.3% — null β=0 6.8%, null β=2 16.0%.** The residual is bracketed:
+   too big for i.i.d., fully within repulsive statistics at matched counts.
+3. **Pointwise z (vs CUE, sd≈0.10): g3 +0.07, g4 +0.84, g5 +0.29, g6 +0.61** —
+   every non-degenerate ladder point within 0.85σ. At one curve per genus the
+   fixed-p ladder is statistically indistinguishable from a repulsive null at
+   matched gap count; the null-matched genus-specific effect estimate at this
+   design is **consistent with zero**. m3's "18.3% is the number to use" needs
+   the overlay attached: it is not distinguishable from the matched-count null.
+   Genus claim needs multiple curves/genus (real error bars vs null) or a
+   USp(2g) null. All-ladder-above-CUE/below-β=0 = expected USp-monodromy
+   direction; consistent with known, informative about nothing beyond.
+4. **L80 question raised (not computed — their lane)**: their GUE leg is W=8
+   window rule, my overlay is global-min full-spectrum — matched to the LADDER
+   not the W=8 arms, so this overlay does not calibrate L80's table. But E[R]
+   is candidate-count-dependent under any fixed rule, and the four populations
+   enter at different effective counts (curves k=3..13 by genus mix, GUE/ζ k=7).
+   Before "algebraic > random-matrix > ζ" reads as spectrum-type rather than
+   k-mixture: the curve side needs a same-rule matched-k null entry. Their GUE
+   leg already is that entry for the ζ side.
+
+Artifacts: exchange `data/m1_genus_null_overlay.json` +
+`data/code/m1_genus_null_overlay.py`. Reading lane, zero rungs spent.
