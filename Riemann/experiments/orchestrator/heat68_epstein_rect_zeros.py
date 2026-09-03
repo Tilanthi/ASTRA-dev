@@ -206,15 +206,23 @@ def run_controls():
     assert 2 <= d - dh <= 4, 'C4 h-scaling inconsistent with O(h^3)'
     ok['C4'] = [d, dh]
     # C5: parsing linearization — g(d) = -Gamma(-d)zeta(-2d)/(Gamma(d)zeta(2d))
-    # equals 1 + 2[gamma - 2 log(2 pi)] d at d = 1e-6, coefficient to >= 8 digits
-    d0 = mpf('1e-6')
+    # equals 1 + 2[gamma - 2 log(2 pi)] d + e d^2 (AMENDMENT-5: at d=1e-6 the
+    # intrinsic |e/c|*d floor = 3.2e-6 -> 5.5 dig, unreachable at order 8; measured
+    # e ~ 20. At d=1e-12 the floor is 11.5 dig. Scaling sub-assert: digits gain
+    # per 100x d-reduction is exactly 2 (first-order truncation); measured across
+    # five decades 1e-6..1e-14.)
     c = 2 * (euler - 2 * log(2 * pi))
-    g0 = (-gamma(-d0) * zeta(-2 * d0)) / (gamma(d0) * zeta(2 * d0))
-    d = digits(abs(g0 - (1 + c * d0)) / abs(c * d0))
-    P('C5 parse linearization at d=1e-6: %.1f dig (need 8); implies Delta*_c=e^g/(4pi)=%s'
-      % (d, mp.nstr(DSTAR_C, 16)))
-    assert d >= 8, 'C5 failed'
-    ok['C5'] = d
+    def g0(dv):
+        return (-gamma(-dv) * zeta(-2 * dv)) / (gamma(dv) * zeta(2 * dv))
+    def d_lin(dv):
+        return digits(abs(g0(dv) - (1 + c * dv)) / abs(c * dv))
+    d12, d10 = d_lin(mpf('1e-12')), d_lin(mpf('1e-10'))
+    P('C5 parse linearization at d=1e-12: %.1f dig (need 8); scaling 1e-10->1e-12 '
+      'gain %.2f (expect 2.0); implies Delta*_c=e^g/(4pi)=%s'
+      % (d12, d10 - d12, mp.nstr(DSTAR_C, 16)))
+    assert d12 >= 8, 'C5 failed'
+    assert 1 <= d10 - d12 <= 3, 'C5 scaling inconsistent with O(d) truncation'
+    ok['C5'] = [d12, d10 - d12]
     # AMENDMENT-2 equivalence: A == B at (s,D) in {0.6,0.9} x {0.05,0.1}
     for sv in ('0.6', '0.9'):
         for Dv in ('0.05', '0.1'):

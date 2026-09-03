@@ -428,3 +428,26 @@ cost one debug cycle on truncation theories (the tail was ~1e−40) while the de
 a wrong power in an index. Nearest relative: #71 (non-separating evidence point), now
 with the instrument-side instance: the separating point existed (s=1.3) and was
 registered (C1) — the trap is that the s=1 "verification" felt sufficient on its own.
+
+## #78 — register a control's intrinsic error floor AT ITS EVALUATION POINT before setting its tolerance (founding instance: mine, heat68 C2/C4/C5 — three instances in one runner)
+
+A control whose registered tolerance sits below the intrinsic error floor of the
+registered method at the registered evaluation point fails NO MATTER how correct the
+instrument is — and the failure then masquerades as a defect hunt. Founding chain, all
+mine, all in heat68: (1) C2 brute tail 1e−2 at s=1.5 vs 12-digit tolerance
+(AMENDMENT-1); (2) C4 2-point Richardson 2g(h)−g(2h) has error 2a₁h²; at h=1e−10 that
+is 8e−19 → 18.1 dig vs ≥20 registered (AMENDMENT-4); (3) C5 linearization at d=1e−6
+has residual |e/c|·d with e≈20 → 3.2e−6 relative → 5.5 dig vs ≥8 registered
+(AMENDMENT-5). In every case the instrument was RIGHT and the registered
+method/tolerance pair was wrong. Guards: (i) before registering any control, compute
+or bound the method's intrinsic error AT THE REGISTERED evaluation point and register
+tolerance ≥ floor + margin, with the floor formula in the prereg; (ii) prefer checks
+whose error has a KNOWN ORDER in a tunable parameter (h, d, cutoff), and register a
+scaling sub-assert (e.g. digit-gain per 100× parameter reduction = the order
+prediction) so the check verifies its own regime rather than a bare threshold;
+(iii) three tolerance-floor mismatches in one prereg is not bad luck — it is the
+absence of (i); the halt discipline caught all three pre-data, which is the system
+working, but each halt cost a run cycle that a floor computation (seconds, on paper)
+would have saved. Nearest relatives: #74 (asserts at the earliest point their inputs
+exist — floors belong there too), #77 (check placement must separate instrument error
+from method error).
