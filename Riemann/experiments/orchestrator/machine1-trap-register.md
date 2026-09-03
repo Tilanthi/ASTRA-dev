@@ -451,3 +451,10 @@ working, but each halt cost a run cycle that a floor computation (seconds, on pa
 would have saved. Nearest relatives: #74 (asserts at the earliest point their inputs
 exist — floors belong there too), #77 (check placement must separate instrument error
 from method error).
+Guard (iv), added after attempt-3 (C5 scaling assert): an assert whose expected
+direction is derived from a probe table must be re-derived NUMERICALLY from that same
+table before commit — founding instance: the AM-5 probe showed +2.00 digits per 100×
+d-reduction (9.51 → 11.51) and the assert was nonetheless written as d10 − d12 ∈ [1,3],
+demanding the impossible direction; attempt-3 halted on its own sign with every value
+green. Direction-free asserts (equality, ≥ against an absolute tolerance on a value
+known positive) are immune; difference asserts are the exposure class.

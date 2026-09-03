@@ -219,9 +219,9 @@ def run_controls():
     d12, d10 = d_lin(mpf('1e-12')), d_lin(mpf('1e-10'))
     P('C5 parse linearization at d=1e-12: %.1f dig (need 8); scaling 1e-10->1e-12 '
       'gain %.2f (expect 2.0); implies Delta*_c=e^g/(4pi)=%s'
-      % (d12, d10 - d12, mp.nstr(DSTAR_C, 16)))
+      % (d12, d12 - d10, mp.nstr(DSTAR_C, 16)))
     assert d12 >= 8, 'C5 failed'
-    assert 1 <= d10 - d12 <= 3, 'C5 scaling inconsistent with O(d) truncation'
+    assert 1 <= d12 - d10 <= 3, 'C5 scaling inconsistent with O(d) truncation'
     ok['C5'] = [d12, d10 - d12]
     # AMENDMENT-2 equivalence: A == B at (s,D) in {0.6,0.9} x {0.05,0.1}
     for sv in ('0.6', '0.9'):
