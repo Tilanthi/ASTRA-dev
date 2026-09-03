@@ -2969,3 +2969,54 @@ Provenance task #126: DONE pending heat58 landing. Standing sentence unchanged: 
 **Machine 3 Letters 23/24/25:** B-L-M finite-N_eff (Hardy-Littlewood prime pairs = REAL arithmetic entering a spacing statistic): N_eff 1.1–2.2 at our 7 sites explains heat53's R drift; Letter 24: E→1e6–1e9 push cheap (5 s/site); Letter 25 (arrived during my push): height sweep run pre-registered — R,q NOT cleanly monotonic in N_eff, endpoints weakly right, middle noisy; honest diagnosis = single-site-per-height sampling variance; population version proposed. My amendment stands: hash the convergence signature before the population run.
 
 Letters pushed: 624dd5e (provenance), 6b5bb51 (rediscovery ack + disruptive deployment + LEDGER F-004/T-001/W-005..007). Local: 02ea5de, 917669d. Standing sentence unchanged — but the epsilon is now funded.
+
+## §87. Virtual-universe directive day: W-002 closed + M3 harvest + Suzuki audit (2026-09-03)
+
+Glenn's `virtual.pdf` directive (PROVENANCE directive 5, verbatim): think like the agents in the
+gaming article — unconventional/disruptive, collaborative, each machine pushes a note on how best
+to do this, then gets on with it.
+
+**machine1-virtual-universe-note-2026-09-03.md** (exchange, 43aa7b6): extends machine 3's L30
+with ONE disagreement — the proxy gap DOES exist in our instrument layer (their L28 is the
+in-house CoastRunners: falsifier literally satisfied, substantive prediction wrong) — and the
+design principle that follows: **zero-proxy-gap objectives** (equivalence-class quantities: W(f)<0
+IS disproof, λₙ<0 IS disproof, growing spectral line IS a located pair; reward hacking = winning
+mathematics). Concrete game-world named: the W(f) negative-cell evolutionary search (f-space =
+arena, exact prime sums = physics, band rule + non-triviality gates = anti-reward-hacking level
+design, F-004 = discovered environment law). Answered L30's pad-risk question: no naked falsifier
+counts; every one must kill a hash-committed prediction.
+
+**W-002 CLOSED** (heat59/59b, local commit + LEDGER + note §5): all three pre-registered GUE-side
+statistics from 2000 CUE(256) draws + analytic tail. [1] P(max|z|>3, n∈[30,60]) = 0.0040;
+[2] α̂_max noise floor median +0.368 / q95 +0.541 / max +0.887 — the detector's HONEST floor at
+n≤60, decisive only for gross off-line-ness (matches design arithmetic); [3] lag-1 median +0.9993
+(sine-kernel smoothness in n — ζ-side deviation from near-unity is itself signal). Results pkl
+SHA-256 03c7c409…86239, committed with draw matrix. **Two latent detector bugs found+fixed to
+design-doc form BEFORE hashing** (resid column slicing; |A| summed over θ collapsing the
+pre-registered per-frequency resolution) — draws unaffected (crash-safe checkpoint held all 2000).
+Disclosed in .out ERRATUM + heat59b docstring. Resonance with L28 recorded: instrument verified
+against its registration, not against my impression — that check is what caught both bugs.
+
+**M3 swarm harvest** (m3_machinery_survey.md, local commit): 11/12 families (hilbert-polya
+429-killed; resume re-running as wr991ib2n). Ranked: Connes NCG 0.50 / transfer operators 0.40 /
+Nyman-Beurling 0.30. Sharpest finding: transfer-operator J-symmetry pinning question (anti-linear
+J with Q_q* = J Q_{1−q} J^{-1}) NEVER POSED — the only empty cell with in-family existence proof +
+negative control + finite computability. Brutal verdict: no fourth instance in 11 families.
+Graveyard: de Branges kill consistent; Connes UNMEASURED superseded-on-unaudited-claims → flag
+STAYS OPEN until WO-1 reproduction + automaticity test. All swarm claims UNVERIFIED-flagged per
+schema. Two M1 additions: route-around-assumed-machinery category (L30's Erdős-Selberg shape) +
+convergence with the W(f) lane's zero-proxy-gap principle.
+
+**Suzuki addendum** (exchange, 537c951; task #128 done BEFORE heat54 completes as designed):
+Theorem 2.2's criterion lives on the Hankel kernel h_ω (machine 2's warning right in form; RH
+equivalence via Prop 1.2 iff-chain). heat54 audit PASSED: F1–F5 test 1409.5394 Theorem 1
+(unconditional spacing law) — instrument calibration, zero RH-evidential weight; F3's ω→0 downtrend
+stays no-falsifier-labelled. de Branges grading: descendant, distinct criterion, Conrey–Li kill
+does NOT transfer (F-004 reverse); 5/10 with the reason changed. **New probe proposed: the
+Suzuki-law automaticity control on the W-005 Epstein witness (D=−23)** — run heat54's machinery
+on ζ_Q; law surviving there ⇒ functional-equation-local, transfers no line-information; law
+failing ⇒ arithmetic-aware discriminating instrument. Either branch theorem-grade. Owner offer
+to machine 2 (their witness).
+
+Standing: heat54 executing (PID 31969; DQ anomalies documented, diagnosis deferred per pre-reg);
+heat55 chained; M3 resume pending; W(f) design hash-first next after those.
