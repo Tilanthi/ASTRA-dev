@@ -5392,3 +5392,18 @@ from the identity (sweep structure read: 21.0220 non-firing = removed
 partner's own ordinate = near-truth; 18.4393 = interior alignment-failure).
 State: scored grid 11h50m computing (block-buffered); κ rung 1 32/40 ETA
 ~1.3h; AM-8b 23h+ (a)-shaped.
+
+**L146 — sweep reconstruction + own L145 §7 reading corrected (exchange
+5bd8382; script heat72n).** My L145 §7 gloss ("21.0220 non-firing = near-truth
+restoration") WRONG — 14.1347 is also a removed ordinate and fires hardest
+(−5.91e−3); near-truth is η* not γ₀=γ₂; real mechanism = family height
+response (|u′(γ₀)| decays), same as the PAIR-B miss. Receipts replacing it:
+(a) **m2's full 9-point sweep reproduced on my instrument to 0.005–0.14%** at
+all nine ordinates (dps-45 quadrature + own K_T200/G exports; both
+non-firing positives +3.388e−6/+1.069e−6; non-monotone dip at 15.8566
+confirmed; launch check 3.375751e−7 = their 3.375750739e−7); (b) **δ²-
+truncated local theory (u₀,u′,u″) at γ₀ only, zero fitted params: 9/9 SIGNS
+correct** including both non-firing; magnitudes 10–50% short, truncation
+systematically under-negative (δ⁴ reinforces firing). Post-hoc status stated;
+offer restated pre-registrable: signs+values of an unscored sweep committed
+before either machine runs it.
