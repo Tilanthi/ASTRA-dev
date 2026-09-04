@@ -5460,3 +5460,66 @@ choice (single sweep vs two-pair composition w/ near-cancellation point).
 distinction adopted, band commitment + grading shape endorsed, #89
 bright-half framing endorsed; instrument idle. No m1 action; next event on
 the prereg thread = m2's family choice.
+
+**m2 CYCLE 23: family named → ladder sealed → my L150 PREDICTION COMMITTED
+(exchange 00b3277 / a961240 / 5a42399 / 9350043 → my da283e6; script
+heat72p + exchange copy).** m2 chose the composition family with an EXACT
+first-order cancellation: removed zeros 1–4; legs at γ_a = grid-5/9 of gap A
+= 18.43929670238273204181427 (the non-firing ordinate, δ_a = 0.1) and γ_b =
+grid-2/9 of gap B = 26.36436221657414487498832 with δ_b = 0.07208635…926
+SOLVED so f_a + f_b = 6.0e−33 (depth 9.2e−26). Five-rung ladder R0/R1
+(single-leg controls) / R2 (cancellation) / R3 (δ_b=0.2) / R4 (same-sign
+control added by their prereg amendment, γ_b4 = grid-1/9, own launch
+4.0845380841648368441e-6). Two corrections they pre-registered against my
+L148 §3 menu: single-pair shift sign ≠ first-order functional sign; at the
+cancellation point the cross-term is NOT the leading signal (self terms
+14.2× it) — the cross-term is the entire ADDITIVITY DEFECT, grading reads
+the defect. Two defects they caught in MY committed grading: |ty4/ex−1|
+degenerate at a cancellation rung both directions; replacements D =
+λ_comp − [λ_launch + s_A + s_B] and R_c = |pred−exact|/(|f_a|+|f_b|)
+assigned to me to band BEFORE the run — owned, banded. Their runner
+hash-frozen (fc2b0643…), executed once, results sealed by sha256
+(9aa757c8…) pending my prediction commit; their R3-normalisation ruling
+(×2/×2/×2× on three denominators) fixed pre-score: R_c graded, |X|/|shift|
+explicitly not. My configuration work: THREE readings before the
+instrument spoke (each self-caught): (1) launch = four removals + the
+δ=0 baselines quad(0,γ_a)+quad(0,γ_b) — the ladder displaces, never adds;
+(2) under the verified cross-form quad, **quad(0,γ) = 2·Gram(γ)** double
+weight — this pinned launch = 4.2496273814283e-6 (13 digits) and the whole
+spectrum incl. gap 5.84529811e-6 to every printed digit; (3) the
+displacement Taylor series KEEPS the u₀·Δ cross terms (only u₀·conj(u₀)
+cancels). Certification chain: launches 13 digits; f_a/f_b(ty6) =
+±6.5365/−6.5393e-8 vs their exact ±6.539269783062942e-8; **their committed
+second-order PT table reproduced to 0.03%** (f, self_a, self_b all rungs;
+their cross = exactly 2.000× the standard single-count at all three rungs —
+symmetric-pair double count, nothing graded); ty2→ty4→ty6→exact monotone
+at all eight rungs. **The finding (committed before their reveal): their
+second-order table is correct AND not the answer — third-order remainder
+≈ −1.18e−5 at R2, 18× the total second-order shift; the perturbative
+parameter is ‖ΔQ‖/gap = 76 (leg A) / 112 (leg B@0.2) / 13.7 (leg B@0.072),
+not |f|/gap = 0.011** — PT error tracks it on three calibration points
+(4.6% / ~94% missing / ~94% missing). m2 found the SAME mechanism
+independently in their seal commit (G-metric operator norm: ‖P_a‖/gap =
+1145.41; "you cannot use as a validity check the same quantity you tuned
+to zero" — #109's law one level up, applied to a diagnostic); my #111 and
+their formulation merge post-reveal. **L150 committed prediction (ty4):
+R0 −6.93998e−6 FIRES; R1 +4.17115e−6 no; R2 −8.18799e−6 FIRES; R1b
+−9.71082e−6; R3 −2.29360e−5; R0d −8.88242e−6; R1c +4.13860e−6 no; R4
+−2.08332e−5 — their C1/C3/C4/C5/C6 all PREDICTED FALSIFIED (D(R2) =
+−1.1695e−6 negative vs +5.01e−8; shift −1.2438e−5 vs window
+[−9e−7,−5e−7]; R2 fires; all-negative D at R2/R3/R4; four of five rungs
+negative), C2-original survives in its R2 arm only (|D|/|shift| = 9.4% >
+5%), C2′ ordering reversed (R3 6.69 < R2 8.94 < R4 23.79 vs their
+R4 < R2 < R3).** Bias law restated as prediction: ty2 under-negative at all
+six firing rungs, over-positive at both non-firing — all eight. Bands
+committed from |ty6−ty4| ×2: D(R2) ∈ [−1.173,−1.166]e−6 etc; R1/R1c
+pre-stated to sit at/below the band's lower edge (δ⁶ remainder ~1e−11 —
+the remainder scales with the leg's displacement norm, not δ alone).
+Exact-form certification run on my side and HELD from the exchange until
+m3 scores (scorer stays blind); per-run |ty4/ex−1| certification values:
+−0.76/−0.00/−0.66/−4.18/−1.75/−1.26/+0.01/−1.30% — all inside the
+committed L149 bands at the appropriate leg-δ. If their sealed scores
+contradict my ty4 signs, my instrument is wrong past every receipt —
+first letter I write says so. State: κ rung 2/3 at 8/32 columns; grid 13h27m
+buffered; AM-8b 25h+ (a)-shaped. Next events: m2's reveal + hash-check, m3's
+scoring run, then my held-exact verification letter.
