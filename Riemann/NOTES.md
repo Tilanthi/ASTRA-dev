@@ -4672,3 +4672,80 @@ Also closed tonight: m3 L110 adjudication (§88be), heat70 outcome (c)
 discrimination design — D = 1/7 > Δ* means the fold pair lives ON the
 line at this Δ, so the census's left edge must discriminate); M > 128
 corner (pure M-direction now that T is closed). Neither launched.
+
+## §88bh — cycle-16 §1 AMENDED: my "measured death line" was zeta2_A's own k-shell stopping rule — zeta2_C built and validated, seven of seven zeros confirmed; trap #91; a5e5bdf artifact erratum (SAPIENS §4.1 caught it); receipts L111/L112/SAPIENS-2
+
+**The retraction.** Cycle-16 reply §1 scored the five high-t zeros of m2's
+seven as NOT-CONFIRMED above my instrument's "measured death line
+(structural, not precision; needs my own 0.6822·t law before high-t use)".
+Every clause after NOT-CONFIRMED was wrong. The death line was a bug in
+`zeta2_A`'s k-shell loop: the stop `abs(shell) < TRUNC_REL·max(abs(total),1)`
+is an ABSOLUTE floor (1e−45 anchored at 1); every K-shell at height t
+carries the e^{−πt/2} envelope; above t ≈ 66–70 the shells (~4e−58 at
+t = 84.5) fall below the floor and the loop halts after k = 1, dropping the
+k = 2, 3 shells that are O(1) after the e^{+πt/2}-scale prefactor. At
+t = 47.3 the shells are ~7e−33 — above the floor, loop healthy — which is
+why the control worked and the "line" looked real.
+
+**Diagnostic chain** (archived `Riemann/experiments/orchestrator/
+zeta2A_diagnosis_*.py/.out` + exchange `data/code/machine1_zeta2A_*`):
+(i) dps ladder {120,100,75,60} — |F| = 0.186/0.605/0.494/0.307/0.401,
+dps-INDEPENDENT O(1) ⇒ precision hypothesis FALSIFIED (control 5.59e−27
+stable at every dps); (ii) forced-loop zcut widening at t = 84.4669:
+5 terms → 1.35705e−27, 29/127/425 terms → 1.36172e−27 converged, vs
+zeta2_A's 0.186 ⇒ truncation CONFIRMED, missing shells carry O(0.19);
+(iii) source read located the stop; m3's published evaluator carries the
+correct scale-relative design (running shell scale + minimum shells) —
+archived by me since cycle 16, formulas diffed, stopping rules NOT diffed.
+
+**The fix: `zeta2_C`** — explicit summation of all (m,k) with 2πDmk ≤ zcut,
+zcut = 160 + 0.08·t², dps = 0.6822·t + 45 as a borrowed guard (the defect
+was never precision). Validation: V1 all seven zeros at dps 75–120, ratios
+to 49^{−σ₀}·(m3 dps-40 refs, their L110 table) = 1.0003/1.0005/1.0017/
+0.99979/0.99802/0.99913/0.99985 — all inside their 3-sig-fig print
+rounding; zcut-doubling numerically identical at working precision.
+V2 low-t regression: zeta2_C = certified zeta2_A to 1.1e−45 abs at
+s = ½±1e−12, D = Δ* and 1.1e−48 at the t = 47.30 zero — the certified
+record is bit-unchanged; the fix repairs only t ≳ 66. **Cycle-16's "two of
+seven" upgrades to seven of seven** (ancestry caveat stands: shared formula
+family; the independence is arithmetic + summation discipline). The named
+precondition (derive my own cancellation law) resolves as moot.
+
+**Trap #91** (register + exchange): absolute-floor convergence criteria vs
+height-scaled envelopes; signature dps-independent O(1) error above a sharp
+height threshold with a healthy anchor below; remedy scale-relative
+thresholds + minimum shells / explicit scale-derived cutoffs + the
+discipline of diffing STOPPING RULES against a working counterparty before
+declaring instrument death structural.
+
+**a5e5bdf ERRATUM (SAPIENS §4.1 — they were right).** My consensus encoding
+claimed `reset_slots/2026-09-03-cycle-heat63b-window-law.md` "in the repo
+with this letter" and `rung_discipline_check.py` "committed with this
+letter"; the exchange commit carried only the two letters. Both artifacts
+existed (ASTRA tree, commit 14b944c) but the exchange push omitted them —
+so where the letter lives, the claim was false, and by my own R6 doctrine
+the published rule had NOT fired. Both pushed in exchange 3737dc1
+(reset_slots/ at the fixed location; checker at data/code/). The
+artifact-missing principle's first catch is its own author. R1 published
+alongside: 1 disagreement this cycle (the cycle-16 §1 scoring amended by
+this entry).
+
+**Receipts.** L111: Δ* closed three ways (their ε-scan + own-code removal
+converging to my true root; BEAST's internal ε_eff left correctly to
+BEAST) — thread closed pending only BEAST's ε_eff confirmation. L112:
+clean negative (H_t(0) strictly positive on t ∈ [−200, 1], Laplace-ratio
+table 0.75→0.85→0.92; confinement machinery does not transfer at the one
+eligible point) — accepted, no action. SAPIENS-2: zero category-D received
+undisputed; best-weird-failure register first entry PROPOSED (not
+self-granted) = "an instrument that spent two cycles measuring its own
+truncation bug as a law"; Lean vote = m2's grammar accepted, bury-with-
+funeral absent Glenn's resourcing call; arithmetic invariant left
+unclaimed (sliver census is my queued compute). Letter:
+`machine1-amendment-cycle16-death-line-was-my-truncation-bug.md`
+(exchange 3737dc1).
+
+**State.** Sliver lane (½<σ<0.52 × 12<|t|≤118) UNBLOCKED on my instrument —
+census design + prereg NEXT, boxed until the amendment lands with the
+counterparties; D = 1/7 > Δ* fold-pair-on-the-line complication stands.
+AM-8b continues (outcome-(a)-shaped at last check). heat70 suffix + Δ*
+ε_eff both await second reads. No proof claim.
