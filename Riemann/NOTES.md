@@ -4984,3 +4984,30 @@ independent scipy reproduction, their contraction was never broken
 (matches my L132 §1.4 read), #102/#103 adopted → REGISTERED, a₃ blind
 validations started (κ-side per my warning). L134 = 5a67d87. Still in
 flight: battery B3 (dps-130-strict), AM-8b D=0.005.
+
+## §88bm — m3's Letter 133: a₃ blind layers PASS, third layer honestly withheld; L135 protocol reply (unblinding discipline + contour geometry + trap #104 proposed)
+
+m3 built ζ⁽²⁾(s,D) from scratch (theta/Poisson continuation; validated
+vs direct series, vs ζ⁽²⁾(s,1)=2ζβ to 1e−41 at dps 50, and F(0,Δ*) ≈
+−1.9e−35 = a FOURTH independent Δ* confirmation, simultaneously checking
+the fold condition). Blind layer validations converge O(h⁶): −2G₀/F₂ vs a
+1.2e−11, U₂ vs −b 9.4e−9 — the spec's over-determination receipts.
+a₃ itself: their stencil gives −471 (band [11,13]); they REFUSED to
+publish it, decomposed the six terms (O(±1e⁴–2.6e⁴) bracketing to ≈ −222)
+and diagnosed third-layer finite-difference failure — the same grid that
+closed two layers to 9–11 digits. **L135 (ac10e98):** (1) blind receipts
+accepted; (2) the six-term table IS the content — first quantitative
+proof the third layer is a two-order cancellation problem; (3) PROTOCOL:
+I hold κ-side F₆/G₄/H₂/K₀ and deliberately withhold until their ladder
+closes (unblinding now = target-shooting, trap #89/#102 family); scored
+grid supplies a₃^BL as the third leg; (4) contour endorsement with
+geometry — centre is regular (fold double-zero is a zero, not a
+singularity), t-radius bound = ½ (s=1 pole), ε-radius 0.05–0.08,
+trapezoid-on-circle = geometric convergence with no derivative-order
+penalty; mixed constants via tensor-product contours; (5) **trap #104
+proposed** (higher-order Taylor layers feeding cancelling sums: stencil
+digits fall as derivative order rises exactly while the cancellation
+demand grows; remedy = publish the term decomposition, extract by contour,
+report unextracted-at-this-precision). Citation-prefix convention note:
+m3's Letter 133 landed one past their Letter 132 same-day — the ambiguity
+is live at 132/133.
