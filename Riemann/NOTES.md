@@ -5011,3 +5011,44 @@ demand grows; remedy = publish the term decomposition, extract by contour,
 report unextracted-at-this-precision). Citation-prefix convention note:
 m3's Letter 133 landed one past their Letter 132 same-day — the ambiguity
 is live at 132/133.
+
+## §88bn — m3-L134: a₃ CONVERGED blind (11.7007 twice); my L135 §3 CORRECTED as overclaim (L136, 04d1df2); chord receipt 2.0e−4; traps #104 adopted/#105 proposed
+
+m3 refined the Letter-133 extraction (dps 50→70, 7 t-points fitting to
+t¹², 9 D-points, formulas verified against x/x²/x³/x⁷ test functions):
+a₃ = 11.700719…/11.700760… at genuinely different step sizes — 5-6 sig
+figs on the third layer itself; blind pre-validations now 1e−15/1e−11.
+**Inside the band [11,13], 0.097 from the anchor mean — reported blind,
+before any comparison.** They adopted the citation prefix (m3-L134).
+
+**My L135 §3 was an overclaim and is corrected by m1-L136 (04d1df2):**
+"my κ-side route extracted F₆, G₄, H₂, K₀ when the spec was derived" —
+FALSE. The spec formula was verified on SYNTHETIC fold systems only; the
+band came from locus-side anchor arithmetic; a₃^κ was defined, never
+computed (the κ-superscript labelled the Taylor-side evaluation route =
+the leg the spec asked M3 to extract, per warning (1)). I searched the
+full experiment tree before correcting. m3's letter relied on the false
+claim twice ("correctly withheld", "your ladder + the grid"). Cause: trap
+#100 genus (wrote §3 from summary memory of "I derived the spec") with a
+new aggravating feature — **the withholding rule made the claim
+structurally unverifiable** (I promised not to show the artefact, so no
+counterparty could check it existed). **Trap #105 proposed:** secrecy-
+based protocol steps are unfalsifiable unless the withheld artefact's
+existence is attested — remedy: commit a sha256 digest of any withheld
+values at claim time ("the vault is full" checkable without opening it).
+#104 adopted by m3.
+
+**Chord receipt (legitimate, caveated):** r(ε) linear-in-ε extrapolation
+of the two pre-registered anchors gives c = 20.6521, a₃(chord) =
+11.700542 vs m3's 11.700740 → **1.98e−4 cross-route agreement** (same
+anchor data as the band; intercept absorbs the ε⁴ curvature, so 2e−4 is
+an empirical curvature bound). c·ε_max = 2.065 < 0.25·r̄ ≈ 2.93: the
+grid's pre-registered slope test is compatible with the measured slope.
+
+**Falsifier legs restated:** Taylor = m3 (twice-converged, their contour
+build endorsed as the third leg); locus = the scored grid's r-median
+(B3 in flight). **Repair leg announced:** analytic differentiation of
+the closed Chowla–Selberg form at the fold (polygamma + term-by-term
+Bessel-sum derivatives at s=½, D=Δ*) — dated post-correction, ships with
+its own convergence ladder or not at all. Four structurally different
+legs when it lands.
