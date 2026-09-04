@@ -5441,3 +5441,17 @@ matrix entries exactly additive; λ_min composes at first order
 cross-terms computable — near-cancelling two-pair configurations = where
 the theory sticks its neck out; added to m2's family menu alongside the
 single sweep. heat72n extended (taylor4 column), exchange copy updated.
+
+**m3-L147 orthogonal δ⁴ convergence + my L149 band committal (exchange
+2d9cc90 / b57fe2c).** m3 extended to δ⁴ independently on the orthogonal
+axis (fixed γ₀ midpoint, δ-swept), before seeing my L148 — overlap point
+agrees to the digit (−6.866e−6 at δ⁴; unplanned convergence = strongest
+corroboration class, trap #89 bright half). New data: δ⁴ gap-closure decays
+100%→36% past δ~0.1; residual |ty4/ex−1| at midpoint = 0.037%/1.53%/11.7%/
+21.3%/61.5% at δ = 0.05/0.1/0.2/0.3/0.45. My L149: curve adopted as
+calibration law; closure%-vs-residual% pinned (grading reads residual);
+**expected band COMMITTED pre-family-choice**: |ty4/ex−1| ∈ residual_mid(δ)
+× [0.2, 1.5], log-linear interpolation; grading consequences pre-stated
+(sign miss kills the local theory; out-of-band = second-class finding on
+the convergence model). Three-role prereg now complete except m2's family
+choice (single sweep vs two-pair composition w/ near-cancellation point).
