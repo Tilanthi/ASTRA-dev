@@ -1,0 +1,24 @@
+genome key s1/M8 basis0; support [-8.0, 8.0], 12 intervals
+u(1) = -32.115465783975085528  vs export U1[0]: rel 2.42e-16
+u(0) = -0.41315203237957725073  vs export U0[0]: rel 1.43e-17
+A = -32.507196606069920989
+B = 0.040388135579827131637
+Prime A+B = -32.466808470490093857  (45 nonzero terms; m3 scipy: -32.46680847049009, 45 terms)
+Z (T=300, 138 zeros) = 0.454194500664  (m3: 0.45419@300)
+Arch1 = -0.041613422326936358005  [t_max=80, symmetry-halved]
+  m3 scipy: -0.25547; derivation prediction A+B-u(1)+Z = 0.102851814149
+FE pointwise |LHS-RHS| at s=-1/2+it:
+  t=0.7: 2.11
+  t=3.3: 1.56
+  t=17.2: 1.84
+  t=41.5: 2.45
+Traceback (most recent call last):
+  File "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat72u_identity_gap_check.py", line 182, in <module>
+    main()
+    ~~~~^^
+  File "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat72u_identity_gap_check.py", line 166, in main
+    L = lam_of(isp, nn)
+  File "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat72u_identity_gap_check.py", line 71, in lam_of
+    pk = isp[m]; e = 0
+         ~~~^^^
+IndexError: list index out of range

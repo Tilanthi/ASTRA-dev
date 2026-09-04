@@ -1,0 +1,3 @@
+basis 1 Simpson N=400: Arch1 = -0.2138303418
+basis 1 Simpson N=800: Arch1 = -0.2615743427
+basis 1 Simpson N=1600: Arch1 = -0.2626314961

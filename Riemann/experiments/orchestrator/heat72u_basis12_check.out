@@ -1,0 +1,6 @@
+Simpson CORRECTED-kernel Arch1 (basis 1, N=400) = -0.2138303418
+m3-L131 identity prediction (Prime-Endpoint+Zero) = -0.5598
+m3 wrong-kernel scipy value                        = -0.6479
+Simpson CORRECTED-kernel Arch1 (basis 2, N=400) = 2.856307656e-5
+m3-L131 identity prediction (Prime-Endpoint+Zero) = -0.0285
+m3 wrong-kernel scipy value                        = -0.0292

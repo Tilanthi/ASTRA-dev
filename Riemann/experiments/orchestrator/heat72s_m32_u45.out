@@ -1,0 +1,80 @@
+[s3_32/T200] dps-45 full pipeline: m=32 nz=79
+[s3_32/T200] G row 8/32 (69s)
+[s3_32/T200] G row 16/32 (114s)
+[s3_32/T200] G row 24/32 (141s)
+[s3_32/T200] G row 32/32 (150s)
+[s3_32/T200] U row 8/32 (331s)
+[s3_32/T200] U row 16/32 (508s)
+[s3_32/T200] U row 24/32 (677s)
+[s3_32/T200] U row 32/32 (836s)
+[s3_32/T200] dps-60 check, column 79 (gamma=198.01531): max rel diff = 0.0
+[s3_32/T200] lambda_min (dps-45) = 1.9357195270199918662e-8
+[s3_32/T200] vs heat63b grid value 1.9357195069e-08: rel = +1.039e-08
+[s3_32/T200] vs suspect r3 raw 1.9362404755e-08: rel = +2.691e-04
+[s3_32/T200] dumped (849s total)
+[s3_32/T150] dps-45 full pipeline: m=32 nz=52
+[s3_32/T150] G row 8/32 (66s)
+[s3_32/T150] G row 16/32 (112s)
+[s3_32/T150] G row 24/32 (137s)
+[s3_32/T150] G row 32/32 (146s)
+[s3_32/T150] U row 8/32 (252s)
+[s3_32/T150] U row 16/32 (354s)
+[s3_32/T150] U row 24/32 (452s)
+[s3_32/T150] U row 32/32 (547s)
+[s3_32/T150] dps-60 check, column 52 (gamma=147.42277): max rel diff = 0.0
+[s3_32/T150] lambda_min (dps-45) = 1.932439816247899344e-8
+[s3_32/T150] vs heat63b grid value 1.9357195069e-08: rel = +1.694e-03
+[s3_32/T150] dumped (559s total)
+[s1_32/T200] dps-45 full pipeline: m=32 nz=79
+[s1_32/T200] G row 8/32 (51s)
+[s1_32/T200] G row 16/32 (107s)
+[s1_32/T200] G row 24/32 (135s)
+[s1_32/T200] G row 32/32 (148s)
+[s1_32/T200] U row 8/32 (261s)
+[s1_32/T200] U row 16/32 (470s)
+[s1_32/T200] U row 24/32 (635s)
+[s1_32/T200] U row 32/32 (837s)
+[s1_32/T200] dps-60 check, column 79 (gamma=198.01531): max rel diff = 1.059e-36
+[s1_32/T200] lambda_min (dps-45) = 2.5298441466956223404e-9
+[s1_32/T200] vs heat63b grid value 2.5298447891e-09: rel = +2.539e-07
+[s1_32/T200] vs suspect r3 raw 2.5298441464e-09: rel = +1.296e-10
+[s1_32/T200] dumped (856s total)
+[s1_32/T150] dps-45 full pipeline: m=32 nz=52
+[s1_32/T150] G row 8/32 (50s)
+[s1_32/T150] G row 16/32 (109s)
+[s1_32/T150] G row 24/32 (138s)
+[s1_32/T150] G row 32/32 (151s)
+[s1_32/T150] U row 8/32 (221s)
+[s1_32/T150] U row 16/32 (347s)
+[s1_32/T150] U row 24/32 (448s)
+[s1_32/T150] U row 32/32 (570s)
+[s1_32/T150] dps-60 check, column 52 (gamma=147.42277): max rel diff = 4.818e-41
+[s1_32/T150] lambda_min (dps-45) = 2.5201628784631341655e-9
+[s1_32/T150] vs heat63b grid value 2.5298447891e-09: rel = +3.827e-03
+[s1_32/T150] dumped (588s total)
+[s2_32/T200] dps-45 full pipeline: m=32 nz=79
+[s2_32/T200] G row 8/32 (76s)
+[s2_32/T200] G row 16/32 (105s)
+[s2_32/T200] G row 24/32 (127s)
+[s2_32/T200] G row 32/32 (137s)
+[s2_32/T200] U row 8/32 (368s)
+[s2_32/T200] U row 16/32 (482s)
+[s2_32/T200] U row 24/32 (616s)
+[s2_32/T200] U row 32/32 (808s)
+[s2_32/T200] dps-60 check, column 79 (gamma=198.01531): max rel diff = 1.879e-35
+[s2_32/T200] lambda_min (dps-45) = 3.6543240596666921698e-9
+[s2_32/T200] vs heat63b grid value 3.6543245166e-09: rel = +1.250e-07
+[s2_32/T200] dumped (825s total)
+[s2_32/T150] dps-45 full pipeline: m=32 nz=52
+[s2_32/T150] G row 8/32 (76s)
+[s2_32/T150] G row 16/32 (106s)
+[s2_32/T150] G row 24/32 (129s)
+[s2_32/T150] G row 32/32 (139s)
+[s2_32/T150] U row 8/32 (277s)
+[s2_32/T150] U row 16/32 (342s)
+[s2_32/T150] U row 24/32 (423s)
+[s2_32/T150] U row 32/32 (541s)
+[s2_32/T150] dps-60 check, column 52 (gamma=147.42277): max rel diff = 1.769e-38
+[s2_32/T150] lambda_min (dps-45) = 3.6429985969171919875e-9
+[s2_32/T150] vs heat63b grid value 3.6543245166e-09: rel = +3.099e-03
+[s2_32/T150] dumped (558s total)
