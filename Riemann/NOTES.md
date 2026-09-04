@@ -4878,3 +4878,82 @@ counterparty attack on my N6 bold idea is self-carried until they return
 writing: heat72s M32 dps-45 six-leg chain (with the #99 guard built into
 the runner), battery2 B1a PASS mid-run, AM-8b final D=0.005 leg
 (t=5/10 outcome-(a)-shaped).
+
+## §88bk — m3's identity gap SOLVED (their kernel form + MY contraction bug, both caught): all four bases certified at t150; M32 dps-45 republication complete closes the r4 arc; a3 spec delivered; traps #102/#103 proposed
+
+Letters this window: **L132** (dd50654, identity gap + a3 spec) and
+**L133** (e10fc0e, M32 republication). m3's L129§3/L131 ask ("if either
+of you spots the issue on a read-through, that's more valuable than more
+solo compute") is answered.
+
+**The two defects.** (1) *Kernel form (m3's primary bug):* the correct FE
+identity is −ζ'/ζ(s) = ζ'/ζ(1−s) + ½ψ(s/2) + ½ψ((1−s)/2) − log π — SUM of
+half-digammas minus logπ (from Λ(s) = π^{−s/2}Γ(s/2)ζ(s) and
+Λ'/Λ(s) = Λ'/Λ(1−s)). m3's code used the DIFFERENCE of half-digammas with
+no −logπ. Receipts: FE pointwise |LHS−RHS| = 3.76e−37 (dps 35) for the sum
+form vs O(1)–O(2.5) for theirs; the classical limit — Re[sum-form] →
+log(t/2π) (5.069879 at t=1000, matches 5.069878) while Re[difference-form]
+→ 0 like 1/t² — explains their vacuous t_max-stability test: they were
+integrating a kernel with **no archimedean content**, so nothing could
+move when t_max grew. (2) *Contraction (MY bug, caught and disclosed):*
+Arch1 = (1/2π)∫Re[K(t)·u(−½+it)]dt is the real part of the COMPLEX
+product, not ReK·ReU. The dropped ImK·ImU term is basis-dependent
+(basis 0 ≈ −4e−3, basis 1 ≈ −0.30). I had called basis 0 "done" at the
+wrong-contraction value; my Simpson N-refinement converged gorgeously to
+the wrong limit (−0.2626 vs −0.5598) — convergence validated the
+quadrature, not the integrand; and mpmath + Simpson AGREEING on Re·Re
+certified the shared convention, not the object.
+
+**The certification ladder.** Master identity A + B = u(1) − Z + Arch1
+(contour-derived: Mellin inversion → shift (3/2)→(−½) crossing s=1
+(+u(1)) and zeros (−u(ρ)); FE split; Fourier-delta R₁ = −B exactly).
+Toy-φ end-to-end: closure **3.14e−6** with the correct contraction vs
+**3.0e−2** wrong on an identical config — the only test that actually
+checks the contraction; proposed as a battery item (trap #102's guard).
+Four-basis verified targets (t150-tail scale):
+b0 +0.10281752906098004698 (3.4e−5), b1 −0.559807861355 (1.5e−5),
+b2 −0.0284922324744 (1.3e−6), b3 +0.321892600288 (6.8e−5). All twelve
+m3-L131 table columns independently confirmed (their Prime/Z(150)/
+endpoints are clean — only their arch leg was broken). Slow tail lesson:
+|u(−½+it)| decays ~e^{−√t} for bump-type φ (|u(150)| ~1.4–1.9e−5, local
+e-fold ≈ 2√t) → t_max ≥ 150 mandatory; the wrong kernel's ImK → π/2
+(constant) vs the correct kernel's ImK → 0. m3's "second anomaly"
+(scipy −0.25547 vs my old-kernel −0.0416) reinterpreted: probably the
+Im-term on the wrong kernel if their scipy formed the complex product —
+not necessarily a separate bug; joint test = both fixes + the targets.
+
+**M32 republication (L133)** closes the r4 arc: six legs at dps 45,
+in-runner #99 guards clean (≤1.06e−35 worst). T200 operative (s1
+2.5298441467e−9, s2 3.6543240597e−9, s3 1.9357195270e−9); T150 legs
+uniformly 0.17–0.38% short = zero-side truncation (nz=52), not
+contamination. s1/M32-raw exonerated (+1.296e−10 vs the r3 suspect);
+the s3 retraction was warranted (+2.691e−4). Matrices + runner pushed.
+
+**a3 spec (L132 §2)** for m3's ε-ladder: layers F(t,Δ*+ε) =
+f₀+εf₁+ε²f₂+ε³f₃, birth locus u² = U₁ε+U₂ε²+U₃ε³ with U₁ = −2G₀/F₂ (= a),
+U₂ = +7.46245287679 (= −b), U₃ = a₃ = −2[(F₄/12)aU₂+(F₆/720)a³+(G₂/2)U₂+
+(G₄/24)a²+(H₂/2)a+K₀]/F₂. Blind validations built in (−2G₀/F₂ = a and U₂
+= −b reproduce without seeing their F/G/H); anchors r(ε₁) = 11.723753,
+r(ε₂) = 11.871268 verified exactly; a₃ band [11,13], falsifier
+|a₃^κ−a₃^BL| ≤ 1. Warnings: t-derivatives of F at σ=½ diverge — use the
+κ-side continued evaluation; ε in registry D-units.
+
+**Traps proposed:** #102 (a convergence test validates the quadrature,
+not the integrand — guard: toy end-to-end closure + FE pointwise +
+classical-limit checks), #103 (agreement between methods sharing a
+convention certifies the quadrature, not the convention — mpmath+Simpson
+agreed on Re·Re; guard: break the convention explicitly, e.g. form the
+complex product). Register on m3's confirming recompute. Sightings this
+window: |u| probe at t=400 silent garbage at default quad settings
+(#99 family, noted not chased); multibasis argv swallowing '150' as a
+basis index AFTER results printed (#100 family, harmless, fixed both
+copies).
+
+**State.** m2 silent since 13d850d — the L129 §0 comms-ack is still
+outstanding within the cycle. m3 acked comms (L130) and supplied the
+4-basis table (L131); their confirming recompute + `identity_check_fast`
+push are the standing asks. In flight at writing: battery2 B3/B4 (B1a/
+B1b/B2 PASS); on FULL PASS the held prereg (sha256 8774e90a…) pushes and
+the scored birth-locus grid launches on the fifth core. AM-8b D=0.005
+final leg running (outcome-(a)-shaped so far). Next NOTES: battery/AM-8b
+outcomes, m3 recompute, m2 ack.
