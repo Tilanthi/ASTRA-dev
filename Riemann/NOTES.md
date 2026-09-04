@@ -4832,3 +4832,49 @@ certificates clean; high-t boxes slow as expected). heat68c AM-8b at
 min|z2| ≫ floor, zero local minima). Pushes this window: `b8d28fa`
 (L114 reply), `d17b052` (nursery), `780f57b` (debate replies + registers
 + spec + genome export). No proof claim.
+
+## §88bj — L123 arc CLOSED THE HARD WAY: r4 RETRACTION of my own r3 anchor — the GS'd pipelines were right all along; the defect was a SHARED mpmath-quad-at-dps-30 blind spot (trap #99) that my verification print could not see (trap #100); r1's GS attribution was arithmetically impossible and I overrode a correct instrument with a broken one (exchange acb3069)
+Continuation of §88bi's L123 arc. Sequence this window: m3 L124 (float64
+cross-routes = the eps·cond(G)² floor; cond(K) 6.069e9 matches to the digit),
+L125 (convergence diagnostic on the DOMINANT row × first 15 zeros — executed
+correctly, concluded wrongly: that is the clean quadrant), L126 (k=2 Suzuki
+validation stands; h_ω = √x·h O(1) accepted). My r2 "closure" (dps-40 solve of
+persisted matrices = m3's values to 5.8e−15) certified a shared flaw, not the
+object: the shared component was not code but mpmath's quad at dps 30.
+**The inversion.** heat72r (full dps-45 rebuild: genomes → U own-edge quads →
+K → certified congruence) lands s3/M64 = 9.2771106535116051151e−10 —
+heat70's RETRACTED quad-45+GS value to 11 digits; heat63b's grid value +5.1e−7
+(= the true float64-GS penalty; five orders too small for the 4.6% my r1
+verdict blamed on GS — eps·cond ≈ 1e−12, and the magnitude said so at the
+time). Operative: s3/M64 9.2771106535116e−10 (bracket 1.82%, saturated);
+s1/M64 1.1813266994568e−10 (last-digit fix 4.2e−9, bracket 6.67%);
+M8 anchors stand (contamination confined to basis-15/27 rows); s3/M32 raw
+re-solve suspect (grid values operative until the dps-45 legs land).
+**Contamination census** (U45 dump vs persisted U30): s3 — 15 of 5056 entries
+off >1e−6, ALL in zero-columns 68–79 (γ = 173–198), worst (basis 15, ρ79)
+off 100.1% with |U| inflated ~10³; dps-45 ≡ dps-60 to 3.3e−44 (a
+working-precision truncation pathology of the oscillatory sum, not an
+integrand singularity); T=150 tables fully clean — the corruption was
+T-structured to hide from every battery (all ran T ≤ 150). **Four receipts:**
+the rebuild; the standalone worst-entry recompute; float64 scipy on the
+rebuilt matrices (9.277122544e−10, 1.3e−6 above certified = the measured
+floor; the 4.4% camp separation is ~2700× it); the vindicated stored values.
+**Traps registered:** #99 (quad silent wrongness — oscillatory U-type
+integrals FORBIDDEN at dps 30; min dps 45 + dps-60 spot-check of the
+highest-γ column; grid-DFT preferred; diagnostics must sample tail columns
+and non-dominant rows); #100 (heat72r's own comparison branch compared a
+string argv to an int, silently never ran, and printed "0 of 5056 entries
+off" — the check that would have flagged #99's entries at first run reported
+vacuous success; coerce at the boundary, guard every "0 failures" print
+under the condition that built its reference). **Standing rule proposed in
+the r4 letter** for all three machines (adopt on reply). **Weird-failure
+entry #1 of the Glenn directive-2 letter INVERTED** (r4 §3): the exported
+anchor was right; my correction of it was the 4.6%-wrong number — "the
+correction that was the error" is the better specimen. **Machines m2/m3
+offline** (Glenn advises crash; return to be advised): r4 is durable on the
+exchange; their silence suspends the routing rule by circumstance; the
+counterparty attack on my N6 bold idea is self-carried until they return
+(three published attack points fold into the scored run's design). Live at
+writing: heat72s M32 dps-45 six-leg chain (with the #99 guard built into
+the runner), battery2 B1a PASS mid-run, AM-8b final D=0.005 leg
+(t=5/10 outcome-(a)-shaped).
