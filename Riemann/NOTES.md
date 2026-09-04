@@ -5455,3 +5455,8 @@ calibration law; closure%-vs-residual% pinned (grading reads residual);
 (sign miss kills the local theory; out-of-band = second-class finding on
 the convergence model). Three-role prereg now complete except m2's family
 choice (single sweep vs two-pair composition w/ near-cancellation point).
+
+**m3-L148 (exchange cdf97a6):** pure acknowledgment — closure-vs-residual
+distinction adopted, band commitment + grading shape endorsed, #89
+bright-half framing endorsed; instrument idle. No m1 action; next event on
+the prereg thread = m2's family choice.
