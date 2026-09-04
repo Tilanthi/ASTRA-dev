@@ -4749,3 +4749,86 @@ census design + prereg NEXT, boxed until the amendment lands with the
 counterparties; D = 1/7 > Δ* fold-pair-on-the-line complication stands.
 AM-8b continues (outcome-(a)-shaped at last check). heat70 suffix + Δ*
 ε_eff both await second reads. No proof claim.
+
+## §88bi — Glenn's disruptive-directive debate ENGAGED (three machines): nursery opened, Δ* closed at source (three ways), traps #92 + #89-sharpened, weird-failure founding entry reversed to m3's L116 death, N8/N9 entered, heat72 designed with a sharp falsifiable prediction
+
+**Trigger.** m3's L114 debate opener crossed my debate contribution
+(`7c40f1c`) in flight; my reply `b8d28fa` answered both §5 direct
+questions (the pre-killed idea = the ε-ladder-on-ζ, now N1; the childish
+question = the complete-witness test, now N2/C4) and named three
+convergences: m3's (b) = my C2 (Lyapunov ⟺ PSD-in-t), their (a) has the
+Weil kernel family on our bench, their (c) = C4 made computable — a/b/c
+are ONE experiment (N2/N3/N5) with three motivations.
+
+**The nursery** (`nursery/REGISTER.md`, `d17b052`): P1 adopted with m2's
+Amendments A (score at death; publish the informative-death fraction) and
+B (experiment: fields; P2 counts distinct experiments). Founding batch
+N1–N7 attributed; m2's N8 (orbit-size deficiency; σ_max at the family's
+self-dual point D = 1 where ζ⁽²⁾(s,1) = 2ζβ — the family's RH at the
+fixed point IS RH + GRH(χ₋₄)) entered from their `fbf2d00`; my N9 offered
+raw (Hurwitz α ↔ 1−α: fixed point α = ½ factors as (2^s−1)ζ(s) but FAILS
+zero-set invariance — candidate CONTROL, cousin of N7's space census).
+
+**Δ* CLOSED AT SOURCE** (m2's debate contribution §1): their fold_runs.py
+stage3 root-found the ε-FREE map (correct) and stage4 re-found through
+EPS = 1e−12 (published, under a stale comment). Their own L333 comment
+computed the value-level bias (A_ss/2)ε² = −1.8817e−23 and never divided
+by A_D → root-level −3.77997318614e−25 = exactly published − true. Their
+ε-free root agrees with mine to 35.6 digits. Operative Δ* =
+0.141733239663887191395415685084185024 now three-machine confirmed.
+Cycle-15 headline untouched (3.78e−25 is 4 orders below the 5.95e−21
+parting from e^γ/(4π)).
+
+**Traps.** #92 registered (m2's founding instance: the D–H kill retired
+the distance-run USE, was filed as retiring the CARRIER, and hid the
+D ↦ 1/D involution for a cycle). #89 sharpened by m2's instance: same
+digit count, opposite epistemic content — the discriminator is whether a
+regularization parameter is SHARED; plus value-bias ÷ derivative =
+root-bias.
+
+**Weird-failure founding entry REVERSED** (1–2, my nomination withdrawn):
+m2's always-fillable argument (my own L109 principle turned on my culture
+item) + m3's genuine vote change. Founding entry = D1 = m3's L116
+rediscovery death (Jensen-polynomials = the field's 30-year Λ-bounding
+tool; N4 narrows to the monotonicity-in-t residue). Rule 4 amended
+"first" → "only". The withdrawn bug-entry's lesson stays where it belongs
+— trap #91.
+
+**Answer to m3's H_t parameter-symmetry question (L117 §2): no — t is a
+FLOW parameter (the only involutive automorphism t ↦ −t reverses the
+flow), D is a MODULUS (D ↦ 1/D is a Weyl element); the mechanism is
+structurally starved on the H_t side. Transferable version: zero-set-
+preserving involutions on families of INITIAL DATA (m2's Epstein answer;
+Hurwitz tried as N9 and fails the invariance test).**
+
+**heat72 (N6 birth locus) designed** with a SHARP falsifiable prediction
+derived before writing the runner: the unified law u² = (a − b·ε)·ε +
+a₃·ε³ (ε = D − Δ*) fits BOTH 15-digit anchors with one constant —
+r(1/7) = 11.7238, r(0.15) = 11.8713 — so the scored grid must keep r(ε)
+in a ~[11,13] band (outcome a) or the locus has structure the fold
+constants do not predict (outcome b — the nursery-protected one). Also
+directly tests m2's flagged v¹-scaling open item. Battery B1–B4
+(anchors < 5e−16, fold sanity, off-line Newton control) in flight;
+prereg hash-commit next push after PASS.
+
+**N2/N5 spec handed to m3** with genome export (M=8/64, 3 seeds): exact
+K/G/u conventions, the breakpoints quadrature discipline, anchors
+(M=8 s1 1.1761e−05; M=64 s1 1.1813e−10 / s3 9.2771e−10; M=128 s1
+1.2836e−13 quad dq-flagged, stated as such). Material finding from
+writing it: **the bare zero-side form K = Σ 2Re[u u†] is PSD BY
+CONSTRUCTION for any configuration** (x†Kx = 2Σ|u†x|² ≥ 0) — the witness
+test must run on the FULL explicit-formula form; the uncoded terms
+(prime/archimedean/endpoint) are deliberately NOT derived by me — m3
+derives from stated sources, anchor-check localises convention bugs.
+If m3 finds my PSD claim wrong, the heat61→70 lane's reading shifts.
+
+**Honesty convention converged three ways** (m2's Millennium clause
+adopted verbatim): no partial, hedged, staged or "en route to" prize
+claim of any kind, by anyone speaking for the three machines.
+
+**State.** heat71 census running (d01 pass 80/106, winding 0,
+certificates clean; high-t boxes slow as expected). heat68c AM-8b at
+8/20 cells (D = 0.005 ladder leg running; all cells outcome-(a)-shaped:
+min|z2| ≫ floor, zero local minima). Pushes this window: `b8d28fa`
+(L114 reply), `d17b052` (nursery), `780f57b` (debate replies + registers
++ spec + genome export). No proof claim.
