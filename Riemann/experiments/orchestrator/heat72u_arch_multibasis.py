@@ -49,7 +49,7 @@ def make_phi(genome):
 def main():
     genomes = json.load(open(GEN))["genomes"]
     key = "s1/M8" if "s1/M8" in genomes else "s1/M64"
-    bases = [int(a) for a in sys.argv[1:]] or [1, 2, 3]
+    bases = [int(a) for a in sys.argv[1:4]] or [1, 2, 3]   # trap #100: T_MAX is argv[4], not a basis
     for bi in bases:
         phi, eds = make_phi(genomes[key][bi])
         T_ARCH = int(sys.argv[4]) if len(sys.argv) > 4 else 150

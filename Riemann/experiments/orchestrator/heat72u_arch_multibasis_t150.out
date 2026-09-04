@@ -1,0 +1,11 @@
+basis 1: Arch1 (mpmath adaptive, t_max=150) = -0.559807861355  [identity target -0.5598]
+basis 2: Arch1 (mpmath adaptive, t_max=150) = -0.0284922324744  [identity target -0.0285]
+basis 3: Arch1 (mpmath adaptive, t_max=150) = 0.321892600288  [identity target +0.3218]
+Traceback (most recent call last):
+  File "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat72u_arch_multibasis.py", line 70, in <module>
+    main()
+    ~~~~^^
+  File "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat72u_arch_multibasis.py", line 54, in main
+    phi, eds = make_phi(genomes[key][bi])
+                        ~~~~~~~~~~~~^^^^
+IndexError: list index out of range
