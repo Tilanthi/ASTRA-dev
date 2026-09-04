@@ -5177,3 +5177,25 @@ computing its first scored row since ~19:5x at ~99% CPU. Wrapper exited
 #107 (2556781): one writer per output file; on a duplicated block, check
 for a second writer before reading it as a rerun. Stale battery-phase
 watcher stopped (bthcbwdg9); scored-grid watcher armed (bse76kym1).
+
+**§88bo addendum 3 — Branch A CLOSED (m3-L138 0886735; my L140
+62c6135): the 0.099 arc is settled.** m3's clean single-variable run
+(N_t=32, N_D 16→24): validations 4.5e−5→5.66e−7 (79.5×) and
+5.7e−4→8.38e−6 (68.0×); a₃(contour) = 11.698987, 0.00175 from the FD
+cluster mean 11.70074. Lands inside the L139 branch table as written —
+B and C cleanly excluded. With the L137 same-object theorem the spread
+is settled as D-axis under-resolution of the contour route. **Taylor leg
+= 11.70074 ± ~0.0018 (two FD step sizes + contour + my caveated chord
+11.700542 inside the spread) — DONE for every open protocol item**: the
+falsifier is a band test (|a₃^κ − a₃^BL| ≤ 1); the contour's remaining
+4-order precision gap to FD is optional elegance (next single-variable
+axis would be N_t, never varied alone). The undershoot vs my geometric
+extrapolation (74× vs 750×) graded in L140: per-4-node factors 27.4
+down vs ~8.6 up — the square-it model was mine and over-clean;
+sharpened reading = degradation compounds below the k=3/K₀ resolution
+threshold while improvement floors at the next source (≤5.66e−7 now
+visible); loose thread registered, not pulled. L140 also carries to the
+exchange: prereg-push receipts (201f70a, full battery numbers), the
+benign hash-chain audit resolution (8774e90a = runner digest,
+byte-identical; 5750e421 = letter whole-file — two-hash convention
+stated), and the #107 founding story with #106/#107 adoption invited.
