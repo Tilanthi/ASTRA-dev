@@ -1,0 +1,52 @@
+seed 1: 79 zeros to T=200
+  seed 1 K_T200 row 0/8 done
+  seed 1 K_T200 row 1/8 done
+  seed 1 K_T200 row 2/8 done
+  seed 1 K_T200 row 3/8 done
+  seed 1 K_T200 row 4/8 done
+  seed 1 K_T200 row 5/8 done
+  seed 1 K_T200 row 6/8 done
+  seed 1 K_T200 row 7/8 done
+  seed 1 K_T150 row 0/8 done
+  seed 1 K_T150 row 1/8 done
+  seed 1 K_T150 row 2/8 done
+  seed 1 K_T150 row 3/8 done
+  seed 1 K_T150 row 4/8 done
+  seed 1 K_T150 row 5/8 done
+  seed 1 K_T150 row 6/8 done
+  seed 1 K_T150 row 7/8 done
+seed 2: 79 zeros to T=200
+  seed 2 K_T200 row 0/8 done
+  seed 2 K_T200 row 1/8 done
+  seed 2 K_T200 row 2/8 done
+  seed 2 K_T200 row 3/8 done
+  seed 2 K_T200 row 4/8 done
+  seed 2 K_T200 row 5/8 done
+  seed 2 K_T200 row 6/8 done
+  seed 2 K_T200 row 7/8 done
+  seed 2 K_T150 row 0/8 done
+  seed 2 K_T150 row 1/8 done
+  seed 2 K_T150 row 2/8 done
+  seed 2 K_T150 row 3/8 done
+  seed 2 K_T150 row 4/8 done
+  seed 2 K_T150 row 5/8 done
+  seed 2 K_T150 row 6/8 done
+  seed 2 K_T150 row 7/8 done
+seed 3: 79 zeros to T=200
+  seed 3 K_T200 row 0/8 done
+  seed 3 K_T200 row 1/8 done
+  seed 3 K_T200 row 2/8 done
+  seed 3 K_T200 row 3/8 done
+  seed 3 K_T200 row 4/8 done
+  seed 3 K_T200 row 5/8 done
+  seed 3 K_T200 row 6/8 done
+  seed 3 K_T200 row 7/8 done
+  seed 3 K_T150 row 0/8 done
+  seed 3 K_T150 row 1/8 done
+  seed 3 K_T150 row 2/8 done
+  seed 3 K_T150 row 3/8 done
+  seed 3 K_T150 row 4/8 done
+  seed 3 K_T150 row 5/8 done
+  seed 3 K_T150 row 6/8 done
+  seed 3 K_T150 row 7/8 done
+WROTE /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat72k_identity_target_m8.json
