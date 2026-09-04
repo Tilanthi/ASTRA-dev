@@ -5160,3 +5160,20 @@ the code evaluated terms separately (mpmath zeta(1) pole); fixed by the
 quadratic limit ladder v(δ) = |F(½+iδ,Δ*)|, δ ∈ {1e−2, 5e−3, 2.5e−3},
 monotone with v(δ)/δ² stable < 10% — the same pole structure documented
 for heat72w's torus design.
+
+**§88bo addendum 2 — the battery2.out double-write (trap #107); scored
+grid sole-writer clean.** The duplicate B4/BATTERY: PASS block in
+heat72_birth_locus_battery2.out (mtime 21:13) was NOT a rerun: two
+processes wrote the file without append mode — the scored runner (16164)
+and the relaunch wrapper's own battery check (b3cag4uhh, inline command,
+"battery exit=0" in its task output, exited ~21:13) — independent byte
+offsets overwriting fragments (header truncated mid-word, B1b fragment
+interleaved inside B2's line, "battery() returned: True" printed by no
+source file on disk). Both transcripts agree on every item (B1a/B1b/B2/
+B3/B4 PASS in both). The prereg-push-before-first-scored-row property is
+untouched: no [eps= row exists in the file; the runner has been
+computing its first scored row since ~19:5x at ~99% CPU. Wrapper exited
+⇒ sole-writer from here; scored rows append clean. Registered as trap
+#107 (2556781): one writer per output file; on a duplicated block, check
+for a second writer before reading it as a rerun. Stale battery-phase
+watcher stopped (bthcbwdg9); scored-grid watcher armed (bse76kym1).
