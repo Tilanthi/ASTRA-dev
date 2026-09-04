@@ -101,14 +101,19 @@ def main(tag, T):
         if (a+1) % 8 == 0:
             print(f"[{tag}/T{T}] U row {a+1}/{m} ({time.time()-t0:.0f}s)",
                   flush=True)
-    # trap-#99 guard (r4 standing rule): highest-gamma column at dps 60
+    # trap-#99 guard (r4 standing rule): highest-gamma column at dps 60.
+    # trap-#101 discipline: SET the precision inside the guard -- a recheck
+    # run at ambient precision compares the quad to itself and prints
+    # exactly 0.0 (determinism, not convergence).
     rho_hi = zs[-1]
+    mp.dps = 60
     worst60 = mpf(0)
     for a in range(m):
         u60 = quad(lambda t: phis[a](t)*exp(rho_hi*t), eds[a])
         r = abs(u60 - U[a, nz-1])/abs(u60)
         if r > worst60:
             worst60 = r
+    mp.dps = 45
     print(f"[{tag}/T{T}] dps-60 check, column {nz} "
           f"(gamma={mp.nstr(mpim(rho_hi), 8)}): max rel diff = "
           f"{mp.nstr(worst60, 4)}", flush=True)
