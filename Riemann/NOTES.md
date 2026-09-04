@@ -5354,3 +5354,41 @@ diagnostic 3′ (λ-level read at η* vs anchor 1.1761206927e−5) suggested.
 Scripts: heat72m_gmetric_and_offline_forms.py (orchestrator) + exchange
 copies. Live: scored grid 11.3h; κ-ladder rung 1 32/40 ETA ~1h (rung ~6.4h);
 AM-8b 23h (a)-shaped.
+
+**CYCLE 22 scored result + my adjudication (L145, exchange 95d67c8).** m2's
+run landed (f871287): OUTCOME (A) WITNESS on PAIR-A — λ_min ladder
+4.734e−6 (δ=0) / 4.733e−6 / 4.662e−6 / 2.720e−6 / −6.973e−6 (0.1) / −2.321e−4 /
+−5.212e−3 / −4.052e−2 (0.45), δ_c = 0.1 ladder / 0.0719 post-hoc; PAIR-B
+pinned at 1.17612e−5 all rungs (my bound exactly); diagnostics 1–3 + my 3′
+at λ-level 3.58e−43 PASS; 39 s vs ~7 h explicit route. My L145 adjudication:
+ACCEPTED. Third-party verification: gap identity K−S = Gram(d) holds to my
+float64 floor (2.6e−18 @ δ=0.1; rank exactly 2; (0,0) = 2|d₀|² = 0.051761007
+9 digits); their δ² expansion re-derived exactly on paper (linear term pure
+imaginary; |g′|² sign reversal = the firing mechanism, exact). **My own L144
+§3 transport arithmetic OWNED**: my δ_c ≈ 1.1e−3 was 72× low = sqrt(14.02 ×
+369.4) — I transported BOTH the coefficient (named risk) and the baseline
+(un-named) in the same "fires-early" direction; formal >60× risk statement
+held, the number beside it was the failure mode it warned about. **My L141 §1
+a₆ RETRACTED at source**: m2's weight-vector audit right (ε₂³/ε₁³ = 398;
+chord + identity/mean both = R₂/ε₂³ ± 0.19% = one determination twice);
+a₆ ≈ 60 ± 10, one significant figure; CYCLE-21 band-kill unaffected (stands
+on the exact anchor-mean identity; ε⁶ closure moves ±0.03% under a₆ = 60±10).
+Literature read (abstracts fetched): Groskin 2607.02828 quote faithful (B_T
+two-sided rule; disclaims RH claims); Zhu 2608.24827 v2 three days old —
+family-free bracket 8.9e−18 ≤ λ_min(0.8) ≤ 2.27e−17, Landau-Widom decay
+3.2e−283 @ L=2 (⇒ our 1.18e−5 is family-conditional, forced framing), and
+"positivity route alone cannot prove RH (doubly exponential frequency
+threshold)" — lane-level scoping; Kim et al 2607.24830 (math.GM) "injected
+off-line zero causes blow-up" = nearest published relative, different
+observable. Novelty: NEW TO THIS RUN (rediscovered) endorsed. Traps #109
+(weight-vector law, m2 founder, my L141 instance) + #110 (truncation budget
+not arithmetic floor, Groskin rule) registered; m2's 9.2/9.3 offered as
+costumes of existing families. m3 redirects stated: arch leg OUT of scored
+path (validation-only); Endpoint↔Arch cancellation = identity under
+symmetrised transform (supersedes m3-L143 framing); recipe-ask premise
+corrected (their 1e−37s zero-side; GL = panel-straddling, convergent with my
+L143 §4). Offer standing: zero-free-parameter prediction of the next sweep
+from the identity (sweep structure read: 21.0220 non-firing = removed
+partner's own ordinate = near-truth; 18.4393 = interior alignment-failure).
+State: scored grid 11h50m computing (block-buffered); κ rung 1 32/40 ETA
+~1.3h; AM-8b 23h+ (a)-shaped.
