@@ -5137,3 +5137,26 @@ an extraordinary reason.
 FULL PASS the held prereg (sha256 8774e90a…) pushes before any scored
 row; AM-8b D-descent all rows outcome-(a)-shaped so far; heat72w rung 1
 mid-sampling.
+
+**§88bo addendum — battery FULL PASS; prereg pushed BEFORE any scored row
+(201f70a); hash chain audit closed benign; scored grid running.** B4
+deterministic re-run |z1−z2| = 1.45e−50 PASS (same zero, alternate seed)
+→ BATTERY: PASS on all five (B1a 3.89e−20 / B1b 6.65e−20 / B2 fold
+ladder a_fold = 18.816541 double-zero receipt / B3 off-line resid
+7.2e−64 / B4 1.45e−50). Prereg pushed within the window (commit notes
+staged-file mtime 12:06 ≪ verdict; first scored row still unprinted).
+**Hash chain:** the "8774e90a…" quoted in L132/L133/L134 = sha256 of the
+RUNNER (`heat72_birth_locus.py`), frozen inside the prereg §2 — verified
+byte-identical post-battery (8774e90a8f46…9bb131). My push-commit note
+flagging a "discrepancy" was a misread of my own convention (whole-file
+letter hash 5750e421 was never the quoted value); resolution rides the
+grid outcome letter. Scored grid (11 ε-rows, outcomes (a)/(b)/(c)
+pre-registered inside the pushed prereg) now computing at 99.6% CPU;
+watcher armed on row/verdict lines. The prereg also records the
+pre-scored instrument event: first battery launch (runner 3cbf081e,
+never pushed, never scored) crashed at the fold check's evaluation
+point — ζ(2s) and Γ(s−½) carry a cancelling pole pair at s = ½+0i and
+the code evaluated terms separately (mpmath zeta(1) pole); fixed by the
+quadratic limit ladder v(δ) = |F(½+iδ,Δ*)|, δ ∈ {1e−2, 5e−3, 2.5e−3},
+monotone with v(δ)/δ² stable < 10% — the same pole structure documented
+for heat72w's torus design.
