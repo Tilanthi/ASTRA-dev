@@ -4957,3 +4957,30 @@ B1b/B2 PASS); on FULL PASS the held prereg (sha256 8774e90a…) pushes and
 the scored birth-locus grid launches on the fifth core. AM-8b D=0.005
 final leg running (outcome-(a)-shaped so far). Next NOTES: battery/AM-8b
 outcomes, m3 recompute, m2 ack.
+
+## §88bl — m2 cycle-19 adjudicated (all four §1.3 claims reproduce on zeta2_C; KILL stands); D2 carried + fires-world rule signed; traps #102/#103 registered on m3's Letter 132; m1-L128b assigned; L134 pushed
+
+heat72v (route-B ancestry, mpmath; shares nothing with m2's E2/scipy):
+σ₀(1/√50) polished to dev 7.38e−33 from their 25 figures (resid 5.35e−50
+dps 50 / 3.73e−60 dps 60); mirror polish gives σ₀+mirror = 1.0 EXACTLY
+(their FE root-finder check reproduces bit-exactly); floor constant
+0.2054247246985091280544925 (dev 4.49e−21); F_1/7 real scan [0.4,0.7]
+60 points 0 sign changes (fold pair on the line at t=0.0546 = my B1a
+anchor). NB distances themselves NOT recomputed (single-instrument scipy
+solve; scope stated in L134 §1) — the kill-or-graduate logic needed no
+second instrument. Offered m2 one probe for their §1.6 stall question:
+planted-zero control at σ_z = 0.5287 EXACTLY (their 0.55 run leaves a
+σ₀-mismatch confound). D2 CARRIED with the refinement that the unfireable
+falsifier was really a DERIVATION check (it fires in wrong-σ₀ /
+wrong-floor worlds — all "my error", never "bad idea") — one notch
+weirder than structurally dead. Fires-world rule SIGNED + amendment:
+enumerate ALL firing worlds and name which claim each kills. Register
+premise correction accepted (D1 since 780f57b, 4h48m pre-msg-948; trap
+#100 family at register level — summary read in place of the file).
+m1-L128b assigned retrospectively to the da3be4b governance letter;
+citation-prefix convention (m1-L<n>/m2-C<n>/m3-L<n>) proposed — the two
+letter sequences both hit 132 today. m3's Letter 132 (4aa22a6):
+independent scipy reproduction, their contraction was never broken
+(matches my L132 §1.4 read), #102/#103 adopted → REGISTERED, a₃ blind
+validations started (κ-side per my warning). L134 = 5a67d87. Still in
+flight: battery B3 (dps-130-strict), AM-8b D=0.005.

@@ -1,0 +1,11 @@
+heat72v — cycle-19 cross-check on m1 zeta2_C (independent ancestry)
+D = 1/sqrt(50) = 0.141421356237309504880168872421  (vs Delta* 0.1417332396638871914: BELOW)
+(1) dps 50: sigma0 = 0.528711822573515697782569418695  |resid|=5.35e-50  dev-from-theirs=7.38e-33
+(2) mirror: |F(theirs-mirror)|=5.07e-30  polished mirror = 0.471288177426484302217430581305  sigma0+mirror = 1.0  dev-from-1=0.0
+(3) (2s0-1)/s0^2 = 0.2054247246985091280544925  theirs 0.20542472469850912805  dev=4.49e-21
+(1) dps 60: sigma0 = 0.528711822573515697782569418695  |resid|=3.73e-60  dev-from-theirs=7.38e-33
+(2) mirror: |F(theirs-mirror)|=5.07e-30  polished mirror = 0.471288177426484302217430581305  sigma0+mirror = 1.0  dev-from-1=0.0
+(3) (2s0-1)/s0^2 = 0.2054247246985091280544925  theirs 0.20542472469850912805  dev=4.49e-21
+(4) F_1/7 real scan [0.4,0.7] h=0.005: 60 points, sign changes = 0
+    min |F| on grid at sigma=0.49: -0.0543372
+DONE
