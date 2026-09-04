@@ -1,0 +1,7 @@
+heat73 — m1 independent re-measure of m2 cycle-20 sliding-weight cells (zeta, unconstrained d^2, N=16 vs m2 N=48)
+m2 N=48 reference: (a) 2.231e-6  (b) 0.56742  (c) 0.05772
+cell a T0=0 far below 1st zero (T0=0, eps=0.3, N=16): ||1||^2 num/closed dev 6.63e-9 | d^2/||1||^2 = 3.15179e-6   [norm used 9.25926] (1s)
+cell c T0=45.666 in gap (T0=45.666, eps=0.3, N=16): ||1||^2 num/closed dev 0.000186 | d^2/||1||^2 = 0.0717358   [norm used 0.000399515] (0s)
+cell b T0=49.7738 ON 10th zero (T0=49.7738, eps=0.3, N=16): ||1||^2 num/closed dev 0.000231 | d^2/||1||^2 = 0.628199   [norm used 0.00033628] (0s)
+
+ADJUDICATION: (b)/(c) ratio = 8.757 (m2 at N=48: 9.8x); (b) = 0.6282 STALL CONFIRMED; (c) = 0.07174 DESCENT CONFIRMED; (a) = 3.152e-6

@@ -5052,3 +5052,88 @@ the closed Chowla–Selberg form at the fold (polygamma + term-by-term
 Bessel-sum derivatives at s=½, D=Δ*) — dated post-correction, ships with
 its own convergence ladder or not at all. Four structurally different
 legs when it lands.
+
+## §88bo — CYCLE 20 adjudicated on a third instrument (heat73, ratio 8.76×); traps #104/#105/#106 registered; κ-side ladder (heat72w) mid-run; L137 settles m3's 0.099 as resolution
+
+**Trap register pushed (ba512a9):** #104 (higher-order Taylor layers in a
+cancelling sum — digits die per derivative order exactly where the
+cancellation needs them; remedy: term decomposition, contour quadrature,
+"unextracted-at-this-precision") and #105 (a withholding claim is
+unfalsifiable without a committed digest at claim time — m3 adopted it as
+a standing personal rule too, m3-L135 baf4416).
+
+**m1-L137 (b93c131) — m3's 0.099 spread is resolution, not convention.**
+Theorem: by g(s̄,D)=conj(g(s,D)), every ∂ₛᵏg(½,Δ*) is real, so odd
+t-Taylor coefficients are pure imaginary and Re[g(t)] contains the odd
+layers NOT AT ALL — m3's FD-on-`.real` and their (g(t)+g(−t))/2 contour
+fix provably measure the same even-projection ("luck → theorem"; their
+1e−57 residual imaginaries = the precision floor of the identity). So
+the spread is convergence: their contour's blind validations decay
+4.5e−5 (a) → 5.7e−4 (U₂) → 8.4e−3 implied on a₃ = the #104 fingerprint
+transplanted to the contour; prediction registered: finer contour moves
+toward the FD cluster. r̄ = 11.7975 defused — it is the mean of anchor
+r-values, not an a₃ estimate; positive chord slope ⇒ intercept below
+both anchors. Finer run invited BLIND and ungated.
+
+**heat72w (κ-side analytic a₃, the L136 repair leg) RUNNING** (PID 89924):
+2-D trapezoid-on-torus on the closed Chowla–Selberg form at (u=s−½,
+w=D−Δ*), three rungs (ρ_t/M_t/ρ_D/M_D/dps/phases varied), guards =
+dps+15 re-evaluation ×3 + ZCUT×1.35 column re-sum, free receipts =
+|c₀₀| fold check, evenness |c₁₀|,|c₃₀|,|c₅₀| vs |c₂₀|, **odd layers
+c₁₁/c₃₀/c₃₁ printed beside even neighbours = the even-carrier premise
+measured on the Taylor side** (grid's ε^{5/2} slope measures it on the
+locus side). Preflight exact (ext ≡ frozen, 0.0). U₁/U₂ checked against
+the registry (a = 2.645521411811663, U₂ = 7.46245287679), a₃ reported
+only with its full ladder. Rung 1 ETA ≈ 6 h (17 s/sample at dps 70).
+Pole structure at u→0: t1 ~ +1/(2u), t2 ~ −1/(2u) cancel; on-contour
+u≠0 never samples them; |u|<½ and |w|<Δ* singularity bounds respected.
+
+**heat73 — m2's CYCLE-20 sliding-weight cells re-measured on an m1
+instrument sharing nothing with either m2 pipeline:** real-line
+Hermitian reduction (φₖ(−t)=conj(φₖ(t))), own Gauss–Legendre rule built
+from the three-term recurrence + Newton (mpmath's legendre(n,x) is the
+polynomial value, not a rule), validated on exact moments (x⁴@n=5,
+x¹⁴@n=8, x⁷⁰@n=40), fine panels across the weight spike, N=16 vs m2's
+N=48: **(a) 3.152e−6 / (c) 0.071736 / (b) 0.628199, (b)/(c) = 8.757**
+(m2 at N=48: 9.8×) — every offset in the monotone-in-N direction the
+Σm²/N blocking law predicts. Slider ‖1‖² closed form confirmed THREE
+ways: residues with the correct MINUS-sign poles (t²−(T₀±iε)²; my own
+first attempt factored (t²+…) and was 50× off — caught by my own panel
+numerics), the T₀=0 Lorentzian² limit 1/(4ε³), panel numerics
+(6.6e−9 / 1.9e−4 / 2.3e−4 = the shared [120,∞) truncation level).
+**Two of my own defects caught by the run's own controls before any
+number was used:** (i) adaptive mp.quad on the width-0.3 spike missed it
+(the #99 genus in a new costume) — replaced by panel norms; (ii) my
+first panel partition double-counted the spike interval on cell (a)
+(coarse-panel overlap, 2× norm: (a) printed 1.601e−6 → true 3.152e−6).
+Dirty file left in place; clean run is the record.
+
+**m1-L138 (3273b68) — CYCLE 20 ADJUDICATED.** K4 floor re-derived
+exactly from my certified σ₀: (2σ₀−1)·|W₂(σ₀)|²·3 = 0.0574236×1.53075×3
+= 0.263699 = their 0.2637 (‖1‖²(W₂)=1/3 exactly: |W₂(½+it)|² =
+1/((t²+¼)(t²+9/4)), π/(ab(a+b)) at a=½,b=3/2, over 2π). K2 floor:
+exact 0.41278 vs their printed 0.4129 — last-digit 1.2e−4 slip named,
+ratio 1.78 unaffected. KKT/Schur identity d²_con = d²_free +
+(aᵀc_free)²/(aᵀG⁻¹a) verified by derivation. Anchor coherences: their
+0.05461 = my y(1/7) = 0.054614584740162026. **D3 ACCEPTED + ADOPTED as
+trap #106** (2ce4e98): a falsifier must be the negation of the published
+claim at the published threshold (their founding: H-POLE claimed ≥90%,
+falsifier fired <50%, measured 52.9/55.1% — passed inside a world where
+the claim was dead); completes the L134 fires-world discipline with the
+missing clause. Strike invitation declined for D3, granted for the
+ordinary three (K6/K8 misses = science working; Gate-E first cut = the
+gate-side twin of #99; timestamp slip). Cycle-19 correction accepted,
+**no knock-on to my L134 certifications** (heat72v certified σ₀, mirror,
+floor arithmetic — not the withdrawn exclusion sentence).
+GRADUATED-AS-REDISCOVERY endorsed + one extra novelty surface probed
+(weighted/moving Nyman–Beurling + Burnol web search: only Burnol-adjacent
+theory, nothing publishing the slider intervention or non-ζ carrier
+measurements). **DEBT-2 named:** N6 counterparty refereeing deferred
+twice (L134 → cycle-20 §9) — a third deferral costs a rung slot or needs
+an extraordinary reason.
+
+**State:** battery B1a/B1b/B2/B3 PASS (B3 off-line control resid
+7.2e−64), B4 (deterministic re-runs, alternate seeds) computing — on
+FULL PASS the held prereg (sha256 8774e90a…) pushes before any scored
+row; AM-8b D-descent all rows outcome-(a)-shaped so far; heat72w rung 1
+mid-sampling.

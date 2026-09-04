@@ -1,0 +1,6 @@
+heat72w — kappa-side analytic a3 (m1-L136 repair leg; contour route)
+guarded: dps+15 recheck x3, ZCUT*1.35 column, U1/U2 registry checks, fold/evenness receipts
+PREFLIGHT ext-vs-frozen worst rel diff: 0.0
+
+===== RUNG 1: rho_t=0.25 M_t=40 rho_D=0.08 M_D=32 dps=70 ph_t=0 ph_D=0 =====
+  sampled u-column 8/40  elapsed 4341s  eta 17363s
