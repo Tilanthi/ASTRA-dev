@@ -3,9 +3,13 @@
 
 Two legs, both from my own exports + dps-45 breakpoint-piecewise quadrature (#99-compliant):
   (exact)  S_Z = K_T200 - Gram(u(g1)) - Gram(u(g2)) + S_quad(delta, gamma_0), lam_min in G-metric
-  (taylor) same, but u(p), u(q) replaced by their delta^2-truncated Taylor forms at
-           s0 = 1/2 + i*gamma_0:  u(p) ~ u0 + d*u' + d^2/2*u'',  u(q) ~ u0 - d*u' + d^2/2*u''
+  (taylor2/taylor4) same, but u(p), u(q) replaced by their delta^2 / delta^4-truncated Taylor
+           forms at s0 = 1/2 + i*gamma_0:
+             u(p) ~ sum_k  d^k/k! u^{(k)}(s0),   u(q) ~ sum_k (-d)^k/k! u^{(k)}(s0)
            with u^{(k)}(s0) = integral phi(t) t^k e^{s0 t} dt  (local data only, no fitted params)
+           m1-L148 finding: delta^4 closes the taylor2 magnitude gap (18-76% -> 0.24-2.2% at
+           all nine ordinates, residual sign-free) — the taylor2 under-negativity IS the
+           delta^4 remainder.
 
 m2 scored row (letter f871287 sec 4.3), for grading:
   gamma_0  14.1347 14.9956 15.8566 16.7175 17.5784 18.4393 19.3002 20.1611 21.0220
@@ -83,7 +87,8 @@ def main():
     print(f"launch check: lam_min(L,G) = {gmin(L):.6e}  (m2 removal-only: 3.375750739e-7)")
 
     d = DELTA
-    print(f"\n{'gamma_0':>10} {'m2 scored':>12} {'m1 exact':>12} {'m1 taylor2':>12} {'|ex-m2|/|m2|':>13}")
+    print(f"\n{'gamma_0':>10} {'m2 scored':>12} {'m1 exact':>12} {'m1 taylor2':>12} {'m1 taylor4':>12} "
+          f"{'|ex-m2|/|m2|':>13} {'ty4/ex-1':>10}")
     for gs, m2v in zip(SWEEPS, M2_ROW):
         g0 = mpf(gs)
         s0 = mpc(mpf('0.5'), g0)
@@ -94,16 +99,19 @@ def main():
         Sq_ex = np.array([[float(2 * mpre(ap[i] * conj(aq[j]) + ap[j] * conj(aq[i]))) for j in range(M)]
                           for i in range(M)])
         lam_ex = gmin(L + Sq_ex)
-        u0 = [U(phis[i], edges[i], s0, 0) for i in range(M)]
-        up = [U(phis[i], edges[i], s0, 1) for i in range(M)]
-        upp = [U(phis[i], edges[i], s0, 2) for i in range(M)]
-        tp = [u0[i] + d * up[i] + (d * d / 2) * upp[i] for i in range(M)]
-        tq = [u0[i] - d * up[i] + (d * d / 2) * upp[i] for i in range(M)]
-        Sq_ty = np.array([[float(2 * mpre(tp[i] * conj(tq[j]) + tp[j] * conj(tq[i]))) for j in range(M)]
-                          for i in range(M)])
-        lam_ty = gmin(L + Sq_ty)
+        ders = [[U(phis[i], edges[i], s0, k) for i in range(M)] for k in range(5)]
+        tp2 = [ders[0][i] + d * ders[1][i] + (d * d / 2) * ders[2][i] for i in range(M)]
+        tq2 = [ders[0][i] - d * ders[1][i] + (d * d / 2) * ders[2][i] for i in range(M)]
+        tp4 = [tp2[i] + (d ** 3 / 6) * ders[3][i] + (d ** 4 / 24) * ders[4][i] for i in range(M)]
+        tq4 = [tq2[i] - (d ** 3 / 6) * ders[3][i] + (d ** 4 / 24) * ders[4][i] for i in range(M)]
+        lams = {}
+        for lbl, tp, tq in (('ty2', tp2, tq2), ('ty4', tp4, tq4)):
+            Sq_ty = np.array([[float(2 * mpre(tp[i] * conj(tq[j]) + tp[j] * conj(tq[i]))) for j in range(M)]
+                              for i in range(M)])
+            lams[lbl] = gmin(L + Sq_ty)
         rel = abs(lam_ex - m2v) / abs(m2v)
-        print(f"{gs:>10} {m2v:>12.3e} {lam_ex:>12.3e} {lam_ty:>12.3e} {rel:>12.3%}")
+        print(f"{gs:>10} {m2v:>12.3e} {lam_ex:>12.3e} {lams['ty2']:>12.3e} {lams['ty4']:>12.3e} "
+              f"{rel:>12.3%} {lams['ty4'] / lam_ex - 1:>10.2%}")
 
 
 if __name__ == "__main__":

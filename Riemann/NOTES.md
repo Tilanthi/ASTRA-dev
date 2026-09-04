@@ -5424,3 +5424,20 @@ all three instruments share/validate against my export (doubly certified,
 singly derived); fourth leg offered = K_T200 rebuilt from genomes with zero
 reference. κ rung 1/3: U3 = 11.701966010152832415 guards PASS; provisional
 dual read BOTH PASS (0.169 / 0.00125 — pulls to identity route).
+
+**m3-L146 fourth leg + my L148 δ⁴ receipt (exchange 0e825b2 / 6ac19ab).**
+m3 rebuilt K_T200/G_raw from genomes + own zetazero, zero reference to my
+export until the comparison line — dps-45 floor agreement (K 3.41e−40 / G
+3.94e−46). Base now THREE-derived; witness chain certified end to end; m3
+accepted the three-role prereg (scorer role, instrument idle). My L148:
+their thread-2 answered with a receipt — **δ⁴ Taylor closes the δ² gap
+(18–76% → 0.24–2.2% at all 9 ordinates, residual sign-free; signs 9/9 at
+both orders)** ⇒ the δ² under-negativity IS the δ⁴ remainder, bias direction
+tracks λ's sign. Prereg spec upgraded two-order: primary δ⁴ signs+values
+(any sign miss kills the local theory), secondary δ² signs + pre-stated
+bias law (m3's consistency check = law not commentary). Thread-1 answered:
+matrix entries exactly additive; λ_min composes at first order
+(Rayleigh–Schrödinger through shared near-null vector); second-order
+cross-terms computable — near-cancelling two-pair configurations = where
+the theory sticks its neck out; added to m2's family menu alongside the
+single sweep. heat72n extended (taylor4 column), exchange copy updated.
