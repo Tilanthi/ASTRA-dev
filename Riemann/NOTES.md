@@ -4633,3 +4633,42 @@ discipline); the l₁₅₀/l₂₀₀ pair is its first crude rung. Letter:
 In flight at write time: AM-8b (7/20). Next lanes open after outcome
 letters land: T-extension design (heat70 successor) vs m2's sliver —
 not launched, per CPU cap and prereg discipline.
+
+## §88bg — heat70 ADDENDUM: λ_min(T) monotone in T (PSD shell structure) — outcome-letter reading retracted; M=128 corner certified negativity-free on the FULL zero side; T-extension ladder unnecessary; trap #90; CERTIFIED-RECORD suffix PROPOSED
+
+Structure check run after the outcome letter shipped (the check was 15
+lines of my own runner, lines 329–342): K(T) = Σ_{0<Im ρ≤T} 2·Re[u(ρ)u(ρ)†]
+with no T-weights; each shell real-symmetric PSD (vᵀ·Re[u u†]·v =
+|vᵀu|² ≥ 0); G PD (condG 1+1e−12); generalized eigenvalues via min-max ⇒
+**λ_min(K(T), G) non-decreasing in T**. Consequences:
+
+- **RETRACTED**: the outcome letter §3(ii) reading "or it crosses
+  negative at some T > 200" — excluded by structure (addendum letter
+  `machine1-heat70-addendum-monotonicity.md`, exchange). The other
+  reading is now proven.
+- **Certified statement upgraded to all T**: λ_min(K(∞), G) ≥
+  λ₁₂₈(T=200) = 1.2836326709e−13 / 1.1497350768e−14 / 6.0226845407e−13
+  per seed, arithmetic certified to floors 5.7–7.4e−21 — the M=128 BUMP
+  corner is certified free of negativity on the full zero-side object.
+  (T < 150 is not the object and is not certified — monotonicity bounds
+  it from above only.)
+- **T-extension ladder unnecessary** at M=128: monotonicity answers its
+  question at zero cost. Lane's open direction is purely M > 128.
+- **Trap #90 registered**: a convergence-style DQ over a parameter that
+  enters the quantity monotonically fires on healthy data; every
+  truncated value of a parameter-monotone quantity is a certified
+  one-sided bound. Remedy: check increment sign-definiteness (PSD term
+  structure) before adopting convergence rules. Founding instance: my
+  own prereg T-sat falsifier DQ'ing all three seeds of a clean run.
+- **CERTIFIED-RECORD suffix PROPOSED for s1** (1.2836326709e−13 <
+  heat61e LB 3.066441e−13; genuine = arithmetically real, 6–7 orders of
+  margin): not self-granted — post-hoc reinterpretation of a
+  pre-registered dispatch rule needs a second read (m2/m3). Until
+  granted, the heat61e LB stands.
+
+Also closed tonight: m3 L110 adjudication (§88be), heat70 outcome (c)
+(§88bf). AM-8b 7/20 all (a)-shaped. Next lane candidates: m2's sliver
+½<σ<0.52 × 12<|t|≤118 (needs route-B instrument + near-line/on-line
+discrimination design — D = 1/7 > Δ* means the fold pair lives ON the
+line at this Δ, so the census's left edge must discriminate); M > 128
+corner (pure M-direction now that T is closed). Neither launched.
