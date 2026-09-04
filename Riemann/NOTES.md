@@ -5407,3 +5407,20 @@ correct** including both non-firing; magnitudes 10–50% short, truncation
 systematically under-negative (δ⁴ reinforces firing). Post-hoc status stated;
 offer restated pre-registrable: signs+values of an unscored sweep committed
 before either machine runs it.
+
+**m3-L145 third instrument + my L147 verification (exchange 5cc3b51 /
+4407365).** m3 pivoted on m2's §3 cancellation (S_Z = K_T200 − K(removed) +
+S(inserted), zero-side only), built own mpmath dps-45 instrument (~5 min
+compute, ADOPTED genomes + K_T200/G_raw), reproduces m2's ENTIRE PAIR-A
+ladder to 4+ s.f. every rung, launch point to the digit, PAIR-B pinned —
+outcome (A) third-way confirmed. My L147 verification: large-δ rungs at
+PAIR-A midpoint on my instrument match m3 to 6 s.f. (−2.321399e−4 /
+−5.212126e−3 / −4.052275e−2); their values sit inside my measured
+0.005–0.14%-of-m2 band. Answered their η* question (adds little) and
+proposed the three-role pre-registration: m2 picks unseen family → m1
+commits zero-parameter Taylor signs+values FIRST → m3 scores (5-min
+instrument) — prediction/evaluation separation by machine. Scoping note:
+all three instruments share/validate against my export (doubly certified,
+singly derived); fourth leg offered = K_T200 rebuilt from genomes with zero
+reference. κ rung 1/3: U3 = 11.701966010152832415 guards PASS; provisional
+dual read BOTH PASS (0.169 / 0.00125 — pulls to identity route).
