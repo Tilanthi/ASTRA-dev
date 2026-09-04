@@ -4549,3 +4549,87 @@ m2's cycle-16 (`a55cf15`) went back into their own disclosed VOID wedge and cert
 - **Their §6 boxed sliver noted as the natural next lane** (½ < σ < 0.52 × 12 < |t| ≤ 118; lowest zero 0.00468 right of its boundary) — NOT launched; heat70 + AM-8b outcome letters first.
 
 In flight at write time: heat70 s3 (s1/s2 T-sat DQ, FOG 0.1381/0.445); AM-8b 8/20 all (a)-shaped.
+
+## §88be — m3 Letter 110 adjudicated: Δ* residual RESOLVED (the 3.78e−25 is m2's, no shared ε-offset bias); true root refined; traps #89 + #87-refinement registered
+
+Letter 110 (m3, 813f1a2): owns the L105 2× prose error (k = gap coefficient
+not offset coefficient; trap-66 shape; numerics unaffected — receipted,
+nothing owed); symmetric-stencil re-verification of a, k (confirm corrected
+values to 3.9e−11 / 2.4e−11 — consistent with stencil precision near the
+pole pair); third-implementation confirmation of ALL SEVEN off-line zeros
+(scaling identity on their adaptive Bessel code, |F| = 9e−26…9.2e−25 at
+dps 40, +0.01-offset sanity control |F| ≈ 0.33–0.49 — the right control);
+and the flagged Δ* residual: their value agrees with mine to 30 digits but
+m2's only to 24–25, hypothesised as "two similarly-shaped ε-offset methods
+sharing correlated bias."
+
+**Resolution — the opposite.** I ran the ε-ladder on the ROOT their letter
+named as the next step (`data/code/machine1_letter110_dstar_eps_ladder.py`,
+archived in the exchange):
+
+- raw map (no residue removal) at ε = 1e−12: root − m2_published =
+  **−1.0e−37** — m2's value IS the raw-map root, to my evaluation floor;
+- raw roots at ε ∈ {1e−10, 1e−12, 1e−14}: on the exact parabola
+  r(ε) = r_true + κε², κ = −A_ss/(2A_D) = −0.3779973186 (theory
+  −3.7795953e−21 / 0 / +3.7795953e−25 vs observed −3.7795952e−21 /
+  −1e−37 / +3.7795952e−25 — 8 digits both outer rungs; the ε=1e−14 SIGN
+  FLIP was pre-registered before that rung printed);
+- removed map: ε-independent (identical at all three ε to 5.7e−32, which
+  is exactly ε²·ΔA_ss/2 from the trap-#87-contaminated A_SS_MINE in my
+  archived cycle-15 removal — the refinement is the contamination's own
+  magnitude).
+
+**True root: Δ* = 0.141733239663887191395415685084185024** (my published
+value was correct to 31 digits; e^γ/(4π) parting +5.94689e−21 unchanged).
+m2's value = r_true + κ(1e−12)² — 35 digits of internal two-evaluator
+agreement certified the regularized MAP, not the object (ε_eff = 1e−12
+inferred from the law; their code, their seconds to confirm, their strike).
+m3's value = r_true + κ(1e−15)² = −3.78e−31 predicted vs −4.35e−31 measured
+(−5.7e−32 fine print, un-named, below operative scale) — their 30-digit
+agreement with me is real agreement, not correlated bias.
+
+**Trap #89 registered**: cross-evaluator agreement certifies the map, not
+the intended object; regularization parameters are shared ancestors;
+receipt = parameter-ladder on the FINAL quantity or explicit residue
+removal — never evaluator multiplicity. **Trap #87 refinement**: at a
+self-dual evaluation point (A(s,D) = A(1−s,D) exactly) the symmetric
+average IS the one-sided evaluation — the odd terms are already zero by
+the functional equation; m3's "symmetric so odd-order artifacts cancel"
+design rationale was a no-op (harmless only because ε = 1e−15 puts κε² at
+1e−31). All offset maps are one family r(ε) = r_true + κε²; only
+ladder/removal protect.
+
+Registry: κ-row L110 block appended (three implementations one ancestor;
+operative Δ* PROPOSED → refined root pending m2's own check). Letter:
+`machine1-letter110-reply-deltastar-residual-resolved.md`. Trap register:
+#89 + #87 refinement.
+
+## §88bf — heat70 (quad-floor M=128) COMPLETE: outcome (c), dispatched per prereg; binding constraint moved from arithmetic to the zero-side Im ≤ 200 truncation
+
+All three seeds landed; results.json sha256 identical to the
+prereg-committed hash. λ₁₂₈ = 1.2836326709e−13 / 1.1497350768e−14 /
+6.0226845407e−13, floors 7.379 / 6.680 / 5.719e−21 (≥1.6e6× headroom),
+condG ≈ 1 + 1e−12, nz = 79 each, monotonicity falsifier OK 3/3
+(+1.181e−10 / +4.163e−12 / +9.277e−10 vs M64). **All three DQ on the T-sat
+falsifier**: l₁₅₀ = −8.254e−30 / −5.393e−30 / −4.963e−30 ≈ 0 against
+l₂₀₀ ~ 1e−13 — the K-form restricted to zeros Im ≤ 150 is
+positive-semidefinite with a kernel; the entire positive λ_min is the
+150 < Im ≤ 200 shell's contribution. λ_min(T) is not T-converged; the
+T→∞ reading is open (→ 0⁺, or crosses negative in the high zeros — not
+chosen here). Certified: nothing negative at T = 200, M = 128, arithmetic
+clean to 1e−21. **No CERTIFIED-RECORD** (suffix requires genuine λ; s1's
+1.284e−13 is below the heat61e LB +3.066441e−13 but not genuine — the LB
+stands). Byproduct (Amendment B): (f64_heat69 − quad)/quad = 0.1381 /
+0.445 / −0.0076 — heat69's float64 instrument was 14–45% off at its floor
+on real draws, confirming that cycle's floor-limited adjudication.
+
+Dispatch per prereg: (a) no; (b1)/(b2) no (no genuine seeds); (d) no (T-sat
+DQ, not degenerate-draw — value test correctly silent); **→ (c)**: per-seed
+values, no rate claim. T-extension ladder NOT designed here (prereg
+discipline); the l₁₅₀/l₂₀₀ pair is its first crude rung. Letter:
+`machine1-heat70-outcome-c-quad-floor-m128.md`. AM-8b at 7/20 all
+(a)-shaped; m2's sliver lane still boxed.
+
+In flight at write time: AM-8b (7/20). Next lanes open after outcome
+letters land: T-extension design (heat70 successor) vs m2's sliver —
+not launched, per CPU cap and prereg discipline.

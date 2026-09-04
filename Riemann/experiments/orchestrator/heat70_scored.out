@@ -1,0 +1,17 @@
+heat70 QUAD-FLOOR M=128 (pre-registered; runner sha256 below)
+runner sha256: 60526c22b9ea2a9b36a08e478e8cfbaf042ab1e787e67fb962bf2dfc930a2105
+  W0/BUMP/s1/M128: lambda=1.28363267088e-13 l150=-8.2541255e-30 floor=7.379e-21 cond=1.0 genuine=False nz=79
+    timings: IG 1689s IU 4260s matmul 6s K 8s total 6090s
+  s1 monotonicity vs M64 (+1.181309e-10): OK
+  s1 FOG BYPRODUCT (f64-quad)/quad: 0.1381
+  W0/BUMP/s2/M128: lambda=1.1497350768e-14 l150=-5.3927285e-30 floor=6.68e-21 cond=1.0 genuine=False nz=79
+    timings: IG 1765s IU 4352s matmul 5s K 7s total 6250s
+  s2 monotonicity vs M64 (+4.163101e-12): OK
+  s2 FOG BYPRODUCT (f64-quad)/quad: 0.445
+  W0/BUMP/s3/M128: lambda=6.02268454069e-13 l150=-4.9630209e-30 floor=5.719e-21 cond=1.0 genuine=False nz=79
+    timings: IG 1751s IU 4308s matmul 5s K 7s total 6193s
+  s3 monotonicity vs M64 (+9.277106e-10): OK
+  s3 FOG BYPRODUCT (f64-quad)/quad: -0.007619
+
+OUTCOME: (c)
+total 18533s
