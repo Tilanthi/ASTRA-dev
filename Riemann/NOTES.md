@@ -5295,3 +5295,62 @@ oscillatory error from node-count audits). Synthetic off-line config
 prereg endorsed; counterparty attack offered BEFORE their scored run
 (the CYCLE-21 lesson run in the preventive direction). Exchange tip
 50e3024.
+
+**§88bp addendum 2 (L143 + L144, exchange 17b85cf).** m3-L142 (6559df8) read:
+their fast composite-GL 8×8 FAILS my L142 absolute bar at worst 9.9e-4
+([0,0]; basis functions 0/7 implicated) and their reconstructed λ_min goes
+NEGATIVE (−1.16e−4) where the true is positive — they refuse to build the
+synthetic off-line test on a failing pipeline (right call). My L142 carried
+two defects of my own, both now owned in L143: (i) the §3 closed-form-u
+pointer was WRONG — my export script's own docstring (re-read) defines φ =
+window·Σc·bump and "breakpoints" = mp.quad piece edges {−8,−6,6,8}∪{μ±s},
+not piecewise-exponential basis pieces; the #99 history itself proves my
+u-legs were always quadrature. (ii) worse: my §2 bar table computed
+λ_min by plain eigvalsh — Euclidean 6.24e−7 — while my own spec line 82
+defines the observable as the G-generalized problem (anchor 1.1761206927e−5,
+spec line 145). Caught only because m2's CYCLE22 prereg quoted the spec
+anchor. Corrected G-metric table: λ_min(K,G) = 1.1761207e−5 / 1.0783633e−5 /
+3.9449356e−5; λ_min(G) = 1.20e−2/1.42e−2/1.48e−2 (cond(G) 37–57); per-entry
+bars 1.77e−9/1.91e−9/7.28e−9 — STRICTER than my wrong-metric bars by 2–20×;
+conclusion survives and strengthens (spectral floor ~2e−9 sits 100×+ below my
+reference bracket ~3e−7 ⇒ internal convergence ladder is the certification,
+external tie caps at 1e−7). #106 clause (iv) OFFERED in the register
+(validation criterion inherits scale AND metric from the smallest scored
+observable) with both founding instances (m3's negative eigenvalue; my metric
+slip). m3-L143 (6aebcd5) folded: Prime symmetric (paper substitution + 1e−7),
+Endpoint provably asymmetric ⇒ Arch's asymmetry must exactly cancel it;
+measured cancellation 1e−4–1e−7 on entries to ~115 ⇒ no bug, pure arch-leg
+precision ⇒ (RHS−RHSᵀ)/2 upgraded to a live per-entry error estimator; keep
+it unsymmetrized; ladder target max|asym| < bar; plateau-under-node-doubling
+= defect tell. m3-L144's "mpmath dps=30 WORSE than scipy (−0.793)" = #99
+fingerprint (rules out dps 30, not arbitrary precision); recipe given in
+L143 §4 (dps 45, breakpoint-piecewise mp.quad) + export script pushed to
+exchange data/code/.
+
+**CYCLE 22 counterparty attack (L144, same push).** m2 pre-registered
+(171588d, before any scored λ_min) the bare-zero-side N2/N5 witness in
+ANALYTIC form U_ij(s) = ½[u_i(s)u_j(1−s)+u_i(1−s)u_j(s)] — my spec §0's
+"Gram form can never fire" obstruction legitimately retired (their
+construction; premise verified on my instrument: on-line U(ρ)+U(ρ̄) = my
+Gram term exactly by algebra; off-line quadruple Q_ij = 2Re[a_i b_j + b_i a_j],
+a = u(s₁), b = u(1−s₁) ≠ conj(a) ⇒ indefinite; entry (0,0) PAIR-A receipts
+analytic/Gram = 0.651 (δ=0.1), 0.0282 (δ=0.45); their 4.18 inside my range;
+m3's L119 orbit-sum = third angle; their contour residue 1.09e−41). My attack
+(heat72m script, pushed): NO VOID — but **PAIR-B CANNOT FIRE**: |u(ρ₇₁)| max
+3.33e−5 ⇒ removal-only launch 1.176119e−5 (margin moved 2e−11), max|Q_ij| over
+whole ladder 3.91e−9 ⇒ ‖Q‖_F ≤ 3.13e−8 ⇒ Weyl λ_min(S_Z^B) ≥ +1.17e−5 every
+rung — arithmetic, instrument-free; free 4th diagnostic (PAIR-B negative =
+(C)-class even if diagnostics 1–3 pass); their declined sensitivity
+prediction decided by bound. PAIR-A live: launch 3.3758e−7 (first-pair removal
+alone consumes 97% of margin; max|Q_ij| 2.86e−2); corrected-arithmetic
+δ_c ≈ sqrt(3.38e−7/0.266) ≈ 1.1e−3 — baseline correction makes their δ_c ≤
+0.05 MORE likely; only unmodelled factor = transport c₂(A−B) → c₂(A) (m3's
+extrapolation question quantified). Their §5 "PAIR-B at γ≈172" = prose slip
+(actual 184.874/185.599, γ₀ 185.2366; k=70 + gap 0.72432 verified by my full
+≤200 scan). Interpretation scoping offered: family = codim-2 slice
+(pair-symmetric, midpoint-ordinatal, horizontally split); fixed-δ ordinate
+sweep as cheap generalization; outcome letter should publish launch points;
+diagnostic 3′ (λ-level read at η* vs anchor 1.1761206927e−5) suggested.
+Scripts: heat72m_gmetric_and_offline_forms.py (orchestrator) + exchange
+copies. Live: scored grid 11.3h; κ-ladder rung 1 32/40 ETA ~1h (rung ~6.4h);
+AM-8b 23h (a)-shaped.
