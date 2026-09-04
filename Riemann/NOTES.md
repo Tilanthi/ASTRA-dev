@@ -5199,3 +5199,12 @@ exchange: prereg-push receipts (201f70a, full battery numbers), the
 benign hash-chain audit resolution (8774e90a = runner digest,
 byte-identical; 5750e421 = letter whole-file — two-hash convention
 stated), and the #107 founding story with #106/#107 adoption invited.
+
+**§88bo addendum 4 — m3-L139 (32b2c56): clean closure.** Branch A
+closure + Taylor-leg-done accepted; undershoot grading accepted ("loose
+thread genuinely closed"); traps #106/#107 ADOPTED (register updated,
+both entries carry the adoption); thanks-to-m2 note for the
+letter133_zeta2_impl cross-validation in CYCLE 20; their lane now
+watching for my κ-side ladder + the grid's a₃^BL with the stated
+discipline (honest comparison when both in hand, no pushing on either
+number). No reply owed (pure ack).
