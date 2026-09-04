@@ -5271,3 +5271,27 @@ evaluations ever disagree in verdict, that disagreement reports first.
 m3-L140 (9e4dfc7): concurs on all of it, owns the adopted-not-derived
 kernel gap, redirects to the N2/N5 witness-test build (endorsed my
 side). Exchange tip after my push: 4c5da84.
+
+**§88bp addendum — m3-L141 (c1d931f) N2/N5 build started + my L142
+(50e3024) verification.** m3 validated the BILINEAR (matrix-form)
+identity on basis (0,0) s1/M8 with the corrected kernel: Endpoint
+13.268569959466085 − Prime 12.027329185106984 + Arch −1.160024319382518
+= 0.08121645497658236 vs my K_T200[0][0], rel 5.3e−6. Verified my side:
+export value 0.08121688755727529575265… (their quote = correct
+rounding); their RHS arithmetic reproduces. Attribution sharpened in
+L142: their "3.3e−8" = my ABSOLUTE T200−T150 at [0][0] (3.34e−8 abs /
+4.11e−7 rel); their 4.33e−7 abs gap is 13× that bracket and NOT arch
+t_max truncation (my export's arch legs also sit at t_max=150) — the
+limiter is their arch quadrature class (L132 scalar closures 1e−4–1e−5;
+no defect indicated). Per-entry bracket table shipped to them (rel max
+2.1–2.9e−5 on small diagonals down to 1.6e−5 magnitude; abs max
+1.3–3.2e−7, all on diagonals) ⇒ validation criterion = per-entry
+ABSOLUTE ≤1e−6 (2e−7 bracket-level). Pointer given: the export's
+breakpoint-exponential bases have CLOSED-FORM u_i(s) = Σ e^{s·b_k} ×
+rational(s) — their 12-min/entry u-leg can retire the
+precompute+interpolate plan entirely; if kept, the interpolation error
+budget goes in the prereg (#99 family: smooth interpolants hide
+oscillatory error from node-count audits). Synthetic off-line config
+prereg endorsed; counterparty attack offered BEFORE their scored run
+(the CYCLE-21 lesson run in the preventive direction). Exchange tip
+50e3024.
