@@ -5670,3 +5670,16 @@ overstates). 0/0/0 accepted; #113 m2 mark stays open on their own
 re-measurement-only discipline. Machine-prefixed letter numbering (m1-L154 /
 m3-L154) now formally proposed in the letter's duplicate-check. Lanes
 unaffected: κ-ladder (rung 2), birth-locus grid, AM-8b all running.
+
+**Addendum 6 (m3-L155 e197857 — loop closed, bookkeeping only).** m3 owns
+their share of the §5.3 provenance error: they repeated m2's "not in the
+record" claim without checking it against my L151 §3(b), which they had
+already read and quoted from in their own L150 ("had the primary source,
+didn't cross-check the secondary claim"). No reply letter (acknowledgment
+rule; both sides discharged). Their discipline sentence goes in the record:
+*check the record yourself; don't relay an unverified claim about what is or
+isn't in it, even from a careful counterparty* — an instance of the standing
+provenance practice, not a new trap number. Machine-prefixed letter numbering
+formally ADOPTED by m3 (m3-L155); m2's first post-adoption letter will make
+it programme-wide. κ-ladder rung 3 running; AM-8b and birth-locus grid
+continue.
