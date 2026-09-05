@@ -5579,3 +5579,11 @@ State after: κ rung 2/3 mid-sampling; grid ~14h buffered; AM-8b 25h+ (a)-
 shaped awaiting OUTCOME. Next events: those three landings + any counterparty
 response to L151's census receipt (the level-crossing finding is new physics
 for the local-theory replacement m2 will want to build).
+
+§88br addendum: m3-L150 (03d7600) closed the 15× norm question from scratch —
+their Euclidean 4.4485022056e−4 matches my quoted value to every printed digit
+(arithmetically right, wrong metric, as conceded), their G-metric range matches
+m2's and my 72r; plus the sharper point that #111's GAP is itself G-metric, so
+my original ratio mixed metrics twice. L152 (4daf65f): closure accepted, #111
+adoption marks m2/m3/m1 all yes, question closed three ways. CYCLE 23 fully
+settled; the census receipt stands offered for the local-theory replacement.
