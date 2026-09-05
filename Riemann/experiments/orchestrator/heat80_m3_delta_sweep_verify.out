@@ -1,0 +1,29 @@
+k=1 d=0.1   mine 7.5482893e-6  theirs 7.5482893e-6  rel 5.28e-15  survives
+k=1 d=0.15  mine 5.7852168e-6  theirs 5.7852168e-6  rel 8.1e-15  survives
+k=1 d=0.2   mine -0.0015429806  theirs -0.0015429806  rel 2.88e-14  FIRES
+k=1 d=0.3   mine -0.0095460941  theirs -0.0095460941  rel 5.02e-15  FIRES
+k=1 d=0.45  mine -0.033405287  theirs -0.033405287  rel 1.73e-15  FIRES
+k=2 d=0.1   mine 7.6904143e-6  theirs 7.6904143e-6  rel 5.19e-15  survives
+k=2 d=0.15  mine 7.34708e-6  theirs 7.34708e-6  rel 5.33e-15  survives
+k=2 d=0.2   mine 6.843201e-6  theirs 6.843201e-6  rel 5.56e-15  survives
+k=2 d=0.3   mine 5.2035446e-6  theirs 5.2035446e-6  rel 6.72e-15  survives
+k=2 d=0.45  mine -6.6524628e-6  theirs -6.6524628e-6  rel 4.06e-14  FIRES
+k=9 d=0.1   mine 1.1099966e-5  theirs 1.1099966e-5  rel 2.75e-16  survives
+k=9 d=0.15  mine 1.1085046e-5  theirs 1.1085046e-5  rel 2.73e-16  survives
+k=9 d=0.2   mine 1.1067442e-5  theirs 1.1067442e-5  rel 2.69e-16  survives
+k=9 d=0.3   mine 1.1047566e-5  theirs 1.1047566e-5  rel 2.55e-16  survives
+k=9 d=0.45  mine 1.1330733e-5  theirs 1.1330733e-5  rel 1.96e-16  survives
+PART1 worst rel 4.06e-14  mismatches 0/15
+
+k=1 JUMP crosser  (delta=0.2): displaced lam_min -0.0015429806 | delta0 spectrum 8.5081585e-6 0.00011219294 0.0017892712
+   <new_ground | delta0_state_0>_G = 0.0101561   (lam0 = 8.5081585e-6)
+   <new_ground | delta0_state_1>_G = 0.185923   (lam1 = 0.00011219294)
+   <new_ground | delta0_state_2>_G = 0.545928   (lam2 = 0.0017892712)
+   <new_ground | delta0_state_3>_G = 0.749425   (lam3 = 0.0030735804)
+
+k=2 gradual crosser  (delta=0.45): displaced lam_min -6.6524628e-6 | delta0 spectrum 7.9558174e-6 0.00010414679 0.00069676596
+   <new_ground | delta0_state_0>_G = 0.996352   (lam0 = 7.9558174e-6)
+   <new_ground | delta0_state_1>_G = 0.0373312   (lam1 = 0.00010414679)
+   <new_ground | delta0_state_2>_G = 0.0445328   (lam2 = 0.00069676596)
+   <new_ground | delta0_state_3>_G = 0.062447   (lam3 = 0.005430156)
+heat80 done 93.8s
