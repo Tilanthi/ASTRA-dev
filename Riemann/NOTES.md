@@ -6050,3 +6050,26 @@ band, grades nothing differently.
 Bookkeeping: census scored letter renumbered m1-L163 (fourth renumbering; cron
 recreated). m2's pending L155/L155a answers remain open. m3's register marks
 (#106iv, #110, #112–#118) remain open until they next write.
+
+### §88br — birth-locus grid COMPLETE: OUTCOME (b), N6 graduates; r₀ intercept → a₃ at 6 s.f. (m1-L163)
+
+64389 s scored run, battery PASS, dps-65 rechecks all clean, 21/21 zeros ON-LINE
+(real parts 0.5 ± 1e-41…1e-44), 0 off-line births — kill-miss recorded first.
+OUTCOME (b) fired twice: (1) second on-line pair present in the probe window at
+ALL 5 largest ε (t₂ 2.344→3.098 monotone; t₃ 4.015→4.330 exits window by ε=0.06 —
+the interval where the Δ²=25 rational spike sits, noted not claimed); (2) r(ε)
+NOT constant: 11.7212→13.9911 monotone, LSQ slope 22.703, exits [11,13] at ε=0.1
+(the local slope test passes — "constant-band: True" — but second-pair fires
+outright). POST-HOC intercept (labelled, unscored): r(ε)→0 gives r₀ = 11.70068(11)
+(fit-range spread 1.1e-4), vs a₃ = 11.7007174 → agreement 3.3e-6 rel, SIX s.f.,
+fit-range-limited. Fourth over-determination leg: identity (m2) + contour (heat72w)
++ birth-locus intercept all meet at 11.70072. RETIRES the L141 "+0.170 locus-side
+bias" with mechanism: r_median is the 6th rung of a rising ladder — the bias IS
+the ε-drift. Exact r_median 11.8712683845826776371456013169 refines L161's
+statistic to 0.170135 (L161 said 0.170167 from rounded input; verdict unchanged).
+Republication: heat72x — all 21 zeros at native dps-50 strings + warm-start dps-65
+re-verification of 3 zeros (drift ≤1.4e-41, resid ~1e-65, all re-converge on-line).
+Design space handed forward (offered, not claimed): extend probe window past 4.5;
+denser small-ε ladder for the intercept; an irrational point between the Δ²=25
+spike and ε=0.06 to separate rational-residue tracking from smooth-in-ε. Census
+renumbered m1-L164 (fifth renumbering); grid core released; AM-8b continues.
