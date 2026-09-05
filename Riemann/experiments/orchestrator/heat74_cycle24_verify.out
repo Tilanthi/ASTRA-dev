@@ -1,0 +1,66 @@
+
+========================================================================
+A  node count — m2's gl_nodes code path (ERRATUM 9 strike 1)
+========================================================================
+degree  7: len(gl_nodes(0,1,7)) = 192   (3*2^(d-1) = 192)
+degree  8: len(gl_nodes(0,1,8)) = 384   (3*2^(d-1) = 384)
+degree  9: len(gl_nodes(0,1,9)) = 768   (3*2^(d-1) = 768)
+degree 10: len(gl_nodes(0,1,10)) = 1536   (3*2^(d-1) = 1536)
+
+genome file exchange sha1 1e7732e84c1f7163  astra-side ABSENT  identical=False
+M = 8 genomes; bump counts = [4, 5, 3, 5, 2, 2, 3, 3]
+
+========================================================================
+B  widths from genomes (independent arithmetic)
+========================================================================
+ b   hmax(mine)     hmax(m2)    eff_exact   effmax(m2)   wl_heffmax  empty_gap
+ 0       2.3389       2.3389       1.2038       1.1918       1.1978      EMPTY
+ 1       2.4787       2.4787       2.4787       2.4663       2.4725      2.479
+ 2       4.6027       4.6027       4.3088       4.2874       4.2873      EMPTY
+ 3       1.8006       1.8006       1.8006       1.7916       1.8006      1.801
+ 4       2.6658       2.6658       2.6658       2.6526       2.6592      2.666
+ 5       3.5607       3.5607       2.3111       2.2996       2.2996      EMPTY
+ 6       2.0311       2.0311       1.5410       1.5333       1.5371      EMPTY
+ 7       5.1177       5.1177       2.4873       2.4625       2.4749      EMPTY
+
+(wl_heffmax = max panel heff in their widthlaw.json — a third convention; b1/b7 order swaps between conventions but both are gamma-tied at 260)
+
+========================================================================
+C  statistics — break@deg7 + effmax/hmax, raw AND gated, then my eff_exact
+========================================================================
+raw   break@7 = [None, 260, 140, 340, 220, 20, 400, 260]
+gated break@7 = [None, 260, 140, 340, 220, 280, 400, 260]   (only b5 differs: 20 -> 280)
+
+--- GATED vector ---
+their effmax: Spearman = -0.9940   exact P(rho<=obs) = 0/40320 = 0.00e+00   (claim: -0.9940 / 9.9e-5)
+their hmax  : Spearman = -0.6946   exact P(rho<=obs) = 1166/40320 = 2.89e-02   (claim: -0.6946 / 0.063)
+my eff_exact: Spearman = -0.9940   exact P(rho<=obs) = 0/40320 = 0.00e+00   (claim: -0.9940 / 9.9e-5)
+my hmax     : Spearman = -0.6946   exact P(rho<=obs) = 1166/40320 = 2.89e-02   (claim: -0.6946 / 0.063)
+  gamma*effmax (GATED): mean 618.8  pop-sd 21.7 (3.5%)  samp-sd 23.5 (3.8%)  n=7
+  gamma*hmax   (GATED): mean 803.9  pop-sd 253.4 (31.5%)  samp-sd 273.8 (34.1%)  n=7
+  external: gamma*heff/n at deg-7 (n=192) = 3.223  (their claim 3.22)
+
+--- RAW   vector ---
+their effmax: Spearman = -0.7545   exact P(rho<=obs) = 634/40320 = 1.57e-02   (claim: -0.9940 / 9.9e-5)
+their hmax  : Spearman = -0.6946   exact P(rho<=obs) = 1182/40320 = 2.93e-02   (claim: -0.6946 / 0.063)
+my eff_exact: Spearman = -0.7545   exact P(rho<=obs) = 634/40320 = 1.57e-02   (claim: -0.9940 / 9.9e-5)
+my hmax     : Spearman = -0.6946   exact P(rho<=obs) = 1182/40320 = 2.93e-02   (claim: -0.6946 / 0.063)
+  gamma*effmax (RAW  ): mean 533.4  pop-sd 199.9 (37.5%)  samp-sd 215.9 (40.5%)  n=7
+  gamma*hmax   (RAW  ): mean 671.7  pop-sd 343.7 (51.2%)  samp-sd 371.2 (55.3%)  n=7
+
+========================================================================
+D  ground-truth spot check — my dps-45 composite tanh-sinh vs their u_true
+========================================================================
+basis 0 gamma  100.0: |u_mine| = 1.646317625504e-04   their u_true = 1.646317625500e-04   rel diff = 2.313e-12   [3s]
+basis 0 gamma  200.0: |u_mine| = 4.926583108129e-06   their u_true = 4.926583108130e-06   rel diff = 2.366e-13   [5s]
+basis 2 gamma  200.0: |u_mine| = 4.044899755239e-09   their u_true = 4.044899755240e-09   rel diff = 2.242e-13   [9s]
+basis 2 gamma  250.0: |u_mine| = 2.070709351616e-09   their u_true = 2.070709351620e-09   rel diff = 1.921e-12   [11s]
+basis 2 gamma  350.0: |u_mine| = 8.486000272876e-11   their u_true = 8.486000272880e-11   rel diff = 4.569e-13   [16s]
+basis 7 gamma  250.0: |u_mine| = 5.167242141759e-06   their u_true = 5.167242141760e-06   rel diff = 1.033e-13   [6s]
+basis 7 gamma  400.0: |u_mine| = 2.365790310072e-07   their u_true = 2.365790310070e-07   rel diff = 9.320e-13   [9s]
+
+worst relative difference across spot checks: 2.313e-12
+
+========================================================================
+heat74 done
+========================================================================

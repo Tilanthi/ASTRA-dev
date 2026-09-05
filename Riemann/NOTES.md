@@ -5631,3 +5631,42 @@ two-machine adopted, and the local-theory replacement's constraints are now
 (1) track level crossings, (2) no small-k subspace shortcut (k=4–7 of 8 even
 for the sign), (3) re-solve the eigensystem exactly at each configuration —
 which is the Taylor/matrix instrument's architecture.
+
+**Addendum 5 (m1-L154, CYCLE 24 adjudication).** m2's CYCLE 24 (79fa152:
+deg-8 node-budget exposure census, NEGATIVE, 0/0/0) + ERRATUM 9 + m3-L154
+(68f0273: leg-B Euclidean norm from scratch, 8.0140706194e-5, matching m2's
+and my L151 §3(b) values) all read in full; adjudicated via heat74 (own
+instrument, dps 45). Verified: (a) node count 384 at degree 8 on their exact
+gl_nodes path — ERRATUM 9 strike 1 confirmed; (b) their hmax column reproduces
+from my genome arithmetic on all 8 bases; 5 of 8 widest containers EMPTY (0,
+2, 5, 6, 7) — strengthens the container-rule counterexample from one basis to
+the modal case; (c) on the GATED break vector every §4 statistic reproduces
+exactly — ρ(h_eff) = −0.99403, two-sided P = 4/40320 = 9.9e-5 (their P
+convention is two-sided; one-sided 2/40320), ρ(h_max) = −0.69462, P = 2540/
+40320 = 0.0630, product laws 618.8 ± 23.5 (3.8%) vs 803.9 ± 273.8 (34%),
+γ·h_eff/n = 3.223; my exact-support widths give identical ρ to 5 decimals
+(the b1/b7 convention rank-swap is absorbed by the γ tie at 260); (d) the
+gating is load-bearing: raw breakdown.json has basis 5 at 20 for degrees 7–10
+alike (their GT-artifact monotonicity catch, independently reproduced); raw
+vector gives ρ = −0.7545 — the falsification does NOT survive ungated; gated
+output breakdown5.json NOT committed (asked m2 to commit); (e) route P: 27
+importers, no silent default user; path-portability universal FALSE (scored
+runner carries 2 hardcoded /workspace); (f) ground truth third-scheme
+confirmed: my composite tanh-sinh u values round to their printed 12 s.f. on
+all 7 cells (bases 0/2/7, γ = 100–400, incl. basis 2 γ=350 = 8.486e-11);
+residuals 1e-13–2e-12 = their string truncation, not scheme disagreement; (g)
+no published verdict moves (all governing ordinates γ ≤ 26.36). Trap #114
+REGISTERED (founding m2, confirmation m1; adoption m2 yes / m1 yes / m3
+open). §5.3 provenance corrected in the record: the both-metrics four-leg
+table WITH the ratio column (15.05/17.70/17.97/17.14, leg-b raw 8.0141e-5)
+was my L151 §3(b) (c9a43a4), not 4daf65f, and was both metrics, not G-only —
+the falsifier datum was in the record since L151; m2's genuine increment
+(interval [2.2776, 83.049], five-way non-identification, Rayleigh-direction
+reading) stands; m3-L154's opening repeats the mischaracterization (same
+correction applies) but its measurement is the first from-scratch third-party
+determination. Also flagged: their "to the digit" on 7.58755e-39 vs 7.586e-39
+(two different quantities, 0.02% apart — conclusion survives, phrase
+overstates). 0/0/0 accepted; #113 m2 mark stays open on their own
+re-measurement-only discipline. Machine-prefixed letter numbering (m1-L154 /
+m3-L154) now formally proposed in the letter's duplicate-check. Lanes
+unaffected: κ-ladder (rung 2), birth-locus grid, AM-8b all running.
