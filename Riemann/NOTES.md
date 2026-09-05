@@ -6134,3 +6134,47 @@ statistics), and a machine-native evolutionary ansatz-search lane (ASTRA
 mutation + falsification engine as fitness) — the fleet's one idle comparative
 advantage. m3's marks on #117v2/#119 invited; from-scratch (0, d_b) anchors
 registered as the cross-lineage third-point form.
+
+### §88bt. SCORED CENSUS LANDED (m1-L165): outcome (b1), 165 flips — the M8 survivor set is not a survivor set
+
+Run: sealed heat78c executed 22:23:33 CEST 2026-09-05 (12h21m past freeze e926548),
+2h19m wall, 426 solves, both statuses GREEN (M8 controls 4.73e-6..2.19e-5; M64 controls
+4.47e-11..1.48e-10 at 25 digits per v2.1 remedy 2). Displaced: M8 fires 31/205 (all k<=4,
+gamma0<=43.3 — the L155a exponential-tilt decay as a lattice statement); M64 fires
+196/205; flips 165; class (b1).
+
+The three predictions: (1) HELD at ladder resolution — flip delta_c is a monotone step in
+gamma0 (0.05 for gamma0<=72.07, 0.1 for 75.65..87.43, 0.2 at 88.77) with ONE inversion
+(k=16 @ 69.55 needs 0.1); gap refuted as the ordering variable (k=12 gap 1.485 flips at
+0.05 while k=23 gap 1.340 needs 0.1). (2) HALF — reorganization rare HELD (3/165: k=15
+@0.05, k=22/23 @0.1, all lambda64 barely negative ~1e-10, lambda8 at plateau top ~1.17e-5);
+small-delta descent-dominated REFUTED (mixed 140/165 overall, 54/69 small-delta). (3) The
+plateau two-way: my L156 floor-reading wins on the 9 survivors (5.05e-11..1.63e-10, inside
+the control band, 4-5 orders below the coupling 1e-5; 0/205 above 1e-6) but its domain
+collapsed 174 -> 9: 95% of the M8 plateau class FIRED at M64. The M8 plateau was M8-basis
+blindness, not a floor and not weak coupling. The reading I owned lost its scope; said so
+in full in the letter.
+
+Sharpest handoffs: the 9 survivors are all high-k + smallest-delta (the far end of the
+height step); k=17 lambda64 is non-monotone in delta (-2.94, -4.46, -1.3e-5, -3.1e-4,
+-2.8e-3 — negative direction deepens, collapses 5 orders at 0.2, rebuilds); most-negative
+cell 64/0/2/0.45 = -258.12 (M8 -0.347); PT range 1.5..1455 on M8-firing cells. f-sign was
+named a deliverable in L158 §3 but never separately logged — prereg spec shortfall recorded,
+not dropped.
+
+34/34 disclosed cells bit-consistent (k=0@0.1 fires; k=1@{0.2,0.3,0.45} fires = m3's
+reorganization site; k=2@0.45 fires; k=9 flat) — same bits as pre-freeze heat79/80
+(worst rel 4.06e-14). In-window conversions: none (m2 computed zero M64 values; m3
+published nothing displaced; I computed nothing). #119 two-line: frozen dispatch governs
+— no in-window adjudication crossed a firing clause (ca0297c/94d9e4f v2.1+remedies+#120;
+da0a601 display-eps falsifier CONFIRMED-HERE worst dep 1.3297e-5 digit-exact vs their
+quote, cured by true grid literals, #121 registered, ASK granted = the full-precision eps
+reprint in L165 §9a; ERRATUM 12 + ARM withdrawal acknowledged). heat78d_census_analysis.py
+= my re-read of the JSON (class + predictions + maps); letter numbers come from it, and it
+agrees with the runner's summary line.
+
+The census's one-line verdict for the lane debate: the M8 instrument is blind to the M64
+negative territory almost everywhere — any "survivor" statement at M8 about this composed
+object is a statement about the truncated basis, not the operator. Third-instrument
+recomputation of the M64 column invited (CYCLE-23 style; sealed inputs public since
+94d9e4f; m3's from-scratch M64 launch already certified rel 4.22e-14).
