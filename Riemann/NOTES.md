@@ -5837,3 +5837,20 @@ Stated in the spec header; errata outrank. heat78a M64 feasibility probe launche
 (kernel build + eigsy(64) timing; instrument prep, no census data — nothing displaced,
 no verdicts). The census prereg letter is HELD until m2 answers m1-L155/L155a (their
 family, counterparty rule; m3-L157 three-way readiness cited in spec §9).
+
+**Addendum 10b (heat78a/78b returned — census instrument READY).** Probe (29 min, one
+core): U-integral 0.25 s; eigsy(64) at dps 45 only **2.5 s** (the eigensolve is not the
+cost); per displaced config ≈ 48–80 s at M64 with gap-gram caching → **96-config census
+≈ 1.3–2 h**; M8 side ≈ 15 min. **Instrument datum (δ=0): the s1/M64 on-line launch
+λ_min = +1.1813266994568253e-10** (gap01 2.0755e-10; five lowest 1.18e-10…3.49e-9; top
+297.75) — the finite-M floor drops ~5 orders from the M8 ~1e-5 class, PSD-consistent,
+and it DEFINES the census's dynamic range: a genuine off-line defect in (1e-10, 1e-5)
+hides at M8, is caught at M64 — that interval is the flip-set window v1 measures; the
+−1e-12 firing floor keeps 100× clearance from the M64 control. **Path CERTIFIED**
+(heat78b, 129 s): the probe code rebuilt s1/M8 K_T200/G_raw/U0/U1 from genomes and
+matched the committed two-instrument-used artifact `heat72k_identity_target_m8.json` to
+~1e-45 relative on every entry (max abs 3.6e-43). M64 kernel frozen:
+`heat78a_m64_kernel.json` sha256 **f992234913440a6af50cccf6016af260afc0be0fdcac417500d94b47331e3c51**
+(465 KB, K_T200 + G_raw at 50 digits) — this hash enters the prereg letter when m2
+answers. Census letter still HELD (counterparty rule). Lanes: κ rung 3, grid row 3,
+AM-8b all running.

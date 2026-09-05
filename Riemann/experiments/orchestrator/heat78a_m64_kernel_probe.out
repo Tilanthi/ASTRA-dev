@@ -1,0 +1,150 @@
+zeros to T=200: 79
+  U-cache zeros 10/79  126.2s
+  U-cache zeros 20/79  253.0s
+  U-cache zeros 30/79  386.0s
+  U-cache zeros 40/79  530.8s
+  U-cache zeros 50/79  694.5s
+  U-cache zeros 60/79  878.6s
+  U-cache zeros 70/79  1072.6s
+STAGE1 U-cache done 1256.9s (5056 integrals)
+  G row 1/64  11.6s
+  G row 2/64  28.5s
+  G row 3/64  39.1s
+  G row 4/64  56.8s
+  G row 5/64  66.0s
+  G row 6/64  71.6s
+  G row 7/64  81.6s
+  G row 8/64  90.4s
+  G row 9/64  97.8s
+  G row 10/64  120.1s
+  G row 11/64  140.5s
+  G row 12/64  160.3s
+  G row 13/64  176.8s
+  G row 14/64  197.2s
+  G row 15/64  207.7s
+  G row 16/64  221.3s
+  G row 17/64  231.1s
+  G row 18/64  240.5s
+  G row 19/64  246.9s
+  G row 20/64  262.2s
+  G row 21/64  266.2s
+  G row 22/64  280.9s
+  G row 23/64  291.7s
+  G row 24/64  301.8s
+  G row 25/64  312.3s
+  G row 26/64  327.7s
+  G row 27/64  336.7s
+  G row 28/64  347.3s
+  G row 29/64  353.5s
+  G row 30/64  365.6s
+  G row 31/64  375.6s
+  G row 32/64  384.3s
+  G row 33/64  388.3s
+  G row 34/64  395.8s
+  G row 35/64  398.1s
+  G row 36/64  401.9s
+  G row 37/64  407.7s
+  G row 38/64  410.3s
+  G row 39/64  415.0s
+  G row 40/64  420.3s
+  G row 41/64  423.0s
+  G row 42/64  426.4s
+  G row 43/64  431.2s
+  G row 44/64  433.3s
+  G row 45/64  441.1s
+  G row 46/64  447.2s
+  G row 47/64  451.1s
+  G row 48/64  456.8s
+  G row 49/64  458.6s
+  G row 50/64  461.8s
+  G row 51/64  466.0s
+  G row 52/64  470.2s
+  G row 53/64  471.6s
+  G row 54/64  474.1s
+  G row 55/64  476.1s
+  G row 56/64  478.7s
+  G row 57/64  481.9s
+  G row 58/64  482.5s
+  G row 59/64  483.4s
+  G row 60/64  484.4s
+  G row 61/64  485.3s
+  G row 62/64  486.2s
+  G row 63/64  487.0s
+  G row 64/64  487.6s
+STAGE2 G_raw done 487.6s
+  K row 1/64  0.0s
+  K row 2/64  0.1s
+  K row 3/64  0.1s
+  K row 4/64  0.1s
+  K row 5/64  0.1s
+  K row 6/64  0.2s
+  K row 7/64  0.2s
+  K row 8/64  0.2s
+  K row 9/64  0.3s
+  K row 10/64  0.3s
+  K row 11/64  0.3s
+  K row 12/64  0.3s
+  K row 13/64  0.4s
+  K row 14/64  0.4s
+  K row 15/64  0.4s
+  K row 16/64  0.4s
+  K row 17/64  0.5s
+  K row 18/64  0.5s
+  K row 19/64  0.5s
+  K row 20/64  0.6s
+  K row 21/64  0.6s
+  K row 22/64  0.6s
+  K row 23/64  0.6s
+  K row 24/64  0.7s
+  K row 25/64  0.7s
+  K row 26/64  0.7s
+  K row 27/64  0.8s
+  K row 28/64  0.8s
+  K row 29/64  0.8s
+  K row 30/64  0.8s
+  K row 31/64  0.9s
+  K row 32/64  0.9s
+  K row 33/64  0.9s
+  K row 34/64  0.9s
+  K row 35/64  1.0s
+  K row 36/64  1.0s
+  K row 37/64  1.0s
+  K row 38/64  1.1s
+  K row 39/64  1.1s
+  K row 40/64  1.1s
+  K row 41/64  1.1s
+  K row 42/64  1.2s
+  K row 43/64  1.2s
+  K row 44/64  1.2s
+  K row 45/64  1.2s
+  K row 46/64  1.3s
+  K row 47/64  1.3s
+  K row 48/64  1.3s
+  K row 49/64  1.4s
+  K row 50/64  1.4s
+  K row 51/64  1.4s
+  K row 52/64  1.4s
+  K row 53/64  1.5s
+  K row 54/64  1.5s
+  K row 55/64  1.5s
+  K row 56/64  1.5s
+  K row 57/64  1.6s
+  K row 58/64  1.6s
+  K row 59/64  1.6s
+  K row 60/64  1.6s
+  K row 61/64  1.7s
+  K row 62/64  1.7s
+  K row 63/64  1.7s
+  K row 64/64  1.7s
+STAGE3 K_T200 done 1.7s
+  cholesky 0.1s
+  inverse 0.5s
+  conj-transform 0.3s
+  eigsy(64) 2.5s
+STAGE4 generalized eigensolve done 3.3s total
+LAUNCH s1/M64: lam_min 1.1813266994568253e-10
+  gap01 2.0755285175e-10
+  spectrum top 297.754759629  median-ish 0.000748716006403
+  smallest five: 1.1813267e-10, 3.2568552e-10, 4.4129729e-10, 1.1169095e-9, 3.4913443e-9
+WROTE /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat78a_m64_kernel.json
+heat78a done 1752.7s

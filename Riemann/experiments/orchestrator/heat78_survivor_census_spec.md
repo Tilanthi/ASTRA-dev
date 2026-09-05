@@ -89,11 +89,26 @@ common". The thinning-law fit is v2's unless M = 128 joins.
 - quadrature cross-check (composite vs tanh-sinh) off by > 1e-15 relative on any load-
   bearing integral ⇒ that config uncertified, excluded, reported
 
-## 8. Cost (to be confirmed by heat78a probe before the letter)
+## 8. Cost + instrument data (heat78a probe, MEASURED 2026-09-05)
 
-96 + 8 configs; M8 ≈ 10 min total (heat77 rates); M64 = eigsy(64) at dps 45 per config —
-probe running (heat78a, launch-only, no displacements, no verdicts collected: engineering
-feasibility only, not census data). One core; 4 of 5 committed while grid/κ/AM-8b run.
+96 + 8 configs. Probe timings (dps 45, one core): U-integral ≈ 0.25 s each; K_T200(64×64)
+one-off = U-cache 1257 s + assembly 1.7 s; G_raw(64×64) 488 s; **eigsy(64) = 2.5 s** —
+the eigensolve is NOT the cost. Per displaced config at M64 ≈ 192 U-integrals (q0 + quad
+pair; gap-grams cached per gap, 8 × 2 × 64 one-off ≈ 4 min) ≈ 48–80 s → **96 configs ≈
+1.3–2 h on one core**; M8 side ≈ 15 min. Feasible overnight alongside the other lanes.
+
+**Instrument datum from the probe (config-independent, δ = 0): the s1/M64 on-line launch
+λ_min = +1.1813266994568253e-10**, gap01 = 2.0755e-10, five lowest eigenvalues
+1.18e-10 / 3.26e-10 / 4.41e-10 / 1.12e-9 / 3.49e-9, spectrum top 297.75. The finite-M
+floor has dropped ~5 orders from the M8 launch class (~1e-5) — PSD-consistent, and it
+defines the census's dynamic range: a genuine off-line defect in (1e-10, 1e-5) HIDES at
+M8 and is DETECTED at M64. That interval is the flip-set window v1 measures.
+
+Verdict-rule cross-check against this datum: the −1e-12 firing floor keeps 100× clearance
+from the δ = 0 control at M64 (and ≥ 7 orders at M8); controls must stay ≥ −1e-12 at
+every M or the run is red (§7). Path certification: heat78b rebuilds the M8 kernel
+through the same code and compares to the committed `heat72k_identity_target_m8.json`
+(two-instrument-used artifact) — M64 numbers stand only on a PASS.
 
 ## 9. What must stay true for this to be honest
 

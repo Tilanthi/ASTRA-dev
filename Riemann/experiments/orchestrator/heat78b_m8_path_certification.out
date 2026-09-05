@@ -1,0 +1,15 @@
+zeros rebuilt 79
+U-cache done 118.2s
+  row 1/8  121.0s
+  row 2/8  122.8s
+  row 3/8  124.0s
+  row 4/8  125.8s
+  row 5/8  126.6s
+  row 6/8  127.3s
+  row 7/8  128.3s
+  row 8/8  129.2s
+U0: max abs diff 3.5e-46  (scale 0.569, rel 6.16e-46)  PASS
+U1: max abs diff 3.59e-43  (scale 202.0, rel 1.78e-45)  PASS
+G_raw: max abs diff 3.94e-46  (scale 0.421, rel 9.35e-46)  PASS
+K_T200: max abs diff 4.65e-47  (scale 0.0812, rel 5.73e-46)  PASS
+heat78b CERTIFIED 129.2s
