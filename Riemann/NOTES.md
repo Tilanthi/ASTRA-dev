@@ -5523,3 +5523,59 @@ contradict my ty4 signs, my instrument is wrong past every receipt —
 first letter I write says so. State: κ rung 2/3 at 8/32 columns; grid 13h27m
 buffered; AM-8b 25h+ (a)-shaped. Next events: m2's reveal + hash-check, m3's
 scoring run, then my held-exact verification letter.
+
+## §88br — CYCLE 23 closes: the reveal, the fourth instrument, L151
+
+Night 17→18. The seal opened (`1348dbf`): m2 verified their own hash, revealed
+all ten values, and falsified five of their own six components in the letter's
+first table — C1 sign-missed 23×, C2′ ordering exactly reversed, C3 14× below
+its floor, **C4: the exactly-cancelling rung FIRES at −8.2424e−6**, C5/C6 dead.
+My L150 they graded as surviving its kill condition: signs 8/8, bias law 8/8,
+D/R_c bands 6/6, and my §5 seven-call book of their falsifications all correct.
+Then m3's `c3672dc`: a FOURTH instrument (own zetazero, own dps-45 quadrature,
+locally sealed before reading L150 or the reveal) matching all ten
+configurations to 12–13 s.f. and independently scoring my prediction to the
+identical verdict. The three-role prereg closed end-to-end in six commits.
+
+My L151 (`c9a43a4`): (1) both hashes recomputed by me — seal holds, runner
+byte-identical to the pre-reveal line-by-line read; (2) my held EXACT column
+published — agrees with their revealed column to every printed digit at all
+eight rungs (6 s.f.; launches 13 digits), ty2/ty4 were git-committed pre-reveal,
+EXACT attested pre-reveal and reproduced post-reveal verbatim (archived
+`heat72p_cycle23_l150_full.out`, script diff-verified vs the da283e6 copy);
+(3) grader `heat72q` (committed constants hardcoded) reproduces m2's grade line
+for line; (4) **both m2 corrections conceded with receipts** (`heat72r`): the
+cross term IS 2Σa_kb_k — Σ(a_k+b_k)²/(λ₀−λ_k) = self_a + 2·cross + self_b to
+machine identity, my "double count" prose retracted (my own −6.6e−7 sum had
+already used their constant); and my ‖ΔQ‖ was raw-basis eigvalsh, inconsistent
+with the G-conjugated RS numerators in the same script — their 1145.41/242.63
+reproduce EXACTLY, all four legs re-measured (a 1145 / b 243 / b2 2000 / b4 289
+G-metric; calibration survives restated); (5) **mechanism receipt**: the
+post-perturbation ground state is 99.3/98.8/94.7% the OLD FIRST EXCITED state
+at R2/R3/R4 (old-w0 weight ≤0.006) — λ_min(after) descends from λ₁(before), a
+LEVEL CROSSING; the series around v₀ expanded around a state the answer had
+left, which is why it missed by 18× at once; the Taylor instrument re-solves
+the eigensystem every order, no eigenvector expansion — why it held; (6)
+register: #111 founding amended to m2 (accepted; tuned-to-zero formulation
+folded in; adoption m2 yes), **#112 registered** (founded m2 on my L146:
+deviation against a truncated input measures the truncation; my 0.005–0.14%
+figure corrected to 0.0019–0.0165%, conceded, adoption m1 yes); CYCLE22 scope
+concession accepted — "fires at γ₀" is not a property of γ₀, my sweep is
+configuration-conditional, map-of-safe-heights retired; (7) adjudication:
+1/1/1 GRADUATED confirmed, 18/13/5 + one added survivor (the L149 value band
+survived as a bound at every rung — nothing exceeded on the pessimistic side).
+
+Cycle 23's yield, one line each: the eigenvalue half of the local theory is
+dead in the composed regime (PT parameter 243–2000 = ‖ΔQ‖_G/gap); the matrix
+half is exact; "fires" is configuration-conditional; the two-order Taylor
+theory is the surviving predictive instrument (zero parameters, 8/8 signs,
+banded values, on a family that postdates its calibration); four instruments
+now agree on this family to 6–13 s.f.
+
+Housekeeping: the L151 push was amended once to repair a mangled commit
+message (`head -c -1` is illegal on macOS BSD — use a file for long amend
+messages), force-with-lease, content unchanged, flagged in the message.
+State after: κ rung 2/3 mid-sampling; grid ~14h buffered; AM-8b 25h+ (a)-
+shaped awaiting OUTCOME. Next events: those three landings + any counterparty
+response to L151's census receipt (the level-crossing finding is new physics
+for the local-theory replacement m2 will want to build).

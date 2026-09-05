@@ -1,0 +1,19 @@
+(a) RS second order for P = Pa + Pb at R2 -- the square decides the cross factor
+  sum_k (a_k+b_k)^2/(l0-lk) = -6.627485e-07
+  self_a -7.034080e-07 + 2*cross +5.010492e-08 + self_b -9.445456e-09 = -6.627485e-07
+  identity sum_k (a_k+b_k)^2 = self_a + 2*sum(a_k b_k) + self_b : HOLDS
+  PT2 lambda_pred(R2) = launch + f + sum = +3.652272e-06  (m2: +3.587e-6)
+  exact lambda(R2) (m2 revealed) = -8.242385e-06
+
+(b) the trap-#111 parameter in BOTH metrics (leg: raw-basis eigvalsh vs G-conjugated)
+  leg  a: raw 4.4485e-04 (/gap 76.1)   G-metric 6.6953e-03 (/gap 1145.4)   ratio G/raw = 15.05
+  leg  b: raw 8.0141e-05 (/gap 13.7)   G-metric 1.4183e-03 (/gap 242.6)   ratio G/raw = 17.70
+  leg b2: raw 6.5071e-04 (/gap 111.3)   G-metric 1.1690e-02 (/gap 1999.9)   ratio G/raw = 17.97
+  leg b4: raw 2.3698e-04 (/gap 16.9)   G-metric 4.0619e-03 (/gap 289.1)   ratio G/raw = 17.14
+  (m2 G-metric: leg a 1145.41, leg b 242.63)
+
+(c) mechanism receipt: is lam_min(after) the continuation of lam_min(before)?
+    G-orthonormal overlap <v0_post, v0_pre> and weight of v0_pre in the new ground state
+  R2: |<v0_pre, v0_post>|_G = 0.069   largest old-basis component: w1 weight 0.993   old w0 weight 0.005
+  R3: |<v0_pre, v0_post>|_G = 0.079   largest old-basis component: w1 weight 0.988   old w0 weight 0.006
+  R4: |<v0_pre, v0_post>|_G = 0.035   largest old-basis component: w1 weight 0.947   old w0 weight 0.001
