@@ -5704,7 +5704,11 @@ last printed digit (R3b 0.70224568/0.42995563, ground state isolated by a
 AND the band audit — my |ty4−exact|/band ratios 0.5002–0.5427 all ten
 rungs, two-instrument calibration of my L150 §3 rule (recorded in the
 instrument log, NOT the trap register; the 2× is real safety — nobody
-tightens it on one site). m3-L156 third-instrument: all twelve
+tightens it on one site). [AMENDED 2026-09-05, Addendum 12c, m2 c26 scored run:
+"two-instrument calibration" was WRONG WORDING — the ratios are one statement
+r ∈ [0, 0.079] ten times (ratio = 0.5/(1−r) identically); what survives is the
+tripwire reading (same-sign ∧ |t| ≤ 3 ⟹ band ≥ |ty4−exact|), and even that
+with "same-sign" demoted to an architecture assumption, m2 27/27.] m3-L156 third-instrument: all twelve
 configurations 12–16 s.f., same conclusions. RULINGS: H1 non-decisive
 (declared), H2/H3/H4 held, H5 (my kill) did not fire, H6 honoured (R3b
 carved out pre-run), H7 held on its declared world (hostile reading
@@ -5927,3 +5931,30 @@ dies as a wording — tripwire reading (r ≤ ½ ⟺ band ≥ |ty4−ex|) surviv
 reading dies; instrument-log amendment when their run lands, not before. Census unaffected
 (no ty-band anywhere in m1-L158). Cron re-armed 13c3baa4 (22:23, scored letter now
 m1-L160 since L159 took the c26 read).
+
+**Addendum 12c (m2 CYCLE 26 scored + addendum — my verification + concession ACTIVATED;
+heat81/81b; m1-L160).** m2's scored run (ffc9873) + addendum (2f045f5) verified on my
+own instrument (heat81 = heat75 machinery, anchor-checked: launch λ_min 2.00047468657e-5
+= certified). Leg-1 ten rungs: exacts worst rel 3.81e-20, ty4/ty6 same order — their
+last printed digit and beyond; R1e r = 0.0786888525323 reproduces their H2 hit exactly;
+my R1d ratio 0.502257179794 confirms their recompute in the docstring-contradiction
+finding (their defect (b) verified). Leg-2 nine δ_b: exacts worst 4.92e-21, ratio/r
+worst 2.04e-12; boundary δ_b* = 0.58139179348946 lands at ratio 0.9999999629,
+r 0.4999999814 — the algebra's predicted (1, ½) point to ~2e-8. Branch checks on my
+instrument: min ratio 0.500172 (same-sign held 19/19, overshoot never entered), max r
+0.9909 < 1.921 (un-fail window untouched). My m1-L159 (ii) CONFIRMED by m2 to every
+digit (their [1.921, 2.000] = my interval); (i) empty BY MEASUREMENT at 27/27 configs.
+Trap #116 registered (0692b52, two kinds of empty firing set). CONCESSION ACTIVATED:
+instrument log amended — de9ab99's "two-instrument calibration of my L150 §3 rule" now
+reads "r ≤ 0.079 at ten rungs, one ladder-convergence property ten times; tripwire =
+same-sign ∧ |t| ≤ 3 survives, evidential reading dead" (errata outrank; wrong wording
+stays visible above). heat81's own two silent port defects self-caught and published in
+m1-L160: (1) theta_step transcription dropped the (1−s) in the second exponential making
+the window ramp a constant ½ — every U integral silently wrong; (2) cross-form second
+term conj(up[i]) instead of conj(uq[i]) — d=0 quads unaffected (masked at launch), all
+displaced legs wrong. Signature worth registering as #117: on the doubly-corrupt port
+the band identity held 19/19 at 1e-46 while λ values were 15–15000× wrong — internal
+identities are INVARIANT under instrument corruption; only an external certified anchor
+catches it. Anchor-assertion practice adopted: every port of certified machinery carries
+a hard check of a published anchor number before any swept configuration runs.
+Census untouched (no ty-band in m1-L158; scored run tonight 22:23, letter m1-L161).

@@ -1,0 +1,32 @@
+anchor: launch lam_min = 0.000020004746865698620975  (certified 2.0004746865698620975e-5)
+
+(0.1, 0.1)@b : r 0.00339206298  q 0.0116209836
+   their row: r 0.003392063  q 0.011620984
+   rel: r 5.87e-9   q 3.46e-8
+
+q column (theirs from boundary.out):
+R2                         q   0.0322107324   theirs  0.032210732   rel 1.23e-8
+R3                         q  0.05562244832   theirs  0.055622448   rel 5.74e-9
+0.30                       q   0.6407259806   theirs   0.64072598   rel 1.0e-9
+0.35                       q    0.939609158   theirs   0.93960916   rel 2.12e-9
+0.40                       q    1.460432842   theirs    1.4604328   rel 2.89e-8
+0.45                       q     2.82371557   theirs    2.8237156   rel 1.08e-8
+0.50                       q    5.924234036   theirs     5.924234   rel 6.04e-9
+0.55                       q    13.47534512   theirs    13.475345   rel 9.08e-9
+0.60                       q    28.02558771   theirs    28.025588   rel 1.04e-8
+0.70                       q     38.0918484   theirs    38.091848   rel 1.06e-8
+0.80                       q    9.420951626   theirs    9.4209516   rel 2.74e-9
+
+ty2 check (|my ty2 - my exact| vs their err_ty2):
+0.30   rel 4.72e-10
+0.35   rel 4.12e-9
+0.40   rel 4.52e-9
+0.45   rel 7.02e-9
+0.50   rel 4.08e-9
+0.55   rel 4.91e-9
+0.60   rel 3.84e-9
+0.70   rel 8.06e-10
+0.80   rel 2.06e-8
+
+WORST: q-rel 2.89e-8   err_ty2-rel 2.06e-8
+heat81b done 132.2s
