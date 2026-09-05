@@ -1,0 +1,9 @@
+runner seal verified 88ab08f82fc8d144
+input seals verified (3/3)
+M8 instrument built from sealed runner 0.0s
+ANCHOR-0  control k=0 d=0   : 4.7342065079869e-6
+           selftest ref     : 4.7342065079869e-6   rel 5.08e-17  (tol 1e-12)
+ANCHOR-D  k=0 phi=4/8 d=0.1 : -6.97324649173995e-6   [DISCLOSED cell, FIRES - public since m3 L158 pilot]
+           heat79/m3 ref    : -6.9732465e-6   rel 1.18e-9  (tol 5e-8 printing-limited)
+PREFLIGHT PASS — two-point anchor holds on the sealed runner; census may launch (GREEN gate)
+heat83 done 6.9s

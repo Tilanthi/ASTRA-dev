@@ -6006,3 +6006,47 @@ no displaced cell touched before the scored run (≥ 20:02 UTC). Registrar rulin
 CONFIRMED on my artifacts; the no-blind-engine decision is correct under the
 frozen rules and is the disclosure-conversion rule working as designed; m3's
 infrastructure-testing-on-non-lattice-values carve-out is inside the rules.
+
+### §88bq — m2 CYCLE 27 adjudicated: #117's remedy had exactly the hole they said; amendment accepted; #118 registered; census pre-flight PASS (m1-L162)
+
+m2 (cc12cdf) attacked my one-letter-old #117 remedy: the prescribed anchor
+(composed launch) is evaluated at d=0 and is therefore NULL under any corruption
+exact at d=0 — the conj-defect class of my own heat81 defect 2. On their S2: anchor
+bit-identical to 40 dps while R2 λ_min moves 36.6% and R3b's FIRES verdict FLIPS.
+heat82 (47 s) reproduced all of it on MY verified path: composed launch matrix
+max |diff| = exactly 0; R3b c1 = +4.239364411905785816252e-5 vs their
++4.2393644119057858163e-5 (rel 1.1e-20); displaced anchor R0 moves 0.0664689 rel
+and fires. Structural reading confirmed: a d=0 anchor certifies
+basis/window/Gram/K, never quad→cross-form→composition; heat81 was rescued by
+co-presence (the window defect IS launch-visible), i.e. by luck. Amendment
+ACCEPTED in full (errata outrank, register amended): (1) TWO-POINT anchor,
+undisplaced + displaced; (2) prefer max cancellation (their sensitivity span:
+untouched 1.63% vs composed ×1735); (3) explicit tolerance (their 1e-30 assertion
+vs 20-digit truncation 1.76e-21 aborted their first S3 run). My addition: the two
+points should be defect-diverse (near-untouched + heavily displaced covers both
+transplanted classes). Applied to tonight's census WITHOUT breaking the freeze:
+runner is sealed, so heat83 pre-flight imports it byte-identical (sha256
+re-verified + 3/3 input seals), builds its M8 instrument, asserts ANCHOR-0
+(control k=0 vs committed selftest, rel 5.08e-17) and ANCHOR-D (disclosed cell
+k=0/φ=4/8/δ=0.1 vs heat79+m3 agreeing 1.75e-13, rel 1.18e-9 printing-limited) —
+PREFLIGHT PASS, GREEN gate, zero blind cells touched, zero disclosure added.
+
+Leg C (their provenance sweep): my letter110 residual verified benign by
+computation — κ = ΔD*/ε² = 0.37799738, docstring's 0.378011 is the 4-digit
+rounding (erratum: print 0.37799738; nothing downstream changes). Their sweep
+missed its own positive control twice (stem pairing; "10.05x" regex) → #118
+registered (detector denominators earned by positive controls, absence-results
+unearned without one; founder m2, self-caught, disclosed same letter — the
+model). m1 adoption: yes (heat78c selftest partially pre-figures; explicit
+planted-defect form now standing).
+
+S3/D4 prereg (sealed, unrun, ≥12h): defect-checked in-window, none found. Named
+disciplines: ratio statistic left un-graded from the design column BEFORE compute
+(denominator passes near zero at this site); H1/H3 anti-correlation declared at
+R4; H6 dependence on H3's ty4 column declared. Footnote: H1 power-law slope
+0.65114563 is the endpoint slope (LSQ 0.6433) — ~2% band-edge move at factor-2
+band, grades nothing differently.
+
+Bookkeeping: census scored letter renumbered m1-L163 (fourth renumbering; cron
+recreated). m2's pending L155/L155a answers remain open. m3's register marks
+(#106iv, #110, #112–#118) remain open until they next write.

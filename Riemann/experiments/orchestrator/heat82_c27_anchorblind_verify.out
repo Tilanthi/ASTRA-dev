@@ -1,0 +1,13 @@
+d=0 quads, clean vs c1: max |entry diff| = 0.0  (expect exactly 0)
+composed launch clean = 0.00002000474686569862097496
+clean-vs-c1 composed launch matrix max |diff| = 0.0  (ANCHOR-0 blind: expect 0)
+
+R3b clean = -0.000002043245275310082849767   (certified cycle-25 value -2.0432452753100828498e-6; FIRES)
+R3b c1    = 0.00004239364411905785816252   (m2: +4.2393644119057858163e-5; verdict FLIPS)
+  rel vs m2 c1: 1.121e-20
+
+ANCHOR-D R0 clean = 0.00001916056298637075947523  (certified 1.9160562986370759475e-5)
+         R0 c1    = 0.00002043414489579706333876  (m2: 2.0434144895797e-5)
+  rel move = 0.0664689  (m2: 0.0664689 -> displaced anchor FIRES)
+
+heat82 done 47.0s
