@@ -1,0 +1,42 @@
+=== SECTION A: leg-B escape class on my heat82 path ===
+provenance: eig0(K200) = 0.0000117612069274853145673
+            eig0(base) = 0.000003552613810423727738968   (ANCHOR-U published 1.1761206927485314567e-5)
+
+clean cells vs certified published values (cross-instrument tol 1e-13):
+  ANCHOR-0  = 0.00002000474686569862097496   rel vs cert 1.761e-21
+  ANCHOR-D  = 0.00001916056298637075947523   rel vs cert 1.226e-20
+  ANCHOR-B  = 0.00002062641793975136104137   rel vs cert 1.81e-20
+  R3b       = -0.000002043245275310082849767   rel vs cert 1.617e-20
+
+variant table (rel move vs clean; bit-identical = 0 exactly):
+  variant ANCHOR-0   ANCHOR-D   ANCHOR-B   dR3b       R3b verdict
+  bgap    BIT-ID     BIT-ID     0.7102     x49.81     still FIRES  lam=-0.00010177634714
+  bdel    BIT-ID     BIT-ID     0.01757    FLIPS      NEG->POS  lam=1.93863649551e-5
+  bhalf   BIT-ID     BIT-ID     0.02145    FLIPS      NEG->POS  lam=1.96000814516e-5
+
+m2-C28 reference moves: bgap ANCHOR-B 0.71 dR3b x48.8 fires; bdel 0.0301 FLIPS; bhalf 0.0214 FLIPS
+
+section B: m2 cycle-21 grid vs my JSON (11 vs 11 rows)
+  worst rel u (26-digit prints vs my dps-50 strings): 2.354e-25
+  worst rel r (recomputed from each pair, registered A/B): 2.573e-20
+  m2 claim: 3.413e-11 over 11 r (12-s.f. print floor); recomputed-from-pairs is the floor-free read
+
+section C: ladder on MY full-precision points (registered a/b) — m2 on my 12-s.f. prints:
+  m2: K=3 11.7007200919  K=4 11.7007190323  K=5 11.7007176099 => 11.700718(3)
+  [reg a/b] K=3  a3=11.70072012721689  a4=20.4740408717  a5=18.427305  maxres=1.78e-6
+  [reg a/b] K=4  a3=11.70071895003956  a4=20.4745102333  a5=18.3970809  maxres=1.89e-6
+  [reg a/b] K=5  a3=11.70071737578722  a4=20.4754916287  a5=18.2805461  maxres=3.04e-8
+
+section D: b-republication floor test (a=U1 19d, |b|=U2 21d):
+  delta-B contribution to r at eps=1e-3: 3.74e-9 (m2 floor hypo 5e-9)
+  [reg a/b] K=5  a3=11.70071737578722  a4=20.4754916287  a5=18.2805461  maxres=3.04e-8
+  [reg a/b] K=6  a3=11.70071732688348  a4=20.4755350734  a5=18.2720213  maxres=3.13e-10
+  [reg a/b] K=7  a3=11.70071732616173  a4=20.4755359198  a5=18.2717599  maxres=1.94e-10
+  [reg a/b] K=8  a3=11.70071732713292  a4=20.4755344585  a5=18.2724309  maxres=7.95e-11
+  [U1/U2  ] K=5  a3=11.70071737023885  a4=20.4754929724  a5=18.2804385  maxres=3.09e-8
+  [U1/U2  ] K=6  a3=11.70071731989587  a4=20.4755376957  a5=18.2716629  maxres=7.33e-10
+  [U1/U2  ] K=7  a3=11.70071731741239  a4=20.4755406081  a5=18.2707633  maxres=2.01e-10
+  [U1/U2  ] K=8  a3=11.70071731640276  a4=20.4755421272  a5=18.2700657  maxres=8.67e-11
+  m2's own ladder (their u, their B): K=6 3.13e-10  K=7 1.94e-10  K=8 7.95e-11
+
+heat84 done 29.7s
