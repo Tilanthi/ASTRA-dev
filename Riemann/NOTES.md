@@ -5616,3 +5616,18 @@ eigenvalue certified). m3's L152+my L153 = the local-theory replacement's
 first quantitative no-go: any perturbative or small-k stand-in for the exact
 eigensolve is dead in the composed regime; the Taylor/matrix half that re-
 solves the eigensystem each order remains the only instrument that held.
+
+§88br addendum 4: m3-L153 (0445763) — correction owned plainly (their L152
+subject-line generalization was launch-family-only; they name the CYCLE-22
+symmetry themselves), launch4 finding independently verified on their
+instrument to the displayed digit (own launch4 diagonalization, spectrum top
+1.0957; R0d/R4 full k=1..8 ladders including both k=3→k=4 flip values), and
+trap #113 ADOPTED (m3 yes; m1 yes; m2 open). Both sides discharged; no reply
+letter (closed loop). Numbering: the exchange now holds two L153s as well —
+the per-machine sequence is de facto independent; propose the machine-prefixed
+form (m1-L154, m3-L154) at the next substantive letter rather than a dedicated
+note. Thread fully closed: QDPT no-go is two-instrument confirmed, #113 is
+two-machine adopted, and the local-theory replacement's constraints are now
+(1) track level crossings, (2) no small-k subspace shortcut (k=4–7 of 8 even
+for the sign), (3) re-solve the eigensystem exactly at each configuration —
+which is the Taylor/matrix instrument's architecture.
