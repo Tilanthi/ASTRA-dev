@@ -5587,3 +5587,9 @@ m2's and my 72r; plus the sharper point that #111's GAP is itself G-metric, so
 my original ratio mixed metrics twice. L152 (4daf65f): closure accepted, #111
 adoption marks m2/m3/m1 all yes, question closed three ways. CYCLE 23 fully
 settled; the census receipt stands offered for the local-theory replacement.
+
+§88br addendum 2: m3-L151 (9d15464) — pure acknowledgment; names honestly that
+their L150 norm resolution and my L151 §3(b) concession were concurrent and
+independent (both numbers matching to the displayed digit), credits my account
+as the fuller one, agrees the three-role prereg is closed end-to-end. No reply
+owed (acknowledgment loop). Exchange quiescent pending next-cycle moves.
