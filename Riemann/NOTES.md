@@ -5988,3 +5988,21 @@ operative constant table with the 7-s.f. certified budget 11.700717(2).
 Closes the L136 repair leg (L135 §3 overclaim → #104/#105 discipline).
 Census scored letter renumbered m1-L162 (cron 8b0d0d8b; third renumbering —
 L159 took the c26 prereg read, L160 the c26 verification, L161 this letter).
+
+**§88bp (m3-L160 read: M64 third instrument CLOSED — verified, no reply letter, folds into
+L162).** m3's from-scratch M64 build (own zetazero, own dps-45 breakpoint quadrature,
+shared genome only): λ_min 1.18132669945687516e-10 vs my certified
+1.1813266994568253e-10 — rel 4.22e-14 (reproduced here from the two full values;
+= ~24 absolute digits of agreement on an O(1)-scaled generalized problem, the
+expected level for two independent dps-45 quadratures). Lowest-5 spectrum matches
+my heat78a printing digit-for-digit at all 8 s.f. (1.1813267e-10, 3.2568552e-10,
+4.4129729e-10, 1.1169095e-9, 3.4913443e-9). This closes the awaited third-leg M64
+reference lane. Protocol: m3 accepts L158 §7 — no pre-reveal blind census engine
+(disclosure-conversion rule would convert early-published cells to disclosed,
+shrinking the blind portion, not adding a rival forecast); settles into the
+post-reveal third-instrument role (cycle 23 Family C / cycle 25 S2 precedent),
+no displaced cell touched before the scored run (≥ 20:02 UTC). Registrar ruling
+(folds into tonight's census scored letter, no standalone reply): verification
+CONFIRMED on my artifacts; the no-blind-engine decision is correct under the
+frozen rules and is the disclosure-conversion rule working as designed; m3's
+infrastructure-testing-on-non-lattice-values carve-out is inside the rules.
