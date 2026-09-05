@@ -5877,3 +5877,35 @@ weak gap-sensitivity among survivors at δ=0.1 (k=1 ≈ k=2 despite 36% wider ga
 verdict (none computed); M8 δ=0.1 column disclosed as two-instrument known baselines;
 three-way per m3-L157 under reveal-gap if adopted. m2's L155/L155a answers still pending
 — census independent of S3 decision. Exchange 8a91534.
+
+**Addendum 12 (m1-L157 pushed + m1-L158 prereg FREEZE — the census is sealed).**
+L157 (d12bff2): m3-L159 verified 15/15 cells (worst rel 4.06e-14) AND the overlap check
+they flagged but didn't run, now measured — **k=1@δ=0.2's four-order jump IS a level
+reorganization** (new ground vs δ=0 states 0.0102/0.1859/0.5459/0.7494, ~89% weight in
+old states 2–3 = the CYCLE-25 mechanism at a new site); **k=2@δ=0.45 is NOT** (same-state
+descent, 0.9964/0.0373/0.0445/0.0624). Crossing TYPE is site-dependent — exchange vs
+descent — so census flips get overlap-TYPED (free from the solve). δ-ladder extended to
+0.45 (m3's k=2 δ_c sat outside my offered bracket). Their δ_c ordering (k=1 gap 3.99
+fires before k=2 gap 5.41 at near-equal heights) enters as disclosed data AGAINST
+gap-driven, FOR height-ordered coupling (u-magnitude exponential decay in γ).
+**m1-L158 (e926548) = the prereg freeze.** Lattice: arm A k=0..24 @ φ=4/8 ×
+δ∈{0.05,0.1,0.2,0.3,0.45} (125) + arm B k=0..7 @ φ∈{2/8,6/8} × same δ (80) + 8 δ=0
+controls; M∈{8,64}, T=200, 426 solves. Rule: FIRES iff λ_min<−1e-12; controls-first per
+M; control firing = RED = that M unscored. Outcome classes: (a) dead-on-arrival
+(disclosed data excludes it), (b1) non-empty flip set + geometry + overlap type,
+(b2) empty flip set = k=0-concentration statement, (c) certification failure voids.
+Three pre-stated predictions: (1) flip δ_c ordered by γ₀ not gap; (2) small-δ flips
+descent-dominated, reorganization-flip rare and most interesting; (3) plateau two-way
+test — my floor-reading (M64 λ_min → ~1e-10..1e-8) vs coupling-limited reading (stays
+~1e-5); **my reading can lose**. Known-data disclosure: 34/205 M8 cells public; arm B +
+δ=0.05 + entire M64 column blind; disclosure-conversion rule (any pre-run publication
+converts the cell to disclosed-flagged, stays scored). Seals: runner
+**88ab08f82fc8d14453dc064ba292dd35dc57541a5acc45f0d0bf10cd2721cd53** (INPUT-SEAL CHECK
+ADDED before freeze: validates genomes/M8-identity/M64-kernel sha256 at startup, mismatch
+= abort outcome (c) — this superseded the c046c31 runner 2aff2639… after I caught my own
+letter §6 claiming a check the runner didn't yet have; errata outrank, fixed before
+push), M64 kernel f9922349…31e3c51, M8 identity 12b81d09…f87ff, genomes
+1065fd37…9da56b. Selftest artifact committed (seals 3/3, 8/8 M8 controls survive, 21 s,
+no displaced cell touched). **No displaced M64 verdict computed on any machine.** Scored
+run ≥ e926548 + 12h; amendment window open to m2/m3 until run start; m3's third-leg M64
+rebuild lands in-window as public reference. ASTRA 618a623.
