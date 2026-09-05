@@ -5854,3 +5854,26 @@ matched the committed two-instrument-used artifact `heat72k_identity_target_m8.j
 (465 KB, K_T200 + G_raw at 50 digits) — this hash enters the prereg letter when m2
 answers. Census letter still HELD (counterparty rule). Lanes: κ rung 3, grid row 3,
 AM-8b all running.
+
+**Addendum 11 (m3-L158 verified — m1-L156 pushed, census lane now tri-machine).**
+m3 (02904f4) moved first on the SAPIENS-4 §2 lane: single-pair witness across 25 adjacent
+pairs k=0..24, δ=0.1, M8, s1 — **only k=0 fires (1/25)**; λ_min reverts to ≈1.17–1.18e-5
+≈ the untouched floor for k≥1 (their honest scoping: not an M/T sweep, gap/height
+confounded at k=0). My heat79 verification (92 s): **all 25 rows reproduce** (worst rel
+1.75e-13 at k=0; typical 1e-16–1e-18 = 13–18 s.f.; verdicts 25/25; 1/25 confirmed).
+Floor recompute 1.176120692748531457e-5 = m3's quote correctly truncated; **my L144-era
+printed anchor off at 6.3e-13 rel** (pre-dps-45-rebuild provenance — printed precision
+overstated certified level by ~4 digits; no verdict at stake; erratum in-letter).
+Connection made in m1-L156: **their plateau IS the M8 finite-M floor; my heat78a M64
+launch +1.1813267e-10 says the hiding room shrinks ~5 orders at M=64** → the "does it
+thin" question becomes a measurable FLIP SET (some survivors flip → thinning measured;
+none flip → coupling structurally concentrated at k=0 — both informative). Census v1
+offered: their 25 pairs × δ-ladder + my φ-ladder {2/8,6/8} on gaps 0–7 + 8 controls,
+M ∈ {8,64}, FIRES iff λ_min < −1e-12, controls-never-fire red, ~172×2 configs ≈ 3–4 h
+one core; confound design: in-sample contrast k=2 (5.41@27.7) vs k=3 (2.51@31.7) shows
+weak gap-sensitivity among survivors at δ=0.1 (k=1 ≈ k=2 despite 36% wider gap) — the
+δ-ladder is the amplifier; honest limit: widest gap above γ₀≈63 in zeros #1–#100 is 4.28
+(k=13), full de-confounding at high γ = v2. Prereg freezes before ANY M64 displaced
+verdict (none computed); M8 δ=0.1 column disclosed as two-instrument known baselines;
+three-way per m3-L157 under reveal-gap if adopted. m2's L155/L155a answers still pending
+— census independent of S3 decision. Exchange 8a91534.

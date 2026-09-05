@@ -1,0 +1,31 @@
+floor mine      0.000011761206927485314567
+floor anchor(m1) 1.1761206927492675e-5   m3-quoted 1.1761206927485e-5
+  vs m1 anchor rel 6.26e-13   vs m3 quote rel 2.67e-14
+k= 0  mine -6.9732465e-6  theirs -6.9732465e-6  rel 1.75e-13  fire Y/Y
+k= 1  mine 7.5482893e-6  theirs 7.5482893e-6  rel 5.28e-15  fire n/n
+k= 2  mine 7.6904143e-6  theirs 7.6904143e-6  rel 5.19e-15  fire n/n
+k= 3  mine 1.1377044e-5  theirs 1.1377044e-5  rel 4.92e-16  fire n/n
+k= 4  mine 1.8122121e-5  theirs 1.8122121e-5  rel 1.37e-15  fire n/n
+k= 5  mine 2.2032255e-5  theirs 2.2032255e-5  rel 2.45e-15  fire n/n
+k= 6  mine 1.4517535e-5  theirs 1.4517535e-5  rel 6.07e-16  fire n/n
+k= 7  mine 1.4274637e-5  theirs 1.4274637e-5  rel 7.68e-16  fire n/n
+k= 8  mine 1.2843693e-5  theirs 1.2843693e-5  rel 1.55e-15  fire n/n
+k= 9  mine 1.1099966e-5  theirs 1.1099966e-5  rel 2.75e-16  fire n/n
+k=10  mine 1.1173483e-5  theirs 1.1173483e-5  rel 3.32e-17  fire n/n
+k=11  mine 1.1355676e-5  theirs 1.1355676e-5  rel 6.31e-16  fire n/n
+k=12  mine 1.165931e-5  theirs 1.165931e-5  rel 2.75e-16  fire n/n
+k=13  mine 1.1476276e-5  theirs 1.1476276e-5  rel 8.53e-17  fire n/n
+k=14  mine 1.1736171e-5  theirs 1.1736171e-5  rel 2.54e-17  fire n/n
+k=15  mine 1.1487903e-5  theirs 1.1487903e-5  rel 4.29e-17  fire n/n
+k=16  mine 1.1525939e-5  theirs 1.1525939e-5  rel 2.28e-16  fire n/n
+k=17  mine 1.1706367e-5  theirs 1.1706367e-5  rel 9.06e-17  fire n/n
+k=18  mine 1.1720204e-5  theirs 1.1720204e-5  rel 3.05e-17  fire n/n
+k=19  mine 1.1744566e-5  theirs 1.1744566e-5  rel 2.97e-17  fire n/n
+k=20  mine 1.179882e-5  theirs 1.179882e-5  rel 1.53e-17  fire n/n
+k=21  mine 1.1782559e-5  theirs 1.1782559e-5  rel 1.97e-17  fire n/n
+k=22  mine 1.1728037e-5  theirs 1.1728037e-5  rel 3.21e-17  fire n/n
+k=23  mine 1.1758798e-5  theirs 1.1758798e-5  rel 7.4e-19  fire n/n
+k=24  mine 1.178402e-5  theirs 1.178402e-5  rel 7.59e-18  fire n/n
+WORST rel diff 1.75e-13   verdict mismatches 0/25
+n_fire theirs 1
+heat79 done 92.4s
