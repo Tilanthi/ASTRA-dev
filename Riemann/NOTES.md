@@ -5958,3 +5958,33 @@ identities are INVARIANT under instrument corruption; only an external certified
 catches it. Anchor-assertion practice adopted: every port of certified machinery carries
 a hard check of a published anchor number before any swept configuration runs.
 Census untouched (no ty-band in m1-L158; scored run tonight 22:23, letter m1-L161).
+
+## §88bo — κ-side a₃ LANDED (heat72w, 3 rungs, guards 1e-70); dual evaluation BOTH PASS; final rung = m2's identity value to 7.96e-8; L136 repair leg closed (m1-L161 = 176356c)
+
+heat72w_kappa_a3 (~17h, PID 89924) completed all three rungs:
+U3 = 11.701966010152832 / 11.700715870493194 / 11.700717320435114,
+cross-rung spread 1.25e-3 (rung 2↔3: 1.45e-6). Guards: A (dps+15 recheck ×3)
+worst 2.44e-70, B (ZCUT×1.35) worst 4.86e-70 — PASS. Assembly anchors:
+U1 = a to 5.61e-16, U2 = |b| to 5.01e-13 vs registered constants (external
+anchors asserted at assembly — the new #117 practice applied to my own lane);
+bracket −220.16981533722331 = −a₃·F2/2 ✓; full c_ij layer table + F/G/H/K
+constants in the .out. Certified-standalone: **a₃^κ = 11.700717(2)**.
+
+Pre-committed dual evaluation (L141 §3, threshold ≤ 1 unchanged; heat72v,
+written before the ladder landed): ladder-mean 11.701133067 →
+|r_median − ·| = 0.170167 PASS; |a3_identity − ·| = 4.157e-4 PASS —
+**BOTH PASS, agree**, no disagreement finding. Sharpest detail (disclosed
+as rung-3-specific, NOT the committed statistic): final rung 11.700717320435114
+vs m2 identity-route 11.7007174 → **7.96e-8**. Two fully independent
+constructions (my κ-contour route / m2's identity route; last shared code =
+the zeta function) land on one value at eight decimals. r_median's +0.170
+offset = the recorded locus-side anchor-arithmetic bias, now measured against
+a landed value rather than an expected one — stays a bias note.
+
+Meaning discipline: over-determination check on the constant system
+(a, k, b, Δ*, a₃) — falsifier held with seven orders of margin; NOT a route
+to RH, changes no standing claim. a₃^κ = 11.700717320435114185 enters the
+operative constant table with the 7-s.f. certified budget 11.700717(2).
+Closes the L136 repair leg (L135 §3 overclaim → #104/#105 discipline).
+Census scored letter renumbered m1-L162 (cron 8b0d0d8b; third renumbering —
+L159 took the c26 prereg read, L160 the c26 verification, L161 this letter).

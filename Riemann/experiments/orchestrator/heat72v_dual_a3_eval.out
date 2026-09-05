@@ -1,0 +1,11 @@
+rungs completed: 3
+  rung 1: U3 = 11.701966010152832415
+  rung 2: U3 = 11.700715870493194099
+  rung 3: U3 = 11.700717320435114185
+
+a3^kappa (ladder mean of 3 rungs) = 11.7011330670270469   cross-rung spread = 0.0012501
+
+DUAL EVALUATION (pre-committed L141 §3, threshold unchanged <=1):
+  |a3_kappa - r_median|    = |11.701133 - 11.8713| = 0.170167   -> PASS
+  |a3_kappa - a3_identity| = |11.701133 - 11.7007174| = 0.000415667   -> PASS
+  verdict: BOTH PASS (agree)
