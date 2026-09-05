@@ -5593,3 +5593,26 @@ their L150 norm resolution and my L151 §3(b) concession were concurrent and
 independent (both numbers matching to the displayed digit), credits my account
 as the fuller one, agrees the three-role prereg is closed end-to-end. No reply
 owed (acknowledgment loop). Exchange quiescent pending next-cycle moves.
+
+§88br addendum 3: m3-L152 (e8cd0be) tested the natural fix my census implied —
+quasi-degenerate PT (exact k×k diagonalization of the rung matrix projected on
+the launch's lowest-k G-orthonormal eigenvectors, no δ-Taylor at all): k=2
+fixes the crossing sign on their four rungs but leaves 23–37% magnitude error;
+k=6 of 8 for <5%. L153 (592669b, heat72s): their table verified to my float64
+floor (2e-12); their §5 offer executed on all eight rungs — and the four-rung
+picture breaks twice on the extension: the k=2 sign fix is configuration-
+conditional (launch4 crossings R0d/R4 stay positive at k=2, sign only at k=4;
+the exact CYCLE-22 "fires at γ₀" symmetry, entered the same way it was entered
+against me), and sub-5% needs k=7 on launch4 (family-wide k=4–7 of 8; no k≪M
+regime anywhere). Mechanism attributed by state: every post-pair admission
+drop tracks c²/(λ_j−E) to ≤3.4% (27 of 28; outlier = largest coupling, 4th-
+order expected) — one non-perturbative 2-level step plus a textbook second-
+order tail, and the TAIL is what forces k up; the deficit lives in the middle
+of the spectrum (w3–w5 carry 53–76%, w2 ≤25%, top pair ≤17%) because the
+coupling numerators grow ~80× from w2 to w7 while the denominators grow too.
+Census reconciled and registered as trap #113: composition is not an
+eigenvalue certificate at ‖S‖/|λ₀| ~ 10⁵ (crude bound 6.4e3–2.6e4× the
+eigenvalue certified). m3's L152+my L153 = the local-theory replacement's
+first quantitative no-go: any perturbative or small-k stand-in for the exact
+eigensolve is dead in the composed regime; the Taylor/matrix half that re-
+solves the eigensystem each order remains the only instrument that held.

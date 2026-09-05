@@ -1,0 +1,78 @@
+(1) launch spectrum (mine, float64): 4.249627e-06 1.009493e-05 2.941144e-04 1.099867e-03 1.059015e-02 3.058718e-02 7.843635e-01 9.729582e-01
+    m3:                              4.249627e-06 1.009493e-05 2.941144e-04 1.099867e-03 1.059015e-02 3.058718e-02 7.843635e-01 9.729582e-01
+
+(2) VERIFY against m3's L152 table (their k-values; rel diff mine/theirs):
+   R0: k=1:+4.3150e-06(2e-12)  k=2:-4.3886e-06(5e-13)  k=3:-4.5122e-06(4e-13)  k=4:-5.5655e-06(4e-13)  k=6:-6.5464e-06(6e-13)  k=8:-6.9929e-06(7e-12)   exact -6.992880e-06
+   R1: k=1:+4.1842e-06(1e-12)  k=2:+4.1734e-06(6e-13)  k=3:+4.1733e-06(6e-13)  k=4:+4.1731e-06(6e-13)  k=6:+4.1713e-06(6e-13)  k=8:+4.1712e-06(5e-12)   exact +4.171180e-06
+   R2: k=1:+4.2496e-06(1e-12)  k=2:-5.9720e-06(4e-13)  k=3:-6.1760e-06(3e-13)  k=4:-6.8959e-06(3e-13)  k=6:-7.8672e-06(2e-13)  k=8:-8.2424e-06(2e-11)   exact -8.242385e-06
+   R3: k=1:+4.0761e-06(3e-12)  k=2:-1.7936e-05(2e-13)  k=3:-1.9262e-05(2e-13)  k=4:-1.9628e-05(1e-13)  k=6:-2.2487e-05(2e-13)  k=8:-2.3344e-05(2e-12)   exact -2.334418e-05
+
+(3) FULL k-LADDERS, all eight rungs (sign-flip k, census, drops by state):
+   R0: exact -6.992880e-06  w0 0.012 w1 0.986 w_out 0.0018  sign_ok_at k=2
+        ladder +4.32e-06 -4.39e-06 -4.51e-06 -5.57e-06 -6.48e-06 -6.55e-06 -6.72e-06 -6.99e-06
+        drops w1:8.70e-06 w2:1.24e-07 w3:1.05e-06 w4:9.17e-07 w5:6.43e-08 w6:1.74e-07 w7:2.72e-07   k6err 6.38%  k7err 3.89%
+   R1: exact +4.171180e-06  w0 0.997 w1 0.003 w_out 0.0000  sign_ok_at k=1
+        ladder +4.18e-06 +4.17e-06 +4.17e-06 +4.17e-06 +4.17e-06 +4.17e-06 +4.17e-06 +4.17e-06
+        drops w1:1.09e-08 w2:6.01e-11 w3:1.99e-10 w4:1.11e-09 w5:6.83e-10 w6:9.16e-11 w7:4.44e-11   k6err 0.00%  k7err 0.00%
+  R1b: exact -1.013433e-05  w0 0.019 w1 0.975 w_out 0.0056  sign_ok_at k=2
+        ladder +4.01e-06 -3.92e-06 -4.50e-06 -7.12e-06 -7.12e-06 -9.16e-06 -1.01e-05 -1.01e-05
+        drops w1:7.93e-06 w2:5.75e-07 w3:2.62e-06 w4:5.05e-09 w5:2.04e-06 w6:9.69e-07 w7:8.17e-09   k6err 9.64%  k7err 0.08%
+   R2: exact -8.242385e-06  w0 0.005 w1 0.993 w_out 0.0018  sign_ok_at k=2
+        ladder +4.25e-06 -5.97e-06 -6.18e-06 -6.90e-06 -7.86e-06 -7.87e-06 -7.95e-06 -8.24e-06
+        drops w1:1.02e-05 w2:2.04e-07 w3:7.20e-07 w4:9.63e-07 w5:8.34e-09 w6:8.69e-08 w7:2.88e-07   k6err 4.55%  k7err 3.50%
+   R3: exact -2.334418e-05  w0 0.006 w1 0.988 w_out 0.0054  sign_ok_at k=2
+        ladder +4.08e-06 -1.79e-05 -1.93e-05 -1.96e-05 -2.07e-05 -2.25e-05 -2.30e-05 -2.33e-05
+        drops w1:2.20e-05 w2:1.33e-06 w3:3.66e-07 w4:1.07e-06 w5:1.79e-06 w6:5.10e-07 w7:3.47e-07   k6err 3.67%  k7err 1.49%
+  R0d: exact -8.995400e-06  w0 0.000 w1 0.988 w_out 0.0116  sign_ok_at k=4
+        ladder +4.49e-06 +2.28e-06 +2.18e-06 -8.33e-07 -7.16e-06 -7.57e-06 -8.68e-06 -9.00e-06
+        drops w1:2.21e-06 w2:9.96e-08 w3:3.02e-06 w4:6.33e-06 w5:4.08e-07 w6:1.11e-06 w7:3.17e-07   k6err 15.87%  k7err 3.53%
+  R1c: exact +4.138068e-06  w0 1.000 w1 0.000 w_out 0.0000  sign_ok_at k=1
+        ladder +4.18e-06 +4.18e-06 +4.18e-06 +4.17e-06 +4.15e-06 +4.15e-06 +4.15e-06 +4.14e-06
+        drops w1:5.96e-11 w2:2.44e-09 w3:1.81e-09 w4:2.45e-08 w5:2.52e-09 w6:1.83e-09 w7:7.70e-09   k6err 0.23%  k7err 0.19%
+   R4: exact -2.110821e-05  w0 0.001 w1 0.947 w_out 0.0516  sign_ok_at k=4
+        ladder +4.59e-06 +6.91e-07 +6.80e-07 -2.62e-06 -1.58e-05 -1.80e-05 -2.11e-05 -2.11e-05
+        drops w1:3.90e-06 w2:1.11e-08 w3:3.30e-06 w4:1.32e-05 w5:2.22e-06 w6:3.08e-06 w7:4.00e-08   k6err 14.78%  k7err 0.19%
+
+(4) ATTRIBUTION: drop on admitting w_k vs second-order estimate c^2/(H[k,k]-E_k)
+  R0:
+    admit w1: drop +8.7036e-06   2nd-order pred -1.1929e-07   ratio -72.961   |c| 1.01e-06
+    admit w2: drop +1.2363e-07   2nd-order pred +1.2296e-07   ratio 1.005   |c| 5.87e-06
+    admit w3: drop +1.0533e-06   2nd-order pred +1.0531e-06   ratio 1.000   |c| 3.27e-05
+    admit w4: drop +9.1660e-07   2nd-order pred +9.0492e-07   ratio 1.013   |c| 9.53e-05
+    admit w5: drop +6.4302e-08   2nd-order pred +6.3963e-08   ratio 1.005   |c| 4.31e-05
+    admit w6: drop +1.7423e-07   2nd-order pred +1.6932e-07   ratio 1.029   |c| 3.65e-04
+    admit w7: drop +2.7222e-07   2nd-order pred +2.6867e-07   ratio 1.013   |c| 5.12e-04
+    total deficit k2->exact: +2.6043e-06
+  R2:
+    admit w1: drop +1.0222e-05   2nd-order pred -6.2420e-08   ratio -163.756   |c| 7.96e-07
+    admit w2: drop +2.0395e-07   2nd-order pred +2.0311e-07   ratio 1.004   |c| 7.56e-06
+    admit w3: drop +7.1993e-07   2nd-order pred +7.1988e-07   ratio 1.000   |c| 2.68e-05
+    admit w4: drop +9.6297e-07   2nd-order pred +9.5138e-07   ratio 1.012   |c| 9.79e-05
+    admit w5: drop +8.3440e-09   2nd-order pred +8.2929e-09   ratio 1.006   |c| 1.55e-05
+    admit w6: drop +8.6853e-08   2nd-order pred +8.4449e-08   ratio 1.028   |c| 2.58e-04
+    admit w7: drop +2.8831e-07   2nd-order pred +2.8424e-07   ratio 1.014   |c| 5.27e-04
+    total deficit k2->exact: +2.2704e-06
+  R3:
+    admit w1: drop +2.2012e-05   2nd-order pred -2.3063e-08   ratio -954.427   |c| 7.12e-07
+    admit w2: drop +1.3259e-06   2nd-order pred +1.3309e-06   ratio 0.996   |c| 1.98e-05
+    admit w3: drop +3.6572e-07   2nd-order pred +3.6542e-07   ratio 1.001   |c| 1.80e-05
+    admit w4: drop +1.0729e-06   2nd-order pred +1.0461e-06   ratio 1.026   |c| 1.04e-04
+    admit w5: drop +1.7868e-06   2nd-order pred +1.7366e-06   ratio 1.029   |c| 2.21e-04
+    admit w6: drop +5.1028e-07   2nd-order pred +4.9783e-07   ratio 1.025   |c| 6.27e-04
+    admit w7: drop +3.4668e-07   2nd-order pred +3.3706e-07   ratio 1.029   |c| 5.75e-04
+    total deficit k2->exact: +5.4083e-06
+  R4:
+    admit w1: drop +3.8980e-06   2nd-order pred -7.4847e-08   ratio -52.080   |c| 5.35e-07
+    admit w2: drop +1.1129e-08   2nd-order pred +1.1129e-08   ratio 1.000   |c| 1.85e-06
+    admit w3: drop +3.3026e-06   2nd-order pred +3.1930e-06   ratio 1.034   |c| 7.13e-05
+    admit w4: drop +1.3150e-05   2nd-order pred +8.1504e-06   ratio 1.613   |c| 1.43e-04
+    admit w5: drop +2.2158e-06   2nd-order pred +2.0221e-06   ratio 1.096   |c| 2.73e-04
+    admit w6: drop +3.0796e-06   2nd-order pred +2.8350e-06   ratio 1.086   |c| 1.47e-03
+    admit w7: drop +4.0025e-08   2nd-order pred +3.9855e-08   ratio 1.004   |c| 2.10e-04
+    total deficit k2->exact: +2.1799e-05
+
+(5) CERTIFICATE ARITHMETIC: composition deficit vs Rayleigh-quotient crude bound
+  R0: w_out(span{w0,w1}) 0.0018   ||S||top 0.977   crude RQ bound 8.46e-02   vs |lam_exact| 6.99e-06  -> bound/|lam| 12102x   actual k2 err 2.60e-06
+  R2: w_out(span{w0,w1}) 0.0018   ||S||top 0.977   crude RQ bound 8.41e-02   vs |lam_exact| 8.24e-06  -> bound/|lam| 10201x   actual k2 err 2.27e-06
+  R3: w_out(span{w0,w1}) 0.0054   ||S||top 0.980   crude RQ bound 1.49e-01   vs |lam_exact| 2.33e-05  -> bound/|lam| 6377x   actual k2 err 5.41e-06
+  R4: w_out(span{w0,w1}) 0.0516   ||S||top 1.101   crude RQ bound 5.57e-01   vs |lam_exact| 2.11e-05  -> bound/|lam| 26406x   actual k2 err 2.18e-05
