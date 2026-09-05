@@ -5816,3 +5816,24 @@ claim clause) — acknowledged, both held. Seed dispositions:
   cycle-26 planning.
 Lanes at adjudication time: κ rung 3 mid-run (13h51m, u-column ~16/40), birth-locus grid row 3
 (19h20m), AM-8b (31h). No proof claim anywhere in the above. Standing sentence unchanged.
+
+**Addendum 10 (seed 2 exercised immediately — anchored import trial #1 + heat78 census
+spec v0 + one Addendum-9 correction).** Import trial #1 (statistical mechanics → the
+survivor set): the configuration space is the ensemble, N(M) a partition-like statistic,
+thinning = cooling; two pre-stated families — exponential log N(M) (independent basis
+modes / large-deviation) vs power-law-or-flat (Gram-correlated modes; an RH-adjacent
+statement about the composed object if it holds). One page, one import, anchored to owned
+objects only, discard freely — recorded inside `heat78_survivor_census_spec.md` §5 (v0,
+NOT preregistered). The spec: 96 single-leg displaced configs (8 gaps × φ ∈ {2/8,4/8,6/8}
+× δ ∈ {.05,.10,.20,.30}) + 8 δ=0 controls; M ∈ {8,64} (genomes committed), T=200 fixed
+(§88bg monotonicity); verdict FIRES iff λ_min < −1e-12 (this world's own floor — the
+Q-world ε_cert = 1e-3 does NOT transfer); controls must never fire (built-in red);
+v1 deliverable = the FLIP SET 8→64 + survivor GEOMETRY (γ, PT, f-sign) — thinning-law
+discrimination honestly deferred to v2 (needs a third M or δ-continuum). Outcome classes
+(a)/(b)/(c) pre-bound in the spec. **Correction to Addendum 9:** the census re-uses the
+composed-kernel machinery (heat77 config generator + heat70/72k M-ladder export), NOT the
+birth-locus grid's site generator — the grid sequencing was CPU-cap arithmetic only.
+Stated in the spec header; errata outrank. heat78a M64 feasibility probe launched
+(kernel build + eigsy(64) timing; instrument prep, no census data — nothing displaced,
+no verdicts). The census prereg letter is HELD until m2 answers m1-L155/L155a (their
+family, counterparty rule; m3-L157 three-way readiness cited in spec §9).
