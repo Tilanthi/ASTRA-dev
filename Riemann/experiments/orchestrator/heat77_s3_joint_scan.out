@@ -1,0 +1,23 @@
+D1  A(k1,4/8) B(k6,2/8) disjoint               lam0 8.2126788e-6 gap 0.000118635 f_a -8.1761e-7 PT_a 53.1451 | NO-CROSS (f_b -4.73e-09..-6.45e-07 vs need 8.18e-7) | f_b(.3) -4.774e-7 PT_b(.3) 25.305
+     [15s]
+D2  A(k1,4/8) B(k6,3/8) disjoint               lam0 8.8617442e-6 gap 0.000119669 f_a -9.01977e-7 PT_a 52.6862 | NO-CROSS (f_b -1.67e-09..-5.33e-07 vs need 9.02e-7) | f_b(.3) -3.151e-7 PT_b(.3) 18.054
+     [26s]
+D3  A(k1,4/8) B(k7,2/8) disjoint               lam0 9.4740499e-6 gap 0.00011221 f_a -8.64298e-7 PT_a 56.1883 | NO-CROSS (f_b -6.18e-09..-4.80e-07 vs need 8.64e-7) | f_b(.3) -4.611e-7 PT_b(.3) 24.069
+     [38s]
+D4  A(k1,4/8) B(k7,3/8) disjoint               lam0 1.2965524e-5 gap 0.000105048 f_a -1.00442e-6 PT_a 60.019 | delta_c 0.22348896 PT_b(dc) 17.803 CONVERGED | f_b(.3) 2.106e-6 PT_b(.3) 34.378
+     [102s]
+D5  A(k1,4/8) B(k5,2/8) SHARES #6 w/ S2        lam0 8.3083667e-6 gap 0.00010158 f_a -5.43569e-7 PT_a 62.068 | NO-CROSS (f_b -4.34e-09..2.74e-07 vs need 5.44e-7) | f_b(.3) -3.502e-8 PT_b(.3) 46.942
+     [114s]
+D6  A(k1,4/8) B(k5,3/8) SHARES #6 w/ S2        lam0 1.0155573e-5 gap 9.09293e-5 f_a -4.40958e-7 PT_a 69.3383 | delta_c 0.25992828 PT_b(dc) 53.6525 delta>0.25 UNCONVERGED | f_b(.3) 6.504e-7 PT_b(.3) 72.694
+     [177s]
+D7  A(k1,5/8) B(k6,2/8) disjoint               lam0 3.4314128e-6 gap 0.000133333 f_a -3.0996e-6 PT_a 51.5657 | NO-CROSS (f_b -1.41e-09..-2.28e-07 vs need 3.1e-6) | f_b(.3) -1.563e-7 PT_b(.3) 22.516
+     [188s]
+D8  A(k1,5/8) B(k7,2/8) disjoint               lam0 4.1253546e-6 gap 0.000128919 f_a -2.92197e-6 PT_a 53.331 | NO-CROSS (f_b -3.24e-09..-2.72e-07 vs need 2.92e-6) | f_b(.3) -2.553e-7 PT_b(.3) 20.949
+     [200s]
+E1  A(k0,6/8) B(k6,2/8) C4-class: k=0 A, near-edge B lam0 7.9612279e-6 gap 1.03691e-5 f_a -7.05242e-6 PT_a 1227.56 | NO-CROSS (f_b 1.13e-09..2.14e-07 vs need 7.05e-6) | f_b(.3) 1.354e-7 PT_b(.3) 289.52
+     [212s]
+E2  A(k0,6/8) B(k7,2/8) C4-class: k=0 A, near-edge B lam0 6.5053298e-6 gap 1.03557e-5 f_a -7.20777e-6 PT_a 1229.15 | NO-CROSS (f_b 7.32e-10..1.18e-07 vs need 7.21e-6) | f_b(.3) 8.629e-8 PT_b(.3) 260.8
+     [223s]
+E3  A(k0,4/8) B(k6,2/8) k=0 A @4/8 (smaller |f_a|?) lam0 4.3290447e-6 gap 4.89738e-5 f_a -7.47103e-6 PT_a 356.05 | NO-CROSS (f_b -2.47e-09..-4.90e-07 vs need 7.47e-6) | f_b(.3) -3.214e-7 PT_b(.3) 61.3
+     [235s]
+heat77 done 234.9s

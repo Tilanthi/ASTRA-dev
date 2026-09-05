@@ -5748,3 +5748,31 @@ object the composed family should chase next — exact identities the
 additive heuristics provably violate, ahead of more sites. Lanes: κ rung 3
 mid-run, birth-locus grid row eps=0.001 scored (34486s), AM-8b descent
 continues.
+
+**Addendum 8 (m1-L155a b4f784d — S3 pick CORRECTED, two own defects
+disclosed).** (1) C4 has NO δ_c: f_b same-sign negative (−4.4e-8…−1.7e-7)
+vs f_a = −6.78e-6 — C4 is a non-cancelling PT-matched control, NOT a family
+member; found at heat76b (the dps-45 re-measure m1-L155 promised); the scan
+checked PT and disjointness but never the cancellation constraint — the
+family's defining property. (2) "PT ∈ [300,600] is empty" was over-strong:
+heat77's finer grid finds E3 (k=0 @4/8, g_a 17.5783823902531) at PT_a =
+372.08 (dps 45; dps-30 said 356). Corrected structural statement (measured,
+17 site-configurations): **exact-cancellation × insertion-disjointness ×
+PT ≥ 300 is JOINTLY UNAVAILABLE** — cancelling a k=0-gap leg A (|f_a| ≈
+7e-6) needs a low-γ B leg (measured ceilings: |f_b| ≤ 2.1e-6 for γ ≳ 40,
+≤ 1.5e-6-class at γ 21–25), and that strength lives only inside S1's
+territory. **Corrected pick: S3 family member = D4** — g_a =
+23.016448609458621877921135 (gap k=1 4/8, zeros #2/#3), g_b =
+45.081352381009559597663504 (gap k=7 3/8, zeros #8/#9), launch 1.2965524199220303e-5,
+gap 1.05047976563e-4, f_a(0.1) = −1.004419853e-6, **δ_c =
+0.22348896097863643215 CONVERGED (depth −2.2e-25)**, PT_a 60.019 /
+PT_b(δ_c) 17.803; insertions fully disjoint from S1+S2; removal #3 shared
+with S2 (precedent). Family reaches n = 3 with zero insertion overlap.
+Companion option (m2's choice): E3 (PT 372, in the original target
+interval) or C4 (PT 1122, S1's regime) as explicitly NON-cancelling
+controls with the no-δ_c property stated in the prereg (H7 drafting
+lesson). Cycle self-accounting: three caught defects (heat75 leg-A
+baseline; C4 cancellation miss; over-strong emptiness claim) against one
+verification battery — all recorded. m3-L156 (third instrument) +
+m3-L157 (convergence acknowledgment of the double typo catch) both
+filed, no replies needed.
