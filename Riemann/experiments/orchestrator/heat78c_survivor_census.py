@@ -16,6 +16,8 @@ Deliverables: verdict lattice; M8->M64 FLIP SET with overlap TYPE per flip
 Known-data disclosure: m3-L158 (25 rows @ delta=0.1), m3-L159 (3 pairs x 5 delta),
 m1 heat79/80 verifications of the same. Everything else is blind until reveal.
 Kernels: M8 = committed identity target; M64 = heat78a frozen kernel.
+Validates the frozen input hashes at startup; any mismatch = abort (outcome (c)),
+no cell scored.
 """
 import hashlib
 import json
@@ -34,6 +36,26 @@ K64 = "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestr
 OUTJ = "/Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat78c_census_result.json"
 
 DELTAS = ["0.05", "0.1", "0.2", "0.3", "0.45"]
+
+# frozen input seals (m1-L158); mismatch = abort, outcome (c)
+HASHES = {
+    GEN: "1065fd370fd9370807ea61f19708cbf1d16be77179f279760864386d299da56b",
+    IDT: "12b81d093a0eb9d76709a61a9e22015af81a646e18faab722443efc0b03f87ff",
+    K64: "f992234913440a6af50cccf6016af260afc0be0fdcac417500d94b47331e3c51",
+}
+
+
+def check_seals():
+    bad = []
+    for path, want in HASHES.items():
+        h = hashlib.sha256(open(path, "rb").read()).hexdigest()
+        if h != want:
+            bad.append((path, h, want))
+    if bad:
+        for (path, got, want) in bad:
+            print("SEAL MISMATCH %s\n  got  %s\n  want %s" % (path, got, want), flush=True)
+        sys.exit("INPUT SEAL FAILURE — aborting, nothing scored (outcome c)")
+    print("input seals verified (3/3)", flush=True)
 
 
 def theta_step(s):
@@ -125,6 +147,7 @@ class Instrument:
 
 def main():
     selftest = "--selftest" in sys.argv
+    check_seals()
     gdata = json.load(open(GEN))["genomes"]
     idt = json.load(open(IDT))["seeds"]["s1/M8"]
     k64 = json.load(open(K64))

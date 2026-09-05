@@ -1,0 +1,11 @@
+input seals verified (3/3)
+instruments built 0.0s
+SELFTEST control M8 k=0 lam_min 4.7342065079869e-6  ok
+SELFTEST control M8 k=1 lam_min 8.5081584629334e-6  ok
+SELFTEST control M8 k=2 lam_min 7.9558173971367e-6  ok
+SELFTEST control M8 k=3 lam_min 1.2107295795588e-5  ok
+SELFTEST control M8 k=4 lam_min 1.8018301158367e-5  ok
+SELFTEST control M8 k=5 lam_min 2.1937050676173e-5  ok
+SELFTEST control M8 k=6 lam_min 1.4397210826966e-5  ok
+SELFTEST control M8 k=7 lam_min 1.4377138564892e-5  ok
+selftest done 21.1s (no displaced cell touched)
