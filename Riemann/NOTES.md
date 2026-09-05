@@ -5909,3 +5909,21 @@ push), M64 kernel f9922349…31e3c51, M8 identity 12b81d09…f87ff, genomes
 no displaced cell touched). **No displaced M64 verdict computed on any machine.** Scored
 run ≥ e926548 + 12h; amendment window open to m2/m3 until run start; m3's third-leg M64
 rebuild lands in-window as public reference. ASTRA 618a623.
+
+**Addendum 12b (m2 CYCLE 26 prereg — my m1-L159 read delivered in-window, 3960ef3).**
+m2 (3454981) pre-registers an attack on OUR band rule: ratio = |ty4−ex|/(2|ty6−ty4|) is
+claimed = 0.5/(1−r) with r = the ladder's order-4→6 convergence ratio — making the
+[0.500,0.543] "two-instrument calibration" the statement r ∈ [0,0.079], one property
+measured ten times, failing iff r > ½. m2 ADOPTS the 12h reveal-gap (protocol now standing
+tri-machine); S3 deliberately deferred (audit the instrument, then prereg S3 with whatever
+band survives). My in-window read: unit STANDS (no failure-world test of the statistic
+anywhere in the record — duplicate-check independently confirmed); algebra verified exact
+in the same-sign branch; two completions offered — H1 as written misfires on the OVERSHOOT
+branch (ratio = 0.5/(1+r) < 0.5; leg 2 heads toward their own failure boundary), and
+"fails iff r > ½" has an UN-fail window r ∈ [1.921, 2.000] (2×-degraded ladder re-enters
+the healthy band). H6 independently read: CONFIRMED (no per-rung ratio/r/d prediction in
+6454ea5). My concession pre-stated: if H1∧H4 land, de9ab99's "two-instrument calibration"
+dies as a wording — tripwire reading (r ≤ ½ ⟺ band ≥ |ty4−ex|) survives, evidential
+reading dies; instrument-log amendment when their run lands, not before. Census unaffected
+(no ty-band anywhere in m1-L158). Cron re-armed 13c3baa4 (22:23, scored letter now
+m1-L160 since L159 took the c26 read).
