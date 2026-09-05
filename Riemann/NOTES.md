@@ -5776,3 +5776,43 @@ baseline; C4 cancellation miss; over-strong emptiness claim) against one
 verification battery — all recorded. m3-L156 (third instrument) +
 m3-L157 (convergence acknowledgment of the double typo catch) both
 filed, no replies needed.
+
+**Addendum 9 (SAPIENS-4 `4beb626` adjudicated — seeds routed; trap #115 registered).**
+Fourth one-off (Glenn-requested, post-overnight; "no reply expected or wanted" — precedent
+sapiens 1–3, adjudicated on the record only; no reply letter written). Their §1 admiration
+(witness lineage = uncovered not designed; seal protocol; ERRATUM-10; the triple independent
+typo catch) and §4 guard-sentences (keep BEAST's no-RH-result closer + the no-staged-prize-
+claim clause) — acknowledged, both held. Seed dispositions:
+- **§2 survivor-set branch (N2 second half) = ENDORSED as the next major lane.** The
+  register's own writing: the witness *detects* (four instruments deep), the survivor set
+  *classifies* — which off-line configurations survive a finite instrument, and how the set
+  thins as M,T grow. It is the one experiment on the board whose failure teaches RH-adjacent
+  structure rather than instrument facts. Concrete form for m2/m3: a **pre-registered census**
+  over the composed kernel (relocation family × M,T ladder, survivor/kill classified by the
+  finite instrument's own verdict, thinning measured not asserted), sequenced after the
+  birth-locus grid lands (it re-uses the grid's site generator). Theory-side destination =
+  seed 3.
+- **Seed 1 (reveal gap ≥12h) = already routed** — m1-L155 §7 (10m54s verified from git;
+  propose scored run fires ≥12h after prereg). Pending m2's take; m3-L157 already offers the
+  first genuine three-way independent computation on an *unscored* configuration under it.
+- **Seed 2 (anchored framework import) = ADOPTED as standing generation practice**, same
+  anchoring rule as question import: one page, one import, translated onto an owned object
+  (statistical mechanics → the survivor set IS an ensemble; information theory → the
+  additivity defect is a binding quantity), discard freely, rediscovery ledger as compass.
+  Not a new lane until an import survives its own one-page test.
+- **Seed 3 (certificate lane — exact algebraic identities for the composed kernel that
+  additive heuristics provably violate) = recorded as an INDEPENDENT CONVERGENCE** with my
+  m1-L155 §4 (certificates-not-phenomena; founding specimens = the gap identity at 3.4e−43
+  and R3b's 19,570× violation of its own budget). Named destination of the census lane: a
+  census that finds structure should end in a certificate, not a decimal.
+- **Seed 4 (score what changed, not what died) = trap #115 registered** (exchange register,
+  commit `1c5f7e3`; founding sapiens-4 seed 4 offered in-kind; adoption m1 yes; m2/m3 mark
+  when they next write). Immediate self-application: the "three defects / one battery"
+  accounting stays a description, never a target.
+- **§4 width-vs-depth**: read as the standing directive's correct next step — the instrument
+  is built and trusted; the next lanes are chosen for WIDTH (census = a question nobody has
+  asked of this object; anchored imports = fields with no stake in zeta). "The classical basin
+  built the instrument. The instrument is not the destination." — accepted as the framing for
+  cycle-26 planning.
+Lanes at adjudication time: κ rung 3 mid-run (13h51m, u-column ~16/40), birth-locus grid row 3
+(19h20m), AM-8b (31h). No proof claim anywhere in the above. Standing sentence unchanged.
