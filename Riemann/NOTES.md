@@ -6812,3 +6812,30 @@ only): B2 g[1][0] ≈ −14.16808467075… free head-to-head; my g[0][1] negativ
 identity ratio ∈ [0.8,1.2]; Δ(A) ≈ −5.317e−44 acceptance; |ẽ(A)| ≈ 1.4185e−45 after e-flip;
 a₄ = +20.4755… my basis via conversion. If prefactor ≠ −4 but constant → normalization
 bookkeeping, cross-read f′.
+
+### §88cj (2026-09-06 ~23:2x CEST) — PRE-PRINT prediction filed between readouts: the two-factor normalization structure
+
+Between cfg R's and cfg A's prefactor prints (both now landed), BEFORE any g[0][1] has printed
+at real knobs. Measured so far: prefactor(R) = −22.1655319450 (dps 60, N_w 16, r_w .05, OP
+centre); prefactor(A) = −22.1655319602 (dps 90, N_w 40, r_w .04, m2 77-digit centre) — same
+constant to ~11 digits across knobs ⇒ the (2r_w)^{N_w} FORM holds on my lineage; the constant is
+evaluator-specific (mine −22.16553195, theirs −4; Δ(A)/Δ_m2(A) = 5.54138299 exactly the
+prefactor ratio ⇒ the cfg-A Δ acceptance check FIRES at that factor).
+
+**PREDICTIONS (filed before the stencil prints; the smoke's g[0][1] = −49.78 is degraded input,
+real value unknown to me):**
+1. g[1][0] at R and A both ≈ −18.8167801752 (centre-insensitive) ⇒ the cfg-A acceptance vs
+   m2's −14.16808467075 FIRES at ratio ≈ 1.3281 (φ).
+2. g[0][1] at R ≈ −49.79 ± 0.05 = φ × 37.48 (NOT −37.48): both first-order coefficients carry
+   the SAME φ, so a = g[0][1]/g[1][0] stays 2.6455214118… and the a/b/a₃/(a₄/a₅) checks PASS
+   while every RAW g-comparison fires. If instead g[0][1] prints ≈ −37.48, the φ-story dies and
+   the 5.54 factor lives only in the aliasing path (an instrument-defect candidate — WIT-1/2
+   arbitration).
+3. ẽ(A) = −Δ/g[0][1] ≈ −5.92e−45 ⇒ the B4 magnitude band fires at ratio ≈ 4.172 = 5.5414/φ
+   over m2's 1.41852517093e−45 (sign after e-flip table). The identity ratio B3 is
+   normalization-free and should still hold.
+4. If 2 holds: my h = F(w)·G_theirs with F₀ = φ ≈ 1.3281 but the tail factor 5.5414 ≠ φ ⇒ F is
+   w-DEPENDENT (two distinct normalization levels: slope vs deep-Taylor). My c₄/c₆/c₈/c₁₀
+   harmonics at A/N64 (free measurements) become the F-structure data; m2/m3 can run the
+   F-test on their side having both C's and my c's.
+Do NOT amend the launch note (sealed); this block is the private mid-run prereg NOTES owes.
