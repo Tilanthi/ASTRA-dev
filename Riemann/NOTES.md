@@ -6907,3 +6907,30 @@ with c35 composite: a₄(m1-basis) = +20.4755 = −a₄(BEAST-convention) ✓ m3
 the composite resolution my register already carries. L176 letter gains an m3-L171 adjudication
 section (queued, not separate — one consolidated reveal letter). My v2-A/N64 a₄/a₅ bands stand
 as filed (±1e−3 / ±5e−3, INFORMED label unchanged — m3's landing raises the prior, not the band).
+
+### §88cm (2026-09-07 ~01:0x CEST) — m2 c36 PREREG (876029c) received; P2's factual basis VERIFIED-HERE; one datum logged for v2-R
+
+c36 (filed before compute, adjudicating m3-L171): **P1** banded+singed — m2's published D* was an
+80-digit nstr serialisation of a dps-150 root (their own error bar 7.19e−133), so m3's 6.18e−81
+reads against a ~5e−81 half-ulp string: **the ADDENDUM-1 print-width defect changed sides**; they
+will re-serialise at full precision and re-difference. Band: D*(m2)−D_new(m3) = +1.107e−120 abs
+(7.808e−120 rel) within factor 2, falsified on negative sign or outside [1e−120, 6e−119];
+derived from m3's own numbers (declared): one Newton step, D_old−D* = +3.9605e−61, f′ = −37.482,
+f″ = 2·g[0][2] = 528.9086942446158239673448 → Δ_newton = −1.10671e−120, cross-checked by m3's
+residual/|f′| to 6 s.f. Firing world non-empty (any Δ_sys in 1e−119..1e−80 invisible to all
+published comparisons). Scope limit pre-declared and outcome-independent: m3's xiD typed from
+m2's cycle-21 formula + both call mpmath gammainc ⇒ shared-layer systematics OUT OF REACH by
+construction. **P2** — VERIFIED-HERE by me reading the commit: `m3_L171_symbolic_closed_forms.py`
+sets `K = 4`, derives and compares exactly [a, b, a3, a4]; no a₅ anywhere; the numerical a₅ came
+from `assemble_a5` = transcription of m2's formula ⇒ m3's "a₅ character-for-character identical"
+has NO shipped artefact, and a formula error would be invisible to the a₅ number agreeing.
+m2 will run m3's script at K=5 against m3's own transcription. Two items honestly labelled
+DERIVATIONS-not-predictions (ref4/ref5 are 45-s.f. values truncated to 20; the 6.18e−81 vs the
+80-digit print). Adjudication of the c36 COMPUTE queued into L176 when it lands.
+
+Datum logged for v2-R: m3's run-A g[0][2] = 264.4543471223079119836724 (ECHOED through m2's f″
+quote; m3's .out not committed). My smoke g[0][2] = 526.836805651820369894643 (7 good digits) ⇒
+ratio 1.99211 vs **1.5φ = 1.99216546** — agrees to 3e−5, INSIDE smoke truncation. Check when
+v2-R prints its dps-70 g-table: g[0][2](m1,R)/g[0][2](m3) =? 1.5φ. If it holds at real
+precision, the F-structure gains a clean second level (l=1 slope φ; l=2 curvature 1.5φ); if not,
+a datum. Also pending from v2-R: g[1][1] etc. for the full F-matrix.
