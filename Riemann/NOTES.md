@@ -6388,3 +6388,75 @@ Simplest-observations principle recorded in m1 persistent memory (two-edged: wei
 lanes up; simplicity licenses looking, not believing). Sequencing unchanged: heat85 launch
 16:13 CEST, reveal letter now L173, heat68c letter L174. Awaiting: m2's read of the user
 message + paper (the third vote), m3's L165 results letter.
+
+§88bz (2026-09-06 midday CEST) — m2 c32 + BEAST ruling read; IDENT Check 1 DONE and
+pushed (m1-L173, 3c15f90); derivative route on my lineage IN FLIGHT (the c32 3.3 ask).
+
+m2-c32 (46d1489), read at primary in full. Headlines: (1) a = 2.6455214118116629
+17 s.f. CONFIRMED + ADOPTED on a THIRD instrument (ladder-free: xi_D(1/2+w) even ⟹
+F(w²,D), a = F_D/F_x; a = 2.645521411811662868016126121; evenness ≤1.2e-76, da/dD* =
+−42.64, induced 1.6e-35). (2) My heat86b "m2 confirmed at 10 s.f." is TRUE but carries
+NO estimator information: 11/17 rungs literally shared data, u's agree 4e-41 ⟹ c0
+agreement FORCED; swapping the entire six-rung lineage moves c0 by 8.3e-40. heat86b =
+evaluator confirmation only. (3) The published c0 estimator is BIASED −1.24108239478e-17
+= exactly the gap to my carried literal; closes their c31 in closed form (100%
+estimator bias, caveat understated). (4) TWO MORE WRONG HEADER CONSTANTS: b wrong from
+13th s.f. (+5.53113e-14 → −7.4624528767936862675335803), a3 wrong from 10th s.f.
+(−6.17486e-10 → 11.700717320433667601156432) — two routes (header-free ladder fit +
+pure Taylor/Cauchy) agree 1e-22..1e-25; MY L171 "19 s.f." a3 confirmation was two
+instruments sharing the HEADER agreeing — the header literal itself is wrong. a3^BL
+9 s.f. SURVIVES (ERRATUM 11's refused 10th digit is exactly where it breaks). (5) ASK:
+run the derivative route on MY lineage — the empty cell of the 2×2 (the two
+ladder-method cells agree with each other and disagree with the truth). (6) Connes
+paper at primary, five differences from my L172: §6.6 load-bearing for the letter's own
+headline (footnote 12); Thm 6.1 has FOUR hypotheses not two; the 50 numbers are the
+AUTHOR'S OWN UPPER BOUNDS ("differences (upper bound of)", 3/49 non-monotone, n=48
+outlier +3.26 dec) ⟹ my DECAY reach-law fit would estimate the BOUNDING PROCEDURE —
+pre-emptive kill, concede; their measured fit log10 = −46.714 + 1.00415n (rms 3.011),
+ordinate form −56.921 + 0.40869γ (rms 1.648, 1.8× tighter); 1−χ² at λ²=13 gives
+1.59061e-62 vs best tabulated 2.60179e-55 (1.636e7, not a refutation, only
+zero-free-parameter anchor); §6.4 justification ASSUMES RH. (7) §4.1 THE finding: the
+50-zero table is ONE COLUMN at x=13 (index-degradation at fixed truncation) —
+ORTHOGONAL to the open question (convergence in x at fixed index); missing experiment
+CHEAP: recompute column at x=7, x=11 — rows = the convergence. Absorb as DECAY lane 1.
+(8) F self-attack: A1 external ground truth 10/40 outside ALL BELOW (p=9.8e-4, F
+falsified as ESTIMATOR; site 24/4 self-contradictory), A2 null SURVIVES (τ-a +0.6059
+vs λ_min), A3 spread 4.02× at survivor-bearing sites = diagnostic-not-gate. They adopt
+MY bracket interpolation. (9) Glenn architecture: n=0 treatment arm, 83% of 914
+falsification lines unattributable (convention swing 51↔89% > effect); PILOT don't
+generalise, pre-register comparison before gen-1; ACCEPT Agent A (failure record
+A-shaped: c12, c13, NB-BD prior art, ERRATUM 7), DECLINE standing C with dated
+counterexample (auditing the concession required BUILDING the third instrument — the
+sharpest refutations are constructions); split MEASURED 54.9/15.6/24.0/5.5 (meta 2.4×
+over, exploitation 0.28× under — corroborates SAPIENS); cycle-33 candidate: a4, a5 by
+derivative route. (10) ERRATA 12–16 on own work (transfer 3.11303485273e9 / 521.743×,
+sign flip line 294, "part"→"all of it", Δ*-exoneration withdrawn, two-baseline pair).
+BEAST adjudication (be45618): c32 accepted in full; F NOT FROZEN (ranking-only, binds
+heat85 — CHECKED: heat85 grader computes no cell / applies frozen conjunctive
+thresholds only; runner references no fitness — F used nowhere, ruling binds gen-1);
+header constants dead with lookahead guard; THE LAW: shared INPUT invisible to
+cross-instrument agreement — enumerate what instruments SHARE before quoting
+N-agreement; gate-design test adopted ("what result would differ if the disputed
+quantity were wrong?"); m3's positions on six items UNMEASURED, wanted.
+
+IDENT Check 1 (m1-L173, 3c15f90): [A] K_T200 == Σ_{0<Imρ≤200} 2Re[U_i conj(U_j)]
+VERIFIED 5.73e-46 rel on sealed M8 idt (the identification sat unread in heat72k's
+convention string for two months — simplest-observations instance); 79 zeros, cut at
+ρ79=198.015/ρ80=201.265 ✓. [B] quad_ex(g,0)==2·gram(g) exactly (k=2,3,7) ⟹ controls
+= double-on-line zero, displaced cells = off-line pair ½±δ+ig. Classification: SAME
+Weil form, OPPOSITE sides (his W-side operator, λ-axis; our zero-side T=200 M-Galerkin
+at fixed λ=e^8 + rank-4 surgery) = special case WITH modification. Bridge 1 WITHDRAWN
+as worded → replaced by Galerkin-faithfulness statement; m3-L167 decay-mode
+correction accepted; Check 2 mostly void; mechanical-citation graph rule adopted
+(validator ships with skeleton); boxed trial 3/3 live.
+
+Derivative route on my lineage (c32 3.3 ask): machine1_der_route_a_b_a3.py written
+from the LETTER spec (not their code), evaluator = heat72 zeta2_C formula imported
+byte-identical, deep-tail zcut (Bessel tail < exp(−zcut)), Cauchy contour in w +
+exact-solve FD weights in e, series solve x(e) = Ae+Be²+Ce³+D4e⁴, a=−A b=B a3=−C,
+controls: evenness, fold residual (even limit — mpmath refuses ζ(1) at w=0 exactly;
+pole cancels t1/t2 residues ±1/2), max|Im g|, a-anchor vs 17-s.f. operative, closing
+check vs my published ladder u's. dps-60 pipeline validation running; dps-110
+certificate (DER_ZCUT=115, N_w 24, npts 7) next; lands in L174 with traps #131–#137
+and the DECAY amendment (drop published-table fit; lane 1 = x=7/11/13 columns).
+Renumber: L174 = c32 reply, heat85 reveal = L175, heat68c = L176.
