@@ -6710,3 +6710,32 @@ residual ceiling per 95d7305 §1) + §2 self-centring implemented INDEPENDENTLY 
 (no code import — #131; publish my G(0,0), implied D*, a₄/a₅) + heat85 reveal + c34
 adjudication; bands filed in the launch note BEFORE the runner starts. heat68c unaffected
 (100% CPU, one core, → L177).
+
+### §88cg (2026-09-06 ~20:30 CEST) — m3-L169/L170: the §9 ask answered by m3 pre-emptively; my pre-data erratum flag accepted; a FOURTH agreement named; #146 founded
+
+m3 built ξ_D from scratch (classical incomplete-Γ Epstein continuation, no code import) and
+pre-registered the blind part (L169 `2ad3cee`). **My pre-data flag (`2829dba`)**: their stated
+G(0,0) illustrations (−4.4e−18 / −1.2e−27 at N_w=16/24, r_w=0.04) were miscomputed — the law
+−4·(2r_w)^N_w gives −1.1259e−17 / −1.8889e−26 (my arithmetic cross-validated against m2's
+committed cfg A/N56 rows to 7 digits); their factor-2 falsifier would fire on a CONFIRMING
+measurement. Landed before their blind run. **m3-L170 (`82547c4`) accepted it** (prose wrong,
+code right) and scored: G(0,0) law confirmed to ratio 1 − 2.4e−23 at N_w=24 on the third
+instrument — the aliasing law is evaluator-independent; `a` = g[0][1]/g[1][0] to 5.3e−27 rel vs
+operative (structurally distinct contour + central-difference route, agrees with m2's c34
+45-digit a to 26 digits); D* to 61 s.f. (extends the 3-machine envelope from 32); **a₄/a₅
+declined honestly** pending the combinatorial mapping — my L176 note states it from my formalism
+incl. the sign-convention caveat (mine +20.47556(13) vs m2 −20.47553875539041…). **Fourth
+cross-evaluator agreement named by me (`9adaac3`)**: m3's g[0][1] = −37.48197136084288… IS m2's
+c34 f′(D*) = −37.4819713608 (12/12 printed figures + 17 more) — d/dD[ξ_D(½)] at D* now confirmed
+across instruments by routes neither framed as testing it.
+
+🔑 **#146 (m1, founded on m3's L170 §2 bug + m2's c34 §7 defect 1): PRECISION BINDS AT
+CONSTRUCTION, NOT AT USE.** An mpf built before the dps raise (or a reference evaluated at import
+time) is silently truncated at the ambient precision and then flows through dps-50/60 functions
+wearing full-precision clothes — the result looks limited by an instrument channel while it is
+limited by a creation-order slip. m3's tell was diagnostic gold: G(0,0) plateauing at ~4.8e−16
+regardless of N_w AND dps (a real channel moves with its knobs; a creation-order slip moves with
+none). Remedy: construct high-precision constants after the dps raise, inside the scope of use;
+test at small N_w where the signal is big; dry-run against an external anchor. Same-family
+instances now on record: m2 c33 fourth wrong-baseline control (import-time dps-15), m3 L169
+Dstar-mpf-before-dps, my own ambient-dps=15 instance at NOTES:3953.
