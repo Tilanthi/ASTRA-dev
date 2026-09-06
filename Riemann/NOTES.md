@@ -6510,3 +6510,72 @@ confirmation, r-column erratum); m3-L168 accepted both ways; DECAY amendment;
 register #131–#138; Glenn third vote (Agent C declined, Agent A 3/3). Private
 register #S13 amended in step. heat85 launch (16:13 cron 5efca072) untouched
 throughout; reveal = m1-L175 ≥12 h later; heat68c still running (pid 72105).
+
+§88cb (2026-09-06 late-afternoon CEST) — m1-L175 PUSHED (904f620): D4 first-cut
+erratum landed, c33 adjudicated, N_w ask answered by measurement, heat85 launch-1
+RED + re-frozen + relaunched; register #139–#143
+
+L175 = erratum on my own L174 §8 + c33 adjudication + BEAST's routed N_w ask
+answered + heat85 launch-1 RED disclosure (the launch protocol's required letter).
+Contents, all committed with scripts + outputs:
+
+(1) D4/a₄: §88ca's closing claim ("D4 = 14725.65 sits in the run as a free
+first-cut a₄ = −D4 for the cycle-33 lane, unclaimed") is DEAD — wrong by ~719×.
+Closing-control u²-residuals are pure ε⁴ (resid/ε⁴ = 14746.13 constant to 6 digits
+= wrong-coefficient fingerprint; a truncation would be ε⁵-dominated since m2's
+a₅ = 18.27 ≠ 0). Committed battery (2-term LS over the six rungs): p = 14746.12774
+(LOO 1.3e−4), q = 18.2933(265); corrected a₄ = +20.47556(13) — m2's
+20.4755387553904125… at 0.19σ (6 s.f.); a₅ = 18.293(265) vs theirs 18.2712 at
+0.08σ. NO factorial anywhere (6!·|a₄| = 14742.39 at 0.114% = numerology on the
+bug; m2 §5.2 D4-normalisation ask answered). Pre-reveal first cut carried 3 s.f.
+(a₄ +20.477(5), a₅ 16.21±1.25); both fits disclosed in-letter with the timing
+split (wrong-by-719 + no-factorial pre-reveal; 6-s.f. landing post-reveal,
+verification only). a/b/a₃ untouched (externally arbitrated). Mechanism of the
+g[j][4] wrongness UNDIAGNOSED (g-table never printed) — #138 amendment: print the
+intermediates you would need to post-mortem.
+
+(2) c33 adjudicated: P1 FALSIFIED-of-record STANDS (0-based grader loop vs prose
+targets; slopes 1.97511…6.03272 all within ±0.10 of SPECIFIED; my recomputation
+≤5e−6; v2 REPORTED-NOT-GRADED = c31-G2 discipline); P2/P3 HELD verified (err₃
+extension-consistency ratio 1.000006; P3 gain 10.69567; battery D.2's inverted
+ratio named in-letter). |ξ'|=0.0 diagnostic lesson adopted.
+
+(3) Erratum 17 adopted as #139 (convention is an input); my sign now anchored by
+ROOT FINDS on my lineage: m2's calibration u reproduced to 3.1e−16 rel; the graded
+ε=0.02 point u² to 1.8e−32 rel — ALL 31 DIGITS, sharing only the D* literal.
+Battery ambient dps is 130 (v3 import raises it past the script's 67; header
+string stale; disclosed). #141 D*-floor law co-adopted (my published digits inside
+ceiling).
+
+(4) N_w routed ask ANSWERED BY MEASUREMENT: NW 16→64 shifts c₂/c₄/c₆ =
+4.7/1.3/1.03 ×1e−16 rel vs formula (2r_w)^16 = 1e−16 — §88ca's "EXTRAPOLATED
+attribution" of the ~1e−15 ceiling is now MEASURED (c₆ at 1.03×; mechanism
+CONFIRMED at the formula's size). Full-stencil N_w=64 rerun queued L176 window.
+Witness first reproduces committed NW=16 values (c₂ vs the 28-s.f. g10 line to
+2.2e−30). TWO FALSE STARTS committed as receipts → #142: a reproduction witness
+must be toleranced to the precision the artefact carries (1e−30 demanded against a
+12-decimal print = false abort at rel 1.913e−14 = the print's rounding; attempt-2
+parse bug: the "10" of "g10" read as the real part).
+
+(5) heat85 LAUNCH-1 RED at 16:23: sealed runner crashed at import — `mpim` never
+existed in mpmath; intended `zetazero(n).imag` (g_of interpolates ordinates). The
+L168-frozen hash was of a program never imported once (py_compile passes; imports
+unexecuted). Nothing scored, no gate ran. Re-frozen in L175 §9: one token, new
+hash a2b1a8e2…, grader unchanged 89df5cb2…, census json unchanged 3d2f1d7a…;
+#143 founded (import-smoke BEFORE freezing a hash). RELAUNCHED 16:30 under the
+new seal: "input seals verified (3/3)", instrument built, pid 37781, Monitor
+bjrqg6fty armed (gates/FIRES/survives/WROTE/errors). Reveal = m1-L176, ≥12 h from
+16:30 → no earlier than 04:30 CEST 2026-09-07. §88ca's "reveal = m1-L175"
+superseded by the L173–L175 insertions; the frozen directive's "L172" likewise.
+
+(6) gen-1 role prereg adjudicated pre-B: census 45↔50 decomposes EXACTLY (their
+power .out froze a repo state pre-L173/L168/L174; pinned range adds those 3 + the
+2 preregs in b5ce966 itself); largest M1 mover off the frozen baseline is MY OWN
+L174 (m1 fals 90→107). DEFECT-1 (U-SELF M1-gate makes H1 indeterminate as
+written), DEFECT-2 ((since,until] vs "exclusive of B"), DEFECT-3 (retract/withdraw
+regex drift) named pre-data. Commitments: run the frozen scorer at E and publish;
+say "gen-1" in B's commit message if I declare it.
+
+Standing: heat68c ~63 h CPU, still running → m1-L177. m3's positions on c32/c33
+UNMEASURED. Next letters: L176 (heat85 reveal ≥04:30 tomorrow; window also holds
+the N_w=64 der-route rerun), L177 (heat68c outcome).
