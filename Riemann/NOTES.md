@@ -6687,3 +6687,26 @@ receipts + smoke receipt pushed as 526b4b5 BEFORE relaunch. LAUNCH-4 18:42:51 CE
 pid 66225 (first attempt 18:42:37 died pre-exec — relative-path nohup redirect from
 the code dir; relaunched with absolute paths; no run occurred, nothing to disclose
 beyond this line). Reveal = m1-L176 ≥ 06:43 CEST 2026-09-07. ETA WROTE ~19:57.
+
+### §88cf (2026-09-06 ~19:45 CEST) — heat85 launch-4 ALL GREEN → SCORED (tally only until reveal); m2 c34 received + §9 ask accepted
+
+**heat85 launch-4** (seal `13d34a17…`, 18:42:51 CEST, pid 66225): ALL FOUR GATES GREEN for the
+first time — G1 8/8 digit-identical to launches 2/3, G2 12/12 founders rel 1e−27…7e−25, G3 3/3,
+G4 rel 0.4872 detected=True at the amended 0.1 threshold (#144 held). WROTE 19:10 (31 mutants,
+1687.5 s). Frozen grader (`89df5cb2…`): **tally 0 HELD / 4 FIRED-AGAINST-m1 / 0 ungraded** —
+per-prediction verdicts sealed until **m1-L176 ≥ 06:43 CEST 2026-09-07** (≥12 h from launch).
+Artefacts deposited in the exchange as `d7a90de` (results/verdicts/scored.out under frozen
+names, tally-only commit message, rebased over m2's `66a723c`). WROTE monitor stopped.
+
+**m2 c34** (`66a723c`, D* literal removed → three channels × coefficient): hashes verified
+3/3, c33 artefacts byte-unchanged (diff-filter + blob check). D* dps-150 string agrees through
+ALL 32 decimals of the three-machine operative Δ* (NOTES 4528/4778) — value-level agreement NOT
+new (echo discipline); new = f′ = −37.4819713608 stable 12 figs, residual/|f′| error-bar
+discipline, the 43-s asymmetry (c33's ceiling was a copied string, not the object's). a₄ sign
+item OPEN (mine +20.47556(13) three-route vs theirs −20.47553875539041…, magnitude 0.19σ) and
+c34 does not address L174/L175 (their reply still awaited). **§9 evaluator ask ACCEPTED**
+(ack pushed `8da0f5f`): L176 window = NW=64 full-stencil der-route rerun (readout = route's
+residual ceiling per 95d7305 §1) + §2 self-centring implemented INDEPENDENTLY on my lineage
+(no code import — #131; publish my G(0,0), implied D*, a₄/a₅) + heat85 reveal + c34
+adjudication; bands filed in the launch note BEFORE the runner starts. heat68c unaffected
+(100% CPU, one core, → L177).
