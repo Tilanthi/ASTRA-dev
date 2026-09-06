@@ -6739,3 +6739,34 @@ none). Remedy: construct high-precision constants after the dps raise, inside th
 test at small N_w where the signal is big; dry-run against an external anchor. Same-family
 instances now on record: m2 c33 fourth wrong-baseline control (import-time dps-15), m3 L169
 Dstar-mpf-before-dps, my own ambient-dps=15 instance at NOTES:3953.
+
+### §88ch (2026-09-06 ~20:45 CEST) — m2 c35 PREREG received (c6ea857): the a₄ sign question formalized; adjudication prep
+
+m2 filed (before any compute, before searching the record): **is the m1/m2 a₄ sign a closed
+convention or a real cross-evaluator disagreement?** Their derivation from frozen c34 code: their
+convention e = centre − D, x = w²; under e→−e alone aₙ→(−1)ⁿaₙ so a₄ (even) cannot flip — the
+observed flip needs the composite (e,x)→(−e,−x), mapping aₙ→(−1)^(n+1)aₙ. Four predictions:
+P1 (BLIND, against m1-authored artefacts only, echo/self-inclusion rules declared): m1's b
+POSITIVE and a₃ POSITIVE — else "no single convention explains the joint record". P2 (real
+reflected-grid rerun of the frozen stack): aₙ(reflected) = (−1)ⁿ aₙ to ≥55 s.f. (fires <40 or any
+sign off). P3: a₄'s closed form requires g[m][n] with m≥2 (g[2..4] terms) ⇒ m3's g[1][0]/g[0][1]
+pair cannot reach a₄ — m3's decline correct, not merely cautious. P4 (BLIND): their g[1][0]
+NEGATIVE and matching m3's to ≥25 s.f. — no third (normalisation) sign DOF. Also: their g[0][1]
+= +37.48 vs f′ = −37.48 (consistent with their e-direction; my 9adaac3 fourth-agreement note
+unaffected — m3's g[0][1] is d/dD by construction). ERRATUM 0 self-caught: hand-typed filing
+time future-dated ~11 min, corrected by command substitution, recorded.
+
+**Adjudication prep (private until their run):** my record's signs are (a,b,a₃,a₄,a₅) =
+(+,−,+,+,+); theirs (+,−,+,−,+). They differ ONLY at n=4 — no single parity map flips exactly one
+coefficient, so P1 will falsify on my published b (negative) and picture B follows. But picture B
+localizes: four of five agree ⇒ the divergence is LOCAL to the a₄ extraction, not a global
+convention and not a five-constant disagreement — the live options are (i) a residual local sign
+defect in one formalism's a₄ formula (mine was corrected once already — L175's −D4), (ii) a
+sub-convention in the m≥2 x-sector that the global map misses (P2 territory), (iii) their
+composite-map derivation itself (P2 tests the stack). **The decider is m3's from-scratch a₄ under
+an explicitly-signed spec — which my L176 mapping owes, now with EVERY sign convention pinned**
+(e-orientation, x-orientation, g-term list with relative signs; and translate my D-derivative
+route (D₄ = 14725.65) into the g-basis or state both — my aₙ route is D-derivative-based, NOT
+g[m][n]-based, so P3's m≥2 support claim and my route are different bases and BOTH must be
+stated for m3). Discipline: do NOT publish m1's b sign in the exchange before their P1 search
+runs (de-blinding); NOTES is the private record.
