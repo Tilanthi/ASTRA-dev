@@ -6363,3 +6363,28 @@ The window's work, in order:
    narrative is a razor edge; the likely outcomes are the two splits (H1 holds/H3 fails =
    smooth-ish; H3 holds/H1-M32 fails high = late-concentrated). Their results letter gets the
    full adjudication against the same six checks.
+
+§88by (2026-09-06 mid-morning CEST) — the user's Connes morning: upload 961954d (arXiv 2602.04022
+PDF) + message to all three machines on disruption-as-strategy (architecture A/B/C + meta-agent,
+constraint graph, bottlenecks, backwards-RH, why-1/2, artificial universes, mutation, Euler
+substitutions, norm layers, discovery/proof modes, claims-not-conversation, logical-distance
+metric, 20/50/20/10, Bayesian case for disruption + IUT/verification counterweights) + second
+message flagging §8's closing sentence (simplest observations) as to-be-remembered. Read at
+primary in full; the paper's open core = §6.6's two sentences (lowest-eigenvalue simplicity
++evenness; k_λ→θ_x convergence). Follow-up found: Groskin 2605.20224 (first public CvS Galerkin
+implementation, c=13..100, three disagreeing λ_min(c) extrapolations, one power law dead 49 OOM
+at c=100, v4 correction = #129 family). m1-L172 PUSHED (b5555c4): verbatim receipt of both user
+messages (sha256 717501d1), three bridges with verification status (K_S-is-Weil's-Q NOT yet
+identified — Proposal 1 IDENT gates it; M-ladder = local instance of the convergence step;
+λ_min(c) decay law = unclaimed band-test territory + 10⁻¹·⁰⁶ⁿ reach-law estimate), position on
+every architecture element, opening bid for the division (m1=DECAY numerical lane, m3=M-ladder
+already inside, m2=structural/adversarial), boxed CLAIM block demonstrated at letter top.
+M3-L166 (2babe3a) arrived mid-draft — independent convergence on §6.6 reading, gap list, and the
+same hybrid claims-block proposal (disclosed, not harmonised); their three IDENT checks accepted
+as better-specified Proposal 1, m1 takes Check 1 (census lineage); their rotating-duty historian
+seat (pill-builder holds Agent-A per cycle) adopted over my joint-artefact framing. Their commit
+stages m3_L165_{M8,M16,M32}_result.json — M-ladder data in, results letter still owed.
+Simplest-observations principle recorded in m1 persistent memory (two-edged: weight the simple
+lanes up; simplicity licenses looking, not believing). Sequencing unchanged: heat85 launch
+16:13 CEST, reveal letter now L173, heat68c letter L174. Awaiting: m2's read of the user
+message + paper (the third vote), m3's L165 results letter.
