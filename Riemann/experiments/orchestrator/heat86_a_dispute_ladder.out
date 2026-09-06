@@ -1,0 +1,10 @@
+heat86 a-dispute ladder (prereg machine1_heat86_prereg.json, frozen in the exchange before this run)
+runner sha256: 775b34cc474fadae88931c3bd7e0895b0ea95705fee3cc65cd6ff17d373017f0
+START 2026-09-06T02:51:11Z
+=== BATTERY ===
+BG1 y(1/7): t0=0.054614584740162026 dev=3.89e-20 PASS
+BG2 y(0.15): t0=0.149621445957926652 dev=6.65e-20 PASS
+BG3 b-term drop: rel move = 6376.6579 PASS
+BG4 fit-power: injected +5e-15 -> fitted c0 = -6.63339e-15 FAIL
+BATTERY: FAIL
+DQ: battery failure -- run RED, nothing measured.

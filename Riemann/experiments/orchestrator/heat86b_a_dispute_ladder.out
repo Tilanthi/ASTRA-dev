@@ -1,0 +1,44 @@
+heat86b a-dispute ladder (prereg machine1_heat86b_prereg.json, re-freeze after heat86 RED at BG4; frozen in the exchange before this run)
+runner sha256: 6e951e33d180a711857e950191e1a62a5946fe2e01d32b72ddc874798554384d
+START 2026-09-06T03:08:48Z
+=== BATTERY ===
+BG1 y(1/7): t0=0.054614584740162026 dev=3.89e-20 PASS
+BG2 y(0.15): t0=0.149621445957926652 dev=6.65e-20 PASS
+BG3 b-term drop: rel move = 6376.6579 PASS
+BG4v2 fit-power (synthetic, known baseline): injected -5e-15 -> fitted c0 = -5.0e-15 PASS
+BG4c linearity (reported, not graded): real-data c0 = -1.6333947e-15 ; +5e-15 injection -> -6.6333947e-15 (additivity residual 2.19e-62)
+BATTERY: PASS
+  eps=0.0001   u=0.0162673531163708154365216623565  drift65=2.32e-50  resid65=1.9e-65  zeros=1  (2046s)
+  eps=0.00015  u=0.0199247623941106352733423261735  drift65=1.28e-45  resid65=7.99e-65  zeros=1  (1967s)
+  eps=0.00022  u=0.0241324681281259599848698370953  drift65=6.74e-43  resid65=5.27e-65  zeros=1  (2002s)
+  eps=0.00033  u=0.0295607027613976935625321711292  drift65=1.01e-53  resid65=8.55e-65  zeros=1  (2122s)
+  eps=0.0005   u=0.0363954362935105926130581425743  drift65=7.25e-49  resid65=8.52e-65  zeros=1  (2015s)
+  eps=0.00075  u=0.044590846945589617275344158652  drift65=2.1e-48  resid65=6.68e-65  zeros=1  (2042s)
+BG5 determinism: drift=1.3e-54 PASS
+
+=== V1 PRIMARY: 17-rung K=6 poly + eps^-2 ===
+  c0 = -1.63339469783e-15   max res = 7.00589907e-10
+  band: m2-CONFIRMED
+
+=== SECONDARY ===
+  six new alone: c0 = -1.623411826e-15  a3 = 11.700717319990239278  max res = 1.93772894e-12
+  per-rung rel u-diff vs m2 xi_D:
+    eps=0.0001   rel = 1.72033e-40
+    eps=0.00015  rel = 2.25575e-40
+    eps=0.00022  rel = 4.37976e-41
+    eps=0.00033  rel = 3.3557e-41
+    eps=0.0005   rel = 6.25057e-41
+    eps=0.00075  rel = 5.75676e-41
+  power table (K=6 + one extra, my 17 rungs):
+    none     max res = 1.05761347e-7
+    eps^-1   max res = 1.45552527e-8 coeff -1.89195293e-11
+    eps^-2   max res = 7.00589907e-10 coeff -1.6333947e-15
+    eps^-3   max res = 1.40156244e-8 coeff -1.5433288e-19
+    eps^-3/2 max res = 7.23829042e-9 coeff -1.71151008e-13
+  decisive refit a = 2.6455214118116628556:
+    K=5 max res 3.69504127e-8  a3 11.70071733817012449
+    K=6 max res 7.00589907e-10  a3 11.70071732105115376
+    K=7 max res 4.81803603e-10  a3 11.70071732067508397
+    K=8 max res 4.29415599e-10  a3 11.70071732075515986
+
+END 2026-09-06T07:11:02Z  total 14533s
