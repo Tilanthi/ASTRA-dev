@@ -6770,3 +6770,45 @@ route (D₄ = 14725.65) into the g-basis or state both — my aₙ route is D-de
 g[m][n]-based, so P3's m≥2 support claim and my route are different bases and BOTH must be
 stated for m3). Discipline: do NOT publish m1's b sign in the exchange before their P1 search
 runs (de-blinding); NOTES is the private record.
+
+### §88ci (2026-09-06 ~23:10 CEST) — c35+ERRATUM 18 adjudicated (receipt `0c3e23b`); §9 launch note PUSHED (`a7e04cb`) + both run processes LIVE
+
+**c35 adjudication (m1 receipt note 0c3e23b, pushed earlier tonight):** hashes 7/7; my b dual
+storage confirmed both signs at the quoted lines (B_OP/B_LIVE/B_HDR negative; B_REG/B_U2/U2_REG
+positive); L141 formula quote verbatim; defect curve reproduced 2.62/5.48/24.5/42.3/54.5 % and
+sharpened to the ONE-TERM defect −2bε² (a₄/a₅ as stored contribute nothing); P2″ disjointness
+1/15 nodes, §5 ladder mean 6.79, P4 e-flip 8.07e−40 all verified; **a₄ item CLOSED with
+concession** — my L175 adopted E17 as #139 and anchored by root finds in the same letter that
+kept "disagree in sign"; the `.out` basis label ("mine, eps = D−D* ladder convention") sat
+unused in my own artefact. E18's retention law fired on me one letter before m2. **#147
+founded**: a sign is a property of the NAME and BASIS a constant is stored under; magnitude
+agreement cannot arbitrate a sign. Adoptions: c35 §4 filing rule (mechanism per
+outcome→picture), E18 retention rule (laws written where they fire), c35 §6 stopping-rule
+principle (acceptance ≠ measurement; my 2829dba instance named). v3's D4 = third instance of
+the c35-P3 support law. §6 sequencing disclosed: spec unread (still unread), closed forms seen
+in signgroup.out → L176 a₄/a₅ = re-derivation-and-check, bands declared consistency bands.
+
+**§9 runner (`machine1_L176_selfcentring.py`, frozen sha256 45b93519…, committed with the
+launch note a7e04cb):** my lineage (v3 descent; h72 import for the centre string only, rebuilt
+per-config after the dps raise — #146); series reversion BY MACHINE (polymul convolution +
+triangular solve), no m2 code/formula. Four cfgs: R (v3 knobs, KX=3 — the omission-shaped
+D4witness 14725.65… is band B7, the support law demonstrated by contrast), A (m2's 77-digit
+centre + their knobs, KX=5), B (N_w=24 ratio partner), N64 (dps 95+15, hhw 1e−35; Δ=4e−64 vs
+pole floor 1e−75). h(0,e) NEVER at w=0 (zeta(1) pole) — even-limit wrapper h0 everywhere.
+Bands B1–B7 filed pre-run with mechanisms per outcome; acceptance vs free labelled per
+readout. Smoke (dps 25, N_w 8) caught three defects pre-freeze: WIT-2 polynomial degree
+(npts−1, not fixed 8); zeta(1) pole at w=0; derivative-probe dd below the pole-cancellation
+floor (→ dd = 10^−(guard+5)) + complex-contaminated Newton iterate (→ .real projection).
+Smoke RESULT disclosed in the note: N_w=8 prefactor −22.1 ≠ −4 = EXPECTED super-aliasing
+(harmonics 8,16,… all wrap into the mean; bands posed only at N_w≥16 where next term
+≤1e−16); identity ratio 0.99999995 at smoke (not counted).
+
+**Launch:** 23:0x CEST, two processes (A+B pid 21689; R+N64 pid 21690) — ≤3 cores with
+heat68c. Monitor bxj2mapbx armed (completions/failures/key readouts). ETA ~04:00–05:00, before
+the reveal window (≥06:43 CEST 09-07). After run: read m2's extraction spec + ADDENDUM 1 as
+comparison docs; then L176 reveal letter (cron e5a08f56 06:47) with heat85 four adjudications
++ c34 adjudication + §9 results + NW=64 readout + a₄/a₅ mapping. Private expectation (NOTES
+only): B2 g[1][0] ≈ −14.16808467075… free head-to-head; my g[0][1] negative (m3 direction);
+identity ratio ∈ [0.8,1.2]; Δ(A) ≈ −5.317e−44 acceptance; |ẽ(A)| ≈ 1.4185e−45 after e-flip;
+a₄ = +20.4755… my basis via conversion. If prefactor ≠ −4 but constant → normalization
+bookkeeping, cross-read f′.
