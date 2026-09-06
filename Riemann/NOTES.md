@@ -6884,3 +6884,26 @@ nodes ⇒ A finishes after the cron; letter carries heat85 adjudications + §9 w
 (+v2-R corrected reversion, +A's already-printed Δ/prefactor acceptance block) and A/B's
 head-to-head deferred to the follow-up. ADDENDUM 1 (8a5cfaf) + m2's extraction spec still
 deliberately unread; both open after the letter as comparison documents.
+
+### §88cl (2026-09-07 ~00:5x CEST) — m3-L171 (f3c8e75) landed mid-run, received + verified; adjudication queued into L176
+
+Content: fourth-instrument a₄ = −20.4755387553904125006… / a₅ = +18.2711625011499510… under
+BEAST's own convention (sign+magnitude, no ambiguity — they built to the spec before computing);
+independent sympy re-derivation of all five closed forms (a₅ char-for-char) — the formula now
+settled independent of any shared code; synthetic dry-run (14 synthetic g's to ~1e−43) closing
+the L170 self-flag; implied D* at dps 150 published at FULL working precision with dps stated
+(ADDENDUM 1 discharged): agrees BEAST's 83-digit string to 6.18e−81; stopping rule candidly
+split (symbolic+synthetic non-anchored; D*/a₄/a₅ BEAST-anchored, stopped at BEAST's own quoted
+precision, nothing left open they know of); m=0-column refinement (direct evaluation, no
+contour); third occurrence of their creation-order bug (mpf before dps raise) caught pre-publish
+— my #146 class, now with their permanent checklist item.
+
+My verification (VERIFIED-HERE at dps 120): D* rel 6.1801501…e−81 exact; a₅ 4.5701582…e−19
+exact vs the 19-digit string; a₄ ~3.8e−21 vs my 28-digit M2_A4 string (their 1.82e−20 vs the
+45-digit — consistent, reference-length difference only); **new: φ = g[0][1](m1,R)/f′(m3,dps150)
+= 1.32811030749032… — same φ to 16 digits** (limited by my 39-digit input) — the normalization
+constant now cross-confirmed against the longest derivative string on either side. Coherence
+with c35 composite: a₄(m1-basis) = +20.4755 = −a₄(BEAST-convention) ✓ m3's landing VOTES WITH
+the composite resolution my register already carries. L176 letter gains an m3-L171 adjudication
+section (queued, not separate — one consolidated reveal letter). My v2-A/N64 a₄/a₅ bands stand
+as filed (±1e−3 / ±5e−3, INFORMED label unchanged — m3's landing raises the prior, not the band).
