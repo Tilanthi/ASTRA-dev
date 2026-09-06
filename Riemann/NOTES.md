@@ -6975,3 +6975,45 @@ Also absorbed from c36: the falsifiable ask filed against m3 (run B at N_w=32 �
 m2's LAW (band filed before compute as the cure for anchored stopping rules) and AGAINST-MYSELF
 (a precision requirement addressed to the other party is an audit you have exempted yourself
 from; an error term someone else measured is a datum, not an error bar) — both adoptable as-is.
+
+### §88co (2026-09-07 ~02:1x CEST) — v2-R COMPLETE: reversion bands ALL FOUR PASS; N64 pre-stencil adjudicated; three own-errors in one turn, #149 hardened
+
+**v2 cfg R final (3721 s, watcher exit 0, JSON `machine1_L176_selfcentring_v2_r.json`).** The
+runner's own ACCEPT print — the authoritative adjudication, not my hand math (see below):
+**a −5.988e−37 / b 2.858e−37 / a₃ 2.975e−36 / D4 −2.178e−30.** Band (i) of the v2 erratum
+(v3 anchors a/b/a₃ ≤ 1e−20, omission-shaped D4 within 1e−9) is **CONFIRMED ON ALL FOUR LEGS**.
+The corrected reversion reproduces the v3 der-route determination to full printed precision —
+37 digits of recovery on b relative to v1's +4.752. WIT-3 scales as exactly e⁵ (log-ratio
+4.998 between e=1e−3 and e=1e−4) vs v1's knob-independent ~0.63·e². Identity (B3) ratio 1.0
+(−4.42e−72j), unchanged from v1 as required (reversion-independent). e_root = 5.3995303591455
+e−34 (also v1-equal). **root D* = 0.1417332396638871913954156850841856… agrees with m2's
+175-digit D\* through 33 digits** — the independent content is e_root ≈ 5.4e−34: my zeta2_C
+evaluator's own Newton root sits 5.4e−34 (rel 3.8e−33) from the OP centre string, i.e. at my
+instrument's h-floor. Shared-formula caveat declared: zeta2_C and m2's Zeta2 differ in
+implementation (lattice cut-off, summation order), not in the Epstein continuation itself —
+so this bounds the implementation layers only, exactly like-for-like with c36's declared scope
+limit. N64's Δ = −4πφ²(2r_w)^64·(1−8.49e−7): B1's ratio clause Δ(R)/Δ(N64) = 1.000000848e48
+vs the 5% band — PASS; B1's main band passes inside the pre-filed "constant but ≠ −4" branch;
+B6's clause-2 fires as written (5.541378286 vs πφ² = 5.54138299) in precisely that pre-filed
+direction. The 8.49e−7 deviation is NOT the alias tail (e−64) nor round-off (e−41+), and sits
+3 orders above the R↔A prefactor gap (1.5e−10); the pre-registered discriminator is B6
+clause-1 — c₆(N64)/c₆(R) within 1e−13 — which separates DC-specific (alias channel) from
+route-level, pending the N64 stencil (both v1 and v2 instances grinding).
+
+**The three own-errors this turn, on the record.** (1)+(2): I quoted the N64 prefactor
+deviation as 8.5e−8 and the c₀ contaminant as 1.88e−70 — machine re-derivation gave 8.49e−7
+and 1.88e−69; each exactly one decade optimistic, made while narrating the #149 catch.
+(3): I adjudicated band (i) as SPLIT with "mis-set b/a₃ legs" — computed against the MEMORY
+canonical constants instead of the sealed runner anchors (the sed output had shown me the true
+V3_ANCHORS in the same tool result); the runner's ACCEPT print reversed me within the hour.
+The gaps I measured (b 1.14e−14, a₃ 1.98e−13 vs canonical) are real but are the der-route
+strings' OWN documented floors (a 15 s.f., b ~14, a₃ 13) — a different comparison wearing the
+band's clothes. **#149 hardened accordingly: (i) a band verdict is quoted from the runner's
+own print where one exists, never from my subtraction of two readouts; (ii) anchors are
+re-derived from the sealed source at adjudication time, not from memory; (iii) any relative
+difference in NOTES or a letter comes from a same-turn machine print.** The errors were made
+by the adjudicator inside the adjudication — the trap's natural habitat is exactly here.
+
+v2-A/B (task bngo1ev6w) and v2-N64 (b6bn0le0k) launched 02:0x; five compute processes = the
+5-core cap (heat68c, v1-ab in cfg-A stencil, v1-N64, v2-ab, v2-n64). Reveal letter m1-L176
+unchanged: cron e5a08f56 at 06:47, seal intact.
