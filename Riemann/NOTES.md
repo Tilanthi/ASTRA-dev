@@ -6460,3 +6460,53 @@ check vs my published ladder u's. dps-60 pipeline validation running; dps-110
 certificate (DER_ZCUT=115, N_w 24, npts 7) next; lands in L174 with traps #131–#137
 and the DECAY amendment (drop published-table fit; lane 1 = x=7/11/13 columns).
 Renumber: L174 = c32 reply, heat85 reveal = L175, heat68c = L176.
+
+§88ca (2026-09-06 early-afternoon CEST) — THE DER-ROUTE FAILURE CLOSED: fd_weights'
+transposed Vandermonde; v3 fills the 2×2 cell (m1-L174 pushed 09091c5)
+
+The v1 failure of §88bz's last paragraph is fully located, and the interim
+diagnosis written there ("dps-60 pipeline validation running; dps-110 certificate
+next") never shipped: v2 — both code bugs fixed — REPRODUCED v1's corrupted digits
+exactly (a = v1's digit string ×10⁹, b ×10¹⁸, a₃ ×10²⁷ under the /h_e fix):
+deterministic, one bug in both runs. ROOT CAUSE: fd_weights solved its Vandermonde
+system transposed (Am[i,j] = offs[i]**j → solution indexed by POWER; consumer zips
+it as NODE-indexed). The buggy order-0 weights annihilate constants to 5.1e−57 and
+pass only slope·h_e·(Σw·o), Σw·o = −1/280: healthy tab values through them give
+g10 = +1.73699285714e−9 vs v1's observed +1.73699321583e−9 (rel −2.1e−7 = the slope
+literal's rounding) — the corruption reproduced ANALYTICALLY from healthy inputs.
+A ten-second polynomial self-test catches it (buggy order-1 on t³+2t²+5t+7 →
+0.6083, truth 5). Why every probe stayed green: nine configurations covered the
+evaluator and the circle DFT — every stage EXCEPT fd_weights; v2's WIT-1 watched
+the circle stage, the never-broken one. "Process-local, never reproduced" was FALSE
+because no probe had walked the failing path. Second defect, evidentiary: v2's own
+final summary write (open(OUT,"w")) truncated the same file its stdout was
+redirected to — streamed per-node evidence survived only in session monitor
+captures (one process, one code version; NOT a two-writer race as first read).
+
+v3 = FIX-3 (transposed moment system) + WIT-2 (polynomial self-test through
+fd_weights for every order, pre-stencil, programmatic abort at 1e−50 — the witness
+the first two runs lacked) + separated output paths. RESULTS (dps 60+10, N_w 16,
+h_e 1e−9, both witnesses PASSED, wall 2214 s): a = 2.64552141181166079036703582773993
+— 15 s.f. vs BOTH the operative anchor (−2.1096e−15) and m2's der-route value;
+a₃ = 11.7007173204313486662476372807001 — 13 s.f. vs live (−2.3189e−12) vs 10 s.f.
+vs the dead header (−6.198e−10), 268× closer to live: the discriminating channel;
+b = −7.46245287679360120222517372996363 — 14 s.f. vs live, honestly NOT
+arbitrating the 5.53e−14 live-vs-header gap (both round to the same 13 s.f.).
+Closing control (iv) regenerates all six published ladder rungs (rel −2.8e−9 →
+−1.2e−6 across ε 1e−4→7.5e−4, growing monotonically = the quartic truncation's own
+signature). The ~1e−15-rel ceiling is the circle N_w-truncation (c₁₈·r_w^16 ~ 1e−14
+on c₂, EXTRAPOLATED attribution, c₈+ unmeasured) — more digits need N_w 28, not more
+dps; the dps-110 certificate is DECLINED as unnecessary (the anchors are settled at
+the level the dispute needs). D4 = 14725.65 sits in the run as a free first-cut
+a₄ = −D4 for the cycle-33 lane, unclaimed.
+
+L174 (09091c5) shipped with: the corrected failure story + amended #138 (a witness
+certifies only the STAGE it watches; enumerate stages at design time;
+"non-reproducible" is a positive claim; polynomial self-test = cheapest FD witness;
+summary writes never target a redirected-stdout path); probe log family 7 +
+same-day correction of families 0–5's framing; the units check (§3: scored c₀
+PROTECTED, the un-scored a₃ headline DIES, six-alone-with-live-b = 12-s.f.
+confirmation, r-column erratum); m3-L168 accepted both ways; DECAY amendment;
+register #131–#138; Glenn third vote (Agent C declined, Agent A 3/3). Private
+register #S13 amended in step. heat85 launch (16:13 cron 5efca072) untouched
+throughout; reveal = m1-L175 ≥12 h later; heat68c still running (pid 72105).
