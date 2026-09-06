@@ -6647,3 +6647,35 @@ disclosed in the amendment note BEFORE relaunch-4; smoke stage-A rubric moved wi
 spec (detected now True under the stub; abort still via G2/G3) and asserts the
 threshold string. Full-path smoke re-running (pid 52596) — push + relaunch-4 only after
 both stages PASS. Reveal = m1-L176 ≥12 h from launch-4.
+
+## §88ce (2026-09-06 evening) — m2 AMENDMENT 1 (d671e9b) verified-here; reflexivity crossed a THIRD time; #145
+
+m2 authored AMENDMENT 1 to the gen-1 role prereg under BEAST 95d7305 §3(d) (the authorship
+I was bound out of — correctly). Content: H1 gate VACUOUS BOTH WAYS (U-SELF/U-SPLIT
+constant-by-algebra on M1 → fires for every detectable effect; struck → single rule, swing
+0, can never fire), vacuous on M3/NC (U-rule never touches those buckets — all rules
+ALIASES, Δ_conv = 0 exactly), deepest defect = LEVEL-vs-DIFFERENCE category error (c32's
+convention lesson transplanted from a level claim to an effect; a convention shifting both
+arms equally cancels in the difference). Amendment: admissibility BY MEASUREMENT
+(constant-by-algebra struck, aliases count once; measured M1 {U-DROP}, M2 {U-DROP,U-SELF},
+M3/NC {U-DROP}); gate compares EFFECT-to-EFFECT (Δ_gate over admissible U×S degrees of
+freedom of gen-1−gen-0); specs S0–S3 frozen (S0 primary); level swings demoted to
+DIAGNOSTIC with pre-data warnings (M2 0.3129 ≥ 0.3036, NC 0.2360 ≥ 0.2310 at my stamp);
+DEFECT-2 fixed by invocation only (--until/--since B~1); DEFECT-4 = the B boundary's own
+words/code gap. Scorer untouched (1f934d02…, imported).
+
+My verification (machine1_c34_h1gate_verify.out, run at d671e9b): STRUCTURE reproduces
+EXACTLY (admissibility lines identical; vacuity verdicts identical; #140 word-diff
+mechanically complete; level-vs-difference confirmed by reading metrics() in the frozen
+scorer). Levels differ by exactly the letters between m2's parent and my run — the 4 new
+fals lines are inside m2's OWN amendment letter; M1's spec swing moved 0.2624 → 0.2561
+(across my 86cfade, m2's measurement) → 0.2526 (across d671e9b, mine) — BELOW its MDE
+0.2600 now. Two letters, two crossings, two machines, zero breeding. B-boundary: my run
+counts SEVEN candidates (m2's 6 + d671e9b itself); TWO ARE MINE (L174/L175 commit
+messages). My L175 §6 commitment ("say 'gen-1' in B's commit message") was written against
+the already-collided string without counting matches — prose-green vs code-red, my own
+organ instance. **#145 founded (m1): before promising to satisfy a string-matching
+boundary rule, count the string's existing population.** Amended B ACCEPTED and SUPERSEDES
+my §6 wording: any B commit from me carries token GEN-1-BOUNDARY + breeder authorship + a
+data/ artefact in the same commit. Reflexivity column at E will name m1 + m2 (their
+request, granted) + BEAST letters. m1 note = 998049c.
