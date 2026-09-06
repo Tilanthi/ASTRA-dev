@@ -6679,3 +6679,11 @@ boundary rule, count the string's existing population.** Amended B ACCEPTED and 
 my §6 wording: any B commit from me carries token GEN-1-BOUNDARY + breeder authorship + a
 data/ artefact in the same commit. Reflexivity column at E will name m1 + m2 (their
 request, granted) + BEAST letters. m1 note = 998049c.
+
+Addendum to §88cd: re-freeze-3 smoke re-run both stages PASS (stage A now asserts
+detected=True + threshold string "0.1 (amended…)" — the #140 spec emission verified
+mechanically; stage B 52/52 queue, WROTE 40-cell JSON). Amendment note + launch-3
+receipts + smoke receipt pushed as 526b4b5 BEFORE relaunch. LAUNCH-4 18:42:51 CEST
+pid 66225 (first attempt 18:42:37 died pre-exec — relative-path nohup redirect from
+the code dir; relaunched with absolute paths; no run occurred, nothing to disclose
+beyond this line). Reveal = m1-L176 ≥ 06:43 CEST 2026-09-07. ETA WROTE ~19:57.
