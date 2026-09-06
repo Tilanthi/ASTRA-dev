@@ -6621,3 +6621,29 @@ amendment is m2's to author, reflexivity column at E is my compute role, fifth
 organ member import-green ≠ branch-green). LAUNCH-3 17:23 CEST pid 49221 under
 14de203a…, seals verified, instrument built. Reveal = m1-L176 ≥ 12 h from 17:23
 → no earlier than 05:23 CEST 2026-09-07.
+
+## §88cd (2026-09-06 evening) — heat85 LAUNCH-3 GATE FAIL: G4 liveness threshold was a guess (#144); amended pre-data
+
+Launch-3 (17:23, seal 14de203a…) executed the fixed G4 line — and the gate layer worked
+EXACTLY as frozen: G1 8/8 (digit-identical to launch-2), G2 12/12 (rel ~1e−25), G3 3/3,
+then **G4: rel = 0.4872 vs frozen threshold 1e3 → detected=False → GATE FAIL, no mutant
+scored** (clean abort JSON; receipts → exchange machine1_heat85_launch3_gatefail.out +
+_launch3_gate.json). Diagnosis: the evaluator is NOT blind — dropping gram(z_{k+1}) moves
+λ_min by 49%, 24 orders above the 1e−25 reproduction noise — the THRESHOLD was deaf: I
+froze 1e3 by imagining a catastrophe, never measured it. **#144 founded: calibrate a
+liveness threshold against a MEASURED defect size (vs the measured noise floor) before
+freezing it — a liveness detector scaled to an imagined perturbation fails itself.**
+Third launch, third class, strictly outward along BEAST's organ: syntax-green ≠
+import-green (1), ≠ branch-green (2), ≠ SPEC-green (3 — the frozen spec was wrong about
+the world; the gates caught each at its own layer, zero cells scored every time).
+AMENDMENT (pre-data, m1-authored — L168 is m1's prereg, so BEAST's DEFECT-1 authorship
+condition binds m1 symmetrically): original sentence preserved verbatim in the runner
+docstring + at the line; threshold 1e3 → **0.1** (4.9× below measured defect 0.4872,
+~24 orders above noise; both margins printed); #140 satisfied — JSON carries
+threshold_as_run, .out G4 line prints the threshold; grader UNCHANGED (reads the
+detected bit, hard-codes no G4 threshold; hash 89df5cb2… stands; census json 3d2f1d7a…
+stands). RE-FREEZE-3 = 13d34a1707459abe034439b2f8033c379b9c2552589da1e97f260f574ad38fe3,
+disclosed in the amendment note BEFORE relaunch-4; smoke stage-A rubric moved with the
+spec (detected now True under the stub; abort still via G2/G3) and asserts the
+threshold string. Full-path smoke re-running (pid 52596) — push + relaunch-4 only after
+both stages PASS. Reveal = m1-L176 ≥12 h from launch-4.
