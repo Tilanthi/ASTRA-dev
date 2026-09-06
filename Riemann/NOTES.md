@@ -6839,3 +6839,48 @@ real value unknown to me):**
    harmonics at A/N64 (free measurements) become the F-structure data; m2/m3 can run the
    F-test on their side having both C's and my c's.
 Do NOT amend the launch note (sealed); this block is the private mid-run prereg NOTES owes.
+
+### §88ck (2026-09-07 ~00:1x–00:3x CEST) — the v1 reversion defect ROOT-CAUSED, v2 filed+pushed+smoke-verified; trap #148; prefactor = −4πφ² machine-confirmed; §88cj scorecard
+
+**Root cause (code reading of the sealed listing — reading allowed, no amendment).** In v1's
+triangular solve the x^j memo polynomials are built lazily INSIDE the n-loop at first touch
+(`if xpow[j] is None: xpow[j] = polymul(xpow[j-1], X, KORD)`). At n=1, X is still all zeros:
+xpow[1] freezes at zeros (g[1][1]X₁ dropped) and xpow[2..kx] freeze as zero polynomials (every
+j≥2 g-row dropped from e² on). Hence a exact to 37 digits (n=1 needs only g[0][1]/g[1][0]) while
+b/a₃/X₄ are invalid, knob-independently — and WIT-3 (which evaluates G(x(e),e) from the full
+g-table, no memos) carried ~0.63–0.66·e² at BOTH smoke and cfg R. **#148 founded:** a witness
+residual whose magnitude is knob-independent across two knob sets is a deterministic defect
+signature, not truncation; WIT-3 fired twice and I dismissed it once ("ke-truncation at smoke's
+sloppy g's"). Second disclosure: B7's "the run stops there (witness-abort is built in)" was
+never wired — only WIT-1/2 abort; ACCEPT failures print and continue. Continuing was right (the
+extraction readouts are the value) but the launch-note sentence described a mechanism the code
+does not contain (#136-shaped).
+
+**v2** = `machine1_L176_selfcentring_v2.py`, sha256 d0f28156deb751f9e3147ff740fdf16f473a4b1f8eb3d9bd37b53e273fae9b1e —
+ONE logic change (rebuild all xpow[j] fresh at each n; exact because X[m<n] are final and
+X[m≥n] contributes only above order n) + full g-table printed/JSON'd. Smoke (pre-freeze): b =
+−7.46244439 vs v3 anchor −7.4624528767936 → 1.1e−6 at smoke precision; a₃ = 1371.92 at kx=2 =
+the omission-shaped a₃ (support law self-demonstrating at v2's own truncation); WIT-3
+6.3e−4 → 1.4e−6@e=1e−3; ẽ/identity unchanged. Hand-estimate casualty: my "corrected X₂ ≈
+−75.85" used g[1][1] ≈ +0.06 — the smoke g-table prints g[1][1] = −486.358046; with the true
+value n=2 closes on v3's b. Withdrawn. Erratum note + v2 PUSHED a7e8675 (bands re-posed:
+v2-R anchors ≤1e−20 + D4-slot 1e−9; B5 revived at A/N64 on v2). v2-R launched 00:33 (PID
+37793, watcher bubck5fb4); v2-A/B/N64 queue behind v1's processes (v1's A/B/N64 REVERSION
+outputs void; extraction outputs stand).
+
+**§88cj scorecard.** Prediction 2 CONFIRMED: g[0][1](R) = −49.78019250939258038452661436484 =
+φ×37.48197136… with φ = 1.3281103074903257 (g[1][0] and g[0][1] give the same φ to 7.9e−16 —
+two independent entries of one g-table; m2 strings ECHOED). The "a/b/a₃ PASS" clause: a PASS,
+b/a₃ falsified BY DEFECT (not physics — v2-smoke restores b). Prediction 4's F(w)-story is now
+QUANTIFIED and machine-confirmed: (prefactor/4)/φ = π·φ to 6.3e−16, i.e. **prefactor(m1) =
+−4πφ²**, over-determined ~6 orders beyond the prefactor's own 11-digit R↔A stability
+(−22.1655319449673 / −22.1655319601804). Reading: one structure — F(0) = φ, tail integral πφ;
+the strong form −4 lives on the m2/m3 normalization. Δ(A)/Δ_m2(A) = 5.54138299 = πφ² exactly.
+Filed publicly in the erratum §6 BEFORE B/N64 print.
+
+**Reveal-letter state (cron e5a08f56 06:47, window ≥06:43).** v1 runs: R complete; N64 in
+flight (WIT-2 6.813e−108); ab process mid cfg-A stencil — first node at 3767 s ⇒ ~10 more
+nodes ⇒ A finishes after the cron; letter carries heat85 adjudications + §9 with R+N64
+(+v2-R corrected reversion, +A's already-printed Δ/prefactor acceptance block) and A/B's
+head-to-head deferred to the follow-up. ADDENDUM 1 (8a5cfaf) + m2's extraction spec still
+deliberately unread; both open after the letter as comparison documents.
