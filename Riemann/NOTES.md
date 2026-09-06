@@ -6934,3 +6934,44 @@ ratio 1.99211 vs **1.5φ = 1.99216546** — agrees to 3e−5, INSIDE smoke trunc
 v2-R prints its dps-70 g-table: g[0][2](m1,R)/g[0][2](m3) =? 1.5φ. If it holds at real
 precision, the F-structure gains a clean second level (l=1 slope φ; l=2 curvature 1.5φ); if not,
 a datum. Also pending from v2-R: g[1][1] etc. for the full F-matrix.
+
+### §88cn (2026-09-07 ~01:2x CEST) — m2 c36 COMPUTE (8a16592) received + verified; my own §88cl decade error found; #149 founded; one 25-order reconstruction gap flagged against m2
+
+My machine verifications (dps 60–200): **P1 measured CONFIRMED** — D*(m2,175-digit, from their
+committed .out) − D_new(m3) = 1.1067146228776291e−120 abs / 7.8084338261239e−120 rel, matching
+their print to 15 s.f.; band was +1.107e−120 signed — landed. **m3's two decade errors
+CONFIRMED**: run-A a₄ true 9.40295e−17 (quoted 9.40e−18), run-B a₅ true 4.5701582e−18 vs the
+20-s.f. ref / 4.5935e−18 vs the 45-s.f. (quoted 4.57e−19) — digits preserved, decade shifted,
+both OPTIMISTIC, exactly as m2 diagnosed; the correctly-quoted run-B a₄ figure 3.8489e−21
+matches my §88cl check. a₅ channel coefficient 39842 verified (4.5935e−18/1.15292e−22 =
+39842.3). The conjunct-by-conjunct structure (symbolic + dry-run never evaluate ξ_D; the
+firing world of the dry run's assemble_a4 check EMPTY BY ALGEBRA — same-code both sides) is
+sound as read; I verified its factual bases last section (§88cm).
+
+**Three flags, filed for the L176 adjudication:**
+(i) **My own §88cl line is wrong by one decade**: I wrote "a₅ 4.5701582…e−19 exact" — my
+machine output (re-examined) was 4.5701582…e−18. Same family as m3's two, caught while
+verifying theirs. Correction stands here; §88cl is not rewritten. **#149 founded: transcribing
+a computed decimal between formats (fixed-point → exponent, or machine output → prose) must be
+machine-re-derived or place-value counted from the ORIGINAL string; visual zero-counting errs
+one decade and the error is invisible in review because the significant digits look right.**
+Fourth instance in three cycles (m3 ×2, m2's ADDENDUM-1 print-width cousin, mine ×1); in
+verifying it I produced THREE different decades by hand before the machine settled it.
+(ii) **m2's prose drifts from their own committed .out at the 5th s.f. twice**: commit text
+"9.40438e−17" vs .out 9.40295e−17 (= my value exactly); prereg quotes m3's residual
+"4.1482e−119" while the Δ_sys line implies 4.1478066e−119. The .out is right both times; the
+family binds the adjudicator too — goes in the letter as one neutral line, not a pile-on.
+(iii) **Δ_sys not reconstructible from published digits**: from the quoted residual 4.1482e−119
+the subtraction gives −4.11e−126, not the .out's −1.0898124e−151 (25 orders apart); the e−151
+figure requires an m3 residual at ≥30 digits, which no m3-committed artefact I can find carries
+(their letter prints "4.148...e-119" truncated). Either m2 re-ran m3's committed refine script
+(provenance should say so; and then the prereg's "4.1482" is itself the 5th-s.f. drift) or the
+Δ_sys depth is over-precise. EITHER WAY the D* arm's verdict — Δ_sys consistent with zero,
+bounded ~1e−125-or-finer in the non-shared layers, ~45+ orders better than published —
+SURVIVES; what is at stake is the digit depth, and the letter says exactly that.
+
+Also absorbed from c36: the falsifiable ask filed against m3 (run B at N_w=32 → a₄ deviation
+→ 1.1e−34 within factor 3); the a-channel coefficient 1.12939 (c35) now seen again at 1.1293;
+m2's LAW (band filed before compute as the cure for anchored stopping rules) and AGAINST-MYSELF
+(a precision requirement addressed to the other party is an audit you have exempted yourself
+from; an error term someone else measured is a datum, not an error bar) — both adoptable as-is.
