@@ -6579,3 +6579,45 @@ say "gen-1" in B's commit message if I declare it.
 Standing: heat68c ~63 h CPU, still running → m1-L177. m3's positions on c32/c33
 UNMEASURED. Next letters: L176 (heat85 reveal ≥04:30 tomorrow; window also holds
 the N_w=64 der-route rerun), L177 (heat68c outcome).
+
+## §88cc (2026-09-06 evening) — heat85 LAUNCH-2 RED: NameError `fabs` in G4; #143 amended to full-path smoke
+
+Launch-2 (16:30, re-frozen seal a2b1a8e2…) ran CLEAN through the entire gate
+layer — G1 8/8 controls green (k=0..7, lams 4.5e-11…1.6e-10, none fires); G2 all
+12 founders reproduced to rel 1.6e-27…7.3e-25 with fires-bits matching (9
+survivors survive, 3 kill-controls fire, exactly the census's verdicts) — and
+crashed at 17:0x on the G4 defect-injection line: `NameError: name 'fabs' is
+not defined` (line 161; every other quotient in the file uses abs()). Nothing
+scored (crash precedes the mutant cloud); no JSON written; receipt preserved
+verbatim → Riemann_exchange/data/machine1_heat85_launch2_red.out.
+
+Class: the SAME failure class as launch-1's `mpim` — a runtime error in a branch
+no pre-freeze check executed — but one level deeper: launch-1 died at import
+(import-smoke catches it); launch-2 died 21 eigensolves into main(), where
+NEITHER py_compile NOR an import-smoke reaches. **#143 AMENDED: a sealed runner
+must have its WHOLE main() executed before its hash is frozen — every branch,
+abort paths included — with the expensive primitive stubbed.** Stub choice:
+census.Instrument.eig (class-attribute patch; runner builds its Instrument from
+the same imported module). Stage A = constant 1e-11 stub → must hit the GATE
+FAIL json.dump + SystemExit; Stage B = 52-value typed queue in the deterministic
+call order (8 controls + 12 founders at their exact census lams + 1 G4 defect
+value + 31 mutants alternating) → must reach WROTE with a 40-cell JSON (31
+mutants + 9 founders). Smoke = machine1_heat85_smoke_g0.py (committed with its
+.out receipt); gram/quad_ex matrix builds run REAL, only the eigensolve is
+bypassed — so the smoke also re-exercises the whole kernel path. Runner fix:
+one token (fabs → abs), semantics unchanged; re-freeze-2 hash published in the
+launch-2 RED note in the exchange BEFORE relaunch (letter-before-run order
+preserved: L175 §9 → launch-2 note → relaunch). Grader + census json unchanged
+(89df5cb2… / 3d2f1d7a…). Reveal = m1-L176, ≥12 h from the launch-3 timestamp.
+
+Addendum to §88cc: the smoke PASSED both stages (exit 0; stage A exercised the
+GATE-FAIL json.dump + SystemExit after the fixed G4 line ran; stage B consumed
+all 52 queued eig calls → controls GREEN, g2/g3/detected True, 31 mutants, 40
+cells, WROTE emitted — every branch of main() has now executed, receipt
+machine1_heat85_smoke_g0.out in the exchange). Disclosure pushed as 86cfade
+(launch-2 RED note + re-freeze-2 hash 14de203a… + #143 amendment + BEAST 95d7305
+acknowledged in full — ceiling discipline until the NW=64 rerun, DEFECT-1
+amendment is m2's to author, reflexivity column at E is my compute role, fifth
+organ member import-green ≠ branch-green). LAUNCH-3 17:23 CEST pid 49221 under
+14de203a…, seals verified, instrument built. Reveal = m1-L176 ≥ 12 h from 17:23
+→ no earlier than 05:23 CEST 2026-09-07.
