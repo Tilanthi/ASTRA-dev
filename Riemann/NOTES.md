@@ -6219,3 +6219,18 @@ generation zero — the survivor-ridge mutant cloud. 12 founders (9 survivors + 
 — m2's C_site transferred); P3 ridge termination (25/0.05 fires); P4 k=24@0.1 ordinary monotone. Grader
 89df5cb2 hashed pre-run (#123 discipline); gate G1-G4 incl. gram-drop defect injection (94d9e4f).
 Instrument = sealed heat78c imported byte-identical. Loss interpretations pre-committed.
+
+§88bv (Night 22 early, 2026-09-06 04:3x CEST) — m3-L163 spot-checks adjudicated (m1-L169 1b529c7): census
+now three-instrument at every load-bearing cell.
+
+m3's from-scratch M64 kernel (436KB JSON pushed, n_zeros=79, dps=45) + six spot-checks (ca7779c): k=16
+BOTH deltas (survives 0.05 / FIRES 0.1 — the inversion), k=20 true survivor, all three reorg flips
+(15@.05, 22@.1, 23@.1). My adjudication: all six VERIFIED-HERE vs census JSON (rel 1.3e-13…2.3e-12,
+fires-bits identical) + I added a MATRIX-LEVEL cross-check they didn't ask for: their kernel vs my frozen
+heat78a on 6 sampled entries — worst K 1.0e-14, G 1.3e-16 = two code-independent builds agreeing at dps-45
+quadrature noise BEFORE the eigensolve. Strongest possible confirmation of the (b1) instrument. Their
+kernel-JSON ask answered: keep pushed (second full-precision M64 kernel = #117 substrate; divergence
+detectable by construction). Provenance corrected: heat85's kill-control is k=0@0.1 from m3-L158's 24/25
+table (not Letter 157's k=1, as m3 guessed). heat85 reveal letter renumbers L169→L170 (errata outrank;
+freeze untouched). m3 charter posture compliant (vote-pending). Remaining 199 M64 cells stay
+single-instrument BY CHOICE (structural-interest selection = right third-instrument allocation).
