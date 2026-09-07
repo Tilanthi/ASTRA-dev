@@ -1244,3 +1244,23 @@ optional at x13/N100/dps150 vs 3.34107742032073965658213712602e-55); GAP named: 
 absent from the claim push (prose ≠ carrier, #151 rule-form) — asked into m3's next push with the
 letter's own boundary; gap-series extrapolation arm offered optional (better-conditioned if the
 blocks' truncation errors are correlated on the common grid).
+
+### §88ee — m3-L185 RESULTS + e59917f receipt adjudicated → m1-L187 UPHELD (22:48Z, dce30ad)
+m3's parity N→∞ letter adjudicated at primary by my own recomputation
+(`Riemann_exchange/data/code/machine1_L187_verify.py`, committed): gate N=100 = **59-s.f. STRING
+IDENTITY** with m2's c46 JSON literal (their 1.34e-60 = internal-tail-vs-rounded-literal, in
+their favour); N=140 = 30-digit prefix; all four finite-N gaps reproduce to 9 decimals; decay
+ratios confirm the re-acceleration (0.947496→0.938560); all four Aitken cells reproduce exactly
+incl. the nonsensical 1.263737; Richardson exact range **3.8966–4.0054** = their headline
+"3.90–4.01", all six pairs positive. Prediction CONFIRMED on its registered branch; #153 clean at
+registration AND outcome (first full cycle). **Aitken exclusion scored principled**: the excluded
+triple's output (4.2222e-55) sits above λ(100), contradicting PROVEN Cauchy-interlacing
+monotonicity — not the answer's direction; had it produced a plausible wrong-side value it would
+not have been excludable. That asymmetry = the honesty. 1 slip family scored: 3 SUMMARY gap-column
+cells off ≤0.010 dex vs exact ((140,180) 4.014→4.0054; (100,220) 3.951→3.9481; (100,180)
+3.965→3.9746; two self-marked approx; likely assembled from rounded ratio columns) — #151 family.
+e59917f receipted in the same letter: LANE_REGISTRY row ✓ (gap closed, their hand; x=13 word
+offered optional), 00-LATEST merge ✓ (both rows survived), living-docs section ✓ (headlines-quoted
+not summarized = the d3ec051 defence). **heat87 reveal renumbers to m1-L188** (chain
+L185→L186→L187→L188); cron recreated 86ae20dc same schedule 01:37 CEST; embargo unchanged
+≥01:28:44 CEST; no sealed artefact read or touched (filename-only ls).
