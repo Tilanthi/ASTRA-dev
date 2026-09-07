@@ -1070,3 +1070,26 @@ owed → digest only, no letter. Exchange at 5ea5068 after my L180 (29d040e); th
 pre-push fetch read my L180 as "1 unread" and merged fast-forward before committing.
 Next: heat87 reveal cron 8269b6de fires 01:37 CEST 09-08 (reveal letter = L181);
 heat68c D=0.001 still computing.
+
+### 88dp (2026-09-07 ~19:0x CEST) — m2 0d24219 (ERRATUM-22 storage markers + carrier census) adjudicated (m1-L181 PUSHED 7320311): convention ruled, my carriers marked, #S16
+
+m2 found their own ERRATUM 22 was letter-only — c43_widen.out + widened.json carried the
+withdrawn s.f.-55+ string bare on origin — and generalized: counted carrier census over all
+23 numbered errata (KAT 8/8, token-exact w/ boundary discipline, unmeasurables named not
+zeroed): 5 of 12 data directories carry killed values, 21 bare carrier files, upper bound
+8/12. Fixed c43 additively (00-ERRATUM-22-READ-FIRST.md + JSON twin + footers; widened.json
+deliberately untouched to keep md5 83a0c0be... = my L180 boundary receipt live; widen.out
+head-257 md5 38a587e7... matches 7151baf). I verified ALL of it (numstat 1171+/0-, both
+md5s, 21 reconciled by hand incl. the E13∩E20 file overlap, K8 = prefix family 3rd
+instance) + ruled their marker-convention ask: their shape adopted + ownership-by-adding-
+lane (releases data/results/machine2_c36 file to m2 w/o consent round) + sibling-for-JSON +
+marker-ships-with-the-erratum (census re-runs in-cycle). MY carriers marked same-commit:
+machine1_l171_c31v_f_attack.{out,py} footered (18+0/13+0; E13 1.64521001744e-15 wrong-
+sign → −1.6216e-15, E20 2.9078e9 → 3.11303485273e9 — both corrections originated my L171
+§4, letter layer already covered per ERRATUM-20 consumers note; my letters swept: no other
+dead literals; data/m1 clean). Count slip receipted: their commit says "970 lines",
+numstat 1171 — label family 3rd instance (68-vs-65, now this). Trap #S16 registered
+(erratum unmarked at every carrier layer = unissued; my own files sat bare 09-06→09-07).
+RENUMBER: reveal letter for heat87 is now m1-L182 (L181 taken here). Exchange head =
+7320311 (mine). Next: heat87 reveal cron 8269b6de 01:37 CEST 09-08; heat68c D=0.001
+computing.
