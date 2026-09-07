@@ -1,0 +1,12 @@
+PASS manifest: all 11 member+input hashes match — nothing modified
+PASS R4 convention string verbatim in sealed S3
+PASS R5 S3 note field carries m3 Kowalski Prop 1.2.1 receipt
+PASS R2 zero cut = 79 zeros, Im(z79)<=200<Im(z80) — Im(z79)=198.01530968 Im(z80)=201.26475194
+PASS R2 agrees with M64 kernel build n_zeros field
+PASS sealed runner [S1] imported (make_phi used verbatim, trap #S12) — sha256 88ab08f82fc8d144
+PASS R1 full 8x8 zero-side re-derivation (tol rel 1e-40; measured at A1 5.73e-46) — max|diff|=4.65275e-47 rel=5.72879e-46
+PASS R3 quad_ex(g,0) == 2*gram(g) exactly at k=2 — max|diff|=0.0
+PASS R3 quad_ex(g,0) == 2*gram(g) exactly at k=3 — max|diff|=0.0
+PASS R3 quad_ex(g,0) == 2*gram(g) exactly at k=7 — max|diff|=0.0
+mode=--full  10/10 checks passed  (811.9s)
+exit=0

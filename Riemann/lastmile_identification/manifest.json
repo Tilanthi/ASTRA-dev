@@ -1,0 +1,99 @@
+{
+ "bundle": "m1-lastmile-identification-v1",
+ "built": "2026-09-07",
+ "note": "members exclude manifest.json itself (self-hash) and test_reproduction.out (generated receipt; hashed at commit time in the ASTRA repo, not tracked here). Inputs are sealed artefacts in two repos; pinning commits informational \u2014 the hash is the seal.",
+ "status_labels": {
+  "CERTIFIED-SEALED": "Input under a preregistered hash chain. This bundle verifies the hash and never modifies the file.",
+  "MEASURED-REPRODUCIBLE": "Numeric claim re-derived by this bundle's own test within the committed tolerance.",
+  "CITED-NOT-REDONE": "Carried by a counterparty receipt; cited, not re-derived (per the source letter's own scope statement).",
+  "CLASSIFICATION-FIRST-LOOK": "Interpretive verdict grounded in the measured rows; m3's independent second look from sealed sources still awaited (charter condition B)."
+ },
+ "inputs": {
+  "S1": {
+   "role": "sealed scored census runner (make_phi/window/bumpval imported from it, never re-typed - trap #S12)",
+   "repo": "Riemann_exchange",
+   "path": "data/code/machine1_heat78c_survivor_census.py",
+   "sha256": "88ab08f82fc8d14453dc064ba292dd35dc57541a5acc45f0d0bf10cd2721cd53",
+   "pinning_commit": "e926548",
+   "status": "CERTIFIED-SEALED"
+  },
+  "S2": {
+   "role": "frozen genome basis (M8 + M64)",
+   "repo": "Riemann_exchange",
+   "path": "data/code/machine1_heat70_genomes_m8_m64.json",
+   "sha256": "1065fd370fd9370807ea61f19708cbf1d16be77179f279760864386d299da56b",
+   "pinning_commit": "780f57b",
+   "status": "CERTIFIED-SEALED"
+  },
+  "S3": {
+   "role": "M8 identity target: K_T200 / G_raw + convention string + m3-identity-check note field",
+   "repo": "ASTRA-dev-main",
+   "path": "Riemann/experiments/orchestrator/heat72k_identity_target_m8.json",
+   "sha256": "12b81d093a0eb9d76709a61a9e22015af81a646e18faab722443efc0b03f87ff",
+   "pinning_commit": "feee806",
+   "status": "CERTIFIED-SEALED"
+  },
+  "S4": {
+   "role": "Connes 2602.04022v1 (sections 4.1, 5, 6.4, 6.6 cited by line in the measurement letter)",
+   "repo": "Riemann_exchange",
+   "path": "2602.04022v1.pdf",
+   "sha256": "9b7a5cdd2d39453360f2899a4681ddb2862e9be51a1a89746a11674acbeb7eea",
+   "pinning_commit": "961954d",
+   "status": "CERTIFIED-SEALED"
+  },
+  "S5": {
+   "role": "M64 kernel build (independent M-ladder point; n_zeros field cross-check)",
+   "repo": "Riemann_exchange",
+   "path": "data/machine1_heat78a_m64_kernel.json",
+   "sha256": "f992234913440a6af50cccf6016af260afc0be0fdcac417500d94b47331e3c51",
+   "pinning_commit": "94d9e4f",
+   "status": "CERTIFIED-SEALED"
+  },
+  "A1": {
+   "role": "primary measurement script (IDENT Check 1)",
+   "repo": "Riemann_exchange",
+   "path": "data/code/machine1_ident1_connes_vs_ks.py",
+   "sha256": "e42e161a7e728efcda7f4635250229dae7ca2d4ddf17453cf5caef711445e125",
+   "pinning_commit": "3c15f90",
+   "status": "CERTIFIED-SEALED"
+  },
+  "A2": {
+   "role": "primary measurement receipt (842.4 s run)",
+   "repo": "Riemann_exchange",
+   "path": "data/machine1_ident1_check1.out",
+   "sha256": "5f0e7325cc475f11e4a9288fca530824d990c8cf2d4c3ee43b62e11d13a4823b",
+   "pinning_commit": "3c15f90",
+   "status": "CERTIFIED-SEALED"
+  }
+ },
+ "members": {
+  "identification_table.json": {
+   "repo": "ASTRA-dev-main",
+   "path": "Riemann/lastmile_identification/identification_table.json",
+   "sha256": "5a47b15aaa15c5f1570babfd2ab7a7674419a4025ce791166b74c24145004418",
+   "status": "BUNDLE-MEMBER",
+   "role": "machine-readable identification table (source of truth for rows)"
+  },
+  "IDENTIFICATION_TABLE.md": {
+   "repo": "ASTRA-dev-main",
+   "path": "Riemann/lastmile_identification/IDENTIFICATION_TABLE.md",
+   "sha256": "b4a1edeacfe5704cce34e31621621de8f83674aa8ba9f547cf58b9195f80a680",
+   "status": "BUNDLE-MEMBER",
+   "role": "human-readable rendering"
+  },
+  "validate_manifest.py": {
+   "repo": "ASTRA-dev-main",
+   "path": "Riemann/lastmile_identification/validate_manifest.py",
+   "sha256": "62e8692b52cfb9cf9ef1f7086587e6afd201f412f50fa05cb5783e498e799909",
+   "status": "BUNDLE-MEMBER",
+   "role": "hash validator (non-destructive)"
+  },
+  "test_reproduction.py": {
+   "repo": "ASTRA-dev-main",
+   "path": "Riemann/lastmile_identification/test_reproduction.py",
+   "sha256": "29daba22a4eb7c0136d4a503aa71a7631f6924cb77731dccf63538d73f267bc8",
+   "status": "BUNDLE-MEMBER",
+   "role": "non-destructive reproduction test (--quick/default/--full)"
+  }
+ }
+}

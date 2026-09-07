@@ -1,0 +1,70 @@
+{
+  "table": "m1-lastmile-identification-v1",
+  "built": "2026-09-07",
+  "scope": "The identification committed at m1 Glenn-directive-3 reply section 4.6: census quadratic form vs Connes restricted Weil form. Self-contained, already verified, undisputed. The a-family and D* tables are deliberately EXCLUDED (mid-flight, would teach bundling on a moving target).",
+  "status_labels": {
+    "CERTIFIED-SEALED": "Input under a preregistered hash chain. This bundle verifies the hash and never modifies the file.",
+    "MEASURED-REPRODUCIBLE": "Numeric claim re-derived by this bundle's own test within the committed tolerance.",
+    "CITED-NOT-REDONE": "Carried by a counterparty receipt; cited, not re-derived (per the source letter's own scope statement).",
+    "CLASSIFICATION-FIRST-LOOK": "Interpretive verdict grounded in the measured rows; m3's independent second look from sealed sources still awaited (charter condition B)."
+  },
+  "inputs": {
+    "S1": {"role": "sealed scored census runner (make_phi/window/bumpval imported from it, never re-typed - trap #S12)", "repo": "Riemann_exchange", "path": "data/code/machine1_heat78c_survivor_census.py", "sha256": "88ab08f82fc8d14453dc064ba292dd35dc57541a5acc45f0d0bf10cd2721cd53", "pinning_commit": "e926548", "status": "CERTIFIED-SEALED"},
+    "S2": {"role": "frozen genome basis (M8 + M64)", "repo": "Riemann_exchange", "path": "data/code/machine1_heat70_genomes_m8_m64.json", "sha256": "1065fd370fd9370807ea61f19708cbf1d16be77179f279760864386d299da56b", "pinning_commit": "780f57b", "status": "CERTIFIED-SEALED"},
+    "S3": {"role": "M8 identity target: K_T200 / G_raw + convention string + m3-identity-check note field", "repo": "ASTRA-dev-main", "path": "Riemann/experiments/orchestrator/heat72k_identity_target_m8.json", "sha256": "12b81d093a0eb9d76709a61a9e22015af81a646e18faab722443efc0b03f87ff", "pinning_commit": "feee806", "status": "CERTIFIED-SEALED"},
+    "S4": {"role": "Connes 2602.04022v1 (sections 4.1, 5, 6.4, 6.6 cited by line in the measurement letter)", "repo": "Riemann_exchange", "path": "2602.04022v1.pdf", "sha256": "9b7a5cdd2d39453360f2899a4681ddb2862e9be51a1a89746a11674acbeb7eea", "pinning_commit": "961954d", "status": "CERTIFIED-SEALED"},
+    "S5": {"role": "M64 kernel build (independent M-ladder point; n_zeros field cross-check)", "repo": "Riemann_exchange", "path": "data/machine1_heat78a_m64_kernel.json", "sha256": "f992234913440a6af50cccf6016af260afc0be0fdcac417500d94b47331e3c51", "pinning_commit": "94d9e4f", "status": "CERTIFIED-SEALED"},
+    "A1": {"role": "primary measurement script (IDENT Check 1)", "repo": "Riemann_exchange", "path": "data/code/machine1_ident1_connes_vs_ks.py", "sha256": "e42e161a7e728efcda7f4635250229dae7ca2d4ddf17453cf5caef711445e125", "pinning_commit": "3c15f90", "status": "CERTIFIED-SEALED"},
+    "A2": {"role": "primary measurement receipt (842.4 s run)", "repo": "Riemann_exchange", "path": "data/machine1_ident1_check1.out", "sha256": "5f0e7325cc475f11e4a9288fca530824d990c8cf2d4c3ee43b62e11d13a4823b", "pinning_commit": "3c15f90", "status": "CERTIFIED-SEALED"}
+  },
+  "rows": [
+    {
+      "id": "R1",
+      "claim": "K_T200[s1/M8] equals the zero-side explicit-formula kernel sum_{0<Im rho<=200} 2 Re[U_i(rho) conj(U_j(rho))], U_a(rho) = int phi_a e^{rho t} (Mellin at rho), recomputed from the frozen genomes on mpmath zetazero at dps 45.",
+      "measured": {"max_abs_diff": "4.65275e-47", "scale": "0.0812169", "relative": "5.72879e-46"},
+      "status": "MEASURED-REPRODUCIBLE",
+      "grounding": ["S1", "S2", "S3", "A1", "A2"],
+      "machine_check": "test_reproduction.py --full re-derives all 8x8 entries; default run re-derives K[0,0] (tolerance relative 1e-40, i.e. >10x headroom over the measured 5.73e-46 while orders below any basis/convention/side error, which is O(1))."
+    },
+    {
+      "id": "R2",
+      "claim": "The T=200 zero cut is exactly 79 zeros: Im rho_79 = 198.0153097 <= 200 < Im rho_80 = 201.2647519; agrees with the M64 kernel build's own n_zeros field.",
+      "measured": {"n_zeros": 79, "im79": "198.0153097", "im80": "201.2647519"},
+      "status": "MEASURED-REPRODUCIBLE",
+      "grounding": ["A2", "S5"],
+      "machine_check": "test_reproduction.py default: re-derives the cut via mpmath zetazero (dps 30) and string-checks n_zeros=79 in S5."
+    },
+    {
+      "id": "R3",
+      "claim": "Surgery semantics: quad_ex(g, 0) = 2*gram(g) EXACTLY (max diff 0.0 at k=2,3,7) - the census control cell is a double zero at the interpolated ordinate, and for delta>0 quad_ex(g,delta) is the zero-side contribution of a conjugate-symmetric pair at 1/2 +/- delta + i g.",
+      "measured": {"max_abs_diff": "0.0", "k_checked": [2, 3, 7]},
+      "status": "MEASURED-REPRODUCIBLE",
+      "grounding": ["S1", "A1", "A2"],
+      "machine_check": "test_reproduction.py --full re-runs the k=2,3,7 exact-equality checks with semantics imported from the sealed runner."
+    },
+    {
+      "id": "R4",
+      "claim": "Convention-string provenance: the zero-side construction is stated IN the sealed artefact itself - S3's convention field reads verbatim 'raw genome basis; K_FE = sum_{0<Im rho<=T} 2Re[U_a(rho) conj(U_b(rho))]; U_a(rho)=int phi_a e^{rho t}; breakpoints per spec; mp.dps 45'.",
+      "measured": {"match": "verbatim"},
+      "status": "CERTIFIED-SEALED",
+      "grounding": ["S3"],
+      "machine_check": "test_reproduction.py default: string-equality check of the convention field."
+    },
+    {
+      "id": "R5",
+      "claim": "The W-side (prime + archimedean) equality on our basis is carried by m3's Kowalski Prop 1.2.1 identity check, receipted in S3's own note field ('identity check is m3's (Kowalski Prop 1.2.1 signs)'). This bundle does not re-derive it - stated scope of the primary measurement (A1 docstring: 'cited, not redone').",
+      "measured": null,
+      "status": "CITED-NOT-REDONE",
+      "grounding": ["S3", "A1"],
+      "machine_check": "test_reproduction.py default: string check that S3's note field carries the receipt."
+    },
+    {
+      "id": "R6",
+      "claim": "CLASSIFICATION: the census quadratic form and Connes' Q_W_lambda are the SAME Weil explicit-formula quadratic form on opposite sides of the identity - ours a doubly-truncated (T=200 zeros, M-Galerkin genome bumps at fixed lambda=e^8) zero-side realisation with an added rank-4 falsification surgery; his the pristine operator on the growing-support (lambda) axis. NOT a linear reparametrisation; NOT unrelated. Consequence: our M-ladder measures Galerkin faithfulness of our probe at fixed lambda=e^8, not Connes' open (a) or (b).",
+      "measured": null,
+      "status": "CLASSIFICATION-FIRST-LOOK",
+      "grounding": ["R1", "R3", "R5", "S4"],
+      "machine_check": "No machine check for an interpretive row; every premise row (R1, R3, R5) is machine-checked above. m3's independent second look from sealed sources: AWAITED (offered at m3-L167 s2, not yet delivered as of this build)."
+    }
+  ]
+}
