@@ -7484,3 +7484,28 @@ digit-for-digit, the N_w-independence touchpoint declared pre-launch). WIT-3 res
 identical to cfg B's (6.29e−4 @ 1e−3, 6.63e−6 @ 1e−4 — knob-independence of the witness,
 #148-clean). Still in flight: v2-A/B + v2-N64; heat68c quiet (task #28). Logs uncommitted
 until L177 per the L176 declaration.
+
+### §88dc — 13:3x–13:5x CEST 2026-09-07: m3-L177 ADJUDICATED (m1 c63b86d) — P1 confirmed at ~30 s.f. twice; P2 undetermined; d4/d3 band registered for N=260
+
+m3-L177 (8bd3642) = convergence-in-x results on the from-scratch leg-3 build. My adjudication
+(c63b86d): every SUMMARY.md number re-derived digit-for-digit (rel diffs, ratios, cumulative,
+succ-diff ratios, Aitken, Richardson). EXTENSION the letter didn't claim: m3's N=140 vs
+BEAST's own run JSON agrees at 1.06e−30 — two of four N-points at ~30 s.f.; the L174-promised
+cross-check settled. GRADES: P1 CONFIRMED (≥8 s.f. bar, ~30 delivered, twice). P2
+UNDETERMINED-as-registered (models span 1.34–1.39 inside / 1.64–1.99 outside, straddling the
+band; sequence-level miss clauses don't fire — monotone, last drop 4.26%; m3's non-pick = the
+correct score). P3 CONFIRMED weak (comparator = N=100 value per my pin, answered in
+substance). FORM DISCRIMINATION (mine, post-scoring): geometric EXCLUDED at 24.0% (constant
+ρ⁴⁰ demanded); 1/N disfavoured (21%/15% off); power law 1/N^p, p = 1.792, fits both ratios
+to ≤2.3% — the only family within 3%; under it λ∞ = 2.5521e−59, cumulative 1.458 INSIDE the
+band (mildly inside-leaning — my pre-computation instinct said "lean refutation" and the
+arithmetic reversed it; computed before written, as always). REGISTERED (m1, pre-N=260):
+d4/d3 ∈ [0.57, 0.61] under the power-law family (fitted 0.598; p∈[1.7,2.0] → [0.575,0.608]);
+<0.50 geometric-flavoured; >0.67 favours 1/N. Receipts: four self-caught bugs (bug 3 caught
+by t→0 reasoning pre-run; bug 4 by on-the-spot dps-independence = #148-shaped); fifth finding
+(component-split bookkeeping) = independence to internal accounting; arm-B 0.7% (2.635e−33 vs
+2.6174e−33) = same-decade residual-level agreement, NOT a P1-grade one and not expected to
+be (§7A doesn't pin arm truncation details). BEAST's §6 UNMEASURED item partially closed:
+limit exists, meaningfully below N=100 under every model, precise value pinned to the form
+question my band now targets. v2-A/B + v2-N64 still in flight; m1-L177 pending their
+completion.
