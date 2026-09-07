@@ -7485,7 +7485,7 @@ identical to cfg B's (6.29e−4 @ 1e−3, 6.63e−6 @ 1e−4 — knob-independen
 #148-clean). Still in flight: v2-A/B + v2-N64; heat68c quiet (task #28). Logs uncommitted
 until L177 per the L176 declaration.
 
-### §88dc — 13:3x–13:5x CEST 2026-09-07: m3-L177 ADJUDICATED (m1 c63b86d) — P1 confirmed at ~30 s.f. twice; P2 undetermined; d4/d3 band registered for N=260
+### §88dc — 11:3x–11:4x CEST 2026-09-07 [header stamp corrected in §88dd; was mis-typed 13:3x]: m3-L177 ADJUDICATED (m1 c63b86d) — P1 confirmed at ~30 s.f. twice; P2 undetermined; d4/d3 band registered for N=260
 
 m3-L177 (8bd3642) = convergence-in-x results on the from-scratch leg-3 build. My adjudication
 (c63b86d): every SUMMARY.md number re-derived digit-for-digit (rel diffs, ratios, cumulative,
@@ -7509,3 +7509,62 @@ be (§7A doesn't pin arm truncation details). BEAST's §6 UNMEASURED item partia
 limit exists, meaningfully below N=100 under every model, precise value pinned to the form
 question my band now targets. v2-A/B + v2-N64 still in flight; m1-L177 pending their
 completion.
+
+### §88dd — 12:1x CEST 2026-09-07: v2-N64 COMPLETE (39031 s) — fixed reversion lands a₄/a₅ at full precision inside the L175 erratum bands; root D* identical at 60 digits across FOUR configs; Δ(N64) strong-form prefactor confirmed; v2-R a₄-slot discrepancy FLAGGED for L177; GLENN REFLECTION DIRECTIVE received
+
+Run: cfg N64 [v2] dps=95(+15) r_w=0.05 N_w=64 h_e=1e-9 npts=9 kx=5 ke=5 centre=OP
+hhw=1e-35, wall 39031 s, exit 0. Witnesses: WIT-2 FD-poly exactness 0..5 worst 6.813e−108
+(tol 1e−80) GREEN; WIT-1 circle c2 rel-to-Richardson 7.349e−9 (tol 1e−6) GREEN — same value
+as v2-R AND v2-A (three-config stability of the circle witness); WIT-3 2.91108e−11 @ 1e-3 →
+2.90031e−17 @ 1e-4. Stencil −4…+4 all landed (12 s.f.); node +0 = −18.816779288625 = the
+g-table print of g[1][0]; linear drift −4.8636e−7/node. Δ = −2.21655131434009743066586779023e−63;
+prefactor Δ/(2r_w)^64 = −22.1655131434009743066587 ⇒ −4πφ²·(1−8.48e−7): the §88cn pre-stencil
+prediction (1−8.49e−7) CONFIRMED on the full v2 run (strong form −4).
+
+FIXED REVERSION (the v2 deliverable): a4 = +20.475538755390412500705806722575021868018825,
+a5 = +18.271162501149951037426431260097402283122661 [m1 eps-basis, L141 formula]; X4 raw =
+−20.4755387553904125007058067226 (minus pinned, #147). Both INSIDE the L175 erratum bands
+(a₄ +20.47556(13): |diff| 6.1e−5 vs band 1.3e−3). Cross-config: v2-A (done, 25548 s) X4 =
+−20.4755387553904125007030527078 vs N64 …07058067226 → 21-digit agreement; a5 likewise 21
+(…503735792657 vs …503742643126). The erratum's 6-s.f. cross-instrument a₄/a₅ are now
+machine-derived at full precision on my instrument — #149's transcription loop closed for
+these two constants. Extracted constants at full print: a = 2.6455214118116628680161261212034253505119997
+(17-s.f. operative rounding exact), b = −7.4624528767936862675335803516287399152498252 (26-s.f.
+live value exact), a3 = 11.700717320433667601156432487039772083529454 (25-s.f. exact). Full
+g-table j=0..5 × l=0..5 printed; c2/c4/c6/c8/c10 = the g[j][0] column (−18.8168 / −279.181 /
+−1382.36 / −5664.72 / −22695.9).
+
+root D* = 0.141733239663887191395415685084185023623144561955016655942867 — 60-digit
+identical to cfg B (v1) and cfg N64 (v1): FOURTH configuration, same D* to the print floor.
+Identity ratio 1.0 + 2.84680766658e−64j — the N_w=64 aliasing scale, matching v1-N64's 2.85e−64
+(B 3.14e−107, R −4.42e−72: closure depth tracks N_w, as expected). etilde/e_root agree to 33
+digits (−3.7685543804498334405713339609…e−37).
+
+**DISCREPANCY FLAGGED (adjudicate before L177)**: v2-R's a4 slot prints
+−14725.652175546936038623171769467923905929174 under the SAME [m1 eps-basis, L141 formula]
+label where v2-A/N64 print ±20.4755. R's own a/b/a3 carry only 16/13/12 digits (dps-limited
+der-route config, 3721 s). LEADING HYPOTHESIS (L141 law): the formula's sensitivity amplifies
+R's input error into an O(10³) wrong coefficient while the band-(i) witness residuals graded
+CLEAN in §88cn (D4 −2.178e−30) test the root-locus polynomial — a different object, not this
+coefficient. Supporting fingerprint: v1-N64's FIRST a4 print (−1935.77510881256452597 +
+9.37785093899241425249216117742e−38j) and v2-R's a4 (+9.37783958559863972659493654325e−38j)
+share the 9.3778…e−38 imaginary residue to 5–6 digits — a common precision-starved path,
+distinct from the healthy −5.7166e−78 family (v1-N64 second print; v2-N64). If starvation
+holds: v3's D4 = −14725.65 was the SAME mode (not solely the memo), §88ck's root-cause note
+needs an L177 corollary, and #148 gains a cousin (witness-residual health ≠ coefficient
+health — a named quantity can be witness-clean and coefficient-wrong). If not: the R path
+still carries a defect. Either way R's a4 is not citable; A/N64's is, pending cfg B.
+
+v2-AB: cfg A done [25548 s] all-green; cfg B [v2] in flight (dps=90 r_w=0.04 N_w=24 h_e=1e-7
+npts=11 centre=M2), ~3.7 h CPU in at last check, log through implied-D*. m1-L177 becomes
+writable on its "run complete"; logs stay uncommitted until then per the L176 declaration.
+Stale v1 watcher killed; fresh single-shot watcher armed on v2_ab.
+
+**GLENN REFLECTION DIRECTIVE (12:0x CEST)**: initiate a three-way discussion with BEAST and
+astra-pa on programme evolution — question every few hours what is going right / not useful /
+how to improve toward the objective; invite their independent views; plan and execute agreed
+changes; running processes untouched (his explicit instruction — v2-AB etc. continue); he and
+SAPIENS will drop by occasionally as external observers. This endorses acting on my six
+suggested changes at the discussion level. Reflection letter (m1) drafted this window; task
+#60 opened. Standing commitments unchanged: m1-L177 on v2-AB completion, task #56 this week,
+task #57 last-mile.
