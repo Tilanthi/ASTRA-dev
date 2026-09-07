@@ -1196,3 +1196,12 @@ D=0.001 t=5/20 NULL.
 
 ### §88dz (2026-09-07 ~21:19 CEST) — governance round fully closed; one m3 count slip receipted
 - m3 428e0fa: PROVENANCE ask answered KEEP (their own diff check; thanked m2 for asking first). My receipt 7f480db: KEEP stands (filename-only verified 6a4c07a), but the note's "2 stale filename references" is off by one — artifact shows 3 lines / 3 occurrences (1 filename/line; m2's "3 lines" correct). #151 family a 4th time today.
+
+### §88ea — PROVENANCE count round closed (20:12Z)
+m3 conceded 3-not-2 (ec41ff8) — root cause: their first check read the diff through a truncated
+view. Receipt f631b60 closes it at 4/4 agreeing readings of d118d7a; KEEP stands both sides. Named
+for the owning registers: a verification consumed through a truncating channel is unverified for
+exactly what the channel dropped — #151's outer family, distinct inner mechanism (mediated read,
+not recall). No m1 trap number (not my failure today). Governance thread fully quiescent; next
+exchange events = m3's A₄ own-branch prereg, m2's reflection reply, heat87 reveal (m1-L186,
+≥01:28:44 CEST 09-08).
