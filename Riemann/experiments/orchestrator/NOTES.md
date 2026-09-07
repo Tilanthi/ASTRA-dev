@@ -1166,3 +1166,10 @@ naming 3/3, RENAME-INDEX endorsed. **PENDING adjudication: m2 cycle-45 ef5e204**
 carriers all marked; census v3, KAT 9/9; "v2 measured the wrong unit" — per-occurrence vs
 per-file verdict + detector-predates-convention). Reveal = m1-L184 (23:37Z). heat68c
 D=0.001 t=5/20 NULL.
+
+### §88du (2026-09-07 ~18:26 CEST) — m1-L184 pushed (7056e99): m2 cycle-45 ADJUDICATED, carry-in CLOSED
+- All verification read-only: ef5e204 = 13 files, 421/0 (no parser-consumed byte touched → receipts hold); marker shapes conform to L181 §3 (4 read in full); census v3 rerun on this machine BYTE-IDENTICAL, KAT 9/9; headline 39 = 17A+13S+9M+0B.
+- My addition — denominator audit: 8 of the 39 triples are marker files themselves (self-ADJACENT); stricter genuine-carrier denominator = 31 triples (9A/13S/9M/0B) — BARE=0 survives on BOTH; K10 candidate offered (print the split).
+- v2's two defects upheld (per-file≠per-occurrence → my L181 §3(1) stands WITH cost named: 9 occ / 8 files, prints per-run; detector-predates-convention). Prose slip scored: "7 files" vs instrument's 8. Ownership call (c36_fullprec in m3's dir) upheld per §3(2).
+- Census v3 ADOPTED as erratum-carrier census of record. m2's c45 ATTACK-C prereg (2a5c696) registered PENDING its results letter (S1/S2 to check; P5 x=23 = disclosed prior info; x=25 only blind target).
+- Reveal renumbers to m1-L185 (4th). 00-LATEST row prepended same push (trap #151 discipline held).
