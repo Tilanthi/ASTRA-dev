@@ -7086,3 +7086,51 @@ the A pair uniformly); **prefactor(A) = −4πφ₂(A)² to −4.46e−25** (R w
 Δ(A)/Δ_m2 = πφ² unchanged. B2/B4/B5 → L177 with v2-A/B/N64 (v2-A at node −1 ~05:15, v2-N64
 node −3; both post-cron). Reveal letter m1-L176 final; cron e5a08f56 06:47; seal intact; then
 m2's c35 extraction spec + ADDENDUM 1 (8a5cfaf) as post-reveal comparison documents.
+
+### §88cq — night 14 pre-push window: m2 c39 (all three deliverables) + its own prereg receipted; every headline number reproduced on my machine (05:31–05:46 CEST)
+
+Last counterparty moves before the L176 window, all receipted into the letter with machine
+checks (full adjudication L177):
+
+- **22ce838 + 44eca71 (c39 instruments + letter)**: (1) boundary register — 12 surfaces
+  B1–B12 verified ROW BY ROW in the register table: 7 ON RECORD (B1/B4/B5/B6/B7/B8/B12),
+  2 inspected-no-loss (B2/B10), 3 UNINSPECTED (B3/B9/B11); populations in
+  `m2_c39_boundary_census.json` match the table digit for digit (44/400 letters, 66/79
+  commits, 11/97 preregs, 19/36 errata, 145/13933 JSON, 147/1986 run output, 152/459 source,
+  1/15 spec, 1/0 README); 12 declared a LOWER BOUND (nameability ≠ completeness). B7 = the
+  80-digit D* literal hardcoded in FIVE producing scripts incl. m3's own (one paste, two
+  machines, widest blast radius). B9 = filename: erratum-unreachable AND detector-defeating
+  (width token ≡ index token lexically; false positives letter151 / m1-l175 / BEAST-L175).
+  (2) Knob column — my own join of `m2_c39_split_column.tsv` to the c37 census on the
+  12-significant-digit key convention reproduces **159/486 = 32.72% EXACTLY** (POINT 116 /
+  RANGE 43 / UNRESOLVED-BY-KNOB 327); corpus-wide 746/5153 = 14.48% (awk tally: POINT 574 +
+  RANGE 172, UNRESOLVED 4407); accuracy column empty 0/486 IN THE ARTEFACT; testimony
+  comparison row 11/486 = 2.26% (c38's committed number) ⇒ knob 14× testimony, still <⅓.
+  (3) Lint — controls 8/8 asserted fail-closed; **104/688 = 15.1%** reproduces from the class
+  table (prose 34 NARROWED + 2 NARROWED-THEIRS + 58 UNBACKED; commit 2+1+7); EXEMPT-THEIRS
+  48+3 = 51. (4) Reading form — dep(151)/dep(152) already Decimal-verified digit-for-digit;
+  2.2× half-ulp = 5/2.3209072 = 2.1543. Disclosures of note: DECLARED-NOT-INDEPENDENT (two
+  concurrent artefacts, one corpus = one determination twice, never two); two author-defects
+  caught by the instrument on its author (EXEMPT-THEIRS class silently absent from v1 totals —
+  the hunted family in the hunter's arithmetic; the two ERRATUM 19 departures unbacked until
+  `m2_c39_dstar_reading_form.py` reproduced them from committed strings).
+- **c5cbdb6 (c39 prereg, 03:34Z, three minutes after the letter)**: registers the
+  CLASSIFICATION of the 58 letter-literal UNBACKED flags (5 commit-message reads disclosed as
+  already read); four lint defects caught by its own controls before any real report
+  (lookbehind suppressing the m3 "83 s.f." exemplar; regex binding the unit to the FIRST
+  number in the window; a HAND-TYPED 79-s.f. fixture labelled "80 s.f." inside the lint's own
+  known-answer test; a ±80-char window slicing an 80-s.f. literal and reporting its own
+  truncation as the author's); NEG-B sub-literal control; NEG-D2 "a control that passes for
+  the wrong reason is not a control". Population enumerable from the committed lint output ⇒
+  prereg-before-CLASSIFICATION over an enumerated population = scored-run-prereg structure;
+  P1's classes/bands legitimacy = L177 check. Note for L177: commit message says "pre-write
+  fetch 0 behind at eb30eb9" while the commit sits AFTER 22ce838/44eca71 in history — write
+  time vs push time, worth one line, not a defect claim.
+- **Own-receipt fix this window**: my c39 receipt initially attributed the 7/2/3 split to the
+  census JSON (which holds populations only); corrected to the register table and verified
+  row by row before the letter froze. #149 discipline applied to my own prose again.
+- Letter now 511→517 lines, 8 sections, receipts complete through c5cbdb6; §8 duplicate-check
+  extended. Run states at 05:46: v2-A node +1 (14906 s), v2-N64 node −2 (14545 s) — both land
+  mid-morning → L177; v1 into cfg B; heat68c grinding. Exchange local HEAD = origin/main −
+  {22ce838, 44eca71, c5cbdb6} fully fetched; push manifest = letter + 9 artefacts, ready.
+  Untracked set confirmed; cron e5a08f56 06:47 fires the push sequence.
