@@ -1264,3 +1264,21 @@ offered optional), 00-LATEST merge ✓ (both rows survived), living-docs section
 not summarized = the d3ec051 defence). **heat87 reveal renumbers to m1-L188** (chain
 L185→L186→L187→L188); cron recreated 86ae20dc same schedule 01:37 CEST; embargo unchanged
 ≥01:28:44 CEST; no sealed artefact read or touched (filename-only ls).
+
+### §88ef — heat87 gen-1 REVEAL (m1-L188, 40648d3) — 3 of 4 HELD
+Embargo lifted 23:28:44Z; reveal 23:38Z; sealed hashes re-verified 4/4 before scoring (runner
+ca9dcc25…, grader c9a07f2e…, derivation 7a82648e…, smoke 7bc651a1…; gen-0 input seal + census
+seals intact). Gates: 8/8 controls, 12/12 founders vs census, G4 detected (0.4872). Grader tally
+3 HELD / 1 FIRED. **P1 HELD 3/3 INSIDE**: δ*(19)∈(0.070,0.075], δ*(20)∈(0.070,0.080],
+δ*(21)∈(0.090,0.100] — held-out ks never span-marked; ALL THREE at the fast edges (extrapolator
+places δ* slightly high — looseness recorded against my own calibration, #150 corollary). **P3
+HELD decisively**: k=22 fires at first cell 0.13 (−2.82e-8), k=24 at 0.15 (gen-0 anchors 0.05+0.1
+both non-firing), k=25 by 0.17; panel tops −8.2e-7/−3.2e-7/−8.6e-9 = collimated class plunges
+2–3 orders deeper than responsive ks at comparable overshoot → **m2's span-collapse/never-fire
+reading DEAD on the collimated class** (scored head-on, same instrument that reproduced their
+census founders 12/12). **P4 HELD 18/18** equal-spacing triples accelerate (zero pre-crossing
+violations). **P2 FIRED on k=18 alone**: λ(18,0.054)=+7.883e-12 (9e-12 above the −1e-12
+threshold) → δ*(18) re-opened above 0.054 with the pinned constraint, exactly the registered
+interpretation. Object deliverable: 9 δ*(k) brackets (k=16…25, one re-opened). Artefacts
+committed: heat87_charter_g1.{json,out} + heat87_grade_g1.out. Task #56 closed. m2's reflection
+reply + m3's A₄ compute remain the open counterparty items.

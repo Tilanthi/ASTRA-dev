@@ -1,0 +1,61 @@
+input seals verified (3/3)
+instrument built 0.1s
+G1 control k=0 lam 4.76112961139e-11 ok
+G1 control k=1 lam 7.82396275017e-11 ok
+G1 control k=2 lam 1.47853878161e-10 ok
+G1 control k=3 lam 8.58369711366e-11 ok
+G1 control k=4 lam 9.26191571099e-11 ok
+G1 control k=5 lam 1.09127522827e-10 ok
+G1 control k=6 lam 4.6318830868e-11 ok
+G1 control k=7 lam 4.46656072881e-11 ok
+G2/3 founder 16/0.05 lam 5.053612052e-11 rel 3.78e-26 fires=False match=True
+G2/3 founder 18/0.05 lam 6.978488137e-11 rel 5.94e-26 fires=False match=True
+G2/3 founder 19/0.05 lam 1.497705145e-10 rel 1.89e-25 fires=False match=True
+G2/3 founder 20/0.05 lam 9.928773792e-11 rel 2.5e-27 fires=False match=True
+G2/3 founder 21/0.05 lam 5.746150303e-11 rel 7.32e-26 fires=False match=True
+G2/3 founder 22/0.05 lam 7.092723674e-11 rel 6.0e-27 fires=False match=True
+G2/3 founder 23/0.05 lam 1.172846725e-10 rel 2.66e-25 fires=False match=True
+G2/3 founder 24/0.05 lam 1.628097523e-10 rel 1.62e-25 fires=False match=True
+G2/3 founder 24/0.1 lam 1.616794486e-10 rel 1.6e-25 fires=False match=True
+G2/3 founder 15/0.05 lam -6.329602531e-10 rel 6.5e-26 fires=True match=True
+G2/3 founder 17/0.05 lam -2.938951237e-11 rel 7.13e-26 fires=True match=True
+G2/3 founder 0/0.1 lam -2.630881951 rel 5.54e-26 fires=True match=True
+G4 defect injection rel 0.4872 (thresh 0.1, inherited) detected=True
+mutant  1/37  16/0.0505  lam 4.19371226436e-11  survives
+mutant  2/37  16/0.0515  lam 1.67941900584e-11  survives
+mutant  3/37  16/0.053  lam -6.30706475623e-11  FIRES
+mutant  4/37  18/0.0510  lam 6.32074469065e-11  survives
+mutant  5/37  18/0.0525  lam 4.53940599673e-11  survives
+mutant  6/37  18/0.0540  lam 7.88346661008e-12  survives
+mutant  7/37  19/0.075  lam -2.22426776787e-11  FIRES
+mutant  8/37  19/0.080  lam -2.38360505443e-10  FIRES
+mutant  9/37  19/0.085  lam -7.48149027446e-10  FIRES
+mutant 10/37  20/0.080  lam -4.98708952291e-11  FIRES
+mutant 11/37  20/0.090  lam -4.34232941928e-10  FIRES
+mutant 12/37  20/0.095  lam -8.945431246e-10  FIRES
+mutant 13/37  21/0.09  lam 2.69759720996e-11  survives
+mutant 14/37  21/0.10  lam -5.46305247621e-11  FIRES
+mutant 15/37  21/0.11  lam -2.61888689868e-10  FIRES
+mutant 16/37  21/0.12  lam -6.17568212863e-10  FIRES
+mutant 17/37  21/0.13  lam -1.21714824211e-9  FIRES
+mutant 18/37  22/0.13  lam -2.82063983628e-8  FIRES
+mutant 19/37  22/0.15  lam -1.27916383891e-7  FIRES
+mutant 20/37  22/0.17  lam -3.77210671689e-7  FIRES
+mutant 21/37  22/0.19  lam -8.24379405782e-7  FIRES
+mutant 22/37  23/0.076  lam 7.22470617756e-11  survives
+mutant 23/37  23/0.080  lam 5.82281098379e-11  survives
+mutant 24/37  23/0.084  lam 4.06027739055e-11  survives
+mutant 25/37  23/0.088  lam 1.78074613585e-11  survives
+mutant 26/37  23/0.092  lam -1.28519725612e-11  FIRES
+mutant 27/37  24/0.15  lam -1.35555645149e-9  FIRES
+mutant 28/37  24/0.16  lam -2.61853321496e-8  FIRES
+mutant 29/37  24/0.17  lam -9.0066813314e-8  FIRES
+mutant 30/37  24/0.18  lam -1.89788023525e-7  FIRES
+mutant 31/37  24/0.19  lam -3.21816357523e-7  FIRES
+mutant 32/37  25/0.15  lam 1.02771548947e-10  survives
+mutant 33/37  25/0.16  lam 7.73111900568e-11  survives
+mutant 34/37  25/0.17  lam -1.11114819964e-10  FIRES
+mutant 35/37  25/0.18  lam -7.66370149933e-10  FIRES
+mutant 36/37  25/0.19  lam -2.83507099867e-9  FIRES
+mutant 37/37  25/0.20  lam -8.60719061549e-9  FIRES
+WROTE /Users/gjw255/astrodata/SWARM/ASTRA-dev-main/Riemann/experiments/orchestrator/heat87_charter_g1.json  (37 mutants, 1883.0s)

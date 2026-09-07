@@ -1,0 +1,42 @@
+gate: controls=GREEN G2=True G3=True G4-detected=True  n_mutants=37
+
+--- P1: held-out firing bands (fires iff lam_min < -1E-12) ---
+  P1a k=19 band (0.070, 0.085]: bracket (0.07, 0.075] -> INSIDE
+  P1b k=20 band (0.070, 0.095]: bracket (0.07, 0.080] -> INSIDE
+  P1c k=21 band (0.090, 0.130]: bracket (0.09, 0.10] -> INSIDE
+  P1: HELD
+
+--- P2: responsive brackets ---
+  P2: k=16 band (0.050, 0.053]: lam(0.053) = -6.307064756230141424004811E-11 < THRESH: True; gen-0 anchor 0.05 non-firing: True
+  P2: k=18 band (0.050, 0.054]: lam(0.054) = 7.883466610075161176082923E-12 < THRESH: False; gen-0 anchor 0.05 non-firing: True
+  P2: k=23 band (0.070, 0.092]: lam(0.076)=7.224706177556158808695619E-11 non-firing True; lam(0.092)=-1.285197256124670615722568E-11 fires True; anchor 0.07 True
+  P2: FIRED
+
+--- P3: collimation head-to-head ---
+  P3: k=22 fires by 0.19: True  (panel top lam = -8.243794057824106531765327E-7)
+  P3: k=24 fires by 0.19: True  (panel top lam = -3.218163575234375175857942E-7)
+  P3: k=25 fires by 0.20: True  (panel top lam = -8.607190615486583350035138E-9)
+  P3: HELD  (collimation reading dead)
+
+--- P4: the law — 18 registered equal-spacing triples accelerate ---
+  P4: k=19 (0.070,0.075,0.080): d -8.6220e-11 -> -2.1612e-10  accelerating=True  [crossing]
+  P4: k=19 (0.075,0.080,0.085): d -2.1612e-10 -> -5.0979e-10  accelerating=True  [post-crossing]
+  P4: k=20 (0.070,0.080,0.090): d -1.1067e-10 -> -3.8436e-10  accelerating=True  [crossing]
+  P4: k=21 (0.090,0.100,0.110): d -8.1606e-11 -> -2.0726e-10  accelerating=True  [crossing]
+  P4: k=21 (0.100,0.110,0.120): d -2.0726e-10 -> -3.5568e-10  accelerating=True  [post-crossing]
+  P4: k=21 (0.110,0.120,0.130): d -3.5568e-10 -> -5.9958e-10  accelerating=True  [post-crossing]
+  P4: k=22 (0.130,0.150,0.170): d -9.9710e-08 -> -2.4929e-07  accelerating=True  [post-crossing]
+  P4: k=22 (0.150,0.170,0.190): d -2.4929e-07 -> -4.4717e-07  accelerating=True  [post-crossing]
+  P4: k=23 (0.076,0.080,0.084): d -1.4019e-11 -> -1.7625e-11  accelerating=True  [pre-crossing]
+  P4: k=23 (0.080,0.084,0.088): d -1.7625e-11 -> -2.2795e-11  accelerating=True  [pre-crossing]
+  P4: k=23 (0.084,0.088,0.092): d -2.2795e-11 -> -3.0659e-11  accelerating=True  [crossing]
+  P4: k=24 (0.150,0.160,0.170): d -2.4830e-08 -> -6.3881e-08  accelerating=True  [post-crossing]
+  P4: k=24 (0.160,0.170,0.180): d -6.3881e-08 -> -9.9721e-08  accelerating=True  [post-crossing]
+  P4: k=24 (0.170,0.180,0.190): d -9.9721e-08 -> -1.3203e-07  accelerating=True  [post-crossing]
+  P4: k=25 (0.150,0.160,0.170): d -2.5460e-11 -> -1.8843e-10  accelerating=True  [crossing]
+  P4: k=25 (0.160,0.170,0.180): d -1.8843e-10 -> -6.5526e-10  accelerating=True  [crossing]
+  P4: k=25 (0.170,0.180,0.190): d -6.5526e-10 -> -2.0687e-09  accelerating=True  [post-crossing]
+  P4: k=25 (0.180,0.190,0.200): d -2.0687e-09 -> -5.7721e-09  accelerating=True  [post-crossing]
+  P4: HELD  (18/18)
+
+TALLY: 3 HELD / 1 FIRED of 4 registered predictions
