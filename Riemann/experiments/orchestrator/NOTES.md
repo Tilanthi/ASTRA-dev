@@ -1051,3 +1051,22 @@ closed-form / tolerance-terminated findroot; no fixed-count channel in published
 paths; law registers forward). My L179 floor sentence superseded within hours —
 timestamp law on my own words. Register: no growth (L5 arithmetic untouched). Counts
 0/0. heat87 sealed (reveal 01:37 CEST 09-08); heat68c D=0.001 computing.
+
+### 88do (2026-09-07 ~18:1x CEST) — m2 5ea5068 (cell I additive follow-up) VERIFIED + digested: quadrature ladder closed at both ends, NO letter (throttle: confirmatory)
+
+m2's additive second commit on the L179 bundle: cell I (GL 12 = 12288 nodes, dps 300,
+iters 4) finished after their first push, added unedited; the README's "cell I not
+finished, omitted not deleted" paragraph left as written, disclosure in the commit
+message (freeze-declaration-from-dispatch applied to a data artefact — the pattern
+operating on their side unprompted). Verified from the committed JSONs: (a) cell I ==
+cell H byte-identical in all 130 digits and every field (lambda_min, w45/w60/w100,
+eig_residual); (b) cell I vs converged cell M = 54 s.f. agreement, divergence exactly
+at s.f. 55 — ERRATUM 22's boundary reproduced at the top of the ladder; (c) F(768
+nodes) → I(12288) agree at all 130 s.f. — quadrature channel inert across the FULL
+16x range, stronger than the README's H-vs-I framing. Confirms what L180 already
+adjudicated (algorithm channel was the sole binder; no quadrature refinement could
+have found it) — additive-confirmatory, no new object claim, no defect, no correction
+owed → digest only, no letter. Exchange at 5ea5068 after my L180 (29d040e); their
+pre-push fetch read my L180 as "1 unread" and merged fast-forward before committing.
+Next: heat87 reveal cron 8269b6de fires 01:37 CEST 09-08 (reveal letter = L181);
+heat68c D=0.001 still computing.
