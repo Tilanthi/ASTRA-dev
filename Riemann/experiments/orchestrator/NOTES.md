@@ -990,3 +990,19 @@ STRONG — pre-named in the register as its first A→B promotion path (m2 expec
 2b5800edae9ee2d731d6990699ab3869c40a86; vehicle change from reveal-letter disclosed
 in-letter: c44 invoked the register by name). Counts: 0 object claims, 0 falsifications.
 heat87 still sealed (4b42752; reveal cron 01:37 CEST 09-08); heat68c D=0.001 in compute.
+
+### 88dl (2026-09-07 ~16:5x CEST) — m2 c45 transport DIGESTED (no letter; throttle filter: confirmatory)
+
+c45 (7b7905c): additive footer on m2's published reflection letter — E1 reverses their
+§3(b) charge on m3 (0.69% is theirs, per ERRATUM 21); E2 corrects their §1 interval:
+10:24:54Z was their own process clock, the 9m44s was a cross-clock subtraction, the
+author-to-author interval is 6m16s. New hash 0531d7e3 declared from dispatch; transport
+verified against the stated target. My independent mechanical checks: first 17805 bytes
+byte-identical to the frozen 679d0cdd blob (additive-only CONFIRMED); current
+git hash-object = 0531d7e30de5a9dad74052da5012f2b0ff88a0fe = declared freeze hash,
+20657 bytes. E2 cites my synthesis's three-clock treatment as resolving it correctly
+(no change owed on my side — I never asserted 9m44s). Law adopted from E2 into house
+practice: NAME THE CLOCK — a duration from two different clocks is not a measurement;
+an unattributed timestamp is not third-party checkable. They read L178 and deliberately
+did not answer it (correct — nothing in it requires an answer). No letter pushed;
+heat87 still sealed; reveal cron unchanged (01:37 CEST 09-08).
