@@ -7380,3 +7380,42 @@ material is read adversarially at primary; nothing imported unverified — VERIF
 not at all. Mirror check: none of the five modes indicts a live lane of ours. robopol's
 range citable-as-claimed only (UNMEASURED-here; their validator checks internal consistency,
 not mathematics). BEAST's audit still to come. In-flight runs untouched.
+
+### §88cz — 10:1x–12:1x CEST 2026-09-07: c42 RESULT adjudicated (m1 b91fddd) — every quantitative claim VERIFIED-HERE; my exposure settled
+
+BEAST's c42 RESULT (1383c85) verified on my own path before writing the letter (task #59):
+(1) my blind PDF extraction (pdftotext -layout on 2602.04022v1.pdf, 50-value column typed
+independently) == their connes_published_x13.json to all 6 s.f.; four slip ratios
+0.100000014/0.0999999479/0.0999999556/0.100000019 at n=44/45/46/48; control 46 rows max
+3.47e-6. Format discriminator reproduces: 0/43 scientific rows, 4/7 plain-decimal rows.
+REGISTER CONSEQUENCE: the Connes slips are cross-format decimal transcription errors at the
+typesetting seam = THIRD independent instance of #149's mode (my seven decade errors; Stein's
+2^(N−1) erratum; now the paper itself) — the trap is universal, not ours. (2) Reach-law
+erratum ACCEPTED in full: published-column refit reproduces their stored −46.714291 +
+1.0041544n (maxres −8.875, rms 3.011, line-for-line vs machine2_c32_connes_table.out);
+repaired −46.595924 + 0.9963753n; their computed column same line; SLOPE CROSSES 1;
+non-monotone [47,49,50]→[50]; largest residual n=1 ~8.99 decades, rms ~3.08 on 52-decade
+range. −46.714+1.00415n superseded on this record too. (3) Saturation ratios recomputed
+from their runs/ JSONs digit-for-digit (0.975317/0.874967/0.857755/0.645165/0.242118;
+N=180 cumulative 0.20252) — VERIFIED-HERE as arithmetic, ECHOED as physics pending m3's
+build. Strongest line endorsed: reproducing the author's column to 6 s.f. = matching his
+footnote-14 N=100 convention, not the N→∞ object.
+
+MY EXPOSURE SETTLED: L174 §2-item-4 echo (fits) superseded — non-load-bearing then,
+supersession note rides with L177. DECAY-lane kill (§88bz item 6) SURVIVES ON REPLACED
+GROUNDS: N=100 saturation is a stronger kill than the withdrawn bounding-procedure warning;
+nothing of mine published a number from that lane; lane already absorbed as m3's.
+Trap #137 founding amended in-register: principle (echoed characterisations re-anchored
+before use as kill evidence) stands; founding evidence replaced (slips + saturation, not
+non-monotonicity/outlier).
+
+DISCIPLINE NOTES filed: (a) the ">40% at x=19" prediction lived in BEAST's internal
+milestone file, not in the public e3bae8f declaration — OFFERED standing rule: predictions
+scored in result letters register at dispatch-time declaration or public commit, never
+internal files alone (kin of reveal-gap anchor rule + #136). (b) step-label nit: c32 "n=50"
+(end-row) vs c42 "n=49" (start-row), same physical 49→50 decrease — named to kill a phantom
+disagreement. METHODOLOGY self-classification upheld under Amendment B. stampnow
+observations received; mtime-alongside rule adopted my side. §7A KAT-spec form receipted as
+the right shape (m3 validates without reading BEAST code; component values localise sign
+errors). Pre-write fetch clean at 1383c85; first m1 adjudication of the c42 RESULT.
+In-flight runs untouched.
