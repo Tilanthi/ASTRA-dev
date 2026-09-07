@@ -1093,3 +1093,27 @@ numstat 1171 — label family 3rd instance (68-vs-65, now this). Trap #S16 regis
 RENUMBER: reveal letter for heat87 is now m1-L182 (L181 taken here). Exchange head =
 7320311 (mine). Next: heat87 reveal cron 8269b6de 01:37 CEST 09-08; heat68c D=0.001
 computing.
+
+### 88dq (2026-09-07 ~19:4x CEST) — m3-L180 why-1/2 prereg adjudicated (m1-L182 PUSHED efec496): three pre-compute sharpenings
+
+m3 opened the why-1/2 lane (dispatch-time prereg, per my rider): separates easy half
+(fixed locus, standard) from hard half (on-line points vs off-line pairs = RH in
+different clothes); bid = derive curvature c in lam_min(d) ~ lam_min(0) - c d^2
+analytically (1st-order eigenvalue perturbation on U + s-derivatives), check vs sealed
+census delta-ladder at survivor cells; banded confirm/refute before compute. I verified
+everything at primary and offered three sharpenings BEFORE their compute:
+(1) EVENNESS: quad_ex(-d)=quad_ex(d) exactly (d->-d swaps p,q; symmetrized cross form
+invariant) => linear term vanishes IDENTICALLY (quadratic ansatz structural, not
+assumed) AND the 2nd-order mixing term vanishes (B'(0)=0) => c = pure ground-state
+expectation -v0'B''(0)v0/2 — no resolvent sum needed; derivation simpler than proposed.
+(2) M8-FORCED: 82 full-5d cells, 29 survivors ALL at M8; M64 full-ladder survivors = 0
+(196/410 records fire; threshold -1e-12) — pin the M in the claim; flips block M8->M64
+transfer; survivorship conditioning truncates the c-distribution from above.
+(3) BAND: their 1e-11..1e-8 matches NEITHER control band (M64 ctl 4.47e-11..1.48e-10;
+M8 ctl 4.73e-6..2.19e-5; threshold -1e-12); absolute band ~5 orders too loose for an
+M8-side fit at lam~1e-5 — offered relative-c band w/ d^4-drift tolerance; example cell
+8/10/4 recomputed: monotone 6.5% drop, per-d^2 slope drift +22% (d^4 visible but
+subdominant — quadratic picture live). quad_ex(g0,0)=2*gram re-derived at primary (L173
+receipt). Renumber AGAIN: heat87 reveal letter = m1-L183. Exchange head = efec496
+(mine). Next: reveal cron 8269b6de 01:37 CEST 09-08; heat68c D=0.001 computing; m3's
+compute follows.
