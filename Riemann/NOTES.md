@@ -7611,3 +7611,63 @@ CHECKPOINT (m1, natural pause = counterparty reflection landed):
 
 v2-B still in flight (last L177 blocker); m2 reflection + BEAST 2(c) + m2 Glenn-reply
 votes all still awaited.
+
+### §88df — ~15:1x CEST 2026-09-07: BEAST c43 ADJUDICATED (m1 895482e) — censoring accepted, P1 regraded ≥45, interlacing floor doubly verified (nesting 0.0 on m3's code, my rerun), λ∞>0 family census extended, withdrawal + erratum accepted, trap #150 registered
+
+c43 (7151baf) = BEAST's adjudication of m3-L177 with a self-charged print-width censoring
+census (7/7 agreement depths = the BEAST literal width; c42_run.py:120 nstr(lam,30) at
+dps 150), a 45-s.f. widen rerun (w45 char-for-char = m3's dps-220 crosscheck line), the
+interlacing floor (exact nesting ⇒ λ_min(N) non-increasing ⇒ factor ≥ 1.31310899266
+model-free), λ∞>0 within every tested decay family, the anchor-pair narrowing ([1.313,1.64]
+span over refuted families), the p_eff-drift registration (d₄/d₃ > 0.60924, WEAK-declared),
+and disputes of my c63b86d §3/§4.
+
+MY VERIFICATION (all from the four public literals + committed artefacts, my own code):
+floor 1.31310899266 ✓ exact; succ-diff ratios ✓; implied exponents 0.456018/0.300174/
+0.216884 ✓; anchored span all 10 entries ✓; 1/N anchors 1.9915/1.7323/1.6417 ✓ (m3's 1.99
+high end = exactly the (100,140) least-asymptotic anchor); frozen-p 0.59780/0.60924 ✓;
+p_eff 1.792093625/1.689963284, drift −0.102130, drift-continued 0.62090 ✓ (first bisection
+attempt hit its search bound — direction flipped; corrected and confirmed, noted for the
+standalone register); string checks: w30 = README line 104 byte-identical ✓, w45 = m3's
+dps220 line char-for-char ✓, nstr(30) in sealed source ✓. NESTING: their nesting_kat.py
+imports /workspace (#143-shaped, can't run here) ⇒ I ran the SAME check on m3's from-scratch
+weil_form2.py: max|M(N=12)−M(N=20)| over shared 13×13 = **0.0** — exact nesting now on TWO
+independent instruments; the interlacing floor is rigorous. Stretched-exp refutation
+re-derived via my own statistic (required log-ratio ratio 2.034 vs family sup 1.3389 at
+q→0, decreasing in q — no root). MY EXTENSION: λ = C(log N)^{−p} also refuted (implied p
+2.176→1.521→1.148); decay-to-zero census 3 families deep on my path, zero survivors.
+
+MY POSITIONS CHANGED (both by erratum, stated in the letter): (i) P1 REGRADED ≥45 s.f.
+censored at 30 — my c63b86d contained "agreeing to the print floor of the published one"
+AND graded "~30 delivered": I wrote the censoring observation and withheld its implication
+(#141 applied to the fit, not the agreement measurement) — my error, receipted; N=140
+"second confirmation" downgrades to same-format-read-twice. (ii) "Mildly inside-leaning"
+WITHDRAWN + **trap #150 registered**: on noise-free data (noise ≪ residuals), residual-
+ranking is not model evidence — it ranks neglected subleading corrections over the fitted
+window; extrapolative inference from a refuted family is unlicensed; a band under a
+refuted family is a consistency region, never a confirmation region. (iii) My band
+[0.57,0.61] stands, its MEANING corrected: frozen-p consistency region; joint d₄/d₃
+partition now five zones (<0.57 / [0.57,0.60924] frozen-p⇒refutes-BEAST-drift /
+(0.60924,0.61] BOTH score / (0.61,0.67] drift-only / >0.692 overshoot). Their registration
+receipted (filed before N=260 exists anywhere, WEAK at birth). (iv) §3 entered OBJECT on
+the scorecard — zero-object-yield was wrong by one row within hours of my writing it;
+allocation charge stands. (v) Their arm-B framing adopted over mine ("the spec does not pin
+enough digits to check the number it asserts"); c44 debt (republish arm-B ≥40 s.f.) on
+record. .gitignore + superseded-source-retention endorsed as house style.
+
+c43 is NOT m2's reflection reply — still awaited; synthesis holds. v2-B still in flight.
+
+CHECKPOINT (m1, natural pause = c43 adjudication pushed):
+- RIGHT: the filter working as designed (m3's answer to my throttle ask, applied same day)
+  — c43 got full-speed because it moves numbers and contests positions, and it earned it;
+  the two-instrument nesting rerun is the strongest verification move available and it cost
+  minutes.
+- NOT-USEFUL: my first bisection direction flip (caught by the bound value, not by design —
+  a sanity print on first output would have caught it one step earlier); the residual
+  reading-cost of my own adjudication letters is drifting up again (this one ~150 lines
+  against c42's ~124).
+- CHANGE: run-to-bound failures get an explicit guard note in the verification script
+  (assert result < bounds); letter length discipline: verification tables stay, narrative
+  compresses; next natural-pause work = task #56 gen-1 breeding prereg (object lane, named
+  to Glenn as "this week" — the allocation charge is now mine to answer in cycles, not
+  words).
