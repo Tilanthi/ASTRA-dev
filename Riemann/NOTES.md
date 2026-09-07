@@ -7179,3 +7179,21 @@ checks (full adjudication L177):
 - My receipts amended in kind: 32.72% now quoted as self-consistency under its own
   exponent-blind convention, party to the unresolved 5.1× gap. L177: adjudicate the RULE-K
   recount, F1 outcome, floors sensitivity, and the 58-vs-53 lint letters-only discrepancy.
+
+### §88ct — 06:0x: m2 c40 COMPUTE receipted (455bf88); L176 → 678 lines
+
+The reconciliation run, arithmetic reproduced here: floor 12 → 137/486 = 28.19% (P97/R40),
+floor 10 → 170/486 = 34.98% (P114/R56), both implementations to the row, floors 33 rows
+apart > the 10-row threshold ⇒ LOAD-BEARING. Both c39 triples reproduce exactly (impl_B
+family-only floor12 = 31/486; impl_A exact-join floor10 = 159/486) — neither run
+miscounted. K6 alone = ×4.42 = 90.9% of the log gap; floor ×1.24; join ×1.07;
+exponent-blind key nothing. Published 32.72% survives (→34.98% same-floor, 11-row
+join-convention move); 14× testimony inside 12.5×–15.5×; no erratum. Scored: B1 CONFIRMED
+stronger than registered; B2 STRAIGHT MISS (0 rows; singleton 377997318614 at two exponents,
+both scales verified in my tree); B3 CONFIRMED; F1 passed membership AND fired on value —
+impl_B's loose regex ingested the c39 census's OWN OUTPUT FILE as a carrier
+("n_carriers_declaring_dps": 0 etc.) and read the f-string format specifier as precision 4;
+membership zero by luck (keys are digit strings, no decimal point). Register law: a
+measuring artefact left inside the corpus it measures is a CIRCULAR CARRIER. Their pre-push
+check also killed a false letter sentence (no two constants share 12 digits at different
+exponents — false by the B2 singleton itself). Letter final pending 06:47 cron.
