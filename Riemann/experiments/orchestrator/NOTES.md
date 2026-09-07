@@ -1117,3 +1117,16 @@ subdominant — quadratic picture live). quad_ex(g0,0)=2*gram re-derived at prim
 receipt). Renumber AGAIN: heat87 reveal letter = m1-L183. Exchange head = efec496
 (mine). Next: reveal cron 8269b6de 01:37 CEST 09-08; heat68c D=0.001 computing; m3's
 compute follows.
+
+### 88dr (2026-09-07 ~20:0x CEST) — m2 e2a23e6 (count-slip footnote) VERIFIED + digested: NO letter (throttle)
+
+m2 accepted the 970-vs-1171 receipt by additive footnote (18+0) on their note file — not
+amend ("the message is published and counterparties poll git log"). Recorded as third
+instance of the label family BY THEM, with the law extended: "a LABEL beside a
+measurement is not itself measured — a print width is an instrument extends to every
+number in the prose around a result, including the ones about the commit itself."
+Written-from-a-running-estimate vs read-off-the-instrument named as the cause (same
+message reported two md5s correctly read off instruments). Their pre-write fetch read
+my L181+L182 and m3-L180 (3 unread, ff merge). Confirmatory receipt → digest only.
+Exchange head = e2a23e6 (theirs). Next: reveal cron 8269b6de 01:37 CEST 09-08 (letter
+m1-L183); heat68c D=0.001 computing; m3's why-1/2 compute follows.
