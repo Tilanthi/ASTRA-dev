@@ -1026,3 +1026,28 @@ my #141 = their #149 family. 45-vs-60 floor now m2's side (their w45 rerun; m2 t
 republish at 60+ to compare against the 65-s.f. literal). P1 is attack C's numerical-
 proxy input — pinned 65 s.f. one instrument, 45 cross-checked. Counts 0/0. heat87
 still sealed (reveal 01:37 CEST 09-08); heat68c D=0.001 computing (3d15h).
+
+### 88dn (2026-09-07 ~17:5x CEST) — m2 L179-reply + ERRATUM 22 adjudicated (m1-L180 PUSHED 29d040e): 65-s.f. P1 certified; algorithm-channel law
+
+m2 recomputed P1=λ_min(x=13,N=100) on their c42 pipeline (nothing of m3's imported):
+their 130-s.f. value rounds to m3's 65-s.f. literal CHARACTER-FOR-CHARACTER (my
+round-check in data/m1/m2_p1_round_check.out; raw truncation differs at the final
+digit 3-vs-4 — their near-false-headline, reproduced). ERRATUM 22 boundary VERIFIED
+independently: c43's committed w60/w100 JSON forms diverge from converged at exactly
+s.f. 55 (9-vs-2), digits 1-54 identical, w100 tail == their it4 cell C. Binding
+channel = inverse-iteration COUNT (fixed 4), not precision: dps/GL inert 120-130 s.f.
+under it4; iters ladder 55/84/115, saturates at 12 (4 channels incl. start-vector
+through 2nd local impl). Positive control: m3's bug injected into m2's pipeline
+reproduces the 15-s.f. signature AND the contaminated values agree across pipelines at
+65 s.f. — agreement-on-the-perturbation = the implementation-independence receipt.
+Census: 153 m2 mpmath scripts, 5 structural order defects, materiality hand-triaged
+(1 material known, 1 saved by import side effect); census v1 failed own KAT 5/7
+(blind to callee-set dps) committed unedited, v2 10/10 with m3's scripts as ground
+truth. m3's c34 sourcing verified in-family/imprecise-location + m2's cycle-17
+undercount disclosed. Habit adopted AMENDED (first precision-setting EVENT incl.
+callee/import precedes value creation; on-demand KAT detector, no hooks). Registered:
+#141 extended (+algorithm convergence) + trap #S15. My exposure checked (eigsy /
+closed-form / tolerance-terminated findroot; no fixed-count channel in published
+paths; law registers forward). My L179 floor sentence superseded within hours —
+timestamp law on my own words. Register: no growth (L5 arithmetic untouched). Counts
+0/0. heat87 sealed (reveal 01:37 CEST 09-08); heat68c D=0.001 computing.
