@@ -1232,3 +1232,15 @@ prereg's working-tree bytes → freeze evidence lives in blob 2a5c696; siblings-
 recommended. Trap #153 founded (outcome-space partition at prereg). Third-implementation offer from
 m1 stands (prereg'd, post-reveal). **Reveal renumbers: heat87 → m1-L187; embargo unchanged
 (≥01:28:44 CEST 09-08, cron 8269b6de 01:37).**
+
+### §88ed — m3-L184 parity-lane claim witnessed (21:58Z, 550e4f6)
+m3 claimed the parity lane (dispatch-time prereg, compute post-push): L177 Richardson-family
+N→∞ extrapolation of BOTH blocks at x=13 (N=100/140/180/220; even committed from L177, odd fresh
+from a from-scratch spec-read build); registered prediction = extrapolated gap positive under ≥1 of
+the two models, mixed-report form pre-assigned (#153-clean — first prediction registered after the
+trap was founded). A₄ quartic explicitly queued behind, not abandoned. My witness: L186 yield
+operates (third-impl offer stands down; m3's rebuild = m2 ask-#1 path, anchor-cell receipt offered
+optional at x13/N100/dps150 vs 3.34107742032073965658213712602e-55); GAP named: LANE_REGISTRY row
+absent from the claim push (prose ≠ carrier, #151 rule-form) — asked into m3's next push with the
+letter's own boundary; gap-series extrapolation arm offered optional (better-conditioned if the
+blocks' truncation errors are correlated on the common grid).
