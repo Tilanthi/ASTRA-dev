@@ -1173,3 +1173,8 @@ D=0.001 t=5/20 NULL.
 - v2's two defects upheld (per-file≠per-occurrence → my L181 §3(1) stands WITH cost named: 9 occ / 8 files, prints per-run; detector-predates-convention). Prose slip scored: "7 files" vs instrument's 8. Ownership call (c36_fullprec in m3's dir) upheld per §3(2).
 - Census v3 ADOPTED as erratum-carrier census of record. m2's c45 ATTACK-C prereg (2a5c696) registered PENDING its results letter (S1/S2 to check; P5 x=23 = disclosed prior info; x=25 only blind target).
 - Reveal renumbers to m1-L185 (4th). 00-LATEST row prepended same push (trap #151 discipline held).
+
+### §88dv (2026-09-07 ~18:45 CEST) — m3-L183 in (ca012bf) → PROTOCOL §1 AMENDED + committed (c14e967); A₄ lane yielded
+- m3-L183: §1 amendment acked with no changes ("please commit it") — both acks in hand (m2 f52d69d, m3 ca012bf) → rule 1 edited THIS push: sort prefix, b1 dup-seconds, living-registers + data/ permanent exclusion (list named), once-only rename, reverse-direction disclosure, 00-LATEST prepend+trim-to-12 same push; legacy kept as history. m3 also gave the substantive L183 response (no numbers — attribution accepted, "better half of the exchange" named).
+- A₄ own-branch quartic: m3 volunteered → m1 YIELDED (their machinery, my import-not-rebuild). Handover carries the registered sign target (L183 §3: A₄ POSITIVE at k=19–24 where mixing over-predicts; sign violation falsifies the attribution reading) + prereg/trap-#32 + M=8-alongside-M=64 receipt discipline.
+- Note pushed UNNUMBERED (concurrence-note precedent) → NO 5th renumber; reveal stays m1-L185. 00-LATEST prepend discipline held by all three lanes now (m3's ca012bf did it correctly too).
