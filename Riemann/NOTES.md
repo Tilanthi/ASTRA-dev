@@ -7246,3 +7246,50 @@ D=0.001 n=1000 leg (no local minima). Cron e5a08f56 (06:47) → verify-only, pus
 done. Next: the deferred post-reveal reads (m2's c35 extraction spec + ADDENDUM 1, 8a5cfaf),
 now unblocked; L177 will carry the full c37–c41 adjudications, the B2/B4/B5/B6
 head-to-heads, the even-ladder, and the c20 predicate question.
+
+### §88cv — 08:5x CEST 2026-09-07: Glenn's third directive ANSWERED (11e25db); cap rule adopted with two amendments; last mile taken
+
+Glenn's in-session directive (praise + the centre-of-mass critique + three named holes + six
+non-binding charter proposals) answered in the exchange as
+`machine1-glenn-directive-3-cap-rule-amended-bridge-adopted-seeds-split-last-mile-taken.md`,
+pushed 11e25db at 08:56 CEST after a clean pre-write fetch (tip still 3109a17; m2's reply to
+Glenn NOT yet landed — watch remains armed).
+
+Content of record: (0) his checkables about my record verified at my artefacts first
+(5.73e−46/79 zeros = L173 check-1 line 76; four-launch chain; 2+2 reveal taxonomy). (1) my
+own accountability share stated plainly — my last two letters' mass was RECEIPTING the
+c39–c41 chain (object-serving: ERRATUM 19 bounds the D* width my §9 identity consumes, 60
+orders below) but receipts are not object numbers; discipline fix = cap the flux at source +
+let L177's receipts ride with the science. (2) m3-L173's cap rule ADOPTED with two
+amendments from my kill-attempts: A = the HEADLINE clause (classify by the number the cycle
+exists to produce, not any number it contains — else every self-checking object cycle
+misclassifies); B = files are not the object (wrong about ξ_D/ζ/zeros/forms, not about our
+files; calibration: c33/c35→OBJECT, c37 + ERRATUM-19 digit-count→METHODOLOGY, my §9
+self-centring→OBJECT under A). (3) cure cap: m3's 3 generations ADOPTED + restart-only-on-
+NEW-DEFECT-CLASS clause; BEAST addressed directly — c41's tool already did the ship half, so
+c42 stands at the fork (object lane, or a declared instrument lane with its own budget).
+(4) Votes: 1 ADOPT+confirm (span-marked region {16,18,23}∪{22,24,25}; region + per-k windows
+PREREGISTERED before gen-1; held-out validation on k=19–21); 2 ADOPT all three (m3 takes
+the convergence-in-x table — supported, fold m2's orthogonality reading, my census machinery
+as second instrument; identification-bid quota graded by "a prediction neither side held";
+structural questions as a SHARED owned list — k_λ degradation MINE as the span law's direct
+extension; θ_x mine if unclaimed after BEAST answers); 3 ADOPT standing + the cap
+interaction (audit = object-lane iff headline is identification/orthogonality/missing-
+experiment); 5 SPLIT (certificate co-evolution KILLED with named revival trigger; FE-atlas
+KEPT, m3's first look accepted, my census machinery grades siblings on the same 79-zero
+bank); 6 ADOPT and TAKEN — m3's reply left it uncovered; candidate = the IDENTIFICATION
+TABLE + reproduction bundle, L177-adjacent, internal only. (5) the reveal-gap self-flag
+stated to the exchange with the rule offered: anchor = PUBLIC COMMIT timestamp, named at
+prereg (kin of #136).
+
+NOT committed by design: the growing self-centring logs (cfg B, v2-A/B, v2-N64) — declared
+in-flight in L176, completions land with L177. Run states at this push: cfg B stencil node
++2 (35378 s; c2 −18.816877…, WIT ~1e−104); v2-A/B past WIT-1 circle (7.3e−9 vs tol 1e−6),
+node −5 at 27844 s; v2-N64 nodes +0/+1 (25416 s) with node +0 c2 = −18.816779288625
+matching cfg B's node +0 digit-for-digit — an N_w-independence touchpoint for L177;
+heat68c quiet since 22:55 (n=1000 leg).
+
+Next: gen-1 breeding prereg (task opened); L177 when the runs land (B2/B4/B5 head-to-heads,
+B6 c6 discriminator, even ladder →4, m2's closed forms at my g-table, implied-D* deliverable,
+c37–c41 full adjudications, c20 predicate); the identification-table bundle as L177-adjacent
+internal work; m2's Glenn reply + BEAST's fork answer watched.
