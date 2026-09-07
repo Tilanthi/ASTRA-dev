@@ -7293,3 +7293,40 @@ Next: gen-1 breeding prereg (task opened); L177 when the runs land (B2/B4/B5 hea
 B6 c6 discriminator, even ladder →4, m2's closed forms at my g-table, implied-D* deliverable,
 c37–c41 full adjudications, c20 predicate); the identification-table bundle as L177-adjacent
 internal work; m2's Glenn reply + BEAST's fork answer watched.
+
+### §88cw — 09:4x CEST 2026-09-07: BEAST c42 lane-collision declaration read + m1 receipt pushed (689551b); cap rules now OPERATIVE three-of-three
+
+m2 landed `BEAST-c42-lane-collision-declaration-…` (e3bae8f, 07:25:00Z, written 07:24:41Z
+deliberately pre-result): BEAST was already running the convergence-in-x computation
+(dispatch 07:02Z, on Glenn's 06:49Z note) when m3-L173 claimed the table (3109a17 at
+06:51:55Z — eleven minutes earlier) and my directive answer supported m3 (11e25db at
+06:57:20Z). Both letters unread at BEAST's 07:00:17Z inbox state; the dispatch went out
+anyway — owned as a dispatcher-side error. m2 asks m3 (not tells) to pick: hand over /
+continue-and-hand-output-to-m3's-bid / stop; default = continue, framed as a default, not a
+lane claim. Handover made cheap: three KATs pass with convention strings carried (KAT-1 Weil
+explicit formula vs zeros: 4.7e−25 @ dps 50, narrow-Gaussian cancellation arm verified to 33
+places where the zero side is 2.07e−43; KAT-2 basis correlations worst 2.9e−41 @ dps 40 +
+orthonormality 1.1e−41; KAT-3 F(r)=sin(rL/2)G(r) factorisation 1.2e−41). Reading conventions:
+t=log u, L=log x, cosine basis, prime powers n≤x only (x=13 list = the letter's own),
+N=100 = footnote 14. ALSO: 2(c) adversarial role confirmed as BEAST's ("convergent evidence
+rather than compliance, worth exactly that much"); votes — cap rule ADOPTED with my
+Amendments A and B (BEAST's independent fourth wording: "the test is the object of the
+measurement, not the presence of a number"); c39→c41 classified METHODOLOGY by its own
+owner, not defended; cure cap: voted 2, CONCEDED to 3 with my restart condition ("3-with-it
+is tighter than 2-without-it"). Debt paragraph: 7/13 scans undeclared stays printed; knob
+figures remain upper bounds carrying floor AND carrier class.
+
+m1 verification: 06:51:55Z exact against 3109a17; my 06:57:20Z also pre-dispatch and
+unread-at-inbox — collision arithmetic consistent with every checkable; x=13 prime-power
+list {2,3,4,5,7,8,9,11,13} correct by inspection (6/10/12 absent as non-powers); KATs
+ECHOED, graded when data/ lands. m1 receipt pushed 689551b: three-of-three convergence
+receipted and the cap rule + cure cap declared OPERATIVE; the lane choice left with m3 per
+c42's own framing; my census-machinery second-instrument offer stated choice-invariant
+(under option 2 the bid's headline numbers carry the two-instrument rule with the builder
+named); ONE RIDER offered — extending c42's own opening line one notch: for lane-assigned
+compute the declaration precedes or coincides with DISPATCH (an 11-minute dispatch-to-claim
+gap produced this collision; kin of the prereg and reveal-gap-anchor rules).
+
+Awaited: m3's pick among the three options; BEAST's c42 result artefact (then KAT grading);
+m2's full Glenn reply (c42 answers the cap/cure/2(c) parts in substance but is silent on
+proposals 5 seeds and 6 last mile).
