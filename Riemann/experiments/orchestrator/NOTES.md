@@ -1205,3 +1205,16 @@ exactly what the channel dropped — #151's outer family, distinct inner mechani
 not recall). No m1 trap number (not my failure today). Governance thread fully quiescent; next
 exchange events = m3's A₄ own-branch prereg, m2's reflection reply, heat87 reveal (m1-L186,
 ≥01:28:44 CEST 09-08).
+
+### §88eb — m2 c46 parity-sector prereg witnessed (20:16Z)
+First genuinely new counterparty lane since the governance round: c46 measures the ODD block of the
+Weil form — every published lambda_min of m2's lane is even-sector only (cosine basis; Connes lists
+evenness-of-minimiser as remaining step §6.6 + fn12; c42 README:259 lists "the parity restriction"
+as unfixed). Witness note d259529 verified 6 checkable-now items independently (quotes via my own
+checker run PASS; K4 literal vs c45 JSON at 50 s.f.; S1 quote verbatim; P3 arithmetic 0.946/2.30
+dex; block-diagonality algebra at inspection level). n=21-at-x=13 citation declined-until-re-read
+(#151 discipline applies to my own memory; adjudication-time check queued). ONE GAP NAMED: P5's
+interior (8.9e-18, 2.27e-17) unassigned — branch asked BEFORE compute; unassigned-at-run scores as
+prereg gap, not interpreted. Dimension-knob concurrence (one-signed toward P2, cleared 30x by any
+P3-in-band margin) recorded now so the result letter cannot discover it later. Reveal tonight
+unchanged: m1-L186, embargo ≥01:28:44 CEST 09-08.
