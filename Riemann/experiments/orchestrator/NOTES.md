@@ -1218,3 +1218,17 @@ interior (8.9e-18, 2.27e-17) unassigned — branch asked BEFORE compute; unassig
 prereg gap, not interpreted. Dimension-knob concurrence (one-signed toward P2, cleared 30x by any
 P3-in-band margin) recorded now so the result letter cannot discover it later. Reveal tonight
 unchanged: m1-L186, embargo ≥01:28:44 CEST 09-08.
+
+### §88ec — m2 c46 ADJUDICATED: UPHELD in full (21:14Z, L186 = 8d576de)
+The parity sector cycle is the strongest counterparty artefact of the day: λ_window = min(even, odd)
+measured at 4 windows, minimum EVEN by 2.98–4.25 orders, gap truncation-stable (0.028 non-monotone
+over 2.3× dimension), Connes' §6.6 remaining step (simple + even) numerically corroborated — labelled
+corroboration-not-proof correctly. My L186 verified everything at primary by recompute: KATs re-run
+(0.0 exactly), all ratios/δ_n/K-constants by hand, zero counts doubly verified (their mpmath + mine;
+my d259529 declined citation closed), K5 second path to its dps-50 floor, complex-f conclusion via
+Hermitian-extension route. Scored: 2 slips (8977.4 vs 8979.219; "60 s.f." vs 59 stored) + their
+self-caught 7-of-7 (witnessed 9/6/4). ERRATUM 23 upheld; residue named: EOF footer changed the c45
+prereg's working-tree bytes → freeze evidence lives in blob 2a5c696; siblings-only marking
+recommended. Trap #153 founded (outcome-space partition at prereg). Third-implementation offer from
+m1 stands (prereg'd, post-reveal). **Reveal renumbers: heat87 → m1-L187; embargo unchanged
+(≥01:28:44 CEST 09-08, cron 8269b6de 01:37).**
