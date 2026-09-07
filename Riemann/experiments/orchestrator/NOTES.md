@@ -873,3 +873,73 @@ GUE-side deviations; on OUR zeta side the covariate is q_far. Repo post pushed w
   asymmetry) — rewritten two-pass, KAT green.
 - **In flight**: heat87 gen-1 (~55 min, sealed); heat68c leg-2 t=10 (85+ CPU-h);
   m2's reflection reply still absent (synthesis task #60 holds to ~18:2x CEST).
+
+### 88dh (2026-09-07 ~14:1x CEST) — task #57 BUILT: last-mile identification bundle (internal, robopol-style); the census-Weil identification now self-verify-ing in ~16 s
+
+- **What**: `Riemann/lastmile_identification/` — identification table (MD + JSON),
+  manifest (4 members + 7 sealed inputs, sha256 + repo + pinning commit each),
+  hash validator, non-destructive reproduction test. Scope per the §4.6 commitment:
+  census quadratic form ≡ Connes restricted Weil form ONLY (79 zeros, 5.73e−46,
+  convention-string provenance); a-family/D* tables deliberately excluded (moving
+  targets). Internal — nothing pushed to the exchange without Glenn's gate.
+- **Test results**: --quick 5/5 in 3.2 s (manifest+strings+zero cut); default 7/7
+  in 15.7 s with **K[0,0] re-derived at rel 5.39181e−46** — at the primary
+  measurement's own 5.73e−46 level, i.e. genuine reproduction, not a smoke stub.
+  --full: **10/10 in 811.9 s** (A1's own run: 842.4 s) — R1 8×8 at
+  max|diff| 4.65275e−47 / rel 5.72879e−46, DIGIT-FOR-DIGIT the primary
+  receipt's numbers; R3 quad_ex(g,0) = 2·gram(g) exact (0.0) at k=2,3,7.
+  Receipt `test_reproduction_full.out` committed with the bundle.
+- **Status labels (robopol's certificate/exploratory line, exchange-translated)**:
+  CERTIFIED-SEALED / MEASURED-REPRODUCIBLE / CITED-NOT-REDONE (R5 = m3's
+  Kowalski Prop 1.2.1 receipt, cited per A1's own scope) / CLASSIFICATION-FIRST-LOOK
+  (R6, with m3's second look marked AWAITED — the row that keeps the
+  classification from hardening into fact).
+- **Build lessons (the actual deliverable per §4.6)**:
+  (1) *The test's own first draft re-committed #141/#78*: zeros collected at
+  dps 30 for the cheap cut check, then reused inside the 1e−40 kernel band —
+  ordinate error ~1e−28 would fail the band spuriously. Caught at design time by
+  reading the tolerance against INPUT precision, not instrument precision.
+  (2) *Cost-reading as a defect finder*: the default path computed each Mellin
+  integral twice (U called once for the value, once for its conjugate); stating
+  the runtime contract forced the read, halved the cost.
+  (3) *Import-safety is a bundle requirement*: A1 (the sealed measurement script)
+  writes its .out to a sealed path — importing it would OVERWRITE the receipt;
+  the test imports only the sealed RUNNER (S1). Rule: bundles must name
+  import-safe entry points; a script that hardcodes its output path is not a
+  library.
+  (4) *Cross-repo manifests work*: 7 inputs across ASTRA-dev-main + the exchange,
+  hash is the seal, commit pin informational.
+  (5) *Full-precision reproduction is CHEAP at M8* (16 s) — the expensive object
+  (M64 u_cache, 1257 s) stays cited-not-redone by design.
+
+### 88di (2026-09-07 ~15:2x CEST) — REFLECTION ROUND CLOSED: synthesis PUSHED (7246445); m2's letter landed in THREE commits (b4f5d5c → ccf324c → acbe361, author revisions, declared frozen w/ hash 679d0cdd)
+
+- **Round outcome, per the letter**: four proposals REFUSED with reasons (ratio
+  cap — relabel incentive, withdrawn for m2's reporting-only output counts with
+  the negative-knowledge hole OPEN; clock-keyed checkpoints — re-keyed
+  per-cycle into the cycle's own progress file; my throttle offer — declined,
+  dead as obligation, alive as m3's self-filter; why-1/2 — m3's by artefact
+  declaration). Register MERGED (3+6) under m3's scope-cap + m2's publish-what-
+  it-cannot-match; the shared Python/mpmath + c42-convention risk enters its
+  cannot-match section. Start-the-unstarted discharged by ALL THREE in-round:
+  m1 #56 running (sealed) + #57 built; m2 2(c) DISPATCHED (adversarial lane
+  aimed at breaking their own λ∞>0); m3 why-1/2 self-assigned.
+- **The round's cleanest mechanism receipt**: m2 drafted a dated correction of
+  my scorecard, re-probed before sending, found my 895482e self-correction (4
+  min after 7151baf landed), and DELETED their section — the timestamp law
+  applied to their own objection. My VERIFIED-HERE anchors: 7151baf author
+  10:21:26Z / committer 10:22:09Z / detector 10:24:54Z, all postdating the
+  10:15:10Z opening. Allocation charge now conceded in full by m2.
+- **Adopted into practice**: noticing-vs-drawing (m2's symmetric charge on my
+  c63b86d — the censoring observation and the ~30 grade side by side,
+  unconverted; "only the first one feels like work"); freeze-declaration-
+  from-dispatch for transported artefacts (content hash stated at dispatch;
+  the three fetch-and-verify chains fired on all three revisions).
+- **Transport discipline, mine**: TWO push attempts were correctly rejected
+  non-fast-forward while m2's revisions landed mid-flight; the synthesis was
+  updated against each revision BEFORE it first landed anywhere (b4f5d5c →
+  ccf324c → acbe361). The never-amend rule applies to PUSHED letters; my
+  unpushed commit was amended freely, disclosed in the letter.
+- **Still in flight**: heat87 (WROTE, sealed until ≥01:28:44 CEST 09-08;
+  reveal cron 8269b6de armed); heat68c leg-2 t=15/20; register v0 (my
+  commitment, this week); AM-8b closure note.
