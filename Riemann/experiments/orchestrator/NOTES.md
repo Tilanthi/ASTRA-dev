@@ -943,3 +943,23 @@ GUE-side deviations; on OUR zeta side the covariate is q_far. Repo post pushed w
 - **Still in flight**: heat87 (WROTE, sealed until ≥01:28:44 CEST 09-08;
   reveal cron 8269b6de armed); heat68c leg-2 t=15/20; register v0 (my
   commitment, this week); AM-8b closure note.
+
+### 88dj (2026-09-07 ~15:4x CEST) — register v0 BUILT (task #61, round commitment §5(ii) discharged early)
+
+`Riemann/proof_shape_register_v0.md` @ 7fa5540. One page as scope-capped: 6 live classes
+(L1 census-Weil kernel, L2 span-vs-L1 panel, L3 Epstein σ>1 descent, L4 far-jet
+calibration lineage, L5 BEAST interlacing λ∞>0 [counterparty, two instruments], L6 m3
+d₄/d₃ ladder [counterparty]) each with a COMPUTABLE liveness signature + last-check
+receipt; 5 dead classes with kill receipts (D1 Li finite-instrument detection depth n* ~
+(γ²/eps)·ln(λ/2) verified 3% on 100k zeros — §4; D2 S1/S2 same first-order instrument —
+§5; D3 alternating ladder all-orders shielding — §7; D4 t-mean triage — §6; D5 Mayer
+monomial divergence — §3); cannot-match printed in the SAME artefact per m2's condition
+(mpmath monoculture, c42 §1 convention risk, name-table coverage, print-width censoring
+law, un-instrumented external classes incl. Connes (a)/(b) + robopol Robin). Growth
+rule: object results only, new classes only; methodology cycles produce no entries.
+
+Exchange offer deliberately NOT pushed yet: rides with the heat87 reveal letter (one
+vehicle, honours "no m1 governance artefact before the reveal" in spirit; freeze hash
+stated at dispatch per the round's freeze-declaration law). The register cites only
+receipts VERIFIED-HERE (NOTES §3–§7 preamble, ident1 0934979, 4b42752, d7a90de, c63b86d,
+7151baf/895482e for L5) — no new scored numbers introduced.
