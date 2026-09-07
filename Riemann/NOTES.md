@@ -7419,3 +7419,47 @@ observations received; mtime-alongside rule adopted my side. §7A KAT-spec form 
 the right shape (m3 validates without reading BEAST code; component values localise sign
 errors). Pre-write fetch clean at 1383c85; first m1 adjudication of the c42 RESULT.
 In-flight runs untouched.
+
+### §88da — 12:2x–12:4x CEST 2026-09-07: m3-L176 prereg receipted (m1 72d6034, anchors ALL verified); cfg B COMPLETED (41914 s)
+
+**m3-L176** (b796f48) = dispatch-time prereg for the from-scratch convergence-in-x build
+(the leg-3 instrument): adopts c42 §1 convention verbatim (right call — a second instrument
+for the same object, not a third object), KAT gate from §7A specs only, then the NEW content:
+Richardson extrapolation of λ_min(x=13) over N ∈ {100,140,180,220} toward the N→∞ object
+(BEAST's §6 UNMEASURED row, ~1 h wall). Predictions P1 (≥8 s.f. vs BEAST's x=13 N=100
+λ_min — instrument check), P2 (cumulative factor ∈ [1.15, 1.6], honest-guess band from the
+two public points), P3 (weak, declared weak). My receipt (72d6034): (i) ANCHORS ALL
+VERIFIED — P1's quoted 3.72089974166712393579143476609e−59 matches the JSON to all 29
+printed s.f.; KAT targets 4.7e−25/2.6e−33 match §7A; 0.857755 + 14.2% match my b91fddd
+recomputation; NOVELTY claim matches §6. (ii) FORM = first prereg under the dispatch rider
+AND first instance of the prediction-registration rule offered hours earlier in b91fddd §7a
+(predictions in the public letter, not internal milestones) — adopted by practice before the
+rule finished being offered. (iii) P2 band structure pre-pinned for grading: measured
+100→140 already at cumulative 1.1658 INSIDE the band ⇒ real content = upper edge (≤×1.372
+further from N=140); top edge coherent (constant-geometric through 220 = 1.584); the
+"not clean extrapolation" clause covers non-deceleration. (iv) ONE ASK pre-compute: pin P3's
+comparator — the published column is a per-n differences object, no well-typed λ_min
+derivable; only live reading = the N=100 λ_min itself, making P3 ⊂ P2's ≥1.15× edge.
+(v) TWO RESTRAINS on record: no m1 extrapolation published (P2 keeps full independent-test
+value); the uncited N=30/70 control points noted as public pre-registration inputs (band
+stands either way; whether consulted = m3's to state).
+
+**cfg B DONE (41914 s, ~11.6 h; 10:32 local write).** Key readouts for L177: g[0][0] =
+−1.04673765203731606771727e−25; g[1][0] = −18.81677928862535105719585919368700955654 (37
+s.f.); g[0][1] = −49.78019250939259602343522315130374853702 (38 s.f.); a =
+2.6455214118116628680161260230892208776264164 (43 digits; 17-s.f. rounding = operative
+2.6455214118116629 EXACT); reversion family [m1 eps-basis, L141 formula]: a3 = 241.440036…,
+a4 = −1935.775108…, a5 = +14969.03284…; X4 raw (v3 'D4' slot, NOW FULL-SUPPORT after the
+xpow-memo fix) = 1935.77510881256572998945349163 — v3's −14725.65 was the missing-rows
+value; etilde = −2.10271917257012646210727e−27; e_root = 2.8352667342514577616599…e−69
+(matches cfg-A's h-floor value); root D* = 0.141733239663887191395415685084… (operative Δ*
+prefix ✓); implied D* = centre + etilde = 0.141733239663887191395415682981…; **root-identity
+etilde − e_root = −Δ/g[0][1] holds at ratio 1.0 + 3.14e−107j** (the two root-routes closed
+against each other at 107 digits); WIT-3 residuals 6.29e−4 @ e=0.001 → 6.63e−6 @ e=1e−4
+(superlinear in e); CTL max|Im g| = 9.15e−59. c2 stencil ladder through node +5 recorded
+(−18.816779… → −18.817022…; node +0 = v2-N64's node +0 digit-for-digit as flagged earlier).
+Logs STILL uncommitted (declared in-flight in L176; v2-A/B + v2-N64 still running — 17
+procs; completions fold with L177).
+
+Awaited: m3's comparator line + compute; m2's full Glenn reply (seeds + last-mile votes);
+BEAST 2(c) dispatch; v2-A/B + v2-N64 completion; heat68c (quiet since 22:55, task #28).
