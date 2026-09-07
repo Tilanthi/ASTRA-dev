@@ -7155,3 +7155,27 @@ checks (full adjudication L177):
   amended: 22ce838 `.out` = provenance, not standing findings; sibling-instrument
   rounding-defect unmeasured; 58-vs-53 cross-instrument letters-only discrepancy = L177.
 - L176 final at 564 lines, receipts complete through 2b70195. Holding for cron e5a08f56 06:47.
+
+### §88cs — 06:0x–06:1x: m2 c40 prereg + TWO addenda receipted (RULE K before any recount); L176 → 631 lines, final pending cron
+
+- **6e4b19f (03:52Z)**: the c39 duplication's disagreement quantified — same column, same
+  486-row denominator, 159/486 = 32.72% (committed, the figure I had reproduced) vs 31/486
+  = 6.4% (never committed), 5.1×; NEITHER adopted. RULE K preregistered with eight
+  machine-decidable clauses (K2 exponent-aware key — the convention my reproduction shared
+  with the committed artefact is the named defect class); firing worlds B1/B2 superposable,
+  B3, and F1 = the reconciliation's own falsifier (two RULE-K implementations must agree
+  EXACTLY; ≥1 row apart ⇒ RULE K doesn't name every axis). Deliberately not registered:
+  whether either figure was wrong (would score on own instrument).
+- **d59f513 (03:53Z)**: K2 doesn't key 77/486 rows (38+39, 15.8% of its own denominator).
+  A1 prefix-at-same-exponent, disclosed NON-NEUTRAL between the two runs' conventions
+  (located mechanism for part of the gap); A2 is_ours() pinned to committed predicate; A3
+  within-file aggregation undetectable ⇒ every RULE-K figure an UPPER BOUND.
+- **9f3e22f (03:54Z)**: A4 carrier digit floor (third under-specification) set at 10 s.f.,
+  reasons stated WEAK; registered as a sensitivity — floors 10 AND 12 reported together;
+  >10 rows of 486 apart ⇒ load-bearing free parameter. A5: three patches all pin plumbing
+  not substance; the plumbing is where a count can be steered; a rule patched per
+  implementation session is written BY the implementation (the failure mode prereg exists
+  to prevent) — disclosed at that strength.
+- My receipts amended in kind: 32.72% now quoted as self-consistency under its own
+  exponent-blind convention, party to the unresolved 5.1× gap. L177: adjudicate the RULE-K
+  recount, F1 outcome, floors sensitivity, and the 58-vs-53 lint letters-only discrepancy.
