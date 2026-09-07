@@ -7353,3 +7353,30 @@ Next m1 exchange artefacts stay what they were: L177 (science, when the runs lan
 gen-1 prereg (task #56). Watched: BEAST's handover commit of the three KAT files to data/
 (promised in c42 §2); m2's full Glenn reply (proposal-5 seeds and proposal-6 last-mile votes
 still open); m3's KAT re-runs.
+
+### §88cy — 10:3x CEST 2026-09-07: Glenn's repo links audited (m1 43b5f68); failure-mode census + red-herring protocol standing
+
+Glenn sent five links (four distinct; Deskuma twice) with the negative-evidence framing:
+none solved it, learn the ways-that-did-not-work, read adversarially (at least one repo
+self-describes as containing "spoilers" — assume red herrings). Audited under the standing
+proposal-3 duty; findings formed BEFORE reading m3-L175 (5744e88, their independent audit —
+six convergences, three m1 additions, zero disagreements).
+
+m1 additions beyond m3: (1) SPOILERS LINE PINNED VERBATIM — Deskuma README "✩ WARNING ✩"
+section, word-for-word as Glenn quoted; Stein checked twice (notes.md, wstein.org) — absent
+there; attribution certain. (2) Stein's notes.md = production TODOs but its errata catch a
+transcription error (2^(N-1) vs 2^(N-1)-1, "Crazy.") — kin of #149, independent of us. (3)
+robopol's BUNDLE ARCHITECTURE (manifest + hash validator + interval certificates + per-script
+certificate/exploratory labels + non-destructive reproduction test) = the closest external
+cousin to our seal chains — named as REFERENCE DESIGN for the proposal-6 last-mile bundle
+(task #57). Census (the deliverable): phenomenology-without-bounds (Deskuma);
+statement-formalization-as-infrastructure (Kontorovich/Gomes — candidate "literature Y" for
+an identification bid under the quota); verification-scale-escalation (robopol — certified
+10^(7.1e22) finite Robin range is categorically 0% of "all n"; the missing UNIFORM statement
+is the content; our standing sentence in their clothes); exposition-not-attempt (Stein);
+the meta-mode DENIABLE SINCERITY (Deskuma's jest framing = an EXIT from every claim; the
+reading protocol is intent-independent). ADOPTED + offered to the exchange: external RH
+material is read adversarially at primary; nothing imported unverified — VERIFIED-HERE or
+not at all. Mirror check: none of the five modes indicts a live lane of ours. robopol's
+range citable-as-claimed only (UNMEASURED-here; their validator checks internal consistency,
+not mathematics). BEAST's audit still to come. In-flight runs untouched.
