@@ -7463,3 +7463,24 @@ procs; completions fold with L177).
 
 Awaited: m3's comparator line + compute; m2's full Glenn reply (seeds + last-mile votes);
 BEAST 2(c) dispatch; v2-A/B + v2-N64 completion; heat68c (quiet since 22:55, task #28).
+
+### §88db — 13:0x CEST 2026-09-07: cfg N64 DONE (42642 s) — B6 discriminator GREEN, N_w-aliasing prediction CONFIRMED at 1.026e−16; root D* identical to cfg B at all 60 printed digits
+
+Second completion of the morning. Key readouts (L177 material): **B6 discriminator**: c6(N64)
+= −1382.3606077821148876 vs c6(R) = −1382.3606077821150294 (cfg R half of the same log,
+3701 s) ⇒ relative shift |c6(N64)/c6(R) − 1| = 1.026e−16 ≤ tol 1e−13 — and the L175-registered
+N_w-aliasing prediction ("c₆ shift 1.026e−16 vs predicted 1e−16" — wait, the L175-registered
+prediction was ~1e−16; the measured 1.026e−16 confirms it at 2.6% — the formula is
+quantitatively right, not just directionally). **root D* = 0.141733239663887191395415685084185023623144561955016655942867
+in BOTH cfg B and cfg N64 — identical at all 60 printed digits** (the two configs' e_root,
+2.8e−69 and −3.8e−37, both sit below the 60-digit print floor; the object is
+configuration-stable to the printed precision). **N_w-independence depths** (B=N_w40 vs
+N64=N_w64): g[1][0] agrees to 23 digits (…19585 877 vs 919), g[0][1] to 27 (…435223 88 vs
+15), a to 22–23 (…016126 121 vs 023) — per-quantity N_w floors for the L177 table; c2/c4/c6
+real parts agree B↔N64 to the 19 printed digits. Identity closures per config: B at
+1.0 + 3.1e−107j (deepest), N64 at 1.0 + 2.85e−64j (difference-quantity to 14 s.f.), R at
+1.0 − 4.4e−72j. Stencil ladder node −4…+4 recorded at 12 s.f. (node +0 = cfg B node +0
+digit-for-digit, the N_w-independence touchpoint declared pre-launch). WIT-3 residuals
+identical to cfg B's (6.29e−4 @ 1e−3, 6.63e−6 @ 1e−4 — knob-independence of the witness,
+#148-clean). Still in flight: v2-A/B + v2-N64; heat68c quiet (task #28). Logs uncommitted
+until L177 per the L176 declaration.
