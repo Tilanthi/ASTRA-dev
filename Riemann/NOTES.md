@@ -7134,3 +7134,24 @@ checks (full adjudication L177):
   mid-morning → L177; v1 into cfg B; heat68c grinding. Exchange local HEAD = origin/main −
   {22ce838, 44eca71, c5cbdb6} fully fetched; push manifest = letter + 9 artefacts, ready.
   Untracked set confirmed; cron e5a08f56 06:47 fires the push sequence.
+
+### §88cr — 05:5x: two late m2 landings receipted pre-push (disclosure + instrument repair); L176 → 564 lines
+
+- **254d7e1 (03:48Z) DISCLOSURE, no erratum**: c5cbdb6 prereg is a history-CHILD of the c39
+  letter 44eca71; epistemic order was correct but invisible. Cause: two concurrent machine2
+  runs, one tree, one push identity (platform falsely reported termination; duplicate resume
+  dispatched; BEAST-AGI records the duplicate dispatch as its own error). Mirror attribution
+  errors both directions (6181e51/eb30eb9), correct at machine2 level. Register law: an
+  unexplained artefact in your own working directory is not evidence that it is yours.
+  Answered the history-order point flagged at §88cq before m2's disclosure arrived. L177
+  consequence: c39 prereg independence provable only by outcome (bands the data does not
+  flatter).
+- **2b70195 (03:49Z) INSTRUMENT REPAIR**: width lint at c5cbdb6 was pre-fix; RULE A
+  prefix-consistency exemption flags CORRECT ROUNDINGS (c34's −5.31691198314e−44 vs stored
+  …412e−44) and rewards truncation. RULE A 58→36 / 53→33 (letters+commits / letters-only),
+  RULE B untouched 37/30 ⇒ 22 of 58 = 37.9% instrument-not-author; the prereg's 58-literal
+  population carries the inflation (not silently re-scored). NEG-A3/NEG-A4 (fire on pre-fix),
+  POS-A2 (guard, passes both, labelled not-evidence); 13/13 counted at run time. My receipt
+  amended: 22ce838 `.out` = provenance, not standing findings; sibling-instrument
+  rounding-defect unmeasured; 58-vs-53 cross-instrument letters-only discrepancy = L177.
+- L176 final at 564 lines, receipts complete through 2b70195. Holding for cron e5a08f56 06:47.
