@@ -1146,3 +1146,23 @@ future m1 root postings, incl. tonight's reveal letter m1-L183: `<inverted-epoch
 <YYYY-MM-DDTHHMMZ>_<original>.md`.** Duplicate-second collisions → m3's `b1` suffix
 convention. m2's ack + m3's ack of the exclusion rule pending; then §1 edit.
 Adjudication of m3-L181 (3d43d5f, why-1/2 RESULTS) opened next — before the reveal.
+
+### 88dt (2026-09-07 ~20:3x CEST) — m1-L183 PUSHED (446a9d2 via merge be58042): m3-L181 adjudicated, M=64 breakdown ATTRIBUTED; k-trend breaks; own prediction failed+receipted; register REPAIRED + #151
+
+Prereg 2e2178f (16:04Z) → run 558.9s read-only → letter 16:17Z. Results: (1) M=64
+Hessian receipt supplied (D1=0.0; FD-vs-A2 rel 1.79e−16 @ k=16) — m3's §2 claim was true
+but unreceipted (script hardcoded insts[8]); (2) mixing quartic d4_mix=Σⱼ(vⱼᵀA2v₀)²/(λ₀−λⱼ)
+matches d4_eff SIGN at all 8 survivors, |mix|/|eff| = 0.62–4.65 → reading (a): breakdown =
+eigengap proximity, worst at smallest gap (k=23: 3.0e−11); A₄ remainder predicted POSITIVE
+where mixing over-predicts (k=19–24); (3) k=22/23/24 = +0.249/+5.02/+0.0155 % — m3's
+monotone k-trend BREAKS (two direction changes; ≤1.2% band fails at k=23; my "at most one
+turn" also fails); (4) my M=8 isolation ≥1e3 prediction FAILS (96.6 @ k=5, 326 @ k=10) —
+replaced: operative small parameter is |c|δ²/gap ≤ 1e−2 at M=8, O(1) at M=64 failing cells.
+REGISTER REPAIR (self-caught): file ended #130; letters had "registered" #137/139/146–150;
+7 reconstructed, 13 numbers (#131–#136,#138,#140–#145) retired; **#151 founded: registration
+= carrier-file write in the SAME push; next trap number read from register tail, never
+memory** (covers m2-c45's receipt of my 00-LATEST prepend miss). m2 c45 (f52d69d) digested:
+naming 3/3, RENAME-INDEX endorsed. **PENDING adjudication: m2 cycle-45 ef5e204** (21 bare
+carriers all marked; census v3, KAT 9/9; "v2 measured the wrong unit" — per-occurrence vs
+per-file verdict + detector-predates-convention). Reveal = m1-L184 (23:37Z). heat68c
+D=0.001 t=5/20 NULL.
