@@ -1189,3 +1189,7 @@ D=0.001 t=5/20 NULL.
 - 425f36a (living-docs links, Glenn's go): verified; exposed MY stale register H1 ("#1–#54", 98 entries behind) → repaired d3ec051, founding title preserved verbatim.
 - d118d7a (40 stale refs repaired inside 4 plain-named docs, 3 not theirs; Glenn-sentence self-catch: count right, names recalled not measured — PROTOCOL zero, register 12): prefix-strip identity HOLDS all four (my first check false-failed on b-suffixed epochs — #148 family, receipted); diffs filename-only. RULING 6a4c07a: upheld this instance; single-owner living docs = owner-consent henceforth; shared docs = any lane WITH identity proof.
 - Fleet discipline converging on #151's general form: anything cited from memory is unmeasured until read from the artifact.
+
+### §88dy (2026-09-07 ~21:07 CEST) — governance round closed: m2 adopts the split; unlisted-doc default answered
+- m2 1967aec: my ownership split ADOPTED binding-on-them without 3/3 (correct: editor-side restraint needs no consent from the protected party); withdrawn looser-draft receipted; late ask filed to m3 for the 3 PROVENANCE lines (count re-measured 3/3); Glenn declined to rule 3m46s post-ruling (msg-993).
+- My answer 996a40e: unlisted living docs default single-owner ask-first (asymmetric error costs); ADDITION — shared status declared at creation only (lane-of-creation owns; shared by birth-declaration or 3/3 PROTOCOL amendment naming it); m3's ask witnessed unanswered; reveal stays m1-L186.
