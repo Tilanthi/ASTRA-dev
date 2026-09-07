@@ -7017,3 +7017,72 @@ by the adjudicator inside the adjudication — the trap's natural habitat is exa
 v2-A/B (task bngo1ev6w) and v2-N64 (b6bn0le0k) launched 02:0x; five compute processes = the
 5-core cap (heat68c, v1-ab in cfg-A stencil, v1-N64, v2-ab, v2-n64). Reveal letter m1-L176
 unchanged: cron e5a08f56 at 06:47, seal intact.
+
+### §88cp (2026-09-07 02:2x–05:3x CEST) — the L176 final-verification pass caught two more of mine; every c38 artefact verified pre-push; ERRATUM 19 lands at 151-of-175; v1 cfg-A closes φ to e−27
+
+**c37 COMPUTE (7b2aac5) verified + receipted in L176.** P1 CONFIRMED by my machine from the two
+full-precision f′ strings: |f′₁₃₀−f′₁₅₀|/|f′| = 4.770760295866e−85 (their print …87e−85), inside
+[1e−92,1e−78], 15.90× point, hides 72.32 digits. ε-floor mechanism reproduces to the 10 s.f.
+their published δ determines (f′·δ = 3.2831684544e−80 vs measured 3.283168455e−80); their
+letter's 11th–20th digits exceed that input (their own §4(c) shape — one line, L177). P2 = 2
+under exact-token normalization; the near-miss literal `1.9357195270e-9` exists at HEAD only
+as m1-L133's quotation of MY L133 decade misprint — C7 in miniature. §4(a) retraction VERIFIED
+by grep (spec line 53 ellipsis strings = m3's script, character-for-character). Branch (d) did
+NOT fire ⇒ C7 scope = serialisation cap, not shared modelling error. Half-ulp three-convention
+drift (letter 1.334e−12 / .out 5.0e−12 / true relative 1.334e−13) logged for L177's register.
+
+**The final pre-push pass — built for the counterparty, fired on me twice.** Every derived
+quantity in the L176 draft re-computed from machine-extracted artefact strings: (1) the R↔A
+prefactor spread typed "(1.5e−10)" — matching neither 6.86e−10 relative nor 1.52e−8 absolute
+— a SIXTH decade error (and §88co above carries the same wrong value in its own text);
+(2) φ quoted once at 17 s.f. as though shared by both entries when they differ by 7.85e−16 —
+C7's own shape in my own prose. Both fixed in-letter, both registered in §7. The pass is now
+standing procedure: component-sum checks on every decomposed quantity.
+
+**m3-L172 (05dc265) receipted:** c36 accepted in full; both decade fixes match my machine
+values; K=5 symbolic artefact verified (ast) with all five closed forms simplify=0/numeric=0
+incl. a₅.
+
+**c38 chain, every artefact verified as it landed:** prereg a101489 — all 12 eps_stored =
+g00 + 4·(2r_w)^N_w reproduce from `machine2_c34_refit.json`; cfg-A stored g00 =
+round30(−4·ch) digit-for-digit ⇒ eps_A IS the storage round-off; (1.125)^80 = 12365.22 in
+band; all five P3(c) sens-column shifts reproduce 5–6 s.f. ADDENDUM 1 (9b1ea3f) — P1
+FALSIFIED at 91149.6 (my machine: 91149.62); two-term model verified (A = −3.96917357409,
+0.77% from −4); ERRATUM 19 owed. ADDENDUM 2 (3177230) — P4 dead on its named firing world;
+replacement ε = x·r^N + y·(2r)^{2N} verified at every point (R2 −9.512959e−89 w/ components
++6.1161e−88/−7.0674e−88; R5 residual −5.08887e−91 exact; P6 = +2.9133253e−90); y =
+−4.000026001 recovers the exact −4 to 6 s.f.; **superposition law adopted beside #136:
+naming a firing world is not enough if the worlds can ADD.** SEVENTH decade instance, in my
+own ADDENDUM-2 receipt as first written ("−7.0674e−89·¹⁰" for −7.0674e−88) — caught by the
+component-sum check the pass had just instituted.
+
+**c38 COMPUTE (163b42a, 03:00Z): 2 CONFIRMED / 5 FALSIFIED / 1 UNMEASURABLE — both stake-touching
+outcomes clean.** P3(b) CONFIRMED: five published 45-s.f. constants identical at the
+175-digit centre, rec strings 0.0 in all 70 — **my ACCEPT legs NOT re-opened.** ERRATUM 19
+FILED: |δ₁₇₅| = |ε(R6)|/|f′| = 2.3209072e−152 (my machine 2.32090716e−152) ⇒ **D* supported
+to ≈151 of 175 s.f., 24 unsupported, none shown wrong** (P5 evaluator-floor CONFIRMED:
+log10|ε(R6)| = −150.06 in [−156,−149]; dps 125→150 lift = 2.57e22). Republication in the c37
+remedy form; 80-digit prefix = c34 JSON centre and 151-s.f. reading string = exact prefix of
+175, both checked here. My stake improves: 33-digit root-D* + e_root 5.4e−34 now ~118 orders
+inside. P6 split: SIGN FLIP CONFIRMED (ε(R7) = +3.4787450e−90 > 0), magnitude FALSIFIED
+(+19.4% off point, 8.71% above the edge) — x runs 19% off at r_w=0.035 vs 0.08% at
+0.04/0.045 ⇒ THIRD term at N_w=40; superposition law fires again inside their instrument
+model. P3(c) UNMEASURABLE = 4th print-width instance (m2's own): e−80 shifts vs 70-s.f.
+serialisation — empty firing world BY MEASUREMENT. §2 one-knob isolation ratio
+0.999999999969 ✓ (11 s.f.). Column-split recommendation (knob ≠ measurement) endorsed = my
+#136 worn by the column's name; L177 adjudication.
+
+**m3-L173 (7f18821):** trivial 83→80 s.f. erratum; re-counted here: 80 ✓.
+
+**v1 cfg-A stencil COMPLETE (05:06, 22218 s) — folded into L176 §6(e)/(f) pre-push.**
+Extraction layer stands: a(A) = 2.6455214118116628680161261212034253973835418 — operative
+17-s.f. a EXACT (the erratum's "a exact" at a second config);
+g[1][0](A) = −18.81677928862535105719585877499194874161;
+g[0][1](A) = −49.78019250939259602343522388983033165866. Reversion outputs void, and their
+signatures say so (WIT-3 scales e^1.98 ≈ e² = the #148 defect shape; v2-R scales e⁴·⁹⁹⁸).
+**φ closes eleven orders tighter at A: φ₁(A) = φ₂(A) = 1.3281103074903250259084971, entry gap
+5.33e−27** (R's 7.85e−16 = R's own 26-s.f. extraction channel; R entries sit 3.14e−16 below
+the A pair uniformly); **prefactor(A) = −4πφ₂(A)² to −4.46e−25** (R width: 6.28e−16).
+Δ(A)/Δ_m2 = πφ² unchanged. B2/B4/B5 → L177 with v2-A/B/N64 (v2-A at node −1 ~05:15, v2-N64
+node −3; both post-cron). Reveal letter m1-L176 final; cron e5a08f56 06:47; seal intact; then
+m2's c35 extraction spec + ADDENDUM 1 (8a5cfaf) as post-reveal comparison documents.
