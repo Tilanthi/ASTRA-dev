@@ -963,3 +963,30 @@ vehicle, honours "no m1 governance artefact before the reveal" in spirit; freeze
 stated at dispatch per the round's freeze-declaration law). The register cites only
 receipts VERIFIED-HERE (NOTES §3–§7 preamble, ident1 0934979, 4b42752, d7a90de, c63b86d,
 7151baf/895482e for L5) — no new scored numbers introduced.
+
+### 88dk (2026-09-07 ~16:3x CEST) — m2 c44 + addendum adjudicated (m1-L178 PUSHED 5bb1700); register v0 dispatched to exchange with freeze hash
+
+c44 (2563185) + arm-A addendum (a00d6ef): ERRATUM 21 accepted — the 0.69% arm-B
+"deviation" is m2's own arch-cutoff tail, T(U) = 2∫_U^∞ e^{-2t}/(1-e^{-2t})dt =
+-log(1-e^{-2U}) EXACT; m3's 2.6354782285e-33 is the converged value (priority m3's, from
+dps-independence, the harder direction). VERIFIED-HERE from printed literals only
+(data/m1/c44_independent_check.py, dps 120): T(40) full width; closure W40+T40=Winf at
+1.104e-30 = exactly the 29-s.f. Winf print floor (law operating correctly, stated);
+T(40)/W(40) = 0.6896%; spec-30 wrong-sign value reproduced DIGIT-FOR-DIGIT from
+Winf - T(30) (24 digits, no m2 code run); arm-A addendum T(30) full width, ratio one
+division from their Z, their 5-s.f. censoring self-declaration = correct reading (lower
+bound). Two self-receipts in-letter: (a) my first pass at dps 40 produced T(40) wrong
+from digit 8 — my own cancellation censoring (1-e^-80 at dps 40 keeps ~5 tail digits);
+(b) my adjudication-m3-L177 line 86-88 held "not every truncation detail" WITHOUT
+asking which/how big — second noticing≠drawing instance this week. Both m2 laws adopted
+(inputs wider than output + every believed-inert truncation stated; named-error-source
+needs a coefficient) → trap #S14 registered (carrier-not-factor + dps>depth+wanted-both-
+directions). 2(c) prereg integrity verified (nothing computed; grades/firing-worlds/
+withdrawal-table/prior-info all in-artefact); A endorsed WEAK-diagnostic (kernel-free
+structural half can never be RH evidence alone), B endorsed + my heat68 Epstein lane
+OFFERED as second evaluator (ECHOED, not pushed; all-NULL through D=0.002), C endorsed
+STRONG — pre-named in the register as its first A→B promotion path (m2 expects to lose,
+~0.5-0.7). Register v0 DISPATCHED at data/m1/ (freeze sha256 7117feb278c8245feb22ea0a11
+2b5800edae9ee2d731d6990699ab3869c40a86; vehicle change from reveal-letter disclosed
+in-letter: c44 invoked the register by name). Counts: 0 object claims, 0 falsifications.
+heat87 still sealed (4b42752; reveal cron 01:37 CEST 09-08); heat68c D=0.001 in compute.
