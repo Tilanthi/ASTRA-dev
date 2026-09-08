@@ -151,6 +151,19 @@ def test_emit_persists_source_and_holdout():
     Path(tmppath).write_text("[]")
     orig = rcs.EVOLVED_STORE
     rcs.EVOLVED_STORE = Path(tmppath)
+    # Phase 2 (Eureka plan): _emit now runs the empty-context fresh-attacker
+    # before writing. THIS test pins persistence, not attack behaviour (the
+    # synthetic source cannot run through the sandbox) — stub a survivor;
+    # the attacker itself is covered by test_eureka_phase2.py.
+    from astra_core.scientific_discovery.evolved_analysis import fresh_attacker as fa
+    orig_attack = fa.attack_claim
+    fa.attack_claim = lambda src, ds, **kw: {"disposition": "survived",
+                                             "detail": "stubbed for persistence test"}
+    # F1: no second-family endpoint configured in tests — the audit must be an
+    # honest non-blocking "not-configured", never a fabricated pass.
+    env_backup = {k: os.environ.pop(k) for k in
+                  ("ASTRA_JUDGE2_TOKEN", "ASTRA_JUDGE2_MODEL", "ASTRA_JUDGE2_BASE_URL")
+                  if k in os.environ}
     try:
         verdict = {
             "both_pass": True,
@@ -162,7 +175,10 @@ def test_emit_persists_source_and_holdout():
                       "bonferroni_pmax": 1.06e-5, "family_size": 94},
             "gate2": {"status": "novel"},
         }
-        rcs._emit(verdict)
+        assert rcs._emit(verdict) is True
+        assert verdict["emitted"] is True and verdict["emit_reason"] is None
+        sj = verdict["second_judge"]
+        assert sj["status"] == "not-configured" and sj["block"] is False
         records = json.loads(Path(tmppath).read_text())
         assert len(records) == 1
         r = records[0]
@@ -179,8 +195,15 @@ def test_emit_persists_source_and_holdout():
         # Fix 5 accounting recorded
         assert v["gate"]["bonferroni_pmax"] == 1.06e-5
         assert v["gate"]["family_size"] == 94
+        # the attack report travels with the claim (Phase 2)
+        assert v["fresh_attacker"]["disposition"] == "survived"
+        # the unconfigured cross-model audit travels beside it, honestly (F1)
+        assert v["second_judge"]["status"] == "not-configured"
+        assert v["second_judge"]["block"] is False
     finally:
+        fa.attack_claim = orig_attack
         rcs.EVOLVED_STORE = orig
+        os.environ.update(env_backup)
         os.unlink(tmppath)
 
 
@@ -192,11 +215,136 @@ def test_emit_noop_unless_both_pass():
     orig = rcs.EVOLVED_STORE
     rcs.EVOLVED_STORE = Path(tmppath)
     try:
-        rcs._emit({"both_pass": False, "claim": "x", "source": "", "program_hash": "h",
-                   "gate1": {"metrics": {}, "bonferroni_pmax": 1e-5, "family_size": 50},
-                   "gate2": {"status": "known"}})
+        v = {"both_pass": False, "claim": "x", "source": "", "program_hash": "h",
+             "gate1": {"metrics": {}, "bonferroni_pmax": 1e-5, "family_size": 50},
+             "gate2": {"status": "known"}}
+        assert rcs._emit(v) is False
+        assert v["emitted"] is False and v["emit_reason"] == "not-both-pass"
         assert json.loads(Path(tmppath).read_text()) == []
     finally:
+        rcs.EVOLVED_STORE = orig
+        os.unlink(tmppath)
+
+
+# --------------------------------------------------------------------------- #
+# F1/F3 (2026-09-08) — the promotion chokepoint's new block paths               #
+# --------------------------------------------------------------------------- #
+def _redirect_store():
+    fd, tmppath = tempfile.mkstemp(suffix=".json")
+    os.close(fd)
+    Path(tmppath).write_text("[]")
+    orig = rcs.EVOLVED_STORE
+    rcs.EVOLVED_STORE = Path(tmppath)
+    return orig, tmppath
+
+
+_BOTH_PASS_VERDICT = {
+    "both_pass": True,
+    "claim": "A novel claim about galaxies.",
+    "source": "CLAIM='...'\ndef run_claim(a,b):\n    return {'effect':0.5}\n",
+    "program_hash": "cafe1234",
+    "gate1": {"metrics": {"effect": 0.47, "pvalue": 1e-20,
+                          "effect_insample": 0.49, "pvalue_insample": 1e-22},
+              "bonferroni_pmax": 1.06e-5, "family_size": 94},
+    "gate2": {"status": "novel"},
+}
+
+
+def test_emit_attacker_kill_blocks_without_judge_spend():
+    """attacker-killed: no write, emit_reason carries it, and the (potentially
+    paid) second-family judge is never consulted — spend only on survivors."""
+    from astra_core.scientific_discovery.evolved_analysis import fresh_attacker as fa
+    from astra_core.scientific_discovery.evolved_analysis import second_judge as sjm
+    orig, tmppath = _redirect_store()
+    orig_attack, orig_audit = fa.attack_claim, sjm.audit_claim
+
+    def _never(*a, **kw):
+        raise AssertionError("second judge consulted after an attacker kill")
+    fa.attack_claim = lambda src, ds, **kw: {"disposition": "killed",
+                                             "detail": "permutation null kills it"}
+    sjm.audit_claim = _never
+    try:
+        import copy
+        v = copy.deepcopy(_BOTH_PASS_VERDICT)
+        assert rcs._emit(v) is False
+        assert v["emitted"] is False and v["emit_reason"] == "attacker-killed"
+        assert v["fresh_attacker"]["disposition"] == "killed"
+        assert "second_judge" not in v or not v.get("second_judge")
+        assert json.loads(Path(tmppath).read_text()) == []
+    finally:
+        fa.attack_claim = orig_attack
+        sjm.audit_claim = orig_audit
+        rcs.EVOLVED_STORE = orig
+        os.unlink(tmppath)
+
+
+def test_emit_blocks_on_grounded_second_judge():
+    """second-judge entailed-known: no write and emit_reason 'second-judge-known',
+    plus the kind=attack ledger line the register's blocked-at-promotion stream
+    reads. The attacker ran first (survivor stub); a 'foundational' (ungrounded)
+    verdict with the same known=True would NOT block — pinned in test_second_judge.py."""
+    from astra_core.scientific_discovery.evolved_analysis import fresh_attacker as fa
+    from astra_core.scientific_discovery.evolved_analysis import second_judge as sjm
+    from astra_core.scientific_discovery.evolved_analysis import evidence_ledger as el
+    orig, tmppath = _redirect_store()
+    orig_attack, orig_audit = fa.attack_claim, sjm.audit_claim
+    orig_ledger = el.LEDGER
+    fd, ledgerpath = tempfile.mkstemp(suffix=".jsonl")
+    os.close(fd)
+    Path(ledgerpath).write_text("")
+    el.LEDGER = Path(ledgerpath)
+    fa.attack_claim = lambda src, ds, **kw: {"disposition": "survived",
+                                             "detail": "stubbed survivor"}
+    sjm.audit_claim = lambda claim, dataset=None: {
+        "status": "judged", "block": True, "known": True, "reason": "entailed",
+        "by_abstract": 2, "n_retrieved": 5, "confidence": 0.9,
+        "reasoning": "abstract [2] states it", "model": "other-family-x",
+        "claim": claim[:200], "dataset": dataset or ""}
+    try:
+        import copy
+        v = copy.deepcopy(_BOTH_PASS_VERDICT)
+        assert rcs._emit(v) is False
+        assert v["emitted"] is False and v["emit_reason"] == "second-judge-known"
+        assert v["second_judge"]["block"] is True
+        assert json.loads(Path(tmppath).read_text()) == []
+        lines = [json.loads(l) for l in Path(ledgerpath).read_text().splitlines()
+                 if l.strip()]
+        blocks = [l for l in lines if l.get("kind") == "attack"
+                  and l.get("disposition") == "second-judge-known"]
+        assert len(blocks) == 1, f"expected 1 attack/second-judge-known ledger line, got {len(blocks)}"
+        assert blocks[0].get("claim") == v["claim"]
+    finally:
+        fa.attack_claim = orig_attack
+        sjm.audit_claim = orig_audit
+        el.LEDGER = orig_ledger
+        rcs.EVOLVED_STORE = orig
+        os.unlink(tmppath)
+        os.unlink(ledgerpath)
+
+
+def test_emit_dedup_happens_before_attacker_spend():
+    """A duplicate of an already-emitted finding is dropped BEFORE the attacker's
+    five sandbox runs — the hoisted dedup (previously a duplicate paid the whole
+    chokepoint and was silently dropped only at the write)."""
+    from astra_core.scientific_discovery.evolved_analysis import fresh_attacker as fa
+    orig, tmppath = _redirect_store()
+    orig_attack = fa.attack_claim
+
+    def _never(src, ds, **kw):
+        raise AssertionError("attacker consulted for a duplicate")
+    # pre-seed the store with the same held-out effect + pvalue (the finding key)
+    seeded = {"verification": {"effect": 0.47, "pvalue": 1e-20,
+                               "program_hash": "different"}}
+    Path(tmppath).write_text(json.dumps([seeded]))
+    fa.attack_claim = _never
+    try:
+        import copy
+        v = copy.deepcopy(_BOTH_PASS_VERDICT)
+        assert rcs._emit(v) is False
+        assert v["emitted"] is False and v["emit_reason"] == "duplicate"
+        assert json.loads(Path(tmppath).read_text()) == [seeded]
+    finally:
+        fa.attack_claim = orig_attack
         rcs.EVOLVED_STORE = orig
         os.unlink(tmppath)
 

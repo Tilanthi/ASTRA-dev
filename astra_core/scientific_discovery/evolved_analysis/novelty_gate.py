@@ -90,11 +90,16 @@ class NoveltyResult:
     retrieved: List[Paper] = None
     confidence: Optional[float] = None      # judge self-report, ranking signal only
     revision: int = 0                       # times this claim's novelty was re-judged
+    # F4 (2026-09-08): True when this verdict came from the cache without a
+    # live retrieval this call. Pure observability — the TTL policy below is
+    # what enforces "novel => live-verified within LIVE_CHECK_TTL".
+    from_cache: bool = False
 
     def to_dict(self) -> dict:
         d = asdict(self)
         if self.entailed_by:
             d["entailed_by"] = asdict(self.entailed_by)
+        d.pop("from_cache", None)   # runtime flag, not part of the cache schema
         return d
 
 
@@ -330,6 +335,24 @@ def _retrieve_papers(query: str, use_s2: bool, max_results: int = 5) -> List[Pap
     return deduped[:8]
 
 
+# Phase 2 live-source check: how long a live retrieval on a cached known-
+# verdict stays fresh (seconds). One week balances source-liveness assurance
+# against API load from retried claims.
+LIVE_CHECK_TTL = 7 * 24 * 3600
+
+
+def _log_live_check(claim: str, n_papers: int, outcome: str) -> None:
+    """Log the live-source check beside everything else (never raises)."""
+    try:
+        from .evidence_ledger import safe_append
+        safe_append("note", f"live-check-{outcome}", claim=claim,
+                    value=float(n_papers),
+                    detail=f"live-source check on a known-verdict: "
+                           f"{n_papers} paper(s) retrieved live")
+    except Exception:
+        pass
+
+
 def check_novelty(claim: str, use_s2: bool = True, force: bool = False) -> NoveltyResult:
     """Gate 2: return whether ``claim`` is novel (not in the literature).
 
@@ -343,11 +366,51 @@ def check_novelty(claim: str, use_s2: bool = True, force: bool = False) -> Novel
     cache = _load_cache()
     if not force and key in cache:
         c = cache[key]
-        return NoveltyResult(c.get("novel", False), c.get("status", "?"),
-                             claim, None, c.get("n_retrieved", 0),
-                             c.get("reasoning", ""),
-                             confidence=c.get("confidence"),
-                             revision=int(c.get("revision", 0)))
+        # Phase 2 (Eureka plan, 2026-08-30) — logged live-source check: a
+        # cached "known" verdict EXPLAINS A FINDING AWAY, so it may not stand
+        # on memory alone. Re-check that the source is live (one retrieval,
+        # no re-judging) unless a live check ran within LIVE_CHECK_TTL
+        # seconds. Without it the verdict is downgraded to known-cache-only
+        # (not a resolution — the claim stays open in the register).
+        fall_through = False
+        if c.get("status") == "known":
+            age = time.time() - float(c.get("live_checked_ts", 0) or 0)
+            if age > LIVE_CHECK_TTL:
+                papers = _retrieve_papers(_extract_query(claim), use_s2)
+                if papers:
+                    c["live_checked_ts"] = time.time()
+                    c["live_checked_n"] = len(papers)
+                    cache[key] = c
+                    _save_cache(cache)
+                    _log_live_check(claim, len(papers), "ok")
+                else:
+                    _log_live_check(claim, 0, "unavailable")
+                    return NoveltyResult(
+                        False, "known-cache-only", claim, n_retrieved=0,
+                        reasoning="cached known-verdict could not be "
+                                  "live-checked (retrieval unavailable); "
+                                  "dismissal not accepted")
+        elif c.get("status") == "novel":
+            # F4 (2026-09-08) — prior-art sweep at promotion: a cached NOVEL
+            # verdict AUTHORIZES a finding, so it may not stand on memory
+            # alone either. The mirror of the known-verdict rule above: once
+            # older than LIVE_CHECK_TTL the claim falls through to the fresh
+            # path (live retrieval + re-judge; the archived history and the
+            # bumped revision record the re-verification). Within the TTL the
+            # cached verdict stands, returned marked from_cache=True.
+            age = time.time() - float(c.get("live_checked_ts", 0) or 0)
+            if age > LIVE_CHECK_TTL:
+                logger.info("[novelty] cached novel verdict older than "
+                            "LIVE_CHECK_TTL — re-verifying against live sources")
+                fall_through = True
+        if not fall_through:
+            res = NoveltyResult(c.get("novel", False), c.get("status", "?"),
+                                claim, None, c.get("n_retrieved", 0),
+                                c.get("reasoning", ""),
+                                confidence=c.get("confidence"),
+                                revision=int(c.get("revision", 0)))
+            res.from_cache = True
+            return res
 
     # forced re-judgement: archive the prior verdict so the iteration history
     # of how this claim's novelty assessment evolved is preserved (Egent
@@ -389,6 +452,7 @@ def check_novelty(claim: str, use_s2: bool = True, force: bool = False) -> Novel
         _save_cache(cache)
         _pc.log_precheck(feats, "known-auto")
         logger.info("[novelty] known-auto (tau tier) — %s", claim[:60])
+        _log_live_check(claim, len(papers), "ok")   # papers WERE retrieved live
         return res
 
     known, entailing, label, reasoning, confidence = _judge_known(claim, papers)
@@ -411,6 +475,11 @@ def check_novelty(claim: str, use_s2: bool = True, force: bool = False) -> Novel
     res.confidence = confidence
     res.revision = len(history)
     cache[key] = res.to_dict()
+    if res.status in ("known", "novel"):
+        # the fresh path judged on live-retrieved papers: stamp the check
+        # (novel included since F4 — it is what the cached-novel TTL reads)
+        cache[key]["live_checked_ts"] = time.time()
+        cache[key]["live_checked_n"] = len(papers)
     if confidence is not None:
         cache[key]["confidence"] = confidence
     if history:

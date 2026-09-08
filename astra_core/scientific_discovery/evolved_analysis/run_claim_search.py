@@ -53,6 +53,13 @@ EVOLVED_STORE = Path.home() / ".astra_persistent" / "evolved_discoveries.json"
 VERDICT_LOG = (Path.home() / ".astra_persistent" / "evolved_programs"
                / "claim_verdicts.jsonl")
 VERDICT_LOG_CAP_BYTES = 20 * 1024 * 1024
+# F2 pilot-before-scale (2026-09-08): a dataset is COLD when no gate1 pass
+# appears in its last PILOT_HISTORY_WINDOW verdict rows (windowed on purpose —
+# every rotated dataset has thousands of lifetime passes, but liveness is a
+# property of the recent search: niche exhaustion, a tightened family bar, or
+# a degenerate proposer all show up as a barren recent window).
+PILOT_HISTORY_WINDOW = 120
+PILOT_DEFAULT_STEPS = 3
 try:
     import shutil
     _SANDBOX_EXEC = shutil.which("sandbox-exec")
@@ -81,12 +88,14 @@ def _finding_key(effect, pvalue) -> tuple:
 # Gate 1: sandboxed real-data test                                             #
 # --------------------------------------------------------------------------- #
 def gate1_run(src: str, seed: int = 42, timeout: float = 90.0,
-              source: str = "legacy") -> dict:
+              source: str = "legacy", permute_seed: int = None) -> dict:
     """Run the candidate's run_claim in a sandboxed subprocess on real data.
 
     ``source`` selects the dataset: 'legacy' (default, SDSS photo-z via
     real_data.py) or a data-lake dataset name (data_lake.py, Sub-project C).
-    The worker only reads a cached CSV — it never fetches."""
+    The worker only reads a cached CSV — it never fetches. ``permute_seed``
+    (fresh-attacker mode, Phase 2) asks the worker to independently shuffle
+    every column first — the generic permutation null."""
     if not src or f"def {ENTRY_POINT}" not in src:
         return {"effect": 0.0, "pvalue": 1.0, "error": f"no {ENTRY_POINT}"}
     with tempfile.NamedTemporaryFile("w", suffix=".py", delete=False,
@@ -97,6 +106,8 @@ def gate1_run(src: str, seed: int = 42, timeout: float = 90.0,
     try:
         env = {**os.environ,
                "PYTHONPATH": str(Path(__file__).resolve().parents[1])}
+        if permute_seed is not None:
+            env["ASTRA_ATTACK_PERMUTE"] = str(permute_seed)
         cmd = [sys.executable, "-m", WORKER, src_path, str(seed)]
         if source and source != "legacy":
             cmd.append(source)
@@ -195,6 +206,11 @@ def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True,
                 "reasoning": nr.reasoning[:200],
                 "confidence": nr.confidence,
                 "entailed_by": nr.entailed_by.title[:80] if nr.entailed_by else None,
+                # F4 (2026-09-08): False when check_novelty re-verified against
+                # live sources (fresh, or a stale cache falling through to the
+                # live path) — the emitted invariant is "novel => live-verified
+                # within LIVE_CHECK_TTL".
+                "from_cache": nr.from_cache,
             }
             result["novelty_revision"] = nr.revision
         except Exception as e:
@@ -221,10 +237,114 @@ def two_gate_eval(src: str, seed: int = 42, run_gate2: bool = True,
 # --------------------------------------------------------------------------- #
 # emit (only both-gate survivors, through the chokepoint-compatible shape)     #
 # --------------------------------------------------------------------------- #
-def _emit(verdict: dict) -> None:
-    """Append a both-gate survivor to evolved_discoveries.json (bare list)."""
+def _load_store_list() -> list:
+    """Read evolved_discoveries.json as a list ([] on missing/corrupt)."""
+    try:
+        data = json.loads(EVOLVED_STORE.read_text()) if EVOLVED_STORE.exists() else []
+        return data if isinstance(data, list) else []
+    except Exception as e:
+        logger.warning("[claim_search] store read failed: %s", e)
+        raise
+
+
+def _emit_is_duplicate(verdict: dict) -> bool:
+    """True if an equivalent finding is already in the evolved store.
+
+    Dedup: a regenerated duplicate has a different program_hash + wording but
+    the SAME held-out effect + p-value (identical computation)."""
+    g1m = verdict["gate1"]["metrics"]
+    nk = _finding_key(g1m.get("effect"), g1m.get("pvalue"))
+
+    def _is_dup(r):
+        rv = (r.get("verification") or {}) if isinstance(r, dict) else {}
+        rk = _finding_key(rv.get("effect"), rv.get("pvalue"))
+        if nk is not None and rk is not None:
+            return rk == nk
+        return rv.get("program_hash") == verdict["program_hash"]
+
+    return any(_is_dup(r) for r in _load_store_list())
+
+
+def _emit(verdict: dict) -> bool:
+    """Append a both-gate survivor to evolved_discoveries.json (bare list).
+
+    The promotion OUTCOME is written back into ``verdict`` — ``emitted``,
+    ``emit_reason``, ``fresh_attacker``, ``second_judge`` — so the verdict log
+    (appended by the caller AFTER ``_emit``) records what actually happened at
+    the chokepoint, not only what the gates said. Returns True iff the record
+    reached the store."""
     if not verdict["both_pass"]:
-        return
+        verdict["emitted"], verdict["emit_reason"] = False, "not-both-pass"
+        verdict.setdefault("fresh_attacker", None)
+        return False
+    # Emit-time dedup BEFORE any promotion spend (5 attacker sandbox runs, a
+    # possible second-judge call): a duplicate dropped only at the write would
+    # mean paying the attacker for a no-op.
+    try:
+        _dup = _emit_is_duplicate(verdict)
+    except Exception:
+        _dup = False  # unreadable store: let the write block's guard handle it
+    if _dup:
+        verdict["emitted"], verdict["emit_reason"] = False, "duplicate"
+        verdict.setdefault("fresh_attacker", None)
+        return False
+    # Phase 2 hard rule (Eureka plan, 2026-08-30): every finding crossing the
+    # promotion threshold is attacked by an empty-context copy BEFORE the
+    # store write — before anyone hears of it — even when the proposer is sure
+    # it is fine. killed/not-runnable findings are never emitted.
+    try:
+        from .fresh_attacker import attack_claim
+        attack = attack_claim(verdict["source"], verdict.get("dataset", "legacy"))
+    except Exception as e:  # attacker itself failing is a not-runnable verdict
+        attack = {"disposition": "not-runnable",
+                  "error": f"{type(e).__name__}: {str(e)[:160]}"}
+    verdict["fresh_attacker"] = attack
+    if attack.get("disposition") in ("killed", "not-runnable"):
+        logger.warning("[claim_search] ⚔ fresh-attacker %s — NOT emitted: %s",
+                       attack.get("disposition"), str(attack.get("detail"))[:120])
+        verdict["emitted"] = False
+        verdict["emit_reason"] = f"attacker-{attack.get('disposition')}"
+        return False
+    # Cross-model audit at the promotion threshold ONLY (2026-09-08): one
+    # empty-context novelty judge from a DIFFERENT model family, after the
+    # (zero-spend) attacker and before the store write. An unconfigured or
+    # failing audit is recorded as itself and never blocks (fiction rule);
+    # the single blocking ground is an abstract-entailed "known".
+    try:
+        from .second_judge import audit_claim
+        sj = audit_claim(verdict["claim"], dataset=verdict.get("dataset", "legacy"))
+    except Exception as e:  # the audit failing is its own honest record
+        sj = {"status": "error", "block": False,
+              "error": f"{type(e).__name__}: {str(e)[:160]}"}
+    verdict["second_judge"] = sj
+    if sj.get("status") == "error":
+        # an audit malfunction is its own honest record, never a pass
+        try:
+            from .evidence_ledger import safe_append
+            safe_append("note", "second-judge-error",
+                        claim=(verdict.get("claim") or "")[:200],
+                        dataset=verdict.get("dataset"),
+                        detail=(sj.get("error") or "")[:200])
+        except Exception:
+            pass
+    if sj.get("block"):
+        logger.warning("[claim_search] ⚖ second-judge known (entailed) — NOT "
+                       "emitted: %s", (sj.get("reasoning") or "")[:120])
+        verdict["emitted"], verdict["emit_reason"] = False, "second-judge-known"
+        # the register's blocked-at-promotion stream reads exactly this ledger
+        # line (kind=attack — the empty-context adversarial check family; the
+        # clock treats it as new evidence, unlike kind=register)
+        try:
+            from .evidence_ledger import safe_append
+            safe_append("attack", "second-judge-known",
+                        claim=verdict.get("claim"),
+                        dataset=verdict.get("dataset"),
+                        program_hash=verdict.get("program_hash"),
+                        detail="second-family judge marked known-entailed: "
+                               f"{(sj.get('reasoning') or '')[:160]}")
+        except Exception:
+            pass
+        return False
     claim = verdict["claim"]
     g1m = verdict["gate1"]["metrics"]
     record = {
@@ -253,6 +373,11 @@ def _emit(verdict: dict) -> None:
                 "family_size": verdict["gate1"]["family_size"],
             },
             "claim": claim,
+            # Phase 2: the empty-context attack report travels with the claim.
+            "fresh_attacker": attack,
+            # Cross-model audit outcome travels beside it — including the
+            # honest "not-configured" when no second-family endpoint exists.
+            "second_judge": sj,
             # Fix 2: headline statistic is the held-out one (test split).
             "effect": g1m.get("effect"),
             "pvalue": g1m.get("pvalue"),
@@ -263,31 +388,205 @@ def _emit(verdict: dict) -> None:
     }
     try:
         EVOLVED_STORE.parent.mkdir(parents=True, exist_ok=True)
-        data = json.loads(EVOLVED_STORE.read_text()) if EVOLVED_STORE.exists() else []
-        if not isinstance(data, list):
-            data = []
-        # Dedup: a regenerated duplicate has a different program_hash + wording but
-        # the SAME held-out effect + p-value (identical computation) — collapse it.
-        nk = _finding_key(g1m.get("effect"), g1m.get("pvalue"))
-
-        def _is_dup(r):
-            rv = (r.get("verification") or {}) if isinstance(r, dict) else {}
-            rk = _finding_key(rv.get("effect"), rv.get("pvalue"))
-            if nk is not None and rk is not None:
-                return rk == nk
-            return rv.get("program_hash") == verdict["program_hash"]
-
-        if not any(_is_dup(r) for r in data):
+        data = _load_store_list()
+        if not any(_is_dup_rec(r, verdict) for r in data):
             data.append(record)
             EVOLVED_STORE.write_text(json.dumps(data, indent=2))
             logger.info("[claim_search] ✅ EMITTED both-gate survivor: %s", claim[:70])
+            verdict["emitted"], verdict["emit_reason"] = True, None
+        else:
+            verdict["emitted"], verdict["emit_reason"] = False, "duplicate"
     except Exception as e:
         logger.warning("[claim_search] emit failed: %s", e)
+        verdict["emitted"], verdict["emit_reason"] = False, "store-write-failed"
+    return bool(verdict.get("emitted"))
+
+
+def _is_dup_rec(r, verdict: dict) -> bool:
+    """Store-record-vs-verdict duplicate test (emit-write guard)."""
+    rv = (r.get("verification") or {}) if isinstance(r, dict) else {}
+    g1m = verdict["gate1"]["metrics"]
+    nk = _finding_key(g1m.get("effect"), g1m.get("pvalue"))
+    rk = _finding_key(rv.get("effect"), rv.get("pvalue"))
+    if nk is not None and rk is not None:
+        return rk == nk
+    return rv.get("program_hash") == verdict["program_hash"]
 
 
 def _now_iso() -> str:
     import datetime
     return datetime.datetime.now().isoformat()
+
+
+# --------------------------------------------------------------------------- #
+# F2: pilot-before-scale (cold-dataset episode early-stop)                     #
+# --------------------------------------------------------------------------- #
+def _dataset_gate1_history(name: str, window: int = PILOT_HISTORY_WINDOW) -> dict:
+    """Gate-1 history for one dataset over its last ``window`` verdict rows.
+
+    Defensive by design: never raises, returns zeros when the log is absent."""
+    out = {"dataset": name, "window": window, "n_trials": 0, "n_gate1_pass": 0}
+    try:
+        if not VERDICT_LOG.exists():
+            return out
+        recs = []
+        for line in VERDICT_LOG.read_text().splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                rec = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if rec.get("dataset") == name:
+                recs.append(rec)
+        for rec in recs[-window:]:
+            out["n_trials"] += 1
+            if (rec.get("gate1") or {}).get("pass") is True:
+                out["n_gate1_pass"] += 1
+    except Exception as e:
+        logger.warning("[claim_search] pilot history read failed: %s", e)
+    return out
+
+
+def _pilot_should_stop(pilot: dict):
+    """Pure predicate: the reason the pilot says stop, or None to continue.
+
+    Never stops when anything passed gate1 (alive — nothing can be emitted
+    without a gate1 pass, so a pass means the lane is producing) or when any
+    worker error occurred (a machine failure is not evidence about the
+    dataset). Two stop reasons, kept distinct because their remedies differ:
+    'degenerate-proposals' — the window burned on at most one distinct program
+    (the proposer fell back to the parent verbatim); 'cold-dataset-no-gate1-
+    pass' — genuinely distinct candidates and none passed on a cold dataset."""
+    if pilot["gate1_pass"] > 0 or pilot["errors"] > 0:
+        return None
+    if pilot["trials"] + pilot["unchanged"] < pilot["window"]:
+        return None
+    if len(pilot["hashes"]) <= 1:
+        return "degenerate-proposals"
+    return "cold-dataset-no-gate1-pass"
+
+
+def _pilot_stop(pilot: dict, reason: str, source: str, skipped: int) -> None:
+    """Record the pilot decision and end the episode.
+
+    A ledger NOTE, not a trial: a pilot decision is bookkeeping, not a
+    statistical look, and kind='trial' would tighten the lifetime Bonferroni
+    correction for nothing. The note carries what a reader needs to tell the
+    three causes apart (bar too tight / dataset dead / degenerate proposer):
+    distinct-program count, skip count, and the pmax in force."""
+    detail = (f"pilot window {pilot['window']} exhausted with no gate1 pass: "
+              f"{pilot['trials']} evaluated, {pilot['unchanged']} unchanged-"
+              f"proposal skips, {len(pilot['hashes'])} distinct programs, "
+              f"{pilot['errors']} worker errors")
+    try:
+        from .evidence_ledger import safe_append
+        safe_append("note", "pilot-stop", dataset=source, reason=reason,
+                    detail=detail, window=pilot["window"],
+                    n_trials=pilot["trials"],
+                    n_unchanged_skips=pilot["unchanged"],
+                    n_distinct_programs=len(pilot["hashes"]),
+                    n_gate1_errors=pilot["errors"],
+                    skipped_steps=skipped,
+                    bonferroni_pmax=bonferroni_pmax(PMAX),
+                    history=pilot.get("history"))
+    except Exception as e:
+        logger.warning("[claim_search] pilot-stop ledger note failed: %s", e)
+    logger.warning("[claim_search] 🛑 pilot-stop (%s) on %s — skipping %d "
+                   "remaining step(s): %s", reason, source, skipped, detail)
+
+
+def _arm_pilot(steps: int, pilot_steps: int, source: str):
+    """F2 arming rule (extracted from main for testability).
+
+    The pilot window arms only when it could bite: enough steps to outlive the
+    window, a real data-lake source (the legacy path is the maintained sanity
+    lane), and a COLD dataset — zero gate1 passes in its last
+    PILOT_HISTORY_WINDOW verdict rows. Warm datasets and short runs return None
+    (warm -> logged, not silent)."""
+    if pilot_steps <= 0 or steps <= pilot_steps or source == "legacy":
+        return None
+    hist = _dataset_gate1_history(source)
+    if hist["n_gate1_pass"] == 0:
+        logger.info("[claim_search] pilot armed for cold dataset %s "
+                    "(0 gate1 passes / %d trials in its last %d rows)",
+                    source, hist["n_trials"], hist["window"])
+        return {"window": pilot_steps, "trials": 0, "gate1_pass": 0,
+                "errors": 0, "unchanged": 0, "hashes": set(),
+                "history": hist}
+    logger.info("[claim_search] pilot not armed: %s is warm "
+                "(%d gate1 passes / %d trials in its last %d rows)",
+                source, hist["n_gate1_pass"], hist["n_trials"], hist["window"])
+    return None
+
+
+def _evolve_steps(proposer, parent: str, parent_metrics: dict, steps: int,
+                  source: str, run_gate2: bool = True,
+                  propose_retries: int = 3, pilot: dict = None) -> None:
+    """The LLM-proposal step loop (extracted from main for testability).
+
+    Per step: propose (re-proposing until the candidate computes on df_train),
+    evaluate through both gates, EMIT, then append the verdict log — in that
+    order, so the log line records the promotion outcome (``emitted`` /
+    ``emit_reason`` / ``fresh_attacker`` / ``second_judge``), not just the
+    gate outcomes. ``pilot`` is the armed F2 cold-dataset window or None."""
+    for i in range(steps):
+        # Split-discipline fix: re-propose until the candidate computes on df_train
+        # (not df_eval alone), so the holdout-distinctness gate does not reject it
+        # and we don't waste a sandbox run on split-incorrect code.
+        child, info = None, {}
+        for _attempt in range(max(1, propose_retries)):
+            cand, _spec, info = proposer.propose(
+                parent, parent_metrics, None, [], context_level="rich")
+            if not cand:
+                break
+            ok, why = claim_uses_train_split(cand)
+            if ok:
+                child = cand
+                break
+            logger.info("[claim_search] step %d attempt %d: %s; re-proposing",
+                        i, _attempt, why)
+        if not child:
+            logger.info("[claim_search] step %d: no split-correct proposal (%s)",
+                        i, info.get("error", "all attempts computed on df_eval"))
+            continue
+        if info.get("mode") == "unchanged":
+            # The proposer fell back to the parent verbatim (unparseable LLM
+            # response): re-evaluating an identical program is pure spend —
+            # the family counter would tighten on a no-op and the verdict row
+            # would say nothing the seed row has not already said. Skip the
+            # evaluation; the pilot window counts the degeneracy.
+            logger.info("[claim_search] step %d: proposal unchanged from parent "
+                        "(mode=unchanged) — skipping evaluation", i)
+            if pilot is not None and i < pilot["window"]:
+                pilot["unchanged"] += 1
+                reason = _pilot_should_stop(pilot)
+                if reason:
+                    _pilot_stop(pilot, reason, source=source,
+                                skipped=steps - (i + 1))
+                    return
+            continue
+        v = two_gate_eval(child, run_gate2=run_gate2, source=source)
+        logger.info("[claim_search] step %d claim: %s", i, (v["claim"] or "")[:70])
+        _log_verdict(v, prefix=f"  step {i}: ")
+        _emit(v)
+        _append_verdict_log(v, label=f"step{i}")
+        # adopt as parent if it passed gate 1 (a real effect to build on)
+        if v["gate1"]["pass"]:
+            parent, parent_metrics = child, v["gate1"]["metrics"]
+        if pilot is not None and i < pilot["window"]:
+            pilot["trials"] += 1
+            if v["gate1"]["pass"]:
+                pilot["gate1_pass"] += 1
+            if (v["gate1"].get("metrics") or {}).get("error"):
+                pilot["errors"] += 1
+            pilot["hashes"].add(v.get("program_hash"))
+            reason = _pilot_should_stop(pilot)
+            if reason:
+                _pilot_stop(pilot, reason, source=source,
+                            skipped=steps - (i + 1))
+                return
 
 
 # --------------------------------------------------------------------------- #
@@ -310,6 +609,17 @@ def main():
     ap.add_argument("--propose-retries", type=int, default=3,
                     help="max re-proposals per step when the candidate computes "
                          "on df_eval instead of df_train (split-discipline fix)")
+    ap.add_argument("--pilot-steps", type=int,
+                    default=int(os.environ.get("ASTRA_PILOT_STEPS",
+                                               str(PILOT_DEFAULT_STEPS))),
+                    help="F2 pilot-before-scale: on a dataset with no gate1 "
+                         "pass in its recent verdict history, stop the episode "
+                         "early when the first K steps show nothing alive "
+                         "(0 disables the pilot window)")
+    ap.add_argument("--no-pilot", action="store_true",
+                    help="skip the F2 cold-dataset pilot window; the skip is "
+                         "recorded as a ledger note (the documented-reason "
+                         "skip path)")
     args = ap.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
@@ -337,6 +647,19 @@ def main():
                 task_system = ts
             logger.info("[claim_search] data source: %s", source)
 
+    # --- F2 pilot arming (zero spend; before the seed sanity) ---
+    pilot = None
+    if args.no_pilot:
+        try:
+            from .evidence_ledger import safe_append
+            safe_append("note", "pilot-skipped", dataset=source,
+                        detail="--no-pilot: cold-dataset pilot window skipped "
+                               "by explicit flag (documented-reason skip path)")
+        except Exception:
+            pass
+    else:
+        pilot = _arm_pilot(args.steps, args.pilot_steps, source)
+
     logger.info("[claim_search] === seed claim through both gates (sanity) ===")
     verdict = two_gate_eval(NAIVE_CLAIM_SEED, run_gate2=not args.no_gate2,
                             source=source)
@@ -346,6 +669,15 @@ def main():
     if verdict["both_pass"]:
         logger.warning("[claim_search] seed unexpectedly passed both gates — "
                        "novelty gate may be too permissive")
+    elif not verdict["gate1"]["pass"]:
+        # Canary (2026-09-08): the seed is a known gate1-passer on real data;
+        # if it fails gate1 the data path itself is broken and every downstream
+        # "not significant" verdict — and any pilot-stop this run — is an
+        # artefact of that, not of the dataset or the novelty search.
+        logger.warning("[claim_search] seed sanity: seed FAILED gate1 (%s) — "
+                       "expected a pass; investigate the data path before "
+                       "reading any pilot-stop this run",
+                       verdict["gate1"].get("reason"))
 
     if args.seed_only or not os.environ.get("ANTHROPIC_AUTH_TOKEN"):
         if not args.seed_only:
@@ -359,36 +691,10 @@ def main():
     except Exception as e:
         logger.warning("[claim_search] LLM proposer unavailable: %s", e)
         return
-    parent = NAIVE_CLAIM_SEED
-    parent_metrics = verdict["gate1"]["metrics"]
-    for i in range(args.steps):
-        # Split-discipline fix: re-propose until the candidate computes on df_train
-        # (not df_eval alone), so the holdout-distinctness gate does not reject it
-        # and we don't waste a sandbox run on split-incorrect code.
-        child, info = None, {}
-        for _attempt in range(max(1, args.propose_retries)):
-            cand, _spec, info = proposer.propose(
-                parent, parent_metrics, None, [], context_level="rich")
-            if not cand:
-                break
-            ok, why = claim_uses_train_split(cand)
-            if ok:
-                child = cand
-                break
-            logger.info("[claim_search] step %d attempt %d: %s; re-proposing",
-                        i, _attempt, why)
-        if not child:
-            logger.info("[claim_search] step %d: no split-correct proposal (%s)",
-                        i, info.get("error", "all attempts computed on df_eval"))
-            continue
-        v = two_gate_eval(child, run_gate2=not args.no_gate2, source=source)
-        logger.info("[claim_search] step %d claim: %s", i, (v["claim"] or "")[:70])
-        _log_verdict(v, prefix=f"  step {i}: ")
-        _append_verdict_log(v, label=f"step{i}")
-        _emit(v)
-        # adopt as parent if it passed gate 1 (a real effect to build on)
-        if v["gate1"]["pass"]:
-            parent, parent_metrics = child, v["gate1"]["metrics"]
+    _evolve_steps(proposer, NAIVE_CLAIM_SEED, verdict["gate1"]["metrics"],
+                  steps=args.steps, source=source,
+                  run_gate2=not args.no_gate2,
+                  propose_retries=args.propose_retries, pilot=pilot)
 
 
 def _log_verdict(v: dict, prefix: str = ""):
@@ -426,6 +732,27 @@ def _append_verdict_log(verdict: dict, label: str = "") -> None:
             "claim": (verdict.get("claim") or "")[:200],
             "program_hash": verdict.get("program_hash"),
             "both_pass": verdict.get("both_pass"),
+            # promotion outcome (written back by _emit, which the caller runs
+            # BEFORE this append): what actually happened at the chokepoint —
+            # emitted, or the exact reason it was not (duplicate / attacker /
+            # second-judge / store failure). Null on paths that never reach
+            # _emit (the seed row, log-only replays).
+            "emitted": verdict.get("emitted"),
+            "emit_reason": verdict.get("emit_reason"),
+            "fresh_attacker": {
+                "disposition": (verdict.get("fresh_attacker") or {}).get(
+                    "disposition"),
+                "detail": ((verdict.get("fresh_attacker") or {}).get("detail")
+                           or "")[:160]},
+            "second_judge": {
+                "status": (verdict.get("second_judge") or {}).get("status"),
+                "model": (verdict.get("second_judge") or {}).get("model"),
+                "n_retrieved": (verdict.get("second_judge") or {}).get(
+                    "n_retrieved"),
+                "confidence": (verdict.get("second_judge") or {}).get(
+                    "confidence"),
+                "reasoning": ((verdict.get("second_judge") or {}).get(
+                    "reasoning") or "")[:160]},
             # provenance (Egent): which model judged, with what sampling, and
             # how many times this claim's novelty verdict has been revised
             "llm": {"judge_model": os.environ.get("ASTRA_LLM_MODEL",
@@ -436,6 +763,8 @@ def _append_verdict_log(verdict: dict, label: str = "") -> None:
             "gate1": {"pass": g1.get("pass"),
                       "effect": g1m.get("effect"),
                       "pvalue": g1m.get("pvalue"),
+                      "pmax": g1.get("bonferroni_pmax"),
+                      "family_size": g1.get("family_size"),
                       "reason": (g1.get("reason") or "")[:160]},
             "triviality": (verdict.get("triviality") or {}).get("pass"),
             "consistency": (verdict.get("consistency") or {}).get("pass"),
@@ -446,6 +775,7 @@ def _append_verdict_log(verdict: dict, label: str = "") -> None:
             "gate2": {"status": g2.get("status"), "pass": g2.get("pass"),
                       "n_retrieved": g2.get("n_retrieved"),
                       "confidence": g2.get("confidence"),
+                      "from_cache": g2.get("from_cache"),
                       "reasoning": (g2.get("reasoning") or "")[:160]},
             # token-free ALS concept-graph prior (crowding of the claim's
             # concept combination); ranking signal only — never a gate

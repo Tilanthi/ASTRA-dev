@@ -77,7 +77,15 @@ def audit(rec: FalsifiablePrediction) -> bool:
 
 def run_all(registry: Registry, systems_by_class: Dict[str, List[str]]
             ) -> List[AnomalyResult]:
-    """Evaluate every prediction against every system of its class."""
+    """Evaluate every prediction against every system of its class.
+
+    Every result is appended to the evidence ledger (Phase 0 of the Eureka
+    plan, 2026-08-29): anomalies become register candidates for the unsolved-
+    problem stream, and every evaluation counts toward the lifetime trial
+    tally. The append is defensive (never raises) so a ledger problem can
+    never sink a falsification run; before this hook the arm's entire output
+    was printed and lost.
+    """
     results: List[AnomalyResult] = []
     for rec in registry.all():
         for system_id in systems_by_class.get(rec.system_class, []):
@@ -94,7 +102,38 @@ def run_all(registry: Registry, systems_by_class: Dict[str, List[str]]
                     passes_systematics=False, passes_significance=False,
                     passes_absolute=False, is_anomaly=False,
                     machine_verified=False, notes=f"error: {e}"))
+    _log_results(results)
     return results
+
+
+def _log_results(results: List[AnomalyResult]) -> None:
+    """Append every falsification result to the evidence ledger.
+
+    kind=anomaly for flagged anomalies (they enter the unsolved-problem
+    register via the unexplained-anomaly stream); kind=trial otherwise — both
+    count in the lifetime trial tally. Defensive: never raises.
+    """
+    try:
+        from astra_core.scientific_discovery.evolved_analysis import evidence_ledger
+    except Exception:  # ledger unavailable -> keep the arm fully functional
+        return
+    for r in results:
+        claim = (f"{r.model} on {r.system_id}: predicted {r.quantity}="
+                 f"{r.predicted:.6g} {r.units}, observed {r.observed:.6g} "
+                 f"({r.delta_sigma:.2f} sigma deviation)")
+        if r.is_anomaly:
+            evidence_ledger.safe_append(
+                "anomaly", "unexplained",
+                dataset=r.system_id, statistic="delta_sigma", value=r.delta_sigma,
+                claim=claim, program_hash=r.prediction_id,
+                detail=f"{r.quantity} in {r.units}; systematic bound "
+                       f"{r.systematic_bound_total:.6g}; model={r.model}")
+        else:
+            evidence_ledger.safe_append(
+                "trial", "model-confirmed" if r.machine_verified else "error",
+                dataset=r.system_id, statistic="delta_sigma", value=r.delta_sigma,
+                claim=claim, program_hash=r.prediction_id,
+                detail=None if r.machine_verified else (r.notes or "error"))
 
 
 def demonstrate() -> List[AnomalyResult]:
@@ -117,4 +156,5 @@ def demonstrate() -> List[AnomalyResult]:
     return results
 
 
-__all__ = ['AnomalyResult', 'evaluate', 'audit', 'run_all', 'demonstrate']
+__all__ = ['AnomalyResult', 'evaluate', 'audit', 'run_all', 'demonstrate',
+           '_log_results']

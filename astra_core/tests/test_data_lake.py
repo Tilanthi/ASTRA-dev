@@ -266,6 +266,61 @@ def test_cone_match_merge_defensive():
                  pd.DataFrame({"ra": [], "dec": []}), pd.DataFrame())) == 0
 
 
+# --------------------------------------------------------------------------- #
+# explored_themes labels (F3c, 2026-09-08): promotion-blocked outcomes are     #
+# checked BEFORE both_pass — a claim blocked at the chokepoint still logs      #
+# both_pass=True, and re-proposing it re-pays the whole funnel.                #
+# --------------------------------------------------------------------------- #
+def _vrow(claim, **kw):
+    row = {"ts": kw.get("ts", "2026-09-08T00:00:00"), "dataset": "sdss_qso",
+           "claim": claim, "both_pass": kw.get("both_pass", False),
+           "gate1": {"pass": kw.get("gate1_pass", True)},
+           "gate2": {"status": kw.get("g2_status", "novel")}}
+    for k in ("emitted", "emit_reason"):
+        if kw.get(k) is not None:
+            row[k] = kw[k]
+    return row
+
+
+def test_explored_themes_labels_promotion_outcomes():
+    with tempfile.TemporaryDirectory() as td:
+        lake = _fresh_lake(td)
+        vl = lake.parent / "claim_verdicts.jsonl"
+        rows = [
+            _vrow("killed claim", both_pass=True, emitted=False,
+                  emit_reason="attacker-killed"),
+            _vrow("judged-known claim", both_pass=True, emitted=False,
+                  emit_reason="second-judge-known"),
+            _vrow("re-derived claim", both_pass=True, emitted=False,
+                  emit_reason="duplicate"),
+            _vrow("write-failed claim", both_pass=True, emitted=False,
+                  emit_reason="store-write-failed"),
+            _vrow("emitted claim", both_pass=True, emitted=True),
+            _vrow("legacy novel row", both_pass=True),          # no fields: old rows
+        ]
+        vl.write_text("".join(json.dumps(r) + "\n" for r in rows))
+        labels = dict(data_lake.explored_themes("sdss_qso", n=10))
+    assert labels["killed claim"] == "attacker-killed"
+    assert labels["judged-known claim"] == "second-judge-known"
+    assert labels["re-derived claim"] == "already-emitted"
+    assert labels["write-failed claim"] == "blocked"
+    assert labels["emitted claim"] == "novel"
+    assert labels["legacy novel row"] == "novel"   # unchanged historical reading
+
+
+def test_explored_themes_blocked_checked_before_both_pass():
+    """A claim with both_pass=True AND emit_reason=attacker-killed must carry
+    the promotion-blocked label, not 'novel'."""
+    with tempfile.TemporaryDirectory() as td:
+        lake = _fresh_lake(td)
+        vl = lake.parent / "claim_verdicts.jsonl"
+        vl.write_text(json.dumps(_vrow("both-pass-but-killed",
+                                       both_pass=True, emitted=False,
+                                       emit_reason="attacker-killed")) + "\n")
+        labels = dict(data_lake.explored_themes("sdss_qso", n=5))
+    assert labels["both-pass-but-killed"] == "attacker-killed"
+
+
 if __name__ == "__main__":
     failed = 0
     for name, fn in sorted(globals().items()):

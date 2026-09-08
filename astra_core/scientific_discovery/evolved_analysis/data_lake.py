@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import random
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -685,7 +686,11 @@ def explored_themes(name: str, n: int = 6) -> List[tuple]:
     """Phases 1b/1c — recent claims already tried on this dataset, for novelty-
     steering (avoid the known/textbook families) and coverage awareness (avoid
     re-deriving what's been explored). Returns [(claim_snippet, verdict_label)]
-    most-recent first. Defensive: [] on any error / missing log."""
+    most-recent first. Promotion-blocked outcomes (attacker-killed,
+    second-judge-known, already-emitted duplicates) are checked BEFORE
+    ``both_pass`` — a claim blocked at the chokepoint still logged
+    ``both_pass=True``, and re-proposing it re-pays the whole funnel.
+    Defensive: [] on any error / missing log."""
     try:
         vl = LAKE_DIR.parent / "claim_verdicts.jsonl"
         if not vl.exists():
@@ -696,10 +701,21 @@ def explored_themes(name: str, n: int = 6) -> List[tuple]:
         out = []
         for r in rows[:n]:
             st = (r.get("gate2") or {}).get("status") or ""
-            if r.get("both_pass"):
+            reason = r.get("emit_reason")
+            if reason == "second-judge-known":
+                label = "second-judge-known"
+            elif reason in ("attacker-killed", "attacker-not-runnable"):
+                label = reason
+            elif reason == "duplicate":
+                label = "already-emitted"
+            elif r.get("emitted") is False:
+                label = "blocked"   # store-write-failed or other chokepoint block
+            elif r.get("both_pass"):
                 label = "novel"
             elif st == "known":
                 label = "KNOWN/textbook"
+            elif st == "known-cache-only":
+                label = "known-cache-only"   # live-source check failed: still open
             elif st == "retrieval-failed":
                 label = "unverified"
             elif (r.get("gate1") or {}).get("pass") is not True:
@@ -710,6 +726,74 @@ def explored_themes(name: str, n: int = 6) -> List[tuple]:
         return out
     except Exception:
         return []
+
+
+# Phase 1 (Eureka plan, 2026-08-29) — the register of unsolved problems is
+# injected into the start of every proposer session, in a framing varied each
+# time so no single presentation ossifies. The variants carry the same facts;
+# only the angle of attack changes, so old problems keep meeting new framings.
+_REGISTER_FRAMINGS = (
+    "UNSOLVED PROBLEMS carried forward from earlier sessions (their statistics "
+    "passed part-way and nobody has explained them; entries are unsolved, not "
+    "failed): {entries}. A candidate that EXPLAINS, refines or contradicts one "
+    "of these outranks a fresh pairwise scan — consider them first.",
+    "OPEN ANOMALIES from the unsolved register: {entries}. Do not re-derive "
+    "them; try to CLOSE them — a relation that settles, sharpens or contradicts "
+    "any entry here is the strongest kind of candidate.",
+    "LEFTOVERS worth a second collision: {entries}. Each survived part of the "
+    "funnel and stalled. If new data, a subset, a residual, or an interaction "
+    "of columns could settle any of these, that candidate is worth more than "
+    "routine coverage.",
+)
+
+
+def unsolved_register_head(name: str, n: int = 5) -> List[str]:
+    """Phase 1 — head of the register of unsolved problems for this dataset.
+
+    Drawn from the evidence ledger's four discard streams (claims that won the
+    statistics but failed an adversarial check at promotion; quarantined
+    near-misses; claims whose statistics passed but the literature gate could
+    not judge; unexplained anomalies). Entries the external clock has paired
+    with NEW evidence (re-encountered) come FIRST — the arranged collision is
+    the point — then this dataset's entries, then everything else.
+    Defensive: [] on any error.
+    """
+    try:
+        from . import evidence_ledger as el
+        try:
+            entries = el.build_register(write=False)
+        except Exception:
+            return []
+    except Exception:
+        return []
+    # Order: this dataset's entries first, then everything else — a stalled
+    # claim from ANOTHER dataset is still an arranged collision waiting to
+    # happen (old problem, new data), and beats pipeline bookkeeping. Within
+    # each group, entries phrased as scientific claims come before quarantine
+    # reasons: an unexplained anomaly or stalled claim is a problem the
+    # proposer can attack; a quarantine reason is plumbing. blocked-at-promotion
+    # ties narrow-gate-failure and wins the tie via build_register's
+    # attacks-first ordering — a promotion-blocked claim has the strongest
+    # evidence in the register (its statistics passed AND an adversarial check
+    # killed it: something explainable happened).
+    stream_priority = {"unexplained-anomaly": 0, "blocked-at-promotion": 1,
+                       "narrow-gate-failure": 1, "quarantined-near-miss": 2}
+    scored = []
+    for e in entries:
+        ctx = e.get("context") or {}
+        claim = ctx.get("claim") or str(e.get("reason") or "")[:90]
+        if not claim:
+            continue
+        line = f'"{str(claim)[:110]}" [unsolved: {e.get("stream", "?")}]'
+        if e.get("reencounters"):
+            line += (f" — NEW EVIDENCE has borne on this {e['reencounters']}x "
+                     f"(clock; see ledger): what do they share?")
+        rank = (0 if e.get("reencounters") else 1,
+                0 if ctx.get("dataset") == name else 1,
+                stream_priority.get(e.get("stream"), 3))
+        scored.append((rank, line))
+    scored.sort(key=lambda t: t[0])
+    return [line for _, line in scored[:n]]
 
 
 def task_system_for(name: str) -> Optional[str]:
@@ -768,6 +852,26 @@ def task_system_for(name: str) -> Optional[str]:
         prompt += ("\nClaims ALREADY explored on this dataset (go in a DISTINCT direction; "
                    "those marked KNOWN are textbook and will be rejected again): "
                    + joined + "\n")
+    register = unsolved_register_head(name)
+    if register:
+        framing = random.choice(_REGISTER_FRAMINGS)
+        prompt += "\n" + framing.format(entries="; ".join(register)) + "\n"
+    # Phase 2 (Eureka plan, 2026-08-30) — calibration notes delivered at
+    # session start: recomputed published numbers beside this data. A
+    # candidate that contradicts, refines or explains one of these is
+    # high-value, and each such verdict-flip is counted for the 90-day
+    # review. Defensive: a lens failure must never break prompt assembly.
+    try:
+        from .calibration_lens import notes_head
+        notes = notes_head(name)
+    except Exception:
+        notes = []
+    if notes:
+        prompt += ("\nCALIBRATION NOTES (published numbers recomputed from our "
+                   "own data; a candidate that CONTRADICTS, refines or explains "
+                   "one of these outranks routine coverage — and if a note "
+                   "changes your verdict, say so in the summary): "
+                   + "; ".join(notes) + "\n")
     return prompt
 
 

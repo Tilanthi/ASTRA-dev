@@ -74,13 +74,54 @@ def _review(top: int = 10) -> int:
     for i, (eff, r, why) in enumerate(claims[:top], 1):
         v = r.get("verification") or {}
         ds = r.get("dataset") or v.get("dataset") or "?"
-        print(f"\n#{i}  |effect|={eff:.3f}  p={v.get('pvalue')}  ds={ds}  ph={v.get('program_hash')}")
+        # Phase 0 (Eureka plan): the confidence label is assigned by rule from
+        # the checks this claim actually passed — never composed freehand.
+        label = _rule_label(v)
+        # Phase 2: the empty-context attack status travels with every claim;
+        # a record with no attack report is marked, never silently trusted.
+        attack = (v.get("fresh_attacker") or {})
+        ad = attack.get("disposition")
+        mark = (f"[attacked:{ad}]" if ad in ("survived", "suspect")
+                else f"[ATTACK {ad.upper()}]" if ad
+                else "[unattacked]")
+        print(f"\n#{i}  [{label}] {mark}  |effect|={eff:.3f}  p={v.get('pvalue')}  ds={ds}  ph={v.get('program_hash')}")
         print(f"    {str(r.get('abstract', ''))[:150]}")
+        if ad:
+            print(f"    attack: {str(attack.get('detail'))[:150]}")
         if why:
             print(f"    why-novel: {str(why)[:130]}")
     print("\nConfirm/reject: python -m evolved_analysis.discovery_review "
           "mark <program_hash> confirmed|rejected")
     return 0
+
+
+def _rule_label(verification: dict) -> str:
+    """Rule-based confidence label for an emitted claim's verification block.
+
+    The stored verification block records gate outcomes (gate1_real_data,
+    triviality, consistency, holdout, gate2_novelty); the label is computed
+    from exactly those, via evidence_ledger.confidence_label. Defensive:
+    'unverified' on any shape it does not recognise.
+    """
+    try:
+        from .evidence_ledger import confidence_label
+        g = verification.get("gate") or verification
+        checks = set()
+        if str(g.get("gate1_real_data", "")).lower() == "pass":
+            checks.add("gate1")
+        for k in ("triviality", "consistency", "holdout"):
+            if str(g.get(k, "")).lower() == "pass":
+                checks.add(k)
+        if str(g.get("gate2_novelty", "")).lower() == "novel":
+            checks.add("gate2")
+        # Phase 2: an empty-context attack that the finding survived earns
+        # the "escalated" label class by rule, not judgement.
+        if (verification.get("fresh_attacker") or {}).get("disposition") in (
+                "survived", "suspect"):
+            checks.add("fresh-attacker")
+        return confidence_label(checks)
+    except Exception:
+        return "unverified"
 
 
 def _mark(ph: str, verdict: str) -> int:

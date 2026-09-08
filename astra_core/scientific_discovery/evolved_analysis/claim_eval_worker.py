@@ -21,6 +21,7 @@ claim string is echoed back so the orchestrator can run Gate 2 (novelty) on it.
 from __future__ import annotations
 
 import json
+import os
 import resource
 import sys
 import traceback
@@ -33,6 +34,14 @@ if str(REPO_ROOT) not in sys.path:
 import numpy as np  # noqa: E402
 from .real_data import load_split  # noqa: E402
 from .claim_task import parse_claim, ENTRY_POINT  # noqa: E402
+
+# Fresh-attacker permutation mode (Phase 2, Eureka plan 2026-08-30): when
+# ASTRA_ATTACK_PERMUTE is set to an integer, every column of every split is
+# independently row-shuffled with that seed BEFORE the claim runs. This breaks
+# all cross-column associations while preserving each column's marginal — the
+# generic empty-context null. An effect that survives this measures a
+# marginal, not an association, and is flagged rather than trusted.
+_PERMUTE_ENV = "ASTRA_ATTACK_PERMUTE"
 
 # Resource caps (defence-in-depth). RLIMIT_AS is skipped on macOS (premature kill).
 try:
@@ -49,6 +58,21 @@ except Exception:
     pass
 
 
+def _permute_splits(splits: dict, permute_seed: int) -> None:
+    """Independently row-shuffle every column of every split in place.
+
+    The attacker's generic null: destroys ALL cross-column associations,
+    preserves each column's marginal exactly. A claim whose headline effect
+    survives this is measuring a single-column property, not a relation.
+    """
+    rng = np.random.default_rng(permute_seed)
+    for name, df in list(splits.items()):
+        shuffled = df.copy()
+        for col in df.columns:
+            shuffled[col] = df[col].to_numpy()[rng.permutation(len(df))]
+        splits[name] = shuffled
+
+
 def main():
     src_path = sys.argv[1]
     seed = int(sys.argv[2]) if len(sys.argv) > 2 else 42
@@ -61,6 +85,9 @@ def main():
             splits = _lake_split(source, seed=seed)
         else:
             splits = load_split(seed=seed)
+
+        if os.environ.get(_PERMUTE_ENV):
+            _permute_splits(splits, int(os.environ["ASTRA_ATTACK_PERMUTE"]))
         src = Path(src_path).read_text()
 
         # AST safety gate BEFORE exec (catches os/subprocess/open/eval/...).

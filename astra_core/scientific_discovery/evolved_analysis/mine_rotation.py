@@ -66,6 +66,15 @@ def main() -> int:
                          "usually low-novelty")
     ap.add_argument("--no-gate2", action="store_true",
                     help="pass through to run_claim_search (Gate 1 only)")
+    ap.add_argument("--pilot-steps", type=int,
+                    default=int(os.environ.get("ASTRA_PILOT_STEPS", "3")),
+                    help="pass through to run_claim_search: early-stop a COLD "
+                         "dataset's episode after this many trials with no gate1 "
+                         "pass (env: ASTRA_PILOT_STEPS)")
+    ap.add_argument("--no-pilot", action="store_true",
+                    help="pass through to run_claim_search: disable the "
+                         "cold-dataset pilot early-stop (recorded as a "
+                         "pilot-skipped note in the ledger)")
     ap.add_argument("--round-robin", action="store_true",
                     help="mine ONE productive dataset per invocation, round-robin "
                          "(for the always-on supervisor; also enabled by "
@@ -103,6 +112,10 @@ def main() -> int:
                "--data-source", ds.name, "--steps", str(args.steps)]
         if args.no_gate2:
             cmd.append("--no-gate2")
+        if args.pilot_steps:
+            cmd += ["--pilot-steps", str(args.pilot_steps)]
+        if args.no_pilot:
+            cmd.append("--no-pilot")
         # Self-improvement #1: predict-before-act (statistical baseline from history),
         # then after the run score surprise against actuals and append to the ledger.
         try:

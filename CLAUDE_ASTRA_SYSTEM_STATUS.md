@@ -4,6 +4,54 @@
 
 ---
 
+## System Status — v14.17 (2026-08-30): Eureka external clock + Phase 2
+
+User-authorized completion of the Eureka plan (`Eureka_Levers/engineering_for_eureka.tex`):
+the **external clock** (Phase 1) and the three **Phase 2** items are now live;
+Phase 3 spend stays gated on the 90-day numbers (~late November 2026).
+
+- **External clock** — `evolved_analysis/eureka_clock.py`, LaunchAgent
+  `com.astra.eureka-clock` firing daily at 09:41 (log: `.eureka_clock.log`).
+  Each firing reopens ledger + register + verdict log in a fresh process,
+  cross-matches everything NEW since the last firing (line offsets stamped in
+  the last clock entry — rotation-safe, no ts parsing) against everything OLD
+  (register entries + calibration notes) on shared dataset/statistic/claim
+  content, writes `register`/`re-encountered` entries (≤25/run), rebuilds the
+  register with re-encounter counts, and refreshes the lifetime significance
+  correction. Never raises; exit 0 always. First real firing: 4,966 new
+  records → 25 collisions; steady state: 2 new records → 15 collisions.
+  Re-encountered entries lead the proposer session's register injection with
+  the pairing spelled out ("NEW EVIDENCE has borne on this N× — what do they
+  share?").
+- **Fresh-attacker hard rule** — `fresh_attacker.py`, hooked in
+  `run_claim_search._emit` BEFORE the store write: every both-gate survivor
+  is attacked by an empty-context copy (deterministic, zero LLM spend):
+  re-split reproduction on fresh seeds (any failure ⇒ `killed`; any error ⇒
+  `not-runnable` — either blocks emission) plus a permutation null (every
+  column independently shuffled; an effect that survives ⇒ `suspect`,
+  marked not blocked). The attack report travels with the claim;
+  `discovery_review` shows `[attacked:…]`/`[UNATTACKED]`, and a survived
+  attack earns the `escalated` confidence label by rule.
+- **Calibration lens** — `calibration_lens.py`: recomputes the falsification
+  predictions (GR perihelion, SIS Einstein radius, M–T coupling) into plain
+  AGREE/DISAGREE notes beside our own data; delivered at session start in
+  `task_system_for`; ledger appends are CHANGE-ONLY (status flip or
+  Δdelta>0.01) so the daily clock never re-feeds unchanged notes as new
+  evidence. `verdicts_changed_by_notes()` is the 90-day counter (baseline 0
+  on 2026-08-30; stop condition: no change in a quarter ⇒ retire the lens).
+- **Logged live-source check** — `novelty_gate.check_novelty`: a cached
+  `known` verdict may not stand on memory alone — one live retrieval within a
+  7-day TTL is required and stamped; if unavailable, the verdict is
+  downgraded to `known-cache-only` (not cached) and the claim re-enters the
+  register as an open problem via `_NARROW_GATE2`.
+- Ledger kinds extended: `attack`, `clock`. Tests:
+  `astra_core/tests/test_eureka_phase2.py` (18) + `test_evidence_ledger.py`
+  (19); chokepoint 13/13; touched-module pytest sweep 78/78
+  (`test_claim_gates` now stubs the attacker in its persistence test — the
+  hard rule correctly blocks its synthetic verdict).
+
+---
+
 ## Recent versions (v14.0–v14.13) — moved from CLAUDE.md (2026-07-17) to keep the entry file lean
 
 **One-line version history:**

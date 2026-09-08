@@ -108,6 +108,62 @@ def test_does_not_raise_when_log_unwritable():
         rcs.VERDICT_LOG = orig
 
 
+# --------------------------------------------------------------------------- #
+# Promotion-outcome projection (F1/F3(a), 2026-09-08): the log line records    #
+# what actually happened at the chokepoint, not just the gate verdicts.        #
+# --------------------------------------------------------------------------- #
+def test_projects_emission_outcome_and_attacker():
+    v = _sample_verdict(both_pass=True)
+    v["emitted"] = False
+    v["emit_reason"] = "attacker-killed"
+    v["fresh_attacker"] = {"disposition": "killed",
+                           "detail": "permutation null kills it " + "x" * 300}
+    lines = _run_on_temp_log(v, label="step1")
+    rec = json.loads(lines[0])
+    assert rec["emitted"] is False
+    assert rec["emit_reason"] == "attacker-killed"
+    fa = rec["fresh_attacker"]
+    assert fa["disposition"] == "killed"
+    assert len(fa["detail"]) <= 160          # truncated, bounded payload
+
+
+def test_projects_second_judge_outcome():
+    v = _sample_verdict(both_pass=True)
+    v["emitted"] = True
+    v["emit_reason"] = None
+    v["fresh_attacker"] = {"disposition": "survived", "detail": "ok"}
+    v["second_judge"] = {"status": "not-configured", "block": False, "model": None,
+                         "n_retrieved": 0, "confidence": None,
+                         "reasoning": "set ASTRA_JUDGE2_* to enable"}
+    lines = _run_on_temp_log(v, label="step2")
+    rec = json.loads(lines[0])
+    assert rec["emitted"] is True and rec["emit_reason"] is None
+    sj = rec["second_judge"]
+    assert sj["status"] == "not-configured"
+    assert sj["model"] is None and sj["confidence"] is None
+
+
+def test_projects_gate_provenance_fields():
+    v = _sample_verdict(both_pass=False)
+    v["gate2"]["from_cache"] = True
+    lines = _run_on_temp_log(v, label="step3")
+    rec = json.loads(lines[0])
+    assert rec["gate1"]["pmax"] == 1e-5
+    assert rec["gate1"]["family_size"] == 60
+    assert rec["gate2"]["from_cache"] is True
+
+
+def test_null_degradation_on_pre_emit_rows():
+    """Rows from paths that never reach _emit (the seed row, log-only replays)
+    carry explicit nulls, not garbage — and never crash the projection."""
+    lines = _run_on_temp_log(_sample_verdict(), label="seed")
+    rec = json.loads(lines[0])
+    assert rec["emitted"] is None
+    assert rec["emit_reason"] is None
+    assert rec["fresh_attacker"] == {"disposition": None, "detail": ""}
+    assert rec["second_judge"]["status"] is None
+
+
 if __name__ == "__main__":
     failed = 0
     for name, fn in sorted(globals().items()):

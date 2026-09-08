@@ -34,12 +34,19 @@ class LLMGateway:
     """
 
     def __init__(self, model: Optional[str] = None,
-                 max_tokens: int = 4096, timeout: float = 90.0):
+                 max_tokens: int = 4096, timeout: float = 90.0,
+                 auth_token: Optional[str] = None,
+                 base_url: Optional[str] = None):
         import anthropic  # local import: module imports even if SDK absent
 
-        token = (os.environ.get("ANTHROPIC_AUTH_TOKEN")
+        # Explicit overrides win (used by e.g. the promotion-time second-family
+        # judge, which points at a DIFFERENT provider than the daily loop);
+        # otherwise the shared environment defaults apply unchanged.
+        token = (auth_token
+                 or os.environ.get("ANTHROPIC_AUTH_TOKEN")
                  or os.environ.get("ANTHROPIC_API_KEY"))
-        base = os.environ.get("ANTHROPIC_BASE_URL")
+        base = (base_url
+                or os.environ.get("ANTHROPIC_BASE_URL"))
         if not token:
             raise RuntimeError(
                 "No ANTHROPIC_AUTH_TOKEN / ANTHROPIC_API_KEY set")
