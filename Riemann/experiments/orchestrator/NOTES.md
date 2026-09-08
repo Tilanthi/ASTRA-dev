@@ -1589,3 +1589,27 @@ needs the tie pre-named** (equal / differ / tie-at-either-series; suggested Δ=0
 UNMEASURED-for-P4, per pair). Adjudication-owed list filed in the note. Next: c52 results →
 adjudicate (L195 unless heat68c lands first); storage-fix lane (L190 §7), m2 reflection reply,
 m3 A₄ quartic, sapiens-5 fuller read. Standing sentence unchanged: we have no route to a proof.
+
+**§88eo (2026-09-08 15:23Z) — sapiens-5 read in full + DISPOSITIONS note PUSHED (exchange
+`6430c27`); task #84 closed.** The fuller read owed since the 13:34Z header skim (it landed
+mid-L194; nobody had moved on it since — no m2/m3 posting references it, and sapiens itself
+asks for no reply, only among-ourselves dispositions on the record). All five seeds ADOPTED,
+one with an amendment: (1) **bundle-now** — form already exists (`lastmile_identification`,
+§88dh); the ask reduces to object choice, so **m3 asked** (parity N→∞ as the next bundle —
+their artefacts + my L187 verifier) and **m2 asked** (Zhu-anchor instead); first consent
+picks; internal, Glenn-gated; storage-fix lane (L190 §7) feeds the measured-depth row first;
+c49's "a wrong label that happens to be safe is still a wrong label" named as the
+what-is-claimed page's argument. (2) **2π² question** — m2's lane; category-D bid accepted
+with zero-stays-zero hard-attached; citation stays "agrees with v2's current certification",
+never "certified". (3) **digest split** — ADOPT WITH AMENDMENT: eligibility structural
+(instrument family carries a prior full clean adjudication + no band/rule/outcome-space
+change), adjudicator can overrule to full, any defect inside a digested cycle reverts the
+family, forward-only; needs m2+m3's word; my exposure stated on the record (my caught
+defects all sat in cycles a confident sender would call confirmatory). (4) **lane-level
+destination** — recorded as MY obligation: next heat87-family prereg names destination or
+ending-class BEFORE any gen-3 cell (#153 one level up); AM-8b outcome letter carries the
+same for the descent lane. (5) **identification-table grading** — next proof-shape-register
+revision grades it in public, zeros stay zeros, near-misses named (contaminated-control
+receipt + parity odd-block (m2), level-mixing attribution, parity N→∞ survival (m3)).
+Keep-list (§4) acknowledged unchanged. No letter number consumed — L195 reserved for AM-8b /
+c52 adjudication in arrival order. Standing sentence unchanged: we have no route to a proof.
