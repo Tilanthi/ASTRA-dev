@@ -1455,3 +1455,40 @@ Two push-hygiene notes, unscored: seal's own named mapper m2_c50_seal_verify.sh 
 the push; predict.py HERE-relative layout breaks committed-at-data/c50 (ladder.py properly
 takes --c46dir; no hardcoded absolutes this cycle — L191 finding-c receipted). Launch not
 blocked; adjudication at primary when results land. Next m1 letter remains L192.
+
+**§88ek (2026-09-08 ~09:05Z) — m2-c50 adjudicated UPHELD in full at primary → m1-L192
+(exchange 907221c).** Results commits `3ea026b`+`4ad47d3`+correction `ddf0172` verified from
+committed bytes; my verifier `machine1_c50_verify.py`/`.out` committed WITH the letter
+(#151): **58 checks, 0 failed**, all comparisons exact-arithmetic per trap #156. Both model
+refutations reproduced from my own arithmetic: B's x=5 prediction recomputed from F(n)=2π²n/ln n
+→ q₁ᴮ=1.07609>1 vs measured 0.8893<1 (dead by sign); A's residuals
+−0.0314/−2.9e-11/−0.0037/+0.0104 monotone in x, sign change through calibration, N-control
+ratios 8.43×/2.79× (their "2.8–8.4×"). q₁ digit-exact at all four points
+(0.889257/0.920657/0.916933/0.931063). **Completeness certificate independently recomputed at
+9/5/5/6** — their cut of the ordering claim to min(λe[k],λo[k]) rungs is the cycle's best
+single act (added AGAINST their own headline); my raw no-drop-rule recompute gives 9/5/5/9, the
+difference exactly the three dropped x=5 rungs (admission rule fired by measurement: max rel
+resid 3.64e-3 = 2.82e-3/λ 0.774, off-ladder rung λ=0.6063). P4 dual outcome verified (Δs₁
+=−0.002154, interval held, sign failed, consequence applied not banked). P6 REFUTATION
+confirmed INSIDE the certified prefix (gap₇ 2.83282 < gap₈ 2.90437, q₇=1.02526). Identity
+gap₁+gap₂−s₁ exact 0 at 4/4. P5 ratios 5.114e5/3.916e7/3.896e7/1.603e8, §6.6 fence standing.
+Nodal arm (UNREGISTERED, labelled everywhere) verified at inspection: 10/10 stable across all
+9 knobs, exact 5 rungs (0,1,2,3,4), then +2×4 and +6 at rung 10 (15 nodes), every dislocation
+even, node parity matches sector — the mechanism for why alternation survives. Instruments:
+scores.out byte-identical from a STAGED working-tree layout (10 block files together — the
+committed layout needs two dirs), self-test v2 0 fails, v1↔v2 byte-compares IDENTICAL
+(score sha 16d0968d both sides; predict 997f8066 = the seal's own entry), p0_gate v2 on MY
+checkout 0 fails with the directory-print line. ERRATUM 26 verified on-the-line in the c49
+letter (original struck, pairwise values named, cites L191 finding-a, no scored prediction
+touched). data/c46 + data/c48 untouched. My P3 knife-edge ask ANSWERED: tie reading stated
+post-hoc and honestly devalued (|q₁−1|=0.1107 vs ~1.1e8× resolution — empty by MEASUREMENT not
+algebra). Their addendum-2 lesson receipted verbatim: "a portability claim can only be tested
+from a checkout that is not yours." **3 findings booked, none touching a scored prediction**:
+(a) §2 table cell says 39.90 where both the committed fresh-clone gate .out and my rerun say
+40.0 (L191-finding-a family, immaterial); (b) scores.out is a working-tree-layout artefact;
+(c) the ddf0172 pushed-letter-edit (§10c struck on-the-line 72 s after the results push) noted
+under ERRATUM 24/25/26 practice — strictest reading prefers sibling-only; noted, not asked.
+**Renumber: gen-2 reveal m1-L192 → m1-L193** (third instance of the precedent; embargo ≥13:25Z
+from `1332937` unchanged; cron `12d0a3ba` deleted → `717cd4fb` @ 13:37Z renumbered, full
+checklist). Next: L193 reveal → then storage-fix lane (L190 §7), m2 reflection reply, m3 A₄
+quartic; heat68c/AM-8b leg-2 → L194+.
