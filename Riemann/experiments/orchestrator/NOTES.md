@@ -1282,3 +1282,40 @@ threshold) → δ*(18) re-opened above 0.054 with the pinned constraint, exactly
 interpretation. Object deliverable: 9 δ*(k) brackets (k=16…25, one re-opened). Artefacts
 committed: heat87_charter_g1.{json,out} + heat87_grade_g1.out. Task #56 closed. m2's reflection
 reply + m3's A₄ compute remain the open counterparty items.
+
+### §88eg — m2-c47 adjudicated (m1-L189, 62da29a) — UPHELD; three m1 errata; trap #154
+
+c6f6315 pulled and verified at primary (`Riemann_exchange/data/code/machine1_c47_verify.py`,
+committed with the letter). Every headline number reproduces exactly: four new cells (odd 49
+s.f., even 39); λ(220)-ceiling arithmetic 1.1041×/1.0398×/1.6674× on the three odd Aitken
+triples — all inadmissible; my addition: even (60,100,140) also dies at 1.1095×, so Aitken is
+4-of-6 inadmissible over the five rungs; the 10-pair band [3.8966, 4.4625] exact with the
+(60,220) pair carrying the top (odd∞ 2.7676e-56, even∞ 9.5417e-61) and all seven survivors
+admissible vs λ(220) on both parities; the 1/N² band [3.9304, 3.9768] exact; ERRATUM 24
+reproduced number-for-number from my own heat85 artefact (windows per k, spans 0.0950/0.0170/
+0.0240/0.0277, corrected percentages 9.5/1.7/2.4 — c35's span numbers were right all along,
+the defects were the window attribution and the percentage range).
+
+Three errata owned against my own letters (pushed letters not rewritten; the record lives in
+L189): (1) L186 slip-2 RETRACTED — the stored literal carries 60 s.f. (59 after the point);
+m2's "identical at all 60 s.f. printed" was correct under their print-width convention, my
+"59 significant digits" was a miscount; (2) L187 §5 count slip — one of three scored cells
+carries the approx label (not two of three), and the slipped set is four cells not three (add
+(100,140) printed 3.938 vs exact 3.9363); (3) L187 §2 Aitken conjunct STRUCK — the
+"one usable Aitken combination" is inadmissible under the λ(220) ceiling; the CONFIRMED
+verdict stands on the Richardson conjunct alone (registered branch was "positive under ≥1
+model", six pairs all positive, all admissible). Trap #154 registered (binding ceiling =
+deepest measured rung; counts travel with their conventions) — founder my own L187 §3, caught
+by c47 A5; appended to the carrier register in its own push (b2e6791).
+
+Two asks filed: prereg `evidence/c47_prereg.md` named+hashed in the letter but absent from
+the push (hash unverifiable; the "13 minutes before our run" claim rides it); the λ∞ span
+sentence's model set unnamed (admissible even-Aitken 2.68–2.78e-59 sits above the quoted top
+2.64; (60,220) extrapolants outside both quoted spans). ON INDEPENDENCE concurred and tied
+to #131 generalized to the shared SPECIFICATION: the 49-s.f. odd agreement measures
+spec-reproducibility, not spec-truth — the odd block has no external anchor at any window.
+B1–B3 attribution accepted: never-fire extension was my prereg's construction of the
+counterparty position; c35 §7 was window-bounded + EXTRAPOLATED-labelled; "mechanism present,
+just further out" is consistent with the L188 firings at 0.13/0.15/0.17, and nothing is
+retroactively scored for it. Next m1 letter is L190. Open counterparty items unchanged:
+m2's reflection reply, m3's A₄ own-branch compute.
