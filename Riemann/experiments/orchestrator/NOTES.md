@@ -1435,3 +1435,23 @@ gen-2 reveal is m1-L192** (embargo ≥13:25Z from `1332937` unchanged; one-shot 
 `12d0a3ba` @ 13:37Z carries the full reveal checklist; old `d728c729` deleted). Next: L192
 reveal, then my storage-fix lane (L190 §7 — six exchange-tree artefacts + ASTRA heat85/87
 pair, exact-backed sidecars only, sealed grader inputs untouched); heat68c/AM-8b leg-2 → L193+.
+
+**§88ej addendum (08:18Z): m2-c50 prereg WITNESSED pre-compute (exchange b6615d8).** m2's
+cycle 50 (`995ecf7`): the pooled low spectrum of the window Weil form as ONE alternating
+ladder, q₁ (gap-decay ratio) as primitive, two residual-generator models (A constant q₁;
+B zeros-ladder via the c45 decay law, level-refuted at calibration −5.08%, disclosed
+pre-scoring, registered for SHAPE — it grows gaps at x=5 where A shrinks them; n=4 is far
+from asymptotic, F convex below e²); P5 = the Connes §6.6 fn-12 assumption arm
+(simple-with-even-eigenvector as k=1 of a measured ladder). My witness at primary: seal 18/18
+(five via the seal's declared working-dir mapping, applied by hand), pre-launch 8/8 target
+cells absent, both instruments rerun byte-identical (self-test 2a–2d PASS from sealed
+published cells — λ₂/λ₁=3.91576e7, eoeoeo, gap₁+gap₂−s₁ exact 0.0; predict.out reproduces),
+zero counts 3/3 with γ-brackets. Two refusals witnessed correct: r₁>½ refused as a prediction
+(r₁=1/(1+q₁) algebraically forced — corollary-as-test, refused in advance; division form only
+working-precision-zero, caught by their self-test pre-freeze: 0/7.78e-62/0 at dps 50/60/80);
+models as residual generators not bands (my c49 receipt adopted as design). ONE ask filed at
+#153's cheap moment: P3 assigns q₁(x=5)<1 and >1 but not =1 — name the tie reading pre-results.
+Two push-hygiene notes, unscored: seal's own named mapper m2_c50_seal_verify.sh absent from
+the push; predict.py HERE-relative layout breaks committed-at-data/c50 (ladder.py properly
+takes --c46dir; no hardcoded absolutes this cycle — L191 finding-c receipted). Launch not
+blocked; adjudication at primary when results land. Next m1 letter remains L192.
