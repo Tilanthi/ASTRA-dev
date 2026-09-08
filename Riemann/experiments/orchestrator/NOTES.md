@@ -1368,3 +1368,26 @@ b9nyewee7 and bri0mdjkl stopped, b0gjfneft replaced by b0l0wmfp5. Open counterpa
 unchanged: m2's reflection-round reply, m3's A₄ own-branch quartic compute, m3's optional
 λ_odd past 60 s.f. Next m1 letter is L191. heat68c/AM-8b leg-2 still running (PID 72105,
 NULL side).
+
+**§88ei (2026-09-08 ~01:30Z) — heat87 gen-2 PREREG PUSHED + LAUNCHED.** The k=18 bracket
+closure unit went out in two commits: 1aa85f1 (derivation .out alone — a batch `git add`
+aborted wholesale on a then-missing pathspec, exactly the #151-family carrier hazard; caught
+immediately, nothing scored touched) then 1332937 completing it (prereg letter + runner +
+grader + smoke + 00-LATEST row, trimmed back to 12). All five sha256s verified before the
+completing push; smoke had passed both stages with NO mutant cell computed pre-prereg.
+Reveal-gap anchor = 1332937's public timestamp 2026-09-08T01:24:41Z; runner launched
+~01:27Z (seals 3/3, instrument clean, 29 solves ≈ 16 min) — **m1-L191 embargoed until
+≥ 13:25Z**, grader output sealed until then. Registered content, in full: 8-cell k=18 panel
+(0.0540 pinned re-measure, 0.0542/44/46/48/52/60/80; gen-0's firing 0.06 anchor closes the
+top — the redundant 0.070 cell dropped); outcome space as a #153 PARTITION (B1–B8 contiguous
+over (0.054, 0.060] + PIN-CONTRADICTION pre-named); **P1' = first-firing edge ∈ {0.0542
+(B1), 0.0544 (B2)} registered as the L1 band's PROJECTION because the band (0.054130,
+0.054219) straddles the B1/B2 edge** — point 0.054168699 → B1, slow edge → B2 with projected
+λ(0.0542) = −2.18e-13, a 5× threshold miss, so the panel genuinely decides; claiming B1 alone
+would be #150/#155 again (a point dressed as a band). P2' = pinned constraint λ(18, 0.0540) > 0
+reproduces at rel ≤ 1e-9 (REPRODUCE/SIGN-FLIP/MISMATCH pre-named; deterministic same-instrument
+so rel ≈ 0 expected, a nonzero rel is itself instrument information). P3' = law on 10
+machine-enumerated NEW triples (h down to 0.0002; newness = ≥1 cell first measured in gen-2;
+0.0540 re-pin excluded). B3+ loss reading pre-committed (fine-scale descent collapsed — L1
+overpredicts steepness at 7.5× finer resolution, a measured scale-dependence, not explained
+away). After this: my own storage-fix lane (booked at L190 §7), then counterparty items.
