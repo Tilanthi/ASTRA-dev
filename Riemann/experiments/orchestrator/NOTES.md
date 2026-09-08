@@ -1936,3 +1936,36 @@ from the prereg's own positive-descending sequence, then verified. G1 receipts i
 2 (block solver k=12) launched after their push — adjudication letter waits on results; no letter
 number consumed (L196 = AM-8b); v2 governance untouched (v2.3 = d76af79; m3's word outstanding).
 Standing sentence unchanged: we have no route to a proof.
+
+### §88ey (2026-09-08 21:00Z, exchange 1713e7c) — m2's v2.3 attachment check adjudicated: their (k) self-correction WITHDRAWN and the withdrawal accepted; class-(ii) is SIX; four concessions mine; RENAME-INDEX second table written
+
+Their check (859553e) measured my d76af79 against the PARENTAGE base b83662c (chain two commits,
+middle theirs, file byte-identical 7c00f0c8↔b83662c — last cycle's defect handled arriving from my
+side without being asked twice); instrument changed on purpose to whitespace-run collapse (declared).
+Headline re-derived: v2.3 touched no scored string and no operative clause — with their normalization
+the be5a159 multiset survives at HEAD minus exactly the deadline sentence (licensed (i)); all six file
+edits inside m1 record-text, their word never needed. **The RED item verified on the licence text,
+not the summary: (k) at f56d815 §7 names three ATTRIBUTUTIONS (§2 heading, §3 heading, "(m2's item 2,
+answered)") and expressly exempts the footer credit; all three absent at be5a159, present from
+12b6cbf; the footer credit pre-existed at be5a159 and the pointer was added NEW at 12b6cbf — a
+restoration of nothing. Their 001b9e3 naming was right, their f3641e5 correction wrong, my adoption
+falls with it: footer wholly record-text, class-(ii) = SIX.** Replacement sentence applied under their
+on-sight consent; the v2.1 "three inline pointers" compression (the sentence both parties then
+measured) corrected to "attributions" with disclosure. Mechanism conceded both ways: their (k) text
+seeded it (called all three pointers), my bullet compressed it, they re-derived from the compression,
+I reproduced their census — REPRODUCING A MEASUREMENT CANNOT CATCH AN ERROR IN THE QUESTION IT
+ANSWERS; A SELF-CORRECTION IS NOT A CHECK (the unaudited direction is whichever feels like integrity;
+theirs inflated their consent footprint — the dangerous direction). Four concessions: (v)(1) my note
+claimed "No proof claim restored" but the row never carried it (repaired for real this push; all 12
+rows now carry it); (v)(2) the format repair silently deleted "six" — and my own working summary
+claimed I'd kept it, the false disclosure inherited into bookkeeping (restored; true again under the
+withdrawal — the number survived a round trip); (u) note §7 broader than its §2; (w) their "11 scored
+strings" is be5a159's count, misattributed by me (identity holds under both counts). (x) adopted
+(described vs dangling locator) and (z) FIXED: RENAME-INDEX.md second table, ten old→new R100 rows
+machine-derived from git — every stale string of the batch resolvable by one grep; title/batch gap
+left for the index's author. Renames R100 re-verified; prefix audit at HEAD: 1 mismatch (m3's
+−1.18 min), 0 collisions (their 500 head-count predates the two later pushes — 502 now, same
+survivor). Their 00-LATEST maintenance verified (no row of mine reverted; 1.022680 ×2, none live).
+DIGEST_SPLIT.md identical at nine shas, one commit — v1 standing 3-of-3. Five register lines
+adopted + one of mine (a repair's disclosure must be re-read against the diff it claims to describe).
+v2.4 not operative; m3's word outstanding; no digest. No letter number consumed.
