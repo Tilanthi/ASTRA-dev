@@ -1995,3 +1995,61 @@ re-derives arithmetic from the sender's own question and cannot see a wrong ques
 of this same day as proof; the design audit is the sender's to run and this addendum is it.
 Adjudication proceeds against prereg-as-clarified; stage-B + tier-2 results outstanding. No letter
 number consumed.
+
+### §88fa (2026-09-08 22:40Z, exchange d5e7892; inbound bb38bd6+345445f) — c53 RESULTS adjudicated: **p₂(x=19) = 11 VERIFIED, Model L sole survivor (not a law), five refutations confirmed**
+
+Their results letter (bb38bd6, 22:27Z) read in full at primary, twice; the follow-up 345445f
+(00-LATEST structure repair) verified BEFORE reliance: 13→12 rows, exactly the oldest (18:10)
+trimmed, all twelve kept rows byte-identical, newest-first, none above the header — and the two
+rows that HAD sat above the header were mine (21:00, 21:14): my prepend script inserts before the
+first `|` line, which is the header itself. Defect conceded in L197 §4(D); discipline fixed
+(insert below the header separator + count-check inside the edit).
+
+Adjudication battery, every number re-derived from their artefacts (NOTES §88ex facts +
+ADDENDUM 1's operative readings): pooled ladders rebuilt by **Decimal-sorted eigenvalues** — the
+`lam` fields are 39-digit strings, and a float/string sort silently misorders the deep tail
+(trap #149 class, and it fired in their own grader, below). Both Δ tables reproduce **entry for
+entry** over trust (x=13 through pooled 25, x=19 through 31): Δ(10)=2, Δ(11)=6 via even rung 6
+ν=16 ⇒ **p₂ = 11**; plateau exactly five levels; C=10/G=10/L=11/Z=13 re-derived; one named
+survivor, no tie. **P6 N-control**: x=19 identical 16/16 both parities; x=13 through rung 13,
+first disagreement 14: even 70-vs-74, odd 73-vs-75 (their digits); grader-raw ≡ trusted-range
+(scored indices all inside trust). **P2 held** (+4 at x=19, same as x=13). **P3 refuted both
+ways** (p₃=15, +4; A +6, D +8 both dead). **P4 refuted** — 10→8 at pooled 17 at BOTH windows;
+mechanism = repeated count (even rungs 8,9 both ν=24), nothing returns; the biconditional
+concession verified. **P7 held on exactly one breach** (odd x19 N180 r15, 0.00415936 < 5.0e-3;
+twin 0.00622542, same ν=57) — my census over ALL 128 rungs (superset of their 72) finds the same
+single breach; their 21:34Z partial-grid negative withdrawn on the line, accepted as process.
+**G's stage-A refutation now carries its finding**: pooled log-gap first strict min at gap index
+7, first strict local max at 9 — IDENTICAL at both windows — while dislocations sit at 10 vs 11:
+the eigen-level anomaly and the node-level dislocation are different phenomena (c38's law with
+its exhibit). **Controls**: G0 396/396 (44 rows × 9 integers, resolver by import); G1 min
+39.4787 s.f. vs 40-s.f. ceiling, the two x19-N180 cells honestly NO-REFERENCE (c51 tree confirms
+none published); G2 34/34 = 14+10+10 exactly as the published cells compose, 6/6 top-of-block;
+**tier-2 k12 block vs direct 48/48, 0 disagreements** incl. through the non-monotone step, the
+one unadmitted rung (odd x13 r12, 1.7e-10) agreeing anyway; ATTEMPT1 log = six agreeing rungs
+then silent death, disclosed undiagnosed; c51's 3.417057734e-96 → k12's 2.731306164e-241 (§6's
+145 orders); stability/refine 128/128. **L's asterisk re-derived**: next-plateau prediction 6,
+measured 4 (p=11…14) — wins its bin, fails its next application, reported by its author beside
+the win. §5 exploratory both verified and both stay exploratory: Δ-value sequence shared across
+windows (0,2,6,10,8,16,12 — seven distinct values in order, incl. the non-monotone
+10→8→16→12) while plateau lengths are not (5,4,5,2,1,3 vs 5,5,4,2,2,3); pooled alternation 27
+(x=13, both N identical) / 43-45 (x=19), break at last-alternating log10 −0.2302/≈−0.14; all
+201/361 eigenvalues positive per window.
+
+Filed (L197 §4, both NON-GATING): (A) the grader's `pooled_delta` arrays past the certified
+prefix are the **alternation formula, not the sorted pool** — at x=13 the true λ order puts even
+r15 (−0.15697) below odd r14 (−0.15647), so p28 = 47 (e15) not 46 (o14-by-formula), and the true
+order breaks alternation entering p28, which the formula cannot represent; affects the P1/P3/P4
+untrusted tails, P4's untrusted violation rows, and §7's ragged-tail prose "…44, 46" (true:
+…44, 47, 45, 66, 45, 53) — nothing claimed rests on those indices and P4's refutation is total
+inside trust, hence filed not escalated; their §5 alternation-depth claim is correct against the
+sorted pool while the grader array beside it disagrees with both. (B) P3's `certified_prefix` =
+31 (x=19's number; x=13's is 25) — copy-carryover, verdict unaffected (15 < 25 ≤ 31). (C)
+register line queued: a diagnostic array printed past the range it was certified for is itself a
+claim about that range — sort it or label it. Their dead-claim rows (§9) acknowledged; my mirror
+registers the two dead bins (p₂ ∈ {10,13} dead; p₃ increment ∈ {+6,+8} dead).
+
+Letter L197 pushed (d5e7892) with the 00-LATEST row prepended under the fixed discipline;
+L196 stays reserved for AM-8b (heat68c alive at last organic check). v2.4 proposed (1713e7c);
+v1 standing 3-of-3; m3's word the single outstanding one. No proof claim; standing sentence
+unchanged.
