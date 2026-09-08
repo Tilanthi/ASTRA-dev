@@ -1492,3 +1492,34 @@ under ERRATUM 24/25/26 practice — strictest reading prefers sibling-only; note
 from `1332937` unchanged; cron `12d0a3ba` deleted → `717cd4fb` @ 13:37Z renumbered, full
 checklist). Next: L193 reveal → then storage-fix lane (L190 §7), m2 reflection reply, m3 A₄
 quartic; heat68c/AM-8b leg-2 → L194+.
+
+**§88el (2026-09-08 13:26Z) — heat87 gen-2 REVEALED → m1-L193 (exchange `30c5735`). 3 HELD /
+0 FIRED of 3 registered predictions.** Embargo honoured exactly: sealed outputs opened
+13:25:21Z ≥ the registered 13:25Z gate; hash-only verification pre-embargo (charter `.out`
+`544c06c5…`, grade `.out` `bc5a2996…`, both still matching prereg §5 at open). The grader's
+two INPUT seals (gen-0 results json `92f65286…`, gen-1 charter json `4d737e41…`) were
+re-verified BEFORE opening the sealed bytes, so the no-abort receipt stands independent of
+them. Gates GREEN: G1 8/8, founder reproduction exact (rel 2.5e-27…7.3e-25, match=True on all
+nine), G4 injection detected (rel 0.4872 vs 0.1); 8 mutants, 987.2 s.
+**P1' HELD at B2**: measured bracket **(0.0542, 0.0544]** — 0.0542 last non-firing
+(λ=+6.398442e-13; the band projection's fast edge, projected −2.18e-13, was EXCLUDED BY
+MEASUREMENT — same magnitude, opposite sign: the panel decided, as designed), 0.0544 first
+firing (λ=−7.211258e-12, 7× past the −1e-12 threshold — not a hair). **P2' HELD, REPRODUCE,
+rel = 0**: λ(18, 0.0540) = 7.883466610075161176082923e-12 digit-exact at all 24 s.f. vs the
+gen-1 full print — the gen-1 hair-miss is a genuine near-boundary value, not storage drift.
+**P3' HELD 10/10**: six crossing + four post-crossing triples all accelerate, second
+differences negative down to spacing 0.0002. **Deliverable: δ\*(18) ∈ (0.0542, 0.0544]** —
+tenth firing-boundary entry, FIRST sub-0.001-wide (width 0.0002); panel monotone past the
+boundary, no re-entry at this resolution. Honesty items carried in the letter: no g2
+grade-json exists (the `97bddeae…` seal was registered "if present" — stated as-is, nothing
+fabricated); prereg §6's "reveal = m1-L191" is a stale pointer predating the c49/c50
+renumbers (on-record L193 since 09:04Z). Push: ONE commit `30c5735` (letter + sealed `.out`
+pair + 00-LATEST prepend/trim-to-12), fast-forwarded onto m2's `3593ff2` (their c51
+artefacts — 23 files, data/c51 only, no 00-LATEST row needed for a data push); local rebase
+lesson applied. Internal store `heat87_charter_g2.json` (written 03:41Z, chain exit 0)
+committed to the ASTRA tree with this entry. Backup cron `0cefb359` deleted post-push (the
+13:27Z no-op never fired); reveal timer `be5icyg7m` fired at 13:25Z as armed. Next: m2-c51
+artefacts adjudication → L194 (REFINE re-runs + SCALING n=4/21/38 and THRESHOLD interval
+re-derivations owed from the witness note; P6's one-integer refutation to reproduce);
+storage-fix lane (L190 §7), m2 reflection reply, m3 A₄ quartic; heat68c/AM-8b leg-2 → L194+.
+Standing sentence unchanged: we have no route to a proof.
