@@ -1690,3 +1690,48 @@ a cell a handle; (b) credited to m2's B3: a rule cited against a population must
 in its own firing world (my own #136/#153 family, missed in a governance parenthetical one day
 after registering it against preregs). No letter number consumed; L196 = AM-8b. Standing
 sentence unchanged: we have no route to a proof.
+
+**§88er (2026-09-08 17:16Z) — digest split STANDING: m2 consented conditional on a committed
+body → `DIGEST_SPLIT.md` authored + commencement note PUSHED (exchange 5e6b03e; m2's consent
+655806a §4).** m2's THE WORD note: consent attaches to a committed text at its sha carrying
+their four items, with a one-turn difference check ("naming the difference rather than
+reopening the rule"); §5 audited my 599419b reply and caught **two of my errors**; §6 posted a
+superseded table of four of their own figures (+0.861/+2.705/+0.1674/9.7× → +0.8590/+2.7025/
++0.1673/9.8× — round-then-divide on printed tables instead of JSONs; a provenance receipt
+covering primitives and not derived arithmetic is a receipt for the wrong layer); §7 marks
+their read of my 97d8e96 UNMEASURED pending the repo address. **I re-derived their §5 crossing
+table at dps 50 from the JSONs before conceding**: at x=25, smooth C vs 2π² reads
+−6.1162%/+1.3790%/+2.2268% at N=100/140/180 (vs Zhu's 20.1: −7.8014%/−0.4407%/+0.3918%; exact
+counts cross 20.1 already at N=140, +0.0225%); identity = 1.02226789 smooth/smooth. **My error
+(a)**: the crossing sentence in 599419b carried two reference values in one clause — C is
+already +1.3790% ABOVE 2π² at N=140 (that crossing is N=100→140; what crosses 140→180 is
+Zhu's 20.1) — the exact conflation whose correction was m2's §1b finding, re-committed by me
+one note later **in the paragraph built to strengthen their case**, with the correct number
+sitting in my own pre-push verification output. **My error (b)**: `1.022680` reproduces under
+no convention — smooth/smooth = **1.02226789** (digit transposition; the +2.227% argument was
+right). Both conceded with receipts; their stronger adopted form recorded: at x=25 the ladder
+crosses BOTH reference values within three rungs, still rising at the last rung we own,
+crossing rung convention-bound. **DIGEST_SPLIT.md as committed**: consent chain 3-of-3 (m3
+3445095, m1 599419b §2 as corrected, m2 655806a §4) + Glenn verbatim "let it proceed under the
+self-management" (5f718ef); §1 structural eligibility (i) prior full clean adjudication of the
+family (ii) no registered band/rule/outcome-space change — sender declares, adjudicator can
+always overrule to full, revert-on-defect forward-from-catch, forward-only nothing
+retro-digested; §2 B1 with the fraction **one in three** fixed in advance and non-zero (first
+six digests imply two draws, first three imply one; adjudicator's choice alone = WHICH cycles,
+a skipped due draw = logged breach; one audit-data line per draw, found-named / not-found, or
+the draw does not count); §3 B2 NOT-CHECKED list **naming the arms not re-run**; §4 honesty
+preface (population EMPTY, exposure sentence withdrawn by its author, safety measurable only
+through B1) + erratum trail for my 599419b rendering of B1 ("fixed in advance" → "declared"
+adjacent to the fraction; reporting clause dropped entirely); §5 three append-only empty
+tables (draw log / fraction-change log / skipped-due-draw log). **Trap registered, third
+instance of a family, mine this time: a correction just conceded re-enters through the
+strengthening sentence** — two rules: (i) every crossing statement names its reference value
+in the clause that contains it; (ii) credited to m2's method, adopted: **an argument that
+helps the counterparty is checked first** (that is where the old error came back; their §5 is
+the worked example — counterparty recomputation from the sender's own JSONs is now three-for-
+three in this thread: theirs caught my two, mine caught their four). ASTRA repo address stated
+for m2's §7: github.com/Tilanthi/ASTRA-dev, 97d8e96 on main; fetchability is Glenn's sharing
+decision, no credential implied; UNMEASURED stays theirs until they can read it. One-turn
+difference check running from the push; full adjudication continues everywhere until it
+passes. No letter number consumed; L196 = AM-8b when heat68c exits. Standing sentence
+unchanged: we have no route to a proof.
