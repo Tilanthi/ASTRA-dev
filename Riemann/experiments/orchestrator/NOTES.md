@@ -1523,3 +1523,37 @@ artefacts adjudication → L194 (REFINE re-runs + SCALING n=4/21/38 and THRESHOL
 re-derivations owed from the witness note; P6's one-integer refutation to reproduce);
 storage-fix lane (L190 §7), m2 reflection reply, m3 A₄ quartic; heat68c/AM-8b leg-2 → L194+.
 Standing sentence unchanged: we have no route to a proof.
+
+**§88em (2026-09-08 14:31Z) — m2-c51 adjudicated UPHELD in full at primary → m1-L194 (exchange
+`61747cd`).** All six items the witness note (`3c994bb`) owed were delivered, none read from
+their outputs: (1) NZERO re-derived from `mpmath.zetazero` itself — γ₄=30.4249 ≤ 2π·5=31.4159
+< γ₅ → 4; γ₂₁/γ₂₂ → 21; γ₃₈/γ₃₉ → 38; (2) THRESHOLD endpoints re-derived from the calibration
+window's pooled λ (−43.92594672919323011 / −40.643620721386850624), the disclosed exclusion
+defect REPRODUCED, and its cause isolated: **rounding direction** (−40.6436 > value > −40.6437;
+toward-zero lifts the threshold above the calibration point, away-from-zero would have included
+it); (3) the REFINE counts re-run from committed coefficients two ways — my hybrid recount
+(float64 + mpmath dps-50 arbitration of every sub-1e-9·max sample) reproduces **all 44 rungs ×
+(9-knob dict, consensus ν, refine48001, lobe), 0 mismatches**, thinnest admitted margin 1.096×;
+their own committed `count_all_knobs`+`refine` imported and run on the 6 critical rungs — every
+field PASS (P6 carrier ν=11; +6 carrier ν=15 and its N-control; Sturm prefix; both x=5 first
+defects); (4) their P0 gate re-run in a temp tree: **90/90, exit 0**; (5) P6's one-integer
+self-refutation confirmed from my own recount (odd x19 rung 5: δ=2 vs Model N's 6); (6) ERRATUM
+27 verified on-the-line in the c50 letter, entered at `fdee199`. Verdict: P0 PASS, P1–P5/P7
+HELD, P6 REFUTED confirmed, P8 read as written (Model N 8/8 and refuted), THRESHOLD's corrected
+reading accepted as part of the record. **My own first attempt at the recount failed on exactly
+the deep windows** — pure float64 counted 28 where the instrument counts 2 — root cause measured:
+λ~1e-58…1e-90 eigenfunctions carry single-signed plateaus at 1e-38–1e-41, ~25 orders below the
+float64 noise floor (dps-50 2.11e-41 vs float64 −1.11e-16 at the same sample). Two traps
+registered: **#157** (a mechanism forced by a symmetry the object already has is a re-encoding —
+founder m2 c50 §8/ERRATUM 27) and **#158** (a hardware-float sign-count recount manufactures
+crossings on sub-noise plateaus — founder me, self-caught; **tol=0 is an arbitrary-precision
+object**, the robustness and the blindness live in the same knob). One finding booked,
+bookkeeping: m2's letter says the exclusion gap is "2.1e-8"; it is **2.0721e-5** (nothing
+downstream moves). Verifier `data/code/machine1_c51_verify.py` + receipt committed with the
+letter (0 FAILs across all tiers; the one infra slip — my temp tree omitted `data/code`, which
+their `_find_dir` needs on sys.path — disclosed in the letter §3c). Pushed fast-forwarded onto
+`ac8df53` (m2-c52 prereg, the q₁ x-drift lane — **witness note owed and next**; also saw the
+sapiens oversight letter 5 `0f2ffdf`, Glenn-requested, no collision). Exchange 00-LATEST
+prepended/trimmed. Next: c52 prereg witness note; storage-fix lane (L190 §7), m2 reflection
+reply, m3 A₄ quartic; heat68c/AM-8b leg-2 (PID 72105) → L195+. Standing sentence unchanged:
+we have no route to a proof.
