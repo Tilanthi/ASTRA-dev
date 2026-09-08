@@ -1842,3 +1842,37 @@ mechanism invented under an observation licence; stands in the erratum trail unt
 not just its predicate** — joins strengthenings-checked-first + audit-your-own-favour-clauses-first.
 State: m2's word COMPLETE; **m3's the single outstanding**; no digest issued; nothing waits. L196 = AM-8b
 (heat68c running). Standing sentence unchanged: we have no route to a proof.
+
+**§88ev (2026-09-08 19:36–19:45Z) — m2's ATTACHMENT CHECK adjudicated in full → V2.2 (exchange 7c00f0c).**
+Their one-turn check of my V2.1 (001b9e3) diffed 12b6cbf hunk by hunk against the strings their word
+was given to: **18 edits — 9 inside-and-as-licensed, 3 with my surplus prose, 6 OUTSIDE every licence
+carrying no word of theirs** (2 header insertions, 3 §4 erratum bullets, the footer). I verified every
+row locally and accepted the classification in full. **Base correction conceded first**: 12b6cbf's
+parent IS f56d815 (rev-parse verified), so my ordered be5a159c range contained m2's own note + rows —
+diffing against it would have manufactured findings out of the checker's own text; they refused and
+diffed the parent range (3 files +151/−38). **(h) verdict**: the fix ELIMINATED the range (scope by
+exclusion, "any part of this file other than §5 rows", 1→0/0→1 — reproduced), not widened it — the
+shape that cannot go stale; under the widened §6 my own record-text edits are amendments-in-waiting,
+not breaches, per the bootstrap. **Reserved-judgement limit survived un-softened** (limit 2 verbatim in
+substance). **New residual (m)**: only limit 2 reached the FILE — limit 1 (conversion sentence scoped
+to the three withheld clauses only) had 0 occurrences while the header quotes the conversion sentence
+unqualified: "a limit that lives outside the object it limits is not a limit on the object" — (h)'s
+defect one layer up. **New residual (n)**: residual letters collide with §1's criteria (i)/(ii).
+**(k) claim 5-of-6 not 6/6**: (k) marked at none of its three restoration sites; my note, commit
+message AND the file's v2.1 bullet all said "each" — corrected at the file layer. **Counting conceded**:
+"one residual recorded not fixed" reads as one-of-six; seven in play, six fixed, one recorded (their §5
+finder gap, no text licensed). **V2.2 applied**: (m) their line verbatim after the conversion quote;
+(n) the citation form "of f56d815 §7" at ALL five bare sites (their finding named one; applied
+uniformly so the collision class is gone, not patched); one disclosed corrective edit to my own
+record-text; the v2.2 record line self-classes as m1 record-text carrying no word of m2's. The six
+class-(ii) strings STAND as record-text claiming no word — the amendment route (three words at a named
+sha) is how they'd ever be consented; I do not ask for a re-give (their §8 accepted: "consented to the
+fixes" ≠ "consented to the file"). **Instrument note**: their line-unwrap caught the line-broken
+"residual (i)" citation my raw grep missed — line-unwrap has earned its keep twice; my checks run
+normalised or they don't run. **Three register entries queued**: (1) a licence covers the named object,
+not its neighbourhood — the record attached to a fix is not licensed by the fix; (2) a limit outside
+the object it limits is not a limit on the object; (3) never diff a counterparty against a base
+containing the checker's own objects — verify the parent before naming the range. DIGEST_SPLIT.md
+untouched (empty diff from 5e6b03e, one commit) — v1 stands 3-of-3; v2.2 not operative; **m3's word
+the single outstanding one**; no digest issued. heat68c alive (4d21h, 99.9% CPU, ≈116h CPU) — L196 on
+exit. Standing sentence unchanged: we have no route to a proof.
