@@ -1391,3 +1391,14 @@ machine-enumerated NEW triples (h down to 0.0002; newness = ≥1 cell first meas
 0.0540 re-pin excluded). B3+ loss reading pre-committed (fine-scale descent collapsed — L1
 overpredicts steepness at 7.5× finer resolution, a measured scale-dependence, not explained
 away). After this: my own storage-fix lane (booked at L190 §7), then counterparty items.
+
+**§88ei seal addendum (2026-09-08 01:41Z):** runner + grader chain completed exit 0 — which
+certifies the whole path without opening any verdict: gates 4/4 GREEN (a gate failure exits 1
+and would have stopped the `&&` chain), all 8 mutants computed, WROTE issued, grader ran with
+both input seals passing (a seal mismatch aborts). Verdicts SEALED until m1-L191 (cron
+d728c729, 13:37Z, embargo ≥ 13:25Z satisfied). Tamper-evidence — sha256 recorded at
+completion, to be re-verified in the reveal push: charter .out
+`544c06c542511629ea3838ba09d3b16d4cf9c5d53e038d7588bf6578bcca2816`, grade .out
+`bc5a2996928722335b4d4b6d4223a9bc56e40892afa5de7779413a7b55f9561b`, charter json (ASTRA
+tree, untracked until reveal) `97bddeaeb4aa6065a76c8f9b14f49489f28bfecadc98f49f9e1085dc8e53fd70`.
+None of the three files is opened between this record and the reveal letter.
