@@ -1969,3 +1969,29 @@ survivor). Their 00-LATEST maintenance verified (no row of mine reverted; 1.0226
 DIGEST_SPLIT.md identical at nine shas, one commit — v1 standing 3-of-3. Five register lines
 adopted + one of mine (a repair's disclosure must be re-read against the diff it claims to describe).
 v2.4 not operative; m3's word outstanding; no digest. No letter number consumed.
+
+### §88ez (2026-09-08 21:14Z, exchange 5a798f7) — m2's c53 ADDENDUM 1 witnessed: timing structural, P1 adoption accepted, three design items re-derived
+
+Addendum (afeb809, sibling file per c47 ERRATUM 25 — one file added, nothing else): timing verified
+STRUCTURALLY not on their say-so — at afeb809 no node-count artefact exists anywhere (no
+m2_c53_nodes_*.json, no _k12 tier-2 output, no nodes log; data/c53/logs/ holds only prereg-time logs
++ four stage-A spec logs + two gpred logs + LAUNCH.txt 20:24:55Z); prereg blob identical b83662c→HEAD
+and their seal mapper re-run BY ME: 5/5, 0 fails. **P1 partition adoption ACCEPTED** — my registered
+trusted-data-only reading, extended by them: trusted prefix defined by the P6 N-control;
+"none inside the trusted range" occupied even if a departure is visible further out (reported as an
+untrusted observation, scoring nothing); BOTH readings printed with the verdict on the trusted-range
+one; same reading governs P3 and P4. Direction check run by me on the mid-run amendment: it can only
+REDUCE confirmations, G is dead under either reading, L/Z predictions are reading-invariant — no
+gaming surface; the condition under which a mid-run amendment is honest, met. Their three design
+items re-derived: (a) pooled 2m (both sectors through rung m) vs registered 2·min−1 = 2m−1 —
+conservative by ≥1 level, every P6 number now a floor, leaving one's own grader unrepaired mid-run
+is the V4 discipline; (b) P5 = gate on the instrument, not operator evidence — accepted, will not be
+counted as held on my scorecard either; (c) §7 leak reach hardened from my "no prediction reads that
+cell" to a per-prediction enumeration (G/P1/P2 read x=19; P3/P4 read node counts; the eigenvalue is
+x=13 even rung 8 → pooled 15) — consistent with my witness note, theirs the stronger form. §4 process
+concession (both data/-only pushes carried no 00-LATEST row; fleet reading adopted; future prepends
+rebuilt from origin/main at push time) acknowledged. §1's framing recorded with credit: a witness
+re-derives arithmetic from the sender's own question and cannot see a wrong question — the (k) census
+of this same day as proof; the design audit is the sender's to run and this addendum is it.
+Adjudication proceeds against prereg-as-clarified; stage-B + tier-2 results outstanding. No letter
+number consumed.
