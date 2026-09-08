@@ -1557,3 +1557,35 @@ sapiens oversight letter 5 `0f2ffdf`, Glenn-requested, no collision). Exchange 0
 prepended/trimmed. Next: c52 prereg witness note; storage-fix lane (L190 §7), m2 reflection
 reply, m3 A₄ quartic; heat68c/AM-8b leg-2 (PID 72105) → L195+. Standing sentence unchanged:
 we have no route to a proof.
+
+**§88en (2026-09-08 14:45Z) — m2-c52 prereg WITNESSED pre-compute → m1 note (exchange
+`4fe2c78`).** The q₁ x-drift as its own cycle (row (a) of c51's orientation — the one m2
+rejected there on cost): 70 cells, x-grid of 12 (9 new: 4, 4.82, 4.86, 5.23, 7, 9, 11, 16, 23),
+parities both at every (x,N), N ∈ {60, 100, N_iso(x) = round(100 log x/log 5)}, **dps=300 at
+every cell** (removes the published series' 150/150/300 confound; arm D measures it). My
+verification from a fresh clone of `ac8df53` (pushed 14:18:37Z, absence receipt 14:17:56Z,
+0/70 cells in the push): seal **5/5 portable**; absence **68/70 + the 2 disclosed** (c50's x19
+dps300 pair, re-run inside the grid as a free cross-cycle determinism check); **KAT re-run 0
+fails byte-identical**; K1's external ground truth re-verified independently from
+`mpmath.zetazero`; sealed grid rule re-printed (70 = the committed tsv); **all three sealed
+blind-prediction families re-derived from the three published points alone** — F_x/F_L/F_n
+constants to ~1e-9, all 36 §4-table entries to ≤2.4e-10, P3b deltas exact (F_n +0.006864 vs
+F_x +0.000328 / F_L +0.000454 = 15–21× discrimination). Design witnessed: **C1** = the
+commission's "moves-with-N ⇒ N-artefact" rule has an EMPTY FIRING WORLD (variational bounds
+non-increasing in N at every x — the #157/ALGEBRA class caught at design time; N re-registered
+as a covariate, P5 CLEAN/CONFOUNDED/UNMEASURED per x); **C2** = at fixed N the instrument
+degrades 2.26× in resolution along the x-axis with bias of the SAME SIGN as the drift
+(under-resolution inflates q₁; c50 measured −0.00372 at x=13 N100→180) — the isoresolution
+series + **P4 sign-agreement is the kill arm**, and a dps/iters/gl_degree sweep could never see
+C2 (knob-stable and wrong, c51's sense — the transferable half of that lesson, applied);
+**P3's γ₄-crossing pair** (4.82→4.86, +1 in n at 0.83% x-motion vs 20.5%/7.6% at constant n) is
+the sharpest fit-free object. P6 registers three rate families calibrated on the published 3
+points only, "at most one survives, and I do NOT register which" — c50's
+monotone-blind-residuals-with-sign-change law inherited. Two non-blocking observations: (a)
+`_repo()` portability (only `HERE/repo/Riemann` + `/shared/…` — their §7 licenses the path-only
+fix; c51 `_find_dir` the cure); (b) one prose literal γ₄/2π = 4.84226942838913 not "4.842236"
+(blocks are measured, K1c — nothing moves). **One cheap #153 ask filed: P4's outcome space
+needs the tie pre-named** (equal / differ / tie-at-either-series; suggested Δ=0 ⇒
+UNMEASURED-for-P4, per pair). Adjudication-owed list filed in the note. Next: c52 results →
+adjudicate (L195 unless heat68c lands first); storage-fix lane (L190 §7), m2 reflection reply,
+m3 A₄ quartic, sapiens-5 fuller read. Standing sentence unchanged: we have no route to a proof.
