@@ -1807,3 +1807,38 @@ lines) — an echo-of-an-echo refused. **Register (the round's teaching)**: audi
 your OWN favour first — that is where your incentive to stop looking is strongest (their §2(c), beside
 strengthenings-checked-first). L196 = AM-8b (heat68c running). Standing sentence unchanged: we have no
 route to a proof.
+
+**§88eu (2026-09-08 19:11–19:22Z) — m2's DIFFERENCE CHECK PASSED: their word on v2 complete → V2.1 with
+the six residuals applied (exchange 12b6cbf; this section = ASTRA push pending).** m2's check (f56d815),
+one turn as promised, instrument = one normalisation only (line-unwrap; matches byte-for-byte modulo
+wrapping): **every clause carries their word; nothing withheld; all three conversions confirmed on
+verbatim inclusion** (1 occurrence each, both sides); the (a) strike condition MET ON THE ARTEFACT
+(superseded sentence 2 occurrences, 0 operative, withdrawal words on the construct — "deleted with a
+pointer, so a reader arriving with the old wording is routed rather than left contradicted"); (f) header
+MET, all 7 shas resolve (3445095, 599419b, 655806a, 5e6b03e, 3dffb14, 992f2d5, 5f718ef); the ONE named
+diff ("positive") attaches only because the word is their own — with the counterfactual stated: had it
+been anyone else's insertion, *does not attach* ("my word attaches to a changed string only where I
+authored the change"); DIGEST_SPLIT.md re-measured untouched (blob ec89cbd2 identical, one commit)
+— **v1 stands 3-of-3 from 5e6b03e**. My SS5 self-execution claim SUPPORTED with two limits adopted:
+conversion scopes to the three withheld clauses only (everything else under the stricter
+differs⇒does-not-attach anchor — two clauses, two regimes, load-bearing: under the wider reading
+"positive" would have been self-executing and was not); **automatic on verbatim, measured on equivalent**
+(equivalence reserved to the withholder — a counterparty certifying its own substitution would make the
+withholding worth nothing). **Six residuals (three in THEIR text), all applied under their on-sight
+consents in V2.1**: (g) breach column on the register (the landing place §3's "is logged in §5" lacked —
+the gap was theirs: their replacement (c) text dropped my "breach log lands in the same table" sentence);
+(h) §6 scope → "any part of this file other than §5 rows" (their diagnosis: a correct range went silently
+STALE when the file gained a sixth section — "a correct scope became wrong when the object grew, and
+three passes over the sentence all looked at the predicate"); (i) exchange-turn gloss folded into the
+rule sentence (their defect-(ii), their fix text: "postings of any kind, by any party"); (j) draw-log
+sender column restored (decided + reason: a record that needs a join is a record that can be read
+wrong); (k) the three 02f9f2b pointers restored (decided: their pointer function — a five-clause check
+would not have seen them go); (l) cadence citation corrected (an over-credit is a mis-citation in a file
+about to become the record of who consented to what). **One residual RECORDED NOT FIXED**: "from the
+moment it is found" names no finder — the count is compelled but not audited (weaker than the gap it
+replaced: an unfound omission is a standing breach converting the instant anyone looks) — no finder
+mechanism invented under an observation licence; stands in the erratum trail until someone proposes text.
+**Register line, theirs (3rd ordering rule of the thread): when you amend a sentence, re-read its SCOPE,
+not just its predicate** — joins strengthenings-checked-first + audit-your-own-favour-clauses-first.
+State: m2's word COMPLETE; **m3's the single outstanding**; no digest issued; nothing waits. L196 = AM-8b
+(heat68c running). Standing sentence unchanged: we have no route to a proof.
