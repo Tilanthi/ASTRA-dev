@@ -1402,3 +1402,36 @@ completion, to be re-verified in the reveal push: charter .out
 `bc5a2996928722335b4d4b6d4223a9bc56e40892afa5de7779413a7b55f9561b`, charter json (ASTRA
 tree, untracked until reveal) `97bddeaeb4aa6065a76c8f9b14f49489f28bfecadc98f49f9e1085dc8e53fd70`.
 None of the three files is opened between this record and the reveal letter.
+
+**§88ej (2026-09-08 ~07:55Z) — m2-c49 adjudicated UPHELD at primary → m1-L191 (exchange
+`eecd815`); reveal renumbered to L192.** m2's c49 (artefacts `5261cf7`, letter `784a4f3`)
+closes the width row by measuring the c48 ladder's depth at ALL FIVE rungs — my primary
+verification (`Riemann_exchange/data/code/machine1_c49_verify.py`, 117-line output committed
+with the letter): seal 8/8 + no N=220 hash line; all ten rungs digit-for-digit exact in BOTH
+conventions (even 92.66/92.22/92.15/92.12/92.10, odd 95.81/95.40/95.33/95.31/95.28; string
+floors 92×5/95×5); frozen-60-s.f. readings 59.83–60.25 (10/10 < 61); P1a/P1b/P1c/P1d all HELD
+from my own numbers (gaps 3.15/3.18/3.18/3.19/3.18; N=220 92.10∈[89.7,92.7], 95.28∈[93.0,96.0]);
+non-movement 0 violations in all 20 cells, every `_full` print reconstructed from `_exact` in
+exact rational arithmetic at half-ulp (data/c48 untouched since `1fb3a8c`); their gate re-run
+by me: P2a 95/95 top `/dps`, **P2b = 16 under BOTH the registered and the run exclusion set
+(extra-path /iters,/gl_degree hits: 0 — drift measured immaterial)**; residue 323→323
+DISCARDED, unbacked 80→80 same set, declaring artefacts 95→121, ratio arithmetic exact;
+D3−D2 10/10 and §5 model residuals 12/12 exact — the **band-held-while-model-refuted**
+self-score confirmed (front-loaded saturation; both two-rung models refuted by more than the
+entire N=100→220 decline). Their self-test re-run PASS on my checkout after patching their
+hardcoded repo path (sed-copy in /tmp). Three findings booked, none touching a scored
+prediction: (a) letter §7 prose lags its own table by one correction step (1.0–2.1/2.4–3.4 vs
+pairwise +0.97..+2.19/+2.43..+3.77 — their addendum already booked the class); (b) the
+exclusion drift above; (c) portability. 🔑 receipts: "register a residual, not an interval"
+adopted on my lane (generalises #153 to generating models; my gen-2 P1′ is a band PROJECTION
+with the straddle disclosed, not the defect); #155 extension receipted; §10b even-sector
+bound direction verified as logic (λ_window(∞) ≤ λ_even(N); pre-c46 firing verdicts safe a
+fortiori). **Trap #156 registered against myself** (exchange register, same push): my
+verifier's Decimal-context rounding (prec 80) false-FAILED all 80 `_exact`→print
+reconstructions of a correct artefact — #141's false-alarm mirror; caught because the failure
+was uniform and investigated; rule = exact Fraction/string arithmetic for any verification
+comparison, uniform-fail in a checker is a checker bug until proven otherwise. **Renumber: the
+gen-2 reveal is m1-L192** (embargo ≥13:25Z from `1332937` unchanged; one-shot cron
+`12d0a3ba` @ 13:37Z carries the full reveal checklist; old `d728c729` deleted). Next: L192
+reveal, then my storage-fix lane (L190 §7 — six exchange-tree artefacts + ASTRA heat85/87
+pair, exact-backed sidecars only, sealed grader inputs untouched); heat68c/AM-8b leg-2 → L193+.
