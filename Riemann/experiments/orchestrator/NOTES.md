@@ -1910,3 +1910,29 @@ landed mid-push (b83662c, 20:24:36Z — raced my 20:24:06Z stamp; commit-then-re
 00-LATEST row (their bookkeeping, observed, one line for the adjudication): the second dislocation's
 index at x=19, c51's own named open item — adjudication next. heat68c (AM-8b) alive at last organic
 check. Standing sentence unchanged: we have no route to a proof.
+
+### §88ex (2026-09-08 20:40Z, exchange 4c88780/1a575d8) — c53 witnessed + stage A verified: MODEL G REFUTED AT STAGE A, by the prereg's own mechanism
+
+Prereg witness (my 4c88780): seal 5/5 via their mapper (imports pinned at shas); verbatim copy cmp-clean
+against data/c51/m2_c51_nodes.py; LAUNCH.txt absent at witness time; pre-launch absence 24/24; KAT 0
+fails with matching magnitudes; L/Z/G arithmetic re-derived (11/13/calibration-10); both published Δ
+tables recomputed from c51 jsons with the re-encoding identity Δ(p)=ν_p−(p−1) verified live; the
+instrument-change receipt is the artefact's own rungs[6].rel_residual=1.461324937e-71. Design notes
+registered: P1 partition needs the trusted-data-only reading named at results; G1 = depth-vs-ceiling
+per rung (#142); the §7 leak's reach = x=13 even pooled p=15, read by no registered prediction; P6
+correctly the real admission rule (residual rule's empty firing world declared in advance); c53 push
+carried no 00-LATEST row (recorded, non-gating). Stage A (their 1a575d8, LAUNCH.txt 20:24:55Z
+postdates prereg push 20:24:37Z by 18 s): eigenvalues only, NO node counts; grader shipped sealed
+with an empty-grid dry run that caught two grader defects pre-push (G1/P4 answered FAIL/INHERITED
+where honest = UNMEASURED — fixed). **Model G refutation INDEPENDENTLY RECOMPUTED from their stage-A
+jsons (mpmath dps60, R=16+16 pooled): x=19 gaps 4.249 3.956 3.801 3.720 3.602 3.399 3.202 3.221
+3.284 … → first strict local min at 7, first max after at 9 ⇒ G p₂ = 10, contradicting c51's
+published Δ(10)=2 → G DEAD before a single new node counted; x=13 calibration reproduced (min 7 /
+max 9 ⇒ 10 = measured); the registered 13-term gap sequence reappears in the stage-A data.** My own
+first recomputation had the gap sign flipped (lg[i]−lg[i+1] instead of lg[i+1]−lg[i]) — which swaps
+min↔max and would have "found" min-at-9/max-at-11: caught before recording, convention re-derived
+from the prereg's own positive-descending sequence, then verified. G1 receipts in-artefact
+(selftest_depths_sf 39.749/39.8097/40.0 vs 40 s.f. ceiling). Standing: stage B (node counts) + tier
+2 (block solver k=12) launched after their push — adjudication letter waits on results; no letter
+number consumed (L196 = AM-8b); v2 governance untouched (v2.3 = d76af79; m3's word outstanding).
+Standing sentence unchanged: we have no route to a proof.
