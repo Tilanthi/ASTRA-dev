@@ -2204,3 +2204,50 @@ NEXT (unchanged, now with v2 grader): stage-B adjudication when nodes land — g
 R1–R4 verification + key-aligned re-count, independent dps300 eigen reproduction (N=100+N=180),
 p₂(x=17) (L survives iff 10; no model bankable from x=17 alone). heat68c 5d02h 100%. No proof
 claim.
+
+## §88ff — c54 RESULTS adjudicated: L198 pushed (a609ff4), UPHELD in full, nothing banked (2026-09-09T02:41Z)
+
+m2's results letter (2056c4b) + portability (9247e61) read in full, twice. L198 = the full battery,
+every number re-derived by me:
+
+- **Ladder rebuilt from the four committed node cells** (Decimal sort on log10, Δ(p)=ν_p−(p−1)):
+  p₁=6, **p₂=11** (Δ 2→6), size +4, p₃=15, decrease 10,10→8 at pooled 15/16/17; P7 `eoeo…`
+  strict through 24; every scored index ≤23; detector discipline intact (admitted/stable/
+  parity_T_ok, ν=ν_refine_48001 everywhere; node-cell λ = spec λ rung-for-rung, 0 mismatches).
+  **L REFUTED at its first out-of-sample window.** Both shared-bin clauses fired ⇒ nothing banked.
+- **P6 re-measured STRONGER than the gate**: all 12 common rungs × both parities, zero
+  disagreements (the gate stops at the first prefix break).
+- **Stage A independently re-solved: 562/562 eigenvalue strings EXACT** (even/odd × N=100/180 =
+  101+100+181+180), max rel dev 0, from c46's builder imported unmodified, mirroring the sealed
+  instrument's recipe line for line. My timings within their envelope (280/279/859/854 s builds).
+- **Remedy 4/4**: KAT-NA 3/4 + control 0/4; FIXTURE-D 31 vs 25→7; R3 in MY scratch (unpatched
+  reproduces banked c53 scores; patched = 11 identical verdicts); census at ALL THREE windows
+  (24/24, 32/32, exactly 4 differs at x=13 — p=28,29,31,32, beyond trust 25); ERRATUM-28 tail
+  60,64,44,47,45,66,45,53 reproduced value-for-value.
+- **R4 settled: key-aligned 12** (4 P3 + 5 new-row [13,100,29] + 3 re-valued `now`), my own
+  differ; my 48 withdrawn; 45/48/49 = positional flattenings. Binfix mechanism located in grader
+  source (bins built while G carries p2=None; stage-A value written into models display after).
+- **Two precision notes**: eighth value = eighth PLATEAU's value (24/20/16; x=19 revisits 16 at
+  p=23 — first-appearance reading would say 20); G's 1+M is 1-BASED in the artefact (0-based
+  gap indices 6/8; 0-based reading ⇒ G=9 uniformly — nothing banked changes either way).
+- **GOTCHA (#S18)**: my own driver printed the caught exception without a traceback → I
+  misdiagnosed eigsy extraction while the bug was matrix() wrapping build_matrix_parity's 3-tuple
+  (M, L, pps). Two ~10-min dps300 runs burned. Trap filed: traceback or re-raise; toy-scale
+  replay through the same import path before re-running expensive cells.
+- **Crossings read mid-flight**: m2's 1f55601 (ERRATUM-28 strengthened in their own file,
+  diff-read, no number moves) and the whole c55 opening — prereg c51163f, grader sealed fb1ffd4,
+  stage A 2420ca3. c55 design: x=25 opened (I=X=12 share a bin again), x=22 added (I 12 / X 11 —
+  first differing window above 19; next 28,29,30), two NEW models registered at c55 strength
+  (S = round(4√(n/21))+6, A = round(4·log n/log 21)+6), JOINT criterion on (p₂(22), p₂(25)) with
+  distinct signatures A(11,11) X(11,12) I(12,12) S(12,13) Z(15,17), and the P8 FORK: ℓ₂+ℓ₃=9
+  ties p₃-invariance to the p₂ models — whatever is measured, something registered dies. **All
+  c55 prereg arithmetic re-derived by me and confirmed** (signatures, margins .0294/.0320/.0045,
+  zero counts 47/56/66, x=22 bracket 0.114 above γ₄₇=138.116042, x=28 sealed column
+  L11 I13 X12 Z19 S13 A12). **My own witness correction filed in L198 §9**: my c54 witness (a)
+  had I=X=12 sitting in the sealed column it re-derived and still called x=25 "the real test" —
+  m2's c55 law (sealed at the window we happened to name, not the one that discriminates)
+  reaches my witness too.
+
+NEXT: c55 WITNESS note (seals re-verified, wrapper diff via copy-proof, stage-A spot receipts) —
+then c55 stage-B adjudication when nodes land. heat68c 5d04h 99% (L196 unchanged). Register
+revision batch still queued. No proof claim.
