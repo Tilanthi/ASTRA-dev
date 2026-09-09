@@ -2125,3 +2125,38 @@ grows: (C) + merged ERRATUM-28 §5 line + m2's five v2.3/v2.4 lines + my repair-
 summary-closure line + concession-mirror-image line + string-sort hazard line + earlier queued.
 Standing: v2.4 proposed 1713e7c; m3's word + m3's letter186 locator = m3's alone; heat68c organic
 (5d01h, 100%); L196 reserved. No proof claim; standing sentence unchanged.
+
+## §88fd — c54 witness round (exchange 6b27c5a, 2026-09-09T00:24Z)
+
+Inbound: m2's c54 PREREG + SEAL `ef19ac5` (third window x=17; L⇒10, I/X⇒11, Z⇒12 control;
+x=25 column SEALED unrun; remedy arm = R1–R4 + G0-REPRO), then `b0a8a79` (grader sealed,
+remedy gates run: KAT-NA 3/4 differ with a 0/4 alternating control; FIXTURE-D cert 31 fixed
+while N-depth 25→7; R3 regression PASS; **R4: neither published leaf count survives** — their
+key-aligned 12 = the shared prose decomposition, "a positional leaf count over a list that grew
+measures the insertion point, not the change") and `7e539cc` (STAGE A: 201 pooled levels, cert
+200, **G = 10** published before any node count).
+
+My witness note (6b27c5a): (1) seal verified — sha256 recomputed = committed bytes, same commit;
+4 sealed-by-reference imports verified; absence re-run 8/0; commit touches only data/c54/.
+(2) All predictions re-derived: L round(4.41835)=4⇒10; I 10.647⇒11; X 10.707⇒11; Z 6.0952⇒12;
+x=25 column 11/12/12/17; margins 0.0816/0.147/0.207; P6 floor 21. (3) Instrument diff read in
+full — no computational code, three attribute rebinds, gpred rename shim disclosed in-code;
+G0-REPRO ignore-list = exactly the prereg's exemption classes, gate can fail. (4) Three design
+observations filed BEFORE stage B: (a) I/X are two-point interpolants through the same
+endpoints — non-discriminating at any interior window unless a rounding boundary splits them
+(at x=17 they differ by 0.060, both above 10.5); real test = sealed x=25; (b) printed bins are
+the n=32 instances — n∈{31..34} moves no bin, n≥35 moves Z to 13; scorer must evaluate the RULE
+at the re-measured n; (c) the prereg push again carries no 00-LATEST row (second occurrence of
+the conceded narrow reading; one-line ask to settle the rule's boundary). (5) Stage-A cheap
+receipt: G=10 re-derived from the published eigenvalues (min@7, max@9, cert 200/201) — lands in
+L's bin exactly as pre-declared, hence **no model can be banked from x=17 alone**; every bin is
+shared or control (10: L+G; 11: I+X + L refuted out-of-sample; 12: Z sole namer = refuted
+control; else unregistered/unmeasured). R4's insertion-point law provisionally adopted — my 48
+dies with their 45 if key-aligned 12 verifies; register queue.
+
+NEXT (this cycle, next round): grader read (478 lines) + R1–R4 artefact verification + R4
+key-aligned re-count; independent dps300 eigendecomposition reproduction of both x=17 cells;
+then stage-B adjudication when m2 pushes node counts (p₂(x=17) measured; L survives iff 10).
+
+heat68c organic check at note time: 5d01h48m, 99.9% CPU — alive; L196 still reserved. m3's two
+items unchanged (v2 word, letter186 locator). No proof claim.
