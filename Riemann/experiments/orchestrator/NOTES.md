@@ -2331,3 +2331,50 @@ file tail per #151:
 
 NEXT: unchanged — c55 stage-B adjudication when m2's nodes land; heat68c organic checks only
 (L196); m3's three items. No proof claim.
+
+## §88fi — L200 PUSHED (8122a92, 2026-09-09T03:50Z): c55 fully adjudicated — stage B AND the storage-test results, in one letter
+
+Sequence this window: m2's 0409177 (stage B + addendum + seal 3) verified arm-by-arm → their
+results letter e44d93b (03:39:15Z) landed MID-COMPOSITION → read in full at primary, verified,
+and folded into the same letter rather than split. L200 adjudicates both; §0–§5 stand as written
+against 0409177 (the "unrun" language was true when written), §5b–§5d adjudicate the run.
+
+- **Stage B accepted in full**: 15 holes/7 cells by my sweep; depth 0 robust to the
+  None-convention; P6 refuted against floor 23 exactly per its own reportable-result clause;
+  P1/P3–P10 UNMEASURED, P11 HELD. Sealed x=25 column opened-not-scored (c54 column L11 I12 X12
+  Z17 reproduced at measured n=56); ungated (11,11) = untrusted number; **the flip, if it comes,
+  comes through c56** (new instrument SF≥120 + new prereg + frozen column blind) — I committed
+  in the letter to witnessing the c56 prereg with one NEW arm: the storage width itself
+  registered.
+- **Census re-run from source**: all numbers reproduce. Partial-grid precision note filed
+  (inversion not reproducible on natural subsets; min-over-superset arithmetic forces the other
+  way — their first pass used a different floor notion; one-line clarification offered,
+  non-gating).
+- **Both sealed-grader defects confirmed at source** (joint arm: `pair = tuple(...measured_p2...)`
+  with None-guard only, `trusted_depths` recorded never gated; `plateaus()` counts holes as
+  values). Jointfix re-run byte-identical, controls fire.
+- **The storage test RUN, adjudicated**: seals 14/14+5/5+7/7 (launch 03:25:42Z = 32 s after
+  seal 3, printed in LAUNCH.txt)+11/11. H1 refuted as written 0/101 ON ITS OWN PRINT WIDTH
+  (coef_sf 41 vs 121; c37 on its author). **H1′ re-run by me: 10 302/10 302, mutation control
+  0→1 fires, byte-identical output.** H0/H2/H3 verified from the SF=120 artefact directly
+  (nu 0/2/4; tolerance triple-agreement). **H3 REFUTED: true counts 0 and 2, not the registered
+  2 and 4** — the tol-0 column carried +2 spurious sign changes per rung while the tolerance
+  columns were ALREADY right at 40 s.f.; had the detector trusted tol-0, two published counts
+  would be wrong by exactly 2. The refusal was CORRECT; the N-control prefix quarantined it.
+  Non-re-opening rule concurred in without reservation.
+- **My 00-LATEST defect**: the a609ff4 (L198) push seated its row between header and
+  `|---|`; later prepends scrambled below; table ran 13 rows over cap (my count-check counted
+  one side of the anchor only — #154/#151 recurrence). I diagnosed it independently with a
+  canonical rebuild drafted; **m2's e44d93b repaired it first** ("content is m1's, placement is
+  the index's"); their repair verified at this tree; my count-check lesson queued as §7.5 of
+  L200. Their four offered register lines ADOPTED VERBATIM (all four) + storage-floor law now
+  FILEABLE with outcome attached (merged with their offered domain rule). 0409177 = 2nd clean
+  test case for the pending stricter 00-LATEST amendment (m3's word outstanding).
+- heat68c checked organically after a `ps -p` FALSE NEGATIVE: `ps aux` shows PID 72105 alive
+  (RN, 100% CPU, ~5d05h; .out block-buffered, last flush 6 Sep — lines are rare at n=1000).
+  AM-8b → L196 still pending its exit.
+
+NEXT: c56 prereg witness (seals, arithmetic, copy proof, + storage width registered); heat68c
+organic → L196 on exit; m3's three items (v2 word, letter-186 locator, 00-LATEST amendment word);
+storage-fix lane (L190 §7); register batch next instalment (storage-floor law + four adopted
+lines + §7.2/§7.3/§7.5). No proof claim.
