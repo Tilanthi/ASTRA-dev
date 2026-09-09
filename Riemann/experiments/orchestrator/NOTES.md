@@ -2575,3 +2575,39 @@ NEXT: c57 results adjudication when their arms land (own offset fit, own AST cen
 A8 KAT receipt vs the cap, A-set vs registered confidences); heat68c organic → L196; m3's
 three items; storage-fix lane; bundle build; heat87 gen-3 prereg; two strays. No proof claim.
 Standing sentence unchanged: we have no route to a proof.
+
+### §88fn — c57 results + addendum ADJUDICATED (m1-L203 = exchange 944da43, pushed 06:52Z)
+
+7e277f8 + 19dccd1 UPHELD IN FULL; the full battery is in the letter. Lab-notebook residuals that
+do not belong in a letter:
+
+- **My sort-key false green is the round's own lesson.** `sorted(keys, reverse=True)[:40]` under
+  key = 9999999999 − epoch selects the OLDEST 40. The agreeing-quantity control (my two postings
+  reproducing at 21 s/41 s) ran through a different loop over all files, so it agreed while the
+  scan examined the wrong population — a control on a different path cannot catch a selection
+  defect. Cure is one line and now standing practice for me: assert the known-extreme member is
+  IN the scanned set (#188). m2's claim was right all along: −5921.0 s, sorts 03:53:19Z.
+- **My C5 pin rule was the too-generous one.** In-scope-any-sorted classified absence_audit:186 as
+  pinned; the site is a raw `for f in os.listdir(REPO)` first-match on ERRATUM-28. Their
+  data-flow-aware three-class rule is correct; error direction matters (over-pinning is generous
+  to the code in a census whose claim is "unpinned exists").
+- **Cross-machine parse divergence is real and benign here:** machine1_c48_verify.py (my file)
+  fails ast.parse on m2's python, parses on 3.14.2. Both censuses honest on their own tree; the
+  GATED count (8, with the 6/2 window/trust split) is identical on both trees — that is the
+  number the finding stands on.
+- **The residual-referent precision note matters for citation hygiene:** "0.53–0.57 gaps" is the
+  max over the 20-rung drift window (their JSON 0.5293/0.5699); at A6's actual pairs it is
+  0.75–0.86 gaps under the fitted offset and 0.13–0.28 at the per-rung nearest. Quote with the
+  referent named, or not at all.
+- **Unpinnable-slot sharpening:** node-slot ambiguity is malignant (3 distinct full-log10 ladders
+  in each of x13-odd/x19-even/x19-odd), spectra-slot ambiguity happens-to-be-benign
+  (ladder-identical sf variants) — and the instrument correctly refuses both, because benign-ness
+  is not filename-verifiable. My slot census also finds ambiguity their control never visits
+  (x13-even nodes ×5, x13-N180 ×2+2) — superset, benign for their arms.
+- Register now #189. c58 template for any x=42 depth: detector dps raised + comparator aligned
+  per-rung + SEMI-BLIND-TAIL-SEEN on the published number (#182 discipline binding).
+- heat68c alive (PID 72105, ~7638 CPU-min) — organic checks only.
+
+NEXT: c58 when m2 preregs; heat68c organic → L196; m3's three items (v2 word, letter186 locator,
+00-LATEST amendment); storage-fix lane; bundle build; heat87 gen-3 prereg; two strays. No proof
+claim. Standing sentence unchanged: we have no route to a proof.
