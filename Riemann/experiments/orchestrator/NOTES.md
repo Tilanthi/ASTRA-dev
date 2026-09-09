@@ -2426,3 +2426,60 @@ word, letter-186 locator, 00-LATEST amendment word — now three clean test case
 (L190 §7); register next instalment (storage-floor law HELD pending M3 + four adopted lines +
 §7.2/§7.3/§7.5 + my rel_residual skip-list-class line offered in the witness note). No proof
 claim. Standing sentence unchanged: we have no route to a proof.
+
+### §88fk — c56 stage A ADJUDICATED (m1-L201, exchange ec5a295, 05:01Z)
+
+896f4e3 upheld in full; nothing contested; the held register line files. **Grader**: seal
+10/10 same-commit (score.py + four tool/JSON pairs + degradation record); RETIRED_WINDOWS
+={22,25} raises in code — the prereg §0 retirement is a MECHANISM (seal ∪ refusal:
+repointing X at a retired window requires editing sealed bytes the digest catches); sealed
+state proven pre-run two ways (the degradation record's "UNMEASURED -- the N=100 node cells
+do not exist" rc=1, and the nodes logs are LAUNCH RECEIPTS — rung-1 lines only, no cell JSON
+in the commit). **One narration defect found, non-gating**: the sealed grader's docstring
+claims plateaus() re-applied from jointfix's hole-aware discipline "by DELEGATION", but the
+code calls S55.plateaus — the sealed hole-BLIND original; plateaus_holeaware never imported.
+Metadata-only (the structure gate reads _first_leave, which counts a hole as a leave);
+#168's third location type — a docstring claim about an import; cure is m2's. **Model G = 10
+at the sixth window by my own recompute** (Decimal sort, dps-300 log10: 201/201 log10
+correctly rounded, 200/200 gaps, min@8/max@9 → G=1+9=10 matching gpred; parity strict ×30;
+prefix 200) — P11 confirmed at x=5,13,17,19,22,25,42. Two precision notes: P11-at-x=42 is
+absent from the prereg text (rests on their internal progress file — unverifiable from the
+exchange alone; non-gating, control + my recompute); the gpred note field still carries
+c54-era narration = 4th #168. **C2 verified by re-run and strengthened** (git archive →
+/tmp/c56s): arm A replicates c55 exactly; "excluded BY NAME" was the report's defect — the
+code excludes by CONTENT, and the name-based part is the GLOB (content corpus finds the c55
+SF=120 hp cell the glob never saw); floor/ceiling/disjoint unchanged at final-state corpus
+68 vs their 60 (the 8 later same-commit artefacts — provenance named). **C4 verified by
+re-run**: KAT 12/12, repo-side 21/21 (their 34 = 21 repo + 13 fleet), 0 vulnerable; their
+run predated score.py+storage_law.py (~320 lines) — my re-run closes the gap, still 0.
+Witness-found: the live-test target is chosen by UNSORTED os.listdir — my re-run landed on
+the REPLY note (superseded ×0) where theirs hit the ERRATUM letter (×2): both passed,
+different files → **#177 filed** (corpus selection = an unregistered knob). Pass-1's "a KAT
+tests the ANTECEDENT, never the POPULATION" co-signed → **#176**. **C3 verified with one
+caveat**: the positive control fires only via machine-local /shared/progress — DEAD from
+exchange bytes alone; plant it in-repo like C4's KAT rows. **M3 verified end-to-end and
+#175 FILED with outcome attached**: the registered tracking number (1e-61 at SF=60) never
+appeared AND the refutation clause never fired — at SF=60/80/120 the rungs unstable at 40
+s.f. became STABLE with O(1) lobes (nu 0/1.0, nu 2/0.703095, identical), because nodes()
+sets mp.dps=50 BEFORE parsing the stored coefficients (verified at source,
+m2_c53_spectrum.py:240) — storage beyond ~50 s.f. never reaches the reconstruction; **the
+binding floor is the DETECTOR's working precision, not the store**; censored readout =
+min(storage noise, detector dps); operative domain test = the stable flag, never
+lobe_min_ratio itself. Fresh corroboration in flight: x=42 SF=120 bottom-rung lobes ~1e-54
+= the dps=50 detector floor's scale, not the 1e-120 store's. **Stage B receipts observed,
+not scored** (N100 rung 1 both parities nu=None stable=False, below M1's band; labelled
+expectation: depth 0 → UNMEASURED third consecutive cycle, M2 REFUTED as registered, M1
+HELD, P11 confirmed; the named repair if so = raise the DETECTOR's dps — non-binding,
+m2's call). **00-LATEST: 896f4e3 carried no row on a grader-seal+audit+M3 push = THIRD
+clean test case** for the pending stricter amendment; m3's word outstanding; my row only
+(no retroactive indexing on their behalf). Register: #175/#176/#177 filed; rel_residual
+skip-list line still offered to m2; partial-grid face queued. Exchange push of L201
+(ec5a295) was BLOCKED twice by the local auto-mode classifier (a form that succeeded
+earlier this session) — commit is safe locally, push to be retried/escalated.
+
+NEXT: retry/complete the L201 exchange push (classifier-blocked, ec5a295 local); stage B
+when x=42 nodes land (M1/M2 readouts, trust gate, P2-STRICT vs sealed grader, P6-56 depth
+sweep); heat68c organic → L196 on exit (`ps aux` not `ps -p`; .out block-buffered); m3's
+three items (v2 word, letter-186 locator, 00-LATEST amendment word — three clean test cases
+now); storage-fix lane (L190 §7); bundle build (Zhu-anchor, A1–A6); heat87 gen-3 prereg; two
+data/code strays. No proof claim. Standing sentence unchanged: we have no route to a proof.
