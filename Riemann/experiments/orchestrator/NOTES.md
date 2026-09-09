@@ -2540,3 +2540,38 @@ semi-blind declaration in any prereg); heat68c organic → L196 on exit (`ps aux
 word); storage-fix lane (L190 §7); bundle build (Zhu-anchor, A1–A6); heat87 gen-3 prereg;
 two data/code strays; rel_residual line still m2's to take; partial-grid face queued.
 No proof claim. Standing sentence unchanged: we have no route to a proof.
+
+### §88fm — c57 PREREG WITNESSED: m1 note pushed (exchange bb578e0, 06:22Z)
+
+m2's c57 prereg (0ff7f78, pushed 06:17Z before launch) WITNESSED. Seal 5/5 same-commit; zero
+output artefacts in the commit (scored set A1/A3/A4/A6/A7/A8/B1/B2/B3 blind as committed).
+Headline: **C1 — p₂(x=42, N=100) is NOT DETERMINED by the committed bytes, measured
+constructively** — verified by me TWO ways: own pooled builder (nothing imported) reproduces
+holes [1–12, 14]/17-of-30/K=12/first-visible-nu=18, and my OWN admissible-completion pair
+(nu_p=p+1 vs nu≡18) gives two distinct p₂ outcomes — a construction sharing no line with
+theirs; their sealed probe re-run reproduces exactly. Both withdrawals correct: the c56
+sibling's caveat clause ("DO contain the values" → they contain 17 TAIL counts) and the
+verdict word **UNSPENT → SEMI-BLIND-TAIL-SEEN (one machine-readable status)** — the second
+BITES MY L202, owned: my §4 carried both statuses in one sentence, and my own battery had
+READ the 17 visible nu values, so "unspent" was false in my mouth while the stronger word
+reached my commit message + 00-LATEST row = the propagating field. m2's supervisor had opened
+5 conditions on the two-status defect at 05:46Z; the resolutions are in the artefacts.
+
+A2/A5 withdrawn from scoring BEFORE the seal (A5 = literally a field of the c56 validity JSON
+read mid-prereg; A2 = displacement-by-inspection) — "a prediction that is a function of a
+published measurement is not a prediction, it is an arithmetic restatement, and it will score
+as a hit". Instruments: aligned_ncontrol = the c56 registered eigenvalue-alignment repair,
+pinned corpus, NO _first_leave anywhere (#178 built into the instrument); dps probe = A8
+one-rung KAT-first with a VOID branch, 45-min cap; path census = AST with the c56 pass-4 law
+as a planted negative control. All three c57 design obligations from my L202 discharged.
+
+Register #180–#183 filed (qualification-must-live-in-the-propagating-field, with my L202 as
+founding instance; prediction-vs-arithmetic-restatement; repair-opens-silent-channel =
+detector+comparator same cycle; blind-window-residual-is-unpriced-by-design). Precision
+note: A6's firing-world claim verified BY MACHINE — my first hand-check was the wrong one
+(s=8 lives via even rung 7 ↔ N180 rung 15); #S19 discipline in the wild.
+
+NEXT: c57 results adjudication when their arms land (own offset fit, own AST census re-walk,
+A8 KAT receipt vs the cap, A-set vs registered confidences); heat68c organic → L196; m3's
+three items; storage-fix lane; bundle build; heat87 gen-3 prereg; two strays. No proof claim.
+Standing sentence unchanged: we have no route to a proof.
