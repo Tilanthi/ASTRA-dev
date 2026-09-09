@@ -2251,3 +2251,51 @@ every number re-derived by me:
 NEXT: c55 WITNESS note (seals re-verified, wrapper diff via copy-proof, stage-A spot receipts) —
 then c55 stage-B adjudication when nodes land. heat68c 5d04h 99% (L196 unchanged). Register
 revision batch still queued. No proof claim.
+
+## §88fg — c55 WITNESS executed: L199 PUSHED (75d1b35), every arm green, one new trap (#S19)
+
+Read in full at primary, twice: prereg (c51163f), sealed grader bytes + seal-2 (fb1ffd4), stage A
+(2420ca3). Arms, all mine:
+
+- **Seals vs committed bytes**: seal 1 **14/14** (incl. the 6 by-reference digests — the opened
+  x=25 column's c54 prereg+seal among them); seal 2 **5/5**; each seal in its own sealing commit;
+  both + prereg frozen to HEAD (my first freeze check for seal 2 used the WRONG base c51163f —
+  the 11 "insertions" were the file's creation, fb1ffd4→HEAD is empty).
+- **Zero-cells claim checked in the tree, not the prose**: fb1ffd4 contains NO spec/node artefact
+  of either window. 16 `logs/spec_*_x2[25]` files DO sit in that commit — each exactly 739 bytes
+  = redirection manifests (resolver paths), zero measurement content; runs launched AT seal time
+  (02:21:19Z vs seal stamp 02:21:05Z), artefacts first exist at 2420ca3.
+- **Copy-proof, twice over**: (i) my own normalise+diff — wrapper **zero code differences**
+  (3 docstring lines), repro-fix's 15 code lines = the declared `_sealed_gate_result()` change
+  entire; (ii) their gate re-run in scratch from HEAD bytes — output **byte-identical**, PASS,
+  both mutation controls fire (0→1, 15→16). Precision note: exact-line match to DECLARED is
+  printed not enforced for repro-fix — I did it myself, it holds.
+- **Stage-A receipts: G = 10 at BOTH x=22 and x=25 by my own recompute** from the committed
+  spectra (Decimal sort on lam; dps-300 log10 recomputed: **201/201 exact** vs rung-stored AND vs
+  gpred, both windows; **gaps 200/200**; first strict local min 1-based 7, first max after 9;
+  G=1+9=10). P11 CONFIRMED; G stays window-independent (control behaviour). Alternation strict
+  through pooled 30.
+- **#S19 (filed, register)**: my FIRST G-recompute read λ under a variable named `logs`; gap
+  strings went 0/200, turnaround 45/47 vs their 7/9, and my script printed DIFFER — my own
+  defective check accusing a correct artefact. Localised by the 201/201 log10 pre-check (inputs
+  provably identical ⇒ divergence downstream of them ⇒ my side). Rule: name variables from the
+  column they read; when a recompute disagrees with a committed artefact, first re-derive one
+  agreeing quantity through the same path; total mismatch (0/N) = wrong column on YOUR side.
+- **Precision note (new carrier class)**: both gpred JSON note fields carry c54-era narration
+  ("REFUTED IMMEDIATELY … at x=19", c51 referents) the 54→55 substitution didn't rewrite — the
+  prereg's declared cloned-narration hazard in a THIRD location (generated artefact prose, which
+  no gate diffs). Nothing scored reads it.
+- **Prereg arithmetic, machine-derived, all confirmed**: zero counts 21/32/38/47/56/66 (agree
+  c54 at all four shared windows); x=22 bracket T*−γ₄₇ = 0.114035 narrowest of six (0.590/0.967/
+  1.175 at 19/25/28); first I/X-differing window above 19 = 22 (next 28/29/30); knife-edges
+  I .0294@22, S .0320@25, A .0045@28; joint signatures A(11,11) X(11,12) I(12,12) S(12,13),
+  L shares A, Z(15,17); sealed x=28 column L11 I13 X12 Z19 S13 A12; fork ℓ₂+ℓ₃=9 — only A's
+  ℓ₂=5 fits the registered tail's ℓ₃=4.
+- **§5 design read**: the JOINT criterion is load-bearing — neither window alone separates
+  (x=22: outcome 11 named by L+A+X, 12 by I+S; x=25: 11 by L+A, 12 by I+X); R=13 (Z's 17 inside
+  trusted depth 25) = the escape-by-cheapness mirror applied in advance.
+- heat68c organic check 5d04h25m 99.8% (L196 unchanged). m3's three items unchanged.
+
+NEXT: c55 stage-B adjudication when m2's nodes land (grader read + verdict verification against
+the sealed column + my own ladder rebuild from node cells). Register revision batch queued (+ the
+gpred-note-field carrier-class line). No proof claim.
