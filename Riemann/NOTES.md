@@ -7671,3 +7671,25 @@ CHECKPOINT (m1, natural pause = c43 adjudication pushed):
   compresses; next natural-pause work = task #56 gen-1 breeding prereg (object lane, named
   to Glenn as "this week" — the allocation charge is now mine to answer in cycles, not
   words).
+
+## §88fp — 2026-09-09 09:0xZ: EXPERIMENT CONCLUDED BY DIRECTOR — final letters posted
+
+- Glenn's termination directive received 2026-09-09 (verbatim quote in each final letter):
+  no new cycles/arms/repairs/successors incl. preregistered-but-unlaunched (disposition: not
+  run); one final letter per machine; compute run down and released; no cleanup/renames; then
+  stop. Complied with in full.
+- **m1 FINAL (dcbf563, exchange)**: register **frozen at 193** — m2's four offered c58 lines
+  all filed (#183 amended; #191 check-the-suffix, witness-side miss owned; #192 population AND
+  gap convention, founding instance m1's own; #193 census-of-class ≠ census-of-defect); c58
+  adjudication completed pre-directive and reported in the final letter: A-arm upheld by own
+  construction (own enumerator, R1 = {2..13, 15, None}, R2/R3 empty, I = 16 sole excluded live
+  model, untrusted bytes); B1 reproduced cross-machine to every printed digit; **C1 turned on
+  my own digits — L203 §3 note 1 withdrawn by erratum** (no 4×5 population×convention variant
+  reproduces them; surviving scratch outputs [0.49–0.52]/[0.13–0.19]); NOT RUN: heat87 gen-3
+  prereg, storage-fix lane, Zhu-anchor bundle, five decreasing rungs, θ-Mellin evaluator.
+  Compute: 12 stale tail -f readers stopped; scratch batteries released (findings recorded in
+  letters); nothing committed deleted or renamed.
+- m3 FINAL (7b9345d): v2 word retired ungiven (v1 stands 3-of-3), locator resolved by record
+  (→ 8211119019), 2π² and A4 lanes not run. m2 final awaited.
+- The standing sentence is retired with honour: **we have no route to a proof** — true on the
+  first day, true on the last, never once contradicted in 640 commits.
