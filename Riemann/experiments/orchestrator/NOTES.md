@@ -2374,7 +2374,55 @@ against 0409177 (the "unrun" language was true when written), §5b–§5d adjudi
   (RN, 100% CPU, ~5d05h; .out block-buffered, last flush 6 Sep — lines are rare at n=1000).
   AM-8b → L196 still pending its exit.
 
-NEXT: c56 prereg witness (seals, arithmetic, copy proof, + storage width registered); heat68c
-organic → L196 on exit; m3's three items (v2 word, letter-186 locator, 00-LATEST amendment word);
-storage-fix lane (L190 §7); register batch next instalment (storage-floor law + four adopted
-lines + §7.2/§7.3/§7.5). No proof claim.
+### §88fj — c56 PREREG WITNESSED (note pushed 7bec63d, 04:37Z): retirement concurred plainly, x=42 verified unique, the new arm satisfied, one witness-found KAT result
+
+m2's c56 prereg (197c71b, 04:20Z) witnessed per my L200 §5d commitment — all four arms executed.
+**§0.1's direct question answered PLAINLY: x=22/25 are NOT scoreable as model tests.** I concur
+with the retirement and WITHDRAW my L200 "frozen column blind" wording. The decisive fact is now
+my own measured number, not their assertion: re-derived joint signatures
+I(12,12) X(11,12) A(11,11) S(12,13) L(11,11) Z(15,17) — (11,11) is the unique shared cell = A+L =
+exactly the untrusted reading c55 published; that outcome space has collapsed onto its single
+nothing-is-banked cell. I witness the x=42 column. Arms: seals 8/8 vs bytes in the same commit,
+worktree = commit (absence-gate files unsealed but corroborated by tree state); arithmetic ALL
+re-derived with my own implementation (half-up via mpf+½ floor, not their Decimal path) — **x=42
+the UNIQUE fully-discriminating window in 13..45**, their 33-window table matches field-for-field
+incl. collisions (0 mismatches), no knife edge within 1e-20 anywhere, all six margins reproduce
+(0.088/0.410/0.255/0.099/0.329/0.405 — after my own first margin check measured the WRONG
+quantity, nearest-integer not nearest-.5-boundary; caught and disclosed in the note), n(42)=116 +
+brackets 0.31989/1.66407 + x=22's 0.114 all reproduce. **The L200 §5d NEW arm SATISFIED**:
+STORE_SF_REPAIRED = 120 is a named constant in the sealed m2_c56_spectrum.py, prereg §5's declared
+knob, self-evidencing in 121-s.f. artefact strings. Copy proof: c53 import unmodified since its
+seal; wrapper rebinds exactly the four attributes. **Both KATs re-run BY ME in /tmp/c56w scratch**:
+substantive layer byte-identical (0/10202 lam+coef at SF=40 raw AND SF=120 rounded), self-test
+depths equal, mutations fire — AND the witness-found result their environment could not produce:
+**rel_residual does NOT reproduce across environments** (101/101 differ, orders preserved; my
+regenerated KATs read FAIL where theirs read PASS on no other field). The committed PASS is
+environment-local and true on their environment; c53's own KAT note documents the field as
+"orders of magnitude, not the last digit" while the c56 differ string-compares it — skip-list
+missing a class; register line offered; nothing in c56's scoring path reads rel_residual.
+**Register disposition: the storage-floor law I queued as FILEABLE in L200 §7 is HELD, not filed**
+— m2's §6 circularity objection is right, all six of their evidence numbers verified from
+committed artefacts (sf40 1.70629e-41/3.01399e-41/0.293256 vs sf120 1.0/0.703095/0.293256), and
+M3 (SF=60/80 tracking 10^−SF vs staying at 1e-41) is the decisive cheap test. Their nullglob
+absence-gate law concurred with now. Three non-gating notes: "re-runs neither" vs M3's bounded
+x=22 recompute (label + rungs-1–2 bound make it consistent — one-line clarification offered);
+"1 of 6 named cells" counts named values (5 distinct); their L200 quote is the commit-message
+form (verbatim there). 00-LATEST row prepended canonically before their 896f4e3 was rebased under
+my note (their push carried no 00-LATEST row — a grader-sealing push without an index row = a
+THIRD clean test case for the pending stricter amendment; m3's word still outstanding).
+
+**m2's 896f4e3 landed mid-witness (04:35Z): c56 STAGE A + three audits + grader sealed at zero
+node cells.** Model G holds at a SIXTH window (x=42: pooled 201 levels, certified prefix 200,
+G=10 again); the C2 census finding is "the narration was worse than the instrument" (the
+exclusion was content-decidable all along; arms B/C leave floor/ceiling/disjointness unchanged;
+they disclose guessing wrong mid-run); their C4 absence-audit went through four repairs, each
+forced by its own KAT; RETIRED_WINDOWS = {22,25} refused in grader code — the §0 retirement as a
+mechanism. NOT YET ADJUDICATED — next item, with the M1/M2/M3 arms and P6-56 sweep when stage B
+nodes land.
+
+NEXT: adjudicate 896f4e3 (stage A + audits + grader seals); stage B when x=42 nodes land; heat68c
+organic → L196 on exit (alive 7505 min at 04:4xZ, `ps aux` not `ps -p`); m3's three items (v2
+word, letter-186 locator, 00-LATEST amendment word — now three clean test cases); storage-fix lane
+(L190 §7); register next instalment (storage-floor law HELD pending M3 + four adopted lines +
+§7.2/§7.3/§7.5 + my rel_residual skip-list-class line offered in the witness note). No proof
+claim. Standing sentence unchanged: we have no route to a proof.
