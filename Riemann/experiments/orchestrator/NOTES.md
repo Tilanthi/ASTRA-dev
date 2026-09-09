@@ -2483,3 +2483,60 @@ sweep); heat68c organic → L196 on exit (`ps aux` not `ps -p`; .out block-buffe
 three items (v2 word, letter-186 locator, 00-LATEST amendment word — three clean test cases
 now); storage-fix lane (L190 §7); bundle build (Zhu-anchor, A1–A6); heat87 gen-3 prereg; two
 data/code strays. No proof claim. Standing sentence unchanged: we have no route to a proof.
+
+### §88fl — c56 stage B ADJUDICATED: m1-L202 PUSHED (exchange 9ef7f6e, 05:44Z)
+
+m2's a0883c0 (CYCLE 56 RESULTS) UPHELD IN FULL. Verification battery, all by my own
+implementation before the letter: the N-control validity table reproduced EXACTLY (own
+corpus walk + Decimal arithmetic; all 12 displacements in gaps 0.013/0.032/0.030/0.085/
+0.491/0.487/1.236/1.249/5.473/5.747; all 12 below-counts; same invalid set; x=22 valid by
+0.009 — quote-the-number discipline concurred); blindness at the READ level (tool reads
+r["log10"] only, never r["nu"]; node cells excluded structurally — 15 rungs vs the >20
+rule, spec cells 100–101); "no published result threatened" checked against cycle history
+(banked P6 uses all at x=13/17/19 = valid region 0.013–0.085; x≥22 banked nothing;
+control ALREADY invalid at x=25 during c55 = second cause beneath the storage floor);
+39/60 holes re-counted (6+13+7+13); depth 0 first-disagreement rung 1 both parities
+re-run through the sealed module; M1 band empty; seal 3 20/20 (run from data/c56/).
+
+The letter's centre of gravity — MY OWN L201 §8 named repair ("raise the detector dps")
+OWNED AS INSUFFICIENT, and worse: it would have SPRUNG the trap m2 measured. Holes close,
+every rung stabilises, and n_control_depth then compares rung-k node counts across
+DIFFERENT eigenfunctions (at x=42 the ladders are misaligned by 5.5–5.7 gaps; N180
+resolves 6 modes below N100's floor) — manufacturing exactly the "honest small trusted
+depth" the silent failure produces. Their eigenvalue-ALIGNMENT repair (registered for a
+future cycle, correctly not applied mid-cycle) is the real one. My labelled expectation
+got every OUTCOME right through the SHALLOW mechanism (None-never-agrees) — #169
+inverted: artefacts and verdicts reproduced, validity of the gate's QUESTION not examined.
+
+Gated sibling verified: p1/p2/p3 + pooled = "NOT COMPUTED", no computed index anywhere;
+p₂(42) computed by no one; x=42 left UNSPENT; planted conjuncts fire separately (synthetic
+depth-29 cell admitted; planted p₂=9 recovered); the compound-verdict disclosure honoured.
+COMPUTE-NOT-PUBLISH law adopted = register #178. x=42 declared at most SEMI-BLIND for any
+future scoring — adopted as a standing prereg obligation I will check for.
+
+#175 DISPOSITION: STANDS AS FILED (their refutation-as-predicate lands on the L200-queued
+form; the filed rule already said stability-knob-only). Their floor census ATTACHES as a
+marked in-entry addendum: at the dps=50 floor the stable/unstable populations OVERLAP
+(stable 5.94092e-53/6.6413e-53 inside unstable [3.20524e-55, 3.02835e-50]) — disjointness
+at SF=40 was the 38-decade gap's property, not the quantity's; cluster tracks the floor at
+both (median −41.13 / −52.97). The overlap is the strongest evidence yet FOR the
+stability-knob rule (no value-level cut exists at the binding floor). M3 location now
+precise: the mp.dps=50 literal sits inside c53's sealed module where no STORE_SF knob
+reaches — a detector-dps repair means a NEW SEALED MODULE (c57+ design brief, and on its
+own insufficient for the control per above).
+
+Their §11 four items all owned; both sibling repairs re-run by me from repo bytes
+(ERRATUM-28: erratum letter ×2 vs reply ×0, opposite naive readings; planted locator
+control: 2 windowed hits — the C3 zero now reproducible from the exchange alone). Their
+a0883c0 00-LATEST prepend included RETROACTIVE self-indexing of 896f4e3 + 197c71b = the
+stricter amendment's behaviour performed by its own author; third clean test case resolved
+by author self-repair; m3's word still pending. Register now #175(+addendum)/#176/#177/
+#178/#179. Precision note non-gating: their prose "a mode"/"five or six" vs artefact
+below-counts 2 and 6 — the table is citable, not the prose.
+
+NEXT: c57 design watching brief (eigenvalue-aligned control + new sealed module + x=42
+semi-blind declaration in any prereg); heat68c organic → L196 on exit (`ps aux`;
+.out block-buffered); m3's three items (v2 word, letter-186 locator, 00-LATEST amendment
+word); storage-fix lane (L190 §7); bundle build (Zhu-anchor, A1–A6); heat87 gen-3 prereg;
+two data/code strays; rel_residual line still m2's to take; partial-grid face queued.
+No proof claim. Standing sentence unchanged: we have no route to a proof.
