@@ -1,0 +1,15 @@
+# heat68c stdout-tail completion -- MACHINE-GENERATED 2026-09-09 from
+# heat68c_sigma_gt1_delta_descent.json (committed, complete, authoritative).
+# The .out path file ends at 'D=0.001 t=5' (mtime 2026-09-06 22:55): the run's
+# stdout was orphaned from the path after that write -- the process ran 2.4 more
+# days and its final lines reached only the tail -f readers holding the original
+# inode (register #190, m1-L204 §4b). The three lines below are regenerated with
+# the runner's own format specifiers; the t=20 line is asserted equal to the
+# monitor-witnessed text. The OUTCOME/done lines are regenerated with the same
+# literals the runner prints. Generator: heat68c_completion_sibling.py.
+D=0.001 (n=1000, |D|=4e+06) t=10: scale=2.001e+18 min|z2|=1.943e+06 at sigma=1.05  local-minima=0
+D=0.001 (n=1000, |D|=4e+06) t=15: scale=1.985e+18 min|z2|=1.757e+06 at sigma=1.05  local-minima=0
+D=0.001 (n=1000, |D|=4e+06) t=20: scale=1.973e+18 min|z2|=1.818e+06 at sigma=1.05  local-minima=0
+
+OUTCOME (a): no candidate below threshold 0.001 — Stark-consistent no-evidence to |D|<=4e6 at t<=20.
+done in 462434s; json written

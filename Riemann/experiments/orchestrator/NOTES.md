@@ -2611,3 +2611,53 @@ do not belong in a letter:
 NEXT: c58 when m2 preregs; heat68c organic → L196; m3's three items (v2 word, letter186 locator,
 00-LATEST amendment); storage-fix lane; bundle build; heat87 gen-3 prereg; two strays. No proof
 claim. Standing sentence unchanged: we have no route to a proof.
+
+### §88fo (2026-09-09 07:2xZ) — AM-8b CLOSED: heat68c outcome (a); stdout orphaned mid-run (#190); two narration defects owned
+
+**Run end.** heat68c (PID 72105) exited organically at ~09:00 local after 462,433.8 s ≈ 5.35 days
+(~99.3 % CPU single process). Outcome per the AM-7 registered rubric: **(a)** — and on the stronger
+form: **zero interior local minima on ALL 20 lines** (not "none below 1e-3×median" — no dip at all
+in 1,600 evaluations; global min at the left edge σ=1.05 on every line). No σ>1 zero-evidence at
+|D| ≤ 4×10⁶, t ≤ 20, rational-Δ Epstein carrier; with AM-7's real-axis sign closure the lane stands
+closed to the stated limits. §2 of the letter tightened to what the summaries PROVE (no dip at grid
+scale + left-edge argmin; "monotone rise" named as inference from the Δ^(1−2σ) driver, not
+measurement — grid proves no dip at 0.05 spacing).
+
+**Output-stream forensics (#190, filed).** The .out path file ends at `D=0.001 t=5` (18 lines, mtime
+2026-09-06 22:55) while the process ran 2.4 more days: stdout was ORPHANED from the path when the
+path was replaced under the writer during the 6 Sep trap-#83 restore window (HEAD's committed .out =
+1-line launch stub). The two long-lived `tail -f` readers held the ORIGINAL inode and received every
+final line — the completion monitors fired on them; the path never did. Nothing evidentiary lost
+(JSON complete at exit, written to the correct path). Cure executed: `.out` committed UNTOUCHED at
+its authentic 18 lines; missing tail machine-regenerated from the JSON into a marked SIBLING
+(`…out_completion.txt` via `heat68c_completion_sibling.py`, committed) with the t=20 line ASSERTED
+character-identical to the monitor-witnessed text (#149 machine-derived, no hand-typed digits).
+Operational rules in the register entry: liveness by PROCESS not path-mtime; run-written completion
+artefact outranks redirected log; lsof before restoring paths in a tree with live redirects.
+
+**Two narration defects, both conservative, both mine.** (1) The committed code scans σ ∈ [1.05,
+**5.00**] — `range(80)` × 0.05 — while the docstring says [1.05, 4.0], the inline comment beside the
+expression says `# 1.05 .. 4.00`, heat68b's runner carries the SAME pair under the SAME comment (plus
+"79 pts/line" — it is 80), and my AM-7 letter propagated the "4.0" narration. The measured
+no-evidence region is WIDER than narrated. Erratum forward-only in L204. Caught by the receipt's own
+grid assertion FIRING (#188 discipline: assert the population before reading results). Lesson
+generalised and written into the letter: **write the assertion from the claim under test, never from
+the docstring accompanying the code** — second consecutive round an assertion-from-narration
+diverged from code (L203: wrong-tail population; here: grid endpoint). (2) Registered outcome-(a)
+wording said "raw curves kept"; the JSON keeps per-line summaries only. Verdict checkable from
+committed bytes regardless (cands census + threshold logic + battery); 20-line re-derivation
+declined at 5.35 days and named (#S17 class).
+
+**Receipt.** One line (Δ=0.02, t=20) re-derived from committed bytes at the run's own dps=30
+through the committed evaluator: scale 2.284900e10 · vmin 3.385009e03 · vmax 9.757658e16 · argmin
+1.05 · 0 interior minima — `REPRODUCES` verdict, exit 0, all magnitudes < 1e-6 rel; script asserts
+imin == 0 (known-extreme member IN the scan). Wall ~13 min for ONE line — the concrete cost anchor
+for declining the full re-derivation and for the successor-cost note: the adaptive k-shell near σ=1
+is deep even at the scan's largest Δ; Δ=10⁻⁴ ≈ 10× the wall of Δ=10⁻³. Next |D| decade needs a
+cheaper evaluator (theta-Mellin), not more days. No successor launched; dispatch-time declaration:
+none pending. Two stale `tail -f` readers remain on the .out (0 CPU, left untouched).
+
+**Lane bookkeeping.** AM-8b both arms (a): heat68b (height) + heat68c (Δ-descent). Letter m1-L204
+pushed to the exchange with register #190; this NOTES block + artefacts (.out, .json, completion
+sibling + generator, receipt script + log) committed here in the same push window. Standing
+unchanged: no proof claim; we have no route to a proof.

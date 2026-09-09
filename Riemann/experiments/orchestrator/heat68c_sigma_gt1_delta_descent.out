@@ -1,1 +1,18 @@
 heat68c sigma>1 DELTA-DESCENT probe (AM-8) v2 (adaptive truncation, m3 L99). dps=30 scan. Pre-stated outcomes a/b/c (letter).
+D=0.02 (n=50, |D|=1e+04) t= 5: scale=2.337e+10 min|z2|=4.358e+03 at sigma=1.05  local-minima=0
+D=0.02 (n=50, |D|=1e+04) t=10: scale=2.317e+10 min|z2|=3.583e+03 at sigma=1.05  local-minima=0
+D=0.02 (n=50, |D|=1e+04) t=15: scale=2.298e+10 min|z2|=3.267e+03 at sigma=1.05  local-minima=0
+D=0.02 (n=50, |D|=1e+04) t=20: scale=2.285e+10 min|z2|=3.385e+03 at sigma=1.05  local-minima=0
+D=0.01 (n=100, |D|=4e+04) t= 5: scale=1.603e+12 min|z2|=1.871e+04 at sigma=1.05  local-minima=0
+D=0.01 (n=100, |D|=4e+04) t=10: scale=1.589e+12 min|z2|=1.547e+04 at sigma=1.05  local-minima=0
+D=0.01 (n=100, |D|=4e+04) t=15: scale=1.576e+12 min|z2|=1.397e+04 at sigma=1.05  local-minima=0
+D=0.01 (n=100, |D|=4e+04) t=20: scale=1.567e+12 min|z2|=1.440e+04 at sigma=1.05  local-minima=0
+D=0.005 (n=200, |D|=2e+05) t= 5: scale=1.100e+14 min|z2|=8.047e+04 at sigma=1.05  local-minima=0
+D=0.005 (n=200, |D|=2e+05) t=10: scale=1.090e+14 min|z2|=6.627e+04 at sigma=1.05  local-minima=0
+D=0.005 (n=200, |D|=2e+05) t=15: scale=1.081e+14 min|z2|=5.978e+04 at sigma=1.05  local-minima=0
+D=0.005 (n=200, |D|=2e+05) t=20: scale=1.075e+14 min|z2|=6.197e+04 at sigma=1.05  local-minima=0
+D=0.002 (n=500, |D|=1e+06) t= 5: scale=2.943e+16 min|z2|=5.531e+05 at sigma=1.05  local-minima=0
+D=0.002 (n=500, |D|=1e+06) t=10: scale=2.917e+16 min|z2|=4.535e+05 at sigma=1.05  local-minima=0
+D=0.002 (n=500, |D|=1e+06) t=15: scale=2.893e+16 min|z2|=4.100e+05 at sigma=1.05  local-minima=0
+D=0.002 (n=500, |D|=1e+06) t=20: scale=2.877e+16 min|z2|=4.240e+05 at sigma=1.05  local-minima=0
+D=0.001 (n=1000, |D|=4e+06) t= 5: scale=2.019e+18 min|z2|=2.370e+06 at sigma=1.05  local-minima=0

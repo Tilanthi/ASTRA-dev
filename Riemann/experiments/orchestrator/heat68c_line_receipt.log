@@ -1,0 +1,9 @@
+re-derived  D=0.02 t=20
+  scale   2.284900e+10   (committed 2.284900e+10)
+  vmin    3.385009e+03   (committed 3.385009e+03)
+  vmax    9.757658e+16   (committed 9.757658e+16)
+  argmin  1.05        (committed 1.05)
+  interior local minima: 0  (committed 0)
+  argmin at leftmost point (known-extreme member IN scan): True
+RECEIPT: REPRODUCES (rel dev < 1e-6 on all three magnitudes)
+exit=0
